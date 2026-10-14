@@ -2,42 +2,75 @@
 
 Date: 2026-10-14
 
-Derived from the public command tables, the Reborn scripting guide, and observed script patterns. No decompile material.
+Derived from the public command tables, the Reborn scripting guide, the 3,187 scraped scripts, and observed offline behavior. No decompile material.
 
 ## Control flow
 
-- `if` / `else` — conditional. Nearby is a special form used for range checks.
-- `jump` — unconditional transfer.
-- `function` — named block (not fully expanded in early clients).
+- `if` / `else` — conditional. The nearby form is used for range checks against the player or other objects.
+- `jump` — unconditional transfer to a label.
+- `function` — named block. Early clients treat this as a no-op or simple call; later clients expand it.
 
-## Common commands observed in the 3,187 scripts
+The offline interpreter already executes arithmetic, comparison, and jumps. The missing piece is the command call itself.
 
-| Command | Effect | Frequency note |
-|---------|--------|----------------|
-| `hide` / `show` | Toggle NPC visibility | Very common on touch |
-| `setlevel` | Change current level | Level warps |
-| `warp` | Move player to x,y | Local and level warps |
-| `hurt` | Apply damage | Combat scripts |
-| `say` | Display text | Dialogue |
-| `set` / `unset` | Flag operations | Triggers and state |
-| `setfocus` / `resetfocus` | Camera or attention | Rare in scraped set |
-| `spyfire` | Debug or observation | Present in tables, rare in scripts |
-| `loadmap` | Load a map overlay | Present in tables |
+## Commands observed in the scraped set
+
+| Command | Typical effect | Notes |
+|---------|----------------|-------|
+| `hide` | Make the NPC invisible | Extremely common in `playertouchsme` |
+| `show` | Make the NPC visible | Paired with hide |
+| `setlevel` | Change the current level | Used by level-warp scripts |
+| `warp` | Move the player to a new x,y | Local and cross-level |
+| `hurt` | Apply damage to the player | Combat and hazard scripts |
+| `say` | Display a text box | Dialogue scripts |
+| `set` / `unset` | Set or clear a flag | Triggers, doors, state |
+| `setfocus` | Direct camera or attention | Rare in the scraped set |
+| `resetfocus` | Clear focus | Rare |
+| `spyfire` | Observation or debug hook | Present in public tables, rare in scripts |
+| `loadmap` | Load a map overlay | Present in public tables |
+| `canwarp` / `canwarp2` | Query whether a warp is allowed | Used before warp |
+| `join` | Attach to another object | Rare |
+| `freezeplayer` / `unfreezeplayer` | Lock or unlock player input | Used in cutscenes |
+
+The public command table also lists draw-layer commands (`setbacktile`, `drawovertrees`, `setz`, `updateterrain`) and a few others that do not appear in the 3,187 scraped scripts.
 
 ## Pattern letters
 
-When a command expands a template, the letters mean:
+When a command expands a template string, the letters are replaced as follows:
 
 - B — baddy name
 - C — color name
-- D — direction
+- D — direction (0 south, 1 west, 2 east, 3 north)
 - F / Q — filename
 - I — item name
 - L — carried object name
-- M / S — string
+- M / S — arbitrary string
 - O — object name
-- R — the literal “real”
+- R — the literal string “real”
 
-## Offline status
+These letters appear in both the public tables and in a small number of the scraped scripts.
 
-The offline interpreter already executes arithmetic, comparison, and jumps. CmdCall remains a no-op until the command set above is wired. The highest-value first wire is `hide` / `show` and `warp` / `setlevel`, because those appear in the majority of `playertouchsme` and `playerenters` scripts.
+## Offline wiring priority
+
+CmdCall is currently a no-op. The highest-value first wires, based on frequency in the scraped set, are:
+
+1. `hide` / `show` — appears in the majority of `playertouchsme` scripts.
+2. `warp` / `setlevel` — appears in transport and level-change scripts.
+3. `hurt` — appears in combat and hazard scripts.
+4. `say` — appears in dialogue scripts.
+5. `set` / `unset` — appears in trigger and door scripts.
+
+Wiring the first two is enough for an offline session to respond to player touch by hiding an NPC or warping the player. That is the smallest change that makes a level feel interactive instead of static.
+
+## Event frequency (reminder)
+
+From the 3,187 scripts:
+
+- `playerenters` — 2,268
+- `playertouchsme` — 1,986
+- `timeout` — 1,456
+- `playerendsreading` — 1,123
+- `compusdied` — 1,122
+- `playertouchsother` — 1,074
+- `wasshot` — 728
+
+Most of these events call one of the commands listed above.
