@@ -1,0 +1,120 @@
+.TH GRMAP001 5 "2026-10-04" "LinuxMan 2" "LinuxMan 2"
+.SH NAME
+grmap001 \- Graal gmap text, short form and generator form
+.SH DESCRIPTION
+A
+.I .gmap
+is line-oriented text.
+The first line is the signature
+.BR GRMAP001 .
+Two writers in this edition emit it, and they do not emit the same keys.
+.SS Short form
+.BR dungeongenerator (7)
+writes, from
+.BR 0x406760 :
+.PP
+.RS
+.nf
+GRMAP001
+WIDTH <levels across>
+HEIGHT <levels down>
+GENERATED <bottom-right level name>
+.fi
+.RE
+.PP
+There is no
+.B LEVELNAMES
+block.
+The client rebuilds the grid from
+.BR GENERATED ,
+which names the last level, not the number 1.
+Level names are
+.I LEVELSTART ,
+a column letter, and a 1-based row.
+See
+.BR dungeongenerator (7).
+.SS Generator form
+.BR terraingenerator (7)
+writes, from
+.BR 0x44c5f5 :
+.PP
+.RS
+.nf
+GRMAP001
+WIDTH <levels>
+HEIGHT <levels>
+GENERATED 1
+GENSEED <seed>
+GENBASE <base>
+GENEVENBORDERS <0 or 1>
+GENHEIGHT <height>
+GENCHAOS <chaos>
+LEVHEIGHT <per-level height>
+LEVCHAOS <per-level chaos>
+MAPIMG <basename>.png
+<one level name per row>
+HEIGHTMAP
+<coarse or fine samples>
+HEIGHTMAPEND
+RANDOMSEEDS
+<one seed per level, when present>
+RANDOMSEEDSEND
+.fi
+.RE
+.PP
+.B GENERATED 1
+here is a flag, not a filename.
+Level names are basename, column
+.I A
+then
+.IR AA ,
+and a zero-padded row, plus
+.IR .nw .
+.B MAPIMG
+is the overview the client shows on the map list.
+The PNG the tool saves from the preview dialog is a separate file.
+.PP
+.B HEIGHTMAP
+is the field.
+A sibling
+.I _heights.txt
+is the same numbers without the gmap wrapper, and the
+.I .txt
+branch of the save dialog writes that file.
+Each level file then carries a 9 by 9
+.B HEIGHTS
+block.
+See
+.BR glevnw01 (5).
+.SS GraalLevelGen
+The picture generator writes
+.B GRMAP001
+with
+.B WIDTH
+and
+.BR HEIGHT ,
+then a
+.B LEVELNAMES
+list of quoted filenames separated by commas.
+That is a third shape.
+Do not assume
+.B GENERATED
+means the same thing in all three files.
+.SH SEE ALSO
+.BR terraingenerator (7),
+.BR dungeongenerator (7),
+.BR glevnw01 (5),
+.BR graal (7)
+
+.SH LINUXMAN 2
+Carried from edition 1.1 and retitled.
+The map of this edition is
+.BR linuxman (7).
+The book is
+.IR architecture.html .
+New pages:
+.BR graalshop (7),
+.BR gani (5),
+.BR graallevelgen (7),
+.BR rcprotocol (7),
+.BR thinstall (5).

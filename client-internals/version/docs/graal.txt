@@ -1,0 +1,185 @@
+.TH GRAAL 7 "2026-10-04" "local" "LinuxMan 2"
+.SH NAME
+graal \- official client tree kept under artifacts/graal
+.SH SYNOPSIS
+artifacts/graal/
+.SH DESCRIPTION
+This is a Graal online client directory as shipped by Linux
+Cyberjoueur (manager Stephane Portha, technical director Stefan Knorr),
+not the SDL fork.
+.B readme.txt
+is the release note: HawkVoice under the LGPL, joystick and
+dinput.dll troubleshooting, and the classic controls.
+.PP
+The SDL fork in
+.BR 2dadventureclient (7)
+does not load this folder.
+It does use the same level text format and the same 4096 tile ids.
+.SS Programs
+.TS
+l r l.
+file	bytes	role
+Graal_2171.exe	2180096	client build 2.171
+Graal_222.exe	1991680	client build 2.22
+Graal_231.exe	1773568	client build 2.31
+GraalEditor.exe	1034630	Thinstall package, see graaleditor(7)
+GraalShop.exe	643072	shop
+GraalShop_old.exe	582656	older shop
+RemoteControl.exe	999936	staff client, see remotecontrol(7)
+gif2mng.exe	109056	gif to mng
+.TE
+.PP
+Also
+.IR bass.dll , basswma.dll , hvdi.dll ,
+signature files
+.I graal.sig
+and
+.IR arrays2.sig ,
+and
+.IR arrays.dat " / " arrays2.dat .
+.SS Pictures that define the world
+.TS
+l l l.
+pics1.png	2048x512 P	standard tiles, 128 x 32 of 16 px, 4096 ids
+picso.png	1024x512 P	offline tileset (type 1)
+sprites.png	128x452 P	sprite sheet
+letters.png		bitmap font
+bomb1.png bomb2.png	effects
+state.png soundicon.png opps.png	HUD scraps
+.TE
+.PP
+.I levels/tiledefs/tiledefsOffline.txt
+is one tiledef line:
+.PP
+.RS
+.nf
+picso.png,offlinetutorial,1,0,0
+.fi
+.RE
+.PP
+That is the
+.B addtiledef
+record from
+.IR newfeatures2001.txt :
+image, level-name prefix, type, optional x, y.
+Type 0 is the old Graal order
+.RB ( pics1.png ).
+Type 1 is the new order.
+.B addtiledef2
+paints a rectangle on top of the base sheet, which is how a single
+chair or lamp gets replaced without a new 4096-tile image.
+.SS levels/
+Client art, not the world map.
+Counts are files on disk.
+.TS
+l r l.
+dir	files	contents
+ganis/	93	86 .gani plus a few images
+midis/	49	music
+heads/	35	33 png, 2 mng
+weapons/	33	weapon images, 2 txt
+bomys/	29	bomy images and ganis
+emoticons/	29	png and mng
+webgifs/	26	mostly png
+backpals/	23	background palettes
+bodies/	20	body images
+images/	19	misc images
+smilies/	15	
+baddies/	10	one sheet per baddy
+shields/	7	
+swords/	6	
+npcs/	5	script text
+horses/	4	
+hats/	4	
+tutorial/	4	
+letters/	2	blueletters, graal2002letters
+snapshot/	2	ss_arrow, ss_bomb
+tiledefs/	1	offline tiledef line
+.TE
+.SS Everything else at the top
+.B maps/
+holds
+.IR bigmap.txt , minimap.txt , newmainmap.txt ,
+the matching pngs, and
+.IR offlinetutorial.gmap .
+.B sounds/
+is 104 wav files.
+.B languages/
+is nine
+.I language*.txt
+files: Deutsch, English, Espanol, Francais, Italiano, Nederlands,
+Norsk, Portugues, Svenska.
+.B tileobjects/
+is the editor stamp library; see
+.BR tileobjects (7).
+.PP
+.B generators/
+contains the dungeon, level, and terrain generators
+.RI ( TerrainGenerator.exe ,
+.IR docu_terraingenerator.txt ,
+and the dungeon generator's loose levels and pngs).
+.B RC2/
+is a remote-control bundle: 64 dll, 69 png, one exe.
+.B weblevels/
+and
+.B pms/
+are empty.
+.PP
+Changelogs, largest first:
+.IR newfeatures2001.txt " (75923, the useful one),"
+.IR newfeatures2002.txt ,
+.IR newfeatures141.txt ,
+.IR newfeatures2005.txt ,
+.IR newfeatures2003.txt ,
+.IR newfeatures2004.txt .
+.I newfeatures2001.txt
+is where GLEVNW01, the base64 tile pair, addtiledef, setshape2's
+type list, and the tileobjects folder are specified.
+.I commands.rtf
+is the long command list.
+.I npcprogramming.doc
+is the NPC script manual.
+.I graalconfig.txt
+is a saved options file (keys, volumes, 1024x768, language English,
+font Tempus Sans ITC).
+.I new1.nw
+is a sample text level.
+.I headsconfig.txt
+lists heads.
+.I FILENAMECACHE.txt
+is a filename cache, not a catalog you should edit by hand.
+.SS Controls named in readme.txt
+F1 options, F4 editor, F5 load level, F6 debug, F7 player list,
+F8 server list, Escape ends the game.
+Player 1 moves with arrows or IJKL; item D, attack S or space,
+action A, map M, weapon list Q.
+Those are Graal.exe keys.
+The SDL fork only reads the arrow keys for walking.
+.SH SEE ALSO
+.BR graaleditor (7),
+.BR remotecontrol (7),
+.BR graalcodec (7),
+.BR terraingenerator (7),
+.BR dungeongenerator (7),
+.BR gif2mng (7),
+.BR tileobjects (7),
+.BR tiletypes (5),
+.BR glevnw01 (5),
+.BR grmap001 (5),
+.BR gdung001 (5),
+.BR gobjset01 (5),
+.BR controlconfig (5),
+.BR 2dadventureclient (7)
+
+.SH LINUXMAN 2
+Carried from edition 1.1 and retitled.
+The map of this edition is
+.BR linuxman (7).
+The book is
+.IR architecture.html .
+New pages:
+.BR graalshop (7),
+.BR gani (5),
+.BR graallevelgen (7),
+.BR rcprotocol (7),
+.BR thinstall (5).

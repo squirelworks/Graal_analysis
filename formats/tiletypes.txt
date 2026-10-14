@@ -1,0 +1,180 @@
+.TH TILETYPES 5 "2026-10-04" "local" "LinuxMan 2"
+.SH NAME
+tiletypes \- which tile ids block, and which are water
+.SH SYNOPSIS
+server/include/tiletypes.h
+.br
+share/tiledefs.txt
+.SH DESCRIPTION
+The client does not inspect the tileset image.
+A board stores a tile
+.B id
+(0..4095).
+Collision is a second table, indexed by that id.
+.PP
+.I tiletypes.h
+holds
+.I static const unsigned char tiletypes[4096]
+copied from the standard Graal tileset, plus
+.IR tiletypes_len " = 4096."
+.I share/tiledefs.txt
+is the same 4096 bytes written in decimal, row-major, 128 values
+per line (the width of
+.BR pics1.png ).
+.SS The only tests this client runs
+From
+.I TLevel.cpp :
+.PP
+.RS
+.nf
+bool TLevel::isOnWall(double pX, double pY)
+{
+    if (pX < 0 || pY < 0 || pX > 63 || pY > 63) return true;
+    return tiletypes[levelTiles[int(round(pY)) * 64 + int(round(pX))]] >= 20;
+}
+
+bool TLevel::isOnWater(double pX, double pY)
+{
+    return (tiletypes[levelTiles[(int)pY * 64 + (int)pX]] == 11);
+}
+.fi
+.RE
+.PP
+So, for this client:
+.IP \(bu 2
+.B wall
+if the type byte is
+.B >= 20
+(also if the foot is outside the 64x64 board)
+.IP \(bu 2
+.B water
+if the type byte is
+.B == 11
+.IP \(bu 2
+.B walkable
+otherwise, including types the official client treats as special
+.PP
+Outside the board,
+.B isOnWall
+is true.
+.B isOnWater
+does not range-check; a bad coordinate reads off
+.IR levelTiles .
+.SS Counts in this table
+.TS
+l r l.
+value	count	meaning here
+0	823	walkable
+3	40	stored, unused (official: chair)
+4	4	stored, unused (official: bed, upper)
+5	4	stored, unused (official: bed, lower)
+6	12	stored, unused (official: swamp)
+7	8	stored, unused (official: lava swamp)
+8	30	stored, unused (official: near water)
+11	47	water
+12	67	stored, unused (official: lava)
+20	129	wall (official: throw-through fence)
+21	18	wall (official: jumping stone)
+22	2914	wall (official: blocking)
+.TE
+.PP
+Wall ids: 129+18+2914 = 3061.
+Water ids: 47.
+Walkable ids: 988.
+.SS What the official list called them
+.I newfeatures2001.txt
+documents
+.B setshape2
+tile types.
+That list is what the bytes were named for.
+This client's movement only keeps the two predicates above.
+.TS
+l l.
+0	nonblocking
+2	hurting underground
+3	chair
+4	bed, upper side
+5	bed, lower side
+6	swamp
+7	lava swamp
+8	near water
+9	near lava
+11	water
+12	lava
+20	throw-through (fences)
+21	jumping stone
+22	blocking tile
+.TE
+.PP
+Types 2 and 9 are in the official list and do not appear in this
+4096-byte table.
+.SS Not the Graal.exe body mask
+A decompile note shipped as
+.I attachments/tiledef.txt
+describes Graal.exe v2.05.
+That file is a different grid: a 0/1 body-block mask for tileset
+types 1 and 2 (1725 blocked, 2371 walkable).
+Stock selection there is
+.I pics1.png,,0
+and type 0 walks only if the id is in two sorted lists that the
+decompile did not emit.
+.B setshape2
+in that client blocks the body when the shape-tile type is greater
+than 19, which matches
+.B >= 20
+here.
+Throw handling there does
+.B not
+stop on type 0x14 (20).
+This SDL client has no such split: 20, 21, and 22 are all walls.
+.SS Id to picture
+On
+.B pics1.png
+(2048x512, palette, 128 by 32 tiles of 16 px):
+.PP
+.RS
+.nf
+col = id % 128
+row = id / 128
+pixel = (col * 16, row * 16)
+.fi
+.RE
+.PP
+The first data line of
+.I tiledefs.txt
+is ids 0..127.
+It starts
+.I 0,0,20,20,...
+so the top-left two tiles walk and the next two are walls.
+The 2x2 Bush stamp in
+.BR tileobjects (7)
+writes ids 2, 3, 18, and 19, which this table marks 20, 20, 22, 22.
+The stamp file itself has no collision column.
+.SH FILES
+.I artifacts/2dadventureclient-master/server/include/tiletypes.h
+.br
+.I artifacts/2dadventureclient-master/docs/tiledefs.txt
+.br
+.I /LinuxMan/share/tiledefs.txt
+.br
+.I artifacts/graal/pics1.png
+.br
+.I artifacts/graal/levels/tiledefs/tiledefsOffline.txt
+.SH SEE ALSO
+.BR 2dadventureclient (7),
+.BR graal (7),
+.BR glevnw01 (5),
+.BR gobjset01 (5)
+
+.SH LINUXMAN 2
+Carried from edition 1.1 and retitled.
+The map of this edition is
+.BR linuxman (7).
+The book is
+.IR architecture.html .
+New pages:
+.BR graalshop (7),
+.BR gani (5),
+.BR graallevelgen (7),
+.BR rcprotocol (7),
+.BR thinstall (5).

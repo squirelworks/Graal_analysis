@@ -1,0 +1,166 @@
+.TH GANI 5 "2026-10-04" "LinuxMan 2" "LinuxMan 2"
+.SH NAME
+gani \- GANI0001 sprite mode and GANI0002 movie mode
+.SH DESCRIPTION
+A GANI file is the text document
+.BR graalshop (7)
+reads and writes.
+The first line is the discriminator.
+Client samples under
+.I levels/ganis/
+and
+.I levels/bomys/
+match the sprite dialect, including files that omit the signature.
+The parser lowercases each line before comparing keywords.
+The writer emits uppercase keywords and space-padded columns.
+.PP
+.TS
+l l l.
+First line	TGraalAni+0x20	Body
+GANI0001	0	sprite table, header, ANI ... ANIEND
+GANI0002	1	sprite table, header, MOVIE ... MOVIEEND
+.TE
+.SH GRAMMAR
+.PP
+.RS
+.nf
+file        := signature? sprite* header* body
+signature   := "GANI0001" | "GANI0002"
+sprite      := "SPRITE" id sheet x y w h description
+             | "ATTACHSPRITE"  id parent dx dy
+             | "ATTACHSPRITE2" id parent dx dy
+header      := "LOOP"
+             | "CONTINUOUS"
+             | "SINGLEDIRECTION"
+             | "SETBACKTO" name
+             | "BACKCOLOR" "#" hex6
+             | "FRAMES" count
+             | "DEFAULTHEAD" file
+             | "DEFAULTBODY" file
+             | "DEFAULTPARAM" n value
+             | "DEFAULTATTR"  n value
+             | "COLOREFFECT"  id args
+             | "ZOOMEFFECT"   id args
+             | "ROTATEEFFECT" id args
+             | "STRETCHXEFFECT" id args
+             | "STRETCHYEFFECT" id args
+             | "EFFECTMODE"   id args
+body        := ani | movie
+ani         := "ANI" step* "ANIEND"
+movie       := "MOVIE" actor* "MOVIEEND"
+actor       := "ACTOR" name  frame* "ACTOREND"
+frame       := "FRAME" index  token ("," token)*
+step        := placement ("," placement)*
+             | "WAIT" n
+             | "PLAYSOUND" name x y
+placement   := spriteId x y
+             | "PARAM" n x y
+             | "ATTR"  n x y
+script      := "SCRIPT" rawlines "SCRIPTEND"
+.fi
+.RE
+.PP
+.B SINGLEDIRECTION
+is written only in sprite mode.
+.B FRAMES
+is written only in movie mode.
+.B SCRIPT
+/
+.B SCRIPTEND
+is copied through as text.
+It is not executed by the editor.
+.SH SPRITE ROW
+The writer
+.RI ( FUN_00479500 )
+emits fixed-width columns: id padded to 4, sheet name padded to 14,
+then x, y, w, h padded to 4, then the description.
+That is why client files look like:
+.PP
+.RS
+.nf
+SPRITE    0         SPRITES    0    0   24   12 shadow
+SPRITE  200            HEAD    0    0   32   32 head up
+SPRITE   20           SWORD   62    0   28   28 sword
+.fi
+.RE
+.PP
+.B ATTACHSPRITE
+and
+.B ATTACHSPRITE2
+hang a sprite on a parent with a pixel offset.
+They are not a second sheet.
+.SH SPRITE MODE
+.B ANI
+opens the step list.
+.B ANIEND
+closes it.
+A step is either a comma-separated placement row, a
+.B WAIT
+hold, or a
+.B PLAYSOUND
+cue.
+A placement is a sprite id plus x and y, or a
+.B PARAM
+or
+.B ATTR
+slot plus x and y.
+.PP
+A step holds four direction rows, or one row when
+.B SINGLEDIRECTION
+is set.
+The wait counter starts at 1.
+Each
+.B WAIT
+adds to it.
+.SH MOVIE MODE
+.B MOVIE
+opens the actor list.
+.B MOVIEEND
+closes it.
+Each
+.B ACTOR
+has a name and a run of
+.B FRAME
+lines closed by
+.BR ACTOREND .
+The kind is not a keyword in the frame line.
+It is the integer on
+.BR TGraalActor :
+0 CHAR, 1 SPRITE, 2 SOUND, 3 TEXT.
+.PP
+A
+.B FRAME
+line is an index and a comma-separated token list.
+Those tokens become the
+.I key=value
+strings on a
+.BR TGraalActorMod .
+.SH HEADER FLAGS
+.B LOOP
+and
+.B CONTINUOUS
+are playback flags.
+.B SETBACKTO
+names the GANI to return to.
+.B BACKCOLOR
+is a
+.I #rrggbb
+fill behind the preview.
+.B DEFAULTHEAD
+and
+.B DEFAULTBODY
+reload the head and body
+.B TSurfaceOwner
+objects.
+.B DEFAULTPARAM
+and
+.B DEFAULTATTR
+seed the 30-row attribute grid.
+Effect lines
+.RI ( COLOREFFECT , ZOOMEFFECT , ROTATEEFFECT ,
+.IR STRETCHXEFFECT , STRETCHYEFFECT , EFFECTMODE )
+are stored as id plus arguments and applied at blit time.
+.SH SEE ALSO
+.BR graalshop (7),
+.BR graaleditor (7),
+.BR gif2mng (7)

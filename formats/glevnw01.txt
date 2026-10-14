@@ -1,0 +1,177 @@
+.TH GLEVNW01 5 "2026-10-04" "LinuxMan 2" "LinuxMan 2"
+.SH NAME
+glevnw01 \- Graal text level format (.nw)
+.SH DESCRIPTION
+A
+.I .nw
+level is line-oriented text.
+The first line is the signature
+.BR GLEVNW01 .
+Official notes
+.RI ( newfeatures2001.txt )
+say to edit it in an editor that does not wrap lines.
+Servers send the same size payload as a binary
+.I .graal
+file; only the on-disk form is larger.
+.PP
+.B TLevel::loadLevel
+picks the loader from the extension
+.RB ( .nw , .graal , .zelda )
+or, if the extension is unknown, from the 8-byte magic:
+.TS
+l l.
+GLEVNW01	text loader
+GR-V1.01, GR-V1.02, GR-V1.03	binary Graal loader
+Z3-V1.03, Z3-V1.04	Zelda loader
+.TE
+.SS BOARD
+.PP
+.RS
+.nf
+BOARD x y width layerindex tilesdata
+.fi
+.RE
+.PP
+One horizontal run on the background.
+.I tilesdata
+is
+.I width*2
+characters.
+Each tile is a 12-bit index into the tile list
+.RB ( pics1.png ),
+packed as two base64 characters, high 6 bits first.
+.PP
+.RS
+.nf
+alphabet = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+tile     = index(left) << 6 | index(right)
+.fi
+.RE
+.PP
+AA is tile 0, AB is tile 1, // is tile 4095.
+The client alphabet in
+.I TLevel.cpp
+appends a trailing
+.BR = ,
+which is not part of the official 64-character alphabet.
+.PP
+The loader ignores a BOARD line unless it has 6 tokens, the run
+stays inside x 0..63, and
+.I tilesdata
+is at least
+.I width*2
+characters.
+The tile is stored at
+.IR levelTiles[x\ +\ y*64] .
+.I layerindex
+is parsed and not used.
+.SS Other records
+.TS
+l l.
+LINK dest x y width height newx newy	level change rectangle
+SIGN x y / text / SIGNEND	sign; body may be empty
+NPC image x y / script / NPCEND	'-' if the npc has no image
+BADDY x y type / verses / BADDYEND	type name or 0..9
+CHEST x y item signindex	item name or 0..24
+.TE
+.PP
+LINK destination, newx, and newy must not contain spaces.
+NPC x and y may be floating point.
+Baddy verses may be shortened, but BADDYEND is required.
+CHEST item names are resolved with
+.BR TLevelItem::getItemId ;
+an unknown item drops the chest.
+.SS Editor text
+.BR graaleditor (7)
+opens
+.I *.graal
+and
+.I *.nw
+with one filter and treats both as text.
+It does not require the
+.B GLEVNW01
+signature.
+.B BOARD 0
+is the tile layer: 64 lines of 64 tile indices, not a base64 run.
+Heights are a
+.B TLevelHeights
+overlay, not a second
+.BR BOARD .
+Section keywords are the same words
+.RB ( LINK , SIGN , CHEST , NPC , BADDY , LEVELNAMES ),
+but the field order is the order the dialogs collect.
+It is not a byte-for-byte dump of the editor's save function,
+and it is not what
+.B TLevel::loadLevel
+accepts.
+A file of raw indices will not pass the SDL loader until it is
+rewritten as
+.B GLEVNW01
+base64 runs.
+The other direction is the same mistake:
+a client
+.I .nw
+is not a
+.B BOARD 0
+grid of decimal indices.
+.SS Generator levels
+.BR terraingenerator (7)
+writes
+.B GLEVNW01
+with 64 rows of tile 0.
+The template at
+.B 0x44bbcc
+is
+.I "64 <y>"
+and 128
+.B A
+characters.
+The terrain is a
+.B HEIGHTS
+block, nine lines of nine numbers, closed by
+.BR HEIGHTSEND ,
+then a
+.B LINK
+on each edge that has a neighbor.
+There is no
+.B NPC
+section in that image.
+.PP
+.BR dungeongenerator (7)
+writes
+.B GLEVNW01
+with one base64
+.B BOARD
+of 64 by 64 shorts, edge
+.B LINK
+lines, and
+.B NPC
+blocks.
+Stamp id 0 is replaced by a 4 by 4 ground fill before the board is stored.
+Stamp id 1 is a hole and is not written.
+.PP
+Three writers, two of them sharing the signature.
+The editor's decimal
+.B BOARD 0
+is the third shape.
+.SH SEE ALSO
+.BR tiletypes (5),
+.BR graaleditor (7),
+.BR terraingenerator (7),
+.BR dungeongenerator (7),
+.BR grmap001 (5),
+.BR 2dadventureclient (7),
+.BR graal (7)
+
+.SH LINUXMAN 2
+Carried from edition 1.1 and retitled.
+The map of this edition is
+.BR linuxman (7).
+The book is
+.IR architecture.html .
+New pages:
+.BR graalshop (7),
+.BR gani (5),
+.BR graallevelgen (7),
+.BR rcprotocol (7),
+.BR thinstall (5).

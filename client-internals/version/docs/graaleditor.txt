@@ -1,0 +1,333 @@
+.TH GRAALEDITOR 7 "2026-10-04" "LinuxMan 2" "LinuxMan 2"
+.SH NAME
+graaleditor \- GraalEditor 2.3.1.1, the classic level editor
+.SH SYNOPSIS
+artifacts/graal/GraalEditor.exe
+.br
+artifacts/GraalEditor/unpacked/GraalEditor.exe
+.SH DESCRIPTION
+GraalEditor is the Linux Cyberjoueur level editor, file version
+.BR 2.3.1.1 ,
+internal name
+.IR "Graal editor" ,
+product name
+.IR GraalEditor .
+The copy under
+.B graal/
+is not a Delphi image.
+It is a Thinstall package (the pre-VMware ThinApp stub).
+That is why a Delphi decompiler rejects
+.I graal/GraalEditor.exe
+and why the C dump of that file is about three thousand lines of loader.
+The editor itself was recovered by running the stub decompressor,
+then the Thinstall
+.B 0xD7
+block codec.
+Names below come from Delphi RTTI and
+.B TPF0
+dialog resources, not from original source.
+Unit name:
+.IR UAdventureEditor .
+.SS The packed file
+On-disk size is 1034630 bytes, as listed in
+.BR graal (7).
+Optional-header
+.B LoaderFlags
+is reused as a file offset,
+.BR 0xFC94E ,
+of a 0x38-byte package header.
+Magic is
+.BR 0x82D0B188 .
+The first block is the Thinstall runtime
+.RI ( X:/thinstall/stub/ts_stub.cc ),
+not the editor.
+.PP
+Startup of the stub:
+.PP
+.RS
+.nf
+entry
+  FUN_004013a0(module, 0)
+  jump to unpacked AddressOfEntryPoint
+.fi
+.RE
+.PP
+.B FUN_004013a0
+XOR-decodes the environment name
+.B TS_LOADER
+and opens that path if it is set.
+Otherwise it opens its own module.
+The stub's own source path, stored in the image, is
+.IR X:/thinstall/stub/ts_stub.cc ,
+along with
+.IR ts_hook.cc , ts_imports.cc , create_file.cc ,
+and
+.IR create_process.cc .
+The runtime can debug a child
+.RI ( WaitForDebugEvent , ContinueDebugEvent , IsDebuggerPresent ).
+This package's editor path is in-process decompression, not a debug unpack.
+.B FUN_004013a0
+then reads the DOS header, seeks to
+.I e_lfanew+0x18
+for the optional header, seeks to
+.BR LoaderFlags ,
+and requires the magic.
+Record 0 is the runtime itself: file offset
+.BR 0x455C ,
+uncompressed
+.BR 0x51000 ,
+compressed
+.BR 0x18A5B .
+.PP
+Two codecs.
+A leading
+.B 0xD9
+is a raw copy.
+The stub block (header byte
+.BR 0xDE )
+uses an adaptive range coder, opcodes
+.B 0x102
+and
+.BR 0x104
+through
+.BR 0x10B .
+The virtual filesystem uses a second codec, marker
+.BR 0xD7 ,
+a bitstream LZ coder.
+The directory sits at
+.BR 0xFC5F5 .
+Decompressed it is a length-prefixed path table under
+.BR %InstallPath% .
+The editor payload is 27 blocks, 64 KiB uncompressed except the last
+.BR 0x6400 ,
+total
+.B 0x1A6400
+(1729536 bytes).
+.I hvdi.dll
+is 3 blocks,
+.B 0x20A00
+(133632 bytes), and has no Graal strings.
+.SS The unpacked image
+.I unpacked/GraalEditor.exe
+is a normal Borland image.
+Linker 2.25.
+Base
+.BR 0x400000 ,
+.B SizeOfImage
+.BR 0x1B1000 ,
+entry RVA
+.BR 0x155D4C .
+Sections are the usual Delphi set:
+.IR CODE , DATA , BSS , .idata , .tls , .reloc , .rsrc .
+Point a Delphi decompiler here, not at the packed stub.
+.PP
+One main form,
+.BR TAdventure ,
+caption
+.IR Graal ,
+centered, key preview on.
+The document is
+.BR TAdventureLevel .
+Preview is DelphiX DirectDraw
+.RB ( TDXForm ,
+DirectDraw 5 and DirectDraw 7).
+Both init failures are stringed.
+Sound is BASS.
+Pictures are GIF
+.RI ( TGifAnimation ),
+MNG
+.RI ( TMNGAnimation ),
+and PNG or DIB through
+.BR TGraalImage .
+There is no plugin ABI.
+.SS What a level is, here
+Open filter:
+.PP
+.RS
+.nf
+Graal levels (*.graal, *.nw)|*.graal; *.nw
+.fi
+.RE
+.PP
+Both extensions are the same text.
+Section keywords the writer emits:
+.IR BOARD , "BOARD 0" , LINK , SIGN , CHEST , NPC ,
+.IR BADDY , BADDYEND , LEVELNAMES , LEVELNAMESEND .
+.B BOARD 0
+is the one tile layer.
+Heights are a separate
+.B TLevelHeights
+overlay, not a second board.
+This shape is not the base64
+.B BOARD
+run that
+.BR glevnw01 (5)
+documents for
+.BR TLevel::loadLevel .
+The client loader still wants
+.B GLEVNW01
+or an 8-byte magic.
+A file saved as raw indices will not load in the SDL client
+until it is rewritten as pairs.
+.PP
+.B TEditorLevelCache
+holds neighbours so a link can name a level that is not the open file.
+.B TGraalMap
+stitches them.
+Gmap files the editor knows:
+.IR *.gmap , loadgmaps.txt , bigmap.txt , minimap.txt ,
+.IR graalmap.png , map.png , map2.png .
+Status strings:
+.IR "Loaded gmap" , "Loaded minimap" , "Loaded & set map" ,
+.IR "Could not find the level" , "Level(s) saved" .
+.B dontconnectlevels
+skips automatic neighbour links.
+.SS Placed things
+Each entity is its own type.
+.TS
+l l.
+TEditorLink	warp rectangle, destination, arrival
+TEditorSign	x, y, text, # codes
+TEditorChest	item, sign index, -1 for none
+TEditorNPC	placed NPC, image plus script
+TEditorDefNPC	predefined NPC stamp
+TEditorObject	generic placed object
+TEditorUndoInfo	board and entity undo
+.TE
+.PP
+Link fields, from
+.BR TLinkOptions :
+level, x, y, w, h, new x, new y.
+Arrival coordinates accept a math expression.
+A destination may be a URL
+.RI ( "Do you want to load the URL" ).
+.PP
+Sign codes documented on
+.BR TEditSigns :
+.B #A
+.B #B
+.B #C
+.B #D
+big letters,
+.B #u
+.B #l
+.B #d
+.B #r
+arrows,
+.B #h
+a head,
+.B #4
+the ying-yang,
+.B #.
+three dots,
+.B ##
+a literal hash,
+.B #k(0..10)
+a key name,
+.B #i(imgfile)
+or
+.B #i(imgfile,x,y,w,h)
+a picture.
+.PP
+Baddies are edited by
+.B TEditBaddy
+(type, attack verse, hurt verse, player-hurt verse).
+Sheets named in the image:
+.IR baddyblue.png , baddyred.png , baddygray.png ,
+.IR baddygold.png , baddyhare.png , baddylizardon.png ,
+.IR baddydragon.png , baddyoctopus.png .
+.PP
+NPC script objects beside the dialog:
+.IR TNPCMove , TNPCAction , TNPCScript , TNPCImgList .
+.B TEditNPC
+has a yellow read-only
+.B ErrorEdit
+filled by
+.IR "Check Syntax" .
+.SS Keys and radios
+.TS
+l l.
+F4	Edit Level
+F5	Load Level
+F6	Debugger
+F7	Player List
+F8	Server List
+.TE
+.PP
+Those are the same F-keys
+.BR graal (7)
+lists from
+.IR readme.txt .
+Here they belong to
+.BR TAdventure ,
+not to the game window.
+Four radios switch the canvas tool:
+predefined tile object, select tile, baddies/npcs/chests,
+predefined NPCs.
+.B TTilesArrayFrame
+edits the index line and the script together.
+Its sample is the offline tutorial,
+.BR addtiledef " picso.png,offlinetutorial,1" ,
+the same triple as the local client's offline tiledef.
+.SS Animation, copied in
+The GANI classes are compiled into the editor so a placed object
+can preview without a separate shop session:
+.IR TGraalAni , TGraalAniSprite , TGraalSpriteAttachment ,
+.IR TGraalAniPart , TGraalAniSound , TGraalAniStep ,
+.IR TGraalActor , TGraalActorMod ,
+plus
+.B TGaniObject
+and
+.BR TImageAnimation .
+.SS Options the editor stores by name
+.IR graalconfig.txt , headsconfig.txt , FILENAMECACHE.txt ,
+.IR buddyaccounts.txt , ignoredaccounts.txt , mutedaccounts.txt .
+More Options pages: Video, Audio, Microphone, General.
+Video strings include
+.I "Don't use Direct3D (lights)"
+and
+.IR "Draw in compatibility mode (very slow)" .
+General flags:
+.IR dontconnectlevels , dontloadlistheads ,
+.IR dontsavepasswords , dontsavepms , microactivationlevel .
+.SS Package mates
+.TS
+l l.
+arrays.dat	11500 bytes, sorted dwords, count word 0x03A6
+arrays2.dat	listserver.graalonline.com:14922 and two fallbacks
+arrays2.sig	0x80-byte signature
+graaleditor.sig	0x80-byte signature
+hvdi.dll	bundled helper, not the editor core
+.TE
+.PP
+The stub refuses to check a signature until it has a public key
+.RI ( "Not ready to verify signature, must have valid public key" ).
+Package group name
+.BR Setup_Graal .
+.B TS_EXECUTE_EXTERNAL
+is set.
+.SH FILES
+.I artifacts/graal/GraalEditor.exe
+.br
+.I artifacts/GraalEditor/unpacked/GraalEditor.exe
+.br
+.I artifacts/GraalEditor/Documentation/
+.SH SEE ALSO
+.BR glevnw01 (5),
+.BR gobjset01 (5),
+.BR tileobjects (7),
+.BR graal (7),
+.BR remotecontrol (7)
+
+.SH LINUXMAN 2
+Carried from edition 1.1 and retitled.
+The map of this edition is
+.BR linuxman (7).
+The book is
+.IR architecture.html .
+New pages:
+.BR graalshop (7),
+.BR gani (5),
+.BR graallevelgen (7),
+.BR rcprotocol (7),
+.BR thinstall (5).
