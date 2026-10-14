@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "-vincentcape.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say2; setsword flaminsword.gif, players[0].swordpower; setshield fireshield.gif, players[0].shieldpower; setcoatcolor darkred; setsleevecolor yellow; setshoecolor red; setbeltcolor yellow; setskincolor red; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt)",
+      "count": 1,
+      "files": [
+        "Yanhouse.graal"
+      ]
+    },
+    {
+      "image": "6chest.gif",
+      "script": "if (playerenters && gotyankey) {hide; } if (playertouchsme && !gotyankey) {say3; } if (playertouchsme && gotyankey) { say5; lay goldrupee; hide;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 06sign.gif",
+      "count": 1,
+      "files": [
+        "Yanhouse.graal"
+      ]
+    },
+    {
+      "image": "gold5stone.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E*gold5stone.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "goldcathedral.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } R0goldhouse1.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "F0goldhouse1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } T<goldenbush.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Z<goldenbush.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } SHgoldmagicshop.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "OLgoldstatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } IHgoldstatue2.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "CWgoldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CUgoldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "CSgoldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CQgoldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "COgoldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CMgoldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "CKgoldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CIgoldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "CGgoldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CEgoldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "CCgoldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CAgoldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C=goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C9goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "C7goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C5goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "C3goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C%goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "C1goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C/goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "C-goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C+goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "goldrock.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C'goldrock.gif",
+      "count": 1,
+      "files": [
+        "apachypass.graal"
+      ]
+    },
+    {
+      "image": "2bluecouch.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 6&bluecouch.gif",
+      "count": 1,
+      "files": [
+        "azhouse.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 7Cchiken.gif",
+      "count": 1,
+      "files": [
+        "b39_meatstore.graal"
+      ]
+    },
+    {
+      "image": "Ebigoct.gif",
+      "script": "if (playerenters) { } if (playertouchsme && !beeninmeatstore) {say 0 } if (playertouchsme && beeninmeatstore && !gotenoughmeat) {say 1 } if (playertouchsme && gotenoughmeat) {say 3;lay goldrupee;timeout=0.1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {set beeninmeatstore } if (exploded || washit || wasshot || waspelt) { } if (timeout) {unset goten",
+      "count": 1,
+      "files": [
+        "b39_meatstore.graal"
+      ]
+    },
+    {
+      "image": "7Gmeatcard.gif",
+      "script": "if (playertouchsme) {toweapons Meat Card;this.meat=0;set gotmeatcard} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {unset meat3pounds; } if (meat3pounds) {this.meat=this.meat+3;timeout=0.1} if (this.meat=50){set gotenoughmeat;this.meat=0} if (this.meat>50){set gotenoughmeat;this.meat",
+      "count": 1,
+      "files": [
+        "b39_meatstore.graal"
+      ]
+    }
+  ]
+}

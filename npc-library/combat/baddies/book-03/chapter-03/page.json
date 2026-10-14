@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 3,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "H-goldrock.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } H+goldrock.gif",
+      "count": 1,
+      "files": [
+        "midasrealm2.graal"
+      ]
+    },
+    {
+      "image": "goldrock.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } .;goldsign.gif",
+      "count": 1,
+      "files": [
+        "midasrealm2.graal"
+      ]
+    },
+    {
+      "image": "DFgold5stone.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } P'midasstatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealm2.graal"
+      ]
+    },
+    {
+      "image": "4Lgold5stone.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } O*goldgrave.gif",
+      "count": 1,
+      "files": [
+        "midasrealm2.graal"
+      ]
+    },
+    {
+      "image": "goldrock.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } M)goldrock.gif",
+      "count": 1,
+      "files": [
+        "midasrealm2.graal"
+      ]
+    },
+    {
+      "image": "Ggold5stone.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 9>midasstatuebig.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "Jblank.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 58blank.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "blank.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; if (AntiGoldSpell) hide; } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } I",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "goldhouse1.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } &>goldhouse1.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "goldhouse1.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } -7villager1gold.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "7Bvillager2gold.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) setgif villager2.gif; } if (playertouchsme) {if (AntiGoldSpellcast) say 5; if (!AntiGoldSpellcast) say 8; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } DJvillager3gold.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "A1villager4gold.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) setgif villager4.gif; } if (playertouchsme) {if (AntiGoldSpellcast) say 7; if (!AntiGoldSpellcast) say 8; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } :@goldrock.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "goldcathedral.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } '$goldrock.gif",
+      "count": 1,
+      "files": [
+        "midasrealm4.graal"
+      ]
+    },
+    {
+      "image": "cathedralsteps.gif",
+      "script": "if (playerenters) {if (speakstatue2) hide;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } >,blank.gif",
+      "count": 1,
+      "files": [
+        "midasrealm4.graal"
+      ]
+    },
+    {
+      "image": "blank.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "midasrealm4.graal"
+      ]
+    },
+    {
+      "image": "SGoldRock.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } \"BGoldRock.gif",
+      "count": 1,
+      "files": [
+        "midasrealm5.graal"
+      ]
+    },
+    {
+      "image": "Z8GoldRock.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } G",
+      "count": 1,
+      "files": [
+        "midasrealm6.graal"
+      ]
+    },
+    {
+      "image": "GoldRock.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } >GGoldPillar.gif",
+      "count": 1,
+      "files": [
+        "midasrealm6.graal"
+      ]
+    },
+    {
+      "image": "8GGoldPillar.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } :HGoldGate.gif",
+      "count": 1,
+      "files": [
+        "midasrealm6.graal"
+      ]
+    },
+    {
+      "image": "HGoldGate.gif",
+      "script": "if (playerenters) { if (GoldAllDead) {hide}; } if (playertouchsme) {say 1; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied&&!GoldAllDead) {set GoldAllDead; if (GoldAllDead) {hide}; say 0; } if (playerendsreading) { } if (exploded) { } 19Gold5stone.gif",
+      "count": 1,
+      "files": [
+        "midasrealm6.graal"
+      ]
+    },
+    {
+      "image": "GoldSign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 6@GoldStatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealmcave1.graal"
+      ]
+    },
+    {
+      "image": "6CGoldStatue.gif",
+      "script": "if (playerenters) {if (Goldrealmcave1) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {hide; } if (playerendsreading) { } if (exploded) { } 6FGoldStatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealmcave1.graal"
+      ]
+    },
+    {
+      "image": "9GoldStatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } EKGoldStatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealmcave1.graal"
+      ]
+    },
+    {
+      "image": "GoldStatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } ALGoldStatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealmcave1.graal"
+      ]
+    },
+    {
+      "image": "GoldStatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } A:GoldStatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealmcave1.graal"
+      ]
+    }
+  ]
+}

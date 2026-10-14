@@ -1,0 +1,209 @@
+{
+  "genre": "object",
+  "topic": "doors",
+  "book": 1,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "V5doubledoor2.gif",
+      "script": "if (playerenters) {x=54;y=21;show;timeout=0.05;timereverywhere;} if (playertouchsme) {hide;} if (timeout) { if (playerx>x+2||playerx<x-7){show} timeout=0.05} Y=door2.gif",
+      "count": 1,
+      "files": [
+        "fox1.graal"
+      ]
+    },
+    {
+      "image": "Cgate1.gif",
+      "script": "if (playerenters && playerheadset =17) { setgif gate1.gif; } if (playertouchsme && playerheadset =17) { say 7; } if (playertouchsme && !playerheadset =17){setgif gate2.gif; timeout=1.0} if (timeout){setgif gate1.gif; play punch.wav} [.sign.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playertouchsme) hide; ;3gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "JWdoor.gif",
+      "script": "if (playertouchsme) hide; \"*door.gif",
+      "count": 1,
+      "files": [
+        "jaypee2level.graal"
+      ]
+    },
+    {
+      "image": "26gate.gif",
+      "script": "if (L4leftgate) hide; if (playersays(yes)) show MObluelampani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "Aleftgate.gif",
+      "script": "if (L4leftgate) hide; if (playersays (yes)) {show} (Gleftgate.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "PMrightgate.gif",
+      "script": "if (L4leftgate) hide; if (playersays (yes)) {show} F6gate.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "rightgate.gif",
+      "script": "if (L4leftgate) hide; if (playersays (yes)) {show} PArightgate.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "PGrightgate.gif",
+      "script": "if (L4leftgate) hide; if (playersays (yes)) {show}",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playertouchsme) {say 0 }",
+      "count": 1,
+      "files": [
+        "kcastle2.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playertouchsme) {say 0 } =Tredguy.gif",
+      "count": 1,
+      "files": [
+        "kcastle2b.graal"
+      ]
+    },
+    {
+      "image": "Odoor.gif",
+      "script": "if (KHhiddoors){ destroy; } 0Odoor.gif",
+      "count": 1,
+      "files": [
+        "krakenhouse8.graal"
+      ]
+    },
+    {
+      "image": "HOdoor.gif",
+      "script": "if (KHhiddoors){ destroy; }",
+      "count": 1,
+      "files": [
+        "krakenhouse8.graal"
+      ]
+    },
+    {
+      "image": "0Gdoor.gif",
+      "script": "if (playertouchsme) hide;timeout=1;timereverywhere; if (timeout) show; if (playerenters) show; -1door.gif",
+      "count": 1,
+      "files": [
+        "level14.graal"
+      ]
+    },
+    {
+      "image": "Bdoor.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} TBdoor.gif",
+      "count": 1,
+      "files": [
+        "level16.graal"
+      ]
+    },
+    {
+      "image": "GBdoor.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} IBdoor.gif",
+      "count": 1,
+      "files": [
+        "level16.graal"
+      ]
+    },
+    {
+      "image": "6Edoor.gif",
+      "script": "if (playertouchsme) hide; ;,",
+      "count": 1,
+      "files": [
+        "level17.graal"
+      ]
+    },
+    {
+      "image": "08door1.gif",
+      "script": "if (playertouchsme) hide; L?door.gif",
+      "count": 1,
+      "files": [
+        "level18.graal"
+      ]
+    },
+    {
+      "image": "H9goldengate.gif",
+      "script": "if (playertouchsme) { if (FoundGraal1 && !GateShowGraal1) { set GateShowNow1; unset FoundGraal1; say 4; } else if (FoundGraal2 && !GateShowGraal2) { set GateShowNow2; unset FoundGraal2; say 5; } else if (FoundGraal3 && !GateShowGraal3) { set GateShowNow3; unset FoundGraal3; say 6; } else if (FoundGraal4 && !GateShowGraal4) { set GateShowNow4;",
+      "count": 1,
+      "files": [
+        "level2.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme) hide; P\"",
+      "count": 1,
+      "files": [
+        "level2.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} 1:door.gif",
+      "count": 1,
+      "files": [
+        "level22.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playerenters && L23FerengiOpen) hide; if (playerendsreading && L23FerengiOpen) hide; C=ferengi.gif",
+      "count": 1,
+      "files": [
+        "level23.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} SDdoor.gif",
+      "count": 1,
+      "files": [
+        "level30.graal"
+      ]
+    },
+    {
+      "image": "Fdoor.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} 22door.gif",
+      "count": 1,
+      "files": [
+        "level30.graal"
+      ]
+    },
+    {
+      "image": "5door.gif",
+      "script": "if (playertouchsme) hide; F9door.gif",
+      "count": 1,
+      "files": [
+        "level37.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 4,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "",
+      "script": "// // Armageddon's Perma Clothes // - white - // // script by Vangel (JF) // -=dedicated to Jesus=- // // if (playerenters) { //initialize the NPC timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { setskincolor orange; setcoatcolor white; setsleevecolor blue; setshoecolor red; setbeltcolor black; timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermWhite.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//BrugaraBlock //By Bruges if (playerenters && !this.init=1) { this.init=1; timereverywhere; drawunderplayer; canbepushed; canbepulled; canbecarried; timeout=6+(random(0,3)); } if (wasthrown) { cannotbecarried; } if (washit) { cannotbecarried; cannotbepushed; cannotbepulled; } if (timeout) { putleaps 2,x,y; putexplosion 1,x,y; destroy; }",
+      "count": 1,
+      "files": [
+        "BrugaraBlock.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (wasthrown) {this.msg=100;cannotbecarried; BirdData=1;} if ((playerenters && !this.init=1) || timeout) { if (playerenters && !this.init=1) { this.init=1; this.sx=x; this.sy=y; BirdData=0; this.timer=60; timereverywhere; } this.timer-=.3; if (BirdData=1) this.timer-=3; if (this.msg<=0) canbecarried; timeout=.3; if (BirdData=2) { if (this.msg<=50) {message ;} if (this.msg=100) message Sqwark!; if (this.msg=90) message Hello dear!; if (this.msg=80) {message Underground!; set PlayerMightKnowBrugesTowerPass}; if (this.msg=70) message Cane of Brugara!; if (this.msg=60) message Sqwark!; if (this.msg<50 && this.msg>0) {BirdData=0; message ; this.msg=0; } this.msg--; } if (this.timer<=0) destroy; }",
+      "count": 1,
+      "files": [
+        "BrugesBird.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// Cane of Brugara // By Bruges // // This mystical cane (pronounced with a soft \"g\": // \"Brujarah\") was created by Lord Bruges of the // High Proton Knights, or Brugites. // It creates Brugaran Blocks. These Blocks are // highly unstable and tend to collape explosively // after only 6 to 8 seconds. Each may be lifted only // once after which it can only be pushed or pulled. // should a block be hit by a sword it magically // fixes itself to the floor, untill it explodes. if (playertouchsme) { toweapons Cane of Brugara; //hide; } if (weaponfired && this.used=0) { //&& this.del<=0 this.usedel=1; this.d=1; hideimg 1; freezeplayer 0.2; timeout=0.05; this.put=1; this.del=4; this.used=2; } if (timeout) { if (this.del>0) { this.del--; hidesword 0.1; freezeplayer 0.1; playersprite = 11; this.bx=playerx; this.by=playery; if (playerdir=0) {showimg 1,BrugaraCaneN.gif,playerx+0.0,playery-1;this.bx+=.5;this.by-=(1+this.d);} if (playerdir=1) {showimg 1,BrugaraCaneW.gif,playerx-1.2,playery+1.5;this.bx-=(1.2+this.d);this.by+=1;} if (playerdir=2) {showimg 1,BrugaraCaneS.gif,playerx+1.5,playery+2.4;this.bx+=.5;this.by+=(2.4+this.d);} if (playerdir=3) {showimg 1,BrugaraCaneE.gif,playerx+2.3,playery+1.5;this.bx+=(2.3+this.d);this.by+=1;} if (this.put=1) { this.put=0; if (playermp>=5) { playermp-=5; putnpc BrugaraBlock.gif,BrugaraBlock.txt,this.bx,this.by; } } timeout=.05; }else if (this.used=2) {hideimg 1;this.used=1; timeout=this.usedel}else if (this.used=1) {this.used=0} }",
+      "count": 1,
+      "files": [
+        "Cane of Brugara.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//Scripted by Gandarian of Bruges Core if (playerenters) show; if (playertouchsme) { toweapons AutoBowgun; destroy; } if (weaponfired && playerdarts>0) { this.fired=0; freezeplayer 0.6; setbow wbowcross.gif; playersprite = 33; shootarrow playerdir; timeout = 0.1; } if (timeout&&(this.fired<=4)&&(playerdarts>0)){ this.fired+=1; shootarrow playerdir; playerdarts-=1; timeout = 0.1; }",
+      "count": 1,
+      "files": [
+        "autobow.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.dir = 1; this.time = 5; this.init = 1; dontblock; } if (gameover) { itemcount--; destroy; } if (timeout) { // Test fireballs if (abs((x + .5) - fbx + .5) < 1 && abs((y + .5) - fby + .5) < 1) { score += 7; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; enemycount++; play compudead.wav; destroy; } // Test bombs if (abs((x + .5) - explodex) < 2 && abs((y + .5) - explodey + 1.5) < 2 && explode) { score += 10; if (random(0, 10) < 1 && fp < 3) fp++; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; enemycount++; play compudead.wav; destroy; } // Move if (this.dir == 1 && !onwall (x, y-.1)) y -= .2; if (this.dir == 2 && !onwall (x-.1, y)) x -= .2; if (this.dir == 3 && !onwall (x, y+1.1)) y += .2; if (this.dir == 4 && !onwall (x+1.1, y)) x += .2; this.time--; if (this.time == 0) { this.time = 5; this.dir = random(0, 4); if (this.dir < 1) this.dir = 1; else if (this.dir < 2) this.dir = 2; else if (this.dir < 3) this.dir = 3; else this.dir = 4; } // Test collision if (abs((x + .5) - mainx) < 1 && abs ((y + .5) - mainy) < 1) set killedplayer; timeout = .1; }",
+      "count": 1,
+      "files": [
+        "baddie.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.dir = 1; this.time = 5; this.init = 1; this.life = 3; dontblock; } if (gameover) { itemcount--; destroy; } if (timeout) { // Test fireballs if (abs((x + .5) - fbx) < 1 && abs((y + .5) - fby) < 1) { this.life -= fp; if (this.life <= 0) { score += 14; if (random(0, 1) < .00001 && fp < 3) fp++; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; enemycount++; play compudead.wav; destroy; } } // Test bombs if (abs((x + .5) - explodex) < 2 && abs((y + .5) - explodey) < 2 && explode) { this.life -= bp; if (this.life <= 0) { score += 20; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; enemycount++; play compudead.wav; destroy; } } // Move if (this.dir == 1 && !onwall (x, y-.1)) y -= .2; if (this.dir == 2 && !onwall (x-.1, y)) x -= .2; if (this.dir == 3 && !onwall (x, y+1.1)) y += .2; if (this.dir == 4 && !onwall (x+1.1, y)) x += .2; this.time--; if (this.time == 0) { this.time = 5; this.dir = random(0, 4); if (this.dir < 1) this.dir = 1; else if (this.dir < 2) this.dir = 2; else if (this.dir < 3) this.dir = 3; else this.dir = 4; } // Test collision if (abs((x + .5) - mainx) < 1 && abs ((y + .5) - mainy) < 1) set killedplayer; timeout = .1; }",
+      "count": 1,
+      "files": [
+        "baddie2.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { this.state = 0; this.time = 10; this.init = 1; this.life = 5; dontblock; timeout = .1; } if (gameover) { itemcount--; destroy; } if (timeout) { // Test fireballs if (abs((x + .5) - fbx) < 1 && abs((y + .5) - fby) < 1) { this.life -= fp; if (this.life <= 0) { score += 14; if (random(0, 1) < .00001 && fp < 3) fp++; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; enemycount++; play compudead.wav; destroy; } } // Test bombs if (abs((x + .5) - explodex) < 2 && abs((y + .5) - explodey) < 2 && explode) { this.life -= bp; if (this.life <= 0) { score += 20; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; enemycount++; play compudead.wav; destroy; } } // Move if (this.state == 1) { // Evade player if (mainy > y && !onwall (x, y-.1)) y -= .1; if (mainx > x && !onwall (x-.1, y)) x -= .1; if (mainy < y && !onwall (x, y+1.1)) y += .1; if (mainx < x && !onwall (x+1.1, y)) x += .1; } if (this.state == 2) { // Follow player if (mainy < y && !onwall (x, y-.1)) y -= .1; if (mainx < x && !onwall (x-.1, y)) x -= .1; if (mainy > y && !onwall (x, y+1.1)) y += .1; if (mainx > x && !onwall (x+1.1, y)) x += .1; } this.time--; if (this.time < 0) { this.time = random(5, 30); this.state = random(0, 4); if (this.state < 1) this.state = 0; else if (this.state < 2) this.state = 1; else this.state = 2; } // Test collision if (abs((x + .5) - (mainx + .5)) < 1 && abs ((y + .5) - (mainy + .5)) < 1) set killedplayer; timeout = .1; }",
+      "count": 1,
+      "files": [
+        "baddie3.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.init = 1; dontblock; } if (killedplayer) { itemcount--; destroy; } if (timeout) { if (x - 1 <= mainx && mainx < x + 1 && y - 1 <= mainy && mainy < y + 1) { score += 10; booms += 10; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; destroy; } timeout = .1; }",
+      "count": 1,
+      "files": [
+        "bomb.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) { toweapons Magic Cape; hide; set gotmagiccape; setplayerdir down; playersprite=24; freezeplayer 1.5; putnpc cape.gif,chestitem.txt,playerx+0.5,playery-1.5 } if (timeout) { timeout=0.05; this.magic+=1; showimg 1,charshadow.gif,playerx+0.5,playery+1.5; } if (weaponfired&& playermp>0) { set magicon; this.magic=1 } if (weaponfired&& magicon&& magicgoing) { unset magicon; hideimg 1; timeout=0; unset magicgoing; hideplayer 0.05; this.magic=6 } if (magicon) { hideplayer 10000; timeout=0.05; showimg 1,charshadow.gif,playerx+0.5,playery+1.5; set magicgoing; } if (weaponfired&& playermp<0.05) { timeout=0 } if (playermp<0.05&& magicon) { hideimg 1; hideplayer 0.05; timeout=0; unset magicon; unset magicgoing; this.magic=6 } if (this.magic==5) {playermp-=1; this.magic=1}",
+      "count": 1,
+      "files": [
+        "cape.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) {show; timeout=1} if (timeout) {hide}",
+      "count": 1,
+      "files": [
+        "chestitem.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.init = 1; dontblock; } if (gameover) { itemcount--; destroy; } if (timeout) { if (abs((x + .5) - mainx) <= 1 && abs ((y + .5) - mainy) <= 1) { score += 15; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; play extra.wav; destroy; } timeout = .1; }",
+      "count": 1,
+      "files": [
+        "coin.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.init = 1; } if (gameover) { itemcount--; destroy; } if (timeout) { if (abs((x + .5) - mainx) <= 1 && abs ((y + .5) - mainy) <= 1) { score += 5; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; play extra.wav; destroy; } timeout = .1; }",
+      "count": 1,
+      "files": [
+        "dollar.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.init = 1; dontblock; } if (gameover) { itemcount--; destroy; } if (timeout) { if (abs((x + .5) - mainx) <= 1 && abs ((y + .5) - mainy) <= 1) { score += 10; fbs += 5; if (random(0, 20) < 1 && fp < 3) fp++; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; play extra.wav; destroy; } timeout = .1; }",
+      "count": 1,
+      "files": [
+        "fball.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters)this.radius=10; if (playertouchsme) {toweapons Flame Spiral; set gotflamespiral; destroy} if(weaponfired&&playermp>=15&&magicendowed){playermp-=15; freezeplayer 2; playersprite=24;timeout=.5; this.radius=4; if(playerdir=3)this.angle=(3*3.14)/2; if(playerdir=0)this.angle=(3*3.14)/4; if(playerdir=1)this.angle=3.14/2; if(playerdir=2)this.angle=3.14/4; } if(timeout&&this.radius<10){timeout=.05; this.x=playerx+.5+cos(this.angle)*this.radius; this.y=playery+.5+sin(this.angle)*this.radius; putexplosion 1,this.x,this.y; this.radius+=.2; this.angle+=.314}",
+      "count": 1,
+      "files": [
+        "flamespiral.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// // Name: GO Police Net // Author: Vangel (JF) // Date: 6/27/99 // if (washit && ((playeringuild GP) || (playeringuild Game Master))) { // game masters and GP can slash the net to get out or // to release somebody else out of the net. destroy; } if (playerenters) { timereverywhere; blockagain; drawoverplayer; curdistance=100; curplayer=-1; for (p=0;p<playerscount;p++) { pdistance=(((players[p].x-x)^2)+((players[p].y-y)^2))^0.5; if (pdistance<curdistance) { curplayer=p; curdistance=pdistance; } } if (curplayer==0) { if ((playeringuild GP) || (playeringuild Game Master)) { // don't trap game masters or GP } else { x=players[curplayer].x-1.5; y=players[curplayer].y-1.5; } } timeout=60; timershow; } if (playertouchsme) { if ((playeringuild GP) || (playeringuild Game Master)) { dontblock; drawoverplayer; } else { blockagain; drawoverplayer; } } if (timeout) destroy;",
+      "count": 1,
+      "files": [
+        "gopolicenet.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// // Name: GO Police Net // Author: Vangel (JF) // Date: 6/27/99 // timereverywhere; if (washit) { if ((playeringuild GP) || (playeringuild Game Master) || ((playeringuild JF) && (strequals(#n,Vangel (JF))))) { // game masters and GP can slash the net to get out or // to release somebody else out of the net. destroy; } } if (playerenters) { blockagain; drawoverplayer; curdistance=100; curplayer=-1; for (p=0;p<playerscount;p++) { pdistance=(((players[p].x-x)^2)+((players[p].y-y)^2))^0.5; if (pdistance<curdistance) { curplayer=p; curdistance=pdistance; } } x=players[curplayer].x-1.5; y=players[curplayer].y-1.5; timershow; timeout=60; } if (playertouchsme) { blockagain; drawoverplayer; } if (timeout) destroy;",
+      "count": 1,
+      "files": [
+        "gopolicenet2.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) {canbecarried;canbepushed;timeout=15} if(timeout){destroy}",
+      "count": 1,
+      "files": [
+        "hackrock.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playing && this.init == 0) { timeout = .1; this.init = 1; dontblock; } if (gameover) { itemcount--; destroy; } if (timeout) { if (abs((x + .5) - mainx) <= 1 && abs ((y + .5) - mainy) <= 1) { score += 30; lives++; darts = random(0, 3); if (darts < 1) addenemy = 1; else if (darts < 2) addenemy = 2; else addenemy = 0; itemcount--; play 1up.wav; destroy; } timeout = .1; }",
+      "count": 1,
+      "files": [
+        "heart.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (icemateriafired) {timeout=0.6} if (playertouchsme) { freezeplayer 1; play lift.wav} if (exploded || washit) { destroy} if (timeout) { destroy}",
+      "count": 1,
+      "files": [
+        "icespell.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) { canbecarried; this.lifetime = 5*5; timeout = 0.2; } if (wasthrown) timeout = 0.2; if (timeout) { oldx = x; oldy = y; testdir = random(0,4); if (testdir<1) y -= 0.5; else if (testdir<2) x -= 0.5; else if (testdir<3) y += 0.5; else x += 0.5; if (onwall(x+1,y+1)) { x = oldx; y = oldy; } this.lifetime--; if (this.lifetime<=0) destroy; timeout = 0.2; }",
+      "count": 1,
+      "files": [
+        "npcscript2.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//========== ProtonSpell A.I.========= // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // (13/04/1999) // email: Bruges@geocities.com // http://members.xoom.com/bruges/ // // Below are variables which modify // the spell's behavior. Press PgDn // to view them all. // // // if (playerenters && !this.init=1) { this.init=1; timereverywhere; this.stepdist=.5; //dist covered by each \"step\" this.dir=2; this.range=15; this.power=2; this.shieldblocks=1; timeout=0.05; this.cast=1; } //do not edit anything below this // line!! //---------------------------------------------------------------- if (playerenters){ dontblock; drawoverplayer; } for (i=0;i<playerscount;i++) { if (playertouchsme) { if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; if ( (this.dir=1 && (y-players[i].y>0 && y-players[i].y<4) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=2 && (x-players[i].x>-2 && x-players[i].x<1) && (y>=players[i].y && y<=players[i].y+2)) || (this.dir=3 && (y-players[i].y>-2 && y-players[i].y<2) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=4 && (x-players[i].x>-1 && x-players[i].x<2) && (y>=players[i].y && y<=players[i].y+2)) ) if (this.cast>0){ if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; } if (timeout) { if (this.cast=0) destroy; if (this.dir=1) {y-=this.stepdist} else if (this.dir=2) {x+=this.stepdist} else if (this.dir=3) {y+=this.stepdist} else if (this.dir=4) {x-=this.stepdist} this.range-=this.stepdist; if (this.range<=0) this.cast=0; timeout=0.05; } //=====================================================================",
+      "count": 1,
+      "files": [
+        "protonE.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//========== ProtonSpell A.I.========= // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // (13/04/1999) // email: Bruges@geocities.com // http://members.xoom.com/bruges/ // // Below are variables which modify // the spell's behavior. Press PgDn // to view them all. // // // if (playerenters && !this.init=1) { this.init=1; timereverywhere; this.stepdist=.5; //dist covered by each \"step\" this.dir=1; this.range=15; this.power=2; this.shieldblocks=1; timeout=0.05; this.cast=1; } //do not edit anything below this // line!! //---------------------------------------------------------------- if (playerenters){ dontblock; drawoverplayer; } for (i=0;i<playerscount;i++) { if (playertouchsme) { if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; if ( (this.dir=1 && (y-players[i].y>0 && y-players[i].y<4) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=2 && (x-players[i].x>-2 && x-players[i].x<1) && (y>=players[i].y && y<=players[i].y+2)) || (this.dir=3 && (y-players[i].y>-2 && y-players[i].y<2) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=4 && (x-players[i].x>-1 && x-players[i].x<2) && (y>=players[i].y && y<=players[i].y+2)) ) if (this.cast>0){ if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; } if (timeout) { if (this.cast=0) destroy; if (this.dir=1) {y-=this.stepdist} else if (this.dir=2) {x+=this.stepdist} else if (this.dir=3) {y+=this.stepdist} else if (this.dir=4) {x-=this.stepdist} this.range-=this.stepdist; if (this.range<=0) this.cast=0; timeout=0.05; } //=====================================================================",
+      "count": 1,
+      "files": [
+        "protonN.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//========== ProtonSpell A.I.========= // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // (13/04/1999) // email: Bruges@geocities.com // http://members.xoom.com/bruges/ // // Below are variables which modify // the spell's behavior. Press PgDn // to view them all. // // // if (playerenters && !this.init=1) { this.init=1; timereverywhere; this.stepdist=.5; //dist covered by each \"step\" this.dir=3; this.range=15; this.power=2; this.shieldblocks=1; timeout=0.05; this.cast=1; } //do not edit anything below this // line!! //---------------------------------------------------------------- if (playerenters){ dontblock; drawoverplayer; } for (i=0;i<playerscount;i++) { if (playertouchsme) { if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; if ( (this.dir=1 && (y-players[i].y>0 && y-players[i].y<4) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=2 && (x-players[i].x>-2 && x-players[i].x<1) && (y>=players[i].y && y<=players[i].y+2)) || (this.dir=3 && (y-players[i].y>-2 && y-players[i].y<2) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=4 && (x-players[i].x>-1 && x-players[i].x<2) && (y>=players[i].y && y<=players[i].y+2)) ) if (this.cast>0){ if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; } if (timeout) { if (this.cast=0) destroy; if (this.dir=1) {y-=this.stepdist} else if (this.dir=2) {x+=this.stepdist} else if (this.dir=3) {y+=this.stepdist} else if (this.dir=4) {x-=this.stepdist} this.range-=this.stepdist; if (this.range<=0) this.cast=0; timeout=0.05; } //=====================================================================",
+      "count": 1,
+      "files": [
+        "protonS.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//========== ProtonSpell A.I.========= // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // (13/04/1999) // email: Bruges@geocities.com // http://members.xoom.com/bruges/ // // Below are variables which modify // the spell's behavior. Press PgDn // to view them all. // // // if (playerenters && !this.init=1) { this.init=1; timereverywhere; this.stepdist=.5; //dist covered by each \"step\" this.dir=4; this.range=15; this.power=2; this.shieldblocks=1; timeout=0.05; this.cast=1; } //do not edit anything below this // line!! //---------------------------------------------------------------- if (playerenters){ dontblock; drawoverplayer; } for (i=0;i<playerscount;i++) { if (playertouchsme) { if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; if ( (this.dir=1 && (y-players[i].y>0 && y-players[i].y<4) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=2 && (x-players[i].x>-2 && x-players[i].x<1) && (y>=players[i].y && y<=players[i].y+2)) || (this.dir=3 && (y-players[i].y>-2 && y-players[i].y<2) && (x>=players[i].x && x<=players[i].x+1)) || (this.dir=4 && (x-players[i].x>-1 && x-players[i].x<2) && (y>=players[i].y && y<=players[i].y+2)) ) if (this.cast>0){ if (this.shieldblocks=1 &&((this.dir=1 && players[i].dir=2)||(this.dir=2 && players[i].dir=1)||(this.dir=3 && players[i].dir=0)||(this.dir=4 && players[i].dir=3))) {this.cast=0}else{ hitplayer i,this.power,x,y; if (x>players[i].x) {if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;if (!onwall(players[i].x+.5-.5,players[i].y+.5)) players[i].x=players[i].x-.5;}; if (x<players[i].x) {if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;if (!onwall(players[i].x+.5+.5,players[i].y+.5)) players[i].x=players[i].x+.5;}; if (y>players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;if (!onwall(players[i].x+.5,players[i].y+.5-.5)) players[i].y=players[i].y-.5;}; if (y<players[i].y) {if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;if (!onwall(players[i].x+.5,players[i].y+.5+.5)) players[i].y=players[i].y+.5;}; } this.cast=0; }; } if (timeout) { if (this.cast=0) destroy; if (this.dir=1) {y-=this.stepdist} else if (this.dir=2) {x+=this.stepdist} else if (this.dir=3) {y+=this.stepdist} else if (this.dir=4) {x-=this.stepdist} this.range-=this.stepdist; if (this.range<=0) this.cast=0; timeout=0.05; } //=====================================================================",
+      "count": 1,
+      "files": [
+        "protonW.txt"
+      ]
+    }
+  ]
+}

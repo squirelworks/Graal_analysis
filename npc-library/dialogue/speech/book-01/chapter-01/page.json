@@ -1,0 +1,220 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "D0beer.gif",
+      "script": "if (playerenters) { this.doodad=0;dontblock;drawunderplayer} if (playertouchsme&&seat1==1&&this.doodad=0) {say 4;playerx=21;playery=22;setplayerdir down;x=22;y=24;dontblock;drawoverplayer;poop=1;this.doodad=1} if (playertouchsme&&seat2==1&&this.doodad=0) {say 4;playerx=26;playery=22;setplayerdir down;x=27;y=24;dontblock;drawoverplayer;poop=1;this.doodad=1} if (playertouchsme&&seat3==1&&this.doodad",
+      "count": 3,
+      "files": [
+        "AssHome4.graal",
+        "AssHome4.graal",
+        "AssHome4.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (playerenters) {this.doodad=0;dontblock;drawunderplayer} if (playertouchsme&&seat1==1&&this.doodad=0) {say 4;playerx=21;playery=22;setplayerdir down;x=22;y=24;dontblock;drawoverplayer;poop=1;this.doodad=1} if (playertouchsme&&seat2==1&&this.doodad=0) {say 4;playerx=26;playery=22;setplayerdir down;x=27;y=24;dontblock;drawoverplayer;poop=1;this.doodad=1} if (playertouchsme&&seat3==1&&this.doodad=",
+      "count": 3,
+      "files": [
+        "AssHome4.graal",
+        "AssHome4.graal",
+        "AssHome4.graal"
+      ]
+    },
+    {
+      "image": "servant1.gif",
+      "script": "if (playertouchsme) {say 0}",
+      "count": 3,
+      "files": [
+        "Puzzle1.graal",
+        "ccmine8.graal",
+        "dlgames1.graal"
+      ]
+    },
+    {
+      "image": "8Cbook6.gif",
+      "script": "if (playertouchsme) { say 1}",
+      "count": 2,
+      "files": [
+        "enkitohouse2.graal",
+        "fckeep.graal"
+      ]
+    },
+    {
+      "image": "SMgnomkid.gif",
+      "script": "if (playerenters && !GnomsAtHome){hide} if (playerenters && GnomsAtHome){show} if (playertouchsme) say 2; 3(gnomkid.gif",
+      "count": 2,
+      "files": [
+        "house12-heart.graal",
+        "house12.graal"
+      ]
+    },
+    {
+      "image": "Lgrave1.gif",
+      "script": "if (playerenters) { if (!KCastlefree) say 1; set KCastlefree; stopmidi; } 'Ngreenright.gif",
+      "count": 2,
+      "files": [
+        "kcastlefin-heart.graal",
+        "kcastlefin.graal"
+      ]
+    },
+    {
+      "image": "-Mblueright.gif",
+      "script": "if (playertouchsme) say 4; W;climber.gif",
+      "count": 2,
+      "files": [
+        "kcastlefin-heart.graal",
+        "kcastlefin.graal"
+      ]
+    },
+    {
+      "image": "monsterkid.gif",
+      "script": "if (playertouchsme) say 8; M%bigoct.gif",
+      "count": 2,
+      "files": [
+        "kcastlefin-heart.graal",
+        "kcastlefin.graal"
+      ]
+    },
+    {
+      "image": "99assistant.gif",
+      "script": "if (playertouchsme) { saysignindex0} 11pachukab.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes1.graal"
+      ]
+    },
+    {
+      "image": "TKdk-stand.gif",
+      "script": "//this was a royal pain in the ass hehe if (gate) {removecompus} if (playertouchsme&&gate) {say 2;this.talk=1;this.army=10} if (playerenters) {this.army=0;gate=0;this.talk=0;play stef5.mid;noplayerkilling} if (playertouchsme&&this.army==0&& !gate&& compsdead){say 0;this.army=1} if (playerendsreading&&this.army==1&& !this.talk==1) {this.talk=1;putcomp dragon,44,29;putcomp dragon,39,42;putcomp drago",
+      "count": 1,
+      "files": [
+        "AssHome1.graal"
+      ]
+    },
+    {
+      "image": "ESdk-stand.gif",
+      "script": "if (playerenters) {this.thing=1;time=0;spirit=0;brain=0;noplayerkilling} if (playertouchsme&&this.thing==1&& !goaway&& !neatman) {say 0; this.thing=2} if (playerendsreading&&this.thing==2) {x=49;y=53;timeout=8;timershow;this.thing=3} if (timeout&&this.thing==3&&brain==1) {say 1;set neatman} if (timeout&&this.thing==3&&spirit==1) {say 2;set goaway} if (timeout&&this.thing==3&&time==1) {say 3;set go",
+      "count": 1,
+      "files": [
+        "AssHome3.graal"
+      ]
+    },
+    {
+      "image": "jukebox.gif",
+      "script": "if (playerenters) {song=0} if (playertouchsme&&song==0) {say 7;song=1;playerx=20;playery=12} if (playerendsreading&&song==1){play stef12.mid;song=2} if (playertouchsme&&song==2) {say 7;song=3;playerx=20;playery=12} if (playerendsreading&&song==3){play stef13.mid;song=4} if (playertouchsme&&song==4) {say 7;song=5;playerx=20;playery=12} if (playerendsreading&&song==5){play stef3.mid;song=6} if (play",
+      "count": 1,
+      "files": [
+        "AssHome4.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) {message Kill me.....} if (playertouchsme) {say 6} >;assassin.gif",
+      "count": 1,
+      "files": [
+        "AssHome7.graal"
+      ]
+    },
+    {
+      "image": "J6blindguy.gif",
+      "script": "if (playertouchsme) {say1} 1Rdoor.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "bluflm.gif",
+      "script": "if (playertouchsme) {say0 } :;bluflm.gif",
+      "count": 1,
+      "files": [
+        "CoGhouse1.graal"
+      ]
+    },
+    {
+      "image": "JEarrow.gif",
+      "script": "if (playertouchsme) {say1; set darts; unset bombs; unset bottle} if (playerlaysitem && darts) {take greenrupee; playerdarts+= 5} MEbomb.gif",
+      "count": 1,
+      "files": [
+        "CoGshop.graal"
+      ]
+    },
+    {
+      "image": "alienright.gif",
+      "script": "if (playertouchsme) { say 0;}",
+      "count": 1,
+      "files": [
+        "DW4.graal"
+      ]
+    },
+    {
+      "image": "alienright.gif",
+      "script": "if (playertouchsme) { say 0;} @3fizzaretip.gif",
+      "count": 1,
+      "files": [
+        "DW5.graal"
+      ]
+    },
+    {
+      "image": "desertcastleking.gif",
+      "script": "if (playerenters) { if (GivenBlackRupee) {x-=3} if (GotBlackRupee) { unset GotBlackRupee; set GivenBlackRupee; say 3; timeout=.25; } } if (playertouchsme) { if (DesertCastlePathOpen && !GivenBlackRupee) say 2; if (GivenBlackRupee) say 4; if (!DesertCastlePathOpen) {say 1; set DesertCastlePathOpen} } if (timeout && !x==30) {x-=.25; timeout=.25;} if (playerendsreading && GivenBlackRupee &",
+      "count": 1,
+      "files": [
+        "DesertCastleCave1.graal"
+      ]
+    },
+    {
+      "image": "zelda.gif",
+      "script": "if (playertouchsme) { say 0 } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; say 1; } ?E",
+      "count": 1,
+      "files": [
+        "For.graal"
+      ]
+    },
+    {
+      "image": "AFGreystone.gif",
+      "script": "if (playerenters) {hide;} if (PastMouser) {show;} if (playertouchsme) {say 4; set GotGreyStone; unset PastMouser;hide} 5EGrey.gif",
+      "count": 1,
+      "files": [
+        "Greycave2.graal"
+      ]
+    },
+    {
+      "image": "13brother2.gif",
+      "script": "if (playertouchsme) say 6;",
+      "count": 1,
+      "files": [
+        "SShome1.graal"
+      ]
+    },
+    {
+      "image": "Azelda.gif",
+      "script": "if (playertouchsme) { if (!H7taylorpayed) { say 2; if (H7greenempty || H7redempty || H7blueempty || H7grayempty || H7goldempty || H7whiteempty || H7blackempty) say 3; } if (H7taylorpayed) say 1; } if (playerlaysitem) { take greenrupee; take bluerupee; if (rupees>=10 && !H7taylorpayed) { set H7taylorpayed; rupees -= 10; say 1; } } >@cloats10.gif",
+      "count": 1,
+      "files": [
+        "Store3.graal"
+      ]
+    },
+    {
+      "image": "cloats12.gif",
+      "script": "if (playerenters) { unset H7blueempty; } if (playertouchsme) { if (!H7blueempty && !H7taylorpayed) say 7; if (!H7blueempty && H7taylorpayed) { setcoatcolor darkred; setsleevecolor darkred; setbeltcolor black; unset H7taylorpayed; set H7blueempty; setgif rack.gif; } } F@cloats13.gif",
+      "count": 1,
+      "files": [
+        "Store3.graal"
+      ]
+    },
+    {
+      "image": "2salesman.gif",
+      "script": "if (playertouchsme) say 0; if (playerlaysitem) { take bluerupee; if (rupees>=5) { laydarts; rupees -= 5; } }",
+      "count": 1,
+      "files": [
+        "abermose4.graal"
+      ]
+    }
+  ]
+}

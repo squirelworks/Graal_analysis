@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "hazards",
+  "book": 1,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "1Ibigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} 4Ibigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "7Ibigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} :Ibigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Lbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} ,Nbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Pbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} ,Rbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Tbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} ,Vbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Vbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} @Tbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Lbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} @Nbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Pbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} @Rbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "1Xbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} 3Xbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "5Xbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} 7Xbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Xbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} ;Xbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "8Xbigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} IWzombie.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Rratb.gif",
+      "script": "if (playertouchsme) {hurt 8} ?Kratgf.gif",
+      "count": 1,
+      "files": [
+        "dungeon.graal"
+      ]
+    },
+    {
+      "image": "Mchest.gif",
+      "script": "if (playertouchsme) { hurt 8; putcomp dragon, 30,50; putcomp dragon, 30,49; }",
+      "count": 1,
+      "files": [
+        "dungeon.graal"
+      ]
+    },
+    {
+      "image": "H9cop.gif",
+      "script": "if (playertouchsme) { if (CopClothesForLi) { say 4; x = 39; set L12letfree; } if (!CopClothesForLi) { say 3; set L12hurt; } } if (playertouchsother) { if (CopClothesForLi) x = 39; } if (playerenters) { if (L12letfree) x = 39; } if (playerendsreading) { if (L12hurt) { unset L12hurt; hurt 1; } } =Kstaff_bar.gif",
+      "count": 1,
+      "files": [
+        "fccop.graal"
+      ]
+    },
+    {
+      "image": "Tmmeguy_f.gif",
+      "script": "if (playertouchsme) { set GerudoTreasureGuard; say 2; } if (playerendsreading && GerudoTreasureGuard) { hurt 1; unset GerudoTreasureGuard; } )Fgerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "gnom.gif",
+      "script": "if (playerenters) { } if (playerenters && !talkedtognome) {hurt 26 } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "gnome.graal"
+      ]
+    },
+    {
+      "image": "-game1.gif",
+      "script": "if (playertouchsme) { mydoor = 1; actionx = x+1; if (G3GameRound1 || G3GameRound2 || G3GameRound3) { if (rightdoor==mydoor) set G3RoundWon; else if (doorhurt==mydoor) set G3HurtAction; else if (baddydoor==mydoor) set G3BaddyAction; else say 13; } } @-game2.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "F-game3.gif",
+      "script": "if (playertouchsme) { mydoor = 3; actionx = x+1; if (G3GameRound1 || G3GameRound2 || G3GameRound3) { if (rightdoor==mydoor) set G3RoundWon; else if (doorhurt==mydoor) set G3HurtAction; else if (baddydoor==mydoor) set G3BaddyAction; else say 13; } } >KMonsterGold.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "51MonsterGold.gif",
+      "script": "if (playerenters) { if (G2GotSword) hide; counthurt = 0; unset G3GameRound1; unset G3GameRound2; unset G3GameRound3; set G3GameRound0; } if (playertouchsme) { say 15; if (G3GameWonAll) say 14; else if (G3GameRound0) { unset G3GameRound0; set G3GameRound1; say 0; set G3SetDoors; } } if (playertouchsother) { if (G3RoundWon) { unset G3RoundWon; if (G3Game",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "S8blackened.gif",
+      "script": "if (playerenters) {canbecarried } if (playertouchsme&&playerisapreist) {hurt 40; } if (playertouchsme) {set evilpreist; followplayer;} if (wasthrown&&!evilpreist){hurt 999;removecompus} if (wasthrown && evilpreist){lay heart;followplayer;removecompus} if (wasthrown && playerisapreist){hurt 999; hide;removecompus} if (timeout) {timeout=10; playerhearts=20; disableweapons; } if (playerkiller){}",
+      "count": 1,
+      "files": [
+        "grallss.graal"
+      ]
+    },
+    {
+      "image": "BAredpotion.gif",
+      "script": "if (playerenters) { } if (playertouchsme && boughtred) {followplayer; canbecarried; unset wantred;} if (playertouchsme && !boughtred) {say 6; unset wantgreen; set wantred; } if(wasthrown && boughtred) {hurt -40; unset boughtred; playerx = 24; playery = 34; setlevel greatnlobby.graal; hide;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (explo",
+      "count": 1,
+      "files": [
+        "greatnf1r1.graal"
+      ]
+    },
+    {
+      "image": "floor.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playertouchsme && playeringuild PACHUKA) {followplayer; timeout=0.1; canbecarried; } if (timeout) {playerhearts=20; timeout=0.1; removecompus; unset GotGnomeHeart;} if (wasthrown && !playeringuild PACHUKA) {hurt 999; hide} if (wasthrown && playeringuild PACHUKA) {followplayer;} 9&pachuka'sclothing.gif",
+      "count": 1,
+      "files": [
+        "hallofthegods.graal"
+      ]
+    },
+    {
+      "image": "0beer.gif",
+      "script": "if (!tastybeer) {hide;} if (tastybeer) {show;} if (playertouchsme) {hurt -6; unset tastybeer; hide;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } C0beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "K0beer.gif",
+      "script": "if (!AnnoyingCostumer) {hide;} if (AnnoyingCostumer) {show;} if (playertouchsme) {hurt 9999; say 2; unset AnnoyingCostumer; hide;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } /)brother1.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    }
+  ]
+}

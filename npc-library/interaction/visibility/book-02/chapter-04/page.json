@@ -1,0 +1,49 @@
+{
+  "genre": "interaction",
+  "topic": "visibility",
+  "book": 2,
+  "chapter": 4,
+  "count": 5,
+  "scripts": [
+    {
+      "image": "sherabg.gif",
+      "script": "if (playerenters) { drawoverplayer; } if (playerenters && !gotshera1) { hide; } if (playerenters && gotshera1) { show; } )'shera.gif",
+      "count": 1,
+      "files": [
+        "palace_sherapris.graal"
+      ]
+    },
+    {
+      "image": "F5p-key.gif",
+      "script": "if(playerenters){y=21.5; if(sardondooropen || sardonkey) hide; else show; } if(playertouchsme){play extra.wav; hide; set sardonkey} F<dltrap.gif",
+      "count": 1,
+      "files": [
+        "sardontower20.graal"
+      ]
+    },
+    {
+      "image": "Cgobutton.gif",
+      "script": "if (canplay) show; else hide; if (playertouchsme) { hide; play qkcourage.mid; unset canplay; score = 0; booms = 30; enemycount = 0; set playing; } @Garcade_hostess.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) {freezeplayer 1.5; setplayerdir down; playersprite=24; putnpc capekey.gif,chestitem.txt,playerx+1,playery-1.5; toinventory capekey; hide}",
+      "count": 1,
+      "files": [
+        "capekey.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) { toinventory donekey; hide;}",
+      "count": 1,
+      "files": [
+        "donekey.txt"
+      ]
+    }
+  ]
+}

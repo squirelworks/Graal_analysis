@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 2,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "badkey.gif",
+      "script": "if (playerenters) { if (BadKey) hide; } if (playertouchsme) { set BadKey; say 1; toinventory BadKey; }",
+      "count": 1,
+      "files": [
+        "house15.graal"
+      ]
+    },
+    {
+      "image": "1Aprincess.gif",
+      "script": "if (playerenters) { if (mainnostory || !princessinprison) hide; if (princessinprison) say 0; }",
+      "count": 1,
+      "files": [
+        "house19.graal"
+      ]
+    },
+    {
+      "image": "Aoldmansitting5.gif",
+      "script": "if (playertouchsme) {say1;set GreyTalk1} J@beerhost.gif",
+      "count": 1,
+      "files": [
+        "house20.graal"
+      ]
+    },
+    {
+      "image": "maid2.gif",
+      "script": "if (playertouchsme) {say0} 5Cbeerhost.gif",
+      "count": 1,
+      "files": [
+        "house21.graal"
+      ]
+    },
+    {
+      "image": "oldmansitting.gif",
+      "script": "if (playertouchsme) say 0; 5Aoldmansitting.gif",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "oldmansitting2.gif",
+      "script": "if (playertouchsme) say 2; IAoldmansitting2.gif",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "Ioldmansitting3.gif",
+      "script": "if (playertouchsme) say 1; BIoldmansitting3.gif",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "6oldmansitting4.gif",
+      "script": "if (playertouchsme) say 1; B6oldmansitting4.gif",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "CDferengi.gif",
+      "script": "if (playertouchsme) say 0; 8Dgraal.gif",
+      "count": 1,
+      "files": [
+        "house24.graal"
+      ]
+    },
+    {
+      "image": "masterwong.gif",
+      "script": "if (playertouchsme) { say 0; if (HelpedWong) say 2; if (!HelpedWong && carriesbush) { set HelpedWong; takeplayercarry; say 1; } } ?C",
+      "count": 1,
+      "files": [
+        "house5.graal"
+      ]
+    },
+    {
+      "image": "Dtaylor.gif",
+      "script": "if (playerenters) { noplayerkilling; say 0; } if (playertouchsme) { if (!H7taylorpayed) { say 2; if (H7greenempty || H7redempty || H7blueempty || H7grayempty || H7goldempty || H7whiteempty || H7blackempty) say 3; } if (H7taylorpayed) say 1; } if (playerlaysitem) { take greenrupee; take bluerupee; if (rupees>=10 && !H7taylorpayed) { set H7taylorpayed; rupees -=",
+      "count": 1,
+      "files": [
+        "house7.graal"
+      ]
+    },
+    {
+      "image": "FKcloats1.gif",
+      "script": "if (playerenters) { unset H7redempty;setgif cloats1.gif; } if (playertouchsme) { if (!H7redempty && !H7taylorpayed) say 5; if (!H7redempty && H7taylorpayed) { setcoatcolor white; setsleevecolor blue; setbeltcolor black; unset H7taylorpayed; set H7redempty; setgif rack.gif; } } 8Kcloats3.gif",
+      "count": 1,
+      "files": [
+        "house7.graal"
+      ]
+    },
+    {
+      "image": "7Ecloats4.gif",
+      "script": "if (playerenters) { unset H7blueempty;setgif cloats4.gif; } if (playertouchsme) { if (!H7blueempty && !H7taylorpayed) say 7; if (!H7blueempty && H7taylorpayed) { setcoatcolor darkblue; setsleevecolor black; setbeltcolor blue; unset H7taylorpayed; set H7blueempty; setgif rack.gif; } } GEcloats5.gif",
+      "count": 1,
+      "files": [
+        "house7.graal"
+      ]
+    },
+    {
+      "image": "cloats6.gif",
+      "script": "if (playerenters) { unset H7goldempty;setgif cloats6.gif; } if (playertouchsme) { if (!H7goldempty && !H7taylorpayed) say 8; if (!H7goldempty && H7taylorpayed) { setcoatcolor yellow; setsleevecolor white; setbeltcolor white; unset H7taylorpayed; set H7goldempty; setgif rack.gif; } } A?cloats7.gif",
+      "count": 1,
+      "files": [
+        "house7.graal"
+      ]
+    },
+    {
+      "image": "Pcloats2.gif",
+      "script": "if (playerenters) { unset H7whiteempty;setgif cloats2.gif; } if (playertouchsme) { if (!H7whiteempty && !H7taylorpayed) say 10; if (!H7whiteempty && H7taylorpayed) { setcoatcolor red; setsleevecolor darkred; setbeltcolor pink; unset H7taylorpayed; set H7whiteempty; setgif rack.gif; } } >M",
+      "count": 1,
+      "files": [
+        "house7.graal"
+      ]
+    },
+    {
+      "image": "1newtaylorcoat.gif",
+      "script": "if (playerenters) { unset H7newempty;setgif newtaylorcoat.gif; } if (playertouchsme) { if (!H7newempty && !H7taylorpayed) say 11; if (!H7newempty && H7taylorpayed) { setcoatcolor brown; setbeltcolor black; unset H7taylorpayed; set H7newempty; setgif rack.gif; } }",
+      "count": 1,
+      "files": [
+        "house7.graal"
+      ]
+    },
+    {
+      "image": "I4masterli.gif",
+      "script": "if (playertouchsme) { say 1; if (LiGaveSword && !LiGaveShield && HelpedWong) { set LiGaveShield; lay shield; say 2; } if (!LiGaveSword) { say 0; lay battleaxe; set LiGaveSword; } } EE",
+      "count": 1,
+      "files": [
+        "house8.graal"
+      ]
+    },
+    {
+      "image": "gnomkid.gif",
+      "script": "if (playerenters) { if (HG1Rescued) hide; else say 0; } if (playertouchsme) { set HG1Rescued; say 1; } if (playerendsreading && HG1Rescued) hide; >Cgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "housegolden1.graal"
+      ]
+    },
+    {
+      "image": "mohawk.gif",
+      "script": "if (playertouchsme) { if (!gotshovel) { say0; } else { say1; } } -$wspade0.gif",
+      "count": 1,
+      "files": [
+        "in2.graal"
+      ]
+    },
+    {
+      "image": "gnomkid.gif",
+      "script": "if (playerenters && iniglooheart) hide; if (playertouchsme) say 0; if (playerlaysitem && visible && !iniglooheart) { if (playerx>=11 && playerx<=15 && playery<=9) { set iniglootrap; hide; } } 3)brother2.gif",
+      "count": 1,
+      "files": [
+        "inigloo.graal"
+      ]
+    },
+    {
+      "image": "SCbeerhost.gif",
+      "script": "if (playerlaysitem) { take greenrupee; if (rupees>=3) { say 0; rupees -= 3; set L5ShowMug; } } UFbeer.gif",
+      "count": 1,
+      "files": [
+        "jaypee2bar.graal"
+      ]
+    },
+    {
+      "image": "SGbar.gif",
+      "script": "if (playertouchsme) { say 1; } ?Dguitar1.gif",
+      "count": 1,
+      "files": [
+        "jaypee2bar.graal"
+      ]
+    },
+    {
+      "image": "PUnonoise2.gif",
+      "script": "if (playertouchsme) {say 2} TO",
+      "count": 1,
+      "files": [
+        "jaypee2bar.graal"
+      ]
+    },
+    {
+      "image": "Oblack.gif",
+      "script": "if (playertouchsme) {unset selecthead; unset skin; unset shoes; set belt; unset coat; unset sleeves; say 4} )Oblack.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Oblack.gif",
+      "script": "if (playertouchsme) {unset selecthead; unset skin; unset shoes; unset belt; set coat; unset sleeves; say 3} 8Oblack.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    }
+  ]
+}

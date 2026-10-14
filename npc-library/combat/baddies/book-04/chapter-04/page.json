@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 4,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Cbotton.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hide; putcomp redsoldier,32,27; putcomp redsoldier,33,42; putcomp redsoldier,32,34; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } :Cbotton.gif",
+      "count": 1,
+      "files": [
+        "skytf1r7.graal"
+      ]
+    },
+    {
+      "image": "5Cbotton.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hide; putcomp redsoldier,30,34; putcomp redsoldier,18,35; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } ,Cbotton.gif",
+      "count": 1,
+      "files": [
+        "skytf1r7.graal"
+      ]
+    },
+    {
+      "image": "25beer.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 85beer.gif",
+      "count": 1,
+      "files": [
+        "skytf2r3.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } F?dbluebaddy.gif",
+      "count": 1,
+      "files": [
+        "skytf2r4.graal"
+      ]
+    },
+    {
+      "image": "greeter.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 2; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf2r5.graal"
+      ]
+    },
+    {
+      "image": "6sign.gif",
+      "script": "if (playerenters && skyfloor3){playerx=35; playery=23 ; say 1; unset skyfloor3; } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf3.graal"
+      ]
+    },
+    {
+      "image": "46zombie.gif",
+      "script": "if (playerenters) { } if (playertouchsme && !skythot){say 0; } if (playertouchsme && skythot) {setskincolororange; setbeltcolorblue; setcoatcolorblue; setsleevecolorblue; setshoecolororange; say 1; } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } =3maid.gif",
+      "count": 1,
+      "files": [
+        "skytf3r3.graal"
+      ]
+    },
+    {
+      "image": "D7fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } J7fizzaretip.gif",
+      "count": 1,
+      "files": [
+        "skytf3r3.graal"
+      ]
+    },
+    {
+      "image": "FCsleepem.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } <Csleepem.gif",
+      "count": 1,
+      "files": [
+        "skytf3r4.graal"
+      ]
+    },
+    {
+      "image": "FCsleepem.gif",
+      "script": "if (playerenters) {say 0; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } <Csleepem.gif",
+      "count": 1,
+      "files": [
+        "skytf3r5.graal"
+      ]
+    },
+    {
+      "image": "6sign.gif",
+      "script": "if (playerenters && skyfloor4){playerx=35; playery=23 ; say 1; unset skyfloor4; } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf4.graal"
+      ]
+    },
+    {
+      "image": "2storeguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme && !skybeer) {set wantskybeer; say 0; } if (playertouchsme && skybeer) {say 1; set skyfloor5open; } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf4r2.graal"
+      ]
+    },
+    {
+      "image": "2sign.gif",
+      "script": "if (playerenters && skyfloor5){playerx=31; playery=19; say 1; unset skyfloor5; } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } @?door.gif",
+      "count": 1,
+      "files": [
+        "skytf5.graal"
+      ]
+    },
+    {
+      "image": "J7door.gif",
+      "script": "if (playerenters) {if(skyfree2)hide; if(!skyfree2)show } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf5.graal"
+      ]
+    },
+    {
+      "image": "MBstone.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {set skytfree; } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf5r1.graal"
+      ]
+    },
+    {
+      "image": "CIstone.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {set skyfree2; } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf5r2.graal"
+      ]
+    },
+    {
+      "image": "bottle.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {set skyfloor6open; } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf5r3.graal"
+      ]
+    },
+    {
+      "image": "spaceship.gif",
+      "script": "if (playerenters) { if(!skyship)hide;if(skyship)show; putcomp dragon,23,15; putcomp lizardon,35,4; putcomp lizardon,34,15} if (playertouchsme) { dontblock;drawoverplayer} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { hide;say 1;} if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } :9Monster.gif",
+      "count": 1,
+      "files": [
+        "skytf6r2.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say0 } if (playertouchsme && playerpaid) {say 1 } if (playerlaysitem) {take redrupee; set playerpaid } if (compusdied) { } if (playerendsreading) { } /)blob.gif",
+      "count": 1,
+      "files": [
+        "smith.graal"
+      ]
+    },
+    {
+      "image": "9reader.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say51; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "sslibray.graal"
+      ]
+    },
+    {
+      "image": "R8zolshoe1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {setskincolor lightgreen } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } R:zolshoe2.gif",
+      "count": 1,
+      "files": [
+        "ultimate3.graal"
+      ]
+    },
+    {
+      "image": "zolshoe3.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {setskincolor lightblue } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } R>zolshoe4.gif",
+      "count": 1,
+      "files": [
+        "ultimate3.graal"
+      ]
+    },
+    {
+      "image": "zolshoe5.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {setskincolor black} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } RBzolshoe6.gif",
+      "count": 1,
+      "files": [
+        "ultimate3.graal"
+      ]
+    },
+    {
+      "image": "R6zolshoe7.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {setskincolor purple } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } R4zolshoe8.gif",
+      "count": 1,
+      "files": [
+        "ultimate3.graal"
+      ]
+    },
+    {
+      "image": "R8zolshoe1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {setsleevecolor lightgreen } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } R:zolshoe2.gif",
+      "count": 1,
+      "files": [
+        "ultimate4.graal"
+      ]
+    }
+  ]
+}

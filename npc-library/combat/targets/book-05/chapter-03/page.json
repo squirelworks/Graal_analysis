@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 5,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "4receptionist.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 2; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0@deadman.gif",
+      "count": 1,
+      "files": [
+        "greatnlobby.graal"
+      ]
+    },
+    {
+      "image": "stabbed.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message I'm BLEEDIN damnit!; timeout = 2} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message;} MBcut-up.gif",
+      "count": 1,
+      "files": [
+        "greatnlobby.graal"
+      ]
+    },
+    {
+      "image": "medicine.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 0;} if (playertouchsme && isdoctor) {say 1; set medicine;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } <Gsurgeon.gif",
+      "count": 1,
+      "files": [
+        "greatnmedicine.graal"
+      ]
+    },
+    {
+      "image": "4Anurse1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Why are those other nurses such bitches?; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message;} @Dnurse2.gif",
+      "count": 1,
+      "files": [
+        "greatnnurses.graal"
+      ]
+    },
+    {
+      "image": "3Gnurse3.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message Stop looking at my... you know.; timeout = 2; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message} ;Inurse4.gif",
+      "count": 1,
+      "files": [
+        "greatnnurses.graal"
+      ]
+    },
+    {
+      "image": "nurse.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message I am the nursemaster, master of all nurses!; timeout = 3;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message}",
+      "count": 1,
+      "files": [
+        "greatnnurses.graal"
+      ]
+    },
+    {
+      "image": "ceilinabed1.gif",
+      "script": "if (op) {play atlantis.mid; setgif receptionist.gif; x = 25; y = 30.75; if (playertouchsme) message I love it!;} if (playertouchsme && !prepped && !op) {say 0; } if (playertouchsme && prepped) {stopmidi; say 1; timeout = 0.6;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { play atlantis.mid; unset prepped;",
+      "count": 1,
+      "files": [
+        "greatnoperation.graal"
+      ]
+    },
+    {
+      "image": "Dsurgeon2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Get out!; timeout = 2;} if (playertouchsme && isdoctor && !op) {message Hello Doctor, this here is some important surgery.; timeout = 2;} if (op && playertouchsme){ message Nice job... but...; timeout = 2;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { messa",
+      "count": 1,
+      "files": [
+        "greatnoperation.graal"
+      ]
+    },
+    {
+      "image": "doctorfire.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Get out!; timeout = 2;} if (playertouchsme && isdoctor && !op){ message Can you handle this surgery?; timeout = 2;} if (op && playertouchsme){ message This was supposed to be a Tonsil removal!; timeout = 2;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { mess",
+      "count": 1,
+      "files": [
+        "greatnoperation.graal"
+      ]
+    },
+    {
+      "image": "surgeon.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Get out!; timeout = 2;} if (playertouchsme && isdoctor && !op) {message Here is your gear. Go to work!; set prepped; timeout = 2;} if (op && playertouchsme) {play atlantis.mid; message Good Sex Change operation, but...; timeout = 2;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspel",
+      "count": 1,
+      "files": [
+        "greatnoperation.graal"
+      ]
+    },
+    {
+      "image": "doctorfire.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsme && isdoctor) {say 1;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >5docduds.gif",
+      "count": 1,
+      "files": [
+        "greatnpreproom.graal"
+      ]
+    },
+    {
+      "image": "EHsurgeon2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message HELLOOOOOO NURSE!; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message;} BKnurse2.gif",
+      "count": 1,
+      "files": [
+        "greatnpreproom.graal"
+      ]
+    },
+    {
+      "image": "twiggy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Need medicine...; timeout = 2;} if (playertouchsme && medicine) {setgif deadtwiggy.gif; say 0; message;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message} 2Foldmansitting.gif",
+      "count": 1,
+      "files": [
+        "greatnrecov1.graal"
+      ]
+    },
+    {
+      "image": "4Fnurse3.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Spongebath Sir?; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message} 0Hnurse1.gif",
+      "count": 1,
+      "files": [
+        "greatnrecov1.graal"
+      ]
+    },
+    {
+      "image": "Goldfarthead.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message Ladies... come over HERE.; timeout = 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {message } 2>zombie.gif",
+      "count": 1,
+      "files": [
+        "greatnrecov1.graal"
+      ]
+    },
+    {
+      "image": "2Hceilinabed2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message I love the nurses here!; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {message; } 3>badmaxhead.gif",
+      "count": 1,
+      "files": [
+        "greatnrecov2.graal"
+      ]
+    },
+    {
+      "image": "CAnurse3.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Yes daddy!; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message;} @Cnurse1.gif",
+      "count": 1,
+      "files": [
+        "greatnrecov2.graal"
+      ]
+    },
+    {
+      "image": "pachseat.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?=pachy.gif",
+      "count": 1,
+      "files": [
+        "greatnrecov2.graal"
+      ]
+    },
+    {
+      "image": "3Enurse2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Tee-hee; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message}",
+      "count": 1,
+      "files": [
+        "greatnrecov2.graal"
+      ]
+    },
+    {
+      "image": "8bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 28bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 3;bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *Cbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "2Abigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } (Abigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1Cbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "Dbigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,Dbigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    }
+  ]
+}

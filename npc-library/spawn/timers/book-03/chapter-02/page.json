@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 3,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "bowmachine2.gif",
+      "script": "if (playerenters) timeout = 0.5; if (timeout) { y = random(31,26); shootarrow left; timeout = 0.5; } :7bowmachine.gif",
+      "count": 1,
+      "files": [
+        "lizardden2.graal"
+      ]
+    },
+    {
+      "image": "Dbowmachine.gif",
+      "script": "if (playerenters) timeout = 0.5; if (timeout) { y = random(38,33); shootarrow right; timeout = 0.7; } HKbowmachine2.gif",
+      "count": 1,
+      "files": [
+        "lizardden2.graal"
+      ]
+    },
+    {
+      "image": "Qbowmachine.gif",
+      "script": "if (playerenters) timeout = 0.5; if (timeout) { y = random(51,46); shootarrow right; timeout = 0.7; }",
+      "count": 1,
+      "files": [
+        "lizardden2.graal"
+      ]
+    },
+    {
+      "image": "bigoct.gif",
+      "script": "if (playerenters) { if(!main2kilt){timeout = 0.5; oyhp=7;} if(main2kilt){hide} } if (timeout && visible) { if(!main2kilt){ shootball; timeout = 1; } } if (playertouchsme) {lay heart } if (exploded || washit || wasshooted || waspelt) { oyhp=oyhp-1; if(oyhp=0){ hide; } } <",
+      "count": 1,
+      "files": [
+        "lizardden20.graal"
+      ]
+    },
+    {
+      "image": "shooteye.gif",
+      "script": "if (playerenters) timeout = 1; if (izdoneyo){hide} if (timeout) { if (!izdoneyo){ shootball; timeout = 2.5; } } >/minewalltop.gif",
+      "count": 1,
+      "files": [
+        "lizardden7.graal"
+      ]
+    },
+    {
+      "image": "boomerang.gif",
+      "script": "if (playertouchsme) { toweapons Magical Boomerang; hide; } if (weaponfired && this.flycounter<=0) { hideimg 1; hidesword 0.3; this.distance = 19; this.steplen = 1.5; timeout = 0.05; this.flycounter = 0; this.oldx = playerx; this.oldy = playery; } if (timeout) { this.flycounter++; if (this.flycounter<6) { if (playerdir==0 || playerdir==2) playersprite = 13; else pla",
+      "count": 1,
+      "files": [
+        "magboom.graal"
+      ]
+    },
+    {
+      "image": "R3shooteye.gif",
+      "script": "if (playerenters) timeout = 0.5; if (timeout) { if (playerx>=50.5) { shootball; timeout = 1; } else timeout = 0.5; } AR",
+      "count": 1,
+      "files": [
+        "mine1.graal"
+      ]
+    },
+    {
+      "image": "bowmachine.gif",
+      "script": "if (playerenters) timeout = 0.5; if (timeout) { y = random(27,33); shootarrow right; timeout = 0.5; } U;bowmachine2.gif",
+      "count": 1,
+      "files": [
+        "mine10.graal"
+      ]
+    },
+    {
+      "image": "Dbowmachine.gif",
+      "script": "if (playerenters) timeout = 0.5; if (timeout) { y = random(36,42); shootarrow right; timeout = 0.5; } UDbowmachine2.gif",
+      "count": 1,
+      "files": [
+        "mine10.graal"
+      ]
+    },
+    {
+      "image": "7Bminedino.gif",
+      "script": "if (playerenters) { if (!MineDinoDead){ movex = 0.8; movetype = 1; this.power = 10; timeout = 0.1;setgif minedino.gif;y=34; } drawoverplayer; if (MineDinoDead) { movetype = 0; setgif minedino3.gif; y += 3; play stef87.mid; } else { movex = 0.8; movetype = 1; this.power = 10; timeout = 0.1; } dinox = x; } if (washit && movetype==1) { this.pow",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "minedino2.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock; timeout = 0.15; } if (timeout && !MineDinoDead) { x = dinox+1; timeout = 0.2; } 8Lmineblock2.gif",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "9Gminedino4.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock; timeout = 0.1; } if (timeout && !MineDinoDead) { x = dinox+2; timeout = 0.1;y=39; } K7mineblock.gif",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "5Imovingstone.gif",
+      "script": "if (playerenters) { this.dir = 0; timeout = 0.25; } if (timeout) { mydir = this.dir; if (mydir==0) y--; if (mydir==1) x--; if (mydir==2) y++; if (mydir==3) x++; if (mydir==0 && y<=15) mydir = 3; else if (mydir==1 && x<=20) mydir = 0; else if (mydir==2 && y>=41) mydir = 1; else if (mydir==3 && x>=47) mydir = 2; this.dir = mydir; timeout = 0.25; } if (playertouchsme) { m",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "movingstone.gif",
+      "script": "if (playerenters) { this.dir = 3; timeout = 0.25; } if (timeout) { mydir = this.dir; if (mydir==0) y--; if (mydir==1) x--; if (mydir==2) y++; if (mydir==3) x++; if (mydir==0 && y<=15) mydir = 3; else if (mydir==1 && x<=20) mydir = 0; else if (mydir==2 && y>=41) mydir = 1; else if (mydir==3 && x>=47) mydir = 2; this.dir = mydir; timeout = 0.25; } if (playertouchsme) { m",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "movingstone.gif",
+      "script": "if (playerenters) { this.dir = 2; timeout = 0.25; } if (timeout) { mydir = this.dir; if (mydir==0) y--; if (mydir==1) x--; if (mydir==2) y++; if (mydir==3) x++; if (mydir==0 && y<=15) mydir = 3; else if (mydir==1 && x<=20) mydir = 0; else if (mydir==2 && y>=41) mydir = 1; else if (mydir==3 && x>=47) mydir = 2; this.dir = mydir; timeout = 0.25; } if (playertouchsme) { m",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "NImovingstone.gif",
+      "script": "if (playerenters) { this.dir = 1; timeout = 0.25; } if (timeout) { mydir = this.dir; if (mydir==0) y--; if (mydir==1) x--; if (mydir==2) y++; if (mydir==3) x++; if (mydir==0 && y<=15) mydir = 3; else if (mydir==1 && x<=20) mydir = 0; else if (mydir==2 && y>=41) mydir = 1; else if (mydir==3 && x>=47) mydir = 2; this.dir = mydir; timeout = 0.25; } if (playertouchsme) { m",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "cow.gif",
+      "script": "if (playertouchsme) {message MOU!; timeout=1.0 } if (timeout) { message } Q",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "babycow.gif",
+      "script": "if (playertouchsme) {message MOU!; timeout=1.0 } if (timeout) { message } [5bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "pachukitedown3.gif",
+      "script": "if (night) {timeout=2.0; } if (timeout) {play cricket.wav} V1standingleft1.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm2.graal"
+      ]
+    },
+    {
+      "image": "firespell1.gif",
+      "script": "//=========== FireSpell A.I.========== // written by Lord Bruges (FoD) // (23/03/1999) // // email: Bruges@geocities.com // http://members.xoom.com/bruges/ // // Below are variables which modify // the spell's behavior. Press PgDn // to view them all. // // // if (playerenters) { timeout=.1; //the delay before it can be cast this.castscan=.1; //the frequency it checks",
+      "count": 1,
+      "files": [
+        "newdesertarea.graal"
+      ]
+    },
+    {
+      "image": "DIsmartnightday.gif",
+      "script": "//Enhanced Smart Day\\Night Script by AlexanderYoshi if (playerenters&&!SmartNightDay) { //length of day time in seconds: daylength=280; //length of night time in seconds: nightlength=280; //length of morning time in seconds: mornlength=20; //length of afternoon time in seconds: aftrlength=20; } if(playerenters&&SmartNightDay){ timeout-=100; if (timeout<0){ timeout=0; } } if (playerenter",
+      "count": 1,
+      "files": [
+        "otforest5.graal"
+      ]
+    },
+    {
+      "image": "flyingshadow.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock; timeout = 0.1; } if (timeout) { x = kid1x; y = kid1y+4; timeout = 0.1; if (MonsterRedKilled) { hide; timeout = 0; } } D7flyingred.gif",
+      "count": 1,
+      "files": [
+        "redboss.graal"
+      ]
+    },
+    {
+      "image": "flyingshadow.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock; timeout = 0.1; } if (timeout) { x = kid2x; y = kid2y+4; timeout = 0.1; if (MonsterRedKilled) { hide; timeout = 0; } } >Msouthblock.gif",
+      "count": 1,
+      "files": [
+        "redboss.graal"
+      ]
+    },
+    {
+      "image": "Q7dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=49; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "-7dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=13; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    }
+  ]
+}

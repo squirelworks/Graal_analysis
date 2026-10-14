@@ -1,0 +1,80 @@
+{
+  "combat": {
+    "baddies": {
+      "scripts": 452,
+      "books": 5
+    },
+    "hazards": {
+      "scripts": 192,
+      "books": 2
+    },
+    "targets": {
+      "scripts": 728,
+      "books": 8
+    },
+    "weapons": {
+      "scripts": 28,
+      "books": 1
+    }
+  },
+  "dialogue": {
+    "speech": {
+      "scripts": 373,
+      "books": 4
+    }
+  },
+  "interaction": {
+    "flags": {
+      "scripts": 11,
+      "books": 1
+    },
+    "triggers": {
+      "scripts": 411,
+      "books": 5
+    },
+    "visibility": {
+      "scripts": 180,
+      "books": 2
+    }
+  },
+  "misc": {
+    "other": {
+      "scripts": 257,
+      "books": 3
+    }
+  },
+  "object": {
+    "blocks": {
+      "scripts": 35,
+      "books": 1
+    },
+    "chests": {
+      "scripts": 10,
+      "books": 1
+    },
+    "doors": {
+      "scripts": 108,
+      "books": 2
+    },
+    "signs": {
+      "scripts": 15,
+      "books": 1
+    }
+  },
+  "spawn": {
+    "timers": {
+      "scripts": 328,
+      "books": 4
+    }
+  },
+  "transport": {
+    "level-warps": {
+      "scripts": 27,
+      "books": 1
+    },
+    "local-warps": {
+      "scripts": 32,
+      "books": 1
+    }
+  }
+}

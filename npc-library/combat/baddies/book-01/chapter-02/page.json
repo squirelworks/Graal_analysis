@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 1,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide} $EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "N9ArchBlk.gif",
+      "script": "if (compusdied) {hide} DEArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "V9ArchBlk.gif",
+      "script": "if (compusdied) {hide} P9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "H9ArchBlk.gif",
+      "script": "if (compusdied) {hide} ZEArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "J9ArchBlk.gif",
+      "script": "if (compusdied) {hide} 69ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "R9ArchBlk.gif",
+      "script": "if (compusdied) {hide} 0EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "49ArchBlk.gif",
+      "script": "if (compusdied) {hide} 29ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "09ArchBlk.gif",
+      "script": "if (compusdied) {hide} .9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide} (9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "T9ArchBlk.gif",
+      "script": "if (compusdied) {hide} &9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide} L9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide} 9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "Z9ArchBlk.gif",
+      "script": "if (compusdied) {hide} \\9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide} 9:Target.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "89ArchBlk.gif",
+      "script": "if (compusdied) {hide} :9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide}",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "D3monster.gif",
+      "script": "//kindly coded by Bomber39 ('twas a newbie at Graalscript at time) if (playerenters){ hearts=100; //the baddies heart count this.what=0; // Don't Edit! play stef11.mid;noplayerkilling } if (baddyalwaysattack && playerenters && !followsplayer){hide;timeout=10000} if (playerenters && nodumbbaddy){removecompus} if (playertouchsme && this.what=0) {say 1; removecompus;set nodumbbaddy;} if (washit && th",
+      "count": 1,
+      "files": [
+        "AssHome.graal"
+      ]
+    },
+    {
+      "image": "bar.gif",
+      "script": "if (playerenters) {} if (playertouchsme) { say 0;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 56fence.gif",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "6fence.gif",
+      "script": "if (playerenters) { if (DWsafe)hide;if(!DWsafe)show} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } C6fence.gif",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "E3emeraldbaddy.gif",
+      "script": "if (playerenters) { if(DWsafe)hide;if(!DWsafe)show;} if (playertouchsme) { say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } O%beerhost.gif",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "bottle.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } O'bottle.gif",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "gimpymanz.gif",
+      "script": "if (playerenters) { if(DWsafe)hide;if(!DWsafe)show} if (playertouchsme) { say 2} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } '4glove.gif",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "gnom.gif",
+      "script": "if (playerenters) { if(DWsafe)hide;if(!DWsafe)show} if (playertouchsme) { say 4} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } X*gimpymanz.gif",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "gnom.gif",
+      "script": "if (playerenters) { if(!DWsafe)hide;if(DWsafe)show} if (playertouchsme) { say 7} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "DW10.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) { if(DWsafe)hide;if(!DWsafe)show} if (playertouchsme) { if(!DWsafe)say 0;if(DWsafe)say 1;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } N/fizzaretip.gif",
+      "count": 1,
+      "files": [
+        "DW11.graal"
+      ]
+    }
+  ]
+}

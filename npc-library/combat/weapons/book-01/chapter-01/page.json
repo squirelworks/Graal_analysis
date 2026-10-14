@@ -1,0 +1,222 @@
+{
+  "genre": "combat",
+  "topic": "weapons",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "JHsharkleft.gif",
+      "script": "if (playerenters) { this.region.top = 1; this.region.left = 1; this.region.bottom = 61; this.region.right = 61; if (random(0, 2) <= 1) { this.movex = .4; } else { this.movex = -.4; } if (random(0, 2) <= 1) { this.movey = .3; } else { this.movey = -.3; } this.hearts = 3; this.justhit = 0; if (this.movex > 0) { setgif sharkright.gif; } else { setgi",
+      "count": 7,
+      "files": [
+        "level28.graal",
+        "level28.graal",
+        "level28.graal"
+      ]
+    },
+    {
+      "image": "Hburrowerm1.gif",
+      "script": "//========== Burrower A.I.=========== // written by Lord Bruges (FoD) // for Project Quest (23/02/1999) // // email: Bruges@geocities.com // http://www.geocities.com/TimesSquare/9901/FoD/ // // Below are variables which modify // the burrower's behavior. Press // PgDn to view them all. // // // if (playerenters) { this.isburrowed=0; //1 = starts underground. 0 = starts above ground hearts=4;",
+      "count": 6,
+      "files": [
+        "ddd1.graal",
+        "ddd1.graal",
+        "ddd1.graal"
+      ]
+    },
+    {
+      "image": "KJattackblock.gif",
+      "script": "//======== AttackBlock A.I.========== // written by Lord Bruges (FoD) // for Project Quest (16/02/1999) // // email: Bruges@geocities.com // http://www.geocities.com/TimesSquare/9901/FoD/ // // Below are variables which modify // the AttackBlock's behavior. Press // PgDn to view them all. // // // if (playerenters) {timereverywhere; this.type=1; //0: never shoot //1: always shoot //2: o",
+      "count": 5,
+      "files": [
+        "sardontower17.graal",
+        "sardontower17.graal",
+        "sardontower17.graal"
+      ]
+    },
+    {
+      "image": "Vchicken_e.gif",
+      "script": "if (playerenters) { hearts=5; //the number of hearts the chicken starts with (-1 = infinate) this.immort=0; //1=immortal timeout=.1; //the delay before it \"wakes up\" this.stepspeed=.1; //the speed the it takes steps at this.stepdist=.5; //the distance covered by each step this.power=0; //number of half hearts it drains when it touches the player this.movdel=.3; //the delay between",
+      "count": 3,
+      "files": [
+        "westgraal1.graal",
+        "westgraal1.graal",
+        "westgraal1.graal"
+      ]
+    },
+    {
+      "image": "chicken_e.gif",
+      "script": "//=========== Chicken A.I.=========== // written by Lord Bruges (FoD) // (23/03/1999) // // email: Bruges@geocities.com // http://members.xoom.com/bruges/ // // Below are variables which modify // the chicken's behavior. Press PgDn // to view them all. // // // if (playerenters) { hearts=0; //the number of hearts the chicken starts with (-1 = infinate) this.immort=1;",
+      "count": 2,
+      "files": [
+        "CoGbar1.graal",
+        "CoGtown1.graal"
+      ]
+    },
+    {
+      "image": "1Tkillerbush1.gif",
+      "script": "// Killer Bush Guard made by <Exo Knight> //Feel free to edit the numbers here to make the bush //change how it acts. if (playerenters) { this.dis=6.25; //How close will you get until it attacks you? this.maxballcount=5; //How many balls will it shoot per time that is sences you near it? this.shootspeed=0.1; //How long before it shoots the next ball? this.stayidle",
+      "count": 2,
+      "files": [
+        "b39_outside10.graal",
+        "b39_outside10.graal"
+      ]
+    },
+    {
+      "image": "Djfpong2.gif",
+      "script": "// // Graal Tennis // by Vangel (JF) // written for the JF guildhouse // // dedicated to Jesus -- just because // // hearts = left player score // darts = right player score // bombs = vertical speed + 20 // rupees = horizontal speed + 10 // swordpower = game speed timereverywhere; // timeouts in this script are now controlled by // different players depending on",
+      "count": 2,
+      "files": [
+        "fcpong.graal",
+        "vangeljfpong.graal"
+      ]
+    },
+    {
+      "image": "9skimmer.gif",
+      "script": "//=========== Skimmer A.I.=========== // written by Lord Bruges (FoD) // for the FoD Town (12/03/1999) // // email: Bruges@geocities.com // http://www.geocities.com/TimesSquare/9901/FoD/ // // Below are variables which modify // the Skimmer's behavior. Press PgDn // to view them all. // // // if (playerenters) { hearts=2; //the number of hearts the ghost starts with timeout=.1; //the",
+      "count": 2,
+      "files": [
+        "level24.graal",
+        "level24.graal"
+      ]
+    },
+    {
+      "image": "s.gif",
+      "script": "//Captain USA Were Wolf Script //By Bruges // //gifs by Captin USA // if (playerenters) { this.power=2; //Damage caused when the player touches the baddie. hearts=15; //The number of hearts that the baddies starts with this.loopspeed=.1; //Speed between each AI Loop this.giftnone=0; //Relative chance of getting no gift when the NPC dies this.giftgreen=0;",
+      "count": 2,
+      "files": [
+        "otforest5.graal",
+        "otforest5.graal"
+      ]
+    },
+    {
+      "image": "82pachuka.gif",
+      "script": "if (playerenters) { show; this.msg=1; timeout=.05; this.hearts=10; } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=500) { this.msg=-50; rupees=0; timeout=183; timershow; } } if (timeout) { if (playery>24.5) playery=24.5; this.msg+=1; if (this.msg>=250) this.msg=1; if (this.msg<=-45) message Time's up!;",
+      "count": 1,
+      "files": [
+        "ArmaGenerator.graal"
+      ]
+    },
+    {
+      "image": "varei_still_south.gif",
+      "script": "if (playerenters){hide; this.power=2; //Damage caused when the player touches the baddie. hearts=20; //The number of hearts that the baddies starts with this.loopspeed=.1; //Speed between each AI Loop this.shootdel=2; //Delay between shots this.arrowtype=5; //The arrow type shot by the NPC: 1=Arrows; 2=Fireball; 3=Fire Blast; 4=Nukeshot; 5=Ball; Other v",
+      "count": 1,
+      "files": [
+        "b39_outside7.graal"
+      ]
+    },
+    {
+      "image": "ccpirate2.gif",
+      "script": "timeout=.3; if (playerenters) { say 0; hearts=3; x=24; y=14; a=0; } if (timeout) { x=random(23,35); y=random(14,22); a++; play steps.wav; if(a>=4) {shootball;a=0} } if(washit) { if(hearts>=0) {hearts-=.5} if(hearts<=.5) {hearts=0;set ccpiratedone;say 1;} } >7",
+      "count": 1,
+      "files": [
+        "ccpiratestinky3.graal"
+      ]
+    },
+    {
+      "image": "Iccvolcanoboss1.gif",
+      "script": "if (playerenters) {disableweapons; timeout=0.1; playerhearts=3; x=31; y=41; show; } if (timeout) { x=random(x+3,x-3); y=random(y+3,y-3); rrr=2; if (rrr<=2)putbomb rrr,x,y; timeout=1.0; } if (waspelt) {hide; timeout=0.0; set booom2; putexplosion 2,x,y; putleaps 3,x,y; say 2; playerhearts=3; } IIccvolcanoboss3.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano6.graal"
+      ]
+    },
+    {
+      "image": "4Iccvolcanoboss2.gif",
+      "script": "if (playerenters) {disableweapons; timeout=0.1; playerhearts=3; playerx=35.5 ; playerx=27 ; x=20; y=41; show;} if (timeout) { x=random(x+3,x-3); y=random(y+3,y-3); rrr=3; if (rrr<=3)putbomb rrr,x,y; timeout=1.0; } if (waspelt) {hide; timeout=0.0; set booom3; putexplosion 2,x,y; putleaps 3,x,y; say 3; playerhearts=3; } >=",
+      "count": 1,
+      "files": [
+        "ccvolcano6.graal"
+      ]
+    },
+    {
+      "image": "-bottle.gif",
+      "script": "if (playerenters) {hide} if (dlbeer && this.1==0) {this.1=1; show} if (playertouchsme) {unset dlbeer; timeout=0.1;} if (!dlbeer && this.1==1) {this.1=0; hide} if (timeout){playerhearts=playerhearts+0.5; timeout=0.1;} 4Ebottle.gif",
+      "count": 1,
+      "files": [
+        "dlhqhall.graal"
+      ]
+    },
+    {
+      "image": "A-football.gif",
+      "script": "if (playerenters) canbecarried; if (wasthrown) { canbecarried; if (playerhearts<3) playerhearts = 3; } R<door.gif",
+      "count": 1,
+      "files": [
+        "footballentrance.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { enableweapons; playerhearts=playerfullhearts; setbeltcolor black; sethead head13.gif; } 4",
+      "count": 1,
+      "files": [
+        "goanticheat.graal"
+      ]
+    },
+    {
+      "image": "TPghost_s.gif",
+      "script": "//============ Ghost A.I.============ // written by Lord Bruges (FoD) // for Project Quest (15/02/1999) // // email: Bruges@geocities.com // http://www.geocities.com/TimesSquare/9901/FoD/ // // Below are variables which modify // the ghost's behavior. Press PgDn // to view them all. // // // if (playerenters) { this.ishid=0; //1 = hidden at first. 0 = visible at first hearts=4; //the number",
+      "count": 1,
+      "files": [
+        "level35.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (playerenters && !L4ShowMug) hide; if (playertouchsme) { playerhearts=playerhearts+2; hide; unset L4ShowMug; } if (playerlaysitem && L4ShowMug) { show; } M,",
+      "count": 1,
+      "files": [
+        "level4.graal"
+      ]
+    },
+    {
+      "image": "princess.gif",
+      "script": "if (playerenters){ if(!hitme5) {hide} if(hitme5){show} } if (playertouchsme) { if (!gotdumbstuff){say 4; set gotdumbstuff1;lay spinattack;} if (gotdumbstuff){say 5;} } if (playerendsreading && gotdumbstuff1) {set gotdumbstuff}",
+      "count": 1,
+      "files": [
+        "lifemountain8.graal"
+      ]
+    },
+    {
+      "image": "DMmidasshoplife.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } if (playertouchsme) { playerhearts = playerfullhearts; } CNmidasshoplife.gif",
+      "count": 1,
+      "files": [
+        "midasrealmx.graal"
+      ]
+    },
+    {
+      "image": "DNmidasshoplife.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } if (playertouchsme) { playerhearts = playerfullhearts; } HMmidasshoparrows.gif",
+      "count": 1,
+      "files": [
+        "midasrealmx.graal"
+      ]
+    },
+    {
+      "image": "s.gif",
+      "script": "//Captain USA Were Wolf Script //By Bruges // //gifs by Captain USA // if (playerenters) { this.power=2; //Damage caused when the player touches the baddie. hearts=15; //The number of hearts that the baddies starts with this.loopspeed=.1; //Speed between each AI Loop this.giftnone=0; //Relative chance of getting no gift when the NPC dies this.giftgreen=0;",
+      "count": 1,
+      "files": [
+        "otforest5.graal"
+      ]
+    },
+    {
+      "image": "nastybed.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; } if (playertouchsme) {play pteSum00.wav; playerhearts=20; playerheadset=4; set playerisapachukite;} '6chestbox.gif",
+      "count": 1,
+      "files": [
+        "putridhome.graal"
+      ]
+    },
+    {
+      "image": "0gate.gif",
+      "script": "if (playerenters){timereverywhere;timeout=.1} if(statue=0)show; else hide; if(timeout){timeout=.1} 3Jattackblock.gif",
+      "count": 1,
+      "files": [
+        "sardontower17.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 3,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "2Oblack.gif",
+      "script": "if (playertouchsme) {unset selecthead; unset skin; set shoes; unset belt; unset coat; unset sleeves; say 5} 5Oblack.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "FAcook.gif",
+      "script": "if (playerlaysitem) { take bluerupee; if (rupees>=5) { say 0; rupees -= 5; set L5Showmeatpan; } } 7Acook.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "SAcook.gif",
+      "script": "if (playerlaysitem) { take bluerupee; if (rupees>=10) { say 4; rupees -= 10; set L6Showpizza-a26228; } } UHbar.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "7Hbar.gif",
+      "script": "if (playertouchsme) {say 0} FHbar.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "Woldmansitting3.gif",
+      "script": "if (playertouchsme) {say 6} 5Toldmansitting.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "Toldmansitting2.gif",
+      "script": "if (playertouchsme) {say 7} 9Qoldmansitting4.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "sailor.gif",
+      "script": "if (playertouchsme) {say3} 7\"sharkright.gif",
+      "count": 1,
+      "files": [
+        "jaypee2level.graal"
+      ]
+    },
+    {
+      "image": "9Hbar.gif",
+      "script": "if (playertouchsme) {say7} if (playersays(yes)) {unset L4leftgate; unset L4rightgate; unset L4block} (Mleftgate.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "Dreceptionist.gif",
+      "script": "if (playertouchsme) { if (!L4leftgate) say 0; if (L4leftgate) say 1; } if (playerlaysitem && !L4leftgate) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=100) { set L4leftgate; say 3; set L4block; } } if (playertouchsme) { if (!L4rightgate) say 0; if (L4rightgate) say 1; } if (playerlaysitem && !L4rightgate) { take greenrupee;",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "Hbar.gif",
+      "script": "if (playertouchsme) {say 0} (;leftgate.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "8Hbar.gif",
+      "script": "if (playertouchsme) {say7} <Ublock.gif",
+      "count": 1,
+      "files": [
+        "jaypee2suites.graal"
+      ]
+    },
+    {
+      "image": "bcyoshidoll.gif",
+      "script": "if (playerenters || playerendsreading) { dontblock; if (!KorocoGivenBCDinoDoll) hide; else show; }",
+      "count": 1,
+      "files": [
+        "koroco.graal"
+      ]
+    },
+    {
+      "image": "brother2.gif",
+      "script": "if (playertouchsme) { say 1 } I\"bluelampani.gif",
+      "count": 1,
+      "files": [
+        "krad.graal"
+      ]
+    },
+    {
+      "image": "dead.gif",
+      "script": "if (playertouchsme) {say 1 } =@shield.gif",
+      "count": 1,
+      "files": [
+        "krad11.graal"
+      ]
+    },
+    {
+      "image": "greenx.gif",
+      "script": "if (playertouchsme) { say 3 }",
+      "count": 1,
+      "files": [
+        "krad4.graal"
+      ]
+    },
+    {
+      "image": "cloats8.gif",
+      "script": "// so the player wont be changed on accident if (playertouchsme) { say 8; set KMightchange; } if (playerendsreading) { unset KMightchange; } if (playersays(yes)&&KMightchange){ set KPYes; } if (playersays(no)&&KMightchange) { set KPNo; } if (timeout) { message } if (KPNo) { message Ok then; timeout=2; unset KPNo } if (KPYes) { message Here you go!; setskincolor red; setcoatcolo",
+      "count": 1,
+      "files": [
+        "krakenhouse3.graal"
+      ]
+    },
+    {
+      "image": "blank.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock } if (playertouchsme&&players[0].dir==2) { say 5; } @%tolit.gif",
+      "count": 1,
+      "files": [
+        "krakenhouse3.graal"
+      ]
+    },
+    {
+      "image": "pece2.gif",
+      "script": "if (playerenters&&!piece2&&gotlavaheart) {hide; } if (playerenters&&piece2&&!gotlavaheart) {hide; } if (playertouchsme&&!piece1&&!piece3&&!piece4) {say 0;hide;set piece2;} if (playertouchsme&&piece1&&!piece3&&!piece4) {say 0;hide;set piece2;} if (playertouchsme&&piece1&&piece3&&!piece4) {say 0;hide;set piece2;} if (playertouchsme&&piece1&&piece3&&piece4) {say 1;} if (playertouchsme&&piece1&&piece!",
+      "count": 1,
+      "files": [
+        "lavacave01.graal"
+      ]
+    },
+    {
+      "image": "LRpece4.gif",
+      "script": "if (playerenters&&!piece4&&gotlavaheart) {hide; } if (playerenters&&piece4&&!gotlavaheart) {hide; } if (playertouchsme&&!piece1&&!piece2&&!piece3) {say 0;hide;set piece4;} if (playertouchsme&&piece1&&!piece2&&!piece3) {say 0;hide;set piece4;} if (playertouchsme&&piece1&&piece3&&!piece3) {say 0;hide;set piece4;} if (playertouchsme&&piece1&&piece3&&piece3) {say 1;} if (playertouchsme&&piece1&&piece!",
+      "count": 1,
+      "files": [
+        "lavacave02.graal"
+      ]
+    },
+    {
+      "image": "Ipece1.gif",
+      "script": "if (playerenters&&!piece1&&gotlavaheart) {hide; } if (playerenters&&piece1&&!gotlavaheart) {hide; } if (playertouchsme&&!piece2&&!piece3&&!piece4) {say 0;hide;set piece1;} if (playertouchsme&&piece2&&!piece3&&!piece4) {say 0;hide;set piece1;} if (playertouchsme&&piece2&&piece3&&!piece4) {say 0;hide;set piece1;} if (playertouchsme&&piece2&&piece3&&piece4) {say 1;} if (playertouchsme&&piece2&&piece!",
+      "count": 1,
+      "files": [
+        "lavacave03.graal"
+      ]
+    },
+    {
+      "image": "UBclimber.gif",
+      "script": "if (playerenters && ClimberHasShoes) setgif climberleft.gif; if (playertouchsme) { if (!PlayerHasShoes && !ClimberHasShoes) say 1; if (ClimberHasShoes) { say 3; set CarryOverMountains; } if (PlayerHasShoes && !ClimberHasShoes) { say 2; unset PlayerHasShoes; set ClimberHasShoes; setgif climberleft.gif; } } if (playerendsreading && CarryOverMountains) { unse",
+      "count": 1,
+      "files": [
+        "level18.graal"
+      ]
+    },
+    {
+      "image": "Ashoes.gif",
+      "script": "if (playerenters && PlayerHasShoes || ClimberHasShoes) {hide;} else show; if (playertouchsme) { set PlayerHasShoes; say 0; toinventory PlayerHasShoes;timeout=3;hide; } if (timeout) {show}",
+      "count": 1,
+      "files": [
+        "level21.graal"
+      ]
+    },
+    {
+      "image": "S2graalgreen.gif",
+      "script": "if (playerenters && FoundGraal2) hide; if (playertouchsme) { set FoundGraal2; say 2; set HideGraal2; } if (playerendsreading && HideGraal2) { unset HideGraal2; toinventory FoundGraal2; } A@stone.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "LEoldboss.gif",
+      "script": "if (playertouchsme) { if (!L3bridgegatepass) say 1; if (L3bridgegatepass) say 2; } if (playerlaysitem && !L3bridgegatepass) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=20) { set L3bridgegatepass; say 3; rupees=0; } } DCblade.gif",
+      "count": 1,
+      "files": [
+        "level3.graal"
+      ]
+    },
+    {
+      "image": "bro.gif",
+      "script": "if (playertouchsme) {say 2;} 39door.gif",
+      "count": 1,
+      "files": [
+        "level39.graal"
+      ]
+    }
+  ]
+}

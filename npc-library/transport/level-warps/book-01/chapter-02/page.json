@@ -1,0 +1,25 @@
+{
+  "genre": "transport",
+  "topic": "level-warps",
+  "book": 1,
+  "chapter": 2,
+  "count": 2,
+  "scripts": [
+    {
+      "image": "",
+      "script": "if (playertouchsme) { toweapons Warp Ring; set gotwarpring; hide; } if (weaponfired) { freezeplayer 2.4; timeout=.1; this.rotation=0; } if (timeout) { this.rotation++; playerdir=(this.rotation%4); if (this.rotation<=24) { timeout=.1; } if (this.rotation=12) { putleaps 5, playerx, playery; playerx=13.5; playery=28; setlevel level13.graal; } if (this.rotation==13) putleaps 2, playerx, playery; }",
+      "count": 1,
+      "files": [
+        "warpring.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) { toweapons Zol's Warp Ring; set gotzolwarpring; hide; } if (weaponfired) { freezeplayer 2.4; timeout=.1; this.rotation=0; r=int(random(0,50)); d=int(random(0,25)); b=int(random(0,25)); if (r<=playerrupees) playerrupees-=r; else playerrupees=0; if (d<=playerdarts) playerdarts-=d; else playerdarts=0; if (b<=playerbombs) playerbombs-=b; else playerbombs=0; } if (timeout) { this.rotation++; playerdir=(this.rotation%4); if (this.rotation<=24) { timeout=.1; } if (this.rotation=12) { putleaps 5, playerx, playery; playerx=34; playery=36; setlevel moffice2.graal; } if (this.rotation==13) putleaps 5, playerx, playery; }",
+      "count": 1,
+      "files": [
+        "zol_warpring.txt"
+      ]
+    }
+  ]
+}

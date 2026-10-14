@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 3,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Pgoldenbush.gif",
+      "script": "!Sgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "Ugoldenbush.gif",
+      "script": "1Sgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "1Ugoldenbush.gif",
+      "script": "/Ugoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "X^goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "RZgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "RXgoldenbush.gif",
+      "script": "RRgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "RTgoldenbush.gif",
+      "script": "RVgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "XZgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "XXgoldenbush.gif",
+      "script": "XVgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "XTgoldenbush.gif",
+      "script": "XRgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "XPgoldenbush.gif",
+      "script": "RPgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "RNgoldenbush.gif",
+      "script": "XNgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "XLgoldenbush.gif",
+      "script": "RLgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "RJgoldenbush.gif",
+      "script": "XJgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "RHgoldenbush.gif",
+      "script": "XHgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "XFgoldenbush.gif",
+      "script": "RFgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "RDgoldenbush.gif",
+      "script": "RBgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "R>goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "R:goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "X<goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "X@goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "XBgoldenbush.gif",
+      "script": "XDgoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "G:goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "K:goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "A8door.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    }
+  ]
+}

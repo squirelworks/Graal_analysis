@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 3,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "3Pbrandonguard.gif",
+      "script": "if (playerenters) {timeout=300.00; timershow;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {hide;} -Vteleporter.gif",
+      "count": 1,
+      "files": [
+        "brandonjail.graal"
+      ]
+    },
+    {
+      "image": "Bbrugitewarrior_n2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } HBbrugitewarrior_n2.gif",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "fizzare.gif",
+      "script": "if (playerenters) { } if (playertouchsme&&!bybyflames) {hurt 1;say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playertouchsme&&bybyflames) {hide;} I",
+      "count": 1,
+      "files": [
+        "bumsfeilds2-heart.graal"
+      ]
+    },
+    {
+      "image": "fizzare.gif",
+      "script": "if (playerenters) { } if (playertouchsme&&!bybyflames) {hurt 1;say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playertouchsme&&bybyflames) {hide;} B.fizzare.gif",
+      "count": 1,
+      "files": [
+        "bumsfeilds2-heart.graal"
+      ]
+    },
+    {
+      "image": "C-fizzare.gif",
+      "script": "if (playerenters) { } if (playertouchsme&&!bybyflames) {hurt 1;say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playertouchsme&&bybyflames) {hide;} ?-fizzare.gif",
+      "count": 1,
+      "files": [
+        "bumsfeilds2-heart.graal"
+      ]
+    },
+    {
+      "image": "fizzare.gif",
+      "script": "if (playerenters) { } if (playertouchsme&&!bybyflames) {hurt 1;say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playertouchsme&&bybyflames) {hide;} D,fizzare.gif",
+      "count": 1,
+      "files": [
+        "bumsfeilds2-heart.graal"
+      ]
+    },
+    {
+      "image": "fizzare.gif",
+      "script": "if (playerenters) { } if (playertouchsme&&!bybyflames) {hurt 1;say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playertouchsme&&bybyflames) {hide;} A?deathball.gif",
+      "count": 1,
+      "files": [
+        "bumsfeilds2-heart.graal"
+      ]
+    },
+    {
+      "image": "Lteletot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,Cbluelampani.gif",
+      "count": 1,
+      "files": [
+        "captinusahouse.graal"
+      ]
+    },
+    {
+      "image": "bar-vip-room.gif",
+      "script": "if (playerenters) {say0 } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {playery= 8;playerx=46;setlevel casino2.zelda } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "casino13.graal"
+      ]
+    },
+    {
+      "image": "clash.gif",
+      "script": "if (playerenters && toorich) {say0; } if (playerenters && !toorich) {say1;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading && toorich) {unset toorich;timeout=.125;followplayer; } if (timeout) {shootball;timeout=.125;} if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B7bluelampani.gif",
+      "count": 1,
+      "files": [
+        "casino14.graal"
+      ]
+    },
+    {
+      "image": "07bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B)bluelampani.gif",
+      "count": 1,
+      "files": [
+        "casino14.graal"
+      ]
+    },
+    {
+      "image": "Mbluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } bluelampani.gif",
+      "count": 1,
+      "files": [
+        "casino15.graal"
+      ]
+    },
+    {
+      "image": "5Mbluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F)bluelampani.gif",
+      "count": 1,
+      "files": [
+        "casino15.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F1bluelampani.gif",
+      "count": 1,
+      "files": [
+        "casino15.graal"
+      ]
+    },
+    {
+      "image": "dbluebaddy.gif",
+      "script": "if (playerenters) {say0 } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "casino16.graal"
+      ]
+    },
+    {
+      "image": "Mtv.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 9Ecouch.gif",
+      "count": 1,
+      "files": [
+        "ccapartment101.graal"
+      ]
+    },
+    {
+      "image": "monster.gif",
+      "script": "if (playerenters) {message *Snore*;timeout=2;show} if (timeout) { if(ccheardking) {set ccheardbaddyking;setlevel ccbadcastle6.graal} if(!ccheardking) {message back to jail...;say 1;timeout=30;timershow;set ccheardking} } if(washit || wasshot || waspelt) { hide; putleaps 4,x,y; putleaps 4,x+1,y; set cckilledking; say 2; } @Tdoordown.gif",
+      "count": 1,
+      "files": [
+        "ccbadcastle11.graal"
+      ]
+    },
+    {
+      "image": "drums.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 5/guitar2.gif",
+      "count": 1,
+      "files": [
+        "cccastle10.graal"
+      ]
+    },
+    {
+      "image": "block2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 35blocked.gif",
+      "count": 1,
+      "files": [
+        "cccastle11.graal"
+      ]
+    },
+    {
+      "image": "Eblock2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 23block2.gif",
+      "count": 1,
+      "files": [
+        "cccastle11.graal"
+      ]
+    },
+    {
+      "image": "3block2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F3block2.gif",
+      "count": 1,
+      "files": [
+        "cccastle11.graal"
+      ]
+    },
+    {
+      "image": "block2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } FEblock2.gif",
+      "count": 1,
+      "files": [
+        "cccastle11.graal"
+      ]
+    },
+    {
+      "image": "F7princess.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :@",
+      "count": 1,
+      "files": [
+        "cccastle12.graal"
+      ]
+    },
+    {
+      "image": "zelda.gif",
+      "script": "if (playerenters) { puthorse choco.gif,12,53} if (playertouchsme) { say 4} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } X9yatta_choco.gif",
+      "count": 1,
+      "files": [
+        "cccastle13.graal"
+      ]
+    },
+    {
+      "image": "V9yatta_choco.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } (Echiken.gif",
+      "count": 1,
+      "files": [
+        "cccastle13.graal"
+      ]
+    }
+  ]
+}

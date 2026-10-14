@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 1,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "98white.gif",
+      "script": "if (playertouchsme) {setshoecolorwhite } 78red.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "58purple.gif",
+      "script": "if (playertouchsme) {setshoecolorpurple } C,aqua.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playertouchsme) { setbeltcolorblack} G,blue.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "brown.gif",
+      "script": "if (playertouchsme) { setbeltcolorbrown} K,darkblue.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "C0darkgreen.gif",
+      "script": "if (playertouchsme) {setbeltcolordarkgreen} E0darkpurple.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "G0darkred.gif",
+      "script": "if (playertouchsme) {setbeltcolordarkred} I0gray.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "K0green.gif",
+      "script": "if (playertouchsme) {setbeltcolorgreen } E?lightblue.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "E4lightgray.gif",
+      "script": "if (playertouchsme) {setbeltcolorlightgray } G4lightgreen.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "I4orange.gif",
+      "script": "if (playertouchsme) {setbeltcolororange } K4pink.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "I8yellow.gif",
+      "script": "if (playertouchsme) {setbeltcoloryellow } G8white.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "E8red.gif",
+      "script": "if (playertouchsme) {setbeltcolorred } C8purple.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "I8yellow.gif",
+      "script": "if (playertouchsme) {setbeltcoloryellow } +,aqua.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playertouchsme) { setcoatcolorblack} +0blue.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "2brown.gif",
+      "script": "if (playertouchsme) { setcoatcolorbrown} +4darkblue.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "6darkgreen.gif",
+      "script": "if (playertouchsme) {setcoatcolordarkgreen } +8darkpurple.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "darkred.gif",
+      "script": "if (playertouchsme) {setcoatcolordarkred } +<gray.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "green.gif",
+      "script": "if (playertouchsme) {setcoatcolorgreen } +@lightblue.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "Blightgray.gif",
+      "script": "if (playertouchsme) {setcoatcolorlightgray } +Dlightgreen.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "Forange.gif",
+      "script": "if (playertouchsme) {setcoatcolororange } +Hpink.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "purple.gif",
+      "script": "if (playertouchsme) {setcoatcolorpurple} 1.red.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "10white.gif",
+      "script": "if (playertouchsme) {setcoatcolorwhite } 12yellow.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "GCaqua.gif",
+      "script": "if (playertouchsme) {setsleevecolorcynober} B<black.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "blue.gif",
+      "script": "if (playertouchsme) { setsleevecolorblue} D<brown.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "darkblue.gif",
+      "script": "if (playertouchsme) { setsleevecolordarkblue} E<darkgreen.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "darkpurple.gif",
+      "script": "if (playertouchsme) {setsleevecolordarkpurple} D?darkred.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    }
+  ]
+}

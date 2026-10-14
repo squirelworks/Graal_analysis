@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "MMbluelampani.gif",
+      "script": "M=bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "FJbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "8Jbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "1=bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "1Mbluelampani.gif",
+      "script": "'Mbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "5%bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "50bluelampani.gif",
+      "script": "I%bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "I0bluelampani.gif",
+      "script": "night.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": ":Cbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqmain.graal"
+      ]
+    },
+    {
+      "image": "DCbluelampani.gif",
+      "script": "KJsabrina1.gif",
+      "count": 1,
+      "files": [
+        "dlhqmain.graal"
+      ]
+    },
+    {
+      "image": "Bbluelampani.gif",
+      "script": ";8bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqrhall.graal"
+      ]
+    },
+    {
+      "image": "C8bluelampani.gif",
+      "script": "CBbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqrhall.graal"
+      ]
+    },
+    {
+      "image": "Pbluelampani.gif",
+      "script": ",*bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dllounge.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "R3bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dllounge.graal"
+      ]
+    },
+    {
+      "image": "3bluelampani.gif",
+      "script": "=3bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "7$clothesswitch.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "Kratgf.gif",
+      "script": "c ;Rratb.gif",
+      "count": 1,
+      "files": [
+        "dungeon.graal"
+      ]
+    },
+    {
+      "image": "8Mgrave1.gif",
+      "script": "DMgrave1.gif",
+      "count": 1,
+      "files": [
+        "dw22.graal"
+      ]
+    },
+    {
+      "image": "DVgrave1.gif",
+      "script": "8Vgrave1.gif",
+      "count": 1,
+      "files": [
+        "dw22.graal"
+      ]
+    },
+    {
+      "image": "6Bbottle.gif",
+      "script": "6Cbottle.gif",
+      "count": 1,
+      "files": [
+        "enkitohouse6.graal"
+      ]
+    },
+    {
+      "image": "9Abottle.gif",
+      "script": ":Abottle.gif",
+      "count": 1,
+      "files": [
+        "enkitohouse6.graal"
+      ]
+    },
+    {
+      "image": "4Cterrorwing.gif",
+      "script": "GWenkitodog.gif",
+      "count": 1,
+      "files": [
+        "enkitovillage1.graal"
+      ]
+    },
+    {
+      "image": "LGballofire.gif",
+      "script": "@Dbluelampani.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "9Dbluelampani.gif",
+      "script": "KFballofire.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "ballofire.gif",
+      "script": "V.ballofire.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    }
+  ]
+}

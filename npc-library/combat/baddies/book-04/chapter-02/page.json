@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 4,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Bp-dead.gif",
+      "script": "if (playerenters) { say 1; set kagatoback; removecompus; x 0; y 0; } if (playertouchsme) { say 2; } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } ,Cp-key.gif",
+      "count": 1,
+      "files": [
+        "palace_level4_house2_1.graal"
+      ]
+    },
+    {
+      "image": "Edeadgirl2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 3; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "palace_level4_house2_1.graal"
+      ]
+    },
+    {
+      "image": "QKblank2.gif",
+      "script": "if (playerenters) { } if (playertouchsme && !kagatogone) { setlevel palace_room2.graal; } if (playertouchsme && kagatogone) { setlevel palace_room3.graal; } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "palace_room1.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playertouchsme && !kagatogone) { setlevel palace_greathall.graal; } if (playertouchsme && kagatogone) { setlevel palace_greathall2.graal; } if (playerenters) { playerx 45.5; playery 4; } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } N*shadoworb.gif",
+      "count": 1,
+      "files": [
+        "palace_shadoworb.graal"
+      ]
+    },
+    {
+      "image": "Sbrother2.gif",
+      "script": "if (playerenters) {say 0 } if (playertouchsme) {say 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 2Sbrother2.gif",
+      "count": 1,
+      "files": [
+        "powerp.graal"
+      ]
+    },
+    {
+      "image": "brother2.gif",
+      "script": "if (playertouchsme) { say 3; putcomp goldenwarrior,36,18; } if (compusdied) lay greenrupee; Y@brother1.gif",
+      "count": 1,
+      "files": [
+        "powerp.graal"
+      ]
+    },
+    {
+      "image": "RSmaid2.gif",
+      "script": "if (playertouchsme) say 5; if (playertouchsme) playerhearts +=100; &$blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "powerp.graal"
+      ]
+    },
+    {
+      "image": "F5blackbaddy.gif",
+      "script": "if (playerenters) {play c:\\windows\\media\\repressed.wav } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "reevebed.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } %2goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "assistant.gif",
+      "script": "/=baddybluesitting.gif",
+      "count": 1,
+      "files": [
+        "sardontower1.graal"
+      ]
+    },
+    {
+      "image": "blindguy.gif",
+      "script": "if (playertouchsme) {say 3} M@baddyredsitting2.gif",
+      "count": 1,
+      "files": [
+        "sardontower1.graal"
+      ]
+    },
+    {
+      "image": "72dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=23; this.y=18; drawunderplayer;} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "2dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=29; this.y=18; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=35; this.y=30; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "I8dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=41; this.y=24; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "KJdltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=43; this.y=42; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=31; this.y=30; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "KFdltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=43; this.y=38; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "Fdltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=31; this.y=38; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "Bdltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=31; this.y=34; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=19; this.y=32; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=27; this.y=28; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "leftgate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} ?>vortex1.gif",
+      "count": 1,
+      "files": [
+        "sardontower12.graal"
+      ]
+    },
+    {
+      "image": "60gate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} ;K",
+      "count": 1,
+      "files": [
+        "sardontower12.graal"
+      ]
+    },
+    {
+      "image": "Ldowngate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide}",
+      "count": 1,
+      "files": [
+        "sardontower12.graal"
+      ]
+    }
+  ]
+}

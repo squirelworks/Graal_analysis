@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "hazards",
+  "book": 1,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "weirdstatue2.gif",
+      "script": "if (playerenters) {timeout=5} if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout && playery<=49) {shootball; timeout=5 } 8(weirdstatue2.gif",
+      "count": 1,
+      "files": [
+        "DW19.graal"
+      ]
+    },
+    {
+      "image": "weirdstatue2.gif",
+      "script": "if (playerenters) {timeout=0.5 } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) {} if (timeout && playery<=49) {shootball; timeout=0.5; }",
+      "count": 1,
+      "files": [
+        "DW19.graal"
+      ]
+    },
+    {
+      "image": "N3gnomkid.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if ( washit || wasshooted || waspelt) {hurt1;timeout=1 } if (timeout) {hurt1;shootarrowdown;timeout=0.5 } I1gnomkid.gif",
+      "count": 1,
+      "files": [
+        "DW28.graal"
+      ]
+    },
+    {
+      "image": "7Ugnom.gif",
+      "script": "if (playerenters) { if(DWhurt)hide; if(!DWhurt)show} if (playertouchsme) { say 5; canbecarried} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) {hide; shootball; play ring.wav; set DWhurt} if (timeout) { } ANgnom.gif",
+      "count": 1,
+      "files": [
+        "DW5.graal"
+      ]
+    },
+    {
+      "image": "Ognom.gif",
+      "script": "if (playerenters) { if(DWhurt)hide; if(!DWhurt)show} if (playertouchsme && bombertrick) { say 7;timeout=0.3;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) {hide; shootball; play ring.wav; set DWhurt} if (timeout) {hurt-1000 } 'Lgnomkid.gif",
+      "count": 1,
+      "files": [
+        "DW5.graal"
+      ]
+    },
+    {
+      "image": "gnom.gif",
+      "script": "if (playerenters) { if(DWhurt)hide; if(!DWhurt)show} if (playertouchsme && !DWtalk) { say 9; putexplosion3,51,29; putexplosion3,60,28;set DWcut; } if (playertouchsme && DWtalk) {say 12} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading && DWcut) { set DWtalk;} if (exploded || washit || wasshooted || waspelt) {hide; shootball; play ring.wav; set DWhurt} if (timeout) { } !>gnomkid.g",
+      "count": 1,
+      "files": [
+        "DW5.graal"
+      ]
+    },
+    {
+      "image": "6-x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=3; timeout=2; } if (playertouchsme && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playe",
+      "count": 1,
+      "files": [
+        "DesertCastleB1.graal"
+      ]
+    },
+    {
+      "image": "A-x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=3; timeout=2.5; } if (playertouchsme && !DSword_Is_DKey && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwall(playerx+.5-",
+      "count": 1,
+      "files": [
+        "DesertCastleB1.graal"
+      ]
+    },
+    {
+      "image": "x_vampsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=5; timeout=4; } if (playertouchsme && rupees>0) {hurt 1; hearts+=1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwall(playerx+.5-.5,playery",
+      "count": 1,
+      "files": [
+        "DesertCastleB2.graal"
+      ]
+    },
+    {
+      "image": "x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=3; timeout=3.3; } if (playertouchsme && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) pla",
+      "count": 1,
+      "files": [
+        "DesertCastleB2.graal"
+      ]
+    },
+    {
+      "image": "Kgerudonick.gif",
+      "script": "if (playertouchsme) { say 0; } if (exploded || washit || wasshooted || waspelt) { hurt 50; } BImmeguy_f.gif",
+      "count": 1,
+      "files": [
+        "GerudoFort_Savior.graal"
+      ]
+    },
+    {
+      "image": "0Hs_doomsword.gif",
+      "script": "if (playerenters) { if (!SwordPalace1_3Dead) { x=x-.5; y=y-.5; hearts=3; timeout=.1;}else hide; } if (playertouchsme && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!",
+      "count": 1,
+      "files": [
+        "SwordPalace1.graal"
+      ]
+    },
+    {
+      "image": "Hs_doomsword.gif",
+      "script": "if (playerenters) { if (!SwordPalace1_1Dead) { x=x-.5; y=y-.5; hearts=3; timeout=.1;}else hide; } if (playertouchsme && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!",
+      "count": 1,
+      "files": [
+        "SwordPalace1.graal"
+      ]
+    },
+    {
+      "image": "Gs_vampsword.gif",
+      "script": "if (playerenters) { if (!SwordPalace1_2Dead) { x=x-.5; y=y-.5; hearts=5; timeout=.2;}else hide; } if (playertouchsme && rupees>0) {hurt 1; hearts+=1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;",
+      "count": 1,
+      "files": [
+        "SwordPalace1.graal"
+      ]
+    },
+    {
+      "image": "Ks_throwsword.gif",
+      "script": "if (playerenters) {hide; timeout=z;} //rupees = direction: 1=N, 2=S, 3=E, 4=W if (timeout && rupees<1) { if (throwsword1 && !throwsword1live) { set throwsword1live; x=tsx1-.5; y=tsy1-.5; hearts=6; show; rupees=2; timeout=0.1;}else timeout=z; } if (playertouchsme && rupees>0) { hurt 1; hearts=0; if (!onwall(playerx+.5,playery+.5)) playery=playery+.5; if (!onwall(playerx+.5,playery+.5)) pla",
+      "count": 1,
+      "files": [
+        "SwordPalace6.graal"
+      ]
+    },
+    {
+      "image": "Ks_throwsword.gif",
+      "script": "if (playerenters) {hide; timeout=1; z=.1;} //rupees = direction: 1=N, 2=S, 3=E, 4=W if (timeout && rupees<1) { if (throwsword2 && !throwsword2live) { set throwsword2live; x=tsx2-.5; y=tsy2-.5; hearts=6; show; rupees=2; timeout=0.1;}else timeout=z; } if (playertouchsme && rupees>0) { hurt 1; hearts=0; if (!onwall(playerx+.5,playery+.5)) playery=playery+.5; if (!onwall(playerx+.5,playery+.5",
+      "count": 1,
+      "files": [
+        "SwordPalace6.graal"
+      ]
+    },
+    {
+      "image": "3mohawk.gif",
+      "script": "if (playerenters && !HelpedWang4){ hide; } if (playertouchsme) { hurt 500000; } if (playerenters && HelpedWang4){ say 8; set nugami; } 7I",
+      "count": 1,
+      "files": [
+        "ban1.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playertouchsme) { hurt 2; play punch.wav; say 1;} if (compusdied){hide}",
+      "count": 1,
+      "files": [
+        "boiler.graal"
+      ]
+    },
+    {
+      "image": "walltile2.gif",
+      "script": "if(playertouchsme){hide;hurt 2}",
+      "count": 1,
+      "files": [
+        "brandon3.graal"
+      ]
+    },
+    {
+      "image": "6Gblueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (x<=6) this.xm=+abs(this.xm); if (x>=56) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; VDblueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "IHblueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (x<=6) this.xm=+abs(this.xm); if (x>=56) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; &Eblueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "7Ablueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (x<=6) this.xm=+abs(this.xm); if (x>=56) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; K1brugitewarrior.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=-1; this.s=x } if (timeout) { if (x<=this.s) this.xm=+abs(this.xm); if (x>=this.s+10) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; 9*bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1; this.s=x } if (timeout) { if (x<=this.s-10) this.xm=+abs(this.xm); if (x>=this.s) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2;",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "HLblueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; F<blueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    }
+  ]
+}

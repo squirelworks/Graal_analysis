@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "visibility",
+  "book": 1,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "6EArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "2EArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} D9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "EArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} 4EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "8EArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} &EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "EArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} ,EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "EArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} ,9ArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "BEArchBlk.gif",
+      "script": "if (playerenters) {set Ablock1} if (!Ablock1) {hide} NEArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    },
+    {
+      "image": "GGreyUnclicked.gif",
+      "script": "if (playerenters) { if(!GreyExit){set GreyTouch0;unset GreyTouch1; unset GreyTouch2;unset GreyFirst; unset GreySecond;unset GreyTouch3;} if(GreyExit){hide;} } if (playertouchsme) { if(GreyTouch2){unset GreyTouch2; setgif Greyclicked.gif;set GreyTouch3;} if(GreyTouch1 && GreyFirst){set GreySecond; unset GreyFirst;} if(GreyTouch1){set GreyTouch2; unset GreyTouch1;setgif",
+      "count": 1,
+      "files": [
+        "Greylevel2.graal"
+      ]
+    },
+    {
+      "image": "FGGreyUnclicked.gif",
+      "script": "if (playerenters) { if(!GreyExit){set GreyTouch0;unset GreyTouch1; unset GreyTouch2;unset GreyFirst; unset GreySecond;unset GreyTouch3;} if(GreyExit){hide;} } if (playertouchsme) { if(GreyTouch2 && !GreySecond){ unset GreyTouch2; setgif Greyclicked.gif;set GreyTouch3;} if(GreyTouch2 && GreySecond){set GreyExit; unset GreyTouch2;unsetGreySecond; setgif Greyclicked.gi",
+      "count": 1,
+      "files": [
+        "Greylevel2.graal"
+      ]
+    },
+    {
+      "image": "monsterred.gif",
+      "script": "if (playerenters) { if (mainnostory) hide; else x-=0.5; } 9(redbush.gif",
+      "count": 1,
+      "files": [
+        "badcastlethrone.graal"
+      ]
+    },
+    {
+      "image": "ABfirescpter.gif",
+      "script": "// // Name: Fire Orb // Author: Lord Kojita (NK) // Date: 8/10/99 // if (playerenters) show; if (playertouchsme) { toweapons Fire Staff; } if (weaponfired && playermp >= 10) { playermp -= 10; freezeplayer 1; setbow firerod.gif; playersprite = 33; if (playerdir==0) { this.xincr=0; this.yincr=-1; } if (playerdir==2) {this.xincr=0; this.yincr=1; } if (playerdir==1) {this.xincr=-1",
+      "count": 1,
+      "files": [
+        "bumsfeilds2-heart.graal"
+      ]
+    },
+    {
+      "image": "cccastlecrack.gif",
+      "script": "if (playerenters) {show;x=40;y=10} if (exploded) {putleaps 2,x,y;hide} S0",
+      "count": 1,
+      "files": [
+        "ccbadcastle6.graal"
+      ]
+    },
+    {
+      "image": "A0biglift.gif",
+      "script": "// NPC made by <yourname> if (playerenters && gotgreenglove) { x=33; y=16; canbecarried; show; } if (wasthrown) { putleaps 2, x-2,y-2; putleaps 2, x-2,y+2; putleaps 2, x+2,y-2; putleaps 2, x+2,y+2; putleaps 2, x,y; x=33; y=16; hide; } if(",
+      "count": 1,
+      "files": [
+        "ccbadland4.graal"
+      ]
+    },
+    {
+      "image": "58ccmapnpc.gif",
+      "script": "if (playerenters) {show} if (playertouchsme) {toweapons CC Map} if(weaponfired) {setminimap ccsmall.gif,ccsmall.txt,3.5,7.5;setmap ccbig.gif,ccbig.txt,5.5,7.5;} 56ccmapnpc.gif",
+      "count": 1,
+      "files": [
+        "cchouse1.graal"
+      ]
+    },
+    {
+      "image": "E8ccmapnpc.gif",
+      "script": "if (playerenters) {show} if (playertouchsme) {toweapons CC Map} if(weaponfired) {setminimap ccsmall.gif,ccsmall.txt,3.5,7.5;setmap ccbig.gif,ccbig.txt,5.5,7.5;} E6ccmapnpc.gif",
+      "count": 1,
+      "files": [
+        "cchouse3.graal"
+      ]
+    },
+    {
+      "image": "3hole.gif",
+      "script": "if (playerenters) {show;x=27;y=19;dontblock;set ccpirate1}",
+      "count": 1,
+      "files": [
+        "ccpirate1.graal"
+      ]
+    },
+    {
+      "image": "docjoltean.gif",
+      "script": "if (playerenters) { if (ccvolcanodone) {show} else hide; } H8doctorfire.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano1.graal"
+      ]
+    },
+    {
+      "image": "nurse4.gif",
+      "script": "if (playerenters) { if (ccvolcanodone) {show} else hide; } I<bro2.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano1.graal"
+      ]
+    },
+    {
+      "image": "nurse3.gif",
+      "script": "if (playerenters) { if (ccvolcanodone) {show} else hide; } GD",
+      "count": 1,
+      "files": [
+        "ccvolcano1.graal"
+      ]
+    },
+    {
+      "image": "32fence.gif",
+      "script": "if (playertouchsme && didyoueatyourchunkysoup) {hide; set stupidflag} 7=",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    },
+    {
+      "image": "pachukiteguard1.gif",
+      "script": "if (playerenters && !stupidflag) {hide} if (playertouchsme){shootnuke right} ;<pachukiteguard2.gif",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    },
+    {
+      "image": "1Ipachukiteguard1.gif",
+      "script": "if (playerenters && !stupidflag) {hide} if (playertouchsme){shootnuke right} 1Kpachukiteguard1.gif",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    },
+    {
+      "image": "1Mpachukiteguard1.gif",
+      "script": "if (playerenters && !stupidflag) {hide} if (playertouchsme){shootnuke right} 1Opachukiteguard1.gif",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    },
+    {
+      "image": "pachukiteguard2.gif",
+      "script": "if (playerenters && !stupidflag) {hide} if (playertouchsme){shootnuke left} ;@pachukiteguard2.gif",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    },
+    {
+      "image": "Bpachukiteguard2.gif",
+      "script": "if (playerenters && !stupidflag) {hide} if (playertouchsme){shootnuke left} ;Dpachukiteguard2.gif",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    }
+  ]
+}

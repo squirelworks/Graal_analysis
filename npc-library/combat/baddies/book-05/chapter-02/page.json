@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 5,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "monsterkid.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 74salesman.gif",
+      "count": 1,
+      "files": [
+        "zkhouse1.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if (ilocket){ say 2; } if (!isoupspoon && !ilocket){ say 0 } if (isoupspoon && !ilocket) say 1; set ilocket; unset isoupspoon; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "zkhouse10.graal"
+      ]
+    },
+    {
+      "image": "4Dbrother2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } K0sleepem.gif",
+      "count": 1,
+      "files": [
+        "zkhouse12.graal"
+      ]
+    },
+    {
+      "image": "1monster.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {shootball} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "zkhouse12.graal"
+      ]
+    },
+    {
+      "image": "E4izphost.gif",
+      "script": "if (playerenters) {unset buyingsome; unset baxe; unset bmshield; unset bpglove; unset bheart; unset barrows; unset bbombs; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 76switchgreen.gif",
+      "count": 1,
+      "files": [
+        "zkhouse4.graal"
+      ]
+    },
+    {
+      "image": "6switchgreen.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if(!buyingsome){ setgif switchred.gif; set bbombs; set buyingsome } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { if(!buyingsome){ setgif switchgreen.gif } } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 36switchgreen.gif",
+      "count": 1,
+      "files": [
+        "zkhouse4.graal"
+      ]
+    },
+    {
+      "image": "44heart.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 83arrows.gif",
+      "count": 1,
+      "files": [
+        "zkhouse4.graal"
+      ]
+    },
+    {
+      "image": "3bombs.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } E8bar.gif",
+      "count": 1,
+      "files": [
+        "zkhouse4.graal"
+      ]
+    },
+    {
+      "image": "salesman.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 9 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "zkhouse4.graal"
+      ]
+    },
+    {
+      "image": "76aliendown.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } DAalienright.gif",
+      "count": 1,
+      "files": [
+        "zkhouse7.graal"
+      ]
+    },
+    {
+      "image": "GAalienleft.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 7Balienup.gif",
+      "count": 1,
+      "files": [
+        "zkhouse7.graal"
+      ]
+    },
+    {
+      "image": "Lstone.gif",
+      "script": "if (playerenters) { if (rocksgone){ hide; } } if (playertouchsme) {say 2 } if (playerendsreading) { if (rocksgone){ hide; } } [6emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "zkout2.graal"
+      ]
+    },
+    {
+      "image": "Opentakey.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } <Mset2.gif",
+      "count": 1,
+      "files": [
+        "zsachur2.graal"
+      ]
+    },
+    {
+      "image": "JVpentakey.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } GVpentakey.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "DVpentakey.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } AVpentakey.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "8Vpentakey.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } /Vpentakey.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "5Vpentakey.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 2Vpentakey.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "set1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 1; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } /5set2.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "3Rset2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } ERset2.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "IEset2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } =)setbook.gif",
+      "count": 1,
+      "files": [
+        "zsachurin1.graal"
+      ]
+    },
+    {
+      "image": "polehead2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } G3polehead3.gif",
+      "count": 1,
+      "files": [
+        "zsachurin2.graal"
+      ]
+    },
+    {
+      "image": "33polehead4.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } G<polehead5.gif",
+      "count": 1,
+      "files": [
+        "zsachurin2.graal"
+      ]
+    },
+    {
+      "image": "8pentakey.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } @8pentakey.gif",
+      "count": 1,
+      "files": [
+        "zsachurin3.graal"
+      ]
+    },
+    {
+      "image": "56set2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } <&set2.gif",
+      "count": 1,
+      "files": [
+        "zsachurin5.graal"
+      ]
+    },
+    {
+      "image": "82set2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 0;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } E:bluelampani.gif",
+      "count": 1,
+      "files": [
+        "zsachurin6d.graal"
+      ]
+    }
+  ]
+}

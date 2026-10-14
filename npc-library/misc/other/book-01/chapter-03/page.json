@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 1,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "bluestone.gif",
+      "script": ".0bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "*,bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "&(bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "Pbluestone.gif",
+      "script": ":Tbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "4Xbluestone.gif",
+      "script": ":Vbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "6Xbluestone.gif",
+      "script": "6Rbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "2Xbluestone.gif",
+      "script": "4Pbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "8Tbluestone.gif",
+      "script": "4Vbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "0Pbluestone.gif",
+      "script": "0Xbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Tbluestone.gif",
+      "script": ".Pbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Pbluestone.gif",
+      "script": ",Rbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Vbluestone.gif",
+      "script": "*Pbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Rbluestone.gif",
+      "script": "(Vbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Vbluestone.gif",
+      "script": "(Pbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "MXbluestone.gif",
+      "script": "+=brugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "2Vbluestone.gif",
+      "script": "2Xbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "4bluestone.gif",
+      "script": ":5bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "97bluestone.gif",
+      "script": "99bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "B4bluestone.gif",
+      "script": "D5bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "E7bluestone.gif",
+      "script": "E9bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "C2bluestone.gif",
+      "script": "D0bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "2bluestone.gif",
+      "script": ":0bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "82bluelampani.gif",
+      "script": "G/bluelampani.gif",
+      "count": 1,
+      "files": [
+        "captinusahouse.graal"
+      ]
+    },
+    {
+      "image": "5gnom.gif",
+      "script": "/2preistguy.gif",
+      "count": 1,
+      "files": [
+        "ccbadcastle6.graal"
+      ]
+    },
+    {
+      "image": "cccurtain.gif",
+      "script": "if(washit) { putleaps 0,x=1,y; putleaps 0,x,y; putleaps 0,x-1,y+2; hide } E8",
+      "count": 1,
+      "files": [
+        "cccastle14.graal"
+      ]
+    }
+  ]
+}

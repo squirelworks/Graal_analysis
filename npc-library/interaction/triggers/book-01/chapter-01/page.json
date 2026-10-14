@@ -1,0 +1,227 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "42smokeani.gif",
+      "script": "if (playerenters) {dontblock} Y$",
+      "count": 3,
+      "files": [
+        "farmland2.graal",
+        "farmland4.graal",
+        "farmland6.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=47.8 }",
+      "count": 2,
+      "files": [
+        "ccbadland2.graal",
+        "cclevel23.graal"
+      ]
+    },
+    {
+      "image": "L6blackbaddy.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { }",
+      "count": 2,
+      "files": [
+        "cclevel11.graal",
+        "cctemplea5.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} \\4blank2.gif",
+      "count": 2,
+      "files": [
+        "dlswhall.graal",
+        "dlswtower.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock}",
+      "count": 2,
+      "files": [
+        "dlteleport.graal",
+        "dlteleport2.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} ; rain.gif",
+      "count": 2,
+      "files": [
+        "dotd3.graal",
+        "dotd4.graal"
+      ]
+    },
+    {
+      "image": "9rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} T:rain.gif",
+      "count": 2,
+      "files": [
+        "dotd4.graal",
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; }",
+      "count": 2,
+      "files": [
+        "gerudofort_bridge.graal",
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } +gerudotentfront.gif",
+      "count": 2,
+      "files": [
+        "gerudofort_bridge.graal",
+        "westgraal1.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } gerudotentfront.gif",
+      "count": 2,
+      "files": [
+        "gerudofort_bridge.graal",
+        "westgraal1.graal"
+      ]
+    },
+    {
+      "image": "B4smokeani.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer; }",
+      "count": 2,
+      "files": [
+        "graalpizzashop.graal",
+        "level39.graal"
+      ]
+    },
+    {
+      "image": "9Ngreenwater.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; greenx = x; greeny = y;} 9Qgreenwater.gif",
+      "count": 2,
+      "files": [
+        "lavacave02-heart.graal",
+        "lavacave02.graal"
+      ]
+    },
+    {
+      "image": "9Kgreenwater.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; greenx = x; greeny = y;} 6Kgreenwater.gif",
+      "count": 2,
+      "files": [
+        "lavacave02-heart.graal",
+        "lavacave02.graal"
+      ]
+    },
+    {
+      "image": "6Ngreenwater.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; greenx = x; greeny = y;} 6Qgreenwater.gif",
+      "count": 2,
+      "files": [
+        "lavacave02-heart.graal",
+        "lavacave02.graal"
+      ]
+    },
+    {
+      "image": "4Kgreenwater.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; greenx = x; greeny = y;} 4Ngreenwater.gif",
+      "count": 2,
+      "files": [
+        "lavacave02-heart.graal",
+        "lavacave02.graal"
+      ]
+    },
+    {
+      "image": "4Qgreenwater.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; greenx = x; greeny = y;} ;Ydeathball.gif",
+      "count": 2,
+      "files": [
+        "lavacave02-heart.graal",
+        "lavacave02.graal"
+      ]
+    },
+    {
+      "image": "GGfloor4.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } @Gfloor4.gif",
+      "count": 2,
+      "files": [
+        "nightclub2.graal",
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "aqua.gif",
+      "script": "if (playertouchsme) {setshoecolorcynober } 7,black.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "blue.gif",
+      "script": "if (playertouchsme) { setshoecolorblue} ;,brown.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "darkblue.gif",
+      "script": "if (playertouchsme) { setshoecolordarkblue} 50darkgreen.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "70darkpurple.gif",
+      "script": "if (playertouchsme) {setshoecolordarkpurple } 90darkred.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "0gray.gif",
+      "script": "if (playertouchsme) {setshoecolorgray } =0green.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "54lightblue.gif",
+      "script": "if (playertouchsme) {setshoecolorlightblue} 74lightgray.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "94lightgreen.gif",
+      "script": "if (playertouchsme) {setshoecolorlightgreen } ;4orange.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    },
+    {
+      "image": "4pink.gif",
+      "script": "if (playertouchsme) {setshoecolorpink} ;8yellow.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes4.graal"
+      ]
+    }
+  ]
+}

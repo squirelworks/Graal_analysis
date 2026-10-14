@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "1Vcogsign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1Ocogsign.gif",
+      "count": 1,
+      "files": [
+        "CoGwarphouse.graal"
+      ]
+    },
+    {
+      "image": "block.gif",
+      "script": "if (playerenters) { if(DWunder)hide;if(!DWunder)show;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (wasshot) { hide} if (timeout) { }",
+      "count": 1,
+      "files": [
+        "DW13.graal"
+      ]
+    },
+    {
+      "image": "Tgrave1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) {hide; say 1;} if (washit) {say 2; } if(wasshot){say2} if(waspelt){say 2;} @Tgrave1.gif",
+      "count": 1,
+      "files": [
+        "DW21.graal"
+      ]
+    },
+    {
+      "image": "fodarms.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer;} if (playertouchsme) {seturllevel www.geocities.com/TimesSquare/9901/GraalLevels/FoDTownIn.zip; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ' fodarms.gif",
+      "count": 1,
+      "files": [
+        "DesertCastleOut1.graal"
+      ]
+    },
+    {
+      "image": "fodarms.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,\"fodarms.gif",
+      "count": 1,
+      "files": [
+        "DesertCastleOut1.graal"
+      ]
+    },
+    {
+      "image": "fodarms.gif",
+      "script": "if (playerenters) {drawoverplayer;} if (playertouchsme) {seturllevel www.geocities.com/TimesSquare/9901/GraalLevels/FoDTownIn.zip; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } + fodarms.gif",
+      "count": 1,
+      "files": [
+        "DesertCastleOut1.graal"
+      ]
+    },
+    {
+      "image": "fodarms.gif",
+      "script": "if (playerenters) {drawoverplayer;} if (playertouchsme) {seturllevel www.geocities.com/TimesSquare/9901/GraalLevels/FoDTownIn.zip; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "DesertCastleOut1.graal"
+      ]
+    },
+    {
+      "image": "bankgate.gif",
+      "script": "if (playerenters) {set havenotread} if (playertouchsme) {}//setgif pushedbankgate.gif;timeout = 1; //if(havenotread) {unset havenotread; say 1;}} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {}//setgif bankgate.gif } =8ceilina.gif",
+      "count": 1,
+      "files": [
+        "Enix_bank1.graal"
+      ]
+    },
+    {
+      "image": "ceilina.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "Enix_bank_help_room.graal"
+      ]
+    },
+    {
+      "image": "chest.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if(rupees_in_bank>=1) { playerrupees++; rupees_in_bank--; set bank_save; } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } +*chest.gif",
+      "count": 1,
+      "files": [
+        "Enix_deposit_room1.graal"
+      ]
+    },
+    {
+      "image": "chest.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if(rupees_in_bank>=30) { playerrupees+=30; rupees_in_bank-=30; set bank_save; } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 3*chest.gif",
+      "count": 1,
+      "files": [
+        "Enix_deposit_room1.graal"
+      ]
+    },
+    {
+      "image": "chest.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if(bombs_in_bank>=5) { playerbombs+=5; bombs_in_bank-=5; set bank_save; } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } <*chest.gif",
+      "count": 1,
+      "files": [
+        "Enix_deposit_room1.graal"
+      ]
+    },
+    {
+      "image": "box.gif",
+      "script": "if (playerenters) { drawunderplayer;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 3%",
+      "count": 1,
+      "files": [
+        "Enix_deposit_room1.graal"
+      ]
+    },
+    {
+      "image": "XSgreytree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Z9goldrock.gif",
+      "count": 1,
+      "files": [
+        "KylesRoom.graal"
+      ]
+    },
+    {
+      "image": "fairy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Z7antispell.gif",
+      "count": 1,
+      "files": [
+        "KylesRoom.graal"
+      ]
+    },
+    {
+      "image": "Z4goldgate.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Z1burges guard.gif",
+      "count": 1,
+      "files": [
+        "KylesRoom.graal"
+      ]
+    },
+    {
+      "image": "-assistant.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say1; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } '&floor.gif",
+      "count": 1,
+      "files": [
+        "Link75bank.graal"
+      ]
+    },
+    {
+      "image": "floor.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { take goldrupee; if (rupees = 100) { moneyinbank += 100; rupees -= 100; } } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,-meatcard.gif",
+      "count": 1,
+      "files": [
+        "Link75bank.graal"
+      ]
+    },
+    {
+      "image": "maid.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say5; set buyingmagic; unset buyingaxe; } if (playertouchsother) { } if (playerlaysitem) { if (buyingmagic) { take goldrupee; if (rupees >= 2000) { say6; if(gotstones){playermp=100}; rupees -= 2000; } } } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playersays=\"YD!\") { playermp=100;",
+      "count": 1,
+      "files": [
+        "Link75bank.graal"
+      ]
+    },
+    {
+      "image": "gypsy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 7; set buyingaxe; unset buyingmagic; } if (playertouchsother) { } if (playerlaysitem) { if (buyingaxe) { take goldrupee; if (rupees>=100) { say8; setsword hackcorpsaxe.gif,players[0].swordpower; } } } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (playersays(YD!)) { setsword hackcorpsaxe.gif,play",
+      "count": 1,
+      "files": [
+        "Link75bank.graal"
+      ]
+    },
+    {
+      "image": "desertcastleview.gif",
+      "script": "if (playerenters) {say 0;} if (playerendsreading) {playerx=11; setlevel SwordPalace1.graal} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (exploded || washit || wasshot || waspelt) { }",
+      "count": 1,
+      "files": [
+        "SwordPalace2.graal"
+      ]
+    },
+    {
+      "image": "swordpalacekey.gif",
+      "script": "if (playerenters) {if (HasSwordPalaceKey) hide} if (playertouchsme) {set HasSwordPalaceKey; toinventory SwordPalaceKey; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "SwordPalace3.graal"
+      ]
+    },
+    {
+      "image": "Jswordmaster.gif",
+      "script": "if (playerenters && !SwordMasterDead) {say 0; this.fighting=1; hearts=16; timeout=0.05;} if (playertouchsme && this.fighting==1) {hurt 2;} //if (exploded) {hearts-=players[0].bombpower; this.hurt=1;} if (washit) {hearts-=players[0].swordpower; this.hurt=1;} //if (wasshot) {hearts-=playerswordpower; this.hurt=1;} if (waspelt) {hearts-=2; this.hurt=1;} if (playerendsreading && hearts=0) {hide; setle",
+      "count": 1,
+      "files": [
+        "SwordPalace6.graal"
+      ]
+    },
+    {
+      "image": "C5bluecouch.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H*s_deathsword.gif",
+      "count": 1,
+      "files": [
+        "Yanhouse.graal"
+      ]
+    },
+    {
+      "image": "H5fivestone.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H,stone.gif",
+      "count": 1,
+      "files": [
+        "Yanhouse.graal"
+      ]
+    }
+  ]
+}

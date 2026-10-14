@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 1,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Gdlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } AGdlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "ACdlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =Cdlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "Odlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } GGdlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "GCdlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } KCdlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "KGdlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } OGdlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 9?dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 97dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "93dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =3dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "7dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =;dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } K;dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } A7dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "A3dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =/dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G/dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "G3dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G7dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G?dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } K7dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } K3dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "O7dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } O;dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "O3dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } O/dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } K/dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G+dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } O'dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } A/dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 9+dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ='dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "JQgraalgreen.gif",
+      "script": "if (playertouchsme) {say 1;hide;set ccpirategraal2} if(playerenters) {show} -4shooteye.gif",
+      "count": 1,
+      "files": [
+        "ccpirate5.graal"
+      ]
+    },
+    {
+      "image": "62graalblue.gif",
+      "script": "if (playertouchsme) {say 1;hide;set ccpirategraal3} if(playerenters) {show} G1",
+      "count": 1,
+      "files": [
+        "ccpirate6.graal"
+      ]
+    },
+    {
+      "image": "Mnewguard2.gif",
+      "script": "if(playertouchsme) { if(!ccpirategotkey) {say 1} if(ccpirategotkey) {say 2;hide} } if(playerenters) {play stef70.mid;show} IMnewguard2.gif",
+      "count": 1,
+      "files": [
+        "ccpirate9.graal"
+      ]
+    },
+    {
+      "image": "5ccpirate1.gif",
+      "script": "if (playerenters) {timeout=2.9} if (timeout) {say 0} if (playerendsreading) {shootball} 90",
+      "count": 1,
+      "files": [
+        "ccpiratestinky1.graal"
+      ]
+    },
+    {
+      "image": "8funghead.gif",
+      "script": "if (playerenters) {timeout=15;timershow} if (timeout) {playerx=29.5;playery=26;say 1;timeout=20;timershow}",
+      "count": 1,
+      "files": [
+        "ccpiratestinky2.graal"
+      ]
+    },
+    {
+      "image": "t-midnight.gif",
+      "script": "if (playerenters) { if(!midday) {say 0; set midmorning;x=35.5;y=28;show;} if (midday) {hide;timeout=false;x=35.5;y=28;} } if (midmorning) {timeout = .1;timereverywhere} if (y=16) {hide;timeout=false;set midday;unset midmorning } if (timeout) {y-=1}",
+      "count": 1,
+      "files": [
+        "cctemplea1.graal"
+      ]
+    },
+    {
+      "image": "D6ccswordstand1.gif",
+      "script": "if (playerenters) {x=36;y=22;show} if (playertouchsme && !ccswordget && !222){set ccswordget;play goal.wav;set 222;setsword sword152.gif,players[0].swordpower;say 0}",
+      "count": 1,
+      "files": [
+        "cctemplea7.graal"
+      ]
+    },
+    {
+      "image": "Gwinddemon.gif",
+      "script": "if (playerenters) {x=27.5;y=39; if(!sandday) {say 0; set sandmorning } if (sandday) {hide;timeout=false} } if (sandmorning) {timeout = .1} if (y=22) {hide;timeout=false;set sandday;unset sandmorning } if (timeout) {y-=1} A:",
+      "count": 1,
+      "files": [
+        "cctempleb1.graal"
+      ]
+    },
+    {
+      "image": "Aaliendown.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) {say 0 } 8Aaliendown.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano2.graal"
+      ]
+    },
+    {
+      "image": "BWalienleft.gif",
+      "script": "if (playertouchsme) {say 0} <Walienright.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano3.graal"
+      ]
+    },
+    {
+      "image": "0Hdoctorfire.gif",
+      "script": "if (playertouchsme) {say 5} 8Edocjoltean.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano5.graal"
+      ]
+    },
+    {
+      "image": "5Ynurse4.gif",
+      "script": "if (playertouchsme) {say 6} LHnurse3.gif",
+      "count": 1,
+      "files": [
+        "ccvolcano5.graal"
+      ]
+    },
+    {
+      "image": "IYbro2.gif",
+      "script": "if (playertouchsme) {say 1} >Y",
+      "count": 1,
+      "files": [
+        "ccvolcano5.graal"
+      ]
+    },
+    {
+      "image": "cheerleader.gif",
+      "script": "if (playertouchsme) { say 3;} E=princess.gif",
+      "count": 1,
+      "files": [
+        "courage_bedroom.graal"
+      ]
+    },
+    {
+      "image": "8beerhost.gif",
+      "script": "if (playerchats && playersays(Jesse sent me)&& !gotpermission) { say 6; set gotpermission; } if (!gotcouragebeer) take greenrupee; if (rupees == 1) { rupees = 0; say 1; set gotcouragebeer; } if (playerenters) message Jeff; ?:beer.gif",
+      "count": 1,
+      "files": [
+        "courage_house.graal"
+      ]
+    },
+    {
+      "image": "ceilina.gif",
+      "script": "if (playerenters) {message Lauren} if (playertouchsme) say 5; A3door.gif",
+      "count": 1,
+      "files": [
+        "courage_house.graal"
+      ]
+    },
+    {
+      "image": "uard2.gif",
+      "script": "if (playerenters && prisonwallgotfucked) {show; say 1; timeout=0.1; play escape.mid} if (playerenters && !prisonwallgotfucked) {hide} if (timeout) {shootnuke left; timeout=0.8} *.burrowerm1.gif",
+      "count": 1,
+      "files": [
+        "ddd1.graal"
+      ]
+    },
+    {
+      "image": "PZpachukiteguard1.gif",
+      "script": "if (playerenters && nonootherwaymoron) {show; say 3; timeout=0.1; play escape.mid; } if (playerenters && !nonootherwaymoron) {hide} if (timeout) {shootnuke right; timeout=0.8} //log.gif",
+      "count": 1,
+      "files": [
+        "ddd10.graal"
+      ]
+    },
+    {
+      "image": "32fence.gif",
+      "script": "if (playerenters && !yougotfranks) {hide} if (playerenters && yougotfranks) {show; unset prisonwallgotfucked; unset nonootherwaymoron; unset keyomagickeynomo; unset youreinjailnowbitch; unset stupidflag; say 0; } 0$",
+      "count": 1,
+      "files": [
+        "ddd11.graal"
+      ]
+    },
+    {
+      "image": "07emeraldbaddy.gif",
+      "script": "if (playertouchsme) { if (!DBHasMed) say 7; if (DBHasMed) { say 8; lay darts; } }",
+      "count": 1,
+      "files": [
+        "deathv1.graal"
+      ]
+    },
+    {
+      "image": "bombtargetblue.gif",
+      "script": "if (playerenters) { y=y+.5; if (DCSwitch) {setgif bombtargetred.gif} } if (playertouchsme) { // play DCSwitchClick.wav; if (!DCSwitch) { setgif bombtargetred.gif; set DCSwitch; say 0} else { setgif bombtargetblue.gif; unset DCSwitch; say 1} } ES",
+      "count": 1,
+      "files": [
+        "desertcastle2.graal"
+      ]
+    },
+    {
+      "image": "4Sbrother1.gif",
+      "script": "if (playerenters) {this.1=0; unset dlarchery; dlhits=0; drawunderplayer} if (playertouchsme && this.1==0) {say 0} if (playerlaysitem &&this.1==0 && timeout==0) {take greenrupee; take bluerupee} if (rupees==10 || rupees>10) {say 1; this.1=1; rupees=0; timeout=30; timershow; set dlarchery; lay darts; lay darts; lay darts} if (timeout && this.1=1) {say 2; unset dlarchery; this.1=2} if (this.1==2 && d",
+      "count": 1,
+      "files": [
+        "dlarchery.graal"
+      ]
+    },
+    {
+      "image": "CJbrother1.gif",
+      "script": "if (playerenters) {this.1==0} if (playertouchsme && this.1==0) {say 0} if (playerlaysitem &&this.1==0) {take greenrupee; take bluerupee} if (rupees==15 || rupees>15) {this.1=1; say 1; rupees=0} if (this.1==1) {x=32; y=39} if (playertouchsme && this.1==1) {say 1} NKclothesswitch.gif",
+      "count": 1,
+      "files": [
+        "dlclothes.graal"
+      ]
+    },
+    {
+      "image": "F9zorda.gif",
+      "script": "if (playertouchsme) {say 1} R?",
+      "count": 1,
+      "files": [
+        "dlcourtyard.graal"
+      ]
+    },
+    {
+      "image": "Igerudonick.gif",
+      "script": "if (playertouchsme) { if(talked_to_Krynn){ set has_permission; say 2; } if(!talked_to_Krynn){ unset has_permission; say 1; } } !Hbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    }
+  ]
+}

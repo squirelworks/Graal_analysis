@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 3,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "3gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } \"gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "Ngerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } Jgerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "Fgerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } Bgerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } :gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "6gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } 2gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } *gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } \"gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "Fgerudotentback.gif",
+      "script": "if (playerenters) { dontblock; drawoverplayer; } JHgerudofortinn.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "7Cmmeguy_f.gif",
+      "script": "if (playerenters) { disableweapons; }",
+      "count": 1,
+      "files": [
+        "gerudofort_gilgamesh.graal"
+      ]
+    },
+    {
+      "image": "8Sbeerhost.gif",
+      "script": "if (playerenters) { // play music-kinn.mid; } :(pachuka.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { lay fullheart; lay goldensword; } --wbowi1.gif",
+      "count": 1,
+      "files": [
+        "goanticheat.graal"
+      ]
+    },
+    {
+      "image": "MArrowsBox.gif",
+      "script": "if (playertouchsme) lay darts;",
+      "count": 1,
+      "files": [
+        "golden7.graal"
+      ]
+    },
+    {
+      "image": "D4twiggy.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } 44twiggy.gif",
+      "count": 1,
+      "files": [
+        "graalpizzashop.graal"
+      ]
+    },
+    {
+      "image": "pachukitewarrior.gif",
+      "script": "if (playerenters && playeringuild PACHUKA) {canbecarried } if (wasthrown) {playerheadset=22} \\floor.gif",
+      "count": 1,
+      "files": [
+        "hallofthegods.graal"
+      ]
+    },
+    {
+      "image": "Ieldestcouncil.gif",
+      "script": "if (playerenters) { dontblock; } GN",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "drums.gif",
+      "script": "if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid}if (playerenters) {play stef12.mid} HDguitar2.gif",
+      "count": 1,
+      "files": [
+        "jaypee2bar.graal"
+      ]
+    },
+    {
+      "image": "blue.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorblue} if (playertouchsme && sleeves) {setsleevecolorblue} if (playertouchsme && shoes) {setshoecolorblue} if (playertouchsme && skin) {setskincolorblue} if (playertouchsme && coat) {setcoatcolorblue} if (playertouchsme && selecthead) {playerheadset=14} /@white.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "yellow.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcoloryellow} if (playertouchsme && sleeves) {setsleevecoloryellow} if (playertouchsme && shoes) {setshoecoloryellow} if (playertouchsme && skin) {setskincoloryellow} if (playertouchsme && coat) {setcoatcoloryellow} if (playertouchsme && selecthead) {playerheadset=16} 5@orange.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "darkred.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolordarkred} if (playertouchsme && sleeves) {setsleevecolordarkred} if (playertouchsme && shoes) {setshoecolordarkred} if (playertouchsme && skin) {setskincolordarkred} if (playertouchsme && coat) {setcoatcolordarkred} if (playertouchsme && selecthead) {playerheadset=18} ;@green.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Elightgreen.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorlightgreen} if (playertouchsme && sleeves) {setsleevecolorlightgreen} if (playertouchsme && shoes) {setshoecolorlightgreen} if (playertouchsme && skin) {setskincolorlightgreen} if (playertouchsme && coat) {setcoatcolorlightgreen} if (playertouchsme && selecthead) {playerheadset=7} ,Elightblue.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Ebrown.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorbrown} if (playertouchsme && sleeves) {setsleevecolorbrown} if (playertouchsme && shoes) {setshoecolorbrown} if (playertouchsme && skin) {setskincolorbrown} if (playertouchsme && coat) {setcoatcolorbrown} if (playertouchsme && selecthead) {playerheadset=9} 2Edarkblue.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "5Epurple.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorpurple} if (playertouchsme && sleeves) {setsleevecolorpurple} if (playertouchsme && shoes) {setshoecolorpurple} if (playertouchsme && skin) {setskincolorpurple} if (playertouchsme && coat) {setcoatcolorpurple} if (playertouchsme && selecthead) {playerheadset=11} 8Ecynober.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "8Jdarkpurple.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolordarkpurple; } if (playertouchsme && sleeves) {setsleevecolordarkpurple} if (playertouchsme && shoes) {setshoecolordarkpurple} if (playertouchsme && skin) {setskincolordarkpurple} if (playertouchsme && coat) {setcoatcolordarkpurple} if (playertouchsme && selecthead) {playerheadset=5} )Jlightgray.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Jgray.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorgray} if (playertouchsme && sleeves) {setsleevecolorgray} if (playertouchsme && shoes) {setshoecolorgray} if (playertouchsme && skin) {setskincolorgray} if (playertouchsme && coat) {setcoatcolorgray} if (playertouchsme && selecthead) {playerheadset=1} /Jblack.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "2Jdarkgreen.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolordarkgreen; } if (playertouchsme && sleeves) {setsleevecolordarkgreen;} if (playertouchsme && shoes) {setshoecolordarkgreen;} if (playertouchsme && skin) {setskincolordarkgreen;} if (playertouchsme && coat) {setcoatcolordarkgreen;} if (playertouchsme && selecthead) {playerheadset=3} 5Jpink.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    }
+  ]
+}

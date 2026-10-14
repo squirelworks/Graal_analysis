@@ -1,0 +1,97 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 5,
+  "chapter": 1,
+  "count": 11,
+  "scripts": [
+    {
+      "image": "O-x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; } N?x_doomsword.gif",
+      "count": 1,
+      "files": [
+        "swordpalaceentrance.graal"
+      ]
+    },
+    {
+      "image": "2cloats2.gif",
+      "script": "if (playertouchsme) { setbeltcolor pink; setcoatcolor red; setsleevecolor darkred; } A2cloats1.gif",
+      "count": 1,
+      "files": [
+        "ultimate8.graal"
+      ]
+    },
+    {
+      "image": "D2cloats3.gif",
+      "script": "if (playertouchsme) {setbeltcolor lightgreen; setcoatcolor darkgreen; setsleevecolor brown; } G2cloats4.gif",
+      "count": 1,
+      "files": [
+        "ultimate8.graal"
+      ]
+    },
+    {
+      "image": "J2cloats5.gif",
+      "script": "if (playertouchsme) {setbeltcolor red; setcoatcolor gray; setsleevecolor red; } M2cloats6.gif",
+      "count": 1,
+      "files": [
+        "ultimate8.graal"
+      ]
+    },
+    {
+      "image": "P2cloats7.gif",
+      "script": "if (playertouchsme) {setbeltcolor white; setcoatcolor black; setsleevecolor black; } S2pachuka'sclothing.gif",
+      "count": 1,
+      "files": [
+        "ultimate8.graal"
+      ]
+    },
+    {
+      "image": "7Abottle.gif",
+      "script": "if (playerenters) dontblock; @<",
+      "count": 1,
+      "files": [
+        "whoopa_northshop.graal"
+      ]
+    },
+    {
+      "image": "CAbomb.gif",
+      "script": "if (playerenters) dontblock; FAarrow.gif",
+      "count": 1,
+      "files": [
+        "whoopa_northshop.graal"
+      ]
+    },
+    {
+      "image": "3Csmokeani.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer; } 7Csmokeani.gif",
+      "count": 1,
+      "files": [
+        "zkout3.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) { toinventory ArmaPermClothes; }",
+      "count": 1,
+      "files": [
+        "ArmaPermInventory.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) { toinventory ArmaPermSword; }",
+      "count": 1,
+      "files": [
+        "ArmaPermSwordInventory.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "dontblock; drawunderplayer; if (playertouchsme) { putexplosion 4,x,y; destroy; }",
+      "count": 1,
+      "files": [
+        "mine.txt"
+      ]
+    }
+  ]
+}

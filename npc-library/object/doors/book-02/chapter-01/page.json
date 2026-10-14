@@ -1,0 +1,73 @@
+{
+  "genre": "object",
+  "topic": "doors",
+  "book": 2,
+  "chapter": 1,
+  "count": 8,
+  "scripts": [
+    {
+      "image": "door1.gif",
+      "script": "if (!sardondooropen&&!sardonkey&&playerscount=1){show} if (playerenters && sardondooropen) {hide} if (playertouchsme && sardonkey) {hide; set sardondooropen; unset sardonkey} /3",
+      "count": 1,
+      "files": [
+        "sardontower14.graal"
+      ]
+    },
+    {
+      "image": "leftgate.gif",
+      "script": "if (playerenters){timereverywhere;timeout=.1} if(statue=0)show; else hide; if(timeout){timeout=.1} F4dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower17.graal"
+      ]
+    },
+    {
+      "image": "Hdoor.gif",
+      "script": "if (playertouchsme){hide}",
+      "count": 1,
+      "files": [
+        "scavengerhouseoutside.graal"
+      ]
+    },
+    {
+      "image": "4door.gif",
+      "script": "if (playertouchsme) {say 1} if (seaportpay) {hide} (;bar.gif",
+      "count": 1,
+      "files": [
+        "seacharters1.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme) {hide;timeout=2;}; if (timeout) {show;} 99washbasin.gif",
+      "count": 1,
+      "files": [
+        "snexhouse3.graal"
+      ]
+    },
+    {
+      "image": "2Ddoor.gif",
+      "script": "if (playertouchsme) { if (onwall(47,15) && onwall(49,15) && onwall(51,15) && onwall(53,15) && onwall(47,17) && onwall(49,17) && onwall(51,17) && onwall(53,17) && onwall(47,19) && onwall(49,19) && onwall(51,19) && onwall(53,19) && onwall(47,21) && onwall(49,21) && onwall(51,21) && onwall(53,21) && onwall(47,23) && onwall(49,23) && onwall(51,23",
+      "count": 1,
+      "files": [
+        "sokoban4.graal"
+      ]
+    },
+    {
+      "image": "LBdoor.gif",
+      "script": "if (playertouchsme) hide; <P",
+      "count": 1,
+      "files": [
+        "westgraal1.graal"
+      ]
+    },
+    {
+      "image": "Hdowngate.gif",
+      "script": "if (skill1 && !playerenters) show; else hide;",
+      "count": 1,
+      "files": [
+        "whoopa_arena2.graal"
+      ]
+    }
+  ]
+}

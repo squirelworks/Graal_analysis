@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 3,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "74blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 54blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "34blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 14blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} -4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} )4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} '4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer}",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} J&blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswtower.graal"
+      ]
+    },
+    {
+      "image": "blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} N&blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswtower.graal"
+      ]
+    },
+    {
+      "image": "blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} R&blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswtower.graal"
+      ]
+    },
+    {
+      "image": "blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} V&blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswtower.graal"
+      ]
+    },
+    {
+      "image": "78dlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} M8dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlthrone.graal"
+      ]
+    },
+    {
+      "image": "18dlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} G8dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlthrone.graal"
+      ]
+    },
+    {
+      "image": "6teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} 14",
+      "count": 1,
+      "files": [
+        "dlthrone2.graal"
+      ]
+    },
+    {
+      "image": "XWdlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} X%dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlwhall.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} P-dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlwhall.graal"
+      ]
+    },
+    {
+      "image": "X-dlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} XOdlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlwhall.graal"
+      ]
+    },
+    {
+      "image": "POdlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} PWdlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlwhall.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} W rain.gif",
+      "count": 1,
+      "files": [
+        "dotd1.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} Vrain.gif",
+      "count": 1,
+      "files": [
+        "dotd1.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} 9Vrain.gif",
+      "count": 1,
+      "files": [
+        "dotd1.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} UVrain.gif",
+      "count": 1,
+      "files": [
+        "dotd1.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} V rain.gif",
+      "count": 1,
+      "files": [
+        "dotd2.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} ::rain.gif",
+      "count": 1,
+      "files": [
+        "dotd2.graal"
+      ]
+    },
+    {
+      "image": "T8rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} Train.gif",
+      "count": 1,
+      "files": [
+        "dotd2.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 2,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "FAccdesertfan3.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=20 && playerx<=36 && playery>=30 && playery<=35){ playerx-=.7; setgif ccdesertfan4.gif; a-- } else setgif ccdesertfan3.gif; if(a<=0) {a=8;play wind.wav} timeout=.05; } 0=ccdesertfan1.gif",
+      "count": 1,
+      "files": [
+        "cctempleb5.graal"
+      ]
+    },
+    {
+      "image": "0Gccdesertfan1.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=19 && playerx<=36 && playery>=36 && playery<=40){ playerx+=.7; setgif ccdesertfan2.gif; a-- } else setgif ccdesertfan1.gif; if(a<=0) {a=8;play wind.wav} timeout=.05; } <6door.gif",
+      "count": 1,
+      "files": [
+        "cctempleb5.graal"
+      ]
+    },
+    {
+      "image": "FAccdesertfan3.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=20 && playerx<=36 && playery>=30 && playery<=35){ playerx-=.7; setgif ccdesertfan4.gif; a-- } else setgif ccdesertfan3.gif; if(a<=0) {a=8;play wind.wav} timeout=.05; } 0Gccdesertfan1.gif",
+      "count": 1,
+      "files": [
+        "cctempleb7.graal"
+      ]
+    },
+    {
+      "image": "0Eclothesswitch.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme && this.1==0 && timeout==0) {setskincolor pink; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==1 && timeout==0) {setskincolor red; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==2 && timeout==0) {setskincolor darkred; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==3 && timeout==0) {setskincolor orange; timeo",
+      "count": 1,
+      "files": [
+        "dlclothes.graal"
+      ]
+    },
+    {
+      "image": "FAclothesswitch.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme && this.1==0 && timeout==0) {setsleevecolor pink; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==1 && timeout==0) {setsleevecolor red; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==2 && timeout==0) {setsleevecolor darkred; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==3 && timeout==0) {setsleevecolor orang",
+      "count": 1,
+      "files": [
+        "dlclothes.graal"
+      ]
+    },
+    {
+      "image": "Aclothesswitch.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme && this.1==0 && timeout==0) {setcoatcolor pink; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==1 && timeout==0) {setcoatcolor red; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==2 && timeout==0) {setcoatcolor darkred; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==3 && timeout==0) {setcoatcolor orange; timeo",
+      "count": 1,
+      "files": [
+        "dlclothes.graal"
+      ]
+    },
+    {
+      "image": "NCclothesswitch.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme && this.1==0 && timeout==0) {setbeltcolor pink; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==1 && timeout==0) {setbeltcolor red; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==2 && timeout==0) {setbeltcolor darkred; timeout=.2; this.1=this.1+1} if (playertouchsme && this.1==3 && timeout==0) {setbeltcolor orange; timeo",
+      "count": 1,
+      "files": [
+        "dlclothes.graal"
+      ]
+    },
+    {
+      "image": "K6ceilinabed1.gif",
+      "script": "if (playertouchsme) {setgif ceilinabed2.gif; message AAAAAA!!!; timeout=2.0} if (timeout){message oops, sorry.}",
+      "count": 1,
+      "files": [
+        "dlhqdorm.graal"
+      ]
+    },
+    {
+      "image": "Cdwqueen.gif",
+      "script": "if (playertouchsme) {message How do you do?; timeout=1.0} if (timeout) {message } R*bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead1.graal"
+      ]
+    },
+    {
+      "image": "C5set1.gif",
+      "script": "if (playertouchsme) {message I'm a high Guard; timeout=1.5 } if (timeout) {message } ;5set2.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "F0ysleepy.gif",
+      "script": "if (playertouchsme) {message zzzzzzz; timeout=1.5 } if (timeout) {message } D;bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqmain.graal"
+      ]
+    },
+    {
+      "image": "followerfa.gif",
+      "script": "if (playertouchsme) {message I need a new job; timeout=1.0} if (timeout) {message } :Pbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dllounge.graal"
+      ]
+    },
+    {
+      "image": "48king.gif",
+      "script": "if (playertouchsme) {message Top of the day, kind sir!; timeout=2.0} if (timeout) {message }",
+      "count": 1,
+      "files": [
+        "dlnwtower.graal"
+      ]
+    },
+    {
+      "image": "Tbombtargetblue.gif",
+      "script": "if (exploded && timeout==0) {timeout=1; putexplosion 4,28,50; putexplosion 4,34,50; putexplosion 4,31,48; dlbluegoal=dlbluegoal+1} if (dlbluegoal==10) {stopmidi; message Game over!; play whistl_1.wav; dlbluegoal=11} ?*bombtargetred.gif",
+      "count": 1,
+      "files": [
+        "dlpb.graal"
+      ]
+    },
+    {
+      "image": "bombgen.gif",
+      "script": "if (playerenters) {timeout=1} if (timeout==0 && this.1==0) {timeout=1; putbomb 1,x,y+2; this.1=1} if (timeout==0 && this.1==1) {timeout=1; putbomb 1,x-2,y; this.1=2} if (timeout==0 && this.1==2) {timeout=1; putbomb 1,x,y-2; this.1=3} if (timeout==0 && this.1==3) {timeout=1; putbomb 1,x+2,y; this.1=0} (Awathena.gif",
+      "count": 1,
+      "files": [
+        "dlpb.graal"
+      ]
+    },
+    {
+      "image": "wgirl1.gif",
+      "script": "if (playertouchsme) {message How awful!!; timeout=1.5 } if (timeout) {message }",
+      "count": 1,
+      "files": [
+        "dlpb.graal"
+      ]
+    },
+    {
+      "image": "T3deadpool.gif",
+      "script": "if (playertouchsme) {message I wanna see a fight!; timeout=1.0} if (timeout) {message } G)docjoltean.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "storeguy.gif",
+      "script": "if (playertouchsme) {message Can I help thee,nobleman?; timeout=1.5 } if (timeout) {message } 4Iqueen.gif",
+      "count": 1,
+      "files": [
+        "dlsetower.graal"
+      ]
+    },
+    {
+      "image": "EFdk-stand.gif",
+      "script": "if (playertouchsme) {message Welcome nobleman.; timeout=1.0} if (timeout) {message } &4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlshall.graal"
+      ]
+    },
+    {
+      "image": "zelda.gif",
+      "script": "if (playertouchsme) {message Hello nobleman!; timeout=1.5 } if (timeout) {message } X4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswtower.graal"
+      ]
+    },
+    {
+      "image": "8Itntpack.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {timeout=6; timershow} if (timeout && this.1==0) {this.1=1; timeout=.1; hide} if (this.2==20) {this.2=11; this.1=2} if (timeout && this.1==1) { putexplosion 5,x+random(-5,5),y+random(-5,5); putexplosion 3,x+random(-10,10),y+random(-10,10); putexplosion 3,x+random(-10,10),y+random(-10,10); putexplosion 3,x+random(-10,10),y+random(-10,1",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "infoguy.gif",
+      "script": "if (playerenters) {canbecarried;} if (playertouchsme){followplayer} if (wasthrown){timeout=.1; hide} if (timeout) {x=random(10,50); y=random(10,50); timeout=.1; putleaps random(0,5),x,y; set (message} this.message=random(0,10); if (this.message<=3) setgif bro.gif; if (this.message>3 && this.gift<=4) setgif dlstatue.gif; if (this.message>4 && this.gift<=5) setgif docjoltean.gif; if (this.message>5",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "servant1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=50) {message ; this.msg=0} if (this.msg=100) message I'm a Brugite. I'm out of my armour.; if (this.msg=90) message I usually guard the town from Judgites,; if (this.msg=80) message but right now I'm off duty.",
+      "count": 1,
+      "files": [
+        "enkitohouse1.graal"
+      ]
+    },
+    {
+      "image": "6Cvillager1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=20) {message ; this.msg=0} if (this.msg=100) message Yes, I am the mayor.; if (this.msg=90) message Our lives here have become full of sorrow.; if (this.msg=80) message Every day another friend is killed in the",
+      "count": 1,
+      "files": [
+        "enkitohouse2.graal"
+      ]
+    },
+    {
+      "image": "Aterrorwing.gif",
+      "script": "if (playerenters) { timereverywhere; hide; timeout=0.05; } if (timeout) { timeout=60.5; putnpc terrorwing.gif,BrugesBird.txt,x,y; } 6H",
+      "count": 1,
+      "files": [
+        "enkitohouse4.graal"
+      ]
+    }
+  ]
+}

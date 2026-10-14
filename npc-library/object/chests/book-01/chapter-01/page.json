@@ -1,0 +1,89 @@
+{
+  "genre": "object",
+  "topic": "chests",
+  "book": 1,
+  "chapter": 1,
+  "count": 10,
+  "scripts": [
+    {
+      "image": "A9brugescorechest.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; this.action=1; timeout=.1; } if (playertouchsme) { this.gift=random(0,20);y+=1; if (this.gift<=1) {say 10}else if (this.gift<=5) {lay bluerupee; say 6;}else if (this.gift<=10) {lay redrupee;lay redrupee; say 4;}else if (this.gift<=14) {lay goldrupee; say 7}else if (this.gift<=19) {lay redrupee; lay redrupee; lay bombs; lay darts",
+      "count": 1,
+      "files": [
+        "bccranegame.graal"
+      ]
+    },
+    {
+      "image": "capekeychest.gif",
+      "script": "if (playertouchsme&& !stolekey) {setgif capekeychestempty.gif; set stolekey; timeout=0.5 } if (playerenters&& stolekey) {hide; setgif capekeychestempty.gif } if (timeout) { putnpc capekey.gif,capekey.txt,x+0.5,y+2 }",
+      "count": 1,
+      "files": [
+        "capekey.graal"
+      ]
+    },
+    {
+      "image": "chest.gif",
+      "script": "if (playertouchesme) {hide} JM",
+      "count": 1,
+      "files": [
+        "field4.graal"
+      ]
+    },
+    {
+      "image": "07chest.gif",
+      "script": "if (playertouchsme) { if (fuitad) {setsword fuitadsword.gif, players[0].swordpower; setshield fuitadshield.gif, players[0].shieldpower; sethead head102.gif}; else say4;} >B",
+      "count": 1,
+      "files": [
+        "fuitadhouse.graal"
+      ]
+    },
+    {
+      "image": "-Rgandchest.gif",
+      "script": "if (playerenters) { setgif gandchest.gif; unset this.blah;} if (playertouchsme&&(!this.blah)) {say 12; set this.act;} if(playersays(Roflamo)&&(!this.blah)&&this.act){say 13; setsword gandssword.gif, players[0].swordpower; setgif gandchestopen.gif; set this.blah; unset this.act; } >%gandariandk.gif",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "Xgandchest.gif",
+      "script": "if (playerenters&&(!gandopened)) { setgif gandchest.gif;} if (playerenters&&gandopened){setgif gandchestopen.gif;} if (playertouchsme&&(!gandopened)) {say 14; set this.act3;} if(playersays(Bubble)&&(!gandopened)&&(this.act3)){say 15; playerrupees+=30; setgif gandchestopen.gif; set gandopened;unset this.act3; } if(playerchats&&(!gandopened)&&(this.act3)){say 16; unset this.act3; } YXgandchest.gif",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "Xgandchest.gif",
+      "script": "if(playerenters) {hide} if(gandarianrupees>0){ rupees+=gandarianrupees; gandarianrupees=0; } if(playersays(I am hungry)&&playeringuild GP Chief){ playerrupees+=rupees; rupees=0; }",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "chestbox.gif",
+      "script": "if (playerenters && M3BoxHidden) hide; if (playertouchsme) { if (M5TNTGone) { playerx = 24; playery = 38; setplayerdir right; say 2; set M3ExplodeBox; set M3HideTNT; } else say 1; } if (playerendsreading && M3ExplodeBox) { unset M3ExplodeBox; set M3BoxHidden; hide; putexplosion 4,32,28; putexplosion 4,36,28; putexplosion 4,32,34; putexplosion 4,36,34;",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "bigchest1.gif",
+      "script": "if (playertouchsme&& capekey) {setgif BIGchest1open.gif; timeout=0.5; unset capekey; set opencape} if (playerenters&& opencape) {setgif BIGchest1open.gif} if (timeout) {putnpc cape.gif,cape.txt,x+1,y+2} drawunderplayer;",
+      "count": 1,
+      "files": [
+        "otforest5.graal"
+      ]
+    },
+    {
+      "image": "hackgreenchest.gif",
+      "script": "if (playerenters) show; if (playertouchsme && playeringuild H k S) { setcoatcolor green; setsleevecolor green; setshoecolor green; setskincolororange; setbeltcolor black; setsword hackcorpssword.gif,players[0].swordpower; setshield hackcorpsshield.gif,players[0].shieldpower; sethead hackcorpshead3.gif; } if(playertouchsme && !playeringuild H k S) {say 1}",
+      "count": 1,
+      "files": [
+        "sardontower29.graal"
+      ]
+    }
+  ]
+}

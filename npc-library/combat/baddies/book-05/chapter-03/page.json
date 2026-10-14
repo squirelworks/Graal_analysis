@@ -1,0 +1,25 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 5,
+  "chapter": 3,
+  "count": 2,
+  "scripts": [
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) {timeout=0.5; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { shootball; timeout=1.5;}",
+      "count": 1,
+      "files": [
+        "zsachurin6d.graal"
+      ]
+    },
+    {
+      "image": "set2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } ?9set2.gif",
+      "count": 1,
+      "files": [
+        "zsachurin7.graal"
+      ]
+    }
+  ]
+}

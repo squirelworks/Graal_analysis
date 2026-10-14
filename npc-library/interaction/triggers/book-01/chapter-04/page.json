@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 1,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "docshieldhead.gif",
+      "script": "if (playertouchsme) { setshielddocshield.gif,playershieldpower} K.kokirishieldhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "K1kokiriswordhead.gif",
+      "script": "if (playertouchsme) {setswordkokirisword.gif,playerswordpower } K4lightsaber1head.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "lightsaber2head.gif",
+      "script": "if (playertouchsme) { setswordlightsaber2.gif,playerswordpower} O1lightsaber3head.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "lightsaber7head.gif",
+      "script": "if (playertouchsme) { setswordlightsaber7.gif,playerswordpower} S.linkshieldhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "S1reveeshield2head.gif",
+      "script": "if (playertouchsme) { setshieldreveeshield2.gif,playershieldpower} S4reveeshieldhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "Fsaliorlockestaffhead.gif",
+      "script": "if (playertouchsme) {setswordsailorlockestaff.gif,playerswordpower} =Cbaseballbathead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "fishswordhead.gif",
+      "script": "if (playertouchsme) {setswordfishsword.gif,playerswordpower} 9@orangesaberhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "9Fhappyshieldhead.gif",
+      "script": "if (playertouchsme) {setshieldhappyshield.gif,playershieldpower} 9Csardonshieldhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "9Fhappyshieldhead.gif",
+      "script": "if (playertouchsme) {setshieldhappyshield.gif,playershieldpower} 9Fhappyshieldhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "9Fhappyshieldhead.gif",
+      "script": "if (playertouchsme) {setshieldsardonshield.gif,playershieldpower} @@gungarhead.gif",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "oldassshieldhead.gif",
+      "script": "if (playertouchsme) {setshieldoldassshield.gif,playershieldpower}",
+      "count": 1,
+      "files": [
+        "ArmasSwordsandShields.graal"
+      ]
+    },
+    {
+      "image": "I6fishsword1.gif",
+      "script": "if (playertouchsme) { setswordfishsword.gif,1;} =6flaminsword1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "E6hackcorpsaxe1.gif",
+      "script": "if (playertouchsme) { setswordhackcorpsaxe.gif,1} A6hackcorpssword1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "U6lightsaber11.gif",
+      "script": "if (playertouchsme) { setswordlightsaber1.gif,1} Q6orangelightsaber1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "M6sticksword1.gif",
+      "script": "if (playertouchsme) {setswordsticksword.gif,1 } <)",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "Cakumashield1.gif",
+      "script": "if (playertouchsme) { setshieldakumashield.gif,1} @Cblackshield1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "TCblueshield1.gif",
+      "script": "if (playertouchsme) { setshieldblueshield.gif,1;} BCdocshield1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "PCfagshield1.gif",
+      "script": "if (playertouchsme) { setshieldfagshield.gif,1} DCfireshield1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "FCgoldshield1.gif",
+      "script": "if (playertouchsme) {setshieldgoldshield.gif,1} LCgoldshield3.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "VChackcorpsshield1.gif",
+      "script": "if (playertouchsme) { setshieldhackcorpsshield.gif,1;} NChappyshield1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "HCiceshield1.gif",
+      "script": "if (playertouchsme) { setshieldiceshield.gif,1;} JClinkshield1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "RCmyshield1.gif",
+      "script": "if (playertouchsme) {setshieldMysheild.gif,1;} <Criotshield1.gif",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "BAbluelampani.gif",
+      "script": "if (playerenters) {drawunderplayer} BPbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "BMbluelampani.gif",
+      "script": "if (playerenters) {drawunderplayer} BJbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "HJbluelampani.gif",
+      "script": "if (playerenters) {drawunderplayer} HGbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    }
+  ]
+}

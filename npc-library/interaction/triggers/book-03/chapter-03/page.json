@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 3,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "ballofire.gif",
+      "script": "if (playertouchsme) { setskincolor orange;setcoatcolor orange;setsleevecolor orange;setshoecolor orange;setbeltcolor orange}",
+      "count": 1,
+      "files": [
+        "fccop.graal"
+      ]
+    },
+    {
+      "image": "vincentcape.gif",
+      "script": "if (playerenters) { noplayerkilling; } =Lryuneo.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "BNbook6.gif",
+      "script": "if (playertouchsme) { openurl www.gamewar.com/smars/;} )Gatm.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "Sfootballgoal.gif",
+      "script": "if (playerenters) { dontblock; } < footballgoal.gif",
+      "count": 1,
+      "files": [
+        "football.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if(playerenters){dontblock} L2bookopen.gif",
+      "count": 1,
+      "files": [
+        "fox1.graal"
+      ]
+    },
+    {
+      "image": "30foxbed.gif",
+      "script": "if (playerenters) {x=19;y=16;drawunderplayer;dontblock } if (playertouchsme) { }",
+      "count": 1,
+      "files": [
+        "fox1.graal"
+      ]
+    },
+    {
+      "image": "Ifoxcoat.gif",
+      "script": "if (playertouchsme) {setskincolor orange; setcoatcolor darkgreen; setsleevecolor green; setshoecolor black; setbeltcolor black; sethead head140.gif } :Ithiefcoat.gif",
+      "count": 1,
+      "files": [
+        "fox2.graal"
+      ]
+    },
+    {
+      "image": "tolit.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } ]6bluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxshouse12.graal"
+      ]
+    },
+    {
+      "image": "8Cfoxbed.gif",
+      "script": "if (playerenters) {x=24;y=35;drawunderplayer;dontblock } if (playertouchsme) { }",
+      "count": 1,
+      "files": [
+        "foxshouse12.graal"
+      ]
+    },
+    {
+      "image": "tolit.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } ^1bluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxshouse13.graal"
+      ]
+    },
+    {
+      "image": "6tolit.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } *=bluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxshouse8.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } =:bluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxwaterfall.graal"
+      ]
+    },
+    {
+      "image": "Hbluelampani.gif",
+      "script": "// NPC made by <yourname> if (playerenters) {dontblock } if (playertouchsme) { } GHbluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxwaterfall.graal"
+      ]
+    },
+    {
+      "image": "Kgerudobridgerailleft.gif",
+      "script": "if (playerenters) { drawunderplayer; } ?Kgerudobridgerailright.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "M1gerudotentback.gif",
+      "script": "if (playerenters) { dontblock; drawoverplayer; } D(gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentback.gif",
+      "script": "if (playerenters) { dontblock; drawoverplayer; } J6mmeguy_f.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } P@mmeguy_l.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentback.gif",
+      "script": "if (playerenters) { dontblock; drawoverplayer; } ](gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } ]6gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "3gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } ]/gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } ]'gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "6gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } 3gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentfront.gif",
+      "script": "if (playerenters) { drawunderplayer; } ^ gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "gerudotentback.gif",
+      "script": "if (playerenters) { dontblock; drawoverplayer; } I/gerudotentback.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "bar.gif",
+      "script": "if (playerenters) {drawunderplayer; unset dlbeer} if (playertouchsme) {say 0} if (playerlaysitem) {take greenrupee; take bluerupee;} if (rupees>9) {rupees=0; set dlbeer} ''beerhost.gif",
+      "count": 1,
+      "files": [
+        "dlhqhall.graal"
+      ]
+    },
+    {
+      "image": "blackswitch.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) {this.1=1} if (this.1==1 && timeout==0 && dllight) {timeout=.2; unset dllight; say 10} if (this.1==1 && timeout==0 && !dllight) {timeout=.2; set dllight; say 10} if (this.1==1) {this.1=0} VVnight.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "desertcastlebars.gif",
+      "script": "if (playertouchsme) {say 2}",
+      "count": 1,
+      "files": [
+        "dlnetower.graal"
+      ]
+    },
+    {
+      "image": "4dk-stand.gif",
+      "script": "if (playertouchsme) {say 1} C4dk-stand.gif",
+      "count": 1,
+      "files": [
+        "dlthrone.graal"
+      ]
+    },
+    {
+      "image": "KCnick_icon.gif",
+      "script": "if (playerenters && !bigbombhole) {hide} if (playerenters && bigbombhole) {show} if (bigbombhole) {show;} if (playertouchsme) {say 2}",
+      "count": 1,
+      "files": [
+        "dlthrone2.graal"
+      ]
+    },
+    {
+      "image": "6gypsy.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme && !dlweapon) {say 0} if (playertouchsme && dlweapon) {say 1} if (playerlaysitem && !dlweapon) {take goldrupee} if (rupees>9999) {set dlweapon; say 1; rupees=0} if (dlweapon && this.1==0) {x=7; y=19; this.1=1} if (playerenters && playeringuild PACHUKA){x=7; y=19;} X(gnomkid.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "Istandingright3.gif",
+      "script": "if (playertouchsme) {say 5 }",
+      "count": 1,
+      "files": [
+        "dotd1.graal"
+      ]
+    },
+    {
+      "image": "dbluebaddy.gif",
+      "script": "if (playertouchsme) { if (!PlayerHasMed && !DBHasMed){ say 0; } if (DBHasMed &&!PlayerHasIZPKey) { set PlayerHasIZPKey; say2; } if (DBHasMed && PlayerHasIZPKey) { say3; } if (PlayerHasMed && !DBHasMed) { say 1; unset PlayerHasMed; set DBHasMed; } }",
+      "count": 1,
+      "files": [
+        "dvhouse5.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "if (playerenters) { set enterdarkwood; } if (playertouchsme) { say 1; hide; } if (exploded || washit || wasshooted || waspelt) {shootball }",
+      "count": 1,
+      "files": [
+        "dw2.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { if (DWhide) hide; if (!DWhide) show; } if (playertouchsme) { say 0; } if (playerendsreading) { hide; set DWhide; }",
+      "count": 1,
+      "files": [
+        "dw3.graal"
+      ]
+    },
+    {
+      "image": "Q8ratb.gif",
+      "script": "if (playertouchsme) {setgif ratf.gif; say 0} if (playerendsreading) {setgif ratb.gif;} if (playerlaysitem) { take greenrupee;} if (rupees>=2 && !payed) set payed; if (payed){ putcomp graysoldier,58,22; putcomp graysoldier,40,20; putcomp graysoldier,57,13; putcomp graysoldier,46,6; putcomp graysoldier,32,9; putcomp graysoldier,32,32; unset payed; rupees-=2}",
+      "count": 1,
+      "files": [
+        "easy.graal"
+      ]
+    },
+    {
+      "image": "kefka.gif",
+      "script": "if (playertouchsme) { say 2;play klaugh.wav;setshield captinshield.gif,2 ;} Y;ballofire.gif",
+      "count": 1,
+      "files": [
+        "fccop.graal"
+      ]
+    },
+    {
+      "image": "chibi.gif",
+      "script": "if (playertouchsme) { say 0;setshield mogsheild.gif,2 ;}",
+      "count": 1,
+      "files": [
+        "fchall.graal"
+      ]
+    },
+    {
+      "image": "Faronfrwd.gif",
+      "script": "if (playertouchsme) {say 4;} KFballofire.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "NGballofire.gif",
+      "script": "if (playertouchsme) {say 5;setshield cshield.gif,2 ; setsword watersword.gif,2 } MFballofire.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "dragoon.gif",
+      "script": "if (playertouchsme) {say 12;} +",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "IWterra.gif",
+      "script": "if (playertouchsme) { say 13;}",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "BDgandariandk.gif",
+      "script": "if (playertouchsme) { say6} ++book16.gif",
+      "count": 1,
+      "files": [
+        "gandgetawayh.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if(playerenters){unset this.act;} if(playerchats&&players[0].sprite==37){ if(playersays2(Fuck)||playersays2(Shit)||playersays2(Ass)||playersays2(Asshole)||playersays2(Dick)||playersays2(Cunt)||playersays2(Bitch)||playersays2(Fucker)||playersays2(Fucking)||playersays2(Fuckoff)||playersays2(Fucked)){ message Quit cussin in my bar!; sleep 2; message;} else if(playersays2(password)){ message For 10 ru",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "Dgandariandk.gif",
+      "script": "if (playertouchsme) { say6} BDgandariandk.gif",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "mmeguy_f.gif",
+      "script": "if (playertouchsme) { set FrontGuardGerudo; say 0; } if (playerendsreading && FrontGuardGerudo) { unset FrontGuardGerudo; if (playerrupees >=1) { playerrupees--; lay greenrupee; say 1; } } ?Kgerudobridgewalk.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "Cmmeguy_b.gif",
+      "script": "if (playertouchsme) { say 3; } HCmmeguy_b.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_bridge.graal"
+      ]
+    },
+    {
+      "image": "mmeguy_b.gif",
+      "script": "if (playertouchsme) { say 0; } -/gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "mmeguy_wb.gif",
+      "script": "if (playertouchsme) { say 1; } I/gerudotentfront.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "Igilgamesh.gif",
+      "script": "if (playertouchsme) { say 0; } CHgerudonick.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_gilgamesh.graal"
+      ]
+    }
+  ]
+}

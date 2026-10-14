@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "ballofire.gif",
+      "script": "Y/ballofire.gif",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "3$bluelampani.gif",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "GNbluelampani.gif",
+      "script": "MNbluelampani.gif",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "QRbluelampani.gif",
+      "script": "YRbluelampani.gif",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "O7bluelampani.gif",
+      "script": "I7bluelampani.gif",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "Lbluelampani.gif",
+      "script": "WBbluelampani.gif",
+      "count": 1,
+      "files": [
+        "fczoo.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "W-bluelampani.gif",
+      "count": 1,
+      "files": [
+        "fczoo.graal"
+      ]
+    },
+    {
+      "image": "bookopen.gif",
+      "script": "1'book15.gif",
+      "count": 1,
+      "files": [
+        "firesharkroom.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "H:bluelampani.gif",
+      "count": 1,
+      "files": [
+        "fox1.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "R5doubledoor1.gif",
+      "count": 1,
+      "files": [
+        "fox1.graal"
+      ]
+    },
+    {
+      "image": "BWmmeguy_b.gif",
+      "script": "<Wmmeguy_b.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_gilgamesh.graal"
+      ]
+    },
+    {
+      "image": "6greeter.gif",
+      "script": "D6blueright.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "7Gstaff_bar.gif",
+      "script": "GGstaff_bar.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_weapon.graal"
+      ]
+    },
+    {
+      "image": "ROtwiggy.gif",
+      "script": "XOswitchred.gif",
+      "count": 1,
+      "files": [
+        "gohfair.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "if (washit && playerswordpower>=3) { putleaps 0,x,y; hide; } >%goldenbush.gif",
+      "count": 1,
+      "files": [
+        "golden8.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "if (washit && playerswordpower>=3) { putleaps 0,x,y; hide; } @'goldenbush.gif",
+      "count": 1,
+      "files": [
+        "golden8.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "if (washit && playerswordpower>=3) { putleaps 0,x,y; hide; } F!",
+      "count": 1,
+      "files": [
+        "golden8.graal"
+      ]
+    },
+    {
+      "image": "FDbluelampani.gif",
+      "script": "8?darkdown.gif",
+      "count": 1,
+      "files": [
+        "golgroom.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "G$bluelampani.gif",
+      "count": 1,
+      "files": [
+        "graalcitychurch.graal"
+      ]
+    },
+    {
+      "image": "UDgraal1.gif",
+      "script": "if (washit && playeringuild Bartender) {set table5beer1; set table5beer2; set table5beer3; set table5beer4;} >(beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "5>bluelampani.gif",
+      "count": 1,
+      "files": [
+        "heal.graal"
+      ]
+    },
+    {
+      "image": "02bluelampani.gif",
+      "script": ":2bluelampani.gif",
+      "count": 1,
+      "files": [
+        "hotel.graal"
+      ]
+    },
+    {
+      "image": "2bluelampani.gif",
+      "script": "M2bluelampani.gif",
+      "count": 1,
+      "files": [
+        "hotel.graal"
+      ]
+    },
+    {
+      "image": "78bluelampani.gif",
+      "script": "38bluelampani.gif",
+      "count": 1,
+      "files": [
+        "house21.graal"
+      ]
+    },
+    {
+      "image": "G8bluelampani.gif",
+      "script": "K8bluelampani.gif",
+      "count": 1,
+      "files": [
+        "house21.graal"
+      ]
+    }
+  ]
+}

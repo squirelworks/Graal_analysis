@@ -1,0 +1,65 @@
+{
+  "genre": "transport",
+  "topic": "local-warps",
+  "book": 1,
+  "chapter": 2,
+  "count": 7,
+  "scripts": [
+    {
+      "image": "teleporter.gif",
+      "script": "T%teleporter.gif",
+      "count": 1,
+      "files": [
+        "hearts.graal"
+      ]
+    },
+    {
+      "image": "Dmorgan.gif",
+      "script": "if (playerenters) {} if (playertouchsme) { if (!gotzolwarpring) { say3; putnpc warpring.gif, zol_warpring.txt, 31, 36; } else { say4; } }",
+      "count": 1,
+      "files": [
+        "moffice2.graal"
+      ]
+    },
+    {
+      "image": "crystalorb.gif",
+      "script": "if (playerenters && !gotshera1) { hide; } if (playertouchsme) { unset gotshera1; set crystalorb; say 1; toinventory crystalorb; } 2!teleporter.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall2.graal"
+      ]
+    },
+    {
+      "image": "I3dlstatue.gif",
+      "script": "if(playerenters){canbepushed;canbepulled} if(playerenters && playerscount=1){x=41; y=19} C9warpdoorani.gif",
+      "count": 1,
+      "files": [
+        "sardontower19.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer} :7teleporter.gif",
+      "count": 1,
+      "files": [
+        "sardontower28.graal"
+      ]
+    },
+    {
+      "image": "27teleporter.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer} J7teleporter.gif",
+      "count": 1,
+      "files": [
+        "sardontower28.graal"
+      ]
+    },
+    {
+      "image": "9smalltree.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer} DMteleporter.gif",
+      "count": 1,
+      "files": [
+        "sardontowerroof.graal"
+      ]
+    }
+  ]
+}

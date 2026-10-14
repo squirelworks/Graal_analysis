@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "FNbrugestowerspikes1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; 3Sbrugitewarrior_s1.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_2.graal"
+      ]
+    },
+    {
+      "image": "KSbrugitewarrior_s1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteWarrior_S1.gif,BrugiteWarrior.txt,x,y; } if (timeout) destroy; 4Nbrugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_2.graal"
+      ]
+    },
+    {
+      "image": "JNbrugitemage_ss.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy;",
+      "count": 1,
+      "files": [
+        "brugestower2_2.graal"
+      ]
+    },
+    {
+      "image": "brugitemage_ss.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy; GHbrugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "Rbrugitemage_ss.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy; 7@brugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "Xbluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; >Vbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "Vbluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; AXbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "Rredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } :Vredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "Tredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } KXredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "Predstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } :Xredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "6Predstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 6Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "6Xredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 2Pbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "MVredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } OXredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "OVredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } KVredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "MSbrugitewarrior_s1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteWarrior_S1.gif,BrugiteWarrior.txt,x,y; } if (timeout) destroy; MQredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "KQredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } IQredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "GRredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } GTredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "GVredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } GXredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "OQredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } QQredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "SRredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } SXredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "SVredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } STredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "FHbrugitewarrior_s1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteWarrior_S1.gif,BrugiteWarrior.txt,x,y; } if (timeout) destroy; R0brugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "Bbrugitewarrior_s1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteWarrior_S1.gif,BrugiteWarrior.txt,x,y; } if (timeout) destroy; UCbrugitewarrior_s1.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "Lbrugitemage_ss.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy; BLbrugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "Fbrugitewarrior_s1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteWarrior_S1.gif,BrugiteWarrior.txt,x,y; } if (timeout) destroy; >Kredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    }
+  ]
+}

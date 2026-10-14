@@ -1,0 +1,214 @@
+{
+  "genre": "transport",
+  "topic": "local-warps",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} /Rteleporter.gif",
+      "count": 3,
+      "files": [
+        "dlbombarena1.graal",
+        "dlbombarena3.graal",
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "I8teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} 48teleporter.gif",
+      "count": 2,
+      "files": [
+        "dlhqtraine1.graal",
+        "dlhqtrainh1.graal"
+      ]
+    },
+    {
+      "image": "8teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} B8teleporter.gif",
+      "count": 2,
+      "files": [
+        "dlhqtraine1.graal",
+        "dlhqtrainh1.graal"
+      ]
+    },
+    {
+      "image": "9morgan.gif",
+      "script": "if (playerenters) {} if (playertouchsme) { if (!gotwarpring) { say10; } else { say11; } } /:warpring.gif",
+      "count": 2,
+      "files": [
+        "level13.graal",
+        "test.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "56teleporter.gif",
+      "count": 1,
+      "files": [
+        "Teleporters.graal"
+      ]
+    },
+    {
+      "image": "3block.gif",
+      "script": "if (playerenters) { if (WarpOpen) hide; } if (playertouchsme) {take bluerupee; if (!WarpOpen) { if (!OtherKey) say 10; if (OtherKey && gotrupees 5) { set WarpOpening; say 11; } } } if (playerendsreading) { if (WarpOpening) { unset WarpOpening; set WarpFortOpen; hide; } } ?",
+      "count": 1,
+      "files": [
+        "badcastlethrone.graal"
+      ]
+    },
+    {
+      "image": "Fwarpring.gif",
+      "script": "if (playertouchsme) { toweapons Big City Warp Ring; } if (weaponfired) { freezeplayer 2.4; timeout=.1; this.rotation=0; r=int(random(0,175)); d=int(random(0,25)); b=int(random(0,25)); } if (timeout) { this.rotation++; playerdir=(this.rotation%4); if (this.rotation<=24) { timeout=.1; } if (this.rotation=12) { putleaps 4, playerx, playery; playerx=31; player",
+      "count": 1,
+      "files": [
+        "bigcity1.graal"
+      ]
+    },
+    {
+      "image": "70morgan.gif",
+      "script": "if (playertouchsme) {say 0 } >0warpdoor.gif",
+      "count": 1,
+      "files": [
+        "cchouse1.graal"
+      ]
+    },
+    {
+      "image": "Rpiratething.gif",
+      "script": "// NPC made by King Dan (Chaotica) if (playerenters) { } if (playertouchsme) { } 9Qwarpdoor.gif",
+      "count": 1,
+      "files": [
+        "ccpirate9.graal"
+      ]
+    },
+    {
+      "image": "ccdesertfan1.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=19 && playerx<=36 && playery>=25 && playery<=30){ playerx+=.7; a--; setgif ccdesertfan2.gif; } else setgif ccdesertfan1.gif; if(a<=0) {play wind.wav;a=8} timeout=.05; } @>warpdoor.gif",
+      "count": 1,
+      "files": [
+        "cctempleb7.graal"
+      ]
+    },
+    {
+      "image": "XAteleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playertouchsme) {playerx=17.5; playery=36} /.teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena2.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playertouchsme) {playerx=43.5; playery=26} ORteleporter.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena2.graal"
+      ]
+    },
+    {
+      "image": "6Ibiglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} O.teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena2.graal"
+      ]
+    },
+    {
+      "image": "Rteleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 4Eteleporter.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena2.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} ORteleporter.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena3.graal"
+      ]
+    },
+    {
+      "image": "E6teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} 9?teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "56teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} Q?teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "I6teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} M?teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "96teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} 5?teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "16teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} -6teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} 1?teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "Q6teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} M6teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} I?teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlgames2.graal"
+      ]
+    },
+    {
+      "image": "96teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} G6teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlteleport.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {drawunderplayer; dontblock} 26teleporter.gif",
+      "count": 1,
+      "files": [
+        "dlteleport.graal"
+      ]
+    }
+  ]
+}

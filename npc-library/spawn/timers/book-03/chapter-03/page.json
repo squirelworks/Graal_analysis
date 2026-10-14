@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 3,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "37dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=19; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "97dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=25; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "7dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=31; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "E7dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=37; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "K7dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=43; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "crystalorb.gif",
+      "script": "if(playerenters){timereverywhere; timeout=.05; drawoverplayer;dontblock} if(playerenters&&playerscount=1) {this.1=0; x=30; y=30} if(timeout){timeout=.05; this.1+=1; if(this.1<80){ if(x<playerx){x+=.1} if(x>playerx){x-=.1} if(y<playery){y+=.1} if(y>playery){y-=.1} } if(this.1=80){this.2=random(0,1); if(this.2<.5){setgif shadoworb.gif} else{setgif lightorb.gif} } if",
+      "count": 1,
+      "files": [
+        "sardontower14.graal"
+      ]
+    },
+    {
+      "image": "J8bowmachine2.gif",
+      "script": "if(playerenters){timereverywhere; timeout=.05; if(playerscount=1){y=random(15,40); this.dir=int(random(0,2)); this.fire=0} } if(timeout){this.fire+=1; timeout=.05; if(this.fire>9){shootarrow left; this.fire=0} if(this.dir=0) y+=.5; else y-=.5; if(y<10)this.dir=0; if(y>48)this.dir=1; } 39bowmachine.gif",
+      "count": 1,
+      "files": [
+        "sardontower16.graal"
+      ]
+    },
+    {
+      "image": "clothesswitch.gif",
+      "script": "if (playerenters) {hide;timereverywhere;timeout=.1; dontblock;drawunderplayer} if(abs(playerx-(x-.5))<2&&abs(playery-(y-1))<2&&this.1=0){ show;this.1=1} else {if(this.1=1){hide;this.1=0}} if(timeout){timeout=.1} ?4clothesswitch.gif",
+      "count": 1,
+      "files": [
+        "sardontower22.graal"
+      ]
+    },
+    {
+      "image": "7Eclothesswitch.gif",
+      "script": "if (playerenters) {hide;timereverywhere;timeout=.1; dontblock;drawunderplayer} if(abs(playerx-(x-.5))<2&&abs(playery-(y-1))<2&&this.1=0){ show;this.1=1} else {if(this.1=1){hide;this.1=0}} if(timeout){timeout=.1} I;clothesswitch.gif",
+      "count": 1,
+      "files": [
+        "sardontower22.graal"
+      ]
+    },
+    {
+      "image": "GEclothesswitch.gif",
+      "script": "if (playerenters) {hide;timereverywhere;timeout=.1; dontblock;drawunderplayer} if(abs(playerx-(x-.5))<2&&abs(playery-(y-1))<2&&this.1=0){ show;this.1=1} else {if(this.1=1){hide;this.1=0}} if(timeout){timeout=.1} 0,",
+      "count": 1,
+      "files": [
+        "sardontower22.graal"
+      ]
+    },
+    {
+      "image": "5Odlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=47; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=11; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=15; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "53dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=19; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "57dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=27; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=31; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "5Cdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=35; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "5Gdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=39; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "5Kdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=21; y=43; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "IOdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=47; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "IKdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=43; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "IGdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=39; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "ICdlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=35; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=31; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    }
+  ]
+}

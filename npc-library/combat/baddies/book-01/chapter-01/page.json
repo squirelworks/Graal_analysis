@@ -1,0 +1,242 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "OGreybed.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 10,
+      "files": [
+        "Greyroom.graal",
+        "skytf2r3.graal",
+        "zkhouse9.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 9,
+      "files": [
+        "DW26.graal",
+        "desertcastleout2.graal",
+        "dolegardens04.graal"
+      ]
+    },
+    {
+      "image": "L0attackblock.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timeout=.05; this.x=x; this.y=y; drawunderplayer} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=3} if (playerx<x && !onwall(x-.5,y)) {this.1=4}} } if (timeout) {time",
+      "count": 8,
+      "files": [
+        "dldungeon1.graal",
+        "dldungeon1.graal",
+        "dldungeon1.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } O",
+      "count": 4,
+      "files": [
+        "DW23.graal",
+        "DW26.graal",
+        "DW28.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 4,
+      "files": [
+        "baddy.graal",
+        "dark.graal",
+        "dragoncave3.graal"
+      ]
+    },
+    {
+      "image": "block.gif",
+      "script": "if (compusdied) { hide }",
+      "count": 4,
+      "files": [
+        "krad10.graal",
+        "krad7.graal",
+        "krad8.graal"
+      ]
+    },
+    {
+      "image": "sign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 4,
+      "files": [
+        "skytf1r1.graal",
+        "skytf1r5.graal",
+        "skytf2r2.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } H",
+      "count": 3,
+      "files": [
+        "DW26.graal",
+        "DW28.graal",
+        "dw27.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } K",
+      "count": 3,
+      "files": [
+        "DW26.graal",
+        "DW28.graal",
+        "dw27.graal"
+      ]
+    },
+    {
+      "image": "desertcastlechest.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 2,
+      "files": [
+        "DesertCastleCave1.graal",
+        "zkhouse13.graal"
+      ]
+    },
+    {
+      "image": "BAabermose.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 2,
+      "files": [
+        "abermose2.graal",
+        "abermose2old.graal"
+      ]
+    },
+    {
+      "image": "R4doorright.gif",
+      "script": "if (playerenters) {show} if (compusdied) {hide} R2doorright.gif",
+      "count": 2,
+      "files": [
+        "ccbadcastle8.graal",
+        "ccbadcastle9.graal"
+      ]
+    },
+    {
+      "image": "D0door.gif",
+      "script": "if (compusdied) {hide } if(playerenters) {show}",
+      "count": 2,
+      "files": [
+        "cctemplea3.graal",
+        "cctemplea4.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (compusdied && !GnomsAtHome) { set GnomCave1free; say 0; hide; } if (playerenters && GnomCave1free) { removecompus; hide; } /Ngnom.gif",
+      "count": 2,
+      "files": [
+        "house12-heart.graal",
+        "house12.graal"
+      ]
+    },
+    {
+      "image": "E6clearguy.gif",
+      "script": "if (playerenters) { if (!IZPChaos){ hide; removecompus; } if (IZPChaos){ say 0 } } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {hide } if (playerendsreading) { } if (exploded) { }",
+      "count": 2,
+      "files": [
+        "izplar.graal",
+        "izpzol.graal"
+      ]
+    },
+    {
+      "image": "bowmachine.gif",
+      "script": "if (playerenters) {timeout = 1.5} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) {y = y - 1; shootarrow right; y = y + 1; timeout = 0.8}",
+      "count": 2,
+      "files": [
+        "kcastle4b.graal",
+        "kcastle4c.graal"
+      ]
+    },
+    {
+      "image": "BEblackbaddy.gif",
+      "script": "if (playertouchsme) say 3; EGdbluebaddy.gif",
+      "count": 2,
+      "files": [
+        "kcastlefin-heart.graal",
+        "kcastlefin.graal"
+      ]
+    },
+    {
+      "image": "HEblackbaddy.gif",
+      "script": "if (playertouchsme) say 3; KEblackbaddy.gif",
+      "count": 2,
+      "files": [
+        "kcastlefin-heart.graal",
+        "kcastlefin.graal"
+      ]
+    },
+    {
+      "image": "EEblackbaddy.gif",
+      "script": "if (playertouchsme) say 3; ?Eblackbaddy.gif",
+      "count": 2,
+      "files": [
+        "kcastlefin-heart.graal",
+        "kcastlefin.graal"
+      ]
+    },
+    {
+      "image": "VQbeerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say00 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 2,
+      "files": [
+        "lordscorpion'shouse10.graal",
+        "lordscorpion'shouse12.graal"
+      ]
+    },
+    {
+      "image": "goldpillar.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 2,
+      "files": [
+        "midasrealm1.graal",
+        "midasrealm5.graal"
+      ]
+    },
+    {
+      "image": "93alienleft.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 2,
+      "files": [
+        "zkalien1.graal",
+        "zkout4.graal"
+      ]
+    },
+    {
+      "image": "8set2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 2,
+      "files": [
+        "zsachurin2.graal",
+        "zsachurin8.graal"
+      ]
+    },
+    {
+      "image": "74set2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 0;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 2,
+      "files": [
+        "zsachurin4.graal",
+        "zsachurin6.graal"
+      ]
+    },
+    {
+      "image": "9ArchBlk.gif",
+      "script": "if (compusdied) {hide} >EArchBlk.gif",
+      "count": 1,
+      "files": [
+        "Archery1.graal"
+      ]
+    }
+  ]
+}

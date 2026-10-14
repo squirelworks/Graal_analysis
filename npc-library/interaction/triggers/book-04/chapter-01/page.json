@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 4,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Ewhite.gif",
+      "script": "if (playertouchsme && selecthead) {playerheadset=27} ;Jwhite.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Nwhite.gif",
+      "script": "if (playertouchsme && selecthead) {playerheadset=22} ;Nwhite.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Jwhite.gif",
+      "script": "if (playertouchsme && selecthead) {playerheadset=21} AJwhite.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "ANwhite.gif",
+      "script": "if (playertouchsme && selecthead) {playerheadset=25} ;Ewhite.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "white.gif",
+      "script": "if (playertouchsme && selecthead) {playerheadset=28} ANclear.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "64divingboard2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer } 1Sdoor.gif",
+      "count": 1,
+      "files": [
+        "jaypee2level.graal"
+      ]
+    },
+    {
+      "image": "couch.gif",
+      "script": "if (playertouchsme) {dontblock; drawunderplayer}",
+      "count": 1,
+      "files": [
+        "jaypee2poolhouse.graal"
+      ]
+    },
+    {
+      "image": "bccranebar.gif",
+      "script": "if (playerenters) {drawoverplayer;} @>bro.gif",
+      "count": 1,
+      "files": [
+        "koroco.graal"
+      ]
+    },
+    {
+      "image": "5Fhotspringani.gif",
+      "script": "// Now the pool looks like a hot spring if (playerenters) { drawunderplayer; }",
+      "count": 1,
+      "files": [
+        "krakenhouse3.graal"
+      ]
+    },
+    {
+      "image": "DIredwater.gif",
+      "script": "if (playerenters) { x=36; y=41; dontblock; drawunderplayer; redx = x; redy = y; }",
+      "count": 1,
+      "files": [
+        "krakenhouse7.graal"
+      ]
+    },
+    {
+      "image": "nlimits.gif",
+      "script": "if (playerenters) { play stef29.mid; } .Qdoor.gif",
+      "count": 1,
+      "files": [
+        "level16.graal"
+      ]
+    },
+    {
+      "image": "bridgetask.gif",
+      "script": "if (playertouchsme) playerx = 29; .?",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "8dlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} *8dlstatue.gif",
+      "count": 1,
+      "files": [
+        "level32.graal"
+      ]
+    },
+    {
+      "image": "68dlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} :8dlstatue.gif",
+      "count": 1,
+      "files": [
+        "level32.graal"
+      ]
+    },
+    {
+      "image": "8Ufloor.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer } 8Tblank2.gif",
+      "count": 1,
+      "files": [
+        "level33.graal"
+      ]
+    },
+    {
+      "image": "Wclouds.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } FVclouds.gif",
+      "count": 1,
+      "files": [
+        "level34.graal"
+      ]
+    },
+    {
+      "image": "5Vclouds.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } RVclouds.gif",
+      "count": 1,
+      "files": [
+        "level34.graal"
+      ]
+    },
+    {
+      "image": "Uclouds.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer }",
+      "count": 1,
+      "files": [
+        "level34.graal"
+      ]
+    },
+    {
+      "image": "angel.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer; } >3angelsstep.gif",
+      "count": 1,
+      "files": [
+        "level38.graal"
+      ]
+    },
+    {
+      "image": "9tube4.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawunderplayer; } ;6tube2.gif",
+      "count": 1,
+      "files": [
+        "level8.graal"
+      ]
+    },
+    {
+      "image": "6tube3.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } ;,tube5.gif",
+      "count": 1,
+      "files": [
+        "level8.graal"
+      ]
+    },
+    {
+      "image": "82smokeani.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer; } :Cdoor.gif",
+      "count": 1,
+      "files": [
+        "level9.graal"
+      ]
+    },
+    {
+      "image": "Ibell.gif",
+      "script": "if (playerenters) {play stef11.mid }",
+      "count": 1,
+      "files": [
+        "lifemountain4.graal"
+      ]
+    },
+    {
+      "image": "alter.gif",
+      "script": "if (playertouchsme) {dontblock; drawunderplayer} @Bgoldseat.gif",
+      "count": 1,
+      "files": [
+        "mandichurch.graal"
+      ]
+    },
+    {
+      "image": "azseat.gif",
+      "script": "if (playertouchsme && playeringuild AZRAEL) {dontblock; drawunderplayer} 13mandiseat.gif",
+      "count": 1,
+      "files": [
+        "mandichurch.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "JJbrugitewarrior.gif",
+      "script": "//Newcomp Pro - Spawner //(See Newcomp Pro - Controller) //By Bruges //Newcomp Pro is a set of NPCs that work online //to put newcomps into your levels, and respawn //them. //Using the Spawner you can position the //newcomps in the same way as you would with //standard compus. //YOU MUST HAVE A CONTROLLER IN EVERY //LEVEL YOU USE THESE IN if (playerenters) { hide; timeout=.05; } if (timeout)",
+      "count": 7,
+      "files": [
+        "brugestower1_1.graal",
+        "brugestower1_1.graal",
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "Y6dlbcup.gif",
+      "script": "if (playertouchsme && this.1==0 && !dlbc1) { followplayer; this.1=1; set dlbc1} if (followsplayer) { blockagain; canbecarried} if (this.1==1 && !dlbc1) { hide; this.1=0; x=x; y=y} if (wasthrown) { this.2=playerdir+1; cannotbecarried; timeout=.05} if (timeout && this.2==1) {y=y-.75; timeout=.05; play Whistl_1.wav} if (timeout && this.2==2) {x=x-.75; timeout=.05; setgif dlbcl.gif; pl",
+      "count": 5,
+      "files": [
+        "dlweapons.graal",
+        "dlweapons.graal",
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "Fbrugescorelogo_small.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock; timeout=.2 } 7;bctarget2.gif",
+      "count": 2,
+      "files": [
+        "bcshootinggame.graal",
+        "cchouse6.graal"
+      ]
+    },
+    {
+      "image": "8Vredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 6Vredstone.gif",
+      "count": 2,
+      "files": [
+        "brugestower1_4.graal",
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "ccopen3.gif",
+      "script": "timeout=.1; if (timeout) {hideplayer 1;freezeplayer 1;playerx=x+18;playery=y+8} L9black.gif",
+      "count": 2,
+      "files": [
+        "ccopening2.graal",
+        "ccopening3.graal"
+      ]
+    },
+    {
+      "image": "BBwboom0.gif",
+      "script": "if (playertouchsme) { toweapons Boomerang; hide; } if (weaponfired && this.flycounter<=0) { hideimg 1; hidesword 0.3; this.distance = 13; this.steplen = 1.5; timeout = 0.05; this.flycounter = 0; this.oldx = playerx; this.oldy = playery; } if (timeout) { this.flycounter++; if (this.flycounter<6) { if (playerdir==0 || playerdir==2) playersprite = 13; else playersprit",
+      "count": 2,
+      "files": [
+        "house1.graal",
+        "magboom.graal"
+      ]
+    },
+    {
+      "image": "8ryuneo.gif",
+      "script": "if (playerenters) {x=32} //change to x of the npc; if (timeout&& !x==34) {timeout=0.1; x+=0.5} //change the !x==",
+      "count": 2,
+      "files": [
+        "usahang.graal",
+        "usahang.graal"
+      ]
+    },
+    {
+      "image": "Ausabcdown.gif",
+      "script": "if (playertouchsme && this.1==0 && !bombchu1) { followplayer; this.1=1; set bombchu1} if (followsplayer) { blockagain; canbecarried} if (this.1==1 && !bombchu1) { hide; this.1=0; x=x; y=y; canbecarried; set thanxforbombchu} if (wasthrown) { this.2=playerdir+1; cannotbecarried; timeout=.05} if (timeout && playerdir=0) {y=y-.75; timeout=.05; setgif usabcup.gif} if (timeout && playerd",
+      "count": 2,
+      "files": [
+        "usaroom.graal",
+        "usaroom.graal"
+      ]
+    },
+    {
+      "image": "01armanoperm.gif",
+      "script": "if (playertouchsme) { if (ArmaPermClothes) { message <<removing Perma-Clothes>>; set ArmaPCWaiting; unset ArmaPermClothes; timeout=7; timershow; } } if (timeout) { unset ArmaPCWaiting; message; } >7pachuka.gif",
+      "count": 1,
+      "files": [
+        "ArmaPerma.graal"
+      ]
+    },
+    {
+      "image": "D3armawhiteclothes.gif",
+      "script": "if (playertouchsme) { if ((!ArmaPermClothes) && (!ArmaPCWaiting)) { set ArmaPermClothes; putnpc ArmaPermCode.gif, ArmaPermWhite.txt, x, y; putnpc ArmaPermInventory.gif, ArmaPermInventory.txt, x, y; } else { message You're already wearing Perm-Clothes!; timeout=1; } } if (timeout) { message; } G3armablackclothes.gif",
+      "count": 1,
+      "files": [
+        "ArmaPerma.graal"
+      ]
+    },
+    {
+      "image": "O3armawhiteclothes.gif",
+      "script": "if (playerenters) { timeout=5; } if (playertouchsme) { if ((!ArmaPermClothes) && (!ArmaPCWaiting)) { set ArmaPermClothes; putnpc ArmaPermCode.gif, ArmaPermFlashBW.txt, x, y; putnpc ArmaPermInventory.gif, ArmaPermInventory.txt, x, y; } else { message You're already wearing Perm-Clothes!; timeout=1; } } if (timeout) { message ; if (this.rotation==0) { setgif ArmaB",
+      "count": 1,
+      "files": [
+        "ArmaPerma.graal"
+      ]
+    },
+    {
+      "image": "W3armawhiteclothes.gif",
+      "script": "if (playerenters) { timeout=.05; } if (playertouchsme) { if ((!ArmaPermClothes) && (!ArmaPCWaiting)) { set ArmaPermClothes; putnpc ArmaPermCode.gif, ArmaPermRandom.txt, x, y; putnpc ArmaPermInventory.gif, ArmaPermInventory.txt, x, y; } else { message You're already wearing Perm-Clothes!; timeout=1; } } if (timeout) { message ; unset ArmaPCWaiting; if (this.rotatio",
+      "count": 1,
+      "files": [
+        "ArmaPerma.graal"
+      ]
+    },
+    {
+      "image": "01armanopermsword.gif",
+      "script": "if (playertouchsme) { if (ArmaPermSword) { message <<removing Perma-Sword>>; set ArmaPCWaiting; unset ArmaPermSword; timeout=7; timershow; } } if (timeout) { unset ArmaPCWaiting; message; } >6pachuka.gif",
+      "count": 1,
+      "files": [
+        "ArmaPermaSword.graal"
+      ]
+    },
+    {
+      "image": "84armapermswordinventory.gif",
+      "script": "if (playertouchsme) { if ((!ArmaPermSword) && (!ArmaPCWaiting)) { message ; set ArmaPermSword; ArmaPlayerID=player[0].id; putnpc ArmaPermCode.gif, ArmaPermSwordRandom.txt, x, y; putnpc ArmaPermSwordInventory.gif, ArmaPermSwordInventory.txt, x, y; } else { message You're already using MorphStuff; timeout=1; } } if (timeout) { message ; }",
+      "count": 1,
+      "files": [
+        "ArmaPermaSword.graal"
+      ]
+    },
+    {
+      "image": "armachanger1.gif",
+      "script": "if (playerenters) { dontblock; drawoverplayer; timeout=.05; this.rotation=0; this.pull=0; this.changed=0; } if (timeout) { dontblock; drawoverplayer; if ((playerx>=x) && (playery>=y) && (playerx<=(x+10)) && (playery<=(y+3))) { if (this.pull==0) { if (playerx>(x+5)) { this.pull=-.55; } else { this.pull=.55; } } playerx+=this.pull;",
+      "count": 1,
+      "files": [
+        "ArmaWeaponGenerator.graal"
+      ]
+    },
+    {
+      "image": "93pachuka.gif",
+      "script": "if (playerenters) { show; this.msg=1; timeout=.05; } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=500) { this.msg=-100; message Time's Up!; rupees=0; timershow; timeout=180; } } if (timeout) { if ((playerx>20) && (playerx<47)) { if ((playery>23.5) && (playery<30)) { playery=23.5; } } this",
+      "count": 1,
+      "files": [
+        "ArmaWeaponGenerator.graal"
+      ]
+    },
+    {
+      "image": "1armanopermsword.gif",
+      "script": "if (playertouchsme) { if (ArmaPermSword) { message <<removing Perma-Sword>>; set ArmaPCWaiting; unset ArmaPermSword; timeout=7; timershow; } } if (timeout) { unset ArmaPCWaiting; message; } ':armashopfounders.gif",
+      "count": 1,
+      "files": [
+        "ArmaWeaponGenerator.graal"
+      ]
+    },
+    {
+      "image": "bluelampani2.gif",
+      "script": "if (playerenters)timeout= 2; if (timeout){setgif bluelampani2.gif;timeout= 2} 4;bluelampani2.gif",
+      "count": 1,
+      "files": [
+        "ArmasClothes1.graal"
+      ]
+    },
+    {
+      "image": "armageddon.gif",
+      "script": "if (playerenters){this.message=1; timeout=.5; } if (timeout){ if(this.message==1)message HEY!; if (this.message==2)message I own this place im Armageddon.; if(this.message==3)message You have entered the clothes dept.; if(this.message==4)message Created by me!; if(this.message==5)message If you go north you will find the normal clothes!; if(this.message==6)message these clothes are a compliment",
+      "count": 1,
+      "files": [
+        "ArmasClothes2.graal"
+      ]
+    },
+    {
+      "image": "4poorclerk.gif",
+      "script": "if (playerenters) {this.message=1; timeout=.5; } { if(this.message==1)message Hi im a poor clerk hired by Armageddon; if(this.message==2)message He hired me becasue i was so poor i can afford clothes.; if(this.message==3)message Go to the South for the random Clothing Generator.; if(this.message==4)message Go to the West for Permanant Clothes.; if(this.message==5)message Go to the East for Ran",
+      "count": 1,
+      "files": [
+        "ArmasClothes3.graal"
+      ]
+    },
+    {
+      "image": "9judge.gif",
+      "script": "if (playerenters) { this.message=1; timeout=.5;} if(timeout){ if(this.message==1)message Hi!; if(this.message==2)message You have entered the weapons section.; if(this.message==3)message Go north to find the Perm Weapons.; if(this.message==4)message Go south to find the Random Weapon Generator.; if(this.message==5)message Go east to find the place to buy custom weapons.; if(this.message==6)mes",
+      "count": 1,
+      "files": [
+        "ArmasWeapons.graal"
+      ]
+    },
+    {
+      "image": "8judge.gif",
+      "script": "if (playerenters) { this.message=1; timeout=.5;} if(timeout){ if(this.message==1)message Hi!; if(this.message==2)message You have entered the weapons section.; if(this.message==3)message Go north to find the Perm Weapons.; if(this.message==4)message Go south to find the Random Weapon Generator.; if(this.message==5)message Go east to find the place to buy custom weapons.; if(this.message==6)message",
+      "count": 1,
+      "files": [
+        "ArmasWeapons1.graal"
+      ]
+    },
+    {
+      "image": "pachuka.gif",
+      "script": "// REMOVE THE NEXT 3 LINES TO REMOVE THE FIRESNAKE if (washit) { putnpc JFfiresnake.gif, JFfiresnake.txt, x, y; } // REMOVE THE ABOVE 3 LINES TO REMOVE THE FIRESNAKE if (playerenters) { show; this.msg=1; timeout=.05; } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; x+=rupees/5; rupees=0; if (x>58) x=58; } if (timeout) { if (playerx>x-",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "31armanopermsword.gif",
+      "script": "if (playertouchsme) { if (ArmaPermSword) { message <<removing Perma-Sword>>; set ArmaPCWaiting; unset ArmaPermSword; timeout=7; timershow; } } if (timeout) { unset ArmaPCWaiting; message; }",
+      "count": 1,
+      "files": [
+        "ArmasWeapons2.graal"
+      ]
+    },
+    {
+      "image": "dk-stand.gif",
+      "script": "if (playertouchsme) {message .............;timeout=4} if (timeout) {message } J",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    }
+  ]
+}

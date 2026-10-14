@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 4,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Hgrave1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } (3grave1.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "grave1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E rain.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "DKzombie.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message teo skpic dawd } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } )5zombie.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "zombie.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message Red Dragons... funnnee huohuohuo } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 6;ghost_s.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } > deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } . deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *!deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :!deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } J!deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } )",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } OPdeadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "EHdeadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F8deadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "7deadtree.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } $Hdeadtree.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "OAgrave1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 7Sdead.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Jpurpfire.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } /Jpurpfire.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Wpurpfire.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >Wpurpfire.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "PDzombie.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message we all riseeee } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1>zombie.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "44pachuka2pre.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?4",
+      "count": 1,
+      "files": [
+        "eletric.graal"
+      ]
+    },
+    {
+      "image": "1Lbook15.gif",
+      "script": "if (playertouchsme) {say 0;unset toinventory gotgirlsdiaryfromforest;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "elfhut1.graal"
+      ]
+    },
+    {
+      "image": "8Cbookopen.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } D6portrate.gif",
+      "count": 1,
+      "files": [
+        "esmersroom.graal"
+      ]
+    },
+    {
+      "image": "BIchibi.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0;setshield chibishield.gif,playershieldpower} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "fairy.graal"
+      ]
+    },
+    {
+      "image": "G9bro.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N5bookstack.gif",
+      "count": 1,
+      "files": [
+        "fckeep.graal"
+      ]
+    },
+    {
+      "image": "O6bookstack.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } M5bookstack.gif",
+      "count": 1,
+      "files": [
+        "fckeep.graal"
+      ]
+    }
+  ]
+}

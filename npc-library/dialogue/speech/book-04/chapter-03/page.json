@@ -1,0 +1,193 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 4,
+  "chapter": 3,
+  "count": 23,
+  "scripts": [
+    {
+      "image": "bar.gif",
+      "script": "if (playertouchsme&&!got200bank) { say1} if (playertouchsme&&got200bank&&!got400bank) { playerrupees+=200; unset got200bank;say3 } if (playertouchsme&&got200bank&&got400bank&&!got600bank) { playerrupees+=400;unset got200bank;unset got400bank;say3 } if (playertouchsme&&got200bank&&got400bank&&got600bank&&!got800bank) { playerrupees+=600;unset got200bank;unset got400bank;unset got600bank;say3 } if (",
+      "count": 1,
+      "files": [
+        "tseng16.graal"
+      ]
+    },
+    {
+      "image": "B9brother1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say6} if (playertouchsother) { } ;Lbeer.gif",
+      "count": 1,
+      "files": [
+        "tseng2.graal"
+      ]
+    },
+    {
+      "image": "brother1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say5} if (playertouchsother) { } >Kbrother1.gif",
+      "count": 1,
+      "files": [
+        "tseng2.graal"
+      ]
+    },
+    {
+      "image": "slotmach.gif",
+      "script": "if (playerenters) {show; win=0} if (playerlaysitem) {take redrupee} if (timeout) {if (slotgoing) { win=int(random(1,6)); this.say+=1} if (!slotgoing) {message ;}} if (win==3) {message JACK POT WINNER!; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay bluerupee; lay",
+      "count": 1,
+      "files": [
+        "usagetawayh.graal"
+      ]
+    },
+    {
+      "image": "Otherkey.gif",
+      "script": "if (playerenters) { if (V3OtherKey) hide; } if (playertouchsme) { set V3OtherKey; say 0; hide; }",
+      "count": 1,
+      "files": [
+        "virus3.graal"
+      ]
+    },
+    {
+      "image": "Cbrothera.gif",
+      "script": "if (playerenters && AGoneLeft) x -= 2; if (playertouchsme) { if (AGoneLeft) say 3; else if (ABCfree) { say 3; set AGoneLeft; x -=2; } else say 2; } QS",
+      "count": 1,
+      "files": [
+        "water2.graal"
+      ]
+    },
+    {
+      "image": "ECmaid2.gif",
+      "script": "if (playertouchsme) say 3; if (!skill6) { take greenrupee; take bluerupee; } if (skill1) y = 33; if (skill1 && rupees >= 5) { if (!skill2) set skill2; else if (!skill3) set skill3; else if (!skill4) set skill4; else if (!skill5) set skill5; else if (!skill6) set skill6; rupees -= 5; say 5; } if (rupees >= 5) { say 4; rupees -= 5; set skill1; } if (playerenters) { pl",
+      "count": 1,
+      "files": [
+        "whoopa_arena2.graal"
+      ]
+    },
+    {
+      "image": "arcade_host.gif",
+      "script": "if (playertouchsme) say 0; >?tablebottom.gif",
+      "count": 1,
+      "files": [
+        "whoopa_northshop.graal"
+      ]
+    },
+    {
+      "image": "LLgrave1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if (!ihavediary) say 1 } if (ihavediary){ unset ihavediary; set showvi; say 1 } JNvikey.gif",
+      "count": 1,
+      "files": [
+        "zgrave.graal"
+      ]
+    },
+    {
+      "image": "Vgrave1.gif",
+      "script": "if (playertouchsme){say 1;} if (playertouchsme && L799){ unset L799; set L791; } FPgrave3.gif",
+      "count": 1,
+      "files": [
+        "zgrave2.graal"
+      ]
+    },
+    {
+      "image": "izphost.gif",
+      "script": "if (playerlaysitem) { take bluerupee; if (rupees>=10) { rupees=0; say 7; set gotgcinfo; } } 8Agnom.gif",
+      "count": 1,
+      "files": [
+        "zkhouse1.graal"
+      ]
+    },
+    {
+      "image": "76redup.gif",
+      "script": "if (playertouchsme) say 3; C4mandi_icon.gif",
+      "count": 1,
+      "files": [
+        "zkhouse1.graal"
+      ]
+    },
+    {
+      "image": "bar.gif",
+      "script": "if (playertouchsme) { if (!gotgcinfo) say 0; if (gotgcinfo) say 8; }",
+      "count": 1,
+      "files": [
+        "zkhouse1.graal"
+      ]
+    },
+    {
+      "image": "4cook.gif",
+      "script": "if (playertouchsme) { if (isoupspoon){ say 2; } if (!carriessign){ if (!isoupspoon){ say 0; } } if (carriessign){ if (!isoupspoon){ takeplayercarry; say 1; set isoupspoon; } } }",
+      "count": 1,
+      "files": [
+        "zkhouse3.graal"
+      ]
+    },
+    {
+      "image": "PLclimberleft.gif",
+      "script": "if (playertouchsme) {say 1 }",
+      "count": 1,
+      "files": [
+        "zkout1.graal"
+      ]
+    },
+    {
+      "image": "Wsalesman.gif",
+      "script": "if (playerenters) {x=30;y=55;} if (playertouchsme) { if (!rocksgone) say 1; if (rocksgone) say 4; } if (playerlaysitem) { if (!rocksgone){ take bluerupee; take redrupee; take goldrupee; if (rupees>=300) { say 3; rupees=0; set rocksgone; } } } %Tstone.gif",
+      "count": 1,
+      "files": [
+        "zkout2.graal"
+      ]
+    },
+    {
+      "image": "Rstone.gif",
+      "script": "if (playerenters) { if (rocksgone){ hide; } } if (playertouchsme) {say 2 } if (playerendsreading) { if (rocksgone){ hide; } } $Qstone.gif",
+      "count": 1,
+      "files": [
+        "zkout2.graal"
+      ]
+    },
+    {
+      "image": "Kstone.gif",
+      "script": "if (playerenters) { if (rocksgone){ hide; } } if (playertouchsme) {say 2 } if (playerendsreading) { if (rocksgone){ hide; } } %Hstone.gif",
+      "count": 1,
+      "files": [
+        "zkout2.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) {ow = 1; superblast = x + .4; miniblast = y +.1; timeout=.05; timereverywhere} if (playertouchsme) { if (!youtouchedthis) {say 0; set youtouchedthis} canbecarried; ow = 1; superblast = x + .4; miniblast = y +.1; setgif explodeion2.gif} if (wasthrown) {superblast = x; miniblast = y} if (playersays (fight fire with fire 'up') && ow = 1) {shootfireball up; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (playersays (fight fire with fire 'left') && ow = 1) {shootfireball left; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (playersays (fight fire with fire 'right') && ow = 1) {shootfireball right; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (playersays (fight fire with fire 'down') && ow = 1) {shootfireball down; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (playersays (cannon fire) && ow = 1) {putexplosion 3, superblast, miniblast; ow = 0; setgif explodeion1.gif; playerbombs-=5} if (playersays (cannon fire 'up') && ow = 1) {shootfireblast up; ow = 0; setgif explodeion1.gif} if (playersays (cannon fire 'left') && ow = 1) {shootfireblast left; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (playersays (cannon fire 'right') && ow = 1) {shootfireblast right; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (playersays (cannon fire 'down') && ow = 1) {shootfireblast down; ow = 0; setgif explodeion1.gif; playerdarts-=2} if (timeout) { if (onwall(x+1.5,y)) {y+=1} if (onwall(x,y+1.5)) {x+=1} if (onwall(x+1.5,y+3)) {y-=1} if (onwall(x+3,y+1.5)) {x-=1} timeout=.05;}",
+      "count": 1,
+      "files": [
+        "explodeion.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) {say 1;toweapons Magic Man;destroy } if (weaponfired && playerrupees>=10) {putnpc iceblock.gif,iceblock.txt,x,y;playerrupees=playerrupees-10;}",
+      "count": 1,
+      "files": [
+        "icemaker.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) { toweapons Joystick; // Put this in the players weapons list unset canplay; // Start minigame initialization play qkcourage.mid; // Music please score = 0; fbs = 5; bp = 1; fp = 1; lives = 5; enemycount = 0; set playing; // Tell the game that we're rolling! destroy; // Removes the weapon from the board, but not the weapons list :) } // Why this next line? This starts up the display if (playing && this.init == 0) { timeout = .05; this.init = 1; } if (timeout) { y = 23; // Display score t1 = score; for (i = 1; i < 6; i++) { x = 24 - i; if (t1 > 0 || i == 1) { t2 = t1 % 10; if (t2 == 0) showimg i,n0.gif,x,y; if (t2 == 1) showimg i,n1.gif,x,y; if (t2 == 2) showimg i,n2.gif,x,y; if (t2 == 3) showimg i,n3.gif,x,y; if (t2 == 4) showimg i,n4.gif,x,y; if (t2 == 5) showimg i,n5.gif,x,y; if (t2 == 6) showimg i,n6.gif,x,y; if (t2 == 7) showimg i,n7.gif,x,y; if (t2 == 8) showimg i,n8.gif,x,y; if (t2 == 9) showimg i,n9.gif,x,y; t1 = int(t1 / 10); } else hideimg i; } t1 = fbs; // Display fireballs remaining for (i = 1; i < 3; i++) { x = 33 - i; if (t1 > 0 || i = 1) { t2 = t1 % 10; if (t2 == 0) showimg 5+i,n0.gif,x,y; if (t2 == 1) showimg 5+i,n1.gif,x,y; if (t2 == 2) showimg 5+i,n2.gif,x,y; if (t2 == 3) showimg 5+i,n3.gif,x,y; if (t2 == 4) showimg 5+i,n4.gif,x,y; if (t2 == 5) showimg 5+i,n5.gif,x,y; if (t2 == 6) showimg 5+i,n6.gif,x,y; if (t2 == 7) showimg 5+i,n7.gif,x,y; if (t2 == 8) showimg 5+i,n8.gif,x,y; if (t2 == 9) showimg 5+i,n9.gif,x,y; t1 = int(t1 / 10); } else hideimg 5+i; } x = 27; // Display bomb power if (bp == 1) showimg 8,l1.gif,x,y; if (bp == 2) showimg 8,l2.gif,x,y; if (bp == 3) showimg 8,l3.gif,x,y; x = 33; // Display fireball power if (fp == 1) showimg 9,l1.gif,x,y; if (fp == 2) showimg 9,l2.gif,x,y; if (fp == 3) showimg 9,l3.gif,x,y; for (i = 1; i < 6; i++) { // Display lives remaining x = 41 - i; if (lives >= i) showimg 9+i,normalheart.gif,x,y; else hideimg 9+i; } showimg 15,smallbomb.gif,26,23; // Display bomb and fireball icons showimg 16,ballofire_still.gif,30,23; timeout = .05; } // Game ended? Then get rid of this weapon if (playerendsreading && !playing && !canplay) { for (i = 1; i < 17; i++) { hideimg i; } destroy; } // If the player is a chicken... if (playersays(end)) set gameover; // Shoot a fireball (if the player has enough) when used if (weaponfired) set usedfball;",
+      "count": 1,
+      "files": [
+        "joy_1.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) { say 6; toweapons Pegasus Boots; set gotpegasusboots; } if (weaponfired) { this.m=1; this.oldx = playerx; this.oldy = playery; if (this.inuse=0) this.inuse=1; else this.inuse=0; if (this.inuse=1) timeout=.05 } if (timeout && this.inuse=1) { if (playersprite<1 || playersprite>8) {this.inuse=0;} else { this.mx=0; this.my=0; if (playerx<this.oldx) this.mx=this.m; if (playery<this.oldy) this.my=this.m; if (playerx>this.oldx) this.mx=-1*this.m; if (playery>this.oldy) this.my=-1*this.m; this.dir=10*this.my+this.mx; //HORIZONTAL movement (X) this.rx=1; if (this.mx<0) this.rx=4-1; if (this.mx>0) this.rx=-1.5-1; ok=1; for (i=1;i<=2;i+=.25;) { this.rx+=.25; for (this.ry=1;this.ry<=2.5;this.ry+=.5) { if (onwall(playerx+this.rx+this.mx,playery+this.ry)) { ok=0; } } } if (ok==1) playerx-=this.mx; //VERTICAL movement (Y) this.ry=1; if (this.my<0) this.ry=4.5-1.5; if (this.my>0) this.ry=-1-1.5; ok=1; for (i=1;i<=3;i+=.25;) { this.ry+=.25; for (this.rx=.75;this.rx<=2.5;this.rx+=.5) { if (onwall(playerx+this.rx,playery+this.ry+this.my)) { ok=0; } } } if (ok==1) playery-=this.my; this.oldx = playerx; this.oldy = playery; timeout=.05; } }",
+      "count": 1,
+      "files": [
+        "pegasusboots.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (!this.init==1 && hasstickybow) { this.max=10; //maximum amount of arrows out from this bow at one time (lower=reduced lag) this.speed=1; //speed of the arrows (normal = 1) this.life=5; //number of seconds arrow remains in play (lower=reduced lag) this.out=0; setarray this.arrowx, this.max + 1; setarray this.arrowy, this.max + 1; setarray this.arrowdir, this.max + 1; setarray this.arrowxdif, this.max + 1; setarray this.arrowydif, this.max + 1; setarray this.arrowtime, this.max + 1; setarray this.hit, this.max + 1; this.init=1; this.i=0; this.e=0; timeout = .05; } if (playerenters) { for (this.i=1; this.i<=this.out; this.out++) hideimg this.i; this.out=0; } if (playertouchsme) { toweapons Sticky Bow; set hasstickybow; destroy; } if (playersays(Drop Sticky Bow) && this.init==1) { unset hasstickybow; for (this.i=0; this.i<=this.max; this.i++) hideimg this.i; destroy; } if (weaponfired && playerdarts>=1 && this.out<this.max) { playerdarts-=1; freezeplayer .5; setbow wbow1.gif; playersprite=33; sleep .2; play arrow.wav; timeout = .05; if (playerdir==0) {this.out+=1; this.arrowx[this.out] = playerx + 1; this.arrowy[this.out] = playery-1; this.arrowdir[this.out] = 1; this.hit[this.out] = 0; this.arrowxdif[this.out] = 0; this.arrowydif[this.out] = 0;} else {if (playerdir==1) {this.out+=1; this.arrowx[this.out] = playerx-1; this.arrowy[this.out] = playery+1.5; this.arrowdir[this.out] = 2; this.hit[this.out] = 0; this.arrowxdif[this.out] = 0; this.arrowydif[this.out] = 0;} else {if (playerdir==2) {this.out+=1; this.arrowx[this.out] = playerx + 1; this.arrowy[this.out] = playery+4; this.arrowdir[this.out] = 3; this.hit[this.out] = 0; this.arrowxdif[this.out] = 0; this.arrowydif[this.out] = 0;} else {if (playerdir==3) {this.out+=1; this.arrowx[this.out] = playerx+4; this.arrowy[this.out] = playery+1.5; this.arrowdir[this.out] = 4; this.hit[this.out] = 0; this.arrowxdif[this.out] = 0; this.arrowydif[this.out] = 0;}}}} } if (timeout) { if (this.out>=1) { for(this.i = 1; this.i<=this.out; this.i++) { if (this.hit[this.i] == 0) { if (this.arrowdir[this.i] == 1) this.arrowy[this.i]-=this.speed; if (this.arrowdir[this.i] == 2) this.arrowx[this.i]-=this.speed; if (this.arrowdir[this.i] == 3) this.arrowy[this.i]+=this.speed; if (this.arrowdir[this.i] == 4) this.arrowx[this.i]+=this.speed; } else { if (!this.hit[this.i] == -1) {this.arrowx[this.i] = players[this.hit+1].x + this.arrowxdif[this.i]; this.arrowy[this.i] = players[this.hit+1].y + this.arrowydif[this.i];} } if (this.arrowdir[this.i] == 1) showimg this.i, arrowup.gif, this.arrowx[this.i] + .25, this.arrowy[this.i]; if (this.arrowdir[this.i] == 2) showimg this.i, arrowleft.gif, this.arrowx[this.i], this.arrowy[this.i] + .25; if (this.arrowdir[this.i] == 3) showimg this.i, arrowdown.gif, this.arrowx[this.i] + .25, this.arrowy[this.i] - 1.5; if (this.arrowdir[this.i] == 4) showimg this.i, arrowright.gif, this.arrowx[this.i] - 1.5, this.arrowy[this.i] + .25; if (onwall(this.arrowx[this.i], this.arrowy[this.i]) && this.hit[this.i] == 0) this.hit[this.i] = -1; if (this.hit[this.i] == 0) { for (this.e=1; this.e<playerscount; this.e++) { if (abs((players[this.e].x+1.1)-(this.arrowx[this.i]))<=.9 && abs((players[this.e].y+1.6)-(this.arrowy[this.i]))<=1.3) { if (!(this.arrowdir[this.i] - players[this.e].dir == -1 && (this.arrowdir[this.i] == 1 || this.arrowdir[this.i] == 2) || players[this.e].shieldpower<=0) && !(this.arrowdir[this.i] - players[this.e].dir == 3 && (this.arrowdir[this.i] == 3 || this.arrowdir[this.i] == 4))){this.arrowxdif[this.i] = this.arrowx[this.i] - players[this.e].x; this.arrowydif[this.i] = this.arrowy[this.i] - players[this.e].y; this.hit[this.i]=this.e; hitplayer this.e, 1, this.arrowx[this.i], this.arrowy[this.i];} else {this.arrowxdif[this.i] = this.arrowx[this.i] - players[this.e].x; this.arrowydif[this.i] = this.arrowy[this.i] - players[this.e].y; this.hit[this.i]=this.e; play punch.wav;} } } } } } for (this.i=1; this.i<=this.out; this.i++) { this.arrowtime[this.i]++; if (this.arrowtime[this.i] >= (this.life*20)) { for (this.e=this.i; this.e<=this.out && this.e<20; this.e++) { this.arrowx[this.e] = this.arrowx[this.e+1]; this.arrowy[this.e] = this.arrowy[this.e+1]; this.arrowdir[this.e] = this.arrowdir[this.e+1]; this.arrowxdif[this.e] = this.arrowxdif[this.e+1]; this.arrowydif[this.e] = this.arrowydif[this.e+1]; this.arrowtime[this.e] = this.arrowtime[this.e+1] - 1; this.hit[this.e] = this.hit[this.e+1]; } this.arrowx[this.out] = 0; this.arrowy[this.out] = 0; this.arrowdir[this.out] = 0; this.arrowxdif[this.out] = 0; this.arrowydif[this.out] = 0; this.arrowtime[this.out] = 0; this.hit[this.out] = 0; hideimg this.out; this.out--; this.i--; } } timeout = .05; }",
+      "count": 1,
+      "files": [
+        "stickybow.txt"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 1,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "top.gif",
+      "script": "// NPC made by King Dan if (playerchats) {message",
+      "count": 1,
+      "files": [
+        "ccforest3.graal"
+      ]
+    },
+    {
+      "image": "stone.gif",
+      "script": "X^stone.gif",
+      "count": 1,
+      "files": [
+        "cclevel30.graal"
+      ]
+    },
+    {
+      "image": "1newguard2.gif",
+      "script": ".1newguard2.gif",
+      "count": 1,
+      "files": [
+        "ccpirate9.graal"
+      ]
+    },
+    {
+      "image": "N0newguard1.gif",
+      "script": "DOnewguard2.gif",
+      "count": 1,
+      "files": [
+        "ccprison2.graal"
+      ]
+    },
+    {
+      "image": "5Onewguard2.gif",
+      "script": "NAnewguard1.gif",
+      "count": 1,
+      "files": [
+        "ccprison2.graal"
+      ]
+    },
+    {
+      "image": "00newguard1.gif",
+      "script": "0Bnewguard1.gif",
+      "count": 1,
+      "files": [
+        "ccprison2.graal"
+      ]
+    },
+    {
+      "image": "newguard1.gif",
+      "script": "2Mnewguard2.gif",
+      "count": 1,
+      "files": [
+        "ccprison4.graal"
+      ]
+    },
+    {
+      "image": "AMnewguard2.gif",
+      "script": "K.newguard1.gif",
+      "count": 1,
+      "files": [
+        "ccprison4.graal"
+      ]
+    },
+    {
+      "image": "newguard1.gif",
+      "script": "-.newguard1.gif",
+      "count": 1,
+      "files": [
+        "ccprison4.graal"
+      ]
+    },
+    {
+      "image": "NLbluelampani.gif",
+      "script": "0Lbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dldungeon1.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "N.bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dldungeon1.graal"
+      ]
+    },
+    {
+      "image": "Ibluflm.gif",
+      "script": "if (has_permission) {hide; } !Jbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Kbluflm.gif",
+      "script": "if (has_permission) {hide; } !Lbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Mbluflm.gif",
+      "script": "if (has_permission) {hide; } !Nbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Obluflm.gif",
+      "script": "if (has_permission) {hide; } !Pbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Qbluflm.gif",
+      "script": "if (has_permission) {hide; } \"Ibluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Jbluflm.gif",
+      "script": "if (has_permission) {hide; } \"Kbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Lbluflm.gif",
+      "script": "if (has_permission) {hide; } \"Mbluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Nbluflm.gif",
+      "script": "if (has_permission) {hide; } \"Obluflm.gif",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "Pbluflm.gif",
+      "script": "if (has_permission) {hide; }",
+      "count": 1,
+      "files": [
+        "dlentrance2.graal"
+      ]
+    },
+    {
+      "image": "R2bluelampani.gif",
+      "script": "R9bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqdorm.graal"
+      ]
+    },
+    {
+      "image": "RBbluelampani.gif",
+      "script": "RJbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqdorm.graal"
+      ]
+    },
+    {
+      "image": "Jbluelampani.gif",
+      "script": ",Bbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqdorm.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": ",2bluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqdorm.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "8Pbluelampani.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead1.graal"
+      ]
+    }
+  ]
+}

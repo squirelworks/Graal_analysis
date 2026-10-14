@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 1,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "dk-stand.gif",
+      "script": "if (playertouchsme) {message .............;timeout=4} if (timeout) {message }",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "Jreceptionist.gif",
+      "script": "if (playerenters) {message Hi; timeout=4} if (playerlaysitem && bottle) {take redrupee} if (timeout) {message What will it be?} GEbottle.gif",
+      "count": 1,
+      "files": [
+        "CoGshop.graal"
+      ]
+    },
+    {
+      "image": "phwallswitchgreen.gif",
+      "script": "if (playerenters) { if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (playertouchsme) { this.on=1-this.on; if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (timeout) { putexplosion 1, x, y-4; timeout=.35; } E\"jfparso",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "phwallswitchgreen.gif",
+      "script": "if (playerenters) { if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (playertouchsme) { this.on=1-this.on; if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (timeout) { putexplosion 1, x, y-4; timeout=.35; } A(phwalls",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "witchgreen.gif",
+      "script": "if (playerenters) { if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (playertouchsme) { this.on=1-this.on; if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (timeout) { putexplosion 1, x, y-4; timeout=.35; } =(phwalls",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "witchgreen.gif",
+      "script": "if (playerenters) { if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (playertouchsme) { this.on=1-this.on; if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (timeout) { putexplosion 1, x, y-4; timeout=.35; } 9(phwalls",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "witchgreen.gif",
+      "script": "if (playerenters) { if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (playertouchsme) { this.on=1-this.on; if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (timeout) { putexplosion 1, x, y-4; timeout=.35; } 5(phwalls",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "witchgreen.gif",
+      "script": "if (playerenters) { if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (playertouchsme) { this.on=1-this.on; if (this.on==1) { setgif phwallSwitchRed.gif; timeout=.05; } else { setgif phwallSwitchGreen.gif; timeout=0; } } if (timeout) { putexplosion 1, x, y-4; timeout=.35; } E2cheesep",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "9beerhost.gif",
+      "script": "if (playertouchsme) {message What will it be?; timeout=2; } if (timeout) { message ;} 7?oldmansitting5.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "AKoldboss.gif",
+      "script": "if (playertouchsme) {message I'm waiting for my pizza; timeout=2; } if (timeout) { message ;} 7Bcheesepan.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "beachball.gif",
+      "script": "if (playertouchsme) {toweapons Fire Protector } if (timeout) {playery=playery-2;playerx=playerx-2 } if (weaponfired && playerbombs>0) {playerbombs--;hideplayer 0.7;freezeplayer 0.7;playery=playery+2;playerx=playerx+2;putexplosion2,playerx-1.5,playery-1.5;timeout=0.7}",
+      "count": 1,
+      "files": [
+        "b39_watertunnel4.graal"
+      ]
+    },
+    {
+      "image": "70bccrane1.gif",
+      "script": "if (playerenters) {dontblock; this.sx=x; this.sy=y; this.mx=.2; this.my=.2; this.grab=0; timeout=.1; } if (timeout) { BCCranex=x; BCCraney=y; if (BCCraneRight) {if (!onwall (x+this.mx+2,y+2)) x+=this.mx; } if (BCCraneDown) {if (!onwall (x,y+this.my+2+2)) y+=this.my; } if (BCCraneGrab) { if (this.grab=0) setgif BCCrane2.gif; else if (this.grab=1) setgif BCCrane3.gif; el",
+      "count": 1,
+      "files": [
+        "bccranegame.graal"
+      ]
+    },
+    {
+      "image": "bccranebtn.gif",
+      "script": "if (playerenters) { y-=.6; timeout=.2} if (playertouchsme) { } if (washit && BCCraneGamePlaying) { if (this.press=0) {set BCCraneRight} if (this.press=1) {unset BCCraneRight; set BCCraneDown} if (this.press=2) {unset BCCraneDown; set BCCraneGrab} this.press+=1; } if (timeout) { if (BCCraneGamePlaying) { if (this.image=0) {this.image=1; setgif BCCraneBtn.gif} else { if (this",
+      "count": 1,
+      "files": [
+        "bccranegame.graal"
+      ]
+    },
+    {
+      "image": "gym5.gif",
+      "script": "//~~Bounce Ball Version 1.2~~ //Made by Bomber39 if (playerenters) {timereverywhere;canbecarried } //~Player touch the ball if (playertouchsme && playery<y+0.5 && playerx<x+1 && playerx>x-1.5) {this.gs=1;this.gsw=0;this.gse=0;this.gw=0;this.gnw=0;this.gn=0;this.gne=0;this.ge=0;this.bounce=10;this.speed=0.1;this.null=0;timeout=this.speed } if (playertouchsme && playery>y+0.5 && playerx<x+1&& pla",
+      "count": 1,
+      "files": [
+        "bouncynpc.graal"
+      ]
+    },
+    {
+      "image": "93gym5.gif",
+      "script": "//~~Bounce Bomb Version 1.1~~ //Made by Bomber39 if (playerenters) {timereverywhere;this.null=1;canbecarried} //~Player touch the ball if (playertouchsme && playery<y+0.5 && playerx<x+1 && playerx>x-1.5) {disablebouncebomb=0;this.gs=1;this.gsw=0;this.gse=0;this.gw=0;this.gnw=0;this.gn=0;this.gne=0;this.ge=0;this.bounce=10;this.speed=0.1;this.null=0;timeout=this.speed } if (playertouchsme && pla",
+      "count": 1,
+      "files": [
+        "bouncynpc.graal"
+      ]
+    },
+    {
+      "image": "Q2bar.gif",
+      "script": "if (greedy){show;timeout=20; timershow;unset greedy} if (timeout) {hide;} if(playerenters){hide;} ;4",
+      "count": 1,
+      "files": [
+        "brandon5.graal"
+      ]
+    },
+    {
+      "image": "switchred.gif",
+      "script": "if (playertouchsme) { timereverywhere; setgif switchgreen.gif; timeout=.05; } if (timeout) { play stef52.mid; sleep 1; setgif switchred.gif;} <$switchred.gif",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "switchred.gif",
+      "script": "if (playertouchsme) { timereverywhere; setgif switchgreen.gif; timeout=.05; } if (timeout) { stopmidi; sleep 1; setgif switchred.gif;} @$switchred.gif",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "switchred.gif",
+      "script": "if (playertouchsme) { timereverywhere; setgif switchgreen.gif; timeout=.05; } if (timeout) { play stef37.mid; sleep 1; setgif switchred.gif;} @",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "Jbluelampani2.gif",
+      "script": "if (playerenters) timeout = 2; if (timeout) { setgif bluelampani2.gif; timeout = 2; } &Sbrugeshelmet.gif",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "switchred.gif",
+      "script": "if (playertouchsme) { timereverywhere; setgif switchgreen.gif; timeout=.05; } if (timeout) { play stef9.mid; sleep 1; setgif switchred.gif;} (",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "book6.gif",
+      "script": "//Newcomp Pro - Controller //(See Newcomp Pro - Spawner) //By Bruges if (playerenters) { hide; timeout=.05} if (timeout) { RoomComps=5; Respdel=10; timeout=.05; } CXbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "BVbluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; ;Xbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "Vbluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; >Ubluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "Ubluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; 7Lbrugitewarrior.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    }
+  ]
+}

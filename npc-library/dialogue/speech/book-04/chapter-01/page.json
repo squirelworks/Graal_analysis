@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 4,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "ENninjitowerg.gif",
+      "script": "if (playertouchsme) {say 1; } 9Z",
+      "count": 1,
+      "files": [
+        "ninjitower.graal"
+      ]
+    },
+    {
+      "image": "B7ninjitowerg.gif",
+      "script": "if (playertouchsme) {say 2; } ?1ninjiizdoor.gif",
+      "count": 1,
+      "files": [
+        "ninjitower.graal"
+      ]
+    },
+    {
+      "image": "FSninjitowerg.gif",
+      "script": "if (playertouchsme) {say 1; } 8Sninjitowerg.gif",
+      "count": 1,
+      "files": [
+        "ninjitowerenter.graal"
+      ]
+    },
+    {
+      "image": "E8brother2.gif",
+      "script": "if (playertouchsme) say 0; N8brother2.gif",
+      "count": 1,
+      "files": [
+        "nwomain.graal"
+      ]
+    },
+    {
+      "image": "3azrael.gif",
+      "script": "if (playertouchsme) say 1; 32brother1.gif",
+      "count": 1,
+      "files": [
+        "nwomain.graal"
+      ]
+    },
+    {
+      "image": "I3brother1.gif",
+      "script": "if (playertouchsme) say 7; if (exploded) { putcomp graysoldier,21,30; }",
+      "count": 1,
+      "files": [
+        "nwomain.graal"
+      ]
+    },
+    {
+      "image": "ONbrother2.gif",
+      "script": "if (playertouchsme) say 0; ,Ubrother2.gif",
+      "count": 1,
+      "files": [
+        "nwomain2.graal"
+      ]
+    },
+    {
+      "image": "brother2.gif",
+      "script": "if (playertouchsme) say 2;",
+      "count": 1,
+      "files": [
+        "nwomain2.graal"
+      ]
+    },
+    {
+      "image": "PJbrother1.gif",
+      "script": "if (playertouchsme) say 9; :6brother1.gif",
+      "count": 1,
+      "files": [
+        "nwotown.graal"
+      ]
+    },
+    {
+      "image": "8dragoon.gif",
+      "script": "if (playertouchsme) {say 0 } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; } I;bcyoshidoll.gif",
+      "count": 1,
+      "files": [
+        "otdonation.graal"
+      ]
+    },
+    {
+      "image": "3kagato_f.gif",
+      "script": "if (playerenters && lightorb || lgateopen) { hide; } if (playertouchsme) { say 1; hide; }",
+      "count": 1,
+      "files": [
+        "palace_dragon_dragon.graal"
+      ]
+    },
+    {
+      "image": "organ.gif",
+      "script": "if (playerenters && !gotshera) { // play music-hcsl.mid; } if (playerenters && gotshera && !kagatoback) { set sherainv; set rescuedshera; // play music-tifa.mid; } if (playertouchsme && !kagatoback) { say 18; } if (playerenters && gotshera && kagatoback) { // play music-kagato.mid; } @4",
+      "count": 1,
+      "files": [
+        "palace_greathall2.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "if (playerenters && kagatotalk || kagatogone) { hide; } if (playertouchsme) { say 0; } 7",
+      "count": 1,
+      "files": [
+        "palace_level1.graal"
+      ]
+    },
+    {
+      "image": "80emeraldbaddy.gif",
+      "script": "if (playerenters && !kagatotalk || kagatogone) { hide; } if (playertouchsme) { say 2; } *",
+      "count": 1,
+      "files": [
+        "palace_level1.graal"
+      ]
+    },
+    {
+      "image": "holew.gif",
+      "script": "if (playerenters) { // play music-potkr.mid; set wallblow1; set mid2; } if (playerenters && !town1) { say 0; set town1; } 6Gt-mid2h-mid.gif",
+      "count": 1,
+      "files": [
+        "palace_level3.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerenters) { // play music-potkr.mid; } if (playertouchsme) { say 0; } H$garmour.gif",
+      "count": 1,
+      "files": [
+        "palace_level3_house1.graal"
+      ]
+    },
+    {
+      "image": "midmom.gif",
+      "script": "if (playertouchsme) { say 1; }",
+      "count": 1,
+      "files": [
+        "palace_level3_house1.graal"
+      ]
+    },
+    {
+      "image": "runiform.gif",
+      "script": "if (playerenters) { // play music-potkr.mid; } if (playertouchsme) { say 1; setskincolor white; setcoatcolor black; setsleevecolor black; setshoecolor black; setbeltcolor lightblue; setgif mu.gif; } 09guardbed.gif",
+      "count": 1,
+      "files": [
+        "palace_level3_house2_2.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerenters) { // play music-tek.mid; } if (playertouchsme) { say 0; } : organ.gif",
+      "count": 1,
+      "files": [
+        "palace_level3_temple.graal"
+      ]
+    },
+    {
+      "image": "0Cdeadgirl1.gif",
+      "script": "if (playertouchsme) { say 3; } 'Cdeadgirl1.gif",
+      "count": 1,
+      "files": [
+        "palace_level4_house2_2.graal"
+      ]
+    },
+    {
+      "image": "Bp-dead.gif",
+      "script": "if (playerenters) { // play music-potkr.mid; set kagatoback; removecompus; } if (playertouchsme) { say 2; } ,Cp-key.gif",
+      "count": 1,
+      "files": [
+        "palace_level4_house2_2.graal"
+      ]
+    },
+    {
+      "image": "Edeadgirl2.gif",
+      "script": "if (playertouchsme) { say 3; }",
+      "count": 1,
+      "files": [
+        "palace_level4_house2_2.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "if (playerenters) { // play music-potkr.mid; } if (playerenters && sheragatekey || sheragateopen) { hide; } if (playerenters && key){ setgif p-key.gif; } if (playertouchsme && !key) { say 0; } if (playertouchsme && key) { unset key; set sheragatekey; toinventory sheragatekey; hide; } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (",
+      "count": 1,
+      "files": [
+        "palace_level6.graal"
+      ]
+    },
+    {
+      "image": "pachdown.gif",
+      "script": "if (playertouchsme) {say 0} if (fuckoffdipshit) {hide} LApizzaclothes.gif",
+      "count": 1,
+      "files": [
+        "pizzaoffice.graal"
+      ]
+    },
+    {
+      "image": "72new_phone.gif",
+      "script": "if (playertouchsme) {say 0; timeout=0.0;} if (playerenters) {timeout=3.0; play phone.wav} if (timeout) {timeout=3.0; play phone.wav; } <9pachdown.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    }
+  ]
+}

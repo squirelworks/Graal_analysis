@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 3,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "B8beerhost.gif",
+      "script": "if (playerlaysitem) { take greenrupee; take bluerupee; if (rupees>=3 && rupees<5) { say 2; rupees -= 3; set L4ShowMug;} if (rupees>=5) { say 2; rupees -= 5; set L4ShowMug; } } B<bar.gif",
+      "count": 1,
+      "files": [
+        "level4.graal"
+      ]
+    },
+    {
+      "image": "ZHservant1.gif",
+      "script": "if (playertouchsme) { say4;} <6tube1.gif",
+      "count": 1,
+      "files": [
+        "level8.graal"
+      ]
+    },
+    {
+      "image": "ADclimberleft.gif",
+      "script": "if (playertouchsme){ if (killedfish){ if(!gotcontainer){lay goldenrupee;say 3;set gotcontainer;} }else say 1 } 7S",
+      "count": 1,
+      "files": [
+        "lifemountain1.graal"
+      ]
+    },
+    {
+      "image": "glove.gif",
+      "script": "if (playerenters) { if (gotgreenglove) {hide;x=32;y=34} if (!gotgreenglove) {show;x=32;y=34} } if (playertouchsme){ set gotgreenglove; unset getgreenglove; freezeplayer 2.5; playersprite=24; setplayerdir down; x=playerx+.6; y=playery-2; timeout=2.5; timereverywhere; play goal.wav} if (playerendsreading && getgreenglove) {show} if (timeout && gotgreenglove) {hide;playersprite=0;x=32;y=34}",
+      "count": 1,
+      "files": [
+        "lifemountain2.graal"
+      ]
+    },
+    {
+      "image": "8Pbro.gif",
+      "script": "if (playerenters && !nomoremoolah) {hide; } if (playertouchsme) {say 2 } if (playertouchsother) { } if (playerlaysitem && !nomoremoolah) {take goldrupee; } if (rupees=200 && !gavedanmoolah) { set gavedanmoolah; show; say 1;lay glove1} 8Etree top.gif",
+      "count": 1,
+      "files": [
+        "lifemountain5.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (washit) {set beer3;say 2 } ?*beer.gif",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (washit) {set beer5;say 2 } G*beer.gif",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "lizardking.gif",
+      "script": "if (playerenters) { if(!backroomkilt){timeout = 0.5; myhp=5;} if(backroomkilt){removecompus;hide} } if (timeout) { if(!backroomkilt){ x = random(20,48); shootarrow down; timeout = 0.4; } } if (exploded || washit || wasshooted || waspelt) { myhp=myhp-1; if(myhp=0){ hide; set backroomkilt; say 0; } } 3 minewalltop.gif",
+      "count": 1,
+      "files": [
+        "lizardden15.graal"
+      ]
+    },
+    {
+      "image": "lizardking.gif",
+      "script": "if (playerenters) { if(!main2kilt){say 0;timeout = 0.5; myhpz=7;} if(main2kilt){removecompus;hide} } if (timeout) { if(!main2kilt) { x = random(25,43); shootarrow down; timeout = 0.4; } } if (exploded || washit || wasshooted || waspelt) { myhpz=myhpz-1; if(myhpz=0){ hide; set main2kilt; say 1; lay lizardsword; } } N",
+      "count": 1,
+      "files": [
+        "lizardden20.graal"
+      ]
+    },
+    {
+      "image": "lizardking.gif",
+      "script": "if (playerenters) { if(!mainroomkilt){timeout = 0.5; myhp=5;} if(mainroomkilt){removecompus;hide} } if (timeout) { if(!mainroomkilt){ x = random(25,43); shootarrow down; timeout = 1; } } if (exploded || washit || wasshooted || waspelt) { myhp=myhp-1; if(myhp=0){ hide; set mainroomkilt; say 1; } } if (timeout) { } A\"stone.gif",
+      "count": 1,
+      "files": [
+        "lizardden8.graal"
+      ]
+    },
+    {
+      "image": "knight4.gif",
+      "script": "if (playertouchsme) { if (!gotmace) { say0; putnpc wmace.gif, mace.txt, 39, 6; } else { say1; } }",
+      "count": 1,
+      "files": [
+        "mace.graal"
+      ]
+    },
+    {
+      "image": "4brotherc.gif",
+      "script": "if (playerenters || playertouchsme) say 0; 67",
+      "count": 1,
+      "files": [
+        "magicisland2.graal"
+      ]
+    },
+    {
+      "image": "Bbrotherd.gif",
+      "script": "if (playertouchsme) say 1; 74brothere.gif",
+      "count": 1,
+      "files": [
+        "magicisland4.graal"
+      ]
+    },
+    {
+      "image": "brotherf.gif",
+      "script": "if (playertouchsme) say 0; ::brotherg.gif",
+      "count": 1,
+      "files": [
+        "magicisland4.graal"
+      ]
+    },
+    {
+      "image": "7brotheri.gif",
+      "script": "if (playerenters) say 0; <=",
+      "count": 1,
+      "files": [
+        "magicisland6.graal"
+      ]
+    },
+    {
+      "image": "35brotherj.gif",
+      "script": "if (playertouchsme) say 0; ==",
+      "count": 1,
+      "files": [
+        "magicisland7.graal"
+      ]
+    },
+    {
+      "image": "Dtaylor.gif",
+      "script": "if (playerenters) say 0; if (playertouchsme) { if (!nwotaylorpayed) { say 2; if (nwoblueempty || nwograyempty || nwowhiteempty || nwoblackempty) say 3; } if (nwotaylorpayed) say 1; } if (playerlaysitem) { take greenrupee; take bluerupee; if (rupees>=5 && !nwotaylorpayed) { set nwotaylorpayed; say 1; rupees-=5; } } 7?cloats4.gif",
+      "count": 1,
+      "files": [
+        "merch.graal"
+      ]
+    },
+    {
+      "image": "cloats5.gif",
+      "script": "if (playerenters) { unset nwograyempty; } if (playertouchsme) { if (!nwograyempty && !nwotaylorpayed) say 6; if (!nwograyempty && nwotaylorpayed) { setcoatcolor gray; setsleevecolor red; setbeltcolor red; unset nwotaylorpayed; set nwograyempty; setgif rack.gif; } } A?cloats7.gif",
+      "count": 1,
+      "files": [
+        "merch.graal"
+      ]
+    },
+    {
+      "image": "cloats2.gif",
+      "script": "if (playerenters) { unset nwowhiteempty; } if (playertouchsme) { if (!nwowhiteempty && !nwotaylorpayed) say 10; if (!nwowhiteempty && nwotaylorpayed) { setcoatcolor red; setsleevecolor darkred; setbeltcolor pink; unset nwotaylorpayed; set nwowhiteempty; setgif rack.gif; } }",
+      "count": 1,
+      "files": [
+        "merch.graal"
+      ]
+    },
+    {
+      "image": "0fairy.gif",
+      "script": "if (playerenters) { hide; unset MidasFairyShow; } if (playerlaysitem&&!MidasFairyGivenHeart) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=200) { show; set MidasFairyShow; say 1; rupees = 0;} } if (MidasFairyShow&&!MidasFairyGivenHeart) { unset MidasFairyShow; set MidasFairyGiveHeart; say 1; }",
+      "count": 1,
+      "files": [
+        "midas2ndcave1-heart.graal"
+      ]
+    },
+    {
+      "image": "0fairy.gif",
+      "script": "if (playerenters) { hide; unset MidasFairyShow; } if (playerlaysitem&&!MidasFairyGivenHeart) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=200) { show; set MidasFairyShow; say 1; rupees = 0;} } if (MidasFairyShow&&!MidasFairyGivenHeart) { unset MidasFairyShow; set MidasFairyGiveHeart; say 1; } ;7insidesign.gif",
+      "count": 1,
+      "files": [
+        "midas2ndcave1.graal"
+      ]
+    },
+    {
+      "image": "6DMidasRealmSeller.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say1; } if (playertouchsother) { unset MidasShop20; unset MidasShop30; unset MidasShop25; if (MidasShopArrows) { if (!rupees>=20) {unset MidasShopArrows}; if (rupees>=20) {rupees -= 20;say 5;}}; if (MidasShopBombs) { if (!rupees>=30) {unset MidasShopBombs}; if (rupees>=30) {rupees -= 30;say 5;}}; if (MidasShopLife) { if (!rupees>=25) {unset MidasShopLife",
+      "count": 1,
+      "files": [
+        "midashouse4.graal"
+      ]
+    },
+    {
+      "image": "CGFoDGuy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { set MidasFoDChat; say1; } if (playertouchsother) { } =:FoDlogo.gif",
+      "count": 1,
+      "files": [
+        "midashouse4_b.graal"
+      ]
+    },
+    {
+      "image": "goldmagicshop.gif",
+      "script": "if (playerenters) { if (AntiGoldSpell) { hide; if (!AntiGoldSpellcast) { say 3; set AntiGoldSpellcast; unset AntiGoldSpell; } } if (AntiGoldSpellcast) hide; } HKblank.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "L9tntpack.gif",
+      "script": "if (playerenters && M5TNTGone && !followsplayer) hide; if (playertouchsme) { if (!M5TNTGone) say 0; drawunderplayer; set M5TNTGone; followplayer; } if (playerendsreading && M3HideTNT) { unset M3HideTNT; hide; } N'pike.gif",
+      "count": 1,
+      "files": [
+        "mine5.graal"
+      ]
+    }
+  ]
+}

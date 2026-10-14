@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "hazards",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "9Fsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} 5Fsmokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "1Fsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} =Bsmokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "1Jsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} 9Jsmokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "8Lsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4}",
+      "count": 1,
+      "files": [
+        "jaypee2steam2.graal"
+      ]
+    },
+    {
+      "image": "DTredguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 5Tredguy.gif",
+      "count": 1,
+      "files": [
+        "kcastle2b.graal"
+      ]
+    },
+    {
+      "image": "8Tredguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } @Tredguy.gif",
+      "count": 1,
+      "files": [
+        "kcastle2b.graal"
+      ]
+    },
+    {
+      "image": "GTredguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "kcastle2b.graal"
+      ]
+    },
+    {
+      "image": "Tredguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } DTredguy.gif",
+      "count": 1,
+      "files": [
+        "kcastle2c.graal"
+      ]
+    },
+    {
+      "image": "GTredguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 8Tredguy.gif",
+      "count": 1,
+      "files": [
+        "kcastle2c.graal"
+      ]
+    },
+    {
+      "image": "5Tredguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "kcastle2c.graal"
+      ]
+    },
+    {
+      "image": "9monster.gif",
+      "script": "if (playerenters) {playery = 40; playerx = 30; hurt 0; putexplosion 8, x, y; timeout = 1.5} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {putexplosion 2, x, y; if (washit) {setlevel kcastle4c.graal} } if (timeout) {shootball; timeout = 0.5} \\@bowmachine2.gif",
+      "count": 1,
+      "files": [
+        "kcastle4b.graal"
+      ]
+    },
+    {
+      "image": "9monster.gif",
+      "script": "if (playerenters) {playery = 40; playerx = 30; hurt 0; putexplosion 8, x, y; timeout = 1.5} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {putexplosion 2, x, y; if (washit) {setlevel kcastle4d.graal} } if (timeout) {shootball; timeout = 0.5} \\@bowmachine2.gif",
+      "count": 1,
+      "files": [
+        "kcastle4c.graal"
+      ]
+    },
+    {
+      "image": "DGblackbaddy.gif",
+      "script": "if (playertouchsme) { if (NinjaClothesForLi) { say 3; x = 39; set L12letfree; } if (!NinjaClothesForLi) { say 2; set L12hurt; } } if (playertouchsother) { if (NinjaClothesForLi) x = 39; } if (playerenters) { if (L12letfree) x = 39; } if (playerendsreading) { if (L12hurt) { unset L12hurt; hurt 1; } } if (playerenters && !L12letfree){x = 36} AGblackbaddy.g",
+      "count": 1,
+      "files": [
+        "level12.graal"
+      ]
+    },
+    {
+      "image": "56beer.gif",
+      "script": "if (playerenters) {hide;x=21;y=22 } if (playerendsreading && beer1) {show;canbecarried;} if (playertouchsme) {hurt -20 } if (wasthrown) {putleaps 5,x,y;hide;unset beer1;x=21;y=22} 3*beer.gif",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "6beer.gif",
+      "script": "if (playerenters) {hide;x=27;y=22 } if (playerendsreading && beer3) {show;canbecarried;} if (playertouchsme) {hurt -4} if (wasthrown) {putleaps 5,x,y;hide;unset beer3;x=27;y=22} ?7beer.gif",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "JAbeer.gif",
+      "script": "if (playerenters) {hide;x=42;y=33 } if (playerendsreading && beer2) {show;canbecarried;} if (playertouchsme) {hurt -4 } if (wasthrown) {putleaps 5,x,y;hide;unset beer2;x=42;y=33} )9beer.gif",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (playerenters) {hide;x=17;y=31 } if (playerendsreading && beer5) {show;canbecarried} if (playertouchsme) {hurt -20 } if (wasthrown) {putleaps 5,x,y;hide;unset beer5;x=17;y=31} G0",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "bigoct.gif",
+      "script": "if (playerenters) { say 0;timeout = 1; } if (timeout) { shootball; x=random(16,43); timeout = 2.5; } if (playertouchsme) {hurt 1} if (compusdied) {playerx=33;playery=33;setlevel lizardden11.graal }",
+      "count": 1,
+      "files": [
+        "lizardden10.graal"
+      ]
+    },
+    {
+      "image": "bigoct.gif",
+      "script": "if (playerenters) { if (!main2kilt){timeout = 0.5; ozhp=7;} if (main2kilt){hide} } if (timeout && visible) { if(!main2kilt){ shootball; timeout = 1.5; } } if (playertouchsme) {hurt1} if (exploded || washit || wasshooted || waspelt) { ozhp=ozhp-1; if(ozhp=0){ hide; } }",
+      "count": 1,
+      "files": [
+        "lizardden20.graal"
+      ]
+    },
+    {
+      "image": "0blackbaddy.gif",
+      "script": "if (playerenters) {say00 } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) {say00 } 30emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse15.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerenters) {say00 } if (playertouchsme) {hurt3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {setcoatcolor white } if (playerendsreading) {reducebombs3 } '9blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse6.graal"
+      ]
+    },
+    {
+      "image": "49blackbaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } '=blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse6.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse6.graal"
+      ]
+    },
+    {
+      "image": "5-bbottle.gif",
+      "script": "if (playerenters&&!mccoke) hide; if (mccoke) {show; } if (playertouchsme) { hurt -1; hide; unset mccoke; } if (playerlaysitem && mccoke) { set !mccoke; } >)beerhost.gif",
+      "count": 1,
+      "files": [
+        "mcgraals3.graal"
+      ]
+    },
+    {
+      "image": "pie.gif",
+      "script": "if (playerenters&&!mcpie) hide; if (mcpie) {show;} if (playertouchsme) { hurt -3; hide; unset mcpie } if (playerlaysitem && mcpie) { set !mcpie;} 6/mcnugg.gif",
+      "count": 1,
+      "files": [
+        "mcgraals3.graal"
+      ]
+    }
+  ]
+}

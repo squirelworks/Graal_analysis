@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "hazards",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "46beer.gif",
+      "script": "if (!table1beer1) {hide;} if (table1beer1) {show;} if (playertouchsme) {hurt -2; hide; unset table1beer1;} 86beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "49beer.gif",
+      "script": "if (!table1beer3) {hide;} if (table1beer3) {show;} if (playertouchsme) {hurt -2; hide; unset table1beer3;} 89beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (!table2beer1) {hide;} if (table2beer1) {show;} if (playertouchsme) {hurt -2; hide; unset table2beer1;} A>beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "Abeer.gif",
+      "script": "if (!table2beer3) {hide;} if (table2beer3) {show;} if (playertouchsme) {hurt -2; hide; unset table2beer3;} AAbeer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "1Gbeer.gif",
+      "script": "if (!table3beer1) {hide;} if (table3beer1) {show;} if (playertouchsme) {hurt -2; hide; unset table3beer1;} 5Gbeer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "1Jbeer.gif",
+      "script": "if (!table3beer3) {hide;} if (table3beer3) {show;} if (playertouchsme) {hurt -2; hide; unset table3beer3;} 5Jbeer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "F6beer.gif",
+      "script": "if (!table4beer1) {hide; } if (table4beer1) {show;} if (playertouchsme) {hurt -2; hide; unset table4beer1;} J6beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "F9beer.gif",
+      "script": "if (!table4beer3) {hide; } if (table4beer3) {show;} if (playertouchsme) {hurt -2; hide; unset table4beer3;} J9beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "KGbeer.gif",
+      "script": "if (!table5beer1) {hide; } if (table5beer1) {show;} if (playertouchsme) {hurt -2; hide; unset table5beer1;} OGbeer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "KJbeer.gif",
+      "script": "if (!table5beer3) {hide; } if (table5beer3) {show;} if (playertouchsme) {hurt -2; hide; unset table5beer3;} OJbeer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (!BartenderBeer) {hide; } if (BartenderBeer) {show;} if (playertouchsme) {hurt -9999; hide; unset BartenderBeer;}",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "Jcrossburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hurt 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } FLcrossburn.gif",
+      "count": 1,
+      "files": [
+        "hell.graal"
+      ]
+    },
+    {
+      "image": "K2crossburn.gif",
+      "script": "if (playerenters) {say 0 } if (playertouchsme) {hurt 2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } VIpenta.gif",
+      "count": 1,
+      "files": [
+        "hell.graal"
+      ]
+    },
+    {
+      "image": "FMbeer.gif",
+      "script": "if (playerenters && !L4ShowMug) hide; if (playertouchsme) { hurt -4; hide; unset L4ShowMug; } if (playerlaysitem && L4ShowMug) { show; }",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "redguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hurt 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {hide } if (playerendsreading) { } if (exploded) { } @/redguy.gif",
+      "count": 1,
+      "files": [
+        "icastle4.graal"
+      ]
+    },
+    {
+      "image": "blade.gif",
+      "script": "if (playerenters) hide; if (playertouchsme) { hurt 7; hide; } if (playerlaysitem && iniglootrap) { show; unset iniglootrap; }",
+      "count": 1,
+      "files": [
+        "inigloo.graal"
+      ]
+    },
+    {
+      "image": "izphost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if (!IZPChaos){ say 4; set hurtmeb } if (IZPChaos){ say 6; set hurtmeb } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { if (hurtmeb){ hurt 0; unset hurtmeb; } } >Zclearguy.gif",
+      "count": 1,
+      "files": [
+        "izpool.graal"
+      ]
+    },
+    {
+      "image": "4Fbeer.gif",
+      "script": "if (playerenters && !L4ShowMug) hide; if (playertouchsme) { hurt -4; hide; unset L4ShowMug; } if (playerlaysitem && L4ShowMug) { show; } 6Gbar.gif",
+      "count": 1,
+      "files": [
+        "jaypee2bar.graal"
+      ]
+    },
+    {
+      "image": "5Ipizzap.gif",
+      "script": "if (playerenters && !L4Showpizzap) hide; if (playertouchsme) { hurt -7; hide; unset L4Showpizzap; } if (playerlaysitem && L4Showpizzap) { show; } DImeatpan.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "OHpizza-a26228.gif",
+      "script": "if (playerenters && !L6Showpizza-a26228) hide; if (playertouchsme) { hurt -8; hide; unset L6Showpizza-a26228; } if (playerlaysitem && L6Showpizza-a26228) { show; } 6Woldmansitting3.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} 5>smokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} =>smokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "Jsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} 5Bsmokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "9Bsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} 5Jsmokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    },
+    {
+      "image": "Fsmokeani.gif",
+      "script": "if (playertouchsme) {hurt -4} 1Bsmokeani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2steam1.graal"
+      ]
+    }
+  ]
+}

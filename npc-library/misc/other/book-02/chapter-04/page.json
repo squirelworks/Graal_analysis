@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 2,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "4bluelampani.gif",
+      "script": "/4bluelampani.gif",
+      "count": 1,
+      "files": [
+        "monster1.graal"
+      ]
+    },
+    {
+      "image": "9Abluelampani.gif",
+      "script": "9Qbluelampani.gif",
+      "count": 1,
+      "files": [
+        "monster2.graal"
+      ]
+    },
+    {
+      "image": "YMbluelampani.gif",
+      "script": "JAbluelampani.gif",
+      "count": 1,
+      "files": [
+        "monster2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "U;bluelampani.gif",
+      "count": 1,
+      "files": [
+        "monster2.graal"
+      ]
+    },
+    {
+      "image": "Abluelampani.gif",
+      "script": "N+bluelampani.gif",
+      "count": 1,
+      "files": [
+        "monster2.graal"
+      ]
+    },
+    {
+      "image": "5bluelampani.gif",
+      "script": "XPbluelampani.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "8ninjibartender.gif",
+      "script": "G9ninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjimainroom.graal"
+      ]
+    },
+    {
+      "image": "cannon.gif",
+      "script": "=)brother1.gif",
+      "count": 1,
+      "files": [
+        "nwotown.graal"
+      ]
+    },
+    {
+      "image": "kagato_b.gif",
+      "script": "> organ.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "organ.gif",
+      "script": "6 organ.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall2.graal"
+      ]
+    },
+    {
+      "image": "-9garmour.gif",
+      "script": "%9garmour.gif",
+      "count": 1,
+      "files": [
+        "palace_level3_house2_2.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (blastomatic) {shootfireblast down} I)cheesepan.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (blastomatic) {shootfireblast down} B bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (blastomatic) {shootfireblast down} @ bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (blastomatic) {shootfireblast down} ; bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "TDbluelampani.gif",
+      "script": "T<bluelampani.gif",
+      "count": 1,
+      "files": [
+        "resort1.graal"
+      ]
+    },
+    {
+      "image": "BFbluelampani.gif",
+      "script": "<Fbluelampani.gif",
+      "count": 1,
+      "files": [
+        "resort1.graal"
+      ]
+    },
+    {
+      "image": "Dbluelampani.gif",
+      "script": "*=bluelampani.gif",
+      "count": 1,
+      "files": [
+        "resort1.graal"
+      ]
+    },
+    {
+      "image": "IDbluelampani.gif",
+      "script": "I<bluelampani.gif",
+      "count": 1,
+      "files": [
+        "resort2.graal"
+      ]
+    },
+    {
+      "image": "5Dbluelampani.gif",
+      "script": "5=bluelampani.gif",
+      "count": 1,
+      "files": [
+        "resort3.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "@Gbluelampani.gif",
+      "count": 1,
+      "files": [
+        "resort7.graal"
+      ]
+    },
+    {
+      "image": "2goldenbush.gif",
+      "script": "5:goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "9:goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "goldenbush.gif",
+      "script": "=:goldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "0Ggoldenbush.gif",
+      "script": "$Ngoldenbush.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+if (playerenters || created || timeout) {
+  timeout = 0.05;
+  setplayerprop #c,*PARM0;
+  destroy;
+}

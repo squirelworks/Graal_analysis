@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Gt-midnight.gif",
+      "script": "if (playertouchsme) { say 1; } HCmmeguy_f.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_gilgamesh.graal"
+      ]
+    },
+    {
+      "image": "mandi_icon.gif",
+      "script": "if (playertouchsme) { say 6; } FBgerudonick.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "gilgamesh.gif",
+      "script": "if (playerenters) { disableweapons; } if (playertouchsme) { say 3; } A;h-midnight.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "azrael.gif",
+      "script": "if (playertouchsme) { say 8; } BBmohawk.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "DTgnom.gif",
+      "script": "if (playertouchsme) { say 2; } <Bzelda.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "Hsnake.gif",
+      "script": "if (playertouchsme) { say 12; } <Lmorgan.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "86brother1.gif",
+      "script": "if (playertouchsme) { say 15; } <6brother2.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "G6clearguy.gif",
+      "script": "if (playertouchsme) { say 14; } if (playerlaysitem) { take heart; } DKweirdzelda.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "NMonsterGold.gif",
+      "script": "if (playerenters) { unset G1RaceStarted; unset G1ReachedMid; unset G1RaceLost; if (G2GotSword) hide; } if (playertouchsme) { if (G1RaceWon) say 3; if (!G1RaceWon) { say 0; if (G1RaceLost) { say 4; set G1ShowLines; unset G1RaceLost; } if (G1RaceStarted) say 6; } } if (playertouchsother) { if (G1RaceWon && timeout>=0.05) say 3; if (G1RaceStart)",
+      "count": 1,
+      "files": [
+        "golden1.graal"
+      ]
+    },
+    {
+      "image": "GMStartLine.gif",
+      "script": "if (playertouchsme && !G1RaceWon) { hide; set G1RaceStart; unset G1ReachedMid; } if (timeout && G1RaceWon) hide; if (playerendsreading && G1ShowLines) show; 9MFinishLine.gif",
+      "count": 1,
+      "files": [
+        "golden1.graal"
+      ]
+    },
+    {
+      "image": "9bigstone.gif",
+      "script": "if (playerenters && G2GotSword) x = 12; if (playerendsreading && G2PushStart) { timeout = 0.8; } if (timeout) { if (moved>0) { x --; timeout = 0.8; } } if (playertouchsme && !G2GotSword && !G2PushStart) say 2; F;monsterpushing.gif",
+      "count": 1,
+      "files": [
+        "golden2.graal"
+      ]
+    },
+    {
+      "image": "monsterpushing.gif",
+      "script": "if (playerenters) { if (!G1RaceWon || !G7GameWon || !G9BaddiesKilled || !G3GameWonAll) { hide; } else if (G2GotSword) { x = 18; y = 44; setgif MonsterGold.gif; } else { playerx = 30.5; playery = 35; setplayerdir up; say 0; set G2PushStart; moved = 14; } } if (playerendsreading && G2PushStart) { timeout = 0.8; } if (timeout) { if (moved>0) {",
+      "count": 1,
+      "files": [
+        "golden2.graal"
+      ]
+    },
+    {
+      "image": "F9monsterpushing.gif",
+      "script": "if (playerenters) { if (!G1RaceWon || !G7GameWon || !G9BaddiesKilled || !G3GameWonAll) { hide; } else if (G2GotSword) { x = 43; y = 44; setgif MonsterGold.gif; } } if (playerendsreading && G2PushStart) { timeout = 0.8; } if (timeout) { if (moved>0) { x --; timeout = 0.8; } else { x = 26; y = 26; setgif MonsterGold.gif; } } F=monsterpushing.gif",
+      "count": 1,
+      "files": [
+        "golden2.graal"
+      ]
+    },
+    {
+      "image": "MonsterGold.gif",
+      "script": "if (playerenters) { unset G7GameRuns; if (G2GotSword) hide; } if (playertouchsme) { if (G7GameWon) say 4; else if (G7GameRuns) say 2; else if (G7ToldGame) { say 1; set G7GameStart; } else { say 0; set G7ToldGame; } } if (playerendsreading && G7GameStart) { unset G7GameStart; set G7GameRuns; putcomp octopus,random(12,21),random(19,43); putcomp octopus,random(12",
+      "count": 1,
+      "files": [
+        "golden7.graal"
+      ]
+    },
+    {
+      "image": "chibi.gif",
+      "script": "if (playertouchsme) {say1;}",
+      "count": 1,
+      "files": [
+        "graalcitychurch.graal"
+      ]
+    },
+    {
+      "image": "8twiggy.gif",
+      "script": "// NPC made by <yourname> if (playerenters) {message;timeout=0.1; } if (playertouchsme) {} if (timeout){this.yadayadayada=this.yadayadayada+1; if (playersays(1) && playery<30 && cangetgraalpizza && playerrupees>=25){playerrupees=playerrupees-25;putnpc pizza-a26228.gif,graalbasicpizza.txt,29,22.5;unset cangetgraalpizza;message;timeout=1;} if (playersays(1) && playery<30 && cangetgraalpizza && play",
+      "count": 1,
+      "files": [
+        "graalpizzashop.graal"
+      ]
+    },
+    {
+      "image": "bar.gif",
+      "script": "// NPC made by <Exo Knight> if (playerenters) {unset pizzalovergotcheese; } if (playertouchsme) {say 0} if (playersays(yes) || playersays(yea) || playersays(yeah) || playersays(yep) && playersy<30){set cangetgraalpizza;timeout=0.1} 24smokeani.gif",
+      "count": 1,
+      "files": [
+        "graalpizzashop.graal"
+      ]
+    },
+    {
+      "image": "doctorfire.gif",
+      "script": "if (playertouchsme) {say 5} if (wantred) {if (playerlaysitem) { take bluerupee; take redrupee; take goldrupee; } if (rupees = 100) {set boughtred; say 4; rupees = 0; }} if (wantgreen) {if(playerlaysitem) {take bluerupee;} if (rupees = 20){set boughtgreen; say 4; rupees = 0;}} =Agreenpotion.gif",
+      "count": 1,
+      "files": [
+        "greatnf1r1.graal"
+      ]
+    },
+    {
+      "image": "Csurgeon2.gif",
+      "script": "if (playerenters) { } if (born) { if (playertouchsme) {message Give her the baby!; timout = 2;} if (timeout) {message}} if (baby) {x = 29; y = 36; if (playertouchsme) {message Good job, doctor!; timeout = 2;} if (timeout) {message}} if (playertouchsme && !born && !baby) { say 0;} if (playertouchsme && isdoctor && !born && !baby) {say 1; x = 29; y = 36;} if (playertouchsother) { } if (playerlaysite",
+      "count": 1,
+      "files": [
+        "greatnlabor.graal"
+      ]
+    },
+    {
+      "image": "01bar.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 3;} if (playertouchsother) { } if (playerlaysitem) {take greenrupee; take bluerupee; take redrupee; take goldrupee;} if (rupees = 1) { set smalltip; rupees-=1; } if (rupees = 5) { set mediumtip; unset smalltip; rupees-=5; } if (rupees = 30) { set bigtip; unset smalltip; unset mediumtip; rupees-=30; } if (rupees = 100) { set largeasstip; uns",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "darkdown.gif",
+      "script": "if (playerenters) { say 0 }",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "Dmaid2.gif",
+      "script": "if (playertouchsme) { say 1 } -Jbar.gif",
+      "count": 1,
+      "files": [
+        "hotel.graal"
+      ]
+    },
+    {
+      "image": "Jbar.gif",
+      "script": "if (playertouchsme) { say1 } 0Jbar.gif",
+      "count": 1,
+      "files": [
+        "hotel.graal"
+      ]
+    },
+    {
+      "image": "9Hgnom.gif",
+      "script": "if (playertouchsme) { say 0; } if (playerenters && GnomsAtHome) hide; if (playerenters && GnomCave2free && !GnomsAtHome) { set GnomsHiding; say 3; } if (playerendsreading && GnomsHiding) { unset GnomsHiding; hide; set GnomsAtHome; } 7Jgnomkid.gif",
+      "count": 1,
+      "files": [
+        "house10.graal"
+      ]
+    },
+    {
+      "image": "Hgnomkid.gif",
+      "script": "if (playertouchsme) say 1; if (playerendsreading && GnomsAtHome) hide; if (playerenters && GnomsAtHome) hide; ?I",
+      "count": 1,
+      "files": [
+        "house10.graal"
+      ]
+    }
+  ]
+}

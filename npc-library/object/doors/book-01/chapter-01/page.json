@@ -1,0 +1,216 @@
+{
+  "genre": "object",
+  "topic": "doors",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show}",
+      "count": 4,
+      "files": [
+        "footballentrance.graal",
+        "level15.graal",
+        "level16.graal"
+      ]
+    },
+    {
+      "image": "gate1.gif",
+      "script": "if (playerenters && playerheadset =17) { setgif gate1.gif; } if (playertouchsme && playerheadset =17) { say 7; } if (playertouchsme && !playerheadset =17){setgif gate2.gif; timeout=1.0} if (timeout){setgif gate1.gif; play punch.wav}",
+      "count": 2,
+      "files": [
+        "gerudofort_bridge.graal",
+        "gerudofort_fortress.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} NIdoor.gif",
+      "count": 2,
+      "files": [
+        "level13.graal",
+        "test.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme){ timereverywhere;hide;timeout=2;} if (playerenters) {show} if (timeout) {show} 72goanticheat.gif",
+      "count": 2,
+      "files": [
+        "level13.graal",
+        "test.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme) hide;timeout=1; if (timeout) show; if (playerenters) show;",
+      "count": 2,
+      "files": [
+        "level14.graal",
+        "level40.graal"
+      ]
+    },
+    {
+      "image": "10door.gif",
+      "script": "if (playertouchsme) hide;",
+      "count": 2,
+      "files": [
+        "level41.graal",
+        "lockerbasement.graal"
+      ]
+    },
+    {
+      "image": "14door.gif",
+      "script": "if (playertouchsme && door) {hide} F4door.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "GRdoor.gif",
+      "script": "if (playertouchsme && door) {hide} *Sbbobfrwd.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme && pool) {drawunderplayer; dontblock} )-receptionist.gif",
+      "count": 1,
+      "files": [
+        "CoGpoolhouse.graal"
+      ]
+    },
+    {
+      "image": "1bankgate2.gif",
+      "script": "if (playerenters)if(playerscount>1) {setgif bankgate2.gif;x=10;y=17;} if (playertouchsme) { if(playerscount<=1){setgif bankgate.gif;x=11;y=15;sleep .7;setgif bankgate2.gif;x=10;y=17;} if(playerscount>1){setgif bankgate2.gif;x=10;y=17;} } +%",
+      "count": 1,
+      "files": [
+        "Enix_deposit_room1.graal"
+      ]
+    },
+    {
+      "image": "1bankgate2.gif",
+      "script": "if (playerenters)if(playerscount>1) {setgif bankgate2.gif;x=10;y=17;} if (playertouchsme) { if(playerscount<=1){setgif bankgate.gif;x=11;y=15;sleep .7;setgif bankgate2.gif;x=10;y=17;} if(playerscount>1){setgif bankgate2.gif;x=10;y=17;} }",
+      "count": 1,
+      "files": [
+        "Enix_deposit_room2.graal"
+      ]
+    },
+    {
+      "image": "gate.gif",
+      "script": "if (playerenters) {timeout=0.1;} if (booom1 && booom2 && booom3) {hide} if (timeout){if (booom1 && booom2 && booom3) {hide} timeout=0.1;} )V",
+      "count": 1,
+      "files": [
+        "ambush.graal"
+      ]
+    },
+    {
+      "image": "ALdoor.gif",
+      "script": "if (playertouchsme) hide;timeout=2; if (playerenters) {show} if (timeout) {show} QY",
+      "count": 1,
+      "files": [
+        "b39_water1.graal"
+      ]
+    },
+    {
+      "image": "M6brugestowergate.gif",
+      "script": "if (playerchats && PlayerMightKnowBrugesTowerPass) { timereverywhere; if (playerx>=43 && playerx<=51 && playery>=24 && playery<=28 && playersays(UNDERGROUND)) {timeout=0.05;} } if (timeout) { hide; sleep 5; show; } if (playertouchsme) say 1; \"3brugesflag1.gif",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "doorright.gif",
+      "script": "if (playerenters) {show } if (playertouchsme) {hide;play punch.wav }",
+      "count": 1,
+      "files": [
+        "ccapartment1.graal"
+      ]
+    },
+    {
+      "image": "5door.gif",
+      "script": "if (playersays(0, bushes)) {hide} if (playerenters) {show} S5door.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "Y5door.gif",
+      "script": "if (playertouchsme) {say 8} /Idoordown.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "5Idoordown.gif",
+      "script": ";Idoordown.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "AIdoordown.gif",
+      "script": "(>doorleft.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "55door.gif",
+      "script": "if (playersays(0, abby)) {hide} if (playerenters) {show} ;5door.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "GIdoordown.gif",
+      "script": "MIdoordown.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "SIdoordown.gif",
+      "script": "A5door.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "G5door.gif",
+      "script": "if (playersays(0, BIZNATCH)) {hide} if (playerenters) {show} M5door.gif",
+      "count": 1,
+      "files": [
+        "ccapartment2.graal"
+      ]
+    },
+    {
+      "image": "Tdoordown.gif",
+      "script": "if (playerenters) {show} if (playertouchsme && cckilledking) {hide;play punch.wav} F:",
+      "count": 1,
+      "files": [
+        "ccbadcastle11.graal"
+      ]
+    },
+    {
+      "image": "6door1.gif",
+      "script": "// NPC made by Dan if (playerenters) { } if (playertouchsme) { } I6door1.gif",
+      "count": 1,
+      "files": [
+        "ccbadcastle12.graal"
+      ]
+    }
+  ]
+}

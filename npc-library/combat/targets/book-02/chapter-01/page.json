@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "7Nmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } D metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "Xmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } GWmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } NXmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "UXmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } GRmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "YDmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } SDmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "KDmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Y<metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "Jmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } (9metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "3metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,-metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } R3metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } U$metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } J metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =>messagebar1.gif",
+      "count": 1,
+      "files": [
+        "CoGbar.graal"
+      ]
+    },
+    {
+      "image": "jLpot.gif",
+      "script": "if (playerenters) { } if (playertouchsme && cog2) { toweapons Elixer; unset cog2; hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (weaponfired) {hurt -20; freezeplayer 3; destroy} `Ignom.gif",
+      "count": 1,
+      "files": [
+        "CoGbikeshop.graal"
+      ]
+    },
+    {
+      "image": "Iarcade_hostess.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) {take redrupee; set horse} if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } SPbaddygoldsitting2.gif",
+      "count": 1,
+      "files": [
+        "CoGbikeshop.graal"
+      ]
+    },
+    {
+      "image": "baddygoldsitting2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { message Gulp 10, Gulp 11, Gulp 12; timeout=6} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {message } @)baddybluesitting.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "atdesk3.gif",
+      "script": "if (playerenters) {play stef28.MID } if (playertouchsme) { } if (playertouchsother) { message Look at him go!} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 6)beer.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (playerenters) { canbecarried} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2)beer.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "2bbobfrwd.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say0 } if (playertouchsother) { } if (playerlaysitem) {take redrupee; set suite; say1 } if (compusdied) { } if (playerendsreading && suite) {hide } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "CoGhotel1.graal"
+      ]
+    },
+    {
+      "image": "3Ngreensoldier_s2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } +Rbutterflyani.gif",
+      "count": 1,
+      "files": [
+        "CoGtown1.graal"
+      ]
+    },
+    {
+      "image": "5Qbutterflyani.gif",
+      "script": "if (playerenters) {set butt } if (playerenters && butt) { drawoverplayer; dontblock } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } .Ibutterflyani.gif",
+      "count": 1,
+      "files": [
+        "CoGtown1.graal"
+      ]
+    },
+    {
+      "image": "cogsign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } /;cogsign.gif",
+      "count": 1,
+      "files": [
+        "CoGtown1.graal"
+      ]
+    },
+    {
+      "image": "cogsign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H'cogsign.gif",
+      "count": 1,
+      "files": [
+        "CoGtown1.graal"
+      ]
+    },
+    {
+      "image": "0Rcogsign.gif",
+      "script": "if (playerenters) {unset door; unset suite} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?1",
+      "count": 1,
+      "files": [
+        "CoGtown2.graal"
+      ]
+    },
+    {
+      "image": "9cogsign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =U",
+      "count": 1,
+      "files": [
+        "CoGtown2.graal"
+      ]
+    },
+    {
+      "image": "Vcogsign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *Vcogsign.gif",
+      "count": 1,
+      "files": [
+        "CoGwarphouse.graal"
+      ]
+    }
+  ]
+}

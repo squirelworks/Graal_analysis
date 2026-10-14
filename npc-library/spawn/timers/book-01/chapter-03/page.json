@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 1,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "bluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; E*bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; =,bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; G&bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; )5bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "U5bluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; W5bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "if (washit) { timeout=4; hide; } if (timeout) show; U;bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "book6.gif",
+      "script": "//Newcomp Pro - Controller //(See Newcomp Pro - Spawner) //By Bruges if (playerenters) { hide; timeout=.05} if (timeout) { RoomComps=3; Respdel=10; timeout=.05; } J6brugitewarrior.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "book6.gif",
+      "script": "//Newcomp Pro - Controller //(See Newcomp Pro - Spawner) //By Bruges if (playerenters) { hide; timeout=.05} if (timeout) { RoomComps=3; Respdel=10; timeout=.05; } JLblueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_3.graal"
+      ]
+    },
+    {
+      "image": "brugitemage_ss.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy; B5brugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "brugitemage_ss.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy; 8Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "8Predstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 6Predstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Xredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 8Xredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "6Tredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 4Tredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "4Rredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 2Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "2Predstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 0Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Rredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 0Tredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "0Vredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } .Vredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Xredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } ,Xredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Xredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } (Xredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Xredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } *Vredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Tredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } *Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Tredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } (Tredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Tredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } &Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "Predstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; }",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "7Tbrugestowerspikes1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; 7Wbrugestowerspikes1.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_1.graal"
+      ]
+    }
+  ]
+}

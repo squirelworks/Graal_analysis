@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 5,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "C6foxenstatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say sign0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 64",
+      "count": 1,
+      "files": [
+        "foxshouse9.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } UPbluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxshouse9.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } TXbluelampani.gif",
+      "count": 1,
+      "files": [
+        "foxshouse9.graal"
+      ]
+    },
+    {
+      "image": "56bluelampani.gif",
+      "script": "if (playerenters) { dontblock} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0/tolit.gif",
+      "count": 1,
+      "files": [
+        "foxshouse9.graal"
+      ]
+    },
+    {
+      "image": "Pbluelampani.gif",
+      "script": "if (playerenters) {dontblock } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } &Orack.gif",
+      "count": 1,
+      "files": [
+        "foxshouse9.graal"
+      ]
+    },
+    {
+      "image": "Srack.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } &Wrack.gif",
+      "count": 1,
+      "files": [
+        "foxshouse9.graal"
+      ]
+    },
+    {
+      "image": "5Adoubledoor2.gif",
+      "script": "if (playerenters) {show;timereverywhere; } if (playertouchsme) {hide;timeout=1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {show } night.gif",
+      "count": 1,
+      "files": [
+        "foxtunnel.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :Dgandariandk.gif",
+      "count": 1,
+      "files": [
+        "gandgetawayh.graal"
+      ]
+    },
+    {
+      "image": "bookopen.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -*bookopen.gif",
+      "count": 1,
+      "files": [
+        "gandgetawayh.graal"
+      ]
+    },
+    {
+      "image": "book16.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 9;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } KUbookopen.gif",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "bookopen.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 11;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } OSgandariandk.gif",
+      "count": 1,
+      "files": [
+        "gandshouse.graal"
+      ]
+    },
+    {
+      "image": "sealed_chest.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 7\"magicbook.gif",
+      "count": 1,
+      "files": [
+        "geovanie.graal"
+      ]
+    },
+    {
+      "image": "6Ihole.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { hurt 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "geovanie.graal"
+      ]
+    },
+    {
+      "image": "zelda.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >$enkitovince.gif",
+      "count": 1,
+      "files": [
+        "ghostroom.graal"
+      ]
+    },
+    {
+      "image": "9brotherg.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message HEY!; timeout = 2; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message}",
+      "count": 1,
+      "files": [
+        "greatnbathroom.graal"
+      ]
+    },
+    {
+      "image": "HBcoolhospitalgif.gif",
+      "script": "canbecarried; if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "greatnf1r1.graal"
+      ]
+    },
+    {
+      "image": "0Oswitchgreen.gif",
+      "script": "if (playertouchsme) { unset floor2; unset floor3; unset floor4; say 0; setgif switchred.gif; play ge64elvt.mid; timeout = 7;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { stopmidi; play Atlantis.mid; say 4; setgif switchgreen.gif; set floor1;}",
+      "count": 1,
+      "files": [
+        "greatnhelevate.graal"
+      ]
+    },
+    {
+      "image": "K6eledoor.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F;",
+      "count": 1,
+      "files": [
+        "greatnhfloor3.graal"
+      ]
+    },
+    {
+      "image": "Blabor1.gif",
+      "script": "if (playerenters) { } if (playertouchsme && !baby) { timeout = 5;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { setgif babyaz.gif; set born; canbecarried;} if (baby) {hide;} 9?labor2.gif",
+      "count": 1,
+      "files": [
+        "greatnlabor.graal"
+      ]
+    },
+    {
+      "image": "babyaz.gif",
+      "script": "if (!baby) { hide;} if (playertouchsme) { message Goo Goo; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message} if (baby) {show} 4Bnurse4.gif",
+      "count": 1,
+      "files": [
+        "greatnlabor.graal"
+      ]
+    },
+    {
+      "image": "4Fnurse1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message It's going to be a beutiful baby.; timeout = 2; } if (playertouchsme && born) {message Give her the baby!; timeout = 2;} if (playertouchsme && baby) {message I want to have babies someday.; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt)",
+      "count": 1,
+      "files": [
+        "greatnlabor.graal"
+      ]
+    },
+    {
+      "image": "AGnurse3.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message I remember going thru the womb once; timeout = 2; } if(playertouchsme && born) {message Give her the baby!; timeout = 2;} if (playertouchsme && baby) {message You're a handsome doctor...; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { }",
+      "count": 1,
+      "files": [
+        "greatnlabor.graal"
+      ]
+    },
+    {
+      "image": "4receptionist.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 2; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,=darn.gif",
+      "count": 1,
+      "files": [
+        "greatnlobby.graal"
+      ]
+    },
+    {
+      "image": "deadman.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message I'm ok. Really; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message; say 0;} ,Apachsick.gif",
+      "count": 1,
+      "files": [
+        "greatnlobby.graal"
+      ]
+    },
+    {
+      "image": "Epiratething.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message Ouch.. can't move...; timeout = 2} if(playertouchsme && isdoctor) {message Don't just stand there!; timeout = 2;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message } E=",
+      "count": 1,
+      "files": [
+        "greatnlobby.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "EEbluelampani.gif",
+      "script": "-Ebluelampani.gif",
+      "count": 3,
+      "files": [
+        "Hotel2.graal",
+        "Hotel3.graal",
+        "hotel4.graal"
+      ]
+    },
+    {
+      "image": "F5bluelampani.gif",
+      "script": "8Dbluelampani.gif",
+      "count": 3,
+      "files": [
+        "golgroom.graal",
+        "golgroom.graal",
+        "room12.graal"
+      ]
+    },
+    {
+      "image": "8Dbluelampani.gif",
+      "script": "69bluelampani.gif",
+      "count": 3,
+      "files": [
+        "room11.graal",
+        "room21.graal",
+        "room22.graal"
+      ]
+    },
+    {
+      "image": "2Vbluestone.gif",
+      "script": "2Tbluestone.gif",
+      "count": 2,
+      "files": [
+        "brugestower1_4.graal",
+        "brugestower2_4.graal"
+      ]
+    },
+    {
+      "image": "XXbluelampani.gif",
+      "script": "X>bluelampani.gif",
+      "count": 2,
+      "files": [
+        "jaypee2bar.graal",
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "fence.gif",
+      "script": "//this'll disappear when the battle is over, //thus opening entrance to the Steel Woods if (gate){dontblock;drawunderplayer;hide}",
+      "count": 1,
+      "files": [
+        "AssHome1.graal"
+      ]
+    },
+    {
+      "image": "Wbluelampani.gif",
+      "script": "HPbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "HMbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "JWbluelampani.gif",
+      "script": "J:bluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "tuxman.gif",
+      "script": "9.dressgirl.gif",
+      "count": 1,
+      "files": [
+        "Sephconcert2.graal"
+      ]
+    },
+    {
+      "image": "16bluelampani.gif",
+      "script": "G6bluelampani.gif",
+      "count": 1,
+      "files": [
+        "Sparing.graal"
+      ]
+    },
+    {
+      "image": "GJbluelampani.gif",
+      "script": "1Jbluelampani.gif",
+      "count": 1,
+      "files": [
+        "Sparing.graal"
+      ]
+    },
+    {
+      "image": "E7bluelampani.gif",
+      "script": "97bluelampani.gif",
+      "count": 1,
+      "files": [
+        "abermose1.graal"
+      ]
+    },
+    {
+      "image": "guitar2.gif",
+      "script": ".+nonoise2.gif",
+      "count": 1,
+      "files": [
+        "abermose7.graal"
+      ]
+    },
+    {
+      "image": "-smokeani.gif",
+      "script": "dontblock;",
+      "count": 1,
+      "files": [
+        "bigcity15.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "dontblock; E$",
+      "count": 1,
+      "files": [
+        "bigcity4.graal"
+      ]
+    },
+    {
+      "image": "5bluestone.gif",
+      "script": "';bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "A,bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "bluestone.gif",
+      "script": "F(bluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_1.graal"
+      ]
+    },
+    {
+      "image": "XXbluestone.gif",
+      "script": "VVbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "XVbluestone.gif",
+      "script": "VXbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "TVbluestone.gif",
+      "script": "RTbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "TTbluestone.gif",
+      "script": "VTbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "TRbluestone.gif",
+      "script": "RPbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "RRbluestone.gif",
+      "script": "PRbluestone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    }
+  ]
+}

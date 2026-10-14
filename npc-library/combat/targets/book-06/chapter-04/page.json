@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 6,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "NGhcsign2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } QBiceskates.gif",
+      "count": 1,
+      "files": [
+        "mrhacklevel1.graal"
+      ]
+    },
+    {
+      "image": "3Ghcsign.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } /S",
+      "count": 1,
+      "files": [
+        "mrhacklevel1.graal"
+      ]
+    },
+    {
+      "image": "Blightorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 4=shadoworb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "lightorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0Elightorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "Bcrystalorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 08crystalorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "8crystalorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CGcrystalorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "crystalorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E8crystalorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "5Eshadoworb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >;shadoworb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "58shadoworb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } EAshadoworb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "-Gcrystalorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0<crystalorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "4Alightorb.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -<lightorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "ERtrainfar.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 12 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } HRtrainl.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "F-followerr.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 9 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H-followerfbl.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "ninjitowerg.gif",
+      "script": "if (playertouchsme) {message ok, I want a good clean fight.; } if (wasshot) {message whoa watch it!; } if (exploded) {message careful with that!; } if (washit) {message fight him not me!; } --ninjiguard2.gif",
+      "count": 1,
+      "files": [
+        "ninjiarena.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -?bluelampani.gif",
+      "count": 1,
+      "files": [
+        "ninjiarena.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } O bluelampani.gif",
+      "count": 1,
+      "files": [
+        "ninjiarena.graal"
+      ]
+    },
+    {
+      "image": "ninjistatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } J?ninjistatue.gif",
+      "count": 1,
+      "files": [
+        "ninjimain.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Y;bluelampani.gif",
+      "count": 1,
+      "files": [
+        "ninjimain.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } .",
+      "count": 1,
+      "files": [
+        "ninjimain.graal"
+      ]
+    },
+    {
+      "image": "43ninjibartender.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 35",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "H3ninjibartender.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H5",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "06bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } M6bluelampani.gif",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "MIbluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0Ibluelampani.gif",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "9Mninjistatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 3Mninjistatue.gif",
+      "count": 1,
+      "files": [
+        "ninjitowerenter.graal"
+      ]
+    },
+    {
+      "image": "-Mninjistatue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } EMninjistatue.gif",
+      "count": 1,
+      "files": [
+        "ninjitowerenter.graal"
+      ]
+    }
+  ]
+}

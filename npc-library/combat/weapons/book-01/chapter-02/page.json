@@ -1,0 +1,33 @@
+{
+  "genre": "combat",
+  "topic": "weapons",
+  "book": 1,
+  "chapter": 2,
+  "count": 3,
+  "scripts": [
+    {
+      "image": "R3beer.gif",
+      "script": "if (gotnorthbeer) show; else hide; if (playertouchsme) { hearts = random(0, 3); if (hearts < 1) say 7; else if (hearts < 2) say 8; else say 9; playerhearts += 1; unset gotnorthbeer; } ?*",
+      "count": 1,
+      "files": [
+        "whoopa_arena1.graal"
+      ]
+    },
+    {
+      "image": "zombie.gif",
+      "script": "if (playerenters) { hearts=1; //the number of hearts the vortex starts with timeout=.1; //the delay activates the first time this.delay=2; //the pause between each attack this.durtn=4; //the duration of each attack loopspeed=.05; //the speed the AI loops pulldist=0.4; //the distance covered by each pull this.power=0; //number of half hearts it drains when it gets the player this.is",
+      "count": 1,
+      "files": [
+        "zombie.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// Cheater's Bow // Rescripted by Vangel // // Cheater's Bow locks a cheater's head and clothing // and constantly disables the weapons. // // Nov 26, 1999 // ============================================= // If you make any changes to this script, please note them here: // // // required for testing... // if (playerchats) { // if (playersays(abc123321cba)) destroy; // } if (playerenters) { dontblock; drawoverplayer; if (strequals(#f,goanticheat.gif)) { if ((playerfullhearts>18) || (playerswordpower>3)) { set Cheater; setgif wbowi1.gif; show; timeout=.05; toweapons Bow; } hide; setgif goanticheat.gif; } this.waittime=100; timeout=.05; } if (timeout) { timeout=.05; if (strequals(#f,goanticheat.gif)) { this.waittime--; if (this.waittime<=0) destroy; } else if (strequals(#f,wbowi1.gif)) { set Cheater; } else { show; message Error!; } } if (Cheater) { disableweapons; playerhearts=.5; playerbombs=0; playerdarts=0; playerrupees=0; sethead headcheater.gif; setskincolor yellow; setcoatcolor yellow; setsleevecolor yellow; setshoecolor yellow; setbeltcolor yellow; setplayerprop #c,; takeplayercarry; timeout=.05; }",
+      "count": 1,
+      "files": [
+        "goanticheat.txt"
+      ]
+    }
+  ]
+}

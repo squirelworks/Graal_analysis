@@ -1,0 +1,132 @@
+{
+  "genre": "object",
+  "topic": "signs",
+  "book": 1,
+  "chapter": 1,
+  "count": 15,
+  "scripts": [
+    {
+      "image": "sign.gif",
+      "script": "if (playertouchsme) say 0;",
+      "count": 4,
+      "files": [
+        "in4.graal",
+        "nwotown2.graal",
+        "othouse2.graal"
+      ]
+    },
+    {
+      "image": "Usign.gif",
+      "script": "if (playertouchsme) {say 0} if (playerendsreading) {hide} ?>sign.gif",
+      "count": 2,
+      "files": [
+        "battle1.graal",
+        "battle2.graal"
+      ]
+    },
+    {
+      "image": "Gsecretsign.gif",
+      "script": "if (playerenters) {this.shoot=1;dontblock;drawunderplayer} if (playertouchsme&&this.shoot==1) { putcomp swampsoldier, 9,34;putcomp swampsoldier, 11,34;putcomp swampsoldier, 13,34;putcomp swampsoldier, 15,34;putcomp swampsoldier, 17,34;putcomp swampsoldier, 9,45;putcomp swampsoldier, 11,45;putcomp swampsoldier, 13,45;putcomp swampsoldier, 15,45;putcomp swampsoldier, 17,45;putcomp swampsoldier, 22,4",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "Lsecretsign.gif",
+      "script": "if (playerenters) {this.shoot=1} if (playertouchsme&&this.shoot==1) {say 0;putcomp octopus, 46,48;putcomp octopus, 46,48;putcomp octopus, 46,46;putcomp octopus, 46,46;putcomp octopus, 46,44;putcomp octopus, 46,44;putcomp octopus, 48,48;putcomp octopus, 48,48;putcomp octopus, 48,46;putcomp octopus, 48,46;putcomp octopus, 48,44;putcomp octopus, 48,44;putcomp octopus, 50,48;putcomp octopus, 50,48;put",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "7secretsign.gif",
+      "script": "if (playerenters) {dontblock;this.poop=0} if (playertouchsme&&this.poop==0) {this.poop=1;putcomp octopus,1,9;putcomp octopus,1,9;putcomp octopus,1,9;putcomp octopus,1,9;putcomp octopus,2,9;putcomp octopus,2,9;putcomp octopus,2,9;putcomp octopus,2,9;putcomp octopus,3,9;putcomp octopus,3,9;putcomp octopus,3,9;putcomp octopus,3,9;putcomp octopus,4,9;putcomp octopus,4,9;putcomp octopus,4,9;putcomp oct",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "sign.gif",
+      "script": "if (!Round2 && playertouchsme) {say 3} if (Round2) {hide}",
+      "count": 1,
+      "files": [
+        "battle1.graal"
+      ]
+    },
+    {
+      "image": "sign.gif",
+      "script": "if (!Round4 && playertouchsme) {say 3} if (Round4) {hide}",
+      "count": 1,
+      "files": [
+        "battle2.graal"
+      ]
+    },
+    {
+      "image": "6Dinsidesign.gif",
+      "script": "if (playerenters) {stopmidi} if (playersays(0,start)) {playery=32;play stef34.mid;timeout=16;timershow} if(playertouchsme) {say 0} if(timeout){playerx=17;playery=40;stopmidi;say 1} 5H",
+      "count": 1,
+      "files": [
+        "ccpirate7.graal"
+      ]
+    },
+    {
+      "image": "IOsigna.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {drawoverplayer;} -",
+      "count": 1,
+      "files": [
+        "fctown.graal"
+      ]
+    },
+    {
+      "image": "73foxsign.gif",
+      "script": "// NPC made by <yourname> if (playertouchsme&&playery>y) {say 0} if (playertouchsme) {setletters foxletters-charset.gif} if (playerendsreading) {setletters letters.gif}",
+      "count": 1,
+      "files": [
+        "level17.graal"
+      ]
+    },
+    {
+      "image": "-sign.gif",
+      "script": "if (playertouchsme) { if (!GnomsAtHome) say 0; if (GnomsAtHome) say 1; } 3Sskimmer.gif",
+      "count": 1,
+      "files": [
+        "level22.graal"
+      ]
+    },
+    {
+      "image": "townsign.gif",
+      "script": "if (playerenters) { dontblock; } E,",
+      "count": 1,
+      "files": [
+        "level9.graal"
+      ]
+    },
+    {
+      "image": "goldsign.gif",
+      "script": "if (playertouchsme) say 3; CXgoldstatue.gif",
+      "count": 1,
+      "files": [
+        "midasrealm2.graal"
+      ]
+    },
+    {
+      "image": "Jgoldsign.gif",
+      "script": "if (playertouchsme) say 0; 9Igold5stone.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "sign.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {canbecarried }",
+      "count": 1,
+      "files": [
+        "mouhall.graal"
+      ]
+    }
+  ]
+}

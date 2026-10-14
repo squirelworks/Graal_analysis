@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "BNemeraldbaddy.gif",
+      "script": "if (playertouchsme) { say 10; } FNdbluebaddy.gif",
+      "count": 1,
+      "files": [
+        "gerudofort_inn.graal"
+      ]
+    },
+    {
+      "image": "gocheatcatcher.gif",
+      "script": "// NPC made by Vangel (JF) // November 9, 1999 // Written for Gandarian (Baddy) of the // Graal Online Police Department // // This npc weapon costs nothing and allows // players to kill cheaters instantly. // // the weapon checks ths sword/shield/fullhearts // of the other players on the level and kills any // player who has a power 4 or higher sword, // or 18 or more fullhearts then the weapon w",
+      "count": 1,
+      "files": [
+        "goanticheat.graal"
+      ]
+    },
+    {
+      "image": "FOtuxman.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } S$blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "gohfair.graal"
+      ]
+    },
+    {
+      "image": "-2BaddyRedSitting.gif",
+      "script": "13BaddyGoldSitting.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "17BaddyBlueSitting.gif",
+      "script": "if (playertouchsother && G3BlueBaddiesGone) hide; if (playertouchsme) say 5; -6BaddyGoldSitting.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "BaddyRedSitting.gif",
+      "script": "if (playertouchsother && G3RedBaddiesGone) hide; if (playertouchsme) say 6; -:BaddyBlueSitting.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "BaddyGoldSitting.gif",
+      "script": "if (playertouchsother && G3GoldBaddiesGone) hide; if (playertouchsme) say 7; ->BaddyRedSitting.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "K3BaddyBlueSitting2.gif",
+      "script": "if (playertouchsother && G3BlueBaddiesGone) hide; if (playertouchsme) say 8; K7BaddyGoldSitting2.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "BaddyGoldSitting2.gif",
+      "script": "if (playertouchsother && G3GoldBaddiesGone) hide; if (playertouchsme) say 10; O>BaddyGoldSitting2.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "O6BaddyRedSitting2.gif",
+      "script": "K?BaddyRedSitting2.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "BaddyBlueSitting2.gif",
+      "script": "O2BaddyGoldSitting2.gif",
+      "count": 1,
+      "files": [
+        "golden3.graal"
+      ]
+    },
+    {
+      "image": "MonsterGold.gif",
+      "script": "if (playerenters) { unset G9PlayerAsked; if (G9BaddiesKilled) removecompus; if (G2GotSword) hide; } if (playertouchsme) { if (G9BaddiesKilled) say 3; if (!G9BaddiesKilled) { if (G9PlayerAsked) { disableweapons; playerx = 30.5; playery = 21; } if (!G9PlayerAsked) { say 0; set G9PlayerAsked; } } } if (compusdied && !G9BaddiesKilled) { say 2",
+      "count": 1,
+      "files": [
+        "golden9.graal"
+      ]
+    },
+    {
+      "image": "2fence.gif",
+      "script": "if (playerenters && G9BaddiesKilled) hide; if (compusdied) hide;",
+      "count": 1,
+      "files": [
+        "golden9.graal"
+      ]
+    },
+    {
+      "image": "Bgreycaveshut.gif",
+      "script": "if (playerenters) { if(!GotGreyStone){ say0; } if(GreyCaveClear){ removecompus; } if(GotGreyStone){ hide; } } if (compusdied) { set GreyCaveClear; }",
+      "count": 1,
+      "files": [
+        "greycave1.graal"
+      ]
+    },
+    {
+      "image": "5-blackbaddy.gif",
+      "script": "if (playerenters && playerhaspass) {hide } if (playertouchsme && !playerhaspass) {say0 } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } *+blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "hall.graal"
+      ]
+    },
+    {
+      "image": "5blackbaddy.gif",
+      "script": "if (playerenters && playerhaspass) {hide } if (playertouchsme && !playerhaspass) {say 2 } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } 56blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "hall.graal"
+      ]
+    },
+    {
+      "image": "R1bar.gif",
+      "script": "if (playerenters && playeringuild Bartender && Welcomematblue) {hide;} if (playertouchsme && !Qualifiedforthejob) {say 0;} if (playertouchsme && playeringuild Bartender) {say 4; hide; set Welcomematblue;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 1(graal1.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "graalblue.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {set tastybeer;} if (timeout) { } C(graalgreen.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "graalred.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {set AnnoyingCostumer;} if (timeout) { } 20beer.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "R-gate.gif",
+      "script": "if (!BlockedBar) {hide;} if (playertouchsother && BlockedBar) {show;} if (playertouchsme && BlockedBar) {say 6;} if (playertouchsme && !BlockedBar) {hide; say -1;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 6.sign.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "4graal1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit && playeringuild Bartender) {set table1beer1; set table1beer2; set table1beer3; set table1beer4;} if (timeout) { } ,=graal1.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "Dgraal1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit && playeringuild Bartender) {set table3beer1; set table3beer2; set table3beer3; set table3beer4;} if (timeout) { } U7graal1.gif",
+      "count": 1,
+      "files": [
+        "hanzosbar.graal"
+      ]
+    },
+    {
+      "image": "redhed.gif",
+      "script": "if (playerenters) { } if (playertouchsme && !pissedoff) {say 2 } if (playertouchsme && pissedoff) {say 3 } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } :,",
+      "count": 1,
+      "files": [
+        "heaven.graal"
+      ]
+    },
+    {
+      "image": "gimpymanz.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; set didyoueatyourchunkysoup } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } CV",
+      "count": 1,
+      "files": [
+        "heavensgate.graal"
+      ]
+    },
+    {
+      "image": "skullbkgrnd.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } - skullbkgrnd.gif",
+      "count": 1,
+      "files": [
+        "hell.graal"
+      ]
+    }
+  ]
+}

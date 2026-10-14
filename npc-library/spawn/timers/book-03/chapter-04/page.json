@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 3,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=27; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "I7dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=23; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "I3dlstatue.gif",
+      "script": "if(playerenters)timereverywhere; if(playerenters&&playerscount=1){show; timeout=random(3,6); x=41; y=19; this.1=0} if(timeout){ if(this.1<21){ timeout=.05; } if(this.1=0){ if(x<playerx){x+=.25} if(x>playerx){x-=.25} if(y<playery){y+=.25} if(y>playery){y-=.25} } if(abs(x-(playerx+.5))<2 && abs(y-(playery+.5))<3&&this.1=0){ this.1=1; } if(this.1<21&&this.1>0){ x+=",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "O0sardon.gif",
+      "script": "if (playerenters) {timeout=.05;dontblock} if (timeout) {timeout=.05; if(this.1=1){show;this.1=0} if(random(0,5)>4.5){hide;this.1=1} } -2",
+      "count": 1,
+      "files": [
+        "sardontower29.graal"
+      ]
+    },
+    {
+      "image": "Benkitodog.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<6 && abs(y-players[i].y)<5 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=90) {message ; this.msg=0} if (this.msg=100) message Woof!; if (this.msg=98) message ; if (this.msg=96) message Woof!; if (this.msg=94) message ; if (this.msg=92) message Woof!; this.msg--; } =?",
+      "count": 1,
+      "files": [
+        "usagetaway.graal"
+      ]
+    },
+    {
+      "image": "minewallnorth.gif",
+      "script": "if (playerenters) {x=58} //change to x of the npc; if (timeout&& !x==60) {timeout=0.1; x+=0.5} //change the !x==",
+      "count": 1,
+      "files": [
+        "usahang.graal"
+      ]
+    },
+    {
+      "image": "3smallbomb.gif",
+      "script": "if (playerenters) this.init = 0; if (playing && this.init == 0) { timeout = .1; this.tr = 0; this.init = 1; } if (killedplayer) { this.init = 0; unset usedbomb; unset usingbomb; x = 0; y = 0 } if (timeout) { if (usedbomb) { if (booms > 0 && !usingbomb) { booms--; set usingbomb; x = mainx - 1; y = mainy - 1; this.tr = 30; play put.wav; setgif explode.gif;",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "7n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = booms * .1; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if (bombs == 8) setgif n8.gif; if (bombs == 9) setgif n9.gif;",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "7n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = booms * .1; bombs *= 10; bombs = booms - bombs; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if (bombs == 8) setgif n8",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "77n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = score * .1; bombs *= 10; bombs = score - bombs; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if (bombs == 8) setgif n8",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "67n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = score * .01; bombs *= 100; bombs = score - bombs; bombs *= .1; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if (bomb",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "57n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = score * .001; bombs *= 1000; bombs = score - bombs; bombs *= .01; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if (b",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "47n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = score * .0001; bombs *= 10000; bombs = score - bombs; bombs *= .001; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "37n0.gif",
+      "script": "if (playerenters) timeout = .2; if (timeout) { bombs = score * .0001; if (bombs == 0) setgif n0.gif; if (bombs == 1) setgif n1.gif; if (bombs == 2) setgif n2.gif; if (bombs == 3) setgif n3.gif; if (bombs == 4) setgif n4.gif; if (bombs == 5) setgif n5.gif; if (bombs == 6) setgif n6.gif; if (bombs == 7) setgif n7.gif; if (bombs == 8) setgif n8.gif; if (bombs == 9) setgif n9.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "ballboy.gif",
+      "script": "if (playerenters) this.init = 0; if (playing && this.init == 0) { show; timeout = .1; this.init = 1; } if (!playing) hide; if (killedplayer) { this.init = 0; x = 29; y = 32; hide; } if (timeout && this.init == 1) { if (playerdir == 0 && !onwall (x, y-.3)) y -= .4; if (playerdir == 1 && !onwall (x-.3, y)) x -= .4; if (playerdir == 2 && !onwall (x, y+1.3)) y += .4; if (playerdir == 3",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "6Jadair.gif",
+      "script": "if (playertouchsme) { message I like this game, its kinda hard though; timeout = 2; } if (timeout) message;",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "Gpachukitesitl2.gif",
+      "script": "if (playertouchsme) { message Yeah but theres not enough blood; timeout = 2; } if (timeout) message; ;Gpachukitesitr1.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arena1.graal"
+      ]
+    },
+    {
+      "image": "GBoldmansitting3.gif",
+      "script": "if (playertouchsme) { message Nothing like a fight; timeout =2;} if (timeout) message; GRbluelampani.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arena1.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// // Armageddon's Perma Clothes // - black - // // script by Vangel (JF) // -=dedicated to Jesus=- // // if (playerenters) { //initialize the NPC timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { setskincolor orange; setcoatcolor black; setsleevecolor black; setshoecolor red; setbeltcolor white; timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermBlack.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) { //initialize the NPC this.rotation=1; timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { if (this.rotation==1) { setskincolor pink; setcoatcolor white; setsleevecolor blue; setshoecolor red; setbeltcolor black; this.rotation=2; } else { setskincolor pink; setcoatcolor white; setsleevecolor blue; setshoecolor white; setbeltcolor black; this.rotation=1; } timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermCode1.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playerenters) { //initialize the NPC this.rotation=1; timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { if (this.rotation==1) { setskincolor pink; setcoatcolor white; setsleevecolor blue; setshoecolor red; setbeltcolor black; this.rotation=2; } else { setskincolor black; setcoatcolor blue; setsleevecolor darkred; setshoecolor green; setbeltcolor purple; this.rotation=1; } timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermCode2.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//script by Vangel (JF) if (playerenters) { //initialize the NPC this.rotation=1; timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { //skin color (gloves this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setskincolor white; if ((this.rnd>=1) && (this.rnd<2)) setskincolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setskincolor orange; if ((this.rnd>=3) && (this.rnd<4)) setskincolor pink; if ((this.rnd>=4) && (this.rnd<5)) setskincolor red; if ((this.rnd>=5) && (this.rnd<6)) setskincolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setskincolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setskincolor green; if ((this.rnd>=8) && (this.rnd<9)) setskincolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setskincolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setskincolor blue; if ((this.rnd>=11) && (this.rnd<12)) setskincolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setskincolor brown; if ((this.rnd>=13) && (this.rnd<14)) setskincolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setskincolor purple; if ((this.rnd>=15) && (this.rnd<16)) setskincolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setskincolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setskincolor gray; if ((this.rnd>=18) && (this.rnd<19)) setskincolor black; //coat color this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setcoatcolor white; if ((this.rnd>=1) && (this.rnd<2)) setcoatcolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setcoatcolor orange; if ((this.rnd>=3) && (this.rnd<4)) setcoatcolor pink; if ((this.rnd>=4) && (this.rnd<5)) setcoatcolor red; if ((this.rnd>=5) && (this.rnd<6)) setcoatcolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setcoatcolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setcoatcolor green; if ((this.rnd>=8) && (this.rnd<9)) setcoatcolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setcoatcolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setcoatcolor blue; if ((this.rnd>=11) && (this.rnd<12)) setcoatcolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setcoatcolor brown; if ((this.rnd>=13) && (this.rnd<14)) setcoatcolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setcoatcolor purple; if ((this.rnd>=15) && (this.rnd<16)) setcoatcolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setcoatcolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setcoatcolor gray; if ((this.rnd>=18) && (this.rnd<19)) setcoatcolor black; //sleves this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setsleevecolor white; if ((this.rnd>=1) && (this.rnd<2)) setsleevecolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setsleevecolor orange; if ((this.rnd>=3) && (this.rnd<4)) setsleevecolor pink; if ((this.rnd>=4) && (this.rnd<5)) setsleevecolor red; if ((this.rnd>=5) && (this.rnd<6)) setsleevecolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setsleevecolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setsleevecolor green; if ((this.rnd>=8) && (this.rnd<9)) setsleevecolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setsleevecolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setsleevecolor blue; if ((this.rnd>=11) && (this.rnd<12)) setsleevecolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setsleevecolor brown; if ((this.rnd>=13) && (this.rnd<14)) setsleevecolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setsleevecolor purple; if ((this.rnd>=15) && (this.rnd<16)) setsleevecolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setsleevecolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setsleevecolor gray; if ((this.rnd>=18) && (this.rnd<19)) setsleevecolor black; //shoes this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setshoecolor white; if ((this.rnd>=1) && (this.rnd<2)) setshoecolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setshoecolor orange; if ((this.rnd>=3) && (this.rnd<4)) setshoecolor pink; if ((this.rnd>=4) && (this.rnd<5)) setshoecolor red; if ((this.rnd>=5) && (this.rnd<6)) setshoecolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setshoecolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setshoecolor green; if ((this.rnd>=8) && (this.rnd<9)) setshoecolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setshoecolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setshoecolor blue; if ((this.rnd>=11) && (this.rnd<12)) setshoecolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setshoecolor brown; if ((this.rnd>=13) && (this.rnd<14)) setshoecolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setshoecolor purple; if ((this.rnd>=15) && (this.rnd<16)) setshoecolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setshoecolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setshoecolor gray; if ((this.rnd>=18) && (this.rnd<19)) setshoecolor black; //belt this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setbeltcolor white; if ((this.rnd>=1) && (this.rnd<2)) setbeltcolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setbeltcolor orange; if ((this.rnd>=3) && (this.rnd<4)) setbeltcolor pink; if ((this.rnd>=4) && (this.rnd<5)) setbeltcolor red; if ((this.rnd>=5) && (this.rnd<6)) setbeltcolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setbeltcolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setbeltcolor green; if ((this.rnd>=8) && (this.rnd<9)) setbeltcolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setbeltcolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setbeltcolor blue; if ((this.rnd>=11) && (this.rnd<12)) setbeltcolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setbeltcolor brown; if ((this.rnd>=13) && (this.rnd<14)) setbeltcolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setbeltcolor purple; if ((this.rnd>=15) && (this.rnd<16)) setbeltcolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setbeltcolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setbeltcolor gray; if ((this.rnd>=18) && (this.rnd<19)) setbeltcolor black; this.rotation=2; timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermCode3.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// // Armageddon's Perma Clothes // - white & black - // // script by Vangel (JF) // -=dedicated to Jesus=- // // if (playerenters) { //initialize the NPC this.rotation=1; timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { if (this.rotation==1) { setskincolor orange; setcoatcolor black; setsleevecolor black; setshoecolor red; setbeltcolor white; this.rotation=2; } else { setskincolor orange; setcoatcolor white; setsleevecolor blue; setshoecolor red; setbeltcolor black; this.rotation=1; } timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermFlashBW.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// // Armageddon's Perma Clothes // - random - // // script by Vangel (JF) // -=dedicated to Jesus=- // // if (playerenters) { //initialize the NPC this.rotation=1; timeout=.05; followplayer; } if (timeout) { if (!ArmaPermClothes) { x=10; y=10; destroy; } else { //skin color (gloves this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setskincolor white; if ((this.rnd>=1) && (this.rnd<2)) setskincolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setskincolor orange; if ((this.rnd>=3) && (this.rnd<4)) setskincolor pink; if ((this.rnd>=4) && (this.rnd<5)) setskincolor red; if ((this.rnd>=5) && (this.rnd<6)) setskincolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setskincolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setskincolor green; if ((this.rnd>=8) && (this.rnd<9)) setskincolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setskincolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setskincolor blue; if ((this.rnd>=11) && (this.rnd<12)) setskincolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setskincolor brown; if ((this.rnd>=13) && (this.rnd<14)) setskincolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setskincolor purple; if ((this.rnd>=15) && (this.rnd<16)) setskincolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setskincolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setskincolor gray; if ((this.rnd>=18) && (this.rnd<19)) setskincolor black; //coat color this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setcoatcolor white; if ((this.rnd>=1) && (this.rnd<2)) setcoatcolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setcoatcolor orange; if ((this.rnd>=3) && (this.rnd<4)) setcoatcolor pink; if ((this.rnd>=4) && (this.rnd<5)) setcoatcolor red; if ((this.rnd>=5) && (this.rnd<6)) setcoatcolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setcoatcolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setcoatcolor green; if ((this.rnd>=8) && (this.rnd<9)) setcoatcolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setcoatcolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setcoatcolor blue; if ((this.rnd>=11) && (this.rnd<12)) setcoatcolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setcoatcolor brown; if ((this.rnd>=13) && (this.rnd<14)) setcoatcolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setcoatcolor purple; if ((this.rnd>=15) && (this.rnd<16)) setcoatcolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setcoatcolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setcoatcolor gray; if ((this.rnd>=18) && (this.rnd<19)) setcoatcolor black; //sleves this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setsleevecolor white; if ((this.rnd>=1) && (this.rnd<2)) setsleevecolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setsleevecolor orange; if ((this.rnd>=3) && (this.rnd<4)) setsleevecolor pink; if ((this.rnd>=4) && (this.rnd<5)) setsleevecolor red; if ((this.rnd>=5) && (this.rnd<6)) setsleevecolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setsleevecolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setsleevecolor green; if ((this.rnd>=8) && (this.rnd<9)) setsleevecolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setsleevecolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setsleevecolor blue; if ((this.rnd>=11) && (this.rnd<12)) setsleevecolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setsleevecolor brown; if ((this.rnd>=13) && (this.rnd<14)) setsleevecolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setsleevecolor purple; if ((this.rnd>=15) && (this.rnd<16)) setsleevecolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setsleevecolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setsleevecolor gray; if ((this.rnd>=18) && (this.rnd<19)) setsleevecolor black; //shoes this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setshoecolor white; if ((this.rnd>=1) && (this.rnd<2)) setshoecolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setshoecolor orange; if ((this.rnd>=3) && (this.rnd<4)) setshoecolor pink; if ((this.rnd>=4) && (this.rnd<5)) setshoecolor red; if ((this.rnd>=5) && (this.rnd<6)) setshoecolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setshoecolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setshoecolor green; if ((this.rnd>=8) && (this.rnd<9)) setshoecolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setshoecolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setshoecolor blue; if ((this.rnd>=11) && (this.rnd<12)) setshoecolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setshoecolor brown; if ((this.rnd>=13) && (this.rnd<14)) setshoecolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setshoecolor purple; if ((this.rnd>=15) && (this.rnd<16)) setshoecolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setshoecolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setshoecolor gray; if ((this.rnd>=18) && (this.rnd<19)) setshoecolor black; //belt this.rnd=random(0,19); if ((this.rnd>=0) && (this.rnd<1)) setbeltcolor white; if ((this.rnd>=1) && (this.rnd<2)) setbeltcolor yellow; if ((this.rnd>=2) && (this.rnd<3)) setbeltcolor orange; if ((this.rnd>=3) && (this.rnd<4)) setbeltcolor pink; if ((this.rnd>=4) && (this.rnd<5)) setbeltcolor red; if ((this.rnd>=5) && (this.rnd<6)) setbeltcolor darkred; if ((this.rnd>=6) && (this.rnd<7)) setbeltcolor lightgreen; if ((this.rnd>=7) && (this.rnd<8)) setbeltcolor green; if ((this.rnd>=8) && (this.rnd<9)) setbeltcolor darkgreen; if ((this.rnd>=9) && (this.rnd<10)) setbeltcolor lightblue; if ((this.rnd>=10) && (this.rnd<11)) setbeltcolor blue; if ((this.rnd>=11) && (this.rnd<12)) setbeltcolor darkblue; if ((this.rnd>=12) && (this.rnd<13)) setbeltcolor brown; if ((this.rnd>=13) && (this.rnd<14)) setbeltcolor cynober; if ((this.rnd>=14) && (this.rnd<15)) setbeltcolor purple; if ((this.rnd>=15) && (this.rnd<16)) setbeltcolor darkpurple; if ((this.rnd>=16) && (this.rnd<17)) setbeltcolor lightgray; if ((this.rnd>=17) && (this.rnd<18)) setbeltcolor gray; if ((this.rnd>=18) && (this.rnd<19)) setbeltcolor black; this.rotation=2; timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermRandom.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "// // Armageddon's MorphStuff // - random - // // script by Vangel (JF) // -=dedicated to Jesus=- // // if (playerenters) { //initialize the NPC if (this.init==0) { this.init=1; this.playerid=ArmaPlayerID; } this.rotation=1; timeout=.05; followplayer; } if (timeout) { if (!ArmaPermSword) { x=10; y=10; destroy; } else { //sword this.rnd=random(0,9); if ((this.rnd>=0) && (this.rnd<1)) setsword fishsword.gif, playerswordpower; if ((this.rnd>=1) && (this.rnd<2)) setsword flaminsword.gif, playerswordpower; if ((this.rnd>=2) && (this.rnd<3)) setsword hackcorpsaxe.gif, playerswordpower; if ((this.rnd>=3) && (this.rnd<4)) setsword hackcorpssword.gif, playerswordpower; if ((this.rnd>=4) && (this.rnd<5)) setsword lightsaber1.gif, playerswordpower; if ((this.rnd>=5) && (this.rnd<6)) setsword OrangeLightSaber.gif, playerswordpower; if ((this.rnd>=6) && (this.rnd<7)) setsword spearsword.gif, playerswordpower; if ((this.rnd>=7) && (this.rnd<8)) setsword sticksword.gif, playerswordpower; if ((this.rnd>=8) && (this.rnd<9)) setsword swordoflife.gif, playerswordpower; //shield this.rnd=random(0,15); if ((this.rnd>=0) && (this.rnd<1)) setshield akumashield.gif, playershieldpower; if ((this.rnd>=1) && (this.rnd<2)) setshield blackshield.gif, playershieldpower; if ((this.rnd>=2) && (this.rnd<3)) setshield bloodysmile.gif, playershieldpower; if ((this.rnd>=3) && (this.rnd<4)) setshield blueshield.gif, playershieldpower; if ((this.rnd>=4) && (this.rnd<5)) setshield docshield.gif, playershieldpower; if ((this.rnd>=5) && (this.rnd<6)) setshield fagshield.gif, playershieldpower; if ((this.rnd>=6) && (this.rnd<7)) setshield FireSheild.gif, playershieldpower; if ((this.rnd>=7) && (this.rnd<8)) setshield goldshield.gif, playershieldpower; if ((this.rnd>=8) && (this.rnd<9)) setshield goldshield2.gif, playershieldpower; if ((this.rnd>=9) && (this.rnd<10)) setshield hackcorpsshield.gif, playershieldpower; if ((this.rnd>=10) && (this.rnd<11)) setshield happyshield.gif, playershieldpower; if ((this.rnd>=11) && (this.rnd<12)) setshield iceshield.gif, playershieldpower; if ((this.rnd>=12) && (this.rnd<13)) setshield linkshield.gif, playershieldpower; if ((this.rnd>=13) && (this.rnd<14)) setshield rainbow.gif, playershieldpower; if ((this.rnd>=14) && (this.rnd<15)) setshield sardonshield.gif, playershieldpower; timeout=5; } }",
+      "count": 1,
+      "files": [
+        "ArmaPermSwordRandom.txt"
+      ]
+    }
+  ]
+}

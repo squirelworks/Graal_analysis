@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 3,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Train.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} TQrain.gif",
+      "count": 1,
+      "files": [
+        "dotd2.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} ;rain.gif",
+      "count": 1,
+      "files": [
+        "dotd3.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} V;rain.gif",
+      "count": 1,
+      "files": [
+        "dotd3.graal"
+      ]
+    },
+    {
+      "image": "Vrain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} :Vrain.gif",
+      "count": 1,
+      "files": [
+        "dotd3.graal"
+      ]
+    },
+    {
+      "image": "USrain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} J>pachukitedown3.gif",
+      "count": 1,
+      "files": [
+        "dotd3.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} :rain.gif",
+      "count": 1,
+      "files": [
+        "dotd4.graal"
+      ]
+    },
+    {
+      "image": "Srain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} 8Rrain.gif",
+      "count": 1,
+      "files": [
+        "dotd4.graal"
+      ]
+    },
+    {
+      "image": "QSrain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} @$purpfire.gif",
+      "count": 1,
+      "files": [
+        "dotd4.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} rain.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} Urain.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "Urain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} TSrain.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} ?rain.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Yrain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} ;(rain.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "Drain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} V%rain.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "rain.gif",
+      "script": "if (playerenters) {drawoverplayer; dontblock;} UXrain.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "9Bbottle.gif",
+      "script": "if (playerenters && !this.init=1) {x+=.5; this.init=1;}",
+      "count": 1,
+      "files": [
+        "enkitohouse6.graal"
+      ]
+    },
+    {
+      "image": "bubbles.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawoverplayer; } if (playertouchsme) { } 8;",
+      "count": 1,
+      "files": [
+        "entrancetoheaven.graal"
+      ]
+    },
+    {
+      "image": "bubbles.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawoverplayer; } if (playertouchsme) { } ;;bubbles.gif",
+      "count": 1,
+      "files": [
+        "entrancetoheaven.graal"
+      ]
+    },
+    {
+      "image": "bubbles.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawoverplayer; } if (playertouchsme) { } ==bubbles.gif",
+      "count": 1,
+      "files": [
+        "entrancetoheaven.graal"
+      ]
+    },
+    {
+      "image": "bubbles.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawoverplayer; } if (playertouchsme) { } <>bubbles.gif",
+      "count": 1,
+      "files": [
+        "entrancetoheaven.graal"
+      ]
+    },
+    {
+      "image": "bubbles.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawoverplayer; } if (playertouchsme) { } ;?bubbles.gif",
+      "count": 1,
+      "files": [
+        "entrancetoheaven.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playerenters) {dontblock} 4<",
+      "count": 1,
+      "files": [
+        "farmland1.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playerenters) {dontblock} S&",
+      "count": 1,
+      "files": [
+        "farmland1.graal"
+      ]
+    },
+    {
+      "image": "14smokeani.gif",
+      "script": "if (playerenters) {dontblock} V+",
+      "count": 1,
+      "files": [
+        "farmland3.graal"
+      ]
+    },
+    {
+      "image": "ballofire.gif",
+      "script": "if (playertouchsme) { setskincolor orange;setcoatcolor orange;setsleevecolor orange;setshoecolor orange;setbeltcolor orange} X:ballofire.gif",
+      "count": 1,
+      "files": [
+        "fccop.graal"
+      ]
+    }
+  ]
+}

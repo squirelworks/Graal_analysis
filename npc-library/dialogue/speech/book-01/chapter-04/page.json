@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 1,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "yitemshopper.gif",
+      "script": "if (playertouchsme) {say 4} ??blueright.gif",
+      "count": 1,
+      "files": [
+        "cccastle10.graal"
+      ]
+    },
+    {
+      "image": "Hbrotherg.gif",
+      "script": "if (playertouchsme) {say 7} ,/guitar1.gif",
+      "count": 1,
+      "files": [
+        "cccastle10.graal"
+      ]
+    },
+    {
+      "image": "4Hredkid.gif",
+      "script": "if (playertouchsme) {say 9} 4Caronfrwd.gif",
+      "count": 1,
+      "files": [
+        "cccastle10.graal"
+      ]
+    },
+    {
+      "image": "Ebitch.gif",
+      "script": "if (playerenters) {message *chomp chomp*;x=30.5;y=36.5} if (playertouchsme) {say 6}",
+      "count": 1,
+      "files": [
+        "cccastle10.graal"
+      ]
+    },
+    {
+      "image": "O7qkstatue.gif",
+      "script": "if (playertouchsme) {say 1 } E7qkstatue.gif",
+      "count": 1,
+      "files": [
+        "cccastle15.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerkiller){hide;} if (playertouchsme) {say 3} BH",
+      "count": 1,
+      "files": [
+        "cccastlesouth.graal"
+      ]
+    },
+    {
+      "image": "3storeguy.gif",
+      "script": "if (playertouchsme) say2; if (playerlaysitem){ take bluerupee; take redrupee; take greenrupee; } if (rupees>=2 ) set chrisi; if (chrisi) { lay heart; say 1; rupees-=2; unset chrisi; } DCstoreguy.gif",
+      "count": 1,
+      "files": [
+        "ccccc.graal"
+      ]
+    },
+    {
+      "image": "6Cstoreguy.gif",
+      "script": "if (playertouchsme) say 6; if (playerlaysitem){ take bluerupee; take redrupee; take greenrupee; } if (rupees>=10 ) set chrisi; if (chrisi) { lay bombs; say 1; rupees-=10; unset chrisi; } <@",
+      "count": 1,
+      "files": [
+        "ccccc.graal"
+      ]
+    },
+    {
+      "image": "reader.gif",
+      "script": "if (playertouchsme) {say 0} ;5oldmansitting3.gif",
+      "count": 1,
+      "files": [
+        "ccchurch.graal"
+      ]
+    },
+    {
+      "image": "D5oldmansitting3.gif",
+      "script": "if (playertouchsme) { say 2 } D:oldmansitting3.gif",
+      "count": 1,
+      "files": [
+        "ccchurch.graal"
+      ]
+    },
+    {
+      "image": "oldmansitting3.gif",
+      "script": "if (playertouchsme) { say 4 } :?oldmansitting3.gif",
+      "count": 1,
+      "files": [
+        "ccchurch.graal"
+      ]
+    },
+    {
+      "image": "CDoldmansitting3.gif",
+      "script": "if (playertouchsme) { say 6 } FDoldmansitting3.gif",
+      "count": 1,
+      "files": [
+        "ccchurch.graal"
+      ]
+    },
+    {
+      "image": "Ioldmansitting3.gif",
+      "script": "if (playertouchsme) { say 9 }",
+      "count": 1,
+      "files": [
+        "ccchurch.graal"
+      ]
+    },
+    {
+      "image": "bro.gif",
+      "script": "if (playertouchsme && !hammeridiot) {say 0} if (playersays(yes)){set hammeridiot; followplayer;message Say 'Go Away' if you don't want me} if (playersays(go away) && !hammeridiot2) {destroy} if (hammeridiot2) {x=18;y=18;message Thanks!} if (playerenters) {hide} 61bro2.gif",
+      "count": 1,
+      "files": [
+        "cceastcoast4.graal"
+      ]
+    },
+    {
+      "image": "AAdead.gif",
+      "script": "if (playertouchsme) { say 1 } AAdead.gif",
+      "count": 1,
+      "files": [
+        "ccforest4.graal"
+      ]
+    },
+    {
+      "image": "-reader.gif",
+      "script": "if(playerenters && !ccswordget) {hide} if (playertouchsother) {setgif beerhost.gif} if (playersays(yes) && ccswordget) { if(isanexplorer) {message Good Luck!; setshoecolor black; setcoatcolor black; setbeltcolor yellow; setskincolor yellow; setsleevecolor black; } if(!isanexplorer) { setshoecolor black; setcoatcolor black; setbeltcolor yellow; setskincolor yellow; setsleevecolor black; say 1; set",
+      "count": 1,
+      "files": [
+        "cchouse2.graal"
+      ]
+    },
+    {
+      "image": "1bar.gif",
+      "script": "if(playerenters) { if(ccswordget) {show} if(!ccswordget) {hide} } if (playertouchsme) {say 0}",
+      "count": 1,
+      "files": [
+        "cchouse2.graal"
+      ]
+    },
+    {
+      "image": "cclarry.gif",
+      "script": "if (playerenters) { if(!spidergod8) { show; } if(spidergod8) {hide} } if (playertouchsme) { if(ccswordget && !ccvolcanodone) {say 1;set ccgoingtovolcano} if(ccvolcanodone) {say 2} if(!ccswordget) {say 0} } <,cclarry.gif",
+      "count": 1,
+      "files": [
+        "cchouse4.graal"
+      ]
+    },
+    {
+      "image": "0cclarry.gif",
+      "script": "if (playerenters) { if(ccfinalclear) { show; } else hide; } if(playertouchsme){ if(ccfinalclear) { if(!ccpiratedone) {say 6;set cctopiratequest} if(ccpiratedone) {say 7} } }",
+      "count": 1,
+      "files": [
+        "cchouse4.graal"
+      ]
+    },
+    {
+      "image": "93salesman.gif",
+      "script": "if (playertouchsme) {say 0} ;.crossbow.gif",
+      "count": 1,
+      "files": [
+        "cchouse5.graal"
+      ]
+    },
+    {
+      "image": "wsupbow.gif",
+      "script": "if(playerenters){show} if (playertouchsme) { if(!ccgotsuperbow) { if(playerrupees>=200) { set ccgotsuperbow; toweapons Super Bow; playerrupees-=200; say 4; } if(playerrupees<=200 && !ccgotsuperbow) { say 2; } } } if (weaponfired && playerdarts>=3) { freezeplayer 0.6; setbow wbow1.gif; playersprite = 33; timeout = 0.5; } if (timeout) { if (playerdir=",
+      "count": 1,
+      "files": [
+        "cchouse5.graal"
+      ]
+    },
+    {
+      "image": "5Cbcarrowhost.gif",
+      "script": "if (playerenters) { if (BCPlayTesting) lay redrupee; disableweapons; unset ShootGamePlaying; unset ShootGameOver; unset ShootGameArrow1Got; unset ShootGameArrow2Got; unset ShootGameArrow3Got; unset ShootGameArrow4Got; unset ShootGameArrow5Got; set BCtarg; hits=0; misses=0; //timeout=.2; } if (playertouchsme) {if (!ShootGamePlaying) say 0;} if (playerlaysitem && !ShootGamePlaying) { i",
+      "count": 1,
+      "files": [
+        "cchouse6.graal"
+      ]
+    },
+    {
+      "image": "graalred.gif",
+      "script": "if (playerenters) { if(ccpirategraal1) { if(!ccpirategraal1heard) {set ccpirategraal1heard;say 1;show;y=31.5;unset ccpirategraal1} } if(ccpirategraal1heard) {show;y=31.5;} if(!ccpirategraal1heard && !ccpirategraal1){hide} } >?graalgreen.gif",
+      "count": 1,
+      "files": [
+        "ccpirate3.graal"
+      ]
+    },
+    {
+      "image": "graalblue.gif",
+      "script": "if (playerenters) { if(ccpirategraal3) { if(!ccpirategraal3heard) {set ccpirategraal3heard;say 3;show;y=31.5;unset ccpirategraal3} } if(ccpirategraal3heard) {show;y=31.5;} if(!ccpirategraal3heard && !ccpirategraal3){hide} } =8",
+      "count": 1,
+      "files": [
+        "ccpirate3.graal"
+      ]
+    },
+    {
+      "image": "TDgraalred.gif",
+      "script": "if (playertouchsme) {say 1;hide;set ccpirategraal1} if(playerenters) {show}",
+      "count": 1,
+      "files": [
+        "ccpirate4.graal"
+      ]
+    }
+  ]
+}

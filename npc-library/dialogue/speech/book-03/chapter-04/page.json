@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 3,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "ninjiguard.gif",
+      "script": "if (playertouchsme) {say 12; } S.ninjiguard3.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "2ninjisleep.gif",
+      "script": "if (playertouchsme) {say 15; } 49ninjisleep2.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "ninjiguard3.gif",
+      "script": "if (playertouchsme) {say 18; } MBninjiguard3.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "Bninjiguard2.gif",
+      "script": "if (playertouchsme) {say 6; } D?ninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "0ninjieliteguard.gif",
+      "script": "if (playertouchsme) { say 14; if (playeringuild Ninji Empire || playeringuild Ninji Officer || playeringuild Ninji Commander){ say 23; } } if (playerlaysitem) { take greenrupee; take bluerupee; if (rupees>=10 && playeringuild Ninji Empire) { rupees -= 10; setskincolor orange; setcoatcolor gray; setsleevecolor gray; setshoecolor brown; setbeltcolor black; seth",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "Uninjiguard.gif",
+      "script": "if (playertouchsme) {say 2; } CWninjiguard4.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "8Mninjiguard3.gif",
+      "script": "if (playertouchsme) {say 3; } (Kninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "STninjiguard3.gif",
+      "script": "if (playertouchsme) {say 5; } 6Kninjibook.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "G9ninjiguard3.gif",
+      "script": "if (playertouchsme) {say 11; } E3ninjiguard3.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "ninjiguard3.gif",
+      "script": "if (playertouchsme) {say 14; } .<ninjiguard2.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "0Mninjiguard2.gif",
+      "script": "if (playertouchsme) {say 4; } 2Jninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "6Pninjiguard3.gif",
+      "script": "if (playertouchsme) {say 1; } NMninjiguard4.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "LPninjiguard3.gif",
+      "script": "if (playertouchsme) {say 8; } 6Jninjieliteguard.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "HJninjitowerg.gif",
+      "script": "if (playertouchsme) {say 5; } HPninjiguard3.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "FMninjiguard2.gif",
+      "script": "if (playertouchsme) {say 7; } 33ninjiguard3.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "ninjibook.gif",
+      "script": "if (playertouchsme) {say 35; }",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "Cninjiguard2.gif",
+      "script": "if (playertouchsme) {say 5; } BCninjiguard4.gif",
+      "count": 1,
+      "files": [
+        "ninjimain.graal"
+      ]
+    },
+    {
+      "image": "JJninjiguard.gif",
+      "script": "if (playertouchsme) {say 4; } @Jninjiguardshooting.gif",
+      "count": 1,
+      "files": [
+        "ninjimain.graal"
+      ]
+    },
+    {
+      "image": "ninjieliteguard.gif",
+      "script": "if (playertouchsme) {say 8; } 35ninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjimain.graal"
+      ]
+    },
+    {
+      "image": "ninjiguard2.gif",
+      "script": "if (playertouchsme) {say 4; } PGninjiguard4.gif",
+      "count": 1,
+      "files": [
+        "ninjimainroom.graal"
+      ]
+    },
+    {
+      "image": "ninjiguard3.gif",
+      "script": "if (playertouchsme) {say 0; } >:",
+      "count": 1,
+      "files": [
+        "ninjimainroom.graal"
+      ]
+    },
+    {
+      "image": "AJninjiguard3.gif",
+      "script": "if (playertouchsme) {say 3; } ADninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "9Dninjiguard.gif",
+      "script": "if (playertouchsme) {say 1; } :;ninjieliteguard.gif",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "-Lninjiguard4.gif",
+      "script": "if (playertouchsme) {say 8; } /8ninjiguard2.gif",
+      "count": 1,
+      "files": [
+        "ninjimesshall.graal"
+      ]
+    },
+    {
+      "image": "7ninjitowerg.gif",
+      "script": "if (playertouchsme) {say 2; } 9Nninjitowerg.gif",
+      "count": 1,
+      "files": [
+        "ninjitower.graal"
+      ]
+    }
+  ]
+}

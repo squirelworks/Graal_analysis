@@ -1,0 +1,209 @@
+{
+  "genre": "object",
+  "topic": "doors",
+  "book": 1,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "4Pdoor.gif",
+      "script": "if (playertouchsme) hide; JRdoor.gif",
+      "count": 1,
+      "files": [
+        "level39.graal"
+      ]
+    },
+    {
+      "image": "7door.gif",
+      "script": "if (playertouchsme) hide;timeout=1; if (timeout) show; if (playerenters) show; 44door.gif",
+      "count": 1,
+      "files": [
+        "level40.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "//if (playertouchsme) hide; 0.smokeani.gif",
+      "count": 1,
+      "files": [
+        "level42.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme) hide; K7door.gif",
+      "count": 1,
+      "files": [
+        "level43.graal"
+      ]
+    },
+    {
+      "image": "M5door.gif",
+      "script": "if (playertouchsme) hide; 6'door.gif",
+      "count": 1,
+      "files": [
+        "magicisland1.graal"
+      ]
+    },
+    {
+      "image": "MVdoor.gif",
+      "script": "if (playertouchsme) hide; M9door.gif",
+      "count": 1,
+      "files": [
+        "magicisland3.graal"
+      ]
+    },
+    {
+      "image": "6Adoor.gif",
+      "script": "if (playertouchsme) hide; SS",
+      "count": 1,
+      "files": [
+        "magicisland3.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if (playerenters) { dontblock; move2 = 0; normaly2 = y; timeout = 0.2; } if (timeout) { y += move2; if (M6Door2Up) { unset M6Door2Up; if (move2=0) { drawoverplayer; normaly2 = y; y -= 4; move2 = 0.25; } } else if (move2>0 && y>=normaly2) { blockagain; dontblock; move2 = 0; } timeout = 0.2; } .3blackdoor3.gif",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if (playerenters) {y=6; dontblock; move4 = 0; normaly4 = y; timeout = 0.2; } if (timeout) { y += move4; if (M6Door4Up) { unset M6Door4Up; if (move4=0) { drawoverplayer; normaly4 = y; y -= 4; move4 = 0.25; } } else if (move4>0 && y>=normaly4) { blockagain; dontblock; move4 = 0; } timeout = 0.2; } R?blackdoor3.gif",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    },
+    {
+      "image": "blackdoor3.gif",
+      "script": "if (playerenters) { drawunderplayer; timeout = 0.2; } if (timeout) { if (move4>0) { dontblock; } else { blockagain; drawunderplayer; } timeout = 0.2; }",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if (playertouchsme) playery=50; =3blackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if (playertouchsme) playery=50; EDblackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "Dblackdoor2.gif",
+      "script": "if (playertouchsme) playery=50; 6Dblackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "Lblackdoor2.gif",
+      "script": "if (playertouchsme) playery=50; ELblackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "Lblackdoor2.gif",
+      "script": "if (playertouchsme) playery=50; 6Lblackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if (playertouchsme) playery=50; ;Dblackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if (playertouchsme) {hide} if (playerenters) {show;playery=50}",
+      "count": 1,
+      "files": [
+        "mountainblob8.graal"
+      ]
+    },
+    {
+      "image": "ninjidoorleft.gif",
+      "script": "if (playertouchsme) { if (playeringuild Ninji Empire || playeringuild Ninji Officer || playeringuild Ninji Commander || playeringuild Ninji General || playeringuild Ninji Emperor) { hide; sleep 2; show; } } H,ninjidoorright.gif",
+      "count": 1,
+      "files": [
+        "ninjitower.graal"
+      ]
+    },
+    {
+      "image": "Pninjitowerdoor.gif",
+      "script": "if (playertouchsme) {hide; } ]\\",
+      "count": 1,
+      "files": [
+        "ninjitowerenter.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playertouchsme) hide; 52door.gif",
+      "count": 1,
+      "files": [
+        "nwotown.graal"
+      ]
+    },
+    {
+      "image": "2door.gif",
+      "script": "if (playertouchsme) hide; 'Rdoor.gif",
+      "count": 1,
+      "files": [
+        "nwotown.graal"
+      ]
+    },
+    {
+      "image": "warpdoor.gif",
+      "script": "if (playertouchsme) { set StartLoadHome; say 4; } if (playerendsreading && StartLoadHome) { unset StartLoadHome; openurl www.graalonline.com; } >?",
+      "count": 1,
+      "files": [
+        "onlinestartlocal.graal"
+      ]
+    },
+    {
+      "image": "gaten.gif",
+      "script": "if (playerenters && !dragondoor) { // play music-dragon.mid; } if (playerenters && dragondoor) { // play music-dragon.mid; hide; } if (playertouchsme && !dragonkey) { say 0; } if (playertouchsme && dragonkey) { unset dragonkey; set dragondoor; hide; say 1; } )=monster.gif",
+      "count": 1,
+      "files": [
+        "palace_dragon_cor1.graal"
+      ]
+    },
+    {
+      "image": "gate1.gif",
+      "script": "if (playerenters) { if (sheragateopen) setgif gate2.gif; } if (playertouchsme) { if (!sheragateopen) { if (!sheragatekey) say 1; if (sheragatekey) { set sheragateopening; say 2; } } } if (playerendsreading) { if (sheragateopening) { unset sheragateopening; unset sheragatekey; set sheragateopen; setgif gate2.gif; } } .Yswall.gif",
+      "count": 1,
+      "files": [
+        "palace_sherapris.graal"
+      ]
+    },
+    {
+      "image": "U8door.gif",
+      "script": "if (playertouchsme) hide; +0door.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    }
+  ]
+}

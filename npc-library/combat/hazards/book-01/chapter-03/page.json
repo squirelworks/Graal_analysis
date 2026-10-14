@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "hazards",
+  "book": 1,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "2blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; :6blueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "V4blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.ym=1; } if (timeout) { if (onwall(x,y)) this.ym=+abs(this.ym); if (onwall(x,y+2)) this.ym=-abs(this.ym); timeout=.05; y+=this.ym } if (playertouchsme) hurt 2; T4blueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_2.graal"
+      ]
+    },
+    {
+      "image": "3blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; *&blueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_3.graal"
+      ]
+    },
+    {
+      "image": "blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.ym=1; } if (timeout) { if (onwall(x,y)) this.ym=+abs(this.ym); if (onwall(x,y+2)) this.ym=-abs(this.ym); timeout=.05; y+=this.ym } if (playertouchsme) hurt 2; (Dbrugitewarrior.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_3.graal"
+      ]
+    },
+    {
+      "image": "XNblueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; RJblueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_3.graal"
+      ]
+    },
+    {
+      "image": "Ublueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.ym=1; } if (timeout) { if (onwall(x,y)) this.ym=+abs(this.ym); if (onwall(x,y+2)) this.ym=-abs(this.ym); timeout=.05; y+=this.ym } if (playertouchsme) hurt 2; BUblueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_3.graal"
+      ]
+    },
+    {
+      "image": "Eblueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; PCblueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "TGblueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=-1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; :Rredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower1_4.graal"
+      ]
+    },
+    {
+      "image": "blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; 91blueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_1.graal"
+      ]
+    },
+    {
+      "image": "L-blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2;",
+      "count": 1,
+      "files": [
+        "brugestower2_1.graal"
+      ]
+    },
+    {
+      "image": "7blueskull.gif",
+      "script": "if (playerenters) { timeout=0.05; this.xm=1 } if (timeout) { if (onwall(x,y)) this.xm=+abs(this.xm); if (onwall(x+2,y)) this.xm=-abs(this.xm); timeout=.05; x+=this.xm } if (playertouchsme) hurt 2; B0blueskull.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "D5insidesign.gif",
+      "script": "if (washit) {hurt 2} H5insidesign.gif",
+      "count": 1,
+      "files": [
+        "cccastle6.graal"
+      ]
+    },
+    {
+      "image": "K0beer.gif",
+      "script": "if (playerendsreading) {show;x=43;y=16} if (playertouchsme) {hurt -6;hide;x=43;y=16} if(playerenters) {hide;x=43;y=16}",
+      "count": 1,
+      "files": [
+        "cchouse7.graal"
+      ]
+    },
+    {
+      "image": "QNratgf.gif",
+      "script": "if (exploded || washit || wasshooted || waspelt) {hurt 2;} KNratgf.gif",
+      "count": 1,
+      "files": [
+        "courthouse.graal"
+      ]
+    },
+    {
+      "image": "bar.gif",
+      "script": "if (playerenters) {say 1 } if (playerenters) {hurt 255 } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "curse.graal"
+      ]
+    },
+    {
+      "image": "floor.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playerenters && playeringuild PACHUKA) {followplayer} if (playertouchsme && playeringuild PACHUKA) {followplayer; timeout=0.1; canbecarried; } if (timeout) {playerhearts=20; timeout=0.1; removecompus; unset GotGnomeHeart;} if (wasthrown && !playeringuild PACHUKA) {hurt 999; hide} if (wasthrown && playeringuild PACHUKA) {followplayer;} U=pachukiteg",
+      "count": 1,
+      "files": [
+        "ddd1.graal"
+      ]
+    },
+    {
+      "image": "XDgraal.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown && this.1==0) {this.1=1} if (this.1==1 && timeout==0) {timeout=.5; hurt 0} if (washit) {hide; this.1=2; putleaps 4,x,y} 2>dlflame.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "Rh-midnight.gif",
+      "script": "if (playertouchsme) { message Sorry! This is too powerful for you!;} if (washit && !midpissed2 && !midpissed2) {setgif h-mid2t-mid.gif; message Ouch!!!; timeout= 6.0; set midpissed;} if (timeout) {message Jerk!; } if (playertouchsme && midpissed){ message Quit bothing me!!;} if (washit && midpissed){ hurt1; message I SAID STOP!; set midpissed2; unset midpissed;} if (exploded){putleaps 3,x,y; hide}",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (!youareindeepshit) {hide } if (youareindeepshit) {show } if (washit) {hide} if (playertouchsme) {hurt 1} M5zombie.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (!youareindeepshit) {hide } if (youareindeepshit) {show } if (washit) {hide} if (playertouchsme) {hurt 1} V0bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "V2bigbadburn.gif",
+      "script": "if (!youareindeepshit) {hide } if (youareindeepshit) {show } if (washit) {hide} if (playertouchsme) {hurt 1} V4bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "V6bigbadburn.gif",
+      "script": "if (!youareindeepshit) {hide } if (youareindeepshit) {show } if (washit) {hide} if (playertouchsme) {hurt 1} V8bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (!youareindeepshit) {hide } if (youareindeepshit) {show } if (washit) {hide} if (playertouchsme) {hurt 1} V<bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd5.graal"
+      ]
+    },
+    {
+      "image": "Ibigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} 8Ibigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    },
+    {
+      "image": "5Ibigbadburn.gif",
+      "script": "if (trapbestkthxbye) {show} if (playerenters) {hide} if (playertouchsme) {hurt 1 } if (washit) {hide} 2Ibigbadburn.gif",
+      "count": 1,
+      "files": [
+        "dotd6.graal"
+      ]
+    }
+  ]
+}

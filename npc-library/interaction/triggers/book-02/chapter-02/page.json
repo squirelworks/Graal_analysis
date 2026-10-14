@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) {message I hate this job;} C,beerhost.gif",
+      "count": 1,
+      "files": [
+        "brandon8.graal"
+      ]
+    },
+    {
+      "image": "book6.gif",
+      "script": "if (playerenters && !this.init=1) { this.init=1; message Bruges' Duke Box; setgif blanckblock.gif; } -",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "book6.gif",
+      "script": "if (playerenters && !this.init=1) { this.init=1; x-=.5; message Welcome to Bruges' Quaters; setgif blanckblock.gif; } 'Jbluelampani2.gif",
+      "count": 1,
+      "files": [
+        "brugesquaters1.graal"
+      ]
+    },
+    {
+      "image": "brugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} 63brugeshole.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "brugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} @6brugeshole.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "brugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} ,Bbrugeshole.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "brugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} MBbrugeshole.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "TTbrugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} KNbrugeshole.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "Ubrugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} 1Pbrugeshole.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "Qbrugeshole.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer;} (=brugitemage_ss.gif",
+      "count": 1,
+      "files": [
+        "brugestower2_3.graal"
+      ]
+    },
+    {
+      "image": "J5brugesflag.gif",
+      "script": "if (playerenters && !this.init=1) {this.init=1; y+=.5} R5brugesflag.gif",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "20redrupee.gif",
+      "script": "if (playertouchsme) {toweapons Ez Money Red} if (weaponfired && playerrupees>29){playerrupees-=30;lay redrupee;} >0goldgelat.gif",
+      "count": 1,
+      "files": [
+        "casino16.graal"
+      ]
+    },
+    {
+      "image": "arrowsbox.gif",
+      "script": "// NPC in cc army HQ if (playertouchsme) {lay bombs;lay darts} 4J",
+      "count": 1,
+      "files": [
+        "ccarmy.graal"
+      ]
+    },
+    {
+      "image": "PNbigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=47.8 } O)bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "ccbadland1.graal"
+      ]
+    },
+    {
+      "image": "3waterani.gif",
+      "script": "if (playerenters) {dontblock} L:",
+      "count": 1,
+      "files": [
+        "ccbadland5.graal"
+      ]
+    },
+    {
+      "image": "Lwaterani.gif",
+      "script": "if (playerenters) {dontblock} >8goldpillar.gif",
+      "count": 1,
+      "files": [
+        "ccbadland6.graal"
+      ]
+    },
+    {
+      "image": "wathena.gif",
+      "script": "if (playerenters) {message Hi",
+      "count": 1,
+      "files": [
+        "cccastle10.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=44.8 } ))bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "cclevel10.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=29.8 } T/bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "cclevel11.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=49.7 } T-tree top.gif",
+      "count": 1,
+      "files": [
+        "cclevel12.graal"
+      ]
+    },
+    {
+      "image": "06waterani.gif",
+      "script": "if (playerenters) {dontblock} WS",
+      "count": 1,
+      "files": [
+        "cclevel14.graal"
+      ]
+    },
+    {
+      "image": "bigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=31.8 }",
+      "count": 1,
+      "files": [
+        "cclevel24.graal"
+      ]
+    },
+    {
+      "image": "ANbigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=33.8 }",
+      "count": 1,
+      "files": [
+        "cclevel25.graal"
+      ]
+    },
+    {
+      "image": "AXbigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=33.8 } B'bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "cclevel26.graal"
+      ]
+    },
+    {
+      "image": "OYbigbadburn.gif",
+      "script": "if (playerenters) {dontblock;x=47.8 } M&bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "cclevel29.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "visibility",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "-biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} NEbiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "JAbiglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} FEbiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "VAbiglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} F=biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "F-biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} F%biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 6%biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "1biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} :9biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "61biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} VMbiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "VIbiglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} NIbiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "BQbiglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} :Ibiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "5biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 29biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "9biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} B5biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "N9biglift.gif",
+      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} J5biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "Vnight.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer; hide} if (dllight) {show} if (!dllight) {hide} ;Vnight.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "7mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} /7mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "17mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} 37mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "57mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} 77mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "97mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} O7mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "C7mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} E7mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "G7mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} I7mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "K7mine2.gif",
+      "script": "if (playerenters) {canbecarried} if (wasthrown) {setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} M7mine2.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "walltile2.gif",
+      "script": "if (playerenters) {canbecarried;show} if (wasthrown) {hide; putleaps 3,x,y;} F(walltile2.gif",
+      "count": 1,
+      "files": [
+        "dlthrone.graal"
+      ]
+    },
+    {
+      "image": "XOmine2.gif",
+      "script": "if (playerenters) {canbecarried} if (playertouchsme) {followplayer} if (wasthrown) {play Whistl_1.wav; setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} VQmine2.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "XQmine2.gif",
+      "script": "if (playerenters) {canbecarried} if (playertouchsme) {followplayer} if (wasthrown) {play Whistl_1.wav; setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} VSmine2.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "VUmine2.gif",
+      "script": "if (playerenters) {canbecarried} if (playertouchsme) {followplayer} if (wasthrown) {play Whistl_1.wav; setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} XSmine2.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "XUmine2.gif",
+      "script": "if (playerenters) {canbecarried} if (playertouchsme) {followplayer} if (wasthrown) {play Whistl_1.wav; setgif mine1.gif; this.1=1; dontblock} if (playertouchsme && this.1==1) {putexplosion 5,x,y; this.1==0; hide} Y8dlbcup.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    }
+  ]
+}

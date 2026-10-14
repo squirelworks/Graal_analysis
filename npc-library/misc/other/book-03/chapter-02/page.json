@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 3,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "CHbluelampani.gif",
+      "script": "?Hbluelampani.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "8/bluelampani.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "X(bluelampani.gif",
+      "count": 1,
+      "files": [
+        "resortoutside.graal"
+      ]
+    },
+    {
+      "image": "59bluelampani.gif",
+      "script": "H?bluelampani.gif",
+      "count": 1,
+      "files": [
+        "room23.graal"
+      ]
+    },
+    {
+      "image": "07bluelampani.gif",
+      "script": ";7bluelampani.gif",
+      "count": 1,
+      "files": [
+        "room24a.graal"
+      ]
+    },
+    {
+      "image": "I2dlstatue.gif",
+      "script": "D2dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower11.graal"
+      ]
+    },
+    {
+      "image": "RTbookopen.gif",
+      "script": "TQbookstack.gif",
+      "count": 1,
+      "files": [
+        "sardontower29.graal"
+      ]
+    },
+    {
+      "image": "2Jdlstatue.gif",
+      "script": "2.dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower7.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "EIdlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontowerout.graal"
+      ]
+    },
+    {
+      "image": "5Idlstatue.gif",
+      "script": "B;dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontowerout.graal"
+      ]
+    },
+    {
+      "image": "KZphatpachyclouds.gif",
+      "script": "L(phatpachyclouds.gif",
+      "count": 1,
+      "files": [
+        "sardontowerroof.graal"
+      ]
+    },
+    {
+      "image": "phatpachyclouds.gif",
+      "script": "K5smalltree.gif",
+      "count": 1,
+      "files": [
+        "sardontowerroof.graal"
+      ]
+    },
+    {
+      "image": "C-dbluebaddy.gif",
+      "script": "if (rupees>=5) {lay bombs; rupees-=5 } if (playerlaysitem) {take bluerupee} if (playerlaysitem) {take greenrupee} )0beer.gif",
+      "count": 1,
+      "files": [
+        "shop.graal"
+      ]
+    },
+    {
+      "image": "dbluebaddy.gif",
+      "script": "ADalienswitch.gif",
+      "count": 1,
+      "files": [
+        "skytf1r3.graal"
+      ]
+    },
+    {
+      "image": "IDalienswitch.gif",
+      "script": ":Dalienswitch.gif",
+      "count": 1,
+      "files": [
+        "skytf1r3.graal"
+      ]
+    },
+    {
+      "image": "Halienswitch.gif",
+      "script": ":Lalienswitch.gif",
+      "count": 1,
+      "files": [
+        "skytf1r3.graal"
+      ]
+    },
+    {
+      "image": "Palienswitch.gif",
+      "script": "APalienswitch.gif",
+      "count": 1,
+      "files": [
+        "skytf1r3.graal"
+      ]
+    },
+    {
+      "image": "IPalienswitch.gif",
+      "script": "PPalienswitch.gif",
+      "count": 1,
+      "files": [
+        "skytf1r3.graal"
+      ]
+    },
+    {
+      "image": "PLalienswitch.gif",
+      "script": "PHalienswitch.gif",
+      "count": 1,
+      "files": [
+        "skytf1r3.graal"
+      ]
+    },
+    {
+      "image": "EVbluelampani.gif",
+      "script": "KVbluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "EQbluelampani.gif",
+      "script": "KQbluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "EFbluelampani.gif",
+      "script": "EAbluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "KAbluelampani.gif",
+      "script": "KFbluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "E6bluelampani.gif",
+      "script": "K6bluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "E1bluelampani.gif",
+      "script": "K1bluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    }
+  ]
+}

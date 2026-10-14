@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "visibility",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "IAwspade0.gif",
+      "script": "if (playerenters) show; if (playertouchsme) { toweapons Shovel; hide; } if (weaponfired) { putx = playerx + 1.5; puty = playery + 2; if (playerdir==0) puty -= 1; if (playerdir==1) putx -= 1; if (playerdir==2) puty += 1; if (playerdir==3) putx += 1; putx = int(putx/2)*2; puty = int(puty/2)*2; emtpy = 1; for (i=0; i<2; i++) for (j=0; j<2; j++) { b = board[putx+i+64*(puty+",
+      "count": 1,
+      "files": [
+        "house1.graal"
+      ]
+    },
+    {
+      "image": "7pie.gif",
+      "script": "if (playerenters && !threwpie) {show} if (playerenters && threwpie) {hide} if (playertouchsme) {canbecarried; layheart} if (wasthrown) {putleaps2,x,y; hide; set threwpie} 6=",
+      "count": 1,
+      "files": [
+        "insidehouse1.graal"
+      ]
+    },
+    {
+      "image": "redguy.gif",
+      "script": "if (playerenters) {if (lock) hide } if (playertouchsme) { putcomp redsoldier, x, y; hide} D;tanaraus.gif",
+      "count": 1,
+      "files": [
+        "kcastle.graal"
+      ]
+    },
+    {
+      "image": "stone.gif",
+      "script": "if (playerenters) { show; this.1=0; drawunderplayer } if(exploded&&this.1=0){ this.1=1; hide; putleaps 2,x,y } C waterfallani.gif",
+      "count": 1,
+      "files": [
+        "krakenhouse4.graal"
+      ]
+    },
+    {
+      "image": "FPcrackedfloor.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; play stef29.mid } if (exploded){hide; putleaps 2,x,y;} :Gbluelampani.gif",
+      "count": 1,
+      "files": [
+        "level18.graal"
+      ]
+    },
+    {
+      "image": "Q1biglift.gif",
+      "script": "if (playerenters) { canbecarried} if (playerenters && pondentryopen) { hide} if (playerenters && !pondentryopen) { show} if (wasthrown) { putleaps 2,x,y; hide; set pondentryopen}",
+      "count": 1,
+      "files": [
+        "level24.graal"
+      ]
+    },
+    {
+      "image": "ABstone.gif",
+      "script": "if (playerenters && !L29stone2) hide; if (playertouchsother && L29stone2) show; C@stone.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "CBstone.gif",
+      "script": "if (playerenters && !L29stone4) hide; if (playertouchsother && L29stone4) show; E@stone.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "EBstone.gif",
+      "script": "if (playerenters && !L29stone6) hide; if (playertouchsother && L29stone6) show; G@stone.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "GBstone.gif",
+      "script": "if (playerenters && !L29stone8) hide; if (playertouchsother && L29stone8) show; I@stone.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "IBstone.gif",
+      "script": "if (playerenters && !L29stone10) hide; if (playertouchsother && L29stone10) show; K@stone.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "KBstone.gif",
+      "script": "if (playerenters && !L29stone12) hide; if (playertouchsother && L29stone12) show; @@bridgetask.gif",
+      "count": 1,
+      "files": [
+        "level29.graal"
+      ]
+    },
+    {
+      "image": "crack.gif",
+      "script": "if (playerenters && ebonboom) {hide} if (exploded) {hide; putleaps 2,53,2; putleaps 2,53,3; putleaps 2,53,4; putleaps 2,53,5; putleaps 2,53,6; putleaps 2,53,7; putleaps 2,53,8; set ebonboom } 5 crack.gif",
+      "count": 1,
+      "files": [
+        "level6.graal"
+      ]
+    },
+    {
+      "image": "gold5stone.gif",
+      "script": "if (playerenters) if (AntiGoldSpellcast) hide; ?Jcrackedfloor.gif",
+      "count": 1,
+      "files": [
+        "midasrealm3.graal"
+      ]
+    },
+    {
+      "image": "PMGold5stone.gif",
+      "script": "if (playerenters) {if (AntiGoldSpellcast) hide;} ?+Gold5stone.gif",
+      "count": 1,
+      "files": [
+        "midasrealm7.graal"
+      ]
+    },
+    {
+      "image": "gold5stone.gif",
+      "script": "if (playerenters) {if (GoldSpellcast) hide;} M6goldsign.gif",
+      "count": 1,
+      "files": [
+        "midasrealm8.graal"
+      ]
+    },
+    {
+      "image": "3goldenbush.gif",
+      "script": "if (washit && playerswordpower>=2) { putleaps 0,x,y; hide; } if (playerenters){show} &1goldenbush.gif",
+      "count": 1,
+      "files": [
+        "mine10.graal"
+      ]
+    },
+    {
+      "image": "5goldenbush.gif",
+      "script": "if (washit && playerswordpower>=2) { putleaps 0,x,y; hide; } if (playerenters){show}",
+      "count": 1,
+      "files": [
+        "mine10.graal"
+      ]
+    },
+    {
+      "image": "Y5bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } W5bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "U5bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } S5bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "S7bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U7bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "W7bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y7bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "7bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } S9bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "U9bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } W9bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "Y9bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [9bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    }
+  ]
+}

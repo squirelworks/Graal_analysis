@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 2,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Kredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } 9Mredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "Oredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } <Predstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "Qredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } @Qredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "BPredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } DOredstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "EMredstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } >Credstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "Credstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } ?>brugitewarrior_s1.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "redstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } @;redstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "4redstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } @4redstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "brugitewarrior_s1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteWarrior_S1.gif,BrugiteWarrior.txt,x,y; } if (timeout) destroy; C'brugitewarrior_s1.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "redstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } >.redstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "redstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } B.redstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "redstone.gif",
+      "script": "if (playerenters) setgif bluestone.gif; if (washit) { timeout=4; hide; } if (timeout) { if (abs(playerx-x)>1 && abs(playery-y)>1) show; else timeout=4; } :.redstone.gif",
+      "count": 1,
+      "files": [
+        "brugestower3_1.graal"
+      ]
+    },
+    {
+      "image": "Gbrugitebosss1.gif",
+      "script": "if (playerenters) { timeout=.05; putnpc BrugiteBosss1.gif,BrugiteBoss.txt,x,y; } if (timeout) destroy; ;Z",
+      "count": 1,
+      "files": [
+        "brugestower3_2.graal"
+      ]
+    },
+    {
+      "image": "J7brugitewarrior_s1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=60) {message ; this.msg=0} if (this.msg=100) message The Tower of Bruges; if (this.msg=90) message No unauthorised entry; if (this.msg=80) message If you don't know the password,; if (this.msg=70) message you",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "R8brugitewarrior_s1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=40) {message ; this.msg=0} if (this.msg=100) message The Tower of Bruges; if (this.msg=90) message I'm sorry I can't let you in; if (this.msg=80) message without the password...; if (this.msg=70) message ; if",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "HCbrugitewarrior_n1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=70) {message ; this.msg=0} if (this.msg=100) message This Judgite is our prisoner.; if (this.msg=90) message We captured him snooping around; if (this.msg=80) message inside the tower.; this.msg--; } HMbrugite",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "warrior_s1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=80) {message ; this.msg=0} if (this.msg=100) message He was INSIDE The tower of Bruges!; if (this.msg=90) message What will Bruges think of this...?; this.msg--; } CKbrugitewarrior_w2.gif",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "GHjudgitemage_es.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=0) message ; if (this.msg=100) message Well well well...; if (this.msg=90) message You seem to want to get in; if (this.msg=80) message the tower, don't you?; if (this.msg=70) message It's a shame they've chan",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "LFbrugitewarrior_e2.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=70) {message ; this.msg=0} if (this.msg=100) message We Brugites are at war with; if (this.msg=90) message the evil Judgites -; if (this.msg=80) message they have no honour!; this.msg--; } LKbrugitewarrior_e2.",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "5brugitewarrior_w2.gif",
+      "script": "if (playerenters){ timereverywhere; timeout=.05 } if (timeout){ this.msg--; if (this.msg<=0) message ; for (i=0; i<compuscount; i++) if (compus[i].power>0 && compus[i].x<=6) { if (compus[i].mode!=3) hitcompu i,1,x,y; if (compuscount>0) { message Intruder!; this.msg=10 } } timeout=.05 } %<brugitewarrior_w2.gif",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "J-brugesflag1.gif",
+      "script": "if (playerenters || timeout) { dontblock; drawoverplayer; timeout=.1; if (this.img=0) setgif BrugesFlag2.gif; if (this.img=1) setgif BrugesFlag.gif; if (this.img=2) setgif BrugesFlag1.gif; this.img++; if (this.img>2) this.img=0 } U-brugesflag1.gif",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "brugestowertreebase.gif",
+      "script": "if (playerenters) {drawunderplayer} if ((exploded) && !this.open=1) { timereverywhere; timeout=0.05; } if (timeout) { this.open=1; hide; sleep 1.5; show; sleep 60; this.open=0; }",
+      "count": 1,
+      "files": [
+        "brugestowerout.graal"
+      ]
+    },
+    {
+      "image": "brugestowerwall.gif",
+      "script": "if (playertouchsme) { if (HasBrugesPermission1) { hide; timeout=.5; } } if (timeout) { show; } ?Icane of brugara.gif",
+      "count": 1,
+      "files": [
+        "brugestowerprize.graal"
+      ]
+    },
+    {
+      "image": "39judgitewarrior_s1.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=80) {message ; this.msg=0} if (this.msg=100) message One false move, and you die.; if (this.msg=90) message Very, very slowly.; this.msg--; } <;judgitewarrior_s1.gif",
+      "count": 1,
+      "files": [
+        "brugestowertree.graal"
+      ]
+    },
+    {
+      "image": "86judgitemage_ss.gif",
+      "script": "if (playerenters || timeout) { timereverywhere; for(i=0;i<playerscount;i++) if (abs(x-players[i].x)<4 && abs(y-players[i].y)<4 && this.msg<=0) this.msg=100; timeout=.3; if (this.msg<=0) {message ; this.msg=0} if (this.msg=100) message This is a secret Judgite base; if (this.msg=90) message Tell anyone about it, and you die.; if (this.msg=80) message The Brugites think they've stopped us!;",
+      "count": 1,
+      "files": [
+        "brugestowertree.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "genre": "object",
+  "topic": "blocks",
+  "book": 1,
+  "chapter": 2,
+  "count": 10,
+  "scripts": [
+    {
+      "image": "block.gif",
+      "script": "if(playerenters) {y=26.5;x=45} if (washit && isleader) {hide;timeout=1;timereverywhere } if (timeout) {show;message } if(playertouchsme) {message Hit me!;timeout=.3}",
+      "count": 1,
+      "files": [
+        "cctheater.graal"
+      ]
+    },
+    {
+      "image": "Halienblockcracked.gif",
+      "script": "if (playerenters) {show} if (exploded) {hide;putleaps 4,x,y;timeout=1;} if (timeout) {say 4;set ccalienblockdestroyed} if (playertouchsme && ccalienblockdestroyed) {hide}",
+      "count": 1,
+      "files": [
+        "ccvolcano5.graal"
+      ]
+    },
+    {
+      "image": "block.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer } ;'divingboard2.gif",
+      "count": 1,
+      "files": [
+        "jaypee2level.graal"
+      ]
+    },
+    {
+      "image": "4Lmineblock2.gif",
+      "script": "if (playerenters) drawunderplayer; 0Lmineblock2.gif",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "Lmineblock2.gif",
+      "script": "if (playerenters) { drawunderplayer; if (MineDinoDead) hide; else {timeout = 0.5; show;} } if (timeout) { if (MineDinoDead) hide; else {timeout = 0.5; show;}} DLmineblock2.gif",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "HLmineblock2.gif",
+      "script": "if (playerenters) drawunderplayer; LLmineblock2.gif",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "Lmineblock2.gif",
+      "script": "if (playerenters) drawunderplayer; <Lmineblock2.gif",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "mineblock.gif",
+      "script": "if (playerenters) { drawunderplayer; if (MineDinoDead) hide; else timeout = 0.5; } if (timeout) { if (MineDinoDead) hide; else timeout = 0.5; } KG",
+      "count": 1,
+      "files": [
+        "mine13.graal"
+      ]
+    },
+    {
+      "image": "K8mineblock2.gif",
+      "script": "if (playerenters) { drawunderplayer; if (MineDinoDead) hide; else show; }",
+      "count": 1,
+      "files": [
+        "mine14.graal"
+      ]
+    },
+    {
+      "image": "4block.gif",
+      "script": "if (playerenters && !night) {hide } if (playerenters && night) {show } if (night) {show} if (!night) {hide} 9 fence.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    }
+  ]
+}

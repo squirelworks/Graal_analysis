@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 5,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "6bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } +6bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "06bigbadburn.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -6bigbadburn.gif",
+      "count": 1,
+      "files": [
+        "hell666.graal"
+      ]
+    },
+    {
+      "image": "slot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0!slot.gif",
+      "count": 1,
+      "files": [
+        "hooster32hotel.graal"
+      ]
+    },
+    {
+      "image": "slot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 6!slot.gif",
+      "count": 1,
+      "files": [
+        "hooster32hotel.graal"
+      ]
+    },
+    {
+      "image": "slot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } !!slot.gif",
+      "count": 1,
+      "files": [
+        "hooster32hotel.graal"
+      ]
+    },
+    {
+      "image": "XJstarconcomputer.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } IIzelda.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "bluespellbook.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E0teletot.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "0tolit.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } CJreceptionist.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "E2teletot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E4teletot.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "E0teletot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E6teletot.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "E0teletot.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ('cook.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "drums.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } I%bbobfrwd.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "abermose.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } S&enkitogirl2.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "arcade_hostess.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } [!brothere.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "guitar1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } L\"guitar2.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "locke.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :!enkitovince.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "weirdzelda.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Q!adair.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "assassin.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B&enkitogirl1.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "ceilina.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 86denking.gif",
+      "count": 1,
+      "files": [
+        "hooster32mainhouse.graal"
+      ]
+    },
+    {
+      "image": "A0couch.gif",
+      "script": "if (playerenters) { drawunderplayer; dontblock} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } I0couch.gif",
+      "count": 1,
+      "files": [
+        "insidehouse1.graal"
+      ]
+    },
+    {
+      "image": "K6beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } )@red.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Nclear.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } AJclear.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Nclear.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;Jclear.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "Eclear.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >Eclear.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    },
+    {
+      "image": "clear.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >Jclear.gif",
+      "count": 1,
+      "files": [
+        "jaypee2giftshop.graal"
+      ]
+    }
+  ]
+}

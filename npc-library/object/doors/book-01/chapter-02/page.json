@@ -1,0 +1,209 @@
+{
+  "genre": "object",
+  "topic": "doors",
+  "book": 1,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "door1.gif",
+      "script": "if (playerenters) { if (cckilledking) {show} if (!cckilledking) {hide} } *@doorleft.gif",
+      "count": 1,
+      "files": [
+        "ccbadcastle4.graal"
+      ]
+    },
+    {
+      "image": "doorleft.gif",
+      "script": "// NPC made by Dan if (playerenters) {show} if (playertouchsme) { if (cckilledking) {hide} if (!cckilledking) {show;say 2} }",
+      "count": 1,
+      "files": [
+        "ccbadcastle4.graal"
+      ]
+    },
+    {
+      "image": "Tdoordown.gif",
+      "script": "if (playerenters) {hide;timeout=2} if (timeout) {show;play punch.wav;say 0}",
+      "count": 1,
+      "files": [
+        "ccbadcastle5.graal"
+      ]
+    },
+    {
+      "image": "T8door.gif",
+      "script": "if (playerenters) {x=52;y=24;show} if (playertouchsme && cckilledking) {hide;say 3}",
+      "count": 1,
+      "files": [
+        "ccbadcastle6.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playerenters) {show;x=14;y=12;play stef16.mid;enableweapons} if (playertouchsme) { if (!ccthronekey) {say 1} if (ccthronekey) {say 2;hide;timeout=1;} } if(timeout) {show;x=14;y=12}",
+      "count": 1,
+      "files": [
+        "ccbadcastle7.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playertouchsme) {hide} if (playerenters) {show;x=30;y=10} 9D",
+      "count": 1,
+      "files": [
+        "cccastle1.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playertouchsme) {hide} 9D",
+      "count": 1,
+      "files": [
+        "cccastle31.graal"
+      ]
+    },
+    {
+      "image": "C5cavedoor.gif",
+      "script": "if (playerenters) {show} if (playertouchsme) { if(ccgoingtodesert) {set ccatdesert;timeout=1;timereverywhere;say 2;} if(!ccgoingtodesert){say 1} } if (timeout) {hide} CA",
+      "count": 1,
+      "files": [
+        "ccdesert6.graal"
+      ]
+    },
+    {
+      "image": "F3door.gif",
+      "script": "if (playertouchsme) { if (ccgotforestkey) {hide} if (!ccgotforestkey) {message You need a key!} } E=",
+      "count": 1,
+      "files": [
+        "ccforest4.graal"
+      ]
+    },
+    {
+      "image": "8door1.gif",
+      "script": "if (playerenters) {show} if (playertouchsme) {hide} *7",
+      "count": 1,
+      "files": [
+        "cclevel27.graal"
+      ]
+    },
+    {
+      "image": "door1.gif",
+      "script": "if (playerenters) { if(ccgameover) {show} if(!ccgameover) {hide} }",
+      "count": 1,
+      "files": [
+        "cclevel28.graal"
+      ]
+    },
+    {
+      "image": "ALdoor.gif",
+      "script": "if (playertouchsme) {hide } if (playerenters) {show} H>",
+      "count": 1,
+      "files": [
+        "ccpolice1.graal"
+      ]
+    },
+    {
+      "image": "Ldoor1.gif",
+      "script": "if (playertouchsme) {hide} 7M",
+      "count": 1,
+      "files": [
+        "ccprison1.graal"
+      ]
+    },
+    {
+      "image": "blackdoor2.gif",
+      "script": "if(playerendsreading) {hide} if(playerenters){ if(!openccdoor1) {show} if(openccdoor1) {hide} } C6t-midnight.gif",
+      "count": 1,
+      "files": [
+        "cctemplea6.graal"
+      ]
+    },
+    {
+      "image": "cavedoor.gif",
+      "script": "if (playertouchsme) {say 1} JLdoor.gif",
+      "count": 1,
+      "files": [
+        "ccwater5.graal"
+      ]
+    },
+    {
+      "image": "Ltrapdoor.gif",
+      "script": "if (playerenters){canbecarried} if (washit){if (rz13){unset rz13;} else if (!rz13){ timeout=.1; set rz13; } } if (timeout){hide; x=random(0,60); y=random(0,60); putleaps 2,x,y; putleaps 2,x+2,y; putleaps 2,x-2,y; putleaps 2,x,y+2; putleaps 2,x,y-2; putexplosion 4,x,y; putexplosion 3,x+2,y; putexplosion 3,x-2,y; putexplosion 3,x,y+2; putexplosion 3,x,y-2; if (rz13){ r=random(0,4); if (r<=0)playerx",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "EDfarmlandgate1.gif",
+      "script": "if (playertouchsme) { setgif farmlandgate2.gif; timeout=1; } if (timeout){setgif farmlandgate1.gif;} E6door.gif",
+      "count": 1,
+      "files": [
+        "farmland1.graal"
+      ]
+    },
+    {
+      "image": "farmlandgate1.gif",
+      "script": "if (playertouchsme) { setgif farmlandgate2.gif; timeout=1; } if (timeout){setgif farmlandgate1.gif;} 6<door.gif",
+      "count": 1,
+      "files": [
+        "farmland2.graal"
+      ]
+    },
+    {
+      "image": "6farmlandgate1.gif",
+      "script": "if (playertouchsme) { setgif farmlandgate2.gif; timeout=1; } if (timeout){setgif farmlandgate1.gif;} :Adoor.gif",
+      "count": 1,
+      "files": [
+        "farmland3.graal"
+      ]
+    },
+    {
+      "image": "farmlandgate1.gif",
+      "script": "if (playertouchsme) { setgif farmlandgate2.gif; timeout=1; } if (timeout){setgif farmlandgate1.gif;} G<door.gif",
+      "count": 1,
+      "files": [
+        "farmland4.graal"
+      ]
+    },
+    {
+      "image": "GHfarmlandgate1.gif",
+      "script": "if (playertouchsme) { setgif farmlandgate2.gif; timeout=1; } if (timeout){setgif farmlandgate1.gif;} 8Bdoor.gif",
+      "count": 1,
+      "files": [
+        "farmland5.graal"
+      ]
+    },
+    {
+      "image": "82door.gif",
+      "script": "if (playertouchsme){ hide;timeout=2;} if (playerenters) {show} if (timeout) {show} G4door.gif",
+      "count": 1,
+      "files": [
+        "farmland5.graal"
+      ]
+    },
+    {
+      "image": "8door.gif",
+      "script": "if (playertouchsme){ hide;timeout=2;} if (playerenters) {show} if (timeout) {show}",
+      "count": 1,
+      "files": [
+        "farmland5.graal"
+      ]
+    },
+    {
+      "image": "farmlandgate1.gif",
+      "script": "if (playertouchsme) { setgif farmlandgate2.gif; timeout=1; } if (timeout){setgif farmlandgate1.gif;} .8door.gif",
+      "count": 1,
+      "files": [
+        "farmland6.graal"
+      ]
+    },
+    {
+      "image": "F5doubledoor2.gif",
+      "script": "if (playerenters) {x=38;y=21;show;timeout=0.05;timereverywhere;} if (playertouchsme) {hide;} if (timeout) { if (playerx>x+3||playerx<x-7){show} timeout=0.05} B5doubledoor1.gif",
+      "count": 1,
+      "files": [
+        "fox1.graal"
+      ]
+    }
+  ]
+}

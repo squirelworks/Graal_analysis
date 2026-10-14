@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 2,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "BGbluelampani.gif",
+      "script": "if (playerenters) {drawunderplayer} BDbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "HDbluelampani.gif",
+      "script": "if (playerenters) {drawunderplayer} HAbluelampani.gif",
+      "count": 1,
+      "files": [
+        "AssHome2.graal"
+      ]
+    },
+    {
+      "image": "cloats1.gif",
+      "script": "if (playerenters) {play stef13.MID } if (playertouchsme) { setskincolorwhite; setcoatcolor darkred; setsleevecolor darkred; setbeltcolor white; setshoecolor black} P=door.gif",
+      "count": 1,
+      "files": [
+        "CoGbar.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (playerenters) { canbecarried} if (wasthrown) {canbecarried} if (weaponfired) {shootfireblast,left,if,weaponfired,player[index].dir,l} 8)beer.gif",
+      "count": 1,
+      "files": [
+        "CoGhotel.graal"
+      ]
+    },
+    {
+      "image": "x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; } <(x_vampsword.gif",
+      "count": 1,
+      "files": [
+        "DesertCastleB2.graal"
+      ]
+    },
+    {
+      "image": "x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; } @)x_doomsword.gif",
+      "count": 1,
+      "files": [
+        "DesertCastleB2.graal"
+      ]
+    },
+    {
+      "image": "x_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; } >)x_doomsword.gif",
+      "count": 1,
+      "files": [
+        "DesertCastleB2.graal"
+      ]
+    },
+    {
+      "image": "nageexplosioncover.gif",
+      "script": "if (playerenters) { drawoverplayer; } if (playertouchsother) { drawoverplayer; } =\"jfparsonageexplosioncover.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "jfparsonageexplosioncover.gif",
+      "script": "if (playerenters) { drawoverplayer; } if (playertouchsother) { drawoverplayer; } 5\"jfparsonageexplosioncover.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "an.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } J-meatpan.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "G-vegpan.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } A2supmed.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "cheesemed.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } G3vegmed.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "62pizza-a26186.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } 12pizza-a26228.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "1-pizza-a26273.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } E@twiggy.gif",
+      "count": 1,
+      "files": [
+        "Gokupizzashop.graal"
+      ]
+    },
+    {
+      "image": "dressgirl.gif",
+      "script": "if (playerenters) play sepheroth.wav; <,tuxman.gif",
+      "count": 1,
+      "files": [
+        "Sephconcert2.graal"
+      ]
+    },
+    {
+      "image": "drums.gif",
+      "script": "if (playerenters) play fade2blak.mid; @.guitar1.gif",
+      "count": 1,
+      "files": [
+        "abermose7.graal"
+      ]
+    },
+    {
+      "image": "walkdown.gif",
+      "script": "//The Guardian. //Scripted by Ace2896 //Graphics by Gargin. //Visit our page at: //http://come.to/Planet_Graal //stuff below are some variables the guardian //uses. If it's not commented I woldn't //recommend messing with it. //Don't edit below the line a little ways down. if (playerenters) { dist=100; this.swingcount=0; this.overcount=0; this.flash=0; this.hit=0; this.weptest=19; timereverywher",
+      "count": 1,
+      "files": [
+        "aceguardian.graal"
+      ]
+    },
+    {
+      "image": "bccranebar.gif",
+      "script": "if (playerenters) {drawoverplayer;} :7brugescorebombs.gif",
+      "count": 1,
+      "files": [
+        "bccranegame.graal"
+      ]
+    },
+    {
+      "image": "bcfloortile.gif",
+      "script": "if (playerenters) {drawunderplayer;} H;bcyoshidoll.gif",
+      "count": 1,
+      "files": [
+        "bccranegame.graal"
+      ]
+    },
+    {
+      "image": "0smokeani.gif",
+      "script": "if (playerenters) {dontblock }",
+      "count": 1,
+      "files": [
+        "bigcity13.graal"
+      ]
+    },
+    {
+      "image": "0pizza-a26228.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } Z3meatpan.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "VBmeatpan.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } ZVflippedcouch.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "Q0pizza-a26228.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } M0meatpan.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "D2meatpan.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried }",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "QValienup.gif",
+      "script": "if (playerenters) {message Clothes} if (playertouchsme) { setskincolor black; setcoatcolor darkblue; setsleevecolor black; setshoecolor black; setbeltcolor black;} Q+chest.gif",
+      "count": 1,
+      "files": [
+        "brandon5.graal"
+      ]
+    }
+  ]
+}

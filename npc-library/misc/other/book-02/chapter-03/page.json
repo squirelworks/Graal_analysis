@@ -1,0 +1,209 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "Nbluelampani.gif",
+      "script": "ONbluelampani.gif",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "O0bluelampani.gif",
+      "script": "/0bluelampani.gif",
+      "count": 1,
+      "files": [
+        "house22.graal"
+      ]
+    },
+    {
+      "image": "C1bluelampani.gif",
+      "script": "O1bluelampani.gif",
+      "count": 1,
+      "files": [
+        "house8.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "E;bluelampani.gif",
+      "count": 1,
+      "files": [
+        "house9.graal"
+      ]
+    },
+    {
+      "image": "Cgoldenbush.gif",
+      "script": "if (washit && playerswordpower>=4) { putleaps 0,x,y; hide; }",
+      "count": 1,
+      "files": [
+        "housegolden1.graal"
+      ]
+    },
+    {
+      "image": "book15.gif",
+      "script": "4&bookopen.gif",
+      "count": 1,
+      "files": [
+        "icegolemroom.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "6Cbeerhost.gif",
+      "count": 1,
+      "files": [
+        "jaypee2bar.graal"
+      ]
+    },
+    {
+      "image": "2Xbluelampani.gif",
+      "script": "2>bluelampani.gif",
+      "count": 1,
+      "files": [
+        "jaypee2kitchen.graal"
+      ]
+    },
+    {
+      "image": "Rbluelampani.gif",
+      "script": "*Lbluelampani.gif",
+      "count": 1,
+      "files": [
+        "level14.graal"
+      ]
+    },
+    {
+      "image": "6Nbluelampani.gif",
+      "script": "HNbluelampani.gif",
+      "count": 1,
+      "files": [
+        "level19.graal"
+      ]
+    },
+    {
+      "image": "RMbluelampani.gif",
+      "script": "@Mbluelampani.gif",
+      "count": 1,
+      "files": [
+        "level33.graal"
+      ]
+    },
+    {
+      "image": "RObluelampani.gif",
+      "script": "XObluelampani.gif",
+      "count": 1,
+      "files": [
+        "level41.graal"
+      ]
+    },
+    {
+      "image": "R4bluelampani.gif",
+      "script": "L4bluelampani.gif",
+      "count": 1,
+      "files": [
+        "level5.graal"
+      ]
+    },
+    {
+      "image": "H9bluelampani.gif",
+      "script": "V9bluelampani.gif",
+      "count": 1,
+      "files": [
+        "level5.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (washit) {playery=15} ?Ucclarry.gif",
+      "count": 1,
+      "files": [
+        "lifemountain6.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "3*bluelampani.gif",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "S,bluelampani.gif",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "QPbluelampani.gif",
+      "script": "SPbluelampani.gif",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "1Pbluelampani.gif",
+      "script": "3Pbluelampani.gif",
+      "count": 1,
+      "files": [
+        "mine3.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "G,bluelampani.gif",
+      "count": 1,
+      "files": [
+        "mine4.graal"
+      ]
+    },
+    {
+      "image": "2bluelampani.gif",
+      "script": "?2bluelampani.gif",
+      "count": 1,
+      "files": [
+        "mine4.graal"
+      ]
+    },
+    {
+      "image": "blackswitch.gif",
+      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door1Up; } 8Ablackdoor3.gif",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    },
+    {
+      "image": "blackswitch.gif",
+      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door2Up; } -/blackdoor.gif",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    },
+    {
+      "image": "IDblackswitch.gif",
+      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door4Up; } K.blackswitch.gif",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    },
+    {
+      "image": "blackswitch.gif",
+      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door4Up; } R;blackdoor2.gif",
+      "count": 1,
+      "files": [
+        "mine6.graal"
+      ]
+    }
+  ]
+}

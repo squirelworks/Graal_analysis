@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "hazards",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "mcmeal.gif",
+      "script": "if (playerenters&&!mcmeal) hide; if (mcmeal) {show;} if (playertouchsme) { hurt -9; hide; unset mcmeal } if (playerlaysitem && mcmeal) { set !mcpie;} B/mcdoorright.gif",
+      "count": 1,
+      "files": [
+        "mcgraals3.graal"
+      ]
+    },
+    {
+      "image": "4blackbaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {hurt 4 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { say 2; hide; } if (playerendsreading) { } I@",
+      "count": 1,
+      "files": [
+        "mimic.graal"
+      ]
+    },
+    {
+      "image": "mineblade.gif",
+      "script": "if (playerenters) { this.move = -0.6; timeout = 0.1; } if (playertouchsme) { hurt 1; } if (timeout) { x += this.move; if (onwall(x+0.75,y) || onwall(x+3,y)) this.move = -this.move; timeout = 0.1; } ':mineblade.gif",
+      "count": 1,
+      "files": [
+        "mine1.graal"
+      ]
+    },
+    {
+      "image": "6mineblade.gif",
+      "script": "if (playerenters) { this.move = -0.4; timeout = 0.1; } if (playertouchsme) { hurt 1; } if (timeout) { x += this.move; if (onwall(x+0.75,y) || onwall(x+3,y)) this.move = -this.move; timeout = 0.1; } '.mineblade.gif",
+      "count": 1,
+      "files": [
+        "mine1.graal"
+      ]
+    },
+    {
+      "image": "4Monster.gif",
+      "script": "if (playerenters) { if (MagicBaddyGone) hide; if (!MagicBaddyGone) { set MagicBaddyRound1; unset MagicBaddyRound2; unset MagicBaddyRound3; playerx = 31; playery = 30; setplayerdir up; say 0; } } if (playertouchsme) { hurt 2; } if (compusdied) { if (MagicBaddyRound3) { unset MagicBaddyRound3; set MagicBaddyGone; x = 32; y = 25; setplayerdir",
+      "count": 1,
+      "files": [
+        "monster3.graal"
+      ]
+    },
+    {
+      "image": "Nlethallemongif.gif",
+      "script": "if (playerenters) {say 0; } if (playertouchsme) {hurt -20; }",
+      "count": 1,
+      "files": [
+        "mountainhouse3.graal"
+      ]
+    },
+    {
+      "image": "absinthe.gif",
+      "script": "if (playerenters&&!absinthe) {hide } if (absinthe) {show} if (playertouchsme) {hurt -1; unset absinthe; hide} @$floor4.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) {say 0 } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } if (playertouchesme) {hurt}",
+      "count": 1,
+      "files": [
+        "nobodysresteraunt.graal"
+      ]
+    },
+    {
+      "image": "kagato_f.gif",
+      "script": "if (playerenters && !gotshera || !kagatoback) { hide; } if (playertouchsme) { say 19; } if (playertouchsme && lgateopen && boss2dead) { say 22; } if (playertouchsme && lgateopen && !boss2dead) { say 21; } if (exploded || washit || wasshooted || waspelt) { hurt 2.5; shootball; } B'shera.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall2.graal"
+      ]
+    },
+    {
+      "image": "t-midnight.gif",
+      "script": "if (playerenters && !mid1 || mid2) { hide; } if (playertouchsme) { say 4; } if (playerlaysitem) { take greenrupee; take bluerupee; if (rupees>=10) { hurt -100; rupees -= 10; } } B+gilgamesh.gif",
+      "count": 1,
+      "files": [
+        "palace_level1.graal"
+      ]
+    },
+    {
+      "image": "XGgilgamesh.gif",
+      "script": "if (playerenters && !mid1 || !mid2 || mid3) { hide; } if (playertouchsme) { say 8; } if (exploded || washit || wasshooted || waspelt) { hurt 1; }",
+      "count": 1,
+      "files": [
+        "palace_level3.graal"
+      ]
+    },
+    {
+      "image": "SGchest.gif",
+      "script": "if (playertouchsme) {hurt 1; setgif mchest.gif;} if (exploded || washit || wasshooted || waspelt) {shootball} Z",
+      "count": 1,
+      "files": [
+        "prtrain.graal"
+      ]
+    },
+    {
+      "image": "ratb.gif",
+      "script": "if (playertouchsme) { say 1; setgif ratf.gif;} if (exploded || washit || wasshooted || waspelt) {hurt1} if (playerendsreading) {setgif ratb.gif} *=ratgf.gif",
+      "count": 1,
+      "files": [
+        "prtrain.graal"
+      ]
+    },
+    {
+      "image": "2monsterred.gif",
+      "script": "if (playerenters) { unset MonsterRedKilled; this.canbehit = 0; this.hurtcounter = 0; this.power = 15; say 0; timeout = 0.2; } if (playertouchsme && MonsterRedKilled) { say 1; set RBDoorOpen; } if (washit && this.canbehit==1 && this.hurtcounter=0) { this.hurtcounter = 16; setgif MonsterRed3.gif; message; timeout = 0.1; } if (timeout) { if (this.hurtcounter>0) { thi",
+      "count": 1,
+      "files": [
+        "redboss.graal"
+      ]
+    },
+    {
+      "image": "7flyingred.gif",
+      "script": "if (playerenters) { moneyx = -1; money = playerrupees; drawoverplayer; dontblock; kid1x = x; kid1y = y; this.bumbcounter = 0; this.bombcounter = 10; message Max; timeout = 0.1; } if (playertouchsme && !MonsterRedKilled) hurt 1; if (washit) { this.bumbdx = x-(playerx+0.4); this.bumbdy = y-(playery-2); if (this.bumbdx<0.5 && this.bumbdx>-0.5 && this.bumbdy<0.5 && this",
+      "count": 1,
+      "files": [
+        "redboss.graal"
+      ]
+    },
+    {
+      "image": "beer.gif",
+      "script": "if (playerenters) {hide } if (playertouchsme && !wantskybeer){ hurt-10000; hide} if(wantskybeer && playertouchsme){ set skybeer; hurt-10000; hide; } if (playerlaysitem) {take bluerupee; take greenrupee; if got rupees5; show; } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skytf1r6.graal"
+      ]
+    },
+    {
+      "image": "8Qx_vampsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=5; timeout=2; } if (playertouchsme && rupees>0) {hurt 1; hearts+=1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwall(playerx+.5-.5,playery",
+      "count": 1,
+      "files": [
+        "swordpalace5.graal"
+      ]
+    },
+    {
+      "image": "Ix_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=3; timeout=6; } if (playertouchsme && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playe",
+      "count": 1,
+      "files": [
+        "swordpalaceentrance.graal"
+      ]
+    },
+    {
+      "image": "Ax_doomsword.gif",
+      "script": "if (playerenters) { x=x-.5; y=y-.5; hearts=3; } if (sworddead1){unset sworddead1; timeout=.1;} if (playertouchsme && rupees>0) {hurt 1; if (x>playerx) {if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5;if (!onwall(x+.5+.5,y+.5)) x=x+.5; if (!onwa",
+      "count": 1,
+      "files": [
+        "swordpalaceentrance.graal"
+      ]
+    },
+    {
+      "image": "L5bottle.gif",
+      "script": "if (playerenters && !followsplayer) hide; if (givepoton) { followplayer; show; canbecarried; unset givepoton; set gotpoton; } if (wasthrown) { hurt -10; unset gotpoton; hide; } 9Abigheart.gif",
+      "count": 1,
+      "files": [
+        "whoopa_northshop.graal"
+      ]
+    },
+    {
+      "image": "ferengi.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0 } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "zkhouse5.graal"
+      ]
+    },
+    {
+      "image": "8blackbaddy.gif",
+      "script": "if (playerenters) { if (!ihousedead){ say 0 } if (ihousedead){ removecompus } } if (playertouchsme) { if (!ihousedead){ hurt 1 } if (ihousedead){ say 1 } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {set ihousedead } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "zkhouse6.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//====== Brugite Warrior A.I.====== // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // and Bruges // (21/05/1999) // email: Bruges@brugescore.8m.com // http://come.to/BrugesCore // // Below are variables which modify // the baddie's behavior. Press PgDn // three times to view them all. // if (playerenters && !this.init=1) { this.init=1; this.sx=x;this.sy=y; timereverywhere; maxhearts=20; //the number of hearts the baddie starts with timeout=.1; //the delay before it apears and attacks this.stepspeed=.1; //the speed the baddie takes steps at this.stepdist=.5; //the distance covered by each step this.power=5; //number of half hearts it drains when it touches the player this.talkdelay=2; //time speach is shown for this.active=0; this.BossReset=1; this.hurtdel=5; } //do not edit anything below this // line!! //----------------------------------- if (timeout && this.BossReset=1) { this.BossReset=0; this.active=1; this.hearts=maxhearts; //the number of hearts the baddie starts with hearts=this.hearts; x=this.sx; y=this.sy; show; message Here, you shall die!; this.talk=this.talkdelay; this.lasthurt=0; timeout=.1; //the delay before it apears and attacks } if (playertouchsme && this.active>0) { hurt this.power; if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5; if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5; if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;}; if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5; if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;}; }; if (x-playerx<1 && playerx-x<1 && y-playery<1 && playery-y<1 && this.active>0) { hurt this.power; if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5; if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5; if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;}; if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5; if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;}; }; if (exploded || washit || wasshooted || waspelt) if (this.active>0){ this.attacked=1; if (exploded) this.heartshearts+=playerbombpower; if (washit) this.heartshearts+=playerswordpower; if (wasshooted) this.heartshearts+=playershootpower; if (peltwithbush) this.heartshearts+=1; if (peltwithsign || peltwithvase || peltwithstone) this.heartshearts+=2; if (peltwithblackstone) this.heartshearts +=3; if (this.heartshearts>maxhearts) this.heartshearts=maxhearts; hearts=this.hearts; if (this.hearts>0) { if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;} if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;} } } if (timeout && this.active>0) { {//SMART-ONLINE A.I. this.icomp=1000000; for(i=0;i<playerscount;i++) { eval=abs(players[i].x-x)+abs(players[i].y-y); if (eval<this.icomp) {this.icomp=eval; this.i=i;} } i=this.i; }//END SMART-ONLINE A.I. if (this.talk>0) {this.talk-=this.stepspeed; if (this.talk<=0) message ;} if (this.hearts<1) {this.active=0; swordcount=-1; this.slp=0.1; message Arghh!; setgif BrugiteBossS1.gif; sleep this.slp; setgif BrugiteBoss2.gif; sleep this.slp; setgif BrugiteBossS1.gif; sleep this.slp; setgif BrugiteBoss2.gif; sleep this.slp; setgif BrugiteBossS1.gif; sleep this.slp; this.slp*=2; setgif BrugiteBoss2.gif; sleep this.slp; setgif BrugiteBossS1.gif; sleep this.slp; setgif BrugiteBoss2.gif; sleep this.slp; setgif BrugiteBossS1.gif; sleep this.slp; this.slp*=2; setgif BrugiteBoss2.gif; sleep this.slp; setgif BrugiteBossS1.gif; sleep this.slp; setgif BrugiteBoss2.gif; message No! The Judgites must have the Cane!; sleep 2; hide; sleep .5; timeout=.05; this.BossReset=1; playerx=31; playery=52; setlevel brugestowerprize.graal; swordcount=0; } if (this.hearts>0) { timeout=this.stepspeed; if (this.imset=0) {this.imset=1; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteBossW1.gif; this.dir=1}else{setgif BrugiteBossN1.gif; this.dir=0}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteBossE1.gif; this.dir=3}else{setgif BrugiteBossN1.gif; this.dir=0}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteBossW1.gif; this.dir=1}else{setgif BrugiteBossS1.gif; this.dir=2}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteBossE1.gif; this.dir=3}else{setgif BrugiteBossS1.gif; this.dir=2}} }else{this.imset=0; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteBossW2.gif; this.dir=1}else{setgif BrugiteBossN2.gif; this.dir=0}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteBossE2.gif; this.dir=3}else{setgif BrugiteBossN2.gif; this.dir=0}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteBossW2.gif; this.dir=1}else{setgif BrugiteBossS2.gif; this.dir=2}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteBossE2.gif; this.dir=3}else{setgif BrugiteBossS2.gif; this.dir=2}} } if (x>players[i].x-this.stepdist && !onwall(x-this.stepdist+.5,y+.5)) {x=x-this.stepdist}; if (x<players[i].x+this.stepdist && !onwall(x+this.stepdist+.5,y+.5)) {x=x+this.stepdist}; if (y>players[i].y-this.stepdist && !onwall(x+.5,y-this.stepdist+.5)) {y=y-this.stepdist}; if (y<players[i].y+this.stepdist && !onwall(x+.5,y+this.stepdist+.5)) {y=y+this.stepdist}; if (this.lasthurt>=this.hurtdel) { this.hearts-=1; this.lasthurt=0; this.msg=int(random(0,9)); if (this.hearts=6) this.msg=10;else if (this.hearts=5) this.msg=11; if (this.hearts=4) this.msg=12; if (this.hearts<4) this.msg=13; if (this.hearts<=0) hearts=this.hearts; if (this.msg=0) message Thought you could defeat me?; if (this.msg=1) message Time to die!; if (this.msg=2) message Mwa ha ha ha!; if (this.msg=3) message Weakling!; if (this.msg=4) message I'm enjoying this!; if (this.msg=5) message Having fun?; if (this.msg=6) message *gloats*; if (this.msg=7) message Fool!; if (this.msg=8) message Getting tired?; if (this.msg=9) message Death is your only escape!; if (this.msg=10) message To scared to attack me?; if (this.msg=11) message Come on! Fight back!; if (this.msg=12) message You time is nearly up!!; if (this.msg=13) message DIE!!!; this.talk=this.talkdelay; if (playerscount>swordscount) {this.launchsword=1}; } else this.lasthurt+=this.stepspeed; if (playerscount=0) this.BossReset=1; if (this.launchsword=1) { this.launchsword=0; if (this.dir=0) putnpc BrugiteSwordN.gif,BrugiteSword.txt,x+2,y; if (this.dir=1) putnpc BrugiteSwordE.gif,BrugiteSword.txt,x+2,y+2; if (this.dir=2) putnpc BrugiteSwordS.gif,BrugiteSword.txt,x,y+2; if (this.dir=3) putnpc BrugiteSwordW.gif,BrugiteSword.txt,x,y+2; } //this.talk=this.talkdelay; } } //=====================================================================",
+      "count": 1,
+      "files": [
+        "BrugiteBoss.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//====== Brugite Mage A.I.====== // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // (12/04/1999) // email: Bruges@brugescore.8m.com // http://come.to/BrugesCore // // Below are variables which modify // the baddie's behavior. Press PgDn // three times to view them all. // if ((playerenters && !this.init=1) ||(timeout && this.dead=1)) { this.init=1; timereverywhere; show; hearts=6; //the number of hearts the baddie starts with timeout=.1; //the delay before it apears and attacks this.stepspeed=.1; //the speed the baddie takes steps at this.stepdist=.5; //the distance covered by each step this.power=1; //number of half hearts it drains when it touches the player this.magdel=2.5; //delay between magical attacks this.optdist=12; //the distance it trys to keep between it and the player this.ashow=1; //time attacking image is shown this.talkdelay=2; //time speach is shown for this.active=1; this.dead=0; this.sx=x; this.sy=y; } //do not edit anything below this // line!! //----------------------------------- if (playerenters){ this.optdist=this.optdist*this.optdist; //squares optdist this.border=3; this.border=this.border*this.border; //sets & squares the optdist margin this.attacked=0; this.pldiespeak=0; this.lastmag=this.magdel; } if (playertouchsme && this.active>0) { hurt this.power; if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5; if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5; if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;}; if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5; if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;}; }; if (x-playerx<1 && playerx-x<1 && y-playery<1 && playery-y<1 && this.active>0) { hurt this.power; if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5; if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5; if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;}; if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5; if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;}; }; if (exploded || washit || wasshooted || waspelt) if (this.active>0){ this.attacked=1; if (exploded) hearts-=playerbombpower; if (washit) hearts-=playerswordpower; if (wasshooted) hearts-=playershootpower; if (peltwithbush) hearts-=1; if (peltwithsign || peltwithvase || peltwithstone) hearts-=2; if (peltwithblackstone) hearts -=3; if (hearts>0) { if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;} if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;} } } if (timeout && this.active>0) { {//SMART-ONLINE A.I. this.icomp=1000000; for(i=0;i<playerscount;i++) { eval=abs(players[i].x-x)+abs(players[i].y-y); if (eval<this.icomp) {this.icomp=eval; this.i=i;} } i=this.i; }//END SMART-ONLINE A.I. if (this.talk>0) {this.talk-=this.stepspeed; if (this.talk<=0) message ;} if (hearts<1) {this.active=0; this.gift=random(0,9); if (this.gift<=3) lay bluerupee; if (this.gift>3 && this.gift<=4) lay redrupee; if (this.gift>4 && this.gift<=5) lay heart; if (this.gift>5 && this.gift<=6) lay heart;lay heart; if (this.gift>6 && this.gift<=7) lay bombs; if (this.gift>7 && this.gift<=8) lay darts; this.dead=1; timeout=10; hide; } if (hearts>0) { { if (this.adel>0) {this.adel-=this.stepspeed}else{ this.pdist=(x-players[i].x)*(x-players[i].x)+(y-players[i].y)*(y-players[i].y); if (this.pdist<=this.optdist+this.border && this.pdist>=this.optdist-this.border) { if (x=players[i].x||y=players[i].y){ if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteMage_WS.gif}else{setgif BrugiteMage_NS.gif}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteMage_ES.gif}else{setgif BrugiteMage_NS.gif}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteMage_WS.gif}else{setgif BrugiteMage_SS.gif}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteMage_ES.gif}else{setgif BrugiteMage_SS.gif}} }else{ if (this.imset=0) {this.imset=1; if ((players[i].x-x)*(players[i].x-x)>(players[i].y-y)*(players[i].y-y) && players[i].y<y) {setgif BrugiteMage_N1.gif}//up else if ((players[i].x-x)*(players[i].x-x)>(players[i].y-y)*(players[i].y-y) && players[i].y>y) {setgif BrugiteMage_S1.gif}//down else if ((players[i].x-x)*(players[i].x-x)<(players[i].y-y)*(players[i].y-y) && players[i].x<x) {setgif BrugiteMage_W1.gif}//left else if ((players[i].x-x)*(players[i].x-x)<(players[i].y-y)*(players[i].y-y) && players[i].x>x) {setgif BrugiteMage_E1.gif}//right }else{this.imset=0; if ((players[i].x-x)*(players[i].x-x)>(players[i].y-y)*(players[i].y-y) && players[i].y<y) {setgif BrugiteMage_N2.gif}//up else if ((players[i].x-x)*(players[i].x-x)>(players[i].y-y)*(players[i].y-y) && players[i].y>y) {setgif BrugiteMage_S2.gif}//down else if ((players[i].x-x)*(players[i].x-x)<(players[i].y-y)*(players[i].y-y) && players[i].x<x) {setgif BrugiteMage_W2.gif}//left else if ((players[i].x-x)*(players[i].x-x)<(players[i].y-y)*(players[i].y-y) && players[i].x>x) {setgif BrugiteMage_E2.gif}//right } if ((players[i].x-x)*(players[i].x-x)>(players[i].y-y)*(players[i].y-y) && players[i].y<y && !onwall(x+.5,y-this.stepdist+.5)) {y=y-this.stepdist}//up else if ((players[i].x-x)*(players[i].x-x)>(players[i].y-y)*(players[i].y-y) && players[i].y>y && !onwall(x+.5,y+this.stepdist+.5)) {y=y+this.stepdist}//down else if ((players[i].x-x)*(players[i].x-x)<(players[i].y-y)*(players[i].y-y) && players[i].x<x && !onwall(x-this.stepdist+.5,y+.5)) {x=x-this.stepdist}//left else if ((players[i].x-x)*(players[i].x-x)<(players[i].y-y)*(players[i].y-y) && players[i].x>x && !onwall(x+this.stepdist+.5,y+.5)) {x=x+this.stepdist}//right } }else if (this.pdist>this.optdist) { if (this.imset=0) {this.imset=1; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteMage_W1.gif}else{setgif BrugiteMage_N1.gif}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteMage_E1.gif}else{setgif BrugiteMage_N1.gif}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteMage_W1.gif}else{setgif BrugiteMage_S1.gif}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteMage_E1.gif}else{setgif BrugiteMage_S1.gif}} }else{this.imset=0; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteMage_W2.gif}else{setgif BrugiteMage_N2.gif}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteMage_E2.gif}else{setgif BrugiteMage_N2.gif}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteMage_W2.gif}else{setgif BrugiteMage_S2.gif}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteMage_E2.gif}else{setgif BrugiteMage_S2.gif}} } if (x>players[i].x-this.stepdist && !onwall(x-this.stepdist+.5,y+.5)) {x=x-this.stepdist}; if (x<players[i].x+this.stepdist && !onwall(x+this.stepdist+.5,y+.5)) {x=x+this.stepdist}; if (y>players[i].y-this.stepdist && !onwall(x+.5,y-this.stepdist+.5)) {y=y-this.stepdist}; if (y<players[i].y+this.stepdist && !onwall(x+.5,y+this.stepdist+.5)) {y=y+this.stepdist}; }else if (this.pdist<this.optdist) { if (this.imset=0) {this.imset=1; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteMage_E1.gif}else{setgif BrugiteMage_S1.gif}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteMage_W1.gif}else{setgif BrugiteMage_S1.gif}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteMage_E1.gif}else{setgif BrugiteMage_N1.gif}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteMage_W1.gif}else{setgif BrugiteMage_N1.gif}} }else{this.imset=0; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteMage_E2.gif}else{setgif BrugiteMage_S2.gif}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteMage_W2.gif}else{setgif BrugiteMage_S2.gif}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteMage_E2.gif}else{setgif BrugiteMage_N2.gif}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteMage_W2.gif}else{setgif BrugiteMage_N2.gif}} } if (x>players[i].x && !onwall(x+this.stepdist+.5,y+.5)) {x=x+this.stepdist}; if (x<players[i].x && !onwall(x-this.stepdist+.5,y+.5)) {x=x-this.stepdist}; if (y>players[i].y && !onwall(x+.5,y+this.stepdist+.5)) {y=y+this.stepdist}; if (y<players[i].y && !onwall(x+.5,y-this.stepdist+.5)) {y=y-this.stepdist}; } } if ((x-players[i].x>=-.5 && x-players[i].x<=.5) || (y-players[i].y>=-1 && y-players[i].y<=1)) if (this.lastmag>=this.magdel) { message Eyeantor Protonis!; this.talk=this.talkdelay; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteMage_WA.gif; this.mdir=4} else {setgif BrugiteMage_NA.gif; this.mdir=1}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteMage_EA.gif; this.mdir=2} else {setgif BrugiteMage_NA.gif; this.mdir=1}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteMage_WA.gif; this.mdir=4} else {setgif BrugiteMage_SA.gif; this.mdir=3}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteMage_EA.gif; this.mdir=2} else {setgif BrugiteMage_SA.gif; this.mdir=3}} this.adel=this.ashow; this.lastmag=0; if (this.mdir=1) putnpc proton_N.gif,protonN.txt,x+1,y; if (this.mdir=2) putnpc proton_E.gif,protonE.txt,x,y+1.5; if (this.mdir=3) putnpc proton_S.gif,protonS.txt,x+1,y; if (this.mdir=4) putnpc proton_W.gif,protonW.txt,x,y+1.5; } } this.lastmag+=this.stepspeed; //this.hearts=hearts; timeout=this.stepspeed; } } //=====================================================================",
+      "count": 1,
+      "files": [
+        "BrugiteMage.txt"
+      ]
+    },
+    {
+      "image": "",
+      "script": "//====== Brugite Sword A.I.====== // written by Bruges, CEO Bruges Core // gfx by Captain USA, Bruges Core // and Bruges // (21/05/1999) // email: Bruges@brugescore.8m.com // http://come.to/BrugesCore // // Below are variables which modify // the baddie's behavior. Press PgDn // three times to view them all. // if (playerenters && !this.init=1) { this.init=1; swordscount+=1; timereverywhere; hearts=4; //the number of hearts the baddie starts with timeout=.1; //the delay before it apears and attacks this.stepspeed=.1; //the speed the baddie takes steps at this.stepdist=.6; //the distance covered by each step this.power=2; //number of half hearts it drains when it touches the player this.talkdelay=2; //time speach is shown for this.active=1; } //do not edit anything below this // line!! //----------------------------------- if (playertouchsme && this.active>0) { hurt this.power; if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5; if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5; if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;}; if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5; if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;}; }; if (x-playerx<1 && playerx-x<1 && y-playery<1 && playery-y<1 && this.active>0) { hurt this.power; if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5; if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;if (!onwall(playerx+.5-.5,playery+.5)) playerx=playerx-.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5; if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;if (!onwall(playerx+.5+.5,playery+.5)) playerx=playerx+.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5; if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;if (!onwall(playerx+.5,playery+.5-.5)) playery=playery-.5;}; if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5; if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;if (!onwall(playerx+.5,playery+.5+.5)) playery=playery+.5;}; }; if (exploded || washit || wasshooted || waspelt) if (this.active>0){ this.attacked=1; if (exploded) hearts-=playerbombpower; if (washit) hearts-=playerswordpower; if (wasshooted) hearts-=playershootpower; if (peltwithbush) hearts-=1; if (peltwithsign || peltwithvase || peltwithstone) hearts-=2; if (peltwithblackstone) hearts -=3; if (hearts>0) { if (x>playerx) {if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;if (!onwall(x+.5,y)) x=x+.5;}; if (x<playerx) {if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;if (!onwall(x-.5,y)) x=x-.5;}; if (y>playery) {if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;if (!onwall(x,y+.5)) y=y+.5;} if (y<playery) {if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;if (!onwall(x,y-.5)) y=y-.5;} } } if (timeout && this.active>0) { if (swordcount=-1) hearts=0; {//SMART-ONLINE A.I. this.icomp=1000000; for(i=0;i<playerscount;i++) { eval=abs(players[i].x-x)+abs(players[i].y-y); if (eval<this.icomp) {this.icomp=eval; this.i=i;} } i=this.i; }//END SMART-ONLINE A.I. if (this.talk>0) {this.talk-=this.stepspeed; if (this.talk<=0) message ;} if (hearts<1) {this.active=0; this.gift=random(0,9); if (this.gift<=5) lay greenrupee; if (this.gift>5 && this.gift<=6) lay bluerupee; //if (this.gift>6 && this.gift<=7) lay heart; if (this.gift>7 && this.gift<=8) lay bombs; if (this.gift>8 && this.gift<=9) lay darts; destroy; swordscount-=1; } if (hearts>0) { timeout=this.stepspeed; if (x>=players[i].x && y>=players[i].y) { if (x-players[i].x>y-players[i].y) {setgif BrugiteSwordW.gif}else{setgif BrugiteSwordN.gif}} else if (x<=players[i].x && y>=players[i].y) { if (players[i].x-x>y-players[i].y) {setgif BrugiteSwordE.gif}else{setgif BrugiteSwordN.gif}} else if (x>=players[i].x && y<=players[i].y) { if (x-players[i].x>players[i].y-y) {setgif BrugiteSwordW.gif}else{setgif BrugiteSwordS.gif}} else if (x<=players[i].x && y<=players[i].y) { if (players[i].x-x>players[i].y-y) {setgif BrugiteSwordE.gif}else{setgif BrugiteSwordS.gif}} if (x>players[i].x-this.stepdist && !onwall(x-this.stepdist+.5,y+.5)) {x=x-this.stepdist}; if (x<players[i].x+this.stepdist && !onwall(x+this.stepdist+.5,y+.5)) {x=x+this.stepdist}; if (y>players[i].y-this.stepdist && !onwall(x+.5,y-this.stepdist+.5)) {y=y-this.stepdist}; if (y<players[i].y+this.stepdist && !onwall(x+.5,y+this.stepdist+.5)) {y=y+this.stepdist}; //this.talk=this.talkdelay; } } //=====================================================================",
+      "count": 1,
+      "files": [
+        "BrugiteSword.txt"
+      ]
+    }
+  ]
+}

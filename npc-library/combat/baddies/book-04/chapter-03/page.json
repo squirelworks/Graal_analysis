@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 4,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "leftgate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} Y>rightgate.gif",
+      "count": 1,
+      "files": [
+        "sardontower13.graal"
+      ]
+    },
+    {
+      "image": "M3rightgate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} MErightgate.gif",
+      "count": 1,
+      "files": [
+        "sardontower14.graal"
+      ]
+    },
+    {
+      "image": "gate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} 7*",
+      "count": 1,
+      "files": [
+        "sardontower15.graal"
+      ]
+    },
+    {
+      "image": "Ldowngate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} 53dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower19.graal"
+      ]
+    },
+    {
+      "image": "SFdltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=51; this.y=38; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower20.graal"
+      ]
+    },
+    {
+      "image": "LJdltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=44; this.y=42; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower20.graal"
+      ]
+    },
+    {
+      "image": "dltrap.gif",
+      "script": "// Trap baddy // By Sardon if (playerenters) {timereverywhere; timeout=.05; this.x=42; this.y=28; drawunderplayer} if(playerenters&&playerscount=1){x=this.x;y=this.y} if (this.1==0) { if (playerx>x-1.5 && playerx<x+1.5) { if (playery>y && !onwall(x,y+2)) {this.1=1} if (playery<y && !onwall(x,y-.5)) {this.1=2}} if (playery>y-2.5 && playery<y+.5) { if (playerx>x && !onwall(x+2,y)) {this.1=",
+      "count": 1,
+      "files": [
+        "sardontower20.graal"
+      ]
+    },
+    {
+      "image": "leftgate.gif",
+      "script": "if (playerenters){ if(compuscount>0)show; if(compuscount=0&&playerscount=1)show; } if (compusdied) {hide} ?Tdowngate.gif",
+      "count": 1,
+      "files": [
+        "sardontower24.graal"
+      ]
+    },
+    {
+      "image": "Pdlwizardani.gif",
+      "script": "//Wizard baddy //by Sardon if (playerenters&&playerscount=1) {unset dlwizard; x=31; y=48; this.health=10; //number of hits the baddy can take this.wait=1; //set to 1 if you want baddies to wait for dlwizard flag before appearing timeout=.05; this.act=random(0,10); this.hit=0; this.4=0; if (this.wait==1) {hide} } if (this.wait==0) { if (playerx>x-2 && playerx<x+1.5 && playery>y-2 &",
+      "count": 1,
+      "files": [
+        "sardontower25.graal"
+      ]
+    },
+    {
+      "image": "-blackbaddy.gif",
+      "script": "if (playerlaysitem) {take bluerupee} if (playerlaysitem) {take greenrupee} if (rupees>=10) {set KaosBeer; rupees-=10} 5-emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "shop.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playerenters) { hide } if (playertouchsme) { say 0 } if (compusdied) { show }",
+      "count": 1,
+      "files": [
+        "sidetrack2.graal"
+      ]
+    },
+    {
+      "image": "0Tzolshoe7.gif",
+      "script": "if (playerenters) {say2 } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "sirpaul.graal"
+      ]
+    },
+    {
+      "image": "B6stone.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) {hide } D8stone.gif",
+      "count": 1,
+      "files": [
+        "skyt2.graal"
+      ]
+    },
+    {
+      "image": "8stone.gif",
+      "script": "if (playerenters) {if(skyship)removecompus; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) {hide } @6stone.gif",
+      "count": 1,
+      "files": [
+        "skyt2.graal"
+      ]
+    },
+    {
+      "image": "D6stone.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) {hide } >.sign.gif",
+      "count": 1,
+      "files": [
+        "skyt2.graal"
+      ]
+    },
+    {
+      "image": "spaceship.gif",
+      "script": "if (playerenters) {if (skyship) hide; if(!skyship)show; } if (playertouchsme) {dontblock; drawoverplayer; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {hide;set skyship; } if (compusdied && !skyship){say 2; } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "skyt2.graal"
+      ]
+    },
+    {
+      "image": "4Qbotton.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {set skyfloor1; unset skyfloor2; unsetskyfloor3; unsetskyfloor4; unsetskyfloor5; unsetskyfloor6; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 8Qbotton.gif",
+      "count": 1,
+      "files": [
+        "skytele.graal"
+      ]
+    },
+    {
+      "image": "Qbotton.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {set skyfloor3; unset skyfloor1; unset skyfloor2; unset skyfloor4; unset skyfloor5; unset skyfloor6; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } @Qbotton.gif",
+      "count": 1,
+      "files": [
+        "skytele.graal"
+      ]
+    },
+    {
+      "image": "DQbotton.gif",
+      "script": "if (playerenters) {if(!skyfloor5open)hide; if(skyfloor5open)show; } if (playertouchsme) {set skyfloor5; unset skyfloor1; unset skyfloor2; unset skyfloor3; unset skyfloor4; unset skyfloor6; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } HQbotton.gif",
+      "count": 1,
+      "files": [
+        "skytele.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {if(skyfloor1)setlevel skytf1.graal; } if (playertouchsme){if(skyfloor2)setlevel skytf2.graal; } if (playertouchsme) {if(skyfloor3)setlevel skytf3.graal } if (playertouchsme) {if(skyfloor4)setlevel skytf4.graal; } if (playertouchsme) {if(skyfloor5)setlevel skytf5.graal; } if (playertouchsme) {if(skyfloor6)setlevel skytf6.graal; } =Wemeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "skytele.graal"
+      ]
+    },
+    {
+      "image": "infoguy.gif",
+      "script": "if (playertouchsme) { say 0; if(skytowerbank1) say1; } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=100) set skytowerbank2; } if (playerendsreading) set skytowerbank1; (<emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "skytf1r2.graal"
+      ]
+    },
+    {
+      "image": "AAdbluebaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) {take greenrupee; take bluerupee; if got rupees5; lay bombs } if (compusdied) { } if (playerendsreading) { } if (exploded) { } HAdbluebaddy.gif",
+      "count": 1,
+      "files": [
+        "skytf1r4.graal"
+      ]
+    },
+    {
+      "image": "hotel_lady.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } +-twiggy.gif",
+      "count": 1,
+      "files": [
+        "skytf1r6.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 7'fizzaretip.gif",
+      "count": 1,
+      "files": [
+        "skytf1r6.graal"
+      ]
+    },
+    {
+      "image": "fizzaretip.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 75emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "skytf1r6.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 2,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "28door.gif",
+      "script": "if (playerenters) { } if (playertouchsme && vareidead1) {hide;timeout=2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {show} :8door.gif",
+      "count": 1,
+      "files": [
+        "b39_outside7.graal"
+      ]
+    },
+    {
+      "image": "B8door.gif",
+      "script": "if (playerenters) { } if (playertouchsme && vareidead1) {hide;timeout=2 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {show} J8door.gif",
+      "count": 1,
+      "files": [
+        "b39_outside7.graal"
+      ]
+    },
+    {
+      "image": "79bctarget1.gif",
+      "script": "if (playerenters) {timeout=.1; drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } >Cbcshootinggamebow.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "bctarget2.gif",
+      "script": "if (playerenters) {timeout=.1; } if (wasshot) {misses+=1} if (timeout) { x=x+.25; if (x>41) x=21; //if (x<21) x=41; timeout=.1; } I9bcrighttargethole.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "9bctarget1.gif",
+      "script": "if (playerenters) {timeout=.1; drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } >9bctarget1.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "9bctarget1.gif",
+      "script": "if (playerenters) {timeout=.1; drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } D9bctarget1.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "G9bctarget1.gif",
+      "script": "if (playerenters) {timeout=.1; drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } =?",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "79bcmissbar.gif",
+      "script": "if (playerenters) {drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (wasshot) {misses+=1; } if (timeout) { } ;<bctarget2.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "bctarget2.gif",
+      "script": "if (playerenters) {timeout=.1; } if (wasshot) {misses+=1} if (timeout) { x=x+.25; if (x>41) x=21; //if (x<21) x=41; timeout=.1; } C<bctarget2.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "bctarget2.gif",
+      "script": "if (playerenters) {timeout=.1; } if (wasshot) {misses+=1} if (timeout) { x=x+.25; if (x>41) x=21; //if (x<21) x=41; timeout=.1; } ;;bctarget2.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "bctarget2.gif",
+      "script": "if (playerenters) {timeout=.1; } if (wasshot) {misses+=1} if (timeout) { x=x-.5; //if (x>41) x=21; if (x<21) x=41; timeout=.1; } C;bctarget2.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "bctarget2.gif",
+      "script": "if (playerenters) {timeout=.1; } if (wasshot) {misses+=1} if (timeout) { x=x-.5; //if (x>41) x=21; if (x<21) x=41; timeout=.1; } 5;bclefttargethole.gif",
+      "count": 1,
+      "files": [
+        "bcshootinggame.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } <Emorgan.gif",
+      "count": 1,
+      "files": [
+        "bigcity1.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N&",
+      "count": 1,
+      "files": [
+        "bigcity2.graal"
+      ]
+    },
+    {
+      "image": "smokeani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } T)",
+      "count": 1,
+      "files": [
+        "bigcity3.graal"
+      ]
+    },
+    {
+      "image": "gym5.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {toweapons Bounce Bomb } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (weaponfired) {putnpc gym5.gif,bouncebomb.txt,x,y;disablebouncebomb=1;bouncebombdestroy=1} 8",
+      "count": 1,
+      "files": [
+        "bouncynpc.graal"
+      ]
+    },
+    {
+      "image": "gym5.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {toweapons Bounce Ball } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (weaponfired) {putnpc gym5.gif,bounceball.txt,x,y;bounceballdestroy=1} <+",
+      "count": 1,
+      "files": [
+        "bouncynpc.graal"
+      ]
+    },
+    {
+      "image": "Bbrandonbed.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0@bluecouch.gif",
+      "count": 1,
+      "files": [
+        "brandon1.graal"
+      ]
+    },
+    {
+      "image": "brandonguard.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if(playersays(you suck)){message what???; playerx = 20; playery = 46; setlevel brandonjail.graal;} C%brandonguard.gif",
+      "count": 1,
+      "files": [
+        "brandon2.graal"
+      ]
+    },
+    {
+      "image": "n.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) {take greenrupee;take bluerupee;} if(rupees>=5){rupees-=5;set allyoucaneat;} if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 05vinblue sit n.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "e.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *1beerhost.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "4beer.gif",
+      "script": "if (playerenters && !beer){hide;} if (playerenters && beer){show;} if (playertouchsme){hurt -6;hide;unset beer;} if(beer){show;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } V?gnomkid.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "Vflippedcouch.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G1pizza-a26228.gif",
+      "count": 1,
+      "files": [
+        "brandon4.graal"
+      ]
+    },
+    {
+      "image": "brandonbed.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {dontblock;drawunderplayer;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } +Evinblue sit n.gif",
+      "count": 1,
+      "files": [
+        "brandon5.graal"
+      ]
+    },
+    {
+      "image": "n.gif",
+      "script": "if (playerenters) {message I am taking a crap!;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 4V",
+      "count": 1,
+      "files": [
+        "brandonjail.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 4,
+  "chapter": 2,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "0pachukitedown2.gif",
+      "script": "if (playerenters) {unset pizzabgood; unset pizzabgood2; } if (playertouchsme && !pizzabgood && !pizzabgood2) {say 2;set pizzabgood; timeout=0.2 } if (playertouchsme && pizzabgood2 ) {say 2; hide } if (timeout && !22pizzabgood2) {y=y+1;timeout=0.2 } G3pachukitedown3.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "azrael.gif",
+      "script": "if (playertouchsme) say 9;",
+      "count": 1,
+      "files": [
+        "powerp.graal"
+      ]
+    },
+    {
+      "image": "6ratf.gif",
+      "script": "if (playertouchsme) { setcoatcolor black; setsleevecolor black; setshoecolor blue; setbeltcolor green; say 2; set rop; } @Mratgf.gif",
+      "count": 1,
+      "files": [
+        "rat.graal"
+      ]
+    },
+    {
+      "image": "Abobafettguard.gif",
+      "script": "if (playertouchsme&&!Sardoncode){say 0} if (playerchats && playersays(Sardon sent me) && !Sardoncode){say 1; set Sardoncode} if (playertouchsme&&Sardoncode){say 2} if(playerchats&&Sardoncode){ if(playersays(bombs) && playerbombs<99){ if(playerrupees>9){ playerrupees-=10; play extra.wav; if(playerbombs<95){playerbombs+=5} else{playerbombs=99}} else{say 4}} if(playersays(arro",
+      "count": 1,
+      "files": [
+        "sardoncaves13.graal"
+      ]
+    },
+    {
+      "image": "G-sardonguard.gif",
+      "script": "if (playertouchsme) {say 7} HHsardonguard.gif",
+      "count": 1,
+      "files": [
+        "sardontower1.graal"
+      ]
+    },
+    {
+      "image": "7-sardonguard.gif",
+      "script": "if (playertouchsme) {say 6} 6Hsardonguard.gif",
+      "count": 1,
+      "files": [
+        "sardontower1.graal"
+      ]
+    },
+    {
+      "image": "5Foldmansitting3.gif",
+      "script": "if (playertouchsme) {say 3} 5>arcade_host.gif",
+      "count": 1,
+      "files": [
+        "sardontower2.graal"
+      ]
+    },
+    {
+      "image": "n.gif",
+      "script": "if (playertouchsme) {say 2} -+sardonguard.gif",
+      "count": 1,
+      "files": [
+        "sardontower2.graal"
+      ]
+    },
+    {
+      "image": "Pdlwizardani.gif",
+      "script": "if (playerenters&&playerscount=1) {timeout=.1;this.1=0} if(timeout){ if(this.1=0)timeout=.1; if(this.1=1){set dlwizard;this.1=2} } if(dlwizard){hide} if(playertouchsme){say 0} if(playerendsreading){this.1=1;timeout=3.9;timershow; play stef87.mid} >Vdoor1.gif",
+      "count": 1,
+      "files": [
+        "sardontower25.graal"
+      ]
+    },
+    {
+      "image": "F1dlwizardani.gif",
+      "script": "if(playertouchsme&&!gotflamespiral){say 0} if(playerendsreading&&!gotflamespiral&&playery<25){ putnpc redspellbook.gif,flamespiral.txt,41,19;set gotfullheart",
+      "count": 1,
+      "files": [
+        "sardontower26.graal"
+      ]
+    },
+    {
+      "image": "sardonclothes.gif",
+      "script": "if (playerenters) {unset yes} if (playertouchsme) { say 10 ; } if (playerchats) { if (yes) { unset yes; say 12; } else { set yes; say 11; } } if (playerendsreading) { if (yes) { setshield sardonshield.gif,players[0].shieldpower; setskincolor orange; setcoatcolor darkblue; setsleevecolor darkred; setshoecolor darkred; setbeltcolor black; setsword flaminsword.gif,players[0]",
+      "count": 1,
+      "files": [
+        "sardontower29.graal"
+      ]
+    },
+    {
+      "image": "sardonguard.gif",
+      "script": "if (playertouchsme) {say 0} Q,dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower3.graal"
+      ]
+    },
+    {
+      "image": "34cook.gif",
+      "script": "if (playertouchsme) {say 2} K<cook.gif",
+      "count": 1,
+      "files": [
+        "sardontower4.graal"
+      ]
+    },
+    {
+      "image": "D4cook.gif",
+      "script": "if (playertouchsme) {say 1} 5;cook.gif",
+      "count": 1,
+      "files": [
+        "sardontower4.graal"
+      ]
+    },
+    {
+      "image": "sardonguard.gif",
+      "script": "if (playertouchsme){say 1} :=sardonguard.gif",
+      "count": 1,
+      "files": [
+        "sardontower5.graal"
+      ]
+    },
+    {
+      "image": "Gblackbaddy.gif",
+      "script": "if (playertouchsme) {say 2} L-thelepper.gif",
+      "count": 1,
+      "files": [
+        "sardontower6.graal"
+      ]
+    },
+    {
+      "image": "AHpachukitesitr3.gif",
+      "script": "if(playerenters){x=32.5} if (playerchats && !playersays()) {message SHUT THE HELL UP!!!; timereverywhere; timeout=3} if(timeout){message;} CIbookopen.gif",
+      "count": 1,
+      "files": [
+        "sardontowerlibrary.graal"
+      ]
+    },
+    {
+      "image": "80blackdragon.gif",
+      "script": "if (playerenters) {unset yes} if (playertouchsme) { say 2 ; } if (playerchats) { if (yes) { unset yes; say 5; } else { set yes; say 4; } } if (playerendsreading) { if (yes) { setsword Blackblade.gif, players[0].swordpower; setshield blackblueshield.gif, players[0].shieldpower; setsleevecolor darkblue; setskincolor black; setcoatcolor darkblue; setbeltcolor black; setshoec",
+      "count": 1,
+      "files": [
+        "scavengerequiproom.graal"
+      ]
+    },
+    {
+      "image": "00reddragon.gif",
+      "script": "if (playerenters) {unset yes} if (playertouchsme && playeringuild RD) { say 1 ; } if (playerchats) { if (yes) { unset yes; say 5; } else { set yes; say 4; } } if (playerendsreading) { if (yes) { setshield RDshield.gif,players[0].shieldpower ; setsword RDsword.gif,players[0].swordpower ; sethead RDhead.gif; setsleevecolor darkred;setskincolor black;setcoatcolor darkred;set",
+      "count": 1,
+      "files": [
+        "scavengerequiproom.graal"
+      ]
+    },
+    {
+      "image": "N6beerhost.gif",
+      "script": "if (playerlaysitem) { take greenrupee; if (rupees>=1) { say 3; rupees -= 1; set L4ShowMug; } } F8beer.gif",
+      "count": 1,
+      "files": [
+        "scavengerhouseinside.graal"
+      ]
+    },
+    {
+      "image": "bar.gif",
+      "script": "if (playertouchsme) {say 4;}",
+      "count": 1,
+      "files": [
+        "scavengerhouseinside.graal"
+      ]
+    },
+    {
+      "image": "maid.gif",
+      "script": "if(playertouchsme){say5;} 3$hotel_lady.gif",
+      "count": 1,
+      "files": [
+        "skytf1r6.graal"
+      ]
+    },
+    {
+      "image": "D4cook.gif",
+      "script": "if (playertouchsme) {say 3;};",
+      "count": 1,
+      "files": [
+        "snexhouse3.graal"
+      ]
+    },
+    {
+      "image": "Hblackrupee.gif",
+      "script": "if (playerenters) { lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; lay heart; x+=.5; y+=.5; if (GotBlackRupee) {hide} else { if (!SeenBlackRupee) {say 0; playerx=29.5; playery",
+      "count": 1,
+      "files": [
+        "swordpalacebossdead.graal"
+      ]
+    },
+    {
+      "image": "book.gif",
+      "script": "if (playertouchsme&&!got200bank) { say14} if (playertouchsme&&got200bank&&!got400bank) { say15 } if (playertouchsme&&got200bank&&got400bank&&!got600bank) { say16} if (playertouchsme&&got200bank&&got400bank&&got600bank&&!got800bank) { say17 } if (playertouchsme&&got200bank&&got400bank&&got600bank&&got800bank&&!got1000bank) { say18 } if (playertouchsme&&got200bank&&got400bank&&got600bank&&got800bank",
+      "count": 1,
+      "files": [
+        "tseng16.graal"
+      ]
+    }
+  ]
+}

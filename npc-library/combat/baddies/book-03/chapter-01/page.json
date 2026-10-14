@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 3,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "K5floor.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } C7bottle.gif",
+      "count": 1,
+      "files": [
+        "levelnm.graal"
+      ]
+    },
+    {
+      "image": "5bottle.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } 05bottle.gif",
+      "count": 1,
+      "files": [
+        "levelnm.graal"
+      ]
+    },
+    {
+      "image": "Bzoraasdw.gif",
+      "script": "if (playerenters && gotgreenglove) {hide} if (playerenters && mountaindone && !mountaindone2) {show;say 2;play stef89.mid;set mountaindone2} if (playertouchsme){if(mountaindone) {say 0; set getgreenglove; unset mountaindone;} else say 1;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeou",
+      "count": 1,
+      "files": [
+        "lifemountain2.graal"
+      ]
+    },
+    {
+      "image": "zoraasdw.gif",
+      "script": "timeout=2; if (playerenters) {} if (playertouchsme){say 3} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) {play desert3.wav }",
+      "count": 1,
+      "files": [
+        "lifemountain3.graal"
+      ]
+    },
+    {
+      "image": "Tbigoct.gif",
+      "script": "if (playerenters) { if(sawprincess) {hide;x=31;y=52} if(!sawprincess) {show;x=31;y=52} } if (playertouchsme) { } timeout=.1; if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (y==40) {hide;} if (timeout) {y -- } @Wprincess.gif",
+      "count": 1,
+      "files": [
+        "lifemountain8.graal"
+      ]
+    },
+    {
+      "image": "EAdbluebaddy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } KAemeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "lizardden1.graal"
+      ]
+    },
+    {
+      "image": "zolshoe5.gif",
+      "script": "if (playerenters) say 0;timeout = 1; if (timeout) { shootball; timeout = .9; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } __zolshoe5.gif",
+      "count": 1,
+      "files": [
+        "lizardden14.graal"
+      ]
+    },
+    {
+      "image": "minewalltop.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } F",
+      "count": 1,
+      "files": [
+        "lizardden15.graal"
+      ]
+    },
+    {
+      "image": "greenx.gif",
+      "script": "if (playerenters) {if (!ultrabombx){hide} } if (playertouchsme) { if (ultrabombx){say 2} if (!ultrabombx){say 1;lay bomb;set ultrabombx} } if (playertouchsother) { } if (playerlaysitem) {if(backroomkilt){show}} if (compusdied) { } if (playerendsreading) {if(backroomkilt){show} } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "lizardden15.graal"
+      ]
+    },
+    {
+      "image": "salesman.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { take redrupee; take greenrupee; take bluerupee; take goldrupee; if (rupees>=90){ lay darts; rupees=0 } } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "lizardden17.graal"
+      ]
+    },
+    {
+      "image": "stone.gif",
+      "script": "if (playerenters) { if(redblizock){hide} } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {if(redblizock){hide}} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } H%blackswitch.gif",
+      "count": 1,
+      "files": [
+        "lizardden18.graal"
+      ]
+    },
+    {
+      "image": "2walltop.gif",
+      "script": "if (playerenters) {if(2wallgizone){hide} } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { if (ultrabombx){ say1; hide; set 2wallgizone } } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "lizardden19.graal"
+      ]
+    },
+    {
+      "image": "bigoct.gif",
+      "script": "if (playerenters) timeout = 1; if (octygone){hide } if (timeout) { if (!octygone){ shootball; timeout = 2; } } if (playertouchsme) {hide; set octygone} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } H/bowmachine2.gif",
+      "count": 1,
+      "files": [
+        "lizardden2.graal"
+      ]
+    },
+    {
+      "image": "bro2.gif",
+      "script": "if (playerenters) { if(!room1clear){hide} if(room1clear){removecompus} } if (playertouchsme) {say0; set playerhasjink} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {show; set room1clear } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "lizardden5.graal"
+      ]
+    },
+    {
+      "image": "clearguy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { if (shitpail){say 2} if(!playerhasjink && !shitpail){say 0} if(playerhasjink){say 1; unset playerhasjink; set shitpail } } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } @9minewalltop.gif",
+      "count": 1,
+      "files": [
+        "lizardden6.graal"
+      ]
+    },
+    {
+      "image": "9Wlizardking.gif",
+      "script": "if (playerenters) {if(mainroomkilt){hide} if(!mainroomkilt){say0;shootball; } } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hide } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "lizardden8.graal"
+      ]
+    },
+    {
+      "image": "denking.gif",
+      "script": "if (playerenters && !kinglizdied) {say 0;set 1stroundliz;putnewcomp lizardon,x+5,y,baddylizardonwhite.gif,15;putnewcomp lizardon,x-5,y,baddylizardonblack.gif,15;timeout=.5; putnewcomp lizardon,x+10,y,baddylizardonwhite.gif,15;putnewcomp lizardon,x-10,y,baddylizardonblack.gif,15; } if (playerenters && kinglizdied) {hide} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if",
+      "count": 1,
+      "files": [
+        "lizboss.graal"
+      ]
+    },
+    {
+      "image": "Rbar.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say00 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } :Nbeerhost.gif",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse11.graal"
+      ]
+    },
+    {
+      "image": "Rblackbaddy.gif",
+      "script": "if (playerenters) {say3252 } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse16.graal"
+      ]
+    },
+    {
+      "image": "0beer.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say00 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } +2beer.gif",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse3.graal"
+      ]
+    },
+    {
+      "image": "3beerhost.gif",
+      "script": "if (playerenters) {say 0; } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse3.graal"
+      ]
+    },
+    {
+      "image": "8Rbeerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say00 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {lay greenrupee }",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse5.graal"
+      ]
+    },
+    {
+      "image": "Fblackbaddy.gif",
+      "script": "if (playerenters) {say00 } if (playertouchsme) {setskincolorblack } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
+      "count": 1,
+      "files": [
+        "lordscorpion'shouse7.graal"
+      ]
+    },
+    {
+      "image": "D4brotherb.gif",
+      "script": "if (playerenters) { if (ABCfree) { removecompus; say 3; } else say 2; } if (playertouchsme) say 1; if (compusdied) { x=27; y=21; if (!ABCfree) say 1; set ABCfree; } if (exploded || washit || wasshooted || waspelt) say 0;",
+      "count": 1,
+      "files": [
+        "magicisland11.graal"
+      ]
+    },
+    {
+      "image": "3brotherh.gif",
+      "script": "if (playerenters) hide; if (compusdied) { show; shootball; say 0; } if (playertouchsme) say 1; <<",
+      "count": 1,
+      "files": [
+        "magicisland8.graal"
+      ]
+    }
+  ]
+}

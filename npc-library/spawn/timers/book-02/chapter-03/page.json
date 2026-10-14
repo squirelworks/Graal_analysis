@@ -1,0 +1,209 @@
+{
+  "genre": "spawn",
+  "topic": "timers",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "dog.gif",
+      "script": "if (playerenters) {message Bark Bark!;} if (playertouchsme) {message I'm Jelly!;timeout=2;timereverywhere} if (timeout) {message Bark Bark!;}",
+      "count": 1,
+      "files": [
+        "ccapartment103.graal"
+      ]
+    },
+    {
+      "image": "Xccmapnpc.gif",
+      "script": "//not used currently on graal server if (playerenters) {hide} if (playertouchsme) {toweapons CC Map} if(weaponfired) {setminimap ccsmall.gif,ccsmall.txt,3.5,7.5;timeout=1} if(timeout) {setmap ccbig.gif,ccbig.txt,5.5,7.5;} &Xccmapnpc.gif",
+      "count": 1,
+      "files": [
+        "cchouse1.graal"
+      ]
+    },
+    {
+      "image": "HNmonsterkid.gif",
+      "script": "if (playerenters) { x=40; dir = 2; this.move=0; message ; } if (washit) {message Ow!;timeout=.3;timereverywhere} if (timeout) {message } if(playertouchsme) { if(!isanexplorer) {message <-- Get Permission} if(isanexplorer && !this.move==1) {x-=3;message Have fun!;this.move=1} }",
+      "count": 1,
+      "files": [
+        "cclevel32.graal"
+      ]
+    },
+    {
+      "image": "ccopen1.gif",
+      "script": "timeout=.1;timereverywhere; if (timeout) {hideplayer 1;freezeplayer 1;playerx=x+18;playery=y+8;setplayerprop",
+      "count": 1,
+      "files": [
+        "ccopening1.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playerenters) {timeout=1;message ;timereverywhere} if (timeout) {message With a new king, they tried to take over the land, which} ];",
+      "count": 1,
+      "files": [
+        "ccopening1.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playerenters) {timeout=1.5;message ;timereverywhere} if (timeout) {message resulted in many battles between the north and south.}",
+      "count": 1,
+      "files": [
+        "ccopening1.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playerenters) {timeout=.5;message ;timereverywhere } if (timeout) {message at a time. Soon, they had taken over most of the land } L=black.gif",
+      "count": 1,
+      "files": [
+        "ccopening2.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playerenters) {timeout=1.5;message ;timereverywhere} if (timeout) {message involved the north and south sides of Nosroc River.}",
+      "count": 1,
+      "files": [
+        "ccopening2.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playerenters) {timeout=.5;message ;timereverywhere} if (timeout) {message The baddies have become extremely over-confident.} L=black.gif",
+      "count": 1,
+      "files": [
+        "ccopening3.graal"
+      ]
+    },
+    {
+      "image": "black.gif",
+      "script": "if (playerenters) {timeout=1.5;message ;timereverywhere} if (timeout) {message They need help, and it is your job to save Chaotica!;play stef61.mid} \\8",
+      "count": 1,
+      "files": [
+        "ccopening3.graal"
+      ]
+    },
+    {
+      "image": "shooteye.gif",
+      "script": "timeout=1.4;timereverywhere; if (timeout) {shootfireball right} -@shooteye.gif",
+      "count": 1,
+      "files": [
+        "ccpirate5.graal"
+      ]
+    },
+    {
+      "image": "-Fshooteye.gif",
+      "script": "timeout=1.2;timereverywhere; if (timeout) {shootfireball right} -Nshooteye.gif",
+      "count": 1,
+      "files": [
+        "ccpirate5.graal"
+      ]
+    },
+    {
+      "image": "-Tshooteye.gif",
+      "script": "timeout=1;timereverywhere; if (timeout) {shootfireball right} 3.",
+      "count": 1,
+      "files": [
+        "ccpirate5.graal"
+      ]
+    },
+    {
+      "image": "D5shooterfucker.gif",
+      "script": "timeout=.1; if (playerenters) {this.way=1} if (x=42) {this.way=0} if (x=30) {this.way=1} if (timeout) {shootarrow down; if (this.way=0) {x-=1} if (this.way=1) {x+=1} } D?shooterfucker.gif",
+      "count": 1,
+      "files": [
+        "cctemplea2.graal"
+      ]
+    },
+    {
+      "image": "shooterfucker.gif",
+      "script": "timeout=.1; if (playerenters) {this.way=0} if (x=42) {this.way=0} if (x=30) {this.way=1} if (timeout) {shootarrow down; if (this.way=0) {x-=1} if (this.way=1) {x+=1} }",
+      "count": 1,
+      "files": [
+        "cctemplea2.graal"
+      ]
+    },
+    {
+      "image": "bcshootinggamebow.gif",
+      "script": "timeout = .1;timereverywhere; if (playertouchsme && !this.shoot==1) {shootarrow up;this.shoot=1} if (playerenters) { if(openccdoor1) {hide} if(!openccdoor1) {show;this.way=1} } if(x>=42) {this.shoot=0;this.way=1} if(x<=30) {this.shoot=0;this.way=0} if (timeout) { if(!openccdoor1) { if(this.way=1) {;x-=.8} if(this.way=0) {x+=.8} } if(openccdoor1) {hide} } $Yccswordstand2.gif",
+      "count": 1,
+      "files": [
+        "cctemplea6.graal"
+      ]
+    },
+    {
+      "image": "ccdesertfan1.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=19 && playerx<=36 && playery>=25 && playery<=30){ playerx+=.7; a--; setgif ccdesertfan2.gif; } else setgif ccdesertfan1.gif; if(a<=0) {play wind.wav;a=8} timeout=.05; } 0Gccdesertfan1.gif",
+      "count": 1,
+      "files": [
+        "cctempleb1.graal"
+      ]
+    },
+    {
+      "image": "FAccdesertfan3.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=20 && playerx<=36 && playery>=30 && playery<=35){ playerx-=.7; setgif ccdesertfan4.gif; a-- } else setgif ccdesertfan3.gif; if(a<=0) {a=8;play wind.wav} timeout=.05; }",
+      "count": 1,
+      "files": [
+        "cctempleb1.graal"
+      ]
+    },
+    {
+      "image": "A6shooterfucker.gif",
+      "script": "if (playerenters) {timeout=.5} timeout=1.5; if (timeout) {shootarrow down } 66shooterfucker.gif",
+      "count": 1,
+      "files": [
+        "cctempleb2.graal"
+      ]
+    },
+    {
+      "image": "0Gccdesertfan1.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=1} if (timeout) { if(playerx>=19 && playerx<=36 && playery>=36 && playery<=40){ playerx+=.7; setgif ccdesertfan2.gif; a-- } else setgif ccdesertfan1.gif; if(a<=0) {a=8;play wind.wav} timeout=.05; } 0=ccdesertfan1.gif",
+      "count": 1,
+      "files": [
+        "cctempleb2.graal"
+      ]
+    },
+    {
+      "image": "66shooterfucker.gif",
+      "script": "timeout=1.5; if (timeout) {shootarrow down } <6door.gif",
+      "count": 1,
+      "files": [
+        "cctempleb3.graal"
+      ]
+    },
+    {
+      "image": "B6shooterfucker.gif",
+      "script": "timeout=1.5; if (timeout) {shootarrow down } <C",
+      "count": 1,
+      "files": [
+        "cctempleb3.graal"
+      ]
+    },
+    {
+      "image": "FAccdesertfan3.gif",
+      "script": "if (playerenters) {a=7;timeout=.1;timereverywhere;} if (timeout) { if(playerx>=20 && playerx<=36 && playery>=30 && playery<=35){ playerx-=.7; setgif ccdesertfan4.gif; a-- } else setgif ccdesertfan3.gif; if (a<=0) { putexplosion 1,20,34; putexplosion 1,22,34; putexplosion 1,24,34; putexplosion 1,26,34; putexplosion 1,28,34; putexplosion 1,30,34; putexplosion 1,32,34; putexplosion 1,34,34; a=7; } t",
+      "count": 1,
+      "files": [
+        "cctempleb4.graal"
+      ]
+    },
+    {
+      "image": "0Gccdesertfan1.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=7} if (timeout) { if(playerx>=19 && playerx<=36 && playery>=36 && playery<=40){ playerx+=.7; setgif ccdesertfan2.gif; a-- } else setgif ccdesertfan1.gif; if (a<=0) { putexplosion 1,20,40; putexplosion 1,22,40; putexplosion 1,24,40; putexplosion 1,26,40; putexplosion 1,28,40; putexplosion 1,30,40; putexplosion 1,32,40; putexplosion 1,34,40; a=7; } ti",
+      "count": 1,
+      "files": [
+        "cctempleb4.graal"
+      ]
+    },
+    {
+      "image": "ccdesertfan1.gif",
+      "script": "if (playerenters) { timeout=.1;timereverywhere;a=7} if (timeout) { if(playerx>=19 && playerx<=36 && playery>=26 && playery<=30){ playerx+=.7; setgif ccdesertfan2.gif;a--; } else setgif ccdesertfan1.gif; if (a<=0) { putexplosion 1,20,30; putexplosion 1,22,30; putexplosion 1,24,30; putexplosion 1,26,30; putexplosion 1,28,30; putexplosion 1,30,30; putexplosion 1,32,30; putexplosion 1,34,30; a=7; } ti",
+      "count": 1,
+      "files": [
+        "cctempleb4.graal"
+      ]
+    }
+  ]
+}

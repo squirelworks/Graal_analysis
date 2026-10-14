@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 8,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Ncloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } \\Qcloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 8Gcloudend.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "Xcloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } DYcloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E cloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } M cloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "YHcloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } XYcloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "Wcloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } cloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 9cloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "Acloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 5[cloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "8Gcloudcorner2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } BLcloudcorner.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "BGcloudend2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } %'",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } R4cloudcorner3.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "ballboy.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } <=smallbomb.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arcade0.graal"
+      ]
+    },
+    {
+      "image": "Sshera.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } T2beerhost.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arena1.graal"
+      ]
+    },
+    {
+      "image": "8Rbluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } /-climberright.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arena1.graal"
+      ]
+    },
+    {
+      "image": "Ynlimits.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "whoopa_arena1.graal"
+      ]
+    },
+    {
+      "image": "59bluelampani.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G9bluelampani.gif",
+      "count": 1,
+      "files": [
+        "whoopa_northshop.graal"
+      ]
+    },
+    {
+      "image": "s_deathsword.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } M:antispell.gif",
+      "count": 1,
+      "files": [
+        "zetachaoxhome.graal"
+      ]
+    },
+    {
+      "image": "kgreenhouse.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } V",
+      "count": 1,
+      "files": [
+        "zkout7.graal"
+      ]
+    },
+    {
+      "image": "snowbush2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } X",
+      "count": 1,
+      "files": [
+        "zkout7.graal"
+      ]
+    },
+    {
+      "image": "snowbush2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Z",
+      "count": 1,
+      "files": [
+        "zkout7.graal"
+      ]
+    },
+    {
+      "image": "snowbush2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } \\",
+      "count": 1,
+      "files": [
+        "zkout7.graal"
+      ]
+    },
+    {
+      "image": "snowbush2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } \\!snowbush2.gif",
+      "count": 1,
+      "files": [
+        "zkout7.graal"
+      ]
+    },
+    {
+      "image": "standingleft2.gif",
+      "script": "if (playerenters) {say 0} if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "zombie.graal"
+      ]
+    }
+  ]
+}

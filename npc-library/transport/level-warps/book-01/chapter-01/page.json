@@ -1,0 +1,211 @@
+{
+  "genre": "transport",
+  "topic": "level-warps",
+  "book": 1,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "4Weledoor.gif",
+      "script": "if (playerenters) { } if (playertouchsme && floor1) {playerx = 48; playery = 20; setlevel greatnlobby.graal;} if (playertouchsme && floor2) {playerx = 44; playery = 27; setlevel greatnhfloor2.graal;} if(playertouchsme && floor3) {playerx = 44; playery = 27; setlevel greatnhfloor3.graal;} if(playertouchsme && floor4) {playerx = 44; playery = 27; setlevel greatnhfloor4.graal;} if (playertouchsothe",
+      "count": 3,
+      "files": [
+        "greatnhelevate.graal",
+        "greatnhelevate2.graal",
+        "greatnhelevate3.graal"
+      ]
+    },
+    {
+      "image": "NGGreystone.gif",
+      "script": "if(!GreyExit){hide;} if(GreyExit){show; removecompus; if (playertouchsme) {setlevel level30.graal;}} 4GGreyUnclicked.gif",
+      "count": 1,
+      "files": [
+        "Greylevel2.graal"
+      ]
+    },
+    {
+      "image": "warpring.gif",
+      "script": "if (playertouchsme) { toweapons *** Warp Ring; set got***warpring; } if (weaponfired) { freezeplayer 2.4; timeout=.1; this.rotation=0; } if (timeout) { this.rotation++; playerdir=(this.rotation%4); if (this.rotation<=24) { timeout=.1; } if (this.rotation=12) { putleaps 5, playerx, playery; playerx=12; playery=25; setlevel Link75bank.graal; } if (this.r",
+      "count": 1,
+      "files": [
+        "Link75bank.graal"
+      ]
+    },
+    {
+      "image": "switchred.gif",
+      "script": "if (playerenters && alienSwitch2) { setgif switchgreen.gif; } if (playertouchsme && !alienSwitch2) { if (!alienSwitch) say 0; if (alienSwitch) { set alienSwitch1; set alienSwitch2; set alienSwitch3; play dcswitchclick.wav; setgif switchgreen.gif; say 1; } } if (playerendsreading && alienSwitch2) { playerx = 31; playery = 34; setplayerdir down; setlevel level",
+      "count": 1,
+      "files": [
+        "alien3.graal"
+      ]
+    },
+    {
+      "image": "87salesman.gif",
+      "script": "if (playerenters) { unset goingtobc; } if (playertouchsme) {say 1} if (playersays(big city) && !goingtobc){set goingtobc;setlevel bigcity1.graal;} ,",
+      "count": 1,
+      "files": [
+        "b39_water1.graal"
+      ]
+    },
+    {
+      "image": "EVteleporter.gif",
+      "script": "if (playertouchsme) {set backtograal;playerx=13.5;playery=21;setlevel seacharters1.graal}",
+      "count": 1,
+      "files": [
+        "bigcity1.graal"
+      ]
+    },
+    {
+      "image": "hole.gif",
+      "script": "if (playertouchsme) { if(ccpiratenext) {setlevel ccpirate9.graal} if(!ccpiratenext) {setlevel cclevel1.graal} }",
+      "count": 1,
+      "files": [
+        "ccpirate8.graal"
+      ]
+    },
+    {
+      "image": "Halienking.gif",
+      "script": "// NPC made by <yourname> if (playerenters) {say 0} if (playerendsreading) { set cctoalienprison; setlevel ccvolcano5.graal;}",
+      "count": 1,
+      "files": [
+        "ccvolcano4.graal"
+      ]
+    },
+    {
+      "image": "bro.gif",
+      "script": "if (playerenters) {message ;setgif bro.gif;x=28;y=15;} if (playertouchsme) {say 0} if (playersays2(okay)) {set goingtocc;setgif stefanmat1.gif;message mwahaha!;x=playerx;y=playery-3;freezeplayer 5;timeout=1} if(timeout) {setlevel ccopening1.graal;} ,Sccopen1.gif",
+      "count": 1,
+      "files": [
+        "ccwarp.graal"
+      ]
+    },
+    {
+      "image": "Gdoor.gif",
+      "script": "if (playertouchsme) { if(ccpirategotkey) {set ccgoingtostinkybeard;setlevel ccpiratestinky1.graal} if(!ccpirategotkey) {say 1} } \\!funghead.gif",
+      "count": 1,
+      "files": [
+        "ccwater10.graal"
+      ]
+    },
+    {
+      "image": "goldengate.gif",
+      "script": "if (playerenters && !WasInGoldenLand) { set WasInGoldenLand; say 0; } if (playerenters) puthorse ride3.gif,46,15; if (playertouchsme) { playerx = 42; playery = 39; setplayerdir down; setlevel level2.graal; } >'goldenbush.gif",
+      "count": 1,
+      "files": [
+        "golden8.graal"
+      ]
+    },
+    {
+      "image": "F1bottle.gif",
+      "script": "if (playertouchsme) { playerx = playerx - 7; playery = 61; setlevel kcastle6b.graal; } J&",
+      "count": 1,
+      "files": [
+        "kcastle.graal"
+      ]
+    },
+    {
+      "image": "climberright.gif",
+      "script": "if (playerenters && !DontTellCarry) { say 0; set DontTellCarry; } if (playertouchsme) { say 1; set CarryOverMountains; } if (playerendsreading && CarryOverMountains) { unset CarryOverMountains; playerx = 49; playery = 35; setplayerdir left; setlevel level18.graal; } AD",
+      "count": 1,
+      "files": [
+        "level25.graal"
+      ]
+    },
+    {
+      "image": "Fspaceship.gif",
+      "script": "if (playerenters && alienSwitch2) { if (!aliensToldThanks) { say 2; set aliensToldThanks;timeout=0.1 } hide; } else show; if (timeout && aliensToldThanks) {hide} else show; if (playertouchsme) { playerx = 30; playery = 0; setlevel alien1.graal; } @Kgraalblue.gif",
+      "count": 1,
+      "files": [
+        "level27.graal"
+      ]
+    },
+    {
+      "image": "Ininjiizdoor.gif",
+      "script": "if (playertouchsme && playeringuild Ninji General) {setlevel ninjiizluderoom.graal } ?)ninjiizdoor.gif",
+      "count": 1,
+      "files": [
+        "ninjitowertop.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playertouchsme) { setlevel palace_shadoworb.graal; } 7&shera.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall2.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playertouchsme && !kagatogone) { setlevel palace_greathall.graal; } if (playertouchsme && kagatogone) { setlevel palace_greathall2.graal; } if (playerenters) { // play music-potkr.mid; } =!teleporter.gif",
+      "count": 1,
+      "files": [
+        "palace_level1.graal"
+      ]
+    },
+    {
+      "image": "Odoor.gif",
+      "script": "if (playerenters && !kagatoback) { removecompus; } if (playertouchsme && !kagatoback && rescuedshera) { setlevel palace_level4_house2_1.graal; } if (playertouchsme && kagatoback && rescuedshera) { setlevel palace_level4_house2_2.graal; } if (playertouchsme && !rescuedshera) { say 0; } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } a.kagatok",
+      "count": 1,
+      "files": [
+        "palace_level4.graal"
+      ]
+    },
+    {
+      "image": "vincentcape.gif",
+      "script": "//if (playerenters) { if (!playeringuild Police && !playeringuild Judge) { //disableweapons;}} if (playerenters) { disableweapons;timereverywhere; noplayerkilling;takeplayercarry; if (playeronhorse){playerx=32.5; playery=29; setlevel level44.graal;} timeout=0.1; } if (timeout) { disableweapons; noplayerkilling;takeplayercarry; if (playeronhorse){playerx=32.5; playery=29; setlevel level44.graal;}",
+      "count": 1,
+      "files": [
+        "police1.graal"
+      ]
+    },
+    {
+      "image": "IEdoor.gif",
+      "script": "if (playertouchsme) { playerx = 49.5; playery = 28; setlevel house18.graal; } G?door.gif",
+      "count": 1,
+      "files": [
+        "sokoban1.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playerenters) dontblock; if (playertouchsme) { playerx = 38.5; playery = 32; setplayerdir down; setlevel sokoban1.graal; } <Hdoor.gif",
+      "count": 1,
+      "files": [
+        "sokoban2.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playertouchsme) { if (onwall(19,29) && onwall(21,29) && onwall(23,29) && onwall(25,29) && onwall(21,31) && onwall(23,31) && onwall(25,31) && onwall(19,33) && onwall(21,33) && onwall(23,33) && onwall(25,33)) { playerx = 37.5; playery = 33; setplayerdir left; setlevel sokoban4.graal; } else say 0; } O3door.gif",
+      "count": 1,
+      "files": [
+        "sokoban3.graal"
+      ]
+    },
+    {
+      "image": "HBdoor.gif",
+      "script": "if (playertouchsme) { playerx = 46.5; playery = 30; setplayerdir left; setlevel sokoban3.graal; }",
+      "count": 1,
+      "files": [
+        "sokoban4.graal"
+      ]
+    },
+    {
+      "image": "magiccarpet.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playerlaysitem && !gotangelheart && !carpetheart) {take greenrupee; take bluerupee; take redrupee; take goldrupee;} if (rupees>=10000) { set gotangelheart; rupees=0; setlevel watercave2.graal; } if (playertouchsme && gotangelheart) {say 2; set carpetheart; unset gotangelheart} if (playertouchsme && carpetheart) {dontblock; drawu",
+      "count": 1,
+      "files": [
+        "watercave.graal"
+      ]
+    },
+    {
+      "image": "magiccarpet.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playerlaysitem && !gotangelheart && !carpetheart) {take greenrupee; take bluerupee; take redrupee; take goldrupee;} if (rupees>=10000) { set gotangelheart; rupees=0; setlevel watercave2.graal; } if (playertouchsme && gotangelheart) {say 2; set carpetheart; unset gotangelheart} if (playertouchsme && carpetheart) {dontblock; drawund",
+      "count": 1,
+      "files": [
+        "watercave2.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 1,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed;canbecarried} if (wasthrown) {putleaps 2,x,y;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =+dlstatue.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "Vdk-stand.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {message Behave yourself, or you die.;timeout=4} if (timeout) {message } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } JVdk-stand.gif",
+      "count": 1,
+      "files": [
+        "AssHome5.graal"
+      ]
+    },
+    {
+      "image": "Zmisty.gif",
+      "script": "if (playerenters) {noplayerkilling} if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "AssHome6.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >0secretsign.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "LOsecretsign.gif",
+      "script": "if (playerenters) {play music-woods.mid;dontblock;drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } VTmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "Smetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 5Qmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "Ometaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } \"Kmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "Cmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } &9metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "9metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } .2metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } S@metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "B6metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } A1metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } !",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } (+metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } +metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "9metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } BWmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "PWmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } [Qmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Y?metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -Pmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods1.graal"
+      ]
+    },
+    {
+      "image": "Wmetaltree.gif",
+      "script": "if (playerenters) {play music-woods.mid;drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Qmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "3Isecretsign.gif",
+      "script": "if (playerenters) {this.shoot=1;dontblock;drawunderplayer} if (playertouchsme&&this.shoot==1) {putcomp shootingsoldier,20,29;putcomp shootingsoldier,22,29;putcomp shootingsoldier,24,29;this.shoot=2} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } )[",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "metaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @Xmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "Fmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } %@metaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    },
+    {
+      "image": "Nmetaltree.gif",
+      "script": "if (playerenters) {drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1Qmetaltree.gif",
+      "count": 1,
+      "files": [
+        "AssWoods2.graal"
+      ]
+    }
+  ]
+}

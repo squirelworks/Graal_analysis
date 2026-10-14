@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "L9black.gif",
+      "script": "if (playerenters) {message In a normally peaceful land also known as Chaotica,;play stef61.mid } L;black.gif",
+      "count": 1,
+      "files": [
+        "ccopening1.graal"
+      ]
+    },
+    {
+      "image": "arrowsbox.gif",
+      "script": "if (playertouchsme) {lay darts} G:",
+      "count": 1,
+      "files": [
+        "ccpirate6.graal"
+      ]
+    },
+    {
+      "image": "8-book15.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } 1-stefanbook.gif",
+      "count": 1,
+      "files": [
+        "ccpolice2.graal"
+      ]
+    },
+    {
+      "image": "F-stefanbook.gif",
+      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } 0Ejfbook.gif",
+      "count": 1,
+      "files": [
+        "ccpolice2.graal"
+      ]
+    },
+    {
+      "image": "basketball.gif",
+      "script": "if (playerenters) {canbecarried } <?football.gif",
+      "count": 1,
+      "files": [
+        "ccprison1.graal"
+      ]
+    },
+    {
+      "image": "8Bbasketball.gif",
+      "script": "if (playerenters) {canbecarried } 77football.gif",
+      "count": 1,
+      "files": [
+        "ccprison1.graal"
+      ]
+    },
+    {
+      "image": "bridge.gif",
+      "script": "if (playertouchsme && !over && !under) { drawunderplayer; dontblock} if (playertouchsme && over) {dontblock; drawunderplayer} if (playertouchsme && under) {dontblock; drawoverplayer;} if (playertouchsme && under) {drawoverplayer; dontblock} UCwater1.gif",
+      "count": 1,
+      "files": [
+        "citymap1.graal"
+      ]
+    },
+    {
+      "image": "Q9bridgeedge2.gif",
+      "script": "if (playertouchsme && over) {drawunderplayer} if (playertouchsme && under) {dontblock; drawoverplayer;} if (playertouchsme && !over && !under) { drawunderplayer } if (playertouchsme && under) {drawoverplayer; dontblock} Q.edge.gif",
+      "count": 1,
+      "files": [
+        "citymap1.graal"
+      ]
+    },
+    {
+      "image": "H7darkgreen.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolordarkgreen; } if (playertouchsme && sleeves) {setsleevecolordarkgreen} if (playertouchsme && shoes) {setshoecolordarkgreen} if (playertouchsme && skin) {setskincolordarkgreen} if (playertouchsme && coat) {setcoatcolordarkgreen} if (playertouchsme && selecthead) {playerheadset=11} H;zolshoe2.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "HEzolshoe3.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorlightblue; } if (playertouchsme && sleeves) {setsleevecolorlightblue} if (playertouchsme && shoes) {setshoecolorlightblue} if (playertouchsme && skin) {setskincolorlightblue} if (playertouchsme && coat) {setcoatcolorlightblue} if (playertouchsme && selecthead) {playerheadset=9} H?red.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "zolshoe5.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorblack; } if (playertouchsme && sleeves) {setsleevecolorblack} if (playertouchsme && shoes) {setshoecolorblack} if (playertouchsme && skin) {setskincolorblack} if (playertouchsme && coat) {setcoatcolorblack} if (playertouchsme && selecthead) {playerheadset=7} D=zolshoe6.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "zolshoe7.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolordarkpurple; } if (playertouchsme && sleeves) {setsleevecolordarkpurple} if (playertouchsme && shoes) {setshoecolordarkpurple} if (playertouchsme && skin) {setskincolordarkpurple} if (playertouchsme && coat) {setcoatcolordarkpurple} if (playertouchsme && selecthead) {playerheadset=5} HCzolshoe8.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "DCwhite.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorwhite; } if (playertouchsme && sleeves) {setsleevecolorwhite;} if (playertouchsme && shoes) {setshoecolorwhite} if (playertouchsme && skin) {setskincolorwhite} if (playertouchsme && coat) {setcoatcolorwhite} if (playertouchsme && selecthead) {playerheadset=4} D7brown.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "H3cynober.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorcynober; } if (playertouchsme && sleeves) {setsleevecolorcynober} if (playertouchsme && shoes) {setshoecolorcynober} if (playertouchsme && skin) {setskincolorcynober} if (playertouchsme && coat) {setcoatcolorcynober} if (playertouchsme && selecthead) {playerheadset=2} 71zolshoe5.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "H9purple.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorpurple; } if (playertouchsme && sleeves) {setsleevecolorpurple} if (playertouchsme && shoes) {setshoecolorpurple} if (playertouchsme && skin) {setskincolorpurple} if (playertouchsme && coat) {setcoatcolorpurple} if (playertouchsme && selecthead) {playerheadset=0} D5green.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "DAblue.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorblue; } if (playertouchsme && sleeves) {setsleevecolorblue} if (playertouchsme && shoes) {setshoecolorblue} if (playertouchsme && skin) {setskincolorblue} if (playertouchsme && coat) {setcoatcolorblue} if (playertouchsme && selecthead) {playerheadset=15} H5lightgray.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "DElightgreen.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcolorlightgreen; } if (playertouchsme && sleeves) {setsleevecolorlightgreen} if (playertouchsme && shoes) {setshoecolorlightgreen} if (playertouchsme && skin) {setskincolorlightgreen} if (playertouchsme && coat) {setcoatcolorlightgreen} if (playertouchsme && selecthead) {playerheadset=18} D9zolshoe4.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "yellow.gif",
+      "script": "if (playertouchsme && belt ) {setbeltcoloryellow; } if (playertouchsme && sleeves) {setsleevecoloryellow} if (playertouchsme && shoes) {setshoecoloryellow} if (playertouchsme && skin) {setskincoloryellow} if (playertouchsme && coat) {setcoatcoloryellow} if (playertouchsme && selecthead) {playerheadset=20} HAclear.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "HAwhite.gif",
+      "script": "if (playertouchsme && selecthead) {playerheadset=13} 75zolshoe5.gif",
+      "count": 1,
+      "files": [
+        "clothesstore.graal"
+      ]
+    },
+    {
+      "image": "0Erdcloats.gif",
+      "script": "if (playertouchsme) { setcoatcolor darkred; setsleevecolor darkred; setbeltcolor black; setgif rack.gif; } HEbluelampani.gif",
+      "count": 1,
+      "files": [
+        "cloud2.graal"
+      ]
+    },
+    {
+      "image": "log.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer } /:pachukiteguard2.gif",
+      "count": 1,
+      "files": [
+        "ddd10.graal"
+      ]
+    },
+    {
+      "image": "pachukiteguard2.gif",
+      "script": "if (playerenters && prisonwallgotfucked) { play escape.mid} PWpachukiteguard1.gif",
+      "count": 1,
+      "files": [
+        "ddd10.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} &=biglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena1.graal"
+      ]
+    },
+    {
+      "image": "ORteleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} &Mbiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena1.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} if (playertouchsme) {playerx=55.5; playery=34} &Qbiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena2.graal"
+      ]
+    }
+  ]
+}

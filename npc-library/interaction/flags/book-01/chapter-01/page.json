@@ -1,0 +1,97 @@
+{
+  "genre": "interaction",
+  "topic": "flags",
+  "book": 1,
+  "chapter": 1,
+  "count": 11,
+  "scripts": [
+    {
+      "image": "1armanoperm.gif",
+      "script": "if (playertouchsme) { unset ArmaPermClothes; } =<armachanger1.gif",
+      "count": 1,
+      "files": [
+        "ArmaGenerator.graal"
+      ]
+    },
+    {
+      "image": "6Kbutterflyani.gif",
+      "script": "if (playerenters) {set butt } if (playerenters && butt) { drawoverplayer; dontblock } /Obutterflyani.gif",
+      "count": 1,
+      "files": [
+        "CoGtown1.graal"
+      ]
+    },
+    {
+      "image": "switchred.gif",
+      "script": "if (playerenters && alienSwitch1) { setgif switchgreen.gif; } if (playertouchsother && alienSwitch1) { setgif switchgreen.gif; } if (playertouchsme && !alienSwitch1) { set alienSwitch1; play dcswitchclick.wav; setgif switchgreen.gif; } G;switchred.gif",
+      "count": 1,
+      "files": [
+        "alien3.graal"
+      ]
+    },
+    {
+      "image": "UWwater1.gif",
+      "script": "if (playertouchsme && under) {set over; unset under; drawunderplayer; dontblock;} if (playertouchsme && over) {drawunderplayer; dontblock;} if (playertouchsme && !over && !under) {dontblock; drawunderplayer} P/walkway.gif",
+      "count": 1,
+      "files": [
+        "citymap1.graal"
+      ]
+    },
+    {
+      "image": "Z2clothesswitch.gif",
+      "script": "if (playertouchsme) {unset dlbc1; unset dlbc2; unset dlbc3; unset dlbc4; unset dlbc5} VOmine2.gif",
+      "count": 1,
+      "files": [
+        "dlweapons.graal"
+      ]
+    },
+    {
+      "image": "-fcloat.gif",
+      "script": "if (playerenters) { unset H7blackempty; } if (playertouchsme) { setcoatcolor blue; setsleevecolor blue; setbeltcolor yellow; setskincolor yellow; unset H7taylorpayed; set H7blackempty; set CopClothesForLi; setgif rack.gif; setshoecolor black; message Police Suit!; } UL",
+      "count": 1,
+      "files": [
+        "fchouse.graal"
+      ]
+    },
+    {
+      "image": "2Efloor2.gif",
+      "script": "if (playerenters) dontblock; if (playertouchsme) set G1ReachedMid;",
+      "count": 1,
+      "files": [
+        "golden1.graal"
+      ]
+    },
+    {
+      "image": "34bed.gif",
+      "script": "if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee;} if (rupees>=500) {setcoatcolororange; setshoecolororange; setsleevecolororange; setbeltcolororange; setskincolororange;} if (playerenters) {dontblock; drawunderplayer} //he he he, yes the bed does set your colors naked //he he he ]\"",
+      "count": 1,
+      "files": [
+        "insidehouse2.graal"
+      ]
+    },
+    {
+      "image": "jukebox.gif",
+      "script": "if (playertouchsme) { if(!sardonmusic1&&!sardonmusic2){set sardonmusic1;play stef52.mid} else{if(!sardonmusic2){set sardonmusic2;unset sardonmusic1;play stef18.mid} else{unset sardonmusic2; play stef80.mid}} } H+sardonguard.gif",
+      "count": 1,
+      "files": [
+        "sardontower3.graal"
+      ]
+    },
+    {
+      "image": "night.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer; stopmidi; set pieisgoodforj00;}",
+      "count": 1,
+      "files": [
+        "seaofpudridness.graal"
+      ]
+    },
+    {
+      "image": "",
+      "script": "if (playertouchsme) { set gotshovel; toweapons Shovel; destroy; } if (weaponfired) { putx = playerx + 1.5; puty = playery + 2; if (playerdir==0) puty -= 1; if (playerdir==1) putx -= 1; if (playerdir==2) puty += 1; if (playerdir==3) putx += 1; putx = int(putx/2)*2; puty = int(puty/2)*2; emtpy = 1; for (i=0; i<2; i++) for (j=0; j<2; j++) { b = board[putx+i+64*(puty+j)]; bx = b % 16; by = int(b / 16); if (!(bx==15 && (by==31 || by==63 || by==127))) emtpy = 0; } if (emtpy==1) { /* board[putx+64*puty] = 10+114*16; board[putx+1+64*puty] = 11+114*16; board[putx+64*(puty+1)] = 10+115*16; board[putx+1+64*(puty+1)] = 11+115*16; updateboard putx,puty,2,2;*/ putobject Hole,putx,puty; } }",
+      "count": 1,
+      "files": [
+        "shovel.txt"
+      ]
+    }
+  ]
+}

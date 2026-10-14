@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "targets",
+  "book": 7,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "33brother2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say0 } if (playertouchsother) { } if (playerlaysitem) { take goldrupee } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (rupees>=100) { set trickmanhide} if (trickmanhide) { hide} if (playertouchsme&&trickmanhide2) { say1; hide;set trickmanhide } *3bluelampani.gif",
+      "count": 1,
+      "files": [
+        "tseng3.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) { canbepulled;canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -)couch.gif",
+      "count": 1,
+      "files": [
+        "tseng3.graal"
+      ]
+    },
+    {
+      "image": "baddybluesitting.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say0} if (playertouchsother) { } if (playerlaysitem) { take greenrupee;take bluerupee} if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (rupees>=10) { hide } (&",
+      "count": 1,
+      "files": [
+        "tseng4.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "if (playerenters) {canbepulled;canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "tseng4.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0'",
+      "count": 1,
+      "files": [
+        "tseng5.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } NKdoor.gif",
+      "count": 1,
+      "files": [
+        "tseng5.graal"
+      ]
+    },
+    {
+      "image": "door.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } X&door.gif",
+      "count": 1,
+      "files": [
+        "tseng5.graal"
+      ]
+    },
+    {
+      "image": "arcade_host.gif",
+      "script": "if (playertouchsme) {say4 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ),greenpotion.gif",
+      "count": 1,
+      "files": [
+        "tseng6.graal"
+      ]
+    },
+    {
+      "image": "greenpotion.gif",
+      "script": "if (playerenters) { canbecarried;hide} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (wasthrown) { hurt-20; hide; unset gotgreenpotion } if (gotgreenpotion) {show; followplayer } +,bomb.gif",
+      "count": 1,
+      "files": [
+        "tseng6.graal"
+      ]
+    },
+    {
+      "image": "arrow.gif",
+      "script": "if (playerenters) { canbecarried} if (playertouchsme) { unset touchedredpotion;unset touchedgreenpotion; unset touchedbomb;unset touchedaxe;unset touchedmshield;set touchedarrow} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,(tablebottom.gif",
+      "count": 1,
+      "files": [
+        "tseng6.graal"
+      ]
+    },
+    {
+      "image": "redpotion.gif",
+      "script": "if (playerenters) { canbecarried} if (playertouchsme) { unset touchedgreenpotion;unset touchedbomb; unset touchedarrow;unset touchedaxe;unset touchedmshield;set touchedredpotion} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } : redpotion.gif",
+      "count": 1,
+      "files": [
+        "tseng6.graal"
+      ]
+    },
+    {
+      "image": "mshield.gif",
+      "script": "if (playerenters) { canbecarried} if (playertouchsme) { unset touchedredpotion;unset touchedgreenpotion;unset touchedbomb;unset touchedarrow;unset touchedaxe;set touchedmshield} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } /,axe.gif",
+      "count": 1,
+      "files": [
+        "tseng6.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem&&!hideforever&&!showsboyoryguyclothes) {take bluerupee} if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (rupees>=10&&!hideforever) { set showsboyoryguyclothes } 3",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ,",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } %'bar.gif",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "bigblack.gif",
+      "script": "if (playerenters) { hide} if (playertouchsme) { setskincolor yellow;setcoatcolor black;setsleevecolor yellow ;setshoecolor black;setbeltcolor yellow;set hideforever} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (showsboyoryguyclothes) { show } if (hideforever) { hide }",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "bigblack.gif",
+      "script": "if (playerenters) { hide } if (playertouchsme) { setskincolor black;setcoatcolor black;setsleevecolor orange ;setshoecolor black;setbeltcolor black;set hideforever} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (showsboyoryguyclothes) { show} if (hideforever) { hide } )&brother",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say5} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if(playertouchsme&&hideforever) { say6 } 4*bitch.gif",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "0pachuka1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say8} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "tseng7.graal"
+      ]
+    },
+    {
+      "image": "bluecouch.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } YE",
+      "count": 1,
+      "files": [
+        "usagetawayh.graal"
+      ]
+    },
+    {
+      "image": "Pbluecouch.gif",
+      "script": "if (playerenters) {dontblock;drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F=bluecouch.gif",
+      "count": 1,
+      "files": [
+        "usagetawayh.graal"
+      ]
+    },
+    {
+      "image": "5summersuit.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {setsleevecolor red;setskincolor orange;setcoatcolor darkblue;setbeltcolor black; setshoecolor white } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?5wintersuit.gif",
+      "count": 1,
+      "files": [
+        "usaroom.graal"
+      ]
+    },
+    {
+      "image": "log.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "water2.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Ccloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    },
+    {
+      "image": "cloudchapel.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ; cloudchapel.gif",
+      "count": 1,
+      "files": [
+        "weddingchapel.graal"
+      ]
+    }
+  ]
+}

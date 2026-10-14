@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 4,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "G9floor4.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } @9floor4.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "floor4.gif",
+      "script": "if (playerenters) { dontblock; drawunderplayer; } N9floor4.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "B0ninjiizmanequin.gif",
+      "script": "if (playertouchsme) {sethead head207.gif; setskincolor yellow; setcoatcolor black; setsleevecolor black; setshoecolor brown; setbeltcolor darkred; } @2ninjimastershield.gif",
+      "count": 1,
+      "files": [
+        "ninjiizluderoom.graal"
+      ]
+    },
+    {
+      "image": "E2ninjimastersword.gif",
+      "script": "if (playertouchsme) {setsword sword150.gif, players[0].swordpower; }",
+      "count": 1,
+      "files": [
+        "ninjiizluderoom.graal"
+      ]
+    },
+    {
+      "image": "Fninjibartender.gif",
+      "script": "if (playerchats) {message SHHH!!! No Talking!; } if (playerenters) {stopmidi; } >Cninjinotalk.gif",
+      "count": 1,
+      "files": [
+        "ninjilibrary.graal"
+      ]
+    },
+    {
+      "image": "stefanmat1.gif",
+      "script": "if (playerenters) { timereverywhere; while (playerscount==1 && !isleader) sleep 0.2; if (isleader) message Hi!; else { while (!isleader) sleep 0.2; if (playerisfemale) message Now to you, girl!; else message Now to you, guy!; setgif stefanmat1.gif; } sleep 3; if (gothammer) message Do you like it?; else if (alreadygothammer) { setgif stefanmat1.gif; message",
+      "count": 1,
+      "files": [
+        "othouse2.graal"
+      ]
+    },
+    {
+      "image": "kageryu.gif",
+      "script": "if (playerenters) { // play music-kagato.mid; } ?1lightorb.gif",
+      "count": 1,
+      "files": [
+        "palace_dragon_dragon.graal"
+      ]
+    },
+    {
+      "image": "kageryu.gif",
+      "script": "if (playerenters) { // play music-potkr.mid; play snarl.wav; }",
+      "count": 1,
+      "files": [
+        "palace_level5.graal"
+      ]
+    },
+    {
+      "image": "cheesemed.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } 7+pizza-a26186.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "pizza-a26228.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } A+pizza-a26273.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "supmed.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } N,vegmed.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "meatpan.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } O)vegpan.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "Spachup.gif",
+      "script": "if (playerenters) {stopmidi} LIpachdown.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "supmed.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } CFcheesemed.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "Pcheesemed.gif",
+      "script": "if (playertouchsme) {canbecarried } if (wasthrown) {canbecarried } J;pizza-a26273.gif",
+      "count": 1,
+      "files": [
+        "pizzashack.graal"
+      ]
+    },
+    {
+      "image": "D1movingstone.gif",
+      "script": "if (playerenters) {drawunderplayer} 91movingstone.gif",
+      "count": 1,
+      "files": [
+        "sardonbasement4.graal"
+      ]
+    },
+    {
+      "image": "movingstone.gif",
+      "script": "if (playerenters) {drawunderplayer} 9Cmovingstone.gif",
+      "count": 1,
+      "files": [
+        "sardonbasement4.graal"
+      ]
+    },
+    {
+      "image": "DCmovingstone.gif",
+      "script": "if (playerenters) {drawunderplayer} D:movingstone.gif",
+      "count": 1,
+      "files": [
+        "sardonbasement4.graal"
+      ]
+    },
+    {
+      "image": "QWcloats2.gif",
+      "script": "if (playertouchsme) {setcoatcolor red; setbeltcolor pink; setsleevecolor darkred} WWcloats7.gif",
+      "count": 1,
+      "files": [
+        "sardonicearena.graal"
+      ]
+    },
+    {
+      "image": "TWcloats4.gif",
+      "script": "if (playertouchsme) {setcoatcolor darkblue; setbeltcolor blue; setsleevecolor black} ?7sardonpuck.gif",
+      "count": 1,
+      "files": [
+        "sardonicearena.graal"
+      ]
+    },
+    {
+      "image": "9Pdlstatue.gif",
+      "script": "if (playerenters) {canbepushed;canbepulled} if (playerenters && playerscount=1) {x=25; y=48} ETdlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower1.graal"
+      ]
+    },
+    {
+      "image": "9Tdlstatue.gif",
+      "script": "if (playerenters) {canbepushed;canbepulled} if (playerenters && playerscount=1) {x=25; y=52} EPdlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower1.graal"
+      ]
+    },
+    {
+      "image": "Cdlstatue.gif",
+      "script": "if(playerenters){canbepushed;canbepulled} if (playerenters && playerscount=1) {x=26; y=35} ]U",
+      "count": 1,
+      "files": [
+        "sardontower10.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters){canbepushed;canbepulled} if(playerenters && playerscount=1){x=21; y=15} I/dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower15.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if(playerenters){canbepushed;canbepulled} V'dlstatue.gif",
+      "count": 1,
+      "files": [
+        "sardontower25.graal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "visibility",
+  "book": 2,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U;bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y;bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [Ebluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "YEbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [Abluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "YAbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } WAbluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "UAbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U?bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y?bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y=bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U=bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } S=bluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "bluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } SAbluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "SCbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } SEbluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "UCbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [Cbluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "WCbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } YCbluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "UEbluebush.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } WEbluebush.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "4Uredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } 2Uredstone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "0Uredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } .Uredstone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "Uredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } *Uredstone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "Uredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } @Uredstone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "BUredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } DUredstone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "FUredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } HUredstone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "JUredstone.gif",
+      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } 6)beer.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "night.gif",
+      "script": "if (playerenters && !night) {hide } if (playerenters && night) {show } if (night) {show} if (playerenters) {dontblock; drawoverplayer} if (!night) {hide}",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "stone.gif",
+      "script": "if (playerenters) {canbecarried;} if (wasthrown) {putleaps 2,x,y; hide; set rox1gone; } if (exploded) {hide; putleaps 2,x,y; set rox1gone;} if (playerenters && rox1gone) {hide } X)stone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm2.graal"
+      ]
+    },
+    {
+      "image": "stone.gif",
+      "script": "if (playerenters) {canbecarried;} if (wasthrown) {putleaps 2,x,y; hide; set rox3gone; } if (exploded) {hide; putleaps 2,x,y; set rox3gone;} if (playerenters && rox3gone) {hide } V)stone.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm2.graal"
+      ]
+    }
+  ]
+}

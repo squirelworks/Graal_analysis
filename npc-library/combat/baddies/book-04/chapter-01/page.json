@@ -1,0 +1,209 @@
+{
+  "genre": "combat",
+  "topic": "baddies",
+  "book": 4,
+  "chapter": 1,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "cook.gif",
+      "script": "if (playerenters) {say 0 } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } F>cook.gif",
+      "count": 1,
+      "files": [
+        "nobodyskitchen.graal"
+      ]
+    },
+    {
+      "image": "77cook.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } E7cook.gif",
+      "count": 1,
+      "files": [
+        "nobodyskitchen.graal"
+      ]
+    },
+    {
+      "image": "71cook.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 5 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } E0cook.gif",
+      "count": 1,
+      "files": [
+        "nobodyskitchen.graal"
+      ]
+    },
+    {
+      "image": "IGbrother2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } @3brother2.gif",
+      "count": 1,
+      "files": [
+        "nwoarena.graal"
+      ]
+    },
+    {
+      "image": "FPclimberright.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 5 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } LPclimberleft.gif",
+      "count": 1,
+      "files": [
+        "nwomain.graal"
+      ]
+    },
+    {
+      "image": "rack.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } 7/brother2.gif",
+      "count": 1,
+      "files": [
+        "nwomain.graal"
+      ]
+    },
+    {
+      "image": "I6brother2.gif",
+      "script": "if (playerenters) { } if (playertouchsme) {say 7 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } M5brother1.gif",
+      "count": 1,
+      "files": [
+        "nwotown.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters && !boss2dead) { // play music-boss.mid; } if (playerenters && boss2dead) { // play GerudoFort.mid; removecompus; } if (playertouchsme && boss2dead && !lizardswordkag) { timeout =0.1; lay redrupee; say 1; } if (playertouchsme && lizardswordkag && boss2dead) { playerx =30.5; playery =23.5; setlevel palace_greathall2.graal; } if (compusdied && !boss2dead) { // play",
+      "count": 1,
+      "files": [
+        "palace_boss2.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) { } if (playertouchsme && bossdead) { playerx =9.5; playery =29.5; setlevel palace_dragon_cor1.graal; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 45",
+      "count": 1,
+      "files": [
+        "palace_dragon_boss.graal"
+      ]
+    },
+    {
+      "image": "5p-key.gif",
+      "script": "if (playerenters && dragonkey || dragondoor) { hide; } if (playertouchsme) { set dragonkey; say 3; toinventory dragonkey; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "palace_dragon_boss.graal"
+      ]
+    },
+    {
+      "image": "ACkefka.gif",
+      "script": "if (kefka) { // play music-dragon.mid; hide; } if (playerenters && !kefka) { // play music-kefka.mid; play klaugh.wav; say 1; canbecarried; hearts =5; } if (wasthrown) { setgif kefkamad.gif; say 0; hearts --; if (hearts <=0) hide; set kefka; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied && !kefka) { setgif kefkamad.gif; say 0; putcomp lizardon, 35,",
+      "count": 1,
+      "files": [
+        "palace_dragon_kefka.graal"
+      ]
+    },
+    {
+      "image": "organ.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 3; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 6 organ.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { setlevel palace_shadoworb.graal; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 2!teleporter.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "Eemeraldbaddy.gif",
+      "script": "DEemeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "D?emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "D:emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "4emeraldbaddy.gif",
+      "script": "D4emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "87blackbaddy.gif",
+      "script": "G7blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "G=blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "8Cblackbaddy.gif",
+      "script": "GBblackbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_greathall.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "if (playerenters && kagatotalk || kagatogone) { hide; } if (playertouchsme) { say 0; } 9'emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_level1.graal"
+      ]
+    },
+    {
+      "image": "emeraldbaddy.gif",
+      "script": "if (playerenters && !kagatotalk || kagatogone) { hide; } if (playertouchsme) { say 1; } 0-emeraldbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_level1.graal"
+      ]
+    },
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) { set kagatogone; } ;\"blackbaddy.gif",
+      "count": 1,
+      "files": [
+        "palace_level2.graal"
+      ]
+    },
+    {
+      "image": "cracke.gif",
+      "script": "if (playerenters && wallblow1) { hide; } if (playerenters) { drawunderplayer; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded && !wallblow1) { setgif mu.gif; set wallblow1; } if (timeout) { }",
+      "count": 1,
+      "files": [
+        "palace_level2.graal"
+      ]
+    },
+    {
+      "image": "0Cdeadgirl1.gif",
+      "script": "if (playerenters) { } if (playertouchsme) { say 3; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 'Cdeadgirl1.gif",
+      "count": 1,
+      "files": [
+        "palace_level4_house2_1.graal"
+      ]
+    }
+  ]
+}

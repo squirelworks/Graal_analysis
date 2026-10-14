@@ -1,0 +1,209 @@
+{
+  "genre": "dialogue",
+  "topic": "speech",
+  "book": 3,
+  "chapter": 3,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "-1graalred.gif",
+      "script": "if (playerenters && FoundGraal4) hide; if (playertouchsme) { set FoundGraal4; say 0; set HideGraal4; } if (playerendsreading && HideGraal4) { unset HideGraal4; toinventory FoundGraal4; } -6monsterkid.gif",
+      "count": 1,
+      "files": [
+        "monster1.graal"
+      ]
+    },
+    {
+      "image": "65pachup.gif",
+      "script": "if (playertouchsme) {say 4; shootarrow up} if (night) {hide } %5pachuka.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm.graal"
+      ]
+    },
+    {
+      "image": "VVpachukiterightleft2.gif",
+      "script": "if (playerenters && fighterssuckass) { } if (playertouchsme) {say 1} if (fighterssuckass) {timeout= 2.0} if (night) {hide } if (timeout) {message Your magic is weak!! } BVpachukiterightright2.gif",
+      "count": 1,
+      "files": [
+        "moumoufarm2.graal"
+      ]
+    },
+    {
+      "image": "Jblob.gif",
+      "script": "timeout=.1; if (playerenters) { if(!blobsee) {say 0;play giggle.wav;x=28;y=42;show} if (blobsee) {hide;timeout=false;x=28;y=42} } if (playerendsreading) { play giggle2.wav;} if (playertouchsother) { } if (playerlaysitem) { } if (y<=19) {hide;timeout=false;set blobsee} if (timeout)y -=1.1;putleaps 5,x+2,y+5;",
+      "count": 1,
+      "files": [
+        "mountainblob1.graal"
+      ]
+    },
+    {
+      "image": "Istone.gif",
+      "script": "if (playersays2(0, life)) {hide} if (playerenters) {playery=50;show} >Hbro2.gif",
+      "count": 1,
+      "files": [
+        "mountainblob9.graal"
+      ]
+    },
+    {
+      "image": "Istone.gif",
+      "script": "if (playersays2(0, life)) {hide} if (playerenters) {show} 8Istone.gif",
+      "count": 1,
+      "files": [
+        "mountainblob9.graal"
+      ]
+    },
+    {
+      "image": "6Istone.gif",
+      "script": "if (playersays2(0, life)) {hide} if (playerenters) {show} @Istone.gif",
+      "count": 1,
+      "files": [
+        "mountainblob9.graal"
+      ]
+    },
+    {
+      "image": "BIstone.gif",
+      "script": "if (playersays2(0, life)) {hide} if (playerenters) {show} DIstone.gif",
+      "count": 1,
+      "files": [
+        "mountainblob9.graal"
+      ]
+    },
+    {
+      "image": "FIstone.gif",
+      "script": "if (playersays2(0, life)) {hide} if (playerenters) {show}",
+      "count": 1,
+      "files": [
+        "mountainblob9.graal"
+      ]
+    },
+    {
+      "image": "9Mbro.gif",
+      "script": "if (playerenters) {play stef9.mid} if (playertouchsme) { say 2 }",
+      "count": 1,
+      "files": [
+        "mountainhouse1.graal"
+      ]
+    },
+    {
+      "image": "Mbigoct.gif",
+      "script": "timeout=.1; if (playerenters) if(!spidersee) {say 0;play giggle.wav} if (spidersee){hide;timeout=false;} if(playerendsreading){play giggle2.wav} if (playerlaysitem) { } if (y==19) {hide;timeout=false;set spidersee;} if (timeout)y --; >Pprincess.gif",
+      "count": 1,
+      "files": [
+        "mountainspider1.graal"
+      ]
+    },
+    {
+      "image": "6bigoct.gif",
+      "script": "timeout = 1.5; if (washit){set spidergod1;} if(washit && spidergod2){set spidergod3;putleaps 4,x+1,y+1} if(washit && spidergod4){set spidergod5;putleaps 4,x+1,y+1} if(washit && spidergod6){set spidergod7;putleaps 4,x+1,y+1} if(washit && spidergod8){hide; set hitme5; say 0; putleaps 4,x,y; putleaps 4,x++,y++; putleaps 4,x+2,y+2; putleaps 4,x,y+2; putleaps 4,x+2,y; } if (timeout && !hitme5) {shootba",
+      "count": 1,
+      "files": [
+        "mountainspider8.graal"
+      ]
+    },
+    {
+      "image": "R7beerhost.gif",
+      "script": "if (playerlaysitem) { take greenrupee; if (rupees>=3) { say 1; rupees -= 3; set RDShowMug; } } O8absinthe.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "bar.gif",
+      "script": "if (playertouchsme) say 2; 8Gcrystalorb.gif",
+      "count": 1,
+      "files": [
+        "night.graal"
+      ]
+    },
+    {
+      "image": "blackbaddy.gif",
+      "script": "if (playertouchsme) { if (!L4doorfree) say 0; if (L4doorfree) say 1; } if (playerlaysitem && !L4doorfree) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees>=100) { set L4doorfree; say 2; } } ?:fizzare.gif",
+      "count": 1,
+      "files": [
+        "nightclub.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerlaysitem){ take greenrupee; take bluerupee; take redrupee; if (rupees>=50) { say ; rupees -= 50; set absinthe; } } 6Kpartybro1.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "partclimberleft.gif",
+      "script": "if (playertouchsme) say 8; /Pweirdzelda.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "azrael.gif",
+      "script": "if (playertouchsme) say 1; W)pachuka.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "Gsalesman.gif",
+      "script": "if (playertouchsme) say 4; NDfollowerfa.gif",
+      "count": 1,
+      "files": [
+        "nightclub2.graal"
+      ]
+    },
+    {
+      "image": "Aazrael.gif",
+      "script": "if (playertouchsme) say 0; :>zelda.gif",
+      "count": 1,
+      "files": [
+        "nightclub3.graal"
+      ]
+    },
+    {
+      "image": "M6ninjiguard4.gif",
+      "script": "if (playertouchsme) {say 2; } GFninjieliteguard.gif",
+      "count": 1,
+      "files": [
+        "ninjiarena.graal"
+      ]
+    },
+    {
+      "image": "2ninjisleep.gif",
+      "script": "if (playertouchsme) {say 13; } :9ninjisleep.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "ninjisleep2.gif",
+      "script": "if (playertouchsme) {say 16; } *&ninjiguard.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "ninjiguard.gif",
+      "script": "if (playertouchsme) {say 17; } ()ninjiguard2.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    },
+    {
+      "image": "ninjiguard4.gif",
+      "script": "if (playertouchsme) {say 17; } ++ninjiguard3.gif",
+      "count": 1,
+      "files": [
+        "ninjibarracks.graal"
+      ]
+    }
+  ]
+}

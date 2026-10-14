@@ -1,0 +1,209 @@
+{
+  "genre": "interaction",
+  "topic": "triggers",
+  "book": 2,
+  "chapter": 4,
+  "count": 25,
+  "scripts": [
+    {
+      "image": "teleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} !\\",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "ORteleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 2Ybiglift.gif",
+      "count": 1,
+      "files": [
+        "dlbombarena4.graal"
+      ]
+    },
+    {
+      "image": "BGdlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} <Gdlstatue.gif",
+      "count": 1,
+      "files": [
+        "dldungeon1.graal"
+      ]
+    },
+    {
+      "image": "E2spearonground.gif",
+      "script": "if (playerenters) {dontblock; drawoverplayer; } D3skeleton.gif",
+      "count": 1,
+      "files": [
+        "dldungeon1.graal"
+      ]
+    },
+    {
+      "image": "Odlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} .-dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlehall.graal"
+      ]
+    },
+    {
+      "image": "dlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} .%dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlehall.graal"
+      ]
+    },
+    {
+      "image": "-dlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} &Odlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlehall.graal"
+      ]
+    },
+    {
+      "image": "Wdlstatue.gif",
+      "script": "if (playerenters) {canbepushed; canbepulled} &Wdlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlehall.graal"
+      ]
+    },
+    {
+      "image": "beerhost.gif",
+      "script": "if (playerenters) {drawunderplayer} 7Abar.gif",
+      "count": 1,
+      "files": [
+        "dlhqarm.graal"
+      ]
+    },
+    {
+      "image": "RKteleporter.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} ,Jzolcoat1.gif",
+      "count": 1,
+      "files": [
+        "dlhqlead2.graal"
+      ]
+    },
+    {
+      "image": "G1bottle.gif",
+      "script": "if (playerenters) {drawunderplayer} KNbottle.gif",
+      "count": 1,
+      "files": [
+        "dllounge.graal"
+      ]
+    },
+    {
+      "image": "90dlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} E0dlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlnhall.graal"
+      ]
+    },
+    {
+      "image": "goldstatue.gif",
+      "script": "if (playerenters) {canbepushed;} 0Sfencegirl.gif",
+      "count": 1,
+      "files": [
+        "dlsa.graal"
+      ]
+    },
+    {
+      "image": "EQdlstatue.gif",
+      "script": "if (playerenters) {canbepulled; canbepushed} 9Qdlstatue.gif",
+      "count": 1,
+      "files": [
+        "dlshall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} \"4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlshall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 9Fdk-stand.gif",
+      "count": 1,
+      "files": [
+        "dlshall.graal"
+      ]
+    },
+    {
+      "image": "Z4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} X4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "V4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} T4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "R4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} P4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "N4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} L4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "J4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} H4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "F4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} D4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "B4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} @4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} =4blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    },
+    {
+      "image": "4blank2.gif",
+      "script": "if (playerenters) {dontblock; drawunderplayer} 94blank2.gif",
+      "count": 1,
+      "files": [
+        "dlswhall.graal"
+      ]
+    }
+  ]
+}

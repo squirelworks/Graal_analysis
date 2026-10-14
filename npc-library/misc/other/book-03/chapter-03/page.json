@@ -1,0 +1,65 @@
+{
+  "genre": "misc",
+  "topic": "other",
+  "book": 3,
+  "chapter": 3,
+  "count": 7,
+  "scripts": [
+    {
+      "image": "bluelampani.gif",
+      "script": "K&bluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "bluelampani.gif",
+      "script": "W&bluelampani.gif",
+      "count": 1,
+      "files": [
+        "sonichouse.graal"
+      ]
+    },
+    {
+      "image": "G5bluelampani.gif",
+      "script": "*Dbluelampani.gif",
+      "count": 1,
+      "files": [
+        "usaroom.graal"
+      ]
+    },
+    {
+      "image": "GDbluelampani.gif",
+      "script": "87usabed.gif",
+      "count": 1,
+      "files": [
+        "usaroom.graal"
+      ]
+    },
+    {
+      "image": "Bhith.gif",
+      "script": "if (washit) set usedbomb; ;Dhitv.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "Dhitv.gif",
+      "script": "if (washit) set usedbomb; <Fnowplaying.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    },
+    {
+      "image": "97smallbomb.gif",
+      "script": ">3ballofire.gif",
+      "count": 1,
+      "files": [
+        "whoopa_arcade1.graal"
+      ]
+    }
+  ]
+}
