@@ -1,50 +1,93 @@
-# Additional protocol layouts
+# Packet layouts
 
-Date: 2026-10-14
+Date: 2026-10-14, revised 2026-10-21
 
-## Board modify (`TLevelBoardChange::getBoardStr`)
-```
-x:u8  y:u8  width:u8  height:u8  tiles:raw
-```
-- `tiles` is the raw tile data for the rectangle (same 2-byte codes as the board).
-- Used by both `PLO_LEVELBOARD` and `PLO_BOARDMODIFY`.
+Sources: GServer-v2 `TLevel*.cpp`, `TPlayer.cpp`, `TWeapon.cpp` (GPLv3, summarized); 2.05 jump table. Tags: **[srv]** server source · **[2.05]** handler exists in 2.05 (layout not yet traced) · **[inf]**.
 
-## Player property encoding (selected, from `TPlayerProps.cpp`)
+Notation: `c` GCHAR, `s` GSHORT, `i3` GINT3, `i5` GINT5, `str` GSTRING, `rest` = the rest of the message. Ids are logical, so add 0x20 for the wire byte. Ids and names are in `packet-ids.md`, prop encodings in `player-props.md`.
 
-| Prop | Encoding |
-|------|----------|
-| `PLPROP_X` / `Y` | `(char)(pos * 2)` |
-| `PLPROP_Z` | `(char)((z + 0.5) + 50)` |
-| `PLPROP_X2` / `Y2` / `Z2` | `u16`: `abs(pos * 16) << 1`, low bit = sign |
-| `PLPROP_GANI` | length-prefixed string |
-| `PLPROP_HEADGIF` / `BODYIMG` | length-prefixed string |
-| `PLPROP_COLORS` | 5 bytes |
-| `PLPROP_ID` | `short` |
-| `PLPROP_CURLEVEL` | length-prefixed level name (or map name) |
-| `PLPROP_NICKNAME` | length-prefixed |
-| `PLPROP_ALIGNMENT` | `char` |
-| `PLPROP_RUPEESCOUNT` etc. | various ints/chars |
+## Level data (server → client)
 
-Props are sent as a sequence of `(propId:u8 + payload)` until the buffer is exhausted.
+| Id | Name | Layout | Tag |
+|---:|------|--------|-----|
+| 6 | LEVELNAME | rest = level filename | [srv][2.05] |
+| 100 → 101 | RAWDATA → BOARDPACKET | `i3(8194)`, then `c(101)` + 4096 × u16 **little-endian raw** tile ids + `\n` | [srv] |
+| 0 | LEVELBOARD | empty = "use your cached board"; otherwise a run of board changes, same shape as 7 | [srv][2.05] |
+| 7 | BOARDMODIFY | `c x, c y, c w, c h` + w × h × `s tile` | [srv][2.05] |
+| 1 | LEVELLINK | rest = `"dest x y w h newx newy"` (space separated; `newx`/`newy` may be `playerx`/`playery`) | [srv][2.05] |
+| 5 | LEVELSIGN | `c x, c y` + sign-alphabet text (see `formats/sign-text.md`) | [srv][2.05] |
+| 4 | LEVELCHEST | `c opened(0/1), c x, c y` [+ `c item, c signindex` if not opened] | [srv][2.05] |
+| 2 | BADDYPROPS | `c id` + BDPROP stream | [srv][2.05] |
+| 3 | NPCPROPS | `i3 id` + NPCPROP stream | [srv][2.05] |
+| 17 | HORSEADD | horse string (x, y, image, …) | [srv][2.05] |
+| 22 / 23 | ITEMADD / ITEMDEL | `c x×2, c y×2, c item` | [srv][2.05] |
+| 39 | LEVELMODTIME | `i5 modtime` | [srv][2.05] |
+| 10 | ISLEADER | empty: you run this level's baddies and timeouts | [srv][2.05] |
+| 42 | NEWWORLDTIME | `i4 time` | [srv][2.05] |
+| 156 | SETACTIVELEVEL | rest = level that receives the following object packets | [srv][2.05] |
 
-## GANI format (from `walk.gani`)
-Text file:
-```
-SPRITE id  SET  x y w h  description
-...
-ANI
-...
-```
-- `SPRITE` lines define source rectangles from named sheets (`HEAD`, `BODY`, `SHIELD`, `ATTR1`, …).
-- Later sections define animation frames (not fully parsed yet).
-- Standard sheets: body, head, shield, sword, hat, etc.
+### Pre-2.1 level sequence (`sendLevel141`, used for 2.05) **[srv]**
+1. If the client's cached modtime matches: board changes since then, and nothing else.
+2. Otherwise: `RAWDATA` + `BOARDPACKET`, then `LEVELNAME` (first level only), `LEVELLINK`×n, `LEVELSIGN`×n, `LEVELMODTIME`.
+3. Then board changes, `LEVELCHEST`×n, `HORSEADD`×n, `BADDYPROPS`×n, `ISLEADER` (if leader), `NEWWORLDTIME`, `NPCPROPS`×n, and `OTHERPLPROPS` for each player in the level.
 
-## NPC props
-Similar pattern to player props (`NPCPROP_IMAGE`, `NPCPROP_X`, `NPCPROP_Y`, `NPCPROP_GANI`, `NPCPROP_SCRIPT`, …).  
-`PLO_NPCPROPS` is `id:int + prop stream`.
+### Board modify correction
+Earlier notes had `x:u8 y:u8 width:u8 height:u8 tiles:raw`. The header bytes are **GCHAR**s (+0x20), and each tile is a **GSHORT** (two 7-bit bytes, +0x20). Only `BOARDPACKET` (101) carries raw little-endian u16 tiles. **[srv]** The same shape is used client → server in `PLI_BOARDMODIFY` (1) for bush or sign pickups. The server rebroadcasts it as `PLO_BOARDMODIFY`.
 
-## Implications for Seihai
-- Board updates are simple rectangles of raw tile shorts.
-- Position on the wire is usually `pos * 2` as a byte (or the higher-precision `*16` form).
-- GANI is a text format we can parse independently of the network.
-- Player/NPC state is a flat list of tagged properties — easy to model as an enum + payload in Rust.
+## Player state (server → client)
+
+| Id | Name | Layout | Tag |
+|---:|------|--------|-----|
+| 9 | PLAYERPROPS | PLPROP stream (self) | [srv][2.05] |
+| 8 | OTHERPLPROPS | `s id` + PLPROP stream | [srv][2.05] |
+| 14 | PLAYERWARP | `c x×2, c y×2` + rest = level | [srv][2.05] |
+| 15 | WARPFAILED | rest = level | [srv][2.05] |
+| 16 | DISCMESSAGE | rest = text; the server then closes the connection | [srv][2.05] |
+| 40 | HURTPLAYER | `s attacker, c dx, c dy, c power, i3 npc` | [srv][2.05] |
+| 38 | PUSHAWAY | `c dx, c dy` (scaled `v × 0.0625 − 4`) | [srv][2.05] |
+| 28 / 31 | FLAGSET / FLAGDEL | rest = `name` or `name=value` | [srv][2.05] |
+| 154 / 155 | FREEZEPLAYER2 / UNFREEZEPLAYER | empty | [srv][2.05] |
+| 153 | SAY2 | rest = text, `\xa7` = newline | [srv][2.05] |
+
+## Combat and objects (both directions)
+
+The client sends its own action. The server re-emits it to the rest of the level with `s player id` added in front. **[srv]**
+
+| PLI | PLO | Name | Client layout | Tag |
+|----:|----:|------|---------------|-----|
+| 4 | 11 | BOMBADD | `c x×2, c y×2, c power, c fuse` (fuse in 0.05 s steps, default 55) | [srv][2.05] |
+| 5 | 12 | BOMBDEL | same as add | [srv][2.05] |
+| 9 | 19 | ARROWADD | x, y, dir (passed through) | [srv][2.05] |
+| 10 | 20 | FIRESPY | passed through | [srv][2.05] |
+| 11 | 21 | THROWCARRIED | passed through | [srv][2.05] |
+| 26 | 40 | HURTPLAYER | `s victim, c dx, c dy, c power, i3 npc` | [srv][2.05] |
+| 27 | 36 | EXPLOSION | `c radius, c x×2, c y×2, c power` | [srv][2.05] |
+| 36 | 46 | HITOBJECTS | power, x, y [, npc] | [srv][2.05] |
+| 15/16/17 | 2/27 | BADDYPROPS / HURT / ADD | `c id` + BDPROP stream | [srv][2.05] |
+| 20 | 4 | OPENCHEST | `c x, c y`; server replies LEVELCHEST opened=1 | [srv][2.05] |
+| 12 / 13 | 22 / 23 | ITEMADD / ITEMDEL | `c x×2, c y×2, c item` | [srv][2.05] |
+| 38 | 48 | TRIGGERACTION | `i3 npc, c x×2, c y×2` + rest = `action,params` | [srv][2.05] |
+
+## Level navigation (client → server)
+
+| Id | Name | Layout | Tag |
+|---:|------|--------|-----|
+| 0 | LEVELWARP | `c x×2, c y×2` + rest = level | [srv][2.05] |
+| 30 | LEVELWARPMOD | `i5 modtime, c x×2, c y×2` + rest = level | [srv][2.05] |
+| 35 | ADJACENTLEVEL | `i5 modtime` + rest = level (gmap preload) | [srv][2.05] |
+
+## Weapons
+
+| Id | Name | Layout | Tag |
+|---:|------|--------|-----|
+| PLO 33 | NPCWEAPONADD | `str name`, `c 0 (NPCPROP_IMAGE)` + `str image`, `c 1 (NPCPROP_SCRIPT)` + `s len` + GS1 text | [srv][2.05] |
+| PLO 34 | NPCWEAPONDEL | rest = name | [srv][2.05] |
+| PLO 43 | DEFAULTWEAPON | `c item index` (built-in weapon: bow, bomb, sword, …) | [srv][2.05] |
+| PLI 33 | WEAPONADD | `c type`: 0 → `c item index`; 1 → `i3 npc id` (copy an NPC's script as a weapon) | [srv][2.05] |
+| PLI 29 | NPCWEAPONDEL | rest = name | [srv][2.05] |
+
+For v4+ clients the script prop is replaced by `NPCPROP_CLASS` + `PLO_UNKNOWN197` (GS2 bytecode). 2.05 never sees that path. **[srv]**
+
+## GANI
+
+The GANI file format is in `formats/gani.txt`. On the wire, animation is only a prop: `PLPROP_GANI` (10) and `NPCPROP_GANI` (12) carry the GANI name, and the client fetches the file with `PLI_WANTFILE` like any other asset. Pre-2.1 clients (2.05) use slot 10 as BOWGIF. **[srv]** Gani attribute props (`PLPROP_GATTRIB*`) are strings that GANI `PARAM`/`ATTR` placeholders resolve against. **[inf]** 2.05 sends and receives GATTRIB1–5 (props 37–41, `#P1`–`#P5`), but its expression table has no `gattrib` entry. **[2.05]**

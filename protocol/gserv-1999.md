@@ -96,7 +96,7 @@ The 1.28 beta 2 notes call this "direct data packages", and it is the first buil
 The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
 The main loop reads TCP and UDP separately ("tcp read", "udp read" in the 1.32 profiler labels).
 1.31 adds `noudp=` and `fixedudpport=` to `graalconfig.txt` (the catalogue gives 14899 as the fixed-port default).
-The UDP payload ids in this era have not been mapped yet. `protocol/udp-p2p.md` (PR #1, not yet merged) covers the 2.05 UDP ids and is the closest reference.
+The UDP payload ids in this era have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
 
 ## Open questions
 
