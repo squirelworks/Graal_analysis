@@ -25,3 +25,10 @@ Date: 2026-10-14
 
 ## Next
 Locate the actual receive switch in the 1.39 export (search for the session read loop, not `DispatchGs1`) and name the arms against the capture shapes.
+
+## Update 2026-10-21 (resolved)
+
+- The 2.05 network receive switch is now located. It is a jump table over `id = byte − 0x20` with bound 0xA8. Its arms match gs2lib `PLO_*` names for 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166, and 168. 26 (`PLO_NPCACTION`) is not handled. **[2.05]**
+- Client → server senders exist for ids 1–38 (except 6, 25, and 31), plus 80 and 81. Id 0 covers both the login line and `PLI_LEVELWARP`. **[2.05]**
+- The provisional Seihai ids are retired. Login is client type 0, level request is `PLI_LEVELWARP` (0) or `PLI_ADJACENTLEVEL` (35), and the player update is `PLI_PLAYERPROPS` (2).
+- The full table is in `packet-ids.md`. The 1.39 receive switch has not been redone yet. Expect the same ids with fewer arms.

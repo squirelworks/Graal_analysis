@@ -1,6 +1,6 @@
 # NPC library
 
-3,187 unique scripts, broken into a hierarchy so no single file is large.
+3,172 unique scripts (the scrape reported 3,187, but 15 records were lost to truncated source pages; see `partial_pages` in the `npcs.json` meta), broken into a hierarchy so no single file is large.
 
 ## Structure
 
@@ -43,3 +43,8 @@ genre / topic / book-NN / chapter-NN / page.json
 ## Flat file
 
 `npcs.json.bak` is the original 1 MB flat dump, kept for reference. Use the hierarchy.
+
+## GS1 references
+
+- `gs1-commands.md`: cleaned catalog and offline wiring priority.
+- `gs1-reference-205.md`: the full 2.05 command and function tables, built-in flags, and constants.
