@@ -25,6 +25,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
+- `client-internals/build-diff-204-205.md` — function-level diff of 2.04, 2.05 rev1 and 2.05 rev2 (NewWorld merge, VMT shift, ADP anti-debug).
 - `tools/` — index plus notes on the editor, shop, generators, gif2mng, and RemoteControl.
 
 ## Boundary
