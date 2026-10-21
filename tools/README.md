@@ -12,4 +12,4 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | gif2mng | GIF converter | PNG for one frame, MNG for more. `-b` snaps to body palette. |
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
 
-See the individual files for the measured contracts.
+See the individual files for the measured contracts. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.

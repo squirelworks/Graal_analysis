@@ -20,3 +20,6 @@ Seihai must support playing levels offline (no listserver / gserver connection).
 1. Tile collision using the parsed boards.
 2. NPC script execution (seihaiscript).
 3. Rendering the tile data.
+
+
+See `offline-tutorial-205.md` and `level-editor-205.md` for what the 2.05 client itself does offline.
