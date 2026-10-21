@@ -154,7 +154,13 @@ A plain string search of the client executables (no disassembly):
 ## Open questions
 
 1. Packet ids and port for the NPC-server ↔ GServer link (needs a 2001-era
-   GServer or NPC server binary, or a capture).
+   GServer or NPC server binary, or a capture). The RC 1.41 (2002) side of
+   NPC Control is now mapped in `tools/npc-control.md`. It shows the PM
+   commands above became packet ids one for one: `add npc` is NC id 111 with
+   the same seven fields (name, id, type, scripter, level, x, y), and type is
+   one of OBJECT, ANIMAL, POLICE, HORSE, BOAT or HOUSEC. The RC finds the NPC
+   server as the player whose nick contains `(Server)` rather than
+   `(NPC Admin)`. There is still nothing on the GServer-side link itself.
 2. Whether the 2.05 client executes the server-side commands or treats them as
    no-ops when packet 44 says an NPC server is present.
 3. Where the NPC database and the level-list file live, and their formats.
