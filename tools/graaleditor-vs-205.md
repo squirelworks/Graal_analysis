@@ -2,7 +2,7 @@
 
 Date: 2026-10-21
 
-Sources: forms, RTTI class lists, version resources, and strings of `GraalEditor.exe` 2.3.1.1 (from a memory image of the unpacked Thinstall package), `GraalShop.exe` 1.1.1.0, and `GraalShop_old.exe`, all from the Graal 2.2.2.0 folder. The 2.05 side is in `client-internals/level-editor-205.md`. Names only, no code. Tags: **[GE]** GraalEditor · **[GS]** GraalShop · **[2.05]** · **[inf]**.
+Sources: forms, RTTI class lists, version resources, and strings of `GraalEditor.exe` 2.3.1.1 (from a memory image of the unpacked Thinstall package), `GraalShop.exe` 1.1.1.0, and `GraalShop_old.exe`, all from the Graal 2.2.2.0 folder. The 2.05 side is in `client-internals/level-editor-205.md`. For GraalEditor on its own (menus, options, file types), see `tools/graaleditor.md`; this note only covers what changed relative to 2.05. Names only, no code. Tags: **[GE]** GraalEditor · **[GS]** GraalShop · **[2.05]** · **[inf]**.
 
 ## Lineage
 
@@ -23,8 +23,8 @@ It does not have the network client. There is no `TGraalClient`, `TAdventureClie
 |------|---------------|---------------------|
 | Open | GR-V1.00–1.03, Z3-V1.03/1.04, GLEVNW01 | Same set (`Graal levels (*.graal, *.nw)` filter) |
 | Save | `.nw` → GLEVNW01, otherwise GR-V1.03 | GLEVNW01 with a new `HEIGHTS` section. GR-V1 writer strings are still present. **[inf]** "Level(s) saved" means several levels can be saved at once. |
-| World | single level plus *Generate map* image | **gmaps**: reads `GRMAP001` (`LEVELNAMES`, `MAPIMG`, `MINIMAPIMG`, `NOAUTOMAPPING`) and generated maps (`GENERATED`, `GENSEED`, `GENBASE`, `GENEVENBORDERS`, `GENHEIGHT`, `GENCHAOS`, `LEVHEIGHT`, `LEVCHAOS`, `HEIGHTMAP`…`HEIGHTMAPEND`, `RANDOMSEEDS`…`RANDOMSEEDSEND`). A level cache (`TEditorLevelCache`) holds neighbours. |
-| Terrain | tile overlays only | `TLevelHeights` height overlay per level (`HEIGHTS`, `.height`, "Terrain Height Spot", "Show terrain grid") |
+| World | single level plus *Generate map* image. 2.05 already contains a `GRMAP001` reader (`WIDTH`, `HEIGHT`, `GENERATED`, `GENSEED`, …, `HEIGHTMAP`), but no caller was found, so it looks dormant. **[2.05][inf]** | **gmaps** wired into the editor: the same `GRMAP001` reader plus `LEVELNAMES`, `MAPIMG`, `MINIMAPIMG`, `NOAUTOMAPPING`, and the generated-map keys (`GENSEED`, `GENBASE`, `GENEVENBORDERS`, `GENHEIGHT`, `GENCHAOS`, `LEVHEIGHT`, `LEVCHAOS`, `HEIGHTMAP`…`HEIGHTMAPEND`, `RANDOMSEEDS`…`RANDOMSEEDSEND`). A level cache (`TEditorLevelCache`) holds neighbours. |
+| Terrain | tile overlays in the editor. The dormant gmap parser knows `HEIGHTMAP`, and `HEIGHTS` appears in the binary, but the editor has no height tools. | `TLevelHeights` height overlay per level (`HEIGHTS`, `.height`, "Terrain Height Spot", "Show terrain grid") |
 | Palette modes | predefined object, tile, baddies/NPCs/chests | the same three plus **Predefined NPCs** (`TEditorDefNPC`, "Editor Control-NPC" with a parameter grid) |
 | NPC editing | `TEditPerson` (image + *Action*) → `TPersonAction` (script) | one `TEditNPC` window with image, script, Test, Style, and **Find**. Scripts may carry editor markers `//#EDIT` and `//#COMMENTS`. |
 | Character NPC | one-page form | the same fields split over four tabs (Look, Movement, Attack, General) |

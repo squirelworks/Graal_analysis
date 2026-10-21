@@ -5,7 +5,8 @@ Usage: grv1.py LEVEL [--board] [--json]
 
 Original implementation from the format notes in formats/level-binary.md
 and the 2.05 client loader behaviour described in
-client-internals/v205-tutorial-levels.md.
+client-internals/level-editor-205.md (loader note) and
+client-internals/offline-tutorial-205.md (embedded tutorial levels).
 """
 import json, sys
 
