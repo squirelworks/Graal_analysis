@@ -27,6 +27,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
 - `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.
+- `client-internals/cross-version-timeline.md` — classes, GS1 commands and handled packet ids from 1.33 to the 2.1 tests.
 - `tools/` — index plus notes on the editor, shop, generators, gif2mng, and RemoteControl.
 
 ## Boundary
