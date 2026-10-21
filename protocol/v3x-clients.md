@@ -18,7 +18,7 @@ Sources: the Graal 3.04 Linux installer (Makeself and a 2014 tgz repack, same ga
 | Game-server login | `G3D03014` | `G3D28015` | `GNW03014` (2.22) / `GNW28015` (2.31) |
 | Listserver | `G3D30123` | `G3D30123` | `GNW30123` (2.22, 2.31) |
 
-The 3.x tokens are the Windows tokens with the `GNW` prefix replaced by `G3D`. The date stamp is unchanged. So 3.04 speaks the 2.22 protocol and 3.153 speaks the 2.31 protocol. As in every Delphi build, the token is assembled one character at a time, so no string literal exists. **[bin]**
+The 3.x tokens are the Windows tokens with the `GNW` prefix replaced by `G3D`. The date stamp is unchanged. So 3.04 speaks the 2.22 protocol and 3.153 speaks the 2.31 protocol. As in the Delphi clients from 1.38 on, the token is assembled one character at a time, so no string literal exists. **[bin]**
 
 ## Listserver
 
@@ -43,7 +43,7 @@ The 3.x tokens are the Windows tokens with the `GNW` prefix replaced by `G3D`. T
 ## Game-server login and cipher
 
 - Login: id **5**, key GCHAR (`rand & 0x7F`), token, `str account`, `str password`. Then id **37** (language). Neither build sends id 39 (`PLI_TAMPERCHECK`) after login, which 2.22 and 2.31 do. The account and password are used as plain strings, with no `dec(b) = (~b − 10)` step as in 2.17+. **[bin]**
-- **Cipher and framing are gen 5, the same as the 2.22/2.31 Windows clients.** The same LCG (`it = it * 0x08088405 + key`, seed `0x04A80B38`, one iterator per direction). Login frame in fixed mode 3, then dynamic: type 2 (raw) or 4 (zlib) under 0x30 bytes, 4 under 0x1000, otherwise 6 (bz2). Even types are partially XORed (at most 12 dwords for type 2, 4 for types 4 and 6). Frame `u16be (len + 1)`, type byte, body. See `codec-and-framing.md` and `client-versions.md` on the cross-version branch for the full rule. **[bin]**
+- **Cipher and framing are gen 5, the same as the 2.22/2.31 Windows clients.** The same LCG (`it = it * 0x08088405 + key`, seed `0x04A80B38`, one iterator per direction). Login frame in fixed mode 3, then dynamic: type 2 (raw) or 4 (zlib) under 0x30 bytes, 4 under 0x1000, otherwise 6 (bz2). Even types are partially XORed (at most 12 dwords for type 2, 4 for types 4 and 6). Frame `u16be (len + 1)`, type byte, body. See `codec-and-framing.md` and `client-versions.md` (PR #8, not yet on main) for the full rule. **[bin]**
 
 ## Server → client ids handled
 
@@ -73,10 +73,13 @@ Client → server: login 5 and language 37 are confirmed. Most other sends go th
 
 ## File formats
 
-- **`GR-V1.04`** is `GR-V1.03` plus a heights block after the NPC section: `HEIGHTS`, then 9 lines of 9 comma-separated floats, then `HEIGHTSEND`. The client writes 1.04 only when the level has heights, otherwise 1.03. This pairs with server → client id 185 (`BOARDHEIGHTS`). **[bin]**
+- **`GR-V1.04`** is `GR-V1.03` plus a heights block after the NPC section: `HEIGHTS`, then 9 lines of 9 comma-separated floats, then `HEIGHTSEND`. The client writes 1.04 only when the level has heights, otherwise 1.03. This pairs with server → client id 185 (`BOARDHEIGHTS`). The 2.22 and 2.31 Windows clients already know `GR-V1.04`, so this is not new in 3.x. **[bin]**
 - **`GSERVL01`** is a second text-level magic, read by the same parser as `GLEVNW01`. Keywords: `BOARD`, `LINK`, `CHEST`, `SIGN`, `NPC`…`NPCEND`, `BADDY`…`BADDYEND`, `HEIGHTS`…`HEIGHTSEND`, and `REPLACENPCS`…`REPLACENPCSEND` (skipped by the client). **[bin]**
-- **`GWEBL001`** (downloaded-level cache): magic, `str` server name, two 7-bit characters of protocol version, a GINT5 modification time, `str` level name, then a `GR-V1.03`/`1.04` body. The cache is only used when the server name, version and level name match. As in 2.05, a seed of `0x04A80B38 × product(level-name bytes)` is computed before the read, and the DES unit is still linked. **[bin][inf]**
-- **`GRMAP001`** gains keys for 3D/heightmapped maps: `GENSEED`, `LEVHEIGHT`, `LEVCHAOS`, `MINIMAPIMG`, `NOAUTOMAPPING`, `HEIGHTMAP`…`HEIGHTMAPEND`, and `RANDOMSEEDS`…`RANDOMSEEDSEND`, besides `WIDTH`, `HEIGHT`, `GENERATED` and `LEVELNAMES`. **[bin]**
+- **`GWEBL001`** (downloaded-level cache). The body is still DES-encrypted as in 2.05. **[bin]**
+  - File: a 4-byte length, then 8-byte DES blocks, then an 8-byte checksum. The checksum is the bytewise sum (mod 256, per byte position) of the decrypted blocks. A mismatch discards the cache.
+  - Each block gets a fresh 8-byte key from the client's Delphi-style generator (`seed = seed * 0x08088405 + 1`, one key byte per step). Before the read, the seed is set to `0x04A80B38 × product(level-name bytes)`. The PPC caller keeps the low byte of the new seed; 2.05 uses Delphi `Random`. Which byte is used, and the length field's byte order (read natively, so possibly big-endian on the Mac), still need checking against a real cache file. **[bin][inf]**
+  - Plaintext: magic, `str` server name, two 7-bit characters of protocol version, a GINT5 modification time, `str` level name, then a `GR-V1.03`/`1.04` body. The cache is used only when the server name, version and level name match. **[bin]**
+- **`GRMAP001`**: 3.x reads the same keys as the 2.22/2.31 Windows clients (`WIDTH`, `HEIGHT`, `GENERATED`, `LEVELNAMES`…`LEVELNAMESEND`, `GENSEED`, `LEVHEIGHT`, `LEVCHAOS`, `MINIMAPIMG`, `NOAUTOMAPPING`, `HEIGHTMAP`…`HEIGHTMAPEND`, `RANDOMSEEDS`…`RANDOMSEEDSEND`). No 3.x-only key was found. **[bin]**
 
 ## The uploads, for the record
 
