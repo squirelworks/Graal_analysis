@@ -12,6 +12,8 @@ This path is used for signs that arrive after a successful world login. An offli
 
 ## File alphabet (GR-V / Ash)
 
+> **Superseded** by `level-binary-client.md` (Sign text in files): the 2.05 client decodes file signs with the same alphabet as wire signs, and `v*eUWf` + high byte is `#K(13)` plus a newline, not a space. The steps below are kept for history.
+
 Binary sign text stored inside a `.graal` or `.zelda` file is not Latin-1.
 
 Encoding steps observed in the file:

@@ -16,8 +16,8 @@ Walks the 4096 tiles in order and picks, at each position:
 
 | Case | Codes emitted |
 |------|---------------|
-| Next tile equals this one | `0x1000 \| n`, then the tile. `n` counts up to 63 equal tiles. |
-| Tiles `i, i+1` equal `i+2, i+3` (pattern AB AB) | `0x1100 \| n`, then A, then B. `n` counts up to 63 pairs. |
+| Next tile equals this one | `0x1000 \| n`, then the tile. `n` counts up to 64 equal tiles. |
+| Tiles `i, i+1` equal `i+2, i+3` (pattern AB AB) | `0x1100 \| n`, then A, then B. `n` counts up to 64 pairs. |
 | Otherwise | the tile (`& 0xFFF`) |
 
 Codes are packed 13 bits each, least significant bit first, and the last partial byte is flushed. **[2.05]** `write_board` in `tools/file-formats/gwebl.py` follows these rules and reproduces every board in the test set exactly. **[test]**

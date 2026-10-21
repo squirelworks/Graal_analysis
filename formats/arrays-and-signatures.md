@@ -48,25 +48,25 @@ All tile ids index the 4096-tile `pics1` sheet. Mapping every table to a gamepla
 
 ## arrays2.dat
 
-Plain text, CRLF lines. The 2.22 client needs at least 5 lines: **[2.22]**
+Plain text, CRLF lines. The 2.22 client needs at least 5 lines. Lines are numbered from 0. **[2.22]**
 
 | Line | Use |
 |------|-----|
-| 1 | Main listserver host |
-| 2 | Listserver port |
-| 3 | Web host, joined into a URL template **[inf]** |
-| 4 | Registration page URL |
-| 5 | Translation service URL |
-| 6, 7 | Fallback listserver hosts (optional) |
+| 0 | Main listserver host |
+| 1 | Listserver port |
+| 2 | Web host, joined into a URL template **[inf]** |
+| 3 | Registration page URL |
+| 4 | Translation service URL |
+| 5, 6 | Fallback listserver hosts (optional) |
 
 The Graal Reborn copy points at `listserver.graal.in` port 14922, with `listserver.graal.cc` and `listserver.graalonline.biz` as fallbacks. **[test]**
 
 ## The signatures
 
-Both `.sig` files are 128 bytes: RSA-1024 signatures. **[test]** The check runs at startup: **[2.22]**
+Both `.sig` files are 128 bytes, the size of an RSA-1024 signature. **[test]** The check runs at startup: **[2.22]**
 
 1. The client builds a 1024-bit RSA public key from an obfuscated hex string assembled one character at a time in code. Each decoded byte is `not(b) - 10`.
-2. It verifies `graal.sig` against **its own exe file**, then `arrays2.sig` against `arrays2.dat`. It uses an RSA component with SHA-1 as the signing digest and PKCS#1 v1.5 padding.
+2. It verifies `graal.sig` against **its own exe file**, then `arrays2.sig` against `arrays2.dat`. The verifier is an RSA crypto component configured with a SHA-1 signing digest and a PKCS#1 encryption scheme. **[inf]** That's from the component's class and property names. No signature has been verified yet, so the exact algorithm is not confirmed.
 3. On any failure it shows "The Graal execution file is corrupted. Please check for viruses or other programs that manipulate…" and exits.
 
 2.17, 2.22 and 2.31 embed the same two obfuscated key strings and the same error text. **[2.17]** **[2.22]** **[2.31]**
