@@ -11,5 +11,6 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | GraalLevelGen | Image-to-levels | Converts an image into linked levels. |
 | gif2mng | GIF converter | PNG for one frame, MNG for more. `-b` snaps to body palette. |
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
+| NPC server (2001) | Server-side NPC host | Logs into GServer as a player, 0.1 s tick, PM admin commands, `join` classes. See `npcserver-2001.md`. |
 
 See the individual files for the measured contracts.

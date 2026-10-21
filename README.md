@@ -25,7 +25,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
-- `tools/` — index plus notes on the editor, shop, generators, gif2mng, and RemoteControl.
+- `tools/` — index plus notes on the editor, shop, generators, gif2mng, RemoteControl, and the 2001 NPC server (`npcserver-2001.md`).
 
 ## Boundary
 
