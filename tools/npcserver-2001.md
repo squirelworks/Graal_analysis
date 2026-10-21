@@ -135,17 +135,30 @@ on the lines after the first.
 
 ## 7. Cross-check against the v2.05 client [checked]
 
-A plain string search of the client executables (no disassembly):
+Mostly a plain string search of the client executables. The second bullet comes
+from the 2.05 script command table.
 
 - `Graal_v2.05_rev2.exe` already contains most server-side names:
-  `setshape`, `canwarp`, `canwarp2`, `callnpc`, `join`, `warpto`, `tokenize`,
+  `setshape`, `canwarp`, `canwarp2`, `callnpc`, `join`, `tokenize`,
   `tokenize2`, `tokenscount`, `setplayerprop`, `setgender`, `setchargender`,
   `toweapons`, `setlevel2`, `freezeplayer2`, `unfreezeplayer`, `putexplosion2`,
   `setarray`, `startswith`, `indexof`, `//#CLIENTSIDE`, and the events
   `playerenters`, `playertouchsme`, `playerchats`, `exploded`, `initialized`.
-  So the client parser accepts these commands; whether it runs or skips them
-  needs a look at the client script runner (separately, a server packet (id 44)
-  tells the client whether the server has an NPC server).
+  The string `warpto` is also in the file, but it is not a script command
+  there.
+- How 2.05 handles them, from its script command table:
+  - In the table but with no handler, so parsed and ignored:
+    `canwarp`, `canwarp2`, `join`, `freezeplayer2`, `unfreezeplayer`.
+  - In the table with a handler, so they run on the client:
+    `setshape`, `callnpc`, `tokenize`, `tokenize2`, `setplayerprop`,
+    `setgender`, `setchargender`, `toweapons`, `setlevel2`, `putexplosion2`,
+    `setarray`.
+  - Not script commands at all: `warpto`, `noplayeronwall`, `cannotwarp`,
+    `addweapon`, `removeweapon`.
+  So in 2.05 the first group does nothing whatever the server says; it does
+  not depend on server packet 44 (which tells the client an NPC server is
+  present). A server freezes a 2.05 player with server packets 154 and 155
+  instead of the script commands.
 - Not found in any client build checked (2.05, 2.171, 2.22): `playerleaves`,
   `npcwarped`, `noplayeronwall`, `cannotwarp`, `addweapon`, `removeweapon`,
   `playerlastdead`, `level.`. These look server-only.
@@ -161,6 +174,4 @@ A plain string search of the client executables (no disassembly):
    one of OBJECT, ANIMAL, POLICE, HORSE, BOAT or HOUSEC. The RC finds the NPC
    server as the player whose nick contains `(Server)` rather than
    `(NPC Admin)`. There is still nothing on the GServer-side link itself.
-2. Whether the 2.05 client executes the server-side commands or treats them as
-   no-ops when packet 44 says an NPC server is present.
-3. Where the NPC database and the level-list file live, and their formats.
+2. Where the NPC database and the level-list file live, and their formats.
