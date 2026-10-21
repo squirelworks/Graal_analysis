@@ -18,3 +18,13 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 
 See the individual files for the measured contracts. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.
 - `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.
+
+## File-format helpers (`file-formats/`)
+
+Pure-Python helpers written for the notes in `formats/` and `client-internals/`. No client code.
+
+| Script | Does |
+|--------|------|
+| `graaldes.py` | The client's DES variant (bit-reversed key bytes) and its 48-character string cipher. Decrypts saved passwords. See `client-internals/saved-passwords.md`. |
+| `gwebl.py` | Decrypts and parses `weblevels/*.code` (GWEBL001). Also a GR-V board reader and writer and a GR-V level parser. See `formats/gwebl001-cache.md`. |
+| `extract_tutorials.py` | Pulls the 13 embedded tutorial levels out of a 2.0x exe (needs `pefile`). See `formats/level-binary-client.md`. |
