@@ -75,11 +75,11 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | Graal-v2.04 | v2.04 | 2001-06-25 07:42 | 2.0.4.0 | a40608308d4f890cb5e4efdd45b38ba4 | 1872384 | `GNW24061` | 3 | as above | as above | `replacegani`, `addtiledef`/`addtiledef2` |
 | Graal-v2.05 | v2.05 | 2001-08-03 19:12 | 2.0.4.0 (stale) | 9abce477945a1307bb2be9ed47d2f170 | 1891328 | `GNW03081` | 3 | as above | GR-V1.00–1.03, **GLEVNW01, GRMAP001** | `.nw` and `.gmap` return; script-editor button; `setshape2` arrays |
 | Graal-v2.05-rev1 | v2.05 rev1 | 2001-08-04 03:26 | 2.0.5.0 | 2780f2f370396c580e1648696698c871 | 1895936 | `GNW03081` | 3 | as above | as above | |
-| graalnwb1 | NewWorld beta 1 | 2001-08-06 04:13 | 2.0.5.0 | 88d1f84c96da1dcc3942b139fbd741c9 | 1820672 | `G2N15041` | 3 | list www.graalonline.com:14921, "newworld" (DES) | as 2.05 | String arrays, terrain heights; ships NPCControl, LevelFiller, TerrainGenerator, Greaditor and other tools |
+| graalnwb1 | NewWorld beta 1 | 2001-08-06 04:13 | 2.0.5.0 | 88d1f84c96da1dcc3942b139fbd741c9 | 1820672 | `G2N15041` | 3 | list www.graalonline.com:14921, "newworld" (DES) | as 2.05 | Terrain heights, backtile areas, NW time variables (string arrays are nwb2 only; see `newworld-betas.md`); ships NPCControl, LevelFiller, TerrainGenerator, Greaditor and other tools |
 | Graal-v2.05-rev2 | v2.05 rev2 | 2001-08-16 17:24 | 2.0.5.2 | f3fdf54d943fa91c89acba5bb695db99 | 1891840 | `GNW03081` | 3 | list www.graalonline.com:14921, "newmain" (DES) | as 2.05 | The decompile target; same bytes as `Graal_v2.05_rev2.exe` |
 | graal21test2 | v2.1 test 2 | 2001-09-21 17:54 | 2.1.0.0 | d15d877822ad4145578107857c90fb3c | 1748480 | `GNW03081` | 3 | list www.graalonline.com:**14922**, "newmain" (DES) | as 2.05 | New tiles, new starting window; the token is still 2.05's |
 | graal21test3 | v2.1 test 3 | 2001-09-27 21:11 | 2.1.0.0 | 2116a7ba03648dcc004035534ec94de8 | 1753600 | `GNW03081` | 3 | as above | as 2.05 | |
-| graalnwb2 | NewWorld beta 2 | 2001-10-03 20:46 | 2.1.0.0 | af2d21066659bed6af6c77e52b2cc0e1 | 1613824 | `G2N15041` | 3 | list www.graalonline.com:14922, "newworld" (DES) | as 2.05 | |
+| graalnwb2 | NewWorld beta 2 | 2001-10-03 20:46 | 2.1.0.0 | af2d21066659bed6af6c77e52b2cc0e1 | 1613824 | `G2N15041` | 3 | list www.graalonline.com:14922, "newworld" (DES) | as 2.05 | String arrays (`addstring` etc.), terrain heights with per-level `HEIGHTS` grids from the gmap; see `newworld-betas.md` |
 
 ## Patterns worth knowing
 
