@@ -45,7 +45,7 @@ Cleaned notes derived from public server sources, observed packet shapes, and fo
 
 ## NPC scripting
 
-3,187 unique scripts scraped from 1,420 GR-V1 levels. Stored in `npc-library/npcs.json`.
+3,172 unique scripts scraped from 1,420 GR-V1 levels. Stored in `npc-library/npcs.json`. The scrape reported 3,187; 15 records were lost to truncated source pages (see `partial_pages` in `npcs.json` meta).
 
 ### Common events (by frequency)
 | Event | Scripts |

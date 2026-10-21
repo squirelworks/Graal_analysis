@@ -1,6 +1,6 @@
 # NPC library
 
-3,187 unique scripts, broken into a hierarchy so no single file is large.
+3,172 unique scripts (the scrape reported 3,187, but 15 records were lost to truncated source pages; see `partial_pages` in the `npcs.json` meta), broken into a hierarchy so no single file is large.
 
 ## Structure
 

@@ -18,18 +18,18 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 3 | 0x23 | `PLI_NPCPROPS` |  | C→S | `i3 id` + NPCPROP stream | yes |
 | 4 | 0x24 | `PLI_BOMBADD` | `ADDBOMB` | C→S | `c x×2, c y×2, c power, c fuse` | yes |
 | 5 | 0x25 | `PLI_BOMBDEL` |  | C→S | as 4 | yes |
-| 6 | 0x26 | `PLI_TOALL` |  | C→S | `str message` | — |
+| 6 | 0x26 | `PLI_TOALL` |  | C→S | `str message`; 2.05 sends it for chat-bar text starting with `toall:` (the rest of the text) | yes |
 | 7 | 0x27 | `PLI_HORSEADD` |  | C→S | `c x×2, c y×2, c dir+4×bushes` + rest = image | yes |
 | 8 | 0x28 | `PLI_HORSEDEL` |  | C→S | `c x×2, c y×2` | yes |
 | 9 | 0x29 | `PLI_ARROWADD` |  | C→S | arrow: x, y, dir | yes |
 | 10 | 0x2a | `PLI_FIRESPY` |  | C→S | fire spy | yes |
 | 11 | 0x2b | `PLI_THROWCARRIED` |  | C→S | throw carried | yes |
 | 12 | 0x2c | `PLI_ITEMADD` |  | C→S | `c x×2, c y×2, c item` | yes |
-| 13 | 0x2d | `PLI_ITEMDEL` |  | C→S | `c x×2, c y×2, c item` | yes |
+| 13 | 0x2d | `PLI_ITEMDEL` |  | C→S | `c x×2, c y×2` (no item byte; the server looks the item up by position) | yes |
 | 14 | 0x2e | `PLI_CLAIMPKER` |  | C→S | `s killer id` | yes |
 | 15 | 0x2f | `PLI_BADDYPROPS` |  | C→S | `c id` + BDPROP stream | yes |
-| 16 | 0x30 | `PLI_BADDYHURT` |  | C→S | `c id` + BDPROP stream | yes |
-| 17 | 0x31 | `PLI_BADDYADD` |  | C→S | `c id` + BDPROP stream | yes |
+| 16 | 0x30 | `PLI_BADDYHURT` |  | C→S | `c id` + hit data; GServer does not parse it and forwards the body unchanged to the level leader as `PLO_BADDYHURT` | yes |
+| 17 | 0x31 | `PLI_BADDYADD` |  | C→S | `c x×2, c y×2, c type, c power` + rest = image (no id; the server assigns one, caps power at 12 and answers with `PLO_BADDYPROPS`) | yes |
 | 18 | 0x32 | `PLI_FLAGSET` |  | C→S | rest = `name` or `name=value` | yes |
 | 19 | 0x33 | `PLI_FLAGDEL` |  | C→S | rest = flag name | yes |
 | 20 | 0x34 | `PLI_OPENCHEST` |  | C→S | `c x, c y` | yes |
