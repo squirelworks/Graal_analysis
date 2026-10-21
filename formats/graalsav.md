@@ -36,10 +36,11 @@ The first value is always the magic string (`Graalsav1` … `Graalsav9`, `Graals
 | Graalsav6 | 13th | same | `.save` | no |
 | Graalsav7 | 14th, 15th | same | `.save` (14th), `.gsave` (15th) | 15th on |
 | Graalsav8 | 1.1, 1.1.9 | 7 and 8 | `.gsave` | yes |
-| Graalsv11 | 1.21 to 1.39 | 9, 10 and 11 | `.gsave` | yes |
+| Graalsv11 | 1.21 to 1.32 (1.33 to 1.41 rev1 carry the string; not traced) | 9, 10 and 11 | `.gsave` | yes |
 
 3rd and 4th Graal reuse Graalsav1 (the 4th alpha was built later than 4th, as the build catalogue notes).
 Earlier catalogue rows listed 1.21 to 1.39 as "Graalsav9". Those builds read 9 too, but they write `Graalsv11` and also read `Graalsv10`, and a search for `Graalsav` misses both. The record layout was read from 1.21 and 1.32. For 1.33 to 1.39 only the magics were checked.
+No build in the set writes `Graalsav9` or `Graalsv10`. The v9 and v10 layouts below come only from the 1.21 to 1.32 readers, so they presumably match saves from a 1.2x build that isn't in the archive.
 From 15th Graal saving only works on a level from the Cyberjoueur server or on the online start level. From 1.21 the client refuses to save in online mode: "The server saves your game if you have an own account."
 
 ## File layout
@@ -100,6 +101,8 @@ The change from 6 to 7 is in the file header (the four-player mode).
 
 ### Graalsav9 to Graalsv11 (1.21 to 1.32)
 
+`Graalsv11` is taken from the writer. The `[v9]` / `[v11]` conditions come from the reader.
+
 The player is no longer a list of typed fields. It is one string in the network player-props encoding:
 
 ```
@@ -141,4 +144,4 @@ n bytes   DES-ECB(VERGRAAL, plaintext)
 The plaintext is the `TWriter` stream described above, padded to a multiple of 8 with random bytes.
 The loader decrypts both copies, compares them byte for byte, and parses the result only if they match.
 
-The DES class takes a second constructor argument (7) whose role hasn't been pinned down. Before anyone writes a tool for these files, they should round-trip one real save to confirm the class is textbook DES.
+The DES class takes a second constructor argument (7) whose role hasn't been pinned down. `client-internals/saved-passwords.md` (PR #6, not yet merged) found that the 2.05 DES is textbook DES-ECB with each key byte bit-reversed. The same class name and key handling are probably at work here, so a round-trip test should try `AXBORG15` and `VERGRAAL` bit-reversed first. Before anyone writes a tool for these files, one real save should be round-tripped.
