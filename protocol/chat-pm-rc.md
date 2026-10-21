@@ -6,13 +6,13 @@ Sources: GServer-v2 `TPlayer.cpp`, `TPlayerRC.cpp` (GPLv3, summarized); 2.05 tab
 
 ## Chat bubble
 
-Local chat is not a message id. It is the `PLPROP_CURCHAT` (12) string inside `PLI_PLAYERPROPS`. The server forwards it to the level as `PLO_OTHERPLPROPS`. Server commands typed in chat (`setnick`, `/sethead`, …) are parsed from the same prop. **[srv]** 2.05 has no sender for `PLI_TOALL` (6), so 2.05 probably has no toall chat. **[2.05][inf]**
+Local chat is not a message id. It is the `PLPROP_CURCHAT` (12) string inside `PLI_PLAYERPROPS`. The server forwards it to the level as `PLO_OTHERPLPROPS`. Server commands typed in chat (`setnick`, `/sethead`, …) are parsed from the same prop. **[srv]** The one exception is toall: when the chat-bar text (lower-cased and trimmed) starts with `toall:`, 2.05 sends the rest as `PLI_TOALL` (6) instead of as CURCHAT. **[2.05]**
 
 ## Toall
 
 | Dir | Id | Layout |
 |-----|---:|--------|
-| C→S | 6 TOALL | `str message` |
+| C→S | 6 TOALL | `GSTRING message` (2.05: text after `toall:`, trimmed, max 200 bytes) |
 | S→C | 13 TOALL | `s player id`, `str message` (2.05 handles it) |
 
 ## Private messages
