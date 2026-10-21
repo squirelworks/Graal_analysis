@@ -4,10 +4,10 @@ Date: 2026-10-21
 
 Companion to `level-binary.md`, which is built from server source. This file is from the clients themselves: the 2.05 rev 2 GR-V reader and writer, and the 2.31 reader and writer. The board rules were confirmed by decoding 144 real cached levels and 13 embedded tutorial levels and re-encoding every board byte for byte. Tags: **[2.05]** · **[2.31]** · **[test]** · **[inf]** inferred.
 
-## Corrections to `level-binary.md`
+## Agreement with `level-binary.md`
 
-1. **Code width.** The client uses **13 bits for `GR-V1.02` and `GR-V1.03`** (and `GR-V1.04` in 2.31). `GR-V1.00`, **`GR-V1.01`** and both `Z3-V1.*` use 12 bits. `level-binary.md` puts GR-V1.01 in the 13-bit group. **[2.05]** **[2.31]**
-2. **Double runs.** The 2.05 writer does emit double runs. That closes the open question. **[2.05]** **[test]**
+1. **Code width.** 13 bits for `GR-V1.02` and `GR-V1.03` (and `GR-V1.04` in 2.31), and 12 bits for `GR-V1.00`, `GR-V1.01` and both `Z3-V1.*`. `level-binary.md` now says the same. **[2.05]** **[2.31]**
+2. **Double runs.** The 2.05 writer emits them, as `level-binary.md` now records. **[2.05]** **[test]**
 3. **Sign terminator.** 2.05 reads signs to end of file. 2.31 stops at the first empty line, because a `HEIGHTS` block can follow. **[2.05]** **[2.31]**
 
 ## Board writer (2.05)
@@ -36,7 +36,7 @@ A baddy record is read up to a `\n` that comes after at least 3 bytes, so the 3 
 
 ## Sign text in files
 
-`sign-text.md` describes a separate "file alphabet" (`char + 89`, with `v*eUWf` + a high byte as a space). That's not what the client does. Signs in `.graal` files use **the same alphabet as signs on the wire**: `byte - 32` indexes the table
+As `sign-text.md` says, signs in `.graal` files use **the same alphabet as signs on the wire**: `byte - 32` indexes the table
 
 ```
 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?-.,#>()#####"####':/~&### <####;\n

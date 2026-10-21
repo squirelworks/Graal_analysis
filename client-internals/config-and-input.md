@@ -58,3 +58,12 @@ This matches the offline observation that local level files, GANIs, and NPCs can
 ## Offline implication
 
 None of the config keys are required for the offline slice. The drop-files behavior is the only part that intersects with current offline work: a dropped level file should load, and a dropped image or script should spawn the corresponding NPC. That is already the expected next step after collision and CmdCall.
+
+## Update 2026-10-21: 2.05 vs 2.22 graalconfig
+
+Compared the 2.22 `graalconfig.txt` (user's Drive, 86 keys) with the 2.05 string table. **[2.05][doc]**
+
+- **Present in 2.05:** `compabilitydraw`, `dontconnectlevels`, `dontloadlistheads`, `dontsavepasswords`, `dontsavepms`, `dontusedirectx7`, `fixedport`, `fixedudpport`, `font`, `fontsize`, `fullscreenmode`, `head`, `joyselected`, `joystickon`, `language`, `limitnicknames`, `nicknamelimit`, `nodecompressionerror`, `nodirectinput`, `nohtmlimages`, `nohtmlinpms`, `nomassmessages`, `notoalls`, `noudp`, `reversestereo`, `saveimages`, `sortplayersbyname`, `waitvertical`, `musicon`. That is about 29 keys, which fits the "~27 keys" estimate above.
+- **Key bindings:** the only related 2.05 string is the bare prefix `keyset_`, so 2.05 probably builds `keyset_<action>_key0..2` and `keyset_<action>_joystickbutton` names at runtime [inf]. The actions in 2.22 are up, left, down, right, item, attack, action, map, switchtochat, itemlist, and pause, with defaults arrows/IJKL, D, S/space, A, M, Tab, Q, and P.
+- **2.22-only** (absent in 2.05): `automapping`, the `micro*`/`voice*` voice-chat keys, `midivolume`/`mp3volume`/`radiovolume`/`sfxvolume`, `startinfullscreen`, `quickplayerworlds`.
+- `fixedudpport` defaults to 14899 and `noudp=true` in 2.22. In 2.05 the UDP channel is a peer-to-peer channel between players; see `protocol/udp-p2p.md`.

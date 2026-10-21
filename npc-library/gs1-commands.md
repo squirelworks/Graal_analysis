@@ -2,7 +2,9 @@
 
 Date: 2026-10-14
 
-Derived from the public command tables, the Reborn scripting guide, the 3,187 scraped scripts, and observed offline behavior. No decompile material.
+Derived from the public command tables, the Reborn scripting guide, the 3,172 scraped scripts, and observed offline behavior. No decompile material.
+
+> For what each command actually does in client 2.05, see [gs1-command-reference-205.md](gs1-command-reference-205.md). It corrects the pattern letters below (`R` is a number, `D` is up 0, left 1, down 2, right 3) and notes that `warp` / `jump` are not GS1 commands.
 
 ## Control flow
 
@@ -31,7 +33,7 @@ The offline interpreter already executes arithmetic, comparison, and jumps. The 
 | `join` | Attach to another object | Rare |
 | `freezeplayer` / `unfreezeplayer` | Lock or unlock player input | Used in cutscenes |
 
-The public command table also lists draw-layer commands (`setbacktile`, `drawovertrees`, `setz`, `updateterrain`) and a few others that do not appear in the 3,187 scraped scripts.
+The public command table also lists draw-layer commands (`setbacktile`, `drawovertrees`, `setz`, `updateterrain`) and a few others that do not appear in the 3,172 scraped scripts.
 
 ## Pattern letters
 
@@ -39,13 +41,13 @@ When a command expands a template string, the letters are replaced as follows:
 
 - B — baddy name
 - C — color name
-- D — direction (0 south, 1 west, 2 east, 3 north)
+- D — direction (0 up, 1 left, 2 down, 3 right; corrected 2026-10-21)
 - F / Q — filename
 - I — item name
 - L — carried object name
 - M / S — arbitrary string
 - O — object name
-- R — the literal string “real”
+- R — numeric expression (corrected 2026-10-21; earlier read as the literal “real”)
 
 These letters appear in both the public tables and in a small number of the scraped scripts.
 
@@ -63,7 +65,7 @@ Wiring the first two is enough for an offline session to respond to player touch
 
 ## Event frequency (reminder)
 
-From the 3,187 scripts:
+From the 3,172 scripts:
 
 - `playerenters` — 2,268
 - `playertouchsme` — 1,986
@@ -74,3 +76,10 @@ From the 3,187 scripts:
 - `wasshot` — 728
 
 Most of these events call one of the commands listed above.
+
+## Update 2026-10-21
+
+- The full 2.05 command table (161 entries, op = 600 + index, 600–760) and the function/variable table (ids 100–825) are in `gs1-reference-205.md`, together with built-in event flags, constants, and differences from 2.22.
+- 2.05 interprets a parse tree built from script **text**. It does not run OpenGS1-style bytecode. The `Call`/`CmdCall` gap in Seihai is therefore a command-dispatch problem: map each command name to a host function, using the table's argument signatures.
+- `show` (759) and `hide` (760) are the last two entries of the 2.05 table. Earlier dumps that stopped at 758 missed them; dumps that listed 163 entries ran on into the direction-name table (`up`, `left`, …). **[2.05]**
+- `setfocus`/`resetfocus`, `spyfire`, `loadmap`, `canwarp`/`canwarp2`, `join`, `freezeplayer`, and `unfreezeplayer` are all present in 2.05. `freezeplayer` takes a time argument.
