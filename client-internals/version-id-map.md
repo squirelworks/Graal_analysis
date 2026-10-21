@@ -13,7 +13,28 @@ Date: 2026-10-14
 | `GNW22122` | 2.1.7.x | allowedversions.txt |
 | `GNW03014` | 2.2.2.0 | allowedversions.txt |
 | `GNW28015` | 2.3.1.0 | allowedversions.txt |
-| `GNW30123` | unmapped | seen on listserver port 14922 |
+| `GNW30123` | unmapped (reads as 30 Dec 200x by the date rule below) | seen on listserver port 14922 |
+| `GSERV007` | 1.21 | build catalogue |
+| `GSERV013` | 1.28 beta2 | build catalogue |
+| `GSERV014` | 1.3 test | build catalogue |
+| `GSERV016` | 1.31 | build catalogue |
+| `GSERV018` | 1.32 | build catalogue |
+| `GNW20020` | 1.33 | build catalogue |
+| `GNW22030` | 1.34 | build catalogue |
+| `GNW13040` | 1.35 | build catalogue |
+| `GNW10050` | 1.36 | build catalogue |
+| `GNW21050` | 1.37 | build catalogue |
+| `GNW22060` | 1.38 | build catalogue |
+| `GNW08011` | NewMain client (1.42 notes) | build catalogue |
+| `GNW23021` | 2.01, 2.01 rev1 | build catalogue |
+| `GNW15041` | 2.02, 2.02 rev1 | build catalogue |
+| `GNW20041` | 2.02 rev2 | build catalogue |
+| `GNW06051` | 2.03 | build catalogue |
+| `GNW24061` | 2.04 | build catalogue |
+| `G2N15041` | NewWorld betas 1 and 2 | build catalogue |
+
+GNW tokens are `GNW` + build date as DDMMY (GNW03081 = 3 Aug 2001). The 2.1 test builds (Sep 2001) still send GNW03081.
+Per-build hashes, dates and the rest are in `build-catalogue.md`.
 
 ## Filename → build
 
