@@ -59,7 +59,7 @@ Earlier notes had `x:u8 y:u8 width:u8 height:u8 tiles:raw`. The header bytes are
 
 ## Combat and objects (both directions)
 
-The client sends its own action. The server re-emits it to the rest of the level with `s player id` added in front. **[srv]** In 2.05 most of these also go peer to peer over UDP; the TCP copy is sent only when some player in the level has no UDP port, or when the server has an NPC server (HASNPCSERVER). See `udp-p2p.md`. **[2.05]** This rule covers these level-object packets only. Player props still go over TCP while UDP is active, as the lab capture in #7 shows.
+The client sends its own action. The server re-emits it to the rest of the level with `s player id` added in front. **[srv]** In 2.05 most of these also go peer to peer over UDP; the TCP copy is sent only when some player in the level has no UDP port, or when the server has an NPC server (HASNPCSERVER). See `udp-p2p.md`. **[2.05]** This rule covers these level-object packets only. Player props still go over TCP while UDP is active (seen in the lab captures, `tools/lab-setup.md`).
 
 | PLI | PLO | Name | Client layout (PLI) | Server copy as 2.05 reads it (PLO) | Tag |
 |----:|----:|------|---------------------|-----------------------------------|-----|
