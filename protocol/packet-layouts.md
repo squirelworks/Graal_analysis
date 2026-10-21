@@ -59,17 +59,17 @@ Earlier notes had `x:u8 y:u8 width:u8 height:u8 tiles:raw`. The header bytes are
 
 ## Combat and objects (both directions)
 
-The client sends its own action. The server re-emits it to the rest of the level with `s player id` added in front. **[srv]** In 2.05 most of these also go peer to peer over UDP; the TCP copy is sent only when some player in the level has no UDP port, or when the server has an NPC server (HASNPCSERVER). See `udp-p2p.md`. **[2.05]**
+The client sends its own action. The server re-emits it to the rest of the level with `s player id` added in front. **[srv]** In 2.05 most of these also go peer to peer over UDP; the TCP copy is sent only when some player in the level has no UDP port, or when the server has an NPC server (HASNPCSERVER). See `udp-p2p.md`. **[2.05]** This rule covers these level-object packets only. Player props still go over TCP while UDP is active, as the lab capture in #7 shows.
 
 | PLI | PLO | Name | Client layout (PLI) | Server copy as 2.05 reads it (PLO) | Tag |
 |----:|----:|------|---------------------|-----------------------------------|-----|
-| 4 | 11 | BOMBADD | `c x×2, c y×2, c power (+8 = the bomb is the sender's), c fuse` | `s player` + the same 4 bytes; power = `v & 7`, bit 8 = owned by that player | [srv][2.05] |
+| 4 | 11 | BOMBADD | `c x×2, c y×2, c power (+8 = the bomb is the sender's), c fuse` | `s player` + the same 4 bytes; power = `v & 7`, value 8 (bit 3) = owned by that player | [srv][2.05] |
 | 5 | 12 | BOMBDEL | `c x×2, c y×2` | **no player id**: `c x×2, c y×2`; removes the bomb at exactly that point | [srv][2.05] |
 | 9 | 19 | ARROWADD | `c x×2, c y×2, c flags, c type`, then one byte sent as `v + 33` instead of `v + 32`; flags = `dir & 3`, +4 extra effect, +8 owned | `s player` + the same 5 bytes; needs ≥ 5 | [srv][2.05] |
 | 10 | 20 | FIRESPY | `c (a × 8 + b)` | `s player` + that byte; the receiver uses only `a` | [srv][2.05] |
 | 11 | 21 | THROWCARRIED | empty | `s player` only | [srv][2.05] |
 | 26 | 40 | HURTPLAYER | `s victim, c (dx+4)×16, c (dy+4)×16, c power` [+ `i3 npc`] | `s attacker` + `c dx, c dy, c power` [+ `i3 npc`] | [srv][2.05] |
-| 27 | 36 | EXPLOSION | `c radius, c x×2, c y×2, c power + 8?` | `s player` + the same 4 bytes; power `& 7` clamped to 1–3, bit 8 = owned | [srv][2.05] |
+| 27 | 36 | EXPLOSION | `c radius, c x×2, c y×2, c power (+8 = the explosion is the sender's)` | `s player` + the same 4 bytes; power `& 7` clamped to 1–3, value 8 (bit 3) = owned | [srv][2.05] |
 | 36 | 46 | HITOBJECTS | `c power×2, c x×2, c y×2` [+ `i3 npc`] | `s player` + the same bytes | [srv][2.05] |
 | 15 | 2 | BADDYPROPS | rest = `c id` + BDPROP stream (passed through) | `c id` + BDPROP stream | [srv][2.05] |
 | 16 | 27 | BADDYHURT | `c id, c (dx+4)×16, c (dy+4)×16, c power` | same; applied only by the level leader | [srv][2.05] |
