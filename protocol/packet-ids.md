@@ -177,7 +177,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 3 | 0x23 | `PLI_NPCPROPS` | ✔ |   |
 | 4 | 0x24 | `PLI_BOMBADD` | ✔ |   |
 | 5 | 0x25 | `PLI_BOMBDEL` | ✔ | v6+ also sends it around login |
-| 6 | 0x26 | `PLI_TOALL` | · |   |
+| 6 | 0x26 | `PLI_TOALL` | ✔ | 2.05: chat text with a `toall:` prefix |
 | 7 | 0x27 | `PLI_HORSEADD` | ✔ |   |
 | 8 | 0x28 | `PLI_HORSEDEL` | ✔ |   |
 | 9 | 0x29 | `PLI_ARROWADD` | ✔ |   |
@@ -300,7 +300,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 252 | — | `PLI_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLI_BUNDLE` | · | several packets in one |
 
-2.05 senders were found for 0–5, 7–24, 26–30, 32–38, 80, and 81 **[2.05]**. No sender was found for 6 (`PLI_TOALL`), 25, or 31 (`PLI_PACKETCOUNT`). Toall chat may be sent as `PLPROP_CURCHAT` instead. Still open.
+2.05 senders were found for 0–5, 7–24, 26–30, 32–38, 80, and 81 **[2.05]**. A sender for 6 (`PLI_TOALL`) was also found: chat-bar text starting with `toall:` is sent as id 6 (see `chat-pm-rc.md`). No sender was found for 25 or 31 (`PLI_PACKETCOUNT`).
 
 Id 0 is overloaded. The login line starts with GCHAR 0 because that byte is the client type, and later `PLI_LEVELWARP` messages also use id 0. The server tells them apart by connection state. **[srv][2.05]**
 
