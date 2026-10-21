@@ -34,6 +34,7 @@ iterator = iterator * 0x8088405 + key
 pos = (iterator & 0xFFFF) % count + 1
 drop byte at pos-1
 ```
+Every message after the login line is scrambled, including the rest of the first frame. `pos` can be 1: the junk byte then sits before the id byte.
 RC clients: no scramble.
 
 ## Outgoing
@@ -46,3 +47,7 @@ Append message + `\n`. Compress (zlib) when ≥ 4096 bytes or on flush. Prefix 2
 
 ## Start map
 `level13.graal`
+
+## Note (2026-10-21)
+
+The "player scramble" above is gs2lib **gen 3** as seen by the server, which deletes one byte per message. On the 2.05 client side the byte is inserted, and its value is `((it >> 16) & 0x7F) + 0x20`. Insertion starts with the second message. The login's "key" GCHAR comes right after the type byte. RC 1.x is also gen 3. Only the web client is unscrambled. See `codec-and-framing.md`.
