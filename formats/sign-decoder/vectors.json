@@ -1,0 +1,79 @@
+[
+ {
+  "level": "hall.graal",
+  "x": 32,
+  "y": 21,
+  "hex": "314848464c6f762a6555576680273e3a4542474079314848466f6d762a655557668032443a4d3e79493a4b446d762a655557668032493a4b706d762a6555576680213a4b793a473d794c4e494545524c70",
+  "text": "Rooms#l\nHealing Room#l#u\nSkate park#u\nSpar#r#u\nBar and supllys#r"
+ },
+ {
+  "level": "hall.graal",
+  "x": 34,
+  "y": 53,
+  "hex": "413e454548793a473d79503e453c48463e794d4879762a6555576680233e4b3a47403e3d714c7941484e4c3e",
+  "text": "hello and welcome to \nDeranged's house"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 30,
+  "y": 51,
+  "hex": "363e453c48463e79334879363a4d3e4b36484b453d61",
+  "text": "Welcome To WaterWorld."
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 22,
+  "y": 52,
+  "hex": "233a4b4d41792c3a4b42484c7927484e4c3e",
+  "text": "Darth Marios House"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 10,
+  "y": 53,
+  "hex": "3641424c4d453e7932414849",
+  "text": "Whistle Shop"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 40,
+  "y": 52,
+  "hex": "224850792c42454442474079253a4b46",
+  "text": "Cow Milking Farm"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 58,
+  "y": 52,
+  "hex": "2148473e224b4e4c413e4b714c7922414e4b3c41",
+  "text": "BoneCrusher's Church"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 22,
+  "y": 25,
+  "hex": "2f42473b3a454579223e474d3e4b",
+  "text": "Pinball Center"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 10,
+  "y": 25,
+  "hex": "2f4e4b3e793242453e473c3e714c7927484e4c3e",
+  "text": "Pure Silence's House"
+ },
+ {
+  "level": "waterworld.graal",
+  "x": 52,
+  "y": 25,
+  "hex": "244e4b48537927484e4c3e",
+  "text": "Euroz House"
+ },
+ {
+  "level": "shop.graal",
+  "x": 32,
+  "y": 23,
+  "hex": "363e453c4846794d48792f3a3c602c3a47714c79463a40423c794c4148495e762a65555766807979797979797979742b424c4d79483f79424d3e464c74762a65555766805979204b4b48504c795979403e453a4d762a655557668059792148463b4c795979403e453a4d762a65555766804c3a52796c3b4e5279424d3e46473a463e6c",
+  "text": "Welcom to Pac-Man's magic shop!\n        ~List of items~\n5 Arrows 5 gelat\n5 Bombs 5 gelat\nsay \"buy itemname\""
+ }
+]
