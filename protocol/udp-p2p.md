@@ -12,6 +12,8 @@ All facts here are from client 2.05 rev 2. **[2.05]** No open-source server impl
 ## Datagram
 `seq` (1 byte) + payload. The whole datagram is XORed with the low byte of `peerId XOR ownId`.
 
+In code, the key is the low byte of the recipient player's id field XOR the same field on the local player object. In practice the local object's field reads **1**, so the effective key is `recipientId XOR 1`. In the lab, player 2 sent with key 3 and player 3 sent with key 2, and every datagram decoded with `seq` counting up from 0. The local player apparently never stores its own server id in that field. **[2.05][cap]**
+
 - `seq` is per peer and wraps mod 256. A duplicate `seq` is dropped.
 - There is no zlib, no length prefix, and no gen-3 insertion.
 - Payload = GCHAR UDP id + fields, in the same G-type encodings as TCP.
@@ -40,6 +42,13 @@ A level-local action goes **UDP only** when every other player in the level has 
 | 26 | trigger action | send/recv |
 
 The ids 10–20 and 25–26 line up with the matching TCP PLI meanings (`PLI_BOMBADD` 4 …), but the numbers differ. The movement fields reuse PLPROP encodings [inf: field order not documented here].
+
+## Observed on the wire **[cap]**
+
+Lab, two 2.05 clients on one level, both with `noudp=false`:
+- **Id 0 movement:** six GCHARs: X×2, Y×2, SPRITE (direction), STATUS (20 in the lab), CARRYSPRITE (−1 = none), and one more value (seen 41, 51 and 55; meaning not traced). It is sent about every 100 ms while moving, then less often.
+- **Id 15 showimg:** four GCHARs (index, x, y, name length) followed by the image name, e.g. the AFK emoticon `emoticon_afk_stay.mng`, then a few trailing bytes. It is re-sent every ~3 s while shown.
+- **TCP too:** while UDP was active, both clients still sent `PLI_PLAYERPROPS` X/Y/sprite updates over TCP. When the server is in the level, the "UDP only" routing rule does not stop the TCP copy. Exactly which condition picks TCP is not traced. **[inf]**
 
 ## Payloads of ids 21, 23, 24
 

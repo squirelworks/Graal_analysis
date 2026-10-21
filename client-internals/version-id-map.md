@@ -13,7 +13,7 @@ Date: 2026-10-14
 | `GNW22122` | 2.1.7.0–2.1.7.1 (CLVER_2_17) | allowedversions.txt; gs2lib; GServer versions.txt |
 | `GNW03014` | 2.2.2.0 (CLVER_2_22) | allowedversions.txt; gs2lib |
 | `GNW28015` | 2.3.1.0 (CLVER_2_31) | allowedversions.txt; gs2lib |
-| `GNW30123` | unmapped; in no gs2lib table (2019–2026) and not in versions.txt. Probably a listserver-side or third-party token | seen on listserver port 14922 |
+| `GNW30123` | 2.22 **listserver** protocol token. The 2.22 client sends it in listserver packet 7 (key + token + `newmain`). It is not a game-server token, which is why no gs2lib client table has it **[2.22][cap]** | listserver port 14922 |
 
 ## Filename → build
 
