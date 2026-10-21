@@ -13,3 +13,13 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
 
 See the individual files for the measured contracts.
+
+## File-format helpers (`file-formats/`)
+
+Pure-Python helpers written for the notes in `formats/` and `client-internals/`. No client code.
+
+| Script | Does |
+|--------|------|
+| `graaldes.py` | The client's DES variant (bit-reversed key bytes) and its 48-character string cipher. Decrypts saved passwords. See `client-internals/saved-passwords.md`. |
+| `gwebl.py` | Decrypts and parses `weblevels/*.code` (GWEBL001). Also a GR-V board reader and writer and a GR-V level parser. See `formats/gwebl001-cache.md`. |
+| `extract_tutorials.py` | Pulls the 13 embedded tutorial levels out of a 2.0x exe (needs `pefile`). See `formats/level-binary-client.md`. |
