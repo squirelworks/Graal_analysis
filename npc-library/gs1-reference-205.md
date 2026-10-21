@@ -31,7 +31,7 @@ One letter per argument in the table's signature column:
 
 This replaces the "R = literal `real`" reading in `gs1-commands.md`.
 
-## Commands (159) **[2.05]**
+## Commands (161) **[2.05]**
 
 | Op | Command | Args | Op | Command | Args | Op | Command | Args |
 |---:|---------|------|---:|---------|------|---:|---------|------|
@@ -88,10 +88,11 @@ This replaces the "R = literal `real`" reading in `gs1-commands.md`.
 | 750 | `attachplayertoobj` | RR | 751 | `setshape2` | RRR | 752 | `detachplayer` | — |
 | 753 | `enableselectweapons` | — | 754 | `disableselectweapons` | — | 755 | `setbacktile2`† | RRRRR |
 | 756 | `setz`† | RRRRRRRR | 757 | `updateterrain` | — | 758 | `loadmap` | F |
+| 759 | `show` | — | 760 | `hide` | — | | | |
 
 † = not in the 2.22 `commands.rtf`: either removed or renamed by 2.22 (`setgif`→`setimg`, `setgifpart`→`setimgpart`), or undocumented (`setz`, `drawovertrees`, `setbacktile*`, `canwarp*`, `join`, `freezeplayer2`, `setbow`).
 
-**Missing from the table:** `hide` and `show`, the two most common commands in the scraped library, are not table entries. `showlocal`, `hidelocal`, `hideimg`, `hideplayer`, and `hidesword` are. Either the parser special-cases them or the table extraction missed entries. **Open.** Commands documented for 2.22 but absent in 2.05 include `addstring`/`insertstring`/`replacestring`/`removestring`/`deletestring`, `putnpc2`, `showtext`/`showtext2`, `showpoly`, `showani`, `play2`, `setshootparams`, `shoot`, `enablefeatures`, `seteffectmode`, `changeimgmode`, and the mouse/keypressed family.
+**Table size:** 161 commands (600–760). `show` (759) and `hide` (760), the two most common commands in the scraped library, are the last two entries; an earlier dump stopped before them. The two records after 760 belong to the direction-name table, not to the command table. Which commands compile but have no executor case is in `gs1-command-reference-205.md`. Commands documented for 2.22 but absent in 2.05 include `addstring`/`insertstring`/`replacestring`/`removestring`/`deletestring`, `putnpc2`, `showtext`/`showtext2`, `showpoly`, `showani`, `play2`, `setshootparams`, `shoot`, `enablefeatures`, `seteffectmode`, `changeimgmode`, and the mouse/keypressed family.
 
 ## Functions and variables **[2.05]**
 

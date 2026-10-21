@@ -4,12 +4,33 @@ Date: 2026-10-14
 
 ## Protocol token → version
 
+GNW tokens are `GNW` + build date as DDMMY (GNW03081 = 3 Aug 2001). The 2.1 test builds (Sep 2001) still send GNW03081.
+Per-build hashes, dates and the rest are in `build-catalogue.md`.
+
 | Token | Version | Source |
 |-------|---------|--------|
 | `GNW07080` | 1.39 (CLVER_1_39) | version-token pack / gs2lib |
 | `GNW13110` | 1.41r1 | allowedversions.txt |
 | `GNW03081` | 2.05 rev 2 / "2002ver9" leak (CLVER_2_052, sorts below CLVER_2_1) | gs2lib 2026; GServer versions.txt; built char-by-char in the 2.05 login |
 | `GNW24011` | 2.0 | version-token pack (v2.0 equivalent) |
+| `GSERV007` | 1.21 | build catalogue |
+| `GSERV013` | 1.28 beta2 | build catalogue |
+| `GSERV014` | 1.3 test | build catalogue |
+| `GSERV016` | 1.31 | build catalogue |
+| `GSERV018` | 1.32 | build catalogue |
+| `GNW20020` | 1.33 | build catalogue |
+| `GNW22030` | 1.34 | build catalogue |
+| `GNW13040` | 1.35 | build catalogue |
+| `GNW10050` | 1.36 | build catalogue |
+| `GNW21050` | 1.37 | build catalogue |
+| `GNW22060` | 1.38 | build catalogue |
+| `GNW08011` | NewMain client (1.42 notes) | build catalogue |
+| `GNW23021` | 2.01, 2.01 rev1 | build catalogue |
+| `GNW15041` | 2.02, 2.02 rev1 | build catalogue |
+| `GNW20041` | 2.02 rev2 | build catalogue |
+| `GNW06051` | 2.03 | build catalogue |
+| `GNW24061` | 2.04 | build catalogue |
+| `G2N15041` | NewWorld betas 1 and 2 | build catalogue |
 | `GNW22122` | 2.1.7.0–2.1.7.1 (CLVER_2_17) | allowedversions.txt; gs2lib; GServer versions.txt |
 | `GNW03014` | 2.2.2.0 (CLVER_2_22) | allowedversions.txt; gs2lib |
 | `GNW28015` | 2.3.1.0 (CLVER_2_31) | allowedversions.txt; gs2lib |

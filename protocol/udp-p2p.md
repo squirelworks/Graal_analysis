@@ -32,13 +32,25 @@ A level-local action goes **UDP only** when every other player in the level has 
 | 16 / 17 | horse add / del | send/recv |
 | 18 | throw carried | send/recv |
 | 19 / 20 | item add / del | send/recv |
-| 21, 23, 24 | handled on receive; no 2.05 sender found | recv |
+| 21 | remote hit from GS1 `hitplayer`, sent only to the victim: knockback dx, dy and half-hearts | send/recv |
 | 22 | chat (≤ 253 bytes) | send/recv |
+| 23 | level name only; rewritten on receive as `PLPROP_CURLEVEL` (20). No 2.05 sender | recv |
+| 24 | "entered level": X, Y, level name; sent to players in the 3×3 gmap neighbourhood | send/recv |
 | 25 | hit objects | send/recv |
 | 26 | trigger action | send/recv |
 
 The ids 10–20 and 25–26 line up with the matching TCP PLI meanings (`PLI_BOMBADD` 4 …), but the numbers differ. The movement fields reuse PLPROP encodings [inf: field order not documented here].
 
+## Payloads of ids 21, 23, 24
+
+- **21** (hit): `GCHAR((dx+4)*16)`, `GCHAR((dy+4)*16)`, `GCHAR(halfhearts)`, then optional attacker-object bytes.
+  `dx`/`dy` is the direction from the script's `fromx, fromy` to the victim, each component clamped to −4..4. The receiver decodes it as
+  `(b-0x60)/16`, and the damage as `(b-0x20)/2` capped at 1.0. The sender only fires when the victim is in the same level as the local player (it compares their level objects).
+- **23**: level name (raw, no length byte). The receiver adds the prop id and length itself (`chr(20+32) + chr(len+32) + name`) and applies it as prop 20 (CURLEVEL). No sender was found in 2.05: no constant id,
+  no literal, and no computed id feeds a send helper. A later or earlier client may send it. **[inf]**
+- **24**: `GCHAR(x*2)`, `GCHAR(y*2)`, level name (raw, no length byte; the receiver adds it). It is sent when the player enters a level, to peers in the surrounding
+  gmap levels. The receiver applies it as props 15, 16 and 20 (X, Y, CURLEVEL).
+
 ## Open
-- What ids 21, 23, and 24 carry.
+- Which client sends id 23 (2.05 only receives it).
 - Whether 2.1+ clients kept this channel. In 2.22, `noudp=true` is the default, and voice chat also used UDP.

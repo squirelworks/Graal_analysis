@@ -4,6 +4,8 @@ Date: 2026-10-14
 
 Derived from the public command tables, the Reborn scripting guide, the 3,187 scraped scripts, and observed offline behavior. No decompile material.
 
+> For what each command actually does in client 2.05, see [gs1-command-reference-205.md](gs1-command-reference-205.md). It corrects the pattern letters below (`R` is a number, `D` is up 0, left 1, down 2, right 3) and notes that `warp` / `jump` are not GS1 commands.
+
 ## Control flow
 
 - `if` / `else` — conditional. The nearby form is used for range checks against the player or other objects.
@@ -77,7 +79,7 @@ Most of these events call one of the commands listed above.
 
 ## Update 2026-10-21
 
-- The full 2.05 command table (159 entries, op = 600 + index) and the function/variable table (ids 100–825) are in `gs1-reference-205.md`, together with built-in event flags, constants, and differences from 2.22.
+- The full 2.05 command table (161 entries, op = 600 + index, 600–760) and the function/variable table (ids 100–825) are in `gs1-reference-205.md`, together with built-in event flags, constants, and differences from 2.22.
 - 2.05 interprets a parse tree built from script **text**. It does not run OpenGS1-style bytecode. The `Call`/`CmdCall` gap in Seihai is therefore a command-dispatch problem: map each command name to a host function, using the table's argument signatures.
-- `hide` and `show` are not entries in the 2.05 table even though most scraped scripts use them. Treat them as aliases of `hidelocal`/`showlocal` offline until the 2.05 parser is traced. **[inf]**
+- `show` (759) and `hide` (760) are the last two entries of the 2.05 table. Earlier dumps that stopped at 758 missed them; dumps that listed 163 entries ran on into the direction-name table (`up`, `left`, …). **[2.05]**
 - `setfocus`/`resetfocus`, `spyfire`, `loadmap`, `canwarp`/`canwarp2`, `join`, `freezeplayer`, and `unfreezeplayer` are all present in 2.05. `freezeplayer` takes a time argument.
