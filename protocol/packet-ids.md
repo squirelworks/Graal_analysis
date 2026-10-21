@@ -209,7 +209,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 35 | 0x43 | `PLI_ADJACENTLEVEL` | ✔ |   |
 | 36 | 0x44 | `PLI_HITOBJECTS` | ✔ |   |
 | 37 | 0x45 | `PLI_LANGUAGE` | ✔ |   |
-| 38 | 0x46 | `PLI_TRIGGERACTION` | ✔ | `i3 fromNPC`, `c xTile`, `c yTile`, `list actionAndParams` |
+| 38 | 0x46 | `PLI_TRIGGERACTION` | ✔ | `i3 fromNPC`, `c x`, `c y`, `list actionAndParams`; 2.05 sends x and y in half-tiles (see `packet-layouts.md`) |
 | 39 | 0x47 | `PLI_TAMPERCHECK` | · | `i5, i5` memory hashes |
 | 40 | 0x48 | `PLI_SHOOT` | · |   |
 | 41 | 0x49 | `PLI_SERVERWARP` | · |   |
