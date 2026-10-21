@@ -72,3 +72,18 @@ DirectDraw and DirectSound. `TAdventure_DXDraw*` handles surface restore and the
 4. 2.05+: length + zlib, `.nw`, token `GNW03081`, post-login LCG.
 
 Correction (2026-10-21, from `build-catalogue.md`): zlib packet compression starts with 1.2 (May 1999), and the post-login LCG insertion (gen 3) is already in 1.41 rev1 and every 2.0x build, not only 2.05+. 1.39 has no LCG insertion. `.nw` is in NewMain 1.42 and 2.05 but not in 2.00–2.04.
+
+## 1998 betas to 1.32 (added 2026-10-21)
+
+All 25 client builds from 1st Graal to 1.32 have now been analysed, together with the bundled GServer 1.1.9, 1.21, 1.28 and 1.3 and RemoteControl 1.21, 1.28 and 1.3. See:
+
+- `protocol/relay-1998.md`: the gen-1 text relay (lobby lines, `D` payload types per build, game names `Zelda2` and `Graal` to `Graal8`).
+- `protocol/gserv-1999.md`: the GSERV007 to GSERV018 login, zlib framing, which tokens each GServer accepts, and the id ranges.
+- `formats/graalsav.md`: Graalsav1 to Graalsv11 and the DES-wrapped `.code` and `.gsave` files.
+
+Two corrections to earlier assumptions:
+
+- `TAdventureServer` (from 15th Graal) is a hostname-to-IP cache record, not a server or a peer-to-peer mode. The 1998 clients only ever connect out to a relay.
+- Port 14801 is the compiled-in local default, and 14802 is the Cyberjoueur relay that the connect dialog points at. Neither one is a listening port in the client.
+
+In the 1998 clients the network classes are `TAdventureClient` (the relay connection), `TOtherClient` (one per relay peer) and, from 3rd Graal, `TWebClient` (the HTTP level fetcher). The script classes listed above for 1.39 (`TAdventureLevel`, `TAdventureCommand` …) are not in 1st or 3rd Graal.

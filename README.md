@@ -5,8 +5,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No de
 ## Contents
 
 - `npc-library/` — 3,187 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog.
-- `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes. See also `tile-walk.md`, `sign-text.md`, and `gobjset01.md`.
-- `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`.
+- `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, and `gobjset01.md`.
+- `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`, `relay-1998.md` (the 1998 text relay) and `gserv-1999.md` (GSERV007–018 logins, gen 2).
 - `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, and `version-tokens.md`.
 - `graal3d/` — the February 2000 Graal3D client and its GServer: protocol (TCP + peer-to-peer UDP), props, accounts, `.x` levels, and how it relates to the 2D GServer.
 - `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, and RemoteControl.
