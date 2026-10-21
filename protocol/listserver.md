@@ -46,7 +46,7 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 ### 2.05 specifics **[2.05]**
 - `TServerListClient` derives from the same `TGraalClient` base as the game connection. It overrides only the receive handler. Its **send path is the base one, with no gen-3 insertion**, which fits a cipher-free pre-2.2 list link.
 - Its receive handler switches on two ids only: 0 (server list: count followed by length-prefixed fields) and 1.
-- The 2.05 list host and port are not in the string table as plain text. Still open. The captures show the listserver on ports 14922/14923 (`GNW30123` login, `GNW07080` guest). **[cap]**
+- The 2.05 list host and port are not in the string table as plain text. They are DES-hidden and decode to `www.graalonline.com`, port `14921`. 2.05 sends only id 0 `newmain` on that link. **[2.05]** The captures show later listservers on ports 14922/14923 (`GNW30123` login, `GNW07080` guest). **[cap]**
 
 `GNW30123` (seen on 14922) is the 2.22/2.31 listserver token. Both clients send listserver id 7 as `c key` + `GNW30123` + `newmain`, then switch to gen 5 and send id 1 with the account and password. It is a listserver protocol token, not a game build, so the game-version tables do not list it. **[bin]** (See `client-versions.md`.)
 

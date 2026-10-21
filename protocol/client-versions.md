@@ -4,7 +4,7 @@ Date: 2026-10-21
 
 Sources: the four client executables in the Graal Reborn 2.2.2.0 folder (`Graal.exe` = 2.05 rev 2, `Graal_2171.exe`, `Graal_222.exe`, `Graal_231.exe`), read statically. Server-side names are from gs2lib. Tags: **[bin]** read from the client binaries · **[srv]** server source only · **[doc]** `newfeatures*.txt` · **[inf]** inferred.
 
-All four clients are Delphi builds with the same network classes: one base socket class, a game-server subclass, and a listserver subclass. They also share the Borland `Random` LCG (`it = it * 0x08088405 + key`, seed `0x04A80B38`). **[bin]**
+All four clients are Delphi builds with the same network classes: one base socket class, a game-server subclass, and a listserver subclass. They also share the same cipher LCG, `it = it * 0x08088405 + key` with seed `0x04A80B38`. It uses the Borland `Random` multiplier, but adds the key where Borland adds 1. **[bin]**
 
 ## Game-server login
 
@@ -72,13 +72,13 @@ Counts: 2.05 handles 59 ids, 2.17 handles 79, 2.22 handles 80, and 2.31 handles 
 |---|---|---|---|---|
 | Host and port | built in, DES-hidden `www.graalonline.com`, `14921` | `arrays2.dat` | `arrays2.dat` | `arrays2.dat` |
 | First message | id 0 `newmain` | id 0 `newmain` | id 7, key, `GNW30123newmain` | id 7, key, `GNW30123newmain` |
-| Then | id 1 `str account, str password` | same | same, now gen 5 | same, now gen 5 |
+| Then | nothing: 2.05 sends only id 0 and waits for the list | id 1 `str account, str password` | id 1, now gen 5 | id 1, now gen 5 |
 | Frame | `u16be` + zlib, no cipher | same | gen 5 after the first message | gen 5 after the first message |
 
 **[bin]**
 
 - **`GNW30123` is the 2.22/2.31 listserver token.** It travels inside listserver id 7 (`V2ENCRYPTKEYCL`), straight after the key, and is immediately followed by the list name `newmain`. So it is a listserver protocol token, not a game build, which is why no game-version table has it. **[bin][srv]**
-- From 2.17 the listserver address comes from `arrays2.dat`, a CRLF text file checked against the 128-byte signature in `arrays2.sig`. The verification key is a long hex string hidden in the exe with the same `~b − 10` map. The signature algorithm is not identified yet. Lines: 0 = primary host, 1 = port, 2 = site domain, 3 = account-registration URL, 4 = translation URL, 5 and 6 = fallback hosts. The client tries up to three hosts in turn. **[bin]** The Graal Reborn copy reads `listserver.graal.in`, port `14922`, with fallbacks `listserver.graal.cc` and `listserver.graalonline.biz`. `graal.sig` is checked the same way against the executable itself, which is the "Graal.exe corrupted" check in `readme.txt`. **[bin][doc]**
+- From 2.17 the listserver address comes from `arrays2.dat`, a CRLF text file checked against the 128-byte signature in `arrays2.sig`. The verification key is a long hex string hidden in the exe with the same `~b − 10` map. The signature algorithm is not verified here (RSA-1024 is a plausible reading of the key and signature sizes) **[inf]**. Lines: 0 = primary host, 1 = port, 2 = site domain, 3 = account-registration URL, 4 = translation URL, 5 and 6 = fallback hosts. The client tries up to three hosts in turn. **[bin]** The Graal Reborn copy reads `listserver.graal.in`, port `14922`, with fallbacks `listserver.graal.cc` and `listserver.graalonline.biz`. `graal.sig` is checked the same way against the executable itself, which is the "Graal.exe corrupted" check in `readme.txt`. **[bin][doc]**
 - 2.05 has no `arrays2.dat` or `.sig` handling at all. **[bin]**
 
 ## Open
