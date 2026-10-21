@@ -70,3 +70,5 @@ DirectDraw and DirectSound. `TAdventure_DXDraw*` handles surface restore and the
 2. 1st Graal: same port, Delphi, `.zelda` dominant, no token, `Graalsav1` saves.
 3. 1.39: port 14900, token `GNW07080`, full event set, DirectX, config file.
 4. 2.05+: length + zlib, `.nw`, token `GNW03081`, post-login LCG.
+
+Correction (2026-10-21, from `build-catalogue.md`): zlib packet compression starts with 1.2 (May 1999), and the post-login LCG insertion (gen 3) is already in 1.41 rev1 and every 2.0x build, not only 2.05+. 1.39 has no LCG insertion. `.nw` is in NewMain 1.42 and 2.05 but not in 2.00–2.04.
