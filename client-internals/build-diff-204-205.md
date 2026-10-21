@@ -71,7 +71,7 @@ All 163 command records in the 2.05 table are present in rev1 and rev2.
 
 **Smaller additions:**
 - PMs are written to `pms\messages_<name>.txt`.
-- `drawaslight` appears in the drawing code.
+- One drawing routine gains a `drawaslight` check. The `drawaslight` script command itself predates 2.0 (it is already in the NewMain 1.42 command table).
 - The script editor gains a 400-instruction routine that handles `/* */` comments and tabs. It is reached from a new button handler, matching the changelog's "new button in the script editor".
 - A new level-editor routine, reached from a toolbar button, handles `playerx` / `playery` with values clamped to 0–61.
 - 2.04's routine that installed `tempsitc.ttf` into the Windows fonts folder is gone from 2.05, and so is the `Courier New` default in the main form constructor.
