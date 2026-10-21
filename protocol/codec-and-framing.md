@@ -56,10 +56,10 @@ u16be length | body
 
 State: `it` (u32), seeded `0x04A80B38`. Key `k` = 7-bit random value, sent once in the login line. **[2.05]**
 
-Per outgoing message, starting with the **second** message of the session (the login line is sent clean). **[2.05]**
+Per outgoing message, starting with the **second** message of the session. Only the login line itself is sent clean. The messages that follow it in the same first frame (such as `PLI_LANGUAGE`) already carry the byte. **[2.05][cap]**
 
 1. `it = it * 0x08088405 + k` (mod 2^32).
-2. `pos = (it & 0xFFFF) mod len + 1` (1-based; `len` includes the trailing `\n`).
+2. `pos = (it & 0xFFFF) mod len + 1` (1-based; `len` includes the trailing `\n`). `pos` can be 1, which puts the junk byte **before the id byte**, so a decoder must not assume the id is at offset 0 until the byte is removed. **[2.05][cap]**
 3. Insert one byte `((it >> 16) & 0x7F) + 0x20` before the 1-based position `pos`.
 
 The server mirrors this: same LCG step, deletes the byte at 0-based `(it & 0xFFFF) mod len`. **[srv]** The server's own gen-3 encoder always inserts `)` instead of an iterator-derived byte. That is harmless because the receiver throws the byte away. **[srv]** Gen 3 runs per message *after* decompression, not over the whole frame. **[srv]**
@@ -80,7 +80,7 @@ Same LCG and key. For each 4-byte group, advance `it` and XOR the group with the
 ## 2.05 send pipeline (update 2026-10-21) **[2.05]**
 
 1. Build each message as GCHAR id + data + `\n`.
-2. From the second message on, apply the gen-3 insertion to **this message**, before compression.
+2. From the second message on (every message after the login line, including the rest of the first frame), apply the gen-3 insertion to **this message**, before compression. The byte may land at position 1, before the id.
 3. Append it to the out buffer.
 4. Flush: zlib-compress the whole buffer (several messages) into one block and prefix it with u16be length. A flush happens at 0x1000 bytes or at the end of the tick. The link is dropped if more than 0x40000 bytes are queued.
 

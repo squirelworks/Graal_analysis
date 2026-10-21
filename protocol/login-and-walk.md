@@ -24,7 +24,7 @@ GSTRING password                                      [2.05]
 
 1. Read the type GCHAR. `type = 1 << value`. 0 → client, 1 → RC, 2 → NPC-server, 3 → NC, 4 → client 2.19–2.21, 5 → client 2.22+, 6 → RC2, 8 → web.
 2. For type 0, read 8 bytes as a token. 2.05 puts the key first, so these bytes are not a known token. The server rewinds one byte, switches to gen 3, reads the key, then reads the real 8-byte token.
-3. Read the account and password GSTRINGs. Newer clients (2.22+) append an identity string after them. 2.05 does not. **[inf]**
+3. Read the account and password GSTRINGs. The login line ends there for 2.05, and also for 2.22 and 2.31 (a static read of those clients' login routines finds no identity string after the password). The server's optional identity-string read is for later clients. **[2.05][bin]**
 4. `GNW03081` maps to `CLVER_2_052` in current gs2lib. That enum sits **below** `CLVER_2_1`, so the server takes every pre-2.1 code path for 2.05. These include no file modtimes, `PLPROP_GANI` sent as the bow slot, the `sendLevel141` level sequence, and `gr.x`/`gr.y` movement forwarding.
 
 Other login tokens from gs2lib: NC `NCL11012`/`NCL21075`, RC `GSERV023`–`GSERV025`, NPC-server `GRNS0000`/`LNX00001`. **[srv]**

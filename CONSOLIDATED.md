@@ -8,7 +8,7 @@ Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serv
 
 ### Levels
 - **GLEVNW01** (`.nw`) — text format. Header, `BOARD x y width layer tiledata` (2-char base64 tiles), `NPC` blocks, `LINK`/`SIGN`/`CHEST`/`BADDY` records.
-- **GR-V1** (`.graal`) — binary format. 8-byte magic, then a 12-bit (1.00) or 13-bit (1.01–1.03) LSB-first tile bit stream with RLE and double-RLE control codes, then text sections for links, baddies, NPCs (`image#script`), chests, and signs. See `formats/level-binary.md`.
+- **GR-V1** (`.graal`) — binary format. 8-byte magic, then a 12-bit (1.00, 1.01) or 13-bit (1.02, 1.03) LSB-first tile bit stream with RLE and double-RLE control codes, then text sections for links, baddies, NPCs (`image#script`), chests, and signs. See `formats/level-binary.md`.
 - **Z3-V1** (`.zelda`) — earlier binary. Same 12-bit RLE board; links, baddies (verses only in 1.04), and signs; no NPCs or chests.
 
 ### Tiles
@@ -22,19 +22,19 @@ Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serv
 - `ANI` carries placements. A stepper advances the frame index.
 
 ### Maps
-- **GRMAP001** (`.gmap`) — world map linking levels. Reader keys are in `formats/gmap.md`. 2.05 predates gmaps and uses `bigmap.txt`/`minimap.txt` instead.
+- **GRMAP001** (`.gmap`) — world map linking levels. Reader keys are in `formats/gmap.md`. 2.05 rev 2 has the `GRMAP001` string and a reader, but no static caller was found; its active path is `bigmap.txt`/`minimap.txt`.
 
 ## Protocol
 
 ### Framing
 - Frame = u16be length + zlib body (zlib 1.1.2 in 2.05). Message = GCHAR id + payload + `\n`. Binary payloads go behind `PLO_RAWDATA` (100).
-- **2.05 = gs2lib gen 3:** the client inserts one byte per message from the second message on. The iterator is seeded `0x04A80B38` and stepped `it = it*0x08088405 + key`. The byte `((it>>16)&0x7F)+0x20` goes in at 1-based position `(it&0xFFFF) % len + 1`. Server→client is plain zlib. The insertion is applied per message before the buffer is compressed.
+- **2.05 = gs2lib gen 3:** the client inserts one byte per message from the second message on. The iterator is seeded `0x04A80B38` and stepped `it = it*0x08088405 + key`. The byte `((it>>16)&0x7F)+0x20` goes in at 1-based position `(it&0xFFFF) % len + 1`, which can be 1 (before the id byte). Only the login line is clean. Server→client is plain zlib. The insertion is applied per message before the buffer is compressed.
 - Full-frame partial XOR with the same LCG is gen 4/5 (2.19+ clients), not 2.05. See `protocol/codec-and-framing.md`.
 
 ### Login
 - First line: GCHAR client type (0) + GCHAR key (`rand & 0x7F`, the old "random prefix") + `GNW#####` + GSTRING account + GSTRING password. Then `PLI_LANGUAGE` (37).
 - Observed tokens: `GNW28015`, `GNW22122`, `GNW03014`, `GNW07080`, `GNW30123`.
-- `GNW07080` = 1.39. `GNW03081` = 2.05 rev 2 (CLVER_2_052, pre-2.1 paths). `GNW22122` = 2.17, `GNW03014` = 2.22, `GNW28015` = 2.31. `GNW30123` is still unmapped.
+- `GNW07080` = 1.39. `GNW03081` = 2.05 rev 2 (CLVER_2_052, pre-2.1 paths). `GNW22122` = 2.17, `GNW03014` = 2.22, `GNW28015` = 2.31. `GNW30123` is the 2.22/2.31 listserver token (see `protocol/client-versions.md`).
 
 ### Movement
 - The short frames headed wire `"` are `PLI_PLAYERPROPS` (2) prop streams: 15 X, 16 Y, 17 SPRITE (GCHAR, half-tiles). Not f32.
@@ -62,7 +62,7 @@ Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serv
 | `playersays` | 43 |
 
 ### Script shape
-Scripts follow `image.gif#if (event) { body }`. Common commands: `hide`, `show`, `set`, `unset`, `say`, `setlevel`, `warp`, `hurt`. The 2.05 tables (159 commands, op = 600 + index; 177 functions/vars) are in `npc-library/gs1-reference-205.md`.
+Scripts follow `image.gif#if (event) { body }`. Common commands: `hide`, `show`, `set`, `unset`, `say`, `setlevel`, `warp`, `hurt`. The 2.05 tables (161 commands, op = 600 + index, 600–760; 177 functions/vars) are in `npc-library/gs1-reference-205.md`.
 
 ### GS1 bytecode
 The 2.05 client does **not** use bytecode. It parses script text into a tree and interprets that recursively. The OpenGS1 opcodes below belong to Seihai's own VM, a reimplementation.
@@ -88,7 +88,7 @@ A local session can:
 | `GNW22122` | 2.17 |
 | `GNW28015` | 2.31 |
 | `GNW03014` | 2.22 |
-| `GNW30123` | unmapped (listserver capture) |
+| `GNW30123` | 2.22/2.31 listserver token |
 
 Filename builds: `Graal_2171` = 2.171, `Graal_222` = 2.22, `Graal_231` = 2.31. PE FileVersion is authoritative for editors.
 

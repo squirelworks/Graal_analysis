@@ -24,7 +24,7 @@ text   signs         lines until an empty line or EOF
 
 ## Board bit stream
 
-- Code width: **12 bits** for `GR-V1.00` and all `Z3-V1.*`; **13 bits** for `GR-V1.01`–`.03`.
+- Code width: **12 bits** for `GR-V1.00`, `GR-V1.01` and all `Z3-V1.*`; **13 bits** for `GR-V1.02` and `GR-V1.03` only. This is the 2.05 loader's rule (it compares the magic against 1.02 and 1.03 to pick 13 bits). **[2.05]**
 - Codes are read least-significant-bit first: bytes are appended to a little-endian bit buffer and `width` bits are taken from the bottom.
 - Flag bit = the top bit of the code (`0x800` at 12 bits, `0x1000` at 13 bits).
   - **Flag set:** a control code. `count = code & 0xFF`. If `code & 0x100` is set, the next run is a **double** run.
@@ -34,7 +34,7 @@ text   signs         lines until an empty line or EOF
 - Double run: read two tiles A and B and write `A B` `count` times (`{double 4} 5 6` → `5 6 5 6 5 6 5 6`), then reset.
 - Tiles fill `board[x + 64*y]` row by row, layer 0 only.
 
-12-bit files cannot address tiles ≥ 2048 (the flag bit takes the top bit). That is why 1.01 widened the code to 13 bits for the 4096-tile `pics1`. **[inf]**
+12-bit files cannot address tiles ≥ 2048 (the flag bit takes the top bit). That is why 1.02 widened the code to 13 bits for the 4096-tile `pics1`. **[inf]**
 
 ## Records
 
@@ -55,4 +55,4 @@ Coordinates in these records are whole tiles (GCHAR), not half-tiles. **[srv]**
 
 ## Open
 - GR-V1.04 appears only in the 2.31 binary (`cross-version-anchors.md`). Its changes are unknown.
-- Whether the 2.05 writer emits double runs or only single runs.
+- ~~Whether the 2.05 writer emits double runs.~~ Answered: it does. The writer emits a single run for 2 to 64 equal tiles and a double run (`ABAB…`, up to 64 pairs) where the pattern starts; it always writes `GR-V1.03` for non-`.nw` files. Single runs of exactly 64 occur in the embedded tutorial levels. **[2.05]**

@@ -34,6 +34,7 @@ iterator = iterator * 0x8088405 + key
 pos = (iterator & 0xFFFF) % count + 1
 drop byte at pos-1
 ```
+Every message after the login line is scrambled, including the rest of the first frame. `pos` can be 1: the junk byte then sits before the id byte.
 RC clients: no scramble.
 
 ## Outgoing
