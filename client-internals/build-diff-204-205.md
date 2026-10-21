@@ -5,7 +5,10 @@ Date: 2026-10-21
 This compares the three builds closest to the decompile target. All three were run through the same Ghidra pipeline:
 import with the Borland Delphi compiler spec, apply RTTI-recovered class and method names, recover the switch tables,
 then export per-function features. The functions were then matched across builds.
+The function counts below come from this pipeline (Ghidra 11.4.2 with the tools in `tools/build-diff/`). Other Ghidra passes over the same binaries can report different totals, depending on how many switch tables and RTTI methods they recover.
 This note is cleaned: it has no addresses and no decompiler output. Builds are identified by MD5 in `build-catalogue.md`.
+
+> **Live debugging:** 2.05 and every later build start an anti-debug component that looks for debuggers, loaders and monitors and stops the client when it finds one. 2.04 and earlier do not have it. See [Anti-debug component](#anti-debug-component-adp-new-in-205).
 
 ## How the matching works
 
@@ -67,14 +70,15 @@ Three other existing functions gained a GLEVNW01 magic check: one in the level c
 A main-form routine that set up `bigmap.txt`, `minimap.txt` and `map.png` in 2.04 no longer references them.
 
 **GS1 commands new in 2.05:** `loadmap`, `setz`, `updateterrain`, `setbacktile2`, and a `setbacktile` form that takes an argument.
-All 163 command records in the 2.05 table are present in rev1 and rev2.
+The 2.05 table holds 161 commands (163 records counting the `up` / `right` direction-table entries that follow it), identical in rev1 and rev2.
+Only `loadmap` does anything: `setz`, `updateterrain` and `setbacktile2` have no executor case in 2.05, so they parse and are ignored (see the parsed-but-ignored table from #4).
 
 **Smaller additions:**
 - PMs are written to `pms\messages_<name>.txt`.
 - One drawing routine gains a `drawaslight` check. The `drawaslight` script command itself predates 2.0 (it is already in the NewMain 1.42 command table).
 - The script editor gains a 400-instruction routine that handles `/* */` comments and tabs. It is reached from a new button handler, matching the changelog's "new button in the script editor".
 - A new level-editor routine, reached from a toolbar button, handles `playerx` / `playery` with values clamped to 0–61.
-- 2.04's routine that installed `tempsitc.ttf` into the Windows fonts folder is gone from 2.05, and so is the `Courier New` default in the main form constructor.
+- 2.04's routine that installed `tempsitc.ttf` into the Windows fonts folder was not matched to anything called in 2.05. The string and the code body are still in rev2, so it looks uncalled rather than removed. The `Courier New` default in the main form constructor is gone.
 
 ## Anti-debug component (ADP), new in 2.05
 
