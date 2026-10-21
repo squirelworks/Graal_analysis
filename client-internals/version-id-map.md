@@ -34,7 +34,7 @@ Per-build hashes, dates and the rest are in `build-catalogue.md`.
 | `GNW22122` | 2.1.7.0–2.1.7.1 (CLVER_2_17) | allowedversions.txt; gs2lib; GServer versions.txt |
 | `GNW03014` | 2.2.2.0 (CLVER_2_22) | allowedversions.txt; gs2lib |
 | `GNW28015` | 2.3.1.0 (CLVER_2_31) | allowedversions.txt; gs2lib |
-| `GNW30123` | listserver token of the 2.22 and 2.31 clients (sent in listserver id 7 as key + `GNW30123newmain`), not a game build | 2.22/2.31 binaries; seen on listserver port 14922 |
+| `GNW30123` | listserver token of the 2.22 and 2.31 clients (sent in listserver id 7 as key + `GNW30123newmain`), not a game build | 2.22/2.31 binaries; seen on listserver port 14922; 2.22 confirmed in the lab (`protocol/listserver.md`) |
 | `G3D03014` | Linux 3.04 rev 1 (= 3.041 in the server table below) | 3.x client binary (same date stamp as GNW03014) |
 | `G3D28015` | Mac OS X 3.153 | 3.x client binary (same date stamp as GNW28015) |
 | `G3D30123` | 3.x listserver login | 3.x client binary |
