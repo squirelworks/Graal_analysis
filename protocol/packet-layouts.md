@@ -40,7 +40,7 @@ Lab capture, two 2.05 clients in one level (`tools/lab-setup.md`). Player B drop
 1. **Bomb:**
    - B sent `PLI_BOMBADD` (4): `c x×2, c y×2, c owner_power, c fuse`. The values seen were x 78, y 28, `owner_power` 9 and fuse 55.
    - The server sends `PLO_BOMBADD` (11) to the other players: `s player id` followed by the same four bytes.
-   - In the server source the third byte is `(player << 2) | power`, and the fuse counts in 0.05 s steps, so 55 is about 2.75 s. **[srv][inf]**
+   - The 2.05 client writes the third byte as `power + 8`, where the 8 flag means "this bomb is mine". A receiver reads the power as `v & 7` and the owner flag from bit 8. So 9 is power 1 plus the owner flag. GServer's own reading, `(player << 2) | power`, does not match 2.05. **[2.05]** The fuse 55 is probably 0.05 s steps, about 2.75 s. **[inf]**
 2. **Board change:**
    - When the bomb went off, **player A** sent eight `PLI_BOARDMODIFY` (1) messages in one frame, one per destroyed 2×2 patch. B, who owned the bomb, sent none. These sessions had no `ISLEADER`, so why A was the one to report is not settled. **[inf]**
    - Each message is `c x, c y, c w, c h` in whole tiles, then w × h GSHORT tile ids in row order. For example, x 39, y 14, 2 × 2, tiles 1834 1835 1850 1851 (a cut bush). A cut grass patch gave 677 678 693 694.
