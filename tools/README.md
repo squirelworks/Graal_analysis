@@ -13,3 +13,4 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
 
 See the individual files for the measured contracts.
+- `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.

@@ -62,13 +62,27 @@ Per outgoing message, starting with the **second** message of the session (the l
 2. `pos = (it & 0xFFFF) mod len + 1` (1-based; `len` includes the trailing `\n`).
 3. Insert one byte `((it >> 16) & 0x7F) + 0x20` before the 1-based position `pos`.
 
-The server mirrors this: same LCG step, deletes the byte at 0-based `(it & 0xFFFF) mod len`. **[srv]** The server's own gen-3 encoder always inserts `)` instead of an iterator-derived byte. That is harmless because the receiver throws the byte away. **[srv]** Gen 3 runs per message *after* decompression, not over the whole frame. **[srv]**
+`pos` can be 1, which puts the junk byte **before the id byte**. A decoder that skips the first byte as "the id" before looking for the junk byte gets that case wrong. Because the inserted byte is never `\n` and `pos` is at most `len`, the byte never lands after the terminating `\n`. **[2.05][cap]**
+
+The server mirrors this: same LCG step, deletes the byte at 0-based `(it & 0xFFFF) mod len`. **[srv]** Here `len` is the line the server split off, which drops the `\n` and keeps the junk byte. That is the same length the client used, so the server's 0-based index is exactly where the client put the byte. GServer-v2 therefore decodes 2.05 correctly, with no tolerance tricks. **[srv][2.05]**
+
+Wire check (lab, three 2.05 sessions): every client→server message after the login line had the expected byte `((it >> 16) & 0x7F) + 0x20` at the predicted index. Several messages had it at index 0, before the id. There were no mismatches. **[cap]** The server's own gen-3 encoder always inserts `)` instead of an iterator-derived byte. That is harmless because the receiver throws the byte away. **[srv]** Gen 3 runs per message *after* decompression, not over the whole frame. **[srv]**
 
 Gen 3 is client→server only. Server→client traffic for a gen-3 client is plain zlib. **[srv][cap]** The 14842/14912 captures stay clear zlib, which matches this.
 
 ### Gen 4/5 partial XOR
 
-Same LCG and key. For each 4-byte group, advance `it` and XOR the group with the little-endian bytes of `it`. Stop after *limit* groups: 12 groups for uncompressed bodies, 4 for zlib or bz2. Encryption runs before compression on send and after it on receive. **[srv]** This is the cipher that makes the 14801 sessions stop inflating after the first frame (2.22/2.31 clients). **[cap][inf]**
+Same LCG and key. For each 4-byte group, advance `it` and XOR the group with the little-endian bytes of `it`. Stop after *limit* groups: 12 groups for uncompressed bodies, 4 for zlib or bz2. On send the body is compressed first and the XOR is applied to the compressed bytes. On receive the XOR is undone first, then the body is decompressed. **[srv][2.22]**
+
+2.22 client side **[2.22][cap]**:
+- **Login frame:** `u16be len` + zlib, with no compression byte and no XOR. The key travels inside it, so it has to be readable.
+- **Compression choice for later frames:**
+  - Bodies of 0x1000 bytes or more use bz2 (`0x06`).
+  - Bodies from 0x30 bytes up use zlib (`0x04`).
+  - Bodies under 0x30 bytes are zlib-compressed only when that makes them smaller; otherwise they go uncompressed (`0x02`).
+- **Lengths:** the `u16be` length counts the compression byte.
+- **Group counting:** a partial last group is XORed byte by byte. For `0x02` the count is `ceil(len/4)` capped at 12. For `0x04`/`0x06` it is `floor(len/4)` capped at 4.
+- **Wire check:** a lab 2.22 session decoded completely in both directions with this rule. This is the cipher that makes the 14801 sessions stop inflating after the first frame (2.22/2.31 clients). **[cap][inf]**
 
 ## Corrections to earlier notes
 

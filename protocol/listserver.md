@@ -46,9 +46,20 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 ### 2.05 specifics **[2.05]**
 - `TServerListClient` derives from the same `TGraalClient` base as the game connection. It overrides only the receive handler. Its **send path is the base one, with no gen-3 insertion**, which fits a cipher-free pre-2.2 list link.
 - Its receive handler switches on two ids only: 0 (server list: count followed by length-prefixed fields) and 1.
-- The 2.05 list host and port are not in the string table as plain text. Still open. The captures show the listserver on ports 14922/14923 (`GNW30123` login, `GNW07080` guest). **[cap]**
+- The list host and port are not in the string table as plain text. The host is a DES-encrypted string that the server-list form builds one character at a time, together with its key. It decrypts to `www.graalonline.com`. The port is `14921`, and the first packet is id 0 with `newmain`. See `client-internals/des-and-hidden-strings.md`. **[2.05]**
+- The lab run confirms the whole exchange (`tools/lab-setup.md`). **[cap]**
+  1. The client sends id 0 `newmain` as soon as the list window opens.
+  2. A listserver that answers with id 0 at that point fills the list. The client does not wait for id 1.
+  3. The client closes the socket about two seconds after it gets the list.
+  4. The field order shown in the window is name, language, description, url, version, players, ip, port, which matches the table above.
+- To point a stock 2.05 at another listserver, redirect `www.graalonline.com` in the hosts file and listen on 14921. Patching the encrypted string in memory also works.
 
-`GNW30123` (seen on 14922) is in no gs2lib version table. It is probably a listserver-side or third-party client token, not a game build. Open.
+### 2.22 specifics **[2.22][cap]**
+- The host list is not built in. It comes from `arrays2.dat` in the game folder, in clear text, checked against `arrays2.sig`: line 0 `listserver.graal.in`, line 1 port `14922`, lines 5 and 6 the fallbacks `listserver.graal.cc` and `listserver.graalonline.biz`. They are tried in that order until one connects. Once loaded, the client keeps them in memory under the one-byte transform described in `client-internals/des-and-hidden-strings.md`, which is why a plain memory search misses them. The same file layout applies from 2.17 on (see the cross-version notes).
+- First packet: id 7 `V2ENCRYPTKEYCL` = `GCHAR key` + `GNW30123` + `newmain`. This frame is plain zlib. Every later frame in both directions is post-2.2 framing (compression byte + partial XOR) keyed with that key.
+- Then id 1 `SERVERLIST` = account + password. The list reply is the same id 0 layout as for 2.05.
+
+`GNW30123` is therefore the 2.22 client's **listserver protocol token**. It is not a game build token, which is why it is missing from the gs2lib client tables. The same 2.22 binary sends `GNW03014` to the game server. **[2.22][cap]**
 
 ## Game server ↔ listserver (summary) **[srv]**
 
