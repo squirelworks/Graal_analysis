@@ -4,10 +4,11 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No de
 
 ## Contents
 
-- `npc-library/` — 3,187 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog.
-- `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes. See also `tile-walk.md`, `sign-text.md`, and `gobjset01.md`.
-- `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`.
-- `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, and `version-tokens.md`.
+- `npc-library/` — 3,187 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables.
+- `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes. See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.
+- `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`, `codec-and-framing.md`, `packet-ids.md`, `player-props.md`, `file-transfer.md`, `chat-pm-rc.md`, `listserver.md`, and `udp-p2p.md`.
+- `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, `version-tokens.md`, and `client-architecture-205.md`.
+- `graal3d/` — the February 2000 Graal3D client and its GServer: protocol (TCP + peer-to-peer UDP), props, accounts, `.x` levels, and how it relates to the 2D GServer.
 - `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, and RemoteControl.
 
 ## Newly scaffolded (2026-10-14)
@@ -25,7 +26,20 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
-- `tools/` — index plus notes on the editor, shop, generators, gif2mng, and RemoteControl.
+- `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.
+- `tools/` — index plus notes on the editor, shop, generators, gif2mng, RemoteControl, and the 2001 NPC server (`npcserver-2001.md`).
+
+## Gap-fill pass (2026-10-21)
+
+Sources: GServer-v2 and gs2-parser (GPLv3), gs2lib, graal-serverlist, OpenGS1 (MIT), the Graal Reborn 2.22 docs, and observed behavior of client 2.05 rev 2. The open-source refs are summarized and cited, not copied. Every new fact carries a tag: **[2.05]** confirmed in 2.05, **[srv]** server source only, **[doc]** 2.22 docs, **[cap]** captures, **[inf]** inferred.
+
+- `protocol/codec-and-framing.md` — G-types, u16be+zlib frames, RAWDATA, encryption gens 1–6, the 2.05 gen-3 insertion.
+- `protocol/packet-ids.md` — full PLO/PLI tables with 2.05 coverage (59 handled ids).
+- `protocol/player-props.md` — PLPROP, NPCPROP, and BDPROP ids and encodings; 2.05 knows 0–42, 50, 51.
+- `protocol/file-transfer.md`, `protocol/chat-pm-rc.md`, `protocol/listserver.md`, `protocol/udp-p2p.md`.
+- `formats/level-binary.md`, `formats/gmap.md`.
+- `npc-library/gs1-reference-205.md`, `client-internals/client-architecture-205.md`.
+- Corrections, listed in CONSOLIDATED.md: login key, PLAYERPROPS movement, directions, the GR-V1 bit stream, BoardModify, no GS1 bytecode in 2.05.
 
 ## Added 2026-10-21: editor, offline mode, sound
 
@@ -37,4 +51,4 @@ These notes expand the existing foundation without adding raw decompile material
 
 ## Boundary
 
-Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, and format documentation.
+Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

@@ -11,5 +11,9 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | GraalLevelGen | Image-to-levels | Converts an image into linked levels. |
 | gif2mng | GIF converter | PNG for one frame, MNG for more. `-b` snaps to body palette. |
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
+| RemoteControl 2000–2002 | Staff client lineage | `GSERV014`→`GSERV023`, option packets, id changes. See `remotecontrol-lineage.md`. |
+| NPC Control (RC 1.41) | NPC-server client | `NCL11012` login, NPC-server discovery, NC packet ids. See `npc-control.md`. |
+| Fan server tools | ListServer, serverlist, 1.39 scripts, Guildmaker | See `server-tools-2001.md`. Warns about a password stealer in the win32 ListServer. |
+| NPC server (2001) | Server-side NPC host | Logs into GServer as a player, 0.1 s tick, PM admin commands, `join` classes. See `npcserver-2001.md`. |
 
 See the individual files for the measured contracts. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.

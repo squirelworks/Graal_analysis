@@ -62,3 +62,9 @@ Direction note from the rtf: 0–3, with `up/left/down/right`. The earlier clien
 - `/shworkingpapers/protocol/from-other-projects/` — PROTOCOL.md, graalcodec.txt, players.md, flows.md, gserver-research README
 - `/shworkingpapers/scripting/commands.rtf`
 - `/shworkingpapers/scripting/Graal_Reborn_Scripting_Guide.rtf`
+
+## Update 2026-10-21
+
+- "Even modes XOR with the Borland LCG" describes gs2lib gen 4/5 (2.19+ clients), keyed by the login key, and XORs only the first 4 or 12 dwords. 2.05 is gen 3 (single-byte insertion). See `codec-and-framing.md`.
+- Direction numbering is settled: 0 up, 1 left, 2 down, 3 right (2.22 `commands.rtf`, GServer).
+- The movement frame is `PLI_PLAYERPROPS`. See `login-and-walk.md`.
