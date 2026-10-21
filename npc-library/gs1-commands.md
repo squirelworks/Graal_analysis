@@ -4,6 +4,8 @@ Date: 2026-10-14
 
 Derived from the public command tables, the Reborn scripting guide, the 3,187 scraped scripts, and observed offline behavior. No decompile material.
 
+> For what each command actually does in client 2.05, see [gs1-command-reference-205.md](gs1-command-reference-205.md). It corrects the pattern letters below (`R` is a number, `D` is up 0, left 1, down 2, right 3) and notes that `warp` / `jump` are not GS1 commands.
+
 ## Control flow
 
 - `if` / `else` — conditional. The nearby form is used for range checks against the player or other objects.
