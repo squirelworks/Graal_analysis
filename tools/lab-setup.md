@@ -28,7 +28,7 @@ A small script that speaks both sides:
   - On id 0 (2.05 `newmain`) or id 1 (account/password), send id 0 with the server list and id 2 with a status line.
   - On id 7 (2.22), take the key and switch to post-2.2 framing.
 
-Lab accounts are throwaway names with dummy passwords. The stub accepts any password, and the logs print account names only. Captures still contain the dummy passwords in clear, so they stay out of the repo.
+Lab accounts are throwaway names with dummy passwords. This lab's stub accepts any password (other stubs may check accounts), and the logs print account names only. Captures still contain the dummy passwords in clear, so they stay out of the repo.
 
 ## Decoding
 - **TCP:**
@@ -36,4 +36,13 @@ Lab accounts are throwaway names with dummy passwords. The stub accepts any pass
   2. Split `u16be` frames and inflate (post-2.2 frames: undo the partial XOR first).
   3. Split lines on `\n`.
   4. For 2.05 client→server lines, replay the gen-3 iterator from the key in the login line and delete the byte at `(it & 0xFFFF) mod len(line)`.
-- **UDP:** XOR each datagram with `recipientId XOR 1`. The first byte is then `seq`, the second the UDP id. See `protocol/udp-p2p.md`.
+- **UDP:** XOR each datagram with `recipientId XOR 1`, where the recipient is the player who owns the destination port. The first byte is then `seq`, the second the UDP id. See `protocol/udp-p2p.md`.
+
+## Capture set
+The **[cap]** tags in the protocol notes come from four runs in this lab, all on 2026-10-21:
+1. 2.05 listserver exchange and one 2.05 game login.
+2. 2.05 and 2.22 game logins, and the 2.22 listserver handshake.
+3. Two 2.05 clients in one level with UDP enabled. This is the source for the UDP key and payloads.
+4. Two 2.05 clients and a bomb next to bushes. This is the source for the board change, item drops and respawn.
+
+The pcaps stay on the lab machine. Only the decoded text, with credentials removed, is kept outside it.

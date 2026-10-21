@@ -12,7 +12,7 @@ All facts here are from client 2.05 rev 2. **[2.05]** No open-source server impl
 ## Datagram
 `seq` (1 byte) + payload. The whole datagram is XORed with the low byte of `peerId XOR ownId`.
 
-In code, the key is the low byte of the recipient player's id field XOR the same field on the local player object. In practice the local object's field reads **1**, so the effective key is `recipientId XOR 1`. In the lab, player 2 sent with key 3 and player 3 sent with key 2, and every datagram decoded with `seq` counting up from 0. The local player apparently never stores its own server id in that field. **[2.05][cap]**
+In code, the key is the low byte of the recipient player's id field XOR the same field on the local player object. In practice the local object's field reads **1**, so the effective key is `recipientId XOR 1`. In the lab, datagrams to player 3 (sent by player 2) used key 2, and datagrams to player 2 (sent by player 3) used key 3. Every datagram decoded with `seq` counting up from 0. The UDP source port was tied to the player id by matching the first UDP movement against the server's TCP props for that player. With only ids 2 and 3, `recipientId XOR 1` and `senderId` give the same key, so the capture alone can't tell them apart. The code formula (peer field XOR own field, with own reading 1) is what decides for `recipientId XOR 1`. A three-player capture would settle it on the wire. **[inf]** The local player apparently never stores its own server id in that field. **[2.05][cap]**
 
 - `seq` is per peer and wraps mod 256. A duplicate `seq` is dropped.
 - There is no zlib, no length prefix, and no gen-3 insertion.

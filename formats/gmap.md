@@ -28,7 +28,7 @@ A player on a gmap has `PLPROP_CURLEVEL` = the gmap name and `PLPROP_GMAPLEVELX`
 
 ## 2.05
 
-2.05 has **no** `GRMAP001` string, no `PLO_PLAYERWARP2` handler (49 is missing from its jump table), and no `gmaplevelx` prop name. It does reference `bigmap.txt` and `minimap.txt`, has the GS1 commands `setmap`/`setminimap`, and has a `TGraalMap` class (probably the big-map overlay). So 2.05 predates gmaps and uses the older text big-map and minimap overlays instead. **[2.05][inf]** The `bigmap.txt`/`minimap.txt` format is described below. GServer's `PLO_BIGMAP` (171) and `PLO_MINIMAP` (172, e.g. `zodiacminimap.txt,zodiacworldminimap3.png,10,10`) are the later server-pushed versions.
+2.05 contains a `GRMAP001` reader (it knows `WIDTH`, `HEIGHT`, `GENERATED`, `GENSEED`, `HEIGHTMAP`, `RANDOMSEEDS` and the rest), but no caller for it was found, so it is probably dormant. **[2.05]** In practice 2.05 uses `bigmap.txt`/`minimap.txt`. It has no `PLO_PLAYERWARP2` handler (49 is missing from its jump table), and no `gmaplevelx` prop name. It does reference `bigmap.txt` and `minimap.txt`, has the GS1 commands `setmap`/`setminimap`, and has a `TGraalMap` class (probably the big-map overlay). So 2.05 does not play gmaps and uses the older text big-map and minimap overlays instead. **[2.05][inf]** The `bigmap.txt`/`minimap.txt` format is described below. GServer's `PLO_BIGMAP` (171) and `PLO_MINIMAP` (172, e.g. `zodiacminimap.txt,zodiacworldminimap3.png,10,10`) are the later server-pushed versions.
 
 ## 2.05 big map and minimap text files **[2.05]**
 
