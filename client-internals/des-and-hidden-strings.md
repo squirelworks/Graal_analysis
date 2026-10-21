@@ -52,11 +52,10 @@ See below.
 **2.22 transform** **[2.22][cap]**
 - `dec(b) = (NOT b − 10) & 0xFF` and `enc(b) = NOT (b + 10)`.
 - Used for:
-  - the three listserver host names (`listserver.graal.in`, `.graal.cc`, `listserver.graalonline.biz`)
-  - the listserver port (`14922`)
+  - the in-memory copy of the three listserver host names (`listserver.graal.in`, `.graal.cc`, `listserver.graalonline.biz`) and the port (`14922`)
   - the account name in the config
   - the account name before it goes into the game-server login packet
-- The host table is filled at start-up, so the strings are only visible in a running process. The lab read them from memory.
+- The host names and port themselves are read at start-up from `arrays2.dat`, where they are plain text (checked against `arrays2.sig`). Only the copy held in memory is transformed, so a memory search for the plain names finds nothing. See `protocol/listserver.md`.
 
 **2.22 version token** **[2.22]**
 - The game-server login builds `GNW03014` one character at a time.
@@ -65,5 +64,5 @@ See below.
 
 ## Notes for tool writers
 - To redirect 2.05, a hosts entry for `www.graalonline.com` is enough.
-- To redirect 2.22, hosts entries for the three `listserver.*` names are enough. It tries them in order.
+- To redirect 2.22, hosts entries for the three `listserver.*` names are enough. It tries them in order. Editing `arrays2.dat` instead would have to get past the `arrays2.sig` check, which the lab did not test.
 - None of these schemes protect anything. They only keep the strings out of a casual `strings` dump.

@@ -55,7 +55,7 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 - To point a stock 2.05 at another listserver, redirect `www.graalonline.com` in the hosts file and listen on 14921. Patching the encrypted string in memory also works.
 
 ### 2.22 specifics **[2.22][cap]**
-- The host list is three strings hidden with a one-byte transform: `listserver.graal.in`, `listserver.graal.cc` and `listserver.graalonline.biz`, all on port `14922`. They are tried in that order until one connects. They were read from a running client's memory, and the transform is described in `client-internals/des-and-hidden-strings.md`.
+- The host list is not built in. It comes from `arrays2.dat` in the game folder, in clear text, checked against `arrays2.sig`: line 0 `listserver.graal.in`, line 1 port `14922`, lines 5 and 6 the fallbacks `listserver.graal.cc` and `listserver.graalonline.biz`. They are tried in that order until one connects. Once loaded, the client keeps them in memory under the one-byte transform described in `client-internals/des-and-hidden-strings.md`, which is why a plain memory search misses them. The same file layout applies from 2.17 on (see the cross-version notes).
 - First packet: id 7 `V2ENCRYPTKEYCL` = `GCHAR key` + `GNW30123` + `newmain`. This frame is plain zlib. Every later frame in both directions is post-2.2 framing (compression byte + partial XOR) keyed with that key.
 - Then id 1 `SERVERLIST` = account + password. The list reply is the same id 0 layout as for 2.05.
 
