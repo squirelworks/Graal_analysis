@@ -27,7 +27,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
 - `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.
-- `tools/` — index plus notes on the editor, shop, generators, gif2mng, and RemoteControl.
+- `tools/` — index plus notes on the editor, shop, generators, gif2mng, RemoteControl, and the 2001 NPC server (`npcserver-2001.md`).
 
 ## Gap-fill pass (2026-10-21)
 
