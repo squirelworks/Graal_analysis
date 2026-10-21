@@ -10,7 +10,7 @@ Sources: GServer-v2 `TLevel.cpp` / `TPlayer.cpp` / `TNPC.cpp`, OpenGS1 VM.
 - `PLO_BOARDLAYER`: `(layer:u8)(0)(0)(64)(64)` + raw `short[4096]` for that layer.
 - `PLO_LEVELBOARD` / `PLO_BOARDMODIFY`: concatenated `getBoardStr()` results from `TLevelBoardChange`.
   - Change holds `x, y, width, height, tiles, oldTiles, modTime`.
-  - Exact byte layout of `getBoardStr()` still needs confirmation (likely x/y/w/h + tile shorts).
+  - Byte layout confirmed on the wire for 2.05: `c x, c y, c w, c h` + w × h GSHORT tiles, one change per message. See `packet-layouts.md`, "Board change on the wire". **[cap]**
 
 ### Other level objects
 - `PLO_NPCPROPS` + optional `PLO_NPCBYTECODE` (wrapped in `PLO_RAWDATA` for clients ≥ 4.0211).
@@ -71,7 +71,7 @@ OpenGS1 defines a stack-based bytecode VM.
 - Movement scaling (×2) and the pre-2.3 `gr.x`/`gr.y` path are known.
 
 ## What still needs capture or confirmation
-1. Exact byte layout of `TLevelBoardChange::getBoardStr()`.
+1. ~~Exact byte layout of `TLevelBoardChange::getBoardStr()`.~~ Done: see `packet-layouts.md`.
 2. Client→server movement packet (ID + fields) for both <2.3 and ≥2.3.
 3. How the original Delphi client stores/receives `PLO_NPCBYTECODE` (Ghidra trace).
 4. Mapping from GS1 command names (`setcharprop`, `showcharacter`, etc.) to host functions the VM calls.
