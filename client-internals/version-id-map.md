@@ -13,7 +13,7 @@ Date: 2026-10-14
 | `GNW22122` | 2.1.7.0–2.1.7.1 (CLVER_2_17) | allowedversions.txt; gs2lib; GServer versions.txt |
 | `GNW03014` | 2.2.2.0 (CLVER_2_22) | allowedversions.txt; gs2lib |
 | `GNW28015` | 2.3.1.0 (CLVER_2_31) | allowedversions.txt; gs2lib |
-| `GNW30123` | unmapped; in no gs2lib table (2019–2026) and not in versions.txt. Probably a listserver-side or third-party token | seen on listserver port 14922 |
+| `GNW30123` | listserver token of the 2.22 and 2.31 clients (sent in listserver id 7 as key + `GNW30123newmain`), not a game build | 2.22/2.31 binaries; seen on listserver port 14922 |
 
 ## Filename → build
 

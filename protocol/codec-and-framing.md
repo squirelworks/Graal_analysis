@@ -52,6 +52,8 @@ u16be length | body
 | 5 | `ENCRYPT_GEN_5` | client type 5 (2.22+), RC2 (type 6) | compression byte, then the same partial XOR | [srv] |
 | 6 | `ENCRYPT_GEN_6` | v6 | unknown, not implemented | [srv] |
 
+Client-side check (2026-10-21) **[bin]**: 2.17 also sends type 0 with gen-3 insertion, like 2.05. 2.22 and 2.31 send type 5 and use gen 5. The Delphi RemoteControl logs in as type 6 (gen 5), and its NC socket as type 3, which stays zlib with no cipher. The client-side gen-5 send rules (when each compression byte is chosen, XOR word counts) are in `client-versions.md`.
+
 ### Gen 3 (2.05)
 
 State: `it` (u32), seeded `0x04A80B38`. Key `k` = 7-bit random value, sent once in the login line. **[2.05]**

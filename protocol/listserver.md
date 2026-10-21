@@ -27,7 +27,7 @@ Framing depends on the client generation. **[srv]**
 | 1 | SERVERLIST | `str account`, `str password` |
 | 4 | V2VER | `c key` + `newmain` (selects 2.2 bz2 mode) |
 | 5 | V2SERVERLISTRC | `c key` (RC) |
-| 7 | V2ENCRYPTKEYCL | `c key` (2.22+ client) |
+| 7 | V2ENCRYPTKEYCL | `c key` + `GNW30123newmain` (2.22 and 2.31 clients) **[bin]** |
 | 223 | GRSECURELOGIN | Graal Reborn extension |
 
 ### Listserver → client
@@ -48,7 +48,10 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 - Its receive handler switches on two ids only: 0 (server list: count followed by length-prefixed fields) and 1.
 - The 2.05 list host and port are not in the string table as plain text. Still open. The captures show the listserver on ports 14922/14923 (`GNW30123` login, `GNW07080` guest). **[cap]**
 
-`GNW30123` (seen on 14922) is in no gs2lib version table. It is probably a listserver-side or third-party client token, not a game build. Open.
+`GNW30123` (seen on 14922) is the 2.22/2.31 listserver token. Both clients send listserver id 7 as `c key` + `GNW30123` + `newmain`, then switch to gen 5 and send id 1 with the account and password. It is a listserver protocol token, not a game build, so the game-version tables do not list it. **[bin]** (See `client-versions.md`.)
+
+### 2.17+ list host **[bin]**
+From 2.17 the list host and port are not built in. They are read from `arrays2.dat` (line 0 host, line 1 port, lines 5 and 6 fallback hosts), which must match the signature in `arrays2.sig`. 2.17 still logs in pre-2.2 style (id 0 `newmain`, then id 1) with no cipher.
 
 ## Game server ↔ listserver (summary) **[srv]**
 
