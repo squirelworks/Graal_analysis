@@ -43,3 +43,8 @@ genre / topic / book-NN / chapter-NN / page.json
 ## Flat file
 
 `npcs.json.bak` is the original 1 MB flat dump, kept for reference. Use the hierarchy.
+
+## GS1 references
+
+- `gs1-commands.md`: cleaned catalog and offline wiring priority.
+- `gs1-reference-205.md`: the full 2.05 command and function tables, built-in flags, and constants.

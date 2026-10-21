@@ -1,15 +1,15 @@
 # Graal Analysis — consolidated notes
 
-Date: 2026-10-14
+Date: 2026-10-14, revised 2026-10-21
 
-Cleaned notes derived from public server sources, observed packet shapes, and format documentation. No decompile material.
+Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serverlist, OpenGS1), observed packet shapes, format documentation, and behavior observed in client 2.05 rev 2. No decompile material.
 
 ## Formats
 
 ### Levels
 - **GLEVNW01** (`.nw`) — text format. Header, `BOARD x y width layer tiledata` (2-char base64 tiles), `NPC` blocks, `LINK`/`SIGN`/`CHEST`/`BADDY` records.
-- **GR-V1** (`.graal`) — binary format. 8-byte magic, 64×64 board of 2-byte tiles, embedded `image.gif#script` NPC records.
-- **Z3-V1** (`.zelda`) — earlier binary. RLE board, `FileLink` records terminated by `#`.
+- **GR-V1** (`.graal`) — binary format. 8-byte magic, then a 12-bit (1.00) or 13-bit (1.01–1.03) LSB-first tile bit stream with RLE and double-RLE control codes, then text sections for links, baddies, NPCs (`image#script`), chests, and signs. See `formats/level-binary.md`.
+- **Z3-V1** (`.zelda`) — earlier binary. Same 12-bit RLE board; links, baddies (verses only in 1.04), and signs; no NPCs or chests.
 
 ### Tiles
 - Tile id is a 12-bit value decoded from the 2-char base64 encoding into `pics1`.
@@ -22,26 +22,28 @@ Cleaned notes derived from public server sources, observed packet shapes, and fo
 - `ANI` carries placements. A stepper advances the frame index.
 
 ### Maps
-- **GRMAP001** (`.gmap`) — world map linking levels.
+- **GRMAP001** (`.gmap`) — world map linking levels. Reader keys are in `formats/gmap.md`. 2.05 predates gmaps and uses `bigmap.txt`/`minimap.txt` instead.
 
 ## Protocol
 
 ### Framing
-- Length-prefixed (u16be) + zlib. Some post-login frames are encrypted (Borland LCG).
+- Frame = u16be length + zlib body (zlib 1.1.2 in 2.05). Message = GCHAR id + payload + `\n`. Binary payloads go behind `PLO_RAWDATA` (100).
+- **2.05 = gs2lib gen 3:** the client inserts one byte per message from the second message on. The iterator is seeded `0x04A80B38` and stepped `it = it*0x08088405 + key`. The byte `((it>>16)&0x7F)+0x20` goes in at 1-based position `(it&0xFFFF) % len + 1`. Server→client is plain zlib. The insertion is applied per message before the buffer is compressed.
+- Full-frame partial XOR with the same LCG is gen 4/5 (2.19+ clients), not 2.05. See `protocol/codec-and-framing.md`.
 
 ### Login
-- Classic line: random prefix `(rand & 0x7F) + 0x20` + `GNW#####` version token + length-biased account/password.
+- First line: GCHAR client type (0) + GCHAR key (`rand & 0x7F`, the old "random prefix") + `GNW#####` + GSTRING account + GSTRING password. Then `PLI_LANGUAGE` (37).
 - Observed tokens: `GNW28015`, `GNW22122`, `GNW03014`, `GNW07080`, `GNW30123`.
-- `GNW07080` = 1.39. `GNW03081` = 2.05.
+- `GNW07080` = 1.39. `GNW03081` = 2.05 rev 2 (CLVER_2_052, pre-2.1 paths). `GNW22122` = 2.17, `GNW03014` = 2.22, `GNW28015` = 2.31. `GNW30123` is still unmapped.
 
 ### Movement
-- Short char-encoded frames headed `0x02` (wire `"`). Not f32.
-- Position codecs: classic ×2, precise ×16.
-- Directions: 0 south, 1 west, 2 east, 3 north.
+- The short frames headed wire `"` are `PLI_PLAYERPROPS` (2) prop streams: 15 X, 16 Y, 17 SPRITE (GCHAR, half-tiles). Not f32.
+- Position codecs: classic ×2 (props 15/16), precise ×16 (props 78/79, newer clients).
+- Directions: 0 up, 1 left, 2 down, 3 right (corrected).
 
 ### Board
-- `BoardModify` carries x, y, width, layer, and tile data.
-- Packet ids remain provisional.
+- `PLO_BOARDMODIFY` (7) / `PLI_BOARDMODIFY` (1): GCHAR x, y, w, h + w×h GSHORT tiles. `PLO_BOARDPACKET` (101, behind RAWDATA) = 4096 raw LE u16.
+- Packet ids are settled: the 2.05 receive jump table matches gs2lib `PLO_*` 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166, 168. Client senders cover 0–38 (minus 6, 25, 31), 80, 81. See `protocol/packet-ids.md`.
 
 ## NPC scripting
 
@@ -60,9 +62,11 @@ Cleaned notes derived from public server sources, observed packet shapes, and fo
 | `playersays` | 43 |
 
 ### Script shape
-Scripts follow `image.gif#if (event) { body }`. Common commands: `hide`, `show`, `set`, `unset`, `say`, `setlevel`, `warp`, `hurt`.
+Scripts follow `image.gif#if (event) { body }`. Common commands: `hide`, `show`, `set`, `unset`, `say`, `setlevel`, `warp`, `hurt`. The 2.05 tables (159 commands, op = 600 + index; 177 functions/vars) are in `npc-library/gs1-reference-205.md`.
 
 ### GS1 bytecode
+The 2.05 client does **not** use bytecode. It parses script text into a tree and interprets that recursively. The OpenGS1 opcodes below belong to Seihai's own VM, a reimplementation.
+
 Opcodes match OpenGS1: Push, Assign, ArrSet/Get, Add/Sub/Mul/Div/Mod/Pow, Inc/Dec, Call/CmdCall, Jmp/Jal/Ret, Eq/Lt/Gt/Lte/Gte, Not/And/Or, Jez/Jnz, Stop, DbgOut. Arithmetic, comparison, and jump execute. Call and array ops are no-ops until the command set is wired.
 
 ## Offline play
@@ -81,12 +85,23 @@ A local session can:
 |-------|-------|
 | `GNW07080` | 1.39 |
 | `GNW03081` | 2.05 |
-| `GNW22122` | (from capture) |
-| `GNW28015` | (from capture) |
-| `GNW30123` | (from capture, listserver) |
+| `GNW22122` | 2.17 |
+| `GNW28015` | 2.31 |
+| `GNW03014` | 2.22 |
+| `GNW30123` | unmapped (listserver capture) |
 
 Filename builds: `Graal_2171` = 2.171, `Graal_222` = 2.22, `Graal_231` = 2.31. PE FileVersion is authoritative for editors.
 
 ## Precursor
 
 Zelda Online (1997–98, Stefan Knorr) is the Java precursor. AWT applet client/server on port 14801, text-line lobby protocol, `.zelda` levels. Source is archived separately. Levels were analyzed and discarded.
+
+## Reference notes added 2026-10-21
+
+- `protocol/codec-and-framing.md`: G-types, frames, raw-data escape, encryption gens 1–6.
+- `protocol/packet-ids.md`: full PLI/PLO tables with 2.05 coverage.
+- `protocol/packet-layouts.md`: level, player, combat, navigation, and weapon payloads.
+- `protocol/player-props.md`: PLPROP, NPCPROP, and BDPROP ids and encodings.
+- `protocol/file-transfer.md`, `protocol/chat-pm-rc.md`, `protocol/listserver.md`, `protocol/udp-p2p.md` (2.05 peer UDP).
+- `formats/level-binary.md`, `formats/gmap.md`.
+- `npc-library/gs1-reference-205.md`, `client-internals/client-architecture-205.md`.

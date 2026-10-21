@@ -39,13 +39,13 @@ When a command expands a template string, the letters are replaced as follows:
 
 - B — baddy name
 - C — color name
-- D — direction (0 south, 1 west, 2 east, 3 north)
+- D — direction (0 up, 1 left, 2 down, 3 right; corrected 2026-10-21)
 - F / Q — filename
 - I — item name
 - L — carried object name
 - M / S — arbitrary string
 - O — object name
-- R — the literal string “real”
+- R — numeric expression (corrected 2026-10-21; earlier read as the literal “real”)
 
 These letters appear in both the public tables and in a small number of the scraped scripts.
 
@@ -74,3 +74,10 @@ From the 3,187 scripts:
 - `wasshot` — 728
 
 Most of these events call one of the commands listed above.
+
+## Update 2026-10-21
+
+- The full 2.05 command table (159 entries, op = 600 + index) and the function/variable table (ids 100–825) are in `gs1-reference-205.md`, together with built-in event flags, constants, and differences from 2.22.
+- 2.05 interprets a parse tree built from script **text**. It does not run OpenGS1-style bytecode. The `Call`/`CmdCall` gap in Seihai is therefore a command-dispatch problem: map each command name to a host function, using the table's argument signatures.
+- `hide` and `show` are not entries in the 2.05 table even though most scraped scripts use them. Treat them as aliases of `hidelocal`/`showlocal` offline until the 2.05 parser is traced. **[inf]**
+- `setfocus`/`resetfocus`, `spyfire`, `loadmap`, `canwarp`/`canwarp2`, `join`, `freezeplayer`, and `unfreezeplayer` are all present in 2.05. `freezeplayer` takes a time argument.
