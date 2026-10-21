@@ -29,7 +29,7 @@ Notation: `c` GCHAR, `s` GSHORT, `i3` GINT3, `i4` GINT4, `i5` GINT5, `str` GSTRI
 | 18 | HORSEDEL | `c x×2, c y×2`; removes any horse within 2 tiles of that point | [2.05] |
 | 22 | ITEMADD | `c x×2, c y×2, c item` (0–24, unknown items ignored). If the message is longer than 4 bytes, bytes 3–4 are `s player`: a dropped sword or shield then copies that player's image | [srv][2.05] |
 | 23 | ITEMDEL | `c x×2, c y×2`; removes the item at exactly that point | [srv][2.05] |
-| 39 | LEVELMODTIME | `i5 modtime`, exactly 5 bytes. 2.05 then writes the level to its web-level cache (`GWEBL001` header, see `formats/level-binary.md`) | [srv][2.05] |
+| 39 | LEVELMODTIME | `i5 modtime`, exactly 5 bytes. 2.05 then writes the level to its web-level cache (`GWEBL001` format, see `formats/gwebl001-cache.md`) | [srv][2.05] |
 | 10 | ISLEADER | empty: you run this level's baddies and timeouts. Ignored unless the player's level is the active level | [srv][2.05] |
 | 42 | NEWWORLDTIME | `i4 time` (`b0<<21 \| b1<<14 \| b2<<7 \| b3`); needs ≥ 4 bytes | [srv][2.05] |
 | 156 | SETACTIVELEVEL | rest = level that receives the following NPC packets (the object level) | [srv][2.05] |
