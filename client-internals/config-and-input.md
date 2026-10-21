@@ -6,6 +6,8 @@ Derived from observed client behavior, the public config key list, and format no
 
 ## graalconfig.txt
 
+> **Superseded** by `graalconfig-reference.md`, which lists every key 2.05 reads and writes. `serveraddr`, `loadcolorsfromserver` and `gamemode` below are not read by 2.05. The "password mask literal" is the fixed DES key for saved passwords (`saved-passwords.md`).
+
 The client reads approximately 27 keys from `graalconfig.txt`. Known keys fall into four groups:
 
 **Connection**

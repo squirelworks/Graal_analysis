@@ -54,5 +54,5 @@ Coordinates in these records are whole tiles (GCHAR), not half-tiles. **[srv]**
 - Board coding is the same as GR-V1.00 (12-bit).
 
 ## Open
-- GR-V1.04 appears only in the 2.31 binary (`cross-version-anchors.md`). Its changes are unknown.
+- ~~GR-V1.04 changes unknown.~~ Answered in `level-binary-client.md`: GR-V1.04 is GR-V1.03 plus an optional 9×9 `HEIGHTS` block after the signs (2.31). **[2.31]**
 - ~~Whether the 2.05 writer emits double runs.~~ Answered: it does. The writer emits a single run for 2 to 64 equal tiles and a double run (`ABAB…`, up to 64 pairs) where the pattern starts; it always writes `GR-V1.03` for non-`.nw` files. Single runs of exactly 64 occur in the embedded tutorial levels. **[2.05]**
