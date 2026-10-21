@@ -32,6 +32,9 @@ Date: 2026-10-14
 | `GNW06051` | 2.03 | build catalogue |
 | `GNW24061` | 2.04 | build catalogue |
 | `G2N15041` | NewWorld betas 1 and 2 | build catalogue |
+| `G3D03014` | Linux 3.04 | 3.x client binary (GNW03014 with a G3D prefix) |
+| `G3D28015` | Mac OS X 3.153 | 3.x client binary (GNW28015 with a G3D prefix) |
+| `G3D30123` | 3.x listserver login | 3.x client binary |
 
 GNW tokens are `GNW` + build date as DDMMY (GNW03081 = 3 Aug 2001). The 2.1 test builds (Sep 2001) still send GNW03081.
 Per-build hashes, dates and the rest are in `build-catalogue.md`.
