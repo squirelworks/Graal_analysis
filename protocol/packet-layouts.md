@@ -34,6 +34,27 @@ Notation: `c` GCHAR, `s` GSHORT, `i3` GINT3, `i5` GINT5, `str` GSTRING, `rest` =
 ### Board modify correction
 Earlier notes had `x:u8 y:u8 width:u8 height:u8 tiles:raw`. The header bytes are **GCHAR**s (+0x20), and each tile is a **GSHORT** (two 7-bit bytes, +0x20). Only `BOARDPACKET` (101) carries raw little-endian u16 tiles. **[srv]** The same shape is used client → server in `PLI_BOARDMODIFY` (1) for bush or sign pickups. The server rebroadcasts it as `PLO_BOARDMODIFY`.
 
+### Board change on the wire **[cap]**
+Lab capture, two 2.05 clients in one level (`tools/lab-setup.md`). Player B dropped a bomb next to a patch of bushes and grass.
+
+1. **Bomb:**
+   - B sent `PLI_BOMBADD` (4): `c x×2, c y×2, c owner_power, c fuse`. The values seen were x 78, y 28, `owner_power` 9 and fuse 55.
+   - The server sends `PLO_BOMBADD` (11) to the other players: `s player id` followed by the same four bytes.
+   - In the server source the third byte is `(player << 2) | power`, and the fuse counts in 0.05 s steps, so 55 is about 2.75 s. **[srv][inf]**
+2. **Board change:**
+   - When the bomb went off, **player A** sent eight `PLI_BOARDMODIFY` (1) messages in one frame, one per destroyed 2×2 patch. B, who owned the bomb, sent none. These sessions had no `ISLEADER`, so why A was the one to report is not settled. **[inf]**
+   - Each message is `c x, c y, c w, c h` in whole tiles, then w × h GSHORT tile ids in row order. For example, x 39, y 14, 2 × 2, tiles 1834 1835 1850 1851 (a cut bush). A cut grass patch gave 677 678 693 694.
+3. **Rebroadcast:**
+   - In the same tick the server sent `PLO_BOARDMODIFY` (7) with exactly the same bytes to **both** clients, including the sender.
+   - It interleaved them with its own `PLO_ITEMADD` (22) drops: `c x×2, c y×2, c item`, with items 1 and 4 seen. The drops come from the server, because `bushitems` was on. No client sent `PLI_ITEMADD`.
+4. **Pickup:**
+   - B walked over the drops and sent `PLI_ITEMDEL` (13): `c x×2, c y×2` for each.
+   - The server sent `PLO_ITEMDEL` (23) to A only, not back to B.
+5. **Respawn:**
+   - Exactly 15.0 s after the change (`respawntime = 15`), the server sent `PLO_BOARDMODIFY` again for every patch, with the original tiles: bush 34 35 50 51, grass 2 3 18 19.
+   - Clients do not request the respawn. It is pushed by the server.
+6. **Level entry:** an empty `PLO_LEVELBOARD` (0) followed the board packet and `LEVELMODTIME` on level entry, as described above.
+
 ## Player state (server → client)
 
 | Id | Name | Layout | Tag |
