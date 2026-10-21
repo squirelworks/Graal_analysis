@@ -7,7 +7,7 @@ Internal version strings recovered from the public version list. No decompile ma
 | Token | Build notes |
 |-------|-------------|
 | GNW07080 | 1.39 |
-| GNW03081 | 2.05 (and 2002ver9) |
+| GNW03081 | 2.05 rev 2 (= 2002ver9 leak build); gen-3 cipher, pre-2.1 code paths |
 | GNW31101 | 2.1.0.0–2.1.0.3 (version string not updated) |
 | GNW30042 | 2.1.4.0 (first with server-list tabs) |
 | GNW15053 | 2.1.9.0 (bz2 + new encryption, new server-list gfx) |

@@ -28,3 +28,6 @@ The offline slice therefore does not need to special-case training levels. It on
 4. Blit the selected sheet (see `rendering-observations.md`).
 
 Once those four are in place, both embedded training levels and disk levels will behave the same way.
+
+
+See `offline-tutorial-205.md` for the 2.05 details: the *Play offline* path, the resource lookup, and the level-by-level contents.

@@ -18,7 +18,7 @@ Sources: the Graal 3.04 Linux installer (Makeself and a 2014 tgz repack, same ga
 | Game-server login | `G3D03014` | `G3D28015` | `GNW03014` (2.22) / `GNW28015` (2.31) |
 | Listserver | `G3D30123` | `G3D30123` | `GNW30123` (2.22, 2.31) |
 
-The 3.x tokens are the Windows tokens with the `GNW` prefix replaced by `G3D`. The date stamp is unchanged. So 3.04 speaks the 2.22 protocol and 3.153 speaks the 2.31 protocol. As in the Delphi clients from 1.38 on, the token is assembled one character at a time, so no string literal exists. **[bin]**
+These two 3.x tokens carry the same date stamps as the 2.22 and 2.31 Windows tokens, with `G3D` in place of `GNW`. Earlier 3.x builds had their own dates (`G3D16053` = 3.0, `G3D27063` = 3.01 in `version-id-map.md`); the server table lists `G3D03014` as 3.041, which matches this installer's "3.04 revision 1". So 3.04 speaks the 2.22 protocol and 3.153 speaks the 2.31 protocol. As in the Delphi clients from 1.38 on, the token is assembled one character at a time, so no string literal exists. **[bin]**
 
 ## Listserver
 
