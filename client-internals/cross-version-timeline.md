@@ -3,7 +3,7 @@
 Date: 2026-10-21
 
 This note follows the Delphi client across twenty builds: 1.33 to 1.39, 1.41 rev1, NewMain 1.42, 2.0, 2.01, 2.02 rev2, 2.03, 2.04, 2.05 rev1, 2.05 rev2, the two 2.1 test builds and the two NewWorld betas.
-Builds are identified by MD5 in `build-catalogue.md`. Function data come from the same Ghidra pipeline as `build-diff-204-205.md`. All facts here come from RTTI, the GS1 command table and the packet switch tables, read the same way in every build.
+Builds are identified by MD5 in `build-catalogue.md`. Function data come from the same static analysis as `build-diff-204-205.md` (#11). All facts here come from RTTI, the GS1 command table and the packet switch tables, read the same way in every build.
 It is cleaned: no addresses, no decompiler output.
 
 ## How it was read
@@ -16,7 +16,7 @@ It is cleaned: no addresses, no decompiler output.
 
 ## Function maps onto 2.05 rev2
 
-Every build was matched function by function onto 2.05 rev2 (6529 functions) with the matcher described in `build-diff-204-205.md`, applying the 2.05 virtual-slot shift for the level-object classes.
+Every build was matched function by function onto 2.05 rev2 (6529 functions) with the matcher described in `build-diff-204-205.md` (#11), applying the 2.05 virtual-slot shift for the level-object classes.
 The per-build maps (old function, rev2 function, name, identical or changed) are kept outside the repo with the lab files, since they carry addresses.
 
 | Build | Functions | Identical to 2.05 rev2 | Changed | Only in this build | Only in 2.05 rev2 |
@@ -88,7 +88,7 @@ So **NewWorld beta 1 was cut from the 2.05 code base and beta 2 from the 2.1 tes
 Two points for anyone carrying names between builds by virtual-slot number:
 
 - **2.04 puts `TLevelObject` under the player and NPC classes**, which is why `TServerPlayer` jumps from 2 to 7 slots. Slot numbers from 2.03 and earlier do not line up with 2.04 for these classes.
-- **2.05 adds a slot to `TDrawableObject`**, shifting every descendant by one (see `build-diff-204-205.md`). The 2.1 tests and NewWorld beta 2 add more slots to the player classes again.
+- **2.05 adds a slot to `TDrawableObject`**, shifting every descendant by one (see `build-diff-204-205.md`, #11). The 2.1 tests and NewWorld beta 2 add more slots to the player classes again.
 
 The NewWorld `TAdventureLevel` (33968 bytes) and beta 2 `TGraalMap` (34060 bytes) are large enough to hold tile arrays inline, which fits the NewWorld level heights and back-tile layers.
 
@@ -119,7 +119,7 @@ Those entries are not counted. In 2.05 this gives 161 commands, matching the ear
 | NewWorld beta 1 | 161 | same table as 2.05 |
 | NewWorld beta 2 | 165 | `addstring`, `insertstring`, `removestring`, `deletestring` |
 
-A command being in the table does not mean it does anything. #4 found that in 2.05 `setz`, `updateterrain` and `setbacktile2` have no executor case, so they parse and are ignored. This note has not checked executor cases in the other builds.
+A command being in the table does not mean it does anything. #4 lists the 2.05 commands that have no executor case, so they parse and are ignored. Examples include `setz`, `updateterrain` and `setbacktile2` (2.05), `setbacktile` (1.34), `drawovertrees` and `canwarp` (1.41), `canwarp2` (1.42), `join`, `freezeplayer2` and `unfreezeplayer` (2.0), and `seturllevel`, `setfocus` and `resetfocus`. See #4 for the full list. This note has not checked executor cases in the other builds.
 
 New commands are inserted in the middle of the table, not appended. So the internal index of a command changes between builds, and an executor decompiled in one build cannot reuse another build's case numbers.
 
@@ -151,13 +151,13 @@ Each prop switch reads a run of `(prop id, value)` pairs. Ids handled:
 
 | Parser | 1.33 | Added later |
 |---|---|---|
-| Player props | 0–33 | 34 (1.39); 35, 36 (1.41); 37–41 (2.02 rev2); 42 (2.04); 43–45 (2.1 tests) |
-| NPC props | 0–33 | 34 (1.34); 35 (1.41); 36–40 (2.02 rev2); 41–43 (2.1 tests) |
+| Player props | 0–33 *[inf]* | 34 (1.39); 35, 36 (1.41); 37–41 (2.02 rev2); 42 (2.04); 43–45 (2.1 tests) |
+| NPC props | 0–34 *[inf]* | 35 (1.41); 36–40 (2.02 rev2); 41–43 (2.1 tests) |
 | Baddy props | 0–10 | none; the switch is gone in both NewWorld betas |
 
 The player switch was told apart from the NPC switch by its callers: the player prop parser is the one that calls the sparse switch described below.
 That holds in every build from 1.34 on. In 1.33 neither switch calls it within its own body, so the 1.33 row assumes the same split as 1.34 (one switch is 0–33, the other 0–34).
-So NPC prop 34 arrives in 1.34, five builds before player prop 34.
+So NPC prop 34 is handled from 1.34 at the latest (from 1.33 if the assumed split holds), well before player prop 34 in 1.39.
 
 The five ids added together in 2.02 rev2 (player 37–41, NPC 36–40) sit at the same place in both lists, so they are probably one feature added to players and NPCs at once.
 This is consistent with the public prop numbering used by open-source server work, where both lists gain five attribute props at these positions.
