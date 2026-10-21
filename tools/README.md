@@ -17,3 +17,4 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | NPC server (2001) | Server-side NPC host | Logs into GServer as a player, 0.1 s tick, PM admin commands, `join` classes. See `npcserver-2001.md`. |
 
 See the individual files for the measured contracts. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.
+- `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.
