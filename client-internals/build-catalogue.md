@@ -3,7 +3,7 @@
 Date: 2026-10-21
 
 This covers every client in the uploaded archive set: 39 top-level archives plus 16 from the second upload, 55 in total.
-There are 52 Delphi client executables, the Graal3D side project, and the 1998 Java precursor.
+There are 52 Delphi client executables (53 with GraalX, see below), the Graal3D side project, and the 1998 Java precursor.
 Everything here comes from static reads of the binaries (PE headers, resources, strings, and immediates in the code)
 and from the release notes shipped beside each exe. Nothing in this file comes from a decompiler.
 
@@ -66,6 +66,7 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | Graal-v2.0-rev1 | v2.00 rev1 | 2001-02-02 19:19 | 2.0.0.1 | 30bd230e578d3a347866a87060efec20 | 1812992 | `GNW24011` | 3 | as above | as above | |
 | Graal-v2.0-rev2 | v2.00 rev2 | 2001-02-05 02:32 | 2.0.0.2 | fc4bb7e3b7ca9cd8ea6693a033635534 | 1815040 | `GNW24011` | 3 | as above | as above | |
 | Graal-v2.0-rev3 | v2.00 rev3 | 2001-02-07 01:05 | 2.0.0.3 | 1ce5c1662b65246ae1c6559af5ff71f0 | 1815040 | `GNW24011` | 3 | as above | as above | |
+| GraalX (`.rar`, separate upload) | 2.01-era side build | 2001-03-07 21:40 | 2.0.0.3 | d3ee52ef9d22a0d99b154b47c5f56f60 | 1821696 | `GNW23021` | 3 | as above | GR-V1.00–1.03, **GLEVNW01** | 2.01 plus the `.nw` reader and writer. See the note below |
 | Graal-v2.01 | v2.01 | 2001-03-08 14:59 | 2.0.1.0 | 08340a8868f1d11e0285cc70e51200fe | 1815552 | `GNW23021` | 3 | as above | as above | Level preloading on the map; showimg fixes |
 | Graal-v2.01-rev1 | v2.01 rev1 | 2001-03-15 21:10 | 2.0.1.0 | 010a32afce66729b838258809a97c0d9 | 1815552 | `GNW23021` | 3 | as above | as above | |
 | Graal-v2.02 | v2.02 | 2001-04-15 20:48 | 2.0.2.0 | 60018a19ef671c506743826728c49718 | 1808384 | `GNW15041` | 3 | as above | as above | Hats; HTML window navigation |
@@ -80,6 +81,15 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | graal21test2 | v2.1 test 2 | 2001-09-21 17:54 | 2.1.0.0 | d15d877822ad4145578107857c90fb3c | 1748480 | `GNW03081` | 3 | list www.graalonline.com:**14922**, "newmain" (DES) | as 2.05 | New tiles, new starting window; the token is still 2.05's |
 | graal21test3 | v2.1 test 3 | 2001-09-27 21:11 | 2.1.0.0 | 2116a7ba03648dcc004035534ec94de8 | 1753600 | `GNW03081` | 3 | as above | as 2.05 | |
 | graalnwb2 | NewWorld beta 2 | 2001-10-03 20:46 | 2.1.0.0 | af2d21066659bed6af6c77e52b2cc0e1 | 1613824 | `G2N15041` | 3 | list www.graalonline.com:14922, "newworld" (DES) | as 2.05 | String arrays (`addstring` etc.), terrain heights with per-level `HEIGHTS` grids from the gmap; see `newworld-betas.md` |
+
+### GraalX
+
+GraalX came as a separate upload, `GraalX.rar`, holding a single `GraalX.exe`. Its VERSIONINFO says 2.0.0.3, the same stale value as 2.0 rev3. It was linked one day before 2.01 and carries 2.01's login token.
+Its classes and instance sizes, its GS1 command table (144 commands) and every packet and prop id it handles are identical to 2.01.
+Matched function by function, it shares 6350 identical functions with 2.01 and differs in only 7.
+The one real difference is `.nw` support. GraalX keeps the GLEVNW01 reader, writer and chest-line parser that NewMain 1.42 had and that 2.0 and 2.01 dropped. Several of those functions are identical to NewMain's.
+It also adds the GLEVNW01 magic checks and the `.nw` open-dialog filter that reappear in 2.05.
+So it looks like a 2.01 build compiled with the `.nw` code left in, for example a level-format test. Nothing in the binary says why it was built or who it went to.
 
 ## Patterns worth knowing
 
