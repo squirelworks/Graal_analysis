@@ -1,6 +1,6 @@
 # Graal Analysis — consolidated notes
 
-Date: 2026-10-14, revised 2026-10-21
+Date: 2026-10-14, revised 2026-10-22
 
 Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serverlist, OpenGS1), observed packet shapes, format documentation, and behavior observed in client 2.05 rev 2. No decompile material.
 
@@ -9,7 +9,7 @@ Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serv
 ### Levels
 - **GLEVNW01** (`.nw`) — text format. Header, `BOARD x y width layer tiledata` (2-char base64 tiles), `NPC` blocks, `LINK`/`SIGN`/`CHEST`/`BADDY` records.
 - **GR-V1** (`.graal`) — binary format. 8-byte magic, then a 12-bit (1.00, 1.01) or 13-bit (1.02, 1.03) LSB-first tile bit stream with RLE and double-RLE control codes, then text sections for links, baddies, NPCs (`image#script`), chests, and signs. See `formats/level-binary.md`.
-- **Z3-V1** (`.zelda`) — earlier binary. Same 12-bit RLE board; links, baddies (verses only in 1.04), and signs; no NPCs or chests.
+- **Z3-V1** (`.zelda`) — earlier binary. RLE board (11-bit for 1.02, 12-bit for 1.03/1.04). FileLink records until `#`, then binary computer records and coded signs. No NPCs or chests. Seihai loads the board; trailing records are not yet parsed.
 
 ### Tiles
 - Tile id is a 12-bit value decoded from the 2-char base64 encoding into `pics1`.
