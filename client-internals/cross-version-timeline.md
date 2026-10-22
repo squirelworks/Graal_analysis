@@ -32,6 +32,7 @@ The per-build maps (old function, rev2 function, name, identical or changed) are
 | NewMain 1.42 | 6468 | 5592 | 507 | 369 | 430 |
 | 2.0 | 6396 | 5637 | 515 | 244 | 377 |
 | 2.01 | 6412 | 5663 | 528 | 221 | 338 |
+| GraalX (2.01 with `.nw`) | 6429 | 5662 | 531 | 236 | 336 |
 | 2.02 rev2 | 6350 | 5678 | 484 | 188 | 367 |
 | 2.03 | 6428 | 5754 | 479 | 195 | 296 |
 | 2.04 | 6471 | 5799 | 558 | 114 | 172 |
@@ -42,6 +43,7 @@ The per-build maps (old function, rev2 function, name, identical or changed) are
 | NewWorld beta 2 | 6484 | 5668 | 489 | 327 | 372 |
 
 Most of the identical count for the 1.3x builds is shared Delphi library code. The largest single step is 1.41 rev1 to NewMain 1.42, about 800 more functions, part of which is the new DirectDraw 7 and grid library code.
+GraalX (see `build-catalogue.md`) matches 2.01 in its classes, GS1 commands and packet ids, so it is left out of the tables below. Against 2.01 it differs only by the `.nw` reader and writer.
 The 2.1 tests have more functions than 2.05 but fewer that are unique to rev2, which fits them being a later branch of the 2.05 code.
 
 ## Classes
