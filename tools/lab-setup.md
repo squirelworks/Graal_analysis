@@ -39,10 +39,11 @@ Lab accounts are throwaway names with dummy passwords. This lab's stub accepts a
 - **UDP:** XOR each datagram with `recipientId XOR 1`, where the recipient is the player who owns the destination port. The first byte is then `seq`, the second the UDP id. See `protocol/udp-p2p.md`.
 
 ## Capture set
-The **[cap]** tags in the protocol notes come from four runs in this lab, all on 2026-10-21:
+The **[cap]** tags in the protocol notes come from five runs in this lab, all on 2026-10-21:
 1. 2.05 listserver exchange and one 2.05 game login.
 2. 2.05 and 2.22 game logins, and the 2.22 listserver handshake.
 3. Two 2.05 clients in one level with UDP enabled. This is the source for the UDP key and payloads.
 4. Two 2.05 clients and a bomb next to bushes. This is the source for the board change, item drops and respawn.
+5. Three 2.05 clients in one level with UDP enabled (players 2, 3 and 4). This is the source for the per-recipient UDP key and the animation-letter field.
 
 The pcaps stay on the lab machine. Only the decoded text, with credentials removed, is kept outside it.
