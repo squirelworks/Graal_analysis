@@ -1,0 +1,915 @@
+# Graal client profiles, 1.33 to 1.39 (gen 2).
+# Cleaned observations: static reads of the shipped clients, release notes, shipped assets.
+# No addresses, function names or decompiler output. See versions-133-139.md for the method.
+# Every [[version]] lists the full value for each key, not a diff, so a reader can load one entry alone.
+
+schema = 1
+range = "1.33-1.39"
+
+[confidence]
+token = "confirmed"
+generation = "confirmed"
+compression = "confirmed"
+cipher = "confirmed"
+login_key_byte = "confirmed"
+client_type = "confirmed"
+listserver = "confirmed"
+default_server = "confirmed"
+login = "confirmed in 1.33 and 1.39; same code shape assumed for 1.34-1.38"
+pli_sent = "confirmed for ids passed as constants; a few send sites pass the id in a register and are not counted"
+plo_known = "confirmed"
+plprops_known = "confirmed from 1.34; 1.33 split between player and NPC switch inferred"
+otherplprops_known = "confirmed set; role (props of other players) inferred"
+npcprops_known = "as plprops_known"
+baddyprops_known = "confirmed"
+udp_known = "confirmed (receive side)"
+level_formats = "confirmed"
+save_format = "confirmed"
+file_wantfile = "confirmed (id 23 sent)"
+file_updatefile = "confirmed (id 34 never sent)"
+file_modtime = "inferred from server source (pre-2.1 PLO_FILE form)"
+file_large = "confirmed (ids 68/69/84 not handled)"
+tampercheck = "confirmed (id 39 not sent)"
+gs1_commands = "confirmed (table contents; whether each has an executor case is not checked)"
+config_keys = "confirmed for plain strings; 1.38+ builds some strings char by char, so keys may be missing from those lists"
+languages = "confirmed (shipped language files)"
+assets = "confirmed (shipped files)"
+
+# Feature flags: first build that has each one. Each [[version]].features table repeats the on/off value.
+[features]
+player_list_sections = { since = "1.33", confidence = "confirmed", note = "F7 list split into GPs, Guild, Normal, Ignore" }
+pm_history_memory = { since = "1.33", confidence = "confirmed", note = "History button, last 50 messages, not saved" }
+png_palette_images = { since = "1.33", confidence = "confirmed", note = "16/256-colour PNG only, no alpha, no interlace" }
+udp_peer_data = { since = "1.33", confidence = "confirmed", note = "noudp= and fixedudpport= (14899) options" }
+multiplayer_local_2_4 = { since = "1.33", confidence = "confirmed", note = "start modes: One Player, One Player Online, Two, Three, Four Players" }
+script_debugger_f6 = { since = "1.34", confidence = "confirmed", note = "working debugger with breakpoints; offline only" }
+png_screenshots = { since = "1.34", confidence = "confirmed", note = "Alt+2 writes 24-bit PNG" }
+mng_images = { since = "1.34", confidence = "confirmed", note = "MNG loader appears; \"better support\" in 1.38" }
+sfx_limits = { since = "1.34", confidence = "confirmed", note = "one sound per type per frame, at most 8 at once" }
+horse_loses_bush_when_hit = { since = "1.34", confidence = "confirmed", note = "rider pushed off at 0 bushes" }
+two_riders_offline = { since = "1.34", confidence = "confirmed", note = "offline only, horse needs 5 bushes" }
+ignored_accounts_file = { since = "1.34", confidence = "confirmed", note = "ignoredaccounts.txt; ignoring player shown red" }
+local_focus_chat_2_4 = { since = "1.34", confidence = "confirmed", note = "click a player view to focus; CHAT label on HUD (asset from 1.35)" }
+buddy_list = { since = "1.35", confidence = "confirmed", note = "player list popup Buddy; buddyaccounts.txt" }
+html_pms = { since = "1.35", confidence = "confirmed", note = "TWebBrowser PMs; nohtmlinpms= option; loaded dynamically from 1.36" }
+editor_generate_map = { since = "1.35", confidence = "inferred", note = "editor menu \"Generate map\" writing graalmap.bmp" }
+senior_gp_tag = { since = "1.35", confidence = "inferred", note = "player list tag \"(Senior GP)\"; \"(RC)\" tag from 1.36" }
+nickname_length_limit = { since = "1.36", confidence = "confirmed", note = "limitnicknames= / nicknamelimit= (default 50)" }
+level_object_arrays = { since = "1.36", confidence = "confirmed", note = "GS1 bombs[], arrows[], items[], explos[], horses[] (read only)" }
+server_cap_28000 = { since = "1.36", confidence = "confirmed", note = "server side, from the release notes; no client-side change found" }
+distance_scaled_sfx = { since = "1.37", confidence = "confirmed", note = "sound volume depends on distance" }
+showimg_normal_npcs = { since = "1.37", confidence = "confirmed", note = "only the current player sees it" }
+looped_sounds = { since = "1.37", confidence = "confirmed", note = "playlooped / stopsound" }
+array_literals = { since = "1.37", confidence = "confirmed", note = "myarr = {..}; built-in true/false; hasweapon()" }
+account_owner_star_nick = { since = "1.38", confidence = "confirmed", note = "server marks nick == account as *nick" }
+server_item_pickup = { since = "1.38", confidence = "confirmed", note = "PLI_ITEMTAKE (32): server grants rupees (anti-dupe)" }
+emotion_icons = { since = "1.38", confidence = "confirmed", note = "Ctrl+A/B/D/E/F/G/H/L/M/O/P/R/S/T/W/X/Z; 1.39 adds C/K/Y" }
+pms_saved_to_disk = { since = "1.38", confidence = "confirmed", note = "pms/messages_<account>.txt" }
+configurable_keys = { since = "1.38", confidence = "confirmed", note = "graalconfig keys up/down/left/right/item/attack/action/map/switchtochat/itemlist/pause, 3 keys each" }
+zoom_alt8_alt9 = { since = "1.38", confidence = "confirmed", note = "readme key list" }
+npcs_array_rw = { since = "1.38", confidence = "confirmed", note = "npcs[index].attr read/write; testbomb() etc." }
+shield_down_visible = { since = "1.38", confidence = "confirmed", note = "other players see a laid-down shield" }
+editor_show_blocking = { since = "1.38", confidence = "confirmed", note = "editor checkbox \"Show blocking tiles\"" }
+external_chat_removed = { since = "1.38", confidence = "confirmed", note = "externalchat= option and in/outmessages.txt gone from 1.38" }
+profiles = { since = "1.39", confidence = "confirmed", note = "profile window: real name, age, sex, country, ICQ, e-mail, homepage, hangout, quote; ids 80/81 and 75" }
+player_list_options = { since = "1.39", confidence = "confirmed", note = "separate window: ignore mass PMs, no HTML, no images, sort by nickname" }
+ignore_toalls = { since = "1.39", confidence = "confirmed", note = "notoalls=" }
+dont_load_list_heads = { since = "1.39", confidence = "confirmed", note = "dontloadlistheads=" }
+dont_connect_levels = { since = "1.39", confidence = "confirmed", note = "dontconnectlevels=" }
+chat_history_up_down = { since = "1.39", confidence = "confirmed", note = "last 100 chat lines" }
+dead_players_nonblocking = { since = "1.39", confidence = "confirmed", note = "release note; other players with 0 hearts can be walked through" }
+weapon_list_mouse = { since = "1.39", confidence = "confirmed", note = "click to select; drawn with the sign renderer" }
+editor_tile_drawing = { since = "1.39", confidence = "confirmed", note = "drag-paint single tiles; drop images to create NPCs" }
+new_head_handling = { since = "1.39", confidence = "confirmed", note = "heads loaded differently; account name (prop 34) parsed for self" }
+
+[[version]]
+label = "1.33"
+token = "GNW20020"
+linked = "2000-02-21"
+file_version = ""
+md5 = "a3667ce55a5c67cf025882014b9540b0"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried", "cannotbepulled",
+  "cannotbepushed", "destroy", "disableweapons", "dontblock", "drawoverplayer", "drawunderplayer",
+  "else", "enableweapons", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hideplayer",
+  "hidesword", "hitcompu", "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling", "openurl",
+  "play", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp", "putnpc",
+  "putobject", "removecompus", "resetfocus", "say", "set", "setarray", "setbackpal", "setbeltcolor",
+  "setbody", "setbow", "setcharprop", "setcoatcolor", "seteffect", "setfocus", "setgif",
+  "setgifpart", "sethead", "setletters", "setlevel", "setmap", "setminimap", "setplayerdir",
+  "setplayerprop", "setshield", "setshoecolor", "setskincolor", "setsleevecolor", "setstring",
+  "setsword", "seturllevel", "shootarrow", "shootball", "shootfireball", "shootfireblast",
+  "shootnuke", "show", "showcharacter", "showfile", "showimg", "sleep", "stopmidi", "take",
+  "takeplayercarry", "timereverywhere", "timershow", "toinventory", "toweapons", "unset",
+  "unseteffect", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "loadcolorsfromserver=", "musicon=",
+  "nodecompressionerror=", "nodirectinput=", "nomassmessages=", "noudp=", "reversestereo=",
+  "saveimages=", "serveraddr=", "serverport=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues"]
+
+[version.assets]
+state_png = "224x81, A/S/D letters on the item buttons, no CHAT label"
+sprites_png = "128x484, HUD digits 0-9 at the bottom"
+pics1_rev = "1.33"
+map_png = "616x784"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = false
+png_screenshots = false
+mng_images = false
+sfx_limits = false
+horse_loses_bush_when_hit = false
+two_riders_offline = false
+ignored_accounts_file = false
+local_focus_chat_2_4 = false
+buddy_list = false
+html_pms = false
+editor_generate_map = false
+senior_gp_tag = false
+nickname_length_limit = false
+level_object_arrays = false
+server_cap_28000 = false
+distance_scaled_sfx = false
+showimg_normal_npcs = false
+looped_sounds = false
+array_literals = false
+account_owner_star_nick = false
+server_item_pickup = false
+emotion_icons = false
+pms_saved_to_disk = false
+configurable_keys = false
+zoom_alt8_alt9 = false
+npcs_array_rw = false
+shield_down_visible = false
+editor_show_blocking = false
+external_chat_removed = false
+profiles = false
+player_list_options = false
+ignore_toalls = false
+dont_load_list_heads = false
+dont_connect_levels = false
+chat_history_up_down = false
+dead_players_nonblocking = false
+weapon_list_mouse = false
+editor_tile_drawing = false
+new_head_handling = false
+
+[[version]]
+label = "1.34"
+token = "GNW22030"
+linked = "2000-03-23"
+file_version = ""
+md5 = "9e403616e73a6079ac37d65d475c81cd"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 34, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "blockagainlocal", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried",
+  "cannotbepulled", "cannotbepushed", "carryobject", "destroy", "disableweapons", "dontblock",
+  "dontblocklocal", "drawoverplayer", "drawunderplayer", "else", "enableweapons", "followplayer",
+  "for", "freezeplayer", "hide", "hideimg", "hidelocal", "hideplayer", "hidesword", "hitcompu",
+  "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling", "openurl", "play", "putbomb",
+  "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp", "putnpc", "putobject",
+  "removecompus", "resetfocus", "say", "set", "setarray", "setbackpal", "setbacktile",
+  "setbeltcolor", "setbody", "setbow", "setcharprop", "setcoatcolor", "setfocus", "setgif",
+  "setgifpart", "sethead", "setletters", "setlevel", "setmap", "setminimap", "setplayerdir",
+  "setplayerprop", "setshield", "setshoecolor", "setskincolor", "setsleevecolor", "setstring",
+  "setsword", "seturllevel", "shootarrow", "shootball", "shootfireball", "shootfireblast",
+  "shootnuke", "show", "showcharacter", "showfile", "showimg", "showlocal", "sleep", "stopmidi",
+  "take", "takeplayercarry", "throwcarry", "timereverywhere", "timershow", "toinventory",
+  "toweapons", "unset", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "loadcolorsfromserver=", "musicon=",
+  "nodecompressionerror=", "nodirectinput=", "nomassmessages=", "noudp=", "reversestereo=",
+  "saveimages=", "serveraddr=", "serverport=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues"]
+
+[version.assets]
+state_png = "224x81, A/S/D letters on the item buttons, no CHAT label"
+sprites_png = "128x484, HUD digits 0-9 at the bottom"
+pics1_rev = "1.33"
+map_png = "616x784"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = true
+png_screenshots = true
+mng_images = true
+sfx_limits = true
+horse_loses_bush_when_hit = true
+two_riders_offline = true
+ignored_accounts_file = true
+local_focus_chat_2_4 = true
+buddy_list = false
+html_pms = false
+editor_generate_map = false
+senior_gp_tag = false
+nickname_length_limit = false
+level_object_arrays = false
+server_cap_28000 = false
+distance_scaled_sfx = false
+showimg_normal_npcs = false
+looped_sounds = false
+array_literals = false
+account_owner_star_nick = false
+server_item_pickup = false
+emotion_icons = false
+pms_saved_to_disk = false
+configurable_keys = false
+zoom_alt8_alt9 = false
+npcs_array_rw = false
+shield_down_visible = false
+editor_show_blocking = false
+external_chat_removed = false
+profiles = false
+player_list_options = false
+ignore_toalls = false
+dont_load_list_heads = false
+dont_connect_levels = false
+chat_history_up_down = false
+dead_players_nonblocking = false
+weapon_list_mouse = false
+editor_tile_drawing = false
+new_head_handling = false
+
+[[version]]
+label = "1.35"
+token = "GNW13040"
+linked = "2000-04-13"
+file_version = ""
+md5 = "fe9d99c4bf6e6bc9b1b127823f39646f"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 34, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "blockagainlocal", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried",
+  "cannotbepulled", "cannotbepushed", "carryobject", "destroy", "disableweapons", "dontblock",
+  "dontblocklocal", "drawoverplayer", "drawunderplayer", "else", "enableweapons", "followplayer",
+  "for", "freezeplayer", "hide", "hideimg", "hidelocal", "hideplayer", "hidesword", "hitcompu",
+  "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling", "openurl", "play", "putbomb",
+  "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp", "putnpc", "putobject",
+  "removecompus", "resetfocus", "say", "set", "setarray", "setbackpal", "setbacktile",
+  "setbeltcolor", "setbody", "setbow", "setcharprop", "setcoatcolor", "setfocus", "setgif",
+  "setgifpart", "sethead", "setletters", "setlevel", "setmap", "setminimap", "setplayerdir",
+  "setplayerprop", "setshield", "setshoecolor", "setskincolor", "setsleevecolor", "setstring",
+  "setsword", "seturllevel", "shootarrow", "shootball", "shootfireball", "shootfireblast",
+  "shootnuke", "show", "showcharacter", "showfile", "showimg", "showlocal", "sleep", "stopmidi",
+  "take", "takeplayercarry", "throwcarry", "timereverywhere", "timershow", "toinventory",
+  "toweapons", "unset", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "loadcolorsfromserver=", "musicon=",
+  "nodecompressionerror=", "nodirectinput=", "nohtmlinpms=", "nomassmessages=", "noudp=",
+  "reversestereo=", "saveimages=", "serveraddr=", "serverport=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues"]
+
+[version.assets]
+state_png = "224x81, A/S/D letters, CHAT label added"
+sprites_png = "128x484, HUD digits 0-9 at the bottom"
+pics1_rev = "1.33"
+map_png = "616x784"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = true
+png_screenshots = true
+mng_images = true
+sfx_limits = true
+horse_loses_bush_when_hit = true
+two_riders_offline = true
+ignored_accounts_file = true
+local_focus_chat_2_4 = true
+buddy_list = true
+html_pms = true
+editor_generate_map = true
+senior_gp_tag = true
+nickname_length_limit = false
+level_object_arrays = false
+server_cap_28000 = false
+distance_scaled_sfx = false
+showimg_normal_npcs = false
+looped_sounds = false
+array_literals = false
+account_owner_star_nick = false
+server_item_pickup = false
+emotion_icons = false
+pms_saved_to_disk = false
+configurable_keys = false
+zoom_alt8_alt9 = false
+npcs_array_rw = false
+shield_down_visible = false
+editor_show_blocking = false
+external_chat_removed = false
+profiles = false
+player_list_options = false
+ignore_toalls = false
+dont_load_list_heads = false
+dont_connect_levels = false
+chat_history_up_down = false
+dead_players_nonblocking = false
+weapon_list_mouse = false
+editor_tile_drawing = false
+new_head_handling = false
+
+[[version]]
+label = "1.36"
+token = "GNW10050"
+linked = "2000-05-12"
+file_version = ""
+md5 = "018f51662c7c8862cafb9bfbd14dea41"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 34, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "blockagainlocal", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried",
+  "cannotbepulled", "cannotbepushed", "carryobject", "destroy", "disableweapons", "dontblock",
+  "dontblocklocal", "drawoverplayer", "drawunderplayer", "else", "enableweapons", "explodebomb",
+  "followplayer", "for", "freezeplayer", "hide", "hideimg", "hidelocal", "hideplayer", "hidesword",
+  "hitcompu", "hitplayer", "hurt", "if", "lay", "lay2", "message", "noplayerkilling", "openurl",
+  "play", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp", "putnpc",
+  "putobject", "reflectarrow", "removearrow", "removebomb", "removecompus", "removeexplo",
+  "removehorse", "removeitem", "resetfocus", "say", "set", "setarray", "setbackpal", "setbacktile",
+  "setbeltcolor", "setbody", "setbow", "setcharprop", "setcoatcolor", "setfocus", "setgif",
+  "setgifpart", "sethead", "setletters", "setlevel", "setmap", "setminimap", "setplayerdir",
+  "setplayerprop", "setshield", "setshoecolor", "setskincolor", "setsleevecolor", "setstring",
+  "setsword", "seturllevel", "shootarrow", "shootball", "shootfireball", "shootfireblast",
+  "shootnuke", "show", "showcharacter", "showfile", "showimg", "showlocal", "sleep", "stopmidi",
+  "take", "take2", "takehorse", "takeplayercarry", "takeplayerhorse", "throwcarry",
+  "timereverywhere", "timershow", "toinventory", "toweapons", "unset", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "limitnicknames=", "loadcolorsfromserver=", "musicon=",
+  "nicknamelimit=", "nodecompressionerror=", "nodirectinput=", "nohtmlinpms=", "nomassmessages=",
+  "noudp=", "reversestereo=", "saveimages=", "serveraddr=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues"]
+
+[version.assets]
+state_png = "224x81, A/S/D letters, CHAT label added"
+sprites_png = "128x484, HUD digits 0-9 at the bottom"
+pics1_rev = "1.33"
+map_png = "952x952"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = true
+png_screenshots = true
+mng_images = true
+sfx_limits = true
+horse_loses_bush_when_hit = true
+two_riders_offline = true
+ignored_accounts_file = true
+local_focus_chat_2_4 = true
+buddy_list = true
+html_pms = true
+editor_generate_map = true
+senior_gp_tag = true
+nickname_length_limit = true
+level_object_arrays = true
+server_cap_28000 = true
+distance_scaled_sfx = false
+showimg_normal_npcs = false
+looped_sounds = false
+array_literals = false
+account_owner_star_nick = false
+server_item_pickup = false
+emotion_icons = false
+pms_saved_to_disk = false
+configurable_keys = false
+zoom_alt8_alt9 = false
+npcs_array_rw = false
+shield_down_visible = false
+editor_show_blocking = false
+external_chat_removed = false
+profiles = false
+player_list_options = false
+ignore_toalls = false
+dont_load_list_heads = false
+dont_connect_levels = false
+chat_history_up_down = false
+dead_players_nonblocking = false
+weapon_list_mouse = false
+editor_tile_drawing = false
+new_head_handling = false
+
+[[version]]
+label = "1.37"
+token = "GNW21050"
+linked = "2000-05-23"
+file_version = "1.3.7.0"
+md5 = "5e966a9d1a079af6d682b2618674edb1"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 34, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "blockagainlocal", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried",
+  "cannotbepulled", "cannotbepushed", "carryobject", "destroy", "disableweapons", "dontblock",
+  "dontblocklocal", "drawoverplayer", "drawunderplayer", "else", "enableweapons", "explodebomb",
+  "followplayer", "for", "freezeplayer", "hide", "hideimg", "hidelocal", "hideplayer", "hidesword",
+  "hitcompu", "hitplayer", "hurt", "if", "lay", "lay2", "message", "noplayerkilling", "openurl",
+  "play", "playlooped", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp",
+  "putnpc", "putobject", "reflectarrow", "removearrow", "removebomb", "removecompus", "removeexplo",
+  "removehorse", "removeitem", "resetfocus", "say", "set", "setarray", "setbackpal", "setbacktile",
+  "setbeltcolor", "setbody", "setbow", "setcharprop", "setcoatcolor", "setfocus", "setgif",
+  "setgifpart", "sethead", "setletters", "setlevel", "setmap", "setminimap", "setplayerdir",
+  "setplayerprop", "setshield", "setshoecolor", "setskincolor", "setsleevecolor", "setstring",
+  "setsword", "seturllevel", "shootarrow", "shootball", "shootfireball", "shootfireblast",
+  "shootnuke", "show", "showcharacter", "showfile", "showimg", "showlocal", "sleep", "stopmidi",
+  "stopsound", "take", "take2", "takehorse", "takeplayercarry", "takeplayerhorse", "throwcarry",
+  "timereverywhere", "timershow", "toinventory", "toweapons", "unset", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "limitnicknames=", "loadcolorsfromserver=", "musicon=",
+  "nicknamelimit=", "nodecompressionerror=", "nodirectinput=", "nohtmlinpms=", "nomassmessages=",
+  "noudp=", "reversestereo=", "saveimages=", "serveraddr=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues", "Espanol", "Italiano"]
+
+[version.assets]
+state_png = "224x81, A/S/D letters, CHAT label added"
+sprites_png = "128x484, HUD digits 0-9 at the bottom"
+pics1_rev = "1.33"
+map_png = "1008x952"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = true
+png_screenshots = true
+mng_images = true
+sfx_limits = true
+horse_loses_bush_when_hit = true
+two_riders_offline = true
+ignored_accounts_file = true
+local_focus_chat_2_4 = true
+buddy_list = true
+html_pms = true
+editor_generate_map = true
+senior_gp_tag = true
+nickname_length_limit = true
+level_object_arrays = true
+server_cap_28000 = true
+distance_scaled_sfx = true
+showimg_normal_npcs = true
+looped_sounds = true
+array_literals = true
+account_owner_star_nick = false
+server_item_pickup = false
+emotion_icons = false
+pms_saved_to_disk = false
+configurable_keys = false
+zoom_alt8_alt9 = false
+npcs_array_rw = false
+shield_down_visible = false
+editor_show_blocking = false
+external_chat_removed = false
+profiles = false
+player_list_options = false
+ignore_toalls = false
+dont_load_list_heads = false
+dont_connect_levels = false
+chat_history_up_down = false
+dead_players_nonblocking = false
+weapon_list_mouse = false
+editor_tile_drawing = false
+new_head_handling = false
+
+[[version]]
+label = "1.38"
+token = "GNW22060"
+linked = "2000-06-23"
+file_version = "1.3.8.0"
+md5 = "4401f7d02966af709c2df662cebe34a1"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27,
+  28, 29, 30, 31, 32, 33
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 43, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 34, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "blockagainlocal", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried",
+  "cannotbepulled", "cannotbepushed", "carryobject", "changeimgpart", "destroy", "disableweapons",
+  "dontblock", "dontblocklocal", "drawoverplayer", "drawunderplayer", "else", "enableweapons",
+  "explodebomb", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hidelocal", "hideplayer",
+  "hidesword", "hitcompu", "hitnpc", "hitplayer", "hurt", "if", "lay", "lay2", "message",
+  "noplayerkilling", "openurl", "play", "playlooped", "putbomb", "putcomp", "putexplosion",
+  "puthorse", "putleaps", "putnewcomp", "putnpc", "putobject", "reflectarrow", "removearrow",
+  "removebomb", "removecompus", "removeexplo", "removehorse", "removeitem", "resetfocus", "say",
+  "set", "setarray", "setbackpal", "setbacktile", "setbeltcolor", "setbody", "setbow", "setcharprop",
+  "setcoatcolor", "setfocus", "setgif", "setgifpart", "sethead", "setletters", "setlevel",
+  "setlevel2", "setmap", "setminimap", "setplayerdir", "setplayerprop", "setshield", "setshoecolor",
+  "setskincolor", "setsleevecolor", "setstring", "setsword", "seturllevel", "shootarrow",
+  "shootball", "shootfireball", "shootfireblast", "shootnuke", "show", "showcharacter", "showfile",
+  "showimg", "showlocal", "sleep", "stopmidi", "stopsound", "take", "take2", "takehorse",
+  "takeplayercarry", "takeplayerhorse", "throwcarry", "timereverywhere", "timershow", "toinventory",
+  "toweapons", "unset", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "fixedport=", "fixedudpport=", "font=", "fontsize=", "gamemode=",
+  "joystickon=", "language=", "limitnicknames=", "loadcolorsfromserver=", "musicon=",
+  "nicknamelimit=", "nodecompressionerror=", "nodirectinput=", "nohtmlinpms=", "nomassmessages=",
+  "noudp=", "reversestereo=", "saveimages=", "serveraddr=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues", "Espanol", "Italiano", "Swedish"]
+
+[version.assets]
+state_png = "224x97, blank item buttons (keys configurable), HUD digits 0-9 moved here"
+sprites_png = "128x452, digits removed"
+pics1_rev = "1.38 (81 tiles changed)"
+map_png = "1008x952"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = true
+png_screenshots = true
+mng_images = true
+sfx_limits = true
+horse_loses_bush_when_hit = true
+two_riders_offline = true
+ignored_accounts_file = true
+local_focus_chat_2_4 = true
+buddy_list = true
+html_pms = true
+editor_generate_map = true
+senior_gp_tag = true
+nickname_length_limit = true
+level_object_arrays = true
+server_cap_28000 = true
+distance_scaled_sfx = true
+showimg_normal_npcs = true
+looped_sounds = true
+array_literals = true
+account_owner_star_nick = true
+server_item_pickup = true
+emotion_icons = true
+pms_saved_to_disk = true
+configurable_keys = true
+zoom_alt8_alt9 = true
+npcs_array_rw = true
+shield_down_visible = true
+editor_show_blocking = true
+external_chat_removed = true
+profiles = false
+player_list_options = false
+ignore_toalls = false
+dont_load_list_heads = false
+dont_connect_levels = false
+chat_history_up_down = false
+dead_players_nonblocking = false
+weapon_list_mouse = false
+editor_tile_drawing = false
+new_head_handling = false
+
+[[version]]
+label = "1.39"
+token = "GNW07080"
+linked = "2000-08-07"
+file_version = "1.3.8.0"
+md5 = "62513ab884f1802a0bcd8114abe349b9"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+pli_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27,
+  28, 29, 30, 31, 32, 33, 80, 81
+]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 43, 75, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+otherplprops_known = [0, 2, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24, 30, 31, 32, 33, 34, 50, 51]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
+nw = false
+gmap = false
+save_format = "Graalsav9"
+file_wantfile = true
+file_updatefile = false
+file_modtime = false
+file_large = false
+tampercheck = false
+gs1_commands = [
+  "blockagain", "blockagainlocal", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried",
+  "cannotbepulled", "cannotbepushed", "carryobject", "changeimgpart", "destroy", "disableweapons",
+  "dontblock", "dontblocklocal", "drawoverplayer", "drawunderplayer", "else", "enableweapons",
+  "explodebomb", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hidelocal", "hideplayer",
+  "hidesword", "hitcompu", "hitnpc", "hitplayer", "hurt", "if", "lay", "lay2", "message",
+  "noplayerkilling", "openurl", "play", "playlooped", "putbomb", "putcomp", "putexplosion",
+  "puthorse", "putleaps", "putnewcomp", "putnpc", "putobject", "reflectarrow", "removearrow",
+  "removebomb", "removecompus", "removeexplo", "removehorse", "removeitem", "resetfocus", "say",
+  "set", "setani", "setarray", "setbackpal", "setbacktile", "setbeltcolor", "setbody", "setbow",
+  "setcharani", "setcharprop", "setcoatcolor", "setfocus", "setgif", "setgifpart", "sethead",
+  "setletters", "setlevel", "setlevel2", "setmap", "setminimap", "setplayerdir", "setplayerprop",
+  "setshield", "setshoecolor", "setskincolor", "setsleevecolor", "setstring", "setsword",
+  "seturllevel", "shootarrow", "shootball", "shootfireball", "shootfireblast", "shootnuke", "show",
+  "showcharacter", "showfile", "showimg", "showlocal", "sleep", "stopmidi", "stopsound", "take",
+  "take2", "takehorse", "takeplayercarry", "takeplayerhorse", "throwcarry", "timereverywhere",
+  "timershow", "toinventory", "toweapons", "unset", "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "dontconnectlevels=", "dontloadlistheads=", "fixedport=", "fixedudpport=",
+  "font=", "fontsize=", "gamemode=", "joystickon=", "language=", "limitnicknames=",
+  "loadcolorsfromserver=", "musicon=", "nicknamelimit=", "nodecompressionerror=", "nodirectinput=",
+  "nohtmlimages=", "nohtmlinpms=", "nomassmessages=", "notoalls=", "noudp=", "reversestereo=",
+  "saveimages=", "serveraddr=", "sortplayersbyname=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch", "Portugues", "Espanol", "Italiano", "Swedish", "Francais"]
+
+[version.assets]
+state_png = "224x97, blank item buttons (keys configurable), HUD digits 0-9 moved here"
+sprites_png = "128x452, digits removed"
+pics1_rev = "1.39 (7 tiles changed)"
+map_png = "1008x952"
+
+[version.features]
+player_list_sections = true
+pm_history_memory = true
+png_palette_images = true
+udp_peer_data = true
+multiplayer_local_2_4 = true
+script_debugger_f6 = true
+png_screenshots = true
+mng_images = true
+sfx_limits = true
+horse_loses_bush_when_hit = true
+two_riders_offline = true
+ignored_accounts_file = true
+local_focus_chat_2_4 = true
+buddy_list = true
+html_pms = true
+editor_generate_map = true
+senior_gp_tag = true
+nickname_length_limit = true
+level_object_arrays = true
+server_cap_28000 = true
+distance_scaled_sfx = true
+showimg_normal_npcs = true
+looped_sounds = true
+array_literals = true
+account_owner_star_nick = true
+server_item_pickup = true
+emotion_icons = true
+pms_saved_to_disk = true
+configurable_keys = true
+zoom_alt8_alt9 = true
+npcs_array_rw = true
+shield_down_visible = true
+editor_show_blocking = true
+external_chat_removed = true
+profiles = true
+player_list_options = true
+ignore_toalls = true
+dont_load_list_heads = true
+dont_connect_levels = true
+chat_history_up_down = true
+dead_players_nonblocking = true
+weapon_list_mouse = true
+editor_tile_drawing = true
+new_head_handling = true
