@@ -24,7 +24,7 @@ text   signs         lines until an empty line or EOF
 
 ## Board bit stream
 
-- Code width: **12 bits** for `GR-V1.00`, `GR-V1.01` and all `Z3-V1.*`; **13 bits** for `GR-V1.02` and `GR-V1.03` only. This is the 2.05 loader's rule (it compares the magic against 1.02 and 1.03 to pick 13 bits). **[2.05]**
+- Code width: **12 bits** for `GR-V1.00`, `GR-V1.01`, and `Z3-V1.03`/`Z3-V1.04`; **11 bits** for `Z3-V1.02`; **13 bits** for `GR-V1.02` and `GR-V1.03` only. The 2.05 loader compares the magic against 1.02 and 1.03 to pick 13 bits. **[2.05]**
 - Codes are read least-significant-bit first: bytes are appended to a little-endian bit buffer and `width` bits are taken from the bottom.
 - Flag bit = the top bit of the code (`0x800` at 12 bits, `0x1000` at 13 bits).
   - **Flag set:** a control code. `count = code & 0xFF`. If `code & 0x100` is set, the next run is a **double** run.
