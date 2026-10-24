@@ -1,0 +1,10 @@
+version	handshake_known	encryption_framing_known	packet_table_known	gaps	verdict	fillable_from
+2.00 GNW24011	yes (bin); host dead, redirect needed	yes gen3	PLO/PLI from binary; props 0-36	token not in gs2lib (server allow-list patch); login props unverified; never run live; Seihai reuses 1.41 PLI (35/36 too early)	partly	Graal_v2_00.c + lab capture
+2.05 rev2 GNW03081	yes (bin+lab)	yes gen3 (704 msgs)	yes PLO59 PLI known	listserver host/port per server (14921 vs 14922/14923); lab patch maps to 2.1 behaviour	enough	-
+2.01-2.04	token yes; login as 2.05	gen3	binary deltas per build	no Seihai rows for 2.02r2/2.03/2.04; untested live	partly	existing notes
+2.1-2.16	tokens yes; login inferred	gen3 inferred	inferred	no binaries	needs binary/capture	new binaries only
+2.17 GNW22122	yes (bin) type0 gen3 id0+id1 list	yes gen3	PLO79 PLI61 from binary	tampercheck content untraced; other-player parser unread; untested live; Seihai pli lacks 40/41/43/44/45; list port default	partly	Graal_2171.exe/.idc + lab capture
+2.22 GNW03014	yes (bin+lab+public)	yes (bin+lab+27/27 public frames)	PLO80 PLI mostly (36/42/45 unmatched)	payloads of ids 25,39,41,44,47,156,168,174,179,180,182 unknown; tampercheck not sent; client bz2 send unseen; Seihai pli too wide/narrow	enough (login/play); partly (parity)	Graal_222.exe/.idc + public pcaps
+2.3 GNW14015	token only; rest inferred from 2.31	inferred gen5	inferred	no binary	partly (alias 2.31)	new binary
+2.31 GNW28015	yes (bin) same as 2.22	yes (bin) same code	PLO81 PLI=2.22 -21 +46	never run; token off in stock server; MOVE2/LARGEFILESIZE/ENTERLEVEL layouts; tampercheck value	partly	Graal_231.exe/.idc + lab capture
+1.33-1.42	yes (1.39 lab gen2)	gen2 / gen3 from 1.41	binary per build	1.41 list host unknown	enough	-
