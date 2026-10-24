@@ -85,6 +85,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `client-internals/decomp-findings-2026-10-25-f/`: what real `GR-V1.03` levels show (two supplied files and an archive of 3113 binary levels): section shapes and the no-sign file ending, link arrivals written as `playerx`/`playery` plus an offset, the baddy section ending only at a first byte of 0x80 or more (x = 0 is a valid baddy), sign `#K(n)` escapes, chest sign index -1, and aggregate counts. Counts and structure only; no level content or file names. The table `corpus-stats.tsv` is in the same folder. Small corrections to the `grv1.py` decoder and `level-binary.md` are in a separate commit.
 
+## Level editor notes (2026-10-25)
+
+- `tools/level-editor/`: the classic Graal level editor, with the editor built into the 2.22 client as the primary reference (`222-reference.md`) and every other build as a delta (`version-deltas.md`: 1st Graal to 2.31, the New World betas, the standalone GraalEditor). Also a cross-reference to the format notes and batch f (`formats-crossref.md`) and a Seihai tracking checklist (`seihai-tracking.md`, 2.22 feature list in implementation order, then per-version deltas). New: the text reader's `BOARD` rules, the 9 x 9 `HEIGHTS` block, save format by file extension, the warp-field defaults, the key map additions, change-log dated features, and a class timeline across every build. Mouse handling and two mode flags are structure-only. Corrections: the tile id to sheet mapping in `client-internals/client-assets.md`, and the baddy section ending in `client-internals/level-editor-205.md`.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

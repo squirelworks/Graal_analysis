@@ -13,7 +13,7 @@ Measured from the official client install. No decompile material.
 | sprites.png | 128×452 | Sprite sheet |
 | letters.png | — | Bitmap font |
 
-Tile id `t` maps to `col = t % 128`, `row = t // 128`, source rect `(col*16, row*16, 16, 16)` on pics1.
+Tile id `t` maps to `col = (t % 16) + (t // 512) * 16`, `row = (t // 16) % 32`, source rect `(col*16, row*16, 16, 16)` on pics1. The sheet is eight side-by-side blocks of 512 ids, each 16 columns by 32 rows, filled row by row. (Corrected 2026-10-25: an earlier version of this note said `col = t % 128`, `row = t // 128`, which is wrong. See `tools/level-editor/222-reference.md` section 5.)
 
 ## Tiledef
 

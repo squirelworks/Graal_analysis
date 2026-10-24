@@ -4,6 +4,8 @@ Date: 2026-10-21
 
 Derived from the 2.05 rev 2 binary: class names (RTTI), form resources (DFM), string tables, and the behaviour of the editor handlers. Names only, no code. Tags: **[2.05]** read from the binary · **[inf]** inferred.
 
+This note covers 2.05. The primary editor reference is now `tools/level-editor/222-reference.md` (2.22), with the other builds as deltas in `tools/level-editor/version-deltas.md`.
+
 In 2.05 the editor is not a separate program. It lives in the main window (`TAdventure`) and is a second mode of the game screen. GraalEditor.exe split off later; see `tools/graaleditor-vs-205.md`.
 
 ## Entering and leaving
@@ -132,7 +134,7 @@ Opening accepts `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00`–`GR-V1.03`, and `GLEVNW01`.
 
 ## Loader note for formats/level-binary.md
 
-The 2.05 loader picks the code width by magic: **13 bits only for `GR-V1.02` and `GR-V1.03`, 12 bits for `GR-V1.00`, `GR-V1.01`, and `Z3-V1.*`.** The section order also depends on the magic: NPCs from `GR-V1.00` on, and chests from `GR-V1.01` on. The baddy section ends at the first record shorter than three bytes or whose x byte is 0 or ≥ 0x80. It does not need a literal `FF FF FF`. **[2.05]**
+The 2.05 loader picks the code width by magic: **13 bits only for `GR-V1.02` and `GR-V1.03`, 12 bits for `GR-V1.00`, `GR-V1.01`, and `Z3-V1.*`.** The section order also depends on the magic: NPCs from `GR-V1.00` on, and chests from `GR-V1.01` on. The baddy section ends at the first record shorter than three bytes or whose first byte is ≥ 0x80. It does not need a literal `FF FF FF`. An x byte of 0 is a valid baddy, not a terminator (corrected 2026-10-25; the loader has no x = 0 test in 1.39, 2.00, 2.05, 2.17.1 or 2.22; see `decomp-findings-2026-10-25-f/03-baddy-terminator.md`). **[2.05]**
 
 ## Open
 

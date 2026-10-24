@@ -6,6 +6,8 @@ Version 2.3.1.1, Linux Cyberjoueur. From 2.3 the editor and the online client ar
 
 The copy shipped in the client tree is a Thinstall package (pre-VMware ThinApp). Magic `0x82D0B188`, LoaderFlags reused as an offset. The Delphi image is recovered by running the stub decompressor and the `0xD7` block codec. PE version resource (present even in the stub): CompanyName `Linux Cyberjoueur`, FileVersion `2.3.1.1`, InternalName `Graal editor`, ProductName `GraalEditor`. Linker 2.25.
 
+See also `tools/level-editor/` for the built-in editor of each client (2.22 as the reference). The decimal-`BOARD 0` claim in the next section conflicts with the base64 rows that the 2.05 and 2.22 built-in editors write; it has not been re-checked against a file written by GraalEditor itself.
+
 ## Document model
 
 Main form `TAdventure`, document `TAdventureLevel`, unit `UAdventureEditor`.
