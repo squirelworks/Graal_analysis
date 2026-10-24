@@ -1,0 +1,10 @@
+rule	detail	builds	evidence
+leading white space skipped	bytes 1 to 0x20 before every item	2.17.1 2.22 2.31	code, same in all three
+quoted item	starts with a double quote, ends at the closing quote, two quotes in a row are one quote	2.17.1 2.22 2.31	code
+unclosed quote	runs to the end of the text	2.17.1 2.22 2.31	code
+unquoted item ends	at a byte of 0x20 or less, or at a comma	2.17.1 2.22 2.31	code
+after an item	skip white space, then one comma if present, then white space	2.17.1 2.22 2.31	code
+comma at the end	adds no empty item	2.17.1 2.22 2.31	code
+empty item between commas	kept	2.17.1 2.22 2.31	code
+NUL byte	ends the text	2.17.1 2.22 2.31	code
+minimum items for 178	4 (items 1 to 3 used)	2.17.1 2.22 2.31	code; lab 2.31

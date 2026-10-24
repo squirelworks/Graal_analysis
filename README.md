@@ -89,6 +89,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `tools/level-editor/`: the classic Graal level editor, with the editor built into the 2.22 client as the primary reference (`222-reference.md`) and every other build as a delta (`version-deltas.md`: 1st Graal to 2.31, the New World betas, the standalone GraalEditor). Also a cross-reference to the format notes and batch f (`formats-crossref.md`) and a Seihai tracking checklist (`seihai-tracking.md`, 2.22 feature list in implementation order, then per-version deltas). New: the text reader's `BOARD` rules, the 9 x 9 `HEIGHTS` block, save format by file extension, the warp-field defaults, the key map additions, change-log dated features, and a class timeline across every build. Mouse handling and two mode flags are structure-only. Corrections: the tile id to sheet mapping in `client-internals/client-assets.md`, and the baddy section ending in `client-internals/level-editor-205.md`.
 
+## Decompile findings, batch g (2026-10-25)
+
+- `client-internals/decomp-findings-2026-10-25-g/`: the three fields that were still unknown. Client id 24 (relayed as 32) is the sender's list of weapon-script images, and the one byte every real client sends is its "full list" marker with no images; the format, the sender's wrap timing, why 2.22 sends only with another player present, and the receiver's rules. Client id 46 is a content-free level-switch notice with a literal 1 (one send site, 2.31 only). Server id 178 is read with the clients' comma-text rules (white space splits unquoted items, so names with spaces must be quoted; the type prefix is dropped from the name). What a real list service sends for 178 is still unobserved. Tables are in the same folder. Static read plus source of the open-source servers; nothing new was seen on a wire.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.
