@@ -1,0 +1,13 @@
+tag	byte	data	meaning	receiver rule	notes
+record	0x2a+index	none	starts a record for image index 0..199	looks the image up by index	0x29 (index minus 1, no image) at the very start of the text is a record with index minus 1 and means a full list
+0	0x20	GCHAR length n, then n bytes	image name	empty removes the image; non-empty creates or renames	only a non-empty name marks the image as named for the purge
+1	0x21	one GCHAR	x	half tiles, or screen units when layer is 10 or over (units unconfirmed)	only an existing image
+2	0x22	one GCHAR	y	as x	only an existing image
+3	0x23	one GCHAR	layer (value minus 1)	default 1	
+4	0x24	0x20 or 0x21 + 6 bytes	visible part	0x20 whole image; 0x21: left, top as two 7-bit bytes each, width and height one byte each; clamped 0..16000 and 0..220	
+5	0x25	four GCHARs	colours red green blue alpha, each over 200	stored	
+6	0x26	one GCHAR	zoom over 10	stored	default 10
+7	0x27	one byte	draw order, value minus 0x52	stored	
+8	0x28	one GCHAR	mode	stored	default 0
+9	0x29	one byte	none	not a tag: 0x29 after the first byte is read as tag 9 and skips its data byte	the marker is meaningful only as the first byte of a text
+>=10	0x2a..	none	next record	ends this record	

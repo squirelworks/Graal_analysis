@@ -85,6 +85,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `client-internals/decomp-findings-2026-10-25-f/`: what real `GR-V1.03` levels show (two supplied files and an archive of 3113 binary levels): section shapes and the no-sign file ending, link arrivals written as `playerx`/`playery` plus an offset, the baddy section ending only at a first byte of 0x80 or more (x = 0 is a valid baddy), sign `#K(n)` escapes, chest sign index -1, and aggregate counts. Counts and structure only; no level content or file names. The table `corpus-stats.tsv` is in the same folder. Small corrections to the `grv1.py` decoder and `level-binary.md` are in a separate commit.
 
+## Decompile findings, batch g (2026-10-25)
+
+- `client-internals/decomp-findings-2026-10-25-g/`: the three fields that were still unknown. Client id 24 (relayed as 32) is the sender's list of weapon-script images, and the one byte every real client sends is its "full list" marker with no images; the format, the sender's wrap timing, why 2.22 sends only with another player present, and the receiver's rules. Client id 46 is a content-free level-switch notice with a literal 1 (one send site, 2.31 only). Server id 178 is read with the clients' comma-text rules (white space splits unquoted items, so names with spaces must be quoted; the type prefix is dropped from the name). What a real list service sends for 178 is still unobserved. Tables are in the same folder. Static read plus source of the open-source servers; nothing new was seen on a wire.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

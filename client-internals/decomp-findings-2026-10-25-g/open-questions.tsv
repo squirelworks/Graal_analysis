@@ -1,0 +1,9 @@
+id	question	what would settle it
+1	sender-side value formatting of each image field (units of x, y, colours, zoom, order)	a capture of a real client whose weapon shows an image, or a read of the sender's field formatter
+2	the per-player "UDP reaches this player" flag in the 2.22 and 2.17.1 TCP test and how it is set	a read of the UDP peer setup; a two-client lab run with UDP forced off and on
+3	whether 2.17.1 sends id 24 in a two-player session and with what period	a two-client 2.17 lab run
+4	how the client draws shown images (layer 0 to 4 and 10 and over, light layer)	a read of the image draw code; a lab screenshot with an injected image text
+5	the 2.05 and earlier emote form of id 24 and its UDP twin	a read of the 2.05 sender and receiver; a capture
+6	what a real service does with id 46	a capture against a non-GServer-v2 service
+7	what a real list service sends for 178 (item 0 in particular)	a capture of a serverwarp on a real list service (public-server checks)
+8	how the port item becomes a number and whether it is range-checked	a read of the connect routine's port use; a lab run with a port over 65535 or text
