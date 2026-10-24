@@ -21,6 +21,8 @@ Re-send:
 
 GServer-v2 accepted all three and did not log an invalid packet.
 
+How the 10 bytes are built (two chained CRC-32 words over the client's own memory image) and why 2.31 repeats them every 3.2 s: `client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md` and `client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md`. The two words per build are in `version-profiles/tampercheck-words.tsv`.
+
 ## 2.17 listserver login
 
 One TCP connection to port 14922. Plain zlib framing (u16be length + zlib body). No gen-5, no version token.

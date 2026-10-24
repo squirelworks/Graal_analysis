@@ -36,7 +36,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 21 | 0x35 | `PLI_PUTNPC` |  | C→S | `str image`, `str code`, `c x×2, c y×2` | yes |
 | 22 | 0x36 | `PLI_NPCDEL` |  | C→S |  | yes |
 | 23 | 0x37 | `PLI_WANTFILE` | `WANTGIF` | C→S | rest = filename | yes |
-| 24 | 0x38 | `PLI_SHOWIMGPLAYER` |  | C→S |  | yes |
+| 24 | 0x38 | `PLI_SHOWIMGPLAYER` |  | C→S | 2.31 also sends it by itself about every 5.1 s, 1 byte (value 9 seen); meaning unknown **[cap]** | yes |
 | 25 | 0x39 | `PLI_UNKNOWN25` |  | C→S |  | — |
 | 26 | 0x3a | `PLI_HURTPLAYER` |  | C→S | `s victim, c dx, c dy, c power, i3 npc` | yes |
 | 27 | 0x3b | `PLI_EXPLOSION` |  | C→S | `c radius, c x×2, c y×2, c power` | yes |
@@ -51,13 +51,13 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 36 | 0x44 | `PLI_HITOBJECTS` |  | C→S | power, x, y [, npc] | yes |
 | 37 | 0x45 | `PLI_LANGUAGE` |  | C→S | rest = language name | yes |
 | 38 | 0x46 | `PLI_TRIGGERACTION` |  | C→S | `i3 npc, c x×2, c y×2` + rest = `action,params` | yes |
-| 39 | 0x47 | `PLI_TAMPERCHECK` |  | C→S | 10 raw bytes, constant per client build **[cap]** | — |
+| 39 | 0x47 | `PLI_TAMPERCHECK` |  | C→S | 10 raw bytes, constant per client build; two chained CRC-32 words over the client's own image (`client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md`) **[cap][bin]** | — |
 | 40 | 0x48 | `PLI_SHOOT` |  | C→S |  | — |
 | 41 | 0x49 | `PLI_SERVERWARP` |  | C→S |  | — |
 | 43 | 0x4b | `PLI_MUTEPLAYER` |  | C→S | `s player id`, `c 1/0` **[cap]** | — |
-| 44 | 0x4c | `PLI_PROCESSLIST` |  | C→S |  | — |
-| 45 | 0x4d | `PLI_PROCESSRUNNING` |  | C→S |  | — |
-| 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S |  | — |
+| 44 | 0x4c | `PLI_PROCESSLIST` |  | C→S | the client's reply to `PLO_LISTPROCESSES` (182) **[bin][cap]** | — |
+| 45 | 0x4d | `PLI_PROCESSRUNNING` |  | C→S | `c flag`: 1 if the server's string occurs in the client's own process list **[bin]** | — |
+| 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S | `c 1`; seen once at login from a 2.31 client **[cap]** | — |
 | 47 | 0x4f | `PLI_VERIFYWANTSEND` |  | C→S | `i5 crc32` + rest = filename | — |
 | 48 | 0x50 | `PLI_SHOOT2` |  | C→S |  | — |
 | 50 | 0x52 | `PLI_RAWDATA` |  | C→S |  | — |
@@ -170,7 +170,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 22 | 0x36 | `PLO_ITEMADD` |  | S→C | `c x×2, c y×2, c item` | yes |
 | 23 | 0x37 | `PLO_ITEMDEL` |  | S→C | `c x×2, c y×2, c item` | yes |
 | 24 | 0x38 | `PLO_NPCMOVED` |  | S→C |  | yes |
-| 25 | 0x39 | `PLO_SIGNATURE` |  | S→C |  | yes |
+| 25 | 0x39 | `PLO_SIGNATURE` |  | S→C | `c v`: 1 = the client quits; 0 = quits unless the host is 127.0.0.1; other values ignored (layout read in 2.17–2.31; the id is handled from 2.00) **[bin]** | yes |
 | 26 | 0x3a | `PLO_NPCACTION` |  | S→C |  | — |
 | 27 | 0x3b | `PLO_BADDYHURT` |  | S→C | baddy hurt: `c id` + BDPROP stream | yes |
 | 28 | 0x3c | `PLO_FLAGSET` |  | S→C | rest = `name` or `name=value` | yes |
@@ -184,17 +184,17 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 36 | 0x44 | `PLO_EXPLOSION` |  | S→C | `c radius, c x×2, c y×2, c power` | yes |
 | 37 | 0x45 | `PLO_PRIVATEMESSAGE` |  | S→C | `s from id`, rest = quoted `"type","message"` | yes |
 | 38 | 0x46 | `PLO_PUSHAWAY` |  | S→C | `c dx, c dy` | yes |
-| 39 | 0x47 | `PLO_LEVELMODTIME` |  | S→C | `i5 modtime` | yes |
+| 39 | 0x47 | `PLO_LEVELMODTIME` |  | S→C | `i5 modtime`; 2.17–2.31: the rest is passed unparsed to the active gmap or level object, only if one exists **[bin]** | yes |
 | 40 | 0x48 | `PLO_HURTPLAYER` |  | S→C | `s attacker, c dx, c dy, c power, i3 npc` | yes |
-| 41 | 0x49 | `PLO_STARTMESSAGE` |  | S→C |  | yes |
+| 41 | 0x49 | `PLO_STARTMESSAGE` |  | S→C | rest = RTF or HTML text; cached as `servermessage.rtf` / `.html` and shown in the start-message viewer; client 6.037 ignores it **[bin]** | yes |
 | 42 | 0x4a | `PLO_NEWWORLDTIME` |  | S→C | `i4 time` | yes |
 | 43 | 0x4b | `PLO_DEFAULTWEAPON` |  | S→C | `c item index` | yes |
-| 44 | 0x4c | `PLO_HASNPCSERVER` |  | S→C |  | yes |
+| 44 | 0x4c | `PLO_HASNPCSERVER` |  | S→C | no payload; handled by 2.00–2.22, not handled by 2.31 **[bin]** | yes |
 | 45 | 0x4d | `PLO_FILEUPTODATE` |  | S→C | rest = filename | yes |
 | 46 | 0x4e | `PLO_HITOBJECTS` |  | S→C | hit objects: power, x, y [, npc] | yes |
-| 47 | 0x4f | `PLO_STAFFGUILDS` |  | S→C | `"guild",` repeated | yes |
+| 47 | 0x4f | `PLO_STAFFGUILDS` |  | S→C | `"guild",` repeated; comma text, stored as the staff-guild list **[bin]** | yes |
 | 48 | 0x50 | `PLO_TRIGGERACTION` |  | S→C | `i3 npc, c x×2, c y×2` + rest = `action,params` | yes |
-| 49 | 0x51 | `PLO_PLAYERWARP2` |  | S→C |  | — |
+| 49 | 0x51 | `PLO_PLAYERWARP2` |  | S→C | `c x×2, c y×2, c z` (unused by 2.17–2.31), `c gmapX, c gmapY`, rest = level; x and y are `v/2` tiles; gmapX/Y apply only when the level name ends in `.gmap` (clamped to the grid) **[bin]** | — |
 | 50 | 0x52 | `PLO_RC_ACCOUNTADD` |  | S→C |  | — |
 | 51 | 0x53 | `PLO_RC_ACCOUNTSTATUS` |  | S→C |  | — |
 | 52 | 0x54 | `PLO_RC_ACCOUNTNAME` |  | S→C |  | — |
@@ -213,14 +213,14 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 65 | 0x61 | `PLO_RC_FILEBROWSER_DIRLIST` |  | S→C |  | — |
 | 66 | 0x62 | `PLO_RC_FILEBROWSER_DIR` |  | S→C |  | — |
 | 67 | 0x63 | `PLO_RC_FILEBROWSER_MESSAGE` |  | S→C |  | — |
-| 68 | 0x64 | `PLO_LARGEFILESTART` |  | S→C | rest = filename | — |
-| 69 | 0x65 | `PLO_LARGEFILEEND` |  | S→C | rest = filename | — |
+| 68 | 0x64 | `PLO_LARGEFILESTART` |  | S→C | rest = file name (2.31 also clears the stored size) **[bin]** | — |
+| 69 | 0x65 | `PLO_LARGEFILEEND` |  | S→C | rest = file name; if it equals the stored name the received stream is processed as a file **[bin]** | — |
 | 70 | 0x66 | `PLO_RC_ACCOUNTLISTGET` |  | S→C |  | — |
 | 71 | 0x67 | `PLO_RC_PLAYERPROPS` |  | S→C |  | — |
 | 72 | 0x68 | `PLO_RC_PLAYERPROPSGET` |  | S→C |  | — |
 | 73 | 0x69 | `PLO_RC_ACCOUNTGET` |  | S→C |  | — |
 | 74 | 0x6a | `PLO_RC_CHAT` |  | S→C | RC console line | — |
-| 75 | 0x6b | `PLO_PROFILE` |  | S→C | rest = profile blob | yes |
+| 75 | 0x6b | `PLO_PROFILE` |  | S→C | repeat `c n` + n chars; first field = account, the rest = profile lines **[bin]** | yes |
 | 76 | 0x6c | `PLO_RC_SERVEROPTIONSGET` |  | S→C |  | — |
 | 77 | 0x6d | `PLO_RC_FOLDERCONFIGGET` |  | S→C |  | — |
 | 78 | 0x6e | `PLO_NC_CONTROL` |  | S→C |  | — |
@@ -229,7 +229,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 81 | 0x71 | `PLO_UNKNOWN81` |  | S→C |  | — |
 | 82 | 0x72 | `PLO_SERVERTEXT` |  | S→C |  | — |
 | 83 | 0x73 | `PLO_UNKNOWN83` |  | S→C |  | — |
-| 84 | 0x74 | `PLO_LARGEFILESIZE` |  | S→C | `i5 size` | — |
+| 84 | 0x74 | `PLO_LARGEFILESIZE` |  | S→C | `i5 size` (2.31 only) **[bin]** | — |
 | 100 | 0x84 | `PLO_RAWDATA` | `FILELEN` | S→C | `i3 length` of the next raw message | yes |
 | 101 | 0x85 | `PLO_BOARDPACKET` | `TILES` | S→C | 4096 × u16 LE tiles (behind 100) | via 100 |
 | 102 | 0x86 | `PLO_FILE` | `FILEBLOB` | S→C | file: `str name` [+ `i5 modtime` ≥ 2.1] + bytes (behind 100) | via 100 |
@@ -248,12 +248,12 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 133 | 0xa5 | `PLO_UNKNOWN133` |  | S→C |  | — |
 | 134 | 0xa6 | `PLO_GANISCRIPT` |  | S→C |  | — |
 | 140 | 0xac | `PLO_NPCWEAPONSCRIPT` |  | S→C |  | — |
-| 150 | 0xb6 | `PLO_NPCDEL2` |  | S→C |  | yes |
-| 151 | 0xb7 | `PLO_HIDENPCS` |  | S→C |  | yes |
+| 150 | 0xb6 | `PLO_NPCDEL2` |  | S→C | `c n`, n-char level name, `i3 npc id` **[bin]** | yes |
+| 151 | 0xb7 | `PLO_HIDENPCS` |  | S→C | no payload; removes NPCs with ids 1 to 999 of the active level (id 0 excluded) **[bin]** | yes |
 | 153 | 0xb9 | `PLO_SAY2` |  | S→C | rest = text, `\xa7` = newline | yes |
 | 154 | 0xba | `PLO_FREEZEPLAYER2` |  | S→C | empty | yes |
 | 155 | 0xbb | `PLO_UNFREEZEPLAYER` |  | S→C | empty | yes |
-| 156 | 0xbc | `PLO_SETACTIVELEVEL` |  | S→C | rest = level for following object packets | yes |
+| 156 | 0xbc | `PLO_SETACTIVELEVEL` |  | S→C | rest = level or `.gmap` name; a `.gmap` is loaded and made active. 2.31 adds an extra follow-up step (purpose unknown) **[bin]** | yes |
 | 157 | 0xbd | `PLO_NC_NPCATTRIBUTES` |  | S→C |  | — |
 | 158 | 0xbe | `PLO_NC_NPCADD` |  | S→C |  | — |
 | 159 | 0xbf | `PLO_NC_NPCDELETE` |  | S→C |  | — |
@@ -262,31 +262,31 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 162 | 0xc2 | `PLO_NC_CLASSGET` |  | S→C |  | — |
 | 163 | 0xc3 | `PLO_NC_CLASSADD` |  | S→C |  | — |
 | 164 | 0xc4 | `PLO_NC_LEVELDUMP` |  | S→C |  | — |
-| 165 | 0xc5 | `PLO_MOVE` |  | S→C |  | yes |
-| 166 | 0xc6 | `PLO_SHOWIMGNPC` |  | S→C |  | yes |
+| 165 | 0xc5 | `PLO_MOVE` |  | S→C | `i3 npc id` (> 0) + move data **[bin]** | yes |
+| 166 | 0xc6 | `PLO_SHOWIMGNPC` |  | S→C | `i3 npc id` + prop list **[bin]** | yes |
 | 167 | 0xc7 | `PLO_NC_WEAPONLISTGET` |  | S→C |  | — |
-| 168 | 0xc8 | `PLO_UNKNOWN168` |  | S→C |  | yes |
-| 169 | 0xc9 | `PLO_UPGRADEURL` |  | S→C |  | — |
-| 170 | 0xca | `PLO_GHOSTMODE` |  | S→C |  | — |
-| 171 | 0xcb | `PLO_BIGMAP` |  | S→C |  | — |
-| 172 | 0xcc | `PLO_MINIMAP` |  | S→C |  | — |
-| 173 | 0xcd | `PLO_GHOSTTEXT` |  | S→C |  | — |
-| 174 | 0xce | `PLO_GHOSTICON` |  | S→C |  | — |
-| 175 | 0xcf | `PLO_SHOOT` |  | S→C |  | — |
-| 176 | 0xd0 | `PLO_KINGDOMSMODE` |  | S→C |  | — |
-| 177 | 0xd1 | `PLO_NEWWORLDMODE` |  | S→C |  | — |
-| 178 | 0xd2 | `PLO_SERVERWARP` |  | S→C |  | — |
-| 179 | 0xd3 | `PLO_RPGWINDOW` |  | S→C |  | — |
-| 180 | 0xd4 | `PLO_STATUSLIST` |  | S→C |  | — |
-| 181 | 0xd5 | `PLO_UNKNOWN181` |  | S→C |  | — |
-| 182 | 0xd6 | `PLO_LISTPROCESSES` |  | S→C |  | — |
-| 183 | 0xd7 | `PLO_HASPROCESSRUNNING` |  | S→C |  | — |
-| 184 | 0xd8 | `PLO_TAKESCREENSHOT` |  | S→C |  | — |
-| 185 | 0xd9 | `PLO_BOARDHEIGHTS` |  | S→C |  | — |
-| 186 | 0xda | `PLO_BOARDMODIFY2` |  | S→C |  | — |
+| 168 | 0xc8 | `PLO_UNKNOWN168` |  | S→C | payload ignored; local-player reset (2.17–2.31) **[bin]** | yes |
+| 169 | 0xc9 | `PLO_UPGRADEURL` |  | S→C | rest = URL text **[bin]** | — |
+| 170 | 0xca | `PLO_GHOSTMODE` |  | S→C | `c flag` (> 0 = ghost on) **[bin]** | — |
+| 171 | 0xcb | `PLO_BIGMAP` |  | S→C | comma text `txt,png,x,y` (≥ 4 fields used); x, y parsed as floats **[bin]** | — |
+| 172 | 0xcc | `PLO_MINIMAP` |  | S→C | same layout as 171, goes to the minimap **[bin]** | — |
+| 173 | 0xcd | `PLO_GHOSTTEXT` |  | S→C | rest = text **[bin]** | — |
+| 174 | 0xce | `PLO_GHOSTICON` |  | S→C | `c flag` (> 0 = show icon) **[bin]** | — |
+| 175 | 0xcf | `PLO_SHOOT` |  | S→C | `s player id` + shot data; only when the player is in the active level **[bin]** | — |
+| 176 | 0xd0 | `PLO_KINGDOMSMODE` |  | S→C | no payload **[bin]** | — |
+| 177 | 0xd1 | `PLO_NEWWORLDMODE` |  | S→C | no payload **[bin]** | — |
+| 178 | 0xd2 | `PLO_SERVERWARP` |  | S→C | comma text, ≥ 4 fields, fields 1–3 used (meaning unresolved) **[bin]** | — |
+| 179 | 0xd3 | `PLO_RPGWINDOW` |  | S→C | rest = text **[bin]** | — |
+| 180 | 0xd4 | `PLO_STATUSLIST` |  | S→C | rest = text **[bin]** | — |
+| 181 | 0xd5 | `PLO_UNKNOWN181` |  | S→C | `s player id`, `c toggle` (length ≥ 3) **[bin]** | — |
+| 182 | 0xd6 | `PLO_LISTPROCESSES` |  | S→C | no payload; client answers `PLI_PROCESSLIST` (44) **[bin]** | — |
+| 183 | 0xd7 | `PLO_HASPROCESSRUNNING` |  | S→C | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** | — |
+| 184 | 0xd8 | `PLO_TAKESCREENSHOT` |  | S→C | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** | — |
+| 185 | 0xd9 | `PLO_BOARDHEIGHTS` |  | S→C | `c mapX, c mapY, c blockX, c blockY, c w-1, c h-1`, then w×h cells of 2 raw bytes; height = (b0−0x20−50) + (b1−0x20)/128 **[bin]** | — |
+| 186 | 0xda | `PLO_BOARDMODIFY2` |  | S→C | `c mapX, c mapY, c x, c y, c w, c h`, then w×h `s tile` row-major, then an undecoded trailer (2.22+) **[bin]** | — |
 | 187 | 0xdb | `PLO_UPDATEPACKAGEISUPDATED` |  | S→C |  | — |
 | 188 | 0xdc | `PLO_NC_CLASSDELETE` |  | S→C |  | — |
-| 189 | 0xdd | `PLO_MOVE2` |  | S→C |  | — |
+| 189 | 0xdd | `PLO_MOVE2` |  | S→C | as 165 with an extra flag (2.31 only) **[bin]** | — |
 | 190 | 0xde | `PLO_SERVERLISTCONNECTED` |  | S→C |  | — |
 | 191 | 0xdf | `PLO_SHOOT2` |  | S→C |  | — |
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` |  | S→C |  | — |

@@ -64,6 +64,11 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `version-profiles/2.22-2.31.md` and `.toml`: per-version profiles for 2.22, 2.3 (inferred) and 2.31. Covers the wire protocol, the start window, server-list tabs, editor presence, options, GS1 symbol changes, and feature switches for Seihai.
 
+## Decompile findings, batch b (2026-10-24)
+
+- `client-internals/decomp-findings-2026-10-24-b/`: tamper-check (PLI 39) derivation, 2.31 periodic traffic, payload layouts of server ids above 48 (2.17.1, 2.22, 2.31), the 2.00 client, open items, and a cross-check against the repo. Tables are in `version-profiles/` (`plo-layouts-217-231.tsv`, `plo-handled-ids-by-build.tsv`, `pli-sent-ids-by-build-20x.tsv`, `tampercheck-words.tsv`, `version-tokens-by-build.tsv`, `drive-clients-exes.tsv`).
+- `client-internals/drive-clients-inventory.md`: what the Drive clients set contains and which builds are still missing.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

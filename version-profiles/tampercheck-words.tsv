@@ -1,0 +1,4 @@
+build	token	lab_bytes_hex	word_A_hex	word_B_hex	resend_behaviour
+2.17.1	GNW22122	2a7bad195e231243d82c	ab637cbe	3e48dc0c	once at login
+2.22	GNW03014	250e4d0f962b03ede631	5dcb77f6	bc736311	login + every level change (gmap edge crossing in lab)
+2.31	GNW28015	291655b7602e87c9eb82	9ecd4bc0	ecea65e2	login + every 64 timer ticks of 50 ms (3.2 s)

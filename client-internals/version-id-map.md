@@ -12,7 +12,7 @@ Per-build hashes, dates and the rest are in `build-catalogue.md`.
 | `GNW07080` | 1.39 (CLVER_1_39) | version-token pack / gs2lib |
 | `GNW13110` | 1.41r1 | allowedversions.txt |
 | `GNW03081` | 2.05 rev 2 / "2002ver9" leak (CLVER_2_052, sorts below CLVER_2_1) | gs2lib 2026; GServer versions.txt; built char-by-char in the 2.05 login |
-| `GNW24011` | 2.0 | version-token pack (v2.0 equivalent) |
+| `GNW24011` | 2.0 (and rev1–rev3) | version-token pack; confirmed in all four 2.00 exes (2026-10-24), see `version-tokens.md` |
 | `GSERV007` | 1.21 | build catalogue |
 | `GSERV013` | 1.28 beta2 | build catalogue |
 | `GSERV014` | 1.3 test | build catalogue |

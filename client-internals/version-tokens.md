@@ -23,3 +23,27 @@ Filename builds in the client tree: Graal_2171 = 2.171, Graal_222 = 2.22, Graal_
 From 2.3 the editor and the online client are separate executables. PE FileVersion is authoritative for the editor (2.3.1.1).
 
 The early-client transition (14801 → 14900 → length+zlib) is the protocol-side counterpart of the same era.
+
+## Confirmed from the binaries (2026-10-24)
+
+The 2.0x family tokens below were read from the character immediates of each client's login builder, so they are confirmed per build rather than taken from a token list. Every value matches the earlier tables here and in `version-id-map.md`. Machine-readable copy: `version-profiles/version-tokens-by-build.tsv`.
+
+| Token | Build | Source |
+|-------|-------|--------|
+| GNW24011 | 2.00 and rev1, rev2, rev3 (all four exes) | login builder |
+| GNW23021 | 2.01, 2.01 rev1 | login builder |
+| GNW15041 | 2.02, 2.02 rev1 | login builder |
+| GNW20041 | 2.02 rev2 | login builder |
+| GNW06051 | 2.03 | login builder |
+| GNW24061 | 2.04 | login builder |
+| GNW03081 | 2.05, rev1, rev2; also the 2.1 test builds (`graal21test2`, `graal21test3`), which still send the 2.05 token | login builder |
+| GNW08011 | NewMain 24 and 26 | login builder |
+| GNW13110 | 1.411 | login builder |
+| GNW07080 | 1.39 | login builder |
+| GNW22060 | 1.38 | login builder |
+| GNW22122 | 2.17.1 | lab capture and exe |
+| GNW03014 | 2.22 game login | exe |
+| GNW28015 | 2.31 game login | lab capture |
+| GNW30123 + `newmain` | 2.22 and 2.31 listserver hello (not a game build) | exe and lab |
+
+A lab GServer-v2 only needs the token in its allowed-versions list to let a client in. For 2.00 (`GNW24011`) that is a config entry, not a code patch (`client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md`).

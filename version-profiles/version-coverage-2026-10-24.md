@@ -84,3 +84,12 @@ Note: the `.idc` files are name tables. Reading the handler bodies still needs a
 2. Regenerate the Seihai rows from the TOML (gap 3), then fix the XOR note (gap 4). Both are doc/data work with no new decompile.
 3. Run one Ghidra pass each over 2.22 and 2.31 for gaps 1 and 2, write a cleaned note per version, then lab-capture real 2.17 and 2.31 clients to confirm.
 4. Ask for approval before any public run for 2.17, 2.31 or 2.05.
+
+## Status update, 2026-10-24 (decompile pass of 2.00, 2.17.1, 2.22, 2.31 and the Drive clients set)
+
+- **Gap 1 (payload layouts of ids above 48 and 25, 39, 41, 44, 47, 156):** closed for 2.17.1, 2.22 and 2.31, except three small items (`PLO_SERVERWARP` field meanings, the `PLO_BOARDMODIFY2` trailer, the extra step 2.31 adds in 156). See `protocol/packet-layouts.md` and `plo-layouts-217-231.tsv`.
+- **Gap 2 (tamper-check content):** the lab values for 2.17, 2.22 and 2.31 are in `tampercheck-values.tsv`, and the builder is now understood: two chained CRC-32 words over the client's own memory image (`tampercheck-words.tsv`; `client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md`). Whether any server enforces it is still unknown.
+- **Gap 6 (2.00):** a real 2.00 exe and three revisions are in the Drive clients set. The "allow-list patch" wording above means a config entry only: the lab server needs `GNW24011` in its allowed-versions list, no code patch (`client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md`). The 2.00 client still needs its list host redirected to the lab listserver, and its listserver frames have not been exercised.
+- **Gap 5 (2.1 to 2.16 and 2.3):** unchanged. The Drive clients set has no 2.1.x to 2.3 builds, only the two 2.1 test builds (`client-internals/drive-clients-inventory.md`).
+- **Gap 8:** client to server ids 36, 42 and 45 of 2.22 are still unmatched to call sites.
+- Per-build handled server-to-client ids for 2.00 to 2.31 are now tabulated in `plo-handled-ids-by-build.tsv`, and the client-to-server ids per 2.0x build in `pli-sent-ids-by-build-20x.tsv` (2.00 lacks 35 to 38).

@@ -37,7 +37,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 22 | 0x36 | `PLO_ITEMADD` | ✔ |   |
 | 23 | 0x37 | `PLO_ITEMDEL` | ✔ |   |
 | 24 | 0x38 | `PLO_NPCMOVED` | ✔ |   |
-| 25 | 0x39 | `PLO_SIGNATURE` | ✔ |   |
+| 25 | 0x39 | `PLO_SIGNATURE` | ✔ | `c v`: 1 = the client quits; 0 = quits unless the host is 127.0.0.1; other values ignored (layout read in 2.17–2.31; the id is handled from 2.00) **[bin]** |
 | 26 | 0x3a | `PLO_NPCACTION` | · | purpose unknown; client 6.037 ignores it |
 | 27 | 0x3b | `PLO_BADDYHURT` | ✔ |   |
 | 28 | 0x3c | `PLO_FLAGSET` | ✔ |   |
@@ -51,17 +51,17 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 36 | 0x44 | `PLO_EXPLOSION` | ✔ |   |
 | 37 | 0x45 | `PLO_PRIVATEMESSAGE` | ✔ |   |
 | 38 | 0x46 | `PLO_PUSHAWAY` | ✔ | `c dx, c dy`; each scales as v/16 − 4 (±2 tiles in 1/16 steps) |
-| 39 | 0x47 | `PLO_LEVELMODTIME` | ✔ |   |
+| 39 | 0x47 | `PLO_LEVELMODTIME` | ✔ | 2.17–2.31: the rest is passed unparsed to the active gmap or level object, only if one exists **[bin]** |
 | 40 | 0x48 | `PLO_HURTPLAYER` | ✔ |   |
-| 41 | 0x49 | `PLO_STARTMESSAGE` | ✔ | client 6.037 ignores it |
+| 41 | 0x49 | `PLO_STARTMESSAGE` | ✔ | client 6.037 ignores it; rest = RTF or HTML text; cached as `servermessage.rtf` / `.html` and shown in the start-message viewer; client 6.037 ignores it **[bin]** |
 | 42 | 0x4a | `PLO_NEWWORLDTIME` | ✔ |   |
 | 43 | 0x4b | `PLO_DEFAULTWEAPON` | ✔ |   |
-| 44 | 0x4c | `PLO_HASNPCSERVER` | ✔ | when present, the client stops applying NPC props itself; client 5.07+ ignores it |
+| 44 | 0x4c | `PLO_HASNPCSERVER` | ✔ | when present, the client stops applying NPC props itself; client 5.07+ ignores it; no payload; handled by 2.00–2.22, not handled by 2.31 **[bin]** |
 | 45 | 0x4d | `PLO_FILEUPTODATE` | ✔ |   |
 | 46 | 0x4e | `PLO_HITOBJECTS` | ✔ |   |
-| 47 | 0x4f | `PLO_STAFFGUILDS` | ✔ |   |
+| 47 | 0x4f | `PLO_STAFFGUILDS` | ✔ | comma text, stored as the staff-guild list **[bin]** |
 | 48 | 0x50 | `PLO_TRIGGERACTION` | ✔ | `s fromPlayer`, `i3 fromNPC`, `c xTile`, `c yTile`, `list action,params` |
-| 49 | 0x51 | `PLO_PLAYERWARP2` | · | `c x`, `c y`, `c z`, `c mapx`, `c mapy` |
+| 49 | 0x51 | `PLO_PLAYERWARP2` | · | `c x×2, c y×2, c z` (unused by 2.17–2.31), `c gmapX, c gmapY`, rest = level; x and y are `v/2` tiles; gmapX/Y apply only when the level name ends in `.gmap` (clamped to the grid) **[bin]** |
 | 50 | 0x52 | `PLO_RC_ACCOUNTADD` | · |   |
 | 51 | 0x53 | `PLO_RC_ACCOUNTSTATUS` | · |   |
 | 52 | 0x54 | `PLO_RC_ACCOUNTNAME` | · |   |
@@ -80,14 +80,14 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 65 | 0x61 | `PLO_RC_FILEBROWSER_DIRLIST` | · |   |
 | 66 | 0x62 | `PLO_RC_FILEBROWSER_DIR` | · |   |
 | 67 | 0x63 | `PLO_RC_FILEBROWSER_MESSAGE` | · |   |
-| 68 | 0x64 | `PLO_LARGEFILESTART` | · |   |
-| 69 | 0x65 | `PLO_LARGEFILEEND` | · |   |
+| 68 | 0x64 | `PLO_LARGEFILESTART` | · | rest = file name (2.31 also clears the stored size) **[bin]** |
+| 69 | 0x65 | `PLO_LARGEFILEEND` | · | rest = file name; if it equals the stored name the received stream is processed as a file **[bin]** |
 | 70 | 0x66 | `PLO_RC_ACCOUNTLISTGET` | · |   |
 | 71 | 0x67 | `PLO_RC_PLAYERPROPS` | · |   |
 | 72 | 0x68 | `PLO_RC_PLAYERPROPSGET` | · |   |
 | 73 | 0x69 | `PLO_RC_ACCOUNTGET` | · |   |
 | 74 | 0x6a | `PLO_RC_CHAT` | · |   |
-| 75 | 0x6b | `PLO_PROFILE` | ✔ | client 6.037 ignores it |
+| 75 | 0x6b | `PLO_PROFILE` | ✔ | repeat `c n` + n chars; first field = account, the rest = profile lines **[bin]** |
 | 76 | 0x6c | `PLO_RC_SERVEROPTIONSGET` | · |   |
 | 77 | 0x6d | `PLO_RC_FOLDERCONFIGGET` | · |   |
 | 78 | 0x6e | `PLO_NC_CONTROL` | · | repurposed by Graal Reborn; original purpose unknown; client 5.07+ ignores it |
@@ -96,7 +96,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 81 | 0x71 | `PLO_UNKNOWN81` | · | client 5.07+ ignores it |
 | 82 | 0x72 | `PLO_SERVERTEXT` | · | reply to PLI_REQUESTTEXT / PLI_SENDTEXT |
 | 83 | 0x73 | `PLO_UNKNOWN83` | · | client 5.07+ ignores it |
-| 84 | 0x74 | `PLO_LARGEFILESIZE` | · |   |
+| 84 | 0x74 | `PLO_LARGEFILESIZE` | · | `i5 size` (2.31 only) **[bin]** |
 | 100 | 0x84 | `PLO_RAWDATA` | ✔ | `i3 length` |
 | 101 | 0x85 | `PLO_BOARDPACKET` | ✔ via RAWDATA |   |
 | 102 | 0x86 | `PLO_FILE` | ✔ via RAWDATA |   |
@@ -115,12 +115,12 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 133 | 0xa5 | `PLO_UNKNOWN133` | · | rest = text; maybe registers a class script |
 | 134 | 0xa6 | `PLO_GANISCRIPT` | · | gani scripts, maybe for package downloads |
 | 140 | 0xac | `PLO_NPCWEAPONSCRIPT` | · | `s info_length`, `script` |
-| 150 | 0xb6 | `PLO_NPCDEL2` | ✔ | `str level`, `i3 npcid` |
-| 151 | 0xb7 | `PLO_HIDENPCS` | ✔ | probably removes NPCs with id < 1000 |
+| 150 | 0xb6 | `PLO_NPCDEL2` | ✔ | `c n`, n-char level name, `i3 npc id` **[bin]** |
+| 151 | 0xb7 | `PLO_HIDENPCS` | ✔ | no payload; removes NPCs with ids 1 to 999 of the active level (id 0 excluded) **[bin]** |
 | 153 | 0xb9 | `PLO_SAY2` | ✔ | rest = text; signs use it too |
 | 154 | 0xba | `PLO_FREEZEPLAYER2` | ✔ |  |
 | 155 | 0xbb | `PLO_UNFREEZEPLAYER` | ✔ |  |
-| 156 | 0xbc | `PLO_SETACTIVELEVEL` | ✔ | rest = level that receives the following chests/baddies/NPCs |
+| 156 | 0xbc | `PLO_SETACTIVELEVEL` | ✔ | rest = level or `.gmap` name; a `.gmap` is loaded and made active. 2.31 adds an extra follow-up step (purpose unknown) **[bin]** |
 | 157 | 0xbd | `PLO_NC_NPCATTRIBUTES` | · | `str attributes`; client 5.07+ ignores it |
 | 158 | 0xbe | `PLO_NC_NPCADD` | · | `i3 id`, `c 50`, `str name`, `c 51`, `str type`, `c 52`, `str level` |
 | 159 | 0xbf | `PLO_NC_NPCDELETE` | · | `i3 id`; client 5.07+ ignores it |
@@ -129,31 +129,31 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 162 | 0xc2 | `PLO_NC_CLASSGET` | · | `str name`, `str script`; client 5.07+ ignores it |
 | 163 | 0xc3 | `PLO_NC_CLASSADD` | · | `class`; client 5.07+ ignores it |
 | 164 | 0xc4 | `PLO_NC_LEVELDUMP` | · | client 5.07+ ignores it |
-| 165 | 0xc5 | `PLO_MOVE` | ✔ | client 6.037 ignores it |
-| 166 | 0xc6 | `PLO_SHOWIMGNPC` | ✔ | `i3 npcId`, `c index`, `props` |
+| 165 | 0xc5 | `PLO_MOVE` | ✔ | client 6.037 ignores it; `i3 npc id` (> 0) + move data **[bin]** |
+| 166 | 0xc6 | `PLO_SHOWIMGNPC` | ✔ | `i3 npc id` + prop list **[bin]** |
 | 167 | 0xc7 | `PLO_NC_WEAPONLISTGET` | · | `c name1 length`, `name1`, `c name2 length`, `name2`; client 5.07+ ignores it |
-| 168 | 0xc8 | `PLO_UNKNOWN168` | ✔ | sent by the login server |
-| 169 | 0xc9 | `PLO_UPGRADEURL` | · | with DISCONNECT: the reconnect button becomes "Upgrade" and opens this URL |
-| 170 | 0xca | `PLO_GHOSTMODE` | · |   |
-| 171 | 0xcb | `PLO_BIGMAP` | · | client 6.037 ignores it |
-| 172 | 0xcc | `PLO_MINIMAP` | · | rest = `txt,png,x,y` minimap spec |
-| 173 | 0xcd | `PLO_GHOSTTEXT` | · | rest = text shown bottom-right in ghost mode |
-| 174 | 0xce | `PLO_GHOSTICON` | · | 1 = show ghost icon |
-| 175 | 0xcf | `PLO_SHOOT` | · | client 6.037 ignores it |
-| 176 | 0xd0 | `PLO_KINGDOMSMODE` | · | client switches to Kingdoms mode |
-| 177 | 0xd1 | `PLO_NEWWORLDMODE` | · | client switches to New World mode |
-| 178 | 0xd2 | `PLO_SERVERWARP` | · |   |
-| 179 | 0xd3 | `PLO_RPGWINDOW` | · |   |
-| 180 | 0xd4 | `PLO_STATUSLIST` | · |   |
-| 181 | 0xd5 | `PLO_UNKNOWN181` | · | `s player id`, `c toggle` |
-| 182 | 0xd6 | `PLO_LISTPROCESSES` | · |   |
-| 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | `list names`: client answers PLI_PROCESSRUNNING |
-| 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = filename: client saves a screenshot |
-| 185 | 0xd9 | `PLO_BOARDHEIGHTS` | · | `c mapX`, `c mapY`, `c blockX`, `c blockY`, `c blockWidth` |
-| 186 | 0xda | `PLO_BOARDMODIFY2` | · | `s x`, `s y`, `c width`, `c height`, `tiles`, `s tile` |
+| 168 | 0xc8 | `PLO_UNKNOWN168` | ✔ | sent by the login server; payload ignored; local-player reset (2.17–2.31) **[bin]** |
+| 169 | 0xc9 | `PLO_UPGRADEURL` | · | with DISCONNECT: the reconnect button becomes "Upgrade" and opens this URL; rest = URL text **[bin]** |
+| 170 | 0xca | `PLO_GHOSTMODE` | · | `c flag` (> 0 = ghost on) **[bin]** |
+| 171 | 0xcb | `PLO_BIGMAP` | · | client 6.037 ignores it; comma text `txt,png,x,y` (≥ 4 fields used); x, y parsed as floats **[bin]** |
+| 172 | 0xcc | `PLO_MINIMAP` | · | same layout as 171, goes to the minimap **[bin]** |
+| 173 | 0xcd | `PLO_GHOSTTEXT` | · | rest = text **[bin]** |
+| 174 | 0xce | `PLO_GHOSTICON` | · | `c flag` (> 0 = show icon) **[bin]** |
+| 175 | 0xcf | `PLO_SHOOT` | · | client 6.037 ignores it; `s player id` + shot data; only when the player is in the active level **[bin]** |
+| 176 | 0xd0 | `PLO_KINGDOMSMODE` | · | client switches to Kingdoms mode; no payload **[bin]** |
+| 177 | 0xd1 | `PLO_NEWWORLDMODE` | · | client switches to New World mode; no payload **[bin]** |
+| 178 | 0xd2 | `PLO_SERVERWARP` | · | comma text, ≥ 4 fields, fields 1–3 used (meaning unresolved) **[bin]** |
+| 179 | 0xd3 | `PLO_RPGWINDOW` | · | rest = text **[bin]** |
+| 180 | 0xd4 | `PLO_STATUSLIST` | · | rest = text **[bin]** |
+| 181 | 0xd5 | `PLO_UNKNOWN181` | · | `s player id`, `c toggle` (length ≥ 3) **[bin]** |
+| 182 | 0xd6 | `PLO_LISTPROCESSES` | · | no payload; client answers `PLI_PROCESSLIST` (44) **[bin]** |
+| 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** |
+| 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** |
+| 185 | 0xd9 | `PLO_BOARDHEIGHTS` | · | `c mapX, c mapY, c blockX, c blockY, c w-1, c h-1`, then w×h cells of 2 raw bytes; height = (b0−0x20−50) + (b1−0x20)/128 **[bin]** |
+| 186 | 0xda | `PLO_BOARDMODIFY2` | · | `c mapX, c mapY, c x, c y, c w, c h`, then w×h `s tile` row-major, then an undecoded trailer (2.22+) **[bin]** |
 | 187 | 0xdb | `PLO_UPDATEPACKAGEISUPDATED` | · | package-update message (5.07, 6.037) |
 | 188 | 0xdc | `PLO_NC_CLASSDELETE` | · | `class`; client 5.07+ ignores it |
-| 189 | 0xdd | `PLO_MOVE2` | · | `i3 id` |
+| 189 | 0xdd | `PLO_MOVE2` | · | `i3 id`; as 165 with an extra flag (2.31 only) **[bin]** |
 | 190 | 0xde | `PLO_SERVERLISTCONNECTED` | · |  |
 | 191 | 0xdf | `PLO_SHOOT2` | · | 5.07 / 6.037 |
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` | · | `str name`, `str image`, `script`; client 5.07+ ignores it |
@@ -164,6 +164,8 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions` |
 | 252 | — | `PLO_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLO_BUNDLE` | · | several packets in one |
+
+**Layouts of ids 25, 39, 41, 44, 47, 49, 68–84, 150–156, 165–189 [bin]** were read from the 2.17.1, 2.22 and 2.31 receive handlers (decompile pass of 2026-10-24); the full table with version gates and confidence is `version-profiles/plo-layouts-217-231.tsv`, and the handled-id set of every build from 2.00 to 2.31 is `version-profiles/plo-handled-ids-by-build.tsv`. Dispatch bounds: 2.17.1 id 185, 2.22 id 186, 2.31 id 189. Ids 152 and 167 are not handled by any of them. Id 26 (`PLO_NPCACTION`) is handled by 2.00–2.03 and dropped in 2.04. Still undecoded: the `PLO_SERVERWARP` (178) field meanings, the `PLO_BOARDMODIFY2` (186) trailer and the extra step 2.31 adds after `PLO_SETACTIVELEVEL` (156); see `client-internals/decomp-findings-2026-10-24-b/05-open-items.md`.
 
 No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everything ≥ 101 except 150, 151, 153–156, 165, 166, 168. Ids 101 and 102 are read behind `PLO_RAWDATA` (see `codec-and-framing.md`). The dispatcher bound is 0xA8 (id 168). Unused slots fall to one shared default arm. **[2.05]**
 
@@ -195,7 +197,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 21 | 0x35 | `PLI_PUTNPC` | ✔ |   |
 | 22 | 0x36 | `PLI_NPCDEL` | ✔ |   |
 | 23 | 0x37 | `PLI_WANTFILE` | ✔ |   |
-| 24 | 0x38 | `PLI_SHOWIMGPLAYER` | ✔ |   |
+| 24 | 0x38 | `PLI_SHOWIMGPLAYER` | ✔ | 2.31 also sends it by itself about every 5.1 s with a 1-byte payload (value 9 seen); meaning unknown **[cap]** |
 | 25 | 0x39 | `PLI_UNKNOWN25` | · |   |
 | 26 | 0x3a | `PLI_HURTPLAYER` | ✔ |   |
 | 27 | 0x3b | `PLI_EXPLOSION` | ✔ |   |
@@ -210,13 +212,13 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 36 | 0x44 | `PLI_HITOBJECTS` | ✔ |   |
 | 37 | 0x45 | `PLI_LANGUAGE` | ✔ |   |
 | 38 | 0x46 | `PLI_TRIGGERACTION` | ✔ | `i3 fromNPC`, `c x`, `c y`, `list actionAndParams`; 2.05 sends x and y in half-tiles (see `packet-layouts.md`) |
-| 39 | 0x47 | `PLI_TAMPERCHECK` | · | 10 raw bytes, a constant per client build (not two `i5`); sent right after `PLI_LANGUAGE` at login. 2.22 also re-sends it on every gmap edge crossing, 2.31 about every 3.2 s. Values in `version-profiles/tampercheck-values.tsv` **[cap]** |
+| 39 | 0x47 | `PLI_TAMPERCHECK` | · | 10 raw bytes, a constant per client build (not two `i5`); sent right after `PLI_LANGUAGE` at login. 2.22 also re-sends it on every gmap edge crossing, 2.31 about every 3.2 s. Values in `version-profiles/tampercheck-values.tsv`; how the bytes are built is in `client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md` **[cap][bin]** |
 | 40 | 0x48 | `PLI_SHOOT` | · |   |
 | 41 | 0x49 | `PLI_SERVERWARP` | · |   |
 | 43 | 0x4b | `PLI_MUTEPLAYER` | · | player-list mute: `s player id`, `c on/off` (1 = mute, 0 = unmute); one message per click, confirmed from a real 2.22 client **[cap]** |
-| 44 | 0x4c | `PLI_PROCESSLIST` | · |   |
-| 45 | 0x4d | `PLI_PROCESSRUNNING` | · | `c flag`: reply to HASPROCESSRUNNING |
-| 46 | 0x4e | `PLI_ENTERLEVEL` | · | `c 1` on entering a level |
+| 44 | 0x4c | `PLI_PROCESSLIST` | · | the client's reply to `PLO_LISTPROCESSES` (182) **[bin][cap]** |
+| 45 | 0x4d | `PLI_PROCESSRUNNING` | · | `c flag`: reply to HASPROCESSRUNNING; 1 if the server's string occurs in the client's own process list **[bin]** |
+| 46 | 0x4e | `PLI_ENTERLEVEL` | · | `c 1` on entering a level; seen once at login from a 2.31 client, not sent by 2.17 or 2.22 **[cap]** |
 | 47 | 0x4f | `PLI_VERIFYWANTSEND` | · | `i5 crc32`, `str filename`: send the file if stale |
 | 48 | 0x50 | `PLI_SHOOT2` | · |   |
 | 50 | 0x52 | `PLI_RAWDATA` | · |   |
