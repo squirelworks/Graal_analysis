@@ -1,0 +1,20 @@
+from	to	plo_added	plo_removed	pli_added	pli_removed
+2.00	2.00 rev1				
+2.00 rev1	2.00 rev2				
+2.00 rev2	2.00 rev3				
+2.00 rev3	2.01	46,156		35-36	
+2.01	2.01 rev1				
+2.01 rev1	2.02	47			
+2.02	2.02 rev1				
+2.02 rev1	2.02 rev2			37	
+2.02 rev2	2.03	48,165		38	
+2.03	2.04	166	26		
+2.04	2.05	168			
+2.05	2.05 rev1				
+2.05 rev1	2.05 rev2				
+2.05 rev2	2.1 test2	49,169			
+2.1 test2	2.1 test3				
+2.1 test3	NewWorld beta1		2,4,17-18,49,154-155,169		7,11,15-17
+NewWorld beta1	NewWorld beta2	49,169			
+NewWorld beta2	NewMain 24	2,4,17-18,26	46-49,156,165-166,168-169	7,11,15-17	35-38
+NewMain 24	NewMain 26				

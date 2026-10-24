@@ -1,6 +1,6 @@
 # Decompile findings, batch b (2.00, 2.17.1, 2.22, 2.31 + Drive clients), 2026-10-24
 
-Derived facts only. No code, addresses or decompiler names. Lab-only runs (loopback network, private display). Built from decompiles of 2.00, 2.17.1, 2.22 and 2.31, plus the Drive clients set and lab captures.
+Derived facts only. **See also batch c (`../decomp-findings-2026-10-24-c/`): 20 builds from 2.00 to 2.1 test, NewWorld and NewMain; it supersedes the 2.00 and 2.05 parts of this batch where they differ.** No code, addresses or decompiler names. Lab-only runs (loopback network, private display). Built from decompiles of 2.00, 2.17.1, 2.22 and 2.31, plus the Drive clients set and lab captures.
 
 | File | Content |
 |---|---|

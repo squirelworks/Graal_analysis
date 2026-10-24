@@ -1,0 +1,21 @@
+build	class_count	added_vs_previous_listed_build	removed_vs_previous_listed_build
+2.00	186		
+2.00 rev1	186		
+2.00 rev2	186		
+2.00 rev3	186		
+2.01	186		
+2.01 rev1	186		
+2.02	186		
+2.02 rev1	186		
+2.02 rev2	186		
+2.03	186		
+2.04	187	TObjectSet	
+2.05	188	TADP	
+2.05 rev1	188		
+2.05 rev2	188		
+2.1 test2	188	TEditNPC TMemo TPageControl TTabSheet	TEditPerson TObjectSet TPersonAction TShowCodes
+2.1 test3	188		
+NewWorld beta1	186	TEditPerson TObjectSet TPersonAction TShowCodes	TChestEdit TEditBaddy TEditNPC TMemo TPageControl TTabSheet
+NewWorld beta2	186	TEditNPC TMemo TPageControl TTabSheet	TEditPerson TObjectSet TPersonAction TShowCodes
+NewMain 24	193	TChestEdit TDdeCliItem TDdeClientConv TDdeMgr TDdeServerConv TDdeServerItem TDdeSrvrConv TDdeSrvrItem TEditBaddy TEditPerson TPersonAction TShowCodes	TADP TEditNPC TMemo TPageControl TTabSheet
+NewMain 26	193		

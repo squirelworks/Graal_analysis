@@ -1,0 +1,109 @@
+from	to	plo_id	name	shape_similarity_0_to_1	normalized_statement_count_before	after	note
+2.00	2.01	0	PLO_LEVELBOARD	0.36	28	16	
+2.00	2.01	6	PLO_LEVELNAME	0.36	6	5	
+2.00	2.01	13	PLO_TOALL	0.86	40	39	
+2.00	2.01	14	PLO_PLAYERWARP	0.54	33	15	
+2.00	2.01	15	PLO_WARPFAILED	0.60	7	3	compiler-level churn likely (small body)
+2.00	2.01	21	PLO_THROWCARRIED	0.86	7	7	compiler-level churn likely (small body)
+2.00	2.01	22	PLO_ITEMADD	0.78	9	9	compiler-level churn likely (small body)
+2.00	2.01	27	PLO_BADDYHURT	0.79	39	29	
+2.00	2.01	32	PLO_SHOWIMGPLAYER	0.90	10	10	compiler-level churn likely (small body)
+2.00	2.01	37	PLO_PRIVATEMESSAGE	0.92	63	65	
+2.00	2.01	40	PLO_HURTPLAYER	0.82	8	9	compiler-level churn likely (small body)
+2.00	2.01	44	PLO_HASNPCSERVER	0.50	2	2	
+2.00	2.01	154	PLO_FREEZEPLAYER2	0.55	4	7	
+2.00	2.01	155	PLO_UNFREEZEPLAYER	0.52	18	9	
+2.01	2.02	14	PLO_PLAYERWARP	0.87	15	15	
+2.01	2.02	153	PLO_SAY2	0.74	11	8	compiler-level churn likely (small body)
+2.02	2.03	13	PLO_TOALL	0.92	39	39	
+2.02	2.03	24	PLO_NPCMOVED	0.78	31	48	
+2.02	2.03	156	PLO_SETACTIVELEVEL	0.00	9	1	
+2.03	2.04	1	PLO_LEVELLINK	0.83	6	6	compiler-level churn likely (small body)
+2.03	2.04	4	PLO_LEVELCHEST	0.88	17	17	
+2.03	2.04	5	PLO_LEVELSIGN	0.90	10	10	compiler-level churn likely (small body)
+2.03	2.04	11	PLO_BOMBADD	0.88	8	8	compiler-level churn likely (small body)
+2.03	2.04	19	PLO_ARROWADD	0.88	8	8	compiler-level churn likely (small body)
+2.03	2.04	20	PLO_FIRESPY	0.88	8	8	compiler-level churn likely (small body)
+2.03	2.04	21	PLO_THROWCARRIED	0.86	7	7	compiler-level churn likely (small body)
+2.03	2.04	22	PLO_ITEMADD	0.82	9	8	compiler-level churn likely (small body)
+2.03	2.04	24	PLO_NPCMOVED	0.64	48	55	
+2.03	2.04	32	PLO_SHOWIMGPLAYER	0.90	10	10	compiler-level churn likely (small body)
+2.03	2.04	36	PLO_EXPLOSION	0.88	8	8	compiler-level churn likely (small body)
+2.03	2.04	40	PLO_HURTPLAYER	0.89	9	9	compiler-level churn likely (small body)
+2.03	2.04	46	PLO_HITOBJECTS	0.89	9	9	compiler-level churn likely (small body)
+2.03	2.04	48	PLO_TRIGGERACTION	0.88	8	8	compiler-level churn likely (small body)
+2.03	2.04	153	PLO_SAY2	0.82	8	9	compiler-level churn likely (small body)
+2.03	2.04	165	PLO_MOVE	0.62	17	9	
+2.04	2.05	1	PLO_LEVELLINK	0.83	6	6	compiler-level churn likely (small body)
+2.04	2.05	10	PLO_ISLEADER	0.75	4	4	compiler-level churn likely (small body)
+2.04	2.05	11	PLO_BOMBADD	0.88	8	8	compiler-level churn likely (small body)
+2.04	2.05	12	PLO_BOMBDEL	0.75	4	4	compiler-level churn likely (small body)
+2.04	2.05	17	PLO_HORSEADD	0.75	4	4	compiler-level churn likely (small body)
+2.04	2.05	18	PLO_HORSEDEL	0.75	4	4	compiler-level churn likely (small body)
+2.04	2.05	19	PLO_ARROWADD	0.88	8	8	compiler-level churn likely (small body)
+2.04	2.05	20	PLO_FIRESPY	0.88	8	8	compiler-level churn likely (small body)
+2.04	2.05	21	PLO_THROWCARRIED	0.86	7	7	compiler-level churn likely (small body)
+2.04	2.05	22	PLO_ITEMADD	0.88	8	8	compiler-level churn likely (small body)
+2.04	2.05	23	PLO_ITEMDEL	0.75	4	4	compiler-level churn likely (small body)
+2.04	2.05	24	PLO_NPCMOVED	0.91	55	55	
+2.04	2.05	27	PLO_BADDYHURT	0.86	29	29	
+2.04	2.05	32	PLO_SHOWIMGPLAYER	0.90	10	10	compiler-level churn likely (small body)
+2.04	2.05	36	PLO_EXPLOSION	0.88	8	8	compiler-level churn likely (small body)
+2.04	2.05	38	PLO_PUSHAWAY	0.90	10	10	compiler-level churn likely (small body)
+2.04	2.05	40	PLO_HURTPLAYER	0.89	9	9	compiler-level churn likely (small body)
+2.04	2.05	46	PLO_HITOBJECTS	0.89	9	9	compiler-level churn likely (small body)
+2.04	2.05	48	PLO_TRIGGERACTION	0.88	8	8	compiler-level churn likely (small body)
+2.04	2.05	166	PLO_SHOWIMGNPC	0.78	27	19	
+2.05 rev2	2.1 test2	0	PLO_LEVELBOARD	0.48	16	13	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	1	PLO_LEVELLINK	0.83	6	6	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	2	PLO_BADDYPROPS	0.58	45	44	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	3	PLO_NPCPROPS	0.57	9	12	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	4	PLO_LEVELCHEST	0.50	17	19	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	5	PLO_LEVELSIGN	0.55	10	12	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	7	PLO_BOARDMODIFY	0.72	53	53	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	8	PLO_OTHERPLPROPS	0.73	45	48	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	10	PLO_ISLEADER	0.75	4	4	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	11	PLO_BOMBADD	0.35	8	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	12	PLO_BOMBDEL	0.75	4	4	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	13	PLO_TOALL	0.60	39	38	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	14	PLO_PLAYERWARP	0.38	15	27	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	15	PLO_WARPFAILED	0.67	3	3	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	17	PLO_HORSEADD	0.75	4	4	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	18	PLO_HORSEDEL	0.75	4	4	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	19	PLO_ARROWADD	0.35	8	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	20	PLO_FIRESPY	0.35	8	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	21	PLO_THROWCARRIED	0.43	7	7	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	22	PLO_ITEMADD	0.56	8	10	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	23	PLO_ITEMDEL	0.75	4	4	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	24	PLO_NPCMOVED	0.73	55	58	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	25	PLO_SIGNATURE	0.29	12	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	27	PLO_BADDYHURT	0.50	29	23	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	28	PLO_FLAGSET	0.80	5	5	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	29	PLO_NPCDEL	0.68	21	23	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	30	PLO_FILESENDFAILED	0.84	15	16	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	31	PLO_FLAGDEL	0.50	2	2	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	32	PLO_SHOWIMGPLAYER	0.30	10	10	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	35	PLO_RC_ADMINMESSAGE	0.70	9	11	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	36	PLO_EXPLOSION	0.35	8	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	37	PLO_PRIVATEMESSAGE	0.70	65	66	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	38	PLO_PUSHAWAY	0.63	10	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	40	PLO_HURTPLAYER	0.21	9	10	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	41	PLO_STARTMESSAGE	0.74	51	54	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	42	PLO_NEWWORLDTIME	0.53	6	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	43	PLO_DEFAULTWEAPON	0.80	7	8	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	46	PLO_HITOBJECTS	0.21	9	10	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	48	PLO_TRIGGERACTION	0.35	8	9	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	75	PLO_PROFILE	0.77	41	42	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	100	PLO_RAWDATA	0.44	4	5	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	150	PLO_NPCDEL2	0.70	31	35	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	151	PLO_HIDENPCS	0.93	28	28	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	153	PLO_SAY2	0.47	9	8	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	155	PLO_UNFREEZEPLAYER	0.25	9	7	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	156	PLO_SETACTIVELEVEL	0.25	1	7	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	165	PLO_MOVE	0.57	9	12	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	166	PLO_SHOWIMGNPC	0.78	19	22	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.05 rev2	2.1 test2	168	PLO_UNKNOWN168	0.00	10	2	2.1 test decompile is lossy (dropped args/calls); treat as weak evidence
+2.1 test2	2.1 test3	0	PLO_LEVELBOARD	0.81	13	14	
+2.1 test2	2.1 test3	6	PLO_LEVELNAME	0.62	5	8	compiler-level churn likely (small body)
+2.1 test2	2.1 test3	14	PLO_PLAYERWARP	0.92	27	32	
+2.1 test2	2.1 test3	31	PLO_FLAGDEL	0.50	2	2	

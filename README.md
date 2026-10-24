@@ -69,6 +69,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 - `client-internals/decomp-findings-2026-10-24-b/`: tamper-check (PLI 39) derivation, 2.31 periodic traffic, payload layouts of server ids above 48 (2.17.1, 2.22, 2.31), the 2.00 client, open items, and a cross-check against the repo. Tables are in `version-profiles/` (`plo-layouts-217-231.tsv`, `plo-handled-ids-by-build.tsv`, `pli-sent-ids-by-build-20x.tsv`, `tampercheck-words.tsv`, `version-tokens-by-build.tsv`, `drive-clients-exes.tsv`).
 - `client-internals/drive-clients-inventory.md`: what the Drive clients set contains and which builds are still missing.
 
+## Decompile findings, batch c (2026-10-24)
+
+- `client-internals/decomp-findings-2026-10-24-c/`: 20 builds from 2.00 to the 2.1 tests, NewWorld betas and NewMain 24/26 (Ghidra + IDR). Login tokens, handled server ids and sent client ids per build, handler changes by build, UDP channel, test builds, vocabulary, and corrections to batch b. Tables are in the same folder. The 2.1 test decompiles are lossy, so only their structure is reliable.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

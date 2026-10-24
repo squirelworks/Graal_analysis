@@ -1,0 +1,61 @@
+plo_id	name	first_build	last_build_with_handler	layout_first_build	layout_last_build	length_guard_last	level_gate_last	field_layout_changed_between_first_and_last
+0	PLO_LEVELBOARD	2.00	2.05 rev2					no
+1	PLO_LEVELLINK	2.00	2.05 rev2					no
+2	PLO_BADDYPROPS	2.00	2.05 rev2	rest@1	rest@1	len>0		no
+3	PLO_NPCPROPS	2.00	2.05 rev2	GINT3@0 rest@3	GINT3@0 rest@3	len>2		no
+4	PLO_LEVELCHEST	2.00	2.05 rev2	GCHAR@0 GCHAR@1	GCHAR@0 GCHAR@1			no
+5	PLO_LEVELSIGN	2.00	2.05 rev2	rest@2	rest@2			no
+6	PLO_LEVELNAME	2.00	2.05 rev2					no
+7	PLO_BOARDMODIFY	2.00	2.05 rev2					no
+8	PLO_OTHERPLPROPS	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2			no
+9	PLO_PLAYERPROPS	2.00	2.05 rev2					no
+10	PLO_ISLEADER	2.00	2.05 rev2					no
+11	PLO_BOMBADD	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+12	PLO_BOMBDEL	2.00	2.05 rev2					no
+13	PLO_TOALL	2.00	2.05 rev2	GCHAR@2 rest@3	GINT2@0 GCHAR@2 rest@3	len>0		yes
+14	PLO_PLAYERWARP	2.00	2.05 rev2	GCHAR@0 rest@2	GCHAR@0 rest@2			no
+15	PLO_WARPFAILED	2.00	2.05 rev2					no
+16	PLO_DISCMESSAGE	2.00	2.05 rev2					no
+17	PLO_HORSEADD	2.00	2.05 rev2					no
+18	PLO_HORSEDEL	2.00	2.05 rev2					no
+19	PLO_ARROWADD	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+20	PLO_FIRESPY	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>2		no
+21	PLO_THROWCARRIED	2.00	2.05 rev2	GINT2@0	GINT2@0	len>1		no
+22	PLO_ITEMADD	2.00	2.05 rev2	GINT2@3	GINT2@3	len>4		no
+23	PLO_ITEMDEL	2.00	2.05 rev2					no
+24	PLO_NPCMOVED	2.00	2.05 rev2	GINT3@0	GINT3@0 rest@3 rest@2	len>2		yes
+25	PLO_SIGNATURE	2.00	2.05 rev2			len>0		no
+26	PLO_NPCACTION	2.00	2.03	GINT3@0 rest@3	GINT3@0 rest@3	len>2	level-gated	no
+27	PLO_BADDYHURT	2.00	2.05 rev2					no
+28	PLO_FLAGSET	2.00	2.05 rev2					no
+29	PLO_NPCDEL	2.00	2.05 rev2	GINT3@0	GINT3@0	len>2		no
+30	PLO_FILESENDFAILED	2.00	2.05 rev2			len>0		no
+31	PLO_FLAGDEL	2.00	2.05 rev2					no
+32	PLO_SHOWIMGPLAYER	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+33	PLO_NPCWEAPONADD	2.00	2.05 rev2					no
+34	PLO_NPCWEAPONDEL	2.00	2.05 rev2					no
+35	PLO_RC_ADMINMESSAGE	2.00	2.05 rev2					no
+36	PLO_EXPLOSION	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+37	PLO_PRIVATEMESSAGE	2.00	2.05 rev2	rest@2	GINT2@0 rest@2	len>1		yes
+38	PLO_PUSHAWAY	2.00	2.05 rev2	GCHAR@0	GCHAR@0	len>1		no
+39	PLO_LEVELMODTIME	2.00	2.05 rev2					no
+40	PLO_HURTPLAYER	2.00	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+41	PLO_STARTMESSAGE	2.00	2.05 rev2			len>0		no
+42	PLO_NEWWORLDTIME	2.00	2.05 rev2	GCHAR@0 GINT3@1	GCHAR@0 GINT3@1	len>3		no
+43	PLO_DEFAULTWEAPON	2.00	2.05 rev2					no
+44	PLO_HASNPCSERVER	2.00	2.05 rev2					no
+45	PLO_FILEUPTODATE	2.00	2.05 rev2			len>0		no
+46	PLO_HITOBJECTS	2.01	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+47	PLO_STAFFGUILDS	2.02	2.05 rev2					no
+48	PLO_TRIGGERACTION	2.03	2.05 rev2	GINT2@0 rest@2	GINT2@0 rest@2	len>1		no
+75	PLO_PROFILE	2.00	2.05 rev2	rest@1	rest@1			no
+100	PLO_RAWDATA	2.00	2.05 rev2	GINT3@0	GINT3@0			no
+150	PLO_NPCDEL2	2.00	2.05 rev2	GINT3@0 rest@1	GINT3@0 rest@1	len>4		no
+151	PLO_HIDENPCS	2.00	2.05 rev2					no
+153	PLO_SAY2	2.00	2.05 rev2					no
+154	PLO_FREEZEPLAYER2	2.00	2.05 rev2					no
+155	PLO_UNFREEZEPLAYER	2.00	2.05 rev2					no
+156	PLO_SETACTIVELEVEL	2.01	2.05 rev2					no
+165	PLO_MOVE	2.03	2.05 rev2	GINT3@0 rest@3	GINT3@0 rest@3	len>2		no
+166	PLO_SHOWIMGNPC	2.04	2.05 rev2	GINT3@0 rest@3	GINT3@0 rest@3	len>2		no
+168	PLO_UNKNOWN168	2.05	2.05 rev2					no
