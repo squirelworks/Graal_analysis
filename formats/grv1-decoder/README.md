@@ -12,7 +12,7 @@ Behaviour follows the 2.05 client loader:
 
 - Code width is 13 bits for `GR-V1.02`/`GR-V1.03` and 12 bits otherwise.
 - NPCs are read from `GR-V1.00` on, chests from `GR-V1.01` on. `.zelda` files have neither.
-- The baddy section ends at the first record shorter than 3 bytes or whose x byte is 0 or ≥ 0x80.
+- The baddy section ends at the first record shorter than 3 bytes or whose x byte is ≥ 0x80. An x byte of 0 is a valid baddy (real levels have them).
 - NPC scripts have `0xA7` turned into newlines. Sign text goes through the sign alphabet, and `#K(13)` (CR) is dropped.
 
 Checked against the 13 tutorial levels embedded in the 2.05 client and the 9 in 2.22. All parse with the expected link grid, chest items, and sign text (see `client-internals/offline-tutorial-205.md`).

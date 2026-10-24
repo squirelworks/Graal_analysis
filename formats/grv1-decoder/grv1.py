@@ -115,7 +115,7 @@ def load(data):
             if b is None or (b == 10 and len(rec) > 2):
                 break
             rec.append(b)
-        if len(rec) < 3 or rec[0] == 0 or rec[0] >= 0x80:
+        if len(rec) < 3 or rec[0] >= 0x80:
             break
         verses = rec[3:].decode('latin1').split('\\')
         lv['baddies'].append({'x': rec[0], 'y': rec[1], 'type': rec[2],
