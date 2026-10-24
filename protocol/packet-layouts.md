@@ -197,5 +197,5 @@ Read from the receive handlers of the three clients (decompile pass of 2026-10-2
 | 183 | HASPROCESSRUNNING | all three | raw list of names |
 | 184 | TAKESCREENSHOT | all three | raw file name |
 | 185 | BOARDHEIGHTS | all three | GCHAR mapX, GCHAR mapY, GCHAR blockX, GCHAR blockY, GCHAR w-1, GCHAR h-1, then (w)*(h) cells of 2 raw bytes |
-| 186 | BOARDMODIFY2 | 2.22,2.31 (not 2.17) | GCHAR mapX, GCHAR mapY, GCHAR x, GCHAR y, GCHAR w, GCHAR h, then w*h GSHORT tiles (row-major), rest = unresolved trailer |
+| 186 | BOARDMODIFY2 | 2.22,2.31 (not 2.17) | GCHAR mapX, GCHAR mapY, GCHAR x, GCHAR y, GCHAR w, GCHAR h, then w*h GSHORT tiles (row-major), rest = ignored padding (lab: not applied, no disconnect; short by one byte is dropped silently; clipped at column 63) |
 | 189 | MOVE2 | 2.31 only | GINT3 npc id, rest |

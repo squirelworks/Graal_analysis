@@ -1,0 +1,11 @@
+case	client	provenance	payload after id 186	rule predicted by length check (6 + 2*w*h)	observed on the drawn board
+A	2.31	synthetic (lab proxy injected the frame)	cell 0,0 x54 y28 w8 h6, 48 tiles, no trailer	apply	applied (8x6 block drawn)
+B	2.31	synthetic	cell 0,0 x44 y26 w4 h2, 8 tiles + 5 arbitrary trailer bytes	apply	applied; trailer has no visible effect; client stayed connected
+B	2.22	synthetic	same as 2.31 case B	apply	applied; client stayed connected
+C	2.31	synthetic	record 1 (x44 y32 w4 h2) followed by a trailer holding a complete second record (x50 y36 w4 h2)	record 1 applied, trailer unread	record 1 applied; record 2 NOT applied
+C	2.22	synthetic	same as 2.31 case C	same	record 1 applied; record 2 NOT applied
+D	2.31	synthetic	declared w4 h2 but only 4 tiles (length 6+8, needs 6+16)	reject	nothing drawn; no disconnect
+E	2.31	synthetic	exact length minus one byte (x62 y26 w4 h2)	reject	nothing drawn; no disconnect
+E	2.22	synthetic	exact length minus one byte (x40 y36 w4 h2)	reject	nothing drawn; no disconnect
+F	2.31	synthetic	exact length, no trailer, x62 y26 w4 h2 (runs past board column 63)	apply	applied but clipped: only columns 62 and 63 drawn
+F	2.22	synthetic	exact length, no trailer, x40 y36 w4 h2	apply	applied

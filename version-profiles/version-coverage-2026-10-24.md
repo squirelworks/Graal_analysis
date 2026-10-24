@@ -93,3 +93,5 @@ Note: the `.idc` files are name tables. Reading the handler bodies still needs a
 - **Gap 5 (2.1 to 2.16 and 2.3):** unchanged. The Drive clients set has no 2.1.x to 2.3 builds, only the two 2.1 test builds (`client-internals/drive-clients-inventory.md`).
 - **Gap 8:** client to server ids 36, 42 and 45 of 2.22 are still unmatched to call sites.
 - Per-build handled server-to-client ids for 2.00 to 2.31 are now tabulated in `plo-handled-ids-by-build.tsv`, and the client-to-server ids per 2.0x build in `pli-sent-ids-by-build-20x.tsv` (2.00 lacks 35 to 38).
+
+- **Update (lab batch b2):** the 2.00 listserver step is partly observed (client request seen; the list reply it accepted was synthetic) and the id 46 and id 186 trailer questions are settled. See `client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md`.

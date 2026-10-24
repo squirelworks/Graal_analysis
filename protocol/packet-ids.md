@@ -150,7 +150,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** |
 | 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** |
 | 185 | 0xd9 | `PLO_BOARDHEIGHTS` | · | `c mapX, c mapY, c blockX, c blockY, c w-1, c h-1`, then w×h cells of 2 raw bytes; height = (b0−0x20−50) + (b1−0x20)/128 **[bin]** |
-| 186 | 0xda | `PLO_BOARDMODIFY2` | · | `c mapX, c mapY, c x, c y, c w, c h`, then w×h `s tile` row-major, then an undecoded trailer (2.22+) **[bin]** |
+| 186 | 0xda | `PLO_BOARDMODIFY2` | · | `c mapX, c mapY, c x, c y, c w, c h`, then w×h `s tile` row-major, then ignored padding: bytes after the tiles are not read, a payload one byte short of 6+2*w*h is dropped silently, a block past column 63 is clipped (2.22+; client reaction lab-tested with injected frames, no server seen sending it) **[bin][cap]** |
 | 187 | 0xdb | `PLO_UPDATEPACKAGEISUPDATED` | · | package-update message (5.07, 6.037) |
 | 188 | 0xdc | `PLO_NC_CLASSDELETE` | · | `class`; client 5.07+ ignores it |
 | 189 | 0xdd | `PLO_MOVE2` | · | `i3 id`; as 165 with an extra flag (2.31 only) **[bin]** |
@@ -165,7 +165,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 252 | — | `PLO_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLO_BUNDLE` | · | several packets in one |
 
-**Layouts of ids 25, 39, 41, 44, 47, 49, 68–84, 150–156, 165–189 [bin]** were read from the 2.17.1, 2.22 and 2.31 receive handlers (decompile pass of 2026-10-24); the full table with version gates and confidence is `version-profiles/plo-layouts-217-231.tsv`, and the handled-id set of every build from 2.00 to 2.31 is `version-profiles/plo-handled-ids-by-build.tsv`. Dispatch bounds: 2.17.1 id 185, 2.22 id 186, 2.31 id 189. Ids 152 and 167 are not handled by any of them. Id 26 (`PLO_NPCACTION`) is handled by 2.00–2.03 and dropped in 2.04. Still undecoded: the `PLO_SERVERWARP` (178) field meanings, the `PLO_BOARDMODIFY2` (186) trailer and the extra step 2.31 adds after `PLO_SETACTIVELEVEL` (156); see `client-internals/decomp-findings-2026-10-24-b/05-open-items.md`.
+**Layouts of ids 25, 39, 41, 44, 47, 49, 68–84, 150–156, 165–189 [bin]** were read from the 2.17.1, 2.22 and 2.31 receive handlers (decompile pass of 2026-10-24); the full table with version gates and confidence is `version-profiles/plo-layouts-217-231.tsv`, and the handled-id set of every build from 2.00 to 2.31 is `version-profiles/plo-handled-ids-by-build.tsv`. Dispatch bounds: 2.17.1 id 185, 2.22 id 186, 2.31 id 189. Ids 152 and 167 are not handled by any of them. Id 26 (`PLO_NPCACTION`) is handled by 2.00–2.03 and dropped in 2.04. Still undecoded: the `PLO_SERVERWARP` (178) field meanings and the extra step 2.31 adds after `PLO_SETACTIVELEVEL` (156); see `client-internals/decomp-findings-2026-10-24-b/05-open-items.md`.
 
 No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everything ≥ 101 except 150, 151, 153–156, 165, 166, 168. Ids 101 and 102 are read behind `PLO_RAWDATA` (see `codec-and-framing.md`). The dispatcher bound is 0xA8 (id 168). Unused slots fall to one shared default arm. **[2.05]**
 
@@ -218,7 +218,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 43 | 0x4b | `PLI_MUTEPLAYER` | · | player-list mute: `s player id`, `c on/off` (1 = mute, 0 = unmute); one message per click, confirmed from a real 2.22 client **[cap]** |
 | 44 | 0x4c | `PLI_PROCESSLIST` | · | the client's reply to `PLO_LISTPROCESSES` (182) **[bin][cap]** |
 | 45 | 0x4d | `PLI_PROCESSRUNNING` | · | `c flag`: reply to HASPROCESSRUNNING; 1 if the server's string occurs in the client's own process list **[bin]** |
-| 46 | 0x4e | `PLI_ENTERLEVEL` | · | `c 1` on entering a level; seen once at login from a 2.31 client, not sent by 2.17 or 2.22 **[cap]** |
+| 46 | 0x4e | `PLI_ENTERLEVEL` | · | `c 1` on every level entry (login and each gmap edge crossing in the lab), sent just before the props message that carries cell prop 43/44 and the wrapped coordinate; 2.31 only, and 2.31 does not re-send id 39 at a crossing **[cap]** |
 | 47 | 0x4f | `PLI_VERIFYWANTSEND` | · | `i5 crc32`, `str filename`: send the file if stale |
 | 48 | 0x50 | `PLI_SHOOT2` | · |   |
 | 50 | 0x52 | `PLI_RAWDATA` | · |   |

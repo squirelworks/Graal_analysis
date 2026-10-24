@@ -1,0 +1,8 @@
+entry	moment	client_msgs_in_order	cell_prop_in_props	wrapped_coord_in_props	note
+1	login	46 (GCHAR 1), then props with initial player props	-	-	first message of the second client frame; sent before PLI 35 and PLI 44
+2	cell nw -> ne (walk east)	46 (GCHAR 1), then props	prop 43 = 1	local x = 0	46 comes first in the frame, the props message follows
+3	cell ne -> nw (walk west)	46 (GCHAR 1), then props	prop 43 = 0	local x wraps back to the high end of the cell	
+4	cell nw -> ne (walk east)	46 (GCHAR 1), then props	prop 43 = 1	local x = 0	same as entry 2
+5	cell ne -> nw (walk west)	46 (GCHAR 1), then props	prop 43 = 0	local x wraps back	same as entry 3
+6	cell nw -> sw (walk south)	46 (GCHAR 1), then props	prop 44 = 1	local y = 0	
+7	cell sw -> nw (walk north)	46 (GCHAR 1), then props	prop 44 = 0	local y wraps back to the high end of the cell	
