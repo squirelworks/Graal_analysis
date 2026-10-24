@@ -50,4 +50,4 @@ Setup: a 2x2 gmap of open-grass levels; the client walked east, south, west and 
 - Unit tests for the parser and for the cell/world coordinate maths.
 
 ## NEEDS
-~~a lab capture of a real 2.22 client crossing a gmap edge~~ Done 2026-10-24 (see above; 2.22 has no X2/Y2 props). Still open: a 2.31 crossing (it has X2/Y2/Z2), and how the 2.17+ client lays out the gmap overview on the map screen.
+~~a lab capture of a real 2.22 client crossing a gmap edge~~ Done 2026-10-24 (see above; 2.22 has no X2/Y2 props). ~~a 2.31 crossing~~ Captured in the lab 2026-10-24 (batch b2, seven level entries): 2.31 sends `PLI_ENTERLEVEL` (46, `GCHAR 1`) first, then the props message with the cell prop (43 or 44) and the wrapped local coordinate, and does not re-send `PLI 39` at the crossing; the server's answer matches 2.22 (`../decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md`). Still open, thin evidence: the Z2 prop at a crossing, and how the 2.17+ client lays out the gmap overview on the map screen.
