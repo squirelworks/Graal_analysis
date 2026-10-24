@@ -74,7 +74,7 @@ Gen 3 is client→server only. Server→client traffic for a gen-3 client is pla
 
 ### Gen 4/5 partial XOR
 
-Same LCG and key. For each 4-byte group, advance `it` and XOR the group with the little-endian bytes of `it`. Stop after *limit* groups: 12 groups for uncompressed bodies, 4 for zlib or bz2. On send the body is compressed first and the XOR is applied to the compressed bytes. On receive the XOR is undone first, then the body is decompressed. **[srv][2.22]**
+Same LCG and key. For each 4-byte group present in the body, advance `it` once and XOR the group with the little-endian bytes of `it`. A short last group counts as a group: it advances `it` and is XORed byte by byte with the low bytes. Stop after *limit* groups: 12 groups for uncompressed bodies (`0x02`), 4 for zlib or bz2 (`0x04`/`0x06`). The group count is therefore `min(ceil(len/4), limit)`, with no special case for compressed bodies. On send the body is compressed first and the XOR is applied to the compressed bytes. On receive the XOR is undone first, then the body is decompressed. **[srv][2.22]**
 
 2.22 client side **[2.22][cap]**:
 - **Login frame:** `u16be len` + zlib, with no compression byte and no XOR. The key travels inside it, so it has to be readable.
@@ -83,7 +83,10 @@ Same LCG and key. For each 4-byte group, advance `it` and XOR the group with the
   - Bodies from 0x30 bytes up use zlib (`0x04`).
   - Bodies under 0x30 bytes are zlib-compressed only when that makes them smaller; otherwise they go uncompressed (`0x02`).
 - **Lengths:** the `u16be` length counts the compression byte.
-- **Group counting:** a partial last group is XORed byte by byte. For `0x02` the count is `ceil(len/4)` capped at 12. For `0x04`/`0x06` it is `floor(len/4)` capped at 4.
+- **Group counting:** one iterator step per 4-byte group present, capped at 12 groups for `0x02` and at 4 groups for `0x04`/`0x06`. A partial last group still steps the iterator and is XORed byte by byte. The count is `min(ceil(len/4), limit)` for every type.
+  - **Correction (2026-10-24):** an earlier version of this note gave `floor(len/4)` capped at 4 for `0x04`/`0x06`. That is wrong. It skips one iterator step for any compressed body whose length is not a multiple of 4 (and all of them under 4 bytes), so every later frame in that direction decodes as noise.
+  - **Evidence:** the gs2lib encryption routine **[srv]**; 27 of 27 server → client frames from four public 2.22 gservers plus both listserver frames **[cap]**, which includes zlib and bz2 bodies with a partial last group; and the Seihai lab sessions (610 frames, both directions, against GServer-v2 and the lab listserver) **[cap]**. These cover the **receive side of the client** (server → client frames) and the server's receive of Seihai's frames. A real Wine 2.22 client sending a short compressed frame has not been captured, so the client send helper's own count is not independently confirmed; `client-versions.md` records its earlier reading.
+  - **Not seen yet:** a client-originated bz2 frame (body of 0x1000 bytes or more).
 - **Wire check:** a lab 2.22 session decoded completely in both directions with this rule. This is the cipher that makes the 14801 sessions stop inflating after the first frame (2.22/2.31 clients). **[cap][inf]**
 
 ## Corrections to earlier notes

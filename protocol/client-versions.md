@@ -40,7 +40,7 @@ The server-side description in `codec-and-framing.md` is the receive half. On th
 
 Then:
 
-1. Partial XOR over the (compressed) body: `min(ceil(n/4), 12)` dwords for type 2, `min(floor(n/4), 4)` for types 4 and 6. Each dword advances the LCG once and XORs with it, little-endian. A short last group XORs byte by byte with the iterator's low bytes.
+1. Partial XOR over the (compressed) body: `min(ceil(n/4), 12)` dwords for type 2 and `min(ceil(n/4), 4)` dwords for types 4 and 6, that is one LCG step per 4-byte group present, up to 12 groups uncompressed or 4 groups compressed. Each dword advances the LCG once and XORs with it, little-endian. A short last group still steps the LCG and XORs byte by byte with the iterator's low bytes. *(An earlier version of this note had `floor(n/4)` for types 4 and 6; that was wrong, see `codec-and-framing.md` for the evidence and which side it covers. The client's own send helper has not been re-read for this correction, and no real-client send of a short compressed frame has been captured.)*
 2. The frame is `u16be (len + 1)`, then the type byte, then the body.
 
 The receive side mirrors this with its own iterator. Both iterators start at `0x04A80B38` and use the same key. Type codes 1/2 mean raw, 3/4 zlib, and 5/6 bz2, and only the even codes are XORed. The odd code 3 is the fixed "zlib, no cipher" mode used for the login frame and for the whole NC session (see `tools/remotecontrol.md`). The client drops the connection once more than 0x40000 bytes are queued (RemoteControl: 0x800000).
