@@ -52,6 +52,11 @@ Coordinates in these records are whole tiles (GCHAR), not half-tiles. **[srv]**
 - Sections: board, links, baddies, signs. **No NPC and no chest section.**
 - Baddy verse line only in `Z3-V1.04`.
 - Board coding is the same as GR-V1.00 (12-bit).
+- Checked against 139 distinct real files; details in `client-internals/decomp-findings-2026-10-25-j/`:
+  - `Z3-V1.03` links are written with decimals (`31.0 42.0 2.0 1.0 43.5 41.0`), so numbers are floating point. A negative arrival coordinate means "keep the player's own coordinate".
+  - A computer record is three raw bytes `x y type` and then the rest of the line. The rest is empty in `Z3-V1.03` (4-byte records) and the verse text in `Z3-V1.04`. `0x0A` can be an `x` or `y`, so take the three bytes before looking for the line end.
+  - The reader must decide by the magic, not the extension: `.zelda` names hold `GR-V1` files and `.graal` names hold `Z3-V1.04` files.
+  - Types seen are 0 to 6 (Zelda Online's names: green, blue and red soldier, shot soldier, swamp soldier, jumping hare, octopus).
 
 ## Open
 - ~~GR-V1.04 changes unknown.~~ Answered in `level-binary-client.md`: GR-V1.04 is GR-V1.03 plus an optional 9×9 `HEIGHTS` block after the signs (2.31). **[2.31]**
