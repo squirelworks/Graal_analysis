@@ -4,7 +4,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No de
 
 ## Contents
 
-- `npc-library/` — 3,187 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables.
+- `npc-library/` — 3,172 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables.
 - `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.
 - `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`, `codec-and-framing.md`, `packet-ids.md`, `player-props.md`, `file-transfer.md`, `chat-pm-rc.md`, `listserver.md`, `udp-p2p.md`, `v3x-clients.md` (Graal 3.x Linux/Mac clients), `relay-1998.md` (the 1998 text relay), and `gserv-1999.md` (GSERV007–018 logins, gen 2).
 - `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, `version-tokens.md`, `client-architecture-205.md`, `des-and-hidden-strings.md` (hidden hosts, 2.22 saved passwords), and `newworld-betas.md` (the two NewWorld beta clients).
