@@ -21,7 +21,7 @@ Revised 2026-10-21 from a static read of `RemoteControl.exe` (Graal Reborn 2.2.2
 
 ## Codec
 
-Classic Graal text messages (`GCHAR id` + payload + `\n`, G-integers with `+0x20`), batched and flushed at 0x1000 bytes. Framing and cipher are the client-side gen 5 described in `protocol/client-versions.md`: in dynamic mode each flush picks raw/zlib/bz2 by size, writes a type byte, and XORs the first 12 or 4 dwords with the `0x04A80B38`-seeded cipher LCG (Borland multiplier, `+ key`). Send and receive keep separate iterators with the same key. The NC socket never leaves the fixed zlib mode, so NC traffic has no cipher and no type byte. **[bin]**
+Classic Graal text messages (`GCHAR id` + payload + `\n`, G-integers with `+0x20`), batched and flushed at 0x1000 bytes. Framing and cipher are the client-side gen 5 described in `protocol/client-versions.md`: in dynamic mode each flush picks raw/zlib/bz2 by size, writes a type byte, and XORs the first 12 or 4 dwords (one LCG step per 4-byte group present, a partial last group included) with the `0x04A80B38`-seeded cipher LCG (Borland multiplier, `+ key`). Send and receive keep separate iterators with the same key. The NC socket never leaves the fixed zlib mode, so NC traffic has no cipher and no type byte. **[bin]**
 
 Correction: the earlier note "compression mode chosen once" is wrong for the RC socket. After login the mode is chosen per flush. **[bin]**
 

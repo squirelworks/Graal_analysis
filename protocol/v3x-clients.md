@@ -43,7 +43,7 @@ These two 3.x tokens carry the same date stamps as the 2.22 and 2.31 Windows tok
 ## Game-server login and cipher
 
 - Login: id **5**, key GCHAR (`rand & 0x7F`), token, `str account`, `str password`. Then id **37** (language). Neither build sends id 39 (`PLI_TAMPERCHECK`) after login, which 2.22 and 2.31 do. The account and password are used as plain strings, with no `dec(b) = (~b − 10)` step as in 2.17+. **[bin]**
-- **Cipher and framing are gen 5, the same as the 2.22/2.31 Windows clients.** The same LCG (`it = it * 0x08088405 + key`, seed `0x04A80B38`, one iterator per direction). Login frame in fixed mode 3, then dynamic: type 2 (raw) or 4 (zlib) under 0x30 bytes, 4 under 0x1000, otherwise 6 (bz2). Even types are partially XORed (at most 12 dwords for type 2, 4 for types 4 and 6). Frame `u16be (len + 1)`, type byte, body. See `codec-and-framing.md` and `client-versions.md` (PR #8, not yet on main) for the full rule. **[bin]**
+- **Cipher and framing are gen 5, the same as the 2.22/2.31 Windows clients.** The same LCG (`it = it * 0x08088405 + key`, seed `0x04A80B38`, one iterator per direction). Login frame in fixed mode 3, then dynamic: type 2 (raw) or 4 (zlib) under 0x30 bytes, 4 under 0x1000, otherwise 6 (bz2). Even types are partially XORed (one LCG step per 4-byte group present, at most 12 groups for type 2 and 4 for types 4 and 6; a partial last group still steps). Frame `u16be (len + 1)`, type byte, body. See `codec-and-framing.md` and `client-versions.md` (PR #8, not yet on main) for the full rule. **[bin]**
 
 ## Server → client ids handled
 

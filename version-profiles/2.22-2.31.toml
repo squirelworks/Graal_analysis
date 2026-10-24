@@ -21,7 +21,7 @@ login_frame = "u16be len + zlib, no compression byte, no XOR"
 frame = "u16be(len + 1) + ctype + body"
 ctype_by_size = { raw_below = 0x30, zlib_below = 0x1000, bz2_from = 0x1000 }
 ctype_small_zlib_if_shorter = true     # under 0x30 bytes zlib is used only if it is shorter
-xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }
+xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }   # caps; steps = min(ceil(len/4), cap), a partial last group still steps
 lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
 out_queue_drop_bytes = 0x40000
 listserver = { port = 14922, first_message_id = 7, token = "GNW30123", list_name = "newmain", config = "arrays2.dat + arrays2.sig" }
