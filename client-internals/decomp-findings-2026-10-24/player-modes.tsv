@@ -1,0 +1,7 @@
+mode_value	meaning	notes
+0	normal	
+3	hurt	40 ticks, knockback, cannot be hurt again
+6	sword swing	
+10	swimming	set on water tile type 11; cannot be hurt; sword needs no horse
+13	charged spin	needs has-spin; blocks a second swing
+14	hidden	sets status hidden bit

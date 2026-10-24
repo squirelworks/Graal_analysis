@@ -1,0 +1,30 @@
+gani_name	step_rule	note
+idle	frame	
+def	frame	the default gani; only this one is mapped to a wire sprite
+walk	frame+1	
+walkslow	frame+1	
+kick	9	
+sword	9+(frame mod 5)	
+ridesword	9+(frame mod 5)	
+spin	9+(frame mod 5)	
+push	14+frame	
+grab	19	
+pull	20+frame	
+lift	23	
+carrystill	24	
+hiddenstill	24	
+carry	25+frame	
+hidden	25+frame	
+shoot	33	
+ridestill	34	
+ridefire	35	
+rideeat	36	
+ride	35+(frame and 1)	
+sit	37	
+sleep	38	
+hurt	39	wire sprite is special-cased, see 02 note
+ridehurt	39	
+dead	40	not sent; dead is signalled by the status bit
+swim	none	local-only gani; no wire sprite
+lava	none	local-only gani; no wire sprite
+other	0	

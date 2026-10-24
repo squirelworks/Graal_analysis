@@ -1,0 +1,18 @@
+name	value	unit	meaning
+tick	50	ms	one game tick (20 Hz)
+death_timer_cap	30	ticks	timer stops counting here
+death_input_lock_until	27	ticks	controls ignored until timer passes this
+death_status_bit_from	28	ticks	dead status bit sent from here
+hurt_duration	40	ticks	hurt mode length
+emote_duration	50	ticks	emote image on screen (2.5 s)
+emote_offset	+2,-5	tiles	emote image offset from player x,y
+respawn_default_pos	30.5,30.0	tiles	used when no level entry point was saved (online)
+respawn_default_level_offline	tutorial_b-4.graal	-	offline default start level
+respawn_hearts_ap_lt_20	3	hearts	
+respawn_hearts_ap_lt_40	min(5,max)	hearts	
+respawn_hearts_ap_ge_40	max	hearts	
+sword_reach	0..4	tiles	forward reach tested on victim client
+sword_lateral	<2	tiles	sideways tolerance
+explosion_hit_radius	1	tile	both axes
+pm_max_recipients	50	players	
+send_buffer_flush	4096	bytes	both 1.39 and 2.05
