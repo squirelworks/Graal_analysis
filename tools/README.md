@@ -5,6 +5,7 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | Tool | Role | Notes |
 |------|------|-------|
 | GraalEditor | Level editor (2.3.1.1) | Separate exe from 2.3 onward. Writes decimal BOARD 0 grids plus LINK/SIGN/CHEST/NPC/BADDY. |
+| Built-in level editor | Editor inside each client (2.22 is the reference) | `level-editor/`: 2.22 reference, per-version deltas, format cross-reference, Seihai tracking checklist. |
 | GraalShop | GANI editor | Sprite mode (GANI0001) and movie mode (GANI0002). |
 | TerrainGenerator | Height-field world | Plasma midpoint displacement → GRMAP001 + GLEVNW01 with HEIGHTS. |
 | DungeonGenerator | Stamp dungeon | 8×11 layout → GLEVNW01 boards and GRMAP001. |
