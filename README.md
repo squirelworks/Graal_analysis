@@ -77,6 +77,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `client-internals/decomp-findings-2026-10-24-d/`: sword damage (attacker's sword power in half hearts, heal rule, hurt mode, the sword-power byte), the extra gates on a hit, and the respawn entry-save rule (gmap-list test, the 2.05-only name group) from the 2.05 rev 2, 2.17.1, 2.22 and 2.31 clients. Tables are in the same folder. Static read only, nothing was seen on a wire.
 
+## Decompile findings, batch f (2026-10-25)
+
+- `client-internals/decomp-findings-2026-10-25-f/`: what real `GR-V1.03` levels show (two supplied files and an archive of 3113 binary levels): section shapes and the no-sign file ending, link arrivals written as `playerx`/`playery` plus an offset, the baddy section ending only at a first byte of 0x80 or more (x = 0 is a valid baddy), sign `#K(n)` escapes, chest sign index -1, and aggregate counts. Counts and structure only; no level content or file names. The table `corpus-stats.tsv` is in the same folder. Small corrections to the `grv1.py` decoder and `level-binary.md` are in a separate commit.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

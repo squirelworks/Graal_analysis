@@ -1,0 +1,72 @@
+section	metric	value
+player-world	files named .graal	3141
+player-world	empty (0 bytes)	27
+player-world	text level (GLEVNW01) under .graal name	1
+player-world	GR-V1.03	3113
+player-world	GR-V1.00/01/02/04, Z3-V1.*	0
+player-world	parsed clean (board 4096, all link lines read, sections end at EOF, no tail)	3113
+player-world	parse errors	0
+player-world	files with HEIGHTS bytes	0
+player-world	distinct files by CRC-32	2812
+player-world	code width 13 bits	3113
+player-world	files with max tile id >= 2048	1998
+player-world	files with a double run	2091
+player-world	files with a 64-long run	1809
+player-world	files with longest run > 64	0
+player-world	files with links	2942
+player-world	total links	9355
+player-world	files with baddies	99
+player-world	total baddies (reader)	902
+player-world	files with NPCs	1661
+player-world	total NPCs	14857
+player-world	files with chests	88
+player-world	total chests	375
+player-world	files with signs	808
+player-world	total signs	2381
+player-world	file size min	226
+player-world	file size median	3284
+player-world	file size max	54760
+player-world	board end offset median	1798
+player-world	board end offset max	6664
+player-world-detail	NPC image: (none)	2913
+player-world-detail	NPC image: .gif	10735
+player-world-detail	NPC image: .mid	1
+player-world-detail	NPC image: .mng	46
+player-world-detail	NPC image: .mp3	1
+player-world-detail	NPC image: .png	1164
+player-world-detail	NPCs outside 0..63	165
+player-world-detail	baddies at x=0 (2 files; a reference decoder that stops at x=0 loses 3 baddies in them)	2
+player-world-detail	baddy y>=64	3
+player-world-detail	chest item index > 24	1
+player-world-detail	chests sign index -1	343
+player-world-detail	file ends with "#\n" (chest terminator, no sign section or empty)	2308
+player-world-detail	link arrival number	12035
+player-world-detail	link arrival other word	2
+player-world-detail	link arrival playerX/Y +- N	21
+player-world-detail	link arrival playerx/playery	6652
+player-world-detail	link dest ext (none)	2
+player-world-detail	link dest ext .enigma	10
+player-world-detail	link dest ext .graal	9203
+player-world-detail	link dest ext .nw	140
+player-world-detail	no signs	2305
+player-world-detail	sign #K(n) escapes (n!=13)	498
+supplied-1	magic	GR-V1.03
+supplied-1	file bytes	8289
+supplied-1	board	4096 tiles from 333 codes (71 single runs, 17 double runs, longest 64), ends at byte 550
+supplied-1	distinct tile ids / highest	80 / 1899
+supplied-1	links (bytes 550..583)	1 (arrival 24.5, 35)
+supplied-1	baddies (583..587)	0 (terminator only)
+supplied-1	NPCs (587..8287)	8 (all with .gif image, 280 script line breaks)
+supplied-1	chests (8287..8289)	0 (bare terminator)
+supplied-1	signs	no section (file ends after the chest terminator)
+supplied-1	HEIGHTS / unread tail	none / 0 bytes
+supplied-2	magic	GR-V1.03
+supplied-2	file bytes	8611
+supplied-2	board	4096 tiles from 990 codes (144 single runs, 38 double runs, longest 64), ends at byte 1617
+supplied-2	distinct tile ids / highest	49 / 2135 (needs 13 bits)
+supplied-2	links (1617..1650)	1 (arrival 21.5, 28)
+supplied-2	baddies (1650..1654)	0 (terminator only)
+supplied-2	NPCs (1654..8604)	3 (no image, script-only, 372 script line breaks)
+supplied-2	chests (8604..8611)	1 (item index 2, sign index -1)
+supplied-2	signs	no section
+supplied-2	HEIGHTS / unread tail	none / 0 bytes
