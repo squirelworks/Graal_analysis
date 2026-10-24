@@ -17,7 +17,7 @@ Position: second message of the first client frame, right after PLI 37 (language
 Re-send:
 - 2.17: once, at login.
 - 2.22: at login, and again once for every gmap-edge crossing. No periodic send.
-- 2.31: at login, then about every 3.2 s. 2.31 also sends PLI 24 (1 byte, value 9) about every 5.1 s, and PLI 46 (1 byte, value 1) once at login. These are 2.31-only.
+- 2.31: at login, then about every 3.2 s. 2.31 also sends PLI 24 (1 byte, value 9) about every 5.1 s, and PLI 46 (1 byte, value 1), which a later lab run showed is sent on every level entry, not only at login (`client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md`). These are 2.31-only.
 
 GServer-v2 accepted all three and did not log an invalid packet.
 

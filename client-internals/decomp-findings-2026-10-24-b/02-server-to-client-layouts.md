@@ -34,7 +34,7 @@ Source: the receive dispatchers of the 2.17.1, 2.22 and 2.31 clients, read from 
 - 182 LISTPROCESSES: no payload; client replies PLI 44 with its process list. 183 HASPROCESSRUNNING: names; client replies PLI 45 = GCHAR 0/1 (whether the server's string occurs in its own process list). (These are PLI ids sent BY the client; the server-side PLO 44 is something else.)
 - 184 TAKESCREENSHOT: file name, only ".png" accepted, saved under a screenshots folder.
 - 185 BOARDHEIGHTS: GCHAR mapX, mapY, blockX, blockY, w-1, h-1 then w*h cells of two raw bytes, value = (b0-0x20-50) + (b1-0x20)/128.0.
-- 186 BOARDMODIFY2 (2.22+): GCHAR mapX, mapY, x, y, w, h then w*h GSHORT tiles row-major (plus a trailer not decoded).
+- 186 BOARDMODIFY2 (2.22+): GCHAR mapX, mapY, x, y, w, h then w*h GSHORT tiles row-major (bytes after the tiles are ignored padding: lab-tested with injected frames, see `07-lab-findings-46-186-200.md`).
 
 ## Differences 2.17.1 -> 2.22 -> 2.31 that change behaviour or ids
 - 2.17.1 -> 2.22: new id 186; id 7 refactored into a helper; every other handler's wire format identical after diffing 37, 42, 49, 75, 150, 151 (only local-variable/offset noise). Tamper check re-sent on level change (new). Login token changes GNW22122 -> GNW03014.

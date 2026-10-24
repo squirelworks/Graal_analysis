@@ -1,0 +1,8 @@
+step	direction	content (derived)	provenance	notes
+1	client -> list host (port 14921)	one plain zlib frame (zlib body 17 bytes) holding GCHAR 0 + "newmain" + LF	observed from a real 2.00 client	no account, no password, no version token, no key; the client half-closes (FIN) right after the frame
+2	list host -> client	frame 1 (plain zlib): id 0 server list; frame 2 (plain zlib): id 2 status text, id 3 site URL, id 5 donation URL	SYNTHETIC: a lab-only forwarder injected a 2.17-style "GCHAR 1 account password" request upstream, because the lab listserver only answers that request; the reply is the lab listserver's 2.17-style reply	proves the format 2.00 accepts; NOT what a real 2.00-era listserver sent for the bare request (still unobserved)
+3	client UI	list parsed and drawn; account and password fields become usable	observed	the "Getting server list" box stays on screen
+4	Connect click	no further listserver connection; client goes straight to the gserver	observed	no account verification through the listserver in 2.00
+5	client -> gserver (port 14802)	first frame plain zlib: GCHAR 0, key byte, "GNW24011", GCHAR len + account, GCHAR len + password, LF; then gen-3 framing (junk-byte rule, 0 mismatches)	observed	matches the decompile finding; the lab server's existing allowed-versions entry for GNW24011 was enough
+6	client -> gserver, first seconds after login	ids 34 (x6), 23 (x3), 18 (x2: gr.x, gr.y), 2 (props incl. nickname)	observed	no 37, 39, 46, 24 or 44 (none exist in 2.00)
+7	gserver -> client	first frame ids: 25,168,9,194,34,34,43,43,33,190,14,100,101,6,39,7,10,42,41,82; then 47,182; then 30 x8, 9	observed (stock GServer-v2 as the sender)	2.00 does not handle 168, 190, 194, 47 or 182; it ignores them and stays connected

@@ -10,6 +10,7 @@ Derived facts only. No code, addresses or decompiler names. Lab-only runs (loopb
 | 04-v2.00-client.md | 2.00 login, id tables, token allow-list, lab setup |
 | 05-open-items.md | what is settled and what is still open |
 | 06-crosscheck.md | new facts, confirmations and corrections against the repo |
+| 07-lab-findings-46-186-200.md | lab: PLI 46 on every level entry, 186 trailer behaviour, 2.00 listserver handshake (observed vs synthetic) |
 | ../drive-clients-inventory.md | what the Drive clients set contains; Wine status |
 
 Tables (all under `version-profiles/`):
@@ -21,4 +22,7 @@ Tables (all under `version-profiles/`):
 | pli-sent-ids-by-build-20x.tsv | client-to-server ids per 2.0x build |
 | tampercheck-words.tsv | CRC words and lab bytes per build (companion to `version-profiles/tampercheck-values.tsv`) |
 | version-tokens-by-build.tsv | login tokens per build |
+| lab-enterlevel-231.tsv | PLI 46 sends of one 2.31 gmap run |
+| lab-boardmodify2-186-trailer.tsv | `PLO_BOARDMODIFY2` trailer and length test cases (synthetic frames) |
+| lab-200-listserver-handshake.tsv | 2.00 listserver and gserver handshake with provenance |
 | drive-clients-exes.tsv | every exe in the Drive clients set (folder, size, PE file version) |

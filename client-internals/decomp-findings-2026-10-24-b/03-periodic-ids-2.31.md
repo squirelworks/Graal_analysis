@@ -17,9 +17,10 @@ Mapping of the lab observations to the client's behaviour (all values are durati
 - 2.31 only. The 5.1 s cadence fits the 5000 ms timer armed in phase 1 (5.0 s plus timer granularity). That link is an inference, not traced to the end.
 - The payload byte (value 9) is a constant in the sender; I could not tie it to anything else. Meaning NOT resolved (heartbeat-like by behaviour only). Treat as: send GCHAR 9 as PLI 24 every ~5 s on a 2.31 emulation; unknown whether servers care.
 
-## PLI 46 once at login (GCHAR 1)
-- Constant 1 byte (GCHAR 1), sent once per level entry (the lab saw it once at login). Purpose not resolved (looks like a client-side per-level 'entered' signal). No dependency on any server data. Not sent by 2.17/2.22.
+## PLI 46 on every level entry (GCHAR 1)
+- Constant 1 byte (`GCHAR 1`). **Updated by the lab run of batch b2:** it is sent on every level entry, not only at login (7 sends in one gmap run: login plus six edge crossings), always just before the props message that carries the cell prop (43 or 44) and the wrapped coordinate. Details: `07-lab-findings-46-186-200.md`.
+- 2.31 does not re-send PLI 39 at a crossing. Not sent by 2.17/2.22.
 
 ## What to implement
-- 2.31: after login send PLI 46 = GCHAR 1; then PLI 39 (constant) every 3.2 s; PLI 24 = GCHAR 9 every ~5.1 s.
+- 2.31: send PLI 46 = GCHAR 1 at login and on each level change; PLI 39 (constant) every 3.2 s; PLI 24 = GCHAR 9 every ~5.1 s.
 - 2.22: PLI 39 at login and on each level change. 2.17: login only.

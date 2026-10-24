@@ -57,7 +57,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 43 | 0x4b | `PLI_MUTEPLAYER` |  | C→S | `s player id`, `c 1/0` **[cap]** | — |
 | 44 | 0x4c | `PLI_PROCESSLIST` |  | C→S | the client's reply to `PLO_LISTPROCESSES` (182) **[bin][cap]** | — |
 | 45 | 0x4d | `PLI_PROCESSRUNNING` |  | C→S | `c flag`: 1 if the server's string occurs in the client's own process list **[bin]** | — |
-| 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S | `c 1`; seen once at login from a 2.31 client **[cap]** | — |
+| 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S | `c 1`; sent by 2.31 on every level entry (login and each gmap edge crossing), just before the props message with cell prop 43/44 and the wrapped coordinate; not sent by 2.17/2.22 **[cap]** | — |
 | 47 | 0x4f | `PLI_VERIFYWANTSEND` |  | C→S | `i5 crc32` + rest = filename | — |
 | 48 | 0x50 | `PLI_SHOOT2` |  | C→S |  | — |
 | 50 | 0x52 | `PLI_RAWDATA` |  | C→S |  | — |
@@ -283,7 +283,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 183 | 0xd7 | `PLO_HASPROCESSRUNNING` |  | S→C | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** | — |
 | 184 | 0xd8 | `PLO_TAKESCREENSHOT` |  | S→C | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** | — |
 | 185 | 0xd9 | `PLO_BOARDHEIGHTS` |  | S→C | `c mapX, c mapY, c blockX, c blockY, c w-1, c h-1`, then w×h cells of 2 raw bytes; height = (b0−0x20−50) + (b1−0x20)/128 **[bin]** | — |
-| 186 | 0xda | `PLO_BOARDMODIFY2` |  | S→C | `c mapX, c mapY, c x, c y, c w, c h`, then w×h `s tile` row-major, then an undecoded trailer (2.22+) **[bin]** | — |
+| 186 | 0xda | `PLO_BOARDMODIFY2` |  | S→C | `c mapX, c mapY, c x, c y, c w, c h`, then w×h `s tile` row-major, then ignored padding: bytes after the tiles are not read, a payload one byte short of 6+2*w*h is dropped silently, a block past column 63 is clipped (2.22+; client reaction lab-tested with injected frames) **[bin][cap]** | — |
 | 187 | 0xdb | `PLO_UPDATEPACKAGEISUPDATED` |  | S→C |  | — |
 | 188 | 0xdc | `PLO_NC_CLASSDELETE` |  | S→C |  | — |
 | 189 | 0xdd | `PLO_MOVE2` |  | S→C | as 165 with an extra flag (2.31 only) **[bin]** | — |
