@@ -22,3 +22,8 @@
 - `PLO_HIDENPCS` (151): was "probably removes NPCs with id < 1000"; decoded as ids 1 to 999 of the active level.
 - `version-profiles/version-coverage-2026-10-24.md` and `client-internals/version-profiles/141-217.toml` say a lab needs an allow-list "patch" for 2.00. A plain allow-list config entry is enough (`04-v2.00-client.md`). The report now carries a status update; the TOML note is unchanged (it only says stock GServer-v2 treats the token as unknown, which is still true).
 - `version-profiles/2.22-2.31.md` lists client to server ids 36, 42 and 45 as unmatched; that is still true (this pass did not scan 2.17/2.22/2.31 send sites). Listed in `05-open-items.md`.
+
+## Corrected by batch c
+- Id 6 (`PLI_TOALL`) is a real sender in every 2.0x build, not a possible scan artefact (`04-v2.00-client.md` corrected).
+- 2.04 only drops id 26; id 25 is handled in every build. Nothing is swapped.
+- The 2.00 builds (r0 to r3) share handler shapes and one token. Batch c supersedes the 2.00 and 2.05 statements here where they differ: `../decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md`.

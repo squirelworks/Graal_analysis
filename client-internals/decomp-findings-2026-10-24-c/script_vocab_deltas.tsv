@@ -1,0 +1,12 @@
+from	to	added_lowercase_identifiers	removed_lowercase_identifiers
+2.00	2.01	bomy_idle bomy_walk hitobjects maps1 maps2 maps3 playerdies playerhurt playerhurtpower playerreading selectedweapon	openurl
+2.01	2.02	arrowon.wav bodies bomys chest.wav compudead.wav deflate emoticons frog.wav ganis hats heads indexof issparringzone jump.wav local. messages_ nextpage.wav nopkzone profile_ profiles recordpos.txt shields sounds startswith stonemove.wav strlen swordon.wav swords tokenize2 tokenscount uncompress webgifs weblevels zlib.dll	error z_stream8
+2.02	2.02 rev2		
+2.02 rev2	2.03	actionplayer error lighteffectsenabled movementfinished onmapx onmapy paramscount pulled pushed triggeraction vecx vecy z_stream8	deflate uncompress zlib.dll
+2.03	2.04	addtiledef2 attachplayertoobj bomy_kick detachplayer disableselectweapons enableselectweapons levelorgx levelorgy objects playerattached playerattachid playerattachtype removetiledefs replaceani setshape2 shapetiletypes tiledefs tileobjects weapons weaponscount	objects.dat setshape
+2.04	2.05	getz graal loadmap playerz setbacktile2 updateterrain	setbacktile
+2.05	2.05 rev2		
+2.05 rev2	2.1 test2	account ascii defnpc playeronline startinfullscreen tiles	
+2.1 test2	2.1 test3	groundheights playerhp playermaxhp smiliesdef.txt waterheight	
+2.1 test3	NewWorld beta1	arraysnw.dat bodycolors.txt bodynw.png controlnpc.txt layer nwday nwhour nwmin nwmonth nwtime nwweek nwweekday nwyear selectedsword spritesnw.png	account arrays.dat ascii blackstone bluesoldier body.png bush canspin carries carriesnpc carrying chest.wav compsdead compudead.wav compusdied defnpc dragon firedonhorse followsplayer frog frog.wav goldenwarrior gotheart_ graysoldier groundheights hearts horse horse2 hotbomb hotjoltbomb jump.wav lizardon none octopus playerfullhearts playerhearts playeronhorse playeronline playerswimming pulled pushed redsoldier shield1 shield2 shield3 shootingsoldier sign smiliesdef.txt sprites.png startinfullscreen steps steps2 stone stonemove.wav swampsoldier sword1 sword2 sword3 sword4 swordhidden swordon.wav testcompu testhorse tiles timevar tutorial tutorialmap.png tutorialmap.txt vase washit waspelt waspulled waspushed wasthrown water waterheight weaponfired
+NewWorld beta1	NewWorld beta2	account addstring ascii defnpc deletestring groundheights hearts insertstring lindexof playerfullhearts playerhearts playeronline removestring sarraylen smiliesdef.txt startinfullscreen tiles timevar tutorial waterheight	

@@ -1,0 +1,21 @@
+build	exe_bytes	ghidra_status	functions_in_export	idr_names_applied	dispatcher_rebuilt	plo_ids_handled	pli_ids_with_send
+2.00	1812480	exported ok (no timeout)	5527	yes	yes	53	35
+2.00 rev1	1812992	exported ok (no timeout)	5527	yes	yes	53	35
+2.00 rev2	1815040	exported ok (no timeout)	5535	yes	yes	53	35
+2.00 rev3	1815040	exported ok (no timeout)	5534	yes	yes	53	35
+2.01	1815552	exported ok (no timeout)	5552	yes	yes	55	37
+2.01 rev1	1815552	exported ok (no timeout)	5560	yes	yes	55	37
+2.02	1808384	exported ok (no timeout)	5484	yes	yes	56	37
+2.02 rev1	1808896	exported ok (no timeout)	5484	yes	yes	56	37
+2.02 rev2	1807872	exported ok (no timeout)	5476	yes	yes	56	38
+2.03	1836032	exported ok (no timeout)	5557	yes	yes	58	39
+2.04	1872384	exported ok (no timeout)	5624	yes	yes	58	39
+2.05	1891328	exported ok (no timeout)	5683	yes	yes	59	39
+2.05 rev1	1895936	exported ok (no timeout)	5677	yes	yes	59	39
+2.05 rev2	1891840	exported ok (no timeout)	5684	yes	yes	59	39
+2.1 test2	1748480	exported ok (no timeout)	5722	yes	yes	61	39
+2.1 test3	1753600	exported ok (no timeout)	5714	yes	yes	61	39
+NewWorld beta1	1820672	exported ok (no timeout)	5560	yes	yes	53	34
+NewWorld beta2	1613824	exported ok (no timeout)	5647	yes	yes	55	34
+NewMain 24	1783296	exported ok (no timeout)	5595	yes	yes	51	35
+NewMain 26	1784320	exported ok (no timeout)	5596	yes	yes	51	35
