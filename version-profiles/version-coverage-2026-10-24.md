@@ -87,7 +87,7 @@ Note: the `.idc` files are name tables. Reading the handler bodies still needs a
 
 ## Status update, 2026-10-24 (decompile pass of 2.00, 2.17.1, 2.22, 2.31 and the Drive clients set)
 
-- **Gap 1 (payload layouts of ids above 48 and 25, 39, 41, 44, 47, 156):** closed for 2.17.1, 2.22 and 2.31, except three small items (`PLO_SERVERWARP` field meanings, the `PLO_BOARDMODIFY2` trailer, the extra step 2.31 adds in 156). See `protocol/packet-layouts.md` and `plo-layouts-217-231.tsv`.
+- **Gap 1 (payload layouts of ids above 48 and 25, 39, 41, 44, 47, 156):** closed for 2.17.1, 2.22 and 2.31, except one small item (the extra step 2.31 adds in 156; the `PLO_SERVERWARP` field meanings and the `PLO_BOARDMODIFY2` trailer were settled by lab runs). See `protocol/packet-layouts.md` and `plo-layouts-217-231.tsv`.
 - **Gap 2 (tamper-check content):** the lab values for 2.17, 2.22 and 2.31 are in `tampercheck-values.tsv`, and the builder is now understood: two chained CRC-32 words over the client's own memory image (`tampercheck-words.tsv`; `client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md`). Whether any server enforces it is still unknown.
 - **Gap 6 (2.00):** a real 2.00 exe and three revisions are in the Drive clients set. The "allow-list patch" wording above means a config entry only: the lab server needs `GNW24011` in its allowed-versions list, no code patch (`client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md`). The 2.00 client still needs its list host redirected to the lab listserver, and its listserver frames have not been exercised.
 - **Gap 5 (2.1 to 2.16 and 2.3):** unchanged. The Drive clients set has no 2.1.x to 2.3 builds, only the two 2.1 test builds (`client-internals/drive-clients-inventory.md`).
@@ -95,3 +95,4 @@ Note: the `.idc` files are name tables. Reading the handler bodies still needs a
 - Per-build handled server-to-client ids for 2.00 to 2.31 are now tabulated in `plo-handled-ids-by-build.tsv`, and the client-to-server ids per 2.0x build in `pli-sent-ids-by-build-20x.tsv` (2.00 lacks 35 to 38).
 
 - **Update (lab batch b2):** the 2.00 listserver step is partly observed (client request seen; the list reply it accepted was synthetic) and the id 46 and id 186 trailer questions are settled. See `client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md`.
+- **Update (lab batch c):** `PLI_ENTERLEVEL` (46) is confirmed on doors, links and server warps in 2.31 and absent in 2.22; `PLI_SHOWIMGPLAYER` (24) is relayed unchanged and 2.22 sends it too with two players; `PLO_SERVERWARP` (178) field order is settled for 2.31. See `client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md`.

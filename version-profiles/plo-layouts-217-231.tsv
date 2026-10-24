@@ -29,7 +29,7 @@ id	name	present_in	payload_fields	behaviour_and_version_notes	confidence
 175	SHOOT	all three	GSHORT player id, rest = shot data	Only when the current level equals the active level; rest passed to the shoot handler of that player.	[dec]
 176	KINGDOMSMODE	all three	none	Switches the main form to Kingdoms mode.	[dec]
 177	NEWWORLDMODE	all three	none	Switches the main form to New World mode.	[dec]
-178	SERVERWARP	all three	comma text, at least 4 fields; fields 1,2,3 used (field 0 ignored)	The three fields go to a connect-to-other-server routine (first looks like a server name, the other two are stored as two further strings). Exact meaning of each not resolved.	[dec, partial]
+178	SERVERWARP	all three	comma text, at least 4 fields: field 0 unused, 1 = server name, 2 = host, 3 = port	Fields 1 to 3 go to a connect-to-other-server routine. Lab (2.31, batch c): the client closes the old connection and reconnects to field 2 and 3 with a fresh login (new key, same stored credentials), no listserver step; field 1 is not needed to connect; host and port swapped fails; three fields are ignored. The real chain's text came from the open-source listserver reimplementation. Table: lab-serverwarp178.tsv.	[dec, cap]
 179	RPGWINDOW	all three	raw text	Creates the RPG window form on first use, then gives it the text.	[dec]
 180	STATUSLIST	all three	raw text	Passed to the status-list form if it exists.	[dec]
 181	UNKNOWN181	all three	GSHORT player id, GCHAR toggle	Sets a boolean on that player (toggle>0). Payload length >=3 required.	[dec]

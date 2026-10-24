@@ -1,0 +1,7 @@
+test	fields_sent_in_order	client	client_reaction	observed_or_synthetic
+V0 real chain	client PLI 41 with the server name injected by a lab-only proxy; real gserver + real lab listserver answered (wire: <name>,<name>,<lab host>,<port>)	2.31	connected to the host in field 2 and the port in field 3; old connection closed 3 ms before the SYN	synthetic request (proxy-injected PLI 41), real server answer
+V1 f0 decoy host	[<decoy loopback host>,<name>,<lab host>,<port>]	2.31	connected to <lab host>:<port>; no attempt to <decoy loopback host>; old connection closed 2 ms before the SYN	synthetic 178 (proxy-injected server frame)
+V2 host,port,name	[x,<lab host>,<port>,<name>]	2.31	no TCP connection; old connection closed; client showed "The connection couldn't be established!" (Reconnect / Open serverlist)	synthetic
+V3 name,port,host	[x,<name>,<port>,<lab host>]	2.31	no TCP connection; old connection closed; same error dialog	synthetic
+V4 bogus name	[x,<bogus name>,<lab host>,<port>]	2.31	connected to <lab host>:<port> normally, old connection closed 2 ms before the SYN (name not needed)	synthetic
+V5 three fields	[x,<name>,<lab host>]	2.31	no reaction: connection stayed open, no new connection, screen unchanged	synthetic
