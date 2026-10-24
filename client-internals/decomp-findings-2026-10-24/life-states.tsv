@@ -1,0 +1,4 @@
+life_state	meaning
+0	playing
+1	editor or pause
+2	dead

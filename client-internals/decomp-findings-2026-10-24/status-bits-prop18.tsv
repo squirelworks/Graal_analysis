@@ -1,0 +1,8 @@
+bit	meaning	condition
+0x01	editor or paused	life-state is editor/pause
+0x02	hidden	mode 14 or hidden timer running
+0x04	male	player gender flag
+0x08	dead	life-state dead AND death timer >= 28 ticks (1.4 s)
+0x10	weapons allowed	level/server allows weapons
+0x20	a numeric field is >= 0	not traced further
+0x40	has charged spin	spin attack owned

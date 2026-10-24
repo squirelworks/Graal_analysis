@@ -21,11 +21,13 @@ Derived from the decompile corpus. Raw exports stay in `/shdecompiling/`. This n
 - Level names hard-coded: `level1.zelda`, `cave2.zelda`, `house1.graal`, `village1.zelda`, and others. Both extensions coexist.
 - Sign text present: `"Sign at ("`.
 - String table includes `NZelda2#def`.
+- **Room name is not always the constant `Zelda2`** (2026-10-24 decompile). One branch of the join routine uses `Zelda2`; the other, chosen by an argument given when the network client object is created, builds the room from the current level file's base name as `Z` + base + `2` (a level `level1.zelda` would give `Zlevel12`) and then runs a follow-up routine (not traced). Which branch normal play uses was not traced; the two-client local mode is a likely user of the per-level form. The statement in `protocol/relay-1998.md` that 1st and 2nd Graal always join `Zelda2` holds for one branch only. The client always sends the name `def` in the join line and the real nickname later in a `D` payload.
 
 ## 1.39
 
 - Token built as eight char immediates in `FUN_004c7208`: `G N W 0 7 0 8 0`.
 - Connects to port `14900`.
+- **Send helper drops payloads that contain a newline** (2026-10-24 decompile; the same helper exists in 2.05 rev2). A message is `id+32`, payload, newline, so a newline inside the payload would break the framing and the helper silently discards the whole message instead of sending it. The queue is flushed when it would pass 4095 bytes. In 1.39 the client closes the connection if more than about 256 KiB of compressed output is pending (the 2.05 figure was not checked). A client built on this framing should reject or escape payloads containing a newline rather than expect an error.
 - Dhrake recovered ~390 names. Preferred corpus is `graal-139-dhrake/`.
 
 ### Recovered classes
