@@ -1,0 +1,9 @@
+id	question	what would settle it
+1	persistent level cache and level modtime exchange	read of the level path with the cache on
+2	full login set of default checks and framing	capture with full and empty data folders (item 15)
+3	scan order of the file-name index for duplicate names	read of the index code or a two-copy lab run
+4	save folders for 1.39 and 2.00	read of those save routines
+5	save folders for 2.1 to 2.16	read of one build in that range
+6	pre-2.1 re-check of settled names	read of a 2.05-era request path or capture
+7	cached empty stream after send failed	capture
+8	case folding of names	read of the name compare
