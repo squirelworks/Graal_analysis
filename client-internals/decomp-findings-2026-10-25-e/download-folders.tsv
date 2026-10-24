@@ -1,0 +1,15 @@
+condition	folder	builds	evidence
+name exists already (root-relative, then file index)	where it is	2.05r2 2.17.1 2.22 2.31	code
+.wav	sounds	2.05r2 2.17.1 2.22 2.31	code
+.gmap	maps	2.17.1 2.22 2.31 (2.1-2.16 inferred)	code; lab 2.22
+.txt .gif .png .mng with map in name	maps	2.17.1 2.22 2.31 (2.1-2.16 inferred)	code
+name starts bomy or b_	levels/bomys	2.05r2 2.17.1 2.22 2.31	code
+.gani	levels/ganis	same	code
+name starts emoticon	levels/emoticons	same	code
+name is hat + digit	levels/hats	same	code
+contains head	levels/heads	same	code
+contains body	levels/bodies	same	code
+contains sword	levels/swords	same	code
+contains shield	levels/shields	same	code
+anything else	levels/webgifs	same	code
+saveimages off	memory only	2.05r2 2.17.1 2.22 2.31	code

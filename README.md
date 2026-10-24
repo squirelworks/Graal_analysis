@@ -77,6 +77,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `client-internals/decomp-findings-2026-10-24-d/`: sword damage (attacker's sword power in half hearts, heal rule, hurt mode, the sword-power byte), the extra gates on a hit, and the respawn entry-save rule (gmap-list test, the 2.05-only name group) from the 2.05 rev 2, 2.17.1, 2.22 and 2.31 clients. Tables are in the same folder. Static read only, nothing was seen on a wire.
 
+## Decompile findings, batch e (2026-10-25)
+
+- `client-internals/decomp-findings-2026-10-25-e/`: file-transfer caching rules (the three name lists, the window of four requests per kind, how replies settle names, when a local file counts as checked, where downloads are saved and with which time) from the 2.00, 2.05 rev 2, 2.17.1, 2.22 and 2.31 clients, checked against the 2.17, 2.22 and 2.31 captures already summarised in earlier notes. Tables are in the same folder.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.
