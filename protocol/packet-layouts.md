@@ -127,7 +127,7 @@ In most states, a warp to the level the player is already in just moves the play
 | 21 | PUTNPC | `str image`, `str script file`, `c x×2, c y×2` |
 | 22 | NPCDEL | `i3 npc id` (only for NPCs with id > 0). If the NPC is one of the player's weapons, 2.05 sends NPCWEAPONDEL (29) with the weapon name instead |
 | 23 | WANTFILE | rest = filename |
-| 24 | SHOWIMG | rest (passed through; also UDP 15) |
+| 24 | SHOWIMG | rest (passed through unchanged as PLO 32 `GSHORT sender id` + rest; also UDP 15). 2.31 sends a 1-byte value 9 about every 5.1 s; 2.22 only with another player in the level |
 | 34 | UPDATEFILE | `i5 modtime` + filename |
 | 80 / 81 | PROFILEGET / PROFILESET | see `chat-pm-rc.md` |
 
@@ -189,7 +189,7 @@ Read from the receive handlers of the three clients (decompile pass of 2026-10-2
 | 175 | SHOOT | all three | GSHORT player id, rest = shot data |
 | 176 | KINGDOMSMODE | all three | none |
 | 177 | NEWWORLDMODE | all three | none |
-| 178 | SERVERWARP | all three | comma text, at least 4 fields; fields 1,2,3 used (field 0 ignored) |
+| 178 | SERVERWARP | all three | comma text, at least 4 fields: field 0 unused, 1 = name (not needed to connect), 2 = host, 3 = port; fewer than 4 fields is ignored (2.31 lab) |
 | 179 | RPGWINDOW | all three | raw text |
 | 180 | STATUSLIST | all three | raw text |
 | 181 | UNKNOWN181 | all three | GSHORT player id, GCHAR toggle |

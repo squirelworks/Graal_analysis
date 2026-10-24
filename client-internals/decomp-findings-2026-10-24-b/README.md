@@ -11,6 +11,7 @@ Derived facts only. **See also batch c (`../decomp-findings-2026-10-24-c/`): 20 
 | 05-open-items.md | what is settled and what is still open |
 | 06-crosscheck.md | new facts, confirmations and corrections against the repo |
 | 07-lab-findings-46-186-200.md | lab: PLI 46 on every level entry, 186 trailer behaviour, 2.00 listserver handshake (observed vs synthetic) |
+| 08-lab-findings-levelchange-24-178.md | lab batch c: PLI 46 on doors, links and server warps (2.31 yes, 2.22 never), PLI 24 relay, PLO 178 field order and reconnect (observed vs synthetic) |
 | ../drive-clients-inventory.md | what the Drive clients set contains; Wine status |
 
 Tables (all under `version-profiles/`):
@@ -25,4 +26,7 @@ Tables (all under `version-profiles/`):
 | lab-enterlevel-231.tsv | PLI 46 sends of one 2.31 gmap run |
 | lab-boardmodify2-186-trailer.tsv | `PLO_BOARDMODIFY2` trailer and length test cases (synthetic frames) |
 | lab-200-listserver-handshake.tsv | 2.00 listserver and gserver handshake with provenance |
+| lab-levelchange-46-222-231.tsv | PLI 46 and PLI 39 on 18 level changes, 2.31 and 2.22 |
+| lab-showimg24-relay.tsv | PLI 24 payloads and the server's relay as PLO 32 |
+| lab-serverwarp178.tsv | PLO 178 real chain and field-order tests |
 | drive-clients-exes.tsv | every exe in the Drive clients set (folder, size, PE file version) |

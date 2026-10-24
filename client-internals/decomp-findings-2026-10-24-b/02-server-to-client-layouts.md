@@ -29,7 +29,7 @@ Source: the receive dispatchers of the 2.17.1, 2.22 and 2.31 clients, read from 
 - 165 MOVE: GINT3 id + rest. 166 SHOWIMGNPC: GINT3 id + props. 189 MOVE2 (2.31): same shape as 165, extra flag.
 - 168: payload ignored (local reset). 169: URL text. 170 GCHAR flag. 171/172: comma text txt,png,x,y (needs >=4 fields). 173 text. 174 GCHAR flag.
 - 175 SHOOT: GSHORT player id + rest, only when in the active level.
-- 176/177: mode switches, no payload. 178 SERVERWARP: comma text with >=4 fields, fields 1-3 used, field 0 ignored (meanings partly unresolved).
+- 176/177: mode switches, no payload. 178 SERVERWARP: comma text with >=4 fields, field 0 unused, 1 = name, 2 = host, 3 = port (lab-confirmed on 2.31, `08-lab-findings-levelchange-24-178.md`).
 - 179 RPGWINDOW: text. 180 STATUSLIST: text. 181: GSHORT id + GCHAR toggle.
 - 182 LISTPROCESSES: no payload; client replies PLI 44 with its process list. 183 HASPROCESSRUNNING: names; client replies PLI 45 = GCHAR 0/1 (whether the server's string occurs in its own process list). (These are PLI ids sent BY the client; the server-side PLO 44 is something else.)
 - 184 TAKESCREENSHOT: file name, only ".png" accepted, saved under a screenshots folder.

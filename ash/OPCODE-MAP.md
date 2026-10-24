@@ -36,7 +36,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 21 | 0x35 | `PLI_PUTNPC` |  | C→S | `str image`, `str code`, `c x×2, c y×2` | yes |
 | 22 | 0x36 | `PLI_NPCDEL` |  | C→S |  | yes |
 | 23 | 0x37 | `PLI_WANTFILE` | `WANTGIF` | C→S | rest = filename | yes |
-| 24 | 0x38 | `PLI_SHOWIMGPLAYER` |  | C→S | 2.31 also sends it by itself about every 5.1 s, 1 byte (value 9 seen); meaning unknown **[cap]** | yes |
+| 24 | 0x38 | `PLI_SHOWIMGPLAYER` |  | C→S | 2.31 also sends it by itself about every 5.1 s, 1 byte (value 9 seen); 2.22 only with another player in the level; relayed unchanged as 32; meaning unknown **[cap]** | yes |
 | 25 | 0x39 | `PLI_UNKNOWN25` |  | C→S |  | — |
 | 26 | 0x3a | `PLI_HURTPLAYER` |  | C→S | `s victim, c dx, c dy, c power, i3 npc` | yes |
 | 27 | 0x3b | `PLI_EXPLOSION` |  | C→S | `c radius, c x×2, c y×2, c power` | yes |
@@ -53,11 +53,11 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 38 | 0x46 | `PLI_TRIGGERACTION` |  | C→S | `i3 npc, c x×2, c y×2` + rest = `action,params` | yes |
 | 39 | 0x47 | `PLI_TAMPERCHECK` |  | C→S | 10 raw bytes, constant per client build; two chained CRC-32 words over the client's own image (`client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md`) **[cap][bin]** | — |
 | 40 | 0x48 | `PLI_SHOOT` |  | C→S |  | — |
-| 41 | 0x49 | `PLI_SERVERWARP` |  | C→S |  | — |
+| 41 | 0x49 | `PLI_SERVERWARP` |  | C→S | server name; answered with `PLO_SERVERWARP` (178) **[cap]** | — |
 | 43 | 0x4b | `PLI_MUTEPLAYER` |  | C→S | `s player id`, `c 1/0` **[cap]** | — |
 | 44 | 0x4c | `PLI_PROCESSLIST` |  | C→S | the client's reply to `PLO_LISTPROCESSES` (182) **[bin][cap]** | — |
 | 45 | 0x4d | `PLI_PROCESSRUNNING` |  | C→S | `c flag`: 1 if the server's string occurs in the client's own process list **[bin]** | — |
-| 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S | `c 1`; sent by 2.31 on every level entry (login and each gmap edge crossing), just before the props message with cell prop 43/44 and the wrapped coordinate; not sent by 2.17/2.22 **[cap]** | — |
+| 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S | `c 1`; sent by 2.31 on every level entry (login, gmap crossings, doors, links, server warps), just before the first props of the new level; not sent by 2.17/2.22 **[cap]** | — |
 | 47 | 0x4f | `PLI_VERIFYWANTSEND` |  | C→S | `i5 crc32` + rest = filename | — |
 | 48 | 0x50 | `PLI_SHOOT2` |  | C→S |  | — |
 | 50 | 0x52 | `PLI_RAWDATA` |  | C→S |  | — |
@@ -177,7 +177,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 29 | 0x3d | `PLO_NPCDEL` |  | S→C |  | yes |
 | 30 | 0x3e | `PLO_FILESENDFAILED` |  | S→C | rest = filename (pre-2.1: also "up to date") | yes |
 | 31 | 0x3f | `PLO_FLAGDEL` |  | S→C | rest = flag name | yes |
-| 32 | 0x40 | `PLO_SHOWIMGPLAYER` |  | S→C |  | yes |
+| 32 | 0x40 | `PLO_SHOWIMGPLAYER` |  | S→C | `s sender id` + the sender's 24 payload, relayed unchanged **[cap]** | yes |
 | 33 | 0x41 | `PLO_NPCWEAPONADD` |  | S→C | `str name`, NPCPROP image + script | yes |
 | 34 | 0x42 | `PLO_NPCWEAPONDEL` |  | S→C | rest = weapon name | yes |
 | 35 | 0x43 | `PLO_RC_ADMINMESSAGE` |  | S→C | rest = `Admin <account>:\xa7<text>` | yes |
@@ -275,7 +275,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 175 | 0xcf | `PLO_SHOOT` |  | S→C | `s player id` + shot data; only when the player is in the active level **[bin]** | — |
 | 176 | 0xd0 | `PLO_KINGDOMSMODE` |  | S→C | no payload **[bin]** | — |
 | 177 | 0xd1 | `PLO_NEWWORLDMODE` |  | S→C | no payload **[bin]** | — |
-| 178 | 0xd2 | `PLO_SERVERWARP` |  | S→C | comma text, ≥ 4 fields, fields 1–3 used (meaning unresolved) **[bin]** | — |
+| 178 | 0xd2 | `PLO_SERVERWARP` |  | S→C | comma text, ≥ 4 fields: 0 unused, 1 name, 2 host, 3 port; client reconnects with a fresh login (2.31 lab) **[bin][cap]** | — |
 | 179 | 0xd3 | `PLO_RPGWINDOW` |  | S→C | rest = text **[bin]** | — |
 | 180 | 0xd4 | `PLO_STATUSLIST` |  | S→C | rest = text **[bin]** | — |
 | 181 | 0xd5 | `PLO_UNKNOWN181` |  | S→C | `s player id`, `c toggle` (length ≥ 3) **[bin]** | — |

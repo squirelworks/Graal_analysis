@@ -1,0 +1,19 @@
+build	trigger	client_request_id	server_sent_14	server_sent_board_100_101	id46_sent	id46_position	id46_vs_server_reply	id46_vs_props_in_frame	id39_with_this_transition	observed_or_synthetic
+2.31	level link (door or edge strip)	0	yes	yes	1	next client frame	after server reply	46 first, props after	no	observed
+2.31	level link (door or edge strip)	30	no	no	1	same frame as request	before server reply	46 first, props after	no	observed
+2.31	level link (door or edge strip)	30	no	yes	1	same frame as request	before server reply	46 first, props after	no	observed
+2.31	level link (door or edge strip)	30	no	no	1	same frame as request	before server reply	46 first, props after	no	observed
+2.31	level link (door or edge strip)	30	no	no	1	same frame as request	before server reply	46 first, props after	no	observed
+2.31	level link (door or edge strip)	30	no	no	1	same frame as request	before server reply	46 first, props after	no	observed
+2.31	server warp	n/a	yes	yes	1	next client frame	after server reply	46 first, props after	no	observed
+2.31	server warp	n/a	yes	no	1	next client frame	after server reply	no props follows in frame	no	observed
+2.31	server warp	n/a	yes	no	1	next client frame	after server reply	no props follows in frame	no	observed
+2.31	server warp	n/a	yes	no	1	next client frame	after server reply	no props follows in frame	no	observed
+2.22	level link (door or edge strip)	0	yes	yes	absent	n/a	n/a	n/a	yes	observed
+2.22	level link (door or edge strip)	30	no	no	absent	n/a	n/a	n/a	yes	observed
+2.22	level link (door or edge strip)	0	yes	yes	absent	n/a	n/a	n/a	yes	observed
+2.22	level link (door or edge strip)	30	no	no	absent	n/a	n/a	n/a	yes	observed
+2.22	server warp	n/a	yes	yes	absent	n/a	n/a	n/a	no	observed
+2.22	server warp	n/a	yes	no	absent	n/a	n/a	n/a	no	observed
+2.22	server warp	n/a	yes	no	absent	n/a	n/a	n/a	no	observed
+2.22	server warp	n/a	yes	no	absent	n/a	n/a	n/a	no	observed
