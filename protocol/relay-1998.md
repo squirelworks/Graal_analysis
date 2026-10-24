@@ -57,7 +57,7 @@ The game name keeps incompatible betas apart, and from 3rd Graal on it also keep
 
 | Builds | Game name sent with `N` |
 |---|---|
-| 1st, 2nd | `Zelda2` |
+| 1st, 2nd | `Zelda2` (1st Graal also has a branch that builds `Z` + level base + `2`, see `client-internals/early-clients.md`) |
 | 3rd, 4th | `Graal` |
 | 4th alpha | `Graal2` |
 | 5th, 5th alpha | `Graal3` |

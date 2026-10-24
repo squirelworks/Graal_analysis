@@ -40,6 +40,20 @@ Server behaviour (`TPlayer.cpp`):
 - Spin attack (2.1+ only, `PLPROP_GANI` = `spin`, handled in `TPlayerProps.cpp`): the server itself broadcasts four `HITOBJECTS` packets around the player (4 half-tiles above, below, left, right of the centre) so other clients register the spin. 2.05 has its own sender for HITOBJECTS (36); the exact trigger in a normal swing is not traced.
 How 2.05 receives hits is in `protocol/packet-layouts.md` "Hits": HURTPLAYER applies only if the attacker is within 10 tiles and the local player is hurtable; HITOBJECTS only if the player's centre is within 2 tiles of (x, y).
 
+## 2.05 sword swing and hit box **[2.05][dec]**
+From the 2.05 rev2 decompile (2026-10-24); details in `../decomp-findings-2026-10-24/04-sword-hitbox.md`.
+- **Start of a swing.** Needs weapons allowed by the level or server, sword power not 0, not swimming without a horse, and not already in the charged-spin mode. A normal swing is mode 6; a charged spin is mode 13 and needs the has-spin flag (STATUS bit 0x40). The client plays the sword, ridesword or spin gani and a sound, then checks for a cuttable bush at the sword tip. The sprite sent to others follows animation steps 9 to 13 (S 6 to 10, see 11).
+- **The victim's client decides a hit**; the attacker only broadcasts position, direction and sprite. A hit counts when **all** of these hold:
+  - the attacker is on step 9 to 13 (S 6 to 10);
+  - the victim is **0 to 4 tiles ahead** of the attacker in the facing direction;
+  - the sideways offset is **under 2 tiles**;
+  - the victim's **AP is not exactly 100** (such players cannot be hit);
+  - the victim is hurtable (not in mode 3, mode 10, dead or editor/pause).
+- **Damage** is inferred to be sword power divided by 2 hearts. Not confirmed from a capture; treat it as a Seihai default.
+- **Explosions:** a bomb hit needs the victim within 1 tile on both axes of the blast, with knockback of 0.5 or 1.0 tile.
+- **After a hit** the victim goes to hurt mode 3 for 40 ticks (cannot be hurt again), and if hearts reach 0 or below the victim client sends `PLI_CLAIMPKER` (14) naming the attacker (see 04).
+- Open: how this relates to the `HURTPLAYER` (26) packet in 2.05 (the decompile findings do not say whether the attacker also sends it for a sword hit); frame timing in milliseconds (comes from the gani files, not the client); 1.39 sword and hit box (not read).
+
 ## Seihai today
 - `SessionState` keeps `weapons` (names and scripts) and `default_weapons`; it does **not** show or select them, send any combat packet, or decode 11/12/19/20/21/36/40/46/48 (they count as unhandled).
 - Offline mode has a sword model in the web-Seihai design notes (`formats/seihai-systems.md`). Those numbers are Seihai's own, not 2.05 values.
@@ -49,6 +63,7 @@ How 2.05 receives hits is in `protocol/packet-layouts.md` "Hits": HURTPLAYER app
 1. Parse server packets 11, 12, 19, 20, 21, 36, 40, 46, 48 into events on `SessionState` (list of timed objects: bombs, arrows, hits). Decode per the table. Ignore silently if the level is not the named level.
 2. Render bombs and arrows with the existing sprite sheet; remove on BOMBDEL, on explosion or timeout.
 3. HURTPLAYER receive: subtract power from `CURPOWER` locally, apply knockback `(v-0x60)/16`, start an invulnerability window, then send the new `PLPROP_CURPOWER` (the server accepts hearts from the client, and refuses to raise them for AP under 40).
+3a. Seihai as a **victim** should evaluate sword hits itself with the 2.05 rule above (reach 0 to 4 tiles ahead, lateral under 2, attacker on S 6 to 10, own AP not 100, not already hurt or swimming), and send CLAIMPKER when hearts reach zero.
 4. Send side, in this order: BOMBADD (4) with the owner flag, explosion (27) when the fuse ends, BOARDMODIFY (1) for any tile the blast changes, HITOBJECTS (36) when your sword or bomb effect lands (trigger not traced, see NEEDS), HURTPLAYER (26) when your sword box hits another player in the level.
 5. Weapons UI: list `weapons` and default weapons; pick with the item key; for GS1 weapons run the script through the existing `scripting` module.
 6. Baddies: parse BADDYPROPS (2); only simulate if `ISLEADER` (10) has been received. First pass: draw them from props only.
@@ -60,4 +75,4 @@ How 2.05 receives hits is in `protocol/packet-layouts.md` "Hits": HURTPLAYER app
 - GServer rebroadcast can be checked with a second raw client from `examples/session_probe.rs`.
 
 ## NEEDS
-nothing for the protocol. Optional, for feel only: "the 2.05 sword-swing sender (when HITOBJECTS is sent) and the 2.05 sword-hit test against other players and baddies" (hit-box geometry and which frames of the swing can hit). The server does not check it, so any plausible box interoperates.
+Nothing for the protocol. The 2.05 hit-box geometry and the frames that can hit are now known (above). Still open, for feel only: when exactly 2.05 sends `HITOBJECTS` (36) in a normal swing, the real damage formula (inferred power / 2), and the 1.39 sword. The server does not check any of it, so any plausible box interoperates.

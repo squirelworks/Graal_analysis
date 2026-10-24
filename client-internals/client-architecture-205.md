@@ -40,7 +40,7 @@ The game socket keeps the gen-3 iterator, the key, and a "first message sent" fl
 
 ## UI forms
 
-`TConnectFrame`, `TReconnectFrame`, `TServerListFrame`, `TLoadLevel`, `TServerMessage`, `TShortMessage`, `TPlayerList`, `TPlayerListOptions`, `TProfileEdit`, `TOptions`, `TMoreOptions`, `TLinkList`, `TLinkOptions`, `TShowCodes`, `TPersonAction`, `TChestEdit`, `TDebuggerFrame`. The editor and the client are **one executable** in 2.05: link, chest, and NPC editing forms are built in. They split into separate programs at 2.3 (see `version-tokens.md`).
+`TConnectFrame`, `TReconnectFrame`, `TServerListFrame`, `TLoadLevel`, `TServerMessage`, `TShortMessage`, `TPlayerList`, `TPlayerListOptions`, `TProfileEdit`, `TOptions`, `TMoreOptions`, `TLinkList`, `TLinkOptions`, `TShowCodes`, `TPersonAction` (the NPC "Set Npc's Action" script editor, not a player menu), `TChestEdit`, `TDebuggerFrame`. The editor and the client are **one executable** in 2.05: link, chest, and NPC editing forms are built in. They split into separate programs at 2.3 (see `version-tokens.md`).
 
 ## Other formats seen in 2.05
 
