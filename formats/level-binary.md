@@ -40,7 +40,7 @@ text   signs         lines until an empty line or EOF
 
 | Section | Shape | Notes |
 |---------|-------|-------|
-| Link | `dest x y w h newx newy` | Spaces in the level name are allowed. Tokens before the last 6 are rejoined. Links to missing levels are dropped. |
+| Link | `dest x y w h newx newy` | Spaces in the level name are allowed. Tokens before the last 6 are rejoined. Links to missing levels are dropped. `newx`/`newy` may also be `playerx`/`playery`, optionally followed by a signed number (`playery+10`); see `client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md`. |
 | Baddy | `i8 x, i8 y, i8 type` + `\n`-terminated verse line | Verses separated by `\`: sight, hurt, attack. Z3-V1.03 has no verse line. Terminator is `FF FF FF` followed by an empty line. |
 | NPC | `GCHAR x, GCHAR y, image#script` | The script uses `0xA7` for newline. An empty image means a script-only NPC. |
 | Chest | `GCHAR x, GCHAR y, GCHAR item, GCHAR signindex` | The item index is in `npc-library/gs1-reference-205.md`. |
