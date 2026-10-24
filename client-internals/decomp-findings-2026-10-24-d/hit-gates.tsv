@@ -1,0 +1,13 @@
+order	path	gate	value	builds_read
+1	sword	attacker sprite S	6..10	2.05 rev2
+2	sword	victim state	not dead; not hurt; not swimming; hearts>0; normal play or sparring-zone level	2.05 rev2
+3	sword	victim AP	not 100	2.05 rev2
+4	sword;packet40	no-kill level flag	flag clear	2.05 rev2
+5	sword	per-attacker second-of-day stamp	not already judged this second	2.05 rev2
+6	sword	guild tag	attacker (tag) not in victim nickname	2.05 rev2
+7	sword	attacker STATUS	bits 0x02 and 0x20 clear	2.05 rev2
+8	sword	kick animation	attacker not kicking (2.05 by animation name; 2.17.1+ object id 3)	2.05 rev2;2.17.1
+9	sword	reach box	0..4 ahead, under 2 to the side	2.05 rev2
+10	packet40	per-player field equality	attacker field equals victim field (meaning not traced)	2.05 rev2
+11	packet40	range	attacker within 10 tiles	2.05 rev2
+12	packet40	power cap	2 half hearts	2.05 rev2

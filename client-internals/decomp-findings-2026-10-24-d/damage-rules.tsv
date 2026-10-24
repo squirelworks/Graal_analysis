@@ -1,0 +1,8 @@
+rule	value	builds_read	note
+sword_hit_half_hearts	attacker sword power, limited to -20..20	2.05 rev2;2.17.1;2.22;2.31	power/2 hearts
+sword_power_wire_below_10	byte is the power (default swords 1..4)	2.05 rev2	sender side read; receiver treats below 10 as the power
+sword_power_wire_from_10	power = byte - 30 (10..50 maps -20..20), image name follows	2.05 rev2	
+heal_min_ap	40	2.05 rev2;2.17.1;2.22;2.31	below it a heal changes no hearts
+hurt_mode_on_every_accepted_hit	yes (mode 3, 40 ticks), also power 0 and ignored heal	2.05 rev2;2.17.1;2.22;2.31	
+shield_item_levels_attacker_ap_in_formula	not read	2.05 rev2;2.17.1;2.22;2.31	
+hurtplayer_packet_power_cap	2 half hearts (1 heart)	2.05 rev2	attacker within 10 tiles

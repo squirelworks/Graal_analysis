@@ -1,0 +1,21 @@
+build	delimiter_constant	note
+1.1 to 1.36 (all)	absent	constant scan only
+1.37	present	constant scan only
+1.38	present	constant scan only
+1.39	present	constant scan only
+1.41	present	constant scan only
+2.00 and revs 1-3	present	constant scan only
+2.01 and rev 1	present	constant scan only
+2.02 and revs 1-2	present	constant scan only
+2.03	present	constant scan only
+2.04	present	constant scan only
+2.05 and rev 1, rev 2	present	rule read in this build
+NewMain 24	present	constant scan only
+NewMain 26	present	constant scan only
+NewWorld beta 1	present	constant scan only
+2.1 test 2	absent	constant scan only
+2.1 test 3	absent	constant scan only
+2.17.1	absent	entry code read, no group test
+2.22	absent	entry code read, no group test
+2.31	absent	entry code read, no group test
+NewWorld beta 2	absent	constant scan only
