@@ -1,6 +1,6 @@
 # Packet layouts
 
-Date: 2026-10-14, revised 2026-10-21 (2.05 trace)
+Date: 2026-10-14, revised 2026-10-21 (2.05 trace) and 2026-10-24 (ids above 48)
 
 Sources: GServer-v2 `TLevel*.cpp`, `TPlayer.cpp`, `TWeapon.cpp` (GPLv3, summarized); client 2.05 rev 2 PLO dispatcher and PLI senders. Tags: **[srv]** server source · **[2.05]** read from the 2.05 receiver or sender · **[inf]**.
 
@@ -152,3 +152,50 @@ The GANI file format is in `formats/gani.txt`. On the wire, animation is only a 
 - PLO HURTPLAYER and HITOBJECTS take an optional trailing `i3 npc`.
 - The arrow's last byte is offset by 33 (decoded as `b − 33`), not a plain GCHAR.
 - TRIGGERACTION coordinates are half-tiles, not whole tiles.
+
+## Server → client ids above 48 and related (2.17.1, 2.22, 2.31) **[bin]**
+
+Read from the receive handlers of the three clients (decompile pass of 2026-10-24); behaviour notes, version gates and confidence per id are in `version-profiles/plo-layouts-217-231.tsv`, and the narrative is in `client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md`. Number encodings are as above: GCHAR = byte − 0x20, GSHORT two 7-bit bytes, GINT3/4/5 three to five 7-bit bytes; "comma text" goes through the client's comma-text parser (double quotes allowed). Ids not listed fall into the shared default arm and are ignored. Id 39 is shown as the 2.17+ handlers read it (the rest is handed unparsed to the active level object); the 2.05 handler reads an `i5 modtime` and caches the level (table above). The handlers check a minimum length and drop short messages silently.
+
+| Id | Name | Present in | Payload |
+|---:|------|-----------|---------|
+| 25 | SIGNATURE | all three | 1 GCHAR v |
+| 39 | LEVELMODTIME | all three | raw rest, not parsed here |
+| 41 | STARTMESSAGE | all three | raw text (RTF or HTML) |
+| 44 | HASNPCSERVER | 2.17,2.22 only | none |
+| 46 | (PLO 46) | all three | GSHORT id, rest |
+| 47 | STAFFGUILDS | all three | comma text |
+| 49 | PLAYERWARP2 | 2.17 2.22 2.31 (also 2.1 test builds) | GCHAR x2, GCHAR y2, GCHAR z(ignored here), GCHAR gmapX, GCHAR gmapY, rest = level name |
+| 68 | LARGEFILESTART | all three | raw name |
+| 69 | LARGEFILEEND | all three | raw name |
+| 75 | PROFILE | all three | repeat: GCHAR n, n chars (trimmed) |
+| 84 | LARGEFILESIZE | 2.31 only | GINT5 |
+| 100 | RAWDATA | all three | GINT3 length |
+| 150 | NPCDEL2 | all three | GCHAR n, level name (n chars), GINT3 npc id |
+| 151 | HIDENPCS | all three | none |
+| 153 | SAY2 | all three | raw text |
+| 154 | FREEZEPLAYER2 | all three | none |
+| 155 | UNFREEZEPLAYER | all three | none |
+| 156 | SETACTIVELEVEL | all three | raw level or .gmap name |
+| 165 | MOVE | all three | GINT3 npc id, rest = move data |
+| 166 | SHOWIMGNPC | all three | GINT3 npc id, rest = props |
+| 168 | UNKNOWN168 | all three | none read |
+| 169 | UPGRADEURL | all three | raw text |
+| 170 | GHOSTMODE | all three | GCHAR flag |
+| 171 | BIGMAP | all three | comma text >=2 fields (>=4 to be used): txt, png, x, y |
+| 172 | MINIMAP | all three | same as 171 |
+| 173 | GHOSTTEXT | all three | raw text |
+| 174 | GHOSTICON | all three | GCHAR flag |
+| 175 | SHOOT | all three | GSHORT player id, rest = shot data |
+| 176 | KINGDOMSMODE | all three | none |
+| 177 | NEWWORLDMODE | all three | none |
+| 178 | SERVERWARP | all three | comma text, at least 4 fields; fields 1,2,3 used (field 0 ignored) |
+| 179 | RPGWINDOW | all three | raw text |
+| 180 | STATUSLIST | all three | raw text |
+| 181 | UNKNOWN181 | all three | GSHORT player id, GCHAR toggle |
+| 182 | LISTPROCESSES | all three | none |
+| 183 | HASPROCESSRUNNING | all three | raw list of names |
+| 184 | TAKESCREENSHOT | all three | raw file name |
+| 185 | BOARDHEIGHTS | all three | GCHAR mapX, GCHAR mapY, GCHAR blockX, GCHAR blockY, GCHAR w-1, GCHAR h-1, then (w)*(h) cells of 2 raw bytes |
+| 186 | BOARDMODIFY2 | 2.22,2.31 (not 2.17) | GCHAR mapX, GCHAR mapY, GCHAR x, GCHAR y, GCHAR w, GCHAR h, then w*h GSHORT tiles (row-major), rest = unresolved trailer |
+| 189 | MOVE2 | 2.31 only | GINT3 npc id, rest |

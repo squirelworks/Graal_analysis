@@ -1,0 +1,17 @@
+build	login_token	source	matches_Graal_analysis
+2.00 (+rev1,rev2,rev3)	GNW24011	immediates in login builder, all 4 exes	yes
+2.01 (+rev1)	GNW23021	same	yes
+2.02 (+rev1)	GNW15041	same	yes
+2.02 rev2	GNW20041	same	yes
+2.03	GNW06051	same	yes
+2.04	GNW24061	same	yes
+2.05 (+rev1,rev2)	GNW03081	same	yes
+2.1 test2, test3 (graal21test2/3)	GNW03081	same (still the 2.05 token)	yes (doc already says so)
+NewMain 24, 26	GNW08011	same	yes
+1.411 (graal_1411)	GNW13110	same	yes
+1.39	GNW07080	same	yes
+1.38	GNW22060	same	yes
+2.17.1	GNW22122	lab capture + donor exe	yes
+2.22 login	GNW03014	donor exe	yes
+2.22/2.31 listserver hello	GNW30123 + "newmain"	donor exe + lab	yes
+2.31 login	GNW28015	lab capture	yes

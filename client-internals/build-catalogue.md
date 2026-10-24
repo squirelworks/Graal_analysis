@@ -154,3 +154,5 @@ Either way the switch to Delphi 4 happened between 1.21 (May 1999) and 1.28 beta
 
 Also present: gif2mng (2000-06-12, identical in every archive that has it), GraalShop (gani editor, 2000-12 and 2001-04), GraalLevelGen and GraalLevelGenNW, NPCControl (2001-07-13),
 LevelFiller with levelviewer, TerrainGenerator, PNGView, YoshiChess, and Greaditor (UPX-packed).
+
+See also `drive-clients-inventory.md` (the Drive clients set: which of these builds exist as exes, file versions, and Wine start-up notes) and `../version-profiles/drive-clients-exes.tsv`.

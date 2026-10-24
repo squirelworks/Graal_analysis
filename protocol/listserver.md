@@ -52,6 +52,7 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
   2. A listserver that answers with id 0 at that point fills the list. The client does not wait for id 1.
   3. The client closes the socket about two seconds after it gets the list.
   4. The field order shown in the window is name, language, description, url, version, players, ip, port, which matches the table above.
+- 2.00 uses the same built-in, DES-hidden host and port as 2.05 and does not read `arrays2.dat`. Its listserver login frames have not been exercised in the lab, so the repo's "2.05-style" list format is unverified for 2.00 (`client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md`).
 - To point a stock 2.05 at another listserver, redirect `www.graalonline.com` in the hosts file and listen on 14921. Patching the encrypted string in memory also works.
 - The captures show later listservers on ports 14922/14923 (`GNW30123` login, `GNW07080` guest). **[cap]**
 

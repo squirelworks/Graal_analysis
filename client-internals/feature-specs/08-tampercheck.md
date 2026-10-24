@@ -19,7 +19,8 @@ GServer-v2's older header calls PLI 39 `PLI_MAPINFO` ("might be gmap related"). 
 
   The same table is in `version-profiles/tampercheck-values.tsv`. The 2.22 value matches the earlier TOML record, so that record is confirmed.
 - 2.31 only: it also sends `PLI_SHOWIMGPLAYER` (24) with a 1-byte payload (value 9 seen) about every 5.1 s, and `PLI_ENTERLEVEL` (46, 1 byte, value 1) once at login. Neither was in the profile notes; the meaning of the id 24 payload is unknown.
-- What the bytes are computed from is not traced.
+- **What the bytes are (decompile pass, 2026-10-24; all six lab values reproduced offline) [bin]:** two 32-bit words A then B, each written as 5 bytes in a form that is **not** GINT5 and **not masked**: byte 1 = `((v >> 28) & 0x0F) + 0x20`, bytes 2–4 = `((v >> 21) + 0x20) & 0xFF`, `((v >> 14) + 0x20) & 0xFF`, `((v >> 7) + 0x20) & 0xFF`, byte 5 = `(v & 0x7F) + 0x20`. Only bytes 1 and 5 are range-limited, which is why bytes below 0x20 occur. Both words are standard reflected CRC-32 (polynomial `0xEDB88320`, start `0xFFFFFFFF`) over the client's **own memory image** (the running exe), chained: the first call ends with the usual final inversion and its result seeds the next call, and the last call of each word skips the final inversion. Word A covers 8–9 contiguous ranges of the code section; word B covers one large code range plus one block of static data (a table of string pointers). Nothing depends on the login key, account, level or time, so the result is a per-build constant that changes only if the exe bytes change. Words per build: `version-profiles/tampercheck-words.tsv`; full write-up: `client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md`.
+- **2.31 re-send timing [bin]:** a 50 ms main-form timer keeps a counter modulo 64 (the length of the 64-character alphabet string it uses), so one cycle is 64 × 50 ms = 3.2 s. Phases: 1 anti-debug probe and a 5000 ms timer is armed; 10 recompute word A; 20 scan top-level windows against an obfuscated blacklist (not decoded); 30 recompute word B; 31 send PLI 39. The 5.1 s PLI 24 cadence fits the 5000 ms timer (inference). 2.17.1 has no such timer and 2.22 re-sends only from its level-change routine. See `client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md`.
 
 ## Exact server behaviour **[srv]**
 `TPlayer::msgPLI_MAPINFO` (id 39) reads the rest of the packet and returns. **GServer-v2 does not validate it.** The lab therefore cannot tell you whether a different value would be rejected. Real servers may check; unknown.
@@ -34,6 +35,7 @@ The 2026-10-24 run logged in to 4 public servers with 2.22 and **no id 39**; non
 - 182 and 44 are not handled.
 
 ## Steps for Claude
+0. The bytes are a constant per unmodified build, so replay the table values; do not try to recompute them at run time.
 1. In the 2.17/2.22/2.31 profiles add `tampercheck_bytes: Option<[u8;10]>` from the table above; send `PLI 39` right after LANGUAGE when the profile has `Some`. Version-specific re-sends (2.22 on each gmap edge crossing, 2.31 about every 3.2 s) only matter if a server is seen to enforce it.
 2. Make it opt-in at first (`--send-tampercheck`) so the public-server default stays "same as the 4 servers that accepted us".
 3. Handle 182 by sending nothing (or an empty `PLI_PROCESSLIST` if a server complains); log it.
@@ -44,5 +46,6 @@ The 2026-10-24 run logged in to 4 public servers with 2.22 and **no id 39**; non
 - Cannot test enforcement locally.
 
 ## NEEDS
-- For enforcement only, and only if a server is seen to reject us: "the 2.22 id-39 value builder" (what the 10 bytes are computed from). A decompile of that routine in the 2.22 client.
+- ~~For enforcement only: the 2.22 id-39 value builder~~ Done 2026-10-24: the decompile shows how the bytes are built (above). Computing them for a patched exe needs that exe's own code ranges, which are inside each client binary; replaying the per-build constant is enough for an unpatched client.
+- The decompiles only show the sender. There is no check on the client's receive side, so whether any server enforces the value is still unknown.
 - ~~For 2.17 and 2.31 values~~ Done 2026-10-24: captured from the real clients under Wine in the loopback lab (table above).

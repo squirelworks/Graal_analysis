@@ -25,7 +25,7 @@ All four clients are Delphi builds with the same network classes: one base socke
 - **2.17 still uses the 2.05 cipher.** Its game-server send path is the same gen-3 code: a junk byte at `(it & 0xFFFF) mod len` from the second message on, then zlib over the buffer. The out-buffer limits are the same (flush at 0x1000, drop at 0x40000 queued). The gs2lib numbering puts type 4 (gen 4) at 2.19–2.21, which fits 2.17 still being type 0. **[bin][srv]**
 - 2.22 and 2.31 send the login message in a fixed "zlib, no cipher, no compression byte" mode, flush it, and only then switch the socket to the dynamic gen-5 mode. So the login frame has no compression byte, and every later frame has one. **[bin]**
 - The 2.22+ login line ends at the password. The guess in `login-and-walk.md` that 2.22+ appends an identity string does not hold for 2.22 or 2.31. **[bin]**
-- `PLI_TAMPERCHECK` (39) carries **10 raw bytes**, not two GINT5 words: the bytes include values below 0x20, which a GINT5 byte can never be, and none is 0x0a, so the payload survives line framing unescaped. The 10 bytes are a constant per client build, identical across accounts and login keys (2.17 `2a7bad195e231243d82c`, 2.22 `250e4d0f962b03ede631`, 2.31 `291655b7602e87c9eb82`; see `version-profiles/tampercheck-values.tsv`). It is new in 2.17 and absent from 2.05. What the bytes are computed from is not traced. **[bin][cap]**
+- `PLI_TAMPERCHECK` (39) carries **10 raw bytes**, not two GINT5 words: the bytes include values below 0x20, which a GINT5 byte can never be, and none is 0x0a, so the payload survives line framing unescaped. The 10 bytes are a constant per client build, identical across accounts and login keys (2.17 `2a7bad195e231243d82c`, 2.22 `250e4d0f962b03ede631`, 2.31 `291655b7602e87c9eb82`; see `version-profiles/tampercheck-values.tsv`). It is new in 2.17 and absent from 2.05. The bytes are two chained CRC-32 words over the client's own memory image, each written in a 5-byte non-GINT5 form with unmasked middle bytes, so they only change if the exe changes (`client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md`, words in `version-profiles/tampercheck-words.tsv`). 2.31 re-sends it every 3.2 s because a 50 ms timer counts modulo 64. **[bin][cap]**
 - From 2.17 on, the account name is kept obfuscated in memory and decoded only to build the login line. 2.31 does the same for the password. The obfuscation is the same byte map used for hidden strings, `dec(b) = (~b − 10) & 0xFF`. **[bin]** The 2.18 note "new password encryption" refers to the saved-password store, not to this. **[doc][inf]**
 
 ## Gen-5 send on the client (2.22, 2.31, RemoteControl) **[bin]**
@@ -64,7 +64,7 @@ Read from each client's main receive switch. ✔ = has a case. **[bin]**
 | 186 `BOARDMODIFY2` | · | · | ✔ | ✔ | |
 | 189 `MOVE2` | · | · | · | ✔ | "full precision" positions and NPC moves (v2.3) **[doc]** |
 
-Counts: 2.05 handles 59 ids, 2.17 handles 79, 2.22 handles 80, and 2.31 handles 81. All of them ignore unknown ids without error. The names come from gs2lib. That a client has a case for an id shows it handles it. Its payload is not traced here. **[bin][srv]**
+Counts: 2.05 handles 59 ids, 2.17 handles 79, 2.22 handles 80, and 2.31 handles 81 (per-build lists for 2.00 to 2.31: `version-profiles/plo-handled-ids-by-build.tsv`; payload layouts: `protocol/packet-layouts.md` and `version-profiles/plo-layouts-217-231.tsv`). All of them ignore unknown ids without error. The names come from gs2lib. That a client has a case for an id shows it handles it. Its payload is not traced here. **[bin][srv]**
 
 ## Listserver login
 
@@ -84,5 +84,6 @@ Counts: 2.05 handles 59 ids, 2.17 handles 79, 2.22 handles 80, and 2.31 handles 
 ## Open
 
 - Client → server id sets per version. The send helpers are virtual calls with the id in a register, so a full table needs per-version helper identification. 2.05's set is in `packet-ids.md`.
-- What the two `PLI_TAMPERCHECK` words are.
+- ~~What the two `PLI_TAMPERCHECK` words are.~~ Answered 2026-10-24 (see the tamper bullet above). Still open: whether any server enforces the value.
+- Client → server ids 36, 42 and 45 in 2.17.1, 2.22 and 2.31 are still unmatched to call sites (`client-internals/decomp-findings-2026-10-24-b/05-open-items.md`).
 - 2.19–2.21 (type 4, gen 4) are not in this folder, so the gen-4 client side is unverified.
