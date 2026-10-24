@@ -52,7 +52,7 @@ npcprops_max = 73
 prop_notes = "unknown prop id ends the prop stream; NPCPROP 43 = Z as c(z+50); no X2/Y2/Z2"
 precise_move = false
 precise_move_src = "srv bin"
-tampercheck = { id = 39, when = "right after PLI_LANGUAGE at login", size = 10, constant_per_build = true, lab_value_hex = "250e4d0f962b03ede631" }
+tampercheck = { id = 39, when = "right after PLI_LANGUAGE at login", size = 10, layout = "raw bytes", constant_per_build = true, lab_value_hex = "250e4d0f962b03ede631", resend = "on every gmap edge crossing; no periodic send" }
 tampercheck_src = "bin cap"
 login_props_src = "cap"
 login_props = "37 'English'; 39; then 34 UPDATEFILE for default images, 23 WANTFILE, 2 PLAYERPROPS; 44 PROCESSLIST when the server sends 182"
@@ -96,8 +96,8 @@ plo_known = "0-25, 27-43, 45-49, 68, 69, 75, 84, 100, 150, 151, 153-156, 165, 16
 plo_known_count = 81
 plo_known_src = "bin"
 plo_changes = { removed = [44], added = [84, 189] }
-pli_sent = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,26,27,28,29,30,32,33,34,35,37,38,39,40,41,43,46,80]
-pli_sent_src = "bin (send-helper call sites)"
+pli_sent = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,26,27,28,29,30,32,33,34,35,37,38,39,40,41,43,44,46,80]
+pli_sent_src = "bin (send-helper call sites) + cap (44, a real 2.31 client answered the server process-list request)"
 pli_sent_complete = false
 pli_changes = { removed = [21], added = [46] }   # PUTNPC gone with the editor, ENTERLEVEL new
 props_max = 80
@@ -105,8 +105,10 @@ npcprops_max = 77
 prop_notes = "X2/Y2/Z2 understood; NPCPROP 77 = Z2; PLPROP 81 still unknown"
 precise_move = true
 precise_move_src = "srv bin doc"
-tampercheck = { id = 39, when = "right after PLI_LANGUAGE at login", size = 10 }
-tampercheck_src = "bin"
+tampercheck = { id = 39, when = "right after PLI_LANGUAGE at login", size = 10, layout = "raw bytes", constant_per_build = true, lab_value_hex = "291655b7602e87c9eb82", resend = "about every 3.2 s" }
+tampercheck_src = "bin cap"
+periodic_sends = { 39 = "about every 3.2 s", 24 = "about every 5.1 s, 1-byte payload (value 9 seen)" }
+login_extra = "46 once at login (1 byte, value 1)"
 gserver_bigmap_push = true             # 2.31 does not request the map after setmap; server sends every BIGMAP file at login
 gserver_allowed_by_default = false
 

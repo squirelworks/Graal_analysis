@@ -51,10 +51,10 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 36 | 0x44 | `PLI_HITOBJECTS` |  | C→S | power, x, y [, npc] | yes |
 | 37 | 0x45 | `PLI_LANGUAGE` |  | C→S | rest = language name | yes |
 | 38 | 0x46 | `PLI_TRIGGERACTION` |  | C→S | `i3 npc, c x×2, c y×2` + rest = `action,params` | yes |
-| 39 | 0x47 | `PLI_TAMPERCHECK` |  | C→S |  | — |
+| 39 | 0x47 | `PLI_TAMPERCHECK` |  | C→S | 10 raw bytes, constant per client build **[cap]** | — |
 | 40 | 0x48 | `PLI_SHOOT` |  | C→S |  | — |
 | 41 | 0x49 | `PLI_SERVERWARP` |  | C→S |  | — |
-| 43 | 0x4b | `PLI_MUTEPLAYER` |  | C→S |  | — |
+| 43 | 0x4b | `PLI_MUTEPLAYER` |  | C→S | `s player id`, `c 1/0` **[cap]** | — |
 | 44 | 0x4c | `PLI_PROCESSLIST` |  | C→S |  | — |
 | 45 | 0x4d | `PLI_PROCESSRUNNING` |  | C→S |  | — |
 | 46 | 0x4e | `PLI_ENTERLEVEL` |  | C→S |  | — |

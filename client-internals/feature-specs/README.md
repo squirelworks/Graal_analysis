@@ -12,11 +12,11 @@ Nothing was run against the lab or any public server for this pass. No decompile
 | 13 | [Ban and kick handling](13-ban-kick.md) | Yes | 3 | 1 | 3.0 | 1 | nothing |
 | 12 | [Server MOTD and rules](12-motd-rules.md) | Yes | 3 | 1 | 3.0 | 2 | nothing |
 | 04 | [Death, respawn, regen](04-death-respawn.md) | Server side yes; 2.05 client side no | 4 | 2 | 2.0 | 3 | the 2.05 death handler (respawn trigger and destination) |
-| 08 | [Tampercheck 39 (+ process list 182)](08-tampercheck.md) | Yes for 2.22 (constant known); 2.17/2.31 values missing | 2 | 1 | 2.0 | 4 | nothing for the lab; 2.17 and 2.31 values by lab capture; the 2.22 value builder only if a server enforces it |
+| 08 | [Tampercheck 39 (+ process list 182)](08-tampercheck.md) | Yes (constants for 2.17, 2.22 and 2.31 captured) | 2 | 1 | 2.0 | 4 | nothing for the lab; the value builder only if a server enforces it |
 | 03 | [Inventory, items, chests](03-inventory.md) | Yes | 5 | 3 | 1.7 | 5 | nothing |
-| 14 | [Friends, ignore, mute, status](14-friends-ignore.md) | 2.05 (local files) yes; 2.17+ buddy and mute no | 3 | 2 | 1.5 | 6 | a real 2.22 capture of buddy requests and the mute item |
+| 14 | [Friends, ignore, mute, status](14-friends-ignore.md) | 2.05 (local files) yes; 2.22 buddy/ignore local and mute payload captured; listserver buddy requests unseen | 3 | 2 | 1.5 | 6 | only if buddies should go through a listserver: a capture of `verifybuddies`/`addbuddy`/`deletebuddy` (needs a database-backed listserver or another trigger) |
 | 02 | [Weapons and combat](02-weapons-combat.md) | Yes for the protocol; feel only approximate | 5 | 4 | 1.25 | 7 | nothing for interop; optional: the 2.05 sword-swing sender and hit box |
-| 06 | [GMAP overworld and map links](06-gmap-overworld.md) | Server side and file format yes; client crossing behaviour no | 4 | 4 | 1.0 | 8 | a lab capture of a 2.22 client crossing a gmap edge (no decompile) |
+| 06 | [GMAP overworld and map links](06-gmap-overworld.md) | Server side, file format and 2.22 client crossing behaviour yes (lab capture); 2.31 crossing not captured | 4 | 4 | 1.0 | 8 | nothing for 2.22; optionally a 2.31 crossing (X2/Y2/Z2) |
 | 11 | [Emotes and non-walk GANIs](11-emotes-ganis.md) | 2.22+ yes; 2.05 pose table no | 3 | 3 | 1.0 | 9 | the 2.05 sprite-index to animation table and the emoticon letter mapping |
 | 01 | [Sound and music](01-sound.md) | Yes for WAV effects | 3 | 3 | 1.0 | 10 | nothing |
 | 09 | [In-game options](09-options.md) | Yes | 2 | 2 | 1.0 | 11 | nothing |

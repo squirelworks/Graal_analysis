@@ -30,7 +30,7 @@ The 2.05 DES routine (standard DES-ECB with each key byte bit-reversed), the 48-
 **2.22 version token** **[2.22]**
 - The game-server login builds `GNW03014` one character at a time.
 - On the wire the login line is: `GCHAR 5` (client type 5, gen 5), `GCHAR key`, the token, `GCHAR len` + account, `GCHAR len` + password. **[cap]**
-- It is followed at once by id 37 (language) and id 39, a 10-byte value the client builds from two 32-bit globals. Its meaning is not traced. **[inf]**
+- It is followed at once by id 37 (language) and id 39, a 10-byte value that is the same at every login of a given build (raw bytes, not two GINT5 words). What it is computed from is not traced. **[cap]**
 
 ## Notes for tool writers
 - To redirect 2.05, a hosts entry for `www.graalonline.com` is enough.
