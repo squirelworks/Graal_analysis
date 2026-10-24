@@ -65,6 +65,8 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 ### 2.17+ list host **[bin]**
 From 2.17 the list host and port are not built in. They are read from `arrays2.dat` (line 0 host, line 1 port, lines 5 and 6 fallback hosts), which must match the signature in `arrays2.sig`. 2.17 still logs in pre-2.2 style (id 0 `newmain`, then id 1) with no cipher.
 
+**2.17 flow, seen from a real client in the lab** **[cap]**: one TCP connection to port 14922 (host and port read from `arrays2.dat`), plain zlib framing (`u16be len` + zlib body), no gen-5, no version token. The client sends **one frame holding two messages**: `GCHAR 0` + `newmain`, then `GCHAR 1` + GSTRING account + GSTRING password. The server answers with **two plain zlib frames**: frame 1 is id 0 (the server list); frame 2 holds id 2 (status text), id 3 (site URL) and id 5 (donation URL). The client then closes the connection (FIN). Compare 2.22 and 2.31: they open with `GCHAR 7` + key + `GNW30123` + `newmain` and use gen-5 for everything after, with the same list and status ids (0, 2, 3, 5). After the list, the 2.17 game-server login is type 0, key, `GNW22122`, account, password, then gen-3 framing; the junk-byte rule in `codec-and-framing.md` decoded every 2.17 message in the capture.
+
 ## Game server ↔ listserver (summary) **[srv]**
 
 Server → list (`SVO_*`, 0–31): set name, description, language, version, url, ip, port, player count; verify account (`VERIACC2`) and guild; get/set profile; player add/remove; ping; file get (v3); serverHQ password and level; request list, server info, and buddies; PM a player; register v3; send text.

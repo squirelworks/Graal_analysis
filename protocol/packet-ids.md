@@ -210,10 +210,10 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 36 | 0x44 | `PLI_HITOBJECTS` | ✔ |   |
 | 37 | 0x45 | `PLI_LANGUAGE` | ✔ |   |
 | 38 | 0x46 | `PLI_TRIGGERACTION` | ✔ | `i3 fromNPC`, `c x`, `c y`, `list actionAndParams`; 2.05 sends x and y in half-tiles (see `packet-layouts.md`) |
-| 39 | 0x47 | `PLI_TAMPERCHECK` | · | `i5, i5` memory hashes |
+| 39 | 0x47 | `PLI_TAMPERCHECK` | · | 10 raw bytes, a constant per client build (not two `i5`); sent right after `PLI_LANGUAGE` at login. 2.22 also re-sends it on every gmap edge crossing, 2.31 about every 3.2 s. Values in `version-profiles/tampercheck-values.tsv` **[cap]** |
 | 40 | 0x48 | `PLI_SHOOT` | · |   |
 | 41 | 0x49 | `PLI_SERVERWARP` | · |   |
-| 43 | 0x4b | `PLI_MUTEPLAYER` | · | player-list mute: `s player id`, `c on/off` |
+| 43 | 0x4b | `PLI_MUTEPLAYER` | · | player-list mute: `s player id`, `c on/off` (1 = mute, 0 = unmute); one message per click, confirmed from a real 2.22 client **[cap]** |
 | 44 | 0x4c | `PLI_PROCESSLIST` | · |   |
 | 45 | 0x4d | `PLI_PROCESSRUNNING` | · | `c flag`: reply to HASPROCESSRUNNING |
 | 46 | 0x4e | `PLI_ENTERLEVEL` | · | `c 1` on entering a level |

@@ -1,6 +1,8 @@
 # Version coverage: is Graal_analysis enough for Seihai's multi-version selector?
 
 Date: 2026-10-24 (Asia/Tokyo). Read-only review. No pushes, no PRs, no public connections.
+
+> **Update (same day, after loopback lab runs with real 2.17, 2.22 and 2.31 clients):** the tampercheck gap below is closed. The constants for all three builds are in `tampercheck-values.tsv`, and the payload is 10 raw bytes, not two 32-bit words. The 2.17 listserver flow, the 2.22 gmap edge crossing, the mute payload and the client's short compressed gen-5 frames are now documented in `protocol/listserver.md`, `client-internals/feature-specs/06-gmap-overworld.md`, `.../14-friends-ignore.md` and `protocol/codec-and-framing.md`. 2.17 and 2.31 were accepted by the lab gserver with the merged Seihai. The table and gap list below are left as the original snapshot.
 Reviewed: `squirelworks/Graal_analysis` main at 8da6800 (PRs #1 to #26 merged), `squirelworks/seihai` main at 3383300, plus the lab handoff notes and lab run directory (including the 2026-10-24 public 2.22 report) and `seihai_notes/`.
 Only derived facts here: no decompile text, addresses, or internal function/data names.
 

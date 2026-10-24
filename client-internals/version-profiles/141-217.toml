@@ -420,7 +420,7 @@ cipher = "gen3"
 login_layout = ["c type", "c key", "8 token", "str account", "str password"]
 gmap = true
 login_followup = [37, 39]          # LANGUAGE, then TAMPERCHECK
-tampercheck = { id = 39, layout = "i5, i5 (two 32-bit words, top 4 bits first)", content = "not traced" }
+tampercheck = { id = 39, layout = "10 raw bytes, constant per build (not two i5)", constant_per_build = true, lab_value_hex = "2a7bad195e231243d82c", resend = "none (once at login)", src = "cap", content = "what the bytes are computed from: not traced" }
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "GLEVNW01"]
 src = { npcprops_parse = "bin (default arm not resolved; matches 2.22)", plo_known = "bin (protocol/client-versions.md)", client_type = "bin (protocol/client-versions.md)", generation = "bin (protocol/client-versions.md)", login_key_byte = "bin (protocol/client-versions.md)", cipher = "bin (protocol/client-versions.md)" }
 notes = [

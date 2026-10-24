@@ -1,0 +1,4 @@
+build	token	listserver_token	bytes_hex	length	resend	source
+2.17	GNW22122	none (plain id 0 + id 1)	2a7bad195e231243d82c	10	none; once at login	cap (real client, lab, 2026-10-24)
+2.22	GNW03014	GNW30123	250e4d0f962b03ede631	10	once per gmap edge crossing; no periodic send	cap (real client, lab, 2026-10-24)
+2.31	GNW28015	GNW30123	291655b7602e87c9eb82	10	about every 3.2 s	cap (real client, lab, 2026-10-24)

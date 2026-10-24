@@ -19,6 +19,18 @@ Separate again: `bigmap =` / `minimap =` options (4 comma fields `text,image,x,y
 - UDP id 24 ("entered level") goes to peers in the 3x3 neighbourhood (see 07).
 - `PLO_LEVELMODTIME` (39): `i5 modtime` after each full level; keep it per level so that the next entry can use `LEVELWARPMOD` (30) or `ADJACENTLEVEL` with a cached board.
 
+## Lab capture of a real 2.22 client crossing gmap edges, 2026-10-24 **[cap]**
+Setup: a 2x2 gmap of open-grass levels; the client walked east, south, west and north across all four edges.
+- **Login.** The server sends `PLO_PLAYERWARP2` (49) with x*2, y*2, z+50, gmap cell x, gmap cell y, then the **gmap name** (not a level name). Then `PLO_LEVELNAME` (6) with the level, a second `6` with the gmap file name, 174, 10, and `156 SETACTIVELEVEL` = the gmap name. The `.gmap` file arrives as a file transfer (rawdata + file) because the client asks for it. The first big server frame also carries the neighbour levels' boards. The client sends `PLI_ADJACENTLEVEL` (35, `i5 modtime` + name) at login for the three neighbour levels (modtime 0 on a cold cache).
+- **A crossing uses only normal props; there is no level-warp packet.**
+  - The client sets the flags `gr.x` / `gr.y` (`PLI 18`, flag set) on every half-tile step. They carry the **global** position: local + 64 * cell, so they run past 63.5. (Earlier notes in `version-profiles/2.22-2.31.md` say these flag sets come from the server's movement NPC rather than from client code; both fit if the server-sent movement weapon runs inside the client and the client sends the resulting flag sets. The capture cannot tell which.)
+  - East: in the frame where global x reaches 64.0 the client sends `PLI 39` (the tampercheck constant, see 08), `gr.x=64`, and a props message with local X = 0 and `GMAPLEVELX` (prop 43) = 1.
+  - South: the frame at global y 64.0 carries `PLI 39` and the flag only; the props message with local Y = 0.5 and `GMAPLEVELY` (prop 44) = 1 follows in the next half-step frame, because position props go out only on whole-tile steps.
+  - West: `PLI 39` goes out at global x 63.5; the next props message has X = 63.0 and prop 43 = 0. North is the same with Y = 63.0 and prop 44 = 0.
+  - Rule: local = global - 64 * cell; the cell prop changes in the same props message as the wrapped coordinate; position props use whole-tile steps; **2.22 re-sends `PLI 39` on each crossing**.
+- **Server answer to each crossing** (one frame): `6` new level name, `39` (server to client level mod time, only when the client does not have the level cached), `0` (an empty board packet), `6` gmap name, `174`, `10`, `156` gmap name. A second visit to a level omits the server's `39`.
+- The merged Seihai, connected to this lab, treated the gmap name in `PLO_PLAYERWARP2` as a level name and requested `<gmap>.nw`, which does not exist. Gmap support (this spec) is still not implemented; the above is the data it needs.
+
 ## Seihai today
 - Profile flag `levels.gmap` exists (set per version profile in `profile.rs`; check which ones before relying on it); the `LEVELNAMES` text is not parsed. PLO 49, 171, 172, 156, 39, 6 (LEVELNAME) is handled; PLI 35 is never sent. The rest are not implemented. 156/39/171/172 are counted as unhandled in the public-server report.
 - `draw_minimap` draws a 64x64 level minimap (not the gmap).
@@ -38,4 +50,4 @@ Separate again: `bigmap =` / `minimap =` options (4 comma fields `text,image,x,y
 - Unit tests for the parser and for the cell/world coordinate maths.
 
 ## NEEDS
-a lab capture of a real **2.22 client crossing a gmap edge** (the order and exact values of the props it sends: GMAPLEVELX/Y, X, Y, X2, Y2, CURLEVEL). This does not need a decompile and can be produced in the lab with a 2x2 gmap. Optional: how the 2.17+ client lays out the gmap overview on the map screen.
+~~a lab capture of a real 2.22 client crossing a gmap edge~~ Done 2026-10-24 (see above; 2.22 has no X2/Y2 props). Still open: a 2.31 crossing (it has X2/Y2/Z2), and how the 2.17+ client lays out the gmap overview on the map screen.
