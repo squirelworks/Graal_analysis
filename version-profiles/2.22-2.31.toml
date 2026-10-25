@@ -82,7 +82,7 @@ token = "GNW14015"
 token_src = "srv"
 base = "2.31"
 inferred = true
-listserver_port_status = "assumed"   # no 2.3 build; not run on the public service (2.31 is confirmed)
+listserver_port_status = "confirmed"   # no 2.3 build; Seihai's gen-5 login got the current list on 14922 and 14923 (2026-10-25)
 notes = "No binary. Same as 2.31 except the 2.31 bug fixes (float-to-string, keyboard config save, gmap NPC border crossing, unused F1 buttons). GServer-v2 applies its bigmap push workaround to 2.31 only."
 gserver_allowed_by_default = false
 
