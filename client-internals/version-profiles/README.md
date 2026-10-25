@@ -73,3 +73,7 @@ These are the `features` keys, which matter most for making the client look and 
 - Whether 1.41 and 1.42 send the account to the listserver, or only to the game server.
 - The props each version sends at login are only verified for 2.05.
 - The 2.17 other-player prop parser and its GS1 command count were not read.
+
+## Default list port
+
+`listserver.port` is the port a reimplementation should try first. For almost every build it is the value read from the binary. 2.00 is the exception: its default is **14923** (the public legacy-support port, checked 2026-10-25; see `../../protocol/public-listserver-2026-10-25.md`), and the port the build itself carries (14921) is kept in `built_in_port`. 2.01 to 2.05 repeat 14921 in their own entry because they were not run on 14923.

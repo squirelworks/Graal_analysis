@@ -125,7 +125,11 @@ token = "GNW24011"
 revs = { r0 = "c93e659e2cda36379aaea4706db20b38", r1 = "30bd230e578d3a347866a87060efec20", r2 = "fc4bb7e3b7ca9cd8ea6693a033635534", r3 = "1ce5c1662b65246ae1c6559af5ff71f0" }
 linked = "2001-02-01 (rev3 2001-02-07)"
 src_default = "bin"
-listserver = { host = "www.graalonline.com", port = 14921, list = "newmain", hidden = "DES" }
+# Default list port 14923 (the public legacy-support port, user-confirmed 2026-10-25; a classic
+# 2.00 login there got a plain zlib id-0 list, and 14921 was refused). The build itself carries
+# 14921; that stays in built_in_port. 2.01 and later set their own value below, so they are unchanged.
+listserver = { host = "www.graalonline.com", port = 14923, built_in_port = 14921, list = "newmain", hidden = "DES" }
+src = { listserver = "bin (host, built_in_port, list name); cap + user (port, 2026-10-25)" }
 plo_known_add = [154,155]
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
 gs1_commands = 142
@@ -151,6 +155,8 @@ token = "GNW23021"
 revs = { r0 = "08340a8868f1d11e0285cc70e51200fe", r1 = "010a32afce66729b838258809a97c0d9" }
 linked = "2001-03-08 (rev1 2001-03-15)"
 src_default = "bin"
+# Explicit so that the 2.00 default port change does not reach 2.01 to 2.05 (not run on 14923).
+listserver = { host = "www.graalonline.com", port = 14921, list = "newmain", hidden = "DES" }
 pli_sent_add = [35, 36]           # ADJACENTLEVEL, HITOBJECTS
 plo_known_add = [46, 156]
 gs1_commands = 144
