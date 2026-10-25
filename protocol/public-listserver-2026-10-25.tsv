@@ -1,0 +1,16 @@
+# run1 = 2026-10-25 11:50 JST, run2 = 11:53 JST. rows = server rows printed. Account masked, no hosts.
+run	profile	port	client_login	result	rows	status_lines	server_frames	note
+1	2.22	14922	gen5	list	8	yes	2 gen5 zlib (455, 113 wire)	count byte 8, status text says 9
+1	2.17	14922	classic	timeout (os error 11)	0	no	none	server silent, did not close
+1	2.31	14922	gen5	list	8	yes	same as 2.22	
+1	2.05	14923	gen5 (user's binary)	error: unknown gen-5 compression byte 0x78	0	no	not captured	run 1 had no pcap; not reproduced in run 2
+1	2.05	14922	gen5 (user's binary)	list	8	yes	same as 2.22	
+1	2.00	14923	classic	list	4	no	1 plain zlib (306 wire)	legacy rows, all untagged
+1	2.05	14921	gen5 (user's binary)	connection refused	0	no	none	TCP reset to the SYN
+2	2.22	14922	gen5	list	8	yes	2 gen5 zlib (455, 113 wire)	
+2	2.17	14922	classic	timeout (os error 11)	0	no	none	second timeout in a row
+2	2.31	14922	gen5	list	8	yes	same as 2.22	
+2	2.05	14923	gen5 (user's binary)	list	12	yes	3 gen5 zlib (309, 455, 113 wire)	4 legacy rows then the 8 current rows; first frame before the login frame
+2	2.05	14922	gen5 (user's binary)	list	8	yes	same as 2.22	
+2	2.00	14923	classic	list	4	no	1 plain zlib (306 wire)	same 4 legacy rows
+2	2.05	14921	gen5 (user's binary)	connection refused	0	no	none	TCP reset to the SYN
