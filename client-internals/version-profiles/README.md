@@ -80,7 +80,7 @@ These are the `features` keys, which matter most for making the client look and 
 
 - Host is always `listserver.graal.in`.
 - 14921 is dead (the public service resets it) and is nobody's default.
-- Legacy (1.41 to 2.04, classic login) defaults to 14923. Supported (2.05 and later) defaults to 14922.
-- Only 2.00 (14923), 2.22 and 2.31 (14922) are `confirmed`. Every other profile is `assumed`: the rule applied to a build nobody ran.
+- The default follows the login type the profile sends (the public listserver answers by login type, not by version or token): legacy = classic login (1.41 to 2.17, including 2.05) defaults to 14923; supported = gen-5 login (2.22, 2.3, 2.31) defaults to 14922.
+- Every profile is `confirmed` except 2.05: Seihai's own login for it was run on its port in the matrix of 2026-10-25 (a real client was not captured). 2.05 is `assumed`: its classic login was not run.
 
-The per-profile table and the evidence behind each status are in `list-ports.md`. `python3 list_ports.py --check` fails when a profile breaks the rule. Rule text: Seihai `documentation/port-rule.md`; public results: `../../protocol/public-listserver-2026-10-25.md`.
+The per-profile table and the evidence behind each status are in `list-ports.md`. `python3 list_ports.py --check` fails when a profile breaks the rule. Rule text: Seihai `documentation/port-rule.md`; public results: `../../protocol/public-listserver-2026-10-25.md` and `../../protocol/listserver-login-type-matrix-2026-10-25.md`.

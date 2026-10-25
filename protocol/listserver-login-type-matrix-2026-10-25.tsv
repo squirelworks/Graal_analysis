@@ -1,0 +1,41 @@
+# 2026-10-25 22:43 to about 23:00 JST, user's Linux machine, host listserver.graal.in, list-only logins. Account masked, no frames or hosts.
+# login = what the matrix binary sent as the first plain zlib frame: classic = id 0 newmain + id 1 (36 bytes of TCP payload), gen5 = id 7 + GNW30123 + newmain (28 bytes). The matrix binary sent gen5 for the 2.05 profile; the current Seihai main sends classic for 2.05.
+run	profile	port	login	result	rows	wait_s
+1	1.41	14922	classic	silent (connected, no reply)	0	5.7
+2	1.41	14923	classic	legacy list	2	2.0
+3	1.42	14922	classic	silent (connected, no reply)	0	5.7
+4	1.42	14923	classic	legacy list	4	2.1
+5	2.00	14922	classic	silent (connected, no reply)	0	5.7
+6	2.00	14923	classic	legacy list	4	2.0
+7	2.01	14922	classic	silent (connected, no reply)	0	5.3
+8	2.01	14923	classic	legacy list	4	2.1
+9	2.02	14922	classic	silent (connected, no reply)	0	5.7
+10	2.02	14923	classic	legacy list	4	2.1
+11	2.02 rev2	14922	classic	silent (connected, no reply)	0	5.6
+12	2.02 rev2	14923	classic	legacy list	2	2.1
+13	2.03	14922	classic	silent (connected, no reply)	0	5.7
+14	2.03	14923	classic	legacy list	4	2.0
+15	2.04	14922	classic	silent (connected, no reply)	0	5.8
+16	2.04	14923	classic	legacy list	4	2.0
+17	2.05	14922	gen5	modern list (status/site lines)	8	0.9
+18	2.05	14923	gen5	modern list (status/site lines)	12	0.8
+19	2.1	14922	classic	silent (connected, no reply)	0	5.6
+20	2.1	14923	classic	legacy list	2	1.9
+21	2.12	14922	classic	silent (connected, no reply)	0	5.4
+22	2.12	14923	classic	legacy list	4	2.0
+23	2.13	14922	classic	silent (connected, no reply)	0	5.3
+24	2.13	14923	classic	legacy list	2	2.2
+25	2.14	14922	classic	silent (connected, no reply)	0	5.5
+26	2.14	14923	classic	legacy list	4	2.1
+27	2.15	14922	classic	silent (connected, no reply)	0	5.7
+28	2.15	14923	classic	legacy list	4	2.0
+29	2.16	14922	classic	silent (connected, no reply)	0	5.8
+30	2.16	14923	classic	legacy list	4	2.0
+31	2.17	14922	classic	silent (connected, no reply)	0	5.7
+32	2.17	14923	classic	legacy list	4	2.0
+33	2.22	14922	gen5	modern list (status/site lines)	8	0.8
+34	2.22	14923	gen5	modern list (status/site lines)	12	0.9
+35	2.3	14922	gen5	modern list (status/site lines)	8	1.1
+36	2.3	14923	gen5	modern list (status/site lines)	12	0.9
+37	2.31	14922	gen5	modern list (status/site lines)	8	0.9
+38	2.31	14923	gen5	modern list (status/site lines)	17	0.8

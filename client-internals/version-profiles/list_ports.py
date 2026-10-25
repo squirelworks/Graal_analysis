@@ -9,8 +9,10 @@ and prints one row per profile: label, host, port, kind (legacy or supported), s
 The rule (Seihai documentation/port-rule.md):
   - host is always listserver.graal.in
   - 14921 is dead and is never a default
-  - legacy (classic login, 2.05-and-earlier line: 1.41 to 2.04) defaults to 14923
-  - supported (2.05 and later) defaults to 14922
+  - the default follows the login type the profile sends (the public listserver picks its
+    reply by login type, not by version or token; matrix of 2026-10-25):
+    legacy = classic login (1.41 to 2.17, including 2.05) defaults to 14923,
+    supported = gen-5 login (2.22, 2.3, 2.31) defaults to 14922
   - the binary's own host and port are history: built_in_host / built_in_port
 --check exits 1 and prints every row that breaks the rule.
 """
@@ -70,9 +72,9 @@ def check(rs):
     labels = [r['label'] for r in rs if r['listserver']]
     split = {r['label']: r['listserver']['kind'] for r in rs if r['listserver']}
     for L in labels:
-        want = 'legacy' if L in ('1.41', '1.42', '2.00', '2.01', '2.02', '2.02 rev2', '2.03', '2.04') else 'supported'
+        want = 'supported' if L in ('2.22', '2.3', '2.31') else 'legacy'
         if split[L] != want:
-            bad.append(f'{L}: expected {want} (1.41 to 2.04 legacy, 2.05 and later supported)')
+            bad.append(f'{L}: expected {want} (classic login 1.41 to 2.17 legacy, gen-5 login 2.22 and later supported)')
     return bad
 
 
