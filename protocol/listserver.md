@@ -75,3 +75,5 @@ Server → list (`SVO_*`, 0–31): set name, description, language, version, url
 List → server (`SVI_*`): verify-account results (`VERIACC2` 11), guild verification, file start/data/end (v3 15–17), profile, error message, server info, request/send text (19/20), PM player (29), assign PC id (30), ping (99), rawdata (100).
 
 Only needed if Seihai ever hosts its own listserver. The client only needs ids 0–5 above.
+
+Per-generation login frames, real clients against Seihai's frames, and the open question of why the public 14922 ignores a classic login: `login-frames-by-version-2026-10-25.md`.
