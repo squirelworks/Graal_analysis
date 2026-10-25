@@ -51,3 +51,7 @@ The legacy rows are the same fields in the same layout, all untagged (silver). T
 - A real 2.00 client sends only id 0 and the list name (no account); Seihai's 2.00 profile sends the account too. Whether the legacy list needs the account is untested.
 - Why the host has lost its leading characters, and why the status number is 9, only the server's operator can say.
 - No game-server login has been made, so nothing is known yet about login frames, file requests or the tamper check from a public game server.
+
+## Applied to the version profiles
+
+The 2.00 profile (`client-internals/version-profiles/141-217.toml`, `[v200]`) now has `port = 14923` as its default list port, with the build's own value kept as `built_in_port = 14921`. Reason: 14923 is the legacy-support port (user-confirmed 2026-10-25), and a classic 2.00 login there got a plain zlib id-0 list while 14921 was refused. 2.01 to 2.05 (and GraalX) keep 14921 through an explicit entry in `[v201]`: they were not run on 14923 with the classic login, so nothing is claimed for them. 2.17 stays on 14922.
