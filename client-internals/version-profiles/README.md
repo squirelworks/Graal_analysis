@@ -74,6 +74,25 @@ These are the `features` keys, which matter most for making the client look and 
 - The props each version sends at login are only verified for 2.05.
 - The 2.17 other-player prop parser and its GS1 command count were not read.
 
-## Default list port
+## Default list endpoint
 
-`listserver.port` is the port a reimplementation should try first. For almost every build it is the value read from the binary. 2.00 is the exception: its default is **14923** (the public legacy-support port, checked 2026-10-25; see `../../protocol/public-listserver-2026-10-25.md`), and the port the build itself carries (14921) is kept in `built_in_port`. 2.01 to 2.05 repeat 14921 in their own entry because they were not run on 14923.
+Every profile with a listserver points at **`listserver.graal.in`** and carries a `class`:
+
+- **legacy** = port **14923**: the classic single-frame login (plain zlib frame with id 0 and id 1). Every build up to and including 2.17 sends it.
+- **supported** = port **14922**: the gen-5 handshake (id 7 with the `GNW30123` token, then gen-5 frames). 2.22, 2.3 and 2.31.
+
+`class_status` says how sure that is: **confirmed** (seen on the public service) or **assumed** (placed by the rule above). Port 14921 is refused by the public service and is no profile's default; the old host and 14921 that some builds carry are noted in comments only. 1.33 to 1.39 have no listserver in their build (they use 2.05's, so legacy 14923, when a list is wanted).
+
+| Build | Host | Port | Class | Status | Evidence |
+|---|---|---|---|---|---|
+| 1.33 to 1.39 | none in the build | borrow 2.05's | legacy | assumed | no listserver code |
+| 1.41 | listserver.graal.in | 14923 | legacy | assumed | the graal.in-patched copy carries host and port; not run |
+| 1.42 | listserver.graal.in | 14923 | legacy | assumed | classic login; build's own host and 14921 not used |
+| 2.00 | listserver.graal.in | 14923 | legacy | **confirmed** | classic login on 14923 got a plain zlib id-0 list (2 of 2 runs) |
+| 2.01 to 2.05 (rev2), GraalX | listserver.graal.in | 14923 | legacy | assumed | same classic login as 2.00; 2.05 with another binary's gen-5 login also got a list on 14923 (and on 14922); a classic 2.05 login was not run |
+| 2.1 test to 2.16 | listserver.graal.in | 14923 | legacy | assumed | classic login; the 2.1 test builds carry 14922 but a classic login got no reply there (2.17 run) |
+| 2.17 | listserver.graal.in | 14923 | legacy | assumed | classic login got no reply on 14922 twice; not tried on 14923 |
+| 2.22, 2.31 | listserver.graal.in | 14922 | supported | **confirmed** | gen-5 login: list and status frames on 14922 (2 of 2 runs each) |
+| 2.3 | listserver.graal.in | 14922 | supported | assumed | no binary; carried from 2.31 |
+
+Public-service facts are in `../../protocol/public-listserver-2026-10-25.md`.
