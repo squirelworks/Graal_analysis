@@ -24,7 +24,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/rendering-observations.md` — frame loop, draw path, offline blit next step.
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
-- `client-internals/foot-test.md` — single-point movement test and wall/water predicates.
+- `client-internals/foot-test.md` — single-point movement test and wall/water predicates (the 2.05 client's real wall test is a box: see `client-internals/decomp-findings-2026-10-25-l/`).
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
 - `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.
 - `client-internals/build-diff-204-205.md` — function-level diff of 2.04, 2.05 rev1 and 2.05 rev2 (NewWorld merge, VMT shift, ADP anti-debug).
