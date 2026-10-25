@@ -54,4 +54,6 @@ The legacy rows are the same fields in the same layout, all untagged (silver). T
 
 ## Applied to the version profiles
 
-The 2.00 profile (`client-internals/version-profiles/141-217.toml`, `[v200]`) now has `port = 14923` as its default list port, with the build's own value kept as `built_in_port = 14921`. Reason: 14923 is the legacy-support port (user-confirmed 2026-10-25), and a classic 2.00 login there got a plain zlib id-0 list while 14921 was refused. 2.01 to 2.05 (and GraalX) keep 14921 through an explicit entry in `[v201]`: they were not run on 14923 with the classic login, so nothing is claimed for them. 2.17 stays on 14922.
+Every profile now defaults to `listserver.graal.in` on the port that gets a list: legacy profiles (1.41 to 2.04) on 14923 and supported profiles (2.05 and later) on 14922. 14921 is dead and is not a default anywhere. The port and host the build itself carries stay in the profile as `built_in_port` and `built_in_host`. Each profile also says whether its port is `confirmed` by a public check or `assumed` from the rule: only 2.00, 2.22 and 2.31 are confirmed. The table and the reasons are in `client-internals/version-profiles/list-ports.md`.
+
+Two cases the rule does not settle: 2.17 (a classic login on 14922 got no reply, so 14922 is the rule's port, not one a 2.17 login is known to use) and 2.05 (14922 answered the user's gen-5 2.05 binary, but a classic 2.05 login was not run).

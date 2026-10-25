@@ -33,7 +33,7 @@ token = "GNW13110"
 linked = "unknown (resource stamp zeroed; token date 2000-11-13)"
 md5 = "a97740e711ffe9b698ec03712d4c06af"
 src_default = "bin"
-listserver = { host = "listserver.graal.in", port = 14923, list = "?", note = "only surviving copy is patched for graal.in; original 1.41 host/port unknown" }
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "assumed", built_in_host = "listserver.graal.in", built_in_port = 14923, list = "?", note = "the only surviving copy is patched for graal.in and carries 14923; the original 1.41 host and port are unknown; not run on the public service" }
 pli_sent = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,32,33,80,81]
 plo_known = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,43,75,100]
 props_self_parse = "0-36"
@@ -91,7 +91,7 @@ token = "GNW08011"
 builds = { nm24 = "229f05de7a43b98e223d8e1b58bffc63", nm26 = "22a08ed154f67948e01b969b68cdb05e" }
 linked = "2001-01-10 / 2001-01-12"
 src_default = "bin"
-listserver = { host = "www.graalonline.com", port = 14921, list = "newmain", hidden = false }
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "assumed", built_in_host = "www.graalonline.com", built_in_port = 14921, list = "newmain", hidden = false }
 pli_sent_add = [34]
 plo_known_add = [42,44,45,150,151,153]
 gs1_commands = 134
@@ -125,11 +125,12 @@ token = "GNW24011"
 revs = { r0 = "c93e659e2cda36379aaea4706db20b38", r1 = "30bd230e578d3a347866a87060efec20", r2 = "fc4bb7e3b7ca9cd8ea6693a033635534", r3 = "1ce5c1662b65246ae1c6559af5ff71f0" }
 linked = "2001-02-01 (rev3 2001-02-07)"
 src_default = "bin"
-# Default list port 14923 (the public legacy-support port, user-confirmed 2026-10-25; a classic
-# 2.00 login there got a plain zlib id-0 list, and 14921 was refused). The build itself carries
-# 14921; that stays in built_in_port. 2.01 and later set their own value below, so they are unchanged.
-listserver = { host = "www.graalonline.com", port = 14923, built_in_port = 14921, list = "newmain", hidden = "DES" }
-src = { listserver = "bin (host, built_in_port, list name); cap + user (port, 2026-10-25)" }
+# Default list endpoint: listserver.graal.in:14923 (the legacy port). A classic 2.00 login there got
+# a plain zlib id-0 list (public check, 2026-10-25); 14921 is dead (reset). The build itself carries
+# www.graalonline.com:14921; that stays in built_in_host / built_in_port as history, not as a default.
+# Rule: documentation/port-rule.md in Seihai; table: list-ports.md in this directory.
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "confirmed", built_in_host = "www.graalonline.com", built_in_port = 14921, list = "newmain", hidden = "DES" }
+src = { listserver = "bin (built_in_host, built_in_port, list name); cap + user (host, port, 2026-10-25)" }
 plo_known_add = [154,155]
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03"]
 gs1_commands = 142
@@ -155,8 +156,8 @@ token = "GNW23021"
 revs = { r0 = "08340a8868f1d11e0285cc70e51200fe", r1 = "010a32afce66729b838258809a97c0d9" }
 linked = "2001-03-08 (rev1 2001-03-15)"
 src_default = "bin"
-# Explicit so that the 2.00 default port change does not reach 2.01 to 2.05 (not run on 14923).
-listserver = { host = "www.graalonline.com", port = 14921, list = "newmain", hidden = "DES" }
+# 2.01 to 2.04 (and GraalX) are legacy: 14923 until a public check shows otherwise (not run yet).
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "assumed", built_in_host = "www.graalonline.com", built_in_port = 14921, list = "newmain", hidden = "DES" }
 pli_sent_add = [35, 36]           # ADJACENTLEVEL, HITOBJECTS
 plo_known_add = [46, 156]
 gs1_commands = 144
@@ -274,6 +275,9 @@ token = "GNW03081"
 revs = { r0 = "9abce477945a1307bb2be9ed47d2f170", r1 = "2780f2f370396c580e1648696698c871", r2 = "f3fdf54d943fa91c89acba5bb695db99" }
 linked = "2001-08-03 (rev1 08-04, rev2 08-16)"
 src_default = "bin"
+# 2.05 is the first supported build: 14922. The user's 2.05 binary (gen-5 login) got the current list
+# there; Seihai's classic 2.05 login has not been run on the public service, so this stays "assumed".
+listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "assumed", built_in_host = "www.graalonline.com", built_in_port = 14921, list = "newmain", hidden = "DES" }
 plo_known_add = [168]
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "GLEVNW01"]
 gmap = true                       # GRMAP001
@@ -297,7 +301,7 @@ label = "2.1 test 2 / test 3"
 token = "GNW03081"                # still 2.05's token
 builds = { test2 = "d15d877822ad4145578107857c90fb3c", test3 = "2116a7ba03648dcc004035534ec94de8" }
 src_default = "bin"
-listserver = { host = "www.graalonline.com", port = 14922, list = "newmain", hidden = "DES" }
+listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "assumed", built_in_host = "www.graalonline.com", built_in_port = 14922, list = "newmain", hidden = "DES" }
 plo_known_add = [49, 169]         # PLAYERWARP2, UPGRADEURL
 props_self_parse = "0-45"
 props_sent_add = [43, 44, 45]     # GMAPLEVELX/Y, Z
@@ -409,7 +413,7 @@ label = "2.17 (2.1.7.1 binary)"
 token = "GNW22122"
 md5 = "0fbef4078da9be6e7fb3969a08c93c5a"
 src_default = "bin"
-listserver = { source = "arrays2.dat (signed by arrays2.sig)", port_default = 14922, list = "newmain", login = "id 0 list name, then id 1 account + password" }
+listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "assumed", source = "arrays2.dat (signed by arrays2.sig)", list = "newmain", login = "id 0 list name, then id 1 account + password", note = "a classic login on 14922 got no reply on 2026-10-25; how a real 2.17 client logs in to the listserver is unobserved" }
 pli_sent = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,32,33,34,35,36,37,38,39,40,41,43,44,45,80,81]
 plo_known = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,68,69,75,100,150,151,153,154,155,156,165,166,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185]
 props_self_parse = "0-49, 52, 54-74 (stops at 50, 51, 53)"
