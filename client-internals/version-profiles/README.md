@@ -76,4 +76,11 @@ These are the `features` keys, which matter most for making the client look and 
 
 ## Default list port
 
-`listserver.port` is the port a reimplementation should try first. For almost every build it is the value read from the binary. 2.00 is the exception: its default is **14923** (the public legacy-support port, checked 2026-10-25; see `../../protocol/public-listserver-2026-10-25.md`), and the port the build itself carries (14921) is kept in `built_in_port`. 2.01 to 2.05 repeat 14921 in their own entry because they were not run on 14923.
+`listserver` carries the endpoint a reimplementation should dial first: `host`, `port`, `kind` (`legacy` or `supported`) and `port_status` (`confirmed` or `assumed`). It is not the value the binary carries: that is kept as history in `built_in_host` and `built_in_port`.
+
+- Host is always `listserver.graal.in`.
+- 14921 is dead (the public service resets it) and is nobody's default.
+- Legacy (1.41 to 2.04, classic login) defaults to 14923. Supported (2.05 and later) defaults to 14922.
+- Only 2.00 (14923), 2.22 and 2.31 (14922) are `confirmed`. Every other profile is `assumed`: the rule applied to a build nobody ran.
+
+The per-profile table and the evidence behind each status are in `list-ports.md`. `python3 list_ports.py --check` fails when a profile breaks the rule. Rule text: Seihai `documentation/port-rule.md`; public results: `../../protocol/public-listserver-2026-10-25.md`.
