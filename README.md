@@ -108,6 +108,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `client-internals/decomp-findings-2026-10-25-k/`: the leftovers of the damage and file-transfer notes. A hit pushes the player one tile a tick for five ticks along a unit vector (zero means east), undoing a step when one of twelve body-box points is blocked (identical in 2.05 rev 2, 2.17.1, 2.22 and 2.31); packets 40 and 46 go through the sword's gates (AP 100, the shared once-a-second stamp taken before the guild test, the guild tag) with no attacker status test, power capped at one heart and 0 accepted; packet 46 is a box of strictly under 2 tiles around the centre (X+1.5, Y+2.0). The save-folder layouts per build: 1.33 to 1.41 save everything in one folder, 2.00 and 2.01 have no `hats`, both 2.1 test builds have no `maps`, and every build ignores a zero-length stream. Static read; nothing new was seen on a wire.
 
+## Decompile findings, 2026-10-28 (b)
+
+- `client-internals/decomp-findings-2026-10-28-b/`: how 2.05 decides tile types. The default tileset has no type table, and each type test asks one `arrays.dat` list (array 2 throw-through, 4 chair, 5 and 6 bed, 1 water with lava included, 3 lava, 8 jumping stone per direction). Tilesets of the new kind use a fixed rule by sheet position. `tiletype()` returns -1 on the default tileset. Static read; `tile-type-lists.tsv` is in the same folder.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.
