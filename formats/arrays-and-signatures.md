@@ -35,7 +35,9 @@ The client reads exactly 25 arrays in a fixed order into 25 globals at startup. 
 | 4 | 40 ints | Tile ids (use not traced) |
 | 5, 6 | 4 ints each | Single 2×2 tile blocks (708–711, 724–727) (use not traced) |
 | 7 | 79 ints | Tile ids. The legacy tile-type lookup maps a tile's position in this list to 4 classes (positions 0–11, 12–19, 20–62, 63+). The newer tile-type path returns types 6–9 for the same 4 classes. **[2.05]** |
-| 8–12, 14–16 | small nested lists of 2×2 tile groups | Used by level-object code (for example bush and rock handling) **[inf]** |
+| 8 | 4 lists, one per facing | Ledge tiles (tile type 21): a ledge jump needs the tile to be in the list for the player's facing. See `client-internals/ledges-push-pull.md` **[2.05]** |
+| 9–12, 14, 15 | small nested lists of 2×2 tile groups | Used by level-object code (9 to 12: cut and lift, see Seihai's `cut-and-lift.md`) |
+| 16 | 2 × 2×2 blocks | Stone blocks: entry 0 pushable, entry 1 pullable. See `client-internals/ledges-push-pull.md` **[2.05]** |
 | 13 | 4 ints | One 2×2 tile block, used with array 14 |
 | 17 | 124 × 4 | Packed records used by the horse object **[2.05]** |
 | 18 | nested | Use not traced |
