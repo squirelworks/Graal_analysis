@@ -2,6 +2,12 @@
 
 Date: 2026-10-14
 
+**Superseded.** This note records the single-point wall test recovered from the SDL reimplementation (2dadventureclient). The real clients (2.05 through 2.31) use a six-probe body-box routine with corner nudges and flush snaps. See Seihai `documentation/walking-collision.md` for the current description, and `archival/foot-test-sdl.md` for the preserved SDL snapshot.
+
+The original content is retained below for reference.
+
+---
+
 Derived from the SDL reimplementation of the client movement loop and the type table. No decompile material.
 
 ## Single-point test
