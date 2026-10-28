@@ -49,9 +49,24 @@ Consequences:
   counts ticks on lava. When the count passes 100, the client calls what
   looks like the hurt routine, and the count resets. Reading that call as
   the hurt routine is **inferred**.
+- **The lava test in detail.** Once per player tick the client tests one
+  point, the player's position plus (1.5, 2), against the lava list
+  (array 3) only. On lava a counter goes up. On the 101st tick in a row it
+  calls the hurt routine with -0.5 (half a heart) and a flag that skips the
+  usual "can be hurt" checks, then sets the counter to 0. A tick off lava
+  sets it to 0. Which of the two offsets belongs to x was read from the
+  order of two property reads, so (1.5, 2) rather than (2, 1.5) is
+  **inferred**. The tick length was not read here.
 - **A tile can be in several lists.** In the 2.22 file, 6 of the 133
   throw-through tiles are passable, and 9 of the 76 lava tiles are not in
-  the liquid list (so they are walls).
+  the liquid list. All 9 are in the passable list, so they are walked on,
+  not swum in, and the lava test still burns on them. (An earlier version
+  of this note called them walls.)
+- **Deep water is in no list.** A level made for testing (2026-10-28) uses
+  a dark water tile for deep water. In the 2.22 file that tile is in none of
+  arrays 0 to 3, so the wall test calls it a wall: deep water blocks.
+  Shallow water in the same level is in the passable list only, so it is
+  walked on.
 - A thrown object is stopped by a tile that is not type 20 and that the
   wall test calls a wall.
 
