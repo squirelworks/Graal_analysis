@@ -1,0 +1,16 @@
+type	name	default tileset (arrays.dat)	new-kind tileset (sheet position)	status
+0	nonblocking	not a list; only NPC shapes answer	any tile no other rule takes	confirmed
+2	hurting underground	only NPC shapes answer	ids 288 to 319	confirmed
+3	chair	array 4	ids 320 to 383	confirmed
+4	bed top	array 5	ids 384 to 399	confirmed
+5	bed bottom	array 6	ids 400 to 415	confirmed
+6	swamp	only NPC shapes answer	row 26 or 27 with column 0 or 1; ids 768 to 799	confirmed
+7	lava swamp	only NPC shapes answer	ids 800 to 831	confirmed
+8	near water	only NPC shapes answer	ids 832 to 911	confirmed
+9	near lava	only NPC shapes answer	ids 912 to 943	confirmed
+10	(no doc name)	only NPC shapes answer	ids 944 to 991	confirmed
+11	water	array 1 (liquid list, includes lava)	ids 64 to 287	confirmed
+12	lava	array 3	never (its range 192 to 287 sits inside water)	confirmed
+20	throw-through	array 2	a wall tile with id 512 to 767	confirmed
+21	jumping stone	array 8, one list per direction	a wall tile in row 30 or 31 with column 8 or more	confirmed
+22	blocking	not in array 0 and not in array 1	any other wall tile	confirmed
