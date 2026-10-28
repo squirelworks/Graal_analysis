@@ -4,5 +4,5 @@ bit	meaning	condition
 0x04	male	player gender flag
 0x08	dead	life-state dead AND death timer >= 28 ticks (1.4 s)
 0x10	weapons allowed	level/server allows weapons
-0x20	a numeric field is >= 0	not traced further
+0x20	sword hidden (hidesword timer running)	set while the hidesword timer is running; see ../status-bit-0x20.md
 0x40	has charged spin	spin attack owned

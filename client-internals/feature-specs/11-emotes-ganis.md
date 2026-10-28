@@ -28,7 +28,7 @@ Derived from the 2.05 rev2 decompile; tables are in `../decomp-findings-2026-10-
 - **Swim, lava and dead are not on the wire.** All three are sent as sprite 0 (idle) plus direction. Swim is a local mode (10) entered on water tile type 11 (with a splash); lava (tile type 12) shows the local `lava` gani. The dead state is carried only by the STATUS prop dead bit (see 04). There is **no swim sprite**, so a 2.05 client cannot tell a swimmer from an idle player by prop 17.
 - The 31 built-in gani names (index 0 to 30): idle, walk, walkslow, kick, sword, ridesword, spin, push, grab, pull, lift, carrystill, hiddenstill, carry, hidden, shoot, ridestill, ridefire, rideeat, ride, sit, sleep, hurt, ridehurt, dead, maps1, maps2, maps3, swim, lava, carried.
 - Caveat: the "only for `def`" condition was read from the sender and is recorded as observed, not confirmed on the wire.
-- STATUS prop (18) bits: 0x01 editor or paused, 0x02 hidden (mode 14 or hidden timer), 0x04 male, 0x08 dead (see 04), 0x10 weapons allowed, 0x20 a numeric field is 0 or more (meaning not traced), 0x40 has charged spin.
+- STATUS prop (18) bits: 0x01 editor or paused, 0x02 hidden (mode 14 or hidden timer), 0x04 male, 0x08 dead (see 04), 0x10 weapons allowed, 0x20 sword hidden (the `hidesword` timer, `../status-bit-0x20.md`), 0x40 has charged spin.
 
 ## Seihai today
 - Parses gani files and keeps a walk animation player (`set_walk_gani`, `walk_frame`). Does not send SPRITE animation indexes beyond walking, does not draw other players' non-walk animation, and has no emote send/receive (PLO 32 not handled). Other players are drawn from props.
@@ -51,5 +51,5 @@ Filled by the 2026-10-24 2.05 decompile: the sprite-index to animation table and
 Still open:
 - How other players see an emote (the key path sends nothing; see the correction above). A lab capture of a real 2.05 client pressing Ctrl+A next to a second client would settle it.
 - Swim on the wire: none found in 2.05. Whether 2.22 sends a `swim` gani name (prop 10) is covered by the 2.1+ notes, not by this decompile.
-- Some mode values and STATUS bit 0x20 (see `../decomp-findings-2026-10-24/player-modes.tsv`).
+- Some mode values (see `../decomp-findings-2026-10-24/player-modes.tsv`).
 - 1.39 sprite and gani behaviour was not re-read (the emote routine is the same).
