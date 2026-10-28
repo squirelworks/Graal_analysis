@@ -24,6 +24,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/config-and-input.md` — graalconfig keys, device path, drop-files behavior.
 - `client-internals/rendering-observations.md` — frame loop, draw path, offline blit next step.
 - `client-internals/water-and-ganis.md` — the built-in animation name table, swim and lava, splashes, break-effect sounds (2.05).
+- `client-internals/status-display.md` — the HUD: `state.png` rects, screen positions, heart rows and `showstats` bits (2.05 routine; 2.22 sheet and picture match).
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
