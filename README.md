@@ -23,6 +23,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `protocol/session-opcodes-cleaned.md` — common server-to-client meanings that match GLEVNW01 records.
 - `client-internals/config-and-input.md` — graalconfig keys, device path, drop-files behavior.
 - `client-internals/rendering-observations.md` — frame loop, draw path, offline blit next step.
+- `client-internals/water-and-ganis.md` — the built-in animation name table, swim and lava, splashes, break-effect sounds (2.05).
 - `client-internals/status-display.md` — the HUD: `state.png` rects, screen positions, heart rows and `showstats` bits (2.05 routine; 2.22 sheet and picture match).
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
