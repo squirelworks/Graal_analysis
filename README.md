@@ -10,6 +10,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No de
 - `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, `version-tokens.md`, `client-architecture-205.md`, `des-and-hidden-strings.md` (hidden hosts, 2.22 saved passwords), and `newworld-betas.md` (the two NewWorld beta clients).
 - `graal3d/` — the February 2000 Graal3D client and its GServer: protocol (TCP + peer-to-peer UDP), props, accounts, `.x` levels, and how it relates to the 2D GServer.
 - `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab).
+- `archive/` — archival notes on decommissioned experimental walkers and tileset work (Ember / Avelan). Full assets live in a Drive zip; see `archive/ember-avelan-experimental.md`.
 
 ## Newly scaffolded (2026-10-14)
 
@@ -107,3 +108,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 - `client-internals/versions-133-139.md`: what changes between the seven gen-2 GNW clients, on the wire and for the player (HUD art, tiles, windows, controls, rules).
 - `client-internals/version-profiles/v133-v139.toml`: the same as a machine-readable table, one `[[version]]` per build, with confidence notes and first-build feature flags.
+
+## Archive (2026-10-28)
+
+- `archive/ember-avelan-experimental.md`: archival notes on the decommissioned Ember/Avelan experimental walkers, tileset variants, and the type-0 mask. Full project zip is on Google Drive under `/[Grok/[Projects/Graal Enigma Playerworld.zip`.
