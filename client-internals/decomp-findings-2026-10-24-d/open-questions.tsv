@@ -1,6 +1,6 @@
 topic	what is open	importance
 per-player field in hurt packet path	attacker field must equal victim field; meaning untraced	high
-status bit 0x20	sword gate needs it clear; meaning untraced	medium
+status bit 0x20	answered: the hidesword timer (see ../status-bit-0x20.md)	done
 sword knockback	vector not read off	medium
 other hurt callers	answered for bombs, arrows, thrown objects and baddy touch (see ../damage-sources.md); baddy projectiles not read	low
 guild test on hurt packet	not shown to apply	low
