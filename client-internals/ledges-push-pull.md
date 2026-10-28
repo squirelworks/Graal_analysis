@@ -79,7 +79,17 @@ From the animation step table (`decomp-findings-2026-10-24/sprite-step-table.tsv
 * **Array 8** holds four lists, one per facing (up, left, down, right): the ledge tiles. This is what tile type 21 ("jumping stone") means in the usual tile mode: the test asks whether the tile is in the list for the player's current facing. In the alternative tile mode (a tiledefs sheet of type 1 or 2) type 21 is instead the tiles in rows 30 and 31, columns 8 to 15, of the 16-column sheet.
 * **Array 16** holds two 2 x 2 blocks, `[column][row]`: entry 0 the pushable block (1764, 1780 / 1765, 1781), entry 1 the pullable block (1998, 2014 / 1999, 2015). **[2.22]**
 
+## 2.22 and 2.31
+
+Both behave as 2.05 for everything above: the same counts, probe points, flight curve, block tiles, triggers and pull cycle (the number tables are identical in all three). The differences:
+
+* **Grab on NPCs.** 2.05 grabs a blocking NPC only when a per-NPC flag is clear (most likely the character-shape flag). 2.22 and 2.31 grab any NPC that blocks there, and the lookup also checks the neighbouring map parts. The player and wall checks are unchanged. **[2.22] [2.31]**
+* **Stop gates.** Walking, the ledge test, the A key and other gameplay code do nothing while either of two server-set flags is on. Server packets 176 and 177 set them; most likely these are the full-stop packets. **[2.22] [2.31]**
+* **Sounds and custom ganis.** `jump.wav`, `stonemove.wav`, the pull sound and footsteps play only while the current gani is one of the built-in names (idle, walk, ..., push, grab, pull). The jump, push and pull still happen with a custom gani; it is expected to bring its own sounds. The sound names are also given bare (`jump.wav`) instead of under `sounds/`. **[2.22] [2.31]**
+* **No jump gani** in either version: the flight sets none, so the walk or push gani stays. **[2.22] [2.31]**
+* A further flag on the server connection also stops gani changes, footsteps and the A key; what it means was not found. **[2.22]**
+
 ## Open
 
 * What is drawn right after A is let go while `pull` is playing: no code path that sets `idle` there was found.
-* 2.22 and 2.31 were not compared yet.
+* Releasing A or the arrow mid-pull in 2.22 / 2.31 was not checked step by step.
