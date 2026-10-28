@@ -72,3 +72,43 @@ status display.
   button cells.
 * The text drawing that prints the glove and sword power: its font, colour
   and anchor.
+
+## The selected weapon (2.05 rev 2)
+
+The image beside the D button belongs to the selected entry of the player's
+weapon list.
+
+* **One list.** Server weapons (`PLO_NPCWEAPONADD`) and built-in weapons
+  (`PLO_DEFAULTWEAPON`) share one list, in arrival order. A built-in weapon
+  is skipped when the list already has its name.
+* **Adding.** Every add selects the new last entry.
+* **Selecting index *i*.** The client takes the first entry from *i* on,
+  wrapping round, whose name is not empty and does not start with `-`. If
+  every entry is hidden, *i* stays selected.
+* **Deleting.** The selection keeps its index if that index still exists.
+  Otherwise it moves to the new last entry.
+
+### Built-in weapons
+
+The client keeps a 25-entry item table. Only the entries with a weapon
+script become weapons. The weapon's name is the item name with its first
+letter in upper case.
+
+| id | item | image (2.05) |
+|---|---|---|
+| 7 | bow | `wbowi1.gif` |
+| 8 | bomb | `wbomb1.gif` |
+| 12 | superbomb | `wbomb2.gif` |
+| 20 | fireball | `wbowi2.gif` |
+| 21 | fireblast | `wbowi3.gif` |
+| 22 | nukeshot | `wbowi4.gif` |
+| 23 | joltbomb | `wbomb3.gif` |
+
+* **The other ids:** greenrupee, bluerupee, redrupee, bombs, darts, heart,
+  glove1, shield, sword, fullheart, battleaxe, goldensword, mirrorshield,
+  glove2, lizardshield, lizardsword, goldrupee and spinattack. They are
+  pickups, not weapons.
+* **2.22:** in the lab the client asked for the same names as `.png`.
+* **Id 8 and `wbomb1`:** the 2.05 table ties them together. The lab capture
+  could not tie them, because 2.22 asked for `wbomb1.png` whether or not
+  id 8 was sent.
