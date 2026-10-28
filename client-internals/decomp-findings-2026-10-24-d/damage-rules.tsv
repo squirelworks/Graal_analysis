@@ -6,3 +6,7 @@ heal_min_ap	40	2.05 rev2;2.17.1;2.22;2.31	below it a heal changes no hearts
 hurt_mode_on_every_accepted_hit	yes (mode 3, 40 ticks), also power 0 and ignored heal	2.05 rev2;2.17.1;2.22;2.31	
 shield_item_levels_attacker_ap_in_formula	not read	2.05 rev2;2.17.1;2.22;2.31	
 hurtplayer_packet_power_cap	2 half hearts (1 heart)	2.05 rev2	attacker within 10 tiles
+explosion_piece_power	0.5 hearts for types 1 and 2, 1 heart for type 3 (jolt)	2.05 rev2	see ../damage-sources.md
+projectile_power	arrow 0.5, fireball 1, fireblast 0.5, nuke 1 (hearts)	2.05 rev2	fireblast and nuke then blast (reach 2, type 1)
+thrown_object_power	1 heart, 0.5 when hearts are exactly 1	2.05 rev2	
+baddy_touch_power	0.5 hearts, 1 for the golden warrior (type 7)	2.05 rev2	

@@ -2,7 +2,7 @@ topic	what is open	importance
 per-player field in hurt packet path	attacker field must equal victim field; meaning untraced	high
 status bit 0x20	answered: the hidesword timer (see ../status-bit-0x20.md)	done
 sword knockback	vector not read off	medium
-other hurt callers	bombs, arrows, baddies: power mapping not done	medium
+other hurt callers	answered for bombs, arrows, thrown objects and baddy touch (see ../damage-sources.md); baddy projectiles not read	low
 guild test on hurt packet	not shown to apply	low
 gmap list order and update timing	decides whether entering a gmap from outside saves	medium
 end-of-respawn save	stores respawn point or death spot online?	high
