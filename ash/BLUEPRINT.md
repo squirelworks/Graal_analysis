@@ -1,1 +1,1 @@
-See full content pushed separately if truncated; key sections cover file ownership, runtime layout, wire frames, known holes in 39ster 2.1.
+PLACEHOLDER_TO_BE_REPLACED_WITH_FULL

@@ -1,1 +1,1 @@
-See repository for full content. Key algorithms: GCHAR codec, zlib framing, PLAYER descramble LCG (iterator *= 0x8088405 + key), GR-V1 tile bitstream, ID generation. Full text archived from the 2006 source analysis.
+PLACEHOLDER_TO_BE_REPLACED_WITH_FULL
