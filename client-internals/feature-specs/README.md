@@ -56,7 +56,7 @@ Not settled, for contrast (all in `../decomp-findings-2026-10-24-b/05-open-items
 - How other players see a Ctrl+letter emote (topic 11): the key path sends nothing, and the captured SHOWIMG frames are unexplained. A lab capture of a real 2.05 client would settle it.
 - Swim on the wire (topic 11, 04): none found in 2.05; swim is a local mode.
 - Damage formula (topic 02): inferred sword power / 2, unconfirmed.
-- Unlabelled STATUS bit 0x20 and a few player-mode values (topics 04, 11).
+- A few unlabelled player-mode values (topics 04, 11). STATUS bit 0x20 is the `hidesword` timer (`../status-bit-0x20.md`).
 - The "same name group" rule for the saved respawn point (topic 04).
 - 1.39: F7 popup items, death handler and sword hit box were not read (topics 10, 04, 02).
 - History window contents and the ignore auto-reply send condition (topic 10).
