@@ -45,3 +45,8 @@ The open actions below are what the Seihai client does after its reading of the
 ## A-key order
 
 Lift is tried first, then grab (pull a block). Where reading a sign and opening a chest sit in that order was not read.
+
+## Sword while carrying
+
+See `../decomp-findings-2026-10-28/01-sword-while-carrying.md`: with an
+object carried, the sword key throws it instead of swinging.
