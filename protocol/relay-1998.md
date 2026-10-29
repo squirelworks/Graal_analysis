@@ -59,7 +59,7 @@ The game name keeps incompatible betas apart, and from 3rd Graal on it also keep
 |---|---|
 | 1st, 2nd | `Zelda2` (1st Graal also has a branch that builds `Z` + level base + `2`, see `client-internals/early-clients.md`) |
 | 3rd, 4th | `Graal` |
-| 4th alpha | `Graal2` |
+| 4th alpha | `Graal2` (room prefix `G2`, the same dialect as Java Graal; see `client-internals/precursors-and-fan-builds.md`) |
 | 5th, 5th alpha | `Graal3` |
 | 6th | `Graal4` |
 | 7th to 9th | `Graal5` |
