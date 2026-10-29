@@ -1,6 +1,6 @@
 # Graal 4.x clients: Windows 4.20r8, Mac OS X 4.20r6, Windows 4.04r2
 
-Date: 2026-10-29
+Date: 2026-10-29 (4.04r2 section added the same day, after the installer was unpacked)
 
 Sources: five uploads, read statically. Nothing was run. Tags: **[bin]** read from the client binaries · **[file]** read from shipped data files · **[src]** read from source code shipped with an upload · **[inf]** inferred.
 
@@ -9,10 +9,10 @@ Sources: five uploads, read statically. Nothing was run. Tags: **[bin]** read fr
 | Windows 4.20r8 "Packet Logger v2" | `Graal4.exe` launcher, `GraalEngine.dll` (link date January 2007), `g4_PackLog.dll`. **The engine DLL is modified by a third party** (see "Packet logger"). |
 | Windows 4.20r8 "Packet Logger v1 Only" | The Code::Blocks / MinGW project and C++ source of `g4_PackLog.dll` (June 2007). Same DLL as in v2. |
 | Mac OS X 4.20r6 | HFS+ disk image: `Graal.app` (PowerPC, September 2006, "© 2006 Linux Cyberjoueurs"), `ExeReplacer`, `license/`, `languages3D/`, `levels/`, `levels3d/gui`, `sounds/`. |
-| Windows 4.04r2 installer | `Graal4Setup.exe`, a packed self-loading installer. Not unpacked yet (see the end). |
+| Windows 4.04r2 installer | `Graal4Setup.exe`, a **Thinstall** (2003) virtualised bundle. Unpacked: `Graal4.exe`, `GraalEngine.dll` (March 2006), **`Graal3DEngine.dll`**, `fmod.dll`, `ExeReplacer_temp.exe`, `license/` and the data tree (see "Windows 4.04r2"). Stock, unmodified. |
 | Windows 4.20r8 "Unpacked" | Password-protected 7z with encrypted headers. No password is known, so it was skipped. |
 
-So the readable game code is the **4.20r8 Windows engine** (third-party modified) and the **4.20r6 Mac client** (stock).
+So the readable game code is the **4.04r2 Windows engine** (stock), the **4.20r8 Windows engine** (third-party modified) and the **4.20r6 Mac client** (stock).
 
 ## What these clients are
 
@@ -31,16 +31,18 @@ So the line is: 2.x is Delphi only, 3.x is a Torque C++ monolith, and 4.x is a D
 - **There is no separate listserver protocol any more.** The client connects to the license host as an ordinary game server named `Login`, with the normal game login below; the server list is served inside that session. If it fails, the next host in the list is tried. **[bin]**
 - Signatures use the **same RSA-1024 key as 3.x** (PKCS#1 v1.5 over SHA-1, e = 17, the key embedded as hex DER). The Mac `sig.license` verifies against `license.graal` and `sig.graal` against the Mac executable. **[bin][file]**
 - Windows adds a fourth file, **`license/sig.graallib`**, the signature of `GraalEngine.dll`. The check runs in order: exe, then DLL (Windows only), then license. Any missing file stops the client with "The license file(s) have not been found", and any bad signature stops it before the license is read. The Mac client checks exe and license the same way. **[bin]**
-- The packet-logger copy of the engine has this check disabled by a one-byte patch. A conditional jump after the result test has become an unconditional jump, so the "bad signature" branch is never taken. This is a third-party change, not 4.20r8 behaviour. **[bin][inf]**
+- The stock 4.04r2 engine confirms this: when any of the three signatures fails it shows "The license file is invalid!" and stops. All three of its shipped signatures verify against its own files.
+- The packet-logger copy of the 4.20r8 engine has this check disabled by a one-byte patch. A conditional jump after the result test has become an unconditional jump, so the "bad signature" branch is never taken. This is a third-party change, not 4.20r8 behaviour. **[bin][inf]**
 
 ## Version tokens
 
 | Build | Game login token | Date stamp |
 |---|---|---|
+| Windows 4.04r2 | `G3D17026` | 17 February 2006 |
 | Mac OS X 4.20r6 | `G3D27076` | 27 July 2006 |
 | Windows 4.20r8 | `G3D20126` | 20 December 2006 |
 
-The tokens follow the 3.x pattern: `G3D`, then a `DDMMY` date. The dates fit the builds (September 2006 Mac build, January 2007 Windows engine), as they do for `G3D16053` (3.0), `G3D03014` (3.04) and `G3D28015` (3.153). Each token is still assembled one character at a time, so there is no string literal. **[bin][inf]**
+The tokens follow the 3.x pattern: `G3D`, then a `DDMMY` date. The dates fit the builds (March 2006 4.04r2 engine, September 2006 Mac build, January 2007 4.20r8 engine), as they do for `G3D16053` (3.0), `G3D03014` (3.04) and `G3D28015` (3.153). Each token is still assembled one character at a time, so there is no string literal. **[bin][inf]**
 
 ## Login packet
 
@@ -125,15 +127,43 @@ New compared with what 3.x showed: 44 (the window list for 182), 50 (large-packe
   - Any other zlib use (resources decompressed at start-up) fires the hook too.
 - The signature-check bypass above is part of the same modification.
 
-## Windows 4.04r2 installer (not unpacked)
+## Windows 4.04r2
 
-- `Graal4Setup.exe` is a small loader. Its import table keeps only the first import of each DLL of the program it wraps (Delphi runtime), plus the loader's own few. **[bin]**
-- The PE header's `LoaderFlags` field points to a 56-byte table near the end of the file, with magic `0x82D0B188`. The table has one entry for the wrapped program: about 101 KB packed at the start of the overlay, 324 KB unpacked, mapped and relocated in memory and then started. A second record gives a compressed directory of **151 files** (about 29.8 MB unpacked) stored in the rest of the 3.9 MB overlay. The Mac 4.20r6 image holds 149 files. An environment variable, `TS_LOADER`, can point the loader at another file. **[bin]**
-- Each block starts with a tag byte: `0xD9` means stored, and anything else means compressed with the loader's own adaptive range coder (not zlib, LZMA or aPLib). The 4.04 engine can only be read once that coder is ported. The v5 thread sees a wrapper that looks the same on 5.12 and 5.24. **[bin]**
+### How the installer is packed
+
+`Graal4Setup.exe` is a **Thinstall** bundle. Thinstall was Jitit's 2003 application virtualiser, later VMware ThinApp; its stub names itself `X:\thinstall\stub\ts_stub.cc`. It has two layers. **[bin]**
+
+1. **The outer loader.** The PE header's `LoaderFlags` field holds the file offset of a 56-byte table (magic `0x82D0B188`). The table's first record gives the inner stub: offset, mapped size (324 KB) and packed size (101 KB). The loader decodes it into memory, applies relocations, resolves imports and jumps to it. The decoded image has its DOS header blanked except `e_lfanew`. The outer import table keeps only the first import of each DLL of the wrapped Delphi program, as a decoy. `TS_LOADER` in the environment makes the loader read another file.
+2. **The inner stub** (Thinstall runtime, linked July 2003). It reads the rest of the table: the file count (151), and the offset, packed size and unpacked size of a compressed directory. The directory holds the runtime settings (install path `%InstallPath%\Graal4`, log `thinstall.log`, `TS_EXECUTE_EXTERNAL`, message strings) and then one record per file: flags, name, data offset, size, two FILETIMEs, an 8-byte hash, and the packed sizes of the file's 64 KB blocks. Fourteen of the records are folders. It then hooks file APIs so the program sees the bundle as real files.
+
+Every block, the stub and the directory included, starts with a tag byte:
+
+| Tag | Coding |
+|---|---|
+| `0xD9` | stored |
+| `0xD7` | a small LZ77 bit-stream coder |
+| `0xD8` | the same, then every byte XORed with `0xF0` |
+| `0xDE` | an adaptive range coder (the outer stub only) |
+
+In this installer the stub is `0xDE`, the directory is `0xD7`, and the file blocks are 186 × `0xD7` and 46 × `0xD9`. The 137 files come to 7.0 MB. The extraction was checked end to end: `sig.graal` verifies against `Graal4.exe`, `sig.graallib` against `GraalEngine.dll` and `sig.license` against `license.graal`, with the 3.x key. The installer was never run; only its two decoding routines were executed, in a CPU emulator. **[bin]**
+
+### What 4.04r2 ships
+
+- `Graal4.exe` (Delphi launcher), `GraalEngine.dll` (linked 3 March 2006, about 1,650 exports), `fmod.dll` (UPX), `ExeReplacer_temp.exe` (August 2005, the Windows twin of the Mac `ExeReplacer`), and `graalv4_installfiles.txt`, a list of the installed files. **[bin][file]**
+- **`Graal3DEngine.dll`** (linked 3 March 2006): the Torque 3D world as a separate DLL. It exports `loadGraal3DEngine`, `runGraal3DEngine` and `endGraal3DEngine`, and imports 623 symbols from `GraalEngine.dll`. Its source paths are `K:\src\graalv4\user\engine\…` (Torque's `console`, `core`, `dgl`, `game/net`, …). So 3D is a plug-in on top of the 2D engine in 4.x; the 4.20r8 packet-logger set does not include this DLL. **[bin]**
+- `license.graal` is byte-identical to the Mac 4.20r6 one (`loginserver.graalonline.com:14900`). `levels/`, `levels3d/gui`, `levels3d/help`, `languages3D/` and `sounds/` match the Mac 4.20r6 tree; `pics1.png` is byte-identical. **[file]**
+
+### Protocol and engine differences from 4.20r8
+
+- Same login as 4.20r8, with token `G3D17026`: id 5, key, token, account, password, then `win` and the three MD5s (product id, MAC, `C:\` serial), then id 37. Gen 5, the same framing. **[bin]**
+- `GRPKG001` update packages, `localversions.txt`, `onUpdatePackageDownloaded`, `onServerListerConnect` and the window-list answer to 182 are already there in 4.04r2. **[bin]**
+- **Server → client: 98 ids**, which is 4.20r8's set without 107 (layered board change), 108 and 196. 4.04r2 handles 100 inside the main switch; 4.20r8 takes 100 and 108 before it. 4.04r2 does handle 41, so the gap in the Mac 4.20r6 set is a Mac quirk. **[bin]**
+- Saved passwords: 4.04r2 keeps one `password` value; the per-account `<account>_pass` copies are new in 4.20. **[bin]**
+- Engine changes visible in the strings from 4.04r2 to 4.20r8: a separate network thread (`Error creating network thread`), an XML parser (Mini-XML), `GuiBrowserCtrl`, `GuiArrayCtrl`, `GuiStretchCtrl`, reconnect and "cheat window" checks, and a better random generator (`MRandomLCG`). 4.04r2 still has a few 3D-side names in the 2D engine (`getObjectByRay`, `getdatablockvars`, `graal_setGetDatablockProperties`) and a `decryptGraalMemoryDES` routine that 4.20r8 no longer has. **[bin]**
 
 ## Open items
 
-- Port the 4.04r2 range decoder and diff 4.04 against 4.20.
+- A function-level diff of the 4.04r2 and 4.20r8 engines, and a read of `Graal3DEngine.dll` (its own protocol to 3D servers).
 - The ids sent through a register, for a complete client → server list.
-- Whether id 41 really is missing in the Mac build.
+- Where the Mac 4.20r6 build handles id 41, if it does.
 - A clean, unmodified 4.20r8 `GraalEngine.dll` (the "Unpacked" archive, if its password turns up) to confirm the patch points by diff.
