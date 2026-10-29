@@ -114,6 +114,10 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `client-internals/decomp-findings-2026-10-28-b/`: how 2.05 decides tile types. The default tileset has no type table, and each type test asks one `arrays.dat` list (array 2 throw-through, 4 chair, 5 and 6 bed, 1 water with lava included, 3 lava, 8 jumping stone per direction). Tilesets of the new kind use a fixed rule by sheet position. `tiletype()` returns -1 on the default tileset. Static read; `tile-type-lists.tsv` is in the same folder.
 
+## Precursors and fan builds (2026-10-29)
+
+- `client-internals/precursors-and-fan-builds.md`: Zelda Online 1 and 2, Knorr's 1998 ZeldaEditor (whose dialogs became 1st Graal's editor), the GServ lobby with source, password saves, `objects.dat` and `arrays.dat`, Java Graal (2000), the Graal Game Boy Color demo (1999), 39ster's 2014 offline client, and how they relate.
+
 ## Boundary
 
 Raw decompiles stay out of this repository. These notes are derived from public server sources, observed packet shapes, format documentation, and observed client behavior. They contain no code or addresses from the binaries.

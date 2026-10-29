@@ -126,6 +126,10 @@ What each type means. Layouts come from the receiving side. Types marked *inferr
 | `5`, `6`, `7` | none | Pose flags. The readme dates sitting and sleeping to 13th Graal (*inferred*) |
 | `8` | registration-key string | Duplicate key check. If a peer shows the same `reg.code` key, the client says "Another player uses the same registration key like you. You will be disconnected." |
 
+## The Java lobby this comes from
+
+The lobby itself is Knorr's "GServ Standalone" (1997), shipped with source in Zelda Online 2. Its full line set (observer, super user, watch, the `+<id><name>` form, the ignored `H` score line) and the Zelda Online 2 and Java Graal room names (`Z<level>1.6`, `G2<level>`) are in `client-internals/precursors-and-fan-builds.md`.
+
 ## What changed in 1.21
 
 The relay is gone in 1.21. It is replaced by a central GServer with accounts, a version token and zlib. See `gserv-1999.md`.
