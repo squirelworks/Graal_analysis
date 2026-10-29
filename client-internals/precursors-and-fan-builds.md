@@ -192,7 +192,9 @@ It listens on **14801**, gives out ids `0000` plus a 4-digit counter that wraps 
 - Room name: `G2` + level file name. A second "fixed room `Graal2`" mode exists in the class but the applet never selects it.
 - `D` types: the Zelda Online 2 set without `S` (colours) and with `L` (level name) added.
 - Without `S`, Java players appear with default colours. Delphi clients of the same period send types the applet ignores (`F`, `G`, `I`, `Q`, `R`, `U`, `X` to `Z`, `0` to `8`). So mixed sessions would only share movement, chat, board changes, baddies, items and arrows. This is *inferred*, not observed.
-- Whether any Delphi build used the `G2` prefix, so that both could share a room, is **open**.
+- **The `G2` prefix and the `Graal2` fallback are exactly what 4th Graal alpha (October 1998) uses.** The room prefixes and fallback names were read from the string tables of all 18 betas. 1st and 2nd use `Zelda2`, 3rd and 4th use `Graal` with a bare `G` prefix, and 4th alpha alone uses `G2` / `Graal2`. From 5th Graal on (`G3` / `Graal3` up to `G8` / `Graal8`) the rooms no longer match.
+- So Java Graal speaks the relay dialect of 4th Graal alpha. Its `D` types are all ones that 4th alpha also sends or handles, and 4th alpha's extra types (`I`, `U`, `X`, `Y`, `Z`, `Q`, `F`, `G`, `R`) are ones the applet ignores. A Java player and a 4th alpha player on the same level file were in the same room. Later betas were not. This is read from the binaries and the Java source, not from a capture. The only open point is whether 4th alpha appends the bare file name for a local level, as the applet does.
+- The applet was built in July 2000, 20 months after 4th alpha, so its dialect was already long out of date. It only made sense on a relay that still had 4th alpha clients, or Java players alone.
 
 ## Java Graal (July 2000)
 
@@ -223,6 +225,6 @@ A form-by-form comparison adds one more check. GraalX has the same 28 forms as 2
 
 ## Open
 
-- Whether a Delphi beta ever used the `G2` room prefix, so that Java Graal and Delphi players could meet.
+- ~~Whether a Delphi beta ever used the `G2` room prefix.~~ Answered above: 4th Graal alpha did, and no other beta.
 - The GB demo's full script and map format. Only the text and the header were read.
 - Who made the February 2002 Zelda Online 2 edits.

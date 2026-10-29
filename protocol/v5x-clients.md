@@ -91,6 +91,26 @@ S→C 82 (server text) now also feeds the buddy list (`getbuddylist`, `lister`).
 
 From the connection's send wrappers: 1, 2, 4, 5, 6, 7, 8, 9, 10, 12–19, 21–24, 26, 28, 29, 32–36, 37, 41, 44, 47, 50, 79, 80, 81, 92, 93, 96, 97, 98, 130, 152, 154–159, 161. Ids sent through a variable aren't captured, so treat this list as a floor. **[bin]**
 
+Ids whose purpose shows from the code that sends them **[bin][inf]**:
+
+| Id | Sent when |
+|---|---|
+| 6 | Chat text (the chat bar, including `toall` commands) |
+| 9 | Arrow shot |
+| 12 | Item added (sword and shield images) |
+| 23 | File request |
+| 28 | Private message |
+| 34, 47 | File requests used by the update-package downloader (with and without a modification time) |
+| 44 | Reply to S→C 182/183: the process list |
+| 50 | Length header in front of a long id 93 payload |
+| 80 | Request a player profile |
+| 81 | Set your own profile |
+| 152 | Request server text |
+| 154 | Send server text (also used by the options and secure-URL code) |
+| 157 | Request a gani script |
+| 158 | Request a weapon or class script (after a GRESCR01 cache miss) |
+| 161 | Request a class |
+
 ## File formats
 
 | Magic | Notes |
@@ -100,14 +120,27 @@ From the connection's send wrappers: 1, 2, 4, 5, 6, 7, 8, 9, 10, 12–19, 21–2
 | `GLEVNW01`, `GSERVL01` | Text levels, as in 3.x |
 | `GWEBL001` | Web-level cache, as in 3.x. It now accepts GR-V1.03/1.04/1.05 bodies. **[bin]** |
 | `GRMAP001` | gmap, as in 3.x |
-| **`GRESCR01`** | New. A **script cache**: the magic, then a body encrypted with **DES-ECB** (8-byte blocks, 8-byte key). On load, the client takes the CRC32 of the plain body and compares it with the value the server sends; on a mismatch the client asks the server for the script again. It caches class and weapon scripts. **[bin]** |
+| **`GRESCR01`** | New. A **script cache**: the magic, then a body encrypted with **DES-ECB** (8-byte blocks, 8-byte key). On load, the client takes the CRC32 of the plain body and compares it with the value the server sends; on a mismatch the client asks the server for the script again. It caches class and weapon scripts. The key comes from the server with each script (see below). **[bin]** |
 | **`GRPKG001`** | Update package (`.gupd`), a text file with the keys `NAME`, `VERSION`, `PLATFORM`, `DESCRIPTION…DESCRIPTIONEND`, `MODE` (`required`), `ISMAINEXECUTABLE`, `PROTECTOVERWRITE`, `USECHECKSUM`, `SUBPACKAGE`, `FLAG`, `FILE`. Packages nest through `SUBPACKAGE`, with per-platform variants (`_win`, `_mac`, `_linux`). **[file][bin]** |
+
+### How scripts reach the GRESCR01 cache
+
+- **S→C 140** sends a script. It is a GSHORT header length, then a comma-separated header: the type (`weapon` or `class`), the name, a cache flag and two GINT5 values. The script body follows in **plain text**. **[bin]**
+- The two GINT5 values, taken as 32-bit little-endian words, are the **8-byte DES key**. When the cache flag is 1, the client writes `GRESCR01` followed by the DES-encrypted body to disk. It then loads the plain body. Classes go through `TGraalUniverse::addEncryptedClassScript`. **[bin]**
+- **S→C 197** tells the client to use its cache. It carries the same key fields plus a CRC32. The client decrypts its cached copy and checks the CRC32 of the plain text. On a match it loads the cached copy. Otherwise it asks for the script again with **C→S 158**. **[bin]**
+- So the on-disk encryption only hides scripts from casual reading. The key never stays on the client's disk, but every connection sends it in clear inside the game protocol. **[inf]**
 
 Other files: `game_config.txt` (key=value options, including voice chat, video recording and a fixed UDP port, default 14899), `localversions.txt`, and web caches whose names are percent-encoded with decimal codes (`%058` = `:`, `%047` = `/`). The console log is still `graal4console.log`. **[file][bin]**
 
+## Graal3DEngine.dll
+
+- The 3D mode uses **Torque netcode**, as the 3.x clients did: `NetConnection`/`GameConnection`, a connect challenge request (packet type 0x1A), a challenge response, then a connect request. The 3D client logs each step ("Sending Connect challenge Request", "Got Connect Request"). **[bin]**
+- The connect request carries a protocol version, and the client accepts **exactly 24**. Any other value is rejected with `CHR_PROTOCOL`; the `CHR_PROTOCOL_LESS`/`_GREATER`/`CHR_GAME`/`CHR_INVALID` reasons are also present. **[bin]**
+- User-facing messages include "Only official Graal clients are allowed to connect." and "Please update your Graal, the server is requiring a new Graal version!". The first suggests a class or build check on the server side. **[bin][inf]**
+- This is the Torque 3D mode, not the standalone Graal3D protocol in `graal3d/protocol.md` (TCP 14901, `GR3DV002`). **[bin]**
+
 ## Not done
 
-- Unpacking the 5.12–5.24 bundle and the 5.30/5.31 Themida builds (both wrappers need to run)
-- The DES key source for GRESCR01
-- Names for the new C→S ids
-- The Graal3DEngine protocol
+- Unpacking the 5.12–5.24 bundle and the 5.30/5.31 Themida builds (both wrappers need to run). The 5.12 and 5.24 overlays share a header layout: a size word, the constants 0x29, 0x4823 and 0x18BE, a 16-byte per-build field, then a block common to all three builds.
+- Names for the remaining C→S ids
+- The 3D server address and the rest of the Torque 3D session
