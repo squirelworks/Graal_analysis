@@ -17,6 +17,8 @@ Internal version strings recovered from the public version list. No decompile ma
 | G3D03014 | Linux 3.04 (Torque rewrite; 2.22 protocol, see `protocol/v3x-clients.md`) |
 | G3D28015 | Mac OS X 3.153 (2.31 protocol) |
 | G3D30123 | 3.x listserver token (the 3.x form of GNW30123) |
+| G3D20126 | Windows 4.20r8 (engine DLL; logs into the `Login` game server) |
+| G3D22067 | Windows 5.00r7 (engine DLL, Jul 2007; see `protocol/v5x-clients.md`) |
 
 Filename builds in the client tree: Graal_2171 = 2.171, Graal_222 = 2.22, Graal_231 = 2.31.
 
