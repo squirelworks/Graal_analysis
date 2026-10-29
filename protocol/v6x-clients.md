@@ -106,7 +106,7 @@ All three builds carry the 5.x set: `GR-V1.03`–`GR-V1.05` levels, `GWEBL001` w
 
 ## Still open
 
-- Unpacking the Windows builds (both wrappers need to run).
+- ~~Unpacking the Windows builds~~ Done 2026-10-29, see `v5v6-windows-unpacked.md`.
 - The full client → server id table for 6.01/6.03.
 - The payload layouts of the new ids 109, 111 and 198.
 - A live 6.11 connector script, to recover the real 6.11 token, header and id tables.

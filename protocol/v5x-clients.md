@@ -141,6 +141,6 @@ Other files: `game_config.txt` (key=value options, including voice chat, video r
 
 ## Not done
 
-- Unpacking the 5.12–5.24 bundle and the 5.30/5.31 Themida builds (both wrappers need to run). The 5.12 and 5.24 overlays share a header layout: a size word, the constants 0x29, 0x4823 and 0x18BE, a 16-byte per-build field, then a block common to all three builds.
+- ~~Unpacking the 5.12–5.24 bundle and the 5.30/5.31 Themida builds~~ Done 2026-10-29, see `v5v6-windows-unpacked.md`. The 5.12 and 5.24 overlays share a header layout: a size word, the constants 0x29, 0x4823 and 0x18BE, a 16-byte per-build field, then a block common to all three builds.
 - Names for the remaining C→S ids
 - The 3D server address and the rest of the Torque 3D session
