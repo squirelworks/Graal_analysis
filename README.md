@@ -31,6 +31,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/status-bit-0x20.md` — STATUS bit 0x20 is the `hidesword` timer; how it is set and what it gates (2.05).
 - `client-internals/sign-panel.md` — the sign panel from `letters.png` (glyph grid, frame, `#` button codes, paging keys) and what an NPC with no image draws (2.05).
 - `client-internals/ledges-push-pull.md` — ledge jumps (array 8 per facing, the 8-tick curves), pushing and pulling stone blocks (array 16), the held grab, the futile pull, and the `pushed`/`pulled` trigger actions (2.05).
+- `client-internals/live-trace-205.md` — live 2.05 traces: the client reports its own CURPOWER on a hit, ledge-jump timing and running in place, deep water, lava swim and the 101-tick burn.
 - `client-internals/body-colours-and-attributes.md` — how 2.05 colours a body (palette entries per slot, the 20 colours, new-player defaults), what the looks commands change, and GANI attribute sprites and `DEFAULTATTR` (the hat, props 37–41).
 - `client-internals/carry-hide-and-glove.md` — hiding under a carried bush or stone with D (mode 14, poses, sprites, STATUS 0x02), the glove scale (players start at 1, so pots lift) and lifting `canbecarried` NPCs (2.05).
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
