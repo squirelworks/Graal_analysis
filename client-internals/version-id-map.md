@@ -38,6 +38,7 @@ Per-build hashes, dates and the rest are in `build-catalogue.md`.
 | `G3D03014` | Linux 3.04 rev 1 (= 3.041 in the server table below) | 3.x client binary (same date stamp as GNW03014) |
 | `G3D28015` | Mac OS X 3.153 | 3.x client binary (same date stamp as GNW28015) |
 | `G3D30123` | 3.x listserver login | 3.x client binary |
+| `G3D17026` | Windows 4.04r2 | 4.x engine DLL (date stamp 17 Feb 2006) |
 | `G3D27076` | Mac OS X 4.20r6 | 4.x client binary (date stamp 27 Jul 2006) |
 | `G3D20126` | Windows 4.20r8 | 4.x engine DLL (date stamp 20 Dec 2006) |
 

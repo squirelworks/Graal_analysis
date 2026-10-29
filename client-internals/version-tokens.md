@@ -17,6 +17,7 @@ Internal version strings recovered from the public version list. No decompile ma
 | G3D03014 | Linux 3.04 (Torque rewrite; 2.22 protocol, see `protocol/v3x-clients.md`) |
 | G3D28015 | Mac OS X 3.153 (2.31 protocol) |
 | G3D30123 | 3.x listserver token (the 3.x form of GNW30123) |
+| G3D17026 | Windows 4.04r2 (`GraalEngine.dll`, March 2006) |
 | G3D27076 | Mac OS X 4.20r6 (Delphi launcher + C++ engine era; see `protocol/v4x-clients.md`) |
 | G3D20126 | Windows 4.20r8 (`GraalEngine.dll`) |
 | G3D20126 | Windows 4.20r8 (engine DLL; logs into the `Login` game server) |
