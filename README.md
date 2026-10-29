@@ -118,6 +118,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 ## Precursors and fan builds (2026-10-29)
 
 - `client-internals/precursors-and-fan-builds.md`: Zelda Online 1 and 2, Knorr's 1998 ZeldaEditor (whose dialogs became 1st Graal's editor), the GServ lobby with source, password saves, `objects.dat` and `arrays.dat`, Java Graal (2000), the Graal Game Boy Color demo (1999), 39ster's 2014 offline client, and how they relate.
+- `client-internals/gameboy-demo.md`: the full disassembly of the Game Boy Color demo. It covers the GBDK/LCC build, the bank map, the room format (links, texts, NPC records) and all seven rooms, the 31 character types, controls, lifting, entity states and the sound player. The disassembly itself is in the project's shared folder.
 
 ## Boundary
 

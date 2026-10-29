@@ -205,10 +205,14 @@ It listens on **14801**, gives out ids `0000` plus a 4-digit counter that wraps 
 
 ## Graal Game Boy Color demo (1999)
 
-- The ROM header has the title `GRAAL`. It is dual-mode (it runs on both Game Boy and Game Boy Color) on an MBC1 cartridge with 256 KB of ROM, of which only about the first 6 of 16 banks are used. The header checksum is valid and the file is dated 29 September 1999.
-- The title screen text reads "Welcome to Graal / Demo version by Stefan Knorr". So this is Knorr's own port, not a fan project. The "(PD)" in the dump name marks it as public-domain homebrew.
-- Gameplay text includes a companion you free, who then teaches you to lift and throw stones, and a party switch with Select to the character "Fung Si Yun".
-- Baddy names in the ROM include Lizardon, Pachukite, Pach Soldier, Gold Soldier, Water Athena and Red Squall.
+The full disassembly is written up in `gameboy-demo.md`. In short:
+
+- The ROM header has the title `GRAAL`. It is dual-mode (it runs on both Game Boy and Game Boy Color) on an MBC1 cartridge with 256 KB of ROM. Only banks 0 to 5 are used. The header checksum is valid and the file is dated 29 September 1999.
+- It is a C program built with GBDK 2.x and LCC. The whole game runs in the VBlank interrupt.
+- "Welcome to Graal / Demo version by Stefan Knorr" is a sign in the first room; there is no title screen. So this is Knorr's own port, not a fan project. The "(PD)" in the dump name marks it as public-domain homebrew.
+- There are seven rooms of 32×32 tiles. Their links use the PC client's link record, with a room number in place of the file name.
+- Gameplay text includes a captive you free, who shows you how to lift and throw stones and then tells you to press Select and switch to "Fung Si Yun".
+- Names in the ROM such as Lizardon, Pachukite, Pach Soldier, Gold Soldier, Water Athena and Red Squall belong to a table of 31 character types, not only to baddies. The Select menu lets the player switch to any of them.
 - The text font is ordered space, A–Z, a–z, 0–9, then punctuation, starting at byte `0x20`. This is not the PC sign alphabet.
 
 ## 39ster's Graal client 1.00 (2014)
@@ -226,5 +230,5 @@ A form-by-form comparison adds one more check. GraalX has the same 28 forms as 2
 ## Open
 
 - ~~Whether a Delphi beta ever used the `G2` room prefix.~~ Answered above: 4th Graal alpha did, and no other beta.
-- The GB demo's full script and map format. Only the text and the header were read.
+- ~~The GB demo's full script and map format.~~ Answered in `gameboy-demo.md`.
 - Who made the February 2002 Zelda Online 2 edits.
