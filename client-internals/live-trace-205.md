@@ -1,6 +1,6 @@
 # Live traces of the 2.05 rev 2 client
 
-Date: 2026-10-29. These are behaviours seen in the running 2.05 rev 2 client: in Wine, offline with no network, with the player state read every 50 ms tick from outside the process. Hearts reports come from the 2.05 lab capture (`tools/lab-setup.md`, run 1). Tags: **[live]** seen in the running client, **[cap]** seen in a lab capture. This note has no addresses and no decompiler text. The harness, its scripts and the raw traces are in the project files under `graal-decompile/live-trace/`.
+Date: 2026-10-29. These are behaviours seen in the running 2.05 rev 2 client: in Wine, offline with no network, with the player state read every 50 ms tick from outside the process. Hearts reports come from the 2.05 lab capture (`tools/lab-setup.md`, run 1) and from a loopback stub server. Tags: **[live]** seen in the running client, **[cap]** seen in a lab capture. This note has no addresses and no decompiler text. The harness, its scripts and the raw traces are in the project files under `graal-decompile/live-trace/`.
 
 ## Hearts are reported by the client
 
@@ -31,3 +31,12 @@ Date: 2026-10-29. These are behaviours seen in the running 2.05 rev 2 client: in
 * Stepping onto grass resets the counter to 0.
 * The liquid test uses the point (x + 1.5, y + 2).
 * Burning to 0 hearts offline shows the `End` death scroll.
+
+## Server CURPOWER 0, death and respawn **[live]** (online, 2026-10-29)
+
+The real 2.05 rev 2 client was logged in to a loopback stub server: login at (30, 30) on `onlinestartlocal.nw`, AP not sent. The player walked to (25, 42) before each death.
+
+1. **The server sends CURPOWER 0.** The client at once sends GANI `dead`, and does not send CURPOWER. About 1.35 s later (27 ticks) it sends STATUS 0x1C, which sets the dead bit 0x08.
+2. **A key after the timer.** The client sends `PLI_LEVELWARP` (0) to the same level at (30, 30). That is the login point, not the death spot. In the same frame it sends CURPOWER 6, GANI `idle`, X 30, Y 30 and STATUS 0x14 (dead bit cleared). It does not wait for a server reply.
+3. **MAXPOWER 0 first.** If the server sends MAXPOWER 0 before the kill, the respawn still reports CURPOWER 6. The client does not cap its respawn hearts at a MAXPOWER of 0.
+4. **CURPOWER 0 after each respawn.** The client dies and respawns the same way every cycle. A server that answers every revive with CURPOWER 0 (for example an account at MAXHP 0, which GServer-v2 clips to) puts a real client into a death loop.
