@@ -36,10 +36,15 @@ The pixels at (252..255, 223) are colours, not art. The client fills the inside 
 
 ## Keys while reading
 
-- The action key turns to the next three lines, unless the page on show is not full (the sign has fewer lines than the page's first line plus three); then reading ends. A sign of exactly three lines therefore shows an empty second page before it closes, as in the client.
+Reading a sign is its own input state: walking and the A / S / D handler are only reached outside it, so the player does not walk, swing, lift or use an item while a sign is open. Switch-to-chat still works, and while the chat bar has focus the sign keys are skipped. **[2.05]**
+
+- The map key ends reading at once.
 - The first direction key (Up) turns back three lines, when not on the first page.
-- Another key ends reading at once.
+- Every other game key (Left, Down, Right, D, S, A, item list, pause) turns to the next three lines, unless the page on show is not full (the sign has fewer lines than the page's first line plus three); then reading ends. A sign of exactly three lines therefore shows an empty second page before it closes, as in the client.
+- A key counts only when no game key was down on the tick before, so a held key does not repeat and the key that walked into the sign does nothing until it is let go.
 - The client plays a sound when the page turns and runs `playerendsreading` when reading ends.
+
+(An earlier version of this note said any other key ends reading; only the map key does.)
 
 ## NPCs with no image
 

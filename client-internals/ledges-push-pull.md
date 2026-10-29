@@ -59,7 +59,19 @@ At count 28 (checked before the step is counted, so on the 29th blocked step), a
 4. The block moves one tile. Each of its old cells first takes the tile two cells ahead, then the block is written one cell ahead. So the row the block leaves gets the floor that was in front of it.
 5. The 2.05 client sends the 4 x 4 area around the old spot as a board modify, moves the player one tile in the facing, and plays `sounds/stonemove.wav`.
 
-NPCs with `canbepushed` are moved by the same routine: the client checks the cells along the NPC's leading edge, moves it one tile, moves the player, and fires `waspushed` on it.
+### Pushed and pulled NPCs
+
+When no block is found, the same routine looks for an NPC at the probe point.
+
+* **Lookup.** The level's NPC hit test at the point. A character NPC is hit in `x + 0.5 .. x + 2.5`, `y + 1 .. y + 3`; a `setshape2` NPC by its shape's tile types; a GANI NPC by its animation; any other by its image box `[x, x + w/16) x [y, y + h/16)`, where a transparent pixel is a miss for plain image NPCs. The NPC needs `canbepushed` (GS1 command 44, cleared by 45). **[2.05]**
+* **Edge.** The NPC is left out of its own test while every point along the edge it moves into is checked, one per tile from its left or top, `t` while `t < x + w` (or `y + h`): up `(t, y - 1)`, left `(x - 1, t)`, down `(t, y + h)`, right `(x + w, t)`. Sizes are in pixels / 16; character and GANI NPCs count as 48 x 48. Each point goes through the client's blocked-point test: other players (online only), blocking NPCs, two level object lists (most likely dropped objects and chests), and wall tiles. Water does not stop an NPC. **[2.05]**
+* **Move.** The NPC moves exactly one tile, the player one tile the same way, then `waspushed` fires on the NPC. `actionpushed` has already fired. The routine reports success, so the same sound as for a block plays. A character NPC that crosses a water edge gets the splash and switches between `swim` and `idle`. **[2.05]**
+* **Server.** Nothing is sent for the NPC move: the NPC's x and y setters only store the value. The `pushed` trigger action is the only message. **[2.05]**
+* 2.22 is the same, but its NPC lookup also searches the neighbouring map parts on a gmap. **[2.22]**
+
+### The trigger action on the wire
+
+The `pushed` / `pulled` try goes to the server as `PLI_TRIGGERACTION` (38): GINT 0 (three spaces, no NPC), `GCHAR x*2`, `GCHAR y*2`, then the action name, and `,` plus the parameter when there is one, the direction as a decimal string (`pushed,0`). 2.05 also sends it to UDP peers (id 26). **[2.05]**
 
 ## Grabbing and pulling
 
@@ -68,6 +80,7 @@ NPCs with `canbepushed` are moved by the same routine: the client checks the cel
 * The grab lasts while A is held. Arrow keys do not move the player or turn them.
 * **The pull cycle.** Holding the arrow away from the wall sets a counter to 2 and starts the pull pose. Each tick the counter goes 2, 3, ... 19, then back to 2 (18 ticks). Whenever the arrow is held at 19 the client tries a pull. Letting go of any arrow puts the counter back to 1 (just holding).
 * **A pull try** fires `pulled` one tile out from the body (`(1.5, 0)`, `(-0.5, 2)`, `(1.5, 4)`, `(3.5, 2)`), with the opposite of the facing as its parameter, then reads the tile at the grab point. If it is a tile of the pullable block (array 16, entry 1: 1998, 1999 / 2014, 2015), the two cells behind the player must be free (from the block's top-left: up `(0,4) (1,4)`, left `(4,0) (4,1)`, down `(0,-3) (1,-3)`, right `(-3,0) (-3,1)`). NPCs with `canbepulled` are moved the same way and get `waspulled`. Then the block moves one tile towards the player (each old cell first takes the tile two cells behind), the player steps back one tile, and `lift.wav` plays (or `lift2.wav`, by a player flag that was not traced).
+* **Pulled NPCs.** With no pullable block at the grab point, an NPC there with `canbepulled` (command 46, cleared by 47) is pulled the same way as a pushed one. First the two cells behind the player must be free, from the whole-tile grab cell: up `(0,3) (1,3)`, left `(3,0) (3,1)`, down `(0,-3) (1,-3)`, right `(-3,0) (-3,1)`. Then the edge facing the player is checked: up `(t, y + h)`, left `(x + w, t)`, down `(t, y - 1)`, right `(x - 1, t)`. The NPC and the player move one tile back and `waspulled` fires. Nothing goes to the server for the NPC. **[2.05]**
 * **The futile pull.** On anything else (a wall, a rock too heavy for the glove, a push block, the mixed block pieces at 42,26 in `new3.nw`) nothing moves. The `pulled` trigger still fires every 18 ticks, and the pull pose keeps playing.
 
 ## Sprites on the wire

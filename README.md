@@ -31,6 +31,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/status-bit-0x20.md` — STATUS bit 0x20 is the `hidesword` timer; how it is set and what it gates (2.05).
 - `client-internals/sign-panel.md` — the sign panel from `letters.png` (glyph grid, frame, `#` button codes, paging keys) and what an NPC with no image draws (2.05).
 - `client-internals/ledges-push-pull.md` — ledge jumps (array 8 per facing, the 8-tick curves), pushing and pulling stone blocks (array 16), the held grab, the futile pull, and the `pushed`/`pulled` trigger actions (2.05).
+- `client-internals/carry-hide-and-glove.md` — hiding under a carried bush or stone with D (mode 14, poses, sprites, STATUS 0x02), the glove scale (players start at 1, so pots lift) and lifting `canbecarried` NPCs (2.05).
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
