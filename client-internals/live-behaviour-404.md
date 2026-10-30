@@ -49,8 +49,33 @@ Other login details seen live: GServer-v2 reports the client as `G3D17026 (4.042
 
 * **A while carrying throws**: C→S 11 (`PLI_THROWCARRIED`) with an empty payload, then `idle`, and the carry sprite is cleared. **[live]**
 
+## Pots, stones and black stones
+
+For these, two pots, a stone and a black stone were placed on the lab level, and the lab account was given glove power 3. The tile numbers are the ones in `board-respawn.md`. **[live]**
+
+| Object | Glove needed | Board after lifting | Carry sprite (prop 19) | Item drop (GServer-v2) | D hides | Thrown | Back after |
+|---|---|---|---|---|---|---|---|
+| Bush (2) | 1 | 677 678 / 693 694 (stump) | 1 | sometimes (a rupee seen) | yes | leaves, `crush.wav` | 14.2 to 14.5 s |
+| Pot (684) | 1 | 1770 1771 / 1786 1787 (empty base) | 5 | a heart, every time | **no** | shards, `crush.wav` | 15.0 s |
+| Stone (34) | 2 | 1834 1835 / 1850 1851 (hole) | 3 | none | yes | fragments, `crush.wav` | 15.0 s |
+| Black stone (990) | 3 | 1834 1835 / 1850 1851 | GCHAR byte 0xe9 (201), not decoded | none | yes | `crush.wav` | 14.3 s |
+
+* With glove 1, A on a stone plays `grab` instead, as in 2.05. **[live]**
+* A pot gives `item.wav` with the lift, because the server drops its heart at the same moment. Stones only give `lift.wav`. **[live]**
+* The thrown object breaks about 250 to 350 ms after the throw, which is when `crush.wav` is sent. No board change or other packet marks where it landed. **[live]**
+* Coming out of hiding with A sends `carrystill` and status 0x14, which clears bit 0x02. A second A throws. S throws straight from hiding. **[live]**
+* Every respawn is a single S→C 7 with the original 2×2 tiles. The 14 to 15 s spread is GServer-v2's 15 s timer, checked once a second. **[live][src]**
+
+![pot: lift, D (no hide), throw and shards](live-404-pot.png)
+
+![black stone: carried, hidden (D), thrown, gone](live-404-blackstone.png)
+
+## Hidden state survives a reconnect
+
+The client was closed while the player was hidden. GServer-v2 saved `ANI hiddenstill` and `STATUS 22` to the account, but nothing was being carried. On the next login only the shadow was drawn, and the player came back on the first step. A server should clear the hidden status bit and the hiding gani when it saves or loads an account. **[live]**
+
 ## Not covered yet
 
-* Pots and lighter stones: the lab level has no pots, and its stones need a stronger glove.
 * The 4.20r8 packet-logger build under Wine.
 * The client's own ganis, from a 4.x-era server rather than the 2.22 world, to compare the look.
+* Signs (lift entry 1).
