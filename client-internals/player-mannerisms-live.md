@@ -161,6 +161,10 @@ At a wall of deep-water tiles, facing down:
 * **1.41 sword** [1.41]. With `setsword sword1.gif,1` the blade is drawn and the bush in front is cut on the first swing frame, as in 2.05.
 * **2.22** [2.22]. Lift, hide, the stuck pull loop, swimming in place, push and hurt all behave as in 2.05. The hurt test was the same walk into the touch NPC from the right, with the arrow held, and gave the same knockback and the same 12 ticks before walking resumed. The only difference seen is that `swim` restarts at frame 0 when the player stops.
 
+## 5.x and 6.x Windows clients
+
+`protocol/v5v6-lab-play.md` has the same tests on 5.24r4, 5.30r3 and 6.03r7, timed from their own messages on a lab server. Walk 0.5 tile per tick, `push` at about 0.9 s, `lift` for 0.3 s then `carrystill`, throw in the same tick, and `sword` for 5 ticks with the bush cut as the swing starts are all the same as 2.05. New in those builds: while pushing, the client sends the trigger action `pushed,0` once a second. Chat is outlined text with no bubble, and it is cleared by the client after about 3 s. Hiding under a bush or stone (status bit 0x02, only the object drawn, 1.5 px per tick) and the pot's "D does nothing" also match 2.05.
+
 ## The built-in ganis across the gani sets **[gani]**
 
 The 2.0x archives in the project hold only the executables, and the 2.05 client fetches its ganis from the server. The gani sets on hand are:
