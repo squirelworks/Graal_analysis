@@ -9,7 +9,7 @@ Sources: the Graal 3.04 Linux installer (Makeself and a 2014 tgz repack, same ga
 - 3.x is a **C++ rewrite on the Torque Game Engine** (GarageGames). It is not Delphi. The menus, prefs and key binds are compiled TorqueScript (`.dso`, format version 33). Levels, NPCs, GS1, ganis and the Graal network protocol are native code. **[bin][file]**
 - Linux 3.04 (Jan 2004): i386 ELF, UPX-packed, stripped. Uses SDL 1.2, OpenAL and fmod. Mac 3.153 (Feb 2005): PowerPC Mach-O, Carbon, stripped. Both were built by "Linux Cyberjoueurs" (Paris). **[bin][file]**
 - Neither build has a usable symbol table. Naming comes from RTTI class names (e.g. `TGraalConnection`, `TServerListClient`, `TServerLevel`, `TServerNPC`, `TGraalScript`, `GuiGraalCtrl`), from source file names left in allocation tracking (`graal/client.cpp`, `graal/serverlist.cpp`, `graal/levels.cpp`, `graal/npcs.cpp`, `graal/descipher.cpp`, …) and from the Torque console method table. This is a different code base from the Delphi 2.x clients, so the names do not carry over to them. **[bin]**
-- The 3.153 data tree adds a 3D mode (`levels3d/`, `scripts/` with Torque mission, terrain and `GameConnection` scripts). 3D servers run the Torque engine's own UDP protocol on port 28000, alongside the Graal TCP protocol. **[file][bin]**
+- The 3.153 data tree adds a 3D mode (`levels3d/`, `scripts/` with Torque mission, terrain and `GameConnection` scripts). 3D servers run the Torque engine's own UDP protocol alongside the Graal TCP protocol, on the listed port + 1 (28000 is only the Torque address parser's default when no port is given; see `torque/network.md` and `torque/wire-by-build.md`). On the wire 3.153 is `Graal3D` protocol 19 with Graal's class table, not stock TGE. **[file][bin]**
 
 ## Version tokens
 

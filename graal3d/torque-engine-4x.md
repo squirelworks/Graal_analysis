@@ -309,6 +309,6 @@ Open TGE source (1.3 to 1.5) is a good base for the formats and the low-level ne
 
 - Exact `Player` and `ShapeBase` update layouts (Graal adds at least `chat` and a name colour).
 - How the 3D server authenticates the player. The client sends the plain password in the connect request, and the TCP session is open at the same time.
-- How the per-build class CRC is computed.
+- ~~How the per-build class CRC is computed.~~ It is not computed: the table at `0x101ba8b4` is static `{0xFFFFFFFF, 0, 0, 0}` and is only read (`torque/wire-by-build.md`).
 - When the launcher shows "You need to download Graal3D".
 - A capture from a real 2006 3D server, to check all of the above.
