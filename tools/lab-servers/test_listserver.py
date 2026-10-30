@@ -1,6 +1,6 @@
 """Exercise a running lab listserver with every login shape.
 
-Registers a fake gserver on 14900 (REGISTERV3, NEWSERVER, HQ level, two
+Run it with no other gserver connected. Registers a fake gserver on 14900 (REGISTERV3, NEWSERVER, HQ level, two
 players added and one removed, a VERIACC2), then logs in as each client shape
 and checks the reply: shape A (id 0 only), shape B (id 0 + id 1), gen 4 (id 4),
 gen 5 (id 7, 2.22/2.31) and the RC list (id 5).

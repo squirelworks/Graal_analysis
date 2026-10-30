@@ -1,0 +1,97 @@
+diff --git a/include/network/IPacketHandler.h b/include/network/IPacketHandler.h
+index 4ee3651..f443da3 100644
+--- a/include/network/IPacketHandler.h
++++ b/include/network/IPacketHandler.h
+@@ -193,6 +193,13 @@ protected:
+ 	virtual HandlePacketResult handlePacket(std::optional<uint8_t> id, CString& packet) = 0;
+ 	[[nodiscard]] virtual std::string_view whoAmI() const noexcept { return "(unknown);"sv; }
+ 
++public:
++	// Lab: the login frame of gen-3 clients (2.05, 2.17) also carries PLI_LANGUAGE.
++	// Keep the rest of that bundle so the new player can parse it; dropping it leaves
++	// the gen-3 iterator one step behind for the whole session.
++	CString LoginLeftover;
++	void processLoginLeftover(CString& bundle) { parsePacketsFromBundle(bundle); }
++
+ public:
+ 	CEncryption Encryption;
+ 	uint32_t PacketCount = 0;
+@@ -378,6 +385,7 @@ inline void IPacketHandler::parseLoginPacket(CString& buffer)
+ 
+ 	// Pull out the packet.
+ 	auto packet = buffer.readString("\n");
++	LoginLeftover = buffer.bytesLeft() > 0 ? buffer.readChars(buffer.bytesLeft()) : CString();
+ 
+ #ifdef PACKETLOGGING
+ 	const std::string_view who = whoAmI();
+diff --git a/src/loader/flatfile/FlatFileAccountLoader.cpp b/src/loader/flatfile/FlatFileAccountLoader.cpp
+index 493a2ac..55824c9 100644
+--- a/src/loader/flatfile/FlatFileAccountLoader.cpp
++++ b/src/loader/flatfile/FlatFileAccountLoader.cpp
+@@ -389,7 +389,9 @@ bool FlatFileAccountLoader::loadAccount(const std::string_view accountName, Acco
+ 		}
+ 		else if (section == "STATUS")
+ 		{
+-			const auto num = toByte(val);
++			// Lab: never log in hidden. A client that closed while hiding under a carried
++			// object saved bit 0x02, and the player stayed invisible until the first step.
++			const auto num = static_cast<uint8_t>(toByte(val) & ~PLSTATUS_HIDDEN);
+ 			if (account.status != num)
+ 			{
+ 				account.status = num;
+diff --git a/src/player/PlayerClientOriginal.cpp b/src/player/PlayerClientOriginal.cpp
+index 343d56f..1cacfd6 100644
+--- a/src/player/PlayerClientOriginal.cpp
++++ b/src/player/PlayerClientOriginal.cpp
+@@ -140,18 +140,20 @@ bool PlayerClientOriginal::sendStaticLevelData(const std::shared_ptr<StaticLevel
+ 	{
+ 		if (!clientCachedTime.has_value() || clientCachedTime.value() != levelModTime)
+ 		{
+-			// Send board tiles.
+-			if (subLevel != nullptr)
+-				subLevel->sendBoardToPlayer(self);
+-			else
+-				staticLevelData->sendBoardToPlayer(self);
+-
+ 			// Tell the client the current level name.
+ 			// Only send it the very first time for original clients.
++			// Lab: before the board, as GServer efb5b90 and the live-trace stub do;
++			// real 2.05 stays on the loading screen when it comes after the board.
+ 			if (!m_firstLevel)
+ 				sendPacket(CString() >> (char)PLO_LEVELNAME << staticLevelData->levelName);
+ 			m_firstLevel = true;
+ 
++			// Send board tiles.
++			if (subLevel != nullptr)
++				subLevel->sendBoardToPlayer(self);
++			else
++				staticLevelData->sendBoardToPlayer(self);
++
+ 			// Send links.
+ 			staticLevelData->sendLinksToPlayer(self, false);
+ 
+@@ -195,6 +197,11 @@ bool PlayerClientOriginal::sendDynamicLevelData(const std::shared_ptr<Level>& le
+ 	if (level->isSinglePlayer || level->isPlayerLeader(getId()))
+ 		sendPacket(CString() >> (char)PLO_ISLEADER);
+ 
++	// Lab: 2.01 and later wait for PLO_SETACTIVELEVEL before they leave the loading
++	// screen (live 2.05 trace); 156 is in 2.01's handler table, not in 2.00's.
++	if (m_versionId >= CLVER_2_01)
++		sendPacket(CString() >> (char)PLO_SETACTIVELEVEL << level->levelName);
++
+ 	// Send NPCs.
+ 	level->sendNPCsToPlayer(self, cachedModTime);
+ 
+diff --git a/src/player/PlayerLogin.cpp b/src/player/PlayerLogin.cpp
+index 661ef0a..85a8384 100644
+--- a/src/player/PlayerLogin.cpp
++++ b/src/player/PlayerLogin.cpp
+@@ -98,6 +98,8 @@ HandlePacketResult PlayerLogin::msgLoginPacket(CString& pPacket)
+ 	pPacket.setRead(0);
+ 	if (player != nullptr && !player->handleLogin(pPacket))
+ 		player->disconnect();
++	else if (player != nullptr && !LoginLeftover.isEmpty())
++		player->processLoginLeftover(LoginLeftover);
+ 
+ 	return HandlePacketResult::Handled;
+ }
