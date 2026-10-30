@@ -170,6 +170,15 @@ Read from the Linux 6.03 renderer, for the 6.x Seihai profile. Positions are in 
 - **Nickname.** Drawn at **x + 1.5, y + 2.5** (below the sprite). Its colour comes from the player's AP through a fixed ramp: 0 or less dark red (64,0,0); 1–26 dull to bright red; 27–49 red fading to white; 50–55 white; 56–70 light green to green-cyan; 71–99 cyan to blue; 100 gold (224,196,0). It is only drawn when the player-list flag allows it, and can be cut to 50 characters by an option.
 - **Screen message.** Server text for the whole screen is drawn white, centred, 88 px above the bottom of the view.
 
+### Windows builds against Linux
+
+A byte search of the unpacked Windows exes (from `v5v6-windows-unpacked.md`) agrees with the Linux reading **[bin]**:
+
+- 6.00b1, 6.00r2 and 6.03r7 all carry the gen-5 seed and LCG constants and the chat wrap characters ` .,;+-?!`, and `showap`.
+- `Tempus Sans ITC` and `Game_Draw_Texts` are in 6.00r2 and 6.03r7. 6.00 beta1 has neither; its only capitalised face name is `Arial`, so beta1 probably drew chat in Arial. **[inf]**
+- `creationtime.dat` (S→C 111) is in 6.03r7 but not 6.00r2, matching the 6.01 → 6.03 change on Linux.
+- None of them has the 6.11 connector (`quattroplay`, `onSend…` events).
+
 ## File formats
 
 All three builds carry the 5.x set: `GR-V1.03`–`GR-V1.05` levels, `GWEBL001` web-level cache, `GRMAP001` gmaps, `GRPKG001` update packages and `GRESCR01` script cache. No new magic was found. The text-level keywords are not in plain strings in 6.x (probably scrambled like the hosts). **[bin]**
