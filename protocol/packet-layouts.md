@@ -60,7 +60,7 @@ Lab capture, two 2.05 clients in one level (`tools/lab-setup.md`). Player B drop
    - The server sent `PLO_ITEMDEL` (23) to A only, not back to B.
 5. **Respawn:**
    - Exactly 15.0 s after the change (`respawntime = 15`), the server sent `PLO_BOARDMODIFY` again for every patch, with the original tiles: bush 34 35 50 51, grass 2 3 18 19.
-   - Clients do not request the respawn. It is pushed by the server.
+   - Clients do not request the respawn. It is pushed by the server. This is GServer-v2's fixed timer. The original GServer13 used a random 6–12 s for the default `respawntime` 10, only for 2 × 2 changes, and did not echo a change to its sender: see `client-internals/board-respawn.md`.
 6. **Level entry:** an empty `PLO_LEVELBOARD` (0) followed the board packet and `LEVELMODTIME` on level entry, as described above.
 
 ## Player state (server → client)
