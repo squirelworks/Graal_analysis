@@ -1,0 +1,63 @@
+gs5 C>S f16 +32392ms  34 UPDATEFILE  len 17
+gs5 C>S f16 +32392ms  18 FLAGSET  len 7
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 32                             |gr.x=42|
+gs5 C>S f16 +32392ms  2 PLAYERPROPS  len 13
+    props=GANI,X,SPRITE  GANI=cn_walk  X=42  SPRITE=3 (dir 3)
+gs5 C>S f16 +32392ms  24 SHOWIMGPLAYER  len 1
+    full=yes  images=(none)  hex=29
+gs5 C>S f17 +32435ms  34 UPDATEFILE  len 15
+gs5 C>S f17 +32435ms  18 FLAGSET  len 9
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 32 2e 35                       |gr.x=42.5|
+gs5 C>S f18 +32486ms  18 FLAGSET  len 7
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 33                             |gr.x=43|
+gs5 C>S f18 +32486ms  2 PLAYERPROPS  len 2
+    props=X  X=43
+gs5 C>S f19 +32539ms  18 FLAGSET  len 9
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 33 2e 35                       |gr.x=43.5|
+gs5 C>S f20 +32588ms  18 FLAGSET  len 7
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 34                             |gr.x=44|
+gs5 C>S f20 +32588ms  2 PLAYERPROPS  len 2
+    props=X  X=44
+gs5 C>S f21 +32636ms  18 FLAGSET  len 9
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 34 2e 35                       |gr.x=44.5|
+gs5 S>C f23 +32669ms  45 FILEUPTODATE  len 12
+    text=cn_walk.gani
+gs5 C>S f22 +32688ms  18 FLAGSET  len 7
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 35                             |gr.x=45|
+gs5 C>S f22 +32688ms  2 PLAYERPROPS  len 2
+    props=X  X=45
+gs5 S>C f24 +32712ms  45 FILEUPTODATE  len 10
+    text=steps2.wav
+gs5 C>S f23 +32741ms  18 FLAGSET  len 9
+    ? no layout for this id and version in the tables
+    raw 0000  67 72 2e 78 3d 34 35 2e 35                       |gr.x=45.5|
+gs5 C>S f24 +32792ms  2 PLAYERPROPS  len 2
+    props=X  X=45.5
+gs5 C>S f25 +32892ms  2 PLAYERPROPS  len 9
+    props=GANI  GANI=cn_idle
+gs5 S>C f25 +33473ms  42 NEWWORLDTIME  len 4
+    time=<MASKED>
+gs5 C>S f26 +33900ms  34 UPDATEFILE  len 18
+gs5 C>S f26 +33900ms  1 BOARDMODIFY  len 12
+    ? no layout for this id and version in the tables
+    raw 0000  50 48 22 22 25 45 25 46 25 55 25 56              |PH""%E%F%U%V|
+gs5 C>S f26 +33900ms  34 UPDATEFILE  len 14
+gs5 C>S f26 +33900ms  2 PLAYERPROPS  len 10
+    props=GANI  GANI=cn_sword
+gs5 C>S f27 +33941ms  34 UPDATEFILE  len 14
+gs5 C>S f28 +34143ms  2 PLAYERPROPS  len 9
+    props=GANI  GANI=cn_idle
+gs5 S>C f26 +34176ms  45 FILEUPTODATE  len 13
+    text=cn_sword.gani
+gs5 S>C f26 +34176ms  45 FILEUPTODATE  len 9
+    text=crush.wav
+gs5 S>C f27 +34216ms  45 FILEUPTODATE  len 9
+    text=sword.wav
+gs5 C>S f29 +37841ms  24 SHOWIMGPLAYER  len 1
