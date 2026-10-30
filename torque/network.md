@@ -75,15 +75,15 @@ No bits are left over, so the field list above is complete.
 
 `NetConnection::writeConnectRequest` first writes the **net class group** (U32, 0 = game) and the **class CRC** for that group (U32). Then `GameConnection::writeConnectRequest` writes: **[bin]**
 
-| Field | 3.04 Linux | 4.04r2 | 5.12 |
-|---|---|---|---|
-| game string | `Torque Game Engine Demo` | `Graal3D` | `Graal3D` |
-| U32 current protocol | 9 | 19 | 24 |
-| U32 minimum protocol | 9 | 19 | 24 |
-| string join password | server password pref | the account password, plain text | the account password, plain text |
-| U32 argc (≤ 16), then argc strings | script args | 2: account, nickname | 2: account, nickname (field layout unchanged from 4.04r2) |
+| Field | 3.04 Linux | 3.153 Mac | 4.04r2 | 4.20r6 Mac | 5.12 |
+|---|---|---|---|---|---|
+| game string | `Torque Game Engine Demo` | `Graal3D` | `Graal3D` | `Graal3D` | `Graal3D` |
+| U32 current protocol | 9 | 19 | 19 | 21 | 24 |
+| U32 minimum protocol | 9 | 19 | 19 | 21 | 24 |
+| string join password | server password pref | a string the engine sets (`main3D.cs` sets none; not traced) | the account password, plain text | not traced | the account password, plain text |
+| U32 argc (≤ 16), then argc strings | script args | engine-set args (not traced) | 2: account, nickname | not traced | 2: account, nickname (field layout unchanged from 4.04r2) |
 
-The 4.04r2 column comes from the v4 thread (`protocol/v4x-clients.md`); the 5.12 one is from `Graal3DEngine.dll` `0x1004e950` (write) and `0x1004ea00` (server-side read). 5.12's server-side read rejects with:
+The 3.153 column is from `0x122b18` (write) and `0x122c54` (server-side read, which ends in the stock script callback `onConnectRequest`); 4.20r6 from `mac420.c` (`wire-by-build.md`). The 4.04r2 column comes from the v4 thread (`protocol/v4x-clients.md`); the 5.12 one is from `Graal3DEngine.dll` `0x1004e950` (write) and `0x1004ea00` (server-side read). 5.12's server-side read rejects with:
 
 - game string not `Graal3D` → `CHR_GAME` ("Only official Graal clients are allowed to connect.")
 - client current < 24 → `CHR_PROTOCOL_LESS` ("Please update your Graal, the server is requiring a new Graal version!")
@@ -102,9 +102,9 @@ U32  protocol          (must be exactly 24)
 
 For each entry the client looks up its own class of that name, type and group, and records server id to local id (`0x103ae410`) and back (`0x103b0410`), 256 slots per group and type. Ghost and event class ids on the wire are then the **server's** ids. This replaces stock Torque's fixed class numbering, and it is why the class CRC no longer matters. An accept with an empty table (a single 0 bit) plus protocol 24 is enough to reach "Connection established", as in the live run above. An accept without the table bit (stock layout) is read one bit off, gives protocol 12, and is silently rejected. **[run]**
 
-The 5.12 client accepts **exactly 24**, 4.04r2 exactly 19, 3.04 exactly 9; anything else gives `CHR_PROTOCOL`. (Whether 4.04r2 also has the class table was not checked.)
+The 5.12 client accepts **exactly 24**, 4.20r6 exactly 21, 4.04r2 and 3.153 exactly 19, 3.04 exactly 9; anything else gives `CHR_PROTOCOL`. 3.153 and 4.04r2 also have the class table, with three types (object, datablock, event); 4.20r6 has two, like 5.12; 3.04 has none (see `wire-by-build.md`).
 
-**Class CRC.** Stock Torque compares the group and CRC and rejects a mismatch with `CHR_INVALID`. In 5.12 the CRC table at `0x1037754c` is static data `{0xFFFFFFFF, 0, 0, 0}` and nothing writes to it; reading it from the running client and the live connect request both gave group 0 and CRC `0xFFFFFFFF`. The class table in the accept (below) takes the CRC's place. **[bin][run]** (3.04 and 4.04r2 read the same way from a static table; their values were not checked.)
+**Class CRC.** Stock Torque compares the group and CRC and rejects a mismatch with `CHR_INVALID`. In 5.12 the CRC table at `0x1037754c` is static data `{0xFFFFFFFF, 0, 0, 0}` and nothing writes to it; reading it from the running client and the live connect request both gave group 0 and CRC `0xFFFFFFFF`. The class table in the accept (below) takes the CRC's place. **[bin][run]** 4.04r2's table at `0x101ba8b4` is the same static `{0xFFFFFFFF, 0, 0, 0}` with no writer (`wire-by-build.md`). (3.04, 3.153 and 4.20r6 read from a static table too; their values were not checked.)
 
 **Encryption.** None beyond Torque's own framing. The join password travels in clear. **[bin]**
 
