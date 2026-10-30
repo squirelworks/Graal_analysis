@@ -191,6 +191,28 @@ C>S NPCPROPS     (18 bytes: the NPC's own counter)
 
 The server sends nothing for the change itself. So `setplayerprop`/`sethead`/`setcoatcolor`-style commands in an NPC are applied locally first and then reported as one HEADGIF+COLORS+BODYIMG message. Seihai's laundry item (appearance commands logged as "effect not applied") should do the same.
 
+### Baddies, death and respawn (21:18 to 21:21)
+
+Six baddies were added to the test level (gray, blue, red, shooter, frog, golden warrior). Capture from before the login, decoded with Seihai.
+
+- **The leader client runs the baddies.** The server sent `ISLEADER` at login. From then on the 2.22 client sent `BADDYPROPS` (id 15) about **60 a second** (300 per 5 s) for the six baddies. The server only relays them.
+- The baddies swarmed the player at once. They speak in the outlined font ("Halt, intruder!", "You got me...") and the red and golden ones carry swords ([b1](lan/b1.png)). Hearts went 3 → 1.5 → 0 in a few seconds.
+- **Death** ([b2](lan/b2.png)): the board goes black and an "End" scroll in the sign style appears under the player. The client sends `PLAYERPROPS STATUS=28` (0x08 = dead). The server answers by setting rupees, arrows and bombs to 0 and adding four items (`ITEMADD`) around the spot where the player died: the counts are dropped on the ground.
+- **The client stops sending `BADDYPROPS` the moment it dies.** In 34 s of being dead it sent only the 1-byte keep-alive.
+- **Respawn waits for a key.** The death screen stayed up until A was pressed (34 s here). Then the client, not the server, did the respawn, in one frame:
+
+```
+C>S LEVELWARPMOD   (back to the start spot)
+C>S TAMPERCHECK
+C>S FLAGSET gr.x=10, gr.y=31
+C>S PLAYERPROPS CURPOWER=6 GANI=idle X=10 Y=31 SPRITE=0 STATUS=20
+S>C PLAYERPROPS X=10 Y=31 X2=10 Y2=31
+S>C PLAYERPROPS CURPOWER=6 STATUS=20
+```
+
+  So on respawn **the 2.22 client sends CURPOWER itself**, set to full hearts (6 half-hearts for 3 hearts), and the server takes it. That is the path through which the user's first session could have saved 0 hearts: if the client respawned while it held 0 max hearts, it would send CURPOWER 0. It is a lead, not a capture of the bug.
+- After the respawn ([d6](lan/d6.png)) the player carries a name label ("Seihai-tester") under the sprite. The baddies stayed frozen where they were. The client never resumed `BADDYPROPS` and the server sent no new `ISLEADER`, so standing inside a baddy and swinging at it did nothing on either side ([g4](lan/g4.png)), and nothing hurt the player either.
+
 ## Against Seihai's laundry list
 
 | Seihai item | What the real 2.22 client showed |
