@@ -64,7 +64,7 @@ notes = [
 [v141r1.features]
 start_window = "game-mode list (One Player, One Player Online, Two/Three/Four Players) + character heads; account fields live in the server list"
 local_multiplayer = true          # 2/3/4-player split keysets
-save_games = true                 # F2/F3, Graalsav9
+save_games = true                 # F2/F3, writes Graalsv11
 offline_training = false
 serverlist_window = "single list, F8; server info panel (language, version, homepage)"
 animations = "sprite numbers only (no .gani)"

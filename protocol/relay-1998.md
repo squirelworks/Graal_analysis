@@ -8,7 +8,7 @@ The notes come from static analysis of the shipped executables. No decompiler ou
 
 ## Summary
 
-- One TCP connection to a lobby/relay server. The 1998 binaries default to `127.0.0.1:14801`, and the connect dialog (from 3rd Graal on) is pre-filled with the Cyberjoueur server on **14802** (`204.85.8.128` in 3rd Graal, `www.cyberjoueur.com` later).
+- One TCP connection to a lobby/relay server. The 1998 binaries default to `127.0.0.1:14801`, and the connect dialog (from 3rd Graal on) is pre-filled with the Cyberjoueur server on **14802** (`204.85.8.128` in 3rd, 4th and 5th Graal, `www.cyberjoueur.com` from 6th Graal, `www.graalonline.com` in 1.1.9 and 1.1). The 4th and 5th alpha builds have no pre-filled relay host.
 - Every message is a text line ending in `\n`, and the first character is the command. The read buffer is 1 KB.
 - The server is a lobby in the style of Stefan Knorr's Java GServ (see `client-internals/zelda-online-1998.md`). It knows nothing about the game. It groups connections into named games, gives each one an 8-character id, and forwards `D` lines between partners.
 - All game state travels inside `D` lines. The server does not stamp the sender, so each `D` payload starts with the sender's own id.
@@ -22,7 +22,7 @@ The notes come from static analysis of the shipped executables. No decompiler ou
 | 3rd Graal to 1.1.9 | Plain WinSock: blocking `connect`, then `FIONBIO`, then polled `recv` | `WSAStartup(1.1)`. The host is tried with `inet_addr` first and `gethostbyname` second. |
 | 15th Graal on | Same, plus the `TAdventureServer` IP cache in front of the resolver | |
 
-Levels are not sent over this connection. Web levels are fetched over plain HTTP/1.0 (`GET <path> HTTP/1.0`, port 80) by a separate small client (`TWebClient`).
+Levels are not sent over this connection. Web levels are fetched over plain HTTP/1.0 (`GET <path> HTTP/1.0`) by a separate small client (`TWebClient`). The port comes from the URL: 15th Graal's built-in start level is on `www.cyberjoueur.com:7777`, the others use port 80.
 
 ## Lobby lines
 

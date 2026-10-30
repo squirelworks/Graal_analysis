@@ -90,13 +90,25 @@ The 1.21 handlers line up with the later names: 1 links (`TEditorLink`), 2 baddy
 
 The client-to-server ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32. Other sends pass the id in a register, so these lists are not complete.
 
+## Props by build
+
+| | 1.21 | 1.28 b2 | 1.3 test | 1.31 | 1.32 |
+|---|---|---|---|---|---|
+| Player props the client parses | 0–24 | 0–31 | 0–32 | 0–32 | 0–33 |
+| Player props the client sends | 0–24 | 0–24, 26, 31 | 0–24, 26, 31, 32 | same as 1.3 | 0–24, 26, 31–33 |
+| NPC props | 0–17 | 0–32 | 0–34 | 0–34 | 0–34 |
+| Baddy props | 0–10 | 0–10 | 0–10 | 0–10 | 0–10 |
+
+The prop numbers grow at the end, so a decoder can use the later tables (`player-props.md`) and stop at the build's last id.
+Per-build values, and the client-to-server ids, are in `client-internals/version-profiles/v121-v132.toml`.
+
 ## UDP (1.28 beta 2 on)
 
 The 1.28 beta 2 notes call this "direct data packages", and it is the first build that links `bind`, `sendto` and `recvfrom`.
 The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
 The main loop reads TCP and UDP separately ("tcp read", "udp read" in the 1.32 profiler labels).
 1.31 adds `noudp=` and `fixedudpport=` to `graalconfig.txt` (the catalogue gives 14899 as the fixed-port default).
-The UDP payload ids in this era have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
+The client handles UDP ids 0 and 10 to 22 in 1.28 beta 2 and 1.3 test, and 0 and 10 to 23 from 1.31. These are the same ids, with the same +32 offset, that 1.33 handles. Their meanings have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
 
 ## Open questions
 

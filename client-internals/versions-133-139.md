@@ -27,7 +27,7 @@ The builds are the ones in `build-catalogue.md`, identified by MD5 there, and ev
 - **Wire.** Gen 2: every flush is one `u16be length` + zlib stream, with no size threshold, no cipher and no key byte. See `protocol/gserv-1999.md`.
 - **Login.** Login is message id 0, which is `chr(32)` and also marks the client type as player. It carries the 8-byte token, then `chr(len+32)` + account, then `chr(len+32)` + password.
 - **Server.** There is no listserver. The connect dialog is pre-filled with `www.graalonline.com:14900` and the `guest`/`guest` account. There is no server list window.
-- **Levels.** Only GR-V1.00 to 1.03 load (`.graal`, plus `.zelda` Z3-V1 for the offline levels). There is no `.nw`, no `.gmap` and no board packet 101. Saves are `Graalsav9`.
+- **Levels.** Only GR-V1.00 to 1.03 load (`.graal`, plus `.zelda` Z3-V1 for the offline levels). There is no `.nw`, no `.gmap` and no board packet 101. Saves are written as `Graalsv11` (the reader also takes `Graalsav9` and `Graalsv10`; see `../formats/graalsav.md`).
 - **Files.** The client asks for files with `WANTFILE` (23) and never sends `UPDATEFILE` (34). It handles no large-file ids. The `PLO_FILE` body is assumed to be the pre-2.1 form without a modtime (server source, *inferred*). For clients before 2.1, the server adds `.gif` to image names that have no extension.
 - **No tampercheck** (39).
 - **UDP.** There is a peer UDP channel for "data packages", with `noudp=` and `fixedudpport=` (default 14899).
