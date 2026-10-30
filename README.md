@@ -137,3 +137,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 ## Graal 4.x clients (2026-10-29)
 
 - `protocol/v4x-clients.md`: Windows 4.20r8 (a third-party packet-logger build) and Mac OS X 4.20r6, read statically. The Delphi launcher plus C++ `GraalEngine.dll` split, `loginserver.graalonline.com:14900` with no separate listserver protocol, tokens `G3D27076` / `G3D20126`, the login's PC-id fields, saved-password DES, gen 5 unchanged, 101 handled server ids (13 new over 3.153), the `GRPKG001` update packages, what the packet logger really logs, and the 4.04r2 Windows client unpacked from its Thinstall installer (token `G3D17026`, the `Graal3DEngine.dll` plug-in, 98 server ids).
+
+## Reference reimplementations (2026-10-30)
+
+- `client-internals/reference-reimplementations/`: xtjoeytx's 2dadventureclient and LevelScriptEditor weighed against the real-client notes, behaviour by behaviour (matches, invented, missing). Main finding: the `gr.x`/`gr.y` flags seen in lab captures come from GServer-v2's `-gr_movement` weapon in the default account, not from the clients themselves.
