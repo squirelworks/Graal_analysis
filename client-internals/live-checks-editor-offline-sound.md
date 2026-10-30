@@ -33,9 +33,21 @@ A file on disk with the same name does not replace the embedded level. **[live]*
 
 Every client tested reads `levels/tiledefs/tiledefsOffline.txt` when Training starts. That includes 2.05, which builds the file name as `tiledefs` + the server name + `.txt`, and the server name offline is `Offline`. The shipped file has one line, `picso.png,offlinetutorial,1,0,0`, which applies to the `offlinetutorial*` levels only. So in 2.05 the read happens but has no effect on the old `tutorial_*` levels. **[live][2.05]**
 
-### Start without a network
+### The reconnect dialog and *Play offline*
 
-Pressing *Start* in 2.05 with no listserver shows "The connection couldn't be established!" and stays on the server list. That screen has no *Play offline* button. The *&Play offline* button belongs to the reconnect dialog, which appears after a game-server connection fails or drops. In the lab, killing the stub game server while logged in left the client with a half-closed socket, and it stopped updating, so the reconnect dialog was not reached live. **[live]**
+Pressing *Start* in 2.05 with no listserver shows "The connection couldn't be established!" and stays on the server list. That screen has no *Play offline* button. **[live]**
+
+The reconnect dialog has three buttons: *Reconnect*, *Open serverlist* and *Play offline*. It was reached two ways in the lab. **[live]**
+
+| How the connection ended | Dialog text | *Play offline* goes to |
+|--------------------------|-------------|------------------------|
+| The listserver listed a server, but its game port refused the connection (TCP reset) | "The connection couldn't be established!" | `tutorial_b-4.graal` with the welcome sign, the same as Training. No level file was read from disk. |
+| Logged in, then the game socket was destroyed from outside (`ss -K`) | "You have been disconnected from the game server." | The same level, reloaded from the game folder (`onlinestartlocal.nw`), with the player where they stood. |
+
+Two lab notes:
+
+- Closing the server side normally (a FIN) was not enough. The client left the socket half-closed and showed no dialog. The dialog came up only after a reset or a socket error.
+- For the second row, a copy of the online level was in the game folder. The case where the level is not on disk was not repeated after a drop. The code says it falls back to the tutorial (see `offline-tutorial-205.md`).
 
 ## Built-in editor (2.05)
 
@@ -64,28 +76,38 @@ Pressing *Play* on a named, modified level writes the level to disk ("Level save
 
 ## Sound (2.05)
 
-With an audio device present, DirectSound starts and the client plays effects. A play shows up as a lookup of the file in `sounds\`, and that is how the live rows below were matched to actions. **[live]** marks a sound seen in the running client; the rest come from the call sites of the 2.05 sound routine. **[2.05]**
+With an audio device present, DirectSound starts and the client plays effects. Each effect shows up as a lookup of its file under `sounds\`, and that is how the rows below were matched to actions. Most rows were triggered in a test level: water, a pushable stone block, a bush, ledge rows, and chests. GS1 NPCs fired the remaining effects on staggered timers (`putbomb`, `putexplosion2`, `shoot*`, `putleaps`, `spyfire`, `lay`, `puthorse`, `putcomp`, `hurt`, `setgender`). **[live]** marks a sound heard in the running client. **[2.05]** marks a sound known only from the call sites of the sound routine.
 
 | Action | Sound | Source |
 |--------|-------|--------|
-| Walking on ground | `steps2.wav` on every 5th movement tick (0.2 s apart in the trace); `steps.wav` at the start of a move | [live] |
-| Walking in shallow water | `water.wav` on every 15th movement tick | [2.05] |
-| Riding a horse | `horse2.wav` at walking speed, `horse.wav` when faster | [2.05] |
-| Sword swing | `sword.wav`; `axe.wav` from the same routine, presumably for the battle axe | [live] (sword), [inf] (axe) |
-| Lifting or picking up (bush, pot, own bomb) | `lift.wav`, or `lift2.wav`, chosen by a flag on the lifted object | [live] (lift) |
-| Putting down, or laying a bomb | `put.wav` | [live] |
-| Bomb explosion | `bomb.wav`; the explosion routine also has `thunder.wav`, presumably for the superbomb | [live] (bomb), [inf] (thunder) |
-| A thrown object landing | `crush.wav`, or `water.wav` in water | [live] (crush) |
-| Arrow flying, or being shot | `arrow.wav`; `arrowon.wav` when an arrow hits the player | [2.05] |
-| Fireball | `fire.wav` | [2.05] |
-| Item pickup | `item.wav` (`item2.wav` for some items) | [2.05] |
-| Extra item laid or picked up | `extra.wav` | [2.05] |
-| Opening a chest | `chest.wav` | [2.05] |
+| Walking on ground | `steps2.wav` about every 0.2 s; `steps.wav` when a move starts | [live] |
+| Swimming | `water.wav` about every 0.8 s | [live] |
+| Riding a horse | `horse.wav` and `horse2.wav`, alternating about every 0.4 s | [live] |
+| Sword swing | `sword.wav`; with the battle axe, `axe.wav` | [live] |
+| Lifting a bush | `lift.wav` for a male player, `lift2.wav` for a female one (`setgender female`) | [live] |
+| **Getting hurt** | the same `lift.wav` / `lift2.wav`: `hurt`, an explosion, a thrown ball or a baddy hit all play it | [live] |
+| Dying | `dead.wav` | [live] |
+| Laying a bomb | `put.wav` | [live] |
+| Bomb or explosion | `bomb.wav` (`putbomb` of any power, `putexplosion`, `putexplosion2` power 2, the end of a fireblast or nuke) | [live] |
+| Jolt explosion | `thunder.wav` (`putexplosion2` power 3) | [live] |
+| Launching any projectile | `arrow.wav` for arrows, fireballs, fireblasts, nukes and `shootball`, and for arrows from shooting baddies and the dragon | [live] |
+| Fire spy | `fire.wav` (`spyfire`) | [live] |
+| A thrown object or leap landing | `crush.wav`; `water.wav` for the water leap (type 5) | [live] |
+| Picking up a laid item (rupees, battle axe) | `extra.wav` | [live] |
+| Opening a chest | `chest.wav`, also when the chest has a sign. No item sound follows. | [live] |
 | Sign pages | `nextpage.wav` on every page turn | [live] |
-| Pushing, jumping | `stonemove.wav`, `jump.wav` | from the player movement routine; most likely pushing a stone and the ledge jump [2.05][inf] |
-| Baddy draws its sword / walks / frog jumps / dies | `swordon.wav`, `steps.wav`, `frog.wav`, `compudead.wav` | [2.05] |
-| Another player's bomb or item (online) | `bomb.wav` / `thunder.wav`, `item.wav`, `extra.wav`, played from server messages | [2.05][inf] |
+| Pushing a stone block | `stonemove.wav` about once a second while it moves | [live] |
+| Ledge jump | `jump.wav` | [live] |
+| Frog | `frog.wav` when it hops | [live] |
+| Baddy walking | `steps.wav` | [live] |
+| Baddy dies | `compudead.wav` | [live] |
+| Baddy draws its sword | `swordon.wav`. Six baddy types were tried; none played it. | [2.05] |
+| An arrow hitting the player | `arrowon.wav`. Not reached: no test arrow hit the player. | [2.05] |
+| `item.wav`, `item2.wav` | Only used in the sign-reading routine and in a server-message handler. The chest and laid-item tests didn't play them. | [2.05] |
+| Another player's bomb or item (online) | `bomb.wav` / `thunder.wav`, `item.wav`, `extra.wav`, from server messages | [2.05][inf] |
 | GANI `PLAYSOUND`, GS1 `play` / `playlooped` | the named file | [2.05] |
+
+The lift/hurt sound is picked by a single byte on the player object: `lift.wav` when it is set, `lift2.wav` when clear. New players start with it set. That `setgender female` clears it is inferred from the sound changing. **[2.05][inf]**
 
 ## Corrections to earlier notes
 
@@ -93,3 +115,4 @@ With an audio device present, DirectSound starts and the client plays effects. A
 - `offline-tutorial-205.md` and `tools/graaleditor-vs-205.md` said only 2.22 reads `tiledefsOffline.txt`. 2.05 and 2.31 read it too (see above).
 - `tools/graaleditor-vs-205.md` said 2.31 has no editor. It has no editor *forms*, but its start screen launches GraalEditor.
 - `level-editor-205.md` listed Generate map and Edit flags as open. Both are answered above.
+- The first version of the sound table in this note guessed that `lift2.wav` is for heavy objects and that `fire.wav` is the fireball. Both were wrong. `lift2.wav` is the female lift and hurt sound, every projectile launches with `arrow.wav`, and `fire.wav` belongs to `spyfire`.
