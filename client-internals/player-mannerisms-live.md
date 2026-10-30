@@ -22,6 +22,7 @@ A tick is the 50 ms game tick. Speeds are in tiles. This note has no addresses a
 | hide (D while carrying) | `hiddenstill` / `hidden`; walking is **0.1 tile per tick**; only the object is drawn | — |
 | throw (A, or S from hiding) | `idle` in the same tick | 0 ticks |
 | sword (S) | `sword` 5 frames × 1 tick, then `idle`. The player stops while it plays. | 5 ticks |
+| spin (S again during a swing, has-spin status) | the swing is cut off in the next tick and `spin` plays: 13 frames × 1 tick, then `idle` | 13 ticks (0.65 s) |
 | hurt | `hurt` for 31 ticks; knockback 1 tile per tick for 5 ticks; blinking and no further hits for 40 ticks | 1.55 s / 2.0 s |
 | swim | `swim` from the first tick the point (x + 1.5, y + 2) is on water; 0.5 tile per tick; 8 frames × 2 ticks; **keeps animating when standing still** | 16-tick cycle |
 | grab / pull | `grab` on A at a wall. `pull` starts on the arrow away from the wall: 3 frames × 2 ticks, with a pull try every 18 ticks. | — |
@@ -58,12 +59,31 @@ Test objects: a bush, a pot, a light stone, a black stone and a sign in a row (`
   * The player does not move while it plays, even with an arrow held.
   * With the arrow still held, walking resumes in the tick after the swing, from walk frame 0.
   * Holding S does not swing again. Every swing needs a new press.
-  * Holding S for 2.5 s without the spin item gives no charge and no spin.
+  * Holding S for 2.5 s gives no charge and no spin, with or without the spin status. See the next section.
 * **What it looks like** (facing up, `205-sword-up-bush-cut.png`):
   * The blade sweeps from the right side over the head to the left.
   * The bush in front is cut on the **first** swing frame. The leaves fly up and out for about 8 ticks, and the stump is left behind.
   * The shield stays drawn on the right during the swing.
 * **Offline editor play with no sword.** A player started from the editor has sword power 0. S still plays the full `sword` gani and sound, but no blade is drawn and nothing is cut. Give the player a sword (`setsword sword1.gif,1` in a level NPC) to test cutting.
+
+## Spin attack **[live, online stub]**
+
+Recorded on the online lab: the stub server sent `STATUS` (prop 18) = 0x54 (male, weapons allowed, has spin). The offline editor has no way to set the has-spin status.
+
+* **It is a second press, not a charge.** In 2.05 the spin starts when S is pressed again while `sword` is still playing. Holding S down does nothing extra.
+  * The decompile agrees: the S handler checks "already in the sword mode (6) and has spin", then switches to the spin mode (13) instead of starting a new swing.
+  * The client only sees a new press if S was up for at least one tick in between. A release and re-press inside the same 50 ms tick is missed.
+  * A press on swing frames 2, 3 or 4 all worked. A press after the swing has ended (the player is back on `idle`) starts a normal swing, not a spin.
+  * A press during the spin is ignored. It does not queue another spin or a swing.
+* **Timing.**
+  * The swing is cut off: `spin` frame 0 shows in the tick after the second press, so a press on frame 3 skips sword frame 4.
+  * `spin` is 13 frames of one tick each (650 ms), then `idle` in the next tick.
+  * The client stores the facing direction when the spin starts.
+  * The client sends `GANI=spin` to the server once at the start and `GANI=idle` at the end, and asks for `spin.gani` the first time.
+* **What it looks like** (`205-spin-attack.png`, facing down; first row is the swing, then the spin):
+  * The blade sweeps once round the player with a pale blue trail, starting from the facing direction and turning down, right, up, left and back to down.
+  * The body turns with the blade, so the back view shows when the blade is above.
+* Not checked: which bushes the spin cuts and whether it hits players or NPCs.
 
 ## Hurt, knockback and blinking **[live]**
 
@@ -191,6 +211,7 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 5. **Hurt blink.** There is no blink in Seihai. The real client draws the body on alternate ticks for 40 ticks.
 6. **Hide.** There is no `hiddenstill` / `hidden`, no 0.1 tile per tick walk and no hidden flag in Seihai.
 7. **Lift pose.** Seihai goes straight to `carrystill`. The real client plays `lift` for 6 ticks first.
+8. **Spin.** Seihai records the `spinattack` flag but never plays `spin`. The real client turns a second S press during a swing into a 13-tick spin.
 
 ## Harness
 
@@ -209,7 +230,7 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 
 ## Open
 
-* **The spin attack.** It needs the has-spin status. Neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave it offline in 2.05, so the spin was not seen in any build.
+* **The spin attack in other builds.** It was only seen in 2.05, online. Offline, neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave the has-spin status.
 * **1.39's push and walk frames** are not in its player record as plain numbers; they were read from video only.
 * **2.22's push and hurt** were not re-run.
 * **1.41 sword cutting** was not checked.
