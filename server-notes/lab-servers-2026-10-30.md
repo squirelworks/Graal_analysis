@@ -47,7 +47,7 @@ What changes for real clients **[src]**:
 |---|---|---|
 | Classic tokens | 1.33 to 1.411, 2.1 up; nothing for 2.00 to 2.05 | adds GSERV007 to 018 (1.21 to 1.32), 1.38r1/1.39r1, 2.00 `GNW24011`, 2.01, 2.02, 2.02r2, 2.03, 2.04, **2.05r2 `GNW03081` as `CLVER_2_052`**, NewWorld 2.02 `G2N15041`, Graal Worlds. Still no `G3D15010`. |
 | Level send | separate `sendLevel141` for < 2.1, no `SETACTIVELEVEL` | one path for every version: `LEVELNAME`, board (blank board first on first load), links, signs, chests, `LEVELMODTIME`, then NPCs and **`SETACTIVELEVEL` for every version** |
-| 2.05 | needs our gs2lib patch, which locks out 2.1 | **[inf]** should log in unpatched: 2.05 is still pre-2.1 (`CLVER_2_052` < `CLVER_2_1`) but now gets 156. Not run. |
+| 2.05 | needs our gs2lib patch, which locks out 2.1 | no gs2lib patch needed, but stock beta4 still fails real 2.05 and 2.17.1 (below); with our three-fix patch, in game **[lab]** |
 | zlib bug of 2.x clients | `-gr_zlib_fix` clientside weapon for 2.21 to 2.31 | fixed in the receive path: on a zlib data error gs2lib retries as raw DEFLATE and rolls the gen-5 iterator back one step; weapon removed |
 | Big packets | manual `PLO_RAWDATA` handling | gs2lib `CFileQueue` rewritten for RAWDATA (2026-10-26) |
 | Board changes | lost when a level unloads | kept (`def25322`) |
@@ -57,7 +57,22 @@ What changes for real clients **[src]**:
 
 beta4's own notes (`bin/docs/server-unimplemented.md`) say 1.38 to 1.411 and the 2.x/3.x "newmain" era are fully supported client-authoritative, clientside GS1 works up to 5.007, and server-side GS2 is not supported.
 
-**Building it here was blocked** by the session's sandbox (it downloads and compiles gs2lib, gs2-parser, libtom* and ztd at configure time), so nothing in the table above was run. The beta4 build needs GCC 14 or Clang 18, CMake 3.28, Java, and either vcpkg or system antlr4 4.10 with the matching 4.10.1 jar (the CMake file pins 4.13.2; antlr.org is unreachable from the sandbox, Maven Central serves the 4.10.1 jar).
+### beta4 built and run against real clients **[lab]**
+
+Built here 2026-10-30 (GCC 14, CMake 3.31, system antlr4 4.10 with the Maven Central 4.10.1 jar in place of the pinned 4.13.2 download, `UPNP=OFF`, no V8). Stock beta4 against the real clients:
+
+* 2.05r2: logs in as `GNW03081 (2.05r2)` and stays on the loading screen.
+* 2.17.1: "Invalid PlayerProp" right after login.
+
+Three causes, found by decoding the pcap and comparing beta4's server-to-client order with efb5b90's:
+
+1. Gen-3 clients (2.05, 2.17) put `PLI_LANGUAGE` in the same frame as the login line. beta4's `IPacketHandler::parseLoginPacket` reads the login line and drops the rest of the frame, so the new player's gen-3 iterator is one step behind for the rest of the session. This is the 2.17.1 error.
+2. `PlayerClientOriginal` (login type 0) never sends `PLO_SETACTIVELEVEL` (156). The single level path in the table above is `PlayerClientNew`'s; the Original path has no 156. 2.05 waits for it (live-trace finding).
+3. `PlayerClientOriginal` sends the first `PLO_LEVELNAME` after the board. efb5b90 and the live-trace stub send it before, and 2.05 stays on loading otherwise.
+
+`../tools/lab-servers/gserver-beta4-lab.patch` fixes all three (keep and replay the login remainder; send 156 from 2.01 up; LEVELNAME first). With it, real 2.05r2, 2.17.1 and 2.22 each list the server on listserver version 2, reach the game and walk, with no unknown-packet logs. One difference from efb5b90 seen in the trace and left alone: beta4 answers a pre-2.1 client's request for a default file with `PLO_FILESENDFAILED` (30) where efb5b90 sent `PLO_FILEUPTODATE` (45); 2.05 did not mind.
+
+These are bugs against the real clients, not lab choices, so they would be worth upstream; under the project rule nothing was sent outside squirelworks.
 
 ## 3. Listservers
 
@@ -83,10 +98,11 @@ Changed (lab only, our files):
 
 1. Listserver version 2, with tests. It fixes the missing gen-5 login, the duplicate reply, the stale rows and the dead player count, and adds RC lists, an account file and the site/upgrade URLs. Checked against real 2.05, 2.17.1 and 2.22 and against Seihai 2.00 to 2.31.
 2. `run-lab.sh` passes `accounts.txt` to the listserver when it exists.
+3. A second gserver pack, `seihai-lab-servers-beta4.tar.gz`: beta4 `365bbd2` with `gserver-beta4-lab.patch`, beside the efb5b90 pack. It runs 2.05 without a gs2lib patch, so 2.1 keeps its token (no 2.1 client was run), the receive-side zlib fix and the GS1 NPC server.
 
 Not changed:
 
-* The gserver binary. Moving the lab to beta4 is the one upgrade with a clear payoff (2.05 and 2.1 without a patch, the zlib fix, GS1 NPCs), but it needs the sandbox to allow the build, then the same three real-client runs before it replaces the current pack.
+* The efb5b90 pack. It stays the default until other threads have used the beta4 one; both run the same listserver and world.
 
 ### Real client or invented?
 
