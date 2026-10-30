@@ -74,7 +74,7 @@ This adds a run to the static read in `gameboy-demo.md`. Everything it says abou
 - **Select** opens the character carousel in the window. It shows three heads with the middle one's name in the font, and the item slots labelled "Button B" and "Button A" under it. Turning it left and right went through Vincent, Fung Si Yun, Pach Soldier, Ninji, Lunar and Squall in that order, and each step changed the player's look straight away. This confirms the static finding that the carousel is a free picker over all character types.
 - The item icons under the slots change with the character. For example Fung Si Yun shows a green item in slot A, and Pach Soldier shows a blue sword in slot B.
 - Walking around room 0 and the next rooms showed the NPCs and log walls where the room table in `gameboy-demo.md` puts them.
-- Start (music) was not checked by ear.
+- Start (music) was not checked by ear here. A later, longer run (see "Seen in an emulator" in `gameboy-demo.md`) found that Start mutes the game.
 
 ## What this means for Seihai profiles
 
@@ -92,4 +92,4 @@ For the Delphi Graal builds these numbers are a starting point only. Their wall 
 ## Open
 
 - Whether the 1st to 4th Delphi betas still used the 0.9 s / 1.4 s push timings. The Delphi code has not been compared yet.
-- The GB demo's music, which depends on cartridge RAM that the ROM never writes (see `gameboy-demo.md`).
+- The GB demo's music format, which depends on cartridge RAM that the ROM never writes. In the emulator, Start only muted the game (see `gameboy-demo.md`).
