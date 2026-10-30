@@ -170,10 +170,11 @@ In the user's first session the server saved the account with 0 max hearts, 0 ar
 
 ### Signs
 
-- The test level has a text sign (`LEVELSIGN` at 20,30, four pages) on a sign tile.
-- Standing below it facing up ([sign-d](lan/sign-d.png), x 19.9, y 31) and holding up for 1.5 s shows nothing.
-- A lifts the sign tile instead (glove 3), [sign-a](lan/sign-a.png); A again throws it, and it breaks into green leaf pieces ([sign-b](lan/sign-b.png)). The sign tile comes back like a bush.
-- So on 2.22 a liftable sign tile with a glove strong enough is lifted, not read, and walking up into it does not open the text. Whether the text needs another spot or a non-liftable tile is still open.
+- The level's `SIGN` record names the **bottom-left** tile of the 2 × 2 sign. With the record at the top-left (20,30) the sign never opened; after the test server moved it to 20,31 it works.
+- Walking up into the sign from below (x 20, y 31, facing up) opens it at once, with no key press ([sg1](lan/sg1.png)). The scroll shows **three source lines per page**, one panel line each. Lines are **not wrapped**: a long line runs past the right edge of the scroll and off the panel.
+- Capital letters are drawn in green and the rest in black, as in the sign font image.
+- A goes to the next page ([sg2](lan/sg2.png), page four is a single line). A on the last page closes the sign. While the sign is open A does not lift.
+- Before the fix, A lifted the sign tile (glove 3) ([sign-a](lan/sign-a.png)), and A again threw it, breaking it into green leaf pieces ([sign-b](lan/sign-b.png)). The sign tile comes back like a bush. So on 2.22, if no readable sign covers the tile, a liftable sign tile is just a liftable object.
 
 ### Walking into corners
 
@@ -200,7 +201,7 @@ The server sends nothing for the change itself. So `setplayerprop`/`sethead`/`se
 | Duck while carrying (priority 4) | D hides the player under the carried bush, the bush moves with the player while hidden, and D again brings the player back. Seihai commit 0ddbc35 ("Hide under a carried bush or stone with D") matches this. |
 | Bush respawn | About 15 s on this server (see above). Seihai shows the server's own restore through `PLO_BOARDMODIFY`, so nothing to change. |
 | Chat repeat, chat bubble look | Chat over the head is plain outlined text with no bubble. Key repeat while typing was not tested. |
-| Pots, signs, appearance commands | See the fourth pass: pots drop server items, a liftable sign tile is lifted instead of read, and clothes changes are client-side then sent as one PLAYERPROPS. |
+| Pots, signs, appearance commands | See the fourth pass: pots drop server items, a sign opens by walking up into it, three lines a page, unwrapped, and clothes changes are client-side then sent as one PLAYERPROPS. |
 | HUD counters | Counters start at their defaults and update in place a few seconds after the level is drawn. |
 
 ## Not done
