@@ -8,11 +8,12 @@ This note refines `offline-play.md` and `offline-training.md`.
 
 ## How the client goes offline
 
-There is no "offline" menu item on the start screen. Offline play is reached in these ways:
+Offline play is reached in these ways:
 
-1. **"&Play offline" on the reconnect dialog** (`TReconnectFrame`). The dialog appears when the connection fails or drops ("The connection could not be established!", "You have been disconnected from the game server.", "There are too many players online."). Choosing *Play offline* frees the game socket, so the connection object is nil from then on. **[2.05]**
-2. **Command line.** `Graal.exe level.graal` starts with a local player and opens that file in the editor. Play then runs it offline (see `level-editor-205.md`).
-3. **F5 Load level** while online. The client warns "When you load a level you will be disconnected from the server. Continue?" and then loads the file locally.
+1. **Training on the start screen.** It starts the embedded tutorial at `tutorial_b-4.graal` with no connection (confirmed live, see `live-checks-editor-offline-sound.md`). **[2.05]**
+2. **"&Play offline" on the reconnect dialog** (`TReconnectFrame`). The dialog appears when the connection fails or drops ("The connection could not be established!", "You have been disconnected from the game server.", "There are too many players online."). Choosing *Play offline* frees the game socket, so the connection object is nil from then on. **[2.05]**
+3. **Command line.** `Graal.exe level.graal` starts with a local player and opens that file in the editor. Play then runs it offline (see `level-editor-205.md`).
+4. **F5 Load level** while online. The client warns "When you load a level you will be disconnected from the server. Continue?" and then loads the file locally.
 
 "Offline" in the client simply means *no game connection object*. Every check that refuses the editor, enables the tutorial resources, or sends file requests tests that one condition.
 
@@ -30,6 +31,8 @@ The level loader checks two sources in order. **[2.05]**
 
 1. **Embedded tutorial.** When offline, and the name starts with `tutorial`, the loader maps the file name to an `RCDATA` resource and reads the level from the executable.
 2. **Disk.** Otherwise it looks the name up through the file-name cache and reads the file from disk.
+
+The embedded copy wins: with a `tutorial_b-4.graal` of different content in the game folder, the client still loads the embedded level and does not look for the file (live).
 
 Online, names starting with `tutorial` are not special. They go to the server like any other level.
 
@@ -75,7 +78,8 @@ Signs at (0, 0) are not drawn on the board. Chests and the `say n` command show 
 
 ## Later clients
 
-- **2.17, 2.22 and 2.31** keep embedded tutorials but trim them to a 3×3 grid of 9 levels named `offlinetutorial_a-1.graal` … `offlinetutorial_c-3.graal` (resources `TUTORIALA1` … `TUTORIALC3`, still `GR-V1.03`). 2.22 also reads `tiledefsOffline.txt` for offline tile definitions. **[2.17][2.22][2.31]**
+- **2.17, 2.22 and 2.31** keep embedded tutorials but trim them to a 3×3 grid of 9 levels named `offlinetutorial_a-1.graal` … `offlinetutorial_c-3.graal` (resources `TUTORIALA1` … `TUTORIALC3`, still `GR-V1.03`). Training starts on `offlinetutorial_b-2.graal`, the centre of the grid (2.22 and 2.31, live). **[2.17][2.22][2.31]**
+- Offline, every client tested (2.05, 2.22, 2.31) reads `levels/tiledefs/tiledefsOffline.txt`, because the tile-definition file name is `tiledefs` + server name + `.txt` and the offline server name is `Offline`. The shipped file only targets `offlinetutorial*` levels, so it has no effect on the 2.05 tutorial. **[live]**
 - The standalone GraalEditor 2.3.1.1 carries the same 9 `offlinetutorial_*` names and `tiledefsOffline.txt`. **[inf from strings]**
 
 ## Offline implications
