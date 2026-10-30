@@ -42,6 +42,7 @@ The 5.00r7 folder had been used by a player and later updated by the auto-update
 ## Login
 
 - **The separate list-server protocol is gone.** The client opens a normal game connection to a server named `Login`, at the host and port from `license.graal`. The server list and account screens are then served by that Login server as scripted GUI. S→C 190 raises the script event `onServerListerConnect`. The 3.x listserver ids (7 `G3D30123newmain`, then 1 account/password) are no longer used. **[bin]**
+- **On the Login server the client draws no characters and no default HUD**, only tiles, chests and image NPCs. To get into the game it needs S→C 178 (`PLO_SERVERWARP`, `x,name,host,port`), after which it logs in again to that host under the new name. A server that the client reaches directly through `license.graal` therefore never shows the player until it sends 178. See `../version-profiles/lab-v5-2026-10-30.md`. **[cap]**
 - The first message is id **5**, sent in mode 3 (zlib, no cipher, no type byte): **[bin]**
   1. key GCHAR (`rand & 0x7F`), sent only on the first message
   2. token **`G3D22067`**, assembled from eight one-character globals, so no literal exists

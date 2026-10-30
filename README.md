@@ -83,6 +83,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `version-profiles/2.22-2.31.md` and `.toml`: per-version profiles for 2.22, 2.3 (inferred) and 2.31. Covers the wire protocol, the start window, server-list tabs, editor presence, options, GS1 symbol changes, and feature switches for Seihai.
 - `version-profiles/3.04-3.153.md` and `.toml`: the same profile for the 3.x Linux 3.04 and Mac 3.153 clients (twins of 2.22 and 2.31): sent and handled ids, prop ranges, no tampercheck, listserver, 3D mode and other features. `version-profiles/lab-304-linux-2026-10-30.md` is the lab run of the real 3.04 client on GServer-v2 (login on the wire, no tampercheck, push delay, chat look, bush and lift sequences).
+- `version-profiles/lab-v5-2026-10-30.md`: the lab run of the real 5.00r7, 5.12 and 5.24r4 Windows clients on GServer-v2. It covers the Login-server mode that hides the player until S→C 178, movement and gani timings, push triggers, bush cut and respawn, carrying and hiding, the chat text look, and HUD differences. Stills are in `client-internals/mannerisms-shots/v5-*.png`.
 
 ## Decompile findings, batch b (2026-10-24)
 
