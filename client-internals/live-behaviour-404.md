@@ -29,6 +29,8 @@ Other login details seen live: GServer-v2 reports the client as `G3D17026 (4.042
 
 * While a key is held, the client sends X2/Y2 (props 78/79) every 50 ms tick. The value is half-pixels, with the sign in the low bit. A walk step is 16 half-pixels, which is 8 px or half a tile per tick (10 tiles/s). **[live]**
 * Against a wall the `push` gani starts about 0.9 s after the player stops moving, which matches 2.05's 18 blocked steps (`ledges-push-pull.md`). The client sends 157 `push` and prop 10 `push`, and goes back to `idle` when the key is let go. **[live]**
+* While pushing, the client also sends a trigger action (C→S 38) `pushed,0` at a point in front of the player, about 0.55 s after the `push` gani starts and then about once a second. This is the online form of 2.05's `pushed` trigger. **[live]**
+* A mouse click on the game view sends a trigger action `leftmouse` at the clicked point. **[live]**
 
 ## Action key (A), sword (S), item (D)
 
@@ -74,8 +76,16 @@ For these, two pots, a stone and a black stone were placed on the lab level, and
 
 The client was closed while the player was hidden. GServer-v2 saved `ANI hiddenstill` and `STATUS 22` to the account, but nothing was being carried. On the next login only the shadow was drawn, and the player came back on the first step. A server should clear the hidden status bit and the hiding gani when it saves or loads an account. **[live]**
 
+## 4.20r8 (the packet-logger build)
+
+The 4.20r8 engine survives only in a third-party packet-logger build (`protocol/v4x-clients.md`). Its logging hook calls fixed Windows XP SP2 addresses, so it crashes anywhere else. In a local copy, the eight original bytes at the hook's only call site (the end of zlib's inflate) were put back, which turns the build into a plain 4.20r8 engine. That copy ran under Wine with the 4.04r2 data files. **[live][bin]**
+
+* GServer-v2 accepts it with token `G3D20126`, and it goes through the same Login server and S→C 178 handover. **[live]**
+* Chat: the same white bold text with a blue shadow, and the same dark red Tab bar. After Enter, the bar stayed open with the sent text in it. **[live]**
+* Walking is 8 px per tick. The `push` gani starts 0.85 s after the last step, and the `pushed` trigger action follows 0.55 s later and then once a second, as in 4.04r2. **[live]**
+
 ## Not covered yet
 
-* The 4.20r8 packet-logger build under Wine.
 * The client's own ganis, from a 4.x-era server rather than the 2.22 world, to compare the look.
 * Signs (lift entry 1).
+* Carrying and hiding on 4.20r8. Only chat, walking and pushing were repeated there.
