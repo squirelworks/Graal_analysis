@@ -150,6 +150,69 @@ For Seihai: Seihai #159 stopped Seihai from re-sending unchanged `lastweapon` fl
 
 Pots, signs and appearance (clothes-changer) commands are still untested. A lift attempt in the third pass happened on a stump (the sword had already cut the bush), so the capture has no lift or throw message.
 
+## Fourth pass: LAN test world (21:08 to 21:16 local)
+
+The user ran the patched GServer-v2 beta4 pack on their Linux PC (GwenTea2, 192.168.0.122:14802) with a test level `testworld.nw`. On this PC a hosts line points `listserver.graal.in` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/).
+
+### Pots
+
+| Screenshot | What it shows |
+|---|---|
+| [pot1](lan/pot1.png), 120 ms after A | The pot is over the head and the pot's stand is left on the board as the empty tile. A heart is already lying in the stand. |
+| [pot2](lan/pot2.png), 600 ms later | Carry pose, heart still in the stand. |
+| [pot4](lan/pot4.png) | Turned left and threw: the pot is gone and the heart stays where the pot was. |
+
+On this server the drop comes from the server, in the same frame as the lift: the client sends `BOARDMODIFY` and `GANI=lift`, and the server replies at once with `ITEMADD` at the pot's spot (item 5, heart). The client sends `ITEMTAKE` with the same three bytes when the player stands on it. The pot was back on the board within about 15 s (not timed precisely). (The drop is the server's `vasesdrop`/`bushitems` option; a server without it drops nothing.)
+
+### The heart-refill death loop
+
+In the user's first session the server saved the account with 0 max hearts, 0 arrows, 0 bombs and 0 gralats, so every respawn was clipped to 0 hearts and the player died over and over. In the captured second session the 2.22 client **never sends MAXPOWER, CURPOWER, arrows, bombs or gralats**: its login PLAYERPROPS are NICKNAME, HEADGIF, COLORS, STATUS, UDPPORT, ADDITFLAGS, PLANGUAGE, OSTYPE and TEXTCODEPAGE, and later only GANI, X, Y, SPRITE, CARRYSPRITE and the clothes props below. The server's heart pickup path cannot zero max hearts (GwenTea2 read the beta4 source). So the zeroing in the first session is still unexplained; it was not captured.
+
+### Signs
+
+- The level's `SIGN` record names the **bottom-left** tile of the 2 × 2 sign. With the record at the top-left (20,30) the sign never opened; after the test server moved it to 20,31 it works.
+- Walking up into the sign from below (x 20, y 31, facing up) opens it at once, with no key press ([sg1](lan/sg1.png)). The scroll shows **three source lines per page**, one panel line each. Lines are **not wrapped**: a long line runs past the right edge of the scroll and off the panel.
+- Capital letters are drawn in green and the rest in black, as in the sign font image.
+- A goes to the next page ([sg2](lan/sg2.png), page four is a single line). A on the last page closes the sign. While the sign is open A does not lift.
+- Before the fix, A lifted the sign tile (glove 3) ([sign-a](lan/sign-a.png)), and A again threw it, breaking it into green leaf pieces ([sign-b](lan/sign-b.png)). The sign tile comes back like a bush. So on 2.22, if no readable sign covers the tile, a liftable sign tile is just a liftable object.
+
+### Walking into corners
+
+Walking left into the bottom corner of the sign moved the player down by 0.5 tile (y 30.3 → 30.8), and walking up past the sign's corner from x 18.5 moved the player left to x 17.9. The 2.22 client slides the player around an obstacle's corner instead of stopping it.
+
+### Clothes changer
+
+Touching the NPC changes the outfit at once ([npc0](lan/npc0.png) before, [npc1](lan/npc1.png) after) and the NPC shows "Outfit N of 4" over its head in the outlined font. The NPC's script runs on the client: each touch makes the client send one PLAYERPROPS with all of the new look together, e.g.
+
+```
+C>S PLAYERPROPS  HEADGIF=image=head2.png  COLORS=3,7,18,4,0  X=42.5  BODYIMG=body3.png
+C>S NPCPROPS     (18 bytes: the NPC's own counter)
+```
+
+The server sends nothing for the change itself. So `setplayerprop`/`sethead`/`setcoatcolor`-style commands in an NPC are applied locally first and then reported as one HEADGIF+COLORS+BODYIMG message. Seihai's laundry item (appearance commands logged as "effect not applied") should do the same.
+
+### Baddies, death and respawn (21:18 to 21:21)
+
+Six baddies were added to the test level (gray, blue, red, shooter, frog, golden warrior). Capture from before the login, decoded with Seihai.
+
+- **The leader client runs the baddies.** The server sent `ISLEADER` at login. From then on the 2.22 client sent `BADDYPROPS` (id 15) about **60 a second** (300 per 5 s) for the six baddies. The server only relays them.
+- The baddies swarmed the player at once. They speak in the outlined font ("Halt, intruder!", "You got me...") and the red and golden ones carry swords ([b1](lan/b1.png)). Hearts went 3 → 1.5 → 0 in a few seconds.
+- **Death** ([b2](lan/b2.png)): the board goes black and an "End" scroll in the sign style appears under the player. The client sends `PLAYERPROPS STATUS=28` (0x08 = dead). The server answers by setting rupees, arrows and bombs to 0 and adding four items (`ITEMADD`) around the spot where the player died: the counts are dropped on the ground.
+- **The client stops sending `BADDYPROPS` the moment it dies.** In 34 s of being dead it sent only the 1-byte keep-alive.
+- **Respawn waits for a key.** The death screen stayed up until A was pressed (34 s here). Then the client, not the server, did the respawn, in one frame:
+
+```
+C>S LEVELWARPMOD   (back to the start spot)
+C>S TAMPERCHECK
+C>S FLAGSET gr.x=10, gr.y=31
+C>S PLAYERPROPS CURPOWER=6 GANI=idle X=10 Y=31 SPRITE=0 STATUS=20
+S>C PLAYERPROPS X=10 Y=31 X2=10 Y2=31
+S>C PLAYERPROPS CURPOWER=6 STATUS=20
+```
+
+  So on respawn **the 2.22 client sends CURPOWER itself**, set to full hearts (6 half-hearts for 3 hearts), and the server takes it. That is the path through which the user's first session could have saved 0 hearts: if the client respawned while it held 0 max hearts, it would send CURPOWER 0. It is a lead, not a capture of the bug.
+- After the respawn ([d6](lan/d6.png)) the player carries a name label ("Seihai-tester") under the sprite. The baddies stayed frozen where they were. The client never resumed `BADDYPROPS` and the server sent no new `ISLEADER`, so standing inside a baddy and swinging at it did nothing on either side ([g4](lan/g4.png)), and nothing hurt the player either.
+
 ## Against Seihai's laundry list
 
 | Seihai item | What the real 2.22 client showed |
@@ -160,7 +223,7 @@ Pots, signs and appearance (clothes-changer) commands are still untested. A lift
 | Duck while carrying (priority 4) | D hides the player under the carried bush, the bush moves with the player while hidden, and D again brings the player back. Seihai commit 0ddbc35 ("Hide under a carried bush or stone with D") matches this. |
 | Bush respawn | About 15 s on this server (see above). Seihai shows the server's own restore through `PLO_BOARDMODIFY`, so nothing to change. |
 | Chat repeat, chat bubble look | Chat over the head is plain outlined text with no bubble. Key repeat while typing was not tested. |
-| Pots, signs, appearance commands | Not tested on this run. |
+| Pots, signs, appearance commands | See the fourth pass: pots drop server items, a sign opens by walking up into it, three lines a page, unwrapped, and clothes changes are client-side then sent as one PLAYERPROPS. |
 | HUD counters | Counters start at their defaults and update in place a few seconds after the level is drawn. |
 
 ## Not done
