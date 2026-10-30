@@ -66,7 +66,7 @@ Test objects: a bush, a pot, a light stone, a black stone and a sign in a row (`
   * The shield stays drawn on the right during the swing.
 * **Offline editor play with no sword.** A player started from the editor has sword power 0. S still plays the full `sword` gani and sound, but no blade is drawn and nothing is cut. Give the player a sword (`setsword sword1.gif,1` in a level NPC) to test cutting.
 
-## Spin attack **[live, online stub]**
+## Spin attack **[live, online]**
 
 Recorded on the online lab: the stub server sent `STATUS` (prop 18) = 0x54 (male, weapons allowed, has spin). The offline editor has no way to set the has-spin status.
 
@@ -83,6 +83,11 @@ Recorded on the online lab: the stub server sent `STATUS` (prop 18) = 0x54 (male
 * **What it looks like** (`205-spin-attack.png`, facing down; first row is the swing, then the spin):
   * The blade sweeps once round the player with a pale blue trail, starting from the facing direction and turning down, right, up, left and back to down.
   * The body turns with the blade, so the back view shows when the blade is above.
+* **2.22 does the same** [2.22]. It was run online against the patched GServer-v2 beta4 lab server, with `STATUS 84` in the account file.
+  * A second press on swing frame 3 cut the swing off, and `spin` ran 13 × 1 tick, then `idle`.
+  * Holding S gave one swing only, and a third press during the spin was ignored.
+  * The 2.22 pack's own `spin.gani` looks the same, blade trail included (`222-spin-attack.png`).
+  * A brand-new account created with `STATUS 84` once stalled on "Loading account…"; an existing account edited to 84 logged in fine. Not chased further.
 * Not checked: which bushes the spin cuts and whether it hits players or NPCs.
 
 ## Hurt, knockback and blinking **[live]**
@@ -231,5 +236,5 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 
 ## Open
 
-* **The spin attack in other builds.** It was only seen in 2.05, online. Offline, neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave the has-spin status.
+* **The spin attack in 1.39 and 1.41.** It was seen only in 2.05 and 2.22, online. Offline, neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave the has-spin status.
 * **1.39's push and walk frames** are not in its player record as plain numbers; they were read from video only.
