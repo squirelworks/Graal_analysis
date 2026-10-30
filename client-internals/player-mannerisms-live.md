@@ -1,9 +1,9 @@
-# Player mannerisms seen in real clients (2.05 rev 2 and 1.39)
+# Player mannerisms seen in real clients (1.39, 1.41, 2.05 rev 2, 2.22)
 
-Date: 2026-10-30. What the player does, tick by tick, in two real clients run under Wine with no network.
+Date: 2026-10-30. What the player does, tick by tick, in four real clients run under Wine with no network.
 
 * **2.05 rev 2.** The player state was read every 3 ms from outside the process while xdotool held keys, and the screen was recorded at 60 fps. Tag **[live]**. The test level is `lab1.nw` (described below).
-* **1.39.** This client was run in its own One Player mode on its built-in start level. It was measured from 60 fps screen video only, with no memory read. Tag **[video]**. Its counts are good to ±1 tick.
+* **1.39, NewMain 1.41 (`graalnm24`) and 2.22.** These were traced the same way, from their own player records (see "Other builds" below). Tags **[1.39]**, **[1.41]**, **[2.22]**. Where only video was used, the tag is **[video]**, and those counts are good to ±1 tick.
 * **The gani files.** These are the files that the timings come from. Tag **[gani]**.
 
 A tick is the 50 ms game tick. Speeds are in tiles. This note has no addresses and no decompiler text. The harness, the level, the raw traces and the gani comparison script are in the project files under `graal-decompile/live-trace/mannerisms/`. Stills are in `mannerisms-shots/`.
@@ -96,19 +96,49 @@ At a wall of deep-water tiles, facing down:
 * **Letting go of the arrow while still holding A.** The cycle counter drops to 1, but the pose stays `pull` and keeps animating. It does not go back to `grab`.
 * **Letting go of A as well.** The pose still stays `pull`, animating in place, until the next key moves the player. This answers the open question in `ledges-push-pull.md`: nothing sets `idle` there, and the stale pull loop is what is drawn.
 
-## 1.39, before ganis existed **[video]**
+## Other builds: 1.39, NewMain 1.41 and 2.22
 
-1.39 is the last client before the first gani build (`graalnm24`, January 2001). Its player animation is built into the executable.
+### How each was run
 
-* **Input under Wine.** 1.39 ignores xdotool keys until `nodirectinput=true` and `joystickon=false` are set in its `graalconfig.txt`. 2.05 needs neither.
-* **Walk.** 0.5 tile per tick (8 px per tick) with an 8-tick frame cycle, the same as 2.05.
-* **Idle.** The sprite does not change.
-* **Against a wall.** The walk cycle runs in place, and the push pose replaces it about **18 ticks** after the key went down, the same as 2.05.
-  * The push pose (`139-push-left.png`) drops the shield and puts both hands on the wall.
-  * Unlike 2.05, its frames change about every **2 ticks**, not every 4.
-  * The pose sequence restarts on the same 20-tick cycle, though which frame restarts it could not be told from video.
-* **Sword.** About 5 ticks, then idle, the same as 2.05. Facing left, the blade sweeps from above the head down to the lower left. The shield is hidden for the swing (`139-sword-left.png`).
-* Not checked in 1.39: lift, carry, hide, throw, hurt and swim. The built-in start level has none of the objects, and a `.graal` test level was not built.
+* **1.39** is the last client before ganis, and its player animation is built into the executable. It runs in its own One Player mode, which loads `levels/start1.graal`.
+  * The test level was rewritten as a `GR-V1.03` file with the same objects (`mkgraal.py`). The objects are moved so that the view does not clamp at the edges: the row of five at y = 24, the water at x 42 to 59, the wall at y = 44, and the bushes at y = 34.
+  * The player starts at (21.5, 28).
+  * Keys reach the game only with `nodirectinput=true` and `joystickon=false` in `graalconfig.txt`.
+* **NewMain 1.41.1** (`graalnm24`, January 2001) is the first gani client. It is an update pack: copy it over the 1.39 folder, because it needs 1.39's `headsconfig.txt` and GIF heads. It opens a `.nw` in the editor and plays it the same way as 2.05 (`startnw.sh`).
+* **2.22** (`Graal_222.exe` in the Reborn folder) also opens in the editor. Its Load dialog did not take the typed start position, so the player started at the default (30.5, 30).
+* **Finding the player record.** In each build the record starts with its class pointer, followed by x at +4 and y at +0xC (doubles), as in 2.05. One global points to it. `diffscan.py` finds it by walking a known distance; it checks doubles at both 4-byte alignments.
+
+### Cross-version table
+
+"=" means the same as 2.05.
+
+| behaviour | 1.39 | 1.41 | 2.05 rev 2 | 2.22 |
+|---|---|---|---|---|
+| walk speed / frame cycle | 0.5 per tick, 8 ticks [video] | = | 0.5 per tick, 8 frames × 1 tick | = |
+| blocked count: push at 18, wrap 38 → 18 | **=** (the same counter) | = | yes | – |
+| push pose frames | about 2 ticks each [video] | 4 ticks (`push.gani`) | 4 ticks | – |
+| lift | counter 4 → 0, carried on the 5th tick; no lift pose of its own | `lift` 6 ticks, then `carrystill` | = | = |
+| carried-object id | 261 for a bush (the same sprite number) | – | 261 | – |
+| hide (D while carrying) | hidden flag; walk 0.1 per tick | hidden flag, but the pose **stays `carrystill` / `carry`**, with the legs cycling at 0.1 per tick | `hiddenstill` / `hidden` | = 2.05 |
+| S throws from hiding | yes | yes | yes | yes |
+| sword | counter 1 → 6 (5 ticks); cuts the bush | `sword` 5 ticks | = | – |
+| hurt: lock-out / no-rehit | 40 ticks | 40 | 40 | – |
+| knockback | **4 steps** of 1 tile (4 tiles) | 5 steps (5 tiles) | 5 steps | – |
+| hurt pose | about 10 ticks, then the normal pose [video] | `hurt` 31 ticks | 31 ticks | – |
+| blinking | starts **only after the hurt pose**, then every other tick until tick 40 [video] | from the hit, every other tick | from the hit | – |
+| swim entry / exit point | x + 1.5 on liquid | = | = | = |
+| swim speed | 0.5 per tick | = | = | = |
+| standing still in water | the water ring keeps alternating; the head stays still [video] | **`swim` frame resets to 0 and freezes** | keeps animating | keeps animating; the frame resets to 0 at the stop, then runs on |
+| letting go of the arrow while pulling | – | back to **`grab`** | stays `pull`, looping | stays `pull`, looping |
+| letting go of A after a pull | – | `grab` stays until the next action | `pull` loops until the next move | = 2.05 |
+
+### Notes per build
+
+* **1.39 hurt** [1.39]. The touch NPC uses the same `hurt 1`. The pose shows the player's back with the arms out (`139-hurt-then-blink.png`).
+* **1.39 sliding past a blocking NPC** [1.39]. Walking right into a character NPC's side nudged the player along it by 0.125 tiles per tick. The player got around it, and `playertouchsme` did not fire on that contact. A timer NPC that tests `playerx` / `playery` was used for the hurt test instead.
+* **1.39 swim** [1.39]. Only the head and a water ring are drawn. Standing still, the ring alternates between two shapes (`139-swim-standing.png`).
+* **1.41 hide** [1.41]. The `graalnm24` gani folder does hold `hidden.gani` and `hiddenstill.gani`, but the 1.41 client does not play them. The hidden player keeps the carry poses, and the leg cycle still runs one frame per tick at a fifth of the speed.
+* **2.22** [2.22]. Lift, hide, the stuck pull loop and swimming in place all behave as in 2.05. The only difference seen is that `swim` restarts at frame 0 when the player stops.
 
 ## The built-in ganis across the gani sets **[gani]**
 
@@ -166,6 +196,9 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 
 * `act.py <name> "<keys>"` runs a key script, for example `down:Up w:0.6 up:Up tap:a`. It records the player state (gani, frame, position, every changed field) and 60 fps video at the same time. A `tap` holds the key for 120 ms: shorter taps are lost between ticks. `NOMEM=1` records video only, for builds whose player record has not been mapped.
 * `sh.py` prints a trace, with the key presses interleaved.
+* `mkgraal.py` writes the 1.39 test level as `GR-V1.03`, with NPCs given on the command line. `start139.sh` starts 1.39 in One Player mode, and `startnw.sh <dir> <exe> <level> <x> <y>` starts an editor-era build on a `.nw`.
+* The per-build settings for `act.py` (process name, player-record global, gani offset) are in `README.md` in the project folder.
+* `act.py` also takes `gx:` / `gy:` steps, which walk until the player reaches that x or y.
 * `mklevel.py` writes `lab1.nw`:
   * five liftable objects in a row at y = 20;
   * a pool of water tile 461 at x 40 to 55, y 10 to 30;
@@ -176,6 +209,7 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 
 ## Open
 
-* **The spin attack.** It needs the spin item, and walking over the item laid by `lay spinattack` did not pick it up offline. Not seen.
-* **The 1.39 timings by memory read.** Its player record has not been mapped. The same goes for lift, carry, hurt and swim in 1.39, which need a `.graal` test level.
-* **The first gani client.** NewMain 1.41.1 (`graalnm24`) was not run. It would show whether gani timing behaved as in 2.05 from the start.
+* **The spin attack.** It needs the has-spin status. Neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave it offline in 2.05, so the spin was not seen in any build.
+* **1.39's push and walk frames** are not in its player record as plain numbers; they were read from video only.
+* **2.22's push and hurt** were not re-run.
+* **1.41 sword cutting** was not checked.
