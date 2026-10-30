@@ -50,6 +50,10 @@ Lab, two 2.05 clients on one level, both with `noudp=false`:
 - **Id 15 showimg:** four GCHARs (index, x, y, name length) followed by the image name, e.g. the AFK emoticon `emoticon_afk_stay.mng`, then a few trailing bytes. It is re-sent every ~3 s while shown.
 - **TCP too:** while UDP was active, both clients still sent `PLI_PLAYERPROPS` X/Y/sprite updates over TCP. When the server is in the level, the "UDP only" routing rule does not stop the TCP copy. Exactly which condition picks TCP is not traced. **[inf]**
 
+## 3.04 Linux (lab, 2026-10-30) **[cap]**
+
+The 3.x Torque client kept this channel byte for byte. Two 3.04 clients exchanged id 0 (movement, same seven fields and gani letter), id 22 (chat), id 26 (trigger action, e.g. a mouse click as NPC id 0, x×2, y×2, `leftmouse`, UDP only) and id 15 with a single byte 9 about every 5.1 s per peer. That last one is the periodic message 2.31 sends to the server as TCP 24. Key `recipientId XOR 1` and `seq` from 0 held for every datagram. Details: `version-profiles/lab-304-linux-2026-10-30.md`.
+
 ## Payloads of ids 21, 23, 24
 
 - **21** (hit): `GCHAR((dx+4)*16)`, `GCHAR((dy+4)*16)`, `GCHAR(halfhearts)`, then optional attacker-object bytes.
@@ -62,4 +66,4 @@ Lab, two 2.05 clients on one level, both with `noudp=false`:
 
 ## Open
 - Which client sends id 23 (2.05 only receives it).
-- Whether 2.1+ clients kept this channel. In 2.22, `noudp=true` is the default, and voice chat also used UDP.
+- Whether 2.1 to 2.31 kept this channel on the wire (3.04 did, see above). In 2.22, `noudp=true` is the default, and voice chat also used UDP.

@@ -33,14 +33,15 @@ large_files = true                     # LARGEFILESTART/END (68/69), LARGEFILESI
 login_after = [37]                     # PLI_LANGUAGE only; no PLI_TAMPERCHECK (39) in either build
 tampercheck = false
 tampercheck_src = "bin cap"            # cap: 3.04, none in a 5-minute session
-periodic_sends = {}                    # cap (3.04): no periodic client message at all
+periodic_sends = { udp_15 = "about every 5.1 s to each peer, 1 byte, value 9 (2.31 sends this as TCP 24)" }   # cap (3.04); nothing periodic over TCP
 login_frame_messages = [5, 37, 34, 34] # cap (3.04): login, language, UPDATEFILE bigmap.txt and minimap.txt in the one plain frame
 login_props = "37 LANGUAGE; then UDP init unless noudp; then 23 WANTFILE / 34 UPDATEFILE for the player's own images, at most 5 queued"
 login_props_src = "bin cap"
 first_props_sent = [0, 18, 31, 33, 52, 75, 76]   # cap (3.04): nick, status, udpport, additflags, language, ostype, textcodepage
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "GR-V1.04", "GLEVNW01", "GSERVL01", "GRMAP001", "GWEBL001"]
 level_formats_src = "bin"              # GSERVL01 is the only 3.x-only magic; GWEBL001 is the DES-encrypted level cache
-udp = { present = true, config_key = "$pref::Graal::noudp", fixed_port_key = "$pref::Graal::fixedudpport" }
+udp = { present = true, config_key = "$pref::Graal::noudp", fixed_port_key = "$pref::Graal::fixedudpport", codec = "2.05 P2P: seq + GCHAR id, XOR recipientId^1", ids_seen = [0, 15, 22, 26] }
+udp_src = "bin cap"                     # cap: 3.04 two-player run
 engine = "Torque Game Engine (C++), TorqueScript .dso version 33"
 
 [[version]]
@@ -72,7 +73,7 @@ textcodepage = 1250                    # cap: value the client sent in the lab
 precise_move = false
 precise_move_src = "bin"
 behaviour_src = "cap"
-behaviour = { walk_tiles_per_s = 10, pos_send_interval_ms = 100, push_after_s = 0.9, sword_gani_s = 0.25, dropped_item_lifetime_s = 8.3, lift_to_carrysprite_s = 0.2, throw_sends_11 = false, chat = "white text, 1 px blue shadow, no bubble" }
+behaviour = { walk_tiles_per_s = 10, pos_send_interval_ms = 100, push_after_s = 0.9, sword_gani_s = 0.25, dropped_item_lifetime_s = 8.3, lift_to_carrysprite_s = 0.2, throw_sends_11 = false, chat = "white text, 1 px blue shadow, no bubble", offline_classic_objects = "broken: drawn wrong, not solid, not cuttable" }
 
 [version.features]
 start_window = ["Nick", "Language", "Options", "Tutorial", "Account", "Password", "Get Account", "Start"]
