@@ -1,6 +1,6 @@
 # Client versions 1.33 to 1.39
 
-Date: 2026-10-23
+Date: 2026-10-23, live check 2026-10-30
 
 This note covers what makes each of the seven gen-2 GNW clients different, both on the wire and for the player.
 It is the writeup for `version-profiles/v133-v139.toml`, the machine-readable table that a client such as Seihai can load to behave as one exact build.
@@ -20,21 +20,22 @@ The builds are the ones in `build-catalogue.md`, identified by MD5 there, and ev
 | `graalconfig.txt` keys | Plain strings ending in `=` | confirmed. From 1.38 on some strings are built one character at a time, so those lists may be short. |
 | HUD and tiles | `state.png`, `sprites.png` and `pics1.png` shipped beside each exe, compared tile by tile | confirmed |
 | Player-facing behaviour | The shipped `newfeaturesNNN.txt` and `readme.txt` | confirmed as release notes, not checked in code |
-| Server behaviour | GServer-v2 source (public). Its version checks only distinguish 1.41 and 2.1+, so it treats all of 1.33–1.39 the same. | only "same as the oldest client" |
+| Server behaviour | GServer-v2 source (public). Its version checks only distinguish 1.41 and 2.1+, so it treats all of 1.33–1.39 the same. Checked live against GServer-v2 beta4, see "Live check". | confirmed live for 1.33 and 1.39 |
+| Live capture | 1.33 and 1.39 run under Wine against a local GServer-v2 beta4, with the traffic captured and decoded. See "Live check" below. | confirmed for 1.33 and 1.39 |
 
 ## What is the same in all seven
 
 - **Wire.** Gen 2: every flush is one `u16be length` + zlib stream, with no size threshold, no cipher and no key byte. See `protocol/gserv-1999.md`.
 - **Login.** Login is message id 0, which is `chr(32)` and also marks the client type as player. It carries the 8-byte token, then `chr(len+32)` + account, then `chr(len+32)` + password.
 - **Server.** There is no listserver. The connect dialog is pre-filled with `www.graalonline.com:14900` and the `guest`/`guest` account. There is no server list window.
-- **Levels.** Only GR-V1.00 to 1.03 load (`.graal`, plus `.zelda` Z3-V1 for the offline levels). There is no `.nw`, no `.gmap` and no board packet 101. Saves are written as `Graalsv11` (the reader also takes `Graalsav9` and `Graalsv10`; see `../formats/graalsav.md`).
-- **Files.** The client asks for files with `WANTFILE` (23) and never sends `UPDATEFILE` (34). It handles no large-file ids. The `PLO_FILE` body is assumed to be the pre-2.1 form without a modtime (server source, *inferred*). For clients before 2.1, the server adds `.gif` to image names that have no extension.
+- **Levels.** Only GR-V1.00 to 1.03 load (`.graal`, plus `.zelda` Z3-V1 for the offline levels). There is no `.nw` and no `.gmap`. The board does arrive as `RAWDATA` (100, with an i3 length) followed by `BOARDPACKET` (101) in its own frame (confirmed live). Saves are written as `Graalsv11` (the reader also takes `Graalsav9` and `Graalsv10`; see `../formats/graalsav.md`).
+- **Files.** The client asks for files with `WANTFILE` (23) and never sends `UPDATEFILE` (34). It handles no large-file ids. The reply is `RAWDATA` (100, i3 length) then `PLO_FILE` (102): `chr(len+32)` + name, then the file bytes, with no modtime (confirmed live in 1.39). For clients before 2.1, the server adds `.gif` to image names that have no extension.
 - **No tampercheck** (39).
 - **UDP.** There is a peer UDP channel for "data packages", with `noudp=` and `fixedudpport=` (default 14899).
 - **Game modes.** One Player, One Player Online, and Two, Three or Four Players on one machine. Local multiplayer goes away in 2.0.
 - **Window.** The window is 640×480 (648×508 outer). Alt+Enter switches to fullscreen.
 - **Keys.** F1 opens options, F2/F3 load and save, F4 opens the editor, F5 loads a level, F6 opens the debugger, F7 opens the player list, and Alt+1 to Alt+7 take screenshots, show the minimap, show the bytes counter, take a snapshot and record.
-- **Prop encodings.** These are not traced per build. They are assumed to be the pre-2.1 forms in `protocol/player-props.md` (*inferred*): sword `c(power+30)+str`, shield `c(power+10)+str`, bow `c(10+len)+image` or `c(power)`, head `c(len+100)+image`, and X/Y in half-tiles. No build in this range has X2/Y2.
+- **Prop encodings.** These are not traced per build. Live, the server-sent forms of props 1–9, 11 and 13 parsed in 1.33 and 1.39 as the pre-2.1 forms in `protocol/player-props.md`. The rest are assumed (*inferred*). The forms are: sword `c(power+30)+str`, shield `c(power+10)+str`, bow `c(10+len)+image` or `c(power)`, head `c(len+100)+image`, and X/Y in half-tiles. No build in this range has X2/Y2. Prop 10 must be the bow form; a server that sends a gani string there (GServer-v2 beta4 does) is misread, and the rest of that prop stream is lost.
 
 ## Protocol changes
 
@@ -50,7 +51,7 @@ Some of these protocol steps line up with release notes.
 
 - **1.34 adds other-player prop 34 (account name).** The same release saves ignores by account name (`ignoredaccounts.txt`).
 - **1.38 adds `ITEMTAKE`.** The 1.38 notes say "when you get the item then the server increases your rupee count", which is the anti-dupe change.
-- **1.38 adds `WEAPONADD` and `DEFAULTWEAPON`.** No release note explains this. It is probably the client-side weapon list growing *[inf]*.
+- **1.38 changes how weapons are registered.** Up to 1.37 the client uploads each weapon it holds with id 25 (name, image and the full script, in the same layout as `PLO_NPCWEAPONADD`). From 1.38 it sends id 33 as `chr(0)` + `chr(default weapon id)` instead, and the server answers default weapons with 43 `DEFAULTWEAPON`. Both confirmed live (25 in 1.33, 33 in 1.39).
 - **1.39 adds the profile window**, with request (80), set (81) and reply (75).
 
 So a server can only tell 1.38 and 1.39 apart from the earlier builds by these ids or by the token.
@@ -62,9 +63,9 @@ gs2lib also knows `GNW02070` (1.38 rev1) and `GNW12080` (1.39 rev1). Neither bui
 
 - **1.33 and 1.34.** `state.png` is 224×81, and the three item buttons carry the letters **A**, **S** and **D**. The HUD digits 0–9 sit at the bottom of `sprites.png` (128×484).
 - **1.35.** A small **CHAT** label is added to `state.png`. It marks the focused player in 2/3/4-player mode, a feature the 1.34 notes describe.
-- **1.38.** The button letters are removed, because keys became configurable in that release. The digits move from `sprites.png` (now 128×452) into `state.png` (now 224×97).
+- **1.38.** The button letters are removed from the art, because keys became configurable in that release. The client still draws A/S/D on the buttons itself (seen live in 1.39). The digits move from `sprites.png` (now 128×452) into `state.png` (now 224×97).
 
-A client that copies these looks needs the A/S/D button art up to 1.37 and blank buttons from 1.38. It also has to read the digits from the right sheet.
+A client that copies these looks needs the A/S/D button art up to 1.37, and blank button art with the letters drawn on top from 1.38. It also has to read the digits from the right sheet.
 
 ### Tiles (`pics1.png`, always 1856×512)
 
@@ -112,12 +113,28 @@ Two of the 1.34 additions, `carryobject` and `throwcarry`, are only announced in
 - `[[version]]` holds the full values for one build. `[version.features]` holds that build's on/off flags, and `[version.assets]` describes which HUD and tileset revision it ships.
 - The top-level `[features]` table gives each flag's first build, its confidence and a one-line note. `[confidence]` gives one line per key on how sure each value is.
 - To pick ids, use `pli_sent` for what the client may send, and `plo_known`, `plprops_known` and `npcprops_known` for what it parses.
-  A server that sends anything else to one of these builds hits the default branch. This note assumes the client ignores it (*inferred*, not traced).
+  A server that sends anything else to one of these builds hits the default branch, and the client ignores it. Confirmed live in 1.33 and 1.39 for ids 47, 82, 156, 168, 190 and 194.
+
+## Live check (2026-10-30)
+
+1.33 and 1.39 were run under Wine against a local GServer-v2 beta4 with a local listserver copy, on loopback only, and the traffic was decoded.
+
+- **Login props.** After the level loads, the first id 2 carries props 0 (nick), 11 (head), 13 (colours), 18 (status), 31 (UDP port) and 33 (additional flags), the same in both builds. The head goes as `chr(head number)` when it is a numbered default head. 1.34 to 1.38 are assumed to match.
+- **Steady traffic.** Id 31 `PACKETCOUNT` goes about every 10 s. Id 3 NPC props go for each level NPC after the load, and level scripts cause id 18 and 7.
+- **Board and files.** As described under "What is the same in all seven". For a name sent without an extension the server adds `.gif`. Downloaded images were not written to disk in this setup, and the level was cached under `weblevels/<server>/`.
+- **Server message.** 1.33 shows the server message (41) as raw HTML text.
+
+### Server compatibility (GServer-v2 beta4)
+
+- It needs `generation = classic`, with the GNW tokens listed in `allowedversions.txt`. Otherwise it refuses the client with "Allowed: 2.0 - 2.31".
+- The server checks the account with a listserver, even though the client connects directly. Without one the client is told "The login server is offline".
+- It kicks 1.33 for id 25 ("Unknown Player Packet: 25"). 1.34 to 1.37 send the same id (*inferred* to be kicked too). A proxy that drops id 25 lets 1.33 play, though beta4 then warns about an invalid packet count, because the dropped messages are missing from the count.
+- 1.39 logs in and plays. 1.38 has the same send set apart from profiles (*inferred* to work).
+- It sends prop 10 as a gani string, which these clients misread (see "Prop encodings").
 
 ## Open
 
-- Which props each build sends right after login. They were not found in the login path, which only sets up the UDP socket.
-- Per-prop byte layouts in each build (assumed above).
+- Login props in 1.34 to 1.38 (seen live only in 1.33 and 1.39).
+- Per-prop byte layouts for props not seen live (assumed above).
 - The client → server UDP id set. The receive set is confirmed.
-- Whether ids 25 (sent until 1.37) and 33 (from 1.38) have the payloads the gs2lib names suggest.
 - The exact letter-to-icon mapping for emotions. The names are built at run time, and only AFK (A), BRB (B) and Zzz (Z) are given in the notes.
