@@ -100,6 +100,10 @@ The 2.2.2 folder ships `basswma.dll` (the BASS WMA add-on), but its use depends 
 - **2.17.1** loads it at run time by name and uses `BASS_WMA_StreamCreateFile` / `StreamPlay` / `StreamFree`. **[2.17]**
 - **2.22**, **2.31**, and GraalEditor 2.3.1.1 neither import nor name it. In those builds the DLL is a leftover and WMA music is not supported. **[2.22]**
 
+## Which action plays which sound
+
+See `live-checks-editor-offline-sound.md` for a table of engine sounds by action, partly confirmed in a running 2.05 client.
+
 ## Open
 
 - 2.22 extension-to-backend dispatch (which types go to samples, modules, or streams) needs the 2.22 sound routine traced.
