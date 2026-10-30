@@ -25,6 +25,8 @@ When *Play offline* is chosen:
 - Otherwise the player is moved to **`tutorial_b-4.graal` at (32, 60)**. The map overlays are switched to the tutorial set: `tutorialmap.png` / `tutorialmap.txt` for the big map and `tutorialmap2.png` / `tutorialmap.txt` for the minimap. A "first offline start" flag is also set.
 - If the level still fails to load, a warning names the level and the client stays at the reconnect dialog.
 
+Both of the first two cases were seen live: after a refused connection the player went to the tutorial, and after a drop on a level that was also on disk the client reloaded that level at the same spot (see `live-checks-editor-offline-sound.md`).
+
 ## Where offline levels come from
 
 The level loader checks two sources in order. **[2.05]**
