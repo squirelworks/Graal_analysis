@@ -8,6 +8,8 @@ Traced from client 2.05 rev 2. Tags: **[2.05]** read from the client · **[test]
 
 The client stores account passwords in the registry under `HKEY_CURRENT_USER\Software\Graal\Client` (`password`, and `<account>:pass` per account). They are DES-encrypted with an 8-byte key that is the same in every copy of the client: `~2%$zsd^`. **[2.05]**
 
+The same key and string form are already used by 1.3 test (Nov 1999): a value saved by 1.31/1.32 in a lab run decrypts with `graaldes.py`, and the key string is in every client from 1.3 test to 1.39 (`live-trace-early.md`). So the warning covers those old installs too.
+
 That means anyone who can read the registry, or a `.reg` export or backup of that key, can recover the password with no secret at all. Treat these values as plain text. If an old machine, disk image or exported profile is shared, delete the values first, or tick "Don't save the passwords" in More Options (the client then deletes them on close).
 
 ## Cipher
