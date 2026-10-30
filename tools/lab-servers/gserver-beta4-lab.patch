@@ -1,8 +1,8 @@
 diff --git a/include/network/IPacketHandler.h b/include/network/IPacketHandler.h
-index 4ee3651..f443da3 100644
+index 4ee3651..7360fbc 100644
 --- a/include/network/IPacketHandler.h
 +++ b/include/network/IPacketHandler.h
-@@ -193,6 +193,13 @@ protected:
+@@ -193,6 +193,18 @@ protected:
  	virtual HandlePacketResult handlePacket(std::optional<uint8_t> id, CString& packet) = 0;
  	[[nodiscard]] virtual std::string_view whoAmI() const noexcept { return "(unknown);"sv; }
  
@@ -11,12 +11,30 @@ index 4ee3651..f443da3 100644
 +	// Keep the rest of that bundle so the new player can parse it; dropping it leaves
 +	// the gen-3 iterator one step behind for the whole session.
 +	CString LoginLeftover;
++
++	// Lab: set once the login packet is parsed. processBuffer used PacketCount == 0 for this,
++	// but PLI_PACKETCOUNT resets the count, so a frame that arrives after a lone id 31 (1.3x
++	// clients send one every 10 s) was read as a new login and counted as invalid.
++	bool LoginParsed = false;
 +	void processLoginLeftover(CString& bundle) { parsePacketsFromBundle(bundle); }
 +
  public:
  	CEncryption Encryption;
  	uint32_t PacketCount = 0;
-@@ -378,6 +385,7 @@ inline void IPacketHandler::parseLoginPacket(CString& buffer)
+@@ -224,7 +236,7 @@ inline void IPacketHandler::processBuffer(CString& buffer)
+ 		processPacketBundle(bundle);
+ 
+ 		// Parse the packets.
+-		if (PacketCount != 0) [[likely]]
++		if (LoginParsed || PacketCount != 0) [[likely]]
+ 			parsePacketsFromBundle(bundle);
+ 		else
+ 		{
+@@ -375,9 +387,11 @@ inline void IPacketHandler::parsePacketsFromBundle(CString& bundle)
+ inline void IPacketHandler::parseLoginPacket(CString& buffer)
+ {
+ 	++PacketCount;
++	LoginParsed = true;
  
  	// Pull out the packet.
  	auto packet = buffer.readString("\n");
@@ -24,6 +42,18 @@ index 4ee3651..f443da3 100644
  
  #ifdef PACKETLOGGING
  	const std::string_view who = whoAmI();
+diff --git a/include/player/PlayerClient.h b/include/player/PlayerClient.h
+index 42ad835..b8f22f4 100644
+--- a/include/player/PlayerClient.h
++++ b/include/player/PlayerClient.h
+@@ -189,6 +189,7 @@ public:
+ 	HandlePacketResult msgPLI_PRIVATEMESSAGE(CString& pPacket);
+ 	HandlePacketResult msgPLI_NPCWEAPONDEL(CString& pPacket);
+ 	HandlePacketResult msgPLI_WEAPONADD(CString& pPacket);
++	HandlePacketResult msgPLI_WEAPONUPLOAD(CString& pPacket);
+ 	HandlePacketResult msgPLI_UPDATEFILE(CString& pPacket);
+ 	HandlePacketResult msgPLI_ADJACENTLEVEL(CString& pPacket);
+ 	HandlePacketResult msgPLI_HITOBJECTS(CString& pPacket);
 diff --git a/src/loader/flatfile/FlatFileAccountLoader.cpp b/src/loader/flatfile/FlatFileAccountLoader.cpp
 index 493a2ac..55824c9 100644
 --- a/src/loader/flatfile/FlatFileAccountLoader.cpp
@@ -39,6 +69,18 @@ index 493a2ac..55824c9 100644
  			if (account.status != num)
  			{
  				account.status = num;
+diff --git a/src/player/PlayerClient.cpp b/src/player/PlayerClient.cpp
+index 4a3cf85..d21e9e6 100644
+--- a/src/player/PlayerClient.cpp
++++ b/src/player/PlayerClient.cpp
+@@ -90,6 +90,7 @@ static PacketHandleArray GeneratePacketHandlers()
+ 	handlers[PLI_LEVELWARPMOD] = &PlayerClient::msgPLI_LEVELWARP; // Shared with PLI_LEVELWARP
+ 	handlers[PLI_ITEMTAKE] = &PlayerClient::msgPLI_ITEMDEL;       // Shared with PLI_ITEMDEL
+ 	handlers[PLI_WEAPONADD] = &PlayerClient::msgPLI_WEAPONADD;
++	handlers[PLI_UNKNOWN25] = &PlayerClient::msgPLI_WEAPONUPLOAD;
+ 	handlers[PLI_UPDATEFILE] = &PlayerClient::msgPLI_UPDATEFILE;
+ 	handlers[PLI_ADJACENTLEVEL] = &PlayerClient::msgPLI_ADJACENTLEVEL;
+ 	handlers[PLI_HITOBJECTS] = &PlayerClient::msgPLI_HITOBJECTS;
 diff --git a/src/player/PlayerClientOriginal.cpp b/src/player/PlayerClientOriginal.cpp
 index 343d56f..1cacfd6 100644
 --- a/src/player/PlayerClientOriginal.cpp
@@ -83,10 +125,18 @@ index 343d56f..1cacfd6 100644
  	level->sendNPCsToPlayer(self, cachedModTime);
  
 diff --git a/src/player/PlayerLogin.cpp b/src/player/PlayerLogin.cpp
-index 661ef0a..85a8384 100644
+index 661ef0a..92fa53a 100644
 --- a/src/player/PlayerLogin.cpp
 +++ b/src/player/PlayerLogin.cpp
-@@ -98,6 +98,8 @@ HandlePacketResult PlayerLogin::msgLoginPacket(CString& pPacket)
+@@ -86,6 +86,7 @@ HandlePacketResult PlayerLogin::msgLoginPacket(CString& pPacket)
+ 
+ 	// Update the new player's current packet state to match ours.
+ 	player->PacketCount = 1;
++	player->LoginParsed = true;
+ 	player->setReceivedBuffer(m_recvBuffer);
+ 
+ 	// Remove ourselves from the server.
+@@ -98,6 +99,8 @@ HandlePacketResult PlayerLogin::msgLoginPacket(CString& pPacket)
  	pPacket.setRead(0);
  	if (player != nullptr && !player->handleLogin(pPacket))
  		player->disconnect();
@@ -95,3 +145,45 @@ index 661ef0a..85a8384 100644
  
  	return HandlePacketResult::Handled;
  }
+diff --git a/src/player/packets/PlayerClientPackets.cpp b/src/player/packets/PlayerClientPackets.cpp
+index 51685b0..26c00d9 100644
+--- a/src/player/packets/PlayerClientPackets.cpp
++++ b/src/player/packets/PlayerClientPackets.cpp
+@@ -946,6 +946,14 @@ HandlePacketResult PlayerClient::msgPLI_WEAPONADD(CString& pPacket)
+ 	return HandlePacketResult::Handled;
+ }
+ 
++HandlePacketResult PlayerClient::msgPLI_WEAPONUPLOAD(CString& pPacket)
++{
++	// Lab: 1.33 to 1.37 upload each weapon they hold with id 25 (name, image, script,
++	// laid out as PLO_NPCWEAPONADD). 1.38 replaced it with id 33. The weapon stays on the
++	// client, so accept it without a kick and keep nothing.
++	return HandlePacketResult::Handled;
++}
++
+ HandlePacketResult PlayerClient::msgPLI_UPDATEFILE(CString& pPacket)
+ {
+ 	// Get the packet data and file mod time.
+diff --git a/src/utilities/PropertySerializers.cpp b/src/utilities/PropertySerializers.cpp
+index 50ec7eb..b8134f9 100644
+--- a/src/utilities/PropertySerializers.cpp
++++ b/src/utilities/PropertySerializers.cpp
+@@ -222,6 +222,18 @@ std::format_context::iterator PropertyShieldPower::format(std::format_context& c
+ 
+ CString PropertyGaniOrBowGif::serialize() const
+ {
++	// Lab: a classic server sends prop 10 in the bow form even when a gani is also set.
++	// 1.33 to 1.41 read prop 10 as the bow, so a gani string here breaks the rest of the props.
++	if (getServerGeneration() == 0 && bowGif.has_value())
++	{
++		auto& [image, preset] = *bowGif;
++		if (image.empty() && preset < 10)
++			return CString() >> (char)preset;
++
++		const auto len = std::clamp(image.length(), 0ZU, 223ZU - 10ZU);
++		return CString() >> (char)(10 + len) << image.substr(0, len);
++	}
++
+ 	if (gani.has_value())
+ 		return CString() >> (char)gani->length() << *gani;
+ 
