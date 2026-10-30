@@ -23,7 +23,7 @@ A tick is the 50 ms game tick. Speeds are in tiles. This note has no addresses a
 | throw (A, or S from hiding) | `idle` in the same tick | 0 ticks |
 | sword (S) | `sword` 5 frames × 1 tick, then `idle`. The player stops while it plays. | 5 ticks |
 | spin (S again during a swing, has-spin status) | the swing is cut off in the next tick and `spin` plays: 13 frames × 1 tick, then `idle` | 13 ticks (0.65 s) |
-| hurt | `hurt` for 31 ticks; knockback 1 tile per tick for 5 ticks; blinking and no further hits for 40 ticks | 1.55 s / 2.0 s |
+| hurt | `hurt` for 31 ticks (12 if an arrow is held); knockback 1 tile per tick for 5 ticks; blinking and no further hits for 40 ticks | 1.55 s / 2.0 s |
 | swim | `swim` from the first tick the point (x + 1.5, y + 2) is on water; 0.5 tile per tick; 8 frames × 2 ticks; **keeps animating when standing still** | 16-tick cycle |
 | grab / pull | `grab` on A at a wall. `pull` starts on the arrow away from the wall: 3 frames × 2 ticks, with a pull try every 18 ticks. | — |
 
@@ -95,7 +95,7 @@ The test NPC runs `if (playertouchsme) { hurt 1; }`.
 * **Pose.** `hurt` is shown for **31 ticks** (`hurt.gani`: 1 frame, `WAIT 30`), then `idle`. The hurt pose keeps the facing.
 * **Can't be hurt again** for 40 ticks (2 s) from the hit. The second touch in the run came only after that.
 * **Blinking.** For the whole 40 ticks the player's body is drawn in one tick and left out in the next: only the shadow shows on the "off" ticks (`205-hurt-knockback-blink.png`). It goes on after `hurt` has given way to `idle`.
-* Keys are not read for walking during `hurt`: an arrow held through the hit did not move the player.
+* **Walking again with an arrow held.** The hurt counter starts at 40 and drops by one each tick. While it is above 29 the arrows are ignored. From the 12th tick after the hit (counter 28), a held arrow walks again and `walk` replaces `hurt`. So `hurt` lasts 31 ticks only when no arrow is held. Re-run 2.05 with Left held through the hit: hurt at tick 88, knockback ended at tick 93, walking at tick 100. Blinking and the 40-tick no-rehit go on regardless.
 
 ## Swimming **[live]**
 
@@ -135,16 +135,16 @@ At a wall of deep-water tiles, facing down:
 | behaviour | 1.39 | 1.41 | 2.05 rev 2 | 2.22 |
 |---|---|---|---|---|
 | walk speed / frame cycle | 0.5 per tick, 8 ticks [video] | = | 0.5 per tick, 8 frames × 1 tick | = |
-| blocked count: push at 18, wrap 38 → 18 | **=** (the same counter) | = | yes | – |
-| push pose frames | about 2 ticks each [video] | 4 ticks (`push.gani`) | 4 ticks | – |
+| blocked count: push at 18, wrap 38 → 18 | **=** (the same counter) | = | yes | = (push in the tick after 18 blocked ticks) |
+| push pose frames | about 2 ticks each [video] | 4 ticks (`push.gani`) | 4 ticks | = (5 × 4 ticks, looping) |
 | lift | counter 4 → 0, carried on the 5th tick; no lift pose of its own | `lift` 6 ticks, then `carrystill` | = | = |
 | carried-object id | 261 for a bush (the same sprite number) | – | 261 | – |
 | hide (D while carrying) | hidden flag; walk 0.1 per tick | hidden flag, but the pose **stays `carrystill` / `carry`**, with the legs cycling at 0.1 per tick | `hiddenstill` / `hidden` | = 2.05 |
 | S throws from hiding | yes | yes | yes | yes |
-| sword | counter 1 → 6 (5 ticks); cuts the bush | `sword` 5 ticks | = | – |
-| hurt: lock-out / no-rehit | 40 ticks | 40 | 40 | – |
-| knockback | **4 steps** of 1 tile (4 tiles) | 5 steps (5 tiles) | 5 steps | – |
-| hurt pose | about 10 ticks, then the normal pose [video] | `hurt` 31 ticks | 31 ticks | – |
+| sword | counter 1 → 6 (5 ticks); cuts the bush | `sword` 5 ticks; cuts the bush on the first frame (`141-sword-up-bush-cut.png`) | = | – |
+| hurt: lock-out / no-rehit | 40 ticks | 40 | 40 | = |
+| knockback | **4 steps** of 1 tile (4 tiles) | 5 steps (5 tiles) | 5 steps | = (4.9 tiles on the same test) |
+| hurt pose | about 10 ticks, then the normal pose [video] | `hurt` 31 ticks | 31 ticks; 12 with an arrow held | = (12 with an arrow held) |
 | blinking | starts **only after the hurt pose**, then every other tick until tick 40 [video] | from the hit, every other tick | from the hit | – |
 | swim entry / exit point | x + 1.5 on liquid | = | = | = |
 | swim speed | 0.5 per tick | = | = | = |
@@ -158,7 +158,8 @@ At a wall of deep-water tiles, facing down:
 * **1.39 sliding past a blocking NPC** [1.39]. Walking right into a character NPC's side nudged the player along it by 0.125 tiles per tick. The player got around it, and `playertouchsme` did not fire on that contact. A timer NPC that tests `playerx` / `playery` was used for the hurt test instead.
 * **1.39 swim** [1.39]. Only the head and a water ring are drawn. Standing still, the ring alternates between two shapes (`139-swim-standing.png`).
 * **1.41 hide** [1.41]. The `graalnm24` gani folder does hold `hidden.gani` and `hiddenstill.gani`, but the 1.41 client does not play them. The hidden player keeps the carry poses, and the leg cycle still runs one frame per tick at a fifth of the speed.
-* **2.22** [2.22]. Lift, hide, the stuck pull loop and swimming in place all behave as in 2.05. The only difference seen is that `swim` restarts at frame 0 when the player stops.
+* **1.41 sword** [1.41]. With `setsword sword1.gif,1` the blade is drawn and the bush in front is cut on the first swing frame, as in 2.05.
+* **2.22** [2.22]. Lift, hide, the stuck pull loop, swimming in place, push and hurt all behave as in 2.05. The hurt test was the same walk into the touch NPC from the right, with the arrow held, and gave the same knockback and the same 12 ticks before walking resumed. The only difference seen is that `swim` restarts at frame 0 when the player stops.
 
 ## The built-in ganis across the gani sets **[gani]**
 
@@ -206,7 +207,7 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 
 1. **Push.** Seihai shows `push` after 17 blocked steps and advances it one frame per blocked step. The real client shows it on the 18th and holds each frame for 4 ticks (it honours `WAIT`).
 2. **Pull.** Seihai steps `pull` once per tick; the real client steps it once every 2 ticks. Seihai drops the pose on release; the real client leaves `pull` looping.
-3. **Gani WAIT.** Seihai does not read per-frame `WAIT`. The real hurt pose is 31 ticks, not Seihai's 500 ms minimum. Lift is 6 ticks. Swim is 2 ticks per frame, which Seihai already uses.
+3. **Gani WAIT.** Seihai does not read per-frame `WAIT`. The real hurt pose is 31 ticks with no arrow held, or 12 ticks before a held arrow walks again (Seihai uses a 500 ms minimum). Lift is 6 ticks. Swim is 2 ticks per frame, which Seihai already uses.
 4. **Swim while still.** Seihai steps `swim` per step taken. The real client keeps it animating when the player stands still in water.
 5. **Hurt blink.** There is no blink in Seihai. The real client draws the body on alternate ticks for 40 ticks.
 6. **Hide.** There is no `hiddenstill` / `hidden`, no 0.1 tile per tick walk and no hidden flag in Seihai.
@@ -232,5 +233,3 @@ Seihai was not changed here. These are what a 2.05 profile would need:
 
 * **The spin attack in other builds.** It was only seen in 2.05, online. Offline, neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave the has-spin status.
 * **1.39's push and walk frames** are not in its player record as plain numbers; they were read from video only.
-* **2.22's push and hurt** were not re-run.
-* **1.41 sword cutting** was not checked.
