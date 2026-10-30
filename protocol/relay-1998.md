@@ -46,7 +46,7 @@ Server to client:
 | `P<id8>` | Partnership confirmed. The client then pushes its whole state to the peer (login time, position, colours, nickname, sword and shield, and so on). |
 | `C<id8>` | The partner left the party. |
 | `D<data>` | Relayed data. See below. |
-| `NR` / `NL` | 15th Graal on, sent by the 1.1.9 GServer right after `N`. Read statically as `NR` = the server uses Cyberjoueur levels and `NL` = local levels; with `NL` the client starts in `onlinestartlocal.graal`. A server started with local levels sent `NR` and then `NL` after every `N` (`client-internals/live-trace-early.md`). |
+| `NR` / `NL` | 15th Graal on, sent by the 1.1.9 GServer right after `N`. Read statically as `NR` = the server uses Cyberjoueur levels and `NL` = local levels; with `NL` the client starts in `onlinestartlocal.graal`. A server started with local levels sent `NR` and then `NL` after every `N`. Started with "Use levels from cyberjoueur", it sent `NR` alone, and the client stayed in `onlinestart.graal` (`client-internals/live-trace-early.md`). |
 
 The 1.1.9 `Gserver.exe` also accepts `O` (join as observer), `S` (super user) and `V<id>` (observe a player), as the Java server did.
 It is a Delphi port of the lobby with a "Start Game Server" dialog: port 14802, and a choice between local levels and levels from Cyberjoueur. Its timer also handles a separate `Chess` game.
@@ -96,7 +96,7 @@ What each type means. Layouts come from the receiving side. Types marked *inferr
 
 | Type | Payload | Meaning |
 |---|---|---|
-| `A` | x, y, dir/flags, kind | Handled as a flying object (`TAdventureFlying`, arrows). In a capture, idle 1.1.9 clients sent `A` about four times a second with two alternating fixed payloads, so it covers more than shots. Open |
+| `A` | x, y, dir/flags, kind, one more byte | Arrow fired (`TAdventureFlying`). In a 1.1.9 capture the steady `A` lines on `onlinestartlocal.graal` came from two level NPCs that run `shootarrowleft` and `shootarrowup` every 0.5 s. The payloads decode as x and y in half tiles at each NPC, direction 1 (left) and 0 (up). Each client runs the level's NPCs itself, so both clients sent them (`client-internals/live-trace-early.md`) |
 | `B` | x, y, w·8+h, then w·h tiles as two base-128 chars each | Board modify |
 | `C` | text | Chat line (the client also shows its own `showname` text) |
 | `D` | one char per object id | Listed baddies or NPCs are dead (`compsdead`) |
@@ -109,7 +109,7 @@ What each type means. Layouts come from the receiving side. Types marked *inferr
 | `M` | repeated 6-byte records: id, x, y, sprite, dir·4+mode, state | Baddy movement batch |
 | `N` | text | Nickname |
 | `O` | carried object id (`' '` = none) | Carry object |
-| `P` | x, y, sprite | Position and animation. Also plays step sounds and the horse sound |
+| `P` | x, y, sprite | Position and animation. Also plays step sounds and the horse sound. Captured walking: x and y in half tiles, and the third byte is animation frame·4 + direction (0 up, 1 left, 2 down, 3 right), sent every 100 ms while moving |
 | `Q` | NPC id | `playertouchsme` for an NPC on the receiver's side |
 | `R` | x, y | Object at x,y removed (*inferred*) |
 | `S` | count, then that many colour indices | Sprite colours (4 in 1st Graal, 5 from 4th alpha) |
