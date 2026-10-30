@@ -69,7 +69,7 @@ The v5 thread found the cause in the binary. The draw-layer mask is cut down whi
 - The lab does this with the proxy. GServer-v2 only sends 178 when its listserver answers a server-info query.
 - Confirmed on 5.24r4, 5.31r4 and 6.03r7. 5.12 and 5.00r7 were confirmed by the v5 thread.
 
-**Tiles in 5.31r4 and 6.03r7.** Before the warp these two draw no tiles at all, only chests and image NPCs. 5.24 and 5.30r3 draw them. After the warp, with a GS2 weapon `-System` given to every player that calls `addtiledef("pics1.png", "", 0)`, both draw the full level. Whether the warp alone is enough was not separated. **[shot]**
+**Tiles in 5.31r4 and 6.03r7.** Before the warp these two draw no tiles at all, only chests and image NPCs. 5.24 and 5.30r3 draw them. After the warp, with a GS2 weapon `-System` given to every player that calls `addtiledef("pics1.png", "", 0)`, both draw the full level. **The warp alone is enough:** with the `-System` weapon removed from the server and the account, 5.31r4 still drew the full level after the warp, and its log shows no script running. Before the warp it drew only chests and image NPCs, as before. **[shot]**
 
 After the warp the clients also ask for `tiledefs<server name>.txt` (here `tiledefslab%032server.txt`, with the space written as `%032`). The lab server did not have the file. **[wire]**
 
@@ -169,9 +169,25 @@ The level had a pot, a light stone and a black stone put in the player's path. T
 - **Throwing a pot.** The heart dropped by the server stays on the pot base.
 - All of this matches the 2.05 rules in `client-internals/carry-hide-and-glove.md`. The 4.04r2 lab (v4 thread) got the same carry sprites and tiles.
 
+### Grab, pull, hurt and swim
+
+Tested on 5.24r4 and 6.03r7, and the two builds agree. For the grab test the account had glove power 1, so a black stone could not be lifted. **[wire][shot]**
+
+| Action | What the client does |
+|---|---|
+| grab (A against a stone it cannot lift) | `grab` in the next tick (0.04–0.05 s) |
+| pull (Left held with A held, facing the stone) | `pull` in the next tick. The player does not move, and the stone stays put. Dust puffs are drawn at the feet. |
+| while pulling | the client sends **38 `pulled,1`** 0.85 s after `pull` starts |
+| hurt (an explosion, S→C 36, at the player) | `hurt` and the hearts in the same tick (3 → 2.5 for power 2). The player is pushed back **5 tiles in 5 ticks** (1 tile per tick, twice walking speed) and blinks. `idle` comes **1.54–1.55 s** after the hit. |
+| swim (walk into deep water, tile 322) | `swim` in the same tick as the first water step. Swimming moves at walking speed (0.5 tile per tick). Only the head is drawn, with a ripple, and sideways strokes throw splashes. Stepping out goes back to `walk`. |
+
+- 5.24r4 drew the explosion as a large flame cross. In 6.03r7 the 0.15 s screenshot showed no flame. Both left a crater and scorched the stone. **[shot]**
+- A hurt packet sent directly (S→C 40) changed nothing in 5.24r4, whether the attacker id was 0 or a player that had been added. Only the explosion hurt the player. **[wire]**
+- `pulled,1` is the second trigger action, after `pushed,0`. **[wire]**
+
 ### Chat text
 
-Chat was set by the server (own props 9 and other-player props 8, prop 12), because neither Tab nor Enter opens a chat bar in these runs. With no server GUI scripts there is no chat bar on screen. **[wire][shot]**
+Chat was set by the server (own props 9 and other-player props 8, prop 12), because these clients have no chat bar of their own. Tab, Enter and F3 open nothing, and typing in play just presses the game keys (S swings the sword). Escape opens a "Do you really want to quit Graal?" dialog. On these versions the chat bar is a server-side GUI script. **[wire][shot]**
 
 - **Look.** There is **no bubble**. The text is drawn above the head, centred, in a light colour with a blue outline, on one line. A long line is not wrapped: it runs past the edges of the view. **[shot]**
 - **Font.** 5.24r4 uses a plain sans font (its config says `font=Arial`). 6.03r7 uses a script-like font (its config says `font=Tempus Sans ITC`, `fontsize=24`). Nicknames under the feet use the same style. **[shot]**
@@ -181,12 +197,14 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
 
 - A **5.x/6.x profile** draws chat as outlined text above the head, with no bubble, and clears its own chat after about 3 s. The 5.24 font is Arial. The 6.03 font is Tempus Sans ITC.
 - The movement timings above (walk 0.5 tile per tick, push at 0.9 s, lift 6 ticks, sword 5 ticks with the cut on swing start) are the same as in 2.05.
-- The **only new mannerism on the wire** is the trigger action `pushed,0`, sent once a second while pushing.
+- The **only new mannerisms on the wire** are the trigger actions `pushed,0`, sent once a second while pushing, and `pulled,1`, sent 0.85 s into a pull.
+- Grab and pull start in the next tick, hurt pushes the player 5 tiles in 0.25 s and lasts about 1.55 s, and swimming is as fast as walking.
+- There is no built-in chat bar. A profile for these versions needs a chat input of its own, the way the original servers supplied one.
 - The **server** decides the tile respawn time and bush items. A Seihai-compatible server for these clients needs to:
   - use a game server name that does not start with "login" (or warp there with 178);
   - know the tokens `G3D15010` and `G3D03048`;
   - serve `basepackage.gupd` and `tiledefs<server>.txt`;
-  - provide tile definitions. On 5.31 and later this was done with a script calling `addtiledef`.
+  - provide tile definitions. On 5.31 and later the warp off the "Login" server name was enough; an `addtiledef` script is not needed.
 
 ## Still open
 
@@ -198,6 +216,5 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
   - The "This is a beta release" text is on the frozen main thread's stack, and nothing in the dumped 6.00r2/r4 code refers to it. So the expiry check runs inside Themida's own code, and it seems to run again after login. **[inf]**
   - It is not the file dates. Setting every server file and the client's own files to June 2011 (with the clock set back) still freezes. **[cap]**
   - Themida stops winedbg from attaching. A real Windows machine is the next step.
-- **Typed chat.** A chat bar was not found without server GUI scripts.
-- Not tested here: hurt, swim, grab and pull.
-- The tile-definition rule: whether 5.31+ needs `addtiledef` or only the warp.
+- How a server-side chat bar script sends typed chat. That needs a GS2 GUI script like the original servers had.
+- Why S→C 40 (hurt by a player) did nothing.
