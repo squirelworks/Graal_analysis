@@ -86,7 +86,7 @@ The client sends its own action. The server re-emits it to the rest of the level
 |----:|----:|------|---------------------|-----------------------------------|-----|
 | 4 | 11 | BOMBADD | `c x×2, c y×2, c power (+8 = the bomb is the sender's), c fuse` | `s player` + the same 4 bytes; power = `v & 7`, value 8 (bit 3) = owned by that player | [srv][2.05] |
 | 5 | 12 | BOMBDEL | `c x×2, c y×2` | **no player id**: `c x×2, c y×2`; removes the bomb at exactly that point | [srv][2.05] |
-| 9 | 19 | ARROWADD | `c x×2, c y×2, c flags, c type`, then one byte sent as `v + 33` instead of `v + 32`; flags = `dir & 3`, +4 extra effect, +8 owned | `s player` + the same 5 bytes; needs ≥ 5 | [srv][2.05] |
+| 9 | 19 | ARROWADD | `c x×2, c y×2, c flags, c sprite`, then the projectile type (0 arrow, 1 fireball, 2 fireblast, 3 nuke) sent as `v + 33` instead of `v + 32`; flags = `dir & 3`, +4 first removes a matching shot, +8 owned | `s player` + the same 5 bytes; needs ≥ 5. Receiver rules: `client-internals/damage-sources.md`, "Other players' bombs, blasts and shots" | [srv][2.05] |
 | 10 | 20 | FIRESPY | `c (a × 8 + b)` | `s player` + that byte; the receiver uses only `a` | [srv][2.05] |
 | 11 | 21 | THROWCARRIED | empty | `s player` only | [srv][2.05] |
 | 26 | 40 | HURTPLAYER | `s victim, c (dx+4)×16, c (dy+4)×16, c power` [+ `i3 npc`] | `s attacker` + `c dx, c dy, c power` [+ `i3 npc`] | [srv][2.05] |
