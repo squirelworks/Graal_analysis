@@ -50,7 +50,7 @@ Run by the live-trace lab. **[cap]**
     - STATUS was 16 (`0x10`) and turned 20 (`0x14`) while the player crossed the lake south of the start, then back to 16 past it. At the same moment the client sent prop 18 = 20 over TCP. So `0x04` is the swimming state in this build (*inferred* from where it flipped; later servers name `0x04` "male").
     - The trailing `0x1F` is CARRYSPRITE −1 (nothing carried).
   - At the same time the walking client sends TCP id 2 to the server with only the changed props (16, 17 and, when it flips, 18). **The server forwards nothing to the other player.** The other client sees the walk only through UDP. That is the "player positions & sprite numbers … sent directly to all players that are in the same room" of the 1.28 notes.
-  - **Arrows:** id 12 twice every 0.5 s is **arrow add**. The level `onlinestartlocal.graal` has two NPCs whose scripts run `shootarrowleft` and `shootarrowup` on a 0.5 s timeout. The payloads are x, y (half tiles, at each NPC), direction (1 left, 0 up), a type byte, and a last byte sent as `v+33`, the same layout as the later `ARROWADD` (`protocol/packet-layouts.md`). Only one client sends them, to every other player in the level. In a three-client run the first player in the level sent them to the other two. When it quit, the player who had joined second took over within a second and sent them to the third. So 1.28 has one player per level that runs the NPC timeouts for everyone, and the role passes on when that player leaves.
+  - **Arrows:** id 12 twice every 0.5 s is **arrow add**. The level `onlinestartlocal.graal` has two NPCs whose scripts run `shootarrowleft` and `shootarrowup` on a 0.5 s timeout. The payloads are x, y (half tiles, at each NPC), direction (1 left, 0 up), a type byte, and a last byte sent as `v+33`, the same layout as the later `ARROWADD` (`protocol/packet-layouts.md`). Only one client sends them, to every other player in the level. In a three-client run the first player in the level sent them to the other two. When it quit, the player who had joined second took over within a second and sent them to the third. So 1.28 has one player per level that runs the NPC timeouts for everyone, and the role passes on when that player leaves. **The server picks that player** with id 10 (`ISLEADER`, no payload). The first player's login reply ended with 10, and the second and third players' replies had none. When the first player quit, the server sent 10 to the player who had joined second, and then sent 8 with prop 51 (player gone) about player 1 to both remaining players. The arrows from the new leader started straight after. 1.21 and 1.3 test also end the first player's login reply with 10, so the leader role is older than UDP.
   - A newcomer sends one UDP id 22 with no payload to each player already in the level (seen in the two- and three-client runs). 2.05 uses 22 for chat, so this is most likely the newcomer's empty chat text (*inferred*).
 
 ## GServer13 with 1.31 (GSERV016) and 1.32 (GSERV018)
@@ -66,7 +66,7 @@ Run by the live-trace lab. **[cap]**
 Server started with "Use local levels". **[cap]**
 
 - **Each client opens two TCP connections.** One joins the game `Graal8` and stays in it. The other first joins `G8` with no level, then leaves (`-`, `C`) and re-joins as `G8onlinestart.graal`, then `G8onlinestartlocal.graal`, as the client moves through levels. All lines go to the same server port.
-- After every `N` the server answered `NR`, then `NL`, then `I<id8>`. Ids are `0000000n`, counted per connection.
+- After every `N` the server answered `NR`, then `NL`, then `I<id8>`. Ids are `0000000n`, numbered across all connections in the order they connect (the three-client run below gave 1 to 6). A connection keeps its id when it changes room.
 - **Both connections pair up.** When the second client joined, each connection got `+<id>def` for the other client's connection in the same game. The client answered `P<id>`, and the server confirmed with `P` to both sides. That happened first on `Graal8` and then on `G8onlinestartlocal.graal` once both clients were on that level. The `Graal8` pair carried only the first state push (6 `D` lines each way). The level pair carried the rest (about 120 `D` lines each way in a minute). So the per-level room is where play traffic goes, as `relay-1998.md` says, and the fixed `Graal8` room is an extra channel. What the client uses that channel for beyond the first push was not seen in this short run.
 - The state push after `P` is, in order: `L` (level, sent twice as the client moves on), `P` (position), `N` (nickname), `S` (colours), `7` (pose flag), and later `T` (10-character login time), `Y` (sword/shield power) and `C`.
 - `D` lines carry the sender id as two base-128 characters (`" "` = 0, `"!"` = 1 …), as in `relay-1998.md`.
@@ -74,13 +74,23 @@ Server started with "Use local levels". **[cap]**
 - **Walking.** With the keyboard patch both 1.1.9 clients walk. The moving client sends `D` type `P` on the level connection every 100 ms: x and y in half tiles, then frame·4 + direction, the same encoding as SPRITE in 1.28. Walking right gave `^\3`, `` `\3 ``, `b\+` … (x up by 2 per step, y fixed); stopping sent the idle frame (`#` = 3, facing right).
 - **"Use levels from cyberjoueur".** With that option the server sent `NR` alone after each `N`, with no `NL`. The client then joined `G8onlinestart.graal` and stayed there, instead of moving on to `onlinestartlocal.graal`. It opened no other connection (no HTTP).
 
+## 1.1.9 Gserver with three 1.1.9 clients (relay)
+
+Server started with "Use local levels". **[cap]**
+
+- Every connection pairs with every other connection in the same room. When the third client joined `Graal8`, the server sent it `+` for both existing `Graal8` connections, and sent each of them `+` for the newcomer. The same happened in the level room. Each pair then exchanged `P`. So a relay game is a full mesh of pairs, and every `D` line goes to all the sender's partners.
+- Each time the newcomer's level connection joined a room, the server first sent it `C<id>` for every other connection id, including ones it was about to pair with, then the `+` lines. This looks like a reset of old partnerships before the new ones (*inferred*).
+- When a client quit, the server sent `C<id>` for its level connection to the partners in that room, and `-<id>` for both of its connections to every connection, in all rooms. The other clients carried on, and the remaining ones could still walk.
+- **No leader.** All three clients sent the NPC arrows (`A`) all the time, and the two remaining clients went on doing so after the first quit. In the relay each client runs the level's NPC scripts for itself. The leader in 1.21 and later comes from the GSERV server (id 10, above).
+
 ## What this changes
 
 - `gserv-1999.md`: the login reply order is now the captured one, plus the 1.28 difference (no 39), the refusal of newer tokens, the second-player 8 messages and the UDP shape.
 - `relay-1998.md`: the two connections, `NR` then `NL` (or `NR` alone with Cyberjoueur levels), `A` = arrow shot, and the `P` sprite encoding.
-- `gserv-1999.md`: UDP id 0 = X, Y, SPRITE, STATUS, CARRYSPRITE, and id 12 = arrow add.
+- `gserv-1999.md`: UDP id 0 = X, Y, SPRITE, STATUS, CARRYSPRITE, id 12 = arrow add, and id 10 = level leader.
+- `v121-v132.toml`: new `level_leader` feature.
 - `v121-v132.toml`: `credentials_in_registry` is now confirmed and names the DES string form.
 
 ## Open
 
-Nothing from these runs is left open. Not tried: the 1.1.9 relay with more than two clients, and whether the arrow role in 1.28 is decided by the server or by the clients (no TCP message marked the handover).
+Nothing from these runs is left open.
