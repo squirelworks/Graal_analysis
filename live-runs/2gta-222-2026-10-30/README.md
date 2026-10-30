@@ -162,7 +162,7 @@ The user ran the patched GServer-v2 beta4 pack on their Linux PC (GwenTea2, 192.
 | [pot2](lan/pot2.png), 600 ms later | Carry pose, heart still in the stand. |
 | [pot4](lan/pot4.png) | Turned left and threw: the pot is gone and the heart stays where the pot was. |
 
-On this server the drop comes from the server, in the same frame as the lift: the client sends `BOARDMODIFY` and `GANI=lift`, and the server replies at once with `ITEMADD` at the pot's spot (item 5, heart). The client sends `ITEMTAKE` with the same three bytes when the player stands on it. The pot was back about 15 s later, as the bushes were on Graal the Adventure. (The drop is the server's `vasesdrop`/`bushitems` option; a server without it drops nothing.)
+On this server the drop comes from the server, in the same frame as the lift: the client sends `BOARDMODIFY` and `GANI=lift`, and the server replies at once with `ITEMADD` at the pot's spot (item 5, heart). The client sends `ITEMTAKE` with the same three bytes when the player stands on it. The pot was back on the board within about 15 s (not timed precisely). (The drop is the server's `vasesdrop`/`bushitems` option; a server without it drops nothing.)
 
 ### The heart-refill death loop
 
