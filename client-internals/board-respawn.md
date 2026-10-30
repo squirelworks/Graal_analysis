@@ -16,7 +16,7 @@ Tags: **[bin]** read from the binary · **[live]** measured with the real progra
 | Timer | `trunc(R·rand·0.5 + 0.75·R)` one-second ticks, R = `respawntime`, default **10**, so 6 to 12 s **[bin][live]** | n/a | Exactly `respawntime`, default **15** **[src][cap]** |
 | Restore packet | `PLO_BOARDMODIFY` (7) with the old tiles, to everyone in the level | handled as any board modify | same |
 | Sender gets its own change echoed | No **[bin][live]** | n/a | Yes, to the whole level **[cap]** |
-| Item drops from bushes and pots | **Client**, local random roll, sent peer to peer **[bin]** | **Server** ("bush rupees and pot hearts are server-side", v2.00 **[doc]**). The 2.05 cut and lift code spawns no item **[bin]** | Server, 50 % of 6 items for bushes, a heart for a vase **[src]** |
+| Item drops from bushes and pots | **Client**, local random roll, sent peer to peer, and from 1.38 also to the server (`PLI_ITEMADD`) **[bin][cap]** | **Server** ("bush rupees and pot hearts are server-side", NewMain 1.42 **[doc]**). The 2.05 cut and lift code spawns no item **[bin]** | Server, 50 % of 6 items for bushes, a heart for a vase **[src]** |
 
 ## The objects
 
@@ -74,16 +74,16 @@ Drops are rolled by the client that cut or lifted the object **[bin]**:
 
 | When | Drop |
 |---|---|
-| Bush cut, bush lifted, or bush destroyed by a blast routine that walks both tables (probably bombs **[inf]**) (entry 0 only, not tall grass) | `Random(100)`: 0–24 green rupee (25 %), 25–26 blue rupee (2 %), 27–31 heart (5 %), 32–36 bombs (5 %), 37–99 nothing (63 %) |
+| Any cut entry (bush and tall grass), a bush lifted, or a bush destroyed by the bomb blast (cut entry 0) (corrected in `item-drops.md`) | `Random(100)`: 0–24 green rupee (25 %), 25–26 blue rupee (2 %), 27–31 heart (5 %), 32–36 bombs (5 %), 37–99 nothing (63 %) |
 | Pot lifted, or destroyed by that blast routine (lift entry 2) | A heart, every time |
 
 - **Timing:** the drop happens at the lift, not when the thrown pot breaks.
 - **Item flags:** items are created with flag value 164 and the "announce" flag set.
 - **When online:** the client sends the new item straight to the other players over UDP (`sendto` each peer), as id 19, with `chr(x·2+32) chr(y·2+32) chr(item+32)`. Only item kinds marked in a per-item table are sent. The GServer does not take part. The board change itself still goes to the server over TCP (id 1).
 
-### Item drops from 2.00 on (server-side)
+### Item drops from 1.42 on (server-side)
 
-- **2.00:** "bush rupees and pot hearts are server-side" **[doc]**.
+- **1.42:** "bush rupees and pot hearts are server-side" (`newfeatures142.txt`; the roll is gone from NewMain 24 and 26, and 1.41 still has it) **[doc][bin]**. This note said 2.00 before; see `item-drops.md`.
 - **2.05 binary:**
   - The cut routine creates only `TAdventureLeap`.
   - The lift routine creates only the carried object.
@@ -173,7 +173,7 @@ This is the open reimplementation used for the 2.05 and 2.22 captures. It is not
 
 | Profile | Respawn | Drops |
 |---|---|---|
-| 1.x online (GServer13-style) | Server, any 2 × 2, `trunc(rand·R/2 + 3R/4)` s on a 1 s tick, R = 10 | Client rolls the 1.3 table (above) on cut/lift/blast of a bush, a heart for every pot. Announce to peers, not the server. |
+| 1.x online (GServer13-style) | Server, any 2 × 2, `trunc(rand·R/2 + 3R/4)` s on a 1 s tick, R = 10 | Client rolls the 1.3 table (above) on any cut and on a lifted or blasted bush, a heart for every pot. Announce to peers; from 1.38 also `PLI_ITEMADD` to the server (`item-drops.md`). |
 | 1.x offline | None | Same client table |
 | 2.00–2.05 online | Server pushes `PLO_BOARDMODIFY`. Client never regrows. | Only `PLO_ITEMADD` from the server |
 | 2.00–2.05 offline | None | None |
@@ -183,7 +183,7 @@ This is the open reimplementation used for the 2.05 and 2.22 captures. It is not
 
 - The real 2.x GServer's timer, tile whitelist and drop rates. No binary of a 2000–2002 official server has been found.
 - Whether 2.05 offline reloads a level from disk on re-entry, which would make a cut bush come back.
-- Drop tables in 1.21 and 1.39 to 1.41: same routine shape expected, not read.
+- Drop tables in 1.21: same routine shape expected, not read. 1.33 to 1.41 were read in `item-drops.md`: the same table.
 - Later clients (2.2+ `updateboard2` / `PLO_BOARDMODIFY2` on gmaps, v4+). Not covered here.
 
 ## Lab notes
