@@ -84,6 +84,72 @@ Holding right into the bush ([face2](face2.png)) shows the push pose: arms forwa
 - The line was still over the head about 45 s later, while the player had not moved. That matches Seihai's note that your own line is held until a direction key (`chat-lists.md`).
 - After Enter the chat line keeps the keyboard: the arrows did not move or turn the player until Tab was pressed again. A Seihai profile for 2.22 should do the same.
 
+## Third pass: memory and packets (20:30 to 20:38 local)
+
+### Server list, all tabs
+
+The Silver tab lists Doomsday and the Bronze tab lists "Jojo???s" (a name with non-ASCII characters, shown as `???`) and Testbed, all with 0 players ([silver](silver.png), [bronze](bronze.png)). The right-hand details panel does **not** change when the tab changes: it keeps showing the server picked last (Graal the Adventure). The listserver reply in the capture names 9 servers: Graal the Adventure (14913), Sharp3D TEST (14917), Testbed (14842), Login DEV (14914), Login Mobile (14912), Jojo???s (30903), Doomsday (14802), Login (14911), GServer-RS (14801). Four of them (Sharp3D TEST and the three Login servers) are on no tab, while the footer says "There are 10 server(s) online".
+
+On the reconnect the HUD counters were right from the first frame (7 rupees, 10 bombs), unlike the very first connect of the day, where they started at 0.
+
+### The 2.22 player object in memory
+
+Read-only, with `tools/mem.py` (ReadProcessMemory, no debugger) and `tools/findptr.py`, following the live-trace thread's recipe. Build: `Graal_222.exe` from the 2.2.2.0 install, image base 0x400000.
+
+- A differential scan (stand, step left, stand, step right) leaves the x double at heap `0x2738008` with y right after it (x 45.0, y 39.0 on the bush spot).
+- The object starts 4 bytes earlier, at `0x2738004`. Its VMT is `0x527FEC`. The static globals `0x5916B0` and `0x59A484` point at it, so **`[0x5916B0]` is the 2.22 player**, the counterpart of 2.05 rev 2's `0x54B7E4`.
+
+A 22 s trace at 4 ms (walk right into the bush, hold right 2 s, sword, A twice, walk left) changed these fields:
+
+| Offset | What it did | Reading |
+|---|---|---|
+| +0x04 (double) | 44 → 44.5 → 45 → 45.5 every 50 ms while walking, 45.5 → 42 walking back | **x**, tiles, 0.5 per 50 ms tick |
+| +0x0C (double) | constant | **y** |
+| +0x19C (double) | same values as x, same ticks | a second copy of x (the 2.05 object keeps x before the step at +0xFC) |
+| +0x228 (double) | 25.5 while x was 44, moving with x | the view's left edge in tiles (x − 18.5) |
+| +0xFC | 3 while facing right, 1 after turning left | **direction** (0 up, 1 left, 2 down, 3 right) |
+| +0x044 | 0..7, +1 per tick while walking | **walk frame** |
+| +0x154 | 0/1 alternating each step | step parity |
+| +0x180 | 1 while a direction key is held, 0 after | walking flag |
+| +0x1DC | counts 1, 2, 3 … per tick while pushing into the bush; at 19 the push frames start; it runs to 37 and drops back to 18 while the key is still held | **blocked-step counter**: the push starts after **18 blocked ticks (0.9 s)**, the same 18 as 2.05 |
+| +0x048 | 0..3 cycling every tick from the moment the counter passed 18 | push frame |
+| +0x2AC | byte flags: 0x100 for one tick at the sword, 0x10000 for one tick at the lift and again at the throw | action flags |
+| +0x258 | +1 every 50 ms the whole time | **tick counter** (2.05: +0x1F8) |
+| +0x34C | 16 → 0, −1 per tick, then again | a 16-tick countdown, not tied to any key |
+| +0x160 / +0x168 | 812 → 813 on the walk right, back to 809 on the walk left | unknown, follows x |
+
+So 2.22 keeps 2.05's movement model: 0.5 tile per 50 ms tick, a 0.9 s push threshold, an 8-frame walk cycle and a 50 ms tick counter.
+
+### What the client sends while walking and cutting
+
+Capture with Wireshark's `dumpcap` on the Wi-Fi adapter from before the login, decoded with `seihai capture show FILE --version 2.22`. The game connection decodes completely (gen 5, key taken from the login frame). The account and password are masked by Seihai and not kept here. Excerpt: [walk-sword-c2s.txt](walk-sword-c2s.txt).
+
+Walking right 450 ms from x 42:
+
+```
++32392ms  FLAGSET  gr.x=42         PLAYERPROPS GANI=cn_walk X=42 SPRITE=3
++32435ms  FLAGSET  gr.x=42.5
++32486ms  FLAGSET  gr.x=43         PLAYERPROPS X=43
++32539ms  FLAGSET  gr.x=43.5
+ …                                  (every 50 ms)
++32741ms  FLAGSET  gr.x=45.5
++32792ms                            PLAYERPROPS X=45.5
++32892ms                            PLAYERPROPS GANI=cn_idle
+```
+
+- **A `gr.x` flag goes to the server on every 50 ms tick.** That is a Graal the Adventure script (a `gr.` client flag), not the client's own movement code. The real client sends it uncoalesced, one message per tick.
+- The X prop goes on whole tiles only (every other tick) plus the final half-tile spot when the player stops. The gani switches to `cn_walk` with the first step and back to `cn_idle` 100 ms after the last.
+- The server's ganis are `cn_idle`, `cn_walk`, `cn_sword`, not `idle`/`walk`/`sword`.
+- The sword sends the cut at once, in the same frame as `GANI=cn_sword`: `BOARDMODIFY` with the 2 × 2 leaves (`PH""%E%F%U%V`). `cn_idle` follows 240 ms later.
+- With nothing else happening the client sends one 1-byte message (id 24, byte 0x29) every 5.1 s and the server sends NEWWORLDTIME every 5.0 s. Seihai's table calls the client's id 24 `SHOWIMGPLAYER`, which does not fit a 1-byte keep-alive; the table entry is worth checking.
+- At login the client sends ADJACENTLEVEL for all 8 neighbours of `westocean_m-16.nw` in one frame, then ~30 FLAGSETs and 3 FLAGDELs (the script flags it holds), then its PLAYERPROPS (`HEADGIF=head162.png`, `COLORS=11,18,18,11,11`, `OSTYPE=wind`).
+
+For Seihai: Seihai #159 stopped Seihai from re-sending unchanged `lastweapon` flags and looks. That is still right: the real client sends a flag only when a script changes its value. The per-tick `gr.x` is the script changing it every tick, not the client repeating itself.
+
+### Not done
+
+Pots, signs and appearance (clothes-changer) commands are still untested. A lift attempt in the third pass happened on a stump (the sword had already cut the bush), so the capture has no lift or throw message.
+
 ## Against Seihai's laundry list
 
 | Seihai item | What the real 2.22 client showed |
