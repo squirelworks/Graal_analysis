@@ -6,10 +6,10 @@ From 2004 to 2007 the Graal client was built on GarageGames' **Torque Game Engin
 
 Tags: **[bin]** read from a client binary · **[file]** read from shipped data · **[run]** seen while running a real client under Wine · **[inf]** inferred.
 
-- [network.md](network.md): how a client joins a 3D server, the Torque UDP handshake byte by byte, the connect request in each version, the mission download phases.
+- [network.md](network.md): how a client joins a 3D server, the Torque UDP handshake byte by byte (run live end to end against the real 5.12 client), the connect request in each version, 5.12's class-name table in the accept, the mission download phases.
 - [scripting.md](scripting.md): the compiled TorqueScript (`.dso` v33) format with Graal's opcode table, the decoder in `tools/`, and what the 3.153 scripts do.
 - [engine-and-formats.md](engine-and-formats.md): engine version, classes per build, 3D resource formats (DTS, DIF, TER, 3DS), terrain streaming, rendering devices.
-- `tools/`: `dsodis.py` / `dsodec.py` (DSO disassembler and decompiler), `tq.py` (a minimal Torque handshake responder), `conn.c` (the injector used to make a real 5.12 client join a 3D server).
+- `tools/`: `dsodis.py` / `dsodec.py` (DSO disassembler and decompiler), `tbits.py` (Torque bit stream and Huffman strings), `tq.py` (a minimal Torque server that completes the 5.12 handshake), `conn.c` (the injector that makes a real 5.12 client join a 3D server and drives its frames under Wine).
 
 Related notes elsewhere: `protocol/v3x-clients.md` (3.04 / 3.153 Graal TCP side), `protocol/v4x-clients.md` and `graal3d/torque-engine-4x.md` (4.x, including the 4.04r2 `Graal3DEngine.dll` read: BigData events, commands, protocol 19), `protocol/v5x-clients.md` (5.x TCP side), `graal3d/` (the unrelated February 2000 DirectX Graal3D).
 
@@ -30,9 +30,9 @@ All rows are **[bin]**, except the 3.153 script column (**[file]**).
 
 1. **A launcher** that offers both clients. Graal itself did this from 4.x: the launcher shows the server list, and a server whose listed name starts with `"3 "` is a 3D server.
 2. **A 3D server pair.** Every Graal3D server is a normal Graal TCP gserver on its listed port **plus** a Torque UDP server on **port + 1**. The TCP side carries the login, chat, GS2 and the player; the UDP side carries the 3D world. **[bin][run]**
-3. **The Torque handshake**, which is small and fully known (see `network.md`). The class CRC that stock Torque checks is a constant `0xFFFFFFFF` in 5.12, so a reimplementation does not need Graal's class list to pass it. **[bin][run]**
+3. **The Torque handshake**, which is small, fully known, and tested live against the real 5.12 client (see `network.md`). The class CRC that stock Torque checks is a constant `0xFFFFFFFF` in 5.12. Instead, the server's accept carries a table of class names and the ids it will use for them, so a Seihai server picks its own class ids and only needs Graal's class names. **[bin][run]**
 4. **The 3D world.** Two choices: rebuild the 4.04r2 world (stock TGE datablocks, so an open TGE 1.x / Torque3D code base gets most of the way), or the 5.12 world (Graal's own `GameObject` model, scripted from GS2). 5.12 is the last and most Graal-specific; 4.04r2 is the easiest to reproduce. No 3D server software or 3D level data is in the archives yet, so either way the content must be made or found.
-5. **Per-version profiles.** A profile picks the game string and protocol (`Torque Game Engine Demo`/9, `Graal3D`/19, `Graal3D`/24), the mission phases (3 in TGE builds, 2 in 5.12), and whether menus are TorqueScript (3.x) or GS2 (4.x+).
+5. **Per-version profiles.** A profile picks the game string and protocol, whether the accept carries the class table (5.12), (`Torque Game Engine Demo`/9, `Graal3D`/19, `Graal3D`/24), the mission phases (3 in TGE builds, 2 in 5.12), and whether menus are TorqueScript (3.x) or GS2 (4.x+).
 
 ## What is in the project folder (not in this repo)
 
