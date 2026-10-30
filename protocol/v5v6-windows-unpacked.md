@@ -112,6 +112,5 @@ Read in order, the id set changes like this:
 
 ## Still open
 
-- A server reply: no server → client traffic was captured, so the post-login flow (and whether these builds would get past the `Login` server today) is unseen.
-- Client → server ids beyond 5, 37, 23 and 34.
+- ~~A server reply~~ and ~~client → server ids beyond 5, 37, 23 and 34~~: answered in `v5v6-lab-play.md` (2026-10-30), from runs against a lab server.
 - The expiry check itself (Themida VM code).

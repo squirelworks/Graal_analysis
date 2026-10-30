@@ -140,6 +140,10 @@ At a wall of deep-water tiles, facing down:
 * **1.41 hide** [1.41]. The `graalnm24` gani folder does hold `hidden.gani` and `hiddenstill.gani`, but the 1.41 client does not play them. The hidden player keeps the carry poses, and the leg cycle still runs one frame per tick at a fifth of the speed.
 * **2.22** [2.22]. Lift, hide, the stuck pull loop and swimming in place all behave as in 2.05. The only difference seen is that `swim` restarts at frame 0 when the player stops.
 
+## 5.x and 6.x Windows clients
+
+`protocol/v5v6-lab-play.md` has the same tests on 5.24r4, 5.30r3 and 6.03r7, timed from their own messages on a lab server. Walk 0.5 tile per tick, `push` at about 0.9 s, `lift` for 0.3 s then `carrystill`, throw in the same tick, and `sword` for 5 ticks with the bush cut as the swing starts are all the same as 2.05. New in those builds: while pushing, the client sends the trigger action `pushed,0` once a second. Chat is outlined text with no bubble, and it is cleared by the client after about 3 s.
+
 ## The built-in ganis across the gani sets **[gani]**
 
 The 2.0x archives in the project hold only the executables, and the 2.05 client fetches its ganis from the server. The gani sets on hand are:
