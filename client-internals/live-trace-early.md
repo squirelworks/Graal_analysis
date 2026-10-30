@@ -11,7 +11,17 @@ The raw pcaps and decoded dumps are in the project files under `graal-decompile/
 - Wine 9 (win32 prefix), Xvfb with openbox, Direct3D renderer set to `gdi`. Every pre-1.33 client opens its window under Wine.
 - Servers: the 1.1.9 `Gserver.exe` (relay), GServer 1.28 (`GServerv.exe`, from the 1.28 beta 2 zip) and GServer13 (from the 1.3 test zip). Accounts were added in the server's Edit accounts window. The 15th Graal `.graal` levels were copied in, because the later zips don't ship `onlinestartlocal.graal`.
 - Clients are pointed at the lab with `graalconfig.txt` (`gamemode=One Player Online`, `serveraddr=127.0.0.1`). For 1.1.9 the connect dialog's default host `www.graalonline.com` was mapped to 127.0.0.1.
-- **Keyboard under Wine.** These clients give DirectInput a keyboard data format that lists one object over a 256-byte buffer. Wine only fills listed objects, so arrow keys never reach the game, while chat and Alt keys still work because they arrive as window messages. A live patch that widens the format to 256 key objects in memory (the exe checks its own checksum, so the file can't be edited) fixes it in 1.3 test. The 1.28 beta 2 format was found the same way, but walking still didn't register in that run, so no movement was captured for 1.28.
+- **1.21** ships only as an InstallShield 3 package. Its setup was run under Wine, and the installed folder (218 files) is kept in the project files under `graal-decompile/unpacked-installers/graal121/`. The installed `Graal.exe` and `GServer.exe` have the same MD5 as the copies analysed statically.
+- **Keyboard under Wine.** These clients give DirectInput a keyboard data format that lists one object over a 256-byte buffer. Wine only fills listed objects, so arrow keys never reach the game, while chat and Alt keys still work because they arrive as window messages. A live patch that widens the format to 256 key objects in memory fixes this in 1.3 test and in 1.21. The exe checks its own checksum, so the file itself can't be edited. With the patch, Wine's dinput trace shows `dwNumObjs 256`. In 1.21 the player then walks. 1.28 beta 2 still doesn't walk with the patch in place: it creates four keyboard devices (one per local player), calls GetDeviceState once on each and then stops polling. Wine releases the devices again right after each Acquire, and no key event ever reaches dinput. 1.21 polled about a thousand times in the same span. The cause is not found, so no movement was captured for 1.28 beta 2.
+
+## GServer 1.21 with 1.21 (GSERV007)
+
+**[cap]**
+
+- The login frame has the same shape, with `GSERV007`. The installed server ships `accounts.txt` with two accounts, `guest`/`guest` and `super`/`super`. Each line holds `chr(len+32)` + name, `chr(len+32)` + password, then the starting props in the same encoding as id 9.
+- The reply is **one zlib frame** holding 9 (own props), 14 (warp to `level1.graal`), 100, 101 with the board, 6 (level name), 1 (links) and 10. 1.28 and 1.3 test put 101 in a frame of its own. There is no 39, as in 1.28.
+- Walking sends one id 2 message every 100 ms with X/Y and SPRITE, as in 1.3 test.
+- The installer pops up "No MCI device open." under Wine (no MIDI device). Pressing OK continues.
 
 ## GServer13 with 1.3 test (GSERV014)
 
@@ -61,7 +71,7 @@ Server started with "Use local levels". **[cap]**
 
 ## Open
 
-- Movement under Wine for 1.28 beta 2 and the relay builds. The keyboard patch needs checking per build.
+- Movement in the relay builds (1.1.9 and earlier). The patch should carry over, but it hasn't been tried.
 - The meaning of relay `A` / UDP id 12 on `onlinestartlocal.graal`.
 - The 1.1.9 server with "Use levels from cyberjoueur": whether it then sends `NR` alone.
-- 1.21: the client is inside an InstallShield 3 package and was not run.
+- Why 1.28 beta 2 stops polling its keyboards under Wine.
