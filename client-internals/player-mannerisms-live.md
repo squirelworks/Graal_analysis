@@ -146,6 +146,7 @@ At a wall of deep-water tiles, facing down:
 | carried-object id | 261 for a bush (the same sprite number) | – | 261 | – |
 | hide (D while carrying) | hidden flag; walk 0.1 per tick | hidden flag, but the pose **stays `carrystill` / `carry`**, with the legs cycling at 0.1 per tick | `hiddenstill` / `hidden` | = 2.05 |
 | S throws from hiding | yes | yes | yes | yes |
+| S throws while carrying (not hidden) | – | – | yes [dec] (not traced live) | **yes**: `carrystill` to `idle` in the tick after the press, no `sword` frame |
 | sword | counter 1 → 6 (5 ticks); cuts the bush | `sword` 5 ticks; cuts the bush on the first frame (`141-sword-up-bush-cut.png`) | = | – |
 | hurt: lock-out / no-rehit | 40 ticks | 40 | 40 | = |
 | knockback | **4 steps** of 1 tile (4 tiles) | 5 steps (5 tiles) | 5 steps | = (4.9 tiles on the same test) |
@@ -164,6 +165,7 @@ At a wall of deep-water tiles, facing down:
 * **1.39 swim** [1.39]. Only the head and a water ring are drawn. Standing still, the ring alternates between two shapes (`139-swim-standing.png`).
 * **1.41 hide** [1.41]. The `graalnm24` gani folder does hold `hidden.gani` and `hiddenstill.gani`, but the 1.41 client does not play them. The hidden player keeps the carry poses, and the leg cycle still runs one frame per tick at a fifth of the speed.
 * **1.41 sword** [1.41]. With `setsword sword1.gif,1` the blade is drawn and the bush in front is cut on the first swing frame, as in 2.05.
+* **2.22 sword while carrying** [2.22]. In the `t222` run the bush is lifted, D hides, the player walks hidden, D comes out (`carrystill`), then S. The tick after S shows `idle`, with no `sword` frame: the sword key throws, as the 2.05 key handler does. 2.31 was not run. Not run in any build: S during the six `lift` ticks, and a throw with an arrow held.
 * **2.22** [2.22]. Lift, hide, the stuck pull loop, swimming in place, push and hurt all behave as in 2.05. The hurt test was the same walk into the touch NPC from the right, with the arrow held, and gave the same knockback and the same 12 ticks before walking resumed. The only difference seen is that `swim` restarts at frame 0 when the player stops.
 
 ## 5.x and 6.x Windows clients
