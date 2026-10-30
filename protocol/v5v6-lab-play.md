@@ -17,13 +17,13 @@ The lab tools, the key scripts, the proxy logs and the screenshots are in the pr
 
 | Build | Logged in | Level drawn | Played |
 |---|---|---|---|
-| 5.12 | kicked: "Received illegal data (2) from game server" | no | no |
-| 5.24r3, 5.24r4 | yes | yes | 5.24r4: full set of tests |
+| 5.12 | yes, through the proxy (see "5.12's cipher step count") | yes, after the warp | walk |
+| 5.24r3, 5.24r4 | yes | yes | 5.24r4: full set of tests, plus pots, stones and hiding |
 | 6.00 beta1, beta2 | yes | yes | login only |
 | 5.30r3 | yes (clock set back) | yes | push, lift, throw, sword |
 | 5.31r4 | yes (clock set back) | after the warp below | walk |
-| 6.00r2, 6.00r4 | yes (clock set back) | no: the window never paints and the client stops pinging after its first downloads | no |
-| 6.03r7 | yes | after the warp below | full set of tests |
+| 6.00r2, 6.00r4 | yes (clock set back) | no: freezes after the level cache is written and the first image arrives (see "Still open") | no |
+| 6.03r7 | yes | after the warp below | full set of tests, plus black stone and hiding |
 
 ## Lab setup, and what it took
 
@@ -36,6 +36,21 @@ The lab tools, the key scripts, the proxy logs and the screenshots are in the pr
    - The clock has to stay back for the whole session. The server, on the same machine, then also runs in the past, so its respawn timers are useless in those runs. **[wire]**
 4. **Gani headers.** The 2.22 ganis have no `GANI0001` first line. 88 world ganis were given one, as the 5.x bundled ganis have it. This made no visible difference by itself (see the next section).
 5. **Wine.** No renderer change was needed. Mouse-click the window once so that it takes keys. Hold each key for at least 150 ms: shorter taps are missed.
+
+## 5.12's cipher step count
+
+Connected straight to GServer-v2, 5.12 logs "Received illegal data (2) from game server" and is dropped. The message means a frame decoded to nothing. **[wire]**
+
+The cause is in 5.12's frame decoder (`Graal3DEngine.dll`, read from the decompile):
+
+- For zlib frames (type 4) and bz2 frames (type 6), it steps the gen-5 iterator **len / 4 times, rounded down**. That is still capped at 4.
+- For uncompressed frames (type 2) it rounds up, as every later build does in both cases.
+
+So any compressed frame shorter than 16 bytes whose length is not a multiple of 4 leaves 5.12 one iterator step behind the server. From then on every frame is garbage. 5.12 encodes the same way when sending, and it sends even short bodies compressed (`v5v6-windows-unpacked.md`), so the server side goes wrong too. **[bin][wire]**
+
+- **The proxy's fix.** For the 5.12 token, decode the client with round-down stepping and re-encode for the server with the normal rule. Towards the client, send everything zlib-compressed with round-down stepping.
+- With that, 5.12 logs in, warps and plays, with no illegal-data errors. It also shows its own "Players: 1 online" window and the spaced-out window title. **[wire][shot]**
+- An original 5.12-era server must have stepped the same way as 5.12. A server for a 5.12 profile has to as well.
 
 ## The "Login" server mode
 
@@ -134,6 +149,26 @@ These are all **[wire]**, plus **[shot]** for carrying.
 - **Carry sprite.** Prop 19 goes to 1 for the bush while it is carried, then back to −1 when it is thrown. **[wire]**
 - **Respawn.** The server puts the bush back by sending **7** with the tiles 2, 3, 18, 19, **14.6 to 14.7 s** after the lift or cut. This is GServer's `respawntime = 15`, a server setting. These clients have no respawn timer of their own for tiles. How long an original Graal 5.x/6.x server waited is not known from this lab. **[wire][srv]**
 
+### Pots, stones and hiding
+
+The level had a pot, a light stone and a black stone put in the player's path. The account had glove power 3 (`GLOVEP 3`). Tested on 5.24r4; the black stone and bush hiding were repeated on 6.03r7 with the same results. **[wire][shot]**
+
+| Object | Lift (C→S 1) leaves tiles | Carry sprite (prop 19) | D (hide) | Server reply |
+|---|---|---|---|---|
+| bush | 677, 678, 693, 694 (stump) | 1 | hides | – |
+| pot | 1770, 1771, 1786, 1787 (the empty base) | 5 | **nothing** | S→C 22: item 5 (a heart) at the pot |
+| light stone | 1834, 1835, 1850, 1851 (a hole) | 3 | hides | – |
+| black stone | 1834… (the same hole) | byte 0xE9 | hides | – |
+
+- **Hiding** (D while carrying a bush, light stone or black stone):
+  - The pose becomes `hiddenstill`, and prop 18 (status) goes from 20 to **22**, which sets the hidden bit 0x02.
+  - Only the carried object is drawn, where the player stands. Body, head and shadow are gone. **[shot]**
+  - Walking hidden plays `hidden` and moves **1.5 px per tick** (y2 steps of 2 and 1 px, alternating). That is about 0.1 tile per tick, as in 2.05.
+- **Leaving the hiding place.** D again, or A, goes back to `carrystill`, and status goes back to 20. S while hidden throws (C→S 11).
+- **Carrying.** The pot or stone is drawn over the head, as with the bush.
+- **Throwing a pot.** The heart dropped by the server stays on the pot base.
+- All of this matches the 2.05 rules in `client-internals/carry-hide-and-glove.md`. The 4.04r2 lab (v4 thread) got the same carry sprites and tiles.
+
 ### Chat text
 
 Chat was set by the server (own props 9 and other-player props 8, prop 12), because neither Tab nor Enter opens a chat bar in these runs. With no server GUI scripts there is no chat bar on screen. **[wire][shot]**
@@ -155,11 +190,12 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
 
 ## Still open
 
-- **5.12**'s kick for "illegal data (2)" through this proxy. The v5 thread reports 5.12 working through its own proxy.
-- **6.00r2 and 6.00r4** stop after the first file downloads and never paint under Wine.
+- **6.00r2 and 6.00r4** freeze under Wine.
+  - The last thing the game does is write the level cache (`weblevels/…/onlinestartlocal.nw-14900.code`) and receive the first image.
+  - It then stops reading the socket and never paints.
+  - The folder scan before login finishes ("Done.").
+  - Switching to OpenGL (`useopengl=1`, `-opengl`), turning wined3d CSMT off and using RGBA PNGs make no difference.
+  - Themida stops winedbg from attaching. A real Windows machine is the next step.
 - **Typed chat.** A chat bar was not found without server GUI scripts.
-- Not tested here:
-  - hiding (D while carrying);
-  - pots and stones (none in the start level);
-  - hurt, swim, grab and pull.
+- Not tested here: hurt, swim, grab and pull.
 - The tile-definition rule: whether 5.31+ needs `addtiledef` or only the warp.

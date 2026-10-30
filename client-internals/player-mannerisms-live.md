@@ -142,7 +142,7 @@ At a wall of deep-water tiles, facing down:
 
 ## 5.x and 6.x Windows clients
 
-`protocol/v5v6-lab-play.md` has the same tests on 5.24r4, 5.30r3 and 6.03r7, timed from their own messages on a lab server. Walk 0.5 tile per tick, `push` at about 0.9 s, `lift` for 0.3 s then `carrystill`, throw in the same tick, and `sword` for 5 ticks with the bush cut as the swing starts are all the same as 2.05. New in those builds: while pushing, the client sends the trigger action `pushed,0` once a second. Chat is outlined text with no bubble, and it is cleared by the client after about 3 s.
+`protocol/v5v6-lab-play.md` has the same tests on 5.24r4, 5.30r3 and 6.03r7, timed from their own messages on a lab server. Walk 0.5 tile per tick, `push` at about 0.9 s, `lift` for 0.3 s then `carrystill`, throw in the same tick, and `sword` for 5 ticks with the bush cut as the swing starts are all the same as 2.05. New in those builds: while pushing, the client sends the trigger action `pushed,0` once a second. Chat is outlined text with no bubble, and it is cleared by the client after about 3 s. Hiding under a bush or stone (status bit 0x02, only the object drawn, 1.5 px per tick) and the pot's "D does nothing" also match 2.05.
 
 ## The built-in ganis across the gani sets **[gani]**
 
