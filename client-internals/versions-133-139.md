@@ -127,7 +127,7 @@ Two of the 1.34 additions, `carryobject` and `throwcarry`, are only announced in
 ### Server compatibility (GServer-v2 beta4)
 
 - It needs `generation = classic`, with the GNW tokens listed in `allowedversions.txt`. Otherwise it refuses the client with "Allowed: 2.0 - 2.31".
-- The client needs a listserver to check the account, even with a direct server address. Without one it reports "The login server is offline".
+- The server checks the account with a listserver, even though the client connects directly. Without one the client is told "The login server is offline".
 - It kicks 1.33 for id 25 ("Unknown Player Packet: 25"). 1.34 to 1.37 send the same id (*inferred* to be kicked too). A proxy that drops id 25 lets 1.33 play, though beta4 then warns about an invalid packet count, because the dropped messages are missing from the count.
 - 1.39 logs in and plays. 1.38 has the same send set apart from profiles (*inferred* to work).
 - It sends prop 10 as a gani string, which these clients misread (see "Prop encodings").
