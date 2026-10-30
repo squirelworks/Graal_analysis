@@ -79,6 +79,11 @@ Three causes, found by decoding the pcap and comparing beta4's server-to-client 
 
 None of the three can be done in config. The player class comes from the login type byte (`PlayerLogin::msgLoginPacket`: type 0 is `PlayerClientOriginal`, which 2.05 and 2.17 send), not from `generation` or `allowedversions.txt`; `PlayerClientOriginal`'s level send has no generation or option check; and fix 1 is in the shared login parser. The `generation` setting changes props, baddies, items and NPC details, not these paths.
 
+Checked again with a stock beta4 build (2026-10-30, widened `allowedversions.txt`) because a "legacy port" or old-client toggle would make the patch unnecessary. There is none: beta4 opens one client listener (`serverport`), and its options list has no old-client or encryption switch. The one related knob is `generation`:
+
+* `generation = newmain` (stock): 2.17.1 draws the level, then on the first step the server logs `Unknown Player Packet: 55` and the client shows "Invalid PlayerProp type in constructPropFor" and drops. This is fix 1's iterator desync.
+* `generation = classic` with 2.17's token added to the classic range: worse; the login bundle is read as garbage (`Unknown Player Packet: 112`, "sending invalid packets") and the client is dropped before a player exists. beta4's own `docs/start-here.md` warns that 2.x clients on a classic server get mangled packets.
+
 These are bugs against the real clients, not lab choices, so they would be worth upstream; under the project rule nothing was sent outside squirelworks.
 
 ## 3. Listservers

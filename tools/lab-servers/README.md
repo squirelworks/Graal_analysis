@@ -71,7 +71,7 @@ The stub shipped in the lab pack (`listserver.py`, 119 lines) differed from the 
   * 2.17.1: list on **14922** with shape B (its built-in port), "Classic" tab, in game.
   * 2.22: list on 14922 (shape C), "Bronze" tab, the two status lines, the Show More and Donations buttons; in game.
 
-* **Real clients on patched beta4** (same namespace, listserver version 2, and again from the packed tarball for 2.17.1): 2.05 rev 2 (`GNW03081 (2.05r2)`), 2.17.1 (`GNW22122`) and 2.22 (`GNW03014`, logged as "New Client (2.22+)") each list the server, reach the game and walk; the gserver log shows no unknown or invalid packets. Unpatched beta4 with the widened `allowedversions.txt`: 2.05 stuck on loading, 2.17.1 "Invalid PlayerProp".
+* **Real clients on patched beta4** (same namespace, listserver version 2, and again from the packed tarball for 2.17.1): 2.05 rev 2 (`GNW03081 (2.05r2)`), 2.17.1 (`GNW22122`) and 2.22 (`GNW03014`, logged as "New Client (2.22+)") each list the server, reach the game and walk; the gserver log shows no unknown or invalid packets. Unpatched beta4 with the widened `allowedversions.txt`: 2.05 stuck on loading, 2.17.1 "Invalid PlayerProp" on the first step. beta4 has no legacy port or old-client option (one listener, `serverport`); `generation = classic` makes 2.17.1 fail at login instead.
 * `test_listserver.py` expects to be the only gserver on the listserver. Run it with GServer stopped; with GServer connected the row and tag checks fail because GServer's row comes first.
 
 ## Notes for the other threads
