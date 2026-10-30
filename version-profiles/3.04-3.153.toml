@@ -5,7 +5,8 @@
 #   bin  = read from that client's executable (3.04 Linux i386 ELF after UPX unpack, 3.153 Mac PPC Mach-O)
 #   file = read from shipped data files (license/, compiled TorqueScript .dso, prefs)
 #   inf  = inferred
-# Neither build was run and neither was connected to a server; there is no cap or srv evidence here.
+#   cap  = seen in the 2026-10-30 lab run of the real 3.04 client on GServer-v2 (lab-304-linux-2026-10-30.md)
+# 3.153 was not run; its values are bin only.
 # Field names follow 2.22-2.31.toml. The 3.x tokens carry the same date stamps as 2.22 (GNW03014)
 # and 2.31 (GNW28015), so 3.04 is the 3.x twin of 2.22 and 3.153 the twin of 2.31.
 
@@ -24,15 +25,19 @@ lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
 cipher_src = "bin"
 account_plain = true                   # no dec(b) = (~b - 10) step on account or password
 listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "assumed", first_message_id = 7, token = "G3D30123", list_name = "newmain", config = "license/license.graal (RSA-1024 signed, e=17, PKCS#1 v1.5 SHA-1)", built_in_host = "listserver.graalonline.com", built_in_port = 14922 }
-listserver_src = "bin file"            # never tested against the public listserver with a G3D token
+listserver_src = "bin file cap"        # cap: lab listserver only; never tested against the public listserver with a G3D token
+listserver_login_frame = "one plain zlib frame with id 7 and id 1; the server replies in gen 5"   # cap (3.04)
 serverlist_prefixes = { "P " = "Graal Gold", "3 " = "Graal 3D", "H " = "Hosted", "U " = "not listed", "" = "Classic" }
 file_modtime = true
 large_files = true                     # LARGEFILESTART/END (68/69), LARGEFILESIZE (84)
 login_after = [37]                     # PLI_LANGUAGE only; no PLI_TAMPERCHECK (39) in either build
 tampercheck = false
-tampercheck_src = "bin"
+tampercheck_src = "bin cap"            # cap: 3.04, none in a 5-minute session
+periodic_sends = {}                    # cap (3.04): no periodic client message at all
+login_frame_messages = [5, 37, 34, 34] # cap (3.04): login, language, UPDATEFILE bigmap.txt and minimap.txt in the one plain frame
 login_props = "37 LANGUAGE; then UDP init unless noudp; then 23 WANTFILE / 34 UPDATEFILE for the player's own images, at most 5 queued"
-login_props_src = "bin"
+login_props_src = "bin cap"
+first_props_sent = [0, 18, 31, 33, 52, 75, 76]   # cap (3.04): nick, status, udpport, additflags, language, ostype, textcodepage
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "GR-V1.04", "GLEVNW01", "GSERVL01", "GRMAP001", "GWEBL001"]
 level_formats_src = "bin"              # GSERVL01 is the only 3.x-only magic; GWEBL001 is the DES-encrypted level cache
 udp = { present = true, config_key = "$pref::Graal::noudp", fixed_port_key = "$pref::Graal::fixedudpport" }
@@ -43,7 +48,7 @@ label = "3.04"
 build = "3.04 revision 1 (server table: 3.041)"
 platform = "linux-i386"
 token = "G3D03014"
-token_src = "bin"
+token_src = "bin cap"
 twin = "2.22"
 base = "defaults.g3d"
 plo_known = "0-25, 27-49, 68, 69, 75, 84, 100-102, 150, 151, 153-156, 165, 166, 168, 169, 171-176, 178-181, 184-186"
@@ -62,8 +67,12 @@ props_self_parse_exclude = [33, 50, 51, 53]
 npcprops_exclude = [48, 49, 50, 51, 52]
 props_src = "bin"
 ostype = "linux"                       # prop 75 OSTYPE; prop 76 TEXTCODEPAGE
+ostype_src = "bin cap"
+textcodepage = 1250                    # cap: value the client sent in the lab
 precise_move = false
 precise_move_src = "bin"
+behaviour_src = "cap"
+behaviour = { walk_tiles_per_s = 10, pos_send_interval_ms = 100, push_after_s = 0.9, sword_gani_s = 0.25, dropped_item_lifetime_s = 8.3, lift_to_carrysprite_s = 0.2, throw_sends_11 = false, chat = "white text, 1 px blue shadow, no bubble" }
 
 [version.features]
 start_window = ["Nick", "Language", "Options", "Tutorial", "Account", "Password", "Get Account", "Start"]
