@@ -20,7 +20,7 @@ The patch puts `GNW03081` (2.05) in gs2lib's 2.1 slot. Real 2.05 needs it on thi
 
 ## Our beta4 gserver (2026-10-30)
 
-GServer-v2 **beta4 `365bbd2`**, built here with GCC 14 (no V8, no UPnP), with beta4's own gs2lib `5c36ab8` unpatched. It reports `4.0.0-beta`. beta4 knows 2.05r2 (`GNW03081`) natively as `CLVER_2_052`, so 2.1 keeps its token. Stock beta4 did not get real gen-3 clients into the game; `gserver-beta4-lab.patch` fixes three things:
+GServer-v2 **beta4 `365bbd2`**, built here with GCC 14 (no V8, no UPnP), with beta4's own gs2lib `5c36ab8` unpatched. It reports `4.0.0-beta`. beta4 knows 2.05r2 (`GNW03081`) natively as `CLVER_2_052`, so 2.1 keeps its token. Stock beta4 refuses 2.05 and 2.17 at login because its `allowedversions.txt` only accepts 1.41r1 and 2.22 to 2.31; the pack widens that in config. With the versions accepted, beta4 still did not get real gen-3 clients into the game, and none of the causes is reachable from config (the player class comes from the login type byte). `gserver-beta4-lab.patch` fixes three things:
 
 1. **Login bundle remainder.** 2.05 and 2.17 send the login line and `PLI_LANGUAGE` in one frame. beta4's `parseLoginPacket` dropped the rest of that frame, so the gen-3 decrypt iterator ran one step behind for the whole session: 2.17.1 failed with "Invalid PlayerProp" and 2.05 never sent valid packets. The patch keeps the remainder and hands it to the new player.
 2. **`PLO_SETACTIVELEVEL` (156)** is now sent to Original clients from 2.01 up, before the NPCs. 2.05 waits for it on the loading screen.
@@ -71,7 +71,7 @@ The stub shipped in the lab pack (`listserver.py`, 119 lines) differed from the 
   * 2.17.1: list on **14922** with shape B (its built-in port), "Classic" tab, in game.
   * 2.22: list on 14922 (shape C), "Bronze" tab, the two status lines, the Show More and Donations buttons; in game.
 
-* **Real clients on patched beta4** (same namespace, listserver version 2, and again from the packed tarball for 2.17.1): 2.05 rev 2 (`GNW03081 (2.05r2)`), 2.17.1 (`GNW22122`) and 2.22 (`GNW03014`, logged as "New Client (2.22+)") each list the server, reach the game and walk; the gserver log shows no unknown or invalid packets. Unpatched beta4: 2.05 stuck on loading, 2.17.1 "Invalid PlayerProp".
+* **Real clients on patched beta4** (same namespace, listserver version 2, and again from the packed tarball for 2.17.1): 2.05 rev 2 (`GNW03081 (2.05r2)`), 2.17.1 (`GNW22122`) and 2.22 (`GNW03014`, logged as "New Client (2.22+)") each list the server, reach the game and walk; the gserver log shows no unknown or invalid packets. Unpatched beta4 with the widened `allowedversions.txt`: 2.05 stuck on loading, 2.17.1 "Invalid PlayerProp".
 * `test_listserver.py` expects to be the only gserver on the listserver. Run it with GServer stopped; with GServer connected the row and tag checks fail because GServer's row comes first.
 
 ## Notes for the other threads

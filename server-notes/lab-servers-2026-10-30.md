@@ -59,7 +59,12 @@ beta4's own notes (`bin/docs/server-unimplemented.md`) say 1.38 to 1.411 and the
 
 ### beta4 built and run against real clients **[lab]**
 
-Built here 2026-10-30 (GCC 14, CMake 3.31, system antlr4 4.10 with the Maven Central 4.10.1 jar in place of the pinned 4.13.2 download, `UPNP=OFF`, no V8). Stock beta4 against the real clients:
+Built here 2026-10-30 (GCC 14, CMake 3.31, system antlr4 4.10 with the Maven Central 4.10.1 jar in place of the pinned 4.13.2 download, `UPNP=OFF`, no V8). Two layers stand between stock beta4 and the old clients.
+
+**Config.** Stock `allowedversions.txt` uses `[generation-range]` with `classic = GNW13110` (1.41r1 only) and `newmain = GNW03014:GNW28015` (2.22 to 2.31), and the stock generation is `newmain`. So out of the box beta4 refuses 2.05 and 2.17 at login. The lab pack widens `newmain` to `GNW24011:GNW28015` (2.00 to 2.31) and `classic` to 1.33 to 1.41r1; the originals are kept as `*.stock.txt`.
+
+**Code.** With the versions accepted, the logs show `New login ... [GNW03081 (2.05r2)]` and `[GNW22122 (2.17)]`, and the clients still fail:
+
 
 * 2.05r2: logs in as `GNW03081 (2.05r2)` and stays on the loading screen.
 * 2.17.1: "Invalid PlayerProp" right after login.
@@ -71,6 +76,8 @@ Three causes, found by decoding the pcap and comparing beta4's server-to-client 
 3. `PlayerClientOriginal` sends the first `PLO_LEVELNAME` after the board. efb5b90 and the live-trace stub send it before, and 2.05 stays on loading otherwise.
 
 `../tools/lab-servers/gserver-beta4-lab.patch` fixes all three (keep and replay the login remainder; send 156 from 2.01 up; LEVELNAME first). With it, real 2.05r2, 2.17.1 and 2.22 each list the server on listserver version 2, reach the game and walk, with no unknown-packet logs. One difference from efb5b90 seen in the trace and left alone: beta4 answers a pre-2.1 client's request for a default file with `PLO_FILESENDFAILED` (30) where efb5b90 sent `PLO_FILEUPTODATE` (45); 2.05 did not mind.
+
+None of the three can be done in config. The player class comes from the login type byte (`PlayerLogin::msgLoginPacket`: type 0 is `PlayerClientOriginal`, which 2.05 and 2.17 send), not from `generation` or `allowedversions.txt`; `PlayerClientOriginal`'s level send has no generation or option check; and fix 1 is in the shared login parser. The `generation` setting changes props, baddies, items and NPC details, not these paths.
 
 These are bugs against the real clients, not lab choices, so they would be worth upstream; under the project rule nothing was sent outside squirelworks.
 
