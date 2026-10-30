@@ -30,19 +30,46 @@ Stock TGE 1.x `NetInterface`. The first bit of a datagram picks the kind: **[bin
 | `0x1E` | ConnectChallengeResponse | S→C | U32 connect sequence, 4 × U32 address digest |
 | `0x20` | ConnectRequest | C→S | U32 sequence, 4 × U32 digest, string class name (`GameConnection`), then the class's `writeConnectRequest` (below) |
 | `0x22` | ConnectReject | S→C | U32 sequence, string reason |
-| `0x24` | ConnectAccept | S→C | U32 sequence, then `writeConnectAccept` (U32 protocol version) |
+| `0x24` | ConnectAccept | S→C | U32 sequence, then (5.12) a class-name table, then `writeConnectAccept` (U32 protocol version) |
 | `0x26` | Disconnect | both | U32 sequence, string reason |
 
-Types below `0x17` go to the master-server/LAN query handler. All integers are little-endian. Strings are Torque `writeString` (length byte + bytes, max 255).
+Types below `0x17` go to the master-server/LAN query handler. All integers are little-endian.
 
-Live capture **[run]** (5.12, Wine, `torque/tools/tq.py` answering):
+Strings inside info packets are Torque `writeString`: one flag bit (1 = Huffman coded with Torque's fixed character-frequency tree, 0 = raw), a U8 length, then the codes or bytes. Info packets are a plain bit stream after the type byte, so fields after the first string are no longer byte-aligned. `torque/tools/tbits.py` reads and writes this format, including the Huffman tree. **[bin][run]**
+
+### The full handshake, live
+
+Seen live **[run]** from the real 5.12 client under Wine, answered by `torque/tools/tq.py`. Timestamps are relative to the challenge request. The 3-second gap before the connect request is the injector's own wait before it starts running frames:
 
 ```
-C->S 1a 00040000                      challenge request, sequence 0x400
-S->C 1e 00040000 00010203 04050607 08090a0b 0c0d0e0f   our challenge response
++0.000 C->S 1a 00040000                                   challenge request, sequence 0x400
++0.000 S->C 1e 00040000 00010203 04050607 08090a0b 0c0d0e0f   challenge response (our digest)
++3.009 C->S 20 00040000 00010203 ... 0c0d0e0f 1d6213fd ...   connect request, 71 bytes (decoded below)
++3.009 S->C 24 00040000 00 30000000                       connect accept: seq, empty class table, protocol 24
++3.043 C->S 05 00 00 04 41 b8 00 ...                      first data packet (seq 1)
+         ... one 17-byte data packet a second, and a 4-byte ping about every 4.6 s ...
++18.02 C->S 26 00040000 00 00                             disconnect, sequence 0x400, empty reason
 ```
 
-The 5.12 client did not go on to send `0x20` under Wine: starting the 3D view failed with "DirectX couldn't…" and a null-pointer fault, which stops its game loop. The connect request below is therefore read from the code, not captured.
+The client's own console (captured by hooking its `Con::printf` at `0x1000a220`) logs the same steps: `Sending Connect challenge Request`, `Got Connect challenge Response`, `Sending Connect Request`, `Connection established 19`, and at the end `Issuing Disconnect packet.` / `You have been disconnected from the game server.`
+
+The connect request decodes to exactly:
+
+| Field | Value |
+|---|---|
+| type, sequence, digest | `0x20`, `0x400`, our 16 digest bytes echoed back |
+| class name | `GameConnection` (Huffman string) |
+| net class group, class CRC | 0, `0xFFFFFFFF` |
+| game string | `Graal3D` |
+| current / minimum protocol | 24 / 24 |
+| join password | `7Y3bdzjf`, the plain built-in guest password (see `protocol/v5v6-windows-unpacked.md`), so for a real account it is the account password in clear |
+| argc, argv | 2: `guest` (the account), then an empty string (the nickname, unset here) |
+
+No bits are left over, so the field list above is complete.
+
+**Why the client disconnected.** The disconnect came the moment our lab TCP listener (which never answers the Graal login) closed the TCP side. The client then reports `You have been disconnected from the game server.` and drops the Torque connection with `0x26`. So the 3D connection only lives as long as the Graal TCP connection. **[run]**
+
+**How the live run got this far.** Under Wine the 5.12 launcher faults when it re-initialises DirectDraw on switching to 3D (`Error when loading and initializing DirectDraw: Access violation …` in `game_console.log`), and stops calling the engine's per-frame export `runGraal3DEngine`. The challenge request goes out from inside `connectToGraalServer`, but nothing processes the reply. The injector in `torque/tools/conn.c` calls `connectToGraalServer`, then calls `runGraal3DEngine` every 15 ms itself, which runs Torque's network processing and gets the client through the rest of the handshake. **[run]**
 
 ## The connect request by version
 
@@ -63,13 +90,28 @@ The 4.04r2 column comes from the v4 thread (`protocol/v4x-clients.md`); the 5.12
 - client minimum > 24 → `CHR_PROTOCOL_GREATER` ("The server runs an older version of Graal, contact the admins to update it.")
 - argc > 16 → `CR_INVALID_ARGS`
 
-The accept is one U32, the server's protocol. The 5.12 client accepts **exactly 24** (`0x1004e900`), 4.04r2 exactly 19, 3.04 exactly 9; anything else gives `CHR_PROTOCOL`.
+**The accept.** In stock TGE the accept body is one U32, the server's protocol. 5.12 inserts a **class-name table** in front of it, read by `0x1000ac20` before `readConnectAccept` (`0x1004e900`) runs: **[bin][run]**
 
-**Class CRC.** Stock Torque compares the group and CRC and rejects a mismatch with `CHR_INVALID`. In 5.12 the CRC table at `0x1037754c` is static data `{0xFFFFFFFF, 0, 0, 0}` and nothing writes to it; reading it from the running client gave the same values. So a server that answers 5.12 sends group 0 and CRC `0xFFFFFFFF`. **[bin][run]** (3.04 and 4.04r2 read the same way from a static table; their values were not checked.)
+```
+repeat while readFlag() == 1:
+    U12  class type    (must be < 2: 0 = net object, 1 = net event [inf])
+    U12  server class id   (0..255)
+    string class name  (Huffman string, e.g. "NetStringEvent")
+U32  protocol          (must be exactly 24)
+```
+
+For each entry the client looks up its own class of that name, type and group, and records server id to local id (`0x103ae410`) and back (`0x103b0410`), 256 slots per group and type. Ghost and event class ids on the wire are then the **server's** ids. This replaces stock Torque's fixed class numbering, and it is why the class CRC no longer matters. An accept with an empty table (a single 0 bit) plus protocol 24 is enough to reach "Connection established", as in the live run above. An accept without the table bit (stock layout) is read one bit off, gives protocol 12, and is silently rejected. **[run]**
+
+The 5.12 client accepts **exactly 24**, 4.04r2 exactly 19, 3.04 exactly 9; anything else gives `CHR_PROTOCOL`. (Whether 4.04r2 also has the class table was not checked.)
+
+**Class CRC.** Stock Torque compares the group and CRC and rejects a mismatch with `CHR_INVALID`. In 5.12 the CRC table at `0x1037754c` is static data `{0xFFFFFFFF, 0, 0, 0}` and nothing writes to it; reading it from the running client and the live connect request both gave group 0 and CRC `0xFFFFFFFF`. The class table in the accept (below) takes the CRC's place. **[bin][run]** (3.04 and 4.04r2 read the same way from a static table; their values were not checked.)
 
 **Encryption.** None beyond Torque's own framing. The join password travels in clear. **[bin]**
 
 ## After the connection is accepted
+
+Data packets use stock Torque `ConnectionProtocol` headers: flag 1, connect-sequence bit, 9-bit sequence, 9-bit highest ack, 2-bit type (0 data, 1 ping, 2 ack), 3-bit ack byte count, then the ack mask. The live client's first data packet (sequence 1) carries the "max rate" flag with two 12-bit values, which read as 2080 and 368 with the stock field order. Every data packet after that is 17 bytes with no events. A ping follows whenever nothing has been acknowledged for about 4.6 s. **[run]**
+
 
 Mission download follows Torque's `MissionStartPhaseN` / `MissionStartPhaseNAck` remote commands (`commandToServer` / `clientCmd…`): **[bin][file]**
 
@@ -84,6 +126,6 @@ Other Torque events and objects the Graal clients register (5.12, from RTTI): `N
 
 ## For a Seihai 3D server
 
-The minimum to get a real 5.12 client past the handshake: answer `0x1A` with `0x1E` (echo the sequence, any digest the server can later check), accept a `0x20` whose class group is 0, CRC `0xFFFFFFFF`, game string `Graal3D`, protocol 24/24, and reply `0x24` with protocol 24. From there it is Torque's notify protocol and ghosting, which open TGE 1.x source documents. Use 19 for 4.04r2 clients. Keep the Graal TCP server on the port below.
+The minimum to get a real 5.12 client connected, tested live: answer `0x1A` with `0x1E` (echo the sequence, any digest the server can later check). Accept a `0x20` whose class group is 0, CRC `0xFFFFFFFF`, game string `Graal3D` and protocol 24/24. Check the join password against the account. Reply `0x24` with the sequence, the class table (every net object and event class the server will send, by name), a 0 bit, and protocol 24. Keep the Graal TCP connection on the port below alive, or the client drops the 3D one too. From there it is Torque's notify protocol, events and ghosting, which TGE 1.x and Torque3D source document. Use protocol 19 for 4.04r2 clients.
 
-To repeat the live run: `wine-3d-lab/` in the project folder has `run3d.sh` (starts the listeners and the 5.12 client, then injects `conn.c` to join a fake 3D server) and `crc.c` (reads the CRC table from the running client).
+To repeat the live run: `wine-3d-lab/` in the project folder has `run3d.sh` (starts the listeners and the 5.12 client, then injects a DLL built from `conn.c` to join a fake 3D server and drive the engine's frames), `crc.c` (reads the CRC table from the running client), and the captures (`capture-512/`, `capture-512-full/`). Run it as `DLL=conn4 TQARGS=accept run3d.sh <name>`.
