@@ -1,0 +1,58 @@
+archive	build	md5	exe_size	forms	main_window	main_font	frame_timer_ms	wav_names	config_keys	image_names	state_sheet	sprites_sheet	pics1_sheet	letters_sheet
+1stgraal-1	1st Graal	07452f8941fdfcdce878b035156e701c	654336	10	648x521	MS Sans Serif 14px	50	0	0	6	gif 448x96		gif 1024x512	gif 256x224
+2ndgraal	2nd Graal	f74b35fc7975a4873087f7fd2aa1d79b	777216	13	648x516	MS Sans Serif 14px	50	0	0	6	gif 448x96		gif 1024x512	gif 256x224
+3rdgraal	3rd Graal	fc78fbc96bdbc6ca22ae56d3ed8635ab	665600	14	648x516	MS Sans Serif 14px	50	0	0	7	gif 448x137		gif 1024x512	gif 256x224
+4thgraal	4th Graal	e040af2e19912419ab80aa6dd202b4ea	666112	14	648x516	MS Sans Serif 14px	50	0	0	7	gif 448x137		gif 1024x512	gif 256x224
+4thgraalalpha	4th Graal alpha	8cae23a58e1b1b10f3149bdbe53d0431	711680	14	unparsed		none (idle loop)	12	0	7	gif 448x137		gif 1024x512	gif 256x224
+5thgraal	5th Graal	0e7c3573f0a916f8b2376060e768fe96	723968	15	unparsed		none (idle loop)	12	0	7	gif 448x137	gif 256x1584	gif 1280x512	gif 256x224
+5thgraalalpha	5th Graal alpha	e54397e7d4f59d30b77d5cf0475335a1	739840	15	unparsed		none (idle loop)	12	0	8	gif 448x137	gif 256x1584	gif 1280x512	gif 256x224
+6thgraal	6th Graal (beta5)	53c3caf3d930534db3f44f346f5d651a	750080	16	648x516	MS Sans Serif 14px	50	12	5	8	gif 298x96	gif 256x1584	gif 1280x512	gif 256x224
+7thgraal	7th Graal (beta7)	deb40c31268e499fc4436b8d0687f05d	766976	16	648x516	MS Sans Serif 14px	50	13	5	8	gif 427x109	gif 256x1584	gif 1280x512	gif 256x224
+8thgraal	8th Graal (beta8)	a49aa1b773e41741f211867fd5ea55d7	775680	16	648x516	MS Sans Serif 14px	50	29	6	8	gif 427x109	gif 256x1610	gif 1280x512	gif 256x224
+9thgraalalpha	9th Graal alpha	e226e1b83fd437b0aede968fb395b911	788992	17	648x516	MS Sans Serif 14px	50	29	6	12	gif 427x125	gif 256x1610		
+9thgraal	9th Graal (beta9)	f0185ff8525a13f2f4e5997f649bc250	793088	17	648x516	MS Sans Serif 14px	50	29	6	13	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+10thgraal	1.0 (10th)	f1f34b4479a8ad7614bd8f7ce56112c6	795648	17	648x516	MS Sans Serif 14px	50	29	6	13	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+11thgraal	1.0 (11th)	a255212621907affc94a4483c6dfc8e3	795648	17	648x516	MS Sans Serif 14px	50	29	6	13	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+12thgraal	1.0 (12th)	788ae59e9419806024d14d3e5b611971	794624	17	648x516	MS Sans Serif 14px	50	29	6	13	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+13thgraal	1.1 beta1 (13th)	a211a0ecf3b58daa2f46759444e18bd3	797184	17	648x516	MS Sans Serif 14px	50	29	6	13	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+14thgraal	1.1 (14th)	d0999d44fcd9c226f350fcf204618885	858112	17	648x516	MS Sans Serif 14px	50	29	6	13	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+15thgraal	1.1 (15th)	9a7d66dd5c8c506ad4d3e63ee4a9a1f1	878592	18	648x516	MS Sans Serif 14px	50	29	8	14	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+graal1.1.9	1.1.9 Gold	0a6eef88acb4c0fce6e84eee3e76c04a	882176	18	648x516	MS Sans Serif 14px	50	26	8	14	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+graal1.1	1.1 (Feb 1999)	1a9580655cce686c602c01daa251c453	882176	18	648x516	MS Sans Serif 14px	50	26	8	14	gif 427x132	gif 256x1610	gif 1280x512	gif 256x224
+graal121	1.21	8da2e8284dd8b315a28e2d4fccae79ac	973824	19	648x509	MS Sans Serif 14px	50	26	13	38	gif 224x49	gif 256x1026	gif 1280x512	gif 256x224
+graal128b2	1.28 beta2	8e3c1a7233864da994a0db26f1811212	1196544	22	648x508	MS Sans Serif 14px	50	26	17	37	gif 224x81	gif 256x1026	gif 1856x512	gif 256x224
+graal13b	1.3 test	b62aaa4d606a519e7f4689b33983429b	1311744	22	648x508	MS Sans Serif 14px	50	26	17	39	gif 224x81	gif 256x1026	gif 1856x512	gif 256x224
+graal131	1.31	bff87a95a34399b2d35b243f281169a7	1318400	22	648x508	MS Sans Serif 14px	50	26	19	39	gif 224x81	gif 256x1026	gif 1856x512	gif 256x224
+graal132	1.32	42b2596af4b75bcf82db03e0fc274f7d	1328128	23	648x508	MS Sans Serif 14px	50	26	20	39	gif 224x81	gif 256x1026	gif 1856x512	gif 256x224
+graal3d	Graal3D	305c985a020cec6ab8d81ac95d447343	605184	4	648x508	MS Sans Serif 14px	50	0	8	3				
+graal133	1.33	a3667ce55a5c67cf025882014b9540b0	1350144	23	648x508	MS Sans Serif 14px	50	26	21	42	png 224x81	png 128x484	png 1856x512	png 256x224
+graal134	1.34	9e403616e73a6079ac37d65d475c81cd	1349632	23	648x508	MS Sans Serif 14px	50	27	21	43	png 224x81	png 128x484	png 1856x512	png 256x224
+graal135	1.35	fe9d99c4bf6e6bc9b1b127823f39646f	1389568	23	648x508	MS Sans Serif 14px	50	27	23	40	png 224x81	png 128x484	png 1856x512	png 256x224
+graal136	1.36	018f51662c7c8862cafb9bfbd14dea41	1399296	23	648x508	MS Sans Serif 14px	50	27	24	40	png 224x81	png 128x484	png 1856x512	png 256x224
+graal137	1.37	5e966a9d1a079af6d682b2618674edb1	1401344	23	648x508	MS Sans Serif 14px	50	27	24	40	png 224x81	png 128x484	png 1856x512	png 256x224
+graal138	1.38	4401f7d02966af709c2df662cebe34a1	1426432	23	648x508	MS Sans Serif 14px	50	27	23	40	png 224x97	png 128x452	png 1856x512	png 256x224
+graal139	1.39	62513ab884f1802a0bcd8114abe349b9	1448960	25	648x508	MS Sans Serif 14px	50	27	28	40	png 224x97	png 128x452	png 1856x512	png 256x224
+graal_gr1411	1.41 rev1	a97740e711ffe9b698ec03712d4c06af	1506816	28	648x514	MS Sans Serif 14px	50	27	30	39	png 224x145	png 128x452	png 1856x512	png 256x224
+graalnm24	NewMain 1.42 (24)	229f05de7a43b98e223d8e1b58bffc63	1783296	28	648x507	MS Sans Serif 14px	none (idle loop)	24	34	40	png 224x145		png 2048x512	png 256x224
+graalnm26	NewMain 1.42 (26)	22a08ed154f67948e01b969b68cdb05e	1784320	28	648x507	MS Sans Serif 14px	none (idle loop)	24	34	40	png 224x145	png 128x452	png 2048x512	png 256x224
+Graal-v2.0	2.00	c93e659e2cda36379aaea4706db20b38	1812480	28	648x507	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.0-rev1	2.00 rev1	30bd230e578d3a347866a87060efec20	1812992	28	648x507	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.0-rev2	2.00 rev2	fc4bb7e3b7ca9cd8ea6693a033635534	1815040	28	648x507	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.0-rev3	2.00 rev3	1ce5c1662b65246ae1c6559af5ff71f0	1815040	28	648x507	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.01	2.01	08340a8868f1d11e0285cc70e51200fe	1815552	28	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.01-rev1	2.01 rev1	010a32afce66729b838258809a97c0d9	1815552	28	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.02	2.02	60018a19ef671c506743826728c49718	1808384	28	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.02-rev1	2.02 rev1	e06ff79aded885a223b933617d456577	1808896	28	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.02-rev2	2.02 rev2	993a1829dbb6acaa2b46063f5efe636c	1807872	28	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.03	2.03	36972c74baad09ceb33dad94b0eb1e33	1836032	28	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.04	2.04	a40608308d4f890cb5e4efdd45b38ba4	1872384	29	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.05	2.05	9abce477945a1307bb2be9ed47d2f170	1891328	29	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+Graal-v2.05-rev1	2.05 rev1	2780f2f370396c580e1648696698c871	1895936	29	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+graalnwb1	NewWorld beta 1	88d1f84c96da1dcc3942b139fbd741c9	1820672	27	648x514	MS Sans Serif 14px	none (idle loop)	17	32	40	png 224x97			png 256x224
+Graal-v2.05-rev2	2.05 rev2	f3fdf54d943fa91c89acba5bb695db99	1891840	29	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57				
+graal21test2	2.1 test 2	d15d877822ad4145578107857c90fb3c	1748480	26	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57	png 224x145			
+graal21test3	2.1 test 3	2116a7ba03648dcc004035534ec94de8	1753600	26	648x514	MS Sans Serif 14px	none (idle loop)	24	33	57	png 224x145			
+graalnwb2	NewWorld beta 2	af2d21066659bed6af6c77e52b2cc0e1	1613824	24	648x514	MS Sans Serif 14px	none (idle loop)	17	33	40	png 224x97			png 256x224
+2171	2.17.1	0fbef4078da9be6e7fb3969a08c93c5a	2180096	29	644x507	MS Sans Serif 14px	none (idle loop)	24	45	52				
+222	2.22	bc341f16a17202320b2d5990b6c19bdc	1991680	29	644x507	MS Sans Serif 14px	none (idle loop)	24	44	52				
+231	2.31	c6a0fad0593462758c2426dee2ae1391	1773568	18	644x507	MS Sans Serif 14px	none (idle loop)	24	45	48				
