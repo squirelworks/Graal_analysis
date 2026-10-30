@@ -185,7 +185,7 @@ The plug-in also has the server-side reader for this request. Each connection ou
 
 - `BigDataStartEvent`: a 16-bit message id, three strings of up to 255 characters, a 24-bit total length, and a 3-bit coding (0 raw, 1 zlib, 2 bz2).
 - `BigDataChunkEvent`: the 16-bit id, an 8-bit length (at most 191), then the bytes.
-- A message is four strings, `(weapon, type, option, data)`, the shape of GS2 `sendtext`. Data of 0x32 bytes or more is zlib'd, and 0x1000 or more is bz2'd. These are the same thresholds as the Graal TCP frame types.
+- A message is four strings, `(weapon, type, option, data)`, the shape of GS2 `sendtext`. Data of 0x32 bytes or more is zlib'd, and 0x1000 or more is bz2'd. The Graal TCP framing uses nearly the same limits (0x30 and 0x1000).
 - With an empty weapon the type is a command: `set` / `unset` (a player flag), `events` (lines `s <flag>` or `t <trigger>`), `addweapon` (name, GINT5 time), `weaponscript`, `deleteweapon`, `addnpc` (gives a named object its script), `setmaterials` (terrain materials), and `rpg` (→ `onRPGMessage`). With a weapon name, the weapon gets `receivetext`. Type `rc` goes to `onRCChat`, and `torque` is ignored.
 - The client batches its script events per connection: `trigger` as `t …`, `getweapon` as `w …`, others as `s …`. It sends them as one `events` message.
 - Other custom events: `TerrainChunkEvent`, `TerrainRequestUpdatesEvent`, `RequestReloadEvent`. The rest are stock Torque (`RemoteCommandEvent`, `SimDataBlockEvent`, `GhostAlwaysObjectEvent`, `NetStringEvent`, audio events).
