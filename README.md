@@ -148,3 +148,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 ## Reference reimplementations (2026-10-30)
 
 - `client-internals/reference-reimplementations/`: xtjoeytx's 2dadventureclient and LevelScriptEditor weighed against the real-client notes, behaviour by behaviour (matches, invented, missing). Main finding: the `gr.x`/`gr.y` flags seen in lab captures come from GServer-v2's `-gr_movement` weapon in the default account, not from the clients themselves.
+
+## Graal 4.04r2 live behaviour (2026-10-30)
+
+- `client-internals/live-behaviour-404.md`: the real 4.04r2 client under Wine against GServer-v2. Why the Login server never draws players (a server name starting with `login` turns every draw layer off) and how S→C 178 hands the client to the game server. Also the chat look (white bold text with a blue shadow, no bubble), the walk speed, the push delay, grab, sword, bush cut and lift as board modifies, server-driven respawn, carrying, hiding under the object with D, and throwing.
