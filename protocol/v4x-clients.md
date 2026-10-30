@@ -150,7 +150,7 @@ In this installer the stub is `0xDE`, the directory is `0xD7`, and the file bloc
 ### What 4.04r2 ships
 
 - `Graal4.exe` (Delphi launcher), `GraalEngine.dll` (linked 3 March 2006, about 1,650 exports), `fmod.dll` (UPX), `ExeReplacer_temp.exe` (August 2005, the Windows twin of the Mac `ExeReplacer`), and `graalv4_installfiles.txt`, a list of the installed files. **[bin][file]**
-- **`Graal3DEngine.dll`** (linked 3 March 2006): the Torque 3D world as a separate DLL. It exports `loadGraal3DEngine`, `runGraal3DEngine` and `endGraal3DEngine`, and imports 623 symbols from `GraalEngine.dll`. Its source paths are `K:\src\graalv4\user\engine\…` (Torque's `console`, `core`, `dgl`, `game/net`, …). So 3D is a plug-in on top of the 2D engine in 4.x; the 4.20r8 packet-logger set does not include this DLL. **[bin]**
+- **`Graal3DEngine.dll`** (linked 3 March 2006): the Torque 3D world as a separate DLL (details below). It exports `loadGraal3DEngine`, `runGraal3DEngine` and `endGraal3DEngine`, and imports 623 symbols from `GraalEngine.dll`. Its source paths are `K:\src\graalv4\user\engine\…` (Torque's `console`, `core`, `dgl`, `game/net`, …). So 3D is a plug-in on top of the 2D engine in 4.x; the 4.20r8 packet-logger set does not include this DLL. **[bin]**
 - `license.graal` is byte-identical to the Mac 4.20r6 one (`loginserver.graalonline.com:14900`). `levels/`, `levels3d/gui`, `levels3d/help`, `languages3D/` and `sounds/` match the Mac 4.20r6 tree; `pics1.png` is byte-identical. **[file]**
 
 ### Protocol and engine differences from 4.20r8
@@ -161,9 +161,41 @@ In this installer the stub is `0xDE`, the directory is `0xD7`, and the file bloc
 - Saved passwords: 4.04r2 keeps one `password` value; the per-account `<account>_pass` copies are new in 4.20. **[bin]**
 - Engine changes visible in the strings from 4.04r2 to 4.20r8: a separate network thread (`Error creating network thread`), an XML parser (Mini-XML), `GuiBrowserCtrl`, `GuiArrayCtrl`, `GuiStretchCtrl`, reconnect and "cheat window" checks, and a better random generator (`MRandomLCG`). 4.04r2 still has a few 3D-side names in the 2D engine (`getObjectByRay`, `getdatablockvars`, `graal_setGetDatablockProperties`) and a `decryptGraalMemoryDES` routine that 4.20r8 no longer has. **[bin]**
 
+### The 3D plug-in (`Graal3DEngine.dll`)
+
+**How it is started.** The 4.04r2 launcher loads `Graal3DEngine.dll` when the player picks a server whose name starts with `3 ` (the 3D marker in the server list). If the DLL is missing, it says "You need to download Graal3D at … for playing this server!". The launcher still registers `graal3://` against `Graal3.exe`, the 3.x name. `loadGraal3DEngine` takes the command line and reads `-connect <server name>` and `graal://` / `graal3://` links. `runGraal3DEngine` is the main loop. The engine reaches the launcher through a `graal_setStartGraal3D` callback; the launcher side of that was read from its strings only. **[bin][inf]**
+
+**It replaces the launcher as the front end.** At start-up the plug-in registers its own handler for every `graal_set*` callback in `GraalEngine.dll`: drawing, text, tiles, panels, clipboard, window mode and the rest. Then it initialises the engine itself. So in 3D mode the Torque DLL owns the window and the OpenGL output. The 2D engine still runs the game logic, GS2 and the Graal connection, and draws through the plug-in (`GuiGraal3DCtrl`, 3D tiles). The 3D GUI comes from `levels3d/gui` and the `languages3D/*.cs` files, which are TorqueScript globals such as `$language::Start = "Start";`. **[bin][file]**
+
+**Two connections.** For a `3 ` server the engine opens the **normal Graal TCP connection** on the listed port. It also asks the plug-in for a **Torque UDP connection to the same host on port + 1**. The local UDP port is `fixedudpport` from the config (default 14899) when `fixedport` is on, and any free port otherwise. The Torque address parser defaults to port 28000, the 3.x 3D port. Files still come over the Graal TCP connection (`requestFileDownload`). This comes from the code path; it has not been checked on the wire. **[bin][inf]**
+
+**Torque handshake.** It is stock Torque: a connect challenge request and response, then a connect request. "Connection established", "Connection to server timed out" and "The 3D server connection has timed out" are the log lines. The connect request carries: **[bin]**
+
+| Field | Value |
+|---|---|
+| U32 net class group, U32 class CRC | Stock Torque. A mismatch is rejected with `CHR_INVALID`, so the server needs exactly the same list of networked classes. |
+| string game | `Graal3D` (else `CHR_GAME`) |
+| U32 current protocol, U32 minimum protocol | **19**. A server rejects < 19 with `CHR_PROTOCOL_LESS` and a minimum ≥ 20 with `CHR_PROTOCOL_GREATER`. The client accepts only 19 in the reply (else `CHR_PROTOCOL`). v5's plug-in uses 24. |
+| string join password | **The account password, in clear text**. The UDP side has no Graal encryption, only Torque's own packet framing. |
+| U32 argc, then strings | 2: account name, nickname (at most 16, else `CR_INVALID_ARGS`) |
+
+The plug-in also has the server-side reader for this request. Each connection outcome fires a GS2 event on the universe: `onConnectionAccepted`, `onConnectRequestTimedOut`, `onConnectRequestRejected`, `onConnectionDropped`, `onConnectionError`. After acceptance the mission loads in Torque's three phases (datablocks, ghost objects, lighting). These are reported to GS2 as `onGraal3DLoginStep` and the datablock and ghost events. **[bin]**
+
+**Graal messages inside Torque.** Two custom net events carry Graal text over the UDP link. **[bin]**
+
+- `BigDataStartEvent`: a 16-bit message id, three strings of up to 255 characters, a 24-bit total length, and a 3-bit coding (0 raw, 1 zlib, 2 bz2).
+- `BigDataChunkEvent`: the 16-bit id, an 8-bit length (at most 191), then the bytes.
+- A message is four strings, `(weapon, type, option, data)`, the shape of GS2 `sendtext`. Data of 0x32 bytes or more is zlib'd, and 0x1000 or more is bz2'd. These are the same thresholds as the Graal TCP frame types.
+- With an empty weapon the type is a command: `set` / `unset` (a player flag), `events` (lines `s <flag>` or `t <trigger>`), `addweapon` (name, GINT5 time), `weaponscript`, `deleteweapon`, `addnpc` (gives a named object its script), `setmaterials` (terrain materials), and `rpg` (→ `onRPGMessage`). With a weapon name, the weapon gets `receivetext`. Type `rc` goes to `onRCChat`, and `torque` is ignored.
+- The client batches its script events per connection: `trigger` as `t …`, `getweapon` as `w …`, others as `s …`. It sends them as one `events` message.
+- Other custom events: `TerrainChunkEvent`, `TerrainRequestUpdatesEvent`, `RequestReloadEvent`. The rest are stock Torque (`RemoteCommandEvent`, `SimDataBlockEvent`, `GhostAlwaysObjectEvent`, `NetStringEvent`, audio events).
+
+**Formats.** Torque `.dts` shapes up to version 24 ("Shape … does not match version on server"), `.dsq` sequences, `.dif` interiors, `.ter` terrain, Quake 3 `.md3` (version 15), PNG and JPEG textures, and `.dso` compiled TorqueScript. GS2 can read datablock properties (name, type and attributes) through the engine. zlib 1.1.3. **[bin]**
+
 ## Open items
 
-- A function-level diff of the 4.04r2 and 4.20r8 engines, and a read of `Graal3DEngine.dll` (its own protocol to 3D servers).
+- A function-level diff of the 4.04r2 and 4.20r8 engines.
+- The 3D plug-in on the wire: the order of the TCP and UDP logins, and which side sends which BigData commands.
 - The ids sent through a register, for a complete client → server list.
 - Where the Mac 4.20r6 build handles id 41, if it does.
 - A clean, unmodified 4.20r8 `GraalEngine.dll` (the "Unpacked" archive, if its password turns up) to confirm the patch points by diff.
