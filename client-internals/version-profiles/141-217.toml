@@ -10,6 +10,7 @@
 #   doc = the release notes shipped with the client (newfeatures*.txt)
 #   srv = GServer-v2 / gs2lib source (what a server does for this version)
 #   inf = inferred from neighbours; not checked in a binary of this version
+#   lab = seen on the wire from the real client under Wine against a lab server
 #
 # Ids are protocol ids (wire byte - 32). Names follow gs2lib (see protocol/packet-ids.md).
 # Nothing here comes from decompiler output; builds are identified by MD5 in
@@ -300,7 +301,7 @@ label = "2.1 test 2 / test 3"
 token = "GNW03081"                # still 2.05's token
 builds = { test2 = "d15d877822ad4145578107857c90fb3c", test3 = "2116a7ba03648dcc004035534ec94de8" }
 src_default = "bin"
-listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "confirmed", built_in_host = "www.graalonline.com", built_in_port = 14922, list = "newmain", hidden = "DES", note = "2.1 to 2.16 have no release binary; Seihai's classic login for 2.1 and 2.12 to 2.16 got a legacy list on 14923 and no reply on 14922 (2026-10-25)" }
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "confirmed", built_in_host = "www.graalonline.com", built_in_port = 14922, list = "newmain", hidden = "DES", login = "id 0 list name, then id 1 account + password (test 3, seen in the lab run of 2026-10-30)", note = "2.1 to 2.16 have no release binary; Seihai's classic login for 2.1 and 2.12 to 2.16 got a legacy list on 14923 and no reply on 14922 (2026-10-25)" }
 plo_known_add = [49, 169]         # PLAYERWARP2, UPGRADEURL
 props_self_parse = "0-45"
 props_sent_add = [43, 44, 45]     # GMAPLEVELX/Y, Z
@@ -313,6 +314,83 @@ notes = ["Because the token is 2.05's, a server cannot tell these from 2.05 and 
 start_window = "2.1 start window and server list with account info"
 options_window = "tabbed: General / Video / Audio / Controls; 'Don't use Direct3D (lights)', 'Start in fullscreen mode'"
 editor_predefined_npcs = true
+
+# ---------------------------------------------------------------- NewWorld betas (Aug and Oct 2001)
+# Side branch: nwb1 is built on 2.05, nwb2 on the 2.1 tests. Both were run under Wine against a
+# lab list and game server on 2026-10-30 (client-internals/newworld-betas.md, "Live lab runs").
+[vnwb1]
+base = "v205"
+label = "NewWorld beta 1"
+token = "G2N15041"
+md5 = "88d1f84c96da1dcc3942b139fbd741c9"
+linked = "2001-08-06"
+src_default = "bin"
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "assumed", built_in_host = "www.graalonline.com", built_in_port = 14921, list = "newworld", hidden = "DES", login = "id 0 list name only; no account", note = "the public listserver was not asked for the newworld list" }
+pli_sent_remove = [7, 8, 11, 15, 16, 17, 20]   # HORSEADD, HORSEDEL, THROWCARRIED, BADDYPROPS, BADDYHURT, BADDYADD, OPENCHEST
+plo_known_remove = [2, 4, 17, 18, 154, 155]    # BADDYPROPS, LEVELCHEST, HORSEADD, HORSEDEL, FREEZE, UNFREEZE
+udp_ids = "0, 10-15, 18-26"
+baddyprops_parse = "none"
+login_props = [0, 11, 13, 18, 31, 33]
+login_followup = ["LANGUAGE (37) 'English'"]
+prop_diffs = [
+  "13 COLORS: the client sends 7 colour bytes and parses 8 (2.05 sends and parses 5); a server must take the length from the prop, not assume 5",
+  "11 HEADGIF sent without an extension (e.g. headalgo000)",
+  "18 STATUS has a new bit 0x20",
+  "10 GANI sent as a string, re-sent about every 100 ms while idle (the control NPC calls setani each tick)",
+]
+files_at_join = { wantfile = ["shield1.png"], updatefile = ["bodynw.png", "timenums.png"] }
+gs1_commands = 161
+gs1_variables_add = ["nwday", "nwweek", "nwyear", "nwweekday", "nwmonth", "nwtime", "nwhour", "nwmin"]
+newworld_time = "PLO 42: GINT4 minutes since 1000/01/01 00:00; 28-day months, 10 months, 280-day year"
+src = { login_props = "lab", login_followup = "lab", prop_diffs = "bin+lab", files_at_join = "lab", newworld_time = "bin+lab", listserver = "bin+lab" }
+notes = [
+  "Built-in sword, bow, baddies, chests, horses and freeze are gone: the local controlnpc.txt (weapon Control-NPC) does movement, and the server must supply swords as NPC weapons.",
+  "Does not ask for sword1/wbomb/wbow at join, unlike 2.05.",
+  "Offline Training works without a server.",
+]
+[vnwb1.features]
+start_window = "2.05 start window (Training, Start) and 2.05 server list"
+terrain_heights = true            # 65x65 height grid per level
+backtile_areas = true
+hud = "150/150 health and the NW calendar clock (yyyy/mm/dd hh:mm)"
+sword_key = "S does nothing unless the server gives a sword weapon"
+
+[vnwb2]
+base = "v21test"
+label = "NewWorld beta 2"
+token = "G2N15041"
+md5 = "af2d21066659bed6af6c77e52b2cc0e1"
+linked = "2001-10-03"
+src_default = "bin"
+listserver = { host = "listserver.graal.in", port = 14923, kind = "legacy", port_status = "assumed", built_in_host = "www.graalonline.com", built_in_port = 14922, list = "newworld", hidden = "DES", login = "id 0 list name, then id 1 account + password", note = "the public listserver was not asked for the newworld list" }
+pli_sent_remove = [7, 8, 11, 15, 16, 17, 20]
+plo_known_remove = [2, 4, 17, 18, 154, 155]
+udp_ids = "0, 10-15, 18-27"
+baddyprops_parse = "none"
+login_props = [0, 11, 13, 18, 31, 33]
+login_followup = ["LANGUAGE (37) 'English'"]
+prop_diffs = [
+  "13 COLORS: the client sends 7 colour bytes and parses 8 (2.05 sends and parses 5); a server must take the length from the prop, not assume 5",
+  "11 HEADGIF sent without an extension (e.g. headalgo000)",
+  "18 STATUS has a new bit 0x20",
+  "10 GANI sent as a string, re-sent about every 100 ms while idle and on every walking step",
+]
+files_at_join = { wantfile = ["shield1.png", "idle.gani", "headalgo000"], updatefile = ["bodynw.png", "timenums.png"] }
+gs1_commands = 165                # + addstring, insertstring, removestring, deletestring
+gs1_variables_add = ["nwday", "nwweek", "nwyear", "nwweekday", "nwmonth", "nwtime", "nwhour", "nwmin"]
+newworld_time = "PLO 42: GINT4 minutes since 1000/01/01 00:00; 28-day months, 10 months, 280-day year"
+src = { login_props = "lab", login_followup = "lab", prop_diffs = "bin+lab", files_at_join = "lab", newworld_time = "bin+lab", listserver = "bin+lab" }
+notes = [
+  "Same removals as nwb1; the 2.1-test additions (PLO 49, 169, props 43-45, UDP 27) are kept.",
+  "The list-server password field sent fewer characters than were typed (23 of 28); the cut-off length was not pinned down.",
+]
+[vnwb2.features]
+start_window = "GraalOnline-themed start window with Account and Password fields"
+terrain_heights = true            # plus per-level HEIGHTS grids from the gmap
+backtile_areas = true
+string_lists = true               # addstring etc., sarraylen, lindexof, #I
+hud = "150/150 health and the NW calendar clock (yyyy/mm/dd hh:mm)"
+sword_key = "S does nothing unless the server gives a sword weapon"
 
 # ---------------------------------------------------------------- 2.1 to 2.16 (no binaries in the archive)
 [v21]

@@ -20,6 +20,7 @@ Field names follow the Seihai profile schema: `token`, `listserver`, `client_typ
 | doc | The release notes shipped with the clients (`newfeatures141/142/2001/2002.txt`) |
 | srv | GServer-v2 source: what a server does differently per version |
 | forms | The DFM resources: start window, options, controls, server list, player list |
+| lab | Seen on the wire from the real client, run under Wine against a lab list and game server (NewWorld betas, 2026-10-30) |
 | inf | Not checked in that build. Either the value is carried from the nearest scanned build, or it is placed at the release that introduced the feature |
 
 No binaries of 2.1 release, 2.12, 2.13, 2.14, 2.15 or 2.16 are in the archive. Their entries are release notes plus server source, and every value they inherit from a scanned build is tagged `inf`.
@@ -43,9 +44,10 @@ No binaries of 2.1 release, 2.12, 2.13, 2.14, 2.15 or 2.16 are in the archive. T
 | TRIGGERACTION (38) sent; PLO 48, 165 | 2.03 | bin |
 | PLO 166, PLO 26 dropped; prop 42 | 2.04 | bin |
 | `.nw` + `.gmap`; PLO 168 | 2.05 | bin |
+| Account and password sent to the listserver (id 1 after the id 0 list name); NewWorld beta 1, on the 2.05 code, sends only the list name | 2.1 test 3 | lab |
 | Bow slot → GANI string, `.png` defaults, PLO_FILE modtime, FILEUPTODATE, `sprite % 4` for NPCs, prop caps lifted | 2.1 (GNW31101) | srv |
 | Large files (LARGEFILESTART/END) | 2.14 | srv, doc |
-| TAMPERCHECK (39), SHOOT (40), SERVERWARP (41), MUTEPLAYER (43), PROCESSLIST (44/45); signed `arrays2.dat` listserver; account and password sent to the listserver | 2.17 (checked); some may be earlier | bin |
+| TAMPERCHECK (39), SHOOT (40), SERVERWARP (41), MUTEPLAYER (43), PROCESSLIST (44/45); signed `arrays2.dat` listserver | 2.17 (checked); some may be earlier | bin |
 
 Corrections to earlier notes:
 
@@ -71,7 +73,7 @@ These are the `features` keys, which matter most for making the client look and 
 - 2.1–2.16 packet and prop sets are inferred from neighbours. A binary of any of them would pin them down.
 - The original 1.41 listserver host and port: the only surviving 1.41 copy is patched for graal.in.
 - Whether 1.41 and 1.42 send the account to the listserver, or only to the game server.
-- The props each version sends at login are only verified for 2.05.
+- The props each version sends at login are only verified for 2.05 and the NewWorld betas (the betas send 7 colour bytes in COLORS).
 - The 2.17 other-player prop parser and its GS1 command count were not read.
 
 ## Default list port
