@@ -8,7 +8,8 @@ Date: 2026-10-30. These are the two servers the offline lab runs (see `../lab-se
 | `test_listserver.py` | Drives a running listserver with every login shape and a fake gserver. Exit 0 when all checks pass. |
 | `run-lab.sh` | Starts the listserver and the prebuilt GServer on loopback; `stop` stops both. |
 | `gs2lib-GNW03081.patch` | The one-line gs2lib change our efb5b90 gserver build carries (2.05 token in the 2.1 slot). |
-| `gserver-beta4-lab.patch` | Our fixes to GServer-v2 beta4 `365bbd2`: three for real 2.05 and 2.17.1, one for a saved hidden state (apply in `server/`). |
+| `gserver-beta4-lab.patch` | Our fixes to GServer-v2 beta4 `365bbd2`: three for real 2.05 and 2.17.1, one for a saved hidden state, three for 1.33 to 1.39 (apply in `server/`). |
+| `run-lab-beta4.sh` | The beta4 pack's start script: listserver, the 2.x server on 14802 and the classic server on 14803. |
 
 Background on what each server is, and how they compare with GServer-v2 beta4 and the other open-source servers, is in `../../server-notes/lab-servers-2026-10-30.md`.
 
@@ -29,6 +30,17 @@ GServer-v2 **beta4 `365bbd2`**, built here with GCC 14 (no V8, no UPnP), with be
 All three copy a packet order real 2.05 was already seen to accept; none adds behaviour.
 
 4. **Never log in hidden.** The account loader clears the hidden bit (`STATUS` 0x02). From the v4 lab: a client that closed while hiding under a carried object was saved hidden and came back invisible until its first step. Not reproducible with 2.17.1, which sends its own status at login (an account saved with `STATUS 22` loads visible on both builds and is saved back as 20). Build steps are in the pack's `README.md`.
+
+### 1.33 to 1.39 on beta4 (2026-10-30)
+
+beta4's `generation` is server-wide and 1.x clients need `classic`, so the beta4 pack runs a second server folder, `servers/classic` ("Lab Classic", port 14803), beside the 2.x one. 1.33 to 1.39 have no listserver; they connect straight to `127.0.0.1:14803` ("One Player Online"). Starting from the `../../client-internals/versions-133-139.md` live check, four more problems turned up:
+
+5. **Id 25 kicked 1.33 to 1.37** (their weapon upload). Code: accepted and ignored; the weapon stays on the client.
+6. **Prop 10 sent as a gani.** Code: a classic server sends the bow form.
+7. **Kicked after about 30 s, all of 1.33 to 1.39.** beta4 took "packet count is 0" to mean "the next frame is a login", and `PLI_PACKETCOUNT` (31) resets the count. These clients send a lone id 31 every 10 s, so the next frame was parsed as a login and counted as invalid; the third one kicked them. Code: a login-done flag. This fits #119's "invalid packet count" warning and also covers any 2.x client that sends 31 alone.
+8. **Zero max hearts.** Stock `(defaultaccount).txt` has `MAXHP 3.00`, which the loader reads as 0, on both servers. Config: `MAXHP 3`. The classic folder's default account also uses `head0.gif`, `sword1.gif` and `shield1.gif`, since the stock world has no images and these clients carry them only as `.gif`, and turns off the 2.x `-gr_movement` helper weapon.
+
+Real clients: 1.33, 1.34, 1.35, 1.36, 1.37, 1.38 and 1.39 log in, show the right player and HUD, walk, and stay connected (no kicks or unknown packets); 2.05r2, 2.17.1 and 2.22 rechecked on the 2.x server. Under Wine these clients need `nodirectinput=true` in `graalconfig.txt` for keyboard input, and often start on their own pause menu (Continue/End), which P closes.
 
 ## Our listserver (version 2)
 

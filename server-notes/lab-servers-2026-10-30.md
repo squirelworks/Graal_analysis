@@ -84,6 +84,8 @@ Checked again with a stock beta4 build (2026-10-30, widened `allowedversions.txt
 * `generation = newmain` (stock): 2.17.1 draws the level, then on the first step the server logs `Unknown Player Packet: 55` and the client shows "Invalid PlayerProp type in constructPropFor" and drops. This is fix 1's iterator desync.
 * `generation = classic` with 2.17's token added to the classic range: worse; the login bundle is read as garbage (`Unknown Player Packet: 112`, "sending invalid packets") and the client is dropped before a player exists. beta4's own `docs/start-here.md` warns that 2.x clients on a classic server get mangled packets.
 
+For 1.33 to 1.39 (`generation = classic`, so a second server folder on port 14803) the patch adds three more fixes, and the pack two config changes; details in `../tools/lab-servers/README.md`. The one that matters beyond 1.x: beta4 treats "packet count is 0" as "the next frame is a login" while `PLI_PACKETCOUNT` resets the count, so any client that sends id 31 alone in a frame is misparsed on its next frame and kicked after three. The others: id 25 (1.33 to 1.37 weapon upload) accepted; prop 10 in the bow form on classic; the stock default account's `MAXHP 3.00` loads as 0 hearts (config `MAXHP 3`). Real 1.33 to 1.39 now play on it.
+
 The patch also carries a fourth, smaller fix from the v4 lab: the account loader clears the hidden bit (`STATUS` 0x02), so a player who quit while hiding under a carried object does not log in invisible.
 
 These are bugs against the real clients, not lab choices, so they would be worth upstream; under the project rule nothing was sent outside squirelworks.
