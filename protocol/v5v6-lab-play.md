@@ -195,6 +195,8 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
   - It then stops reading the socket and never paints.
   - The folder scan before login finishes ("Done.").
   - Switching to OpenGL (`useopengl=1`, `-opengl`), turning wined3d CSMT off and using RGBA PNGs make no difference.
+  - The "This is a beta release" text is on the frozen main thread's stack, and nothing in the dumped 6.00r2/r4 code refers to it. So the expiry check runs inside Themida's own code, and it seems to run again after login. **[inf]**
+  - It is not the file dates. Setting every server file and the client's own files to June 2011 (with the clock set back) still freezes. **[cap]**
   - Themida stops winedbg from attaching. A real Windows machine is the next step.
 - **Typed chat.** A chat bar was not found without server GUI scripts.
 - Not tested here: hurt, swim, grab and pull.
