@@ -41,6 +41,7 @@ npc_weapons = { since = "1.21", confidence = "confirmed", note = "weapon list (Q
 credentials_in_config = { since = "1.21", confidence = "confirmed", note = "accountname= and password= read from graalconfig.txt; gone from 1.3 test" }
 language_files = { since = "1.28 beta 2", confidence = "confirmed", note = "language= option; languageEnglish/Deutsch.txt shipped" }
 nodecompressionerror_option = { since = "1.28 beta 2", confidence = "confirmed", note = "hides the inflate error message" }
+level_leader = { since = "1.21", confidence = "confirmed", note = "server id 10 (ISLEADER, empty) goes to the first player in a level, at the end of the login reply; only that client runs the level NPC timeouts and sends their arrows (UDP id 12 in 1.28). When the leader leaves, the server sends 10 to the next player, who takes over. Captured: 10 in the 1.21, 1.28 and 1.3 test login replies; the handover in a three-client 1.28 run" }
 udp_peer_data = { since = "1.28 beta 2", confidence = "confirmed", note = "\"direct data packages\": positions, sprites, arrows and bombs sent straight to players in the same room" }
 alignment_points = { since = "1.3 test", confidence = "doc", note = "AP 0-100, start 50, name colour by AP; replaces PK flags" }
 weblevel_cache = { since = "1.3 test", confidence = "confirmed", note = "levels saved to weblevels/ with a timestamp; the server only resends changed levels" }
@@ -125,6 +126,7 @@ npc_weapons = true
 credentials_in_config = true
 language_files = false
 nodecompressionerror_option = false
+level_leader = true
 udp_peer_data = false
 alignment_points = false
 weblevel_cache = false
@@ -214,6 +216,7 @@ npc_weapons = true
 credentials_in_config = true
 language_files = true
 nodecompressionerror_option = true
+level_leader = true
 udp_peer_data = true
 alignment_points = false
 weblevel_cache = false
@@ -305,6 +308,7 @@ npc_weapons = true
 credentials_in_config = true
 language_files = true
 nodecompressionerror_option = true
+level_leader = true
 udp_peer_data = true
 alignment_points = true
 weblevel_cache = true
@@ -396,6 +400,7 @@ npc_weapons = true
 credentials_in_config = true
 language_files = true
 nodecompressionerror_option = true
+level_leader = true
 udp_peer_data = true
 alignment_points = true
 weblevel_cache = true
@@ -487,6 +492,7 @@ npc_weapons = true
 credentials_in_config = true
 language_files = true
 nodecompressionerror_option = true
+level_leader = true
 udp_peer_data = true
 alignment_points = true
 weblevel_cache = true

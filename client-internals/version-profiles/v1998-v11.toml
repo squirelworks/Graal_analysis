@@ -36,7 +36,7 @@ four_player_local = { since = "14th Graal (1.1)", confidence = "confirmed", note
 gsave_wrapped = { since = "15th Graal (1.1)", confidence = "confirmed", note = ".gsave, two DES copies" }
 registration_key = { since = "15th Graal (1.1)", confidence = "confirmed", note = "reg.code; relay type 8 duplicate check" }
 ip_cache = { since = "15th Graal (1.1)", confidence = "confirmed", note = "TAdventureServer host-to-IP record" }
-server_level_choice = { since = "15th Graal (1.1)", confidence = "confirmed", note = "NR/NL reply; onlinestartlocal.graal" }
+server_level_choice = { since = "15th Graal (1.1)", confidence = "confirmed", note = "NR/NL reply; onlinestartlocal.graal. Captured from the 1.1.9 server: NR then NL with local levels, NR alone with Cyberjoueur levels" }
 graalonline_home = { since = "1.1.9 Gold Edition", confidence = "confirmed", note = "dialog host and web levels move to www.graalonline.com" }
 
 [[version]]
