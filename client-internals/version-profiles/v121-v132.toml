@@ -1,0 +1,510 @@
+# Graal client profiles, 1.21 to 1.32 (gen 2, GSERV tokens).
+# Cleaned observations: static reads of the shipped clients, release notes, shipped assets.
+# No addresses, function names or decompiler output. Method: see README.md ("1.21 to 1.32").
+# Every [[version]] lists the full value for each key, not a diff, so a reader can load one entry alone.
+# Same keys as v133-v139.toml, plus plprops_sent and bundled_servers.
+
+schema = 1
+range = "1.21-1.32"
+
+[confidence]
+token = "confirmed"
+generation = "confirmed"
+compression = "confirmed"
+cipher = "confirmed"
+login_key_byte = "confirmed"
+client_type = "confirmed (player ' '; RemoteControl '!')"
+listserver = "confirmed (none: the client dials one game server)"
+default_server = "confirmed"
+login = "confirmed in 1.21 and 1.32; same code shape in the builds between"
+pli_sent = "lower bound: only ids passed as constants to the send method; some send sites pass the id in a register (1.28 beta 2 and 1.3 test show fewer constants than 1.21 for that reason)"
+plo_known = "confirmed (receive switch)"
+plprops_known = "confirmed (player prop parser switch)"
+plprops_sent = "confirmed (player prop writer switch)"
+npcprops_known = "confirmed (NPC prop parser switch)"
+baddyprops_known = "confirmed"
+udp_known = "confirmed (receive side; ids as sent, without the +32)"
+level_formats = "confirmed (loader magics)"
+save_format = "confirmed (writer and reader)"
+file_wantfile = "not checked"
+tampercheck = "confirmed (no id 39)"
+gs1_commands = "confirmed (command name table; whether each has an executor case is not checked)"
+config_keys = "confirmed (plain strings)"
+languages = "confirmed (shipped language files)"
+# features: confirmed = seen in the binary; doc = release notes only
+
+# Feature flags: first build that has each one. Each [[version]].features table repeats the on/off value.
+[features]
+packet_compression = { since = "1.21", confidence = "confirmed", note = "zlib 1.0.4 on every flush; \"packet compression\" in the 1.2 notes" }
+accounts_login = { since = "1.21", confidence = "confirmed", note = "account and password at login; connect dialog defaults guest / guest" }
+npc_weapons = { since = "1.21", confidence = "confirmed", note = "weapon list (Q); weapon names saved in Graalsv11" }
+credentials_in_config = { since = "1.21", confidence = "confirmed", note = "accountname= and password= read from graalconfig.txt; gone from 1.3 test" }
+language_files = { since = "1.28 beta 2", confidence = "confirmed", note = "language= option; languageEnglish/Deutsch.txt shipped" }
+nodecompressionerror_option = { since = "1.28 beta 2", confidence = "confirmed", note = "hides the inflate error message" }
+udp_peer_data = { since = "1.28 beta 2", confidence = "confirmed", note = "\"direct data packages\": positions, sprites, arrows and bombs sent straight to players in the same room" }
+alignment_points = { since = "1.3 test", confidence = "doc", note = "AP 0-100, start 50, name colour by AP; replaces PK flags" }
+weblevel_cache = { since = "1.3 test", confidence = "confirmed", note = "levels saved to weblevels/ with a timestamp; the server only resends changed levels" }
+level_snapshot_alt5 = { since = "1.3 test", confidence = "doc", note = "Alt+5 writes a playable snapshot level" }
+record_movement_alt6_alt7 = { since = "1.3 test", confidence = "doc", note = "writes levels/recordpos.txt" }
+credentials_in_registry = { since = "1.3 test", confidence = "doc", note = "account and password saved encrypted in the registry" }
+pm_ignore_button = { since = "1.3 test", confidence = "doc", note = "ignore button in the PM window; ignores survive a restart (by IP)" }
+font_options = { since = "1.3 test", confidence = "confirmed", note = "font= and fontsize=" }
+account_message_code = { since = "1.3 test", confidence = "doc", note = "#a = account name" }
+setgifpart = { since = "1.3 test", confidence = "confirmed", note = "GS1 command" }
+delete_npc_weapons = { since = "1.3 test", confidence = "doc", note = "Q window, Delete" }
+default_port_14900 = { since = "1.31", confidence = "confirmed", note = "14804 before" }
+udp_options = { since = "1.31", confidence = "confirmed", note = "noudp= and fixedudpport= (14899); fixedport=" }
+adjacent_levels_visible = { since = "1.31", confidence = "doc", note = "outside levels drawn as one big level, with NPCs and players from nearby levels" }
+showap = { since = "1.31", confidence = "doc", note = "type showap to see your alignment" }
+ignore_mass_messages = { since = "1.32", confidence = "confirmed", note = "nomassmessages=" }
+doubleclick_fullscreen = { since = "1.32", confidence = "doc", note = "" }
+sign_scrollback = { since = "1.32", confidence = "doc", note = "up arrow scrolls back in signs" }
+message_of_the_day = { since = "1.32", confidence = "doc", note = "sent by the server at login" }
+drop_script_onto_editor = { since = "1.32", confidence = "doc", note = "dropping a text file creates an NPC" }
+walk_through_unpaused_players_nopk = { since = "1.32", confidence = "doc", note = "in no-playerkilling levels" }
+
+[[version]]
+label = "1.21"
+token = "GSERV007"
+linked = "1999-05-10"
+md5 = "8da2e8284dd8b315a28e2d4fccae79ac"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14804"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+framing = "u16 big-endian length + zlib stream of chr(id+32)+data+\\n lines; server id 100 = raw byte count"
+pli_sent = [0, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 31, 32, 33, 34, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
+]
+plprops_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
+]
+npcprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = []
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+nw = false
+gmap = false
+save_format = "Graalsv11 (reads Graalsav9, Graalsv10, Graalsv11); refused in online mode"
+tampercheck = false
+gs1_commands = [
+  "blockagain", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried", "cannotbepulled",
+  "cannotbepushed", "destroy", "disableweapons", "dontblock", "drawoverplayer", "drawunderplayer",
+  "else", "enableweapons", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hidesword",
+  "hitcompu", "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling", "openurl", "play",
+  "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp", "putnpc",
+  "putobject", "removecompus", "say", "set", "setarray", "setbeltcolor", "setbow", "setcoatcolor",
+  "seteffect", "setgif", "sethead", "setlevel", "setplayerdir", "setshield", "setshoecolor",
+  "setskincolor", "setsleevecolor", "setsword", "seturllevel", "shootarrow", "shootball",
+  "shootfireball", "shootfireblast", "shootnuke", "show", "showimg", "stopmidi", "take",
+  "takeplayercarry", "timershow", "toinventory", "toweapons", "unset", "unseteffect",
+  "updateboard"
+]
+config_keys = [
+  "accountname=", "editnickname=", "gamemode=", "joystickon=", "loadcolorsfromserver=", "musicon=",
+  "password=", "reversestereo=", "saveimages=", "serveraddr=", "serverport=", "soundfxon=",
+  "waitvertical="
+]
+languages = ["English"]
+bundled_servers = "GServer 1.21 (accepts GSERV007 only)"
+
+[version.features]
+packet_compression = true
+accounts_login = true
+npc_weapons = true
+credentials_in_config = true
+language_files = false
+nodecompressionerror_option = false
+udp_peer_data = false
+alignment_points = false
+weblevel_cache = false
+level_snapshot_alt5 = false
+record_movement_alt6_alt7 = false
+credentials_in_registry = false
+pm_ignore_button = false
+font_options = false
+account_message_code = false
+setgifpart = false
+delete_npc_weapons = false
+default_port_14900 = false
+udp_options = false
+adjacent_levels_visible = false
+showap = false
+ignore_mass_messages = false
+doubleclick_fullscreen = false
+sign_scrollback = false
+message_of_the_day = false
+drop_script_onto_editor = false
+walk_through_unpaused_players_nopk = false
+
+[[version]]
+label = "1.28 beta 2"
+token = "GSERV013"
+linked = "1999-11-23"
+md5 = "8e3c1a7233864da994a0db26f1811212"
+compiler = "Delphi 4"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14804"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+framing = "u16 big-endian length + zlib stream of chr(id+32)+data+\\n lines; server id 100 = raw byte count"
+pli_sent = [0, 15, 16, 17, 18, 19, 20, 21, 23, 25, 28, 29]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+]
+plprops_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 31
+]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+nw = false
+gmap = false
+save_format = "Graalsv11 (reads Graalsav9, Graalsv10, Graalsv11); refused in online mode"
+tampercheck = false
+gs1_commands = [
+  "blockagain", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried", "cannotbepulled",
+  "cannotbepushed", "destroy", "disableweapons", "dontblock", "drawoverplayer", "drawunderplayer",
+  "else", "enableweapons", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hideplayer",
+  "hidesword", "hitcompu", "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling",
+  "openurl", "play", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp",
+  "putnpc", "putobject", "removecompus", "say", "set", "setarray", "setbackpal", "setbeltcolor",
+  "setbow", "setcharprop", "setcoatcolor", "seteffect", "setgif", "sethead", "setletters",
+  "setlevel", "setmap", "setminimap", "setplayerdir", "setplayerprop", "setshield", "setshoecolor",
+  "setskincolor", "setsleevecolor", "setstring", "setsword", "seturllevel", "shootarrow",
+  "shootball", "shootfireball", "shootfireblast", "shootnuke", "show", "showcharacter", "showfile",
+  "showimg", "sleep", "stopmidi", "take", "takeplayercarry", "timereverywhere", "timershow",
+  "toinventory", "toweapons", "unset", "unseteffect", "updateboard", "while"
+]
+config_keys = [
+  "accountname=", "compabilitydraw=", "editnickname=", "externalchat=", "gamemode=", "joystickon=",
+  "language=", "loadcolorsfromserver=", "musicon=", "nodecompressionerror=", "password=",
+  "reversestereo=", "saveimages=", "serveraddr=", "serverport=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch"]
+bundled_servers = "GServer 1.28 (accepts GSERV007 to 013), RemoteControl 1.28 (GSERV011)"
+
+[version.features]
+packet_compression = true
+accounts_login = true
+npc_weapons = true
+credentials_in_config = true
+language_files = true
+nodecompressionerror_option = true
+udp_peer_data = true
+alignment_points = false
+weblevel_cache = false
+level_snapshot_alt5 = false
+record_movement_alt6_alt7 = false
+credentials_in_registry = false
+pm_ignore_button = false
+font_options = false
+account_message_code = false
+setgifpart = false
+delete_npc_weapons = false
+default_port_14900 = false
+udp_options = false
+adjacent_levels_visible = false
+showap = false
+ignore_mass_messages = false
+doubleclick_fullscreen = false
+sign_scrollback = false
+message_of_the_day = false
+drop_script_onto_editor = false
+walk_through_unpaused_players_nopk = false
+
+[[version]]
+label = "1.3 test"
+token = "GSERV014"
+linked = "1999-11-29"
+md5 = "b62aaa4d606a519e7f4689b33983429b"
+compiler = "Delphi 4"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14804"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+framing = "u16 big-endian length + zlib stream of chr(id+32)+data+\\n lines; server id 100 = raw byte count"
+pli_sent = [0, 14, 15, 16, 17, 18, 19, 20, 21, 23, 25, 28, 29, 30]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32
+]
+plprops_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 31,
+  32
+]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+nw = false
+gmap = false
+save_format = "Graalsv11 (reads Graalsav9, Graalsv10, Graalsv11); refused in online mode"
+tampercheck = false
+gs1_commands = [
+  "blockagain", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried", "cannotbepulled",
+  "cannotbepushed", "destroy", "disableweapons", "dontblock", "drawoverplayer", "drawunderplayer",
+  "else", "enableweapons", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hideplayer",
+  "hidesword", "hitcompu", "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling",
+  "openurl", "play", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp",
+  "putnpc", "putobject", "removecompus", "say", "set", "setarray", "setbackpal", "setbeltcolor",
+  "setbow", "setcharprop", "setcoatcolor", "seteffect", "setgif", "setgifpart", "sethead",
+  "setletters", "setlevel", "setmap", "setminimap", "setplayerdir", "setplayerprop", "setshield",
+  "setshoecolor", "setskincolor", "setsleevecolor", "setstring", "setsword", "seturllevel",
+  "shootarrow", "shootball", "shootfireball", "shootfireblast", "shootnuke", "show",
+  "showcharacter", "showfile", "showimg", "sleep", "stopmidi", "take", "takeplayercarry",
+  "timereverywhere", "timershow", "toinventory", "toweapons", "unset", "unseteffect",
+  "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "editnickname=", "externalchat=", "font=", "fontsize=", "gamemode=",
+  "joystickon=", "language=", "loadcolorsfromserver=", "musicon=", "nodecompressionerror=",
+  "reversestereo=", "saveimages=", "serveraddr=", "serverport=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch"]
+bundled_servers = "GServer13 (accepts GSERV007 to 014), RemoteControl 1.3 (GSERV011)"
+
+[version.features]
+packet_compression = true
+accounts_login = true
+npc_weapons = true
+credentials_in_config = true
+language_files = true
+nodecompressionerror_option = true
+udp_peer_data = true
+alignment_points = true
+weblevel_cache = true
+level_snapshot_alt5 = true
+record_movement_alt6_alt7 = true
+credentials_in_registry = true
+pm_ignore_button = true
+font_options = true
+account_message_code = true
+setgifpart = true
+delete_npc_weapons = true
+default_port_14900 = false
+udp_options = false
+adjacent_levels_visible = false
+showap = false
+ignore_mass_messages = false
+doubleclick_fullscreen = false
+sign_scrollback = false
+message_of_the_day = false
+drop_script_onto_editor = false
+walk_through_unpaused_players_nopk = false
+
+[[version]]
+label = "1.31"
+token = "GSERV016"
+linked = "1999-12-07"
+md5 = "bff87a95a34399b2d35b243f281169a7"
+compiler = "Delphi 4"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+framing = "u16 big-endian length + zlib stream of chr(id+32)+data+\\n lines; server id 100 = raw byte count"
+pli_sent = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32
+]
+plprops_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 31,
+  32
+]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+nw = false
+gmap = false
+save_format = "Graalsv11 (reads Graalsav9, Graalsv10, Graalsv11); refused in online mode"
+tampercheck = false
+gs1_commands = [
+  "blockagain", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried", "cannotbepulled",
+  "cannotbepushed", "destroy", "disableweapons", "dontblock", "drawoverplayer", "drawunderplayer",
+  "else", "enableweapons", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hideplayer",
+  "hidesword", "hitcompu", "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling",
+  "openurl", "play", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp",
+  "putnpc", "putobject", "removecompus", "say", "set", "setarray", "setbackpal", "setbeltcolor",
+  "setbow", "setcharprop", "setcoatcolor", "seteffect", "setgif", "setgifpart", "sethead",
+  "setletters", "setlevel", "setmap", "setminimap", "setplayerdir", "setplayerprop", "setshield",
+  "setshoecolor", "setskincolor", "setsleevecolor", "setstring", "setsword", "seturllevel",
+  "shootarrow", "shootball", "shootfireball", "shootfireblast", "shootnuke", "show",
+  "showcharacter", "showfile", "showimg", "sleep", "stopmidi", "take", "takeplayercarry",
+  "timereverywhere", "timershow", "toinventory", "toweapons", "unset", "unseteffect",
+  "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "loadcolorsfromserver=", "musicon=",
+  "nodecompressionerror=", "noudp=", "reversestereo=", "saveimages=", "serveraddr=", "serverport=",
+  "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch"]
+
+[version.features]
+packet_compression = true
+accounts_login = true
+npc_weapons = true
+credentials_in_config = true
+language_files = true
+nodecompressionerror_option = true
+udp_peer_data = true
+alignment_points = true
+weblevel_cache = true
+level_snapshot_alt5 = true
+record_movement_alt6_alt7 = true
+credentials_in_registry = true
+pm_ignore_button = true
+font_options = true
+account_message_code = true
+setgifpart = true
+delete_npc_weapons = true
+default_port_14900 = true
+udp_options = true
+adjacent_levels_visible = true
+showap = true
+ignore_mass_messages = false
+doubleclick_fullscreen = false
+sign_scrollback = false
+message_of_the_day = false
+drop_script_onto_editor = false
+walk_through_unpaused_players_nopk = false
+
+[[version]]
+label = "1.32"
+token = "GSERV018"
+linked = "2000-01-12"
+md5 = "42b2596af4b75bcf82db03e0fc274f7d"
+compiler = "Delphi 4"
+generation = 2
+compression = "zlib (every flush, no threshold)"
+cipher = "none"
+login_key_byte = false
+client_type = 0
+listserver = "none"
+default_server = "www.graalonline.com:14900"
+login = "id 0: token(8) + c(len+32) account + c(len+32) password"
+framing = "u16 big-endian length + zlib stream of chr(id+32)+data+\\n lines; server id 100 = raw byte count"
+pli_sent = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30]
+plo_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 100
+]
+plprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33
+]
+plprops_sent = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 31,
+  32, 33
+]
+npcprops_known = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34
+]
+baddyprops_known = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+udp_known = [0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+nw = false
+gmap = false
+save_format = "Graalsv11 (reads Graalsav9, Graalsv10, Graalsv11); refused in online mode"
+tampercheck = false
+gs1_commands = [
+  "blockagain", "canbecarried", "canbepulled", "canbepushed", "cannotbecarried", "cannotbepulled",
+  "cannotbepushed", "destroy", "disableweapons", "dontblock", "drawoverplayer", "drawunderplayer",
+  "else", "enableweapons", "followplayer", "for", "freezeplayer", "hide", "hideimg", "hideplayer",
+  "hidesword", "hitcompu", "hitplayer", "hurt", "if", "lay", "message", "noplayerkilling",
+  "openurl", "play", "putbomb", "putcomp", "putexplosion", "puthorse", "putleaps", "putnewcomp",
+  "putnpc", "putobject", "removecompus", "say", "set", "setarray", "setbackpal", "setbeltcolor",
+  "setbow", "setcharprop", "setcoatcolor", "seteffect", "setgif", "setgifpart", "sethead",
+  "setletters", "setlevel", "setmap", "setminimap", "setplayerdir", "setplayerprop", "setshield",
+  "setshoecolor", "setskincolor", "setsleevecolor", "setstring", "setsword", "seturllevel",
+  "shootarrow", "shootball", "shootfireball", "shootfireblast", "shootnuke", "show",
+  "showcharacter", "showfile", "showimg", "sleep", "stopmidi", "take", "takeplayercarry",
+  "timereverywhere", "timershow", "toinventory", "toweapons", "unset", "unseteffect",
+  "updateboard", "while"
+]
+config_keys = [
+  "compabilitydraw=", "externalchat=", "fixedport=", "fixedudpport=", "font=", "fontsize=",
+  "gamemode=", "joystickon=", "language=", "loadcolorsfromserver=", "musicon=",
+  "nodecompressionerror=", "nomassmessages=", "noudp=", "reversestereo=", "saveimages=",
+  "serveraddr=", "serverport=", "soundfxon=", "waitvertical="
+]
+languages = ["English", "Deutsch"]
+
+[version.features]
+packet_compression = true
+accounts_login = true
+npc_weapons = true
+credentials_in_config = true
+language_files = true
+nodecompressionerror_option = true
+udp_peer_data = true
+alignment_points = true
+weblevel_cache = true
+level_snapshot_alt5 = true
+record_movement_alt6_alt7 = true
+credentials_in_registry = true
+pm_ignore_button = true
+font_options = true
+account_message_code = true
+setgifpart = true
+delete_npc_weapons = true
+default_port_14900 = true
+udp_options = true
+adjacent_levels_visible = true
+showap = true
+ignore_mass_messages = true
+doubleclick_fullscreen = true
+sign_scrollback = true
+message_of_the_day = true
+drop_script_onto_editor = true
+walk_through_unpaused_players_nopk = true

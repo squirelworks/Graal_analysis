@@ -2,7 +2,8 @@
 
 usage: python3 list_ports.py [--check] [--md | --tsv]      (run from this directory)
 
-Reads the three profile files (v133-v139.toml, 141-217.toml, ../../version-profiles/2.22-2.31.toml)
+Reads the profile files (v133-v139.toml, 141-217.toml, ../../version-profiles/2.22-2.31.toml,
+../../version-profiles/3.04-3.153.toml)
 and prints one row per profile: label, host, port, kind (legacy or supported), status
 (confirmed or assumed), and the built-in host and port the binary carries.
 
@@ -12,7 +13,7 @@ The rule (Seihai documentation/port-rule.md):
   - the default follows the login type the profile sends (the public listserver picks its
     reply by login type, not by version or token; matrix of 2026-10-25):
     legacy = classic login (1.41 to 2.17, including 2.05) defaults to 14923,
-    supported = gen-5 login (2.22, 2.3, 2.31) defaults to 14922
+    supported = gen-5 login (2.22, 2.3, 2.31, and the 3.x builds 3.04 and 3.153) defaults to 14922
   - the binary's own host and port are history: built_in_host / built_in_port
 --check exits 1 and prints every row that breaks the rule.
 """
@@ -27,6 +28,7 @@ spec.loader.exec_module(resolve)
 
 HOST = 'listserver.graal.in'
 PORTS = {'legacy': 14923, 'supported': 14922}
+SUPPORTED = ('2.22', '2.3', '2.31', '3.04', '3.153')
 # 141-217.toml ids in release order, with the labels the profile table uses.
 IDS = [('v141r1', '1.41'), ('v142', '1.42'), ('v200', '2.00'), ('v201', '2.01'), ('v202', '2.02'),
        ('v202r2', '2.02 rev2'), ('v203', '2.03'), ('v204', '2.04'), ('v205', '2.05'),
@@ -48,6 +50,9 @@ def rows():
         if 'listserver_port_status' in v:
             ls['port_status'] = v['listserver_port_status']
         out.append(dict(label=v['label'], listserver=ls))
+    doc3 = tomllib.load(open(here / '../../version-profiles/3.04-3.153.toml', 'rb'))
+    for v in doc3['version']:
+        out.append(dict(label=v['label'], listserver=dict(doc3['defaults']['g3d']['listserver'])))
     return out
 
 
@@ -72,7 +77,7 @@ def check(rs):
     labels = [r['label'] for r in rs if r['listserver']]
     split = {r['label']: r['listserver']['kind'] for r in rs if r['listserver']}
     for L in labels:
-        want = 'supported' if L in ('2.22', '2.3', '2.31') else 'legacy'
+        want = 'supported' if L in SUPPORTED else 'legacy'
         if split[L] != want:
             bad.append(f'{L}: expected {want} (classic login 1.41 to 2.17 legacy, gen-5 login 2.22 and later supported)')
     return bad

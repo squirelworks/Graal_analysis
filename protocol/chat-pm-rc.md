@@ -6,6 +6,8 @@ Sources: GServer-v2 `TPlayer.cpp`, `TPlayerRC.cpp` (GPLv3, summarized); 2.05 tab
 
 ## Chat bubble
 
+How the line is drawn and how long it stays, per build: `client-internals/chat-text.md`.
+
 Local chat is not a message id. It is the `PLPROP_CURCHAT` (12) string inside `PLI_PLAYERPROPS`. The server forwards it to the level as `PLO_OTHERPLPROPS`. Server commands typed in chat (`setnick`, `/sethead`, …) are parsed from the same prop. **[srv]** The one exception is toall: when the chat-bar text (lower-cased and trimmed) starts with `toall:`, 2.05 sends the rest as `PLI_TOALL` (6) instead of as CURCHAT. **[2.05]**
 
 ## Toall

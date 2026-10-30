@@ -7,10 +7,10 @@ Date: 2026-10-29. Read from the 2.05 rev 2 client; tile lists from the 2.22 inst
 * **D while carrying** a bush, a light stone, a black stone or an NPC hides the player under it. The carry sprites that allow it are 261 (bush), 263 (light stone) and 239 (black stone). A pot (265) or a sign (267): D does nothing.
 * **D again**, or **A**, comes out: the player goes back to carrying (`carrystill`). Out from under a bush (not an NPC) the client starts break effect 0 (the leaves) at `(x + 0.5, y + 1)`.
 * **S** throws, from hiding too.
-* **Poses.** `hiddenstill` standing, `hidden` walking. The walk routine applies a factor of 0.2 while hidden, most likely the speed (not tested). **[inf]**
+* **Poses.** `hiddenstill` standing, `hidden` walking. The walk routine applies a factor of 0.2 while hidden, the speed: 0.1 tile per tick, seen live. **[live]**
 * **Hits.** The hit gate refuses hits on a hidden player unless a player byte that was not traced is set.
 * **Wire.** `hiddenstill` is animation step 24, sprite 18 (as `carrystill`); `hidden` is steps 25 to 28, sprites 19, 20, 19, 18. STATUS gets bit 0x02. The carry sprite prop does not change.
-* Not traced: the pose shown on stopping while hidden (most likely `hiddenstill`).
+* Seen live (2026-10-30, `player-mannerisms-live.md`): stopping while hidden shows `hiddenstill`, and walking hidden is 0.1 tile per tick (the 0.2 factor is the speed).
 
 ## Glove power and the lift table
 

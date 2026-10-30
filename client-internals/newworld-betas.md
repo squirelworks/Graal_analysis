@@ -175,6 +175,41 @@ Both betas hide the list-server host with the same DES string as 2.05 (`www.graa
 So the port comes from the code base (14921 in the 2.05 line, 14922 from the 2.1 tests on), and the list name is the only NewWorld change.
 The betas log in to game servers with the token `G2N15041` instead of the mainline `GNW03081` (see `build-catalogue.md`).
 
+## Live lab runs (2026-10-30)
+
+Both betas were run under Wine (32-bit prefix, virtual X display) in a network namespace whose hosts file points the GraalOnline names at a local stub. The stub answers as list server (14921 to 14923) and as game server, and logs every packet. The 2.1 test 3 build was run the same way for comparison. The per-version results are in `version-profiles/141-217.toml` (`vnwb1`, `vnwb2`).
+
+### List server
+
+| Build | Port | What it sends |
+|---|---|---|
+| nwb1 | 14921 | id 0 `newworld` only |
+| nwb2 | 14922 | id 0 `newworld`, then id 1 with account and password (two GSTRINGs) |
+| 2.1 test 3 | 14922 | id 0 `newmain`, then id 1 with account and password |
+
+So sending the account to the list server begins with the 2.1 tests (September 2001), not 2.17. nwb1, on the 2.05 code, does not do it. nwb2's start window is GraalOnline-themed with Account and Password fields. In one run it sent 23 characters of a 28-character password; the cut-off was not pinned down.
+
+### Game server login
+
+Both betas send client type 0, the key byte, `G2N15041`, the account and the password, then LANGUAGE (37) `English`. Their first props are the same six as 2.05: NICK (0), HEADGIF (11), COLORS (13), STATUS (18), UDPPORT (31) and ADDITFLAGS (33).
+
+- **COLORS has seven bytes**, the same in every run, where 2.05 has five. Both betas' prop parsers read eight colour bytes. A server must take the length from the prop and must not echo seven bytes to a client that reads a different count.
+- HEADGIF comes without an extension (`headalgo000`).
+- STATUS has a new bit, 0x20.
+- The first login sometimes stalled with the level drawn but no HUD or player and no props sent. Logging in again fixed it every time.
+
+### After joining
+
+- **Files.** nwb1 asks WANTFILE `shield1.png` and UPDATEFILE `bodynw.png` and `timenums.png`. nwb2 also asks for `idle.gani` and `headalgo000`. Neither asks for the sword, bomb and bow images 2.05 asks for.
+- **Movement.** GANI (10) goes out as a string. While idle the client re-sends `idle` about every 100 ms, because the control NPC calls `setani` each tick (2.05 sends it only now and then). Walking sends X and Y in half tiles plus SPRITE, and nwb2 re-sends `walk` on each step.
+- **Keys.** S does nothing online, so a server has to give the sword as an NPC weapon. A plays the grab animation. The control NPC comes from the local `controlnpc.txt` as the weapon `Control-NPC`, added when the player is created.
+- **Time (packet 42).** The payload is a GINT4: minutes since 1000/01/01 00:00 on the NW calendar (28-day months, 10 months, 280-day year). A value of 162310450 showed as 1402/06/16 14:10 on the HUD clock.
+- **Offline Training** in nwb1 runs without a server (HUD 150/150, clock 1000/01/01).
+
+### Client → server set
+
+A scan of the send sites (same method as `version-profiles/README.md`) shows both betas drop seven ids that their bases send: 7, 8, 11, 15, 16, 17 and 20 (horse add/delete, throw carried, baddy props/hurt/add, open chest). That widens the four listed under Packets above. The prop parsers and writer otherwise match each base, and there is no baddy-props parser.
+
 ## Corrections to other notes
 
 - `build-catalogue.md` credited "string arrays" to nwb1. They are nwb2-only. nwb1's distinctive features are the terrain heights, backtile areas, deferred text and NW time variables.

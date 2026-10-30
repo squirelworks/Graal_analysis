@@ -1,0 +1,842 @@
+# Graal client profiles, 1st Graal (Sept 1998) to 1.1 (Feb 1999) (gen 1, text relay).
+# Cleaned observations: static reads of the shipped clients, readmes, shipped assets.
+# No addresses, function names or decompiler output. Protocol: ../../protocol/relay-1998.md.
+# Every [[version]] lists the full value for each key, not a diff.
+# These builds have no login, token or account. Keys that only make sense for gen 2+ are left out;
+# relay_game and d_types_sent take the place of token and pli_sent.
+
+schema = 1
+range = "1stgraal-1.1"
+
+[confidence]
+generation = "confirmed"
+transport = "confirmed"
+default_server = "confirmed (compiled-in)"
+dialog_server = "confirmed (connect dialog DFM / strings)"
+relay_game = "confirmed (constant passed with N; on a level the client sends G<n> + level location instead)"
+d_types_sent = "confirmed (constant type letters at the D send sites)"
+level_formats = "confirmed (loader magics)"
+save_format = "confirmed (writer)"
+config_keys = "confirmed (plain strings)"
+
+[features]
+local_two_player = { since = "1st Graal", confidence = "confirmed", note = "two client objects for a split local game" }
+graal_level_loader = { since = "2nd Graal", confidence = "confirmed", note = "GR-V1.00/1.01" }
+connect_dialog_14802 = { since = "3rd Graal", confidence = "confirmed", note = "second port field pre-filled with the relay server" }
+raw_winsock = { since = "3rd Graal", confidence = "confirmed", note = "ICS TWSocket before this" }
+directsound = { since = "4th Graal alpha", confidence = "confirmed", note = "" }
+five_colours = { since = "4th Graal alpha", confidence = "confirmed", note = "S message and save carry 5 colours, not 4" }
+guild_code_file = { since = "5th Graal", confidence = "confirmed", note = "guildname.code, DES-wrapped" }
+web_levels = { since = "6th Graal (beta5)", confidence = "confirmed", note = "levels over HTTP from the relay operator" }
+config_file = { since = "6th Graal (beta5)", confidence = "confirmed", note = "graalconfig.txt keys" }
+horse = { since = "7th Graal (beta7)", confidence = "confirmed", note = "D type 0, TAdventureHorse" }
+carry_npc = { since = "9th Graal alpha", confidence = "confirmed", note = "save records carry NPCs" }
+sit_sleep_poses = { since = "9th Graal (beta9)", confidence = "inferred", note = "D types 6/7; readme dates sitting and sleeping to 13th" }
+four_player_local = { since = "14th Graal (1.1)", confidence = "confirmed", note = "save header modes 3/4" }
+gsave_wrapped = { since = "15th Graal (1.1)", confidence = "confirmed", note = ".gsave, two DES copies" }
+registration_key = { since = "15th Graal (1.1)", confidence = "confirmed", note = "reg.code; relay type 8 duplicate check" }
+ip_cache = { since = "15th Graal (1.1)", confidence = "confirmed", note = "TAdventureServer host-to-IP record" }
+server_level_choice = { since = "15th Graal (1.1)", confidence = "confirmed", note = "NR/NL reply; onlinestartlocal.graal" }
+graalonline_home = { since = "1.1.9 Gold Edition", confidence = "confirmed", note = "dialog host and web levels move to www.graalonline.com" }
+
+[[version]]
+label = "1st Graal"
+archive = "1stgraal-1"
+linked = "1998-09-06"
+md5 = "07452f8941fdfcdce878b035156e701c"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "ICS TWSocket"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "none"
+relay_game = "Zelda2"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "L", "M", "N", "O", "P", "R", "S", "T", "W"]
+level_formats = ["Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav1"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = false
+connect_dialog_14802 = false
+raw_winsock = false
+directsound = false
+five_colours = false
+guild_code_file = false
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "2nd Graal"
+archive = "2ndgraal"
+linked = "1998-09-16"
+md5 = "f74b35fc7975a4873087f7fd2aa1d79b"
+compiler = "Delphi 4"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "ICS TWSocket"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "none"
+relay_game = "Zelda2"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W"]
+level_formats = ["GR-V1.00", "GR-V1.01", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav1"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = false
+raw_winsock = false
+directsound = false
+five_colours = false
+guild_code_file = false
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "3rd Graal"
+archive = "3rdgraal"
+linked = "1998-09-30"
+md5 = "fc78fbc96bdbc6ca22ae56d3ed8635ab"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "204.85.8.128:14802"
+relay_game = "Graal"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W"]
+level_formats = ["GR-V1.00", "GR-V1.01", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav1"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = false
+five_colours = false
+guild_code_file = false
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "4th Graal"
+archive = "4thgraal"
+linked = "1998-10-05"
+md5 = "e040af2e19912419ab80aa6dd202b4ea"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "204.85.8.128:14802"
+relay_game = "Graal"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W"]
+level_formats = ["GR-V1.00", "GR-V1.01", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav1"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = false
+five_colours = false
+guild_code_file = false
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "4th Graal alpha"
+archive = "4thgraalalpha"
+linked = "1998-10-12"
+md5 = "8cae23a58e1b1b10f3149bdbe53d0431"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "none"
+relay_game = "Graal2"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav2"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = false
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "5th Graal"
+archive = "5thgraal"
+linked = "1998-10-19"
+md5 = "0e7c3573f0a916f8b2376060e768fe96"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "204.85.8.128:14802"
+relay_game = "Graal3"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav2"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "5th Graal alpha"
+archive = "5thgraalalpha"
+linked = "1998-10-29"
+md5 = "e54397e7d4f59d30b77d5cf0475335a1"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "none"
+relay_game = "Graal3"
+d_types_sent = ["A", "B", "C", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav2"
+save_ext = ".save"
+config_keys = []
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = false
+config_file = false
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "6th Graal (beta5)"
+archive = "6thgraal"
+linked = "1998-11-09"
+md5 = "53c3caf3d930534db3f44f346f5d651a"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal4"
+d_types_sent = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav3"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = false
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "7th Graal (beta7)"
+archive = "7thgraal"
+linked = "1998-12-04"
+md5 = "deb40c31268e499fc4436b8d0687f05d"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal5"
+d_types_sent = ["0", "1", "2", "3", "4", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav4"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "8th Graal (beta8)"
+archive = "8thgraal"
+linked = "1998-12-08"
+md5 = "a49aa1b773e41741f211867fd5ea55d7"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal5"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav4"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = false
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "9th Graal alpha"
+archive = "9thgraalalpha"
+linked = "1998-12-16"
+md5 = "e226e1b83fd437b0aede968fb395b911"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal5"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav5"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = false
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "9th Graal (beta9)"
+archive = "9thgraal"
+linked = "1998-12-18"
+md5 = "f0185ff8525a13f2f4e5997f649bc250"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal5"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav5"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "10th Graal (1.0)"
+archive = "10thgraal"
+linked = "1998-12-22"
+md5 = "f1f34b4479a8ad7614bd8f7ce56112c6"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal6"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav5"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "11th Graal (1.0)"
+archive = "11thgraal"
+linked = "1998-12-23"
+md5 = "a255212621907affc94a4483c6dfc8e3"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal6"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav5"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "12th Graal (1.0)"
+archive = "12thgraal"
+linked = "1999-01-05"
+md5 = "788ae59e9419806024d14d3e5b611971"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal6"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav5"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "13th Graal (1.1 beta1)"
+archive = "13thgraal"
+linked = "1999-01-12"
+md5 = "a211a0ecf3b58daa2f46759444e18bd3"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal7"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav6"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = false
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "14th Graal (1.1)"
+archive = "14thgraal"
+linked = "1999-01-15"
+md5 = "d0999d44fcd9c226f350fcf204618885"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal8"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav7"
+save_ext = ".save"
+config_keys = ["joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = true
+gsave_wrapped = false
+registration_key = false
+ip_cache = false
+server_level_choice = false
+graalonline_home = false
+
+[[version]]
+label = "15th Graal (1.1)"
+archive = "15thgraal"
+linked = "1999-01-25"
+md5 = "9a7d66dd5c8c506ad4d3e63ee4a9a1f1"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.cyberjoueur.com:14802"
+relay_game = "Graal8"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav7"
+save_ext = ".gsave"
+config_keys = ["editnickname=", "gamemode=", "joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = true
+gsave_wrapped = true
+registration_key = true
+ip_cache = true
+server_level_choice = true
+graalonline_home = false
+
+[[version]]
+label = "1.1.9 Gold Edition"
+archive = "graal1.1.9"
+linked = "1999-02-11"
+md5 = "0a6eef88acb4c0fce6e84eee3e76c04a"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.graalonline.com:14802"
+relay_game = "Graal8"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav8"
+save_formats_read = ["Graalsav7", "Graalsav8"]
+save_ext = ".gsave"
+config_keys = ["editnickname=", "gamemode=", "joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = true
+gsave_wrapped = true
+registration_key = true
+ip_cache = true
+server_level_choice = true
+graalonline_home = true
+
+[[version]]
+label = "1.1"
+archive = "graal1.1"
+linked = "1999-02-14"
+md5 = "1a9580655cce686c602c01daa251c453"
+compiler = "old VMT layout (Delphi 2 level)"
+generation = 1
+compression = "none"
+cipher = "none"
+transport = "WinSock 1.1, blocking connect then FIONBIO"
+framing = "text lines ending in \\n; first char is the command"
+default_server = "127.0.0.1:14801"
+dialog_server = "www.graalonline.com:14802"
+relay_game = "Graal8"
+d_types_sent = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"]
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "Z3-V1.03", "Z3-V1.04"]
+save_format = "Graalsav8"
+save_formats_read = ["Graalsav7", "Graalsav8"]
+save_ext = ".gsave"
+config_keys = ["editnickname=", "gamemode=", "joystickon=", "musicon=", "reversestereo=", "saveimages=", "soundfxon=", "waitvertical="]
+
+[version.features]
+local_two_player = true
+graal_level_loader = true
+connect_dialog_14802 = true
+raw_winsock = true
+directsound = true
+five_colours = true
+guild_code_file = true
+web_levels = true
+config_file = true
+horse = true
+carry_npc = true
+sit_sleep_poses = true
+four_player_local = true
+gsave_wrapped = true
+registration_key = true
+ip_cache = true
+server_level_choice = true
+graalonline_home = true

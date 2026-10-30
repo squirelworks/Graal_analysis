@@ -36,17 +36,18 @@ The password is stored as 48 printable characters, two per byte, giving 24 bytes
 
 ## `accounts.txt` (server)
 
-One account per `\n`-terminated line, in the protocol's `+32` text codec:
+One account per `\n`-terminated line, in the protocol's `+32` text codec. Confirmed byte for byte in the lab, and a hand-written file is accepted. **[cap]**
 
 ```
-str(name) str(password) str(saved props) c(flags) <inherited lists>
+str(name) str(password) str(saved props) c(flags) c(0) c(0) c(0) c(0) c(0) c(0) c(0)
 ```
 
-- **saved props** is the player's prop stream (the same encoding as packet 1, for the props the server keeps). It is written back when a player bound to the account leaves or is edited, and applied on login.
-- **flags**: bit 0 = shared account (not bound to the session), bits 1–3 = admin level 0–3, bit 4 = disabled. The server UI calls the levels Administrator and Police.
-- **inherited lists**: the 2D account record ends in count-prefixed string lists. The 3D server still reads and writes them, but no Graal3D prop or packet fills them.
+For example, a fresh administrator account `alice` / `pw1` is `%alice#pw1 &` followed by seven spaces and `\n`.
 
-`TServerAccount` is the same size as in the 2D `GServer13.exe`, so the record layout is very likely shared. The two files have not been byte-compared.
+- **saved props** is the player's prop run (the same encoding as packet 1): props 1–14, 16 and 17, no 0 or 15. It is empty until the player first leaves. It is written back when a bound player leaves or is edited, and applied on the next login (positions, chat text and nickname included).
+- **flags**: bit 0 = Load only, bits 1–3 = rights level (0 No rights, 1 Graalian Police, 2 Trusted Admin, 3 Administrator), bit 4 = Blocked.
+- **The seven trailing bytes** are the empty count-prefixed lists inherited from the 2D account record. The reader accepts lists there, but no Graal3D prop or packet fills them.
+- The server rewrites the file whenever an account changes, not only at shutdown.
 
 ## `guilds\guild<name>.txt` (server)
 

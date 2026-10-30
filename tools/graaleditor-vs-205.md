@@ -10,7 +10,7 @@ Sources: forms, RTTI class lists, version resources, and strings of `GraalEditor
 |-------|--------|
 | 2.05 (2001) | Built into `Graal.exe`. F4 switches the game window into editor mode. Refused while online. |
 | 2.17 / 2.22 | Still built in, with the newer forms (`TEditNPC`, `TTilesArrayFrame`; 2.22 also `TLogFrame`). |
-| 2.31 | No editor forms left in the client (only the 9 tutorial levels remain), so editing moved to GraalEditor. |
+| 2.31 | No editor forms left in the client (only the 9 tutorial levels remain). The start screen has an **Editor** button that launches `GraalEditor.exe` from the game folder (seen live). |
 | GraalEditor 2.3.1.1 (2005) | The same `TAdventure` program with the online client removed, shipped as its own exe in a Thinstall package. |
 
 GraalEditor is not a rewrite. It keeps the 2.05 main form (`TAdventure`, caption `Graal`), the same tool forms, the same toolbar hints ("Undo board copy", "Turn selection into a warp field"), and even game-only strings ("You cannot open the editor in the online mode.", F7 Player List and F8 Server List buttons in the help form). It also keeps the whole game model (`TPlayer`, `TComputer`, `TAdventureCommand` … the GS1 interpreter), so *Play* still runs a level locally. **[GE]**
@@ -31,9 +31,9 @@ It does not have the network client. There is no `TGraalClient`, `TAdventureClie
 | Tiles | — | *Export Tiles Array* (`TTilesArrayFrame`): the selection as one line of tile indices and as a script array |
 | View | blocking/foreground/terrain overlays | plus *Hide npcs* and *Show terrain grid* |
 | Log | — | `TLogFrame` (memo log) |
-| Offline data | 13 embedded `tutorial_*` levels | `offlinetutorial_*` (3×3) and `tiledefsOffline.txt` |
+| Offline data | 13 embedded `tutorial_*` levels (2.05 also reads `tiledefsOffline.txt` offline) | `offlinetutorial_*` (3×3) and `tiledefsOffline.txt` |
 | Sound | DelphiX + MCI/Winamp | BASS, with the same function set the 2.22 client imports |
-| Integrity | `TProgramCheck` self-check ("The Graal execution file is corrupted…") | the same, plus RSA/SHA-1 signature checks of `GraalEditor.sig` and `arrays2.sig` (`TAS_RSACryptography`, `TAS_DigestSHA1`; "Not ready to verify signature, must have valid public key"). What happens when a check fails has not been traced. |
+| Integrity | `TProgramCheck` self-check ("The Graal execution file is corrupted…") | the same, plus RSA/SHA-1 signature checks of `GraalEditor.sig` and `arrays2.sig` (`TAS_RSACryptography`, `TAS_DigestSHA1`; "Not ready to verify signature, must have valid public key"). Live, the editor starts normally with no `GraalEditor.sig` and with a corrupted `arrays2.sig`, so the check does not gate startup. |
 
 Unchanged from 2.05: the tile undo model (rectangle snapshots, "Undo board copy"), the link, sign, chest, and baddy dialogs, GOBJSET01 stamp sets with `objects<set>.txt`, right-click to copy objects, and *Generate map* → `graalmap.png`.
 

@@ -28,6 +28,8 @@ A small script that speaks both sides:
   - On id 0 (2.05 `newmain`) or id 1 (account/password), send id 0 with the server list and id 2 with a status line.
   - On id 7 (2.22), take the key and switch to post-2.2 framing.
 
+**2026-10-30:** the stub shipped in the lab pack on 10-22 had lost the id 7 path, so 2.22 and 2.31 got no list from it. It is replaced by listserver version 2 in `lab-servers/` (gen 5, RC lists, live player counts, optional account file); see `lab-servers/README.md`. The 10-21 captures above were made with the earlier stub, which did answer id 7.
+
 Lab accounts are throwaway names with dummy passwords. This lab's stub accepts any password (other stubs may check accounts), and the logs print account names only. Captures still contain the dummy passwords in clear, so they stay out of the repo.
 
 ## Decoding

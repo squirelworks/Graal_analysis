@@ -104,5 +104,5 @@ Both behave as 2.05 for everything above: the same counts, probe points, flight 
 
 ## Open
 
-* What is drawn right after A is let go while `pull` is playing: no code path that sets `idle` there was found.
+* ~~What is drawn right after A is let go while `pull` is playing.~~ Seen live (2026-10-30, `player-mannerisms-live.md`): `pull` keeps looping until the next key moves the player.
 * Releasing A or the arrow mid-pull in 2.22 / 2.31 was not checked step by step.

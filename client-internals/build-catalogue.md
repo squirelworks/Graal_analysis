@@ -124,7 +124,7 @@ This is the only 1.41 copy available, so the listserver host and port it shows m
 Both reappear in 2.05 (Aug 2001) together with gmap support. This suggests 2.0 branched from a pre-NewMain tree and the NewWorld code was merged back for 2.05.
 That conclusion is an inference from strings only. A live check (loading a `.nw` level in 2.04) would confirm it.
 
-**Save magics after 1.1.9.** 1.21 to 1.32 write `Graalsv11` (with `sav` shortened to `sv` so the magic stays 9 characters) and read `Graalsav9` and `Graalsv10` too. A search for `Graalsav` misses the last two. 1.33 to 1.39 and the 1.41 rev1 copy carry the same three magic strings, but only a string scan was done for those builds, so which one they write isn't confirmed. See `formats/graalsav.md`.
+**Save magics after 1.1.9.** 1.21 to 1.32 write `Graalsv11` (with `sav` shortened to `sv` so the magic stays 9 characters) and read `Graalsav9` and `Graalsv10` too. A search for `Graalsav` misses the last two. 1.33 to 1.39 and the 1.41 rev1 copy carry the same three magic strings in the same arrangement as 1.21 to 1.32: `Graalsv11` is referenced from two places (writer and reader) and the other two from one (reader only). So they write `Graalsv11` too. The writer itself was traced only in 1.21 and 1.32. See `formats/graalsav.md`.
 
 **Compiler.** Every build is Borland Delphi with linker 2.25, DelphiX for DirectDraw, and an RTL copyright reading "1983,97 Borland".
 Two compilers are in use, and the class metadata tells them apart. In the older layout the VMT self pointer sits 64 bytes before the VMT and the class name 32 bytes before it, which is the Delphi 2 layout. In the newer layout those offsets are 76 and 44, which is the layout from Delphi 3 on.

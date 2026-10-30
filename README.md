@@ -8,8 +8,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No de
 - `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.
 - `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`, `codec-and-framing.md`, `packet-ids.md`, `player-props.md`, `file-transfer.md`, `chat-pm-rc.md`, `listserver.md` (with `public-listserver-2026-10-25.md`, the first observed public replies), `udp-p2p.md`, `v3x-clients.md` (Graal 3.x Linux/Mac clients), `v4x-clients.md` (Graal 4.x Windows/Mac clients), `v5x-clients.md` (Graal 5.x Windows clients), `v6x-clients.md` (Graal 6.x Linux, Mac and Windows clients, incl. the 6.11 server-defined protocol), `v5v6-windows-unpacked.md` (the packed 5.12–6.03 Windows builds, unpacked and run: tokens, logins, id tables), `relay-1998.md` (the 1998 text relay), and `gserv-1999.md` (GSERV007–018 logins, gen 2).
 - `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, `version-tokens.md`, `client-architecture-205.md`, `des-and-hidden-strings.md` (hidden hosts, 2.22 saved passwords), and `newworld-betas.md` (the two NewWorld beta clients).
-- `graal3d/` — the February 2000 Graal3D client and its GServer: protocol (TCP + peer-to-peer UDP), props, accounts, `.x` levels, and how it relates to the 2D GServer.
-- `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab).
+- `graal3d/` — the February 2000 Graal3D client and its GServer: protocol (TCP + peer-to-peer UDP), props, accounts, `.x` levels, how it relates to the 2D GServer, client movement/camera/chat, a live Wine lab and a reference server. Also `torque-engine-4x.md`: the Torque-based 3D plug-in of the 4.x clients and its UDP protocol on port + 1.
+- `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab). `tools/lab-servers/` holds our lab listserver.
 - `archive/` — archival notes on decommissioned experimental walkers and tileset work (Ember / Avelan). Full assets live in a Drive zip; see `archive/ember-avelan-experimental.md`.
 
 ## Newly scaffolded (2026-10-14)
@@ -32,7 +32,11 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/sign-panel.md` — the sign panel from `letters.png` (glyph grid, frame, `#` button codes, paging keys) and what an NPC with no image draws (2.05).
 - `client-internals/ledges-push-pull.md` — ledge jumps (array 8 per facing, the 8-tick curves), pushing and pulling stone blocks (array 16), the held grab, the futile pull, and the `pushed`/`pulled` trigger actions (2.05).
 - `client-internals/live-trace-205.md` — live 2.05 traces: the client reports its own CURPOWER on a hit, ledge-jump timing and running in place, deep water, lava swim and the 101-tick burn, and the death/respawn sequence after a server CURPOWER 0 (respawn at the login point, CURPOWER 6, death loop).
+- `client-internals/live-gserver13.md` — the real 1999 GServer13 with the 1.3 test client, live under Wine: server defaults and the new-account template, the login order (board in its own frame), walking and chat on the wire, bush regrow times, the Wine DirectInput keyboard fix for 1.x clients, and which builds start under Wine.
+- `client-internals/player-mannerisms-live.md` — tick-by-tick player behaviour in real 2.05 rev 2 (memory + video) and 1.39 (video): walk, running in place and push timing, sliding along walls, lift/carry/hide (0.1 tile/tick)/throw, sword and bush cut, hurt knockback and 40-tick blink, swim, grab/pull, the built-in gani timings across gani sets, the 2.05 GIF-only player images, and what Seihai poses differ.
+- `client-internals/live-checks-editor-offline-sound.md` — live runs of 2.05, 2.22, 2.31 and GraalEditor: the Training button and where each client starts offline, the embedded tutorial beating a disk copy, `tiledefsOffline.txt` in every version, the 2.31 Editor button, Generate map, Edit flags, and engine sounds by action.
 - `client-internals/body-colours-and-attributes.md` — how 2.05 colours a body (palette entries per slot, the 20 colours, new-player defaults), what the looks commands change, and GANI attribute sprites and `DEFAULTATTR` (the hat, props 37–41).
+- `client-internals/board-respawn.md` — how cut bushes, lifted pots, signs and stones come back: GServer13 respawns any 2×2 change after 6–12 s (random 0.75–1.25 × `respawntime` 10, measured live), clients never regrow, 1.3 rolls bush/pot drops client-side and sends them peer to peer, 2.00+ drops are server-side; GServer-v2's rules for comparison.
 - `client-internals/carry-hide-and-glove.md` — hiding under a carried bush or stone with D (mode 14, poses, sprites, STATUS 0x02), the glove scale (players start at 1, so pots lift) and lifting `canbecarried` NPCs (2.05).
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
@@ -76,6 +80,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 ## Version profiles
 
 - `version-profiles/2.22-2.31.md` and `.toml`: per-version profiles for 2.22, 2.3 (inferred) and 2.31. Covers the wire protocol, the start window, server-list tabs, editor presence, options, GS1 symbol changes, and feature switches for Seihai.
+- `version-profiles/3.04-3.153.md` and `.toml`: the same profile for the 3.x Linux 3.04 and Mac 3.153 clients (twins of 2.22 and 2.31): sent and handled ids, prop ranges, no tampercheck, listserver, 3D mode and other features. `version-profiles/lab-304-linux-2026-10-30.md` is the lab run of the real 3.04 client on GServer-v2 (login on the wire, no tampercheck, push delay, chat look, bush and lift sequences).
 
 ## Decompile findings, batch b (2026-10-24)
 
@@ -118,7 +123,8 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 ## Precursors and fan builds (2026-10-29)
 
 - `client-internals/precursors-and-fan-builds.md`: Zelda Online 1 and 2, Knorr's 1998 ZeldaEditor (whose dialogs became 1st Graal's editor), the GServ lobby with source, password saves, `objects.dat` and `arrays.dat`, Java Graal (2000), the Graal Game Boy Color demo (1999), 39ster's 2014 offline client, and how they relate.
-- `client-internals/gameboy-demo.md`: the full disassembly of the Game Boy Color demo. It covers the GBDK/LCC build, the bank map, the room format (links, texts, NPC records) and all seven rooms, the 31 character types, controls, lifting, entity states and the sound player. The disassembly itself is in the project's shared folder.
+- `client-internals/gameboy-demo.md`: the full disassembly of the Game Boy Color demo. It covers the GBDK/LCC build, the bank map, the room format (links, texts, NPC records) and all seven rooms, the 31 character types, controls, lifting, entity states and the sound player, and then what an emulator run showed: speeds, the sword, lift and throw, the per-character A items (bomb, boomerang), respawn, the room 4 event, and Start muting the game. The disassembly and the run's contact sheets are in the project's shared folder.
+- `client-internals/precursor-runs-2026-10-30.md`: Zelda Online 2, Java Graal and the Game Boy Color demo run for real. It gives the game-feel numbers from the Java sources (20 Hz ticks, the 0.9 s push pose and 1.4 s stone push, the bush drop table, no respawn timer, chat as outlined text with no bubble) and what the wire showed (room names, a doubled relay when two clients pair at once).
 
 ## Boundary
 
@@ -136,3 +142,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 ## Graal 4.x clients (2026-10-29)
 
 - `protocol/v4x-clients.md`: Windows 4.20r8 (a third-party packet-logger build) and Mac OS X 4.20r6, read statically. The Delphi launcher plus C++ `GraalEngine.dll` split, `loginserver.graalonline.com:14900` with no separate listserver protocol, tokens `G3D27076` / `G3D20126`, the login's PC-id fields, saved-password DES, gen 5 unchanged, 101 handled server ids (13 new over 3.153), the `GRPKG001` update packages, what the packet logger really logs, and the 4.04r2 Windows client unpacked from its Thinstall installer (token `G3D17026`, the `Graal3DEngine.dll` plug-in, 98 server ids). The 3D plug-in: Graal TCP plus Torque UDP on port + 1, the connect request (protocol 19, account, nickname and the password in clear), and the `BigData` events that carry Graal text inside Torque.
+
+## Reference reimplementations (2026-10-30)
+
+- `client-internals/reference-reimplementations/`: xtjoeytx's 2dadventureclient and LevelScriptEditor weighed against the real-client notes, behaviour by behaviour (matches, invented, missing). Main finding: the `gr.x`/`gr.y` flags seen in lab captures come from GServer-v2's `-gr_movement` weapon in the default account, not from the clients themselves.

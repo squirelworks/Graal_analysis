@@ -70,7 +70,65 @@ From the game connection's receive dispatcher.
   - 111: writes `creationtime.dat`. **[bin]**
   - 198: a GINT5 value stored on the connection. **[bin]**
 
-Client → server: only 5 (login) and 37 (language) are confirmed as constant ids; the rest go through a virtual send call and were not tabulated.
+Payloads of the new ids **[bin]**:
+
+- **109:** `i5` time (five 7-bit groups), then a `c`-length string A and a `c`-length string B. The client passes (B, A, time) to the file layer. Most likely a file redirect (6.11 names a native handler `setfileredirect(u,s,s)`). **[bin][inf]**
+- **198:** one `i5`, stored on the connection. Nothing else in 6.03 reads it back.
+
+## Client → server ids (6.01, 6.03)
+
+All outgoing packets go through one virtual send method `(id, body)`. It writes `id+32`, the body and `\n`. Ids 93 and 163 are special: the client first sends id **50** (`PLI_RAWDATA`) with a 3-byte length (3 × 7-bit groups, capped at 0x37FFFF), then the packet. **[bin]**
+
+- **6.03r7:** 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–162. **[bin]**
+- **6.01r1:** the same without 160. **[bin]**
+- Not sent as a constant anywhere: 21 (`PUTNPC`), 25, 31 (`PACKETCOUNT`), **39 (`TAMPERCHECK`)** and 40 (`SHOOT`). So 6.x does not send the 10-byte tamper check that 2.22/2.31 send after the language packet. **[bin]**
+
+| Id | Name (gs2lib) | 6.x use |
+|---:|---|---|
+| 5 | `PLI_BOMBDEL` | also the login message (in the mode-3 frame) |
+| 37 | `PLI_LANGUAGE` | sent right after login |
+| 44, 45 | `PLI_PROCESSLIST`, `PLI_PROCESSRUNNING` | replies to the server's process checks |
+| 46 | `PLI_ENTERLEVEL` | on level entry, as in 2.31 |
+| 79 | `PLI_RC_CHAT` | |
+| 92, 93 | `PLI_RC_FILEBROWSER_DOWN`, `_UP` | 93 carries a file-name string plus one data chunk, preceded by id 50 |
+| 96, 97, 98 | `PLI_RC_FILEBROWSER_MOVE`, `_DELETE`, `_RENAME` | |
+| 130 | `PLI_REQUESTUPDATEBOARD` | |
+| 152, 154 | `PLI_REQUESTTEXT`, `PLI_SENDTEXT` | |
+| 155, 156 | `PLI_RC_LARGEFILESTART`, `_END` | the upload queue: 155, then 93 chunks of at most **32,000 bytes**, then 156. The queue pauses while about 64 KB is already waiting to go out |
+| 157, 158, 161 | `PLI_UPDATEGANI`, `PLI_UPDATESCRIPT`, `PLI_UPDATECLASS` | script and gani requests |
+| 159 | `PLI_UPDATEPACKAGEREQUESTFILE` | |
+| 160 | `PLI_RC_FOLDERDELETE` | 6.03 only |
+| 162 | (no gs2lib name) | **new.** Reply to a server request: `!` followed by a 2-byte value (2 × 7-bit groups, capped at 0x6FFF) the server sent. Probably the ping answer that 6.11 calls `onSendPingAnswer` **[inf]** |
+
+The other ids (0–20, 22–24, 26–30, 32–36, 38, 41, 47, 48) have the same meaning as in 2.x–5.x. **[bin][inf]**
+
+### The 6.11 named send slots
+
+In 6.11 each outgoing message has a slot in the script-loaded 256-entry table. If a slot holds 0xFE, the client calls a script event instead of sending. The event names give each slot a name **[bin]**:
+
+| Slot | Event | Slot | Event | Slot | Event |
+|---:|---|---:|---|---:|---|
+| 0 | `onSendWantWeaponScript` | 19 | `onSendTakeExtra` | 38 | `onSendLevelWarp` |
+| 1 | `onSendWantClassScript` | 20 | `onSendRemoveExtra` | 39 | `onSendLevelWarpModtime` |
+| 2 | `onSendWantGaniScript` | 21 | `onSendOpenChest` | 40 | `onSendDownloadFile` |
+| 3 | `onSendToAllChat` | 22 | `onSendShot` | 41 | `onSendBoardModify` |
+| 4 | `onSendIsPKer` | 23 | `onSendBaddyProperties` | 42 | `onSendBoardModify2` |
+| 5 | `onSendCarryThrown` | 24 | `onSendBaddyHurt` | 43 | `onSendPreloadLevel` |
+| 6 | `onSendAddHorse` | 25 | `onSendWeaponImage` | 44 | `onSendPlayerProperties` |
+| 7 | `onSendDelHorse` | 26 | `onSendRCChat` | 45 | `onSendNPCProperties` |
+| 8 | `onSendAddBomb` | 27 | `onSendRequestText` | 46 | `onSendFlag` |
+| 9 | `onSendDelBomb` | 28 | `onSendSetText` | 47 | `onSendUnsetFlag` |
+| 10 | `onSendServerWarp` | 29 | `onSendFileDeletion` | 48 | `onSendProjectile` |
+| 11 | `onSendTriggerAction` | 30 | `onSendFolderDeletion` | 49 | `onSendUpdatePackage` |
+| 12 | `onSendFireSpying` | 31 | `onSendFileRename` | 50 | `onSendPrivateMessage` |
+| 13 | `onSendExplosion` | 32 | `onSendFilesMove` | 51 | `onSendUploadStart` |
+| 14 | `onSendWeaponHit` | 33 | `onSendHaveWindow` | 52 | `onSendSaveFile` |
+| 15 | `onSendPlayerHurt` | 34 | `onSendEnterLevel` | 53 | `onSendUploadEnd` |
+| 16 | `onSendDeleteNPC` | 35 | `onSendWantImage` | 55 | `onSendPingAnswer` |
+| 17 | `onSendDeleteWeapon` | 36 | `onSendImageUpdate` | 56 | `onSendWindowList` |
+| 18 | `onSendExtra` | 37 | `onSendImageUpdateCRC` | | |
+
+Slot 54 and slots above 56 have no event (the login and language packets are sent by the script itself). The slot order is not the wire order, so a 6.11 server must send the table. **[bin]**
 
 ## 6.11 Mac: the connector and a server-defined protocol
 
@@ -100,6 +158,27 @@ The gen-5 code path is still in 6.11 and is the default before a script calls `s
 
 None of this exists in 6.01 or 6.03 (no connector, no RC4/AES, no script-set id tables). **[bin]**
 
+## Chat and nickname drawing (6.03)
+
+Read from the Linux 6.03 renderer, for the 6.x Seihai profile. Positions are in tiles from the player's x/y. **[bin]** unless marked.
+
+- **Font.** The default text font is **Tempus Sans ITC, size 24** (the same as 2.0–2.31). On Linux the client maps the name to a font file: `tempus` → `tempsitc`, then `trebuc`, then `courier`, looked up in `levels/fonts/`.
+- **Chat text.** White (0xFFFFFF), centred at **x + 1.5**, bottom line at **y − 1.0 + chatoffset** (`chatoffset` defaults to 0; on a horse or when attached the offset is −1.0 instead), and moved up by the player's z height. Chat is queued and drawn after the world ("Game_Draw_Texts"), so it sits on top of everything.
+- **Wrapping.** Text of 11 characters or more is word-wrapped to the view width. Breaks fall after one of ` .,;+-?!`. Lines are stacked **upward** from the anchor, and each line is centred and clamped to stay on screen.
+- **Shadow.** Every text is drawn with a second colour offset by (1, 1). When the text's red or green is above about 0.88 (as with white chat), the second colour has red and green 0 and keeps the text's blue, so white chat gets a blue shadow. Darker text gets a light shadow. **[bin][inf]** (the field order of the draw parameters is inferred.)
+- **`showap`.** When the chat text is exactly `showap`, the client shows the player's AP number in its place.
+- **Nickname.** Drawn at **x + 1.5, y + 2.5** (below the sprite). Its colour comes from the player's AP through a fixed ramp: 0 or less dark red (64,0,0); 1–26 dull to bright red; 27–49 red fading to white; 50–55 white; 56–70 light green to green-cyan; 71–99 cyan to blue; 100 gold (224,196,0). It is only drawn when the player-list flag allows it, and can be cut to 50 characters by an option.
+- **Screen message.** Server text for the whole screen is drawn white, centred, 88 px above the bottom of the view.
+
+### Windows builds against Linux
+
+A byte search of the unpacked Windows exes (from `v5v6-windows-unpacked.md`) agrees with the Linux reading **[bin]**:
+
+- 6.00b1, 6.00r2 and 6.03r7 all carry the gen-5 seed and LCG constants and the chat wrap characters ` .,;+-?!`, and `showap`.
+- `Tempus Sans ITC` and `Game_Draw_Texts` are in 6.00r2 and 6.03r7. 6.00 beta1 has neither; its only capitalised face name is `Arial`, so beta1 probably drew chat in Arial. **[inf]**
+- `creationtime.dat` (S→C 111) is in 6.03r7 but not 6.00r2, matching the 6.01 → 6.03 change on Linux.
+- None of them has the 6.11 connector (`quattroplay`, `onSend…` events).
+
 ## File formats
 
 All three builds carry the 5.x set: `GR-V1.03`–`GR-V1.05` levels, `GWEBL001` web-level cache, `GRMAP001` gmaps, `GRPKG001` update packages and `GRESCR01` script cache. No new magic was found. The text-level keywords are not in plain strings in 6.x (probably scrambled like the hosts). **[bin]**
@@ -107,6 +186,6 @@ All three builds carry the 5.x set: `GR-V1.03`–`GR-V1.05` levels, `GWEBL001` w
 ## Still open
 
 - ~~Unpacking the Windows builds~~ Done 2026-10-29, see `v5v6-windows-unpacked.md`.
-- The full client → server id table for 6.01/6.03.
-- The payload layouts of the new ids 109, 111 and 198.
+- ~~The client → server id table for 6.01/6.03~~ Done 2026-10-30, above.
+- The payload of id 111 (writes `creationtime.dat`).
 - A live 6.11 connector script, to recover the real 6.11 token, header and id tables.

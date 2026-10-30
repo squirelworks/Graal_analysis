@@ -20,6 +20,7 @@ Field names follow the Seihai profile schema: `token`, `listserver`, `client_typ
 | doc | The release notes shipped with the clients (`newfeatures141/142/2001/2002.txt`) |
 | srv | GServer-v2 source: what a server does differently per version |
 | forms | The DFM resources: start window, options, controls, server list, player list |
+| lab | Seen on the wire from the real client, run under Wine against a lab list and game server (NewWorld betas, 2026-10-30) |
 | inf | Not checked in that build. Either the value is carried from the nearest scanned build, or it is placed at the release that introduced the feature |
 
 No binaries of 2.1 release, 2.12, 2.13, 2.14, 2.15 or 2.16 are in the archive. Their entries are release notes plus server source, and every value they inherit from a scanned build is tagged `inf`.
@@ -43,9 +44,10 @@ No binaries of 2.1 release, 2.12, 2.13, 2.14, 2.15 or 2.16 are in the archive. T
 | TRIGGERACTION (38) sent; PLO 48, 165 | 2.03 | bin |
 | PLO 166, PLO 26 dropped; prop 42 | 2.04 | bin |
 | `.nw` + `.gmap`; PLO 168 | 2.05 | bin |
+| Account and password sent to the listserver (id 1 after the id 0 list name); NewWorld beta 1, on the 2.05 code, sends only the list name | 2.1 test 3 | lab |
 | Bow slot → GANI string, `.png` defaults, PLO_FILE modtime, FILEUPTODATE, `sprite % 4` for NPCs, prop caps lifted | 2.1 (GNW31101) | srv |
 | Large files (LARGEFILESTART/END) | 2.14 | srv, doc |
-| TAMPERCHECK (39), SHOOT (40), SERVERWARP (41), MUTEPLAYER (43), PROCESSLIST (44/45); signed `arrays2.dat` listserver; account and password sent to the listserver | 2.17 (checked); some may be earlier | bin |
+| TAMPERCHECK (39), SHOOT (40), SERVERWARP (41), MUTEPLAYER (43), PROCESSLIST (44/45); signed `arrays2.dat` listserver | 2.17 (checked); some may be earlier | bin |
 
 Corrections to earlier notes:
 
@@ -71,7 +73,7 @@ These are the `features` keys, which matter most for making the client look and 
 - 2.1–2.16 packet and prop sets are inferred from neighbours. A binary of any of them would pin them down.
 - The original 1.41 listserver host and port: the only surviving 1.41 copy is patched for graal.in.
 - Whether 1.41 and 1.42 send the account to the listserver, or only to the game server.
-- The props each version sends at login are only verified for 2.05.
+- The props each version sends at login are only verified for 2.05 and the NewWorld betas (the betas send 7 colour bytes in COLORS).
 - The 2.17 other-player prop parser and its GS1 command count were not read.
 
 ## Default list port
@@ -84,3 +86,27 @@ These are the `features` keys, which matter most for making the client look and 
 - Every profile is `confirmed` except 2.05: Seihai's own login for it was run on its port in the matrix of 2026-10-25 (a real client was not captured). 2.05 is `assumed`: its classic login was not run.
 
 The per-profile table and the evidence behind each status are in `list-ports.md`. `python3 list_ports.py --check` fails when a profile breaks the rule. Rule text: Seihai `documentation/port-rule.md`; public results: `../../protocol/public-listserver-2026-10-25.md` and `../../protocol/listserver-login-type-matrix-2026-10-25.md`.
+
+## 1998 to 1.32 (added 2026-10-30)
+
+Two more files cover the clients before 1.33. They use the flat layout of `v133-v139.toml`: each `[[version]]` holds every value, with no `base`.
+
+- `v1998-v11.toml`: 20 builds from 1st Graal (Sept 1998) to 1.1 (Feb 1999). Generation 1, the text relay in `../../protocol/relay-1998.md`. There is no token, login or account, so `token` and `pli_sent` are replaced by `relay_game` (the game name sent with `N`) and `d_types_sent` (the relay `D` type letters). It also gives the dialog host, the level and save magics, and the config keys.
+- `v121-v132.toml`: 1.21, 1.28 beta 2, 1.3 test, 1.31 and 1.32. Generation 2, GSERV tokens, see `../../protocol/gserv-1999.md`. Same keys as the 1.33 file, plus `plprops_sent` (the prop writer's table) and `bundled_servers`.
+
+How the gen-2 sets were read: the same switch-table and send-site method as above, with each table found in 1.32 and then matched in the older builds by function shape. `pli_sent` is a lower bound here. 1.28 beta 2 and 1.3 test pass more ids in a register, which is why they list fewer ids than 1.21.
+
+| | 1.21 | 1.28 b2 | 1.3 test | 1.31 | 1.32 |
+|---|---|---|---|---|---|
+| Server ids | 0–34 except 30, 100 | 0–38, 100 | 0–39, 100 | 0–40, 100 | 0–41, 100 |
+| Player props parsed | 0–24 | 0–31 | 0–32 | 0–32 | 0–33 |
+| Player props sent | 0–24 | 0–24, 26, 31 | 0–24, 26, 31, 32 | same as 1.3 | 0–24, 26, 31–33 |
+| NPC props | 0–17 | 0–32 | 0–34 | 0–34 | 0–34 |
+| UDP ids | none | 0, 10–22 | 0, 10–22 | 0, 10–23 | 0, 10–23 |
+| GS1 commands | 71 | 84 | 85 | 85 | 85 |
+
+1.32's sets match the 1.33 profile, except that 1.33 adds three GS1 commands (`setbody`, `setfocus`, `resetfocus`).
+
+Correction to `v133-v139.toml`: `save_format` said `Graalsav9`. These builds write `Graalsv11`. The three save magics are referenced the same way as in 1.32, where the writer was traced (see `../../formats/graalsav.md`).
+
+No build in this range was run. Every value comes from the binaries and the shipped notes. The features tagged `doc` come only from the release notes.
