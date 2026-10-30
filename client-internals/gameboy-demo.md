@@ -1,6 +1,6 @@
 # Graal Game Boy Color demo (1999)
 
-Date: 2026-10-29
+Date: 2026-10-29, emulator run added 2026-10-30
 
 This note covers the full disassembly of `Graal V1.1 Adventure Demo (PD) [C].gbc` (262,144 bytes, MD5 2b2fef91…, the same bytes as `graal.gb` in `graalgb.rar`).
 The first look at this ROM is in `precursors-and-fan-builds.md`.
@@ -8,7 +8,7 @@ The first look at this ROM is in `precursors-and-fan-builds.md`.
 The disassembly itself is in the project's shared folder under `graal-decompile/gameboy-demo/`, not in this repo. That folder holds RGBDS-syntax sources for all 16 banks, the graphics as `.2bpp` files, PNG renders of every room, the scripts that produce them, and a README.
 The sources reassemble to a byte-identical ROM. That was checked with a small assembler written for this job; RGBDS itself was not run.
 This note is cleaned: it has no code and no code addresses. ROM locations are given only where they describe a data format.
-Nothing was run in an emulator, so the behaviour below comes from reading the code.
+The first sections come from reading the code. The section "Seen in an emulator" adds what the running ROM did, and corrects the static read where they differ.
 
 ## What it is built with
 
@@ -96,7 +96,7 @@ PNG renders of all seven rooms with their real palettes, and of the whole grid, 
 ## Text
 
 - The text box is three lines of 18 characters at the bottom of the screen. The strings are padded with spaces so that words break at the right places.
-- A new press on the d-pad while the box is open shows the next three lines. After the last page the box closes.
+- A new press on the d-pad while the box is open shows the next three lines. After the last page the box closes. In play, only a direction other than the one the player faces turns the page; pressing the facing direction does nothing.
 - Character codes: `0x20` space, `0x21`–`0x3A` A–Z, `0x3B`–`0x54` a–z, `0x55`–`0x5E` 0–9, then punctuation (`0x5F` "!", `0x62` ".", `0x63` ",", `0x67` used both as an apostrophe and as a quotation mark). The tile drawn is the code minus `0x20`; the font sits at tile 0 of CGB VRAM bank 1.
 
 ## Characters
@@ -133,15 +133,15 @@ These names are the character types of the demo, not only baddies. NPCs in rooms
 
 | Button | Effect |
 |---|---|
-| D-pad | Walk; turn the page in a text box; turn the Select carousel |
-| A | Lift the bush or stone in front, or throw what you carry |
-| B | Sword, unless carrying |
+| D-pad | Walk; turn the page in a text box (see below); turn the Select carousel |
+| A | The character's A item: lift and throw for Fung Si Yun, a bomb for Ninji, a boomerang for Ryu, nothing for the rest (see below) |
+| B | Sword, unless carrying. Every character has one; only its colour changes |
 | Select | Open or close the character carousel |
 | Start | Toggle music |
 
 Lifting works on 2×2 map objects. The game looks two tiles ahead and compares the object's top two tile ids with a list of four liftable kinds: three kinds of bush and stone, and a dropped object.
 For the first three it writes that kind's "lifted" 2×2 tiles into the map; for a dropped object it puts back the room's original tiles. The player goes into the lifting state, then carries the object as a sprite.
-A thrown object is tracked as an object of its own. Where it comes down, it seems to be drawn back into the map as a dropped object, which can be lifted again.
+A thrown object is tracked as an object of its own. In play it always broke where it came down, and nothing was written back into the map (see below). The "dropped object" kind in the list was never seen.
 
 ## Sound
 
@@ -150,6 +150,72 @@ A thrown object is tracked as an object of its own. Where it comes down, it seem
 - The player enables cartridge RAM before it reads, and its one song pointer is `$A000`, the start of cartridge RAM. The header declares no RAM, and nothing in the ROM writes to that area. So the demo carries no song of its own, and what Start plays depends on whatever answers at `$A000`.
   This is a static reading. It may be a leftover from a development cartridge that had a song loaded into its RAM.
 
+## Seen in an emulator
+
+The ROM was run in PyBoy 2.8.1 in CGB mode, headless, with scripted input, screenshots every one or two frames, and the entity records read from WRAM while it ran.
+Contact sheets of every test, and the scripts that made them, are in the shared folder under `graal-decompile/gameboy-demo/emulator/`.
+Times are in 60 Hz frames. The game logic runs every second frame, so one logic tick is 2 frames.
+
+**Start and screen**
+
+- The Nintendo logo is followed straight away by room 0. There is no title, no HUD and no health display at any time.
+- The CGB really is put into double speed.
+- The camera keeps the player in the middle of the screen and stops at the room edges.
+
+**Walking**
+
+- The player moves 4 pixels per logic tick, which is 2 pixels a frame or 120 pixels a second. A room (256 pixels) takes about 2 seconds to cross.
+- **Against a wall** the player keeps facing the wall and the walking animation keeps running in place. There is no push pose, however long the button is held.
+
+**Text**
+
+- Walking up into a sign (the stone post in room 0) or into an NPC with a text opens the box. It slides up from the bottom over a few frames.
+- Capital letters are drawn in red and everything else in black.
+- Select still opens the character menu while a text box is up.
+
+**Sword**
+
+- B swings the sword in an arc from one side to the front of the facing direction. One swing takes about 24 frames. Holding B swings again and again.
+- A hit on an NPC knocks it a few pixels away, and it blinks for a moment. Nothing dies.
+- The soldiers in room 3 chase the player and swing back. Their hits knock the player back the same way. Pinned against the top of the room, the player was knocked back over and over and could not get away, but nothing else happens: there is no damage and no game over.
+
+**Lifting, carrying and throwing (Fung Si Yun only)**
+
+- A in front of a bush, the stone post or another liftable 2×2 object swaps it for its "lifted" tiles at once (a dark stump for a bush). The object is drawn as a sprite where it stood for 10 ticks (20 frames), and then appears over the player's head.
+- **While carrying**, the player is drawn facing the screen with both arms up, whatever the walking direction, and the object covers the player's head completely. So the carried object hides the head; it does not hide the whole player.
+- A throws the object in the facing direction. It flies for about 6 ticks, then breaks into four leaf pieces that hang for about 8 ticks and vanish. This happened both when it hit a tree and on open grass. Nothing was put back into the map.
+- Only character type 0 can lift. With any other type, A next to a bush did nothing.
+
+**Respawn**
+
+- Lifted bushes do not grow back while you stay in the room. One was still a stump after two minutes.
+- Leaving the room and coming back restores every bush and stone, because the room is reloaded from ROM.
+
+**The character menu and A items**
+
+- The menu fills the whole window. It shows three heads with arrows either side, the middle character's name with capitals in red, and "Button B" and "Button A" with an item icon under each.
+- Every character has a sword under B, in one of three colours (red for most, blue for Pach Soldier and Gold Soldier, purple for Mandi).
+- Only three characters have anything under A, and the icon is chosen in code by the character number:
+  - **Fung Si Yun (0):** a bush, meaning lift and throw.
+  - **Ninji (2):** a bomb. A puts it on the ground in front. It sits for about 110 frames, flashes for about 70 more, and then blows up as a large plus-shaped blast about three tiles each way. The screen jumped as the blast went off, which looks like the blast knocking the Ninji player back; that was not checked in the entity record.
+  - **Ryu (7):** a boomerang. It flies about four tiles in the facing direction and comes back to the player, about one second in all.
+- This is more than the static read found. The A items are a second action set, picked by character, and the room 4 text ("switch to Fung Si Yun") is about getting the lift action.
+
+**Rooms and NPCs**
+
+- All seven rooms loaded and looked like the PNG renders made from the ROM.
+- Room 2: Ryu stands still. Room 5: Mandi, Lunar and Mandi stand still; by the room data, each says "Hello!".
+- Room 3: the first soldier patrols left and right along the top of the room at 1 pixel a frame, half the player's speed. The second wanders. Once lined up with the player, both chase at a little over 1 pixel a frame and swing their swords.
+- Room 6: Vincent and Squall wander around the house.
+- **Room 4, the captive.** Walking into Fung Si Yun opens the first text. When it closes, he walks two tiles left, lifts the bush there, turns and throws it, and the second text opens ("Now press Select and switch to Fung Si Yun"). This matches the event script in the code.
+  The player and the captive look the same, because the player also starts as Fung Si Yun. The text reads as if the player was meant to start as someone else.
+
+**Sound**
+
+- The sound effects play (a noise burst for the sword).
+- **Start silences the game.** With nothing at the song address, reading it gives `$FF` (as on a cartridge without RAM). The music player then writes 0 to the master volume and the channel routing, and Start again does not undo it. From then on the sword and every other effect are silent until the game is reset.
+  How `$FF` is read here depends on the emulator, but it is also what a real cartridge without RAM usually returns.
+
 ## Compared with the PC client
 
 - The same link record: a rectangle plus a new x and y, with −1 to keep a coordinate.
@@ -157,9 +223,24 @@ A thrown object is tracked as an object of its own. Where it comes down, it seem
 - Rooms are fixed 32×32-tile maps, not 64×64 levels. Positions are in half pixels, and there is no NPC scripting: NPC behaviour is a few built-in movement modes, flags and event numbers.
 - The text alphabet is a straight ASCII-like run, not the PC sign alphabet.
 
+## What a Seihai "Game Boy demo" profile would need
+
+This is the look and feel the run showed, as a list for a profile that copies the demo.
+
+- One 256×256-pixel room at a time, with no scrolling between rooms: a link loads the next room with the screen off.
+- Movement at 2 pixels a frame (logic at 30 Hz, 4 pixels a tick). No push pose against walls; the walk cycle keeps running.
+- A text box of three lines of 18 characters in the window, sliding up, capitals in red. Paging by a d-pad direction other than the one faced.
+- No HUD, no health, no death. Hits only knock back.
+- Sword on B for everyone. A depends on the character: lift and throw, bomb, boomerang, or nothing.
+- Carried objects cover the head, and the carrier is drawn facing the screen.
+- Thrown objects always break. Nothing respawns until the room is loaded again.
+- A Select menu that picks any of the 31 characters, with their head, name and B/A icons.
+- No chat and no network. There is no chat bubble in the demo.
+
 ## Open
 
-- The music data format, since no song is in the ROM.
+- The music data format, since no song is in the ROM. Pressing Start mutes the game rather than playing anything.
 - Several entity fields and most NPC flag bits.
-- The patrol rules of movement modes 2 to 4.
+- The exact patrol rules of movement modes 2 to 4. The run showed a left-right patrol and a wander, not the rules behind them.
 - Whether the Select carousel was meant to stay a free picker in a later version.
+- The "dropped object" kind in the liftable list, which was never seen in play.
