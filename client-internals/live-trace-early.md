@@ -50,8 +50,8 @@ Run by the live-trace lab. **[cap]**
     - STATUS was 16 (`0x10`) and turned 20 (`0x14`) while the player crossed the lake south of the start, then back to 16 past it. At the same moment the client sent prop 18 = 20 over TCP. So `0x04` is the swimming state in this build (*inferred* from where it flipped; later servers name `0x04` "male").
     - The trailing `0x1F` is CARRYSPRITE −1 (nothing carried).
   - At the same time the walking client sends TCP id 2 to the server with only the changed props (16, 17 and, when it flips, 18). **The server forwards nothing to the other player.** The other client sees the walk only through UDP. That is the "player positions & sprite numbers … sent directly to all players that are in the same room" of the 1.28 notes.
-  - **Arrows:** id 12 twice every 0.5 s is **arrow add**. The level `onlinestartlocal.graal` has two NPCs whose scripts run `shootarrowleft` and `shootarrowup` on a 0.5 s timeout. The payloads are x, y (half tiles, at each NPC), direction (1 left, 0 up), a type byte, and a last byte sent as `v+33`, the same layout as the later `ARROWADD` (`protocol/packet-layouts.md`). In both 1.28 captures only the first player in the level sent them; the second ran no NPC timeouts of its own over UDP.
-  - A client that had just joined sent one UDP id 22 with no payload (2.05 uses 22 for chat).
+  - **Arrows:** id 12 twice every 0.5 s is **arrow add**. The level `onlinestartlocal.graal` has two NPCs whose scripts run `shootarrowleft` and `shootarrowup` on a 0.5 s timeout. The payloads are x, y (half tiles, at each NPC), direction (1 left, 0 up), a type byte, and a last byte sent as `v+33`, the same layout as the later `ARROWADD` (`protocol/packet-layouts.md`). Only one client sends them, to every other player in the level. In a three-client run the first player in the level sent them to the other two. When it quit, the player who had joined second took over within a second and sent them to the third. So 1.28 has one player per level that runs the NPC timeouts for everyone, and the role passes on when that player leaves.
+  - A newcomer sends one UDP id 22 with no payload to each player already in the level (seen in the two- and three-client runs). 2.05 uses 22 for chat, so this is most likely the newcomer's empty chat text (*inferred*).
 
 ## GServer13 with 1.31 (GSERV016) and 1.32 (GSERV018)
 
@@ -83,5 +83,4 @@ Server started with "Use local levels". **[cap]**
 
 ## Open
 
-- Whether 1.28 beta 2 ever sends the level NPCs' arrows from the second player, for example after the first one leaves. Only the first player in the level sent them in these runs.
-- What UDP id 22 with no payload means in 1.28.
+Nothing from these runs is left open. Not tried: the 1.1.9 relay with more than two clients, and whether the arrow role in 1.28 is decided by the server or by the clients (no TCP message marked the handover).
