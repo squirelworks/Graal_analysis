@@ -60,8 +60,10 @@ gserver_allowed_by_default = true      # stock allowedversions.txt enables GNW03
 
 [version.features]
 editor_in_client = true                # F4 editor, F5 load level, F6 debugger, editor toolbars and dialogs
-offline_training_button = true         # start window: Start Online / Training / Options
-start_window_buttons = ["&Start Online", "&Training", "&Options"]
+offline_training_button = true         # start window, seen live: Training / Options / Get an account! / Start
+start_window_buttons = ["Training", "Options", "Get an account!", "Start"]
+f1_buttons = ["General options", "Edit level (F4)", "Load level (F5)", "Debugger (F6)", "Playerlist (F7)", "Serverlist (F8)"]
+serverlist_tab_for_unprefixed_server = "Bronze"   # live, lab listserver
 serverlist_tabs = ["Gold", "Silver", "Bronze"]   # see notes: may be a Graal Reborn patch
 graal3d_tab = false
 url_protocols = false                  # no graal:// or graal3:// registration
@@ -115,8 +117,10 @@ gserver_allowed_by_default = false
 
 [version.features]
 editor_in_client = false               # GraalEditor.exe is a separate program
-offline_training_button = false
-start_window_buttons = ["&Start Online", "&Editor", "&Options"]   # Editor launches GraalEditor.exe
+offline_training_button = true         # still present in 2.31 (seen live)
+start_window_buttons = ["Training", "Editor", "Options", "Get an account!", "Start"]   # Editor launches GraalEditor.exe
+f1_buttons = ["General options", "Load level (F5)", "Playerlist (F7)", "Serverlist (F8)"]   # Edit level and Debugger hidden at run time; F4 does nothing
+serverlist_tab_for_unprefixed_server = "Hosted"   # live, lab listserver
 serverlist_tabs = ["Graal Gold", "Graal 3D", "Classic", "Hosted"]
 graal3d_tab = true                     # selecting a 3D server starts Graal3.exe
 url_protocols = true                   # registers graal:// and graal3://, sends serverstartparams
