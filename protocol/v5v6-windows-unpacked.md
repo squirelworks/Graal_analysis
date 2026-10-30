@@ -33,6 +33,7 @@ Dates are the compile dates in the binaries (`__DATE__` strings and PE timestamp
 - Stock Wine 9.0 crashes the Themida stub ("An internal exception occured"). The cause is a Wine bug: `VirtualProtect` with a NULL old-protection pointer dereferences it after the call fails, where Windows just returns FALSE. With that patched, Themida runs. **[bin]**
 - Named `GraalSetup.exe`, the clients open an install-folder prompt first. Named `Graal.exe` they start the game directly. **[cap]**
 - **5.30r3, 5.31r4, 6.00r2 and 6.00r4 have an expiry date.** On the current date they log "This is a beta release of Graal. If it's not working on your computer then please download a new version…" and exit. With the system clock set back to their build month they run normally. The check sits in Themida-virtualised code, so it was not read. 6.03r7 has no such check. **[cap][inf]**
+- The unpacked files are memory dumps for reading, not for running: on Windows they crash at once (entry point 0, Wine import addresses). To run a build on Windows, use the original packed exe. `v5v6-lab-play.md` has 6.00r2 and 6.00r4 running that way on Windows 11. **[cap]**
 
 ## Login server and license
 

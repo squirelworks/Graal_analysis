@@ -22,7 +22,7 @@ The lab tools, the key scripts, the proxy logs and the screenshots are in the pr
 | 6.00 beta1, beta2 | yes | yes | login only |
 | 5.30r3 | yes (clock set back) | yes | push, lift, throw, sword |
 | 5.31r4 | yes (clock set back) | after the warp below | walk |
-| 6.00r2, 6.00r4 | yes (clock set back) | no: freezes after the level cache is written and the first image arrives (see "Still open") | no |
+| 6.00r2, 6.00r4 | yes (clock set back) | under Wine no: freezes after the first image. **On Windows 11 yes** (see "6.00r2 and 6.00r4 on real Windows") | on Windows: walk, hurt |
 | 6.03r7 | yes | after the warp below | full set of tests, plus black stone and hiding |
 
 ## Lab setup, and what it took
@@ -193,6 +193,33 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
 - **Font.** 5.24r4 uses a plain sans font (its config says `font=Arial`). 6.03r7 uses a script-like font (its config says `font=Tempus Sans ITC`, `fontsize=24`). Nicknames under the feet use the same style. **[shot]**
 - **Timeout.** The client cleared its own chat **2.97–2.99 s** after the server set it, sending prop 12 as empty. This happened in both builds and every time. **[wire]**
 
+## 6.00r2 and 6.00r4 on real Windows
+
+Under Wine, 6.00r2 and 6.00r4 freeze on a blue window right after they write the level cache and receive the first image. On 2026-10-30 both builds were run on a real PC instead. **[shot]**
+
+- **Setup:**
+  - Windows 11 Pro 25H2 (build 26200), Intel Iris Xe, DirectX 9 hardware;
+  - the original Themida-packed `GraalSetup.exe` from each installer archive, renamed `Graal.exe`;
+  - the date faked for the game process only with NirSoft RunAsDate (2011-06-14 for r2, 2011-06-28 for r4);
+  - a hosts line pointing `loginserver*.graalonline.com` at a GServer-v2 beta4 on the LAN.
+- **No freeze.** Both builds write the level cache, receive the first image and keep running. They download every file and draw the full level, the player, baddies and the HUD. Arrow keys walk the player, and a baddy's hit takes the hearts from 3 to 2.5. **The freeze is a Wine problem**, not something in the client or the server.
+- **On today's date** the packed builds write the "This is a beta release" text to `game_console.log` and exit after about 1 s, before any window opens.
+- **The memory dumps don't run on Windows.** The unpacked `Graal.exe` files from `v5v6-windows-unpacked.md` crash at once on Windows (entry point 0, import table full of Wine addresses). They are for reading in Ghidra only.
+- **What the server had to do:**
+  - serve every file, since these builds bundle nothing: `basepackage.gupd`, `pics1.png`, the sprites, heads, bodies, swords and shields, the ganis and the sounds;
+  - send the 178 warp after login. Without it the screen stays black apart from chat text. After it, the window title changes to the new server name and the client requests the images.
+- **A server crash to know about.** GServer-v2 beta4 crashed (SIGSEGV) on every 6.00 login while it registered the GS1 weapon `-gr_movement` (the flaghack movement weapon). It took the GS2 bytecode branch for a weapon that has no bytecode. With that weapon removed, logins worked. **[srv]**
+
+What the Wine runs found about the freeze, kept for reference:
+
+- The last thing the game does is write the level cache (`weblevels/…/onlinestartlocal.nw-14900.code`) and receive the first image.
+- It then stops reading the socket and never paints.
+- The folder scan before login finishes ("Done.").
+- Switching to OpenGL (`useopengl=1`, `-opengl`), turning wined3d CSMT off and using RGBA PNGs make no difference.
+- The "This is a beta release" text is on the frozen main thread's stack, and nothing in the dumped 6.00r2/r4 code refers to it. So the expiry check runs inside Themida's own code, and it seems to run again after login. **[inf]**
+- It is not the file dates. Setting every server file and the client's own files to June 2011 (with the clock set back) still freezes. **[cap]**
+- Themida stops winedbg from attaching.
+
 ## For Seihai profiles
 
 - A **5.x/6.x profile** draws chat as outlined text above the head, with no bubble, and clears its own chat after about 3 s. The 5.24 font is Arial. The 6.03 font is Tempus Sans ITC.
@@ -208,13 +235,5 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
 
 ## Still open
 
-- **6.00r2 and 6.00r4** freeze under Wine.
-  - The last thing the game does is write the level cache (`weblevels/…/onlinestartlocal.nw-14900.code`) and receive the first image.
-  - It then stops reading the socket and never paints.
-  - The folder scan before login finishes ("Done.").
-  - Switching to OpenGL (`useopengl=1`, `-opengl`), turning wined3d CSMT off and using RGBA PNGs make no difference.
-  - The "This is a beta release" text is on the frozen main thread's stack, and nothing in the dumped 6.00r2/r4 code refers to it. So the expiry check runs inside Themida's own code, and it seems to run again after login. **[inf]**
-  - It is not the file dates. Setting every server file and the client's own files to June 2011 (with the clock set back) still freezes. **[cap]**
-  - Themida stops winedbg from attaching. A real Windows machine is the next step.
 - How a server-side chat bar script sends typed chat. That needs a GS2 GUI script like the original servers had.
 - Why S→C 40 (hurt by a player) did nothing.
