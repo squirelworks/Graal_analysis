@@ -106,7 +106,7 @@ Per-build values, and the client-to-server ids, are in `client-internals/version
 ## UDP (1.28 beta 2 on)
 
 The 1.28 beta 2 notes call this "direct data packages", and it is the first build that links `bind`, `sendto` and `recvfrom`.
-The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. In a 1.28 beta 2 capture, two clients standing on the same level each sent id 12 (`chr(12+32)` + 5 bytes) twice every 0.5 s to the other's port. **[cap]** The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
+The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. In a 1.28 beta 2 capture, a walking client sent id 0 (x, y, sprite, one more byte, then `0x1F`) to the other player every 100 ms, while the server got only the changed props over TCP and forwarded nothing. Idle clients each sent id 12 (`chr(12+32)` + 5 bytes) twice every 0.5 s. **[cap]** The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
 The main loop reads TCP and UDP separately ("tcp read", "udp read" in the 1.32 profiler labels).
 1.31 adds `noudp=` and `fixedudpport=` to `graalconfig.txt` (the catalogue gives 14899 as the fixed-port default).
 The client handles UDP ids 0 and 10 to 22 in 1.28 beta 2 and 1.3 test, and 0 and 10 to 23 from 1.31. These are the same ids, with the same +32 offset, that 1.33 handles. Their meanings have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
