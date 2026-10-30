@@ -69,7 +69,7 @@ Read from each build's main receive switch. Names from gs2lib. **[bin]**
 
 Counts: 3.04 handles 79 ids, 3.153 handles 88.
 
-Client → server: login 5 and language 37 are confirmed. Most other sends go through an indirect call, so the full table is still open.
+Client → server: the full sent-id sets (3.04 complete, 3.153 all but six ids), prop ranges and post-login sends are in `version-profiles/3.04-3.153.md` and `.toml`.
 
 ## File formats
 

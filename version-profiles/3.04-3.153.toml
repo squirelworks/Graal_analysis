@@ -1,0 +1,120 @@
+# Per-version client profiles: Graal 3.04 (Linux) and 3.153 (Mac OS X)
+#
+# Machine-readable companion to version-profiles/3.04-3.153.md and protocol/v3x-clients.md.
+# Each value carries a confidence in the matching `*_src` key or in `notes`:
+#   bin  = read from that client's executable (3.04 Linux i386 ELF after UPX unpack, 3.153 Mac PPC Mach-O)
+#   file = read from shipped data files (license/, compiled TorqueScript .dso, prefs)
+#   inf  = inferred
+# Neither build was run and neither was connected to a server; there is no cap or srv evidence here.
+# Field names follow 2.22-2.31.toml. The 3.x tokens carry the same date stamps as 2.22 (GNW03014)
+# and 2.31 (GNW28015), so 3.04 is the 3.x twin of 2.22 and 3.153 the twin of 2.31.
+
+schema = 1
+
+[defaults.g3d]
+client_type = 5
+generation = 5
+login_key_byte = true                  # GCHAR rand & 0x7F after the type byte
+login_layout = "GCHAR type, GCHAR key, token[8], GSTR account, GSTR password"
+login_frame = "u16be len + zlib, no compression byte, no XOR"
+frame = "u16be(len + 1) + ctype + body"
+ctype_by_size = { raw_below = 0x30, zlib_below = 0x1000, bz2_from = 0x1000 }
+xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }   # same rule as gen 5 on Windows
+lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
+cipher_src = "bin"
+account_plain = true                   # no dec(b) = (~b - 10) step on account or password
+listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "assumed", first_message_id = 7, token = "G3D30123", list_name = "newmain", config = "license/license.graal (RSA-1024 signed, e=17, PKCS#1 v1.5 SHA-1)", built_in_host = "listserver.graalonline.com", built_in_port = 14922 }
+listserver_src = "bin file"            # never tested against the public listserver with a G3D token
+serverlist_prefixes = { "P " = "Graal Gold", "3 " = "Graal 3D", "H " = "Hosted", "U " = "not listed", "" = "Classic" }
+file_modtime = true
+large_files = true                     # LARGEFILESTART/END (68/69), LARGEFILESIZE (84)
+login_after = [37]                     # PLI_LANGUAGE only; no PLI_TAMPERCHECK (39) in either build
+tampercheck = false
+tampercheck_src = "bin"
+login_props = "37 LANGUAGE; then UDP init unless noudp; then 23 WANTFILE / 34 UPDATEFILE for the player's own images, at most 5 queued"
+login_props_src = "bin"
+level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "GR-V1.04", "GLEVNW01", "GSERVL01", "GRMAP001", "GWEBL001"]
+level_formats_src = "bin"              # GSERVL01 is the only 3.x-only magic; GWEBL001 is the DES-encrypted level cache
+udp = { present = true, config_key = "$pref::Graal::noudp", fixed_port_key = "$pref::Graal::fixedudpport" }
+engine = "Torque Game Engine (C++), TorqueScript .dso version 33"
+
+[[version]]
+label = "3.04"
+build = "3.04 revision 1 (server table: 3.041)"
+platform = "linux-i386"
+token = "G3D03014"
+token_src = "bin"
+twin = "2.22"
+base = "defaults.g3d"
+plo_known = "0-25, 27-49, 68, 69, 75, 84, 100-102, 150, 151, 153-156, 165, 166, 168, 169, 171-176, 178-181, 184-186"
+plo_known_count = 79
+plo_known_src = "bin"
+plo_vs_twin = { missing = [170, 177, 182, 183], added = [84, 101, 102] }
+pli_sent = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,32,33,34,35,36,37,38,40,41,43,80,81]
+pli_sent_src = "bin (every send call site in game code; listserver sends 7 and 1 excluded)"
+pli_sent_complete = true
+pli_vs_twin = { missing = [39, 44], added = [36, 81] }
+props_max = 76                         # highest prop the client writes
+props_parse_max = 74                   # highest own-player prop it parses (PLO 9)
+npcprops_max = 73
+props_sent_exclude = [25, 27, 28, 29, 30, 34, 36, 50, 51]   # same exclusions as 2.17
+props_self_parse_exclude = [33, 50, 51, 53]
+npcprops_exclude = [48, 49, 50, 51, 52]
+props_src = "bin"
+ostype = "linux"                       # prop 75 OSTYPE; prop 76 TEXTCODEPAGE
+precise_move = false
+precise_move_src = "bin"
+
+[version.features]
+start_window = ["Nick", "Language", "Options", "Tutorial", "Account", "Password", "Get Account", "Start"]
+serverlist_tabs = ["Graal Gold", "Classic", "Graal 3D", "Hosted"]
+serverlist_direct_connect = true       # host field on the server list screen
+options_tabs = ["Graphics", "Audio", "General"]
+options = ["resolution", "fullscreen", "bit depth", "theme", "mp3 volume", "midi volume", "radio volume", "voice volume", "sfx volume"]
+player_list = true
+private_messages = true
+profile_window = ["real name", "age", "gender", "country", "IM", "email", "homepage", "hangout", "quote", "level", "online time", "muted"]
+offline_mode = true                    # LoadLevel / startOfflineMode
+mode_3d = false
+editor_in_client = false
+gs1_names = 496                        # commands, functions and variables in the script registration table
+gs1_removed_vs_205 = ["putobject", "setbackpal", "setbody", "setbacktile", "drawovertrees", "setbacktile2"]
+features_src = "file (TorqueScript .dso) + bin (GS1 table)"
+
+[[version]]
+label = "3.153"
+build = "3.153 (uploads named 3.04 Mac and 3.15r2 Mac are the same image)"
+platform = "macosx-ppc"
+token = "G3D28015"
+token_src = "bin"
+twin = "2.31"
+base = "defaults.g3d"
+plo_known = "0-25, 27-43, 45-49, 67-69, 74, 75, 82, 84, 100-102, 104, 131-134, 150, 151, 153-156, 165, 166, 168, 169, 171-176, 178-181, 184-187, 189"
+plo_known_count = 88
+plo_known_src = "bin"
+plo_vs_304 = { removed = [44], added = [67, 74, 82, 104, 131, 132, 133, 134, 187, 189] }
+pli_sent = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,32,33,34,35,36,37,38,40,41,43,46,50,80,81,93,96,97,98,152,154,155,156,157,158]
+pli_sent_src = "bin; 2, 3, 15, 24, 29 and 80 inf (sent by 3.04, not resolved by the PPC scan)"
+pli_sent_complete = false
+pli_vs_304 = { added = [46, 50, 93, 96, 97, 98, 152, 154, 155, 156, 157, 158] }
+pli_vs_twin = { missing = [39, 44], added = [21, 36, 50, 81, 93, 96, 97, 98, 152, 154, 155, 156, 157, 158] }
+props_max = 80
+props_parse_max = 80
+npcprops_max = 77
+props_sent_exclude = [25, 27, 28, 29, 30, 34, 36, 50, 51, 77]
+props_self_parse_exclude = [33, 50, 51, 53, 75, 76, 77]
+npcprops_exclude = [48, 49, 50, 51, 52]
+props_src = "bin"
+ostype = "mac"
+precise_move = true                    # MOVE2 (189), props 78-80
+precise_move_src = "bin"
+
+[version.features]
+mode_3d = true                         # Torque GameConnection, port 28000, missions and terrain (levels3d/, scripts/)
+themes_added = ["snow", "xmas"]
+rc_filebrowser = true                  # 93, 96-98 and 155/156 large uploads
+script_upload = true                   # 157 UPDATEGANI, 158 UPDATESCRIPT
+text_requests = true                   # 152 REQUESTTEXT, 154 SENDTEXT; 82 raised to script as receivetext
+class_scripts = true                   # 131-133 bytecode and class registration, 134 gani scripts
+udp_default_off = true                 # shipped prefs: noudp = 1, fixedudpport = 14899
+features_src = "file (TorqueScript .dso, prefs) + bin"

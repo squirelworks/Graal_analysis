@@ -76,6 +76,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 ## Version profiles
 
 - `version-profiles/2.22-2.31.md` and `.toml`: per-version profiles for 2.22, 2.3 (inferred) and 2.31. Covers the wire protocol, the start window, server-list tabs, editor presence, options, GS1 symbol changes, and feature switches for Seihai.
+- `version-profiles/3.04-3.153.md` and `.toml`: the same profile for the 3.x Linux 3.04 and Mac 3.153 clients (twins of 2.22 and 2.31): sent and handled ids, prop ranges, no tampercheck, listserver, 3D mode and other features.
 
 ## Decompile findings, batch b (2026-10-24)
 

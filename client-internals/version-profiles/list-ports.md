@@ -43,6 +43,8 @@ The table is produced by `python3 list_ports.py` (this directory) from the three
 | 2.22 | listserver.graal.in | 14922 | supported | confirmed | - | - |
 | 2.3 | listserver.graal.in | 14922 | supported | confirmed | - | - |
 | 2.31 | listserver.graal.in | 14922 | supported | confirmed | - | - |
+| 3.04 | listserver.graal.in | 14922 | supported | assumed | listserver.graalonline.com | 14922 |
+| 3.153 | listserver.graal.in | 14922 | supported | assumed | listserver.graalonline.com | 14922 |
 
 What the status means per profile (matrix of 2026-10-25, one list-only login per profile and port):
 
@@ -51,5 +53,6 @@ What the status means per profile (matrix of 2026-10-25, one list-only login per
 | confirmed | 1.41, 1.42, 2.00 to 2.04 (with 2.02 rev 2), 2.1, 2.12 to 2.16, 2.17 | Seihai's classic login got a legacy list on 14923 (2 or 4 rows) and no reply for about 5.5 s on 14922, in every case. Real clients of these builds were not captured; 2.1 to 2.16 have no binary at all |
 | confirmed | 2.22, 2.3, 2.31 | the gen-5 login got the modern list on 14922 (8 rows, welcome, site and upgrade lines) and on 14923 (12 rows, 2.31: 17) |
 | assumed | 2.05 | Seihai's 2.05 profile sends the classic login, which was not run for 2.05. The matrix binary sent the gen-5 login for 2.05; both ports answered it. 14923 answered the classic login of every other classic profile, so it is the port assumed here |
+| assumed | 3.04, 3.153 | the 3.x clients send the gen-5 login with `G3D30123newmain` (`../../version-profiles/3.04-3.153.toml`). A G3D token was not tried against the public listserver; 14922 is assumed from the 2.22/2.31 result |
 
 Open: a classic 2.05 login on 14923; how a real 2.17 client logs in to the listserver.
