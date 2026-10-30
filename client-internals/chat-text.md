@@ -1,4 +1,4 @@
-# Chat text over players' heads
+# Chat text and nicknames over players
 
 How the classic Windows clients draw the chat line (`PLPROP_CURCHAT`, prop 12) over a player, and how long it stays. Read from the client binaries (1st Graal to 2.31) and checked on the real 2.05 rev 2 client under Wine on 2026-10-30.
 
@@ -36,9 +36,44 @@ The routine takes a point in tiles and centres the text on it horizontally.
 
 - **x.** The player's x + 1.5 tiles, the middle of the 48 px player box.
 - **y.** The top of the text cell is the player's y − 1 tile, so the text sits one tile above the top of the player box. When the player carries something, it is y − 2 tiles. The carry part comes from a field of the player object that is non-zero while something is held. It was read from the code, not checked live.
-- **Nickname.** The name is drawn by the same routine at y + 2.5 tiles. In the capture the chat glyphs were 56 px (3.5 tiles) above the nickname glyphs, which matches.
+- **Nickname.** The name is drawn by the same routine at y + 2.5 tiles (see below). In the capture the chat glyphs were 56 px (3.5 tiles) above the nickname glyphs, which matches.
 
 The view is clipped to the level view rectangle (`TextRect`).
+
+## Nickname (1.31 to 2.31)
+
+The nickname is drawn by the same routine as chat, under the player. Wrapping and the shadow rule are the same as for chat.
+
+- **Position.** Centred on x + 1.5 tiles. The top of the text cell is at y + 2.5 tiles, 40 px below the top of the player box.
+- **Colour.** The colour depends on the player's AP (alignment, prop 32). Each step below is `floor(n × k / d)`, computed with a 0.0001 bias before truncating.
+
+| AP | Colour (R, G, B) |
+|---|---|
+| 0 | (64, 0, 0) |
+| 1 to 26 | (128 + (ap−1)·127/25, 64 − (ap−1)·64/25, same as G): dark red to red |
+| 27 to 49 | (255, (ap−26)·255/24, same as G): red to pale pink |
+| 50 to 55 | white |
+| 56 to 60 | (255 − (ap−55)·127/5, 255, same as R): white to light green |
+| 61 to 70 | (128 − (ap−61)·128/10, 255, 128 + (ap−61)·127/10): light green to cyan |
+| 71 to 99 | (0, 255 − (ap−70)·255/29, 255): cyan to blue |
+| 100 | (224, 196, 0), gold |
+
+  The same ramp's byte sequence is present in 1.31, 1.38, 1.39, 1.41, NewMain 1.42, 2.00, 2.05, 2.17, 2.22 and 2.31. 1.21 has no AP colours. The v6 thread reports an AP ramp for 6.x too.
+
+  Checked live on 2.05 rev 2 by sending prop 32 for another player. The drawn colours for AP 0, 20, 40, 58, 65, 85 and 100 were exactly (64,0,0), (224,16,16), (255,148,148), (179,255,179), (77,255,178), (0,124,255) and (224,196,0). AP 50, which is also the value before any AP is sent, was white.
+
+- **When it shows.**
+  - *Other players.* Always.
+  - *Your own.* Only for 60 frames (3 s) at a time. A per-player counter is set to 60 when:
+    - the player is set up, which is why it shows at login;
+    - the player's AP changes, from a packet or a script;
+    - you type exactly `showname`. That line is not sent to the server.
+
+    The counter counts down in the own player's tick, and the name is drawn while it is 0 or more. Other players' counters never count down.
+
+  Live: after login the own name went away. A typed `showname` brought it back for 3.0 s: it was up from the first frame, still up at 3.11 s and gone at 3.32 s. Nothing was sent.
+
+- **Length.** It is cut to `nicknamelimit` characters only when `limitnicknames` is on. That option is off by default, and the limit is 50.
 
 ## Wrapping (1.31 and later)
 
