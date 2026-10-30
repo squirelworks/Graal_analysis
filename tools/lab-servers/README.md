@@ -8,7 +8,7 @@ Date: 2026-10-30. These are the two servers the offline lab runs (see `../lab-se
 | `test_listserver.py` | Drives a running listserver with every login shape and a fake gserver. Exit 0 when all checks pass. |
 | `run-lab.sh` | Starts the listserver and the prebuilt GServer on loopback; `stop` stops both. |
 | `gs2lib-GNW03081.patch` | The one-line gs2lib change our efb5b90 gserver build carries (2.05 token in the 2.1 slot). |
-| `gserver-beta4-lab.patch` | Our three fixes to GServer-v2 beta4 `365bbd2` for real 2.05 and 2.17.1 (apply in `server/`). |
+| `gserver-beta4-lab.patch` | Our fixes to GServer-v2 beta4 `365bbd2`: three for real 2.05 and 2.17.1, one for a saved hidden state (apply in `server/`). |
 
 Background on what each server is, and how they compare with GServer-v2 beta4 and the other open-source servers, is in `../../server-notes/lab-servers-2026-10-30.md`.
 
@@ -20,13 +20,15 @@ The patch puts `GNW03081` (2.05) in gs2lib's 2.1 slot. Real 2.05 needs it on thi
 
 ## Our beta4 gserver (2026-10-30)
 
-GServer-v2 **beta4 `365bbd2`**, built here with GCC 14 (no V8, no UPnP), with beta4's own gs2lib `5c36ab8` unpatched. It reports `4.0.0-beta`. beta4 knows 2.05r2 (`GNW03081`) natively as `CLVER_2_052`, so 2.1 keeps its token. Stock beta4 refuses 2.05 and 2.17 at login because its `allowedversions.txt` only accepts 1.41r1 and 2.22 to 2.31; the pack widens that in config. With the versions accepted, beta4 still did not get real gen-3 clients into the game, and none of the causes is reachable from config (the player class comes from the login type byte). `gserver-beta4-lab.patch` fixes three things:
+GServer-v2 **beta4 `365bbd2`**, built here with GCC 14 (no V8, no UPnP), with beta4's own gs2lib `5c36ab8` unpatched. It reports `4.0.0-beta`. beta4 knows 2.05r2 (`GNW03081`) natively as `CLVER_2_052`, so 2.1 keeps its token. Stock beta4 refuses 2.05 and 2.17 at login because its `allowedversions.txt` only accepts 1.41r1 and 2.22 to 2.31; the pack widens that in config. With the versions accepted, beta4 still did not get real gen-3 clients into the game, and none of the causes is reachable from config (the player class comes from the login type byte). `gserver-beta4-lab.patch` fixes three things for them, plus one account-save fix:
 
 1. **Login bundle remainder.** 2.05 and 2.17 send the login line and `PLI_LANGUAGE` in one frame. beta4's `parseLoginPacket` dropped the rest of that frame, so the gen-3 decrypt iterator ran one step behind for the whole session: 2.17.1 failed with "Invalid PlayerProp" and 2.05 never sent valid packets. The patch keeps the remainder and hands it to the new player.
 2. **`PLO_SETACTIVELEVEL` (156)** is now sent to Original clients from 2.01 up, before the NPCs. 2.05 waits for it on the loading screen.
 3. **`PLO_LEVELNAME` before the board** on the first load, as efb5b90 and the live-trace stub send it. After the board, 2.05 stays on the loading screen.
 
-All three copy a packet order real 2.05 was already seen to accept; none adds behaviour. Build steps are in the pack's `README.md`.
+All three copy a packet order real 2.05 was already seen to accept; none adds behaviour.
+
+4. **Never log in hidden.** The account loader clears the hidden bit (`STATUS` 0x02). From the v4 lab: a client that closed while hiding under a carried object was saved hidden and came back invisible until its first step. Not reproducible with 2.17.1, which sends its own status at login (an account saved with `STATUS 22` loads visible on both builds and is saved back as 20). Build steps are in the pack's `README.md`.
 
 ## Our listserver (version 2)
 

@@ -24,6 +24,21 @@ index 4ee3651..f443da3 100644
  
  #ifdef PACKETLOGGING
  	const std::string_view who = whoAmI();
+diff --git a/src/loader/flatfile/FlatFileAccountLoader.cpp b/src/loader/flatfile/FlatFileAccountLoader.cpp
+index 493a2ac..55824c9 100644
+--- a/src/loader/flatfile/FlatFileAccountLoader.cpp
++++ b/src/loader/flatfile/FlatFileAccountLoader.cpp
+@@ -389,7 +389,9 @@ bool FlatFileAccountLoader::loadAccount(const std::string_view accountName, Acco
+ 		}
+ 		else if (section == "STATUS")
+ 		{
+-			const auto num = toByte(val);
++			// Lab: never log in hidden. A client that closed while hiding under a carried
++			// object saved bit 0x02, and the player stayed invisible until the first step.
++			const auto num = static_cast<uint8_t>(toByte(val) & ~PLSTATUS_HIDDEN);
+ 			if (account.status != num)
+ 			{
+ 				account.status = num;
 diff --git a/src/player/PlayerClientOriginal.cpp b/src/player/PlayerClientOriginal.cpp
 index 343d56f..1cacfd6 100644
 --- a/src/player/PlayerClientOriginal.cpp

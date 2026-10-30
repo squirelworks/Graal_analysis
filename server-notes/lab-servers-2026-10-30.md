@@ -84,6 +84,8 @@ Checked again with a stock beta4 build (2026-10-30, widened `allowedversions.txt
 * `generation = newmain` (stock): 2.17.1 draws the level, then on the first step the server logs `Unknown Player Packet: 55` and the client shows "Invalid PlayerProp type in constructPropFor" and drops. This is fix 1's iterator desync.
 * `generation = classic` with 2.17's token added to the classic range: worse; the login bundle is read as garbage (`Unknown Player Packet: 112`, "sending invalid packets") and the client is dropped before a player exists. beta4's own `docs/start-here.md` warns that 2.x clients on a classic server get mangled packets.
 
+The patch also carries a fourth, smaller fix from the v4 lab: the account loader clears the hidden bit (`STATUS` 0x02), so a player who quit while hiding under a carried object does not log in invisible.
+
 These are bugs against the real clients, not lab choices, so they would be worth upstream; under the project rule nothing was sent outside squirelworks.
 
 ## 3. Listservers
