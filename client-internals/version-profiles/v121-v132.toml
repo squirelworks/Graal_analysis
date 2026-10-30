@@ -46,7 +46,7 @@ alignment_points = { since = "1.3 test", confidence = "doc", note = "AP 0-100, s
 weblevel_cache = { since = "1.3 test", confidence = "confirmed", note = "levels saved to weblevels/ with a timestamp; the server only resends changed levels" }
 level_snapshot_alt5 = { since = "1.3 test", confidence = "doc", note = "Alt+5 writes a playable snapshot level" }
 record_movement_alt6_alt7 = { since = "1.3 test", confidence = "doc", note = "writes levels/recordpos.txt" }
-credentials_in_registry = { since = "1.3 test", confidence = "doc", note = "account and password saved encrypted in the registry" }
+credentials_in_registry = { since = "1.3 test", confidence = "confirmed", note = "HKCU\\Software\\Graal\\Client accountname/nickname/password; password in the 48-char DES string form with the 2.05 key (captured from 1.31/1.32, key string present from 1.3 test)" }
 pm_ignore_button = { since = "1.3 test", confidence = "doc", note = "ignore button in the PM window; ignores survive a restart (by IP)" }
 font_options = { since = "1.3 test", confidence = "confirmed", note = "font= and fontsize=" }
 account_message_code = { since = "1.3 test", confidence = "doc", note = "#a = account name" }

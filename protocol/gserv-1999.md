@@ -73,7 +73,8 @@ Then it checks the minimum for the connection type.
 
 The older tokens stay on the list so that RemoteControl (GSERV011) can still log in.
 Refusals and login errors ("The account has been disabled by an admin.", "The account is already in use.", "An account with the name and password you typed in doesn't exist.") go out as server id 16, which is DISCMESSAGE in the later numbering.
-After a good player login the 1.3 server sends the player's props (9), flags (28), NPC weapons (33) and the other players' props (8), among others.
+Captured under Wine (`client-internals/live-trace-early.md`): after a good player login GServer13 sends 9 (own props), 28 (flags, only if the account has any), 14 (warp), 100 followed by a separate frame holding 101 and the board, 6 (level name), 1 (links), 5 (signs), 39 (level modification time), 3 (NPC props with scripts), and 10. GServer 1.28 sends the same sequence without 39, which arrives with the 1.3 level cache. GServer 1.21 also sends no 39, and it packs the whole reply (9, 14, 100, 101 with the board, 6, 1, 10) into a single zlib frame. When another player is already on the level, the newcomer gets an 8 (other player's props) right after its own 9.
+A token newer than the server's list is refused like an old one: GServer13 answers GSERV016 (1.31) and GSERV018 (1.32) with id 16 "You need at least Graal version 1.3 to play on this server." **[cap]**
 
 ## Message ids
 
@@ -105,7 +106,7 @@ Per-build values, and the client-to-server ids, are in `client-internals/version
 ## UDP (1.28 beta 2 on)
 
 The 1.28 beta 2 notes call this "direct data packages", and it is the first build that links `bind`, `sendto` and `recvfrom`.
-The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
+The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. In a 1.28 beta 2 capture, two clients standing on the same level each sent id 12 (`chr(12+32)` + 5 bytes) twice every 0.5 s to the other's port. **[cap]** The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
 The main loop reads TCP and UDP separately ("tcp read", "udp read" in the 1.32 profiler labels).
 1.31 adds `noudp=` and `fixedudpport=` to `graalconfig.txt` (the catalogue gives 14899 as the fixed-port default).
 The client handles UDP ids 0 and 10 to 22 in 1.28 beta 2 and 1.3 test, and 0 and 10 to 23 from 1.31. These are the same ids, with the same +32 offset, that 1.33 handles. Their meanings have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
