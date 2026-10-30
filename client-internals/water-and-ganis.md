@@ -26,7 +26,7 @@ The client keeps one table of animation names, which it plays as
 Uses that were seen in the code:
 
 * The sword swing plays `sword`; on a horse, `ridesword`.
-* The charged swing plays `spin`.
+* The spin (a second S press during a swing, with the has-spin status) plays `spin`.
 * The A key's grab plays `grab`, and its lift plays `lift`.
 * The item key's "lay item" mode plays `hiddenstill`.
 * Firing a weapon on a horse plays `ridefire`.

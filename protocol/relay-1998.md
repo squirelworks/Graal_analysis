@@ -8,7 +8,7 @@ The notes come from static analysis of the shipped executables. No decompiler ou
 
 ## Summary
 
-- One TCP connection to a lobby/relay server. The 1998 binaries default to `127.0.0.1:14801`, and the connect dialog (from 3rd Graal on) is pre-filled with the Cyberjoueur server on **14802** (`204.85.8.128` in 3rd, 4th and 5th Graal, `www.cyberjoueur.com` from 6th Graal, `www.graalonline.com` in 1.1.9 and 1.1). The 4th and 5th alpha builds have no pre-filled relay host.
+- TCP connections to a lobby/relay server. A captured 1.1.9 client opens two to the same port: one in the fixed game (`Graal8`) and one that follows the current level (`G8<level>`). Both pair with the other player (`client-internals/live-trace-early.md`). The 1998 binaries default to `127.0.0.1:14801`, and the connect dialog (from 3rd Graal on) is pre-filled with the Cyberjoueur server on **14802** (`204.85.8.128` in 3rd, 4th and 5th Graal, `www.cyberjoueur.com` from 6th Graal, `www.graalonline.com` in 1.1.9 and 1.1). The 4th and 5th alpha builds have no pre-filled relay host.
 - Every message is a text line ending in `\n`, and the first character is the command. The read buffer is 1 KB.
 - The server is a lobby in the style of Stefan Knorr's Java GServ (see `client-internals/zelda-online-1998.md`). It knows nothing about the game. It groups connections into named games, gives each one an 8-character id, and forwards `D` lines between partners.
 - All game state travels inside `D` lines. The server does not stamp the sender, so each `D` payload starts with the sender's own id.
@@ -46,7 +46,7 @@ Server to client:
 | `P<id8>` | Partnership confirmed. The client then pushes its whole state to the peer (login time, position, colours, nickname, sword and shield, and so on). |
 | `C<id8>` | The partner left the party. |
 | `D<data>` | Relayed data. See below. |
-| `NR` / `NL` | 15th Graal on, sent by the 1.1.9 GServer right after `N`: `NR` means the server uses Cyberjoueur levels, and `NL` means local levels. With `NL` the client starts in `onlinestartlocal.graal`. |
+| `NR` / `NL` | 15th Graal on, sent by the 1.1.9 GServer right after `N`. Read statically as `NR` = the server uses Cyberjoueur levels and `NL` = local levels; with `NL` the client starts in `onlinestartlocal.graal`. A server started with local levels sent `NR` and then `NL` after every `N` (`client-internals/live-trace-early.md`). |
 
 The 1.1.9 `Gserver.exe` also accepts `O` (join as observer), `S` (super user) and `V<id>` (observe a player), as the Java server did.
 It is a Delphi port of the lobby with a "Start Game Server" dialog: port 14802, and a choice between local levels and levels from Cyberjoueur. Its timer also handles a separate `Chess` game.
@@ -96,7 +96,7 @@ What each type means. Layouts come from the receiving side. Types marked *inferr
 
 | Type | Payload | Meaning |
 |---|---|---|
-| `A` | x, y, dir/flags, kind | Shot fired (arrow, `TAdventureFlying`) |
+| `A` | x, y, dir/flags, kind | Handled as a flying object (`TAdventureFlying`, arrows). In a capture, idle 1.1.9 clients sent `A` about four times a second with two alternating fixed payloads, so it covers more than shots. Open |
 | `B` | x, y, w·8+h, then w·h tiles as two base-128 chars each | Board modify |
 | `C` | text | Chat line (the client also shows its own `showname` text) |
 | `D` | one char per object id | Listed baddies or NPCs are dead (`compsdead`) |
