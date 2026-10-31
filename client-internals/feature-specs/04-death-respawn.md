@@ -45,7 +45,7 @@ From the 2.05 rev2 decompile (2026-10-24). Tick = 50 ms. Behaviour only; tables 
 - The exact "same name group" rule for *not* updating the saved entry point was only partly traced. Until it is known, update the saved point on every level entry and treat a warp inside one map or group as a Seihai choice.
 - The server-side reaction to CLAIMPKER is described above from GServer-v2, not from the client.
 - The `0x20` STATUS bit is the `hidesword` timer (`../status-bit-0x20.md`); a few mode values are unlabelled (see 11).
-- 1.39 and 1st Graal death handling was not read.
+- ~~1.39 death handling~~ — filled in `../../version-profiles/matrix/rules-139.md` (same 30-tick timer and STATUS bit rule as 2.05; hearts to max, no AP bands). 1st Graal still open.
 
 ## Seihai today
 - Reads `player_health` for the HUD. Does not send STATUS, does not track the dead bit, does not send CLAIMPKER, and treats `ISLEADER` (10) as unhandled.
@@ -66,4 +66,4 @@ From the 2.05 rev2 decompile (2026-10-24). Tick = 50 ms. Behaviour only; tables 
 ## NEEDS
 Filled by the 2026-10-24 2.05 decompile: timings, input lock, status-bit delay, hearts by AP, destination rule, and that no respawn packet exists. Server side was already known.
 
-Still open: the "same name group" rule for the saved respawn point, a few unlabelled mode values, and the 1.39 / 1st Graal death handler. A lab capture of a real 2.05 client dying twice would confirm the sequence on the wire (status bit timing, the warp frame after respawn).
+Still open: the "same name group" rule for the saved respawn point, a few unlabelled mode values, and the 1st Graal death handler (1.39 is in `../../version-profiles/matrix/rules-139.md`). A lab capture of a real 2.05 client dying twice would confirm the sequence on the wire (status bit timing, the warp frame after respawn).

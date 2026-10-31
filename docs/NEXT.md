@@ -68,6 +68,7 @@ open-point closed.
 - [ ] **11. 1998 to 1.41 rules (matrix unknown #1).** Death, hurt and knockback, sword
   reach and the wall test for 1.39 first, then 1.32 and 1st Graal. Decompiles plus Wine
   runs against GServer13 or the 1998 relay on loopback.
+  *1.39 done in `version-profiles/matrix/rules-139.md` (this PR); 1.32 and 1st Graal remain.*
 
 - [ ] **12. Keep Seihai's fixture reader working.** Any PR that edits
   `version-profiles/*.toml` or `client-internals/version-profiles/*.toml` runs Seihai's
