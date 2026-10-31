@@ -31,6 +31,7 @@ The lab tools, the key scripts, the proxy logs and the screenshots are in the pr
 2. **Tokens.** The stock gs2lib knows `G3D14097` (5.12), `G3D26090` (5.30–6.00r4) and `G3D0311C` (6.03r7), but not `G3D15010` (5.24 and 6.00 beta2) or `G3D03048` (6.00 beta1).
    - For an unknown token the server falls back to older file packets. The 5.24 client then saves files under names like `1.png<PNG data>…` and logs "Couldn't open … for writing". **[wire]**
    - A lab copy of the library with two token strings renamed fixes this. `G3D14097` was renamed to `G3D15010`, and `G3D3007A` to `G3D03048`. **[srv]**
+   - The v5 lab renamed `G3D26090` instead (`version-profiles/lab-v5-2026-10-30.md`). Which slot does not matter for files as long as it is at or above 2.14. The rule and the byte walk of the bad name are in `file-transfer.md`.
 3. **Beta expiry.** 5.30r3, 5.31r4, 6.00r2 and 6.00r4 run only with the clock set back.
    - Setting the clock back only for the start is not enough. When the clock jumps forward again, the client shows "You have been disconnected due to inactivity".
    - The clock has to stay back for the whole session. The server, on the same machine, then also runs in the past, so its respawn timers are useless in those runs. **[wire]**
