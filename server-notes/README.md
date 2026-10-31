@@ -9,3 +9,9 @@ Nothing in these notes was invented about the protocol. Identifiers and behavior
 ## Our own servers (2026-10-30)
 
 `lab-servers-2026-10-30.md`: what the project's lab gserver (GServer-v2 `efb5b90` + a gs2lib patch) and listserver are, real 2.05 / 2.17.1 / 2.22 runs against them, and a comparison with GServer-v2 beta4, graal-serverlist, Guthius's graal-listserver, glauncher and gs2-parser.
+
+## `setcharprop` and `#n` (2026-10-31)
+
+`setcharprop-hash-n.md`: in a `setcharprop` **value**, `#n` expands to the
+triggering player's nickname on servers that run GS1 (**[srv]**); property code
+`#n` sets the NPC's nick. GServer13 has no `setcharprop` (**[bin]**).

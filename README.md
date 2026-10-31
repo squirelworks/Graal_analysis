@@ -15,6 +15,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab). `tools/lab-servers/` holds our lab listserver.
 - `archive/` — archival notes on decommissioned experimental walkers and tileset work (Ember / Avelan). Full assets live in a Drive zip; see `archive/ember-avelan-experimental.md`.
 - `server-notes/public-allowed-versions.md` — which client versions public Reborn game servers allow: the two "Allowed:" lists on record (Graal the Adventure: 2.22 and 5.00r7; a gs2 server: 2.22 and a 1.41r1 to iPhone Belote range), how GServer-v2 reads `allowedversions.txt` ranges, and what that means for each 5.x and 6.x build.
+- `server-notes/setcharprop-hash-n.md` — `#n` in a `setcharprop` value is the triggering player's nickname on script-running servers (not the NPC's); GServer13 has no `setcharprop`.
 
 ## Newly scaffolded (2026-10-14)
 
