@@ -4,7 +4,7 @@ Date: 2026-10-21
 
 Source: static read of the Delphi `rc141.exe` ("GServer2 Remote Control 2002/05/02"), the first RemoteControl build that contains NPC Control. Also `NPCControl1.3` (a 2001 docs bundle with no binary). Tags: **[bin]** read from the binary · **[doc]** from the 2001 text files · **[inf]** inferred.
 
-The later 2004 RemoteControl is in `remotecontrol.md` on the cross-version branch. This note covers the 2002 build, which is where NPC Control first appears.
+The later 2004 RemoteControl is in `remotecontrol.md`. This note covers the 2002 build, which is where NPC Control first appears. **Protocol layouts for `seihai-rc`:** `../protocol/npc-control.md`.
 
 ## What the NPCControl 1.3 bundle is **[doc]**
 
