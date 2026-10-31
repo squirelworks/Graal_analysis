@@ -74,6 +74,7 @@ Payloads of the new ids **[bin]**:
 
 - **109:** `i5` time (five 7-bit groups), then a `c`-length string A and a `c`-length string B. The client passes (B, A, time) to the file layer. Most likely a file redirect (6.11 names a native handler `setfileredirect(u,s,s)`). **[bin][inf]**
 - **198:** one `i5`, stored on the connection. Nothing else in 6.03 reads it back.
+- **111:** no fields. The receive dispatcher passes the whole packet body to one function that writes it, byte for byte, to `creationtime.dat` in the client's own folder (the same base folder the other cache files use), replacing the file. The client sends nothing back. A matching loader that reads the file into a string exists, but no direct call to it was found, so what reads the value (probably a script builtin) is not known. **[bin][inf]**
 
 ## Client → server ids (6.01, 6.03)
 
@@ -187,5 +188,5 @@ All three builds carry the 5.x set: `GR-V1.03`–`GR-V1.05` levels, `GWEBL001` w
 
 - ~~Unpacking the Windows builds~~ Done 2026-10-29, see `v5v6-windows-unpacked.md`.
 - ~~The client → server id table for 6.01/6.03~~ Done 2026-10-30, above.
-- The payload of id 111 (writes `creationtime.dat`).
+- ~~The payload of id 111~~ Done 2026-10-31, above: the body is stored as `creationtime.dat`. Who reads it back is still open.
 - A live 6.11 connector script, to recover the real 6.11 token, header and id tables.
