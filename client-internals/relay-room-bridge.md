@@ -61,7 +61,7 @@ apart. Either way it never equals Zelda Online 2's `Z<base>1.6`.
   arrow keys work (see run 4). `tools/relay-bridge/run_delphi_beta.sh` sets
   this up.
   From 3rd Graal on the server box is greyed out at Cyberjoueur's
-  dialog address on `127.0.0.2:14802` (the historical fixed IPv4, remapped
+  dialog address on `<loopback-outside>:14802` (the historical fixed IPv4, remapped
   onto the loopback interface as a fake outside address so the beta reached
   the bridge). 4th alpha and 1st Graal keep an editable
   `127.0.0.1:14801` and went straight to GServ (captured with tcpdump,

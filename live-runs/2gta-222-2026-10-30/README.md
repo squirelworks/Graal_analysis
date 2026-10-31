@@ -2,7 +2,7 @@
 
 A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`2gta.home.eevul.net:14913`), signed in as the user's own account (Seji) from the client's saved login. The run was driven by a script on a personal PC (machine details redacted): about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
 
-**Future runs:** loopback-only labs (`127.0.0.1` / `127.0.0.2`). Do not repeat personal-machine or public-listserver registrations without Squirrel's written OK.
+**Future runs:** loopback-only labs (the loopback address / a second loopback address). Do not repeat personal-machine or public-listserver registrations without Squirrel's written OK.
 
 What follows is what the screen showed. Nothing here was read from packets.
 

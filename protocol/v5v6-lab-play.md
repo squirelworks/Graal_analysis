@@ -198,7 +198,7 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
 
 Under Wine, 6.00r2 and 6.00r4 freeze on a blue window right after they write the level cache and receive the first image. On 2026-10-30 both builds were run on a real Windows PC instead (personal machine; OS build and GPU details redacted). **[shot]**
 
-**Future runs:** loopback-only labs (`127.0.0.1` / `127.0.0.2` in a container, VM or CI). Do not use Squirrel's own machines again.
+**Future runs:** loopback-only labs (the loopback address / a second loopback address, in a container, VM or CI). Do not use Squirrel's own machines again.
 
 - **Setup:**
   - a real Windows 11 PC with DirectX 9 hardware (machine identity redacted);
