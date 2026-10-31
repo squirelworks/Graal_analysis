@@ -16,7 +16,7 @@ Revised 2026-10-21 from a static read of `RemoteControl.exe` (Graal Reborn 2.2.2
 
 - Right after the RC login the client sends a short `PLI_PLAYERPROPS` (2). Its prop list is not traced.
 - Type 6 is what gs2lib calls "RC2". This Delphi RC already uses it, so "RC2 = type 6" in the server tables means the gen-5 RC login, not the GTK program. **[bin][srv]**
-- `GSERV024` and `NCL11012` are plain string constants here, unlike the game clients' char-by-char tokens. Default NC address fields are `127.0.0.1` and `14804`. The live address arrives in `PLO_NPCSERVERADDR` (79), which the RC handles. **[bin]**
+- `GSERV024` and `NCL11012` are plain string constants here, unlike the game clients' char-by-char tokens. Default NC address fields are the loopback address and `14804`. The live address arrives in `PLO_NPCSERVERADDR` (79), which the RC handles. **[bin]**
 - The default account and password fields hold `super` / `super`. **[bin]**
 
 ## Codec

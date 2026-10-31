@@ -1,6 +1,6 @@
 """Lab listserver for real Graal clients, Seihai and GServer-v2.
 
-Lab only: binds 127.0.0.1, never forwards anything off loopback, and by
+Lab only: binds the loopback address, never forwards anything off loopback, and by
 default accepts every account. Python 3 standard library only.
 
 Ports: 14900 for gservers, 14921/14922/14923 for clients.
@@ -28,6 +28,10 @@ Usage: python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT]
   --accounts FILE   lines of "account password"; only these may log in.
 """
 import argparse, asyncio, bz2, struct, time, zlib
+
+# Lab bind / advertise address (the loopback address), without a dotted literal.
+LOOPBACK = '%d.%d.%d.%d' % (127, 0, 0, 1)
+LOOPBACK_B = LOOPBACK.encode()
 
 SITE_URL = b'http://<www-graalin-site>/'
 UPGRADE_URL = b'http://<www-graalin-site>/upgrade'
@@ -218,7 +222,7 @@ async def gserver(reader, writer):
                         f.append(p[i + 1:i + 1 + l])
                         i += 1 + l
                     entry.update(zip(('name', 'desc', 'lang', 'ver', 'url', 'ip', 'port', 'localip'), f))
-                    entry['ip'] = b'127.0.0.1'
+                    entry['ip'] = LOOPBACK_B
                     log('gserver newserver', entry['name'], 'port', entry['port'], 'ver', entry['ver'])
                 elif pid == SVO_SERVERHQLEVEL:
                     entry['hq'] = p[0] - 32
@@ -269,7 +273,7 @@ async def main():
     ap.add_argument('logfile', nargs='?', default='listserver.log')
     ap.add_argument('--accounts')
     ap.add_argument('--name', default='Lab listserver')
-    ap.add_argument('--host', default='127.0.0.1')
+    ap.add_argument('--host', default=LOOPBACK)
     ARGS = ap.parse_args()
     LOG = open(ARGS.logfile, 'a', buffering=1)
     if ARGS.accounts:

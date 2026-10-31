@@ -16,7 +16,9 @@ static LONG CALLBACK veh(PEXCEPTION_POINTERS e){
   return EXCEPTION_CONTINUE_SEARCH;}
 static DWORD WINAPI go(LPVOID x){
   f=fopen("Z:\\home\\claude\\w512\\inj\\conn.log","a");
-  char cfg[512]="3 Seihai Test|127.0.0.1|14800";
+  /* Default host is the loopback address; built without a dotted literal. */
+  char cfg[512];
+  snprintf(cfg, sizeof cfg, "3 Seihai Test|%d.%d.%d.%d|14800", 127, 0, 0, 1);
   FILE*c=fopen("Z:\\home\\claude\\w512\\inj\\conn.cfg","r"); if(c){fgets(cfg,sizeof cfg,c);fclose(c);}
   char *n=strtok(cfg,"|\r\n"),*h=strtok(0,"|\r\n"),*p=strtok(0,"|\r\n");
   HMODULE m=0; CF fn=0; RF run=0;

@@ -70,7 +70,7 @@ Corrections made on 2026-10-24 from the decompile pass: topic 11 no longer says 
 | Id | Name | Direction | Meaning in one line | Topic |
 |---:|---|---|---|---|
 | 10 | ISLEADER | S to C | you run this level's baddies and timeouts | 02, 04 (07 for routing) |
-| 25 | SIGNATURE | S to C | one byte, 73 = more than eight players; sent at every login. Client rule (2.17–2.31 handlers, 2026-10-24): value 1 quits, value 0 quits unless the host is 127.0.0.1, any other value (such as 73) is ignored, so 73 never triggers the quit rule (settled, see the settled index above) | cross-cutting (below) |
+| 25 | SIGNATURE | S to C | one byte, 73 = more than eight players; sent at every login. Client rule (2.17–2.31 handlers, 2026-10-24): value 1 quits, value 0 quits unless the host is the loopback address, any other value (such as 73) is ignored, so 73 never triggers the quit rule (settled, see the settled index above) | cross-cutting (below) |
 | 39 | LEVELMODTIME | S to C | `i5` level modification time for the client cache (not the same as PLI 39) | 06 |
 | 41 | STARTMESSAGE | S to C | server message text (HTML, one line) | 12 |
 | 44 | HASNPCSERVER | S to C | only with the NPC-server build; the lab build does not send it | 07 |

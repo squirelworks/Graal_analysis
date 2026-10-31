@@ -54,7 +54,7 @@ The RC never asks the user for an NPC-server address. It finds it like this:
 3. The server answers with id **79** (`PLO_NPCSERVERADDR`): `GSHORT player id`, then `ip,port`. The RC acts on it only if the NC socket is not already open and only if that player's nickname contains `(Server)`.
 4. The RC opens the NC socket to that address and sends the NC login above. The status bar shows "Connected to NPC-Server".
 
-The defaults `127.0.0.1` and `14804` in the binary are unused leftovers of the old start dialog. **[inf]** The 2001 doc's "(NPC Admin)" PM interface (see `npcserver-2001.md`) is the older channel that this socket replaced.
+The defaults (the loopback address and `14804`) in the binary are unused leftovers of the old start dialog. **[inf]** The 2001 doc's "(NPC Admin)" PM interface (see `npcserver-2001.md`) is the older channel that this socket replaced.
 
 ## Routing on the NC socket **[bin]**
 

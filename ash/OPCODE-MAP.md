@@ -170,7 +170,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 22 | 0x36 | `PLO_ITEMADD` |  | S→C | `c x×2, c y×2, c item` | yes |
 | 23 | 0x37 | `PLO_ITEMDEL` |  | S→C | `c x×2, c y×2, c item` | yes |
 | 24 | 0x38 | `PLO_NPCMOVED` |  | S→C |  | yes |
-| 25 | 0x39 | `PLO_SIGNATURE` |  | S→C | `c v`: 1 = the client quits; 0 = quits unless the host is 127.0.0.1; other values ignored (layout read in 2.17–2.31; the id is handled from 2.00) **[bin]** | yes |
+| 25 | 0x39 | `PLO_SIGNATURE` |  | S→C | `c v`: 1 = the client quits; 0 = quits unless the host is the loopback address; other values ignored (layout read in 2.17–2.31; the id is handled from 2.00) **[bin]** | yes |
 | 26 | 0x3a | `PLO_NPCACTION` |  | S→C |  | — |
 | 27 | 0x3b | `PLO_BADDYHURT` |  | S→C | baddy hurt: `c id` + BDPROP stream | yes |
 | 28 | 0x3c | `PLO_FLAGSET` |  | S→C | rest = `name` or `name=value` | yes |

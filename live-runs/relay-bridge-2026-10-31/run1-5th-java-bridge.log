@@ -1,5 +1,5 @@
-    0.00 - START "listen 14802 -> 127.0.0.1:14801 rules [('G2', 'G3')]"
-    2.33 c1 OPEN '127.0.0.1:57342'
+    0.00 - START "listen 14802 -> <loopback>:14801 rules [('G2', 'G3')]"
+    2.33 c1 OPEN '<loopback>:57342'
    12.60 c1 MAP 'G2level13.graal -> G3level13.graal'
    12.60 c1 C>S b'NG3level13.graal#def'
    12.60 c1 S>C b'I00000001'

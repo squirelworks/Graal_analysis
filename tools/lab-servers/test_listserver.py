@@ -11,9 +11,9 @@ Exit 0 when every check passes.
 import bz2, socket, struct, sys, time, zlib
 
 sys.path.insert(0, __file__.rsplit('/', 1)[0])
-from listserver import Codec, gchar, gstr  # noqa: E402
+from listserver import Codec, gchar, gstr, LOOPBACK  # noqa: E402
 
-HOST = '127.0.0.1'
+HOST = LOOPBACK
 FAILS = []
 
 

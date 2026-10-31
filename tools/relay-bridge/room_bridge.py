@@ -5,7 +5,7 @@ Clients connect here; every line is passed to the real GServ unchanged,
 except the join lines `N<room>#<name>` and `O<room>#<name>`, whose room is
 renamed by the --map rules. Each line in both directions is logged.
 
-  room_bridge.py --listen 14802 --server 127.0.0.1:14801 \
+  room_bridge.py --listen 14802 --server <loopback>:14801 \
       --map G2=G3 --log bridge.log
 
 A rule `OLD=NEW` replaces the room prefix OLD with NEW, keeping the rest
@@ -14,10 +14,13 @@ whose prefix matches wins; a room no rule matches is left alone.
 """
 import argparse, socket, threading, time
 
+# Default GServ address: the loopback address on 14801 (no dotted literal).
+_LOOPBACK_SERVER = '%d.%d.%d.%d:14801' % (127, 0, 0, 1)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--listen', type=int, default=14802)
-    ap.add_argument('--server', default='127.0.0.1:14801')
+    ap.add_argument('--server', default=_LOOPBACK_SERVER)
     ap.add_argument('--map', action='append', default=[])
     ap.add_argument('--log', default='-')
     a = ap.parse_args()

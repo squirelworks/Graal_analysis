@@ -54,7 +54,7 @@ There are 14 uploads but only 9 distinct items. They were compared by content ha
 
 ### Zelda Online 2 "local version" (July 1998)
 
-- A Java 1.1 *application*, not an applet. It opens a start window with "One-Player mode" and "Multiplayer mode" and a server address field that defaults to `127.0.0.1`. It refuses to run on Java 1.0.
+- A Java 1.1 *application*, not an applet. It opens a start window with "One-Player mode" and "Multiplayer mode" and a server address field that defaults to the loopback address. It refuses to run on Java 1.0.
 - Files are read from the working directory, not over HTTP.
 - The package has `game/`, `server/` and `programming/` folders, and the author's real source is included, with comments. The files are dated 18–26 July 1998.
 - It ships 51 `Z3-V1.03` levels. `level1.zelda` is again the start level.

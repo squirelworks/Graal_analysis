@@ -1,6 +1,6 @@
 #!/bin/sh
 # Start the lab listserver (14900 for the gserver, 14921/14922/14923 for clients)
-# and GServer-v2 on 127.0.0.1:14802. Logs go to ./logs. Stop with: ./run-lab.sh stop
+# and GServer-v2 on the loopback address, port 14802. Logs go to ./logs. Stop with: ./run-lab.sh stop
 # ./run-lab.sh stock uses unpatched gs2lib (2.05 is then treated as pre-2.1).
 # If accounts.txt exists ("account password" per line), only those accounts may log in.
 D=$(cd "$(dirname "$0")" && pwd)

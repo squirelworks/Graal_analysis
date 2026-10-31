@@ -28,7 +28,7 @@ The 2004 build in the Graal Reborn folder (`GSERV024`, type 6) is covered in `re
 
 ## Start dialog and the old option packets **[bin]**
 
-Up to 2001/01/27 the start dialog asks for server name (default `127.0.0.1`), port (`14804`), account, password, and four server timers, each with a "don't change" box:
+Up to 2001/01/27 the start dialog asks for server name (default: the loopback address), port (`14804`), account, password, and four server timers, each with a "don't change" box:
 
 | Field | Default | Sent after login as | gs2lib name |
 |---|---:|---:|---|

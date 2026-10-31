@@ -64,7 +64,7 @@ apart. Either way it never equals Zelda Online 2's `Z<base>1.6`.
   dialog address on `<loopback-outside>:14802` (the historical fixed IPv4, remapped
   onto the loopback interface as a fake outside address so the beta reached
   the bridge). 4th alpha and 1st Graal keep an editable
-  `127.0.0.1:14801` and went straight to GServ (captured with tcpdump,
+  the loopback address on 14801 and went straight to GServ (captured with tcpdump,
   decoded with `tools/relay-bridge/pcap_lines.py`).
 
 Captures and screenshots: `live-runs/relay-bridge-2026-10-31/`.
@@ -72,7 +72,7 @@ Captures and screenshots: `live-runs/relay-bridge-2026-10-31/`.
 ## Run 1: Java Graal and 5th Graal through the bridge
 
 ```
-room_bridge.py --listen 14802 --server 127.0.0.1:14801 --map G2=G3
+room_bridge.py --listen 14802 --server <loopback>:14801 --map G2=G3
 ```
 
 - Java Graal joined `G2level13.graal`; the bridge sent `NG3level13.graal#def`.
