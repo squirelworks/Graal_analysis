@@ -21,12 +21,11 @@ open-point closed.
   *Done when* the four leak greps in `AGENTS.md` return nothing (third line: review
   hits by eye).
 
-- [ ] **3. CI for the checks.** `.github/workflows/checks.yml`: run the four greps
-  from task 2 (fail on any hit), `python -m pytest tools/lab-servers` and a smoke run
-  of `client-internals/version-profiles/resolve.py` and `formats/grv1-decoder` on a
-  synthetic level. *Done when:* the workflow is green on the PR and fails on a test
-  branch that adds a non-loopback example IP to a note (show that run in the PR).
-  *This PR (#158 loopback scrub is on main).*
+- [x] **3. CI for the checks.** `.github/workflows/checks.yml`: four AGENTS.md leak
+  greps (fail on any hit; IP grep has no loopback whitelist), `pytest tools/lab-servers`,
+  smoke `resolve.py` + synthetic GR-V1 `grv1-decoder`. Fail-demo branch
+  `cursor/ci-leak-checks-fail-demo-b5fd` proved the IP step red.
+  *Done in this PR; strike after merge to `main`.*
 
 - [ ] **4. pyReborn study into the repo.** Needs Squirrel's `pyreborn-vs-seihai.md` and
   `parser-probe-main.rs` (project files). Add as `client-internals/pyreborn-study/`
