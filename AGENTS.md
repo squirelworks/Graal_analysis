@@ -7,10 +7,11 @@ PRs; they never merge, never push to `main`, never create a tag or release.
 
 - **No real server IPs, ports or hostnames** (public Graal servers, the official
   listserver and login hosts, anyone's LAN machines) in notes, TOML/TSV tables, logs,
-  scripts or screenshots. Use `127.0.0.1`, `127.0.0.2`, the lab ports (14802, 14803,
-  14804, 14900, 14921–14923), or placeholders `<listserver-host>`, `<login-host>`,
-  `<public-host>`, `<lan-host>`. When a historical host matters, describe it
-  ("the 1999 list host, same as 1.39's") rather than naming it.
+  scripts or screenshots. Use the loopback address, a second loopback address (fake
+  outside interface), the lab ports (14802, 14803, 14804, 14900, 14921–14923), or
+  placeholders `<listserver-host>`, `<login-host>`, `<public-host>`, `<lan-host>`.
+  When a historical host matters, describe it ("the 1999 list host, same as 1.39's")
+  rather than naming it. Do not write dotted IP literals anywhere in the repo.
 - **No binary addresses**: no `0x004…`-style offsets, no Ghidra/IDA names (`FUN_…`,
   `DAT_…`, `LAB_…`), no decompiled C. Findings are written as plain behaviour with a
   source tag (`[2.05]`, `[bin]`, `[lab]`, `[cap]`, `[srv]`, `[doc]`, `[inf]`).
@@ -18,8 +19,8 @@ PRs; they never merge, never push to `main`, never create a tag or release.
 
 ## Labs
 
-- **Cloud loopback only**: servers you start yourself on `127.0.0.1` (or `127.0.0.2` as
-  a fake outside interface), in a container, VM or CI runner.
+- **Cloud loopback only**: servers you start yourself on the loopback address (or a
+  second loopback address as a fake outside interface), in a container, VM or CI runner.
 - **Never use Squirrel's own machines** (their Linux PC, Windows PC, Mac) for labs,
   captures or builds.
 - **No public servers** (no logins, no listserver registration, no captures against
@@ -66,7 +67,7 @@ PRs; they never merge, never push to `main`, never create a tag or release.
 ```
 git ls-files | grep -E '\.pyc$'
 git grep -nE 'FUN_[0-9a-fA-F]{6}|DAT_[0-9a-fA-F]{6}|\b0x00[4-6][0-9a-fA-F]{5}\b'
-git grep -nE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | grep -vE '127\.0\.0\.[0-9]+|0\.0\.0\.0|\b[0-9]\.[0-9]+\.[0-9]+\.[0-9]+\b'
+git grep -nE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | grep -vE '\b[0-9]\.[0-9]+\.[0-9]+\.[0-9]+\b'
 git grep -niE 'graalonline\.com|graal\.in\b|graalreborn\.(com|net)'
 ```
 
