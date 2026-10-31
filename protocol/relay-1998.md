@@ -69,6 +69,7 @@ The game name keeps incompatible betas apart, and from 3rd Graal on it also keep
 
 The constant name is the fallback. When the player is on a level, the client builds the name from `G<n>` plus the level's location (the URL without `http://` for a web level), so each level is effectively its own relay room.
 That fits the readmes' "asynchronous multiplayer system". Players only meet when they are on the same level and run a compatible build.
+Live runs on 2026-10-31 confirmed the two connections and the level rooms for 1st (`Zhouse12` + `Zelda2`), 3rd (`Ghouse1.graal` + `Graal`), 4th alpha (`G2level13.graal` + `Graal2`) and 5th Graal (`G3level13.graal` + `Graal3`), and put Java Graal in one room with 4th alpha (no help) and with 5th Graal (through a proxy that renames `G2` to `G3`). See `client-internals/relay-room-bridge.md`.
 
 ## `D` payloads
 
