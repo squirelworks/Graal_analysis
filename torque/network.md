@@ -62,7 +62,7 @@ The connect request decodes to exactly:
 | net class group, class CRC | 0, `0xFFFFFFFF` |
 | game string | `Graal3D` |
 | current / minimum protocol | 24 / 24 |
-| join password | `7Y3bdzjf`, the plain built-in guest password (see `protocol/v5v6-windows-unpacked.md`), so for a real account it is the account password in clear |
+| join password | `<guest password>`, the plain built-in guest password (see `protocol/v5v6-windows-unpacked.md`), so for a real account it is the account password in clear |
 | argc, argv | 2: `guest` (the account), then an empty string (the nickname, unset here) |
 
 No bits are left over, so the field list above is complete.
