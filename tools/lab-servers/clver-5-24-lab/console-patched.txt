@@ -7,7 +7,7 @@ Graphics card:
   Description: NVIDIA GeForce GTX 470
   Driver version: 9.21.13.9135
 
-Scanning folder structure of Z:/root/lab/run-p524-1/...
+Scanning folder structure of <client folder>/...
 Done.
 Couldn't load hooking.dll, required for recording video of games.
 Graal has been activated!
