@@ -112,6 +112,38 @@ login_fields = 5
 chat = "Tempus Sans ITC 24"
 expires = "runs only with the clock set back"
 
+# 6.015 and 6.034 have no binary in the project. Their tokens are in GServer-v2's default
+# allowedversions.txt (G3D3007A "6.0.0.7" and "6.0.1.5", G3D2505C "6.0.3.4") and stock gs2lib
+# knows both (CLVER_6_015, CLVER_6_034). The id sets are the Linux reads of the same release
+# lines (protocol/v6x-clients.md): 6.01r1 for 6.015, 6.03r7 for 6.034. Nothing else is known.
+[[version]]
+label = "6.015"                        # sent by 6.00r7 and 6.01r5 (Windows)
+token = "G3D3007A"
+token_src = "inf"                      # GServer-v2 allowedversions.txt and gs2lib only, never captured
+inferred = true
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 91
+plo_known_src = "inf"                  # Linux 6.01r1
+pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-159, 161, 162"
+pli_sent_src = "inf"                   # Linux 6.01r1
+pli_sent_complete = false
+login_fields = 5                       # inf: as 5.12 to 6.03r7
+chat = "Tempus Sans ITC 24"            # inf: as 6.00r2 and 6.03r7
+
+[[version]]
+label = "6.034"                        # sent by 6.03r4 (Windows)
+token = "G3D2505C"
+token_src = "inf"                      # GServer-v2 allowedversions.txt and gs2lib only, never captured
+inferred = true
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 111, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 92
+plo_known_src = "inf"                  # Linux 6.03r7; whether 6.03r4 already has 111 is not known
+pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-162"
+pli_sent_src = "inf"                   # Linux 6.03r7; whether 6.03r4 already sends 160 is not known
+pli_sent_complete = false
+login_fields = 5                       # inf: as 5.12 to 6.03r7
+chat = "Tempus Sans ITC 24"            # inf: as 6.00r2 and 6.03r7
+
 [[version]]
 label = "6.03r7"
 token = "G3D0311C"                     # the Linux 6.03r7 sends G3D0511C
