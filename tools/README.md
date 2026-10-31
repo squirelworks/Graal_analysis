@@ -19,6 +19,7 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 
 See the individual files for the measured contracts. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.
 - `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.
+- `relay-bridge/` — `room_bridge.py` (logging proxy for the 1998 GServ relay that can rename join rooms), `AppletRun.java` (runs the Java Graal / Zelda Online applets in a frame), `pcap_lines.py` (prints the relay lines in a capture). See `../client-internals/relay-room-bridge.md`.
 - `lab-servers/` — our lab listserver (version 2, with tests), `run-lab.sh` and the gs2lib patch our GServer build carries. See `../server-notes/lab-servers-2026-10-30.md` for what our servers are and how they compare with GServer-v2 beta4.
 
 ## File-format helpers (`file-formats/`)
