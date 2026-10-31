@@ -16,7 +16,7 @@ Derived from the decompile corpus. Raw exports stay in `/shdecompiling/`. This n
 ## 1st Graal
 
 - 505 functions. No version token. No `GNW` string.
-- Default host `127.0.0.1`, port `14801` (same as the Java precursor).
+- Default host: the loopback address, port `14801` (same as the Java precursor).
 - Save format magic: `Graalsav1`.
 - Level names hard-coded: `level1.zelda`, `cave2.zelda`, `house1.graal`, `village1.zelda`, and others. Both extensions coexist.
 - Sign text present: `"Sign at ("`.

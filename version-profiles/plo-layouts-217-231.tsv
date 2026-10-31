@@ -1,5 +1,5 @@
 id	name	present_in	payload_fields	behaviour_and_version_notes	confidence
-25	SIGNATURE	all three	1 GCHAR v	v=1: client quits. v=0: client quits unless the connected host string is 127.0.0.1. Any other v: ignored. Value is stored in a global too. Identical in 2.31.	[dec]
+25	SIGNATURE	all three	1 GCHAR v	v=1: client quits. v=0: client quits unless the connected host string is the loopback address. Any other v: ignored. Value is stored in a global too. Identical in 2.31.	[dec]
 39	LEVELMODTIME	all three	raw rest, not parsed here	Handed unparsed to the active gmap/level object, only if one exists (needs active level set by 156/49). Identical in 2.31.	[dec]
 41	STARTMESSAGE	all three	raw text (RTF or HTML)	Trimmed; if it begins with the RTF header it is stored as servermessage.rtf else servermessage.html in the data dir; if identical to the stored copy nothing happens; otherwise file rewritten and shown in the start-message viewer (RTF) or loaded as lines (HTML). Identical in 2.31.	[dec]
 44	HASNPCSERVER	2.17,2.22 only	none	Sets a 'server has NPC server' flag via a method with arg 1. NOT handled in 2.31 (falls to the default arm).	[dec]

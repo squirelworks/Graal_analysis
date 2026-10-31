@@ -2,7 +2,7 @@
 
 ## Settled by this pass (for reference)
 - **`PLO_HIDENPCS` (151)** removes the NPCs with ids 1 to 999 of the active level. Id 0 is excluded. (Earlier note: "probably ids below 1000".)
-- **`PLO_SIGNATURE` (25)** value 1 makes the client quit. Value 0 makes it quit unless the connected host string is `127.0.0.1`. Any other value is ignored. Identical in 2.17.1, 2.22 and 2.31, and the id is handled from 2.00 on. The value 73 that public servers send at login ("more than eight players") is in the ignored group, so it never triggers the quit rule.
+- **`PLO_SIGNATURE` (25)** value 1 makes the client quit. Value 0 makes it quit unless the connected host string is the loopback address. Any other value is ignored. Identical in 2.17.1, 2.22 and 2.31, and the id is handled from 2.00 on. The value 73 that public servers send at login ("more than eight players") is in the ignored group, so it never triggers the quit rule.
 - **Tamper check:** how the 10 bytes are built (`01-tamper-check-id39.md`), and why 2.31 repeats it every 3.2 s (`03-periodic-ids-2.31.md`).
 - **2.00 login** and its allow-list requirement (`04-v2.00-client.md`).
 - **`PLI_ENTERLEVEL` (46)** (lab, batch b2): `GCHAR 1`, sent on every level entry, just before the props message with the cell prop (43/44) and wrapped coordinate. 2.31 does not re-send the tamper check at a crossing. **Batch c:** also sent on doors, edge links and server warps (2.31); 2.22 never sends it. Only a script-initiated warp is untested (`08-lab-findings-levelchange-24-178.md`).

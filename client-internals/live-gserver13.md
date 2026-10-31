@@ -67,7 +67,7 @@ The rights levels are no rights, Graalian Police, Trusted Admin and Administrato
   * `tools/kbfix.py` in the project files instead rewrites the format in memory to a full 256-key table right after start, before the client sets it. Walking then works.
   * Other Delphi builds that use the same DirectX header probably need the same fix at their own address.
 * **Display.** Run a window manager (openbox) on the Xvfb display. Set Wine's Direct3D renderer to `gdi`. With the GL renderer, each DirectDraw blit was very slow.
-* **Settings.** Edit `graalconfig.txt` (`gamemode=One Player Online`, `serveraddr=127.0.0.1`) rather than typing into the server combo box, which mangled the text.
+* **Settings.** Edit `graalconfig.txt` (`gamemode=One Player Online`, `serveraddr=<loopback>`) rather than typing into the server combo box, which mangled the text.
 
 ## Which builds start under Wine **[live]**
 

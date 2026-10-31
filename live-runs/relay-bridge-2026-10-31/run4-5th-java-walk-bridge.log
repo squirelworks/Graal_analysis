@@ -4,7 +4,7 @@
    65.68 c4 C>S b'NGraal3#def'
    65.68 c3 S>C b'I00000003'
    65.68 c4 S>C b'I00000004'
-  108.71 c5 OPEN '127.0.0.1:51688'
+  108.71 c5 OPEN '<loopback>:51688'
   127.02 c5 MAP 'G2level13.graal -> G3level13.graal'
   127.02 c5 C>S b'NG3level13.graal#def'
   127.02 c5 S>C b'I00000005'

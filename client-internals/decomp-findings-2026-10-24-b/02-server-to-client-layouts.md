@@ -15,7 +15,7 @@ Source: the receive dispatchers of the 2.17.1, 2.22 and 2.31 clients, read from 
 
 ## Layouts, short
 (see `version-profiles/plo-layouts-217-231.tsv` for the full text and version gates; "dec" = decoded from the binary)
-- 25 SIGNATURE: GCHAR v. v=1 quits; v=0 quits unless host is 127.0.0.1; other values ignored.
+- 25 SIGNATURE: GCHAR v. v=1 quits; v=0 quits unless host is the loopback address; other values ignored.
 - 39 LEVELMODTIME: raw rest passed to active gmap/level object (needs an active level).
 - 41 STARTMESSAGE: raw RTF/HTML text, cached as servermessage.rtf/.html, shown in viewer.
 - 44 HASNPCSERVER: no payload, 2.17/2.22 only, gone in 2.31.

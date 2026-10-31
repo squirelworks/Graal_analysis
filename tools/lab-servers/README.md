@@ -37,7 +37,7 @@ All three copy a packet order real 2.05 was already seen to accept; none adds be
 
 ### 1.33 to 1.39 on beta4 (2026-10-30)
 
-beta4's `generation` is server-wide and 1.x clients need `classic`, so the beta4 pack runs a second server folder, `servers/classic` ("Lab Classic", port 14803), beside the 2.x one. 1.33 to 1.39 have no listserver; they connect straight to `127.0.0.1:14803` ("One Player Online"). Starting from the `../../client-internals/versions-133-139.md` live check, four more problems turned up:
+beta4's `generation` is server-wide and 1.x clients need `classic`, so the beta4 pack runs a second server folder, `servers/classic` ("Lab Classic", port 14803), beside the 2.x one. 1.33 to 1.39 have no listserver; they connect straight to the loopback address on 14803 ("One Player Online"). Starting from the `../../client-internals/versions-133-139.md` live check, four more problems turned up:
 
 5. **Id 25 kicked 1.33 to 1.37** (their weapon upload). Code: accepted and ignored; the weapon stays on the client.
 6. **Prop 10 sent as a gani.** Code: a classic server sends the bow form.
@@ -82,7 +82,7 @@ Not covered: 6.00 beta2 (same token, so it gets the 5.24 slot; not run) and 6.00
 ## Our listserver (version 2)
 
 ```sh
-python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT] [--host 127.0.0.1]
+python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT] [--host <loopback>]
 ```
 
 Ports: 14900 for gservers, 14921, 14922 and 14923 for clients. Every client port accepts every login shape; the shape is read from the first message, not from the port.

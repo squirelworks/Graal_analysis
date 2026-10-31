@@ -14,7 +14,7 @@ The server list marks a 3D server by a `"3 "` prefix on its name (the "Graal 3D"
 
 So a Graal3D server is two servers on one host: a Graal gserver on TCP *P* and a Torque server on UDP *P* + 1. The client's own UDP port is random unless `$pref::Graal::fixedport` is set, in which case it is `fixedudpport` (default 14899). **[bin][file]**
 
-Seen live **[run]**: the real 5.12 client under Wine, told to join `"3 Seihai Test"` at `127.0.0.1:14800` (by calling its exported `connectToGraalServer(name, host, int port)` from an injected DLL, because no login server was available to list a 3D server). In the same millisecond it sent the Torque connect challenge to UDP 14801 and opened TCP 14800. The TCP side carried the ordinary 5.x login frame (`G3D14097`, account `guest`, then ids 37 and 23), the same bytes it sends to a 2D server.
+Seen live **[run]**: the real 5.12 client under Wine, told to join `"3 Seihai Test"` at the loopback address on `14800` (by calling its exported `connectToGraalServer(name, host, int port)` from an injected DLL, because no login server was available to list a 3D server). In the same millisecond it sent the Torque connect challenge to UDP 14801 and opened TCP 14800. The TCP side carried the ordinary 5.x login frame (`G3D14097`, account `guest`, then ids 37 and 23), the same bytes it sends to a 2D server.
 
 ## Torque packet framing
 

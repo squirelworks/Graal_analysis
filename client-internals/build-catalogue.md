@@ -26,13 +26,13 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | Archive | Release name | Compiled | FileVersion | MD5 | Size | Token | Gen | Server / list | Levels and saves | Notable |
 |---|---|---|---|---|---|---|---|---|---|---|
 | zeldaonline2 | Zelda Online (Java applet) | 1997–98 | – | – | – | none | text lines | host:14801 | `Z3-V1.02`/`1.03` | Java predecessor, see `zelda-online-1998.md` |
-| 1stgraal-1 | first Delphi beta | 1998-09-06 23:54 | – | 07452f8941fdfcdce878b035156e701c | 654336 | none | 1 | 127.0.0.1:14801 | Z3-V1.03/1.04 only; Graalsav1 | Two-player local game, no `.graal` loader yet, no DirectSound |
-| 2ndgraal | beta | 1998-09-16 01:33 | – | f74b35fc7975a4873087f7fd2aa1d79b | 777216 | none | 1 | 127.0.0.1:14801 | + GR-V1.00–1.01; Graalsav1 | First `.graal` loader |
-| 3rdgraal | beta | 1998-09-30 01:47 | – | fc78fbc96bdbc6ca22ae56d3ed8635ab | 665600 | none | 1 | 127.0.0.1:14801, dialog 14802 | GR-V1.00–1.01; Graalsav1 | Connect dialog gains a second port field (14802) |
+| 1stgraal-1 | first Delphi beta | 1998-09-06 23:54 | – | 07452f8941fdfcdce878b035156e701c | 654336 | none | 1 | the loopback address:14801 | Z3-V1.03/1.04 only; Graalsav1 | Two-player local game, no `.graal` loader yet, no DirectSound |
+| 2ndgraal | beta | 1998-09-16 01:33 | – | f74b35fc7975a4873087f7fd2aa1d79b | 777216 | none | 1 | the loopback address:14801 | + GR-V1.00–1.01; Graalsav1 | First `.graal` loader |
+| 3rdgraal | beta | 1998-09-30 01:47 | – | fc78fbc96bdbc6ca22ae56d3ed8635ab | 665600 | none | 1 | the loopback address:14801, dialog 14802 | GR-V1.00–1.01; Graalsav1 | Connect dialog gains a second port field (14802) |
 | 4thgraal | beta | 1998-10-05 01:33 | – | e040af2e19912419ab80aa6dd202b4ea | 666112 | none | 1 | as above | GR-V1.00–1.01; Graalsav1 | |
-| 4thgraalalpha | beta (alpha) | 1998-10-12 22:54 | – | 8cae23a58e1b1b10f3149bdbe53d0431 | 711680 | none | 1 | 127.0.0.1:14801 | GR-V1.00–1.01; Graalsav2 | Built after 4thgraal despite the name; DirectSound appears |
-| 5thgraal | beta | 1998-10-19 02:27 | – | 0e7c3573f0a916f8b2376060e768fe96 | 723968 | none | 1 | 127.0.0.1:14801, dialog 14802 | GR-V1.00–1.02; Graalsav2 | GR-V1.02 |
-| 5thgraalalpha | beta (alpha) | 1998-10-29 02:21 | – | e54397e7d4f59d30b77d5cf0475335a1 | 739840 | none | 1 | 127.0.0.1:14801 | GR-V1.00–1.02; Graalsav2 | Built after 5thgraal |
+| 4thgraalalpha | beta (alpha) | 1998-10-12 22:54 | – | 8cae23a58e1b1b10f3149bdbe53d0431 | 711680 | none | 1 | the loopback address:14801 | GR-V1.00–1.01; Graalsav2 | Built after 4thgraal despite the name; DirectSound appears |
+| 5thgraal | beta | 1998-10-19 02:27 | – | 0e7c3573f0a916f8b2376060e768fe96 | 723968 | none | 1 | the loopback address:14801, dialog 14802 | GR-V1.00–1.02; Graalsav2 | GR-V1.02 |
+| 5thgraalalpha | beta (alpha) | 1998-10-29 02:21 | – | e54397e7d4f59d30b77d5cf0475335a1 | 739840 | none | 1 | the loopback address:14801 | GR-V1.00–1.02; Graalsav2 | Built after 5thgraal |
 | 6thgraal | beta5 | 1998-11-09 02:08 | – | 53c3caf3d930534db3f44f346f5d651a | 750080 | none | 1 | the loopback address:14801, dialog 14802 | GR-V1.00–1.02; Graalsav3 | Published by Cyberjoueur; web levels from <cyberjoueur-host> |
 | 7thgraal | beta7 | 1998-12-04 00:28 | – | deb40c31268e499fc4436b8d0687f05d | 766976 | none | 1 | as above | GR-V1.00–1.03; Graalsav4 | First GR-V1.03 (the last `.graal` revision any build here reads) |
 | 8thgraal | beta8 | 1998-12-08 01:13 | – | a49aa1b773e41741f211867fd5ea55d7 | 775680 | none | 1 | as above | GR-V1.00–1.03; Graalsav4 | |
@@ -51,7 +51,7 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | graal13b | v1.3 test | 1999-11-29 02:03 | – | b62aaa4d606a519e7f4689b33983429b | 1311744 | `GSERV014` | 2 | <list-host-classic>:14804 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | Alignment system; levels cached on disk (web-level cache seed first appears); ships GServer13 (accepts 007–014) |
 | graal131 | V1.31 | 1999-12-07 02:56 | – | bff87a95a34399b2d35b243f281169a7 | 1318400 | `GSERV016` | 2 | <list-host-classic>:14900 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | Default port moves to 14900; UDP options (`noudp`, fixed port 14899) |
 | graal132 | V1.32 | 2000-01-12 01:13 | – | 42b2596af4b75bcf82db03e0fc274f7d | 1328128 | `GSERV018` | 2 | <list-host-classic>:14900 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | Double-click fullscreen |
-| graal3d | Graal3D | 2000-02-05 01:57 | – | 305c985a020cec6ab8d81ac95d447343 | 605184 | none | own | 127.0.0.1:14901 (UDP 14898) | none | Separate 3D client plus its own GServer.exe (14901); zlib linked, no Graal level loaders |
+| graal3d | Graal3D | 2000-02-05 01:57 | – | 305c985a020cec6ab8d81ac95d447343 | 605184 | none | own | the loopback address:14901 (UDP 14898) | none | Separate 3D client plus its own GServer.exe (14901); zlib linked, no Graal level loaders |
 | graal133 | V1.33 | 2000-02-21 00:36 | – | a3667ce55a5c67cf025882014b9540b0 | 1350144 | `GNW20020` | 2 | <list-host-classic>:14900 | GR-V1.00–1.03; carries Graalsav9/Graalsv10/Graalsv11 (string scan) | First GNW token; PNG support; 4-section player list |
 | graal134 | V1.34 | 2000-03-23 00:38 | – | 9e403616e73a6079ac37d65d475c81cd | 1349632 | `GNW22030` | 2 | as above | GR-V1.00–1.03; carries Graalsav9/Graalsv10/Graalsv11 (string scan) | Script debugger (F6); MNG appears |
 | graal135 | V1.35 | 2000-04-13 23:17 | – | fe9d99c4bf6e6bc9b1b127823f39646f | 1389568 | `GNW13040` | 2 | as above | GR-V1.00–1.03; carries Graalsav9/Graalsv10/Graalsv11 (string scan) | |

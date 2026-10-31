@@ -31,7 +31,7 @@ is paraphrased; nothing here comes from a binary unless marked **[checked]**.
 
 The doc does not give packet ids or a port. From other threads: NPC Control
 1.3 talks of port **14950** on the NewWorld host and admin level ≥ 4, and RC 1.41
-logs into the NPC server with `NCL11012` on default **127.0.0.1:14804**.
+logs into the NPC server with `NCL11012` on default the loopback address on **14804**.
 **[checked]** `RemoteControl.exe` contains `NCL11012`, `14804`,
 `Connected to NPC-Server`, and UI strings `Add NPC`, `Add Class`, `Classes`,
 `NPC List`, `NPC Level List`, `Script from Class`. These match the PM commands in

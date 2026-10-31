@@ -101,7 +101,7 @@ The same prop ids are used in both directions and inside UDP. A props payload is
 | 13 | `str` (≤ 200) | chat text | – | yes |
 | 14 | `str` | level file | `level1.x` (client), `startlevel.x` (server) | no (a client that sends it only changes the stored value, see below) |
 | 15 | `s3` | UDP port, 0 = none | 0 | yes (its own bound port) |
-| 16 | 5 bytes: 4 bits then 4 × 7 | IPv4 address: the in-memory `in_addr` word read as a little-endian integer, so 127.0.0.1 is 0x0100007F and goes out as `0 (  \x9f` **[cap]** | – | no (the server fills in the TCP peer address) |
+| 16 | 5 bytes: 4 bits then 4 × 7 | IPv4 address: the in-memory `in_addr` word read as a little-endian integer, so the loopback address is 0x0100007F and goes out as `0 (  \x9f` **[cap]** | – | no (the server fills in the TCP peer address) |
 | 17 | 4 × 6 bits | hand colour | `FDCC47` | yes |
 | 50 | `c` | 1 = this player is in your level (add as UDP peer), 0 = not | – | server only |
 | 51 | none | player left: remove | – | server only |

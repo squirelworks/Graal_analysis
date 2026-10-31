@@ -1,7 +1,7 @@
 #!/bin/sh
 # Start the lab listserver (14900 for the gserver, 14921/14922/14923 for clients)
 # and GServer-v2 beta4 (with gserver-beta4-lab.patch): servers/default (2.x) on
-# 127.0.0.1:14802 and servers/classic (1.33 to 1.41r1, generation classic) on 14803.
+# the loopback address:14802 and servers/classic (1.33 to 1.41r1, generation classic) on 14803.
 # Logs go to ./logs. Stop with: ./run-lab.sh stop
 # If accounts.txt exists ("account password" per line), only those accounts may log in.
 D=$(cd "$(dirname "$0")" && pwd)

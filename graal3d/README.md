@@ -35,7 +35,7 @@ There are no `.graal`/`.nw` loaders, no GANI, no tiles and no NPC scripting in e
 | Class | Purpose |
 |---|---|
 | `TAdventure` | Main window: the 3D view, a chat edit line, the frame timer. Ctrl+Enter toggles fullscreen, Esc quits, F1 and F2 open the two option windows. Enter in the chat line sets the chat text. |
-| `TConnectFrame` | Start window: nickname (default `Stefan`), host (default `127.0.0.1`), port `14901`, account and password (both `guest`). |
+| `TConnectFrame` | Start window: nickname (default `Stefan`), host (default: the loopback address), port `14901`, account and password (both `guest`). |
 | `TMoreOptions` | "Hardware options": fixed UDP port (default 14898) and "Don't use UDP". |
 | `TEditLook` | "Player look": `bodyx`, `headx`, `bodytex`, arm, shoe and hand colours. |
 
