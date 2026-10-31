@@ -104,6 +104,34 @@ A second lab, run in a cloud container: Wine 9, Xvfb, a loopback-only net and mo
 
 Seihai's write-up, with the fixes this run led to (X2/Y2 walk, `client.` flags only), is in seihai `documentation/v4-profiles.md`. The logs are in the project folder under `v4/lab-4x-live-2026-10-31/`.
 
+## Third run, 2026-10-31: update packages, frames, focus and the walk in detail
+
+The same lab, rebuilt in a fresh container (stock 4.04r2, seihai-lab pack with stock gs2lib, `warpproxy.py` on 14900). Logs are in the project folder under `v4/lab-4x-after-login-2026-10-31/`. **[live]**
+
+* **Update packages.**
+  * With no copy, the client asks `basepackage.gupd` with C→S 23, twice.
+  * With the server serving it, the client saves it in `updatepackages/basepackage.gupd`. On the game server it also saves a copy in `updatepackages/<server name, space as %032>/` (`Lab%032Server`).
+  * On the next run of the program it sends **C→S 47 (`VERIFYWANTSEND`)** twice instead: a GUINT5 CRC-32 of the cached file, then the name. For `GRPKG001` and a newline that is `!MCt'basepackage.gupd`, CRC 0x15a8ea07.
+  * Within one run it keeps asking with 23 (its in-memory copy is not checked). This is the same rule 5.00r7 follows (`#145`).
+* **`bigmap.txt`** is asked once per run of the program. It is asked on the Login server and not after the warp.
+* **The after-burst messages** come in four frames a few milliseconds apart:
+  * 23 `idle.gani` and 157 `idle`
+  * the head image, 152 ×2 and 154 ×2
+  * 46
+  * 44, the default weapons' images, 2 (own props), 24, then 34 `pics1.png`
+
+  157 is `PLI_UPDATEGANI`: a GUINT5 checksum (0, since the client has no copy), then the name. It goes with each 23 for a GANI (`idle`, `walk`, `sword`, `shoot`), once per connection.
+* **Nickname.** Prop 0 in the own props is the start screen's Nickname field (`Real404`), not the account.
+* **Walk.**
+  * The first step sends `GANI walk` and SPRITE, then the moving axis (X2 or Y2).
+  * Each 50 ms tick sends only the axes that moved: both X2 and Y2 on a diagonal (`n*@o)@`), and only the first axis in the very first message.
+  * `idle` goes out alone one tick (50 ms) after the last step.
+  * Every step is 8 px.
+* **Focus.** Losing the window focus sends C→S 2 STATUS 21. Getting it back sends 20. No position goes with either. **[live]**
+* **24** is `GCHAR 9` every 5.142 to 5.151 s while alone in the level. A tick can carry it in a walk frame.
+
+Seihai's 4.x profiles now send all of the above except the GUI image checks (squirelworks/seihai#295).
+
 ## Not covered yet
 
 * The client's own ganis, from a 4.x-era server rather than the 2.22 world, to compare the look.
