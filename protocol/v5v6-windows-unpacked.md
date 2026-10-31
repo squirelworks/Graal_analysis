@@ -51,11 +51,11 @@ Every build logs in by itself as guest once it reaches the login screen. The fir
 `5` + key + token + `GCHAR len` + account + `GCHAR len` + password + a comma list:
 
 ```
-%kG3D14097%guest<len><guest password>win,<md5>,<md5>,<md5>,"6.2 9200 "
+%kG3D14097%guest(7Y3bdzjfwin,<md5>,<md5>,<md5>,"6.2 9200 "
 ```
 
 - **The key byte is sent as a GCHAR.** The wire byte minus 32 is the cipher key (`k`, 0x6B, on the wire above means key 0x4B). Wire bytes above 0x7F occur (0x98, 0x99), since the key itself goes up to 0x7F. **[cap]**
-- **Guest login:** account `guest`, password **`<guest password>`** (the value is kept in the private corpus only) in every Windows build here. This is the plain form of the 8-byte guest password the Linux 6.x builds decrypt at run time. **[cap][inf]**
+- **Guest login:** account `guest`, password **`7Y3bdzjf`** in every Windows build here. This is the plain form of the 8-byte guest password the Linux 6.x builds decrypt at run time. **[cap][inf]**
 - **Machine fields:** `win`, then the MD5 hex of the Windows product id, of the network adapter MAC and of the `C:\` volume serial, as in 5.00r7, then **a fifth field**, the quoted Windows version `"<major>.<minor> <build> <service pack>"` (here `"6.2 9200 "`, which is what Windows 8 and later report to an exe without a manifest). The product-id hash differs between 5.12 and 5.24+, because 5.24 also reads `DigitalProductId4`. **[cap][bin]**
 - Then **37** (language, `English`), and file requests: **23** `basepackage.gupd` (twice), then `arial.ttf`, `bigmap.txt` or `minimap.txt` depending on the build, and **34** (file request with a modification time) for `guigames_arcmessage2.png`. **[cap]**
 
