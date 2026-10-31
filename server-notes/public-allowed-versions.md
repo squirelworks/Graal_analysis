@@ -11,7 +11,7 @@ Tags: **[cap]** seen in a public run's output · **[src]** read in GServer-v2 or
 | 2026-10-29 | Graal the Adventure, `2gta.home.eevul.net:14913` | GServer-v2, listed as "Beta Version: 4.0.0" | Seihai, 2.3 profile (`GNW14015`) | `Your client version is not allowed on this server.` / `Allowed: 2.22, 5.07` |
 | 2026-10-30 | "S2" (host not recorded) | gs2, signature 73 | Seihai, 2.05 profile (`GNW03081`) | `Your client version is not allowed on this server. Allowed: 2.22, 1.41r1 - iPhone Belote 1.5` |
 
-- The 2gta line is from the user's terminal on GwenTea2, run `debug-20261029-101954`. The same server took the 2.22 profile (`GNW03014`) in every other run that day. **[cap]** The packet logs of that run hold only ids and lengths, so the terminal is the only record of the text.
+- The 2gta line is from the user's terminal on a personal lab host (hostname redacted), run `debug-20261029-101954`. The same server took the 2.22 profile (`GNW03014`) in every other run that day. **[cap]** The packet logs of that run hold only ids and lengths, so the terminal is the only record of the text.
 - The S2 line is from the public game-server check, `public-checks/public-gserver-2026-10-30.md` in the project folder (also `documentation/public-gserver-2026-10-30.md` in Seihai). **[cap]**
 - GServer-RS ("S1") closed a 2.05 login with no message, so it gave no list. **[cap]**
 
