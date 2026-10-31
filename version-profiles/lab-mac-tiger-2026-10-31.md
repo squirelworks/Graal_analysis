@@ -10,12 +10,12 @@ MD5 28b3352b8b125469f23ed9c3e386f4a3, matches archive.org) in `qemu-system-ppc 8
 in the cloud container. Server: `seihai-lab/servers/seihai-lab-servers.tar.gz` (GServer-v2 efb5b90)
 started with `./run-lab.sh stock`, `G3D27076` added to `allowedversions.txt`, the gserver's `listport` and
 the lab listserver moved to 14899. `scripts/warpproxy.py` (the 6.x lab proxy, warp host changed to the
-qemu host address 10.0.2.2) listened on 14900; the guest's `/etc/hosts` pointed
-`loginserver{,2,3}.graalonline.com` at 10.0.2.2, as in the 4.04r2 Wine lab. Account `seihaimac`, throwaway password.
+qemu host's address as seen from the guest) listened on the login server port; the guest's `/etc/hosts` pointed
+the built-in login server names at the qemu host, as in the 4.04r2 Wine lab. The lab account, throwaway password.
 
 ### Login line (captured, `run2.pcap`, `proxy.log`)
 
-    %  <key>  G3D27076  )seihaimac  'labpass  mac,"",a87b712247c6c9068448ba8c2f68a24b,""\n
+    %  <key>  G3D27076  <GSTR account>  <GSTR password>  mac,"",a87b712247c6c9068448ba8c2f68a24b,""\n
 
 - id 5, then the key byte, the token `G3D27076`, account and password as GSTR, then the comma list.
 - Four comma fields: `mac`, `""`, a 32-hex MD5, `""`. The same line was sent on both connections (Login server and after the 178 warp).
@@ -26,7 +26,7 @@ qemu host address 10.0.2.2) listened on 14900; the guest's `/etc/hosts` pointed
 
 ### Client sends seen (C→S ids)
 
-Session 1 (Login server, before the warp) and session 2 (after the 178 warp to `0,Lab Server,10.0.2.2,14900`):
+Session 1 (Login server, before the warp) and session 2 (after the 178 warp to `0,Lab Server,HOST,PORT`):
 
 | id | what | when |
 |---|---|---|
@@ -57,7 +57,7 @@ through all of them, including 41 (no case in the static read).
 ### Notes and caveats
 
 - **qemu has no 3D**: the client asks AGL for `RGBA, DOUBLEBUFFER, ACCELERATED (0x49), NO_RECOVERY (0x48), DEPTH 32/16`
-  (static: `FUN_0018acbc` in `mac420.c`) and stops with "Could not find valid pixel format" (`console-unshimmed-run.log`).
+  (static: the engine's pixel-format setup in the Mac binary) and stops with "Could not find valid pixel format" (`console-unshimmed-run.log`).
   `aglshim.c`, built in the guest with the DVD's gcc 4.0, is injected with `DYLD_INSERT_LIBRARIES` and drops only those
   two attributes, so Apple's software renderer is used. The executable and its signature files are untouched.
 - First try was on the beta4 pack: GServer-v2 beta4 **segfaulted** (strlen on NULL in libc) on this login
@@ -72,9 +72,9 @@ the same Tiger 10.4 qemu guest as the 4.20r6 run (the 4.20r6 section above), wit
 `aglshim.dylib` (drops only AGL_ACCELERATED and AGL_NO_RECOVERY so the software renderer is used).
 Servers: `seihai-lab-servers.tar.gz` (GServer-v2 efb5b90) with `./run-lab.sh stock`, `G3D28015` added to
 `allowedversions.txt`. The lab listserver (`listserver-lab-qemu.py`) is the pack's, with two lab edits: its gserver port
-moved to 14899, and the server entry's address is given as `10.0.2.2:14910` (the qemu host and the logging proxy) in
-place of 127.0.0.1. The guest's `/etc/hosts` pointed `listserver{,2,3}.graalonline.com` at 10.0.2.2.
-`warpproxy.py` ran with `NOWARP=1` on 14910 → 14802 (no 178 injection). Account `seihaimac`, throwaway password.
+moved, and the server entry's address is given as `HOST:PORT` of the qemu host and the logging proxy in
+place of the loopback address. The guest's `/etc/hosts` pointed the built-in listserver names at the qemu host.
+`warpproxy.py` ran with `NOWARP=1` in front of the gserver (no 178 injection). The lab account, throwaway password.
 
 ### Listserver
 
@@ -85,7 +85,7 @@ account. The client showed the server list (tab "Hosted") and connected from it.
 
 First frame (plain zlib), four messages in one frame:
 
-    5   %<key>G3D28015)seihaimac'labpass
+    5   %<key>G3D28015<GSTR account><GSTR password>
     37  English
     34  #\x9dyO$bigmap.txt     34  #\x9dyO$minimap.txt     (then both again)
 
