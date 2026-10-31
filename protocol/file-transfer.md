@@ -50,12 +50,32 @@ What such a client gets, from GServer-v2 `efb5b90` (`TPlayer::sendFile`, `msgPLI
 
 ### The 5.24 "PNG as file name" bug
 
-- Stock gs2lib has no `G3D15010` (5.24r3, 5.24r4, 6.00 beta2) and no `G3D03048` (6.00 beta1), so GServer serves those builds every pre-2.1 path (`server-notes/lab-servers-2026-10-30.md`). **[srv]**
+- Stock gs2lib has no `G3D15010` (5.24r3, 5.24r4, 6.00 beta2) and no `G3D03048` (6.00 beta1), so GServer serves those builds every pre-2.1 path. Read in gs2lib `5c36ab8` (the version GServer beta4 fetches; see the table below). **[src]**
 - The client always reads `PLO_FILE` as `i5 modtime` + `str filename` + data. Given the old layout, it takes the length byte and the first 4 characters of the name as the modtime, and the 5th character as the name length. **[srv][inf]**
 - For `sword1.png` that is `*swor` as the modtime and `d` (68) as the length, so the "name" is `1.png` followed by 63 bytes of PNG data. That is the lab message "Couldn't open …1.png‰PNG… for writing". **[cap]** for the message, the byte walk is worked from the server code.
 - With a gs2lib copy that knows `G3D15010`, the same server sent 5.24r4 `&w1vH)state.png‰PNG…` (GINT5 modtime, then the name) and the client saved the files normally (v5x lab proxy log 2026-10-30b, connection c6). **[cap]**
 
-**Rule.** A server for 5.x and 6.x clients must know every token it allows, and must put each at or above `CLVER_2_14`, so that files carry the modtime and large files come in chunks. The lab got there by renaming one entry of the table to `G3D15010` (`G3D26090` in the v5 lab, `G3D14097` in the "Play v5 and v6 clients" lab, see `version-profiles/lab-v5-2026-10-30.md` and `v5v6-lab-play.md`). Either works for 5.24 because both slots are far above 2.14, but it takes the renamed build off the table (5.30–6.00r4 or 5.12). Adding the token as a new entry is the clean fix. **[srv][inf]**
+### gs2lib's version table **[src]**
+
+Read in gs2lib `5c36ab8` (`src/IUtil.cpp` `clientVersions[]`, `include/IUtil.h` `CLVER_*`):
+
+- `getVersionID` walks `clientVersions[]` and returns the **index** of the first exact match, or `CLVER_UNKNOWN` (0). The index is the `CLVER_*` value. So a token's rank is simply its position in the array, and every `versionID < CLVER_x` test in GServer compares positions.
+- The 5.x/6.x part of the table, in order:
+
+| Token | Enum | Build |
+|---|---|---|
+| `G3D22067` | `CLVER_5_07` | 5.00r7 |
+| `G3D14097` | `CLVER_5_12` | 5.12 |
+| `G3D26090` | `CLVER_5_31x` | 5.30r3, 5.31r4, 6.00r2, 6.00r4 |
+| `G3D3007A` | `CLVER_6_015` | 6.01x (no lab build) |
+| `G3D2505C` | `CLVER_6_034` | 6.034/6.035 |
+| `G3D0311C` | `CLVER_6_037` | 6.03r7 Windows |
+| `G3D0511C` | `CLVER_6_037_LINUX` | 6.03r7 Linux |
+
+- `G3D15010` and `G3D03048` appear nowhere in the source. All 5.x/6.x entries sit far above `CLVER_2_14`.
+- The array and the enum must stay in step: an entry added to one without the other shifts every later version id.
+
+**Rule.** A server for 5.x and 6.x clients must know every token it allows. Every 5.x/6.x slot in the table is above `CLVER_2_14`, so any of them gives files with the modtime and large files in chunks. **[src]** The lab got there by renaming one entry to `G3D15010` (`G3D26090` in the v5 lab, `G3D14097` in the "Play v5 and v6 clients" lab, see `version-profiles/lab-v5-2026-10-30.md` and `v5v6-lab-play.md`). Each rename takes the renamed build off the table (5.30 to 6.00r4, or 5.12). The clean fix is a new `CLVER_5_24` between `CLVER_5_12` and `CLVER_5_31x`, added to both the array and the enum. **[src]** for the table, **[inf]** for the placement: it follows the build dates, and no original server's table was seen. Where 5.24 sits matters only for tests against `CLVER_5_*` or `CLVER_6_015`; GServer `efb5b90` has one (`versionID < CLVER_6_015` in `TPlayerLogin.cpp`), and 5.24 is below `CLVER_6_015` in either slot, so it takes the same branch.
 
 **Client side.** A client cannot tell the server which layout to use. Seihai reads with the profile's layout first and, if the name comes out with control bytes, no dot, or longer than the message, reads the other layout and keeps it for the connection (Seihai `documentation/file-cache.md`). **[inf]**
 
