@@ -294,7 +294,7 @@ General flags:
 .TS
 l l.
 arrays.dat	11500 bytes, sorted dwords, count word 0x03A6
-arrays2.dat	listserver.graalonline.com:14922 and two fallbacks
+arrays2.dat	<list-host-3x>:14922 and two fallbacks
 arrays2.sig	0x80-byte signature
 graaleditor.sig	0x80-byte signature
 hvdi.dll	bundled helper, not the editor core

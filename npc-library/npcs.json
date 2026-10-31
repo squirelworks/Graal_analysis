@@ -66041,7 +66041,7 @@
    "id": "npc-2790",
    "hash": "ca9cdcc0f6c5",
    "image": "warpdoor.gif",
-   "script": "if (playertouchsme) { set StartLoadHome; say 4; } if (playerendsreading && StartLoadHome) { unset StartLoadHome; openurl www.graalonline.com; } >?",
+   "script": "if (playertouchsme) { set StartLoadHome; say 4; } if (playerendsreading && StartLoadHome) { unset StartLoadHome; openurl <list-host-classic>; } >?",
    "events": [
     "playertouchsme",
     "playerendsreading"

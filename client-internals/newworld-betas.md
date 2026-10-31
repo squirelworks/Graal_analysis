@@ -163,7 +163,7 @@ They keep 0 and 10–15 and 18 up to the end of the range. nwb2 keeps the 2.1 ad
 
 ## List server
 
-Both betas hide the list-server host with the same DES string as 2.05 (`www.graalonline.com`; see `des-and-hidden-strings.md`). They build the port and list name one character at a time, as 2.05 does:
+Both betas hide the list-server host with the same DES string as 2.05 (`<list-host-classic>`; see `des-and-hidden-strings.md`). They build the port and list name one character at a time, as 2.05 does:
 
 | Build | Port | List name sent with id 0 |
 |---|---|---|

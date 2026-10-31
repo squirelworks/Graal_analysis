@@ -29,8 +29,8 @@ Usage: python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT]
 """
 import argparse, asyncio, bz2, struct, time, zlib
 
-SITE_URL = b'http://www.graal.in/'
-UPGRADE_URL = b'http://www.graal.in/upgrade'
+SITE_URL = b'http://<www-graalin-site>/'
+UPGRADE_URL = b'http://<www-graalin-site>/upgrade'
 
 # Client to listserver ids, and listserver to client ids.
 PLI_V1VER, PLI_SERVERLIST, PLI_V2VER, PLI_V2SERVERLISTRC, PLI_V2ENCRYPTKEYCL = 0, 1, 4, 5, 7

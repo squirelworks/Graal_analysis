@@ -25,7 +25,7 @@ The 5.00r7 folder had been used by a player and later updated by the auto-update
 
 ## License file and signatures
 
-- `license/license.graal` is still a CRLF text file: host, port, site name, signup URL, translate URL, then two fallback hosts. The stock values are `loginserver.graalonline.com`, port **14900**, with `loginserver2`/`loginserver3` as fallbacks (the same as 4.20). At least 5 lines are required. Line 2 has a suffix appended. **[bin][file]**
+- `license/license.graal` is still a CRLF text file: host, port, site name, signup URL, translate URL, then two fallback hosts. The stock values are `<login-host-4x>`, port **14900**, with `loginserver2`/`loginserver3` as fallbacks (the same as 4.20). At least 5 lines are required. Line 2 has a suffix appended. **[bin][file]**
 - There are **four files**, as in 4.20 for Windows: `sig.graal` signs the launcher executable, `sig.graallib` signs `GraalEngine.dll`, and `sig.license` signs `license.graal`. Each is RSA-1024 with PKCS#1 v1.5 over SHA-1, e = 17, using the **same public key as 3.x and 4.x**. **[bin]**
 - The engine checks the files in this order: all four present, then exe → DLL → license, and it **stops on any failure** ("The license file(s) have not been found." / "The license file is invalid."). The 4.20r8 Windows engine checks the same chain and also stops on failure. **[bin]**
 
@@ -35,7 +35,7 @@ The 5.00r7 folder had been used by a player and later updated by the auto-update
   1. A conditional jump becomes unconditional, so the "files not found" exit is skipped.
   2. A conditional jump becomes unconditional, so the "license is invalid" exit is skipped.
   3. A 6-byte conditional jump becomes NOPs, which removes the "at least 5 lines" check.
-- So the patched client accepts any `license.graal`, including a missing or bad signature. In this folder the file had been edited to point at a private LAN host on port 14900, with `.graal.in` fallbacks, which suggests a private or emulated login server. **[file][inf]**
+- So the patched client accepts any `license.graal`, including a missing or bad signature. In this folder the file had been edited to point at a private LAN host on port 14900, with `.<graalin-site>` fallbacks, which suggests a private or emulated login server. **[file][inf]**
 - None of the three signature files in the folder match the files beside them. The signatures decode to a valid SHA-1 DigestInfo, so they belong to other file versions. **[bin][file]**
 - `Graal5 CRC Patch.exe` itself is a small Delphi program packed with UPX 0.72, which is too old for current UPX to unpack. It wasn't unpacked; the byte diff above shows what it does. **[bin]**
 

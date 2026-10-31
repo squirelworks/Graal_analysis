@@ -38,15 +38,15 @@ The builds fall into eleven eras. Inside an era the clients share their engine a
 |---|---|---|---|---|---|---|
 | Z | none | text lines | `host:14801` | text lobby lines | – | none |
 | A | none | 1 (no zlib) | connect dialog, `127.0.0.1:14801`, Cyberjoueur relay 14802 | relay lobby `N/P/C/D` lines, `D` payload types per build | relay `D` types | GS1-like, `this.` vars from 1.1 beta1 **[bin][doc]** |
-| B | `GSERV007`–`018` (a protocol revision, not a date) | 2 (zlib, no cipher) | connect dialog, `www.graalonline.com:14804`, `:14900` from 1.31 | GSERV id ranges (`gserv-1999.md`) | – | GS1, NPC weapons from 1.21 |
+| B | `GSERV007`–`018` (a protocol revision, not a date) | 2 (zlib, no cipher) | connect dialog, `<list-host-classic>:14804`, `:14900` from 1.31 | GSERV id ranges (`gserv-1999.md`) | – | GS1, NPC weapons from 1.21 |
 | 3D0 | `GR3DV002` | own (2D codec, no key byte) | `127.0.0.1:14901`, UDP 14898 peer to peer | own renumbered ids | 3D floats, 24-bit colours | none |
-| C | `GNW` + date (`GNW20020` … `GNW07080`) | 2 | connect dialog `www.graalonline.com:14900`, guest/guest | 1.33: S→C 0–41, 100; C→S 0–31; grows to 45 / 35 ids by 1.39 | own 0–33/34, others 21–23 ids | GS1, 88 → 111 commands |
+| C | `GNW` + date (`GNW20020` … `GNW07080`) | 2 | connect dialog `<list-host-classic>:14900`, guest/guest | 1.33: S→C 0–41, 100; C→S 0–31; grows to 45 / 35 ids by 1.39 | own 0–33/34, others 21–23 ids | GS1, 88 → 111 commands |
 | D | `GNW13110` | **3** (key byte + LCG insertion) | first server-list window | +1.41 deltas | props to 36 | GS1, 126 commands |
 | E | `GNW08011` … `GNW03081`; NW betas `G2N15041`; 2.1 tests keep `GNW03081` | 3 | listserver, host DES-hidden from 2.00, `:14921` (2.1 tests `:14922`) | 2.05: 59 S→C ids | to 42 (2.05), 50, 51 | GS1 134 → 161 commands, ganis from 1.42 |
 | F | `GNW31101` (2.1) … `GNW22122` (2.17) | 3 | 2.17: signed `arrays2.dat`, id 0 then id 1 | 2.17: 79 S→C, 61 C→S; TAMPERCHECK (39) from 2.17 | to 74 (gani attrs `#P10`–`#P30` from 2.16) | GS1 + gani scripts (2.1), `this.` client strings (2.19) |
 | G | `GNW03014`, `GNW14015`, `GNW28015`; list `GNW30123` | **5** (compression byte, partial XOR, bz2) | listserver id 7 `GNW30123newmain` | 2.22: 80, 2.31: 81 | to 74 (2.22), 80 with X2/Y2/Z2 (2.31) | GS1; classic client-side NPC mode removed in 2.3 |
-| H | `G3D03014`, `G3D28015`; list `G3D30123` | 5 | RSA-signed `license.graal` → `listserver.graalonline.com:14922` | 79 (3.04), 88 (3.153) | as G | GS1 native + TorqueScript `.dso` for menus; NPC bytecode ids (3.153) |
-| I | `G3D17026`, `G3D27076`, `G3D20126` | 5 | `license.graal` → `loginserver.graalonline.com:14900`; server named `Login`, no separate list protocol | 98–101 | – | GS2 bytecode, server-pushed ganis (195), update packages `GRPKG001` |
+| H | `G3D03014`, `G3D28015`; list `G3D30123` | 5 | RSA-signed `license.graal` → `<list-host-3x>:14922` | 79 (3.04), 88 (3.153) | as G | GS1 native + TorqueScript `.dso` for menus; NPC bytecode ids (3.153) |
+| I | `G3D17026`, `G3D27076`, `G3D20126` | 5 | `license.graal` → `<login-host-4x>:14900`; server named `Login`, no separate list protocol | 98–101 | – | GS2 bytecode, server-pushed ganis (195), update packages `GRPKG001` |
 | J | `G3D22067`, `G3D14097`, `G3D15010`, `G3D26090` | 5 | as I; from 5.24 the hosts are compiled in, no license file | 95–100 | – | GS2, `GRESCR01` script cache; anti-cheat process scan (182/183) |
 | K | `G3D0108A`/`G3D0511C` (Linux), `G3D0311C` (Win 6.03); 6.11 set by script | 5; 6.11 can switch to a **script-defined** header with RC4/AES/TLS | compiled-in `loginserver*:14900`; 6.11 HTTPS connector to `con.quattroplay.com` | 91–97 | – | GS2; in 6.11 even the packet id tables come from the server's script |
 

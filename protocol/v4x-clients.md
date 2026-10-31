@@ -27,7 +27,7 @@ So the line is: 2.x is Delphi only, 3.x is a Torque C++ monolith, and 4.x is a D
 
 ## Login server and `license.graal`
 
-- The host comes from `license/license.graal`, as in 3.x. The 4.20r6 file reads `loginserver.graalonline.com`, port **14900**, `Graalonline.com`, the signup URL, the translate URL, then `loginserver2.graalonline.com` and `loginserver3.graalonline.com`. (3.x: `listserver.graalonline.com:14922`.) Lines used: 0 host, 1 port, 2 site name, 3 signup URL, 4 translate URL, 5 and 6 fallbacks. **[file][bin]**
+- The host comes from `license/license.graal`, as in 3.x. The 4.20r6 file reads `<login-host-4x>`, port **14900**, `<graalonline-site>`, the signup URL, the translate URL, then `<login-host-4x-2>` and `<login-host-4x-3>`. (3.x: `<list-host-3x>:14922`.) Lines used: 0 host, 1 port, 2 site name, 3 signup URL, 4 translate URL, 5 and 6 fallbacks. **[file][bin]**
 - **There is no separate listserver protocol any more.** The client connects to the license host as an ordinary game server named `Login`, with the normal game login below; the server list is served inside that session. If it fails, the next host in the list is tried. **[bin]**
 - Signatures use the **same RSA-1024 key as 3.x** (PKCS#1 v1.5 over SHA-1, e = 17, the key embedded as hex DER). The Mac `sig.license` verifies against `license.graal` and `sig.graal` against the Mac executable. **[bin][file]**
 - Windows adds a fourth file, **`license/sig.graallib`**, the signature of `GraalEngine.dll`. The check runs in order: exe, then DLL (Windows only), then license. Any missing file stops the client with "The license file(s) have not been found", and any bad signature stops it before the license is read. The Mac client checks exe and license the same way. **[bin]**
@@ -151,7 +151,7 @@ In this installer the stub is `0xDE`, the directory is `0xD7`, and the file bloc
 
 - `Graal4.exe` (Delphi launcher), `GraalEngine.dll` (linked 3 March 2006, about 1,650 exports), `fmod.dll` (UPX), `ExeReplacer_temp.exe` (August 2005, the Windows twin of the Mac `ExeReplacer`), and `graalv4_installfiles.txt`, a list of the installed files. **[bin][file]**
 - **`Graal3DEngine.dll`** (linked 3 March 2006): the Torque 3D world as a separate DLL (details below). It exports `loadGraal3DEngine`, `runGraal3DEngine` and `endGraal3DEngine`, and imports 623 symbols from `GraalEngine.dll`. Its source paths are `K:\src\graalv4\user\engine\…` (Torque's `console`, `core`, `dgl`, `game/net`, …). So 3D is a plug-in on top of the 2D engine in 4.x; the 4.20r8 packet-logger set does not include this DLL. **[bin]**
-- `license.graal` is byte-identical to the Mac 4.20r6 one (`loginserver.graalonline.com:14900`). `levels/`, `levels3d/gui`, `levels3d/help`, `languages3D/` and `sounds/` match the Mac 4.20r6 tree; `pics1.png` is byte-identical. **[file]**
+- `license.graal` is byte-identical to the Mac 4.20r6 one (`<login-host-4x>:14900`). `levels/`, `levels3d/gui`, `levels3d/help`, `languages3D/` and `sounds/` match the Mac 4.20r6 tree; `pics1.png` is byte-identical. **[file]**
 
 ### Protocol and engine differences from 4.20r8
 

@@ -41,7 +41,7 @@ Thinstall virtual path `%InstallPath%`:
 | `GraalEditor.exe` | Delphi editor, version resource 2.3.1.1 |
 | `hvdi.dll` | Bundled helper, 133,632 bytes. No Graal strings; not the editor core |
 | `arrays.dat` | 11,500-byte sorted dword table (count word `0x03A6`) |
-| `arrays2.dat` | Server list: `listserver.graalonline.com:14922` and two fallbacks |
+| `arrays2.dat` | Server list: `<list-host-3x>:14922` and two fallbacks |
 | `arrays2.sig`, `graaleditor.sig` | 0x80-byte signatures. Stub string: `Not ready to verify signature, must have valid public key` |
 | `thinstall.log` | Virtual log path |
 

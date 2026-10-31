@@ -39,7 +39,7 @@ Dates are the compile dates in the binaries (`__DATE__` strings and PE timestamp
 
 | Build | Login host | License file |
 |---|---|---|
-| 5.12 | from `license/license.graal`: `loginserver.graalonline.com`, port 14900, fallbacks `loginserver2`/`loginserver3` | **two files**: `license.graal` + `sig.license`. The bundled signature verifies (RSA-1024, e = 17, PKCS#1 SHA-1, the same key as 3.x–5.00). |
+| 5.12 | from `license/license.graal`: `<login-host-4x>`, port 14900, fallbacks `loginserver2`/`loginserver3` | **two files**: `license.graal` + `sig.license`. The bundled signature verifies (RSA-1024, e = 17, PKCS#1 SHA-1, the same key as 3.x–5.00). |
 | 5.24r3 and later | the same three hosts, compiled in | none; no `license/` path is referenced any more |
 
 5.00r7 had four license files (`license.graal` plus `sig.graal`, `sig.graallib` and `sig.license`). 5.12 only signs the license text, and from 5.24 the license mechanism is gone. All Windows builds still connect to the game server named `Login` on port 14900. **[bin][file][cap]**

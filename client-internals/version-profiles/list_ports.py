@@ -8,7 +8,7 @@ and prints one row per profile: label, host, port, kind (legacy or supported), s
 (confirmed or assumed), and the built-in host and port the binary carries.
 
 The rule (Seihai documentation/port-rule.md):
-  - host is always listserver.graal.in
+  - host is always <list-host-reborn>
   - 14921 is dead and is never a default
   - the default follows the login type the profile sends (the public listserver picks its
     reply by login type, not by version or token; matrix of 2026-10-25):
@@ -26,7 +26,7 @@ spec = importlib.util.spec_from_file_location('resolve', here / 'resolve.py')
 resolve = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(resolve)
 
-HOST = 'listserver.graal.in'
+HOST = '<list-host-reborn>'
 PORTS = {'legacy': 14923, 'supported': 14922}
 SUPPORTED = ('2.22', '2.3', '2.31', '3.04', '3.153')
 # 141-217.toml ids in release order, with the labels the profile table uses.

@@ -24,7 +24,7 @@ xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }   # same rule as gen 5 on Win
 lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
 cipher_src = "bin"
 account_plain = true                   # no dec(b) = (~b - 10) step on account or password
-listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "assumed", first_message_id = 7, token = "G3D30123", list_name = "newmain", config = "license/license.graal (RSA-1024 signed, e=17, PKCS#1 v1.5 SHA-1)", built_in_host = "listserver.graalonline.com", built_in_port = 14922 }
+listserver = { host = "<list-host-reborn>", port = 14922, kind = "supported", port_status = "assumed", first_message_id = 7, token = "G3D30123", list_name = "newmain", config = "license/license.graal (RSA-1024 signed, e=17, PKCS#1 v1.5 SHA-1)", built_in_host = "<list-host-3x>", built_in_port = 14922 }
 listserver_src = "bin file cap"        # cap: lab listserver only; never tested against the public listserver with a G3D token
 listserver_login_frame = "one plain zlib frame with id 7 and id 1; the server replies in gen 5"   # cap (3.04)
 serverlist_prefixes = { "P " = "Graal Gold", "3 " = "Graal 3D", "H " = "Hosted", "U " = "not listed", "" = "Classic" }

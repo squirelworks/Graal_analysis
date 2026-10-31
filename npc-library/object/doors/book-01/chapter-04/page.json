@@ -175,7 +175,7 @@
     },
     {
       "image": "warpdoor.gif",
-      "script": "if (playertouchsme) { set StartLoadHome; say 4; } if (playerendsreading && StartLoadHome) { unset StartLoadHome; openurl www.graalonline.com; } >?",
+      "script": "if (playertouchsme) { set StartLoadHome; say 4; } if (playerendsreading && StartLoadHome) { unset StartLoadHome; openurl <list-host-classic>; } >?",
       "count": 1,
       "files": [
         "onlinestartlocal.graal"

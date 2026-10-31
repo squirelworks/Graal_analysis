@@ -132,4 +132,4 @@ The RC password key is the 8-byte string `\!x<|.ak`. Decoding is the reverse; a 
 - Replies handled: 0 (server list: `GCHAR count`, then per server `GCHAR field count` + that many `str` fields), 1 (one more server entry), 2 (end, disconnect), 4 (error text, disconnect).
 - The server list shows name and player count. Connect uses the chosen server's ip and port.
 
-The same key and nibble encoding hide the 2.05 client's list host, which the 2.05 notes left open: 2.05 rev 2 decodes to `www.graalonline.com`, port `14921`, version string `newmain`. **[bin]**
+The same key and nibble encoding hide the 2.05 client's list host, which the 2.05 notes left open: 2.05 rev 2 decodes to `<list-host-classic>`, port `14921`, version string `newmain`. **[bin]**

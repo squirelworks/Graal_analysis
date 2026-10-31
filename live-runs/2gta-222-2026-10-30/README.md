@@ -1,6 +1,6 @@
 # Real 2.22 client on Graal the Adventure (2026-10-30)
 
-A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`2gta.home.eevul.net:14913`), signed in as the user's own account (Seji) from the client's saved login. The run was driven by a script on the user's PC: about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
+A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`<public-host-2gta>:14913`), signed in as the user's own account (Seji) from the client's saved login. The run was driven by a script on the user's PC: about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
 
 What follows is what the screen showed. Nothing here was read from packets.
 
@@ -10,7 +10,7 @@ What follows is what the screen showed. Nothing here was read from packets.
 
 - Window title "Graal Reborn Server list". The footer greets the account ("Welcome to Graal Reborn, Seji. There are 10 server(s) online.").
 - Gold tab: Graal the Adventure (0 players) and GServer-RS (0 players). Silver and Bronze were not opened.
-- Graal the Adventure's row: language English, version "Beta Version: 4.0.0", description "Occupied by Kalzor.", homepage `https://graal.in/c/playerworlds…`.
+- Graal the Adventure's row: language English, version "Beta Version: 4.0.0", description "Occupied by Kalzor.", homepage `https://<graalin-site>/c/playerworlds…`.
 - GServer-RS's row: version "Version: 0.1.262", description "Rust gserver testing", homepage on github.com (vinvicta's gserver).
 
 ## First screen after Connect
@@ -152,7 +152,7 @@ Pots, signs and appearance (clothes-changer) commands are still untested. A lift
 
 ## Fourth pass: LAN test world (21:08 to 21:16 local)
 
-The user ran the patched GServer-v2 beta4 pack on their Linux PC (GwenTea2, 192.168.0.122:14802) with a test level `testworld.nw`. On this PC a hosts line points `listserver.graal.in` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/).
+The user ran the patched GServer-v2 beta4 pack on their Linux PC (GwenTea2, 192.168.0.122:14802) with a test level `testworld.nw`. On this PC a hosts line points `<list-host-reborn>` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/).
 
 ### Pots
 

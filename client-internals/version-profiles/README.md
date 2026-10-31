@@ -97,7 +97,7 @@ Notes for a server or a reimplementation:
 ## Open
 
 - 2.1–2.16 packet and prop sets are inferred from neighbours. A binary of any of them would pin them down.
-- The original 1.41 listserver host and port: the only surviving 1.41 copy is patched for graal.in.
+- The original 1.41 listserver host and port: the only surviving 1.41 copy is patched for <graalin-site>.
 - Login props were not run for 2.01, 2.03 or 2.04. They are inferred from their neighbours, which all send 0, 11, 13, 18, 31, 33.
 - What 2.17's periodic PLI 24 (one byte, every 5 s) carries.
 - Which 2.05-era server id stalls 1.41 at "Loading account from server (1/5)".
@@ -107,7 +107,7 @@ Notes for a server or a reimplementation:
 
 `listserver` carries the endpoint a reimplementation should dial first: `host`, `port`, `kind` (`legacy` or `supported`) and `port_status` (`confirmed` or `assumed`). It is not the value the binary carries: that is kept as history in `built_in_host` and `built_in_port`.
 
-- Host is always `listserver.graal.in`.
+- Host is always `<list-host-reborn>`.
 - 14921 is dead (the public service resets it) and is nobody's default.
 - The default follows the login type the profile sends (the public listserver answers by login type, not by version or token): legacy = classic login (1.41 to 2.17, including 2.05) defaults to 14923; supported = gen-5 login (2.22, 2.3, 2.31) defaults to 14922.
 - Every profile is `confirmed` except 2.05: Seihai's own login for it was run on its port in the matrix of 2026-10-25 (a real client was not captured). 2.05 is `assumed`: its classic login was not run.

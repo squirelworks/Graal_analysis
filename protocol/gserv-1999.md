@@ -12,7 +12,7 @@ The notes come from static analysis of the shipped executables. No decompiler ou
 | | Gen 1 (1st Graal to 1.1.9) | Gen 2 (1.21 on) |
 |---|---|---|
 | Server | Lobby/relay, no game logic | GServer: accounts, levels, NPCs, flags, weapons |
-| Port | 14801 local default, 14802 Cyberjoueur | 14804 (`www.graalonline.com`) for 1.21 to 1.3 test, 14900 from 1.31 |
+| Port | 14801 local default, 14802 Cyberjoueur | 14804 (`<list-host-classic>`) for 1.21 to 1.3 test, 14900 from 1.31 |
 | Framing | Text lines | `u16` big-endian length, then a zlib stream |
 | Message ids | One letter (`D` plus a type letter) | `chr(id+32)` as the first byte of each line |
 | Identity | Server-given 8-character id, nickname sent as data | Account and password at login |

@@ -1,6 +1,6 @@
 # Public listserver: the reply depends on the login type (matrix, 2026-10-25)
 
-Derived note. The data is one run of the read-only list check made by the user on their own Linux machine on 2026-10-25 (started 22:43 JST): 19 Seihai version profiles, each tried once on port 14922 and once on port 14923 of `listserver.graal.in`, one list-only login per run (no game-server login, no chat, no warp), 38 runs in all. Each run was captured with `tcpdump`. The account name is masked, and no login frame bytes, credentials or keys appear here; the captures stay private. Per-run table: `listserver-login-type-matrix-2026-10-25.tsv`.
+Derived note. The data is one run of the read-only list check made by the user on their own Linux machine on 2026-10-25 (started 22:43 JST): 19 Seihai version profiles, each tried once on port 14922 and once on port 14923 of `<list-host-reborn>`, one list-only login per run (no game-server login, no chat, no warp), 38 runs in all. Each run was captured with `tcpdump`. The account name is masked, and no login frame bytes, credentials or keys appear here; the captures stay private. Per-run table: `listserver-login-type-matrix-2026-10-25.tsv`.
 
 This extends `public-listserver-2026-10-25.md` (first two runs: 2.00, 2.05, 2.17, 2.22, 2.31) to every profile that has a listserver.
 
