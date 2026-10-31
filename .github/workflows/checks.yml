@@ -1,0 +1,97 @@
+name: checks
+
+on:
+  push:
+    branches: [main, 'cursor/**']
+  pull_request:
+
+jobs:
+  leak-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Leak check — no tracked .pyc
+        run: |
+          if git ls-files | grep -E '\.pyc$'; then
+            echo 'tracked .pyc files found' >&2
+            exit 1
+          fi
+
+      - name: Leak check — no FUN_/DAT_/binary offsets
+        run: |
+          if git grep -nE 'FUN_[0-9a-fA-F]{6}|DAT_[0-9a-fA-F]{6}|\b0x00[4-6][0-9a-fA-F]{5}\b'; then
+            echo 'binary address / Ghidra name leak' >&2
+            exit 1
+          fi
+
+      - name: Leak check — no dotted IP literals
+        run: |
+          # Skip version-like strings (e.g. 2.2.2.0). Fails on loopback and any other IPv4.
+          if git grep -nE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | grep -vE '\b[0-9]\.[0-9]+\.[0-9]+\.[0-9]+\b'; then
+            echo 'dotted IP literal leak' >&2
+            exit 1
+          fi
+
+      - name: Leak check — no official hostnames
+        run: |
+          if git grep -niE 'graalonline\.com|graal\.in\b|graalreborn\.(com|net)'; then
+            echo 'official hostname leak' >&2
+            exit 1
+          fi
+
+      - name: pytest tools/lab-servers
+        run: python -m pytest tools/lab-servers -q
+
+      - name: Smoke resolve.py
+        run: |
+          python client-internals/version-profiles/resolve.py \
+            client-internals/version-profiles/v1998-v11.toml \
+            > /tmp/resolve-out.json
+          python -c 'import json; d=json.load(open("/tmp/resolve-out.json")); assert isinstance(d, list) and d'
+
+      - name: Smoke grv1-decoder on a synthetic level
+        run: |
+          python <<'PY'
+          import pathlib, sys
+          sys.path.insert(0, 'formats/grv1-decoder')
+          from grv1 import load
+
+          def pack_codes(codes, width):
+              buf = nbits = 0
+              out = bytearray()
+              for code in codes:
+                  buf |= (code & ((1 << width) - 1)) << nbits
+                  nbits += width
+                  while nbits >= 8:
+                      out.append(buf & 0xff)
+                      buf >>= 8
+                      nbits -= 8
+              if nbits:
+                  out.append(buf & 0xff)
+              return bytes(out)
+
+          width, flag = 12, 1 << 11
+          codes = []
+          remaining = 4096
+          while remaining:
+              n = min(255, remaining)
+              codes.append(flag | n)
+              codes.append(0)
+              remaining -= n
+          data = b'GR-V1.00' + pack_codes(codes, width) + b'#\n\x80#\n'
+          path = pathlib.Path('/tmp/synth.graal')
+          path.write_bytes(data)
+          lv = load(path.read_bytes())
+          assert lv['magic'] == 'GR-V1.00'
+          assert len(lv['board']) == 4096
+          print('grv1 smoke ok', lv['magic'], len(lv['board']))
+          PY
+          python formats/grv1-decoder/grv1.py /tmp/synth.graal

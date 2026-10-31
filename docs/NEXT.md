@@ -15,11 +15,9 @@ open-point closed.
   ("no raw decompiles, code or binary addresses").
   *Done in this PR; strike after merge to `main`.*
 
-- [ ] **2. Leak scrub.** One PR per kind, in this order: (a) `git rm` the two `.pyc`
-  files; (b) `FUN_` names → plain wording; (c) IPs and the LAN host → placeholders,
-  Squirrel's machines redacted; (d) official hostnames → placeholders. For (d) in
-  version TOMLs keep a stable placeholder per distinct host; in `npcs.json` script
-  text replace only the hostname. Do not touch the guest password.
+- [x] **2. Leak scrub.** One PR per kind: (a) #154 `.pyc`; (b) #153 `FUN_` names;
+  (c) #156 IPs/LAN/personal machines; (d) #157 official hostnames; follow-up #158
+  loopback dotted literals → plain words / `<loopback>`. Guest password untouched.
   *Done when* the four leak greps in `AGENTS.md` return nothing (third line: review
   hits by eye).
 
@@ -28,6 +26,7 @@ open-point closed.
   of `client-internals/version-profiles/resolve.py` and `formats/grv1-decoder` on a
   synthetic level. *Done when:* the workflow is green on the PR and fails on a test
   branch that adds a non-loopback example IP to a note (show that run in the PR).
+  *This PR; depends on #158 (loopback scrub) being on main first.*
 
 - [ ] **4. pyReborn study into the repo.** Needs Squirrel's `pyreborn-vs-seihai.md` and
   `parser-probe-main.rs` (project files). Add as `client-internals/pyreborn-study/`
