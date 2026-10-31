@@ -22,7 +22,7 @@ only.
 - Message body: classic Graal text lines (`GCHAR id` + payload + `\n`), G-integers with `+0x20`. Batches flush at 0x1000 bytes. **[bin]**
 - Large uploads: id 50 (`PLI_RAWDATA`) with a GINT3 length, then one raw frame; receive id 100 (`PLO_RAWDATA`) switches the reader for the next *length* bytes. **[bin]**
 - The NC login did not change between RC 1.41 (2002) and the 2004 RemoteControl. The RC game-server login did (`GSERV023` type 1 → `GSERV024` type 6 / gen 5). **[bin]**
-- Default NC host fields in the 2004 binary are `127.0.0.1` and `14804` (lab ports; unused leftovers once discovery works). **[bin]**
+- Default NC host fields in the 2004 binary are the loopback address and `14804` (lab ports; unused leftovers once discovery works). **[bin]**
 
 ## Finding the NPC server **[bin]**
 
@@ -107,7 +107,7 @@ Id 111 matches the 2001 PM `add npc` field list moved onto its own packet. **[in
 
 ## Check on loopback **[inf]**
 
-Confirm against GServer-v2 lab + Wine `RemoteControl.exe` / RC 1.41 (sandbox, `127.0.0.1`, lab ports only):
+Confirm against GServer-v2 lab + Wine `RemoteControl.exe` / RC 1.41 (sandbox, the loopback address, lab ports only):
 
 1. Exact bytes of NC login (type 3 / `NCL11012` / account / password) and whether any junk byte follows.
 2. Packet 79 address string format (`ip,port` vs spaces) when the lab NPC-server player appears.
