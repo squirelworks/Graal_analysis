@@ -84,8 +84,28 @@ The 4.20r8 engine survives only in a third-party packet-logger build (`protocol/
 * Chat: the same white bold text with a blue shadow, and the same dark red Tab bar. After Enter, the bar stayed open with the sent text in it. **[live]**
 * Walking is 8 px per tick. The `push` gani starts 0.85 s after the last step, and the `pushed` trigger action follows 0.55 s later and then once a second, as in 4.04r2. **[live]**
 
+## Live run 2026-10-31: 4.04r2 and 4.20r8 next to Seihai
+
+A second lab, run in a cloud container: Wine 9, Xvfb, a loopback-only net and mount namespace, the seihai-lab server pack with stock gs2lib, and a proxy on 14900 that injects S→C 178 `0,Lab Server,127.0.0.1,14900`. The 4.20r8 engine was restored from the packet-logger copy by putting back the 8 bytes at its hook: `GraalEngine.dll` offset 0x1a3ae3, `e9 f3 cc 08 00 90 90 90` back to `5f 5e 5d b8 01 00 00 00`. **[live][bin]**
+
+* **After the login, both builds send:** 37 (language); 23 `basepackage.gupd` twice; 23 `bigmap.txt` (in the Login session only); 157 `idle`; 152 `GraalEngine,pmguilds,""` and `GraalEngine,pmservers,""`; 154 `GraalEngine,lister,options,globalpms=true,buddytracking=true,showbuddies=true` and `GraalEngine,lister,verifybuddies,1,0`; **46**; 44 (window titles); then 2 (own props). GServer-v2 logs the 152 as RequestText and the 154 as SendText. **[live]**
+* **Walking** is the same in both builds: 2 with GANI `walk` and SPRITE on the first step, then X2 (78) or Y2 (79) alone every 50 ms, then `idle`. X/Y (15/16) are never sent. **[live]**
+* **Script flags.** A GS1 probe weapon ran these lines on `playerenters`:
+  * `setplayerprop #c`
+  * `setstring gr.probe,1`
+  * `setstring client.probe,2`
+  * `set probeflag`
+
+  The 4.04r2 client sent only C→S 18 `client.probe=2`. The lab's `-gr_movement` weapon (`setstring gr.x` every 0.05 s) sent nothing either. So the client runs GS1 weapon scripts but sends only `client.` string flags to the server. **[live]**
+* **Chat bar.** The chat bar stays open after Enter in 4.04r2 as well. Tab closes it and sends an empty prop 12. Esc opens "Do you really want to quit Graal?". **[live]**
+* **Bow.** D with the bow sends 157 `shoot`, prop 10 `shoot,wbow1.png`, `arrow.wav`, and C→S 9 (arrow). With bombs, D sends C→S 4. **[live]**
+* **In the Login session the game works.** Walking, chat and the sword all send as normal. Only the drawing is cut, as described above. **[live]**
+* **Ids.** C→S ids seen: 2, 4, 9, 23, 24, 34, 37, 38, 44, 46, 152, 154 and 157. S→C ids: the 26 from the first run plus 45. **[live]**
+
+Seihai's write-up, with the fixes this run led to (X2/Y2 walk, `client.` flags only), is in seihai `documentation/v4-profiles.md`. The logs are in the project folder under `v4/lab-4x-live-2026-10-31/`.
+
 ## Not covered yet
 
 * The client's own ganis, from a 4.x-era server rather than the 2.22 world, to compare the look.
 * Signs (lift entry 1).
-* Carrying and hiding on 4.20r8. Only chat, walking and pushing were repeated there.
+* Carrying and hiding on 4.20r8. Only chat, walking, pushing, the sword and items were repeated there.
