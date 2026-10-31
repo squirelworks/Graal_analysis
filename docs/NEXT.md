@@ -40,14 +40,17 @@ open-point closed.
 - [ ] **6. Graal3D camera (unblocks G3D-2).** Camera height, look point, field of view
   and follow rule into `graal3d/camera.md`. Needs decompile and/or lab confirmation.
 
-- [ ] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write
+- [x] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write
   `protocol/npc-control.md` from `tools/remotecontrol.md`, Squirrel's `npccontrol`
   material and a loopback NC run against the GServer-v2 lab.
+  *Done in #155.*
 
-- [ ] **8. `#n` in `setcharprop` (server brief A3.6).** What original servers did with
+- [x] **8. `#n` in `setcharprop` (server brief A3.6).** What original servers did with
   `#n` in a `setcharprop` value, from lab evidence (GServer13 1999 under Wine on
   loopback, and the 2.05 client). Add to `npc-library/gs1-reference-205.md` or a short
   `server-notes/` note.
+  *Answer in `server-notes/setcharprop-hash-n.md`: value `#n` → action player's nick
+  **[srv]**; GServer13 has no `setcharprop` **[bin]**; live GServer-v2+2.05 lab still open.*
 
 - [ ] **9. Damage and file-transfer open points (loopback captures).** From
   `decomp-findings-2026-10-25-k/03-open-points.md` and
