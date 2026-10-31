@@ -52,13 +52,14 @@ open-point closed.
   *Answer in `server-notes/setcharprop-hash-n.md`: value `#n` → action player's nick
   **[srv]**; GServer13 has no `setcharprop` **[bin]**; live GServer-v2+2.05 lab still open.*
 
-- [ ] **9. Damage and file-transfer open points (loopback captures).** From
-  `decomp-findings-2026-10-25-k/03-open-points.md` and
-  `…-25-e/03-open-points.md`, in order: bomb/arrow/baddy hurt powers; CURPOWER props
-  after an injected packet 40 at full hearts; GWEBL001 cache and `PLI_LEVELMODTIME`;
-  login default file checks; file-index scan order; pre-2.1 re-send for a settled name.
-  Real 2.05 rev 2 and 2.22 under Wine against the lab GServer-v2. One PR per closed
-  open point (or a small coherent group if the brief's "each" still fits one change).
+- [ ] **9. Damage and file-transfer open points (loopback captures).** Partial close
+  without new Wine (this PR): strike + link for bomb/arrow/baddy powers
+  (`damage-sources.md`), CURPOWER + respawn + default-weapon partial
+  (`lab-captures-2026-10-25`), GWEBL001/`PLO_LEVELMODTIME`
+  (`formats/gwebl001-cache.md`), save folders 1.39/2.00 + empty-stream guard (batch k),
+  pre-2.1 settled-name no re-check (batch e `01-request-lists`). **Still need Wine:**
+  packet 40 owner/parent field; full vs empty login default checks; file-index scan
+  order; case-folding ASCII; maps folder in 2.1–2.16 (no binary).
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
   NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,
