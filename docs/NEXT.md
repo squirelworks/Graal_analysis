@@ -39,8 +39,9 @@ open-point closed.
   native `d3drm.dll` for live confirmation.
   *Done in this PR; strike after merge to `main`.*
 
-- [ ] **6. Graal3D camera (unblocks G3D-2).** Camera height, look point, field of view
-  and follow rule into `graal3d/camera.md`. Needs decompile and/or lab confirmation.
+- [ ] **6. Graal3D camera (unblocks G3D-2).** Partial in `graal3d/camera.md`: distance 220,
+  look height +80, turn ±5°/tick, pitch −0.15 rad, follow rule **[bin]**. **FOV still
+  [inf]** (no constant in the client PE; needs library-default proof or lab). Not done.
 
 - [x] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write
   `protocol/npc-control.md` from `tools/remotecontrol.md`, Squirrel's `npccontrol`

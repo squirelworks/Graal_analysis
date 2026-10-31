@@ -45,8 +45,12 @@ Prop 5 is a tick counter for the walk and jump poses, not a pose id.
 
 ## Camera
 
+Full write-up: [camera.md](camera.md).
+
 - A follow camera stays about **220 units** behind the player. It closes the gap by a factor of `((d − 220) / 220)² / 10` per tick, with the sign of `d − 220`.
-- It turns towards the player by up to **5 degrees per tick**, more when the player is behind it.
+- The Y follow target is **80** above the player (`(player_y + 80 − camera_y) / 10` per tick).
+- It turns towards the player by up to **5 degrees per tick**, more when the player is behind it, then pitches **−0.15 rad**.
+- Field of view is **not** set in this binary (library default, unpinned). **[inf]**
 - The player's facing (prop 4) is the angle of the camera-to-player direction, in degrees, sent as `degrees / 2`.
 
 ## Chat
