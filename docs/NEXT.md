@@ -32,10 +32,12 @@ open-point closed.
   with the MIT note; keep `file:line` citations; drop pasted pyReborn code.
   *Blocked until Squirrel provides the files.*
 
-- [ ] **5. Graal3D collision as plain behaviour (unblocks `seihai-g3d` G3D-1).**
-  Per-face step test into `graal3d/collision.md` with tags. Static read needs the
-  decompile from Squirrel; confirm with a loopback Wine run where possible.
-  *Blocked until Squirrel provides the Graal3D decompile (unless lab-only path works).*
+- [x] **5. Graal3D collision as plain behaviour (unblocks `seihai-g3d` G3D-1).**
+  Per-face step test in `graal3d/collision.md` with tags: radius 5, step height 30,
+  slope (ny > 0 / attach > 0.2), wall distances 3 / −5, probe order. Static PE float
+  read of `Graal3D.exe` (no decompile on Drive; no C committed). Wine lab still needs
+  native `d3drm.dll` for live confirmation.
+  *Done in this PR; strike after merge to `main`.*
 
 - [ ] **6. Graal3D camera (unblocks G3D-2).** Camera height, look point, field of view
   and follow rule into `graal3d/camera.md`. Needs decompile and/or lab confirmation.
