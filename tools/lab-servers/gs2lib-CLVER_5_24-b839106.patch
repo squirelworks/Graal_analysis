@@ -1,0 +1,32 @@
+diff --git a/include/IUtil.h b/include/IUtil.h
+index d4dcb31..e577407 100755
+--- a/include/IUtil.h
++++ b/include/IUtil.h
+@@ -203,6 +203,7 @@ enum
+ 
+ 	CLVER_5_07,
+ 	CLVER_5_12,
++	CLVER_5_24,
+ 	CLVER_5_31x,
+ 
+ 	CLVER_6_015,
+diff --git a/src/IUtil.cpp b/src/IUtil.cpp
+index 4791abf..db27fa9 100755
+--- a/src/IUtil.cpp
++++ b/src/IUtil.cpp
+@@ -104,6 +104,7 @@ static const char* const clientVersions[] =
+ 
+ 	"G3D22067",		// CLVER_5_07,
+ 	"G3D14097",		// CLVER_5_12,
++	"G3D15010",		// CLVER_5_24, (5.24r3, 5.24r4; 6.00 beta2 sends the same token)
+ 	"G3D26090",		// CLVER_5_31x,
+ 
+ 	"G3D3007A",		// CLVER_6_015,
+@@ -195,6 +196,7 @@ static const char* const clientVersionString[] =
+ 
+ 	"5.07",		// CLVER_5_07,
+ 	"5.12",		// CLVER_5_12,
++	"5.24",		// CLVER_5_24,
+ 	"5.31x",	// CLVER_5_31x,
+ 
+ 	"6.015",		// CLVER_6_015,

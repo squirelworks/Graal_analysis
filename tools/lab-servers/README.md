@@ -9,6 +9,10 @@ Date: 2026-10-30. These are the two servers the offline lab runs (see `../lab-se
 | `run-lab.sh` | Starts the listserver and the prebuilt GServer on loopback; `stop` stops both. |
 | `gs2lib-GNW03081.patch` | The one-line gs2lib change our efb5b90 gserver build carries (2.05 token in the 2.1 slot). |
 | `gserver-beta4-lab.patch` | Our fixes to GServer-v2 beta4 `365bbd2`: three for real 2.05 and 2.17.1, one for a saved hidden state, three for 1.33 to 1.39 (apply in `server/`). |
+| `gs2lib-CLVER_5_24.patch` | Adds 5.24 (`G3D15010`) to gs2lib as its own slot, `CLVER_5_24`, between 5.12 and 5.31x. Against gs2lib `5c36ab8` (what beta4 fetches). |
+| `gs2lib-CLVER_5_24-b839106.patch` | The same change against gs2lib `b839106` (our efb5b90 build). Applies with or without `gs2lib-GNW03081.patch`. |
+| `test_clver_5_24.cpp` | Checks the token → id → name lookups and the order 5.12 < 5.24 < 5.31x < 6.015 against a built gs2lib. |
+| `clver-5-24-lab/` | The 2026-10-31 lab run of real 5.24r4 on stock and patched gs2lib: screenshots, client consoles, proxy lines for the file messages. |
 | `run-lab-beta4.sh` | The beta4 pack's start script: listserver, the 2.x server on 14802 and the classic server on 14803. |
 
 Background on what each server is, and how they compare with GServer-v2 beta4 and the other open-source servers, is in `../../server-notes/lab-servers-2026-10-30.md`.
@@ -41,6 +45,39 @@ beta4's `generation` is server-wide and 1.x clients need `classic`, so the beta4
 8. **Zero max hearts.** Stock `(defaultaccount).txt` has `MAXHP 3.00`, which the loader reads as 0, on both servers. Config: `MAXHP 3`. The classic folder's default account also uses `head0.gif`, `sword1.gif` and `shield1.gif`, since the stock world has no images and these clients carry them only as `.gif`, and turns off the 2.x `-gr_movement` helper weapon.
 
 Real clients: 1.33, 1.34, 1.35, 1.36, 1.37, 1.38 and 1.39 log in, show the right player and HUD, walk, and stay connected (no kicks or unknown packets); 2.05r2, 2.17.1 and 2.22 rechecked on the 2.x server. Under Wine these clients need `nodirectinput=true` in `graalconfig.txt` for keyboard input, and often start on their own pause menu (Continue/End), which P closes.
+
+## 5.24 in gs2lib's version table (2026-10-31)
+
+Stock gs2lib has no entry for `G3D15010` (5.24r3, 5.24r4, and 6.00 beta2, which sends the same token). GServer then gives 5.24 `CLVER_UNKNOWN` (0) and serves it every pre-2.1 file path, so the client saves PNG data as a file name and never gets files over 64000 bytes (`../../protocol/file-transfer.md`). Until now the lab got around this by renaming another build's table entry to `G3D15010`, which took that build off the table.
+
+`gs2lib-CLVER_5_24.patch` gives 5.24 its own slot instead. It adds three lines: `CLVER_5_24` in the enum (`include/IUtil.h`), and `G3D15010` / `"5.24"` in `clientVersions[]` and `clientVersionString[]` (`src/IUtil.cpp`), all right after 5.12. The array index is the version id, so the enum and both arrays move together.
+
+**Version ranges.** Every later id goes up by one, and 5.24 sorts between 5.12 and 5.31x. Every test above 2.31 in GServer efb5b90 and beta4 `365bbd2` compares against `CLVER_4_0211`, `CLVER_5_07`, `CLVER_5_12` or `CLVER_6_015`, so 5.24 takes the same branch in each as 5.30/5.31 do, and no other build changes branch. beta4's stock `allowedversions.txt` has `modern = G3D14097:G3D0511C` (5.12 to 6.037), compared by id, so 5.24 is now inside the stock modern range. Before the patch it was id 0 and outside it. A side effect of the stock check (`PlayerClient.cpp`, about line 396): a single entry that gs2lib does not know, such as a bare `G3D15010`, also resolves to 0, so it lets in every client whose token is unknown, not only 5.24. **[src]**
+
+**Rebuild GServer too.** The `CLVER_*` constants are compiled into GServer, so a new `libgs2lib.so` under an old `gs2emu` shifts every comparison above 5.12 by one. For example, the old binary would treat 5.31x as 6.015. Always rebuild both together. For beta4 that happens anyway, because gs2lib is linked in statically.
+
+**Build and checks.**
+
+    # efb5b90 (the lab pack): gs2lib b839106 + this patch (+ gs2lib-GNW03081.patch if 2.05 is wanted)
+    git -C dependencies/gs2lib apply gs2lib-CLVER_5_24-b839106.patch
+    cmake .. -DTESTS=OFF -DUPNP=OFF -DV8NPCSERVER=OFF -DSTATIC=OFF -DCMAKE_BUILD_TYPE=Release && make -j8
+    # beta4: apply gs2lib-CLVER_5_24.patch to the fetched gs2lib 5c36ab8 before building
+    g++ -std=c++23 -I<gs2lib>/include test_clver_5_24.cpp <gs2lib>/lib/libgs2lib.a -lz -lbz2 && ./a.out   # prints OK
+
+Both gs2lib versions built, and `test_clver_5_24.cpp` printed OK on both. On `b839106` the program needs the `CLVER_WORLDS` line swapped for `CLVER_IPHONE_BELOTE_1_5`, because that version has no Worlds entry.
+
+**Lab run (real 5.24r4, GServer efb5b90, Wine 9.0, loopback-only namespace).** This used the same server config twice, with `G3D15010` allowed and the S→C 178 warp from `v5x/lab/rules.py`. The only difference was the library and the binary. **[cap]**
+
+| | stock gs2lib `b839106`, prebuilt gs2emu | `b839106` + `gs2lib-CLVER_5_24-b839106.patch`, rebuilt gs2emu |
+|---|---|---|
+| `PLO_FILE` for `sword1.png` | `\x86*sword1.png‰PNG…` (no modtime) | `\x86&w6u\x84*sword1.png‰PNG…` (GINT5 modtime) |
+| client console | `File download: 1.png‰PNG`, then `Couldn't open …/downloads/1.png‰png` | `File download: sword1.png (size: 7143) done`, same for `sprites.png`, `body.png`, `head0.png`, `shield1.png`, `idle.gani` |
+| `pics1.png` (216,002 B) | S→C 30 `FILESENDFAILED` (over 64000 B for a "pre-2.14" client) | 68 `LARGEFILESTART`, 84 size, seven 32000-B chunks, 69 `LARGEFILEEND`, "done" |
+| screen after the warp | black: no tiles, no player | level drawn, player drawn with the downloaded head, body, sword and shield |
+
+Every file the patched run saved is byte-identical to the server's copy. Files under `clver-5-24-lab/`.
+
+Not covered: 6.00 beta2 (same token, so it gets the 5.24 slot; not run) and 6.00 beta1 (`G3D03048`, still unknown to gs2lib). The beta4 build with the master patch was compiled and unit-checked but not run against a client.
 
 ## Our listserver (version 2)
 
