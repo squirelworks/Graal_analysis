@@ -48,12 +48,12 @@ label = "4.20r6"
 platform = "mac"
 token = "G3D27076"                     # date stamp 27 July 2006
 token_src = "bin"
-# v4x-clients.md: "the same set [as 4.20r8] without 41 and 196". That is 99 ids; the note counts 97.
+# 4.20r8's set without 41 and 196: a 97-case switch (0-195 without 41) plus 100 and 108 taken before it (re-read 2026-10-31).
 plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 75, 82, 84, 100-102, 104-108, 131-134, 150, 151, 153-156, 165, 166, 168-176, 178-187, 189-191, 193-195"
 plo_known_count = 99
 plo_known_src = "bin"
 pli_sent = "1, 2, 4-10, 12-19, 21-24, 26, 28, 29, 32, 33, 35-37, 41, 44, 50, 79-81, 92, 96, 130, 152, 154, 157, 158, 161, 162"
-pli_sent_src = "inf"                   # 4.20r8's; the Mac send code was not read
+pli_sent_src = "inf"                   # 4.20r8's; only 162 (the answer to 108) was confirmed in the Mac binary
 pli_sent_complete = false
 login_platform = "mac"
 login_fields = 4                       # bin: mac, hash(Ethernet MAC), hash(stat /etc), empty

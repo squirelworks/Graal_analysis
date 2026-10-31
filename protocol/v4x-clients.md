@@ -95,7 +95,7 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 195 | A gani name and gani text: the client loads it as a gani (server-pushed gani scripts). |
 | 196 | Same layout as 193; the 4.20r8 handler reads it and does nothing else. |
 
-Mac 4.20r6 handles 97 of these: the same set without 41 and 196 (196 is the newest; 41 may be handled elsewhere in the Mac build). 44 is still missing in both, as in 3.153. **[bin]**
+Mac 4.20r6 handles 99 of these: the same set without 41 and 196. Its packet switch has 97 cases (0 to 195, without 41), and, as in 4.20r8, 100 and 108 are taken before the switch; its 108 handler answers subtype 0 with id 162. (Re-read 2026-10-31; this line said 97 before, which was the switch alone.) 44 is still missing in both, as in 3.153. **[bin]**
 
 ## Client → server ids
 
@@ -197,5 +197,6 @@ The plug-in also has the server-side reader for this request. Each connection ou
 - A function-level diff of the 4.04r2 and 4.20r8 engines.
 - The 3D plug-in on the wire: the order of the TCP and UDP logins, and which side sends which BigData commands.
 - The ids sent through a register, for a complete client → server list.
-- Where the Mac 4.20r6 build handles id 41, if it does.
+- Whether the Mac 4.20r6 build handles id 41 anywhere outside its switch (it has no case there).
+- The Mac 4.20r6 send ids: a scan of `li r4, <id>` before a virtual call at vtable slot 12 (the slot the 162 answer uses) finds 0-10, 12, 13, 16-21, 25, 27-29, 32, 33, 35, 36, 38, 40, 41, 43, 45, 46, 50, 81, 93, 96, 98, 130, 152, 154-159, 161 and 162, but slot 12 is not proven to be the send call on every object, so this is a lead only.
 - A clean, unmodified 4.20r8 `GraalEngine.dll` (the "Unpacked" archive, if its password turns up) to confirm the patch points by diff.
