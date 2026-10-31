@@ -47,12 +47,12 @@ Startup of the stub:
 .RS
 .nf
 entry
-  FUN_004013a0(module, 0)
+  package-open helper(module, 0)
   jump to unpacked AddressOfEntryPoint
 .fi
 .RE
 .PP
-.B FUN_004013a0
+The package-open helper
 XOR-decodes the environment name
 .B TS_LOADER
 and opens that path if it is set.
@@ -66,7 +66,7 @@ and
 The runtime can debug a child
 .RI ( WaitForDebugEvent , ContinueDebugEvent , IsDebuggerPresent ).
 This package's editor path is in-process decompression, not a debug unpack.
-.B FUN_004013a0
+The same helper
 then reads the DOS header, seeks to
 .I e_lfanew+0x18
 for the optional header, seeks to

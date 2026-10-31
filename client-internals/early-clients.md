@@ -25,7 +25,7 @@ Derived from the decompile corpus. Raw exports stay in `/shdecompiling/`. This n
 
 ## 1.39
 
-- Token built as eight char immediates in `FUN_004c7208`: `G N W 0 7 0 8 0`.
+- Token built as eight char immediates in the login/token builder: `G N W 0 7 0 8 0`.
 - Connects to port `14900`.
 - **Send helper drops payloads that contain a newline** (2026-10-24 decompile; the same helper exists in 2.05 rev2). A message is `id+32`, payload, newline, so a newline inside the payload would break the framing and the helper silently discards the whole message instead of sending it. The queue is flushed when it would pass 4095 bytes. In 1.39 the client closes the connection if more than about 256 KiB of compressed output is pending (the 2.05 figure was not checked). A client built on this framing should reject or escape payloads containing a newline rather than expect an error.
 - Dhrake recovered ~390 names. Preferred corpus is `graal-139-dhrake/`.

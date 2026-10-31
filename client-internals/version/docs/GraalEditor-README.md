@@ -6,7 +6,7 @@ The Delphi editor was recovered by running the stub decompressor and then the Th
 
 ## Why the dump looks empty
 
-`Export/GraalEditor.exe.c` decompiles the outer stub only (`entry` → `FUN_00401780` → `FUN_004013a0`). The optional-header `LoaderFlags` field is reused as a file offset (`0xFC94E`) of a 0x38-byte package header. Magic is `0x82D0B188`. The first block is the Thinstall runtime (`X:\thinstall\stub\ts_stub.cc`), not the editor. Ghidra never saw the Delphi code, so IDR had nothing with a Delphi VMT to reconstruct.
+`Export/GraalEditor.exe.c` decompiles the outer stub only (entry into the stub startup, then the package-open helper). The optional-header `LoaderFlags` field is reused as a file offset (`0xFC94E`) of a 0x38-byte package header. Magic is `0x82D0B188`. The first block is the Thinstall runtime (`X:\thinstall\stub\ts_stub.cc`), not the editor. Ghidra never saw the Delphi code, so IDR had nothing with a Delphi VMT to reconstruct.
 
 ## What the program is
 
