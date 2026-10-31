@@ -6,7 +6,7 @@ This is what a reimplementation should dial first for each profile. It is **not*
 
 Rule (written in Seihai `documentation/port-rule.md`; evidence in `../../protocol/listserver-login-type-matrix-2026-10-25.md`):
 
-- Host is always `listserver.graal.in`.
+- Host is always `<list-host-reborn>`.
 - **14921 is dead.** The public service resets it. No profile defaults to it.
 - The public listserver answers by **login type**, not by version or token. A classic login (one plain zlib frame, id 0 then id 1) gets a list on **14923** and nothing on 14922. A gen-5 login (id 7 with `GNW30123`) gets a list on 14922 and on 14923.
 - **Legacy** profiles send the classic login and default to **14923**: 1.41 to 2.17, including 2.05 (Seihai's 2.05 profile sends the classic login).
@@ -24,27 +24,27 @@ The table is produced by `python3 list_ports.py` (this directory) from the three
 | 1.37 | - | - | no listserver | - | - | - |
 | 1.38 | - | - | no listserver | - | - | - |
 | 1.39 | - | - | no listserver | - | - | - |
-| 1.41 | listserver.graal.in | 14923 | legacy | confirmed | listserver.graal.in | 14923 |
-| 1.42 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.00 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.01 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.02 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.02 rev2 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.03 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.04 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14921 |
-| 2.05 | listserver.graal.in | 14923 | legacy | assumed | www.graalonline.com | 14921 |
-| 2.1 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14922 |
-| 2.12 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14922 |
-| 2.13 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14922 |
-| 2.14 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14922 |
-| 2.15 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14922 |
-| 2.16 | listserver.graal.in | 14923 | legacy | confirmed | www.graalonline.com | 14922 |
-| 2.17 | listserver.graal.in | 14923 | legacy | confirmed | - | - |
-| 2.22 | listserver.graal.in | 14922 | supported | confirmed | - | - |
-| 2.3 | listserver.graal.in | 14922 | supported | confirmed | - | - |
-| 2.31 | listserver.graal.in | 14922 | supported | confirmed | - | - |
-| 3.04 | listserver.graal.in | 14922 | supported | assumed | listserver.graalonline.com | 14922 |
-| 3.153 | listserver.graal.in | 14922 | supported | assumed | listserver.graalonline.com | 14922 |
+| 1.41 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-reborn> | 14923 |
+| 1.42 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.00 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.01 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.02 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.02 rev2 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.03 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.04 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14921 |
+| 2.05 | <list-host-reborn> | 14923 | legacy | assumed | <list-host-classic> | 14921 |
+| 2.1 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14922 |
+| 2.12 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14922 |
+| 2.13 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14922 |
+| 2.14 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14922 |
+| 2.15 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14922 |
+| 2.16 | <list-host-reborn> | 14923 | legacy | confirmed | <list-host-classic> | 14922 |
+| 2.17 | <list-host-reborn> | 14923 | legacy | confirmed | - | - |
+| 2.22 | <list-host-reborn> | 14922 | supported | confirmed | - | - |
+| 2.3 | <list-host-reborn> | 14922 | supported | confirmed | - | - |
+| 2.31 | <list-host-reborn> | 14922 | supported | confirmed | - | - |
+| 3.04 | <list-host-reborn> | 14922 | supported | assumed | <list-host-3x> | 14922 |
+| 3.153 | <list-host-reborn> | 14922 | supported | assumed | <list-host-3x> | 14922 |
 
 What the status means per profile (matrix of 2026-10-25, one list-only login per profile and port):
 

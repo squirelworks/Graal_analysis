@@ -1,4 +1,4 @@
-# 2026-10-25 22:43 to about 23:00 JST, user's Linux machine, host listserver.graal.in, list-only logins. Account masked, no frames or hosts.
+# 2026-10-25 22:43 to about 23:00 JST, user's Linux machine, host <list-host-reborn>, list-only logins. Account masked, no frames or hosts.
 # login = what the matrix binary sent as the first plain zlib frame: classic = id 0 newmain + id 1 (36 bytes of TCP payload), gen5 = id 7 + GNW30123 + newmain (28 bytes). The matrix binary sent gen5 for the 2.05 profile; the current Seihai main sends classic for 2.05.
 run	profile	port	login	result	rows	wait_s
 1	1.41	14922	classic	silent (connected, no reply)	0	5.7

@@ -61,7 +61,7 @@ Plain text, CRLF lines. The 2.22 client needs at least 5 lines. Lines are number
 | 4 | Translation service URL |
 | 5, 6 | Fallback listserver hosts (optional) |
 
-The Graal Reborn copy points at `listserver.graal.in` port 14922, with `listserver.graal.cc` and `listserver.graalonline.biz` as fallbacks. **[test]**
+The Graal Reborn copy points at `<list-host-reborn>` port 14922, with `<list-host-graalcc>` and `<list-host-graalbiz>` as fallbacks. **[test]**
 
 ## The signatures
 

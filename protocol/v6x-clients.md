@@ -25,7 +25,7 @@ Both Windows wrappers need to run to unpack, so the Windows builds are only iden
 ## Login server
 
 - **No `license.graal` any more.** The 3.x–5.x RSA-signed license file is not read. The login hosts are compiled in, scrambled. **[bin]**
-- 6.01r1: `loginserver.graalonline.com`, `loginserver2.graalonline.com`, `loginserver3.graalonline.com`, port **14900**, as four scrambled strings. **[bin]**
+- 6.01r1: `<login-host-4x>`, `<login-host-4x-2>`, `<login-host-4x-3>`, port **14900**, as four scrambled strings. **[bin]**
 - 6.03r7: the same three hosts, each stored as `host:14900`, in a list the client walks on failure. A host without a port gets 14900. **[bin]**
 - As in 5.x, the client opens a normal game connection to a server named **`Login`**. The server list and account screens then come from that server (S→C 190 raises `onServerListerConnect`). **[bin]**
 - 6.11 replaces this with an HTTP "connector", see below. **[bin]**

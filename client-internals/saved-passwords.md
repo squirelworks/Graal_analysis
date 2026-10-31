@@ -31,7 +31,7 @@ Because the padding is random, the same password encrypts to a different string 
 
 ## Other uses of the same cipher
 
-- The hidden listserver host: the server list frame builds a different 8-byte key and a 48-character ciphertext one character at a time. It decrypts to `www.graalonline.com`, port `14921`. **[2.05]** **[test]**
+- The hidden listserver host: the server list frame builds a different 8-byte key and a 48-character ciphertext one character at a time. It decrypts to `<list-host-classic>`, port `14921`. **[2.05]** **[test]**
 - The web-level cache uses the same DES routine with per-block keys. See `formats/gwebl001-cache.md`.
 
 ## Tool

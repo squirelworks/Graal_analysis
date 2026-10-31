@@ -8,7 +8,7 @@ Date: 2026-10-21
 
 | Key | Shipped value | Meaning |
 |---|---|---|
-| `serveraddr` | `213.105.185.114` | Server host or IP (the connect window default is `127.0.0.1`) |
+| `serveraddr` | `<graal3d-default-host>` | Server host or IP (the connect window default is the loopback address) |
 | `serverport` | `14901` | TCP port |
 | `fixedport` | `false` | Bind the UDP socket to `fixedudpport` instead of a random port |
 | `fixedudpport` | `14898` | |

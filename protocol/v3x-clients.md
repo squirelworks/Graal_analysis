@@ -22,7 +22,7 @@ These two 3.x tokens carry the same date stamps as the 2.22 and 2.31 Windows tok
 
 ## Listserver
 
-- **Host and port are not compiled in.** They come from `license/license.graal`, a short CRLF text file: the primary host `listserver.graalonline.com`, port `14922`, the site name, the signup and translate URLs, then `listserver2` and `listserver3` as fallbacks. **[file]**
+- **Host and port are not compiled in.** They come from `license/license.graal`, a short CRLF text file: the primary host `<list-host-3x>`, port `14922`, the site name, the signup and translate URLs, then `listserver2` and `listserver3` as fallbacks. **[file]**
 - The file is **RSA-signed**. `license/sig.license` holds a 1024-bit RSA signature (PKCS#1 v1.5 over SHA-1, public exponent 17) as 256 hex characters. `license/sig.graal` signs the shipped (packed) executable file in the same way. The public key is embedded in the client as a hex-encoded DER key. All three signatures check out against it, so the client can tell if the host list or the executable has been edited. **[bin][file]**
 - Login sequence: **[bin]**
   1. id 7: key GCHAR, then `G3D30123newmain`. This is the first message of the connection. It is sent in fixed mode 3 (zlib, no cipher, no type byte).

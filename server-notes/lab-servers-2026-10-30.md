@@ -105,7 +105,7 @@ graal-serverlist is the protocol reference our v2 follows for ids and the HQ-lev
 
 ## 4. glauncher and gs2-parser
 
-* **glauncher** (2022) is a Detours DLL plus launcher for the official v4+ client. It hooks `gethostbyname` (maps `loginserver.graalonline.com`, `Graalonline.com`, `loginserver2/3`) and `connect` (rewrites port 14900) from a line-based `license.graal`. It changes nothing in the protocol. In the lab a bind-mounted hosts file does the same, so we do not need it.
+* **glauncher** (2022) is a Detours DLL plus launcher for the official v4+ client. It hooks `gethostbyname` (maps `<login-host-4x>`, `<graalonline-site>`, `loginserver2/3`) and `connect` (rewrites port 14900) from a line-based `license.graal`. It changes nothing in the protocol. In the lab a bind-mounted hosts file does the same, so we do not need it.
 * **gs2-parser** compiles GS2 to the bytecode that v4+ clients and the V8-less beta4 load. GS2 is post-2.x; the 2.x clients this project targets run GS1 text (`../CONSOLIDATED.md`: no GS1 bytecode in 2.05). Useful later only for comparing GS2 bytecode or if Seihai ever runs v4+ worlds.
 
 ## 5. What was changed, and what was not

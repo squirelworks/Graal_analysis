@@ -20,7 +20,7 @@ No per-build difference exists in the real clients we could observe. The listser
 
 Per-build tokens (`GNW24011` for 2.00, `GNW03081` for 2.05, `GNW22122` for 2.17.1 ...) exist, but they go to the **game server** login, not to the listserver. Only shape C carries a token to the listserver, and it is one shared token.
 
-Built-in listserver data from the binaries (no capture): 1.42 `www.graalonline.com:14921`, list name `newmain`; 2.00 to 2.05 the same, DES-hidden; the 2.1 test builds carry port 14922. 1.41: only a patched copy survives, original unknown.
+Built-in listserver data from the binaries (no capture): 1.42 `<list-host-classic>:14921`, list name `newmain`; 2.00 to 2.05 the same, DES-hidden; the 2.1 test builds carry port 14922. 1.41: only a patched copy survives, original unknown.
 
 ## Real versus Seihai, per profile (Seihai main 21a37a5)
 

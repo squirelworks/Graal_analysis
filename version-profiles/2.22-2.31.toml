@@ -24,7 +24,7 @@ ctype_small_zlib_if_shorter = true     # under 0x30 bytes zlib is used only if i
 xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }   # caps; steps = min(ceil(len/4), cap), a partial last group still steps
 lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
 out_queue_drop_bytes = 0x40000
-listserver = { host = "listserver.graal.in", port = 14922, kind = "supported", port_status = "confirmed", first_message_id = 7, token = "GNW30123", list_name = "newmain", config = "arrays2.dat + arrays2.sig" }
+listserver = { host = "<list-host-reborn>", port = 14922, kind = "supported", port_status = "confirmed", first_message_id = 7, token = "GNW30123", list_name = "newmain", config = "arrays2.dat + arrays2.sig" }
 file_modtime = true                    # PLO_FILE carries i5 modtime (all >= 2.1)
 large_files = true                     # LARGEFILESTART/END (68/69), 32000-byte chunks (>= 2.14)
 image_ext_default = ".png"             # server adds no .gif for >= 2.1

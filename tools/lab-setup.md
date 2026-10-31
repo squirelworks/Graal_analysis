@@ -6,7 +6,7 @@ This is how the 2.05 and 2.22 captures cited as **[cap]** in the protocol notes 
 
 ## Isolation
 - **Network:** everything runs inside a Linux network namespace with only loopback up (`unshare --net --mount`, then `ip link set lo up`). The clients have no route anywhere else, and DNS fails outside the hosts file.
-- **Hosts file:** a private one is bind-mounted over `/etc/hosts` inside the mount namespace. It points `www.graalonline.com`, `listserver.graal.in`, `listserver.graal.cc` and `listserver.graalonline.biz` at 127.0.0.1.
+- **Hosts file:** a private one is bind-mounted over `/etc/hosts` inside the mount namespace. It points `<list-host-classic>`, `<list-host-reborn>`, `<list-host-graalcc>` and `<list-host-graalbiz>` at the loopback address.
 - **Display:** each client gets its own Xvfb display, and Wine runs with a separate 32-bit prefix per client. Two copies of the same game folder let two clients run at once. Give them different `fixedudpport` values and set `noudp=false`, `fixedport=true`.
 - **Capture:** `tcpdump -i lo` inside the namespace.
 
