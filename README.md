@@ -99,7 +99,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 ## Decompile findings, batch c (2026-10-24)
 
-- `client-internals/decomp-findings-2026-10-24-c/`: 20 builds from 2.00 to the 2.1 tests, NewWorld betas and NewMain 24/26 (Ghidra + IDR). Login tokens, handled server ids and sent client ids per build, handler changes by build, UDP channel, test builds, vocabulary, and corrections to batch b. Tables are in the same folder. The 2.1 test decompiles are lossy, so only their structure is reliable.
+- `client-internals/decomp-findings-2026-10-24-c/`: 20 builds from 2.00 to the 2.1 tests, NewWorld betas and NewMain 24/26 (Ghidra + IDR). Login tokens, handled server ids and sent client ids per build, handler changes by build, UDP channel, test builds, vocabulary, and corrections to batch b. Tables are in the same folder. The 2.1 test decompiles are lossy, so only their structure is reliable. Long-handler field layouts (PLAYERPROPS / OTHERPLPROPS / NPCPROPS / LEVELLINK) for 2.00–2.31, plus UDP ids 0/15/22 for 2.00–2.04 and the gen-3 insertion formula through 2.05, are in `version-profiles/plo-*-layouts.tsv`, `udp-ids-200-204.tsv` and `gen3-insertion-200-205.tsv`.
 
 ## Decompile findings, batch d (2026-10-25)
 

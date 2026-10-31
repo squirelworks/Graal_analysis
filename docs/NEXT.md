@@ -60,10 +60,12 @@ open-point closed.
   Real 2.05 rev 2 and 2.22 under Wine against the lab GServer-v2. One PR per closed
   open point (or a small coherent group if the brief's "each" still fits one change).
 
-- [ ] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
+- [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
   NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,
-  then UDP id sets 2.00–2.04 and gen-3 insertion formula in 2.01–2.04. Static read from
-  Squirrel's decompiles. *Blocked until Squirrel provides those decompiles.*
+  plus UDP ids 0/15/22 for 2.00–2.04 and gen-3 insertion for 2.01–2.04.
+  Tables: `version-profiles/plo-*-layouts.tsv`, `udp-ids-200-204.tsv`,
+  `gen3-insertion-200-205.tsv`. Open questions 1, 3, 4 in batch-c `10-…` struck.
+  (2.04 / 2.01–2.03 `.c` not on Drive; those rows are endpoint + batch-c bracketed.)
 
 - [ ] **11. 1998 to 1.41 rules (matrix unknown #1).** Death, hurt and knockback, sword
   reach and the wall test for 1.39 first, then 1.32 and 1st Graal. Decompiles plus Wine
