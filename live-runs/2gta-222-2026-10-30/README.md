@@ -1,6 +1,6 @@
 # Real 2.22 client on Graal the Adventure (2026-10-30)
 
-A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`2gta.home.eevul.net:14913`), signed in as the user's own account (Seji) from the client's saved login. The run was driven by a script on a personal PC (machine details redacted): about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
+A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`<public-host>`), signed in as the user's own account from the client's saved login. The run was driven by a script on a personal PC (machine details redacted): about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
 
 **Future runs:** loopback-only labs (the loopback address / a second loopback address). Do not repeat personal-machine or public-listserver registrations without Squirrel's written OK.
 
@@ -154,7 +154,7 @@ Pots, signs and appearance (clothes-changer) commands are still untested. A lift
 
 ## Fourth pass: LAN test world (21:08 to 21:16 local)
 
-The user ran the patched GServer-v2 beta4 pack on a personal Linux host (`<lan-host>:14802`; hostname redacted) with a test level `testworld.nw`. A hosts line on that machine pointed `listserver.graal.in` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/). **Future runs of this kind are loopback-only** (see the note at the top of this file).
+The user ran the patched GServer-v2 beta4 pack on a personal Linux host (`<lan-host>:14802`; hostname redacted) with a test level `testworld.nw`. A hosts line on that machine pointed `<list-host>` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/). **Future runs of this kind are loopback-only** (see the note at the top of this file).
 
 ### Pots
 

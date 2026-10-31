@@ -204,7 +204,7 @@ Under Wine, 6.00r2 and 6.00r4 freeze on a blue window right after they write the
   - a real Windows 11 PC with DirectX 9 hardware (machine identity redacted);
   - the original Themida-packed `GraalSetup.exe` from each installer archive, renamed `Graal.exe`;
   - the date faked for the game process only with NirSoft RunAsDate (2011-06-14 for r2, 2011-06-28 for r4);
-  - a hosts line pointing `loginserver*.graalonline.com` at a GServer-v2 beta4 on the same LAN (`<lan-host>`; historical — future runs use loopback).
+  - a hosts line pointing `<login-host>*` at a GServer-v2 beta4 on the same LAN (`<lan-host>`; historical — future runs use loopback).
 - **No freeze.** Both builds write the level cache, receive the first image and keep running. They download every file and draw the full level, the player, baddies and the HUD. Arrow keys walk the player, and a baddy's hit takes the hearts from 3 to 2.5. **The freeze is a Wine problem**, not something in the client or the server.
 - **On today's date** the packed builds write the "This is a beta release" text to `game_console.log` and exit after about 1 s, before any window opens.
 - **The memory dumps don't run on Windows.** The unpacked `Graal.exe` files from `v5v6-windows-unpacked.md` crash at once on Windows (entry point 0, import table full of Wine addresses). They are for reading in Ghidra only.
