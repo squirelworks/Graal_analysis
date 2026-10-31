@@ -1,0 +1,78 @@
+# Next work (ordered)
+
+One change per branch and PR. Verify `origin/main` and the open PR list before
+starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" or
+that need missing Squirrel-only files; take the next task. Binding rules live in
+`AGENTS.md` and `.cursor/rules/graal-analysis.mdc`.
+
+Done-checks also require: leak check clean, `README.md` contents updated, matching
+open-point closed.
+
+## Tasks
+
+- [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
+  and this file. Fix the README opening line to match its Boundary section
+  ("no raw decompiles, code or binary addresses").
+  *Done in this PR; strike after merge to `main`.*
+
+- [ ] **2. Leak scrub.** One PR per kind, in this order: (a) `git rm` the two `.pyc`
+  files; (b) `FUN_` names → plain wording; (c) IPs and the LAN host → placeholders,
+  Squirrel's machines redacted; (d) official hostnames → placeholders. For (d) in
+  version TOMLs keep a stable placeholder per distinct host; in `npcs.json` script
+  text replace only the hostname. Do not touch the guest password.
+  *Done when* the four leak greps in `AGENTS.md` return nothing (third line: review
+  hits by eye).
+
+- [ ] **3. CI for the checks.** `.github/workflows/checks.yml`: run the four greps
+  from task 2 (fail on any hit), `python -m pytest tools/lab-servers` and a smoke run
+  of `client-internals/version-profiles/resolve.py` and `formats/grv1-decoder` on a
+  synthetic level. *Done when:* the workflow is green on the PR and fails on a test
+  branch that adds a non-loopback example IP to a note (show that run in the PR).
+
+- [ ] **4. pyReborn study into the repo.** Needs Squirrel's `pyreborn-vs-seihai.md` and
+  `parser-probe-main.rs` (project files). Add as `client-internals/pyreborn-study/`
+  with the MIT note; keep `file:line` citations; drop pasted pyReborn code.
+  *Blocked until Squirrel provides the files.*
+
+- [ ] **5. Graal3D collision as plain behaviour (unblocks `seihai-g3d` G3D-1).**
+  Per-face step test into `graal3d/collision.md` with tags. Static read needs the
+  decompile from Squirrel; confirm with a loopback Wine run where possible.
+  *Blocked until Squirrel provides the Graal3D decompile (unless lab-only path works).*
+
+- [ ] **6. Graal3D camera (unblocks G3D-2).** Camera height, look point, field of view
+  and follow rule into `graal3d/camera.md`. Needs decompile and/or lab confirmation.
+
+- [ ] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write
+  `protocol/npc-control.md` from `tools/remotecontrol.md`, Squirrel's `npccontrol`
+  material and a loopback NC run against the GServer-v2 lab.
+
+- [ ] **8. `#n` in `setcharprop` (server brief A3.6).** What original servers did with
+  `#n` in a `setcharprop` value, from lab evidence (GServer13 1999 under Wine on
+  loopback, and the 2.05 client). Add to `npc-library/gs1-reference-205.md` or a short
+  `server-notes/` note.
+
+- [ ] **9. Damage and file-transfer open points (loopback captures).** From
+  `decomp-findings-2026-10-25-k/03-open-points.md` and
+  `…-25-e/03-open-points.md`, in order: bomb/arrow/baddy hurt powers; CURPOWER props
+  after an injected packet 40 at full hearts; GWEBL001 cache and `PLI_LEVELMODTIME`;
+  login default file checks; file-index scan order; pre-2.1 re-send for a settled name.
+  Real 2.05 rev 2 and 2.22 under Wine against the lab GServer-v2. One PR per closed
+  open point (or a small coherent group if the brief's "each" still fits one change).
+
+- [ ] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
+  NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,
+  then UDP id sets 2.00–2.04 and gen-3 insertion formula in 2.01–2.04. Static read from
+  Squirrel's decompiles. *Blocked until Squirrel provides those decompiles.*
+
+- [ ] **11. 1998 to 1.41 rules (matrix unknown #1).** Death, hurt and knockback, sword
+  reach and the wall test for 1.39 first, then 1.32 and 1st Graal. Decompiles plus Wine
+  runs against GServer13 or the 1998 relay on loopback.
+
+- [ ] **12. Keep Seihai's fixture reader working.** Any PR that edits
+  `version-profiles/*.toml` or `client-internals/version-profiles/*.toml` runs Seihai's
+  `tools/gen_profile_fixture.py` against the edited file. Do not commit the generated
+  fixture to `seihai` from here.
+
+- [ ] **13. Later, Squirrel decides:** a capture of a real 5.x/6.x `Login` session to
+  fill matrix unknown #3. Ask before planning; public servers are off-limits without
+  Squirrel's OK.
