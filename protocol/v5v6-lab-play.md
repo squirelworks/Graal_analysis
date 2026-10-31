@@ -65,7 +65,7 @@ The level, chests and image NPCs are drawn, and the player walks and sends posit
 
 The v5 thread found the cause in the binary. The draw-layer mask is cut down while the server name starts with "login". This is the login lobby mode: the real login server is not meant to be played on.
 
-- **Fix.** After the login burst, send **S→C 178** (server warp) `0,Lab Server,127.0.0.1,14900`.
+- **Fix.** After the login burst, send **S→C 178** (server warp) `0,Lab Server,<loopback>,14900` (host field = the loopback address).
 - The client drops the connection, logs in again under the new name, and then draws the player, the HUD (A/S/D boxes, hearts, rupees, bombs, arrows, the AP bar), other players and their nicknames. **[wire][shot]**
 - The lab does this with the proxy. GServer-v2 only sends 178 when its listserver answers a server-info query.
 - Confirmed on 5.24r4, 5.31r4 and 6.03r7. 5.12 and 5.00r7 were confirmed by the v5 thread.
@@ -196,13 +196,15 @@ Chat was set by the server (own props 9 and other-player props 8, prop 12), beca
 
 ## 6.00r2 and 6.00r4 on real Windows
 
-Under Wine, 6.00r2 and 6.00r4 freeze on a blue window right after they write the level cache and receive the first image. On 2026-10-30 both builds were run on a real PC instead. **[shot]**
+Under Wine, 6.00r2 and 6.00r4 freeze on a blue window right after they write the level cache and receive the first image. On 2026-10-30 both builds were run on a real Windows PC instead (personal machine; OS build and GPU details redacted). **[shot]**
+
+**Future runs:** loopback-only labs (the loopback address / a second loopback address, in a container, VM or CI). Do not use Squirrel's own machines again.
 
 - **Setup:**
-  - Windows 11 Pro 25H2 (build 26200), Intel Iris Xe, DirectX 9 hardware;
+  - a real Windows 11 PC with DirectX 9 hardware (machine identity redacted);
   - the original Themida-packed `GraalSetup.exe` from each installer archive, renamed `Graal.exe`;
   - the date faked for the game process only with NirSoft RunAsDate (2011-06-14 for r2, 2011-06-28 for r4);
-  - a hosts line pointing `<login-host-4x>*` at a GServer-v2 beta4 on the LAN.
+  - a hosts line pointing `<login-host-4x>*` at a GServer-v2 beta4 on the same LAN (`<lan-host>`; historical — future runs use loopback).
 - **No freeze.** Both builds write the level cache, receive the first image and keep running. They download every file and draw the full level, the player, baddies and the HUD. Arrow keys walk the player, and a baddy's hit takes the hearts from 3 to 2.5. **The freeze is a Wine problem**, not something in the client or the server.
 - **On today's date** the packed builds write the "This is a beta release" text to `game_console.log` and exit after about 1 s, before any window opens.
 - **The memory dumps don't run on Windows.** The unpacked `Graal.exe` files from `v5v6-windows-unpacked.md` crash at once on Windows (entry point 0, import table full of Wine addresses). They are for reading in Ghidra only.

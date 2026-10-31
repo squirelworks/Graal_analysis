@@ -33,7 +33,7 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | 4thgraalalpha | beta (alpha) | 1998-10-12 22:54 | – | 8cae23a58e1b1b10f3149bdbe53d0431 | 711680 | none | 1 | 127.0.0.1:14801 | GR-V1.00–1.01; Graalsav2 | Built after 4thgraal despite the name; DirectSound appears |
 | 5thgraal | beta | 1998-10-19 02:27 | – | 0e7c3573f0a916f8b2376060e768fe96 | 723968 | none | 1 | 127.0.0.1:14801, dialog 14802 | GR-V1.00–1.02; Graalsav2 | GR-V1.02 |
 | 5thgraalalpha | beta (alpha) | 1998-10-29 02:21 | – | e54397e7d4f59d30b77d5cf0475335a1 | 739840 | none | 1 | 127.0.0.1:14801 | GR-V1.00–1.02; Graalsav2 | Built after 5thgraal |
-| 6thgraal | beta5 | 1998-11-09 02:08 | – | 53c3caf3d930534db3f44f346f5d651a | 750080 | none | 1 | 127.0.0.1:14801, dialog 14802 | GR-V1.00–1.02; Graalsav3 | Published by Cyberjoueur; web levels from <cyberjoueur-host> |
+| 6thgraal | beta5 | 1998-11-09 02:08 | – | 53c3caf3d930534db3f44f346f5d651a | 750080 | none | 1 | the loopback address:14801, dialog 14802 | GR-V1.00–1.02; Graalsav3 | Published by Cyberjoueur; web levels from <cyberjoueur-host> |
 | 7thgraal | beta7 | 1998-12-04 00:28 | – | deb40c31268e499fc4436b8d0687f05d | 766976 | none | 1 | as above | GR-V1.00–1.03; Graalsav4 | First GR-V1.03 (the last `.graal` revision any build here reads) |
 | 8thgraal | beta8 | 1998-12-08 01:13 | – | a49aa1b773e41741f211867fd5ea55d7 | 775680 | none | 1 | as above | GR-V1.00–1.03; Graalsav4 | |
 | 9thgraalalpha | beta9 (alpha) | 1998-12-16 02:36 | – | e226e1b83fd437b0aede968fb395b911 | 788992 | none | 1 | as above | GR-V1.00–1.03; Graalsav5 | Built before 9thgraal |
@@ -111,7 +111,7 @@ The bundled GServers accept a range rather than one token: GServer 1.28 accepts 
 | 3 | 1.41 rev1, NewMain 1.42, all 2.0x, 2.1 tests, NW betas | Connection initialiser seeds the insertion LCG with `0x04A80B38` and a 7-bit random key. 1.39 lacks it |
 
 **Server discovery.** 1.39 and earlier have no listserver: the connect dialog is pre-filled with a host:port and the player edits it.
-The defaults were 127.0.0.1:14801 for the 1998 betas through 1.1.9, <list-host-classic>:14804 for 1.21–1.3 test, and <list-host-classic>:14900 for 1.31–1.39.
+The defaults were the loopback address on 14801 for the 1998 betas through 1.1.9, <list-host-classic>:14804 for 1.21–1.3 test, and <list-host-classic>:14900 for 1.31–1.39.
 The server-list window arrives with 1.4. NewMain 1.42 writes host, port and list name as plain char-by-char strings.
 From 2.0 the host is DES-hidden with the bit-reversed key described in the 2.05 notes. The key and ciphertext are the same in every 2.0x build and decrypt to `<list-host-classic>`.
 The list name chooses the main list ("newmain") or the NewWorld list ("newworld"). The port moves from 14921 to 14922 with the 2.1 test builds.

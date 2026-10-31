@@ -1,6 +1,8 @@
 # Real 2.22 client on Graal the Adventure (2026-10-30)
 
-A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`<public-host-2gta>:14913`), signed in as the user's own account (Seji) from the client's saved login. The run was driven by a script on the user's PC: about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
+A short live run of the real client, `Graal_222.exe` from the Graal 2.2.2.0 install, on the public server Graal the Adventure (`<public-host-2gta>:14913`), signed in as the user's own account from the client's saved login. The run was driven by a script on a personal PC (machine details redacted): about 2 minutes of walking, one door and one sword swing in the first pass, then about 6 minutes at one bush in the second. Screenshots are in this folder, captured from the window at 2.5x scale (one 16 px tile is 40 px).
+
+**Future runs:** loopback-only labs (the loopback address / a second loopback address). Do not repeat personal-machine or public-listserver registrations without Squirrel's written OK.
 
 What follows is what the screen showed. Nothing here was read from packets.
 
@@ -152,7 +154,7 @@ Pots, signs and appearance (clothes-changer) commands are still untested. A lift
 
 ## Fourth pass: LAN test world (21:08 to 21:16 local)
 
-The user ran the patched GServer-v2 beta4 pack on their Linux PC (GwenTea2, 192.168.0.122:14802) with a test level `testworld.nw`. On this PC a hosts line points `<list-host-reborn>` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/).
+The user ran the patched GServer-v2 beta4 pack on a personal Linux host (`<lan-host>:14802`; hostname redacted) with a test level `testworld.nw`. A hosts line on that machine pointed `<list-host-reborn>` at it. Registering the same server with the public Graal Reborn listserver worked, but the real 2.22 client did not list it on any tab: that needs a ServerHQ tier. Account `seihaitest`. The traffic was captured with dumpcap from before the login. Screenshots are in [lan/](lan/). **Future runs of this kind are loopback-only** (see the note at the top of this file).
 
 ### Pots
 
@@ -166,7 +168,7 @@ On this server the drop comes from the server, in the same frame as the lift: th
 
 ### The heart-refill death loop
 
-In the user's first session the server saved the account with 0 max hearts, 0 arrows, 0 bombs and 0 gralats, so every respawn was clipped to 0 hearts and the player died over and over. In the captured second session the 2.22 client **never sends MAXPOWER, CURPOWER, arrows, bombs or gralats**: its login PLAYERPROPS are NICKNAME, HEADGIF, COLORS, STATUS, UDPPORT, ADDITFLAGS, PLANGUAGE, OSTYPE and TEXTCODEPAGE, and later only GANI, X, Y, SPRITE, CARRYSPRITE and the clothes props below. The server's heart pickup path cannot zero max hearts (GwenTea2 read the beta4 source). So the zeroing in the first session is still unexplained; it was not captured.
+In the user's first session the server saved the account with 0 max hearts, 0 arrows, 0 bombs and 0 gralats, so every respawn was clipped to 0 hearts and the player died over and over. In the captured second session the 2.22 client **never sends MAXPOWER, CURPOWER, arrows, bombs or gralats**: its login PLAYERPROPS are NICKNAME, HEADGIF, COLORS, STATUS, UDPPORT, ADDITFLAGS, PLANGUAGE, OSTYPE and TEXTCODEPAGE, and later only GANI, X, Y, SPRITE, CARRYSPRITE and the clothes props below. The server's heart pickup path cannot zero max hearts (confirmed by reading the beta4 source on that lab host). So the zeroing in the first session is still unexplained; it was not captured.
 
 ### Signs
 

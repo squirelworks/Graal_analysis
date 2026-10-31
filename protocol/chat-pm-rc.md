@@ -36,7 +36,7 @@ Mass PMs and guild PMs use the same packet with different type labels. Players i
 | C→S | 51–98 | RC_* | server options, folder config, player props get/set, accounts, bans, rights, comments, file browser | · (RC client only) |
 | C→S | 103–119 | NC_* | NPC-control: NPC get/set/warp, classes, weapons | · |
 
-The staff tools run their own logins: RC `GSERV023`–`025`, NC `NCL11012`, RC2 type 6 on gen 5. Their packet details live in `tools/remotecontrol.md`.
+The staff tools run their own logins: RC `GSERV023`–`025`, NC `NCL11012`, RC2 type 6 on gen 5. NC packet layouts: `protocol/npc-control.md`. RC details: `tools/remotecontrol.md`.
 
 ## Profiles
 
