@@ -1,0 +1,44 @@
+DirectX9 capabilities:
+  Hardware: yes
+  Non-Power of 2 textures: yes
+  Maximum texure size: 16384 x 16384
+
+Graphics card:
+  Description: NVIDIA GeForce GTX 470
+  Driver version: 9.21.13.9135
+
+Scanning folder structure of Z:/root/lab/run-p524-1/...
+Done.
+Couldn't load hooking.dll, required for recording video of games.
+Graal has been activated!
+Loading tile definitions for server Login
+Connecting to the game server...
+Done.
+Welcome to My Server.
+OpenGraal GS2Emu programmed by Joey, Nalin, Codr, and Cadavre.
+File download: arial.ttf not found
+File download: idle.gani (size: 7988) done
+Loading tile definitions for server Lab Server
+Connecting to the game server...
+Done.
+Initialized OpenGL.
+Welcome to My Server.
+OpenGraal GS2Emu programmed by Joey, Nalin, Codr, and Cadavre.
+File download: arial.ttf not found
+File download: guigames_arcmessage2.png not found
+File download: pics1.png (size: 32000)...
+File download: pics1.png (size: 64000)...
+File download: pics1.png (size: 96000)...
+File download: pics1.png (size: 128000)...
+File download: pics1.png (size: 160000)...
+File download: pics1.png (size: 192000)...
+File download: pics1.png (size: 216002)...
+File download: pics1.png (size: 216002) done
+File download: chest.png not found
+File download: arialbd.ttf not found
+File download: state.png not found
+File download: sprites.png (size: 15052) done
+File download: body.png (size: 14939) done
+File download: head0.png (size: 7755) done
+File download: shield1.png (size: 6058) done
+File download: sword1.png (size: 7143) done
