@@ -1,11 +1,11 @@
 # Open points
 
-- Bomb, arrow and baddy hurt powers: the object-kind mapping was not traced. A capture of a real client hit by a server bomb and by an arrow, reading the power byte, would settle it.
+- ~~Bomb, arrow and baddy hurt powers: the object-kind mapping was not traced.~~ **Closed.** Powers and kinds are in [`../damage-sources.md`](../damage-sources.md) **[bin]** (explosion types 0.5/0.5/1, arrow 0.5, fireball 1, baddy touch 0.5 / golden warrior 1, etc.). Lab bomb/arrow blast-shape and arrow type-byte quirks remain open in [`../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md`](../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md) and do not reopen the power table.
 - The per-player field of packet 40: inferred to be always equal for ordinary players. A real client hit by packet 40 from a player that owns a horse or similar would show whether it differs.
-- End of respawn: the respawn routine calls the entry save once more after asking for the warp; whether the next respawn point is then the death spot online needs two respawns on a server that delays the level reply.
-- CURPOWER after damage: needs a real client at full hearts hit by an injected packet 40 and a look for a props message with the hearts byte.
-- Default weapon ids against images: see 02. A run that names the ids and the images together would settle it.
-- Level cache format (GWEBL001): not part of this batch. A real client run twice against the same level with the cache folder inspected would show the key handling.
+- ~~End of respawn: the respawn routine calls the entry save once more after asking for the warp; whether the next respawn point is then the death spot online needs two respawns on a server that delays the level reply.~~ **Closed.** Lab: next respawn stays the level entry point, with or without a delayed reply — [`../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md`](../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md) §D **[cap]**.
+- ~~CURPOWER after damage: needs a real client at full hearts hit by an injected packet 40 and a look for a props message with the hearts byte.~~ **Closed.** After a hit the client sends one props message with CURPOWER (half-hearts) + `hurt` GANI — same lab note §C **[cap]**.
+- ~~Default weapon ids against images: see 02.~~ **Partly closed.** Lab §E: id **7** → `wbowi1.png` settled; id **8** → `wbomb1.png` not isolated (bomb image is asked anyway). Also ids 12, 20–23 → named images. Same lab note **[cap]**.
+- ~~Level cache format (GWEBL001): not part of this batch.~~ **Closed** for format and key handling: [`../../formats/gwebl001-cache.md`](../../formats/gwebl001-cache.md) **[2.05][test]** (144 real files). Write is triggered by server packet 39 (`PLO_LEVELMODTIME`).
 - File-index scan order for two files with the same name in different folders: a capture with different bytes in `levels/webgifs` and `levels/bodies` and a look at which is drawn.
-- Whether pre-2.1 clients re-send the file check for a settled name: a 2.05 run against a server that answers every check with "send failed".
+- ~~Whether pre-2.1 clients re-send the file check for a settled name: a 2.05 run against a server that answers every check with "send failed".~~ **Closed.** Settled-list rule: any reply puts the name in C; a name in C is not asked again. Same list code in 2.00 and 2.05 — [`../decomp-findings-2026-10-25-e/01-request-lists.md`](../decomp-findings-2026-10-25-e/01-request-lists.md) **[bin]**.
 - When the maps folder rule arrived (2.1 to 2.16): no binaries.

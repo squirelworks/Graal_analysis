@@ -34,6 +34,7 @@ The hit point is (b1/2, b2/2) in tiles, from the two bytes after the power. The 
 Packet 40 is dropped unless a field of the attacker's player record equals the same field of the victim's. In 2.05 and in 2.22 the field is the one that holds a parent or owner record; ordinary players have none, so both sides read zero and the test passes. This is an inference from the other readers of the field; no wire was seen.
 
 ## What stays unknown
-- Which object kinds (bomb, arrow, baddy) call the hurt routine with which power: the callers use half a heart by default and one heart for a few object kinds, and the kind mapping was not traced.
-- Whether the respawn routine's second entry save lands on the death spot online (needs a capture).
-- Whether the real client sends CURPOWER after damage (needs a capture).
+- ~~Which object kinds (bomb, arrow, baddy) call the hurt routine with which power~~ — closed in [`../damage-sources.md`](../damage-sources.md).
+- ~~Whether the respawn routine's second entry save lands on the death spot online~~ — closed in [`../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md`](../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md) §D (stays the entry point).
+- ~~Whether the real client sends CURPOWER after damage~~ — closed in the same lab note §C.
+- Packet 40's per-player owner/parent field with a horse or similar (still needs a capture).
