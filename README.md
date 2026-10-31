@@ -1,9 +1,10 @@
 # Graal Analysis
 
-Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No decompile material.
+Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No raw decompiles, code or binary addresses.
 
 ## Contents
 
+- `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`, and `docs/NEXT.md` — binding agent rules (no real hosts, no binary addresses, loopback labs only, decompile material stays here) and the ordered open task list.
 - `npc-library/` — 3,172 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables. Archival notes on a prior larger documented extract are in `npc-library/archival-scripting-notes.md`.
 - `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.
 - `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`, `codec-and-framing.md`, `packet-ids.md`, `player-props.md`, `file-transfer.md`, `chat-pm-rc.md`, `listserver.md` (with `public-listserver-2026-10-25.md`, the first observed public replies), `udp-p2p.md`, `v3x-clients.md` (Graal 3.x Linux/Mac clients), `v4x-clients.md` (Graal 4.x Windows/Mac clients), `v5x-clients.md` (Graal 5.x Windows clients), `v6x-clients.md` (Graal 6.x Linux, Mac and Windows clients, incl. the 6.11 server-defined protocol), `v5v6-windows-unpacked.md` (the packed 5.12–6.03 Windows builds, unpacked and run: tokens, logins, id tables), `v5v6-lab-play.md` (those builds played on a lab GServer: the "Login" server mode that hides characters, 5.12's cipher step count, the session on the wire, push/lift/sword/hide/pot/stone timings and the chat text look), `relay-1998.md` (the 1998 text relay), and `gserv-1999.md` (GSERV007–018 logins, gen 2).
