@@ -12,6 +12,7 @@ No decompiler output is reproduced here.
 - [protocol.md](protocol.md): framing, login, packet ids, the player property table, peer-to-peer UDP, admin commands.
 - [formats.md](formats.md): config files, the registry password, `accounts.txt`, levels and models.
 - [client-behaviour.md](client-behaviour.md): controls, walking, running, jumping, camera and the chat log, for a per-version profile.
+- [collision.md](collision.md): per-face step test for a `Collider` (radius 5, step height 30, slope and wall rules, probe order), static read of the February 2000 client.
 - [lab-2026-10-30.md](lab-2026-10-30.md): the live run of both programs under Wine, what it confirmed and its limits.
 - [reference-server/](reference-server/): a small Python server written from these notes. The real client logs into it, and it matches the original server's messages on the lab session.
 - [torque-engine-4x.md](torque-engine-4x.md): the **other** Graal 3D, the Torque-based `Graal3DEngine.dll` of the 4.x clients (2006), and how a 4.x client connects to a 3D server.
@@ -78,6 +79,6 @@ The server holds at most 200 players. Player ids are the lowest free slot from 1
 ## Open points
 
 - Packets 4 and 6 set client values that nothing reads (checked 2026-10-30). Packet 4 follows 2D "leader" semantics on the server side.
-- Movement and camera maths: see [client-behaviour.md](client-behaviour.md).
+- Movement maths: see [client-behaviour.md](client-behaviour.md). Collision (step height, radius, slope, wall slide): see [collision.md](collision.md). Camera height / look / FOV still open for a dedicated note.
 - No admin client for Graal3D is in the archives. The admin protocol below comes from the server alone.
-- The live run (see [lab-2026-10-30.md](lab-2026-10-30.md)) confirmed the TCP side. UDP between two real clients still needs Microsoft's `d3drm.dll`, which Wine does not provide.
+- The live run (see [lab-2026-10-30.md](lab-2026-10-30.md)) confirmed the TCP side. UDP between two real clients still needs Microsoft's `d3drm.dll`, which Wine does not provide. Collision was not lab-confirmed for the same reason.

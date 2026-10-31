@@ -25,7 +25,7 @@ Movement keys are read with `GetAsyncKeyState`, and only while the chat line doe
 - After **25 ticks** (1.25 s) of walking without stopping, speed becomes ×1.5 (12 per tick, 240 per second). Stopping resets the count.
 - Holding only "back" walks backwards along the direction the player faced when the key went down, instead of following the camera.
 - The world is ±4000 units on x and z. A step that would leave it is dropped. This matches the wire range of props 1–3 (`(v − 8000) / 2`, so −4000 to 4095.5 in half-unit steps).
-- Collision tests the new position against every face of the level mesh (the faces are loaded with the level).
+- Collision tests the new position against every face of the level mesh (the faces are loaded with the level). Numbers for a `Collider` (radius 5, step height 30, slope and wall rules, probe order) are in [collision.md](collision.md).
 - While walking, the body bobs: y gets `|sin(3.14 × 2 × (anim − 1) / 40)| × 3` added (the program uses 3.14, not π).
 
 ## Animation counter (prop 5)
