@@ -83,6 +83,8 @@ Read in gs2lib `5c36ab8` (`src/IUtil.cpp` `clientVersions[]`, `include/IUtil.h` 
 
 - 5.24r4, 5.30r3 and 6.03r7 open with `basepackage.gupd`. With an empty cache it goes as 23 (`WANTFILE`), twice (v5x lab 2026-10-30b; `v5v6-windows-unpacked.md`).
 - In the "Play v5 and v6 clients" runs, 5.24 and 6.03r7 sent it as **47** (`VERIFYWANTSEND`, `i5 crc32` + name), twice, while the `G3D26090` build sent 23 (`lab-v5v6/logs`). That 47 is used when a copy is already cached is **[inf]**: the cache state of those runs was not recorded.
+- 5.00r7 settles it (lab, 2026-10-31, stock gs2lib): in one run the real client sent `basepackage.gupd` as **47** on the Login connection and as **23** after the 178 warp to "Lab Server". Its install holds `updatepackages/basepackage.gupd` (the Login server's copy) but no `updatepackages/Lab%032Server/`. So 47 goes out when that server's copy is cached, and 23 when it is not; the cache is per server name. **[cap]**
+- The same run checked the layout on the stock library: `G3D22067` is entry 49 of `clientVersions[]` in the shipped `libgs2lib.so` (`b839106`), named `5.07`. The server sent a small file as `102` with the GINT5 modtime, and a 541,248-byte file as `68`, `84`, `102` chunks each with modtime and name, then `69`. The real 5.00r7 saved it byte for byte. **[cap][bin]** Write-up: Seihai `documentation/v5v6-profiles.md` (seihai#293).
 - Then `UPDATEFILE` for `idle.gani`, `sprites.png`, `body.png`, `head0.png`, `shield1.png` and the `guigames_*` images, and `WANTFILE` for the fonts (`arial.ttf`, `arialbd.ttf`) and `tiledefs<server>.txt`.
 
 ## Typical flow for 2.05 **[srv][inf]**
