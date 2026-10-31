@@ -115,9 +115,11 @@ props_sent_exclude = [25, 27, 28, 29, 30, 34, 36, 50, 51, 77]
 props_self_parse_exclude = [33, 50, 51, 53, 75, 76, 77]
 npcprops_exclude = [48, 49, 50, 51, 52]
 props_src = "bin"
-ostype = "mac"
+ostype = "mac"                         # cap: first props 75 "mac"
 precise_move = true                    # MOVE2 (189), props 78-80
-precise_move_src = "bin"
+precise_move_src = "bin cap"           # cap: walking sends 78/79 (X2/Y2), never 15/16 (lab-mac-tiger-2026-10-31.md)
+first_props_sent = [0, 18, 31, 33, 52, 75, 76]   # cap: nick, status, udpport 0, additflags 0, language, ostype mac, textcodepage 1250
+live_run = "lab-mac-tiger-2026-10-31.md"         # Mac OS X 10.4 in qemu-system-ppc, software GL via an AGL shim
 
 [version.features]
 mode_3d = true                         # Torque GameConnection, port 28000, missions and terrain (levels3d/, scripts/)
