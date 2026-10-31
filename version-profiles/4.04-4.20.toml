@@ -52,13 +52,14 @@ token_src = "bin"
 plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 75, 82, 84, 100-102, 104-108, 131-134, 150, 151, 153-156, 165, 166, 168-176, 178-187, 189-191, 193-195"
 plo_known_count = 99
 plo_known_src = "bin"
-pli_sent = "1, 2, 4-10, 12-19, 21-24, 26, 28, 29, 32, 33, 35-37, 41, 44, 50, 79-81, 92, 96, 130, 152, 154, 157, 158, 161, 162"
-pli_sent_src = "inf"                   # 4.20r8's; only 162 (the answer to 108) was confirmed in the Mac binary
+pli_sent = "1, 2, 4-10, 12-19, 21-24, 26, 28, 29, 32-37, 41, 44, 46, 50, 79-81, 92, 96, 130, 152, 154, 157, 158, 161, 162"
+pli_sent_src = "inf cap"               # 4.20r8's plus 34 and 46; 162 bin; 2, 23, 24, 34, 37, 44, 46, 157 cap (lab-mac-tiger-2026-10-31.md)
 pli_sent_complete = false
 login_platform = "mac"
-login_fields = 4                       # bin: mac, hash(Ethernet MAC), hash(stat /etc), empty
+login_fields = 4                       # bin cap: mac, hash(Ethernet MAC), hash(stat /etc), empty
+login_fields_cap = 'mac,"",a87b712247c6c9068448ba8c2f68a24b,""'   # qemu guest: MAC field empty (sungem NIC), /etc hash 32 hex, 4th empty
 torque_protocol = 21
-never_run = true                       # PowerPC
+live_run = "lab-mac-tiger-2026-10-31.md"   # Mac OS X 10.4 in qemu-system-ppc, software GL via an AGL shim
 
 [[version]]
 label = "4.20r8"
