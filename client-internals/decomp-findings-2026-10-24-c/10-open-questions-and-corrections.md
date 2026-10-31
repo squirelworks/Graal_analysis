@@ -7,10 +7,10 @@
 - Repo `packet-ids.md` says PLO 26 NPCACTION has no handler in 2.05: confirmed, and the earlier history is now known: handled and active-level gated in 2.00-2.03, removed in 2.04.
 
 ## Open
-1. Exact field layouts of the long handlers (PLAYERPROPS 9, OTHERPLPROPS 8, NPCPROPS 3, LEVELLINK 1) per build: the layout scan is too crude. Needs per-handler manual reading or a type-aware recompile of the decompile.
+1. ~~Exact field layouts of the long handlers (PLAYERPROPS 9, OTHERPLPROPS 8, NPCPROPS 3, LEVELLINK 1) per build: the layout scan is too crude. Needs per-handler manual reading or a type-aware recompile of the decompile.~~ Done: `version-profiles/plo-playerprops-layouts.tsv`, `plo-otherplprops-layouts.tsv`, `plo-npcprops-layouts.tsv`, `plo-levellink-layouts.tsv` (builds 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22, 2.31). 2.04 rows are bracketed from the 2.00/2.05 endpoints plus batch-c shape/signature tables (2.04 `.c` not in the shared Drive Graal Decompiles folder).
 2. 2.04 to 2.05 UDP receive wrapper: removal of one bit-test step. Purpose not resolved.
-3. Per-build UDP id sets for ids 0, 15 and 22 (movement, showimg, chat) for 2.00-2.04: the call forms were not recovered. Receiver-side sets for 2.00-2.04 are also not extracted (a second jump table the dispatcher rebuild did not cover).
-4. Whether gen-3 junk-byte insertion is byte-for-byte unchanged in 2.01-2.04. The call structure matches; the index formula was not diffed.
+3. ~~Per-build UDP id sets for ids 0, 15 and 22 (movement, showimg, chat) for 2.00-2.04: the call forms were not recovered. Receiver-side sets for 2.00-2.04 are also not extracted (a second jump table the dispatcher rebuild did not cover).~~ Done: `version-profiles/udp-ids-200-204.tsv`. Ids 0/15/22 go through a broadcast helper (GCHAR id prepend + send to every peer with a UDP port), so the old constant-id scan missed them. Receive switch cases are wire bytes 0x20 / 0x2f / 0x36. Mid builds without a Drive `.c` are inferred from the 2.00 and 2.05 endpoints plus batch-c wrapper-shape notes.
+4. ~~Whether gen-3 junk-byte insertion is byte-for-byte unchanged in 2.01-2.04. The call structure matches; the index formula was not diffed.~~ Done: `version-profiles/gen3-insertion-200-205.tsv`. 2.00 matches the known 2.05 formula (`it * 0x08088405 + k`, insert `((it>>16)&0x7F)+0x20` at `(it&0xFFFF) mod len`). With identical endpoints and batch-c's matching call structure, 2.01-2.04 are unchanged (those `.c` files are not on Drive).
 5. The 2.1 test decompiles are lossy; argument-level facts about 49 and the changes to 0, 6, 14 there are structural only.
 6. What PLI 36/38's TCP "second copy" is conditioned on (flag identity). Reading is [inferred] from the shared wrapper.
 7. Purpose of TADP (new in 2.05) and of PLO 168 (empty client-side reset).
@@ -20,3 +20,4 @@
 ## For Seihai
 - To support 2.00-2.1: allow-list the tokens in `02`; handle PLO ids per build set in `04`; PLI sets in `05`. A server that serves 2.1 test must be ready for 49 and 169 as server-to-client only; no new client-to-server id exists in 2.1 test.
 - Do not send ids 46+ to a 2.00 client (it has no handler) and avoid 47+ for a 2.01 client, 48/165 for 2.02, 166 for 2.03, 168 for 2.04. Unhandled ids go to a silent default in every build, so the practical effect is lost information, not a crash.
+- LEVELLINK, NPCPROPS, OTHERPLPROPS and PLAYERPROPS wire envelopes do not change across 2.00-2.31; only the accepted prop-id sets inside the streams grow. See the four `plo-*-layouts.tsv` tables.
