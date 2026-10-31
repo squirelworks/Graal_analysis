@@ -12,6 +12,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No de
 - `torque/` — the Torque Game Engine side of the 3.x–5.12 clients: engine version and lineage, how a client joins a 3D server (Graal TCP + Torque UDP on port+1), the Torque handshake per version (live-captured from 5.12), the `.dso` v33 TorqueScript format with a decompiler, the 5.12 3D object model, 3D formats, and what a Seihai Torque client would need. `torque/wire-by-build.md` compares the wire per build (3.04, 3.153, 4.04r2, 4.20r6, 5.12): game string and protocol, the class table, the networked class sets, the 5.12 game packets and the `GameObject` update.
 - `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab). `tools/lab-servers/` holds our lab listserver.
 - `archive/` — archival notes on decommissioned experimental walkers and tileset work (Ember / Avelan). Full assets live in a Drive zip; see `archive/ember-avelan-experimental.md`.
+- `server-notes/public-allowed-versions.md` — which client versions public Reborn game servers allow: the two "Allowed:" lists on record (Graal the Adventure: 2.22 and 5.00r7; a gs2 server: 2.22 and a 1.41r1 to iPhone Belote range), how GServer-v2 reads `allowedversions.txt` ranges, and what that means for each 5.x and 6.x build.
 
 ## Newly scaffolded (2026-10-14)
 
