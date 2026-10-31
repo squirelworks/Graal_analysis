@@ -1,0 +1,5 @@
+trace:dinput:dinput_device_a_SetDataFormat impl 0138BBC0, format 00484A0C.
+trace:dinput:dinput_device_SetDataFormat iface 0138BBC0, format 00484A0C.
+trace:dinput:dinput_device_SetDataFormat user format 00484A0C dwSize 24, dwObjsize 16, dwFlags 0, dwDataSize 256, dwNumObjs 1, rgodf 004849FC
+trace:dinput:dinput_device_SetDataFormat   0: object 004849FC pguid {55728220-d33c-11cf-bfc7-444553540000}, dwOfs 0x1, dwType 0xffff0c, dwFlags 0
+trace:dinput:dinput_device_a_GetDeviceState impl 0138BBC0, count 0x100, data 005BFC50.
