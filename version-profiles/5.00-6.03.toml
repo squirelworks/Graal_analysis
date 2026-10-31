@@ -22,12 +22,12 @@ login_src = "bin cap"
 login_after = [37]                     # PLI_LANGUAGE in its own gen-5 frame, then file requests (23/34/47)
 tampercheck = false
 listserver = "none"                    # no listserver protocol: a game server named Login serves the list as scripted GUI (S>C 190)
-first_server = "Login"                 # built in: loginserver{,2,3}.graalonline.com:14900
+first_server = "Login"                 # the built-in login host and its two fallbacks (see protocol/v5x-clients.md)
 login_mode = "while the server name starts with 'login' (any case) no characters and no HUD are drawn; S>C 178 x,name,host,port moves the client to the server it names"
 login_mode_src = "bin cap"
-serverwarp_fields = "split on commas only: 0,Lab Server,127.0.0.1,14900 reached 127.0.0.1:14900 with the name 'Lab Server'"
+serverwarp_fields = "split on commas only: an unquoted x,<name with a space>,<lab address>,<port> reached the lab address and kept the whole name"
 serverwarp_src = "cap"
-guest_password = "7Y3bdzjf"            # cap, every Windows build
+guest_login = true                     # cap: every Windows build logs in as guest with a built-in password (see private notes)
 
 [[version]]
 label = "5.00r7"
