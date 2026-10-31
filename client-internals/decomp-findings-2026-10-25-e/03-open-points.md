@@ -1,8 +1,8 @@
 # Open points
-- Persistent level cache (`GWEBL001`): format already in the notes; its interaction with `PLI_LEVELMODTIME` was not read here.
+- ~~Persistent level cache (`GWEBL001`): format already in the notes; its interaction with `PLI_LEVELMODTIME` was not read here.~~ **Closed.** The write is on **server** packet 39 (`PLO_LEVELMODTIME`, not a client `PLI_`): [`../../formats/gwebl001-cache.md`](../../formats/gwebl001-cache.md) and [`../../protocol/packet-layouts.md`](../../protocol/packet-layouts.md) **[2.05]**. Client level entry still uses board packets plus that modtime exchange (see also request-lists: levels use no file-transfer ids).
 - Login default checks: the lab shows a check for three body-part images and a gmap; the full set (and whether they share a frame) needs a capture with a full and an empty data folder.
 - Scan order of the file-name index when two folders hold the same name.
-- Save folders for 1.39 and 2.00 (save routines not read), and for 2.1 to 2.16 (inferred).
-- Whether builds before 2.1 re-send the check for a settled name. Their reply has no time, so "up to date" has no form there; inferred only.
-- What an empty cached stream after "send failed" does.
+- ~~Save folders for 1.39 and 2.00 (save routines not read), and for 2.1 to 2.16 (inferred).~~ **Closed for 1.39 and 2.00** in [`../decomp-findings-2026-10-25-k/02-save-folders-by-build.md`](../decomp-findings-2026-10-25-k/02-save-folders-by-build.md) **[bin]**. **Still open for 2.1 to 2.16** (no binary in that range).
+- ~~Whether builds before 2.1 re-send the check for a settled name. Their reply has no time, so "up to date" has no form there; inferred only.~~ **Closed** for re-send: settled-list C skips a second check on the same connection in 2.00 and 2.05 — [01-request-lists.md](01-request-lists.md) **[bin]**. (Before 2.1, "up to date" is folded into send-failed id 30; that reply form is already noted there.)
+- ~~What an empty cached stream after "send failed" does.~~ **Closed.** Save routine returns at once for a missing or zero-length stream: nothing written, nothing deleted — [`../decomp-findings-2026-10-25-k/02-save-folders-by-build.md`](../decomp-findings-2026-10-25-k/02-save-folders-by-build.md) (The guard) **[bin]**.
 - Whether the case folding is plain ASCII.

@@ -1,9 +1,9 @@
-id	question	what would settle it
-1	persistent level cache and level modtime exchange	read of the level path with the cache on
-2	full login set of default checks and framing	capture with full and empty data folders (item 15)
-3	scan order of the file-name index for duplicate names	read of the index code or a two-copy lab run
-4	save folders for 1.39 and 2.00	read of those save routines
-5	save folders for 2.1 to 2.16	read of one build in that range
-6	pre-2.1 re-check of settled names	read of a 2.05-era request path or capture
-7	cached empty stream after send failed	capture
-8	case folding of names	read of the name compare
+id	question	what would settle it	state
+1	persistent level cache and level modtime exchange	formats/gwebl001-cache.md + protocol/packet-layouts.md (PLO 39)	closed
+2	full login set of default checks and framing	capture with full and empty data folders (item 15)	open
+3	scan order of the file-name index for duplicate names	read of the index code or a two-copy lab run	open
+4	save folders for 1.39 and 2.00	decomp-findings-2026-10-25-k/02-save-folders-by-build.md	closed
+5	save folders for 2.1 to 2.16	read of one build in that range	open
+6	pre-2.1 re-check of settled names	01-request-lists.md settled-list C	closed
+7	cached empty stream after send failed	k/02-save-folders-by-build.md empty-stream guard	closed
+8	case folding of names	read of the name compare	open

@@ -1,10 +1,10 @@
 id	question	state	what would settle it
-k1	which object kinds call the hurt routine with which power	open	capture: real client hit by bomb and arrow, read power byte
+k1	which object kinds call the hurt routine with which power	closed	damage-sources.md [bin]; lab blast-shape quirks remain elsewhere
 k2	per-player field compared in packet 40	inferred always equal	capture: hit from an owning player
-k3	end-of-respawn entry save online	open	capture: two respawns with delayed level reply
-k4	CURPOWER after damage	open	capture: injected packet 40, look for hearts in props
-k5	default weapon wire ids vs images	evidence only (bow 7, bomb 8)	capture naming both
-k6	level cache GWEBL001	open	run twice, inspect cache folder
+k3	end-of-respawn entry save online	closed	lab-captures-2026-10-25 §D [cap]
+k4	CURPOWER after damage	closed	lab-captures-2026-10-25 §C [cap]
+k5	default weapon wire ids vs images	partly closed	lab §E: 7→wbowi1.png; 8 not isolated; also 12,20-23
+k6	level cache GWEBL001	closed	formats/gwebl001-cache.md [2.05][test]
 k7	file-index scan order for same names	open	capture with differing bytes in two folders
-k8	pre-2.1 re-send of file check	inferred	2.05 run with send-failed replies
+k8	pre-2.1 re-send of file check	closed	decomp-findings-2026-10-25-e/01-request-lists.md settled-list C [bin]
 k9	maps folder rule in 2.1 to 2.16	unknown	no binary
