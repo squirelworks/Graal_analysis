@@ -14,7 +14,7 @@ binaries' strings. No decompiler output is reproduced.
 |---|---|---|---|
 | Java Graal + 4th Graal alpha | stock GServ | **yes** [live] | both drawn, nicknames, chat both ways |
 | Java Graal + 5th Graal | stock GServ | no [bin, live rooms] | different rooms (`G2<level>` vs `G3<level>`) |
-| Java Graal + 5th Graal | GServ behind the bridge, `G2` → `G3` | **yes** [live] | both drawn, nicknames, Java Graal's walking, chat both ways, a level change and back |
+| Java Graal + 5th Graal | GServ behind the bridge, `G2` → `G3` | **yes** [live] | both drawn, nicknames, walking both ways (5th Graal's from run 4), chat both ways, a level change and back |
 
 So the "Java Graal speaks 4th alpha's dialect" reading in
 `precursors-and-fan-builds.md` holds on the wire, and its last open point is
@@ -56,7 +56,10 @@ apart. Either way it never equals Zelda Online 2's `Z<base>1.6`.
   are truncated), served over HTTP as the applet's codebase and started with
   `tools/relay-bridge/AppletRun.java`, a small `AppletStub` frame. The applet
   dials its codebase host on 14802, so it always goes through the bridge.
-- **Delphi betas:** the shipped `Graal.exe` under Wine 9 (Xvfb, openbox).
+- **Delphi betas:** the shipped `Graal.exe` under Wine 9 (Xvfb, openbox, the
+  Wine virtual desktop), started with `WINEDLLOVERRIDES="dinput=d"` so the
+  arrow keys work (see run 4). `tools/relay-bridge/run_delphi_beta.sh` sets
+  this up.
   From 3rd Graal on the server box is greyed out at Cyberjoueur's
   `204.85.8.128:14802`; that address was put on the loopback interface so the
   beta reached the bridge. 4th alpha and 1st Graal keep an editable
@@ -84,9 +87,39 @@ room_bridge.py --listen 14802 --server 127.0.0.1:14801 --map G2=G3
 - `D` types sent in the run: Java Graal `T P C N D`; 5th Graal
   `T P Y C N S`. Java Graal ignores `Y` and `S` (colours), so the 5th Graal
   player shows in default colours there. Nothing broke on either side.
-- Not seen: 5th Graal's own walking. Under Wine the beta took mouse input and
-  chat typing, but its arrow keys did not reach the game loop, so its player
-  stood still. Its `P` lines at login placed it correctly in Java Graal.
+- 5th Graal's own walking was not seen in this run: its arrow keys did not
+  reach the game under Wine, so its player stood still. Run 4 fixes that and
+  shows the walking.
+
+## Run 4: 5th Graal walks in the shared room
+
+Same setup as run 1 (`--map G2=G3`), with 5th Graal started under
+`WINEDLLOVERRIDES="dinput=d"`.
+
+- **Why the keys were lost.** 5th Graal reads the keyboard through DelphiX
+  `TDXInput`, which loads DirectInput. Wine's `+dinput` trace shows the
+  keyboard data format it sets: `dwDataSize 256, dwNumObjs 1`, one object at
+  offset 1 (`run4-dinput-format.txt`). Windows fills the whole 256-byte key
+  buffer anyway. Wine fills only the objects listed, so the arrow-key bytes
+  stay zero. Chat typing and mouse clicks arrive as window messages, which is
+  why they worked. This is the same fault as in the 1.x clients
+  (`live-trace-early.md`, `live-gserver13.md`).
+- **The fix.** With `dinput=d` the DirectInput load fails, DelphiX falls back
+  to `GetKeyboardState`, and `xdotool keydown` reaches the game. This is the
+  setting the 2026-10-30 six-era runs used
+  (`version-profiles/matrix/live-runs-2026-10-30.md`). No change to the exe
+  and no memory patch is needed. The game window must have focus
+  (`xdotool windowactivate`/`windowfocus`), which the openbox + virtual
+  desktop setup allows.
+- **Before:** without the override, holding Right for 1.5 s sent nothing.
+  **After:** holding Right, Down and Left sent a stream of `D #P…` lines, one
+  every 100 ms while a key was held, each relayed to Java Graal
+  (`run4-5th-java-walk-bridge.log`). [live]
+- Java Graal drew the `Fifth` player walking right across the level13 yard
+  (`run4-5th-walks-java-view.png`, before and after). [live]
+- 5th Graal's own screen often stops repainting the board under Wine (as
+  noted for 2.05 in `board-respawn.md`), so judge its movement from the wire
+  or from the other client, not from its own window.
 
 ## Run 2: Java Graal and 4th Graal alpha, no rename
 
