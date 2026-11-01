@@ -149,6 +149,10 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 - `archive/ember-avelan-experimental.md`: archival notes on the decommissioned Ember/Avelan experimental walkers, tileset variants, and the type-0 mask. Full project zip is on Google Drive under `/[Grok/[Projects/Graal Enigma Playerworld.zip`.
 
+## Game assets (2026-11-01)
+
+- `archive/game-assets-2026-11-01.md`: inventory of the owner's Game Assets Drive folder. Sounds and graphics are RAR/7z packs (wav, mid, au, gani, png, gif, mng); levels in one opened dump are `GLEVNW01` and `GR-V1.03`; a world folder is a dated archive of levels, sometimes a gmap, with scripts in a separate pack; old sites are summarized by page title. Assets stay on Drive.
+
 ## Graal 4.x clients (2026-10-29)
 
 - `protocol/v4x-clients.md`: Windows 4.20r8 (a third-party packet-logger build) and Mac OS X 4.20r6, read statically. The Delphi launcher plus C++ `GraalEngine.dll` split, `<login-host-4x>:14900` with no separate listserver protocol, tokens `G3D27076` / `G3D20126`, the login's PC-id fields, saved-password DES, gen 5 unchanged, 101 handled server ids (13 new over 3.153), the `GRPKG001` update packages, what the packet logger really logs, and the 4.04r2 Windows client unpacked from its Thinstall installer (token `G3D17026`, the `Graal3DEngine.dll` plug-in, 98 server ids). The 3D plug-in: Graal TCP plus Torque UDP on port + 1, the connect request (protocol 19, account, nickname and the password in clear), and the `BigData` events that carry Graal text inside Torque.
