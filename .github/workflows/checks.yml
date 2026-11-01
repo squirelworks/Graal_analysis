@@ -59,6 +59,9 @@ jobs:
       - name: pytest Graal 2.22 generator references
         run: python -m pytest tools/generators-222 -q
 
+      - name: pytest level-tool gaps and the GR-V reader
+        run: python -m pytest formats/grv1-decoder tools/level-tools-gaps -q
+
       - name: Smoke resolve.py
         run: |
           python client-internals/version-profiles/resolve.py \

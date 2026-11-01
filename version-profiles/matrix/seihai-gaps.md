@@ -24,7 +24,7 @@ Seihai has 26 profile rows, 1.33 to 2.31, built as a version chain (1.33 written
 |---|---|---|
 | Name and chat text font | Bundled Tempus Sans ITC at 24 from NewMain 1.42 to 2.31; Helvetica-named before (1.38–1.41); `font=`/`fontsize=` from 1.3 test | One 5×7 bitmap font for every version (`render/font.rs`). The chat-bubble thread covers the bubble itself. |
 | Start window | Distinct per era (see the matrix and the screenshots) | One launcher for every version |
-| Main window size | 648×508 (1.3x) / 648×514 (1.41, 2.01–2.1) / 648×507 (2.00) / 644×507 (2.17+) | Not per version |
+| Main window size | 648×508 (1.3x) / 648×514 (1.41, 2.01–2.1) / 648×507 (2.00) / 644×507 (2.17+). 2.12–2.16 and 2.3 were not measured. 3.x has no VCL outer size; 3.04 Linux opens at 800×600 in the lab note, with no outer-versus-client split | Not per version |
 | HUD sheet layout | 224×81 (1.33–1.37), 224×97 (1.38–1.39), **224×145 (1.41 to 2.31)** | `HudArt::BlankButtons` covers 1.38 to 2.31 and its comment calls the later builds inferred. The HUD already draws the AP and MP bars only when the sheet has their frames, so the drawing is right; the comment is not. (Fixed in the accompanying Seihai change.) |
 | Options and windows | Per-build form lists (`builds-deltas.md`) | Not modelled |
 | Local multiplayer and save games | Up to 1.41 | Not modelled |

@@ -47,6 +47,9 @@ open-point closed.
   default **[doc]** (SDK `SetField` / `SetFront` remarks, and Wine's native-matching
   `d3drm` viewport test). The degree figure is arithmetic on that plane **[inf]**.
   Live confirmation of the follow numbers still needs native `d3drm.dll`.
+  The far plane stays open (`graal3d/camera.md`): library initial back plane 100
+  **[doc]**, a later DelphiX fork calls `SetBack(5000)`, and the February 2000
+  exe was not re-read for `SetBack`.
   *FOV pinned in `graal3d/camera.md`.*
 
 - [x] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write
@@ -87,7 +90,9 @@ open-point closed.
   runs against GServer13 or the 1998 relay on loopback.
   *1.39 done in #161 / `version-profiles/matrix/rules-139.md`. 1st Graal done in
   `version-profiles/matrix/rules-1st-graal.md` (static read of the VCL-lossy export;
-  the death-counter increment is not tagged). 1.32 remains: Drive has no 1.32 `.c`.*
+  the death-counter increment is not tagged). 1.32 remains: the Decompile folder
+  was listed again on 2026-11-01 (client exports and Accessories) and still has
+  no 1.32 export, so no death, hurt or wall number was added.*
 
 - [ ] **12. Keep Seihai's fixture reader working.** Any PR that edits
   `version-profiles/*.toml` or `client-internals/version-profiles/*.toml` runs Seihai's
@@ -96,4 +101,6 @@ open-point closed.
 
 - [ ] **13. Later, Squirrel decides:** a capture of a real 5.x/6.x `Login` session to
   fill matrix unknown #3. Ask before planning; public servers are off-limits without
-  Squirrel's OK.
+  Squirrel's OK. Proceeded without a capture (`protocol/login-session-known.md`):
+  what the existing notes already say a Login server sends, and what is still
+  unobserved. The look itself stays open.
