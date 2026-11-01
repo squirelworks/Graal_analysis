@@ -25,13 +25,13 @@ text `HEIGHTS` block. These references stay in Graal_analysis.
 
 ## Not reimplemented
 
-- **gif2mng.exe**, in the client tree next to `generators/`. Already described in `../gif2mng.md`: one GIF frame becomes PNG, more frames become MNG, and `-b` snaps the palette onto the body slots and forces transparent index 2. It is a converter, not a world generator.
+- **gif2mng.exe**, in the client tree next to `generators/`. The frame rule in `../gif2mng.md` is implemented in `../level-tools-gaps/gif2mng.py` (one frame PNG, more frames MNG, `-b` forces transparent index 2 on the existing palette). The seven slot RGB values are not in that note, so the writer does not invent them.
 - **GraalEditor** and **GraalShop**. Editors, not generators. See `../graaleditor.md` and `../graaleditor-vs-205.md`.
 - **TextConvert**, **GChar**, and **Graal Character Designer**. Not in this folder. See `../classic-tools/`.
-- **GraalLevelGen_graal-txt.exe** (2004-01-18) and **GraalLevelGen_nw-txt.exe** (2001-06-30). The folder also contains these. The December 2000 contract (`.graal` names and `bigmap.txt`) is already in `../classic-tools/graal-level-gen.md`. The reference here is the nw-gmap build, which matches `levelgendoc.html` from the same day.
+- **GraalLevelGen_graal-txt.exe** (2004-01-18) and **GraalLevelGen_nw-txt.exe** (2001-06-30). File names and `bigmap.txt` are in `../level-tools-gaps/`. This module stays the nw-gmap build, which matches `levelgendoc.html` from the same day. The two txt programs do not write that gmap.
 - The nw-gmap image can also write `GR-V1.03` when the output name does not end in `.nw`. **[bin]** This module writes the `.nw` branch only.
-- DungeonMaker 0.9's crawlers. The Linux `dungeongen` links that library for the random styles and reads `layouts/rooms*`, `layouts/stats*` and `layouts/constants`. **[bin]** The style functions here draw the shapes named in `docu_dungeongenerator.txt` (maze, onion, spiral, rogue, snake, square spiral). They are not that library.
-- Water, mountain and sand edge pieces in GraalLevelGen. The image tests neighbour flags and blits small stamps. **[bin]** The reference marks those colours with one fill tile and documents the forest stamp, which is the rectangle in the object table.
+- DungeonMaker 0.9's crawlers. The Linux `dungeongen` links that library for the random styles and reads `layouts/rooms*`, `layouts/stats*` and `layouts/constants`. **[bin]** The style functions here draw the shapes named in `docu_dungeongenerator.txt` (maze, onion, spiral, rogue, snake, square spiral). They are not that library. The manual names the styles and the option bits and does not give the crawler steps, so `../level-tools-gaps/` does not add a second generator.
+- Water, mountain and sand edge pieces in GraalLevelGen. The image tests neighbour flags and blits small stamps. **[bin]** The March 2003 manual names the colours and not the edge tiles, so this reference still marks those colours with one fill tile. `../level-tools-gaps/` records that limit.
 
 ## Terrain
 

@@ -323,6 +323,17 @@ def prayer(cycles, weapon="R", naginata="E", direction="LEFT", active=True):
     return events
 
 
+def scroll_phrase(phrase):
+    """One tick of the scroll bot, after the wait.
+
+    The timer procedure takes every character but the first, then the
+    first character, and stores that back. A one-character phrase stays.
+    """
+    if len(phrase) < 2:
+        return phrase
+    return phrase[1:] + phrase[:1]
+
+
 def afk_bot(cycles, phrases=AFK_PHRASES):
     """One phrase every 3000 ms, cycling the list."""
     events = []
@@ -416,6 +427,15 @@ class ReplayTests(unittest.TestCase):
         self.assertEqual(keys_of(events).count("R"), 1)
         self.assertIn(("return", None), events)
         self.assertEqual(prayer(2, active=False), [("sleep", 1000)])
+
+    def test_scroll_moves_the_first_character_to_the_end(self):
+        self.assertEqual(scroll_phrase("Scroll Text Here"), "croll Text HereS")
+        self.assertEqual(scroll_phrase("ab"), "ba")
+        self.assertEqual(scroll_phrase("a"), "a")
+        phrase = "abcd"
+        for expected in ("bcda", "cdab", "dabc", "abcd"):
+            phrase = scroll_phrase(phrase)
+            self.assertEqual(phrase, expected)
 
     def test_afk_cycles_three_phrases(self):
         events = afk_bot(4)
