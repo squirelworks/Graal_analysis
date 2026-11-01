@@ -1,6 +1,7 @@
 # Generators
 
 Three writers emit `GLEVNW01` / `GRMAP001`. They do not emit the same file.
+The Graal 2.22 programs are reimplemented in `generators-222/`.
 
 ## TerrainGenerator
 
