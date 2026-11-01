@@ -46,7 +46,7 @@ Per-binary writeups: `/workspace/recovered-hacks/ghidra-analysis/*/SUMMARY.md`
 
 | Family | Markers |
 |--|--|
-| RpgWarrior AutoIt macros | UPX `UPX0`/`UPX1`; `Compiled AutoIt v2.64 Script.`; `>AUTOIT SCRIPT<`; `http://www.hiddensoft.com/AutoIt/`; PE TimeDateStamp `1040239050` on Prayer pair |
+| RpgWarrior AutoIt macros | UPX `UPX0`/`UPX1`; the compiled-script banner for AutoIt 2.64; the AutoIt script-start marker; the AutoIt vendor site (host omitted); PE TimeDateStamp `1040239050` on Prayer pair |
 | Digger (damaged) | UPX + AutoIt **v2.63** splash fragment; PE TimeDateStamp `1012939264` |
 | GTS / AFK | `MSVBVM60.DLL`; VB6 `.vbp` absolute build paths under `...\VB98\...` |
 
@@ -86,7 +86,7 @@ AutoIt runtimes import `OpenProcess` + `VirtualAlloc` (capability noise). Classi
 ### 3. GTS.exe
 
 - Confirmed DarkShadowz **v1.3.5** Graal Text Sender.
-- Strongest combo IOC: VB6 + `OpenProcess` + `GetAsyncKeyState` + `FindWindow*` + product strings / `darkzrealm.vze.com`.
+- Strongest combo IOC: VB6 + `OpenProcess` + `GetAsyncKeyState` + `FindWindow*` + product strings and the author's homepage (host omitted).
 - Timer UI frames map directly to chat flood modes (scroller, to-all, shout).
 
 ### 4. AFK Bot.exe
@@ -99,7 +99,7 @@ AutoIt runtimes import `OpenProcess` + `VirtualAlloc` (capability noise). Classi
 ## Detection ideas (defensive only)
 
 1. **Hash allow/deny** for the table above (packed + unpacked AutoIt where endpoints unpack UPX).
-2. **YARA-ish concepts:** UPX section names + `Compiled AutoIt v2.6` + `>AUTOIT SCRIPT<`; or VB6 + `Graal Text Sender` / `GetAsyncKeyState` + `OpenProcess`.
+2. **YARA-ish concepts:** UPX section names plus the compiled AutoIt 2.6 banner and the AutoIt script-start marker; or VB6 + `Graal Text Sender` / `GetAsyncKeyState` + `OpenProcess`.
 3. **Window title:** `Graal Text Sender`, `AFK Bot`, AutoIt tray/debug window class behaviors.
 4. **Server-side:** rate-limit shout/to-all; flag periodic identical AFK lines; dig/prayer action frequency caps on classic worlds.
 5. **Do not** rely on Digger imports until a complete PE is obtained.

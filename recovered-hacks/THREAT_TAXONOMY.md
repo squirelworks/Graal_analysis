@@ -117,9 +117,9 @@ Duplicates under `AutoPrograms by RpgWarrior/` match Trainers hashes for the sha
 | Indicator | Detail |
 |--|--|
 | Packer | UPX (`UPX0`/`UPX1` sections); `$Info: … UPX …` |
-| Runtime | `Compiled AutoIt v2.64 Script.` / `AutoIt v2.60` / `v2.61` / `v2.63` |
-| Vendor URL | `http://www.hiddensoft.com/AutoIt/` |
-| Marker | `>AUTOIT SCRIPT<` or `>>>> AutoIt Script Start <<<<` (script body not plaintext after marker) |
+| Runtime | the compiled-script banner for AutoIt 2.64, and the short version tokens for 2.60, 2.61 and 2.63 |
+| Vendor URL | the AutoIt vendor site (host omitted) |
+| Marker | the AutoIt script-start marker, or the longer script-start banner (script body is not plaintext after the marker) |
 | APIs (unpacked) | `keybd_event`, `mouse_event`, `SendMessageA`, `PostMessageA`, `FindWindowA`, `OpenProcess`, `RegOpenKeyExA`, `BlockInput`, `SETKEYDELAY` |
 | Howto paths | `Graal_WaterGet-Howto.txt`, `Graal_Digger-Howto.txt` |
 | Dual-bin | `Graal_Prayer/data/data.exe` (SHA-256 `c331eee0…6145`) alongside wrapper `6959bcb8…8860` |
@@ -144,11 +144,11 @@ Duplicates under `AutoPrograms by RpgWarrior/` match Trainers hashes for the sha
 
 ### Items
 - `Trainers/GTS.zip` → `GTS.exe` — **Graal Text Sender by DarkShadowz v1.3.5** (VB6)
-- `Trainers/GraalLoad.zip` → `Graal Load.exe` (Hosler / TurbinX.com) + payload script `bomb.txt`
+- `Trainers/GraalLoad.zip` → `Graal Load.exe` (Hosler; the author's site, host omitted) + payload script `bomb.txt`
 
 ### Likely attacker goals
 - **GTS:** automated chat spam / word scroller / two-word repeat into Graal.
-- **GraalLoad:** type `load<file.txt>` in-game; tool feeds scripted lines (appearance commands + countdown taunt in `bomb.txt`).
+- **GraalLoad:** the player types a load command that names a script file; the tool feeds scripted lines (appearance commands + countdown taunt in `bomb.txt`).
 
 ### Prerequisites
 - Focused Graal chat; script files beside `Graal Load.exe`.
@@ -163,7 +163,7 @@ Duplicates under `AutoPrograms by RpgWarrior/` match Trainers hashes for the sha
 |--|--|
 | GTS strings | `Graal Text Sender`, `Word Scroller`, `Word Stay`, `Two Words Repeat`, `SendKeys1` |
 | GTS SHA-256 | `36e264ff…d0ab` |
-| GraalLoad strings | `Graal Load - By Hosler`, `load<bomb.txt>`, `TurbinX.com` |
+| GraalLoad strings | a window title naming the tool and its author, a load command that names bomb.txt, and the author's site (host omitted) |
 | GraalLoad SHA-256 | `812a0d32…216e` |
 | `bomb.txt` tokens | `setnick Bomb`, `You are going to die in`, `!!BOOM!!`, `setshield`, `setbody body5.png` |
 
@@ -212,7 +212,7 @@ Both: **403 `cannotDownloadAbusiveFile`** — *“identified as malware or spam�
 
 ### Assessment
 - Turns Caps Lock on/off; not a Graal cheat.
-- IoCs: `www.rjlsoftware.com`, `keybd_event`, Aspack sections (`.aspack`).
+- IoCs: the utility vendor's site (host omitted), `keybd_event`, Aspack sections (`.aspack`).
 - **Doc-only**; ignore for game threat model except “Trainers folder is a mixed junk drawer.”
 
 ---

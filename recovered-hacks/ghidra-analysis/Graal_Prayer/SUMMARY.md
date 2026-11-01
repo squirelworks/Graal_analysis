@@ -17,7 +17,7 @@
 | Unpacked size | 86940 |
 | PE TimeDateStamp | `1040239050` (2002-12-18T19:17:30Z) — shared with sibling RpgWarrior builds |
 | Format | PE32 GUI, Intel 80386 |
-| Packer / runtime | UPX → **Compiled AutoIt v2.64** |
+| Packer / runtime | UPX, then the AutoIt 2.64 compiled-script runtime |
 
 ## Package role
 
@@ -32,7 +32,7 @@ Ships with sibling `data/data.exe` in the same zip (`Graal_Prayer.zip`). Both ar
 
 **Other:** `RegOpenKeyExA` family (ADVAPI32); `Shell_NotifyIconA`; `ExitWindowsEx` (AutoIt runtime capability — shutdown). Profile APIs `Get/WritePrivateProfileStringA` present (INI-style config capability).
 
-**AutoIt markers:** `Compiled AutoIt v2.64 Script.`, `>AUTOIT SCRIPT<`, `Powered by AutoIt - http://www.hiddensoft.com/AutoIt/`, `SETKEYDELAY`, `HIDEAUTOITWIN`, `A_SCRIPTDIR` / `A_SCRIPTNAME`.
+**AutoIt markers:** the compiled-script banner for AutoIt 2.64, the script-start marker, a powered-by line that points at the AutoIt vendor site (host omitted), the `SETKEYDELAY` and `HIDEAUTOITWIN` directives, and the `A_SCRIPTDIR` / `A_SCRIPTNAME` variables.
 
 ## Behavioral tells (for detection)
 
@@ -43,7 +43,7 @@ Ships with sibling `data/data.exe` in the same zip (`Graal_Prayer.zip`). Both ar
 
 ## Script recovery status
 
-Embedded AutoIt script body is **encrypted** in the PE overlay (high-entropy blob after `.rsrc`, shared 16-byte family header `a3484bbe…` across RpgWarrior unpacks). Plaintext script lines were **not** recovered; only runtime keyword tables after `>AUTOIT SCRIPT<` (e.g. `RWINUP`, key names). Treat payload as “AutoIt input macro” from packaging/name + API set.
+Embedded AutoIt script body is **encrypted** in the PE overlay (high-entropy blob after `.rsrc`, shared 16-byte family header `a3484bbe…` across RpgWarrior unpacks). Plaintext script lines were **not** recovered; only runtime keyword tables after the script-start marker (e.g. `RWINUP`, key names). Treat payload as “AutoIt input macro” from packaging/name + API set.
 
 ## Ghidra notes
 

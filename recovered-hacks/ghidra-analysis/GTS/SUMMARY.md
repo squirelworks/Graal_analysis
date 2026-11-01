@@ -46,7 +46,7 @@ Module name string: `SendKeys1` — VB-style SendKeys helper. UI frames: Word Sc
 | `Graal Text Sender by DarkShadowz v1.3.5` | Version banner |
 | `Graal` | Standalone title token (FindWindow target candidate) |
 | `This lil Graal Proggy was made by DarkShadowz` | About text |
-| `http://www.darkzrealm.vze.com` | Author URL |
+| the author's homepage (host omitted) | Author URL |
 | `C:\Program Files\Microsoft Visual Studio\VB98\Graal\Project1.vbp` | Build path leftover |
 | `(To-All Messages Sent)` | Feature string |
 

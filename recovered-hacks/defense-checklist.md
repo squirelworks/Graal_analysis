@@ -21,7 +21,7 @@ Threat-intel confidence (second pass): **high** for Groups 1–3/5; **unknown** 
 
 ## B. Auth, sessions, staff
 
-- [ ] Staff/RC/NC accounts: unique strong passwords; never default `super`/`super`.
+- [ ] Staff/RC/NC accounts: unique strong passwords; never a built-in default staff password.
 - [ ] RC rights least-privilege; upload (`w`) only for LAT roles that need it.
 - [ ] Prefer Seihai secure login for staff connections when available; pin server key fingerprint.
 - [ ] Log and alert on RC/NC logins (account, IP, time). **[gserver]**

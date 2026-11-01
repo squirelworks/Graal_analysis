@@ -17,7 +17,7 @@
 | Unpacked size | 86196 |
 | PE TimeDateStamp | `1040239050` (same as `Graal Prayer.exe`) |
 | Format | PE32 GUI, Intel 80386 |
-| Packer / runtime | UPX → **Compiled AutoIt v2.64** |
+| Packer / runtime | UPX, then the AutoIt 2.64 compiled-script runtime |
 
 ## Relationship to wrapper
 
@@ -33,7 +33,7 @@ Same as wrapper (AutoIt v2.64 stock imports):
 - Input: `keybd_event`, `mouse_event`, `SendMessageA`, `PostMessageA`, `FindWindowA`, `SetTimer`/`KillTimer`, `BlockInput`
 - Process: `OpenProcess`, `CreateProcessA`, `VirtualAlloc` (no `WriteProcessMemory` / `CreateRemoteThread`)
 - Network APIs: **none** observed
-- Markers: `Compiled AutoIt v2.64 Script.`, `>AUTOIT SCRIPT<`, HiddenSoft URL
+- Markers: the compiled-script banner for AutoIt 2.64, the AutoIt script-start marker, and the AutoIt vendor site (host omitted)
 
 ## Behavioral tells
 

@@ -62,7 +62,7 @@ External Windows programs inject keystrokes into the focused Graal chat field on
 **Evidence**  
 Howtos: equip → stand on resource → start EXE → focus Graal. **RE (Prayer / `data.exe`):** twin AutoIt v2.64 UPX macros — APIs `keybd_event`, `mouse_event`, `SendMessageA`, `PostMessageA`, `FindWindowA`, `OpenProcess`, `VirtualAlloc`; **no** `WSAStartup` / WinINet / Winsock and **no** classic injection (`WriteProcessMemory` / `CreateRemoteThread`). Encrypted AutoIt overlays differ (~924 B vs ~180 B) — keep both packed + unpacked hashes. **Digger:** truncated zip PE (36111 / 41893 bytes); UPX overlay corrupt (`upx` refuses unpack); Ghidra import table empty; still classifiable as AutoIt v2.63 + UPX via strings + howto — hash `876723732378b36e…` usable, behaviour not recoverable until complete PE. Miner ×2 Drive-blocked (~39156 bytes) — **skipped**; taxonomy keeps Group 4 host-risk open.
 
-**Detection** — sustained interact/dig rates; low movement entropy at resource tiles; single-action-type sessions; shared IP timing fingerprints. Host: UPX + `Compiled AutoIt v2.6` + `>AUTOIT SCRIPT<` + `keybd_event` (no network imports).  
+**Detection** — sustained interact/dig rates; low movement entropy at resource tiles; single-action-type sessions; shared IP timing fingerprints. Host: UPX, the compiled AutoIt 2.6 banner, the AutoIt script-start marker, and `keybd_event` (no network imports).  
 **Prevention** — server-authoritative gather/prayer/dig/water cooldowns; yield caps per account/IP; soft anti-macro (facing/inventory/movement between gathers).  
 **Response** — soft yield nerf; hard kick/temp ban; wipe ill-gotten stacks if needed.  
 **seihai-servertools** — `lat-core/check.rs` lint for unbounded resource scripts; go-public warn on bot-farm lab leftovers.
@@ -70,7 +70,7 @@ Howtos: equip → stand on resource → start EXE → focus Graal. **RE (Prayer 
 ### T3 — Chat / appearance spam (Group 3: GTS + GraalLoad + `bomb.txt`)
 
 **Evidence**  
-**GTS RE:** VB6 DarkShadowz **Graal Text Sender v1.3.5**; late-bound `FindWindowA`/`Ex`, `OpenProcess`, `GetAsyncKeyState`, `SendMessageA`, module `SendKeys1`; timer UI (Word Scroller / shout / to-all); **no Winsock**. Host combo IOC: VB6 + those APIs + product/`darkzrealm.vze.com` strings. GraalLoad: `load<file.txt>`, `SendMessageA`. `bomb.txt`: setnick/setbody + countdown chat (not an explosive).
+**GTS RE:** VB6 DarkShadowz **Graal Text Sender v1.3.5**; late-bound `FindWindowA`/`Ex`, `OpenProcess`, `GetAsyncKeyState`, `SendMessageA`, module `SendKeys1`; timer UI (Word Scroller / shout / to-all); **no Winsock**. Host combo IOC: VB6 + those APIs + product strings and the author's homepage (host omitted). GraalLoad: a load command that names a script file, plus `SendMessageA`. `bomb.txt`: setnick/setbody + countdown chat (not an explosive).
 
 **Detection** — sub-human nick/appearance/chat bursts; prop churn without movement; GTS flood modes (scroller / to-all / shout). Host: window title `Graal Text Sender`.  
 **Prevention** — nick/appearance rate limits; T1 chat flood controls; rate-limit shout/to-all.  
@@ -95,7 +95,7 @@ Howtos: equip → stand on resource → start EXE → focus Graal. **RE (Prayer 
 | Server-authoritative movement / inventory / chests / combat | gserver (+ NPC server) |
 | Reject RC/NC-only message ids on player sessions | gserver |
 | Unknown-id budget, max frame size, max messages/sec | gserver |
-| No default `super`/`super`; separate RC/NC auth | gserver + servertools checks |
+| No built-in default staff password; separate RC/NC auth | gserver + servertools checks |
 | Secure login `SEI00001` | gserver + listserver |
 | No secrets in client-visible scripts | LAT / world content |
 
