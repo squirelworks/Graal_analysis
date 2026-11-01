@@ -50,6 +50,9 @@ jobs:
       - name: pytest tools/lab-servers
         run: python -m pytest tools/lab-servers -q
 
+      - name: pytest classic tool references
+        run: python -m pytest tools/classic-tools -q
+
       - name: Smoke resolve.py
         run: |
           python client-internals/version-profiles/resolve.py \
