@@ -96,7 +96,7 @@ The three default phrase boxes are `I am AFK`, `I am using an AFK Bot`, and `AFK
 
 Same author, same focus rule, different timer. The form timer interval is 100 milliseconds. A slider is labelled Wait Time. The readme says that slider is how many seconds the operator has to click the chat bar before typing starts, and that the bot then scrolls one phrase across chat. The default phrase box is `Scroll Text Here`.
 
-`[inf]` The 100 millisecond timer is the scroll tick. The per-character shift is not a string in the image, so the reference table does not invent one. The start wait is whatever the operator set on the slider; the image does not fix that number.
+The 100 millisecond timer is the scroll tick. The per-character shift is not a form string. The timer procedure moves the first character to the end; `scroll_phrase` in the reference module replays that, and `remaining-2026-11-01.md` is the read. The start wait is the slider value times ten ticks. The image does not fix the slider.
 
 ## Graal Text Sender `[bin]`
 
@@ -104,12 +104,13 @@ VB6, "Graal Text Sender" v1.3.5. The form timer interval is 100 milliseconds. Th
 
 Modes on the form: Word Scroller, Middle In-Out Letters, Word Stay, Two Words Repeat, Letter by Letter To-Alls, Letter by Letter Shout Outs. Word Stay has a message button and no timer button. The others have both. Each mode has On and Off.
 
-The program looks up a window, and the client-name token is one of the strings it carries. It can send keys and send a window message. `GetAsyncKeyState` is present. `[inf]` Which key it polls was not recovered; there is no phrase list or log path beside it, so this pass does not treat it as a key logger.
+The program looks up a window, and the client-name token is one of the strings it carries. It can send keys and send a window message. `GetAsyncKeyState` is declared. The key it would test is not in the resources, and nothing calls the check. `remaining-2026-11-01.md` is that read. There is no phrase list or log path beside it, so this is not a key logger.
 
 The reference table does not include a GTS loop. The phrase and the per-mode wait are whatever the operator typed.
 
 ## Not recovered
 
-- **Digger.** The zip's compressed stream ends early. The surviving image is a partial UPX file (36111 bytes written, 41893 declared). The script block is not in the surviving bytes. The howto, which did survive, says to equip a shovel, stand on grass, focus the client, and click ok. It does not name the key or the wait. `[bin]`
+- **Digger.** The zip's compressed stream ends early. The surviving image is a partial UPX file (36111 bytes written, 41893 declared). The script block is not in the surviving bytes. The howto, which did survive, says to equip a shovel, stand on grass, focus the client, and click ok. It does not name the key or the wait. Confirmed again in `remaining-2026-11-01.md`. `[bin]`
 - **Miner.** Not downloaded. The archive is the one the Drive abuse flag blocks.
-- **Caps-lock utility and the Win32 listserver.** Already described. Not opened again.
+- **Caps-lock utility.** The packed body was opened again. It stays packed. See `remaining-2026-11-01.md`.
+- **Win32 listserver.** Already described. Not opened again.

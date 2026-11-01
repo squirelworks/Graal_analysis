@@ -167,6 +167,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 ## Trainer behaviour models (2026-11-01)
 
 - `recovered-hacks/behaviour-models.md`: what the recovered trainers actually send. Keys, counts, and waits for the AutoIt macros (including Prayer and both water-can versions), Graal Load's 150 ms line loop, and the two AFK bots. Digger stays truncated. `recovered-hacks/reference_macros.py` replays those tables in-process.
+- `recovered-hacks/remaining-2026-11-01.md`: the scroll bot's one-character shift, the text sender's missing key, the caps-lock stub left packed, and a second look at the truncated digger zip.
 
 ## Graal 4.04r2 live behaviour (2026-10-30)
 
