@@ -13,7 +13,7 @@ No decompiler output is reproduced here.
 - [formats.md](formats.md): config files, the registry password, `accounts.txt`, levels and models.
 - [client-behaviour.md](client-behaviour.md): controls, walking, running, jumping, camera and the chat log, for a per-version profile.
 - [collision.md](collision.md): per-face step test for a `Collider` (radius 5, step height 30, slope and wall rules, probe order), static read of the February 2000 client.
-- [camera.md](camera.md): follow distance 220, look height +80, turn ±5°/tick, pitch −0.15 rad; field of view 0.5 (opening about 53.13°).
+- [camera.md](camera.md): follow distance 220, look height +80, turn ±5°/tick, pitch −0.15 rad; field of view 0.5 (opening about 53.13°). The far plane stays open.
 - [lab-2026-10-30.md](lab-2026-10-30.md): the live run of both programs under Wine, what it confirmed and its limits.
 - [reference-server/](reference-server/): a small Python server written from these notes. The real client logs into it, and it matches the original server's messages on the lab session.
 - [torque-engine-4x.md](torque-engine-4x.md): the **other** Graal 3D, the Torque-based `Graal3DEngine.dll` of the 4.x clients (2006), and how a 4.x client connects to a 3D server.
@@ -80,6 +80,6 @@ The server holds at most 200 players. Player ids are the lowest free slot from 1
 ## Open points
 
 - Packets 4 and 6 set client values that nothing reads (checked 2026-10-30). Packet 4 follows 2D "leader" semantics on the server side.
-- Movement maths: see [client-behaviour.md](client-behaviour.md). Collision: see [collision.md](collision.md). Camera follow numbers and field of view: see [camera.md](camera.md). ~~FOV still **[inf]**.~~ **Closed** there: Direct3DRM field **0.5**, opening `2×atan(0.5)` ≈ 53.13°.
+- Movement maths: see [client-behaviour.md](client-behaviour.md). Collision: see [collision.md](collision.md). Camera follow numbers and field of view: see [camera.md](camera.md). ~~FOV still **[inf]**.~~ **Closed** there: Direct3DRM field **0.5**, opening `2×atan(0.5)` ≈ 53.13°. The far plane stays open: the library initial back plane is 100 **[doc]**, a later DelphiX fork calls `SetBack(5000)`, and the February 2000 exe was not re-read for `SetBack`.
 - No admin client for Graal3D is in the archives. The admin protocol below comes from the server alone.
 - The live run (see [lab-2026-10-30.md](lab-2026-10-30.md)) confirmed the TCP side. UDP between two real clients still needs Microsoft's `d3drm.dll`, which Wine does not provide. Collision was not lab-confirmed for the same reason.
