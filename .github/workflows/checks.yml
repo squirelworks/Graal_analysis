@@ -56,6 +56,9 @@ jobs:
       - name: pytest level conversion chain
         run: python -m pytest tools/level-convert -q
 
+      - name: pytest Graal 2.22 generator references
+        run: python -m pytest tools/generators-222 -q
+
       - name: Smoke resolve.py
         run: |
           python client-internals/version-profiles/resolve.py \
