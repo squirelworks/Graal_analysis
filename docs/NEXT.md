@@ -39,10 +39,15 @@ open-point closed.
   native `d3drm.dll` for live confirmation.
   *Done in #164.*
 
-- [ ] **6. Graal3D camera (unblocks G3D-2).** Partial in #163 / `graal3d/camera.md`:
-  distance 220, look height +80, turn ±5°/tick, pitch −0.15 rad, follow rule **[bin]**.
-  **FOV still [inf]** (no constant in the client PE; needs library-default proof or
-  lab). Not done.
+- [x] **6. Graal3D camera (unblocks G3D-2).** Follow distance 220, look height +80,
+  turn ±5°/tick, pitch −0.15 rad, follow rule **[bin]** (`graal3d/camera.md`, #163).
+  Field of view is the Direct3DRM initial field **0.5**: a square window from −0.5
+  to 0.5 on the front plane at distance 1, opening `2×atan(0.5)` ≈ 53.13° on either
+  axis. No field constant in the client PE **[bin]**; the value is the library
+  default **[doc]** (SDK `SetField` / `SetFront` remarks, and Wine's native-matching
+  `d3drm` viewport test). The degree figure is arithmetic on that plane **[inf]**.
+  Live confirmation of the follow numbers still needs native `d3drm.dll`.
+  *FOV pinned in `graal3d/camera.md`.*
 
 - [x] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write
   `protocol/npc-control.md` from `tools/remotecontrol.md`, Squirrel's `npccontrol`
