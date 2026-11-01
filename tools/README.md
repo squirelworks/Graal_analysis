@@ -7,9 +7,9 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | GraalEditor | Level editor (2.3.1.1) | Separate exe from 2.3 onward. Writes decimal BOARD 0 grids plus LINK/SIGN/CHEST/NPC/BADDY. |
 | Built-in level editor | Editor inside each client (2.22 is the reference) | `level-editor/`: 2.22 reference, per-version deltas, format cross-reference, Seihai tracking checklist. |
 | GraalShop | GANI editor | Sprite mode (GANI0001) and movie mode (GANI0002). |
-| TerrainGenerator | Height-field world | Plasma midpoint displacement → GRMAP001 + GLEVNW01 with HEIGHTS. |
-| DungeonGenerator | Stamp dungeon | 8×11 layout → GLEVNW01 boards and GRMAP001. |
-| GraalLevelGen | Image-to-levels | Converts a 64-by-64 map image into linked `.graal` levels and `bigmap.txt`. See `classic-tools/graal-level-gen.md`. |
+| TerrainGenerator | Height-field world | Plasma midpoint displacement → GRMAP001 + GLEVNW01 with HEIGHTS. The 2.22 reference is `generators-222/terrain.py`. |
+| DungeonGenerator | Stamp dungeon | 8×11 layout → GLEVNW01 boards and GRMAP001. The 2.22 reference is `generators-222/dungeon.py`. |
+| GraalLevelGen | Image-to-levels | December 2000 contract in `classic-tools/graal-level-gen.md`. The 2.22 nw-gmap reference is `generators-222/levelgen.py`. |
 | gif2mng | GIF converter | PNG for one frame, MNG for more. `-b` snaps to body palette. |
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
 | RemoteControl 2000–2002 | Staff client lineage | `GSERV014`→`GSERV023`, option packets, id changes. See `remotecontrol-lineage.md`. |
