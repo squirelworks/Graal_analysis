@@ -7,7 +7,7 @@ For Drive-download, Ghidra, and salvage agents. Read this before copying anythin
 | | |
 |---|---|
 | **Local path** | `/workspace/seihai-servertools` |
-| **Remote** | `https://github.com/squirelworks/seihai-servertools` |
+| **Remote** | `squirelworks/seihai-servertools` |
 | **Licence** | `MIT OR Apache-2.0` — never paste GServer-v2 / gs2lib / decompiled Delphi |
 | **Staging (this folder)** | `/workspace/recovered-drive-tools/` |
 

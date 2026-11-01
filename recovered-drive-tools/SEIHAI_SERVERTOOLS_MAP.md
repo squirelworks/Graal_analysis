@@ -7,7 +7,7 @@ Date: 2026-10-31. Search covered `/workspace`, `/home/ubuntu/seihai-work`, GitHu
 | | |
 |---|---|
 | **Local path (cloned)** | `/workspace/seihai-servertools` |
-| **Clone URL** | `https://github.com/squirelworks/seihai-servertools` |
+| **Clone URL** | `squirelworks/seihai-servertools` |
 | **Default branch** | `main` (HEAD `35b40c3`, setup track through Host a listserver) |
 | **Licence** | `MIT OR Apache-2.0` (must not take GPL code from GServer-v2 / gs2lib / gs2-parser) |
 | **Was present before this run?** | No. Not under the client tree, not in `seihai-work`. Cloned here for placement work. |
@@ -189,7 +189,7 @@ Classic tool notes already extracted: `Graal_analysis/tools/{graaleditor,graalsh
 
 ## Summary for agents placing recovered tools
 
-- **Repo:** `/workspace/seihai-servertools` ← `https://github.com/squirelworks/seihai-servertools`
+- **Repo:** `/workspace/seihai-servertools` (`squirelworks/seihai-servertools`)
 - **New setup/lab tooling** → `crates/setup-core/` (+ CLI `setup`/`lab`, app Setup/Lab pages, optional `scripts/lab/`)
 - **New LAT/live editors & world checks** → `crates/lat-core/` (+ CLI `check` / later editor commands, app Levels/NPCs/Ganis/Check pages)
 - **Parsers, offline editor, drawing, RC wire** → sibling `seihai` / `seihai-rc` first, consume by tag
