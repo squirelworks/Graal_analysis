@@ -154,6 +154,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 ## Game assets (2026-11-01)
 
 - `archive/game-assets-2026-11-01.md`: inventory of the owner's Game Assets Drive folder. Sounds and graphics are RAR/7z packs (wav, mid, au, gani, png, gif, mng); levels in one opened dump are `GLEVNW01` and `GR-V1.03`; a world folder is a dated archive of levels, sometimes a gmap, with scripts in a separate pack; old sites are summarized by page title. Assets stay on Drive.
+- `archive/game-assets-graphics-sound-2026-11-01.md`: the graphics and sound packs that inventory left as filenames. `heads.7z` is 34,369 files, mostly 32×560 head strips, plus a RAR5 copy of the same names and an older zip; `Graal File Pack.7z` is a `levels/`, `sounds/`, and `npcs/` tree; `MIDI.rar` is mid, mp3, and zip (no `.kar`). `pets.rar`, `backpals.rar`, and the small New World MIDI rar are opened in full. Assets stay on Drive.
 
 ## Graal 4.x clients (2026-10-29)
 
