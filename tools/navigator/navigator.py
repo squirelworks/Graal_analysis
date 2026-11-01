@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Local browser for the markdown notes in this repository.
+"""Local map of the markdown notes in this repository.
 
-The index is built when the process starts. Search runs in the browser.
+The home page is an architecture diagram, the link web of one area, and a
+version map. Search filters by title or path. The note reader stays.
+
 The server listens on the loopback address only and does not phone home:
 no telemetry, no analytics, and no outbound request.
 
@@ -162,6 +164,325 @@ def build_index(repo: Path) -> list[dict]:
             })
     entries.sort(key=lambda entry: (_folder_key(entry['folder']), entry['path'].lower()))
     return entries
+
+
+# Areas of the corpus. `folders` are real top-level directories (or `root`).
+# A lab note inside another folder is classified by `is_lab_path` first.
+AREAS = (
+    {
+        'id': 'clients',
+        'name': 'Client versions',
+        'blurb': 'Client behaviour notes',
+        'folders': ('client-internals', 'version-profiles'),
+    },
+    {
+        'id': 'protocol',
+        'name': 'Protocol',
+        'blurb': 'Packet and login notes',
+        'folders': ('protocol', 'server-notes'),
+    },
+    {
+        'id': 'formats',
+        'name': 'Formats',
+        'blurb': 'Level, gani and map files',
+        'folders': ('formats',),
+    },
+    {
+        'id': 'npc',
+        'name': 'NPC scripts',
+        'blurb': 'GS1 and Ash notes',
+        'folders': ('npc-library', 'ash'),
+    },
+    {
+        'id': 'graal3d',
+        'name': 'Graal3D',
+        'blurb': 'Separate 3D client',
+        'folders': ('graal3d',),
+    },
+    {
+        'id': 'torque',
+        'name': 'Torque',
+        'blurb': 'Engine and TorqueScript',
+        'folders': ('torque',),
+    },
+    {
+        'id': 'tools',
+        'name': 'Tools',
+        'blurb': 'Editors and generators',
+        'folders': ('tools', 'recovered-drive-tools', 'recovered-hacks'),
+    },
+    {
+        'id': 'labs',
+        'name': 'Labs',
+        'blurb': 'Loopback lab runs',
+        'folders': ('live-runs',),
+    },
+    {
+        'id': 'archives',
+        'name': 'Archives',
+        'blurb': 'Retired notes and assets',
+        'folders': ('archive', 'archival'),
+    },
+    {
+        'id': 'indexes',
+        'name': 'Corpus index',
+        'blurb': 'Contents, rules and tasks',
+        'folders': ('docs', 'root'),
+    },
+)
+
+# Diagram geometry. The nine areas above, minus the corpus index, which is a
+# strip of real notes rather than a tenth product area.
+_BOX_W = 200
+_BOX_H = 74
+_DIAGRAM_BOXES = {
+    'formats': (20, 18),
+    'clients': (290, 18),
+    'protocol': (560, 18),
+    'npc': (830, 18),
+    'archives': (20, 148),
+    'tools': (290, 148),
+    'graal3d': (560, 148),
+    'torque': (830, 148),
+    'labs': (290, 278),
+}
+_DIAGRAM_EDGES = (
+    ('formats', 'clients', 'levels'),
+    ('clients', 'protocol', 'packets'),
+    ('protocol', 'npc', 'NC'),
+    ('formats', 'archives', 'held'),
+    ('clients', 'tools', 'editors'),
+    ('tools', 'labs', 'runs'),
+    ('protocol', 'graal3d', 'own wire'),
+    ('graal3d', 'torque', 'plug-in'),
+)
+_DIAGRAM_W = 1050
+_DIAGRAM_H = 372
+
+# Eras named in this corpus, left to right. A path is linked only when that
+# note is in the index. These are not invented dates or picture sizes.
+VERSION_ERAS = (
+    ('1998 and 1.x', (
+        'client-internals/zelda-online-1998.md',
+        'protocol/relay-1998.md',
+        'protocol/gserv-1999.md',
+        'client-internals/versions-133-139.md',
+        'version-profiles/matrix/rules-1st-graal.md',
+        'version-profiles/matrix/rules-139.md',
+    )),
+    ('2.x', (
+        'client-internals/cross-version-timeline.md',
+        'client-internals/client-architecture-205.md',
+        'version-profiles/2.22-2.31.md',
+        'protocol/client-versions.md',
+    )),
+    ('3.x', (
+        'protocol/v3x-clients.md',
+        'version-profiles/3.04-3.153.md',
+    )),
+    ('4.x', (
+        'protocol/v4x-clients.md',
+        'client-internals/live-behaviour-404.md',
+    )),
+    ('5.x', (
+        'protocol/v5x-clients.md',
+        'version-profiles/lab-v5-2026-10-30.md',
+    )),
+    ('6.x', (
+        'protocol/v6x-clients.md',
+    )),
+    ('Graal3D', (
+        'graal3d/README.md',
+        'graal3d/protocol.md',
+    )),
+)
+MATRIX_NOTE = 'version-profiles/matrix/README.md'
+INDEX_NOTES = (
+    'README.md',
+    'docs/NEXT.md',
+    'AGENTS.md',
+    'CONSOLIDATED.md',
+)
+
+WEB_CAP = 48
+SEARCH_CAP = 24
+_SECTION_RE = re.compile(r'^[A-Za-z0-9._+-]{1,80}$')
+
+_AREA_BY_ID = {area['id']: area for area in AREAS}
+_FOLDER_AREA = {}
+for _area in AREAS:
+    for _folder in _area['folders']:
+        _FOLDER_AREA[_folder] = _area['id']
+
+
+def is_lab_path(path: str) -> bool:
+    """Lab runs and the lab desk, wherever the note was filed."""
+    parts = path.split('/')
+    name = parts[-1].lower()
+    if parts[0] == 'live-runs':
+        return True
+    if any(part in ('lab-servers', 'respawn-lab', 'relay-bridge') for part in parts):
+        return True
+    if name == 'lab-setup.md':
+        return True
+    if name.startswith(('lab-', 'live-')):
+        return True
+    if any(part.startswith(('lab-', 'live-')) for part in parts[:-1]):
+        return True
+    return False
+
+
+def area_for(path: str) -> dict:
+    if is_lab_path(path):
+        return _AREA_BY_ID['labs']
+    folder = path.split('/')[0] if '/' in path else 'root'
+    return _AREA_BY_ID[_FOLDER_AREA.get(folder, 'indexes')]
+
+
+def valid_section(section: str) -> bool:
+    return bool(section) and bool(_SECTION_RE.fullmatch(section)) and section not in SKIP_DIRS
+
+
+def clean_query(query: str) -> str:
+    return (query or '').replace('\x00', '').strip()[:200]
+
+
+def version_columns(source) -> list[tuple[str, list[dict]]]:
+    """Era columns. A note is included only when it is in the index."""
+    index = source if isinstance(source, list) else build_index(source)
+    by_path = {entry['path']: entry for entry in index}
+    columns = []
+    for label, paths in VERSION_ERAS:
+        found = [by_path[path] for path in paths if path in by_path]
+        columns.append((label, found))
+    return columns
+
+
+def _mask_unlinked_lines(text: str):
+    """Yield source lines outside fenced code, with inline code blanked."""
+    lines = text.replace('\r\n', '\n').replace('\r', '\n').split('\n')
+    fence = False
+    for line in lines:
+        if line.startswith('```'):
+            fence = not fence
+            continue
+        if fence:
+            continue
+        chars = list(line)
+        index = 0
+        while index < len(chars):
+            if chars[index] != '`':
+                index += 1
+                continue
+            opener = re.match(r'`+', line[index:])
+            if not opener:
+                break
+            ticks = opener.group(0)
+            close = line.find(ticks, index + len(ticks))
+            if close == -1:
+                for cursor in range(index, len(chars)):
+                    chars[cursor] = ' '
+                break
+            for cursor in range(index, close + len(ticks)):
+                chars[cursor] = ' '
+            index = close + len(ticks)
+        yield ''.join(chars)
+
+
+def outgoing_links(text: str, note_path: str, repo: Path) -> list[str]:
+    """Relative markdown links in `text` that resolve to a note in `repo`."""
+    found = []
+    seen = set()
+    for line in _mask_unlinked_lines(text):
+        index = 0
+        while index < len(line):
+            if line[index] != '[':
+                index += 1
+                continue
+            link = _match_link(line, index, image=False)
+            if not link:
+                index += 1
+                continue
+            rel = _note_target(repo, note_path, link[1])
+            if rel and rel != note_path and rel not in seen:
+                seen.add(rel)
+                found.append(rel)
+            index = link[2]
+    return found
+
+
+def build_edges(repo: Path, index: list[dict] | None = None) -> list[tuple[str, str]]:
+    """Directed edges from relative markdown links between notes."""
+    root = Path(repo).resolve()
+    if index is None:
+        index = build_index(root)
+    edges = []
+    seen = set()
+    for entry in index:
+        try:
+            rel, text = read_note(root, entry['path'])
+        except (OutsideRepo, NoteNotFound, OSError):
+            continue
+        for target in outgoing_links(text, rel, root):
+            key = (rel, target)
+            if key in seen:
+                continue
+            seen.add(key)
+            edges.append(key)
+    edges.sort()
+    return edges
+
+
+def _degree(notes: list[dict], edges: list[tuple[str, str]]) -> dict:
+    paths = {entry['path'] for entry in notes}
+    degree = {path: 0 for path in paths}
+    for src, dst in edges:
+        if src in degree:
+            degree[src] += 1
+        if dst in degree:
+            degree[dst] += 1
+    return degree
+
+
+def area_sections(index: list[dict], area_id: str) -> list[tuple[str, int]]:
+    counts: dict[str, int] = {}
+    for entry in index:
+        if area_for(entry['path'])['id'] != area_id:
+            continue
+        parts = entry['path'].split('/')
+        if len(parts) < 3:
+            continue
+        counts[parts[1]] = counts.get(parts[1], 0) + 1
+    return sorted(counts.items())
+
+
+def select_web(index, edges, area_id, section, query):
+    """Notes to draw for one area.
+
+    A small area is drawn whole. A large area draws the notes that actually
+    link to each other, not every file in the folder.
+    """
+    pool = [entry for entry in index if area_for(entry['path'])['id'] == area_id]
+    if section:
+        pool = [entry for entry in pool if section in entry['path'].split('/')[:-1]]
+    total = len(pool)
+    if query:
+        matched = filter_notes(pool, query)
+        return matched[:SEARCH_CAP], len(matched), 'search'
+    if len(pool) <= WEB_CAP:
+        return pool, total, 'cluster'
+    paths = {entry['path'] for entry in pool}
+    linked_paths = set()
+    for src, dst in edges:
+        if src in paths and dst in paths:
+            linked_paths.add(src)
+            linked_paths.add(dst)
+    if not linked_paths:
+        return [], total, 'narrow'
+    chosen = [entry for entry in pool if entry['path'] in linked_paths]
+    degree = _degree(chosen, edges)
+    chosen.sort(key=lambda entry: (-degree[entry['path']], entry['path'].lower()))
+    return chosen[:WEB_CAP], total, 'web'
 
 
 def _safe_parts(raw: str) -> list[str]:
@@ -648,33 +969,52 @@ def render_markdown(text: str, note_path: str, repo: Path) -> str:
     return _render_blocks(text, note_path, Path(repo).resolve(), {})
 
 
-def article_html(rel: str, body: str) -> str:
+def article_html(rel: str, body: str, strip: str = '') -> str:
     safe = html.escape(rel, quote=True)
     return (
         f'<article id="doc" data-path="{safe}">'
         f'<p class="note-path">{html.escape(rel)}</p>'
+        f'{strip}'
         f'{body}'
         f'</article>'
     )
 
 
-PLACEHOLDER = (
-    '<article id="doc">'
-    '<h1>Notes navigator</h1>'
-    '<p>Choose a note on the left. The filter compares the title and the path '
-    'in this browser. Nothing is sent away for search.</p>'
-    '</article>'
-)
+def link_strip_html(path: str, edges: list[tuple[str, str]], index: list[dict]) -> str:
+    """Notes this page links to, and notes that link here."""
+    by_path = {entry['path']: entry for entry in index}
+    outgoing = sorted(dst for src, dst in edges if src == path)
+    incoming = sorted(src for src, dst in edges if dst == path)
+
+    def items(paths: list[str]) -> str:
+        if not paths:
+            return '<li class="none">none</li>'
+        rows = []
+        for rel in paths:
+            entry = by_path.get(rel)
+            title = entry['title'] if entry else rel
+            href = html.escape(note_href(rel), quote=True)
+            attr = html.escape(rel, quote=True)
+            rows.append(
+                f'<li><a href="{href}" data-note="{attr}">{html.escape(title)}</a></li>'
+            )
+        return ''.join(rows)
+
+    return (
+        '<nav class="link-strip" aria-label="Linked notes">'
+        f'<p class="strip-label">Links to</p><ul>{items(outgoing)}</ul>'
+        f'<p class="strip-label">Linked from</p><ul>{items(incoming)}</ul>'
+        '</nav>'
+    )
+
 
 APP_SCRIPT = """
 (function () {
   var input = document.getElementById("search");
-  var items = Array.prototype.slice.call(document.querySelectorAll(".note-item"));
-  var blocks = Array.prototype.slice.call(document.querySelectorAll(".folder-block"));
   var count = document.getElementById("count");
 
   // Same rule as note_matches(): empty query matches all; otherwise a
-  // case-insensitive substring of the title or the path. No server search.
+  // case-insensitive substring of the title or the path. No remote search.
   function noteMatches(title, path, query) {
     var q = String(query || "").trim().toLowerCase();
     if (!q) {
@@ -685,24 +1025,67 @@ APP_SCRIPT = """
     return title.indexOf(q) !== -1 || path.indexOf(q) !== -1;
   }
 
+  function nodeByPath(path) {
+    var nodes = document.querySelectorAll(".web-node");
+    var i;
+    for (i = 0; i < nodes.length; i++) {
+      if (nodes[i].getAttribute("data-path") === path) {
+        return nodes[i];
+      }
+    }
+    return null;
+  }
+
   function applyFilter() {
+    if (!input) {
+      return;
+    }
+    var nodes = document.querySelectorAll(".web-node");
+    if (!nodes.length) {
+      return;
+    }
     var query = input.value;
+    if (!String(query || "").trim()) {
+      var j;
+      for (j = 0; j < nodes.length; j++) {
+        nodes[j].style.display = "";
+      }
+      var idle = document.querySelectorAll(".web-edge");
+      for (j = 0; j < idle.length; j++) {
+        idle[j].style.display = "";
+      }
+      if (count) {
+        count.textContent = "";
+      }
+      return;
+    }
     var shown = 0;
-    items.forEach(function (item) {
-      var ok = noteMatches(item.getAttribute("data-title"), item.getAttribute("data-path"), query);
-      item.hidden = !ok;
+    var i;
+    for (i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var ok = noteMatches(node.getAttribute("data-title"), node.getAttribute("data-path"), query);
+      node.style.display = ok ? "" : "none";
       if (ok) {
         shown += 1;
       }
-    });
-    blocks.forEach(function (block) {
-      block.hidden = !block.querySelector(".note-item:not([hidden])");
-    });
-    count.textContent = shown + " of " + items.length;
+    }
+    var edges = document.querySelectorAll(".web-edge");
+    for (i = 0; i < edges.length; i++) {
+      var edge = edges[i];
+      var from = nodeByPath(edge.getAttribute("data-from"));
+      var to = nodeByPath(edge.getAttribute("data-to"));
+      var visible = from && to && from.style.display !== "none" && to.style.display !== "none";
+      edge.style.display = visible ? "" : "none";
+    }
+    if (count) {
+      count.textContent = shown + " of " + nodes.length;
+    }
   }
 
-  input.addEventListener("input", applyFilter);
-  applyFilter();
+  if (input) {
+    input.addEventListener("input", applyFilter);
+    applyFilter();
+  }
 
   function mark(path) {
     Array.prototype.forEach.call(document.querySelectorAll("a[data-note]"), function (link) {
@@ -711,6 +1094,11 @@ APP_SCRIPT = """
   }
 
   function showNote(path, hash, push) {
+    var holder = document.getElementById("doc-holder");
+    if (!holder) {
+      window.location.assign("/note?path=" + encodeURIComponent(path) + (hash || ""));
+      return;
+    }
     var fragment = "/note?path=" + encodeURIComponent(path) + "&fragment=1";
     fetch(fragment).then(function (res) {
       if (!res.ok) {
@@ -718,8 +1106,7 @@ APP_SCRIPT = """
       }
       return res.text();
     }).then(function (page) {
-      var main = document.getElementById("doc-holder");
-      main.innerHTML = page;
+      holder.innerHTML = page;
       var next = "/note?path=" + encodeURIComponent(path) + (hash || "");
       if (push) {
         history.pushState({path: path}, "", next);
@@ -732,8 +1119,8 @@ APP_SCRIPT = """
           return;
         }
       }
-      if (main && main.scrollTo) {
-        main.scrollTo(0, 0);
+      if (holder.scrollTo) {
+        holder.scrollTo(0, 0);
       }
     }).catch(function () {
       window.location.assign("/note?path=" + encodeURIComponent(path) + (hash || ""));
@@ -741,11 +1128,14 @@ APP_SCRIPT = """
   }
 
   document.body.addEventListener("click", function (event) {
-    var link = event.target.closest("a[data-note]");
+    var link = event.target.closest ? event.target.closest("a[data-note]") : null;
     if (!link) {
       return;
     }
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    if (!document.getElementById("doc-holder")) {
       return;
     }
     event.preventDefault();
@@ -761,82 +1151,138 @@ APP_SCRIPT = """
 PAGE_STYLE = """
 :root {
   --ink: #1c1915;
-  --paper: #f6f3ec;
-  --side: #24302c;
-  --side-ink: #f4f0e6;
+  --paper: #f3eee4;
+  --card: #fffdf8;
   --muted: #5e675f;
   --line: #d9d2c5;
   --accent: #0f5c6b;
   --code: #efe8dc;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; height: 100%; }
+html, body { margin: 0; }
 body {
   color: var(--ink);
   background: var(--paper);
-  font: 18px/1.55 Palatino, "Palatino Linotype", "Iowan Old Style", Georgia, serif;
+  font: 17px/1.5 Palatino, "Palatino Linotype", "Iowan Old Style", Georgia, serif;
 }
-.app { display: flex; min-height: 100%; }
-aside {
-  width: 22rem;
-  flex: none;
-  background: var(--side);
-  color: var(--side-ink);
-  padding: 1.1rem 0.9rem 2rem;
-  height: 100vh;
-  overflow: auto;
-  font-family: "Segoe UI", sans-serif;
+a { color: var(--accent); }
+.banner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  align-items: flex-end;
 }
 .mark {
   margin: 0;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.72rem;
-  color: #b7c7bf;
+  font: 600 0.72rem/1.2 "Segoe UI", sans-serif;
+  color: var(--muted);
 }
-aside h1 {
-  margin: 0.15rem 0 0.35rem;
-  font: 600 1.45rem/1.2 "Segoe UI", sans-serif;
+.banner h1, .note-app h1.site {
+  margin: 0.1rem 0 0;
+  font: 600 1.55rem/1.1 "Segoe UI", sans-serif;
 }
-.local { margin: 0 0 0.9rem; color: #c5d2cb; font-size: 0.86rem; }
-.search-label { display: block; font-size: 0.78rem; margin-bottom: 0.25rem; color: #d5e0da; }
+.local { margin: 0.2rem 0 0; color: var(--muted); font: 0.82rem/1.3 "Segoe UI", sans-serif; }
+.search { margin: 0; min-width: 16rem; flex: 0 1 22rem; }
+.search-label { display: block; font: 0.75rem/1.2 "Segoe UI", sans-serif; margin-bottom: 0.2rem; color: var(--muted); }
 #search {
   width: 100%;
-  padding: 0.45rem 0.55rem;
-  border: 0;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--line);
   border-radius: 0.25rem;
   font: 0.95rem/1.3 "Segoe UI", sans-serif;
   color: var(--ink);
-  background: #f7f4ee;
+  background: #fff;
 }
-#count { margin: 0.55rem 0 0; color: #b7c4be; font-size: 0.78rem; }
-.folder {
-  margin: 1rem 0 0.3rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #9fb0a8;
-  font-weight: 600;
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "banner"
+    "index"
+    "arch"
+    "versions"
+    "web";
+  gap: 0.55rem;
+  padding: 0.7rem 0.85rem 1.2rem;
 }
-.folder-block ul { list-style: none; margin: 0; padding: 0; }
-.note-item { margin: 0 0 0.15rem; }
-.note-item a {
+.banner { grid-area: banner; }
+.index-strip { grid-area: index; margin: 0; font: 0.85rem/1.4 "Segoe UI", sans-serif; }
+.index-strip span { color: var(--muted); margin-right: 0.4rem; }
+.index-strip a { margin-right: 0.7rem; }
+.architecture { grid-area: arch; }
+.versions { grid-area: versions; }
+.web-panel { grid-area: web; }
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  padding: 0.5rem 0.65rem 0.65rem;
+}
+.panel h2 { margin: 0 0 0.15rem; font: 600 0.95rem/1.2 "Segoe UI", sans-serif; }
+.caption, .web-note { margin: 0 0 0.4rem; color: var(--muted); font-size: 0.82rem; }
+#count { margin: 0.25rem 0 0; color: var(--muted); font: 0.75rem/1.2 "Segoe UI", sans-serif; }
+.arch, .web { width: 100%; height: auto; display: block; }
+.arch rect, .web rect { fill: #fffdf8; stroke: #0f5c6b; stroke-width: 1.6; }
+.arch a.is-on rect { fill: #d7eef0; stroke-width: 2.6; }
+.arch line, .web-edge { stroke: #8aa39c; stroke-width: 1.5; }
+.arch text.name { font: 600 15px "Segoe UI", sans-serif; fill: #1c1915; }
+.arch text.blurb { font: 11px "Segoe UI", sans-serif; fill: #4d5b55; }
+.arch text.edge-label {
+  font: 11px "Segoe UI", sans-serif;
+  fill: #24564f;
+  paint-order: stroke;
+  stroke: #fffdf8;
+  stroke-width: 5px;
+}
+.web text { font: 12px "Segoe UI", sans-serif; fill: #1c1915; }
+.web text.web-path { font: 10px "Segoe UI", sans-serif; fill: #5e675f; }
+.arch a, .web a { text-decoration: none; }
+.version-map { display: flex; gap: 0.35rem; align-items: flex-start; }
+.era { flex: 1 1 0; min-width: 0; border-top: 3px solid #0f5c6b; padding-top: 0.3rem; }
+.era h3 {
+  margin: 0 0 0.35rem;
+  font: 600 0.82rem/1.2 "Segoe UI", sans-serif;
+  white-space: nowrap;
+}
+.era a {
   display: block;
-  color: inherit;
+  font: 0.72rem/1.35 "Segoe UI", sans-serif;
+  margin: 0.12rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.matrix { margin: 0 0 0.4rem; font-size: 0.82rem; }
+.sections { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.2rem 0 0.55rem; }
+.sections a {
+  display: inline-block;
   text-decoration: none;
-  padding: 0.28rem 0.4rem;
-  border-radius: 0.2rem;
-  font-size: 0.92rem;
+  color: var(--ink);
+  background: #f3efe6;
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  padding: 0.12rem 0.4rem;
+  font: 0.72rem/1.3 "Segoe UI", sans-serif;
 }
-.note-item a:hover, .note-item a.current { background: #345049; }
-.path { display: block; color: #9aada5; font-size: 0.72rem; font-weight: 400; }
-main {
-  flex: 1;
-  height: 100vh;
-  overflow: auto;
-  padding: 1.8rem 2.2rem 4rem;
+.sections a.is-on { background: #d5eef0; }
+.sections span { color: var(--muted); margin-left: 0.25rem; }
+.match-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+a.match {
+  width: 16rem;
+  text-decoration: none;
+  color: inherit;
+  background: #fffdf8;
+  border: 1px solid #0f5c6b;
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.5rem;
 }
-main article { max-width: 46rem; }
+.match-title { display: block; font: 600 0.86rem/1.3 "Segoe UI", sans-serif; }
+.match-path { display: block; color: var(--muted); font: 0.72rem/1.3 "Segoe UI", sans-serif; word-break: break-all; }
+.note-app { padding: 0.7rem 0.9rem 2.4rem; }
+.note-app main { max-width: 46rem; margin-top: 0.8rem; }
+.crumb { margin: 0.25rem 0 0; font: 0.85rem/1.3 "Segoe UI", sans-serif; }
 .note-path {
   font-family: "Segoe UI", sans-serif;
   color: var(--muted);
@@ -844,7 +1290,6 @@ main article { max-width: 46rem; }
   margin-top: 0;
 }
 main h1, main h2, main h3, main h4 { line-height: 1.25; font-family: "Segoe UI", sans-serif; }
-main a { color: var(--accent); }
 main pre {
   overflow: auto;
   background: var(--code);
@@ -860,41 +1305,29 @@ main blockquote {
   border-left: 3px solid var(--line);
   color: #3d453f;
 }
-.note-item[hidden], .folder-block[hidden] { display: none; }
-@media (max-width: 860px) {
-  .app { display: block; }
-  aside, main { width: auto; height: auto; position: relative; }
+.link-strip {
+  margin-top: 1.5rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.92rem;
+}
+.strip-label {
+  margin: 0.55rem 0 0.15rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.link-strip ul { list-style: none; margin: 0; padding: 0; }
+.link-strip li { margin: 0.12rem 0; }
+a.current { font-weight: 600; }
+@media (max-width: 980px) {
+  .banner { display: block; }
+  .search { margin-top: 0.6rem; }
+  .era h3, .era a { white-space: normal; }
 }
 """
-
-
-def _sidebar(index: list[dict], current: str | None) -> str:
-    groups: list[tuple[str, list[dict]]] = []
-    for entry in index:
-        if not groups or groups[-1][0] != entry['folder']:
-            groups.append((entry['folder'], []))
-        groups[-1][1].append(entry)
-    chunks = []
-    for folder, entries in groups:
-        items = []
-        for entry in entries:
-            title = html.escape(entry['title'])
-            title_attr = html.escape(entry['title'], quote=True)
-            path = html.escape(entry['path'])
-            path_attr = html.escape(entry['path'], quote=True)
-            href = html.escape(note_href(entry['path']), quote=True)
-            current_class = ' class="current"' if entry['path'] == current else ''
-            items.append(
-                f'<li class="note-item" data-title="{title_attr}" data-path="{path_attr}">'
-                f'<a href="{href}" data-note="{path_attr}"{current_class}>{title}'
-                f'<span class="path">{path}</span></a></li>'
-            )
-        folder_html = html.escape(folder)
-        chunks.append(
-            f'<section class="folder-block" data-folder="{html.escape(folder, quote=True)}">'
-            f'<h2 class="folder">{folder_html}</h2><ul>{"".join(items)}</ul></section>'
-        )
-    return ''.join(chunks)
 
 
 def _page_csp(nonce: str) -> str:
@@ -905,20 +1338,13 @@ def _page_csp(nonce: str) -> str:
         "img-src 'self'; "
         "connect-src 'self'; "
         "base-uri 'none'; "
-        "form-action 'none'; "
+        "form-action 'self'; "
         "frame-ancestors 'none'"
     )
 
 
-def render_page(index: list[dict], article: str, current: str | None) -> tuple[str, str]:
+def _document(title: str, body: str) -> tuple[str, str]:
     nonce = secrets.token_urlsafe(16)
-    if current:
-        title_text = next((entry['title'] for entry in index if entry['path'] == current), current)
-        title = html.escape(title_text) + ' — Notes navigator'
-        autofocus = ''
-    else:
-        title = 'Notes navigator'
-        autofocus = ' autofocus'
     page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -930,18 +1356,7 @@ def render_page(index: list[dict], article: str, current: str | None) -> tuple[s
 <style>{PAGE_STYLE}</style>
 </head>
 <body>
-<div class="app">
-<aside>
-<p class="mark">Graal analysis</p>
-<h1>Notes</h1>
-<p class="local">Local only. This page does not phone home.</p>
-<label class="search-label" for="search">Filter by title or path</label>
-<input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="title or path"{autofocus}>
-<p id="count"></p>
-<nav id="list">{_sidebar(index, current)}</nav>
-</aside>
-<main id="doc-holder">{article}</main>
-</div>
+{body}
 <script nonce="{nonce}">{APP_SCRIPT}</script>
 </body>
 </html>
@@ -949,19 +1364,349 @@ def render_page(index: list[dict], article: str, current: str | None) -> tuple[s
     return page, _page_csp(nonce)
 
 
-def render_note_article(repo: Path, raw: str) -> tuple[str, str]:
+def _era_node_label(path: str) -> str:
+    """The note's own file name, short enough to sit on the era map."""
+    name = path.rsplit('/', 1)[-1]
+    if name.lower().endswith('.md'):
+        name = name[:-3]
+    elif name.lower().endswith('.markdown'):
+        name = name[:-9]
+    return name
+
+
+def _short(text: str, limit: int) -> str:
+    text = re.sub(r'\s+', ' ', text).strip()
+    if len(text) <= limit:
+        return text
+    return text[:limit - 1].rstrip() + '...'
+
+
+def _area_href(area_id: str, section: str | None = None, query: str = '') -> str:
+    params = [('area', area_id)]
+    if section:
+        params.append(('section', section))
+    if query:
+        params.append(('q', query))
+    return '/?' + urllib.parse.urlencode(params)
+
+
+def _box_center(area_id: str) -> tuple[float, float]:
+    x, y = _DIAGRAM_BOXES[area_id]
+    return x + _BOX_W / 2, y + _BOX_H / 2
+
+
+def _architecture_svg(focus: str | None) -> str:
+    lines = []
+    labels = []
+    for src, dst, label in _DIAGRAM_EDGES:
+        x1, y1 = _box_center(src)
+        x2, y2 = _box_center(dst)
+        lines.append(f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}"></line>')
+        mx = (x1 + x2) / 2
+        my = (y1 + y2) / 2
+        if abs(x2 - x1) >= abs(y2 - y1):
+            my -= 8
+        else:
+            mx += 36
+        labels.append(
+            f'<text class="edge-label" x="{mx:.0f}" y="{my:.0f}" text-anchor="middle">'
+            f'{html.escape(label)}</text>'
+        )
+    boxes = []
+    for area in AREAS:
+        area_id = area['id']
+        if area_id not in _DIAGRAM_BOXES:
+            continue
+        x, y = _DIAGRAM_BOXES[area_id]
+        href = html.escape(_area_href(area_id), quote=True)
+        current = ' is-on' if area_id == focus else ''
+        aria = ' aria-current="true"' if area_id == focus else ''
+        name = html.escape(area['name'])
+        blurb = html.escape(area['blurb'])
+        cx = x + _BOX_W / 2
+        boxes.append(
+            f'<a class="area-box{current}" href="{href}" data-area="{area_id}"{aria}>'
+            f'<rect x="{x}" y="{y}" width="{_BOX_W}" height="{_BOX_H}" rx="10"></rect>'
+            f'<text class="name" x="{cx:.0f}" y="{y + 32}" text-anchor="middle">{name}</text>'
+            f'<text class="blurb" x="{cx:.0f}" y="{y + 52}" text-anchor="middle">{blurb}</text>'
+            f'</a>'
+        )
+    label = html.escape(
+        'Architecture of the notes: client versions, protocol, formats, '
+        'NPC scripts, Graal3D, Torque, tools, labs and archives.',
+        quote=True,
+    )
+    return (
+        f'<svg class="arch" viewBox="0 0 {_DIAGRAM_W} {_DIAGRAM_H}" role="img" aria-label="{label}">'
+        + ''.join(lines) + ''.join(labels) + ''.join(boxes)
+        + '</svg>'
+    )
+
+
+def _version_html(index: list[dict]) -> str:
+    by_path = {entry['path']: entry for entry in index}
+    columns = []
+    for era, entries in version_columns(index):
+        links = []
+        for entry in entries:
+            href = html.escape(note_href(entry['path']), quote=True)
+            rel = html.escape(entry['path'], quote=True)
+            node = html.escape(_era_node_label(entry['path']))
+            title = html.escape(entry['title'], quote=True)
+            links.append(f'<a href="{href}" data-note="{rel}" title="{title}">{node}</a>')
+        columns.append(
+            f'<section class="era"><h3>{html.escape(era)}</h3>{"".join(links)}</section>'
+        )
+    matrix = ''
+    entry = by_path.get(MATRIX_NOTE)
+    if entry:
+        href = html.escape(note_href(entry['path']), quote=True)
+        rel = html.escape(entry['path'], quote=True)
+        title = html.escape(entry['title'])
+        matrix = f'<p class="matrix"><a href="{href}" data-note="{rel}">{title}</a></p>'
+    return matrix + f'<div class="version-map">{"".join(columns)}</div>'
+
+
+def _index_strip(index: list[dict]) -> str:
+    by_path = {entry['path']: entry for entry in index}
+    links = []
+    for path in INDEX_NOTES:
+        entry = by_path.get(path)
+        if not entry:
+            continue
+        href = html.escape(note_href(path), quote=True)
+        rel = html.escape(path, quote=True)
+        title = html.escape(entry['title'])
+        links.append(f'<a href="{href}" data-note="{rel}">{title}</a>')
+    if not links:
+        return ''
+    return '<p class="index-strip"><span>Corpus index</span> ' + ' '.join(links) + '</p>'
+
+
+def _sections_html(index: list[dict], area_id: str, current: str | None) -> str:
+    items = []
+    for name, count in area_sections(index, area_id):
+        href = html.escape(_area_href(area_id, name), quote=True)
+        cls = ' class="is-on"' if name == current else ''
+        items.append(
+            f'<a{cls} href="{href}">{html.escape(name)}<span>{count}</span></a>'
+        )
+    if not items and not current:
+        return ''
+    whole = ''
+    if current:
+        href = html.escape(_area_href(area_id), quote=True)
+        whole = f'<a href="{href}">Whole area</a>'
+    return f'<nav class="sections" aria-label="Sections">{whole}{"".join(items)}</nav>'
+
+
+def _match_nodes(notes: list[dict]) -> str:
+    items = []
+    for entry in notes:
+        href = html.escape(note_href(entry['path']), quote=True)
+        rel = html.escape(entry['path'], quote=True)
+        title_attr = html.escape(entry['title'], quote=True)
+        title = html.escape(entry['title'])
+        path = html.escape(entry['path'])
+        items.append(
+            f'<a class="web-node match" href="{href}" data-note="{rel}" '
+            f'data-path="{rel}" data-title="{title_attr}">'
+            f'<span class="match-title">{title}</span>'
+            f'<span class="match-path">{path}</span></a>'
+        )
+    return '<div class="match-row">' + ''.join(items) + '</div>'
+
+
+def _web_svg(notes: list[dict], edges: list[tuple[str, str]]) -> str:
+    if not notes:
+        return ''
+    count = len(notes)
+    cols = 4 if count > 8 else (3 if count > 3 else count)
+    cols = max(cols, 1)
+    box_w, box_h = 188, 58
+    gap_x, gap_y = 28, 26
+    margin = 12
+    placed = []
+    for i, note in enumerate(notes):
+        col = i % cols
+        row = i // cols
+        x = margin + col * (box_w + gap_x)
+        y = margin + row * (box_h + gap_y)
+        placed.append((note, x, y))
+    rows = (count + cols - 1) // cols
+    width = margin * 2 + cols * box_w + (cols - 1) * gap_x
+    height = margin * 2 + rows * box_h + (rows - 1) * gap_y
+    pos = {note['path']: (x, y) for note, x, y in placed}
+    lines = []
+    for src, dst in edges:
+        if src not in pos or dst not in pos:
+            continue
+        x1 = pos[src][0] + box_w / 2
+        y1 = pos[src][1] + box_h / 2
+        x2 = pos[dst][0] + box_w / 2
+        y2 = pos[dst][1] + box_h / 2
+        src_attr = html.escape(src, quote=True)
+        dst_attr = html.escape(dst, quote=True)
+        lines.append(
+            f'<line class="web-edge" x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" '
+            f'data-from="{src_attr}" data-to="{dst_attr}"></line>'
+        )
+    nodes = []
+    for note, x, y in placed:
+        rel = html.escape(note['path'], quote=True)
+        title_attr = html.escape(note['title'], quote=True)
+        href = html.escape(note_href(note['path']), quote=True)
+        cx = x + box_w / 2
+        title = html.escape(_short(note['title'], 28))
+        path = html.escape(_short(note['path'], 32))
+        nodes.append(
+            f'<a class="web-node" href="{href}" data-note="{rel}" data-path="{rel}" '
+            f'data-title="{title_attr}">'
+            f'<rect x="{x}" y="{y}" width="{box_w}" height="{box_h}" rx="8"></rect>'
+            f'<text x="{cx:.0f}" y="{y + 24}" text-anchor="middle">{title}</text>'
+            f'<text class="web-path" x="{cx:.0f}" y="{y + 42}" text-anchor="middle">{path}</text>'
+            f'</a>'
+        )
+    return (
+        f'<svg class="web" viewBox="0 0 {width} {height}" role="group" aria-label="Linked notes">'
+        + ''.join(lines) + ''.join(nodes)
+        + '</svg>'
+    )
+
+
+def _web_region(index, edges, area_id, section, query):
+    if query and not area_id:
+        matched = filter_notes(index, query)
+        shown = matched[:SEARCH_CAP]
+        if not matched:
+            return '', f'<p class="web-note">No note matches {html.escape(query)}.</p>'
+        extra = ''
+        if len(matched) > len(shown):
+            extra = f' Showing {len(shown)} of {len(matched)}.'
+        note = (
+            f'<p class="web-note">Matches for {html.escape(query)}.{extra} '
+            '<a href="/">Clear</a></p>'
+        )
+        return _match_nodes(shown), note
+    if not area_id:
+        return '', (
+            '<p class="web-note">Choose an area. The web draws the notes in that '
+            'cluster that link to each other, not every file in the repository. '
+            'Search still filters by title or path.</p>'
+        )
+    area = _AREA_BY_ID[area_id]
+    name = html.escape(area['name'])
+    notes, total, mode = select_web(index, edges, area_id, section, query)
+    sections = '' if query else _sections_html(index, area_id, section)
+    if mode == 'search':
+        extra = ''
+        if total > len(notes):
+            extra = f' Showing {len(notes)} of {total}.'
+        note = f'<p class="web-note">{name}: matches for {html.escape(query)}.{extra}</p>'
+        body = _match_nodes(notes) if notes else ''
+        return sections + body, note
+    if mode == 'narrow':
+        note = (
+            f'<p class="web-note">{name} has {total} notes. Open a section or '
+            'search. They are not listed all at once.</p>'
+        )
+        return sections, note
+    if mode == 'web' and len(notes) < total:
+        note = (
+            f'<p class="web-note">{name}: {len(notes)} linked notes of {total}. '
+            'Open a section or search for the rest.</p>'
+        )
+    else:
+        note = f'<p class="web-note">{name}: {len(notes)} notes in this cluster.</p>'
+    return sections + _web_svg(notes, edges), note
+
+
+def render_home(index, edges, area, section, query) -> tuple[str, str]:
+    """Home page: architecture, one area's link web, and the version map."""
+    area_id = area if area in _AREA_BY_ID else None
+    if section and not (area_id and valid_section(section)):
+        section = None
+    query = clean_query(query)
+    web_html, web_note = _web_region(index, edges, area_id, section, query)
+    value = html.escape(query, quote=True)
+    article = f"""
+<div class="home">
+<header class="banner">
+<div>
+<p class="mark">Graal analysis</p>
+<h1>Notes</h1>
+<p class="local">Local only. This page does not phone home.</p>
+</div>
+<form class="search" action="/" method="get">
+<label class="search-label" for="search">Filter by title or path</label>
+<input id="search" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="title or path" value="{value}" autofocus>
+</form>
+</header>
+{_index_strip(index)}
+<section class="panel architecture" id="architecture">
+<h2>Architecture</h2>
+<p class="caption">Open an area to see that cluster. Lines join clients to protocol, formats and NPC scripts; Graal3D to the protocol and to Torque; tools to the labs; archives to the formats.</p>
+{_architecture_svg(area_id)}
+</section>
+<section class="panel versions" id="versions">
+<h2>Versions</h2>
+<p class="caption">Left to right, the eras named in these notes. A name is a link only when that note is in the repository.</p>
+{_version_html(index)}
+</section>
+<section class="panel web-panel" id="web">
+<h2>Link web</h2>
+{web_note}
+<p id="count"></p>
+{web_html}
+</section>
+</div>
+"""
+    return _document('Notes navigator', article)
+
+
+def render_note_page(index, rel, article) -> tuple[str, str]:
+    title_text = next((entry['title'] for entry in index if entry['path'] == rel), rel)
+    area = area_for(rel)
+    area_name = html.escape(area['name'])
+    href = html.escape(_area_href(area['id']), quote=True)
+    body = f"""
+<div class="note-app">
+<header class="banner">
+<div>
+<p class="mark">Graal analysis</p>
+<h1 class="site">Notes</h1>
+<p class="crumb"><a href="/">Map</a> · <a href="{href}">{area_name}</a></p>
+<p class="local">Local only. This page does not phone home.</p>
+</div>
+<form class="search" action="/" method="get">
+<label class="search-label" for="search">Filter by title or path</label>
+<input id="search" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="title or path">
+</form>
+</header>
+<main id="doc-holder">{article}</main>
+</div>
+"""
+    title = html.escape(title_text) + ' — Notes navigator'
+    return _document(title, body)
+
+
+def render_note_article(repo: Path, raw: str, edges=None, index=None) -> tuple[str, str]:
     rel, text = read_note(repo, raw)
     body = render_markdown(text, rel, repo)
-    return rel, article_html(rel, body)
+    strip = ''
+    if edges is not None and index is not None:
+        strip = link_strip_html(rel, edges, index)
+    return rel, article_html(rel, body, strip)
 
 
 class NotesServer(ThreadingHTTPServer):
     daemon_threads = True
     allow_reuse_address = False
 
-    def __init__(self, server_address, repo: Path, index: list[dict]):
+    def __init__(self, server_address, repo: Path, index: list[dict], edges: list[tuple[str, str]]):
         self.repo = Path(repo)
         self.index = index
+        self.edges = edges
         super().__init__(server_address, NotesHandler)
 
 
@@ -1008,16 +1753,27 @@ class NotesHandler(BaseHTTPRequestHandler):
         query = urllib.parse.parse_qs(parsed.query)
         repo = self.server.repo
         index = self.server.index
+        edges = self.server.edges
+
+        def one(key: str) -> str:
+            values = query.get(key) or ['']
+            return values[0] if values else ''
+
         if route in ('/', '/index.html'):
-            page, csp = render_page(index, PLACEHOLDER, None)
+            area = one('area')
+            if area not in _AREA_BY_ID:
+                area = None
+            section = one('section')
+            if not valid_section(section):
+                section = None
+            page, csp = render_home(index, edges, area, section, clean_query(one('q')))
             self._send(200, page, 'text/html; charset=utf-8', csp, write_body)
             return
         if route == '/note':
-            raw_values = query.get('path') or ['']
-            raw = raw_values[0]
-            fragment = (query.get('fragment') or [''])[0] == '1'
+            raw = one('path')
+            fragment = one('fragment') == '1'
             try:
-                rel, article = render_note_article(repo, raw)
+                rel, article = render_note_article(repo, raw, edges, index)
             except OutsideRepo:
                 self._send(403, 'refused\n', 'text/plain; charset=utf-8', PLAIN_CSP, write_body)
                 return
@@ -1027,7 +1783,7 @@ class NotesHandler(BaseHTTPRequestHandler):
             if fragment:
                 self._send(200, article, 'text/html; charset=utf-8', FRAGMENT_CSP, write_body)
                 return
-            page, csp = render_page(index, article, rel)
+            page, csp = render_note_page(index, rel, article)
             self._send(200, page, 'text/html; charset=utf-8', csp, write_body)
             return
         self._send(404, 'not found\n', 'text/plain; charset=utf-8', PLAIN_CSP, write_body)
@@ -1043,7 +1799,8 @@ def make_server(repo: Path, host: str | None = None, port: int = DEFAULT_PORT) -
     if not root.is_dir():
         raise FileNotFoundError(root)
     index = build_index(root)
-    return NotesServer((bind, port), root, index)
+    edges = build_edges(root, index)
+    return NotesServer((bind, port), root, index, edges)
 
 
 def main(argv: list[str] | None = None) -> int:

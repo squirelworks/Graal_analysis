@@ -216,21 +216,160 @@ def test_server_escapes_script_in_served_note(tmp_path):
         assert '<script' not in body.lower()
         assert '&lt;script&gt;' in body
         assert 'href="/note?path=formats/b.md"' in body
+        assert 'Links to' in body
+        assert 'Linked from' in body
+        status, linked = _get(port, '/note?path=formats/b.md')
+        assert status == 200
+        assert 'Linked from' in linked
+        assert 'protocol/a.md' in linked
         status, page = _get(port, '/')
         assert status == 200
         assert page.lower().count('<script') == 1
         assert 'function noteMatches' in page
         assert 'id="search"' in page
         assert '/search' not in page
-        assert 'data-path="README.md"' in page
-        assert 'data-path="protocol/a.md"' in page
-        assert 'data-path="formats/b.md"' in page
+        assert 'class="note-item"' not in page
+        assert 'data-path="protocol/a.md"' not in page
+        assert 'data-path="formats/b.md"' not in page
+        assert 'Client versions' in page
+        assert 'data-area="protocol"' in page
         status, missing = _get(port, '/search?q=protocol')
         assert status == 404
         assert 'protocol note' not in missing.lower()
     finally:
         _stop(server, thread)
         outside.unlink(missing_ok=True)
+
+
+DIAGRAM_AREAS = (
+    'Client versions',
+    'Protocol',
+    'Formats',
+    'NPC scripts',
+    'Graal3D',
+    'Torque',
+    'Tools',
+    'Labs',
+    'Archives',
+)
+
+
+def test_architecture_names_real_top_level_areas():
+    index = navigator.build_index(REPO)
+    edges = navigator.build_edges(REPO, index)
+    page, _csp = navigator.render_home(index, edges, None, None, '')
+    for name in DIAGRAM_AREAS:
+        assert name in page
+    for area in navigator.AREAS:
+        if area['id'] == 'indexes':
+            assert 'data-area="indexes"' not in page
+            continue
+        assert f'data-area="{area["id"]}"' in page
+        for folder in area['folders']:
+            if folder == 'root':
+                continue
+            assert (REPO / folder).is_dir(), folder
+    folders = {entry['folder'] for entry in index}
+    assigned = set()
+    for area in navigator.AREAS:
+        assigned.update(area['folders'])
+    assert folders <= assigned
+    assert '<svg' in page
+    assert 'class="version-map"' in page
+    assert '<h3>1998 and 1.x</h3>' in page
+    assert '<h3>6.x</h3>' in page
+    assert '<h3>Graal3D</h3>' in page
+
+
+def test_relative_markdown_link_is_an_edge(tmp_path):
+    protocol = tmp_path / 'protocol'
+    formats = tmp_path / 'formats'
+    protocol.mkdir()
+    formats.mkdir()
+    (protocol / 'a.md').write_text(
+        '# A\n\nSee [gmap](../formats/gmap.md).\n',
+        encoding='utf-8',
+    )
+    (formats / 'gmap.md').write_text('# Gmap\n', encoding='utf-8')
+    edges = navigator.build_edges(tmp_path)
+    assert ('protocol/a.md', 'formats/gmap.md') in edges
+
+
+def test_known_repo_link_is_an_edge():
+    edges = navigator.build_edges(REPO)
+    assert ('graal3d/README.md', 'graal3d/protocol.md') in edges
+    assert ('npc-library/gs1-command-reference-205.md', 'protocol/packet-ids.md') in edges
+
+
+def test_edges_do_not_follow_outside_repo(tmp_path):
+    outside = tmp_path.parent / f'{tmp_path.name}-out.md'
+    outside.write_text('# Out\n\n' + OUTSIDE_MARKER + '\n', encoding='utf-8')
+    (tmp_path / 'a.md').write_text(
+        f'# A\n\n[out](../{outside.name})\n',
+        encoding='utf-8',
+    )
+    try:
+        edges = navigator.build_edges(tmp_path)
+        assert edges == []
+    finally:
+        outside.unlink(missing_ok=True)
+
+
+def test_version_map_links_only_existing_notes(tmp_path):
+    protocol = tmp_path / 'protocol'
+    protocol.mkdir()
+    (protocol / 'v6x-clients.md').write_text('# Six\n', encoding='utf-8')
+    index = navigator.build_index(tmp_path)
+    columns = dict(navigator.version_columns(index))
+    assert [entry['path'] for entry in columns['6.x']] == ['protocol/v6x-clients.md']
+    assert columns['Graal3D'] == []
+    assert columns['3.x'] == []
+    assert list(columns) == [
+        '1998 and 1.x', '2.x', '3.x', '4.x', '5.x', '6.x', 'Graal3D',
+    ]
+    page, _csp = navigator.render_home(index, [], None, None, '')
+    assert 'protocol/v6x-clients.md' in page
+    assert 'graal3d/README.md' not in page
+    assert 'protocol/v3x-clients.md' not in page
+    assert '<h3>1998 and 1.x</h3>' in page
+    assert '<h3>2.x</h3>' in page
+    assert '<h3>Graal3D</h3>' in page
+
+
+def test_default_page_is_not_a_dump_of_every_file():
+    index = navigator.build_index(REPO)
+    edges = navigator.build_edges(REPO, index)
+    page, _csp = navigator.render_home(index, edges, None, None, '')
+    present = sum(1 for entry in index if entry['path'] in page)
+    assert present < len(index) // 3
+    assert 'class="note-item"' not in page
+    assert 'class="folder-block"' not in page
+    assert 'client-internals/sound-and-music.md' not in page
+    focused, _csp = navigator.render_home(index, edges, 'clients', None, '')
+    client_paths = [entry['path'] for entry in index if entry['path'].startswith('client-internals/')]
+    shown = sum(1 for path in client_paths if path in focused)
+    assert shown < len(client_paths) // 2
+    section, _csp = navigator.render_home(index, edges, 'clients', 'feature-specs', '')
+    assert 'client-internals/feature-specs/' in section
+    assert 'client-internals/sound-and-music.md' not in section
+    broad, _csp = navigator.render_home(index, edges, None, None, 'a')
+    assert broad.count('data-path=') <= navigator.SEARCH_CAP
+
+
+def test_web_escapes_note_title(tmp_path):
+    protocol = tmp_path / 'protocol'
+    protocol.mkdir()
+    (protocol / 'a.md').write_text(
+        '# <script>alert(1)</script>\n\nSee [b](b.md).\n',
+        encoding='utf-8',
+    )
+    (protocol / 'b.md').write_text('# B\n', encoding='utf-8')
+    index = navigator.build_index(tmp_path)
+    edges = navigator.build_edges(tmp_path, index)
+    page, _csp = navigator.render_home(index, edges, 'protocol', None, '')
+    assert page.lower().count('<script') == 1
+    assert '&lt;script&gt;' in page
+    assert 'data-path="protocol/a.md"' in page
 
 
 def test_server_refuses_non_loopback(tmp_path):
