@@ -50,6 +50,9 @@ jobs:
       - name: pytest tools/lab-servers
         run: python -m pytest tools/lab-servers -q
 
+      - name: pytest tools/navigator
+        run: python -m pytest tools/navigator -q
+
       - name: pytest classic tool references
         run: python -m pytest tools/classic-tools -q
 
