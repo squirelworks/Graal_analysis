@@ -18,7 +18,7 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | Classic listserver ELF | Client and game-server directory | `classic-tools/serverlist3.md`. Frame and login lines in `classic-tools/listframe.py`. |
 | gserverstat | HTML leaderboards | `classic-tools/gserverstat.md`. Account blob in `classic-tools/account13.py`. |
 | Character Designer / GChar | Offline looks | `classic-tools/character-designer.md`. `CHR:1.00` line in `classic-tools/chrfile.py`. |
-| TextConvert | Graal to New World levels | `classic-tools/text-convert.md`. |
+| TextConvert | Graal to New World levels | `classic-tools/text-convert.md`. The full chain (zelda, graal, nw, gmap, future package) is `level-convert/`. |
 | NPC server (2001) | Server-side NPC host | Logs into GServer as a player, 0.1 s tick, PM admin commands, `join` classes. See `npcserver-2001.md`. |
 
 See the individual files for the measured contracts. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.
