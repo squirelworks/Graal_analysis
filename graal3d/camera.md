@@ -56,4 +56,5 @@ The back clipping plane of this client stays open. The library default back plan
 ## Still needed
 
 - ~~FOV from a library default or a lab measurement.~~ **Closed** above: field **0.5**, opening ≈ 53.13°.
+- **Far plane stays open.** The library's initial back plane is 100. **[doc]** A later public DelphiX (unDelphiX `Source/DXDraws.pas`) calls `SetBack(5000)` during retained-mode init and leaves the field alone. That fork starts after 2004. The static PE read that found no field constant and no `SetPerspective` did not re-read `SetBack`. The binary is not in the repo, and no other note gives a back-plane number for the February 2000 exe. 100 and 5000 are both sourced. Neither is tagged as this client's far plane.
 - Live confirmation of the 220 / 80 / 5° / −0.15 rad figures, and of this field, under Wine with native `d3drm.dll` (Wine’s RM stubs break camera frames; see [lab-2026-10-30.md](lab-2026-10-30.md)).

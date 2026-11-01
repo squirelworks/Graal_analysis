@@ -91,7 +91,7 @@ See `seihai-gaps.md`. Seihai has no era A profile. When one is added, the 1.39 /
 
 ## 1.32
 
-Not tagged. The Decompile folder has exports for 1st Graal, 1.39, 2.00, 2.05, 2.17, 2.22 and 2.31, and no 1.32 export. The client archive is only the install package. The live run measured walking speed and the start window (`live-runs-2026-10-30.md`) and did not exercise death, hurt, the sword or a wall. Nothing new is claimed for 1.32.
+Not tagged: a listing of the Decompile folder on 2026-11-01, client exports and the Accessories folder, still has no 1.32 export, so no death, hurt or wall number is added.
 
 ## Still open
 

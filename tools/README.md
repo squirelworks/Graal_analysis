@@ -9,8 +9,8 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | GraalShop | GANI editor | Sprite mode (GANI0001) and movie mode (GANI0002). |
 | TerrainGenerator | Height-field world | Plasma midpoint displacement → GRMAP001 + GLEVNW01 with HEIGHTS. The 2.22 reference is `generators-222/terrain.py`. |
 | DungeonGenerator | Stamp dungeon | 8×11 layout → GLEVNW01 boards and GRMAP001. The 2.22 reference is `generators-222/dungeon.py`. |
-| GraalLevelGen | Image-to-levels | December 2000 contract in `classic-tools/graal-level-gen.md`. The 2.22 nw-gmap reference is `generators-222/levelgen.py`. |
-| gif2mng | GIF converter | PNG for one frame, MNG for more. `-b` snaps to body palette. |
+| GraalLevelGen | Image-to-levels | December 2000 contract in `classic-tools/graal-level-gen.md`. The 2.22 nw-gmap reference is `generators-222/levelgen.py`. graal-txt and nw-txt names and `bigmap.txt` are in `level-tools-gaps/`. |
+| gif2mng | GIF converter | PNG for one frame, MNG for more. `-b` snaps to body palette. The writer for that subset is `level-tools-gaps/gif2mng.py`. |
 | RemoteControl | Staff client | Classic text codec on two sockets. Predecessor of RC2. |
 | RemoteControl 2000–2002 | Staff client lineage | `GSERV014`→`GSERV023`, option packets, id changes. See `remotecontrol-lineage.md`. |
 | NPC Control (RC 1.41) | NPC-server client | `NCL11012` login, NPC-server discovery, NC packet ids. Tool history in `npc-control.md`; wire layouts for `seihai-rc` in `../protocol/npc-control.md`. |

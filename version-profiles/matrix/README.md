@@ -72,7 +72,7 @@ Login-time extras that a faithful client must send: `PLI_LANGUAGE` (37) from 2.0
 
 | What | Value by era | Source |
 |---|---|---|
-| Main window | Caption "Graal". Outer size 648×521 (1st Graal), 648×516 (2nd Graal to 1.1.9), 648×508–509 (1.21–1.39), 648×514 (1.41), 648×507 (NewMain, 2.00), 648×514 (2.01–2.1 tests), 644×507 (2.17–2.31). Form font MS Sans Serif 14 px throughout. 2.05+ add the server name to the title. | **[bin]** |
+| Main window | Caption "Graal". Outer size 648×521 (1st Graal), 648×516 (2nd Graal to 1.1.9), 648×508–509 (1.21–1.39), 648×514 (1.41), 648×507 (NewMain, 2.00), 648×514 (2.01–2.1 tests), 644×507 (2.17–2.31). Form font MS Sans Serif 14 px throughout. 2.05+ add the server name to the title. 2.12–2.16, 2.3 and 3.x have no outer size on record (see below). | **[bin]** |
 | Start window | 1st Graal: "Graal - The Adventure", radio buttons One Player / Two Player / One Player Online with host the loopback address and port `14801`. 1.0: "Select the game mode" with the grail picture, character pick per player, "Online At Cyberjoueur" box with port 14802. 1.1 to 1.32: the rider-on-horse picture, mode and character drop-downs; 1.32 adds Language and Nick Name and "Managed by: Stéphane Portha". 1.41: Language, Game mode (One Player … Four Players), Character, Nick Name, "Lead programmer: Stefan Knorr". 2.00: dark-green "Graal 2001" window with the GraalOnline logo, Training / Options / Start. 2.1: new start window and server list. 2.22: Start Online / Training / Options; 2.31: Start Online / Editor / Options. 3.x on: Torque GUI or server-scripted screens. | **[live]** screenshots; **[bin]** forms |
 | HUD sheet (`state`) | 448×96 GIF (1st, 2nd Graal) → 448×137 (3rd–5th) → 298×96 (6th) → 427×109 (7th, 8th) → 427×125/132 (9th, 1.0–1.1.9) → 224×49 (1.21) → 224×81 (1.28b2–1.37, PNG from 1.33) → 224×97 (1.38–1.39) → **224×145 (1.41 to 2.31)**. The NewWorld betas ship the older 224×97 sheet. | **[file]** survey; `../../client-internals/status-display.md` |
 | HUD layout | Spiral (yin-yang) hearts at the top right in every build seen. 1st Graal shows three rupee digits (`000`), 1.0 drops leading zeros (`0`). The A/S/D item buttons appear by 1.32; 1.41 adds the AP bar under them. | **[live]** |
@@ -83,14 +83,28 @@ Login-time extras that a faithful client must send: `PLI_LANGUAGE` (37) from 2.0
 | Keys | Arrows or IJKL, A/S/D, M map, Q items, P pause, Tab chat; fixed to 1.37, rebindable from 1.38; F1–F7 and Alt+1–9 per `versions-133-139.md`. | **[bin][doc]** |
 | Heads and characters | Pick list with named characters (Nick, Mandi …) from `heads.gif` in 3rd Graal to 1.1.9; `headsconfig.txt` (Fung Si Yan, Nick, Mandi, Bad Max …) with one image per head from 1.21. | **[file][live]** |
 
+## Outer window where no form was measured
+
+Date checked: 2026-11-01. Sizes below are only ones already written down. The Decompile folder (client exports and Accessories) has no form-size note and no export of these builds.
+
+| Builds | Outer size | Why |
+|---|---|---|
+| 2.12, 2.13, 2.14, 2.15, 2.16 | not measured | No row in `builds-static-survey.tsv`. `client-internals/drive-clients-inventory.md` records no release between the 2.1 test builds and 2.17. |
+| 2.3 | not measured | `version-profiles/2.22-2.31.md` says no 2.3 executable was uploaded. |
+| 3.04, 3.153 | no VCL outer size | The Delphi survey stops at 2.31. These clients are Torque / SDL, not a Delphi form. |
+
+The nearest measured Delphi forms sit on either side of 2.12–2.16. 2.1 test 2 and 2.1 test 3 are **648×514**. 2.17.1, 2.22 and 2.31 are **644×507**. **[bin]** `builds-static-survey.tsv`. The change falls between 2.1 test 3 and 2.17.1, so neither size is assigned to 2.12–2.16. 2.22 and 2.31 share 644×507, and that neighbour size is still not assigned to 2.3.
+
+3.04 Linux, in `lab-304-linux-2026-10-30.md`, opens at **800×600** on a 1024×768 display. **[cap]** That sentence records the opening size. It does not split outer size from client area, and it is not a Delphi form size. No window size is written down for 3.153. Torque's minimum screen mode of 640×480 (`torque/engine-and-formats.md`) is a device floor, not an outer window.
+
 ## What is still unknown
 
 Ranked by how much it changes what a player would notice.
 
-1. **The 1998 to 1.41 rules.** **1.39 is done** (`rules-139.md`). **1st Graal is done** (`rules-1st-graal.md`: same five rules, with a fixed half-heart sword, a restart at `house1.graal`, and the death-counter increment left untagged). Still open: 1.32 (no decompile) and the rest of eras A–B. Walking speed already matches across the measured builds.
-2. **2.1 to 2.16 and 2.3.** No binaries. Everything in era F before 2.17 is from release notes and server source.
-3. **5.x and 6.x look.** The screens come from the server (`Login` server GUI scripts, update packages), so the look is whatever that server sent. A capture of a real `Login` session is the only source.
-4. **Graal3D movement and camera.** Not mapped (`../../graal3d/README.md`, open points).
+1. **The 1998 to 1.41 rules.** **1.39 is done** (`rules-139.md`). **1st Graal is done** (`rules-1st-graal.md`: same five rules, with a fixed half-heart sword, a restart at `house1.graal`, and the death-counter increment left untagged). Still open: 1.32 (Decompile folder re-listed 2026-11-01; still no 1.32 export, so no death, hurt or wall number) and the rest of eras A–B. Walking speed already matches across the measured builds.
+2. **2.1 to 2.16 and 2.3.** No binaries. Everything in era F before 2.17 is from release notes and server source. Outer window sizes for 2.12–2.16, 2.3 and 3.x are in the section above: unmeasured, except the 3.04 Linux opening size already in the lab note.
+3. **5.x and 6.x look.** The screens come from the server (`Login` server GUI scripts, update packages), so the look is whatever that server sent. `../../protocol/login-session-known.md` records what the existing notes already say that server sends, written with no public capture. The look itself is still unobserved.
+4. **Graal3D movement and camera.** Follow distance, look height and field of view are in `../../graal3d/camera.md`. The far plane stays open (library initial back plane 100 **[doc]**; a later DelphiX `SetBack(5000)` was not used; the February 2000 exe was not re-read for `SetBack`).
 5. **Default name font before 1.38.** The exes from 1st Graal to 1.37 contain no font family name for the game text; 1.32's install says `Dialog`, which Windows does not have, so a substitute was used.
 
 ## Files in this folder
