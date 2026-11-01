@@ -25,6 +25,7 @@ See the individual files for the measured contracts. `graaleditor-vs-205.md` com
 - `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.
 - `relay-bridge/` — `room_bridge.py` (logging proxy for the 1998 GServ relay that can rename join rooms), `AppletRun.java` (runs the Java Graal / Zelda Online applets in a frame), `pcap_lines.py` (prints the relay lines in a capture). See `../client-internals/relay-room-bridge.md`.
 - `lab-servers/` — our lab listserver (version 2, with tests), `run-lab.sh` and the gs2lib patch our GServer build carries. See `../server-notes/lab-servers-2026-10-30.md` for what our servers are and how they compare with GServer-v2 beta4.
+- `navigator/` — local browser for the markdown notes in this repo. It listens on the loopback address (port 8765) and does not phone home. See `navigator/README.md`.
 - `ghidra/` — headless salvage scripts for recovered binaries (`analyze_tool.sh`, `ghidra_scripts/ExportSalvageArtifacts.java`). Counts and decompiler text stay in gitignored `local-out/`. The prose summaries of those tools are in seihai-servertools (`recovered-drive-tools/`, `recovered-hacks/`).
 
 ## File-format helpers (`file-formats/`)
