@@ -1,10 +1,10 @@
 id	question	state	what would settle it
 k1	which object kinds call the hurt routine with which power	closed	damage-sources.md [bin]; lab blast-shape quirks remain elsewhere
-k2	per-player field compared in packet 40	inferred always equal	capture: hit from an owning player
+k2	per-player field compared in packet 40	closed	04-name-index-case-link.md [bin]; horse does not change the link; new players are 0
 k3	end-of-respawn entry save online	closed	lab-captures-2026-10-25 §D [cap]
 k4	CURPOWER after damage	closed	lab-captures-2026-10-25 §C [cap]
 k5	default weapon wire ids vs images	partly closed	lab §E: 7→wbowi1.png; 8 not isolated; also 12,20-23
 k6	level cache GWEBL001	closed	formats/gwebl001-cache.md [2.05][test]
-k7	file-index scan order for same names	open	capture with differing bytes in two folders
+k7	file-index scan order for same names	closed	04-name-index-case-link.md [bin]; newer time in 2.22, first hit in 2.05 rev 2
 k8	pre-2.1 re-send of file check	closed	decomp-findings-2026-10-25-e/01-request-lists.md settled-list C [bin]
-k9	maps folder rule in 2.1 to 2.16	unknown	no binary
+k9	maps folder rule in 2.1 to 2.16	unknown	2026-11-01 archive listing still has no client between the 2.1 test builds and 2.22

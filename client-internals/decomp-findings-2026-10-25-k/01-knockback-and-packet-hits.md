@@ -31,10 +31,10 @@ Power: packet power is capped at one heart; a power of 0 is accepted (hurt mode 
 The hit point is (b1/2, b2/2) in tiles, from the two bytes after the power. The player's centre is (X+1.5, Y+2.0). A hit lands when the absolute difference is strictly under 2 on each axis.
 
 ## The per-player field of packet 40
-Packet 40 is dropped unless a field of the attacker's player record equals the same field of the victim's. In 2.05 and in 2.22 the field is the one that holds a parent or owner record; ordinary players have none, so both sides read zero and the test passes. This is an inference from the other readers of the field; no wire was seen.
+Packet 40 is dropped unless a link integer on the attacker equals the same integer on the victim. A new player is created with 0. The horse image is a different slot and does not write the integer, so a player who only has a horse still matches an ordinary player. In 2.22 the integer is the layer/parent link (layer number minus one, plus the parent's link when there is a parent). Detail: [`../decomp-findings-2026-10-25-e/04-name-index-case-link.md`](../decomp-findings-2026-10-25-e/04-name-index-case-link.md) **[bin]**.
 
 ## What stays unknown
 - ~~Which object kinds (bomb, arrow, baddy) call the hurt routine with which power~~ — closed in [`../damage-sources.md`](../damage-sources.md).
 - ~~Whether the respawn routine's second entry save lands on the death spot online~~ — closed in [`../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md`](../lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md) §D (stays the entry point).
 - ~~Whether the real client sends CURPOWER after damage~~ — closed in the same lab note §C.
-- Packet 40's per-player owner/parent field with a horse or similar (still needs a capture).
+- ~~Packet 40's per-player owner/parent field with a horse or similar (still needs a capture).~~ Closed in [`../decomp-findings-2026-10-25-e/04-name-index-case-link.md`](../decomp-findings-2026-10-25-e/04-name-index-case-link.md): a horse does not change the link.
