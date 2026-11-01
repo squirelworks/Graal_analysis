@@ -75,10 +75,11 @@ open-point closed.
   batch-c bracketed.)
 
 - [ ] **11. 1998 to 1.41 rules (matrix unknown #1).** Death, hurt and knockback, sword
-  reach and the wall test for 1.39 first, then 1.32 and 1st Graal. Decompiles plus Wine
+  reach and the wall test for 1.39 first, then 1.32 and ~~1st Graal~~. Decompiles plus Wine
   runs against GServer13 or the 1998 relay on loopback.
-  *1.39 done in #161 / `version-profiles/matrix/rules-139.md`; 1.32 and 1st Graal remain
-  (Drive has no 1.32 `.c`; 1st Graal `.c` is VCL-lossy).*
+  *1.39 done in #161 / `version-profiles/matrix/rules-139.md`. 1st Graal done in
+  `version-profiles/matrix/rules-1st-graal.md` (static read of the VCL-lossy export;
+  the death-counter increment is not tagged). 1.32 remains: Drive has no 1.32 `.c`.*
 
 - [ ] **12. Keep Seihai's fixture reader working.** Any PR that edits
   `version-profiles/*.toml` or `client-internals/version-profiles/*.toml` runs Seihai's

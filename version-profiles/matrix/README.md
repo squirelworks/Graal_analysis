@@ -58,9 +58,9 @@ Login-time extras that a faithful client must send: `PLI_LANGUAGE` (37) from 2.0
 |---|---|---|
 | Game tick | **50 ms** in every Delphi build. A through D drive it from a DelphiX `TDXTimer` (interval 50 in the main form); from NewMain 1.42 the form has no DX timer and the frame runs from the idle handler behind a 50 ms gate. Graal3D: 50 ms `TDXTimer`. | **[bin]** survey; `../../client-internals/rendering-observations.md` |
 | Walking | **0.5 tile per tick, 10 tiles per second**, from the first beta on. Measured live in 1st Graal, 1.0, 1.1, 1.32, 1.41; the 2.05 trace and the 2.05/2.17/2.22/2.31 walking routine agree. | **[live]** `live-runs-2026-10-30.md`; `../../client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md` |
-| Wall test | **1.39 and 2.05–2.31:** six probe points per facing step. 2.05 also has corner nudge 0.1 and flush snap. In 1.1 a position with a 0.025 offset (x = 26.925) showed up after bumping furniture, which fits a similar rule. | **[bin]** 1.39 (`rules-139.md`), 2.x; **[live]** 1.1 |
-| Death and respawn | **1.39:** 30-tick timer, input and STATUS dead bit after counter > 27, online default (30.5, 30), hearts restored to max (no AP bands). **2.05:** same timer/bit; hearts by AP; 2.22 lab-confirmed. | `rules-139.md`; `../../client-internals/feature-specs/04-death-respawn.md` |
-| Combat | **1.39 and 2.05:** hurt 40 ticks, knockback 1 tile/tick for 5 ticks (counter 39…35), sword reach 0–4 tiles / sideways < 2. 1.39 hurt pose ~10 ticks then blink; 2.05 uses the `hurt` gani. | `rules-139.md`; `../../client-internals/decomp-findings-2026-10-24-d/` |
+| Wall test | **1st Graal:** six probes, fail closed, push counter wraps above 37 back to 18, hop at 18 (`rules-1st-graal.md`). **1.39 and 2.05–2.31:** six probe points per facing step. 2.05 also has corner nudge 0.1 and flush snap. In 1.1 a position with a 0.025 offset (x = 26.925) showed up after bumping furniture, which fits a similar rule. | **[bin]** 1st Graal, 1.39 (`rules-139.md`), 2.x; **[live]** 1.1 |
+| Death and respawn | **1st Graal:** hearts to 0 set the dead life-state; a key once the shared counter is above 27 restarts `house1.graal` at (24.5, 30) with 3 hearts. The up-count was not found. **1.39:** 30-tick timer, input and STATUS dead bit after counter > 27, online default (30.5, 30), hearts restored to max (no AP bands). **2.05:** same timer/bit; hearts by AP; 2.22 lab-confirmed. | `rules-1st-graal.md`; `rules-139.md`; `../../client-internals/feature-specs/04-death-respawn.md` |
+| Combat | **1st Graal:** hurt 40 ticks, five knockback steps, sword frames 6–10, reach up to 4 tiles ahead and sideways under 2, sword power a fixed half heart. **1.39 and 2.05:** hurt 40 ticks, knockback 1 tile/tick for 5 ticks (counter 39…35), sword reach 0–4 tiles / sideways < 2. 1.39 hurt pose ~10 ticks then blink; 2.05 uses the `hurt` gani. | `rules-1st-graal.md`; `rules-139.md`; `../../client-internals/decomp-findings-2026-10-24-d/` |
 | Ledges, push/pull, carry-hide | 2.05: jump on the 18th blocked step; `canbepushed`/`canbepulled` from 1.1 beta1, separated in 1.34; hiding under a carried object (mode 14). | `../../client-internals/ledges-push-pull.md`, `../../client-internals/carry-hide-and-glove.md` |
 | Bush, pot and stone respawn | Client-side before 2.00 **[inf]**; server-side from 2.00 ("bush rupees and pot hearts go server-side"). Exact timers are being measured in a separate thread. | **[doc][inf]** |
 | Local multiplayer | Two players from 1st Graal; Two/Three/Four Players to 1.41; removed in NewMain 1.42 / 2.00. | **[bin][live]** start windows |
@@ -87,7 +87,7 @@ Login-time extras that a faithful client must send: `PLI_LANGUAGE` (37) from 2.0
 
 Ranked by how much it changes what a player would notice.
 
-1. **The 1998 to 1.41 rules.** **1.39 is done** (`rules-139.md`: death, hurt, knockback, sword reach, wall test tagged). Still open: 1.32 and 1st Graal (and the rest of eras A–B). Walking speed already matches across the measured builds.
+1. **The 1998 to 1.41 rules.** **1.39 is done** (`rules-139.md`). **1st Graal is done** (`rules-1st-graal.md`: same five rules, with a fixed half-heart sword, a restart at `house1.graal`, and the death-counter increment left untagged). Still open: 1.32 (no decompile) and the rest of eras A–B. Walking speed already matches across the measured builds.
 2. **2.1 to 2.16 and 2.3.** No binaries. Everything in era F before 2.17 is from release notes and server source.
 3. **5.x and 6.x look.** The screens come from the server (`Login` server GUI scripts, update packages), so the look is whatever that server sent. A capture of a real `Login` session is the only source.
 4. **Graal3D movement and camera.** Not mapped (`../../graal3d/README.md`, open points).
@@ -99,6 +99,7 @@ Ranked by how much it changes what a player would notice.
 |---|---|
 | `README.md` | This matrix. |
 | `rules-139.md` | 1.39 death, hurt, knockback, sword reach and wall test (matrix unknown #1 for era C). |
+| `rules-1st-graal.md` | 1st Graal death, hurt, knockback, sword reach and wall test. 1.32 is recorded as still open. |
 | `builds-static-survey.tsv` | One row per executable: MD5, size, form count, main window, form font, frame timer, sound/config/image name counts, sheet sizes. |
 | `builds-deltas.md` | Per-build additions and removals of config keys, sounds, images, forms and fonts. |
 | `live-runs-2026-10-30.md` | The Wine runs: how, what was measured, screenshots. |
