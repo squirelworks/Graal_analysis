@@ -219,16 +219,20 @@ here. A 5 MB file saved as `.htm` is a classic remote-control log and was
 not read. Files whose names are an IP ban list and an fstab note were not
 opened.
 
-Header-only, not extracted: a 20 KB Chaos Continuum site from November 1999
+~~Header-only, not extracted: a 20 KB Chaos Continuum site from November 1999
 names `index1.html` and `download_gif.html`; a 24 KB ODiUM v4 site from
-March 2002 names `index.html.html` (the extension is doubled in the archive).
+March 2002 names `index.html.html` (the extension is doubled in the archive).~~
 
-Not opened, filename and size only: a classic-community flash intro (30 KB),
+~~Not opened, filename and size only: a classic-community flash intro (30 KB),
 that community's forums dump (52 MB), a Dragon world site-and-server archive
 (18 MB, 2014–2017), a guild vault site (177 KB, 2004), a 2023 construction
-site (5.7 MB), a Game Boy site is the one opened above, a kingdoms library
-site (4.8 MB, 1998–2006), an NPC website (59 MB, 2003), a forum SQL dump
-(225 KB, 2006), and a 2019 developer-site archive (3.1 MB).
+site (5.7 MB), a kingdoms library site (4.8 MB, 1998–2006), an NPC website
+(59 MB, 2003), a forum SQL dump (225 KB, 2006), and a 2019 developer-site
+archive (3.1 MB).~~
+
+Those eleven are read in
+[`archive/game-assets-websites-2026-11-01.md`](game-assets-websites-2026-11-01.md).
+The Game Boy site above was already opened in this inventory.
 
 ## Verified against filenames only
 
@@ -240,11 +244,10 @@ website archives (titles and file names, not full page text), plus
 `npcserverdoc.txt` and `npccontrol.txt`.
 
 Checked only as a RAR header name: `pets.rar`, `backpals.rar`, the small
-New World MIDI rar, `Zone_GMAP.rar`, the Chaos Continuum site, the ODiUM
-site.
+New World MIDI rar, `Zone_GMAP.rar`.
 
 Seen as Drive names and sizes only: the other graphics packs (including
 `heads.7z` and both file-pack parts), `MIDI.rar`, the large world and
 archived-server RARs, the Zelda Online RARs, the level-dump RARs other than
-alkaren, the 12 website screenshots, and the website RARs listed as not
-opened above.
+alkaren, and the 12 website screenshots. The website RARs that this note
+left unread are summarized in `game-assets-websites-2026-11-01.md`.
