@@ -154,6 +154,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 ## Game assets (2026-11-01)
 
 - `archive/game-assets-2026-11-01.md`: inventory of the owner's Game Assets Drive folder. Sounds and graphics are RAR/7z packs (wav, mid, au, gani, png, gif, mng); levels in one opened dump are `GLEVNW01` and `GR-V1.03`; a world folder is a dated archive of levels, sometimes a gmap, with scripts in a separate pack; old sites are summarized by page title. Assets stay on Drive.
+- `archive/game-assets-worlds-2026-11-01.md`: the level dumps, Zelda rars, Zone gmaps, and a sample of the 87 archived server folders left closed by that inventory. Other than the alkaren baseline, `.nw` files are 330 `GLEVNW01` and 5 `GR-V1.03`. Dungeon gmaps are `GENERATED` plus one name; the opened terrain gmaps store a numeric `HEIGHTMAP` and do not use bare name rows.
 
 ## Graal 4.x clients (2026-10-29)
 
