@@ -1,6 +1,14 @@
 # Ghidra headless salvage pipeline
 
-Headless helper for recovered original Graal tooling. Treat inputs as archive binaries. Focus on purpose, CLI, protocols, config paths, and behaviour. Committed prose summaries live in this repo under `recovered-drive-tools/` and `recovered-hacks/`.
+Reference scripts for static reads of recovered server tools, staff clients, and
+trainers. They live here because the exporter writes decompiler output, import
+lists, and addresses into a local folder. That output is never committed.
+Hand-written plain-behaviour summaries of those binaries live in
+`squirelworks/seihai-servertools` (`recovered-drive-tools/`, `recovered-hacks/`),
+not in this repository and not in the Seihai client.
+
+Treat inputs as recovered tooling. Record purpose, CLI, protocols, and config
+roles in your own words. Do not invent malware or exploit payloads.
 
 ## Layout
 
@@ -8,21 +16,25 @@ Headless helper for recovered original Graal tooling. Treat inputs as archive bi
 | --- | --- |
 | `current` → `ghidra_12.2_PUBLIC/` | Installed Ghidra release (gitignored) |
 | `ghidra_scripts/ExportSalvageArtifacts.java` | Post-analysis export script |
-| `analyze_tool.sh` | One-shot wrapper: prelim RE + headless. Raw files stay in `local-out/`. |
+| `analyze_tool.sh` | One-shot wrapper: prelim snapshot + headless. Raw files stay in `local-out/`. |
 | `projects/` | Scratch Ghidra projects (deleted per run by default) |
-| `/workspace/tools/jdk/current` | Temurin JDK 25 (required by Ghidra 12.2) |
-| `/workspace/tools/rizin/bin` | Optional rizin static install for prelim snapshots |
 
-Committed hand-written summaries live in this repo:
+`analyze_tool.sh` reads `JDK_HOME` or `JAVA_HOME` (JDK 25 or newer). Optional
+`RIZIN_BIN` is a directory prepended to `PATH` when `rz-bin` is not already
+there. There is no default install path.
 
-`recovered-drive-tools/ghidra-analysis/<toolname>/SUMMARY.md`
-`recovered-hacks/ghidra-analysis/<toolname>/SUMMARY.md`
+The second argument of `analyze_tool.sh` is the directory for a hand-written
+`SUMMARY.md`. The script creates a counts-only stub there if the file is
+missing, and leaves an existing summary alone. For the recovered Drive tools
+and trainers, that directory is the matching folder already kept in
+seihai-servertools. Do not commit a second copy of those notes here.
 
-A local scratch tree can still draft new summaries at `/workspace/recovered-drive-tools/ghidra-analysis/<toolname>/SUMMARY.md`.
-
-Raw exporter output (strings, imports, decompilation, disassembly) goes to gitignored `local-out/` and is not committed.
+Raw exporter output (strings, imports, decompilation, disassembly) goes to
+gitignored `local-out/` and is not committed.
 
 ## Versions
+
+See `VERSION.txt`.
 
 - **Ghidra:** 12.2 PUBLIC (`20261016`)
 - **JDK:** Temurin 25.0.5+8 (Ghidra 12.2 requires Java 25+)
@@ -30,56 +42,50 @@ Raw exporter output (strings, imports, decompilation, disassembly) goes to gitig
 
 ## Install / refresh Ghidra
 
-If `current/` is missing (fresh clone):
+If `current/` is missing (fresh clone), from this directory:
 
 ```bash
-mkdir -p /workspace/tools/ghidra /tmp/ghidra-dl
+mkdir -p /tmp/ghidra-dl
 cd /tmp/ghidra-dl
 curl -L -o ghidra.zip \
   "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.2_build/ghidra_12.2_PUBLIC_20261016.zip"
 unzip -q ghidra.zip
-mv ghidra_12.2_PUBLIC /workspace/tools/ghidra/
-ln -sfn ghidra_12.2_PUBLIC /workspace/tools/ghidra/current
-
-# JDK 25
-mkdir -p /workspace/tools/jdk /tmp/jdk-dl && cd /tmp/jdk-dl
-curl -L -o jdk25.tar.gz \
-  "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.5%2B8/OpenJDK25U-jdk_x64_linux_hotspot_25.0.5_8.tar.gz"
-tar -xzf jdk25.tar.gz -C /workspace/tools/jdk
-ln -sfn jdk-25.0.5+8 /workspace/tools/jdk/current
-
-# Point Ghidra at JDK 25
-sed -i 's|^JAVA_HOME_OVERRIDE=.*|JAVA_HOME_OVERRIDE=/workspace/tools/jdk/jdk-25.0.5+8|' \
-  /workspace/tools/ghidra/ghidra_12.2_PUBLIC/support/launch.properties
+mv ghidra_12.2_PUBLIC /path/to/Graal_analysis/tools/ghidra/
+ln -sfn ghidra_12.2_PUBLIC /path/to/Graal_analysis/tools/ghidra/current
 ```
+
+Install a JDK 25 build yourself and export `JDK_HOME` to it. Point Ghidra at
+that JDK by setting `JAVA_HOME_OVERRIDE` in
+`ghidra_12.2_PUBLIC/support/launch.properties` to the same directory.
 
 Verify:
 
 ```bash
-export JAVA_HOME=/workspace/tools/jdk/current
-/workspace/tools/ghidra/current/support/analyzeHeadless 2>&1 | head
+export JDK_HOME=/path/to/jdk-25
+"$JDK_HOME/bin/java" -version
+tools/ghidra/current/support/analyzeHeadless 2>&1 | head
 ```
 
 ## Analyze one binary
 
 ```bash
-/workspace/tools/ghidra/analyze_tool.sh \
+export JDK_HOME=/path/to/jdk-25
+tools/ghidra/analyze_tool.sh \
   /path/to/binary \
-  /workspace/recovered-drive-tools/ghidra-analysis/toolname
+  /path/to/summary-dir
 ```
 
-The second argument is the directory for a hand-written `SUMMARY.md`. The script creates a counts-only stub there if the file is missing, and leaves an existing summary alone. Optional third arg: max functions to decompile (default `40`).
+Optional third arg: max functions to decompile (default `40`).
 
 ```bash
-/workspace/tools/ghidra/analyze_tool.sh ./gscripts-old \
-  /workspace/recovered-drive-tools/ghidra-analysis/gscripts-old 60
+tools/ghidra/analyze_tool.sh ./some-tool /path/to/summary-dir 60
 ```
 
 ### Output tree
 
 ```
-ghidra-analysis/<tool>/
-  SUMMARY.md                 # hand-written prose only (the only committed analysis note)
+summary-dir/
+  SUMMARY.md                 # hand-written prose only (the only note worth keeping)
 
 tools/ghidra/local-out/<tool>/    # gitignored
   summary_stats.txt          # counts; string bodies omitted
@@ -94,42 +100,32 @@ tools/ghidra/local-out/<tool>/    # gitignored
 ```
 
 Do not copy `local-out/` into `SUMMARY.md`. Describe behaviour in your own words.
-
-## Batch from recovered Drive inventory
-
-When a sibling recovery agent populates `/workspace/recovered-drive-tools/` (see `INVENTORY.md`):
-
-```bash
-INV=/workspace/recovered-drive-tools/INVENTORY.md
-OUT=/workspace/recovered-drive-tools/ghidra-analysis
-# Prefer ELF/Mach-O/PE executables and known servertool names first
-find /workspace/recovered-drive-tools -type f \( -perm -111 -o -name '*.exe' -o -name '*.so' \) \
-  ! -path '*/ghidra-analysis/*' -print
-```
-
-Then run `analyze_tool.sh` per high-value candidate into `$OUT/<name>/`.
+Do not write dotted addresses, decompiled C, or auto-generated function names
+into a committed note. Labs stay on the loopback address.
 
 ## Raw analyzeHeadless
 
 ```bash
-export JAVA_HOME=/workspace/tools/jdk/current
+export JDK_HOME=/path/to/jdk-25
+export JAVA_HOME="$JDK_HOME"
 export GHIDRA_HEADLESS_MAXMEM=4G
-GHIDRA=/workspace/tools/ghidra/current
+GHIDRA=tools/ghidra/current
 $GHIDRA/support/analyzeHeadless \
-  /workspace/tools/ghidra/projects myproj \
+  tools/ghidra/projects myproj \
   -import /path/to/bin \
   -overwrite -deleteProject \
-  -scriptPath /workspace/tools/ghidra/ghidra_scripts \
+  -scriptPath tools/ghidra/ghidra_scripts \
   -postScript ExportSalvageArtifacts.java /tmp/out 40
 ```
 
-Point `-postScript` at a gitignored directory (`local-out/` or `/tmp`). Do not point it at a path whose text files would be committed.
+Point `-postScript` at a gitignored directory (`local-out/` or `/tmp`). Do not
+point it at a path whose text files would be committed.
 
 ## Notes
 
 - Headless deletes the scratch project by default (`-deleteProject`) so reruns stay clean.
 - Decompilation targets entry points, name-matched helpers, then large or busy functions. That C stays under `local-out/`.
+- The exporter skips unnamed auto-generated functions when it builds the local counts file, so those names are not copied forward.
 - Interesting-string filters bias toward paths, CLI flags, URLs, config extensions, and server-related tokens. Those hits stay under `local-out/` and are not written into `SUMMARY.md`.
 - `summary_stats.txt` records counts only. It does not embed string bodies.
-- Do not invent malware or exploit payloads; salvage for rebuild or rehost notes of legitimate server and ops tools only.
-- Committed summaries are prose: what the tool does, which screens or formats it touches, and what Seihai could learn. No string dumps, import lists, or addresses.
+- Committed summaries are prose: what the tool does, which screens or formats it touches, and what a later clean-room note could learn. No string dumps, import lists, or addresses.

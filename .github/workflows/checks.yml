@@ -50,6 +50,12 @@ jobs:
       - name: pytest tools/lab-servers
         run: python -m pytest tools/lab-servers -q
 
+      - name: pytest classic tool references
+        run: python -m pytest tools/classic-tools -q
+
+      - name: pytest Graal 2.22 generator references
+        run: python -m pytest tools/generators-222 -q
+
       - name: Smoke resolve.py
         run: |
           python client-internals/version-profiles/resolve.py \

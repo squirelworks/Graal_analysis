@@ -17,4 +17,4 @@ Lab: a downloaded gmap on 2.22 was saved as `maps/<name>`; images and animations
 From 2.1 the file reply carries a GINT5 last-write time; the client sets it on the saved file. Before 2.1 the reply has no time, so the file's time is the time of the download.
 
 ## Names
-Compared without regard to case. Lookups use the same normalisation as the loaders.
+Compared without regard to case. The fold is plain A–Z only, and the index then compares the folded bytes exactly; see [`04-name-index-case-link.md`](04-name-index-case-link.md). Lookups use the same normalisation as the loaders.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Headless salvage analysis wrapper for recovered original Graal tooling.
+# Headless salvage analysis wrapper for recovered seihai-servertools binaries.
 # Usage: analyze_tool.sh <binary_path> <summary_dir> [max_decomp_funcs]
 #
 # Raw Ghidra output (imports, strings, decompilation, disassembly) goes to
@@ -10,8 +10,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GHIDRA_HOME="${GHIDRA_HOME:-$SCRIPT_DIR/current}"
-JDK_HOME="${JDK_HOME:-/workspace/tools/jdk/current}"
-RIZIN_BIN="${RIZIN_BIN:-/workspace/tools/rizin/bin}"
+# JDK 25 or newer. No default install path: set JDK_HOME, or JAVA_HOME.
+JDK_HOME="${JDK_HOME:-${JAVA_HOME:-}}"
+# Optional. Leave unset when rizin is already on PATH.
+RIZIN_BIN="${RIZIN_BIN:-}"
 PROJECTS_DIR="${GHIDRA_PROJECTS_DIR:-$SCRIPT_DIR/projects}"
 SCRIPTS_DIR="${GHIDRA_SCRIPTS_DIR:-$SCRIPT_DIR/ghidra_scripts}"
 MAXMEM="${GHIDRA_HEADLESS_MAXMEM:-4G}"
@@ -37,11 +39,12 @@ strings, imports, or decompiled code into that file.
 
 Environment:
   GHIDRA_HOME              default: $SCRIPT_DIR/current
-  JDK_HOME                 default: /workspace/tools/jdk/current
+  JDK_HOME                 JDK 25+ (falls back to JAVA_HOME; no default path)
   GHIDRA_HEADLESS_MAXMEM   default: 4G
   GHIDRA_ANALYSIS_TIMEOUT  seconds per file (default 1200)
   GHIDRA_PROJECTS_DIR      default: $SCRIPT_DIR/projects
   GHIDRA_LOCAL_OUT         default: $SCRIPT_DIR/local-out
+  RIZIN_BIN                optional directory prepended to PATH
 EOF
 }
 
@@ -66,13 +69,17 @@ if [[ ! -x "$GHIDRA_HOME/support/analyzeHeadless" ]]; then
   echo "Install Ghidra and symlink it to $SCRIPT_DIR/current" >&2
   exit 1
 fi
-if [[ ! -x "$JDK_HOME/bin/java" ]]; then
-  echo "ERROR: JDK not found at $JDK_HOME (Ghidra 12.2 needs JDK 25+)" >&2
+if [[ -z "$JDK_HOME" || ! -x "$JDK_HOME/bin/java" ]]; then
+  echo "ERROR: JDK 25+ not found. Set JDK_HOME or JAVA_HOME (Ghidra 12.2 needs JDK 25+)." >&2
   exit 1
 fi
 
 export JAVA_HOME="$JDK_HOME"
-export PATH="$JAVA_HOME/bin:${RIZIN_BIN}:$PATH"
+if [[ -n "$RIZIN_BIN" ]]; then
+  export PATH="$JAVA_HOME/bin:${RIZIN_BIN}:$PATH"
+else
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
 export GHIDRA_HEADLESS_MAXMEM="$MAXMEM"
 
 TOOL_NAME="$(basename "$BINARY")"
@@ -194,7 +201,7 @@ else
     echo
     echo "## Placement"
     echo
-    echo "_analysis-only / sibling repo / out-of-scope. See SALVAGE_PLACEMENT.md._"
+    echo "_analysis-only / sibling repo / out-of-scope. Placement rules for recovered server tools are in seihai-servertools recovered-drive-tools/SALVAGE_PLACEMENT.md._"
     echo
     echo "## Program (counts only)"
     echo
