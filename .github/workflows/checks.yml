@@ -53,6 +53,9 @@ jobs:
       - name: pytest classic tool references
         run: python -m pytest tools/classic-tools -q
 
+      - name: pytest level conversion chain
+        run: python -m pytest tools/level-convert -q
+
       - name: Smoke resolve.py
         run: |
           python client-internals/version-profiles/resolve.py \
