@@ -1,9 +1,8 @@
 # Game Assets folder (2026-11-01)
 
-Inventory of the owner's Google Drive folder "Game Assets"
-(https://drive.google.com/drive/folders/1TGSRLwXwRpSPKG9KFWvuMYGpovM_XJGD),
-created 2026-11-01. Nothing from the folder is committed here: no zips, images,
-sounds, levels, or website copies.
+Inventory of the owner's Game Assets folder, on Google Drive under
+`/[Grok/Graal/Game Assets`, created 2026-11-01. Nothing from the folder is
+committed here: no zips, images, sounds, levels, or website copies.
 
 Evidence is a static read of Drive listings, plus headers from a few small
 archives. Multi-megabyte world trees and the multi-hundred-megabyte packs were
