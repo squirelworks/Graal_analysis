@@ -22,4 +22,6 @@ Plasma midpoint displacement. Writes:
 
 Image-to-linked-levels pipeline. Emits `LEVELNAMES` links. A third writer of the same signatures.
 
+The 2004 graal-txt build and the 2001 nw-txt build write `bigmap.txt` instead of that gmap. Their file names and level containers are in `level-tools-gaps/`. The March 2003 manual does not name water, mountain or sand edge tiles, and `docu_dungeongenerator.txt` does not give DungeonMaker 0.9's crawler steps. Both limits are in that note.
+
 Do not feed one writer’s output to another’s loader and expect a playable board.

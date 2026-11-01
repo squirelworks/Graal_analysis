@@ -345,15 +345,40 @@ def test_cli_says_zelda_has_no_npc_section(tmp_path):
     assert loaded.npcs == [] and loaded.chests == []
 
 
-def test_refuses_magics_the_decoder_does_not_read():
-    from errors import ConvertError
-    for magic, needle in ((b'GR-V1.04', 'GR-V1.04'), (b'Z3-V1.02', '11-bit')):
-        try:
-            levelio.loads_binary(magic + b'\x00' * 4)
-        except ConvertError as exc:
-            assert needle in str(exc)
-        else:
-            raise AssertionError(magic)
+def _pack_literals(tile, width, count=4096):
+    buf = nbits = 0
+    out = bytearray()
+    for _ in range(count):
+        buf |= (tile & ((1 << width) - 1)) << nbits
+        nbits += width
+        while nbits >= 8:
+            out.append(buf & 0xff)
+            buf >>= 8
+            nbits -= 8
+    if nbits:
+        out.append(buf & 0xff)
+    return bytes(out)
+
+
+def test_reads_z3_v102_and_gr_v104():
+    zelda = b'Z3-V1.02' + _pack_literals(1000, 11) + b'#\n\xff\xff\xff\n'
+    loaded = levelio.loads_binary(zelda)
+    assert loaded.board == [1000] * 4096
+    assert loaded.npcs == [] and loaded.chests == []
+    assert loaded.heights is None
+
+    rows = ','.join(['1.5'] + ['0'] * 8)
+    body = (
+        b'GR-V1.04' + levelio.encode_board([3000] * 4096, 13)
+        + b'#\n\xff\xff\xff\n#\n#\n\nHEIGHTS\n'
+        + (rows + '\n').encode('ascii')
+        + b'HEIGHTSEND\n'
+    )
+    loaded = levelio.loads_binary(body)
+    assert loaded.board[0] == 3000
+    assert loaded.heights[0][0] == '1.5'
+    assert loaded.heights[0][1:] == ['0'] * 8
+    assert loaded.heights[8] == ['0'] * 9
 
 
 def test_gmap_is_not_one_level_renamed(tmp_path):

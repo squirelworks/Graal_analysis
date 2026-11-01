@@ -46,10 +46,10 @@ for a non-`.nw` file.
 - **Tiles above 2047 into `.zelda`.** Z3-V1 codes are 12-bit. Those tiles are
   stored as the low 11 bits, and a warning names the count. `.graal` and
   `.nw` keep ids 0–4095.
-- **HEIGHTS.** A 9×9 overlay is read and written on `.nw`. `GR-V1.03` and
-  Z3-V1 have no HEIGHTS block. `GR-V1.04` would, and `grv1.py` does not read
-  that magic (it would take the board as 12-bit), so this tool refuses a
-  `GR-V1.04` file instead of guessing.
+- **HEIGHTS.** A 9×9 overlay is read and written on `.nw`. `GR-V1.04` is
+  read as `GR-V1.03` plus that block. Saving `.graal` still writes
+  `GR-V1.03` and says the overlay was not written. `Z3-V1.02` is read with
+  11-bit codes; saving `.zelda` still writes `Z3-V1.04`.
 - **NPC coordinates that are not whole tiles.** `.nw` keeps `10.5`. GR-V1
   stores a byte (`x+32`), so the fraction is cut off.
 - **Link destinations with spaces.** GR-V1 keeps them (every token before the
