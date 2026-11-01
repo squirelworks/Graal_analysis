@@ -1,0 +1,13 @@
+ghidra=12.2
+ghidra_build=PUBLIC_20261016
+ghidra_release_tag=Ghidra_12.2_build
+ghidra_zip=ghidra_12.2_PUBLIC_20261016.zip
+ghidra_zip_sha256=2c2cd776db3c1f6a097ba418922378ac3649cadd5e844a6f5f088ae628a7be67
+jdk=Temurin-25.0.5+8
+jdk_required_min=25
+rizin=0.9.1-static-x86_64
+radare2_apt=5.5.0+dfsg (Ubuntu)
+install_ghidra_as=tools/ghidra/ghidra_12.2_PUBLIC
+symlink=tools/ghidra/current
+analyze_headless=tools/ghidra/current/support/analyzeHeadless
+helper=tools/ghidra/analyze_tool.sh
