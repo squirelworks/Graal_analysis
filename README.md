@@ -5,14 +5,14 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 ## Contents
 
 - `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`, and `docs/NEXT.md` — binding agent rules (no real hosts, no binary addresses, loopback labs only, decompile material stays here) and the ordered open task list.
-- `.github/workflows/checks.yml` — CI leak greps (no tracked `.pyc`, no `FUN_`/`DAT_`/`0x004…`, no dotted IP literals, no official hostnames), `pytest tools/lab-servers`, and smoke runs of `resolve.py` and `formats/grv1-decoder`.
+- `.github/workflows/checks.yml` — CI leak greps (no tracked `.pyc`, no `FUN_`/`DAT_`/`0x004…`, no dotted IP literals, no official hostnames), `pytest tools/lab-servers`, `pytest tools/classic-tools`, and `pytest tools/generators-222`, and smoke runs of `resolve.py` and `formats/grv1-decoder`.
 - `npc-library/` — 3,172 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables. Archival notes on a prior larger documented extract are in `npc-library/archival-scripting-notes.md`.
 - `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.
 - `protocol/` — packet layouts, login/walk framing, version tokens, capture notes. See also `session-opcodes-cleaned.md`, `codec-and-framing.md`, `packet-ids.md`, `player-props.md`, `file-transfer.md`, `chat-pm-rc.md`, `npc-control.md` (NC login `NCL11012` and NPC/class/weapon packet layouts for `seihai-rc`), `listserver.md` (with `public-listserver-2026-10-25.md`, the first observed public replies), `udp-p2p.md`, `v3x-clients.md` (Graal 3.x Linux/Mac clients), `v4x-clients.md` (Graal 4.x Windows/Mac clients), `v5x-clients.md` (Graal 5.x Windows clients), `v6x-clients.md` (Graal 6.x Linux, Mac and Windows clients, incl. the 6.11 server-defined protocol), `v5v6-windows-unpacked.md` (the packed 5.12–6.03 Windows builds, unpacked and run: tokens, logins, id tables), `v5v6-lab-play.md` (those builds played on a lab GServer: the "Login" server mode that hides characters, 5.12's cipher step count, the session on the wire, push/lift/sword/hide/pot/stone timings and the chat text look), `relay-1998.md` (the 1998 text relay), and `gserv-1999.md` (GSERV007–018 logins, gen 2).
 - `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, `version-tokens.md`, `client-architecture-205.md`, `des-and-hidden-strings.md` (hidden hosts, 2.22 saved passwords), `newworld-betas.md` (the two NewWorld beta clients), and `live-trace-early.md` (1.1.9 to 1.32 run under Wine against their bundled servers).
 - `graal3d/` — the February 2000 Graal3D client and its GServer: protocol (TCP + peer-to-peer UDP), props, accounts, `.x` levels, how it relates to the 2D GServer, client movement/camera/chat (`camera.md`: follow 220, look height +80, field 0.5 / about 53.13°), per-face collision (`collision.md`: radius 5, step height 30, slope and wall rules), a live Wine lab and a reference server. Also `torque-engine-4x.md`: the Torque-based 3D plug-in of the 4.x clients and its UDP protocol on port + 1.
 - `torque/` — the Torque Game Engine side of the 3.x–5.12 clients: engine version and lineage, how a client joins a 3D server (Graal TCP + Torque UDP on port+1), the Torque handshake per version (live-captured from 5.12), the `.dso` v33 TorqueScript format with a decompiler, the 5.12 3D object model, 3D formats, and what a Seihai Torque client would need. `torque/wire-by-build.md` compares the wire per build (3.04, 3.153, 4.04r2, 4.20r6, 5.12): game string and protocol, the class table, the networked class sets, the 5.12 game packets and the `GameObject` update.
-- `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab). `tools/lab-servers/` holds our lab listserver.
+- `tools/` — cleaned notes on GraalEditor, GraalShop, generators, gif2mng, RemoteControl, and `lab-setup.md` (the offline capture lab). `tools/lab-servers/` holds our lab listserver. `tools/classic-tools/` is the 1999–2001 listserver, stat pages, character designers, level generator and text converter, with in-process parsers. `tools/generators-222/` is the Graal 2.22 terrain, dungeon and level generators as Python references. `tools/ghidra/` is the headless salvage pipeline (`analyze_tool.sh`, `ExportSalvageArtifacts.java`); raw decompiler output stays in gitignored `local-out/`. Trainer key loops are in `recovered-hacks/`.
 - `recovered-hacks/static-2026-11-01/` — static reads of AutoIt key macros (dig, idle, attack, water, random walk), a caps-lock utility, and the Win32 listserver's saved-login hand-off. No program was executed.
 - `archive/` — archival notes on decommissioned experimental walkers and tileset work (Ember / Avelan). Full assets live in a Drive zip; see `archive/ember-avelan-experimental.md`.
 - `server-notes/public-allowed-versions.md` — which client versions public Reborn game servers allow: the two "Allowed:" lists on record (Graal the Adventure: 2.22 and 5.00r7; a gs2 server: 2.22 and a 1.41r1 to iPhone Belote range), how GServer-v2 reads `allowedversions.txt` ranges, and what that means for each 5.x and 6.x build.
@@ -56,7 +56,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/cross-version-timeline.md` — classes, GS1 commands and handled packet ids from 1.33 to the 2.1 tests.
 - `version-profiles/matrix/` — the cross-era matrix, 1998 to 6.11 plus Graal3D: how each client thinks, acts and looks, a static survey of all 57 Delphi executables, live walking-speed runs of six eras, and Seihai's profiles compared. `matrix/rules-139.md` tags 1.39 death, hurt, knockback, sword reach and wall test (matrix unknown #1 for era C). `matrix/rules-1st-graal.md` tags the same five rules for 1st Graal; 1.32 is still open.
 - `client-internals/version-profiles/` — per-version client profiles 1.41–2.17 (TOML + resolver): wire ids sent and handled, props, login, files, and player-visible features, with a source tag on every value.
-- `tools/` — index plus notes on the editor, shop, generators, gif2mng, RemoteControl, and the 2001 NPC server (`npcserver-2001.md`).
+- `tools/` — index plus notes on the editor, shop, generators (`generators-222/` for the 2.22 programs), gif2mng, RemoteControl, and the 2001 NPC server (`npcserver-2001.md`).
 
 ## Gap-fill pass (2026-10-21)
 
@@ -108,7 +108,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 ## Decompile findings, batch e (2026-10-25)
 
-- `client-internals/decomp-findings-2026-10-25-e/`: file-transfer caching rules (the three name lists, the window of four requests per kind, how replies settle names, when a local file counts as checked, where downloads are saved and with which time) from the 2.00, 2.05 rev 2, 2.17.1, 2.22 and 2.31 clients, checked against the 2.17, 2.22 and 2.31 captures already summarised in earlier notes. Tables are in the same folder.
+- `client-internals/decomp-findings-2026-10-25-e/`: file-transfer caching rules (the three name lists, the window of four requests per kind, how replies settle names, when a local file counts as checked, where downloads are saved and with which time) from the 2.00, 2.05 rev 2, 2.17.1, 2.22 and 2.31 clients, checked against the 2.17, 2.22 and 2.31 captures already summarised in earlier notes. Tables are in the same folder. `04-name-index-case-link.md` is a later static read of 2.05 rev 2 and 2.22: duplicate names (newer file in 2.22, first hit in 2.05), the A–Z case fold, and the packet 40 link (a horse does not change it).
 
 ## Decompile findings, batch f (2026-10-25)
 
@@ -158,6 +158,15 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 - `client-internals/reference-reimplementations/`: xtjoeytx's 2dadventureclient and LevelScriptEditor weighed against the real-client notes, behaviour by behaviour (matches, invented, missing). Main finding: the `gr.x`/`gr.y` flags seen in lab captures come from GServer-v2's `-gr_movement` weapon in the default account, not from the clients themselves.
 
+## Trainer behaviour models (2026-11-01)
+
+- `recovered-hacks/behaviour-models.md`: what the recovered trainers actually send. Keys, counts, and waits for the AutoIt macros (including Prayer and both water-can versions), Graal Load's 150 ms line loop, and the two AFK bots. Digger stays truncated. `recovered-hacks/reference_macros.py` replays those tables in-process.
+
 ## Graal 4.04r2 live behaviour (2026-10-30)
 
 - `client-internals/live-behaviour-404.md`: the real 4.04r2 client under Wine against GServer-v2. Why the Login server never draws players (a server name starting with `login` turns every draw layer off) and how S→C 178 hands the client to the game server. Also the chat look (white bold text with a blue shadow, no bubble), the walk speed, the push delay, grab, sword, bush cut and lift as board modifies, server-driven respawn, carrying, hiding under the object with D, and throwing.
+
+## Classic server tools (2026-11-01)
+
+- `tools/classic-tools/`: what the classic listserver ELF, the two stat-page builders, Graal Character Designer, GChar, GraalLevelGen and TextConvert read, show and never send. Small Python references parse the list frame, the 1999 account blob and a `CHR:1.00` line in-process. The Win32 listserver's saved-login hand-off is not reimplemented.
+- `tools/generators-222/`: the three writers in the Graal 2.22 `generators` folder (terrain plasma, dungeon stamps, image level generator) as Python references. gif2mng, the editors, TextConvert and the character designers are described elsewhere and are not rebuilt here.

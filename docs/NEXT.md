@@ -67,9 +67,12 @@ open-point closed.
   (`damage-sources.md`), CURPOWER + respawn + default-weapon partial
   (`lab-captures-2026-10-25`), GWEBL001/`PLO_LEVELMODTIME`
   (`formats/gwebl001-cache.md`), save folders 1.39/2.00 + empty-stream guard (batch k),
-  pre-2.1 settled-name no re-check (batch e `01-request-lists`). **Still need Wine:**
-  packet 40 owner/parent field; full vs empty login default checks; file-index scan
-  order; case-folding ASCII; maps folder in 2.1–2.16 (no binary).
+  pre-2.1 settled-name no re-check (batch e `01-request-lists`). Static read of 2.05 rev 2
+  and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
+  (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
+  (a horse does not change it). **Still open:** full vs empty login default checks
+  (the set, and whether they share a frame); maps folder in 2.1–2.16 (the client
+  archive still has no build between the 2.1 test builds and 2.22).
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
   NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,
