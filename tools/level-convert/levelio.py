@@ -29,8 +29,8 @@ CHEST_ITEMS = (
     'lizardsword', 'goldrupee', 'fireball', 'fireblast', 'nukeshot',
     'joltbomb', 'spinattack',
 )
-GRAAL_MAGICS = {b'GR-V1.00', b'GR-V1.01', b'GR-V1.02', b'GR-V1.03'}
-ZELDA_MAGICS = {b'Z3-V1.03', b'Z3-V1.04'}
+GRAAL_MAGICS = {b'GR-V1.00', b'GR-V1.01', b'GR-V1.02', b'GR-V1.03', b'GR-V1.04'}
+ZELDA_MAGICS = {b'Z3-V1.02', b'Z3-V1.03', b'Z3-V1.04'}
 _ESCAPE = re.compile(r'#K\((\d{1,3})\)')
 _INT = re.compile(r'[+-]?\d+')
 _grv1_mod = None
@@ -161,15 +161,8 @@ def loads_binary(data):
     if len(data) < 8:
         raise Truncated('file shorter than an 8-byte magic')
     magic = bytes(data[:8])
-    if magic == b'GR-V1.04':
-        raise ConvertError(
-            'GR-V1.04 is GR-V1.03 plus a HEIGHTS block, and grv1.py would '
-            'read that board as 12-bit; this tool refuses the file'
-        )
-    if magic == b'Z3-V1.02':
-        raise ConvertError('Z3-V1.02 uses 11-bit codes; grv1.py does not read them')
     if magic not in GRAAL_MAGICS and magic not in ZELDA_MAGICS:
-        raise ConvertError('not a GR-V1.00-03 or Z3-V1.03/04 level')
+        raise ConvertError('not a GR-V1.00-04 or Z3-V1.02/03/04 level')
     try:
         raw = _grv1().load(bytes(data))
     except ValueError as exc:
@@ -203,7 +196,7 @@ def loads_binary(data):
         Sign(str(item['x']), str(item['y']), expand_sign_text(item['text']))
         for item in raw['signs']
     ]
-    return Level(board, links, baddies, npcs, chests, signs, None)
+    return Level(board, links, baddies, npcs, chests, signs, _heights_from_grv(raw.get('heights')))
 
 
 def loads_nw(data, warnings=None):
@@ -644,6 +637,28 @@ def _block(lines, i, end):
         body.append(lines[i])
         i += 1
     raise Truncated(f'{end} missing')
+
+
+def _height_token(value):
+    number = float(value)
+    if number == int(number) and abs(number) < 1e15:
+        return str(int(number))
+    return format(number, '.12g')
+
+
+def _heights_from_grv(rows):
+    """Same 9×9 string grid the text loader keeps. Short rows are filled with 0."""
+    if rows is None:
+        return None
+    out = []
+    for row in rows[:9]:
+        cells = [_height_token(value) for value in row[:9]]
+        while len(cells) < 9:
+            cells.append('0')
+        out.append(cells)
+    while len(out) < 9:
+        out.append(['0'] * 9)
+    return out
 
 
 def _heights(lines, i, warnings):
