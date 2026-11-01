@@ -76,3 +76,14 @@ git grep -niE 'graalonline\.com|graal\.in\b|graalreborn\.(com|net)'
 ## Task list
 
 See `docs/NEXT.md` for the ordered open work.
+
+## Cursor Cloud specific instructions
+
+Python 3.12 is already on the image. The environment install adds pytest for the login user (`python3 -m pip install --user pytest`). That is the only package `.github/workflows/checks.yml` installs. `python3 -m pytest` is the command to use; the `pytest` script also lands on `~/.local/bin`, which login shells already include.
+
+From the repo root:
+
+- `python3 -m pytest tools/lab-servers -q` starts the lab listserver, drives every login shape, and stops it. That test has to be the only gserver connected, so do not leave another listserver or gserver bound to the lab ports.
+- Smoke `client-internals/version-profiles/resolve.py` on a profile TOML, and `formats/grv1-decoder/grv1.py` on a level, the same way the workflow does. Both use the standard library only.
+
+Do not start archived Graal clients or Wine here. Those clients phone home, and the client archives are not in this checkout. Lab servers stay on the loopback address.
