@@ -29,6 +29,9 @@ DEFAULT_PORT = 8765
 
 MD_SUFFIXES = {'.md', '.markdown'}
 SKIP_DIRS = {'.git', '__pycache__', '.pytest_cache'}
+# Top-level names that are not research areas. `release/` is generated book
+# output, so the map does not index it and does not assign it an area.
+EXEMPT_TOP_LEVEL = frozenset({'release'})
 FOLDER_ORDER = (
     'root',
     'protocol',
@@ -140,11 +143,15 @@ def first_heading(text: str) -> str | None:
 
 
 def build_index(repo: Path) -> list[dict]:
-    """Walk markdown files and skip `.git` (and bytecode caches)."""
+    """Walk markdown files and skip `.git`, bytecode caches, and book output."""
     root = Path(repo).resolve()
     entries = []
     for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = sorted(name for name in dirnames if name not in SKIP_DIRS)
+        at_root = Path(dirpath) == root
+        dirnames[:] = sorted(
+            name for name in dirnames
+            if name not in SKIP_DIRS and not (at_root and name in EXEMPT_TOP_LEVEL)
+        )
         for name in sorted(filenames):
             if Path(name).suffix.lower() not in MD_SUFFIXES:
                 continue
@@ -152,11 +159,13 @@ def build_index(repo: Path) -> list[dict]:
             lexical = path.relative_to(root)
             if any(part in SKIP_DIRS for part in lexical.parts):
                 continue
+            folder = lexical.parts[0] if len(lexical.parts) > 1 else 'root'
+            if folder in EXEMPT_TOP_LEVEL:
+                continue
             if not _inside(root, path):
                 continue
             text = path.read_text(encoding='utf-8-sig', errors='replace')
             title = first_heading(text) or path.name
-            folder = lexical.parts[0] if len(lexical.parts) > 1 else 'root'
             entries.append({
                 'path': lexical.as_posix(),
                 'title': title,
@@ -168,6 +177,7 @@ def build_index(repo: Path) -> list[dict]:
 
 # Areas of the corpus. `folders` are real top-level directories (or `root`).
 # A lab note inside another folder is classified by `is_lab_path` first.
+# `release/` is not listed: it is generated book output (see EXEMPT_TOP_LEVEL).
 AREAS = (
     {
         'id': 'clients',
