@@ -24,7 +24,7 @@ book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not 
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/bare-level-names.md	pending		4	
 client-internals/board-respawn.md	pending		4.5; 5	
-client-internals/body-colours-and-attributes.md	pending		2.6	
+client-internals/body-colours-and-attributes.md	pending	2.6	2.6	
 client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
 client-internals/build-diff-204-205.md	pending	8.2	4	
 client-internals/carry-hide-and-glove.md	pending		4	
@@ -281,9 +281,9 @@ protocol/npc-control.md	pending		7
 protocol/offline-expansion.md	pending		2	
 protocol/packet-id-diff.md	pending		2.4; 2.5; A	
 protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
-protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 8.3; 8.4; E	2.4; 2.5; A	
+protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 2.6; 8.3; 8.4; E	2.4; 2.5; A	
 protocol/pcap-2026-10-04.md	pending		2	
-protocol/player-props.md	pending		2.6; B	
+protocol/player-props.md	cited	2.6; B	2.6; B	
 protocol/public-listserver-2026-10-25.md	pending		6	
 protocol/public-listserver-2026-10-25.tsv	pending		6	
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
@@ -402,7 +402,7 @@ torque/engine-and-formats.md	pending		10
 torque/network.md	pending		10	
 torque/scripting.md	pending		10	
 torque/wire-by-build.md	pending		10	
-version-profiles/2.22-2.31.md	pending	2.4	1; C	
+version-profiles/2.22-2.31.md	pending	2.4; 2.6	1; C	
 version-profiles/2.22-2.31.toml	pending	2.4	1; C	
 version-profiles/3.04-3.153.md	pending	2.4; 2.5	1; C	
 version-profiles/3.04-3.153.toml	pending	2.4	1; C	
@@ -431,9 +431,9 @@ version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A
 version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	
 version-profiles/plo-layouts-217-231.tsv	cited	2.5	2.5; A	
 version-profiles/plo-levellink-layouts.tsv	cited	2.5	2.5; A	
-version-profiles/plo-npcprops-layouts.tsv	pending		2.5; A	
-version-profiles/plo-otherplprops-layouts.tsv	pending		2.5; A	
-version-profiles/plo-playerprops-layouts.tsv	pending		2.5; A	
+version-profiles/plo-npcprops-layouts.tsv	cited	2.6; E	2.5; A	
+version-profiles/plo-otherplprops-layouts.tsv	cited	2.6	2.5; A	
+version-profiles/plo-playerprops-layouts.tsv	cited	2.6; E	2.5; A	
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	
 version-profiles/tampercheck-words.tsv	pending		4.10	
 version-profiles/udp-ids-200-204.tsv	pending		2.9; A	
