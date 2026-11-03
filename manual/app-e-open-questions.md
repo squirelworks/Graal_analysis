@@ -71,6 +71,15 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether the timeline grouped the revisions or the table read the wrong revision | [inf] (version-profiles/plo-handled-ids-by-build.tsv) |
 | Settles it | a re-read of the receive switch of 2.02 rev0 and 2.05 rev0 for cases 47 and 168 | [inf] (version-profiles/plo-handled-ids-by-build.tsv) |
 
+### E#8 Prop parser ranges of 2.00
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the cross-version timeline has the player-prop parser gain 35 and 36 in 1.41, and the NPC-prop parser gain 36 to 40 only in 2.02 rev2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
+| Claim B | the 2.00 layout tables have the self and other-player streams accept 0–35 (no 36) and the NPC stream accept 0–36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
+| Open | whether 2.00 parses player prop 36 and NPC prop 36 | [inf] (version-profiles/plo-npcprops-layouts.tsv) |
+| Settles it | a re-read of the 2.00 prop switches at ids 36 | [inf] (version-profiles/plo-playerprops-layouts.tsv) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 | Item | Content | Source |
