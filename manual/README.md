@@ -29,7 +29,8 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | --- | --- | --- |
 | 1 | skeleton, conventions, tag legend, source map, checker, CI | done |
 | 2 | Part I + App. C | done |
-| 3 to 6 | Part II + App. A, B | stub |
+| 3 | Part II §2.1–2.3 | done |
+| 4 to 6 | rest of Part II + App. A, B | stub |
 | 7, 8 | Part III | stub |
 | 9, 10 | Part IV | stub |
 | 11 | Parts V to VII | stub |
