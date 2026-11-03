@@ -30,9 +30,9 @@ client-internals/build-diff-204-205.md	pending	8.2	4
 client-internals/carry-hide-and-glove.md	pending		4	
 client-internals/chat-text.md	pending		4	
 client-internals/client-architecture-205.md	pending		4	
-client-internals/client-assets.md	pending		3.10	
+client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
 client-internals/combat-200-204.md	pending		4.3	
-client-internals/config-and-input.md	pending		3.9	
+client-internals/config-and-input.md	cited	3.9	3.9	
 client-internals/cross-version-timeline.md	pending	1; 8.2; C	1	
 client-internals/damage-sources.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	pending		4	
@@ -150,8 +150,8 @@ client-internals/feature-specs/01-sound.md	pending	8.2	4.7
 client-internals/feature-specs/02-weapons-combat.md	pending	8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	pending		4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
-client-internals/feature-specs/05-save-load.md	pending		3.7; 4.10	
-client-internals/feature-specs/06-gmap-overworld.md	pending		3.2; 4.10	
+client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10	
+client-internals/feature-specs/06-gmap-overworld.md	pending	3.2	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	pending		2.9	
 client-internals/feature-specs/08-tampercheck.md	pending		4.10	
 client-internals/feature-specs/09-options.md	pending		4.6	
@@ -164,7 +164,7 @@ client-internals/feature-specs/README.md	pending		4.10
 client-internals/feature-timeline.md	pending	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	pending		4	
 client-internals/gameboy-demo.md	pending		4	
-client-internals/graalconfig-reference.md	pending		3.9	
+client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	pending		4	
 client-internals/item-drops.md	pending		4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending		4	
@@ -190,7 +190,7 @@ client-internals/relay-room-bridge.md	pending		4
 client-internals/rendering-observations.md	pending		4	
 client-internals/saved-passwords.md	pending		4	
 client-internals/sign-panel.md	pending		4	
-client-internals/sound-and-music.md	pending		3.10; 4.7	
+client-internals/sound-and-music.md	pending	3.10	3.10; 4.7	
 client-internals/status-bit-0x20.md	pending		4.6	
 client-internals/status-display.md	pending		4.6	
 client-internals/v2.00-connect-path.md	pending		4	
@@ -218,22 +218,22 @@ docs/book/02-the-player.md	pending		E
 docs/book/03-the-machines.md	pending		E	
 docs/book/04-where-the-notes-disagree.md	pending		E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
-formats/arrays-and-signatures.md	pending		3.5	
-formats/gani.txt	pending		3.3	
-formats/glevnw01.txt	pending		3.1	
-formats/gmap.md	pending		3.2	
-formats/gobjset01.md	pending		3.4	
-formats/graalsav.md	pending		3.7	
-formats/grmap001.txt	pending		3.2	
-formats/grv1-decoder/README.md	pending		3.1	
-formats/gwebl001-cache.md	pending		3.8	
-formats/level-binary-client.md	pending		3.1	
-formats/level-binary.md	pending	1	3.1	
+formats/arrays-and-signatures.md	cited	3.5; E	3.5	
+formats/gani.txt	cited	3.3	3.3	
+formats/glevnw01.txt	cited	3.1	3.1	
+formats/gmap.md	cited	3.2	3.2	
+formats/gobjset01.md	cited	3.4; E	3.4	
+formats/graalsav.md	cited	3.7	3.7	
+formats/grmap001.txt	cited	3.2	3.2	
+formats/grv1-decoder/README.md	cited	3.1	3.1	
+formats/gwebl001-cache.md	cited	3.8	3.8	
+formats/level-binary-client.md	cited	3.1; 3.6	3.1	
+formats/level-binary.md	cited	1; 3.1	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
-formats/sign-text.md	pending		3.6	
-formats/tile-walk.md	pending		3.5; 4.2	
-formats/tiletypes.txt	pending		3.5	
+formats/sign-text.md	cited	3.6	3.6	
+formats/tile-walk.md	pending	3.4; 3.5; E	3.5; 4.2	
+formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	pending		9	
 graal3d/camera.md	pending		9	
 graal3d/client-behaviour.md	pending		9	

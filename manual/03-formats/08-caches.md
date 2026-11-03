@@ -1,5 +1,84 @@
-<!-- manual: kind=reference status=stub -->
+<!-- manual: kind=reference status=complete -->
 # 3.8 Web level cache (GWEBL001)
 
-> Status: stub. Filled by PR 8 of the work plan in issue #191.
-> Main sources: formats/gwebl001-cache.md.
+The web-level cache is a local copy of a server level, keyed by the level's modification time, so the client can skip downloading a level it already has. The format was traced in the 2.05 rev 2 reader and writer and confirmed on 144 real cache files from a 2.22 install: every one decrypts, passes the checksum, parses and re-encrypts byte for byte [2.05][test] (formats/gwebl001-cache.md).
+
+## 3.8.1 When it is used
+
+| Event | Behaviour | Source |
+| --- | --- | --- |
+| write | when the server sends the level's 5-byte modification time (`PLO_LEVELMODTIME`, id 39), the client saves the level it holds with that time | [2.05] (formats/gwebl001-cache.md#what-it-is) |
+| read | when the client enters a level and a cache file exists, it builds the level from the file | [2.05] (formats/gwebl001-cache.md#what-it-is) |
+| benefit | the server then presumably only needs to send levels that have changed | [inf] (formats/gwebl001-cache.md#what-it-is) |
+| mismatch | a file whose header does not match the current server is deleted | [2.05] (formats/gwebl001-cache.md#what-it-is) |
+
+## 3.8.2 Path
+
+```
+<exe dir>\weblevels\<server host>\<level>-<server port>.code
+```
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| `<level>` | the level's file name, lowercased, with any path removed | [2.05] (formats/gwebl001-cache.md#path) |
+| fallback | the reader also tries `<level>.code` without the port | [2.05] (formats/gwebl001-cache.md#path) |
+| example | `weblevels\<public-host>\bank.nw-14803.code` | [test] (formats/gwebl001-cache.md#path) |
+
+## 3.8.3 Encrypted file
+
+```
+s32le      N            padded plaintext length + 8
+N-8 bytes  ciphertext   DES-ECB, one fresh key per 8-byte block
+8 bytes    checksum     bytewise sum (mod 256) of all plaintext blocks, per byte position
+```
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| layout | as above | [2.05] (formats/gwebl001-cache.md#file-layout-encrypted) |
+| padding | the plaintext is padded with `0x0A` to a multiple of 8 | [2.05] (formats/gwebl001-cache.md#file-layout-encrypted) |
+| seed | `RandSeed = 0x04A80B38`; then for each byte `c` of `<level>`, `RandSeed = RandSeed * c` with 32-bit wrap | [2.05][test] (formats/gwebl001-cache.md#per-block-keys) |
+| block key | 8 calls to Delphi `Random(256)`, drawn fresh for every block in file order | [2.05][test] (formats/gwebl001-cache.md#per-block-keys) |
+| `Random(n)` | `RandSeed = RandSeed * 0x08088405 + 1`, then `(RandSeed * n) >> 32`, unsigned | [2.05][test] (formats/gwebl001-cache.md#per-block-keys) |
+| DES key bytes | bit-reversed, as in the 2.05 DES elsewhere (→ §3.7.5.2) | [2.05][test] (formats/gwebl001-cache.md#per-block-keys) |
+| strength | the encryption needs only the level name; a wrong name shows up as a checksum mismatch | [2.05] (formats/gwebl001-cache.md#per-block-keys) |
+
+## 3.8.4 Plaintext
+
+```
+"GWEBL001"
+GCHAR len + server host          must equal the connected host
+GCHAR hi, GCHAR lo               server signature, (hi-32)*128 + (lo-32)
+5 bytes                          level modification time, 5 × 7-bit GCHAR, big-endian
+GCHAR len + level name           must equal <level> above
+level body                       GR-V1.03 (2.05), or GR-V1.03 / GR-V1.04 (2.31)
+```
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| layout | as above | [2.05][2.31] (formats/gwebl001-cache.md#plaintext-layout) |
+| signature check | passes when the stored value equals the value the server sent in `PLO_SIGNATURE` (id 25), or when the stored value is 1 and the server sent 73, GServer's usual value | [2.05] (formats/gwebl001-cache.md#plaintext-layout) |
+| test files | all 144 hold 73 | [test] (formats/gwebl001-cache.md#plaintext-layout) |
+| modification time | decoded as a 35-bit integer it is Unix time; the test files decode to dates a little before their file timestamps (`bank.nw` decodes to 1247727798, 16 July 2009, and the file is dated 26 July 2009) | [test] (formats/gwebl001-cache.md#plaintext-layout) |
+
+## 3.8.5 Level body as cached
+
+The body is an ordinary GR-V level (→ §3.1.2), but the writer fills only some sections [2.05] (formats/gwebl001-cache.md#level-body-as-cached):
+
+| Section | Cached | Source |
+| --- | --- | --- |
+| board | yes, the 13-bit run-length stream | [2.05] (formats/gwebl001-cache.md#level-body-as-cached) |
+| links | yes, `dest x y w h newx newy` lines, then `#` | [2.05] (formats/gwebl001-cache.md#level-body-as-cached) |
+| baddies | no; terminator only, `FF FF FF 0A` | [2.05] (formats/gwebl001-cache.md#level-body-as-cached) |
+| NPCs | no; empty, `#` | [2.05] (formats/gwebl001-cache.md#level-body-as-cached) |
+| chests | no; empty, `#` | [2.05] (formats/gwebl001-cache.md#level-body-as-cached) |
+| signs | yes, `x+32, y+32, sign text, \n` | [2.05] (formats/gwebl001-cache.md#level-body-as-cached) |
+| heights | 2.31 only: a `HEIGHTS` block when the level has a height map, which also switches the magic to `GR-V1.04` (→ §3.1.2.7) | [2.31] (formats/gwebl001-cache.md#level-body-as-cached) |
+
+## 3.8.6 Tool
+
+| Command | Effect | Source |
+| --- | --- | --- |
+| `python3 tools/file-formats/gwebl.py FILE.code` | summary | [src] (formats/gwebl001-cache.md#tool) |
+| `… --json` | full parse | [src] (formats/gwebl001-cache.md#tool) |
+| `… --raw plain.bin` | the decrypted stream | [src] (formats/gwebl001-cache.md#tool) |
+| module | `encrypt_stream` re-creates files byte for byte; also `read_board`, `write_board` and `parse_grv` for plain `.graal` data | [src] (formats/gwebl001-cache.md#tool) |
