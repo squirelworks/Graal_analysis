@@ -13,10 +13,10 @@ The notes viewer is in the source tree, not a separate download:
 | Chapter | 2 | `ch-02-formats.pdf` | Formats | 29 |
 | Chapter | 3 | `ch-03-protocol-part-1.pdf` | Protocol | 59 |
 | Chapter | 3 | `ch-03-protocol-part-2.pdf` | Protocol | 48 |
-| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-1.pdf` | Client internals and version profiles | 82 |
-| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-2.pdf` | Client internals and version profiles | 73 |
-| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-3.pdf` | Client internals and version profiles | 73 |
-| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-4.pdf` | Client internals and version profiles | 72 |
+| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-1.pdf` | Client internals and version profiles | 80 |
+| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-2.pdf` | Client internals and version profiles | 72 |
+| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-3.pdf` | Client internals and version profiles | 74 |
+| Chapter | 4 | `ch-04-client-internals-and-version-profiles-part-4.pdf` | Client internals and version profiles | 74 |
 | Chapter | 5 | `ch-05-graal3d-and-torque.pdf` | Graal3D and Torque | 42 |
 | Chapter | 6 | `ch-06-tools-labs-and-level-conversion.pdf` | Tools, labs, and level conversion | 68 |
 | Chapter | 7 | `ch-07-npc-scripting-overview.pdf` | NPC scripting overview | 25 |
