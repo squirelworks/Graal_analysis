@@ -148,7 +148,7 @@ Layouts read from the 2.05 senders and the server source. The server copy (PLO) 
 | The bush and sign pickup path also sends `PLI_BOARDMODIFY` | 2.05 | [2.05] (protocol/packet-layouts.md#board-modify-correction) |
 | 2.05 sends only weapon type 0 in id 33 (→ §2.4.6) | 2.05 | [2.05] (protocol/packet-layouts.md#weapons) |
 
-The server's respawn of board changes is behaviour and is in → §4.3.
+The server's respawn of board changes is behaviour and is in → §4.5.
 
 ## 2.4.6 Flags, NPCs and weapons
 
