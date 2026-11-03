@@ -151,7 +151,7 @@ client-internals/feature-specs/02-weapons-combat.md	pending		4.3
 client-internals/feature-specs/03-inventory.md	pending		4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
 client-internals/feature-specs/05-save-load.md	pending		3.7; 4.10	
-client-internals/feature-specs/06-gmap-overworld.md	pending		3.2; 4.10	
+client-internals/feature-specs/06-gmap-overworld.md	pending	3.2	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	pending		2.9	
 client-internals/feature-specs/08-tampercheck.md	pending		4.10	
 client-internals/feature-specs/09-options.md	pending		4.6	
@@ -220,15 +220,15 @@ docs/book/04-where-the-notes-disagree.md	pending		E
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 formats/arrays-and-signatures.md	pending		3.5	
 formats/gani.txt	pending		3.3	
-formats/glevnw01.txt	pending		3.1	
-formats/gmap.md	pending		3.2	
+formats/glevnw01.txt	cited	3.1	3.1	
+formats/gmap.md	cited	3.2	3.2	
 formats/gobjset01.md	pending		3.4	
 formats/graalsav.md	pending		3.7	
-formats/grmap001.txt	pending		3.2	
-formats/grv1-decoder/README.md	pending		3.1	
+formats/grmap001.txt	cited	3.2	3.2	
+formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	pending		3.8	
-formats/level-binary-client.md	pending		3.1	
-formats/level-binary.md	pending	1	3.1	
+formats/level-binary-client.md	cited	3.1	3.1	
+formats/level-binary.md	cited	1; 3.1	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/sign-text.md	pending		3.6	
