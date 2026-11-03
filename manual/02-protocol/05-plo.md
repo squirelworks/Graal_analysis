@@ -150,7 +150,7 @@ These are the server's copies of the client actions in → §2.4.5; each carries
 | 40 and 46 share one handler, with one flag that picks the layout; the same handler takes UDP id 21 (→ §2.9) | 2.05 | [2.05] (protocol/packet-layouts.md#hits-205) |
 | The trigger-action coordinates are half-tiles, not whole tiles as in the server source | 2.05 | [2.05] (protocol/packet-layouts.md#differences-from-gserver-worth-knowing-205) |
 
-How damage is applied after a hit is in → §4.5.
+How damage is applied after a hit is in → §4.3.
 
 ## 2.5.6 NPCs, weapons and scripts
 
