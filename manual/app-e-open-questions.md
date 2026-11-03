@@ -62,6 +62,15 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether A is a range summary of B or B missed a send site; both are floors, since some sends pass the id in a register | [bin] (client-internals/version-profiles/v121-v132.toml) |
 | Settles it | a re-read of the 1.21 and 1.32 send sites for ids 14 and 22 | [inf] (protocol/gserv-1999.md#open-questions) |
 
+### E#7 First builds that handle S→C 47 and 168
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the cross-version timeline adds 47 at 2.02 rev2 and 168 at 2.05 rev1 | [bin] (client-internals/cross-version-timeline.md#server--client-packets) |
+| Claim B | the per-build handled-id table lists 47 already in 2.02 and 2.02 rev1, and 168 already in 2.05 rev0 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
+| Open | whether the timeline grouped the revisions or the table read the wrong revision | [inf] (version-profiles/plo-handled-ids-by-build.tsv) |
+| Settles it | a re-read of the receive switch of 2.02 rev0 and 2.05 rev0 for cases 47 and 168 | [inf] (version-profiles/plo-handled-ids-by-build.tsv) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 | Item | Content | Source |
