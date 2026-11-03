@@ -236,6 +236,12 @@ AREAS = (
         'folders': ('archive', 'archival'),
     },
     {
+        'id': 'manual',
+        'name': 'Reference manual',
+        'blurb': 'Graal technical reference',
+        'folders': ('manual',),
+    },
+    {
         'id': 'indexes',
         'name': 'Corpus index',
         'blurb': 'Contents, rules and tasks',
@@ -243,7 +249,7 @@ AREAS = (
     },
 )
 
-# Diagram geometry. The nine areas above, minus the corpus index, which is a
+# Diagram geometry. The ten areas above, minus the corpus index, which is a
 # strip of real notes rather than a tenth product area.
 _BOX_W = 200
 _BOX_H = 74
@@ -257,6 +263,7 @@ _DIAGRAM_BOXES = {
     'graal3d': (560, 148),
     'torque': (830, 148),
     'labs': (290, 278),
+    'manual': (560, 278),
 }
 _DIAGRAM_EDGES = (
     ('formats', 'clients', 'levels'),
@@ -267,6 +274,7 @@ _DIAGRAM_EDGES = (
     ('tools', 'labs', 'runs'),
     ('protocol', 'graal3d', 'own wire'),
     ('graal3d', 'torque', 'plug-in'),
+    ('labs', 'manual', 'cited'),
 )
 _DIAGRAM_W = 1050
 _DIAGRAM_H = 372
@@ -1445,7 +1453,7 @@ def _architecture_svg(focus: str | None) -> str:
         )
     label = html.escape(
         'Architecture of the notes: client versions, protocol, formats, '
-        'NPC scripts, Graal3D, Torque, tools, labs and archives.',
+        'NPC scripts, Graal3D, Torque, tools, labs, archives and the reference manual.',
         quote=True,
     )
     return (
