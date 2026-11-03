@@ -39,3 +39,13 @@ All rows are **[bin]**, except the 3.153 script column (**[file]**). The 3.153 a
 ## What is in the project folder (not in this repo)
 
 `graal-decompile/torque/` in the project files holds the extracted 3.153 Mac and 3.04 Linux trees, all 44 decompiled 3.153 scripts (`dec3153/`), the 5.12 `Graal3DEngine.dll` Ghidra export and string/RTTI dumps (`g3de/`), and the Wine lab (`wine-3d-lab/`) with the live capture.
+
+## Finding the addresses for `conn.c`
+
+`conn.c` needs two addresses in `Graal3DEngine.dll` (5.12), passed as hex in the environment of the injected client. Addresses are not kept in the repo; find them on your own copy. If either one is unset, that step is skipped.
+
+1. **`CON_PRINTF_HEX`, Torque's `Con::printf`.** Load the DLL in a disassembler and find the console strings the handshake logs, for example `Sending Connect challenge Request` or `Issuing Disconnect packet.` (the list is in `network.md`). Follow a reference to one of them: the call it is passed to, as the format argument, is `Con::printf`. Most of the engine's console strings go through that same function, which confirms it.
+2. **`FLAG3D_HEX`, the 3D mode byte.** Start at the exported `connectToGraalServer`. Follow the branch taken when the server name starts with `"3 "` (it strips the prefix, remembers the listed port + 1, then asks the launcher through `graal_setStartGraal3D`; see `network.md`). On that branch, the global byte that is set non-zero before the launcher callbacks run is the flag (the exact value was not recorded) **[inf]**.
+3. **Check for relocation.** Both addresses assume the DLL's preferred base. `conn.c` logs the engine module's base on its `=== conn4` line. If that base differs from the one your disassembler shows, add the difference to both values.
+4. **Confirm.** Run `conn.c` against a `"3 "` name and check `conn.log`. It should contain `con:` lines with the handshake strings and a non-zero `flag3d=`. With a plain 2D name, it should read 0 **[inf]**.
+
