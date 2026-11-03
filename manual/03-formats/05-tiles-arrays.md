@@ -11,7 +11,7 @@ A board stores tile ids; what a tile does is looked up in separate tables. This 
 | --- | --- | --- |
 | id | a board stores a tile id 0 to 4095; the client does not inspect the tileset image for collision | [src] (formats/tiletypes.txt) |
 | sheet | `pics1.png` is 2048×512, palette, 128 by 32 tiles of 16 px | [file] (formats/tiletypes.txt) |
-| id to picture | `col = id % 128`, `row = id / 128`, pixel `(col * 16, row * 16)` | [file] (formats/tiletypes.txt) |
+| id to picture | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`, source rectangle `(col*16, row*16, 16, 16)`: the sheet is eight side-by-side blocks of 512 ids, each 16 columns by 32 rows, filled row by row; an earlier rule `col = id % 128`, `row = id / 128` is `disputed → App. E#102` | [file] (client-internals/client-assets.md#tile-sheets) |
 
 ## 3.5.2 Tile type values
 
@@ -64,6 +64,7 @@ A 4096-byte table copied from the standard tileset, one type byte per id, is kep
 | Rule | Detail | Source |
 | --- | --- | --- |
 | tile definition list | each entry is `image,prefix,type` with optional `x,y` offsets; the default is `pics1.png` of type 0, stock selection `pics1.png,,0` | [live] (formats/tile-walk.md#sheet-loading); [bin] (formats/tiletypes.txt) |
+| sheet order | type 0 is the old Graal tile order (`pics1`), type 1 the new order; `addtiledef2` paints a rectangle on top of the base sheet; the offline tree holds `picso.png,offlinetutorial,1,0,0` | [file] (client-internals/client-assets.md#tiledef) |
 | sheet choice | a level may reference several sheets; the active one is selected when the level is entered | [live] (formats/tile-walk.md#sheet-loading) |
 | type-0 sheet | a tile walks only if its 12-bit id is in one of two internal allow lists (the "nowall" lists); an id in neither blocks | [live] (formats/tile-walk.md#collision-rules); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
 | allow lists | built when the sheet loads; not stored in `tiledefs.txt`, which names only the sheet, prefix and type; they are arrays 0 and 1 of `arrays.dat` (→ §3.5.3) | [live] (formats/tile-walk.md#type-0-allow-lists); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
