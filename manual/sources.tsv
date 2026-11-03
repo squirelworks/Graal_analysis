@@ -1,5 +1,5 @@
 path	status	sections	planned	reason
-AGENTS.md	excluded	0; G		repository rules; cited only for redaction conventions
+AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventions
 ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
 CONSOLIDATED.md	pending		E	
@@ -25,7 +25,7 @@ book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft inpu
 client-internals/bare-level-names.md	pending		4	
 client-internals/board-respawn.md	pending		4.5; 5	
 client-internals/body-colours-and-attributes.md	pending		2.6	
-client-internals/build-catalogue.md	pending	0; 1; E	1; C	
+client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
 client-internals/build-diff-204-205.md	pending	8.2	4	
 client-internals/carry-hide-and-glove.md	pending		4	
 client-internals/chat-text.md	pending		4	
@@ -201,7 +201,7 @@ client-internals/version-profiles/list-ports.md	pending		1; C
 client-internals/version-profiles/v121-v132.toml	pending		1; C	
 client-internals/version-profiles/v133-v139.toml	pending		1; C	
 client-internals/version-profiles/v1998-v11.toml	pending		1; C	
-client-internals/version-tokens.md	pending	1	1; C	
+client-internals/version-tokens.md	pending	1; 2.3	1; C	
 client-internals/version/README.md	pending		1; C	
 client-internals/version/VERSION.md	pending		1; C	
 client-internals/version/docs/GraalEditor-README.md	pending		1; C	
@@ -259,42 +259,42 @@ npc-library/tile-patterns.md	pending		8
 protocol/OPCODE-SUMMARY.md	pending		2.4; 2.5; A	
 protocol/PROTOCOL-CHEATSHEET.md	pending		2	
 protocol/chat-pm-rc.md	pending		2.8; 7	
-protocol/client-versions.md	pending		1; 2.2	
-protocol/codec-and-framing.md	pending	0; 1	2.1; 2.2	
+protocol/client-versions.md	pending	2.1; 2.2; 2.3	1; 2.2	
+protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3	2.1; 2.2	
 protocol/cross-version-anchors.md	pending		2	
 protocol/crosscheck-captures-vs-research.md	pending		2	
 protocol/file-transfer.md	pending		2.7	
 protocol/format-notes-from-salvage.md	pending		2	
 protocol/graphics-movement-bytecode.md	pending	8.3; 8.4; E	8.4	
-protocol/gserv-1999.md	pending		2.3; 5.1	
+protocol/gserv-1999.md	pending	2.1; 2.2; 2.3; C	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	pending		2	
 protocol/listserver-login-type-matrix-2026-10-25.md	pending		6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	pending		6	
 protocol/listserver.md	pending		6	
-protocol/login-and-walk.md	pending		2.3	
-protocol/login-frames-by-version-2026-10-25.md	pending		2.3	
-protocol/login-recovery-start.md	pending		2.3	
-protocol/login-session-known.md	pending		2.3	
+protocol/login-and-walk.md	pending	2.3	2.3	
+protocol/login-frames-by-version-2026-10-25.md	pending	2.1	2.3	
+protocol/login-recovery-start.md	excluded		2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
+protocol/login-session-known.md	pending	2.2; 2.3; E	2.3	
 protocol/medium-term-expansion.md	pending		2	
 protocol/medium-term-slice.md	pending		2	
 protocol/npc-control.md	pending		7	
 protocol/offline-expansion.md	pending		2	
 protocol/packet-id-diff.md	pending		2.4; 2.5; A	
-protocol/packet-ids.md	pending	0; 8.1; 8.3; 8.4; E	2.4; 2.5; A	
-protocol/packet-layouts.md	pending	0; 8.3; 8.4; E	2.4; 2.5; A	
+protocol/packet-ids.md	pending	0; 2.1; 8.1; 8.3; 8.4; E	2.4; 2.5; A	
+protocol/packet-layouts.md	pending	0; 2.1; 8.3; 8.4; E	2.4; 2.5; A	
 protocol/pcap-2026-10-04.md	pending		2	
 protocol/player-props.md	pending		2.6; B	
 protocol/public-listserver-2026-10-25.md	pending		6	
 protocol/public-listserver-2026-10-25.tsv	pending		6	
-protocol/relay-1998.md	pending		2.3; 4	
+protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
 protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
 protocol/udp-p2p.md	pending		2.9	
-protocol/v3x-clients.md	pending		1; 2.3; 10	
-protocol/v4x-clients.md	pending	8.3	1; 2.3; 10	
-protocol/v5v6-lab-play.md	pending	0; 8.3	1; 2.3	
-protocol/v5v6-windows-unpacked.md	pending		1; 2.3	
-protocol/v5x-clients.md	pending		1; 2.3	
-protocol/v6x-clients.md	pending		1; 2.10	
+protocol/v3x-clients.md	pending	2.2; 2.3	1; 2.3; 10	
+protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 8.3	1; 2.3; 10	
+protocol/v5v6-lab-play.md	pending	0; 2.2; E; 8.3	1; 2.3	
+protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
+protocol/v5x-clients.md	pending	2.1; 2.3	1; 2.3	
+protocol/v6x-clients.md	pending	2.1; 2.2; 2.3	1; 2.10	
 recovered-drive-tools/INVENTORY.md	pending		11	
 recovered-drive-tools/SALVAGE_CANDIDATES.md	pending		11	
 recovered-drive-tools/SALVAGE_PLACEMENT.md	pending		11	
@@ -409,7 +409,7 @@ version-profiles/3.04-3.153.toml	pending		1; C
 version-profiles/4.04-4.20.toml	pending		1; C	
 version-profiles/5.00-6.03.toml	pending		1; C	
 version-profiles/drive-clients-exes.tsv	pending		1; C	
-version-profiles/gen3-insertion-200-205.tsv	pending		2.2	
+version-profiles/gen3-insertion-200-205.tsv	cited	2.1; 2.2; 2.3	2.2	
 version-profiles/lab-200-listserver-handshake.tsv	pending		1; C	
 version-profiles/lab-304-linux-2026-10-30.md	pending		1; C	
 version-profiles/lab-boardmodify2-186-trailer.tsv	pending		1; C	
@@ -420,7 +420,7 @@ version-profiles/lab-mac-tiger-2026-10-31.md	pending		1; C
 version-profiles/lab-serverwarp178.tsv	pending		1; C	
 version-profiles/lab-showimg24-relay.tsv	pending		1; C	
 version-profiles/lab-v5-2026-10-30.md	pending		1; C	
-version-profiles/matrix/README.md	pending	1; C; 8.3; E	C; 4	
+version-profiles/matrix/README.md	pending	1; 2.2; 2.3; C; 8.3; E	C; 4	
 version-profiles/matrix/builds-deltas.md	pending		C; 4	
 version-profiles/matrix/builds-static-survey.tsv	pending		C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	pending		C; 4	
