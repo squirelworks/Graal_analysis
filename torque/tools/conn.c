@@ -1,10 +1,13 @@
 // Injected into a running 5.12 Graal.exe (Wine): calls the engine export connectToGraalServer(name, host, int port)
 // so the client joins a server without a login server, then calls runGraal3DEngine every 15 ms, because under Wine
-// the launcher stops calling it after its DirectDraw re-init faults. Con::printf (0x1000a220) is hooked into conn.log.
+// the launcher stops calling it after its DirectDraw re-init faults. Con::printf is hooked into conn.log.
+// Addresses are not kept in the repo: set CON_PRINTF_HEX (Con::printf) and FLAG3D_HEX (the 3D flag byte)
+// in the environment, found on your own copy; either one unset skips that step.
 // conn.cfg holds "name|host|port"; "3 " names are 3D servers.
 #include <windows.h>
 #include <tlhelp32.h>
 #include <stdio.h>
+#include <stdlib.h>
 typedef int (__cdecl *CF)(const char*,const char*,int);
 typedef void (__cdecl *RF)(void);
 static FILE*f; static volatile LONG nex;
@@ -26,9 +29,11 @@ static DWORD WINAPI go(LPVOID x){
   for(BOOL ok=Module32First(sn,&me);ok;ok=Module32Next(sn,&me)){FARPROC a=GetProcAddress(me.hModule,"connectToGraalServer");
     if(a){m=me.hModule;fn=(CF)a;run=(RF)GetProcAddress(me.hModule,"runGraal3DEngine");}}
   fprintf(f,"=== conn4 tid %lu eng %p connect %p run %p\n",GetCurrentThreadId(),m,fn,run);fflush(f);
-  AddVectoredExceptionHandler(1,veh); hook((void*)0x1000a220,myprintf);
+  AddVectoredExceptionHandler(1,veh);
+  const char*cp=getenv("CON_PRINTF_HEX"),*fp=getenv("FLAG3D_HEX");
+  if(cp)hook((void*)(UINT_PTR)strtoul(cp,0,16),myprintf);
   if(!fn||!run){fclose(f);return 0;}
-  int r=fn(n,h,atoi(p)); fprintf(f,"connect returned %d flag3d=%d\n",r,*(unsigned char*)0x10406d91);fflush(f);
+  int r=fn(n,h,atoi(p)); fprintf(f,"connect returned %d flag3d=%d\n",r,fp?*(unsigned char*)(UINT_PTR)strtoul(fp,0,16):-1);fflush(f);
   Sleep(3000);
   for(int i=0;i<3000;i++){ if(i%100==0){fprintf(f,"frame %d\n",i);fflush(f);} run(); Sleep(15);} 
   fprintf(f,"done\n");fclose(f);return 0;}

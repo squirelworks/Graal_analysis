@@ -4,7 +4,7 @@ Date: 2026-10-30. Tags as in `README.md`.
 
 ## How a client gets to a 3D server
 
-The server list marks a 3D server by a `"3 "` prefix on its name (the "Graal 3D" tab; see `protocol/v3x-clients.md` for the other prefixes). Choosing one runs the same routine in 3.153 (Mac, `0x39f148`), 4.04r2 (`GraalEngine.dll` `0x100be000`) and 5.12 (`Graal3DEngine.dll` `0x10199310`): **[bin]**
+The server list marks a 3D server by a `"3 "` prefix on its name (the "Graal 3D" tab; see `protocol/v3x-clients.md` for the other prefixes). Choosing one runs the same routine in 3.153 (Mac), 4.04r2 (`GraalEngine.dll`) and 5.12 (`Graal3DEngine.dll`): **[bin]**
 
 1. Strip the two-character prefix.
 2. If the name had `"3 "`: remember **UDP port = listed port + 1**, set the "3D mode" flag, and start the Torque side.
@@ -51,7 +51,7 @@ Seen live **[run]** from the real 5.12 client under Wine, answered by `torque/to
 +18.02 C->S 26 00040000 00 00                             disconnect, sequence 0x400, empty reason
 ```
 
-The client's own console (captured by hooking its `Con::printf` at `0x1000a220`) logs the same steps: `Sending Connect challenge Request`, `Got Connect challenge Response`, `Sending Connect Request`, `Connection established 19`, and at the end `Issuing Disconnect packet.` / `You have been disconnected from the game server.`
+The client's own console (captured by hooking its `Con::printf`) logs the same steps: `Sending Connect challenge Request`, `Got Connect challenge Response`, `Sending Connect Request`, `Connection established 19`, and at the end `Issuing Disconnect packet.` / `You have been disconnected from the game server.`
 
 The connect request decodes to exactly:
 
@@ -83,14 +83,14 @@ No bits are left over, so the field list above is complete.
 | string join password | server password pref | a string the engine sets (`main3D.cs` sets none; not traced) | the account password, plain text | not traced | the account password, plain text |
 | U32 argc (≤ 16), then argc strings | script args | engine-set args (not traced) | 2: account, nickname | not traced | 2: account, nickname (field layout unchanged from 4.04r2) |
 
-The 3.153 column is from `0x122b18` (write) and `0x122c54` (server-side read, which ends in the stock script callback `onConnectRequest`); 4.20r6 from `mac420.c` (`wire-by-build.md`). The 4.04r2 column comes from the v4 thread (`protocol/v4x-clients.md`); the 5.12 one is from `Graal3DEngine.dll` `0x1004e950` (write) and `0x1004ea00` (server-side read). 5.12's server-side read rejects with:
+The 3.153 column is from its `GameConnection::writeConnectRequest` (write) and the matching server-side read (which ends in the stock script callback `onConnectRequest`); 4.20r6 from `mac420.c` (`wire-by-build.md`). The 4.04r2 column comes from the v4 thread (`protocol/v4x-clients.md`); the 5.12 one is from `Graal3DEngine.dll`'s connect-request writer and its server-side reader. 5.12's server-side read rejects with:
 
 - game string not `Graal3D` → `CHR_GAME` ("Only official Graal clients are allowed to connect.")
 - client current < 24 → `CHR_PROTOCOL_LESS` ("Please update your Graal, the server is requiring a new Graal version!")
 - client minimum > 24 → `CHR_PROTOCOL_GREATER` ("The server runs an older version of Graal, contact the admins to update it.")
 - argc > 16 → `CR_INVALID_ARGS`
 
-**The accept.** In stock TGE the accept body is one U32, the server's protocol. 5.12 inserts a **class-name table** in front of it, read by `0x1000ac20` before `readConnectAccept` (`0x1004e900`) runs: **[bin][run]**
+**The accept.** In stock TGE the accept body is one U32, the server's protocol. 5.12 inserts a **class-name table** in front of it, read by a Graal-added routine before `readConnectAccept` runs: **[bin][run]**
 
 ```
 repeat while readFlag() == 1:
@@ -100,11 +100,11 @@ repeat while readFlag() == 1:
 U32  protocol          (must be exactly 24)
 ```
 
-For each entry the client looks up its own class of that name, type and group, and records server id to local id (`0x103ae410`) and back (`0x103b0410`), 256 slots per group and type. Ghost and event class ids on the wire are then the **server's** ids. This replaces stock Torque's fixed class numbering, and it is why the class CRC no longer matters. An accept with an empty table (a single 0 bit) plus protocol 24 is enough to reach "Connection established", as in the live run above. An accept without the table bit (stock layout) is read one bit off, gives protocol 12, and is silently rejected. **[run]**
+For each entry the client looks up its own class of that name, type and group, and records server id to local id and back in two map tables, 256 slots per group and type. Ghost and event class ids on the wire are then the **server's** ids. This replaces stock Torque's fixed class numbering, and it is why the class CRC no longer matters. An accept with an empty table (a single 0 bit) plus protocol 24 is enough to reach "Connection established", as in the live run above. An accept without the table bit (stock layout) is read one bit off, gives protocol 12, and is silently rejected. **[run]**
 
 The 5.12 client accepts **exactly 24**, 4.20r6 exactly 21, 4.04r2 and 3.153 exactly 19, 3.04 exactly 9; anything else gives `CHR_PROTOCOL`. 3.153 and 4.04r2 also have the class table, with three types (object, datablock, event); 4.20r6 has two, like 5.12; 3.04 has none (see `wire-by-build.md`).
 
-**Class CRC.** Stock Torque compares the group and CRC and rejects a mismatch with `CHR_INVALID`. In 5.12 the CRC table at `0x1037754c` is static data `{0xFFFFFFFF, 0, 0, 0}` and nothing writes to it; reading it from the running client and the live connect request both gave group 0 and CRC `0xFFFFFFFF`. The class table in the accept (below) takes the CRC's place. **[bin][run]** 4.04r2's table at `0x101ba8b4` is the same static `{0xFFFFFFFF, 0, 0, 0}` with no writer (`wire-by-build.md`). (3.04, 3.153 and 4.20r6 read from a static table too; their values were not checked.)
+**Class CRC.** Stock Torque compares the group and CRC and rejects a mismatch with `CHR_INVALID`. In 5.12 the CRC table is static data `{0xFFFFFFFF, 0, 0, 0}` and nothing writes to it; reading it from the running client and the live connect request both gave group 0 and CRC `0xFFFFFFFF`. The class table in the accept (below) takes the CRC's place. **[bin][run]** 4.04r2's table is the same static `{0xFFFFFFFF, 0, 0, 0}` with no writer (`wire-by-build.md`). (3.04, 3.153 and 4.20r6 read from a static table too; their values were not checked.)
 
 **Encryption.** None beyond Torque's own framing. The join password travels in clear. **[bin]**
 

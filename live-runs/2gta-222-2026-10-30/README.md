@@ -98,8 +98,8 @@ On the reconnect the HUD counters were right from the first frame (7 rupees, 10 
 
 Read-only, with `tools/mem.py` (ReadProcessMemory, no debugger) and `tools/findptr.py`, following the live-trace thread's recipe. Build: `Graal_222.exe` from the 2.2.2.0 install, image base 0x400000.
 
-- A differential scan (stand, step left, stand, step right) leaves the x double at heap `0x2738008` with y right after it (x 45.0, y 39.0 on the bush spot).
-- The object starts 4 bytes earlier, at `0x2738004`. Its VMT is `0x527FEC`. The static globals `0x5916B0` and `0x59A484` point at it, so **`[0x5916B0]` is the 2.22 player**, the counterpart of 2.05 rev 2's `0x54B7E4`.
+- A differential scan (stand, step left, stand, step right) leaves the x double at one heap address with y right after it (x 45.0, y 39.0 on the bush spot).
+- The object starts 4 bytes earlier. Its VMT is in the exe's data section. Two static globals point at it, so **the first of those globals holds the 2.22 player**, the counterpart of 2.05 rev 2's player global. (Addresses are not kept in the repo; `findptr.py` finds the globals again on a live client.)
 
 A 22 s trace at 4 ms (walk right into the bush, hold right 2 s, sword, A twice, walk left) changed these fields:
 

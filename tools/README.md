@@ -27,6 +27,7 @@ See the individual files for the measured contracts. `graaleditor-vs-205.md` com
 - `lab-servers/` — our lab listserver (version 2, with tests), `run-lab.sh` and the gs2lib patch our GServer build carries. See `../server-notes/lab-servers-2026-10-30.md` for what our servers are and how they compare with GServer-v2 beta4.
 - `navigator/` — local browser for the markdown notes in this repo. It listens on the loopback address (port 8765) and does not phone home. See `navigator/README.md`.
 - `ghidra/` — headless salvage scripts for recovered binaries (`analyze_tool.sh`, `ghidra_scripts/ExportSalvageArtifacts.java`). Counts and decompiler text stay in gitignored `local-out/`. The prose summaries of those tools are in seihai-servertools (`recovered-drive-tools/`, `recovered-hacks/`).
+- `leak-check/` — `check_addresses.py`, the repo-wide check (run in CI on all three OSes through `tools/manual/test_repo_addresses.py`) for 0x and bare `00…` hex addresses and disassembler names, with an allowlist of known constants (LCG seed and multiplier, image base, masks, sizes, magic numbers). Pure Python, runs on Linux, macOS and Windows.
 
 ## File-format helpers (`file-formats/`)
 

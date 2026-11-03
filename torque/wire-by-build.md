@@ -32,9 +32,9 @@ This note fills the gaps the other Torque notes left open: the 3.153 and 4.20r6 
 
 **[bin]**
 
-- **3.153 is not "the same family as 3.04"** on the wire, as `README.md` had it. Its `GameConnection::writeConnectRequest` (`0x122b18`) writes `Graal3D` and 19 twice, and its accept reader (`0x122a74`) wants exactly 19. Its connect-accept writers (in `0x260058` and `0x260544`) call the class-table writer (`0x2c954`, three types: object, datablock, event) and its accept handler (`0x260608`) reads the table (`0x2ca48`) before `readConnectAccept`, exactly as 4.04r2 does. Its class-id map (`0x2cbfc` / `0x2cc60`) has the same "identity until a table has been read" rule. **[bin]**
-- **3.04 has no Graal changes** in Torque's net layer. Its accept handler (`0x81f9090`) reads the sequence and goes straight to `readConnectAccept`, which only checks for protocol 9 (`0x810db60`). It has none of the Graal net classes (no `BigData…`, no `TerrainChunkEvent`). **[bin]**
-- **4.04r2's class CRC** is a static `.data` table at `0x101ba8b4` holding `{0xFFFFFFFF, 0, 0, 0}`. The only two references to it are the reads in `NetConnection::writeConnectRequest` (`0x1012c260`) and `readConnectRequest` (`0x1012c2b0`), so nothing ever computes a CRC. This answers the "how the per-build class CRC is computed" item in `graal3d/torque-engine-4x.md`: it is not; group 0 always sends `0xFFFFFFFF`, as in 5.12. **[bin]**
+- **3.153 is not "the same family as 3.04"** on the wire, as `README.md` had it. Its `GameConnection::writeConnectRequest` writes `Graal3D` and 19 twice, and its accept reader wants exactly 19. Its two connect-accept writers call the class-table writer (three types: object, datablock, event) and its accept handler reads the table with the matching class-table reader before `readConnectAccept`, exactly as 4.04r2 does. Its class-id map (one lookup routine per direction) has the same "identity until a table has been read" rule. **[bin]**
+- **3.04 has no Graal changes** in Torque's net layer. Its accept handler reads the sequence and goes straight to `readConnectAccept`, which only checks for protocol 9. It has none of the Graal net classes (no `BigData…`, no `TerrainChunkEvent`). **[bin]**
+- **4.04r2's class CRC** is a static `.data` table holding `{0xFFFFFFFF, 0, 0, 0}`. The only two references to it are the reads in `NetConnection::writeConnectRequest` and `readConnectRequest`, so nothing ever computes a CRC. This answers the "how the per-build class CRC is computed" item in `graal3d/torque-engine-4x.md`: it is not; group 0 always sends `0xFFFFFFFF`, as in 5.12. **[bin]**
 - **4.20r6 Mac** writes `Graal3D` and 21 (`0x15`), wants exactly 21 in the accept, and its class-id map takes type < 2, like 5.12. **[bin]**
 - The port: 3.153's `main3D.cs` path, 4.04r2 and 5.12 all connect to **listed port + 1** (`network.md`). The 28000 in `protocol/v3x-clients.md` is only the default that Torque's address parser fills in when a string has no port. **[bin]**
 
@@ -55,7 +55,7 @@ Every other class registers with group mask 0 (not networked). The `GameShape…
 
 ## 5.12 game packets (the `GameObject` era)
 
-These are the client's own `GameConnection::readPacket` (`0x1004f080`) and `writePacket` (`0x1004f360`). They differ from 4.04r2's (`graal3d/torque-engine-4x.md`) in three ways: no move ack, no damage flash or white-out, and no moves at all. 4.20r6's reader (`0x74d90`) has the same shape as 5.12's. **[bin]**
+These are the client's own `GameConnection::readPacket` and `writePacket`. They differ from 4.04r2's (`graal3d/torque-engine-4x.md`) in three ways: no move ack, no damage flash or white-out, and no moves at all. 4.20r6's reader has the same shape as 5.12's. **[bin]**
 
 **Server → client**, after the stock packet header and rate fields:
 
@@ -74,13 +74,13 @@ These are the client's own `GameConnection::readPacket` (`0x1004f080`) and `writ
 
 So in 5.12 the client always reports its own position, and no Torque `Move` structure is ever sent. **[bin]**
 
-**Events and ghosts** are as in 4.04r2: every event and every ghost update carries an int14 bit length, ghost updates carry a class id on every update, and the ghost index width is a raw int4. In 5.12 the class id reader is `0x1000e0b0` (12 bits, then the server-to-local map), the length wrappers are `0x100984b0` / `0x10098510` (events) and `0x1009c0f0` / `0x1009c160` (ghosts), and new ghosts are added to `MissionGroup` (`0x10099780`). **[bin]**
+**Events and ghosts** are as in 4.04r2: every event and every ghost update carries an int14 bit length, ghost updates carry a class id on every update, and the ghost index width is a raw int4. In 5.12 the class id reader takes 12 bits, then applies the server-to-local map; events and ghosts each have their own pair of length wrappers; and new ghosts are added to `MissionGroup`. **[bin]**
 
 **Login steps** (`onGraal3DLoginStep`, the value starts at −1): 2 phase 1 "Download Ghost Objects", 3 phase 2 "Mission Lighting", 4 lighting done, 5 the first control object, 6 the TCP file downloads have finished and the `GraalControl3D` GUI is attached. 4.04r2 numbers them 1 to 5 over three phases. **[bin]**
 
 ## The 5.12 `GameObject` update
 
-`GameObject::packUpdate` (`0x100511a0`) and `unpackUpdate` (`0x10051640`) agree on thirteen flag-guarded sections. The mask bits are the server's dirty bits; on the wire each section is just a flag. Field names are only given where the code makes them clear; the rest are marked. **[bin]**
+`GameObject::packUpdate` and `unpackUpdate` agree on thirteen flag-guarded sections. The mask bits are the server's dirty bits; on the wire each section is just a flag. Field names are only given where the code makes them clear; the rest are marked. **[bin]**
 
 | # | Dirty bits | Payload after the flag |
 |---|---|---|
