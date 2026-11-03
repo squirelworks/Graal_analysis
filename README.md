@@ -5,6 +5,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 ## Contents
 
 - `release/0.0.1/` — document PDFs for version 0.0.1, grouped along this contents list, with appendices. Chiaki tags `v0.0.1`. The notes viewer is part of the source tree at `tools/navigator/`.
+- `docs/book/` and `book/0.0.2/` — revision 0.0.2, one reading in five chapters (how to read, a level and a session, the player, the machines, where the notes disagree) and the PDFs of that reading. Chiaki tags `v0.0.2`. The notes viewer is already on main: `python3 tools/navigator/navigator.py`, loopback port 8765.
 - `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`, and `docs/NEXT.md` — binding agent rules (no real hosts, no binary addresses, loopback labs only, decompile material stays here) and the ordered open task list.
 - `.github/workflows/checks.yml` — CI leak greps (no tracked `.pyc`, no `FUN_`/`DAT_`/`0x004…`, no dotted IP literals, no official hostnames), `pytest tools/lab-servers`, `pytest tools/navigator`, `pytest tools/classic-tools`, `pytest tools/level-convert`, `pytest tools/generators-222`, and `pytest formats/grv1-decoder tools/level-tools-gaps`, plus smoke runs of `resolve.py` and `formats/grv1-decoder`.
 - `npc-library/` — 3,172 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables. Archival notes on a prior larger documented extract are in `npc-library/archival-scripting-notes.md`.
