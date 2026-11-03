@@ -96,13 +96,15 @@ A command in the table may have no executor case and be parsed and ignored; new 
 
 ## C.6 Generation 2 builds, 1.21 to 1.32
 
-| Build | S→C ids handled | C→S ids visible as constants | Player props parsed | Player props sent | NPC props | Baddy props | Source |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1.21 | 0–34 except 30, plus 100 | 0, 10–26 (incomplete) | 0–24 | 0–24 | 0–17 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
-| 1.28 beta 2 | 0–38, plus 100 | unmeasured | 0–31 | 0–24, 26, 31 | 0–32 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
-| 1.3 test | 0–39, plus 100 | unmeasured | 0–32 | 0–24, 26, 31, 32 | 0–34 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
-| 1.31 | 0–40, plus 100 | unmeasured | 0–32 | 0–24, 26, 31, 32 | 0–34 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
-| 1.32 | 0–41, plus 100 | 0, 10–30 (incomplete) | 0–33 | 0–24, 26, 31–33 | 0–34 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
+| Build | S→C ids handled | Player props parsed | Player props sent | NPC props | Baddy props | Source |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1.21 | 0–34 except 30, plus 100 | 0–24 | 0–24 | 0–17 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
+| 1.28 beta 2 | 0–38, plus 100 | 0–31 | 0–24, 26, 31 | 0–32 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
+| 1.3 test | 0–39, plus 100 | 0–32 | 0–24, 26, 31, 32 | 0–34 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
+| 1.31 | 0–40, plus 100 | 0–32 | 0–24, 26, 31, 32 | 0–34 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
+| 1.32 | 0–41, plus 100 | 0–33 | 0–24, 26, 31–33 | 0–34 | 0–10 | [bin] (protocol/gserv-1999.md#message-ids); [bin] (protocol/gserv-1999.md#props-by-build) |
 
-Other client-to-server sends pass the id in a register, so the constant lists are incomplete [bin] (protocol/gserv-1999.md#message-ids). Prop numbers grow at the end, so a decoder can use the later tables and stop at the build's last id [bin] (protocol/gserv-1999.md#props-by-build). The meanings of ids 35 to 41 in this generation are unmeasured [bin] (protocol/gserv-1999.md#open-questions).
+Prop numbers grow at the end, so a decoder can use the later tables and stop at the build's last id [bin] (protocol/gserv-1999.md#props-by-build). The meanings of ids 35 to 41 in this generation are unmeasured [bin] (protocol/gserv-1999.md#open-questions).
+
+Client-to-server ids sent by these builds are in → §2.4.2.
 
