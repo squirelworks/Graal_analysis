@@ -26,14 +26,14 @@ client-internals/bare-level-names.md	pending		4
 client-internals/board-respawn.md	pending		4.5; 5	
 client-internals/body-colours-and-attributes.md	pending		2.6	
 client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
-client-internals/build-diff-204-205.md	pending		4	
+client-internals/build-diff-204-205.md	pending	8.2	4	
 client-internals/carry-hide-and-glove.md	pending		4	
 client-internals/chat-text.md	pending		4	
 client-internals/client-architecture-205.md	pending		4	
 client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
 client-internals/combat-200-204.md	pending		4.3	
 client-internals/config-and-input.md	cited	3.9	3.9	
-client-internals/cross-version-timeline.md	pending	1; C	1	
+client-internals/cross-version-timeline.md	pending	1; C; 8.2	1	
 client-internals/damage-sources.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	pending		4	
@@ -146,8 +146,8 @@ client-internals/decomp-findings-2026-10-28/03-edge-links.md	pending		4
 client-internals/des-and-hidden-strings.md	pending		4	
 client-internals/drive-clients-inventory.md	pending		4	
 client-internals/early-clients.md	pending		4	
-client-internals/feature-specs/01-sound.md	pending		4.7	
-client-internals/feature-specs/02-weapons-combat.md	pending		4.3	
+client-internals/feature-specs/01-sound.md	pending	8.2	4.7	
+client-internals/feature-specs/02-weapons-combat.md	pending	8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	pending		4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
 client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10	
@@ -161,7 +161,7 @@ client-internals/feature-specs/12-motd-rules.md	pending		4.10
 client-internals/feature-specs/13-ban-kick.md	pending		4.10	
 client-internals/feature-specs/14-friends-ignore.md	pending		4.10	
 client-internals/feature-specs/README.md	pending		4.10	
-client-internals/feature-timeline.md	pending		4	
+client-internals/feature-timeline.md	pending	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	pending		4	
 client-internals/gameboy-demo.md	pending		4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
@@ -169,13 +169,13 @@ client-internals/id24-205.md	pending		4
 client-internals/item-drops.md	pending		4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending		4	
 client-internals/ledges-push-pull.md	pending		4.2	
-client-internals/level-editor-205.md	pending		4.9	
-client-internals/live-behaviour-404.md	pending		4	
+client-internals/level-editor-205.md	pending	8.1	4.9	
+client-internals/live-behaviour-404.md	pending	8.1; 8.3	4	
 client-internals/live-checks-editor-offline-sound.md	pending		4	
 client-internals/live-gserver13.md	pending		5.1	
 client-internals/live-trace-205.md	pending		4	
 client-internals/live-trace-early.md	pending		4	
-client-internals/newworld-betas.md	pending		4	
+client-internals/newworld-betas.md	pending	8.2	4	
 client-internals/offline-play.md	pending		4.8	
 client-internals/offline-training.md	pending		4.8	
 client-internals/offline-tutorial-205.md	pending		4.8	
@@ -185,7 +185,7 @@ client-internals/precursors-and-fan-builds.md	pending		4
 client-internals/prior-attempts.md	pending		4	
 client-internals/reference-reimplementations/2dadventureclient.md	pending		4	
 client-internals/reference-reimplementations/README.md	pending		4	
-client-internals/reference-reimplementations/levelscripteditor.md	pending		4	
+client-internals/reference-reimplementations/levelscripteditor.md	pending	8.3	4	
 client-internals/relay-room-bridge.md	pending		4	
 client-internals/rendering-observations.md	pending		4	
 client-internals/saved-passwords.md	pending		4	
@@ -242,17 +242,17 @@ graal3d/formats.md	pending		9
 graal3d/lab-2026-10-30.md	pending		9	
 graal3d/protocol.md	pending		9	
 graal3d/reference-server/README.md	pending		9	
-graal3d/torque-engine-4x.md	pending		10	
+graal3d/torque-engine-4x.md	pending	8.3	10	
 live-runs/2gta-222-2026-10-30/README.md	pending		4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	pending		4	
-npc-library/README.md	pending		8	
-npc-library/archival-scripting-notes.md	pending		8	
-npc-library/gs1-command-reference-205.md	pending		8	
-npc-library/gs1-commands.md	pending		8	
-npc-library/gs1-reference-205.md	pending		8	
+npc-library/README.md	cited	8.1	8	
+npc-library/archival-scripting-notes.md	cited	8.1	8	
+npc-library/gs1-command-reference-205.md	cited	8.1; 8.2; E	8	
+npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
+npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
 npc-library/reference/forcesay.txt	pending		8	
 npc-library/reference/npcControl-NPC.txt	pending		8	
 npc-library/tile-patterns.md	pending		8	
@@ -265,7 +265,7 @@ protocol/cross-version-anchors.md	pending		2
 protocol/crosscheck-captures-vs-research.md	pending		2	
 protocol/file-transfer.md	pending		2.7	
 protocol/format-notes-from-salvage.md	pending		2	
-protocol/graphics-movement-bytecode.md	pending		8.4	
+protocol/graphics-movement-bytecode.md	pending	8.3; 8.4; E	8.4	
 protocol/gserv-1999.md	pending	2.1; 2.2; 2.3; C	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	pending		2	
 protocol/listserver-login-type-matrix-2026-10-25.md	pending		6	
@@ -280,8 +280,8 @@ protocol/medium-term-slice.md	pending		2
 protocol/npc-control.md	pending		7	
 protocol/offline-expansion.md	pending		2	
 protocol/packet-id-diff.md	pending		2.4; 2.5; A	
-protocol/packet-ids.md	pending	0; 2.1	2.4; 2.5; A	
-protocol/packet-layouts.md	pending	0; 2.1	2.4; 2.5; A	
+protocol/packet-ids.md	pending	0; 2.1; 8.1; 8.3; 8.4; E	2.4; 2.5; A	
+protocol/packet-layouts.md	pending	0; 2.1; 8.3; 8.4; E	2.4; 2.5; A	
 protocol/pcap-2026-10-04.md	pending		2	
 protocol/player-props.md	pending		2.6; B	
 protocol/public-listserver-2026-10-25.md	pending		6	
@@ -290,8 +290,8 @@ protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4
 protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
 protocol/udp-p2p.md	pending		2.9	
 protocol/v3x-clients.md	pending	2.2; 2.3	1; 2.3; 10	
-protocol/v4x-clients.md	pending	2.1; 2.2; 2.3	1; 2.3; 10	
-protocol/v5v6-lab-play.md	pending	0; 2.2; E	1; 2.3	
+protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 8.3	1; 2.3; 10	
+protocol/v5v6-lab-play.md	pending	0; 2.2; E; 8.3	1; 2.3	
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3	1; 2.3	
 protocol/v6x-clients.md	pending	2.1; 2.2; 2.3	1; 2.10	
@@ -420,7 +420,7 @@ version-profiles/lab-mac-tiger-2026-10-31.md	pending		1; C
 version-profiles/lab-serverwarp178.tsv	pending		1; C	
 version-profiles/lab-showimg24-relay.tsv	pending		1; C	
 version-profiles/lab-v5-2026-10-30.md	pending		1; C	
-version-profiles/matrix/README.md	pending	1; 2.2; 2.3; C	C; 4	
+version-profiles/matrix/README.md	pending	1; 2.2; 2.3; C; 8.3; E	C; 4	
 version-profiles/matrix/builds-deltas.md	pending		C; 4	
 version-profiles/matrix/builds-static-survey.tsv	pending		C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	pending		C; 4	
