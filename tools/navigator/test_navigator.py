@@ -251,6 +251,7 @@ DIAGRAM_AREAS = (
     'Tools',
     'Labs',
     'Archives',
+    'Reference manual',
 )
 
 
