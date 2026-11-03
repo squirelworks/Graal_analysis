@@ -48,7 +48,7 @@ The builds fall into eleven eras. Inside an era the clients share their engine a
 | H | `G3D03014`, `G3D28015`; list `G3D30123` | 5 | RSA-signed `license.graal` → `<list-host-3x>:14922` | 79 (3.04), 88 (3.153) | as G | GS1 native + TorqueScript `.dso` for menus; NPC bytecode ids (3.153) |
 | I | `G3D17026`, `G3D27076`, `G3D20126` | 5 | `license.graal` → `<login-host-4x>:14900`; server named `Login`, no separate list protocol | 98–101 | – | GS2 bytecode, server-pushed ganis (195), update packages `GRPKG001` |
 | J | `G3D22067`, `G3D14097`, `G3D15010`, `G3D26090` | 5 | as I; from 5.24 the hosts are compiled in, no license file | 95–100 | – | GS2, `GRESCR01` script cache; anti-cheat process scan (182/183) |
-| K | `G3D0108A`/`G3D0511C` (Linux), `G3D0311C` (Win 6.03); 6.11 set by script | 5; 6.11 can switch to a **script-defined** header with RC4/AES/TLS | compiled-in `loginserver*:14900`; 6.11 HTTPS connector to `con.quattroplay.com` | 91–97 | – | GS2; in 6.11 even the packet id tables come from the server's script |
+| K | `G3D0108A`/`G3D0511C` (Linux), `G3D0311C` (Win 6.03); 6.11 set by script | 5; 6.11 can switch to a **script-defined** header with RC4/AES/TLS | compiled-in `loginserver*:14900`; 6.11 HTTPS connector to the official connector host (name withheld) | 91–97 | – | GS2; in 6.11 even the packet id tables come from the server's script |
 
 Login-time extras that a faithful client must send: `PLI_LANGUAGE` (37) from 2.02 rev2 **[bin]**; `PLI_TAMPERCHECK` (39) once (2.17), on gmap crossings and level links (2.22), or every 3.2 s (2.31) **[cap]**; machine-id MD5s after the password from 4.x on **[bin]**.
 

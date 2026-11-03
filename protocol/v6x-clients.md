@@ -137,7 +137,7 @@ This is the big change in 6.x. In 6.11 the client no longer has a fixed protocol
 
 ### Connector request
 
-- On login the client sets the server name to `Login` and requests, in order, `https://con.quattroplay.com/con.png`, `https://con.quattroplay.com/con.gs`, `http://con.quattroplay.com/conf.gs`. Each step is retried up to twice, and retries use the host `con2` instead of `con`. After three failures it shows a warning. All URL parts are scrambled strings. **[bin]**
+- On login the client sets the server name to `Login` and requests, in order, `con.png` and `con.gs` over HTTPS and `conf.gs` over plain HTTP, all from the official connector host (name withheld). Each step is retried up to twice, and retries use a second connector host whose name differs only in its first label (`con` becomes `con2`). After three failures it shows a warning. All URL parts are scrambled strings. **[bin]**
 - The query is `?p=` + a comma-joined list `g=<client id>,p=mac,v=<version>,b=<build date and time>`, encrypted with DES-ECB under a compiled-in 8-character key (whole 8-byte blocks only), base64-encoded with the client's own alphabet, then URL-encoded. **[bin]**
 - The HTTPS connection checks the server against a certificate bundle compiled into the client (base64, itself DES-encrypted with a second key). The request sends `User-Agent: Graal/<version>`. **[bin]**
 
@@ -178,7 +178,7 @@ A byte search of the unpacked Windows exes (from `v5v6-windows-unpacked.md`) agr
 - 6.00b1, 6.00r2 and 6.03r7 all carry the gen-5 seed and LCG constants and the chat wrap characters ` .,;+-?!`, and `showap`.
 - `Tempus Sans ITC` and `Game_Draw_Texts` are in 6.00r2 and 6.03r7. 6.00 beta1 has neither; its only capitalised face name is `Arial`, so beta1 probably drew chat in Arial. **[inf]**
 - `creationtime.dat` (S→C 111) is in 6.03r7 but not 6.00r2, matching the 6.01 → 6.03 change on Linux.
-- None of them has the 6.11 connector (`quattroplay`, `onSend…` events).
+- None of them has the 6.11 connector (the connector host, `onSend…` events).
 
 ## File formats
 
