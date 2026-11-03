@@ -10,8 +10,7 @@ The first line is the signature
 Two writers in this edition emit it, and they do not emit the same keys.
 .SS Short form
 .BR dungeongenerator (7)
-writes, from
-.BR 0x406760 :
+writes, from its map writer:
 .PP
 .RS
 .nf
@@ -35,8 +34,7 @@ See
 .BR dungeongenerator (7).
 .SS Generator form
 .BR terraingenerator (7)
-writes, from
-.BR 0x44c5f5 :
+writes, from its map writer:
 .PP
 .RS
 .nf

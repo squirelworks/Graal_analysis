@@ -12,7 +12,7 @@ PRs; they never merge, never push to `main`, never create a tag or release.
   placeholders `<listserver-host>`, `<login-host>`, `<public-host>`, `<lan-host>`.
   When a historical host matters, describe it ("the 1999 list host, same as 1.39's")
   rather than naming it. Do not write dotted IP literals anywhere in the repo.
-- **No binary addresses**: no `0x004…`-style offsets, no Ghidra/IDA names (`FUN_…`,
+- **No binary addresses**: no code or data addresses, RVAs or file offsets (`0x4dab…`, `004…`; see `tools/leak-check/`), no Ghidra/IDA names (`FUN_…`,
   `DAT_…`, `LAB_…`), no decompiled C. Findings are written as plain behaviour with a
   source tag (`[2.05]`, `[bin]`, `[lab]`, `[cap]`, `[srv]`, `[doc]`, `[inf]`).
 - The repo is **public**. Treat every commit as published.
@@ -66,7 +66,7 @@ PRs; they never merge, never push to `main`, never create a tag or release.
 
 ```
 git ls-files | grep -E '\.pyc$'
-git grep -nE 'FUN_[0-9a-fA-F]{6}|DAT_[0-9a-fA-F]{6}|\b0x00[4-6][0-9a-fA-F]{5}\b'
+python tools/leak-check/check_addresses.py
 git grep -nE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | grep -vE '\b[0-9]\.[0-9]+\.[0-9]+\.[0-9]+\b'
 git grep -niE 'graalonline\.com|graal\.in\b|graalreborn\.(com|net)'
 ```

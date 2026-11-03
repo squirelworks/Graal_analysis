@@ -119,8 +119,7 @@ grid of decimal indices.
 writes
 .B GLEVNW01
 with 64 rows of tile 0.
-The template at
-.B 0x44bbcc
+The row template in its data
 is
 .I "64 <y>"
 and 128

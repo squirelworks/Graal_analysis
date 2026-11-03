@@ -128,8 +128,8 @@ def test_missing_header_fails(tmp_path):
 
 def test_leak_patterns(tmp_path):
     lines = [
-        'FUN_' + '00401000',
-        '0x' + '00401a2b',
+        'FUN_' + '0040' + '1000',
+        '0x' + '0040' + '1a2b',
         'loc' + 'alhost',
         'host 10.' + '1.2.3',
         'graal' + 'online.com',

@@ -33,9 +33,9 @@ On-disk size is 1034630 bytes, as listed in
 .BR graal (7).
 Optional-header
 .B LoaderFlags
-is reused as a file offset,
-.BR 0xFC94E ,
-of a 0x38-byte package header.
+is reused as a file offset
+of a 0x38-byte package header,
+which fills the last 0x38 bytes of the file.
 Magic is
 .BR 0x82D0B188 .
 The first block is the Thinstall runtime
@@ -94,8 +94,7 @@ through
 The virtual filesystem uses a second codec, marker
 .BR 0xD7 ,
 a bitstream LZ coder.
-The directory sits at
-.BR 0xFC5F5 .
+The directory sits a little before the package header.
 Decompressed it is a length-prefixed path table under
 .BR %InstallPath% .
 The editor payload is 27 blocks, 64 KiB uncompressed except the last
@@ -115,8 +114,7 @@ Base
 .BR 0x400000 ,
 .B SizeOfImage
 .BR 0x1B1000 ,
-entry RVA
-.BR 0x155D4C .
+entry point in the code section.
 Sections are the usual Delphi set:
 .IR CODE , DATA , BSS , .idata , .tls , .reloc , .rsrc .
 Point a Delphi decompiler here, not at the packed stub.
