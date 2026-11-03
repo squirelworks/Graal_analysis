@@ -104,3 +104,8 @@ open-point closed.
   Squirrel's OK. Proceeded without a capture (`protocol/login-session-known.md`):
   what the existing notes already say a Login server sends, and what is still
   unobserved. The look itself stays open.
+
+- [ ] **14. Graal Technical Reference Manual (1.0).** Spec: issue #191. Fifteen PRs in
+  the order the issue lists; do not stack on an open one. PR 1 (skeleton, conventions,
+  `manual/sources.tsv`, `tools/manual/check_manual.py`, navigator area, three-OS CI)
+  is the first; Part I + App. C is next.
