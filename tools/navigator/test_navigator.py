@@ -273,7 +273,16 @@ def test_architecture_names_real_top_level_areas():
     assigned = set()
     for area in navigator.AREAS:
         assigned.update(area['folders'])
-    assert folders <= assigned
+    # `release/` is generated book output. Skip that directory name when
+    # requiring an area, and keep every other indexed top-level folder covered.
+    assert 'release' in navigator.EXEMPT_TOP_LEVEL
+    assert 'release' not in assigned
+    assert (REPO / 'release').is_dir()
+    assert not any(entry['folder'] == 'release' for entry in index)
+    assert any(entry['path'].startswith('tools/release/') for entry in index)
+    required = {folder for folder in folders if folder not in navigator.EXEMPT_TOP_LEVEL}
+    assert 'release' not in required
+    assert required <= assigned
     assert '<svg' in page
     assert 'class="version-map"' in page
     assert '<h3>1998 and 1.x</h3>' in page
