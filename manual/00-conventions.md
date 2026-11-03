@@ -164,10 +164,10 @@ Each manual file begins with a header comment `<!-- manual: kind=K status=S -->`
 
 | Field | Values | Effect in the checker |
 | --- | --- | --- |
-| kind | `reference` | every body line, list item and table row needs a tag and a path, except pure cross-references |
+| kind | `reference` | every body line, list item and table row needs a tag and a path, except cross-references and captions (a line ending in `:`) |
 | kind | `front` | definitions and rules; tags and paths are checked where present |
 | kind | `index` | headings and cross-references only |
 | status | `stub` | only headings, cross-references and `>` status notes are allowed |
-| status | `draft`, `complete` | the kind rules apply |
+| status | `draft`, `complete` | the kind rules apply; a `> Status:` line may say what is still missing |
 
 `manual/sources.tsv` lists every note in the repository with one of three states: `pending` (not yet represented), `cited` (with the sections that cite it) or `excluded` (with a reason). App. F is its readable form.

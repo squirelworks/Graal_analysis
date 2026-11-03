@@ -259,9 +259,10 @@ def check_files(root: Path, files: list[ManualFile], report: Report) -> dict[str
                 continue
             if mf.kind == 'reference' and kind in ('table-row', 'item', 'text', 'quote'):
                 if kind == 'quote':
-                    report.add(where, 'quotes are only allowed in stub files')
+                    if not line.strip().startswith('> Status:'):
+                        report.add(where, 'quotes are only allowed in stub files and as `> Status:` lines')
                     continue
-                if not cites and not is_xref:
+                if not cites and not is_xref and not line.rstrip().endswith(':'):
                     report.add(where, 'factual line has no `[tag] (path)` source')
     return cited_by
 
