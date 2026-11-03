@@ -29,9 +29,10 @@ DEFAULT_PORT = 8765
 
 MD_SUFFIXES = {'.md', '.markdown'}
 SKIP_DIRS = {'.git', '__pycache__', '.pytest_cache'}
-# Top-level names that are not research areas. `release/` is generated book
-# output, so the map does not index it and does not assign it an area.
-EXEMPT_TOP_LEVEL = frozenset({'release'})
+# Top-level names that are not research areas. `release/` and `book/` are
+# generated readings, so the map does not index them and does not assign
+# them an area. Chapters under `docs/book/` stay with the corpus index.
+EXEMPT_TOP_LEVEL = frozenset({'book', 'release'})
 FOLDER_ORDER = (
     'root',
     'protocol',
@@ -177,7 +178,8 @@ def build_index(repo: Path) -> list[dict]:
 
 # Areas of the corpus. `folders` are real top-level directories (or `root`).
 # A lab note inside another folder is classified by `is_lab_path` first.
-# `release/` is not listed: it is generated book output (see EXEMPT_TOP_LEVEL).
+# `release/` and `book/` are not listed: they are generated readings
+# (see EXEMPT_TOP_LEVEL).
 AREAS = (
     {
         'id': 'clients',
