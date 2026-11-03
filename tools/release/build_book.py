@@ -4,6 +4,7 @@
 From the repository root:
 
     python3 tools/release/build_book.py
+    python3 tools/release/build_book.py --only 04
 
 Each PDF is produced with:
 
@@ -18,6 +19,11 @@ Each PDF is produced with:
 Requires pandoc, weasyprint, and pdfinfo. No third-party Python packages.
 Page counts in release/0.0.1/README.md come from pdfinfo. A part over 100
 pages is split and measured again.
+
+`--only KEY` rebuilds one chapter (a CHAPTERS key such as `04`) and refreshes
+that chapter's rows in the release README and contents from pdfinfo. Other
+chapter PDFs stay as they are. The contents PDF is rebuilt so its page table
+matches.
 """
 
 from __future__ import annotations
@@ -98,8 +104,15 @@ INTROS = {
     ),
     "03": "Notes under `protocol/`, in path order.",
     "04": (
-        "Notes under `client-internals/`, then `version-profiles/`, each in "
-        "path order."
+        "Reading order for the client notes, not directory order. "
+        "Overview and architecture come first, including how a version id "
+        "and a version profile are read. "
+        "A version timeline follows: precursors and early clients, then 1.x, "
+        "2.x, and later clients. "
+        "Topic notes are grouped as movement, combat, the HUD and "
+        "presentation, then files and the session. "
+        "Dated decompile-finding batches are last, under Batch notes, each "
+        "batch kept together and the batches in date order."
     ),
     "05": "Notes under `graal3d/`, then `torque/`, each in path order.",
     "06": (
@@ -335,11 +348,200 @@ def chapter_of(rel: str) -> str | None:
     raise SystemExit(f"unclassified markdown: {rel}")
 
 
+def _section(title: str, blurb: str) -> tuple[str, str]:
+    return ("section", f"## {title}\n\n{blurb.strip()}\n")
+
+
+def _note(path: str) -> tuple[str, str]:
+    return ("note", path)
+
+
+def _batch(path: str) -> tuple[str, str]:
+    return ("batch", path)
+
+
+# Chapter 4 reading order. Do not replace this with a path sort.
+# Path order is a directory dump: `decomp-findings-*` sorts between the
+# topical notes (`damage-sources.md` then a dated batch, then `des-and-hidden-strings.md`).
+# Every markdown file under client-internals/ and version-profiles/ is
+# either a note below or a file inside one batch directory. A new note
+# fails the build until it is placed here.
+CHAPTER_04_READING: tuple[tuple[str, str], ...] = (
+    _section(
+        "Overview",
+        "Architecture of the 2.05 client, the build catalogue, and how a "
+        "version id and a version profile are read.",
+    ),
+    _note("client-internals/prior-attempts.md"),
+    _note("client-internals/client-architecture-205.md"),
+    _note("client-internals/client-assets.md"),
+    _note("client-internals/build-catalogue.md"),
+    _note("client-internals/drive-clients-inventory.md"),
+    _note("client-internals/version-id-map.md"),
+    _note("client-internals/version-tokens.md"),
+    _note("client-internals/version/README.md"),
+    _note("client-internals/version/VERSION.md"),
+    _note("client-internals/version/docs/GraalEditor-README.md"),
+    _note("client-internals/version/docs/GraalEditor-architecture.md"),
+    _note("client-internals/version-profiles/README.md"),
+    _note("client-internals/version-profiles/list-ports.md"),
+    _note("version-profiles/matrix/README.md"),
+    _note("version-profiles/matrix/seihai-gaps.md"),
+    _note("version-profiles/version-coverage-2026-10-24.md"),
+    _note("client-internals/reference-reimplementations/README.md"),
+    _note("client-internals/reference-reimplementations/2dadventureclient.md"),
+    _note("client-internals/reference-reimplementations/levelscripteditor.md"),
+    _section(
+        "Version timeline",
+        "Precursors and early clients, then 1.x, 2.x, and later clients.",
+    ),
+    _note("client-internals/zelda-online-1998.md"),
+    _note("client-internals/precursors-and-fan-builds.md"),
+    _note("client-internals/precursor-runs-2026-10-30.md"),
+    _note("client-internals/early-clients.md"),
+    _note("version-profiles/matrix/rules-1st-graal.md"),
+    _note("client-internals/gameboy-demo.md"),
+    _note("client-internals/relay-room-bridge.md"),
+    _note("client-internals/live-trace-early.md"),
+    _note("client-internals/live-gserver13.md"),
+    _note("client-internals/versions-133-139.md"),
+    _note("version-profiles/matrix/rules-139.md"),
+    _note("client-internals/cross-version-timeline.md"),
+    _note("client-internals/newworld-betas.md"),
+    _note("client-internals/v2.00-connect-path.md"),
+    _note("client-internals/build-diff-204-205.md"),
+    _note("client-internals/feature-timeline.md"),
+    _note("client-internals/live-trace-205.md"),
+    _note("version-profiles/2.22-2.31.md"),
+    _note("client-internals/live-checks-editor-offline-sound.md"),
+    _note("client-internals/player-mannerisms-live.md"),
+    _note("version-profiles/matrix/builds-deltas.md"),
+    _note("version-profiles/matrix/live-runs-2026-10-30.md"),
+    _note("version-profiles/3.04-3.153.md"),
+    _note("version-profiles/lab-304-linux-2026-10-30.md"),
+    _note("client-internals/live-behaviour-404.md"),
+    _note("version-profiles/lab-mac-tiger-2026-10-31.md"),
+    _note("version-profiles/lab-v5-2026-10-30.md"),
+    _section(
+        "Topics",
+        "Movement, then combat, then the HUD and presentation, then files "
+        "and the session. A feature-spec note sits with the topic it "
+        "describes. The feature-spec index is first.",
+    ),
+    _note("client-internals/feature-specs/README.md"),
+    _note("client-internals/foot-test.md"),
+    _note("client-internals/ledges-push-pull.md"),
+    _note("client-internals/carry-hide-and-glove.md"),
+    _note("client-internals/water-and-ganis.md"),
+    _note("client-internals/feature-specs/11-emotes-ganis.md"),
+    _note("client-internals/feature-specs/06-gmap-overworld.md"),
+    _note("client-internals/feature-specs/02-weapons-combat.md"),
+    _note("client-internals/combat-200-204.md"),
+    _note("client-internals/damage-sources.md"),
+    _note("client-internals/status-bit-0x20.md"),
+    _note("client-internals/item-drops.md"),
+    _note("client-internals/board-respawn.md"),
+    _note("client-internals/feature-specs/04-death-respawn.md"),
+    _note("client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md"),
+    _note("client-internals/feature-specs/03-inventory.md"),
+    _note("client-internals/id24-205.md"),
+    _note("client-internals/rendering-observations.md"),
+    _note("client-internals/status-display.md"),
+    _note("client-internals/body-colours-and-attributes.md"),
+    _note("client-internals/chat-text.md"),
+    _note("client-internals/sign-panel.md"),
+    _note("client-internals/feature-specs/09-options.md"),
+    _note("client-internals/feature-specs/10-right-click-menu.md"),
+    _note("client-internals/feature-specs/12-motd-rules.md"),
+    _note("client-internals/feature-specs/13-ban-kick.md"),
+    _note("client-internals/feature-specs/14-friends-ignore.md"),
+    _note("client-internals/feature-specs/01-sound.md"),
+    _note("client-internals/sound-and-music.md"),
+    _note("client-internals/bare-level-names.md"),
+    _note("client-internals/feature-specs/05-save-load.md"),
+    _note("client-internals/config-and-input.md"),
+    _note("client-internals/graalconfig-reference.md"),
+    _note("client-internals/saved-passwords.md"),
+    _note("client-internals/des-and-hidden-strings.md"),
+    _note("client-internals/feature-specs/08-tampercheck.md"),
+    _note("client-internals/feature-specs/07-udp-peer.md"),
+    _note("client-internals/offline-play.md"),
+    _note("client-internals/offline-training.md"),
+    _note("client-internals/offline-tutorial-205.md"),
+    _note("client-internals/level-editor-205.md"),
+    _section(
+        "Batch notes",
+        "Dated decompile-finding batches. Each batch stays together, and "
+        "the batches are in date order. The topic notes above are the "
+        "place to start; these are the passes those notes came from.",
+    ),
+    _batch("client-internals/decomp-findings-2026-10-24"),
+    _batch("client-internals/decomp-findings-2026-10-24-b"),
+    _batch("client-internals/decomp-findings-2026-10-24-c"),
+    _batch("client-internals/decomp-findings-2026-10-24-d"),
+    _batch("client-internals/decomp-findings-2026-10-25-e"),
+    _batch("client-internals/decomp-findings-2026-10-25-f"),
+    _batch("client-internals/decomp-findings-2026-10-25-g"),
+    _batch("client-internals/decomp-findings-2026-10-25-j"),
+    _batch("client-internals/decomp-findings-2026-10-25-k"),
+    _batch("client-internals/decomp-findings-2026-10-25-l"),
+    _batch("client-internals/decomp-findings-2026-10-25-m"),
+    _batch("client-internals/decomp-findings-2026-10-28"),
+    _batch("client-internals/decomp-findings-2026-10-28-b"),
+)
+
+
+def batch_note_paths(folder: str) -> list[str]:
+    """README first, then the numbered notes in name order."""
+    directory = ROOT / folder
+    if not directory.is_dir():
+        raise SystemExit(f"chapter 4 batch is not a directory: {folder}")
+    found = sorted(path.relative_to(ROOT).as_posix() for path in directory.glob("*.md"))
+    if not found:
+        raise SystemExit(f"chapter 4 batch has no notes: {folder}")
+    nested = [path for path in directory.rglob("*.md") if path.parent != directory]
+    if nested:
+        names = ", ".join(path.relative_to(ROOT).as_posix() for path in nested)
+        raise SystemExit(f"chapter 4 batch has nested notes: {names}")
+    readmes = [rel for rel in found if rel.endswith("/README.md")]
+    rest = [rel for rel in found if rel not in readmes]
+    return readmes + rest
+
+
+def load_chapter_04(paths: list[Path]) -> list[Unit]:
+    by_rel = {path.relative_to(ROOT).as_posix(): path for path in paths}
+    ordered: list[Unit] = []
+    seen: list[str] = []
+    for kind, payload in CHAPTER_04_READING:
+        if kind == "section":
+            ordered.append(Unit("", payload))
+            continue
+        if kind == "batch":
+            rels = batch_note_paths(payload)
+        elif kind == "note":
+            rels = [payload]
+        else:
+            raise SystemExit(f"bad chapter 4 entry {kind}")
+        for rel in rels:
+            if rel in seen:
+                raise SystemExit(f"chapter 4 lists {rel} twice")
+            path = by_rel.get(rel)
+            if path is None:
+                raise SystemExit(f"chapter 4 lists missing note {rel}")
+            seen.append(rel)
+            ordered.append(load_md(path))
+    extras = sorted(set(by_rel) - set(seen))
+    if extras:
+        raise SystemExit("chapter 4 order is missing notes:\n" + "\n".join(extras))
+    intro = INTROS["04"].strip() + "\n"
+    return [Unit("", intro), *ordered]
+
+
 def collect_units() -> dict[str, list[Unit]]:
     grouped: dict[str, list[Path]] = {key: [] for key, *_ in CHAPTERS}
     seen: set[str] = set()
     for path in sorted(ROOT.rglob("*.md")):
-        if ".git" in path.parts:
+        if any(part.startswith(".") for part in path.relative_to(ROOT).parts):
             continue
         rel = path.relative_to(ROOT).as_posix()
         chapter = chapter_of(rel)
@@ -362,15 +564,21 @@ def collect_units() -> dict[str, list[Unit]]:
             ]
             return sorted(chosen, key=lambda path: path.relative_to(ROOT).as_posix().lower())
 
+        # Chapter 4 is CHAPTER_04_READING, not a path sort. A path sort dumps
+        # dated decomp-findings folders between the topical notes.
         if key == "04":
-            paths = by_prefix("client-internals/") + by_prefix("version-profiles/")
-        elif key == "05":
+            chapter_units = load_chapter_04(paths)
+            units[key] = chapter_units
+            notes = sum(1 for unit in chapter_units if unit.label)
+            log(f"collect {key}: {notes} notes")
+            continue
+        if key == "05":
             paths = by_prefix("graal3d/") + by_prefix("torque/")
         elif key == "06":
             paths = by_prefix("tools/") + by_prefix("live-runs/")
         else:
             paths = sorted(paths, key=lambda path: path.relative_to(ROOT).as_posix().lower())
-        if key in {"04", "05", "06"} and len(paths) != len(grouped[key]):
+        if key in {"05", "06"} and len(paths) != len(grouped[key]):
             raise SystemExit(f"chapter {key} dropped files while ordering")
         chapter_units = [load_md(path) for path in paths]
         if key == "02":
@@ -582,8 +790,35 @@ def pack(pieces: list[Piece]) -> list[list[Unit]]:
     return groups
 
 
+def attach_section_heads(groups: list[list[Unit]]) -> list[list[Unit]]:
+    """Keep an unlabeled heading with the notes that follow it.
+
+    Chapter 4 inserts unlabeled section headings. A byte split can leave a
+    heading as the last unit of a part. Move trailing headings onto the next
+    part. Note order is unchanged.
+    """
+    moved: list[list[Unit]] = []
+    carry: list[Unit] = []
+    for group in groups:
+        group = carry + list(group)
+        carry = []
+        # A heading-only group stays put. Pulling it onto the next group
+        # undoes a split of one large note and the fitter loops.
+        if any(unit.label for unit in group):
+            while group and group[-1].label == "":
+                carry.insert(0, group.pop())
+        if group:
+            moved.append(group)
+    if carry:
+        if moved:
+            moved[-1].extend(carry)
+        else:
+            moved.append(carry)
+    return moved
+
+
 def fit(title_base: str, groups: list[list[Unit]]) -> list[tuple[str, int, Path, list[Unit]]]:
-    pending = groups
+    pending = attach_section_heads(groups)
     for _ in range(40):
         count = len(pending)
         rendered: list[tuple[str, int, Path, list[Unit]]] = []
@@ -603,7 +838,9 @@ def fit(title_base: str, groups: list[list[Unit]]) -> list[tuple[str, int, Path,
         else:
             left, right = split_half(group)
             replacement = [left, right]
-        pending = pending[:overflow] + replacement + pending[overflow + 1 :]
+        pending = attach_section_heads(
+            pending[:overflow] + replacement + pending[overflow + 1 :]
+        )
     raise SystemExit(f"could not fit {title_base} under {MAX_PAGES} pages")
 
 
@@ -715,13 +952,173 @@ def git_commit() -> str:
     return proc.stdout.strip()
 
 
+def table_stats(text: str) -> tuple[int, int]:
+    count = 0
+    pages = 0
+    for line in text.splitlines():
+        if not line.startswith("| "):
+            continue
+        if line.startswith("| Kind") or line.startswith("| ---"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        pages += int(cells[4])
+        count += 1
+    if count == 0:
+        raise SystemExit("release table has no rows")
+    return count, pages
+
+
+def rewrite_total(text: str) -> str:
+    count, pages = table_stats(text)
+    new = f"{count} PDFs, {pages} pages. Each PDF is at most 100 pages."
+    updated, found = re.subn(
+        r"^\d+ PDFs, \d+ pages\. Each PDF is at most 100 pages\.$",
+        new,
+        text,
+        count=1,
+        flags=re.M,
+    )
+    if found != 1:
+        raise SystemExit("page-total line missing")
+    return updated
+
+
+def replace_slug_table_rows(text: str, slug: str, new_rows: list[str]) -> str:
+    lines = text.splitlines()
+    indexes = [i for i, line in enumerate(lines) if line.startswith("|") and slug in line]
+    if not indexes:
+        raise SystemExit(f"no table rows for {slug}")
+    if indexes != list(range(indexes[0], indexes[-1] + 1)):
+        raise SystemExit(f"table rows for {slug} are not contiguous")
+    out = lines[: indexes[0]] + new_rows + lines[indexes[-1] + 1 :]
+    return "\n".join(out) + "\n"
+
+
+def detail_block(rows: list[RowMeta]) -> str:
+    lines: list[str] = []
+    for kind, number, filename, _title, pages, part_title, labels in rows:
+        lines.append(f"### {kind} {number}: `{filename}`")
+        lines.append("")
+        lines.append(f"{part_title}. {pages} pages.")
+        lines.append("")
+        if not labels:
+            lines.append("- (introductory text only)")
+        for label in labels:
+            lines.append(f"- `{label}`")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def replace_detail(text: str, kind: str, number: int, next_heading: str, block: str) -> str:
+    heading = f"### {kind} {number}:"
+    start = text.find(heading)
+    if start < 0:
+        raise SystemExit(f"missing detail heading {heading}")
+    end = text.find(next_heading, start + len(heading))
+    if end < 0:
+        raise SystemExit(f"missing heading after {heading}")
+    return text[:start] + block.rstrip() + "\n\n" + text[end:]
+
+
+def readme_table_row(row: RowMeta) -> str:
+    kind, number, filename, title, pages, _part_title, labels = row
+    return f"| {kind} | {number} | `{filename}` | {title} | {pages} | {len(labels)} |"
+
+
+def contents_table_row(row: RowMeta) -> str:
+    kind, number, filename, title, pages, _part_title, _labels = row
+    return f"| {kind} | {number} | `{filename}` | {title} | {pages} |"
+
+
+def set_contents_pages(text: str, pages: int) -> str:
+    pattern = r"(\| Contents \| 0 \| `ch-00-contents\.pdf` \| Contents \| )\d+( \|)"
+    updated, found = re.subn(pattern, rf"\g<1>{pages}\2", text, count=1)
+    if found != 1:
+        raise SystemExit("contents row missing from the release README")
+    return updated
+
+
+def publish_one(key: str) -> None:
+    """Rebuild one chapter's PDFs and its rows in the release lists."""
+    chosen = [item for item in CHAPTERS if item[0] == key]
+    if len(chosen) != 1:
+        raise SystemExit(f"unknown chapter key {key}")
+    _key, slug, title, kind, number = chosen[0]
+    following = [item for item in CHAPTERS if item[4] == number + 1 and item[3] == kind]
+    if not following:
+        raise SystemExit(f"no following {kind} after {number}; --only cannot patch the list")
+    next_heading = f"### {following[0][3]} {following[0][4]}:"
+    units = collect_units()[key]
+    log(f"== {title}")
+    pieces = partition(title, units)
+    groups = pack(pieces)
+    fitted = fit(title, groups)
+    rows: list[RowMeta] = []
+    written: set[str] = set()
+    for filename, part_title, pages, pdf, group in slug_for(fitted, slug):
+        if pages > MAX_PAGES:
+            raise SystemExit(f"{filename} is {pages} pages")
+        scan_pdf(pdf)
+        target = OUT_DIR / filename
+        shutil.copyfile(pdf, target)
+        committed = page_count(target)
+        if committed != pages:
+            raise SystemExit(f"{filename} page count changed on copy: {pages} vs {committed}")
+        if committed > MAX_PAGES:
+            raise SystemExit(f"{filename} is {committed} pages")
+        labels = [unit.label for unit in group if unit.label]
+        rows.append((kind, number, filename, title, committed, part_title, labels))
+        written.add(filename)
+        log(f"wrote {filename} ({committed} pages)")
+    for old in OUT_DIR.glob(slug + "*.pdf"):
+        if old.name not in written:
+            old.unlink()
+            log(f"removed {old.name}")
+    readme_path = OUT_DIR / "README.md"
+    readme = readme_path.read_text(encoding="utf-8")
+    readme = replace_slug_table_rows(readme, slug, [readme_table_row(row) for row in rows])
+    readme = replace_detail(readme, kind, number, next_heading, detail_block(rows))
+    readme = rewrite_total(readme)
+    contents_path = OUT_DIR / "contents.md"
+    contents = contents_path.read_text(encoding="utf-8")
+    contents = replace_slug_table_rows(contents, slug, [contents_table_row(row) for row in rows])
+    contents = rewrite_total(contents)
+    assert_clean(contents, CONTENTS_TITLE)
+    contents_path.write_text(contents, encoding="utf-8")
+    c_pages, c_pdf = render(CONTENTS_TITLE, [Unit("release/0.0.1/contents.md", contents)])
+    if c_pages > MAX_PAGES:
+        raise SystemExit(f"{CONTENTS_SLUG}.pdf is {c_pages} pages")
+    scan_pdf(c_pdf)
+    contents_target = OUT_DIR / f"{CONTENTS_SLUG}.pdf"
+    shutil.copyfile(c_pdf, contents_target)
+    c_committed = page_count(contents_target)
+    if c_committed != c_pages:
+        raise SystemExit(
+            f"{CONTENTS_SLUG}.pdf page count changed on copy: {c_pages} vs {c_committed}"
+        )
+    readme = set_contents_pages(readme, c_committed)
+    readme = rewrite_total(readme)
+    assert_clean(readme, "release README")
+    readme_path.write_text(readme, encoding="utf-8")
+    log(f"wrote {CONTENTS_SLUG}.pdf ({c_committed} pages)")
+    log("done")
+
+
 def main() -> None:
+    only: str | None = None
+    if len(sys.argv) == 3 and sys.argv[1] == "--only":
+        only = sys.argv[2]
+    elif len(sys.argv) != 1:
+        raise SystemExit("usage: python3 tools/release/build_book.py [--only KEY]")
     if WORK.exists():
         shutil.rmtree(WORK)
     WORK.mkdir(parents=True)
     missing = [cmd for cmd in ("pandoc", "weasyprint", "pdfinfo", "pdftotext") if shutil.which(cmd) is None]
     if missing:
         raise SystemExit("missing tools: " + ", ".join(missing))
+    if only is not None:
+        publish_one(only)
+        return
     units = collect_units()
     commit = git_commit()
     staged: list[tuple[str, int, str, str, int, str, Path, list[str]]] = []
