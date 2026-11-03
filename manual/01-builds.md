@@ -268,3 +268,28 @@ GR-V1.03 is the last `.graal` revision any catalogued build reads [bin] (client-
 
 ## 1.6 Era timeline
 
+The manual groups builds into thirteen eras. Inside an era the clients share their engine and wire format [bin] (version-profiles/matrix/README.md#eras). An era letter is a heading aid; facts stay attached to builds (→ §0.9).
+
+| Era | Builds | Dates | Engine | Source |
+| --- | --- | --- | --- | --- |
+| Z | Zelda Online 1 and 2 (Java applets), GServ Standalone | May to Jul 1998 | Java | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| A | 1st Graal to 1.1.9 Gold (20 builds) | Sep 1998 to Feb 1999 | Delphi 2-level compiler (2nd Graal: Delphi 4), DelphiX | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| B | 1.21, 1.28 beta 2, 1.3 test, 1.31, 1.32 | May 1999 to Jan 2000 | Delphi 4 from 1.28b2, DelphiX | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| 3D0 | Graal3D | Feb 2000 | Delphi, DelphiX Direct3D retained mode | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| C | 1.33 to 1.39 | Feb to Aug 2000 | Delphi 4, DelphiX | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| D | 1.41 rev1 | Nov 2000 | as C | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| E | NewMain 1.42, 2.00 to 2.05 rev2, 2.1 tests, NewWorld betas | Jan to Oct 2001 | as C, plus DirectDraw 7 | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| F | 2.1 to 2.17 (only 2.17.1 survives as a binary) | Oct 2001 to 2002 | as E, BASS audio from 2.17 at the latest | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| G | 2.22, 2.3 (no binary), 2.31 | 2004 to 2005 | as F | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| H | 3.04 Linux, 3.153 Mac | 2004 to 2005 | C++ on the Torque Game Engine | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| I | 4.04r2, 4.20r6, 4.20r8 | 2006 to 2007 | Delphi launcher + C++ `GraalEngine.dll` (+ `Graal3DEngine.dll`) | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| J | 5.00r7, 5.12; then 5.24 to 5.31 | 2007 to 2011 | 5.00 and 5.12 as I; from 5.24 one MSVC executable | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| K | 6.00 betas to 6.03r7, 6.11 Mac | 2010 to 2014 | one native C++ program per platform, no Torque layer | [bin][doc] (version-profiles/matrix/README.md#eras) |
+
+| Change | Between | Source |
+| --- | --- | --- |
+| largest single code step: about 800 more functions, partly new DirectDraw 7 and grid library code | 1.41 rev1 and NewMain 1.42 | [bin] (client-internals/cross-version-timeline.md#function-maps-onto-205-rev2) |
+| NewWorld beta 1 cut from the 2.05 code base; NewWorld beta 2 cut from the 2.1 test code base | 2001 | [bin] (client-internals/cross-version-timeline.md#classes) |
+| 2.1 test builds are a later branch of the 2.05 code: more functions than 2.05 but fewer unique to 2.05 rev2 | Sep 2001 | [bin][inf] (client-internals/cross-version-timeline.md#function-maps-onto-205-rev2) |
+
+Era-by-era wire, scripting and id-set differences are tabulated in → App. C.

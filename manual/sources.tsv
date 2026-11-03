@@ -33,7 +33,7 @@ client-internals/client-architecture-205.md	pending		4
 client-internals/client-assets.md	pending		3.10	
 client-internals/combat-200-204.md	pending		4.3	
 client-internals/config-and-input.md	pending		3.9	
-client-internals/cross-version-timeline.md	pending		1	
+client-internals/cross-version-timeline.md	pending	1; C	1	
 client-internals/damage-sources.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	pending		4	
@@ -419,7 +419,7 @@ version-profiles/lab-mac-tiger-2026-10-31.md	pending		1; C
 version-profiles/lab-serverwarp178.tsv	pending		1; C	
 version-profiles/lab-showimg24-relay.tsv	pending		1; C	
 version-profiles/lab-v5-2026-10-30.md	pending		1; C	
-version-profiles/matrix/README.md	pending		C; 4	
+version-profiles/matrix/README.md	pending	1; C	C; 4	
 version-profiles/matrix/builds-deltas.md	pending		C; 4	
 version-profiles/matrix/builds-static-survey.tsv	pending		C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	pending		C; 4	
