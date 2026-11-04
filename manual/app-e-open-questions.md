@@ -391,6 +391,13 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | the 2.05 Ctrl+letter path draws the emote locally and sends nothing, yet captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s; they may come from a server script calling `showimg` or from an untraced path | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | Settles it | a lab capture of a real 2.05 client pressing Ctrl+A next to a second client | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
+### E#323 Level-object routines not read (2.22)
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the throw of a lifted object, what a cut or lift drops, the carrying pose, the chest and sign probe points, the glove property value the server sends, snapping after a step, and the swim and carry speed factors were not read | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Settles it | reading those routines in the 2.22 client, or a lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+
 ### E#400 Two projects called Ash
 
 | Item | Content | Source |

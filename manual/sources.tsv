@@ -129,11 +129,11 @@ client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4
 client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	excluded		E	table form of 03-open-points.md in the same folder, which App. E cites
 client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
-client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		3.5	
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	cited	3.5	3.5	
 client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
-client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	pending		2.5	
+client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	cited	2.5	2.5	
 client-internals/decomp-findings-2026-10-25-l/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	pending		E	
+client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	cited	E	E	
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
