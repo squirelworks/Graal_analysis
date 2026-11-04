@@ -185,13 +185,14 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | which name maps to which id; the manual gives the documentation's names in its order, which is an inference | [inf] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
 | Settles it | tracing the 2.05 member parser | [inf] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
 
-### E#205 Index of the hare baddy
+### E#205 Index of the hare baddy (settled)
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Known | 2.05 ships `baddyhare.gif`, so a hare baddy type exists; the baddy name table has 10 names, 0–9 | [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables) |
-| Open | the hare's type index | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
+| Open | ~~the hare's type index~~ settled below, see `client-internals/baddies-222.md` | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
 | Settles it | reading the 2.05 baddy image selection by type | [inf] (npc-library/gs1-reference-205.md#constants-doc) |
+| Settled | type 5 (`frog`): the 2.22 client draws type 5 with `baddyhare.png` and plays `frog.wav` for it; the hare and the frog are one type | [2.22] (client-internals/baddies-222.md#types-222) |
 
 ### E#206 `move` option bits in 2.05
 

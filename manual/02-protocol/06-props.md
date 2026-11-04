@@ -207,15 +207,17 @@ The looks commands that change these props are GS1 behaviour (→ §8).
 | Id | Name | Encoding and notes | Source |
 | ---: | --- | --- | --- |
 | 0 | ID | — | [srv] (protocol/player-props.md#bdprop-baddy) |
-| 1 / 2 | X / Y | c(tiles × 2) | [srv] (protocol/player-props.md#bdprop-baddy) |
+| 1 / 2 | X / Y | c(tiles × 2); 2.22 clamps to 0–63 and also takes it as the start position | [srv] (protocol/player-props.md#bdprop-baddy); [2.22] (client-internals/baddies-222.md#the-props-222cap) |
 | 3 | TYPE | 0 graysoldier … 9 dragon (see GS1 baddy names) | [srv] (protocol/player-props.md#bdprop-baddy) |
 | 4 | POWERIMAGE | c(power) + str(image); an empty image means the default for the type | [srv][2.05] (protocol/player-props.md#bdprop-baddy) |
-| 5 | MODE | 0 walk, 1 look, 2 hunt, 3 hurt, 4 bumped, 5 die, 6 swamp-shot, 7 hare-jump, 9 dead; the 2.22 docs add 8 spider-shoot. On mode 5 the server switches to 9 after 2 s | [srv][doc] (protocol/player-props.md#bdprop-baddy) |
-| 6 | ANI | c | [srv] (protocol/player-props.md#bdprop-baddy) |
-| 7 | DIR | c(a × 4 + b): two directions in one byte, `a = v >> 2`, `b = v & 3` (which one is the head is not traced) | [srv][2.05] (protocol/player-props.md#bdprop-baddy) |
+| 5 | MODE | 0 walk, 1 look, 2 hunt, 3 hurt, 4 bumped, 5 die, 6 swamp soldier, 7 frog (hare image) jumping, 8 octopus ink, 9 dead. On mode 5 the server switches to 9 after 2 s; 9 removes the baddy on the client | [srv][doc] (protocol/player-props.md#bdprop-baddy); [2.22] (client-internals/baddies-222.md#the-props-222cap) |
+| 6 | ANI | c; in 2.22 this is the AI step counter, not an animation frame (44 when looking about starts, 16 when the hunt starts, 0, 3, 2, 1 while chasing) | [srv] (protocol/player-props.md#bdprop-baddy); [2.22][cap] (client-internals/baddies-222.md#the-counter) |
+| 7 | DIR | c(a × 4 + b): two directions in one byte, `a = v >> 2` the body, `b = v & 3` the head | [srv][2.05] (protocol/player-props.md#bdprop-baddy); [2.22] (client-internals/baddies-222.md#the-props-222cap) |
 | 8–10 | VERSESIGHT / VERSEHURT / VERSEATTACK | str each | [srv] (protocol/player-props.md#bdprop-baddy) |
 
 The baddy verses come from the backslash-separated verse line of the level file (→ §3) [srv] (protocol/player-props.md#bdprop-baddy).
+
+The whole 2.22 baddy (types, AI steps, damage, who owns which prop online) is in `client-internals/baddies-222.md` [2.22] (client-internals/baddies-222.md#who-owns-what).
 
 ## 2.6.6 Ids each parser accepts
 

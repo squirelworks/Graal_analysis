@@ -25,6 +25,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - `archive/` — archival notes on decommissioned experimental walkers and tileset work (Ember / Avelan). Full assets live in a Drive zip; see `archive/ember-avelan-experimental.md`.
 - `server-notes/public-allowed-versions.md` — which client versions public Reborn game servers allow: the two "Allowed:" lists on record (Graal the Adventure: 2.22 and 5.00r7; a gs2 server: 2.22 and a 1.41r1 to iPhone Belote range), how GServer-v2 reads `allowedversions.txt` ranges, and what that means for each 5.x and 6.x build.
 - `server-notes/setcharprop-hash-n.md` — `#n` in a `setcharprop` value is the triggering player's nickname on script-running servers (not the NPC's); GServer13 has no `setcharprop`.
+- `server-notes/baddies-serverside.md` and `server-notes/baddies/graysoldier-222.gs1` — how to recreate the 2.22 built-in baddies as serverside NPCs: real baddies (leader client) versus a server-run NPC, mapping the client's state onto a GS1 script, a complete gray soldier (type 0) with the 2.22 step, sight, sword, shield, knockback, touch, verses, respawn and `baddyitems` drops, the other types as deltas, and what differs.
 
 ## Newly scaffolded (2026-10-14)
 
@@ -45,6 +46,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/bare-level-names.md` — no client from 1st Graal to 2.05 adds `.zelda` to a bare level name or falls back between extensions; the editor adds `.graal` on save.
 - `client-internals/id24-205.md` — id 24 in 2.05 is the same weapon-image list as later (tags 0 to 6, 60-call full-list countdown, UDP id 15 twin); corrects the "four-field form" note.
 - `client-internals/damage-sources.md` — hearts taken by bombs, blasts, arrows and the other shots, thrown objects and baddies; hit boxes and the no-kill rule (2.05).
+- `client-internals/baddies-222.md` — the ten 2.22 baddies: types, power and images, what they read from `arrays.dat` (arrays 20, 22, 23, 24; structure only), the AI state machine in 100 ms steps (walk, look about, hunt, archer, hurt, shield bump, dying, swamp soldier, frog, octopus ink), target and sight rules, what blocks, sword and shield boxes, `PLI_BADDYHURT`, projectile and touch damage, drops and respawn (server side), the props and who owns what online; checked against real 2.22 captures. Settles App. E#205 (the hare is type 5, `frog`). Tools in `tools/baddy-222/`.
 - `client-internals/npcaction.md` — what `PLO_NPCACTION` (26) does: `GINT3` npc id + script text to the end of the message, replaces a server-wide NPC's (id ≥ 1000) script and fires `playerenters`; handled 1.28 beta 2 to 2.03, never after; lab-confirmed on 2.00.
 - `client-internals/serveroptions-198.md` — what the client does with `PLO_SERVEROPTIONS` (198): stores one `GINT5` on the connection and never reads it (5.24r3, 6.03 Linux and Windows); plus when `PLO_SETACTIVELEVEL` (156) arrived (2.01).
 - `client-internals/combat-200-204.md` — the sword hit test and hurt packet in 2.00 to 2.04 compared with 2.05 rev 2 (2.04 is the same; what 2.00 to 2.03 lack, by build).
