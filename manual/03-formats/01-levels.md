@@ -125,6 +125,7 @@ The 2.05 writer walks the 4096 tiles in order and picks one case at each positio
 | spaces | the level name may contain spaces; the tokens before the last six are rejoined into `dest` | [srv] (formats/level-binary.md#records) |
 | missing level | a link to a level that does not exist is dropped | [srv] (formats/level-binary.md#records) |
 | arrival | `newx` and `newy` may be `playerx` or `playery`, optionally followed by a signed number (`playery+10`) | [srv] (formats/level-binary.md#records) |
+| arrival in the corpus | of 18,710 arrival fields: 12,035 plain numbers (integers and half tiles), 6,652 bare `playerx`/`playery`, 21 keyword plus signed offset (`playerx-15`, `playery-1.5`) in 14 levels, 2 stray words; whether a client evaluates the offset is open. Destinations end `.graal` 9,203 times, `.nw` 140, `.enigma` 10 and with no extension 2 | [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
 | terminator | a line `#` or an empty line | [srv][2.05] (formats/level-binary.md#layout) |
 | negative arrival | 805 of 5381 distinct GR-V1 links in the old builds have a negative arrival; that 2.x reads it as "keep the player's coordinate", as Z3-V1 does, is inferred | [test][inf] (client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md#negative-arrivals) |
 
