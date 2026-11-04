@@ -1,0 +1,24 @@
+// Original NPC library: gossip
+// Category: dialogue / speech
+// Image: a character
+// Events: playerenters, playertouchsme
+//
+// Says one of five rumours at random on each touch.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head9.png;
+  setcharprop #C1,pink;
+  setcharprop #n,Nell;
+  dir = 2;
+  setcharani idle,;
+}
+
+if (playertouchsme) {
+  this.r = int(random(0,5));
+  if (this.r == 0) setcharprop #c,They say the blacksmith was a knight once.;
+  if (this.r == 1) setcharprop #c,Something big lives under the bridge.;
+  if (this.r == 2) setcharprop #c,The well water tastes of iron lately.;
+  if (this.r == 3) setcharprop #c,I saw lights in the old tower last night.;
+  if (this.r == 4) setcharprop #c,Don't tell anyone I told you.;
+}

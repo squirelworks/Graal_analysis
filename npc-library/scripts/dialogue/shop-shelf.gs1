@@ -1,0 +1,40 @@
+// Original NPC library: shelf item (touch twice to buy)
+// Category: dialogue / speech (shop / merchant)
+// Image: the item on display
+// Events: playerenters, playertouchsme, timeout
+//
+// For shops without a talking keeper. The first touch shows the price
+// above the item; a second touch within three seconds buys it. The item
+// here is a shield; change the marked lines for other goods.
+
+if (playerenters) {
+  timereverywhere;
+  setimg shield2.png;
+  this.price = 120;           // <- price
+  this.armed = 0;
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (this.armed == 0) {
+    this.armed = 1;
+    message #v(this.price) rupees - touch again to buy;
+    timeout = 3;
+  } else if (playershieldpower >= 2) {
+    this.armed = 0;
+    message You already have one.;
+  } else if (playerrupees < this.price) {
+    this.armed = 0;
+    message Not enough rupees.;
+  } else {
+    this.armed = 0;
+    playerrupees -= this.price;
+    setshield shield2.png,2;  // <- what is sold
+    play buy.wav;
+    message Sold!;
+  }
+}
+
+if (timeout) {
+  this.armed = 0;
+  message ;
+}

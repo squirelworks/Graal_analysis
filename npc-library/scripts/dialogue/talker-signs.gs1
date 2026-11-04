@@ -1,0 +1,24 @@
+// Original NPC library: talker that uses the level's sign texts
+// Category: dialogue / speech
+// Image: a seated figure, or a character
+// Events: playerenters, playertouchsme
+//
+// Long dialogue is easier to edit as level signs than inside a script.
+// This NPC shows sign 0, 1 or 2 of the level depending on quest progress,
+// using the index form of say (manual §8.2.4.1). Write the three texts as
+// the level's first three signs.
+
+if (playerenters) {
+  setimg sage.png;
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (quest_sage_done) {
+    say 2;
+  } else if (quest_sage_started) {
+    say 1;
+  } else {
+    set quest_sage_started;
+    say 0;
+  }
+}
