@@ -234,15 +234,15 @@ formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of sc
 formats/sign-text.md	cited	3.6	3.6	
 formats/tile-walk.md	pending	3.4; 3.5; E	3.5; 4.2	
 formats/tiletypes.txt	cited	3.5; E	3.5	
-graal3d/README.md	pending		9	
-graal3d/camera.md	pending		9	
-graal3d/client-behaviour.md	pending		9	
-graal3d/collision.md	pending		9	
-graal3d/formats.md	pending		9	
-graal3d/lab-2026-10-30.md	pending		9	
-graal3d/protocol.md	pending		9	
-graal3d/reference-server/README.md	pending		9	
-graal3d/torque-engine-4x.md	pending	8.3	10	
+graal3d/README.md	cited	9	9	
+graal3d/camera.md	cited	9; E	9	
+graal3d/client-behaviour.md	cited	9	9	
+graal3d/collision.md	cited	9	9	
+graal3d/formats.md	cited	9	9	
+graal3d/lab-2026-10-30.md	cited	9	9	
+graal3d/protocol.md	cited	9	9	
+graal3d/reference-server/README.md	excluded		9	a server reimplementation written from the notes; its matching message stream is cited through the lab note
+graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
 live-runs/2gta-222-2026-10-30/README.md	pending		4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
@@ -289,8 +289,8 @@ protocol/public-listserver-2026-10-25.tsv	cited	6	6
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
 protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
 protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
-protocol/v3x-clients.md	pending	2.2; 2.3; 2.5	1; 2.3; 10	
-protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; E	1; 2.3; 10	
+protocol/v3x-clients.md	pending	2.2; 2.3; 2.5; 10	1; 2.3; 10	
+protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E	1; 2.3; 10	
 protocol/v5v6-lab-play.md	pending	0; 2.2; 8.3; E	1; 2.3	
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
@@ -397,11 +397,11 @@ tools/remotecontrol-lineage.md	cited	7; E	7
 tools/remotecontrol.md	cited	7; E	7	
 tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	cited	5; 6; 7; E	7	
-torque/README.md	pending		10	
-torque/engine-and-formats.md	pending		10	
-torque/network.md	pending		10	
-torque/scripting.md	pending		10	
-torque/wire-by-build.md	pending		10	
+torque/README.md	cited	10	10	
+torque/engine-and-formats.md	cited	10; E	10	
+torque/network.md	cited	10	10	
+torque/scripting.md	cited	10	10	
+torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	pending	2.4; 2.6; 2.7; 2.9	1; C	
 version-profiles/2.22-2.31.toml	pending	2.4	1; C	
 version-profiles/3.04-3.153.md	pending	2.4; 2.5; E	1; C	
