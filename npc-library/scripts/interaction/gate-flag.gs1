@@ -1,0 +1,37 @@
+// Original NPC library: gate worked by a flag
+// Category: interaction / triggers, object / doors
+// Image: bars or a drawbridge gap cover
+// Events: playerenters, timeout
+// Flag read: lever_bridge (match the lever)
+//
+// Watches the flag twice a second and opens or closes as it changes, so a
+// lever in the same room works at once. this.invert = 1 makes a gate that
+// closes when the flag is set (one lever, two gates, either way through).
+
+function apply() {
+  this.want = 0;
+  if (lever_bridge) this.want = 1;
+  if (this.invert == 1) this.want = 1 - this.want;
+  if (this.want != this.shown) {
+    this.shown = this.want;
+    if (this.want == 1) {
+      hide;
+    } else {
+      show;
+    }
+  }
+}
+
+if (playerenters) {
+  timereverywhere;
+  setimg bars.png;
+  this.invert = 0;            // <- 1 to open when the flag is clear
+  this.shown = 0;
+  apply();
+  timeout = 0.5;
+}
+
+if (timeout) {
+  apply();
+  timeout = 0.5;
+}
