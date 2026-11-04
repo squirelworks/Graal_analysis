@@ -1,0 +1,34 @@
+// Original NPC library: chest with a weighted random reward
+// Category: object / chests
+// Image: chest sheet as in chest-rupees.gs1
+// Events: playerenters, playertouchsme
+// Flag set: chest_ruins_2 (rename per chest)
+//
+// Rolls a number from 0 to 100 once and pays out by range:
+//   0-54 a few rupees, 55-79 bombs, 80-94 arrows, 95-99 a heart container.
+// Edit the bounds to change the odds. The item lands in front of the chest
+// so the player sees what dropped.
+
+if (playerenters) {
+  if (chest_ruins_2) {
+    setimgpart chest.png,32,0,32,32;
+  } else {
+    setimgpart chest.png,0,0,32,32;
+  }
+}
+
+if (playertouchsme && playerdir == 0 && !chest_ruins_2) {
+  set chest_ruins_2;
+  setimgpart chest.png,32,0,32,32;
+  play chest.wav;
+  this.roll = int(random(0,100));
+  if (this.roll < 55) {
+    lay2 bluerupee,x+0.5,y+2;
+  } else if (this.roll < 80) {
+    lay2 bombs,x+0.5,y+2;
+  } else if (this.roll < 95) {
+    lay2 darts,x+0.5,y+2;
+  } else {
+    lay2 fullheart,x+0.5,y+2;
+  }
+}

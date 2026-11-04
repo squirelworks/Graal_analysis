@@ -1,0 +1,21 @@
+// Original NPC library: shutter that opens when the room is cleared
+// Category: object / doors
+// Image: shutter bars
+// Events: playerenters, compusdied
+//
+// Closed while the level's baddies live. When the last one dies the engine
+// fires compusdied and the shutter lifts. On re-entry it checks the count
+// again, so it stays open once the room is empty.
+
+if (playerenters) {
+  if (compuscount > 0) {
+    setimg shutter.png;
+  } else {
+    hide;
+  }
+}
+
+if (compusdied) {
+  play secret.wav;
+  hide;
+}

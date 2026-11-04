@@ -1,0 +1,31 @@
+// Original NPC library: countdown sign
+// Category: object / signs
+// Image: a small post or clock face
+// Events: playerenters, playertouchsme, timeout
+//
+// Touching the sign starts a countdown drawn above it. When it reaches
+// zero the sign says its closing line and resets. Useful as the start
+// post of a timed challenge.
+
+if (playerenters) {
+  setimg clockpost.png;
+  this.seconds = 10;          // <- length of the countdown
+  this.left = 0;
+}
+
+if (playertouchsme && this.left <= 0) {
+  this.left = this.seconds;
+  message #v(this.left);
+  timeout = 1;
+}
+
+if (timeout && this.left > 0) {
+  this.left--;
+  if (this.left > 0) {
+    message #v(this.left);
+    timeout = 1;
+  } else {
+    message Time!;
+    play timeup.wav;
+  }
+}
