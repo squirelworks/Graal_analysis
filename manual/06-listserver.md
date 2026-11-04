@@ -77,6 +77,7 @@ The listserver login differs by client generation, not by build; inside a genera
 | Id 1 carries one server record in the id 0 record layout and appends it to the list; when it is then the only row, it is selected | 2.00 | [bin] (client-internals/v2.00-connect-path.md#list-reply-bin) |
 | After id 0 the client fills the list and closes the list socket; a row is drawn only with at least 6 fields, and the detail view needs at least 8 | 2.00 | [bin] (client-internals/v2.00-connect-path.md#list-reply-bin) |
 | RC 1.41 reads 0 (server list), 1 (one more server entry), 2 (end, disconnect) and 4 (error text, disconnect), and shows name and player count | RC 1.41 | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| The 2004 RC logs in with client id 5, an empty token and an empty list name, then `str account`, `str password`; it shows name and player count from an id 0 list, and id 4 text in a message box | RC 2004 | [cap] (protocol/rc-capture-2026-11-04.md#rc-list-from-the-listserver) |
 | 2.22 shows the status lines and the Show More and Donations buttons, and files tagged servers under tabs (→ §6.4) | 2.22 | [lab] (tools/lab-servers/README.md#tests-run-2026-10-30) |
 
 ### 6.2.2 Reply frames seen
