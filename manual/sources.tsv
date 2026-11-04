@@ -90,15 +90,15 @@ client-internals/decomp-findings-2026-10-24/life-states.tsv	cited	4.4	4
 client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4	
 client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
-client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending		4; E	
-client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	cited	2.7	2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	cited	2.7	2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending	E	4; E	
+client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	cited	2.7; 4.3	2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/README.md	cited	2.7	4	
 client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		4; E	
-client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending	E	3.1; 4	
 client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.1; 4	
@@ -122,12 +122,12 @@ client-internals/decomp-findings-2026-10-25-j/README.md	excluded		4	index of the
 client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
-client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	pending		2.7	
-client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending		E	
+client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	cited	2.7	2.7	
+client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending	E	E	
 client-internals/decomp-findings-2026-10-25-k/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		E	
-client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	pending		2.7	
+client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		3.5	
 client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
