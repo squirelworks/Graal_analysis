@@ -224,6 +224,7 @@ docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a sourc
 docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, not Graal
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/gani.txt	cited	3.3	3.3	
 formats/glevnw01.txt	cited	3.1; E	3.1	
