@@ -1,0 +1,45 @@
+// Original NPC library: lift call panel (pair with lift-cabin.gs1)
+// Category: transport / level-warps
+// Image: a button panel
+// Events: playerenters, playertouchsme, timeout
+// Flags set: lift_floor_1, lift_floor_2, lift_floor_3 (one at a time)
+//
+// Pressing the panel (touch facing up) steps through the floors 1, 2, 3
+// and shows the choice above the panel. Exactly one lift_floor_N flag is set
+// at any time; the cabin reads it. The flags belong to the player, so two
+// players can ride to different floors.
+
+function showfloor() {
+  unset lift_floor_1;
+  unset lift_floor_2;
+  unset lift_floor_3;
+  if (this.floor == 1) set lift_floor_1;
+  if (this.floor == 2) set lift_floor_2;
+  if (this.floor == 3) set lift_floor_3;
+  message Floor #v(this.floor);
+}
+
+if (playerenters) {
+  timereverywhere;            // every client runs its own cool-down
+  setimg liftpanel.png;
+  this.floor = 1;
+  if (lift_floor_2) this.floor = 2;
+  if (lift_floor_3) this.floor = 3;
+  showfloor();
+  this.wait = 0;
+}
+
+// One press per half second, so a player leaning on the panel is not a
+// blur of floor numbers.
+if (playertouchsme && playerdir == 0 && this.wait == 0) {
+  this.wait = 1;
+  timeout = 0.5;
+  this.floor++;
+  if (this.floor > 3) this.floor = 1;
+  play click.wav;
+  showfloor();
+}
+
+if (timeout) {
+  this.wait = 0;
+}
