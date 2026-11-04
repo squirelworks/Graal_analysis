@@ -1,0 +1,30 @@
+// Original NPC library: NPC that answers keywords
+// Category: dialogue / speech
+// Image: a character (the librarian)
+// Events: playerenters, playertouchsme, playerchats
+//
+// Answers when a player within five tiles says a sentence containing one
+// of its keywords. Touching it lists the topics it knows.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head8.png;
+  setcharprop #C1,darkblue;
+  setcharprop #n,Librarian;
+  dir = 2;
+  setcharani idle,;
+}
+
+if (playertouchsme) {
+  setcharprop #c,Ask me about the tower, the lake or the king.;
+}
+
+if (playerchats && abs(playerx - x) < 5 && abs(playery - y) < 5) {
+  if (strcontains(#c,tower)) {
+    setcharprop #c,The tower was built by the first mage. Its top is sealed.;
+  } else if (strcontains(#c,lake)) {
+    setcharprop #c,They say a sword lies at the bottom of the lake.;
+  } else if (strcontains(#c,king)) {
+    setcharprop #c,The king has not left the castle in a year.;
+  }
+}

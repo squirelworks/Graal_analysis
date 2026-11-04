@@ -8,10 +8,10 @@ Build and era names are defined in → §1.1 and → §1.6. Each cell points bac
 | Era | Login token | Cipher gen | Message ids handled or sent | Props parsed | Scripting | Source |
 | --- | --- | --- | --- | --- | --- | --- |
 | Z | none | text lines (→ §2.3.1) | text lobby lines | n/a | none | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
-| A | none | 1 (no zlib) | relay lobby `N`, `P`, `C`, `D` lines; `D` payload types per build | relay `D` types | GS1-like; `this.` variables from 1.1 beta1 | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| A | none | 1 (no zlib) | relay lobby `N`, `P`, `C`, `D` lines; `D` payload types per build | relay `D` types | GS1-like; `this.` variables from 1.1 beta1 | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting); [bin] (client-internals/version-profiles/v1998-v11.toml) |
 | B | `GSERV007` to `GSERV018` | 2 (zlib, no cipher) | GSERV id ranges (→ §2.3.2) | unmeasured | GS1; NPC weapons from 1.21 | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
 | 3D0 | `GR3DV002` | own (2D codec, no key byte) | own renumbered ids (→ §9) | 3D floats, 24-bit colours | none | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
-| C | `GNW20020` to `GNW07080` | 2 | 1.33: S→C 0–41, 100; C→S 0–31; 45 and 35 ids by 1.39 | own 0–33/34, others 21–23 ids | GS1, 88 to 111 commands | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| C | `GNW20020` to `GNW07080` | 2 | 1.33: S→C 0–41, 100; C→S 0–31; 45 and 35 ids by 1.39 | own 0–33/34, others 21–23 ids | GS1, 88 to 111 commands | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting); [bin][doc] (client-internals/versions-133-139.md#protocol-changes) |
 | D | `GNW13110` | 3 | 1.41 additions (→ C.2) | props to 36 | GS1, 126 commands | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
 | E | `GNW08011` to `GNW03081`; NewWorld `G2N15041` | 3 | 2.05: 59 S→C ids | to 42 (2.05) | GS1, 134 to 161 commands; ganis from 1.42 | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
 | F | `GNW31101` (2.1) to `GNW22122` (2.17) | 3 | 2.17: 79 S→C, 61 C→S; TAMPERCHECK (39) from 2.17 | to 74 (gani attributes from 2.16) | GS1 and gani scripts (2.1); `this.` client strings (2.19) | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
@@ -108,3 +108,12 @@ Prop numbers grow at the end, so a decoder can use the later tables and stop at 
 
 Client-to-server ids sent by these builds are in → §2.4.2.
 
+## C.7 Lab runs of later real clients
+
+Each run used an unmodified client against a GServer-v2 lab on a loopback-only network, with hosts redirected by name [cap] (version-profiles/lab-304-linux-2026-10-30.md#setup-for-repeating-it); [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it).
+
+| Builds | How it ran | What it settled | Source |
+| --- | --- | --- | --- |
+| 3.04 (Linux) | the original packed executable on Xvfb with software GL | the listserver login is one plain frame holding ids 7 and 1, answered in gen 5; the game login frame is plain zlib with 5, 37 and two 34 requests, and every later frame is gen 5, including a bz2 reply | [cap] (version-profiles/lab-304-linux-2026-10-30.md#startup-and-listserver); [cap] (version-profiles/lab-304-linux-2026-10-30.md#game-login) |
+| 4.20r6, 3.153 (Mac) | Mac OS X 10.4 in an emulated PowerPC machine | 4.20r6 sends the login with a four-field comma list `mac`, an empty MAC hash, a 32-hex hash, and an empty field; 3.153 walks with X2 and Y2 | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#login-line-captured-run2pcap-proxylog); [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#walking-x2y2-confirmed) |
+| 5.00r7, 5.12, 5.24r4 | Wine on Xvfb behind a gen-5 logging proxy | the server reached through the licence file is treated as the Login server, where no characters and no HUD are drawn; stock gs2lib does not know the 5.24 token and serves it the pre-2.1 file layout | [cap] (version-profiles/lab-v5-2026-10-30.md#login-mode-why-nothing-is-drawn-at-first); [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it) |

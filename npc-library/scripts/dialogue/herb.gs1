@@ -1,0 +1,23 @@
+// Original NPC library: quest herb pickup (for quest-giver.gs1)
+// Category: dialogue / speech (quest item)
+// Image: a blue herb
+// Events: playerenters, playertouchsme
+// Flag set: herb_1 (use herb_2 and herb_3 for the other two copies)
+//
+// Only appears while the quest is running and the herb is not held or
+// already handed in.
+
+if (playerenters) {
+  if (quest_herbs_given && !quest_herbs_done && !herb_1) {
+    setimg blueherb.png;
+    dontblock;
+  } else {
+    hide;
+  }
+}
+
+if (playertouchsme && quest_herbs_given && !herb_1) {
+  set herb_1;
+  play item.wav;
+  hide;
+}

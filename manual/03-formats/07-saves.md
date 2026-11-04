@@ -156,6 +156,24 @@ n bytes   DES-ECB(VERGRAAL, plaintext)
 | DES variant | the class takes a second constructor argument (7) whose role is not pinned down; the 2.05 DES is textbook DES-ECB with each key byte bit-reversed, and the same handling is probably at work here, so a round trip should try the keys bit-reversed first | [inf] (formats/graalsav.md#gsave-15th-graal-on) |
 | open | no real save has been round-tripped | [bin] (formats/graalsav.md#gsave-15th-graal-on) |
 
+### 3.7.5.3 Saved passwords (1.3 test to 2.22)
+
+The client saves account passwords in the registry under `HKEY_CURRENT_USER\Software\Graal\Client`, as `password` and as `<account>:pass` per account [2.05] (client-internals/saved-passwords.md#warning-for-anyone-holding-old-installs).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| cipher | DES-ECB with standard tables, each key byte bit-reversed before the key schedule; the same routine as the `.gsave` DES | [2.05][test] (client-internals/saved-passwords.md#cipher) |
+| key | one fixed 8-byte key, the same in every copy of the client, so a saved value is as good as plain text to anyone who can read the registry or an export of it | [2.05] (client-internals/saved-passwords.md#warning-for-anyone-holding-old-installs) |
+| builds | the same key and form from 1.3 test (Nov 1999) to 2.05; a value saved by 1.31 or 1.32 in the lab decrypts the same way | [test] (client-internals/saved-passwords.md#warning-for-anyone-holding-old-installs) |
+| encrypt | cut the plaintext to 23 bytes; build 24 bytes: the length, the text, random padding; encrypt as three DES blocks; write each byte as two characters `(b >> 4) + 0x20`, `(b & 0x0F) + 0x20` | [2.05] (client-internals/saved-passwords.md#string-format-48-characters) |
+| decrypt | input under 48 characters, or a first decrypted byte of 0 or 24 and above, gives an empty string | [2.05] (client-internals/saved-passwords.md#string-format-48-characters) |
+| same text, new value | the random padding makes every save of the same password differ | [2.05] (client-internals/saved-passwords.md#string-format-48-characters) |
+| opting out | "Don't save the passwords" in More Options deletes the values when the client closes | [2.05] (client-internals/saved-passwords.md#warning-for-anyone-holding-old-installs) |
+| 2.22 | a 49-character value that starts with a marker character is decrypted with a second key held by the options form; any other value with the first key, so old saves still load; new saves use the marker and the second key | [2.22] (client-internals/des-and-hidden-strings.md#des-saved-passwords-and-the-web-cache-pointers) |
+| 2.22 account name | stored with the byte transform of the login (→ §2.3.3) | [2.22] (client-internals/des-and-hidden-strings.md#des-saved-passwords-and-the-web-cache-pointers) |
+| other uses | 2.05 builds its hidden listserver host the same way, from a key and a 48-character text assembled one character at a time (→ §6.1.1); the web-level cache uses the same DES with per-block keys (→ §3.8) | [2.05][cap] (client-internals/des-and-hidden-strings.md#hidden-strings); [2.05] (client-internals/saved-passwords.md#other-uses-of-the-same-cipher) |
+| what it protects | nothing; these schemes only keep the strings out of a casual string dump | [inf] (client-internals/des-and-hidden-strings.md#notes-for-tool-writers) |
+
 ## 3.7.6 Server account file (GRACC001)
 
 From 2.00 the save is the server's account file; the client receives it as its login burst (→ §2.3) [srv] (client-internals/feature-specs/05-save-load.md#what-it-is).

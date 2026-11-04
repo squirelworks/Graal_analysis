@@ -35,12 +35,12 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 6 | Part II §2.6 + App. B | done |
 | 6b | Part II §2.7–2.10 | done |
 | 7, 8 | Part III | done (#197) |
-| 9, 10 | Part IV | stub |
-| 11 | Parts V to VII | stub |
+| 9, 10 | Part IV | done (#207, #209, #210, #211) |
+| 11 | Parts V to VII | done (#204) |
 | 12 | Part VIII | done (#196) |
 | 13 | Parts IX, X | done (#205) |
 | 14 | Part XI + App. D, E | done |
-| 15 | audit and PDF build | not started |
+| 15 | audit and PDF build | audit done: `check_manual.py --final` passes; PDF not built in the repo |
 
 ## Checks
 

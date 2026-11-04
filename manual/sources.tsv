@@ -22,14 +22,14 @@ ash/INDEX.md	cited	5; E	5.2
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
-client-internals/bare-level-names.md	pending		4	
+client-internals/bare-level-names.md	cited	3.1	4	
 client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
 client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
 client-internals/build-catalogue.md	cited	0; 1; 2.1; 2.2; E	1; C	
 client-internals/build-diff-204-205.md	cited	8.2	4	
 client-internals/carry-hide-and-glove.md	cited	4.5; E	4	
 client-internals/chat-text.md	cited	2.8; 4.6	4	
-client-internals/client-architecture-205.md	pending		4	
+client-internals/client-architecture-205.md	cited	6	4	
 client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
 client-internals/combat-200-204.md	cited	4.3; E	4.3	
 client-internals/config-and-input.md	cited	3.9	3.9	
@@ -143,13 +143,13 @@ client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	ta
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
-client-internals/des-and-hidden-strings.md	pending		4	
-client-internals/drive-clients-inventory.md	pending		4	
-client-internals/early-clients.md	pending		4	
+client-internals/des-and-hidden-strings.md	cited	3.7	4	
+client-internals/drive-clients-inventory.md	cited	1	4	
+client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superseded by client-internals/build-catalogue.md, client-internals/versions-133-139.md and protocol/relay-1998.md, which the manual cites
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
-client-internals/feature-specs/04-death-respawn.md	pending		4.4	
+client-internals/feature-specs/04-death-respawn.md	cited	4.4	4.4	
 client-internals/feature-specs/05-save-load.md	cited	3.7	3.7; 4.10	
 client-internals/feature-specs/06-gmap-overworld.md	cited	3.2	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	excluded		2.9	reimplementation feature spec; its protocol facts are restated from protocol/udp-p2p.md and packet-layouts.md, cited in §2.9
@@ -163,7 +163,7 @@ client-internals/feature-specs/14-friends-ignore.md	cited	4.10	4.10
 client-internals/feature-specs/README.md	cited	4.10; E	4.10	
 client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
-client-internals/gameboy-demo.md	pending		4	
+client-internals/gameboy-demo.md	cited	1	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	cited	2.4	4	
 client-internals/item-drops.md	cited	4.5; E	4.5	
@@ -180,15 +180,15 @@ client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline 
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
 client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
-client-internals/precursor-runs-2026-10-30.md	pending		4	
-client-internals/precursors-and-fan-builds.md	pending		4	
+client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3	4	
+client-internals/precursors-and-fan-builds.md	cited	1; 2.3	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	
-client-internals/relay-room-bridge.md	pending		4	
+client-internals/relay-room-bridge.md	cited	2.3	4	
 client-internals/rendering-observations.md	cited	4.1	4	
-client-internals/saved-passwords.md	pending		4	
+client-internals/saved-passwords.md	cited	3.7	4	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/status-bit-0x20.md	cited	4.3	4.6	
@@ -196,21 +196,21 @@ client-internals/status-display.md	cited	4.6	4.6
 client-internals/v2.00-connect-path.md	cited	6	4	
 client-internals/version-id-map.md	cited	1	1; C	
 client-internals/version-profiles/141-217.toml	cited	2.4; E	1; C	
-client-internals/version-profiles/README.md	pending		1; C	
-client-internals/version-profiles/list-ports.md	pending		1; C	
+client-internals/version-profiles/README.md	excluded		1; C	usage notes for the profile files and their resolver script; the manual cites the profile files directly
+client-internals/version-profiles/list-ports.md	excluded		1; C	dialling advice for a reimplementation, by its own statement not what the binaries carry; the built-in hosts and ports are in §6.1.1 from the primary notes
 client-internals/version-profiles/v121-v132.toml	cited	2.4; E	1; C	
 client-internals/version-profiles/v133-v139.toml	cited	2.4	1; C	
-client-internals/version-profiles/v1998-v11.toml	pending		1; C	
+client-internals/version-profiles/v1998-v11.toml	cited	C	1; C	
 client-internals/version-tokens.md	cited	1; 2.3	1; C	
-client-internals/version/README.md	pending		1; C	
-client-internals/version/VERSION.md	pending		1; C	
-client-internals/version/docs/GraalEditor-README.md	pending		1; C	
-client-internals/version/docs/GraalEditor-architecture.md	pending		1; C	
-client-internals/version/docs/graal.txt	pending		1; C	
-client-internals/version/docs/graaleditor.txt	pending		1; C	
-client-internals/versions-133-139.md	pending		1; C	
+client-internals/version/README.md	excluded		1; C	packaging index for the version-id method notes
+client-internals/version/VERSION.md	cited	1	1; C	
+client-internals/version/docs/GraalEditor-README.md	excluded		1; C	packaged copy of the GraalEditor notes; §11.1 cites tools/graaleditor.md and tools/graaleditor-vs-205.md
+client-internals/version/docs/GraalEditor-architecture.md	excluded		1; C	packaged copy of the GraalEditor notes; §11.1 cites tools/graaleditor.md and tools/graaleditor-vs-205.md
+client-internals/version/docs/graal.txt	excluded		1; C	manual-page description of a local client folder layout used by the workspace; no client facts beyond the build catalogue
+client-internals/version/docs/graaleditor.txt	excluded		1; C	manual-page copy of the GraalEditor notes; §11.1 cites tools/graaleditor.md
+client-internals/versions-133-139.md	cited	C	1; C	
 client-internals/water-and-ganis.md	cited	4.1; 4.2; 4.3	4	
-client-internals/zelda-online-1998.md	pending		4	
+client-internals/zelda-online-1998.md	cited	1	4	
 docs/NEXT.md	excluded			repository task list, not Graal
 docs/book/00-how-to-read.md	cited	G	E	
 docs/book/01-a-level-and-a-session.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
@@ -244,24 +244,25 @@ graal3d/protocol.md	cited	9	9
 graal3d/reference-server/README.md	excluded		9	a server reimplementation written from the notes; its matching message stream is cited through the lab note
 graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
 live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
-live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
-live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
-live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4	
-live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	pending		4	
+live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	excluded		4	raw decoded log excerpt; its findings are in live-runs/2gta-222-2026-10-30/README.md, which the manual cites
+live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
+live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
+live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
 npc-library/README.md	cited	8.1	8	
 npc-library/archival-scripting-notes.md	cited	8.1	8	
-npc-library/behaviours.md	pending		8	
+npc-library/behaviours.md	cited	8.1	8	
 npc-library/gs1-command-reference-205.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
-npc-library/reference/forcesay.txt	pending		8	
-npc-library/reference/npcControl-NPC.txt	pending		8	
+npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
+npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/dialogue/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/enemies/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/interaction/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/objects/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/transport/README.md	excluded			original example scripts written for the repo, not evidence about Graal
-npc-library/tile-patterns.md	pending		8	
+npc-library/tile-patterns.md	excluded		8	scan output that read script text as tile ids (the pairs decode to ASCII); not usable
 protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md
 protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
@@ -416,20 +417,20 @@ version-profiles/3.04-3.153.md	cited	2.4; 2.5; E	1; C
 version-profiles/3.04-3.153.toml	cited	2.4	1; C	
 version-profiles/4.04-4.20.toml	cited	2.4	1; C	
 version-profiles/5.00-6.03.toml	cited	2.4; E	1; C	
-version-profiles/drive-clients-exes.tsv	pending		1; C	
+version-profiles/drive-clients-exes.tsv	cited	1	1; C	
 version-profiles/gen3-insertion-200-205.tsv	cited	2.1; 2.2; 2.3	2.2	
-version-profiles/lab-200-listserver-handshake.tsv	pending		1; C	
-version-profiles/lab-304-linux-2026-10-30.md	pending		1; C	
+version-profiles/lab-200-listserver-handshake.tsv	cited	6	1; C	
+version-profiles/lab-304-linux-2026-10-30.md	cited	C	1; C	
 version-profiles/lab-boardmodify2-186-trailer.tsv	cited	2.5	1; C	
 version-profiles/lab-enterlevel-231.tsv	cited	2.4	1; C	
-version-profiles/lab-gs13-respawn.tsv	pending		1; C	
-version-profiles/lab-levelchange-46-222-231.tsv	pending		1; C	
-version-profiles/lab-mac-tiger-2026-10-31.md	pending		1; C	
+version-profiles/lab-gs13-respawn.tsv	cited	5	1; C	
+version-profiles/lab-levelchange-46-222-231.tsv	cited	2.4	1; C	
+version-profiles/lab-mac-tiger-2026-10-31.md	cited	C	1; C	
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5	1; C	
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5	1; C	
-version-profiles/lab-v5-2026-10-30.md	pending		1; C	
+version-profiles/lab-v5-2026-10-30.md	cited	C	1; C	
 version-profiles/matrix/README.md	cited	1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
-version-profiles/matrix/builds-deltas.md	pending		C; 4	
+version-profiles/matrix/builds-deltas.md	cited	3.9	C; 4	
 version-profiles/matrix/builds-static-survey.tsv	cited	4.1; E	C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	
 version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	
@@ -445,6 +446,6 @@ version-profiles/plo-playerprops-layouts.tsv	cited	2.6; E	2.5; A
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	
 version-profiles/tampercheck-words.tsv	cited	2.4	4.10	
 version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	
-version-profiles/version-coverage-2026-10-24.md	pending		1; C	
-version-profiles/version-coverage-2026-10-24.tsv	pending		1; C	
-version-profiles/version-tokens-by-build.tsv	pending		1.2	
+version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning review for the Seihai version selector; its facts come from the per-build notes and lab records the manual cites
+version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
+version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
