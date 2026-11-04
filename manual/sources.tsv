@@ -14,21 +14,21 @@ archive/game-assets-2026-11-01.md	pending		E
 archive/game-assets-graphics-sound-2026-11-01.md	pending		E	
 archive/game-assets-websites-2026-11-01.md	pending		E	
 archive/game-assets-worlds-2026-11-01.md	pending		E	
-ash/ALGORITHMS.md	pending		5.2	
-ash/ARCHITECTURE.md	pending		5.2	
-ash/ARCHIVAL-NOTE.md	pending		5.2	
-ash/BLUEPRINT.md	pending		5.2	
-ash/INDEX.md	pending		5.2	
+ash/ALGORITHMS.md	cited	5	5.2	
+ash/ARCHITECTURE.md	cited	5; 7	5.2	
+ash/ARCHIVAL-NOTE.md	cited	E	5.2	
+ash/BLUEPRINT.md	cited	5	5.2	
+ash/INDEX.md	cited	5; E	5.2	
 ash/OPCODE-MAP.md	pending		2.4; 2.5; A	
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/bare-level-names.md	pending		4	
-client-internals/board-respawn.md	pending		4.5; 5	
+client-internals/board-respawn.md	pending	5	4.5; 5	
 client-internals/body-colours-and-attributes.md	pending	2.6	2.6	
 client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
 client-internals/build-diff-204-205.md	pending	8.2	4	
 client-internals/carry-hide-and-glove.md	pending		4	
-client-internals/chat-text.md	pending		4	
+client-internals/chat-text.md	pending	2.8	4	
 client-internals/client-architecture-205.md	pending		4	
 client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
 client-internals/combat-200-204.md	pending		4.3	
@@ -50,7 +50,7 @@ client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md	pendi
 client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	pending		4	
 client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	pending		4	
 client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	pending		4	
+client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	cited	2.9	4	
 client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	pending		4	
 client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	pending		4	
 client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md	pending		4	
@@ -152,7 +152,7 @@ client-internals/feature-specs/03-inventory.md	pending		4.10
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
 client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10	
 client-internals/feature-specs/06-gmap-overworld.md	pending	3.2	3.2; 4.10	
-client-internals/feature-specs/07-udp-peer.md	pending		2.9	
+client-internals/feature-specs/07-udp-peer.md	excluded		2.9	reimplementation feature spec; its protocol facts are restated from protocol/udp-p2p.md and packet-layouts.md, cited in §2.9
 client-internals/feature-specs/08-tampercheck.md	pending		4.10	
 client-internals/feature-specs/09-options.md	pending		4.6	
 client-internals/feature-specs/10-right-click-menu.md	pending		4.10	
@@ -172,7 +172,7 @@ client-internals/ledges-push-pull.md	pending		4.2
 client-internals/level-editor-205.md	pending	8.1	4.9	
 client-internals/live-behaviour-404.md	pending	8.1; 8.3	4	
 client-internals/live-checks-editor-offline-sound.md	pending		4	
-client-internals/live-gserver13.md	pending		5.1	
+client-internals/live-gserver13.md	cited	5	5.1	
 client-internals/live-trace-205.md	pending		4	
 client-internals/live-trace-early.md	pending		4	
 client-internals/newworld-betas.md	pending	8.2	4	
@@ -258,43 +258,43 @@ npc-library/reference/npcControl-NPC.txt	pending		8
 npc-library/tile-patterns.md	pending		8	
 protocol/OPCODE-SUMMARY.md	pending		2.4; 2.5; A	
 protocol/PROTOCOL-CHEATSHEET.md	pending	E	2	
-protocol/chat-pm-rc.md	pending	2.4; 2.5	2.8; 7	
+protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/client-versions.md	pending	2.1; 2.2; 2.3; 2.5	1; 2.2	
 protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3; 2.5; E	2.1; 2.2	
 protocol/cross-version-anchors.md	pending		2	
 protocol/crosscheck-captures-vs-research.md	pending		2	
-protocol/file-transfer.md	pending		2.7	
+protocol/file-transfer.md	cited	2.7; E	2.7	
 protocol/format-notes-from-salvage.md	pending	E	2	
 protocol/graphics-movement-bytecode.md	pending	8.3; 8.4; E	8.4	
-protocol/gserv-1999.md	pending	2.1; 2.2; 2.3; C; E	2.3; 5.1	
+protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	pending		2	
-protocol/listserver-login-type-matrix-2026-10-25.md	pending		6	
-protocol/listserver-login-type-matrix-2026-10-25.tsv	pending		6	
-protocol/listserver.md	pending		6	
-protocol/login-and-walk.md	pending	2.3; 2.4; E	2.3	
-protocol/login-frames-by-version-2026-10-25.md	pending	2.1; E	2.3	
+protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
+protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
+protocol/listserver.md	cited	6; E	6	
+protocol/login-and-walk.md	pending	2.3; 2.4; 7; E	2.3	
+protocol/login-frames-by-version-2026-10-25.md	pending	2.1; 6; E	2.3	
 protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	pending	2.2; 2.3; E	2.3	
 protocol/medium-term-expansion.md	pending		2	
 protocol/medium-term-slice.md	pending		2	
-protocol/npc-control.md	pending		7	
+protocol/npc-control.md	cited	7; E	7	
 protocol/offline-expansion.md	pending		2	
 protocol/packet-id-diff.md	pending		2.4; 2.5; A	
-protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
-protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 2.6; 8.3; 8.4; E	2.4; 2.5; A	
+protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
+protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	
 protocol/pcap-2026-10-04.md	pending		2	
-protocol/player-props.md	cited	2.6; B	2.6; B	
-protocol/public-listserver-2026-10-25.md	pending		6	
-protocol/public-listserver-2026-10-25.tsv	pending		6	
+protocol/player-props.md	cited	2.6; 2.8; B	2.6; B	
+protocol/public-listserver-2026-10-25.md	cited	6; E	6	
+protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
 protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
-protocol/udp-p2p.md	pending		2.9	
+protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
 protocol/v3x-clients.md	pending	2.2; 2.3; 2.5	1; 2.3; 10	
 protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; E	1; 2.3; 10	
 protocol/v5v6-lab-play.md	pending	0; 2.2; 8.3; E	1; 2.3	
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
-protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; E	1; 2.10	
+protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E	1; 2.10	
 recovered-drive-tools/INVENTORY.md	excluded		11	download inventory of the recovered Drive corpus; logistics, no Graal behaviour
 recovered-drive-tools/SALVAGE_CANDIDATES.md	excluded		11	reimplementation placement plan
 recovered-drive-tools/SALVAGE_PLACEMENT.md	excluded		11	reimplementation placement plan
@@ -351,21 +351,21 @@ recovered-hacks/static-2026-11-01/waterget.md	pending		4.10; 11
 release/0.0.1/README.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
 release/0.0.1/RELEASE-0.0.1.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
 release/0.0.1/contents.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
-server-notes/01-lineage.md	pending		5	
-server-notes/03-protocol.md	pending		5	
-server-notes/04-algorithms.md	pending		5	
-server-notes/README.md	pending		5	
-server-notes/ash-overview.md	pending		5	
-server-notes/lab-servers-2026-10-30.md	pending		5	
-server-notes/public-allowed-versions.md	pending		5	
-server-notes/setcharprop-hash-n.md	pending		5	
+server-notes/01-lineage.md	cited	5; E	5	
+server-notes/03-protocol.md	cited	5; 6	5	
+server-notes/04-algorithms.md	cited	5; 7	5	
+server-notes/README.md	excluded		5	index of server-notes/; its notes are cited directly
+server-notes/ash-overview.md	cited	5; E	5	
+server-notes/lab-servers-2026-10-30.md	cited	5; 6; E	5	
+server-notes/public-allowed-versions.md	cited	5; E	5	
+server-notes/setcharprop-hash-n.md	cited	5	5	
 tools/README.md	excluded		11	index of the tools folder; the notes it lists are cited or excluded one by one
 tools/build-diff/README.md	excluded		11	repository analysis tooling, not Graal
 tools/classic-tools/README.md	cited	11	6; 11	
 tools/classic-tools/character-designer.md	cited	11	6; 11	
 tools/classic-tools/graal-level-gen.md	cited	11	6; 11	
-tools/classic-tools/gserverstat.md	cited	11	6; 11	
-tools/classic-tools/serverlist3.md	cited	11; E	6; 11	
+tools/classic-tools/gserverstat.md	cited	5; 11	6; 11	
+tools/classic-tools/serverlist3.md	cited	6; 11; E	6; 11	
 tools/classic-tools/text-convert.md	cited	11	6; 11	
 tools/generators-222/README.md	cited	11	11	
 tools/generators.md	cited	11	11	
@@ -375,10 +375,10 @@ tools/gif2mng.md	cited	11	11
 tools/graaleditor-vs-205.md	cited	11	11	
 tools/graaleditor.md	cited	11; E	11	
 tools/graalshop.md	cited	11	11	
-tools/lab-servers/README.md	pending		6	
-tools/lab-servers/clver-5-24-lab/console-patched.txt	pending		6	
-tools/lab-servers/clver-5-24-lab/console-stock.txt	pending		6	
-tools/lab-servers/clver-5-24-lab/proxy-files.txt	pending		6	
+tools/lab-servers/README.md	cited	5; 6	6	
+tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
+tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
+tools/lab-servers/clver-5-24-lab/proxy-files.txt	excluded		6	raw lab proxy log; the result is summarised in tools/lab-servers/README.md
 tools/lab-setup.md	excluded		11	lab procedure
 tools/level-convert/README.md	excluded		11	a reimplementation converter written for this project
 tools/level-convert/SEIHAI-FORMAT.md	excluded		11	reimplementation package format
@@ -389,22 +389,22 @@ tools/level-editor/seihai-tracking.md	excluded		11	reimplementation tracking che
 tools/level-editor/version-deltas.md	cited	11; E	11	
 tools/level-tools-gaps/README.md	cited	11	11	
 tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
-tools/npc-control.md	pending		7	
-tools/npcserver-2001.md	pending		7	
+tools/npc-control.md	cited	6; 7; E	7	
+tools/npcserver-2001.md	cited	5; 7	7	
 tools/release/README.md	excluded			repository tooling for the notes, not Graal
 tools/release/how-to-read.md	excluded			repository tooling for the notes, not Graal
-tools/remotecontrol-lineage.md	pending		7	
-tools/remotecontrol.md	pending		7	
+tools/remotecontrol-lineage.md	cited	7; E	7	
+tools/remotecontrol.md	cited	7; E	7	
 tools/respawn-lab/README.md	excluded		11	lab procedure
-tools/server-tools-2001.md	pending		7	
+tools/server-tools-2001.md	cited	5; 6; 7; E	7	
 torque/README.md	pending		10	
 torque/engine-and-formats.md	pending		10	
 torque/network.md	pending		10	
 torque/scripting.md	pending		10	
 torque/wire-by-build.md	pending		10	
-version-profiles/2.22-2.31.md	pending	2.4; 2.6	1; C	
+version-profiles/2.22-2.31.md	pending	2.4; 2.6; 2.7; 2.9	1; C	
 version-profiles/2.22-2.31.toml	pending	2.4	1; C	
-version-profiles/3.04-3.153.md	pending	2.4; 2.5	1; C	
+version-profiles/3.04-3.153.md	pending	2.4; 2.5; E	1; C	
 version-profiles/3.04-3.153.toml	pending	2.4	1; C	
 version-profiles/4.04-4.20.toml	pending	2.4	1; C	
 version-profiles/5.00-6.03.toml	pending	2.4; E	1; C	
@@ -429,14 +429,14 @@ version-profiles/matrix/rules-1st-graal.md	pending		C; 4
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	
 version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	
-version-profiles/plo-layouts-217-231.tsv	cited	2.5	2.5; A	
+version-profiles/plo-layouts-217-231.tsv	cited	2.5; 2.7	2.5; A	
 version-profiles/plo-levellink-layouts.tsv	cited	2.5	2.5; A	
 version-profiles/plo-npcprops-layouts.tsv	cited	2.6; E	2.5; A	
 version-profiles/plo-otherplprops-layouts.tsv	cited	2.6	2.5; A	
 version-profiles/plo-playerprops-layouts.tsv	cited	2.6; E	2.5; A	
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	
 version-profiles/tampercheck-words.tsv	pending		4.10	
-version-profiles/udp-ids-200-204.tsv	pending		2.9; A	
+version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	
 version-profiles/version-coverage-2026-10-24.md	pending		1; C	
 version-profiles/version-coverage-2026-10-24.tsv	pending		1; C	
 version-profiles/version-tokens-by-build.tsv	pending		1.2	
