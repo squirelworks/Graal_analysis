@@ -1,0 +1,30 @@
+// Original NPC library: lift cabin floor (pair with lift-panel.gs1)
+// Category: transport / level-warps
+// Image: the cabin floor plate
+// Events: playerenters, playertouchsme
+// Flags read: lift_floor_1, lift_floor_2, lift_floor_3
+//
+// Stepping on the plate rides to the floor chosen on the panel. Put one
+// panel and one cabin on each floor's level; give each floor's cabin its
+// own idea of "here" so riding to the current floor just says so.
+
+if (playerenters) {
+  setimg liftfloor.png;
+  dontblock;
+  drawunderplayer;
+  this.here = 1;              // <- which floor this level is
+}
+
+if (playertouchsme) {
+  if ((lift_floor_1 && this.here == 1) || (lift_floor_2 && this.here == 2) || (lift_floor_3 && this.here == 3)) {
+    message You are on this floor.;
+  } else if (lift_floor_1) {
+    setlevel2 tower_floor1.graal,30,40;
+  } else if (lift_floor_2) {
+    setlevel2 tower_floor2.graal,30,40;
+  } else if (lift_floor_3) {
+    setlevel2 tower_floor3.graal,30,40;
+  } else {
+    message Press the panel first.;
+  }
+}

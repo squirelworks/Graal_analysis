@@ -1,0 +1,26 @@
+// Original NPC library: gaze statue
+// Category: interaction / visibility
+// Image: a statue with glowing eyes
+// Events: playerenters, timeout
+//
+// Freezes the player for a second whenever they cross the statue's line of
+// sight: the same column below it, within six tiles. Then it rests for
+// three seconds so the player can get past.
+
+if (playerenters) {
+  timereverywhere;
+  setimg statue.png;
+  this.rest = 0;
+  timeout = 0.1;
+}
+
+if (timeout) {
+  if (this.rest > 0) {
+    this.rest -= 0.1;
+  } else if (abs(playerx + 1 - x) < 1 && playery > y && playery - y < 6) {
+    freezeplayer 1;
+    play zap.wav;
+    this.rest = 3;
+  }
+  timeout = 0.1;
+}
