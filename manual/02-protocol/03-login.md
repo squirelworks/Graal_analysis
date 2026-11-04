@@ -39,6 +39,12 @@ Tokens are listed in → §1.2.2, frames in → §2.1.4 and ciphers in → §2.2
 | S→C | `D<data>` | relayed data | [bin] (protocol/relay-1998.md#lobby-lines) |
 | S→C | `NR`, `NL` | sent right after `N` by the 1.1.9 server: `NR` = relay levels, `NL` = local levels (the client then starts in `onlinestartlocal.graal`); a server with local levels sends `NR` then `NL` | [bin][cap] (protocol/relay-1998.md#lobby-lines) |
 | C→S | `O`, `S`, `V<id>` | observer, super user, observe a player; accepted by the 1.1.9 server | [bin] (protocol/relay-1998.md#lobby-lines) |
+| C→S | `O<game>#<name>` | in Knorr's GServ Standalone (1997): join as an observer, who sees the players of that game already in a party | [src] (client-internals/precursors-and-fan-builds.md#network-gserv-standalone-and-the-java-clients) |
+| C→S | `S<name>` | GServ Standalone: super user, who sees every player of every game as `name (game)` | [src] (client-internals/precursors-and-fan-builds.md#network-gserv-standalone-and-the-java-clients) |
+| C→S | `+` | GServ Standalone: available again after `-` | [src] (client-internals/precursors-and-fan-builds.md#network-gserv-standalone-and-the-java-clients) |
+| C→S | `V<id8>` | GServ Standalone: watch a player and receive their party's `D` traffic | [src] (client-internals/precursors-and-fan-builds.md#network-gserv-standalone-and-the-java-clients) |
+| C→S | `H<score>` | high score; GServ Standalone ignores it | [src] (client-internals/precursors-and-fan-builds.md#network-gserv-standalone-and-the-java-clients) |
+| S→C | `+<id8><name>` | GServ Standalone sends the name directly after the id; `D` is relayed unchanged, without the sender | [src] (client-internals/precursors-and-fan-builds.md#network-gserv-standalone-and-the-java-clients) |
 
 ### 2.3.1.3 Game names
 
@@ -54,9 +60,28 @@ Tokens are listed in → §1.2.2, frames in → §2.1.4 and ciphers in → §2.2
 | 13th Graal | `Graal7` | [bin] (protocol/relay-1998.md#game-names) |
 | 14th, 15th Graal, 1.1, 1.1.9 | `Graal8` | [bin] (protocol/relay-1998.md#game-names) |
 
-In 1st Graal, `Zelda2` is used by one branch only; the other, chosen when the network client is created, builds the name from the level file's base name as `Z` + base + `2` (`level1.zelda` gives `Zlevel12`); which branch normal play takes was not traced [bin] (client-internals/decomp-findings-2026-10-24/06-first-graal.md#game-room-name-new-detail); [bin] (client-internals/decomp-findings-2026-10-24/08-contradictions.md#contradicts-or-corrects).
+In 1st Graal, `Zelda2` is used by one branch only; the other, chosen when the network client is created, builds the name from the level file's base name as `Z` + base + `2` (`level1.zelda` gives `Zlevel12`); a live 1st Graal joined `Zhouse12` and `Zelda2` (table below) [bin] (client-internals/decomp-findings-2026-10-24/06-first-graal.md#game-room-name-new-detail); [bin] (client-internals/decomp-findings-2026-10-24/08-contradictions.md#contradicts-or-corrects).
 
 The constant is the fallback. On a level the client sends `G<n>` plus the level's location (a web level's URL without `http://`), so each level is its own room and players meet only on the same level and a compatible build [bin][live] (protocol/relay-1998.md#game-names).
+
+| Build | Level room | Game-wide room | Source |
+| --- | --- | --- | --- |
+| Zelda Online 2 (Java, 1998) | `Z` + level base name + `1.6` (`Zlevel11.6`) | none | [src][live] (client-internals/precursors-and-fan-builds.md#zelda-online-2-client); [live] (client-internals/precursor-runs-2026-10-30.md#what-the-wire-showed) |
+| 1st Graal | `Z` + level base name + `2` (`Zhouse12`) | `Zelda2` | [live] (client-internals/relay-room-bridge.md#rooms-each-build-joins) |
+| 3rd Graal | `G` + level file (`Ghouse1.graal`) | `Graal` | [live] (client-internals/relay-room-bridge.md#rooms-each-build-joins) |
+| 4th Graal alpha | `G2` + level file (`G2level13.graal`) | `Graal2` | [live] (client-internals/relay-room-bridge.md#rooms-each-build-joins) |
+| 5th Graal | `G3` + level file | `Graal3` | [live] (client-internals/relay-room-bridge.md#rooms-each-build-joins) |
+| Java Graal (July 2000) | `G2` + level file | none; a `Graal2` mode exists but is never selected | [live] (client-internals/relay-room-bridge.md#rooms-each-build-joins); [src] (client-internals/precursors-and-fan-builds.md#java-graal-client) |
+
+| Rule | Source |
+| --- | --- |
+| Every Delphi beta opens two relay connections, one per level room and one game-wide; the Java clients open one | [live] (client-internals/relay-room-bridge.md#rooms-each-build-joins) |
+| Java Graal dials its own codebase host on 14802 and speaks 4th Graal alpha's dialect: the two met and chatted on a stock GServ | [live] (client-internals/relay-room-bridge.md#result) |
+| Java Graal and 5th Graal met through a proxy that renamed the `G2` level room to `G3`; the `D` lines needed no change, since each side ignores the types it does not know | [live] (client-internals/relay-room-bridge.md#result); [inf] (client-internals/relay-room-bridge.md#what-this-means) |
+| A renaming bridge must keep the level part; mapping a level room onto a game-wide room would put players on different levels together | [inf] (client-internals/relay-room-bridge.md#what-this-means) |
+| When two clients each answer the other's `+` with `P`, GServ links the pair twice and delivers every later `D` line twice; Zelda Online 2 and Java Graal both did this | [live] (client-internals/precursor-runs-2026-10-30.md#what-the-wire-showed) |
+| `D` types: Zelda Online 2 uses `P C N S M H B T D E O W A`; Java Graal drops `S` (colours) and adds `L` (level name), so Java players show default colours | [src] (client-internals/precursors-and-fan-builds.md#java-graal-client) |
+| The level-leader rule (earliest login time, ties to the lower id) comes from Zelda Online 2 | [src] (client-internals/precursors-and-fan-builds.md#zelda-online-2-client) |
 
 ### 2.3.1.4 `D` payloads
 

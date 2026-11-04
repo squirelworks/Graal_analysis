@@ -99,3 +99,16 @@ Builds that carry the group test's delimiter set, by a constant scan, with the r
 | 2.00 to 2.05 rev 2, NewMain 24 and 26, NewWorld beta 1 | present (rule read in all 2.00 to 2.05 builds) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.1 test 2 and 3, NewWorld beta 2 | absent; their entry code not read (→ App. E#315) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.17.1, 2.22, 2.31 | absent; entry code read, no group test | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
+
+## 4.4.5 Server side (GServer-v2)
+
+Death is client-driven; the server reacts only to the dead bit of STATUS (prop 18) changing [srv] (client-internals/feature-specs/04-death-respawn.md#what-it-is).
+
+| Event | Server action | Source |
+| --- | --- | --- |
+| dies (bit 0 → 1) | outside a sparring zone, adds a death and drops random gralats between `mindeathgralats` and `maxdeathgralats` as a floor item, plus items when `dropitemsdead` is set; a dead level leader hands leadership to the next player, who gets `PLO_ISLEADER` (10) | [srv] (client-internals/feature-specs/04-death-respawn.md#exact-server-behaviour-tplayerpropscpp-status-case-srv) |
+| revives (bit 1 → 0) | sets hearts by AP (under 20: 3; under 40: 5; else MAXPOWER; at least 0.5), pushes CURPOWER to the player and the level, and re-sends `ISLEADER` to a leader; it does not move the player | [srv] (client-internals/feature-specs/04-death-respawn.md#exact-server-behaviour-tplayerpropscpp-status-case-srv) |
+| `PLI_CLAIMPKER` (14) | ignored for a self-kill or an unknown killer; in a sparring zone both players get a rating update (skipped when they share an IP); elsewhere the killer gets a kill and, with the AP system on, can lose AP | [srv] (client-internals/feature-specs/04-death-respawn.md#exact-server-behaviour-tplayerpropscpp-status-case-srv) |
+| AP | with `apsystem` on, a per-second countdown raises AP by 1 (to 100) and reloads from `aptime0` to `aptime4` by AP band; it does not run while paused or in a sparring zone | [srv] (client-internals/feature-specs/04-death-respawn.md#exact-server-behaviour-tplayerpropscpp-status-case-srv) |
+| hearts | no periodic regeneration; a client CURPOWER above the server's value is refused while AP is under 40 | [srv] (client-internals/feature-specs/04-death-respawn.md#exact-server-behaviour-tplayerpropscpp-status-case-srv) |
+| idle | `disconnectifnotmoved` with `maxnomovement` disconnects an idle player with a message | [srv] (client-internals/feature-specs/04-death-respawn.md#exact-server-behaviour-tplayerpropscpp-status-case-srv) |

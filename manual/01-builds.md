@@ -7,7 +7,7 @@ This part names every client build the notes cover. Every other part keys its ve
 
 ### 1.1.1 Delphi and Java clients, 1998 to 2001
 
-One row per executable, sorted by link date. *Compiled* is the resource-directory timestamp in local time; *Gen* is the encryption generation (→ §1.4); *Levels and saves* lists the level, map and save magics the loader compares against (→ §1.5). Default hosts and list names are in → §6.
+Most 1998 to 2001 executables come from one shared archive of 73 executables in 55 folders [file] (client-internals/drive-clients-inventory.md#versions-present); [file] (version-profiles/drive-clients-exes.tsv). *FileVersion* is read from the PE version resource, not from program logic [bin] (client-internals/version/VERSION.md#primary-method-pe-version-resource). One row per executable, sorted by link date. *Compiled* is the resource-directory timestamp in local time; *Gen* is the encryption generation (→ §1.4); *Levels and saves* lists the level, map and save magics the loader compares against (→ §1.5). Default hosts and list names are in → §6.
 
 | Archive | Release | Compiled | FileVersion | MD5 | Size | Token | Gen | Levels and saves | Source |
 | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
@@ -146,7 +146,7 @@ The version token is the eight-character string a client sends in its login (→
 | NewWorld | `G2N` + DDMMY | NewWorld betas 1 and 2 | same date form | [bin] (client-internals/build-catalogue.md#catalogue) |
 | 3D era | `G3D` + date digits | 3.x to 6.x | the 3.x tokens carry the same date stamps as their 2.x protocol twins (G3D03014 and GNW03014); later suffixes include hex-like letters (G3D0311C, G3D0108A) | [bin] (client-internals/version-id-map.md#protocol-token--version); [cap] (client-internals/version-tokens.md) |
 
-A revision that does not change the protocol keeps the previous token: 2.0 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05 rev1 and rev2, and the 2.1 test builds, which still send the 2.05 token GNW03081 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). Among those revisions only 2.02 rev2 changes the token, and it also adds the `PLI_LANGUAGE` send after login [bin] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#what-changed-in-the-login-function-between-revisions); [bin] (client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv). From 1.38 the token is built one character at a time in code rather than stored as a string literal [bin] (client-internals/build-catalogue.md#how-each-column-was-read).
+A revision that does not change the protocol keeps the previous token: 2.0 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05 rev1 and rev2, and the 2.1 test builds, which still send the 2.05 token GNW03081 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). Among those revisions only 2.02 rev2 changes the token, and it also adds the `PLI_LANGUAGE` send after login [bin] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#what-changed-in-the-login-function-between-revisions); [bin] (client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv); [bin] (version-profiles/version-tokens-by-build.tsv). From 1.38 the token is built one character at a time in code rather than stored as a string literal [bin] (client-internals/build-catalogue.md#how-each-column-was-read).
 
 A server accepts a range of tokens rather than one: GServer 1.28 accepts GSERV007 to GSERV013 and GServer13 accepts GSERV007 to GSERV014 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). A lab GServer-v2 admits a client when its token is in the allowed-versions list, which for 2.00 is a configuration entry, not a code change [lab] (client-internals/version-tokens.md). Server-side token handling is in → §5.4.
 
@@ -293,3 +293,53 @@ The manual groups builds into thirteen eras. Inside an era the clients share the
 | 2.1 test builds are a later branch of the 2.05 code: more functions than 2.05 but fewer unique to 2.05 rev2 | Sep 2001 | [bin][inf] (client-internals/cross-version-timeline.md#function-maps-onto-205-rev2) |
 
 Era-by-era wire, scripting and id-set differences are tabulated in → App. C.
+
+## 1.7 Precursors and side builds
+
+These builds sit around the Delphi client line. The uploads hold 9 distinct items under 14 names [file] (client-internals/precursors-and-fan-builds.md#what-the-uploads-are).
+
+| Date | Build | What it is | Source |
+| --- | --- | --- | --- |
+| 1998-05 | Zelda Online 1 | Java 1.0 applet, single player, no socket code; `Z3-V1.02` and `Z3-V1.03` levels, start `level1.zelda` | [bin] (client-internals/precursors-and-fan-builds.md#zelda-online-1-may-1998) |
+| 1998-07 | Zelda Online 2 "local version" | Java 1.1 application with one-player and multiplayer modes, the GServ Standalone lobby on 14801 and the author's commented source; 51 `Z3-V1.03` levels | [src] (client-internals/precursors-and-fan-builds.md#zelda-online-2-local-version-july-1998) |
+| 1998-07 | ZeldaEditor | Delphi 3 level editor; writes only `Z3-V1.03` | [bin] (client-internals/precursors-and-fan-builds.md#zeldaeditor-july-1998) |
+| 1999-09 | Graal Game Boy Color demo | homebrew by the Graal author, built with GBDK 2.x; header title `GRAAL`, MBC1, 256 KB ROM of which banks 0 to 5 are used | [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999); [bin] (client-internals/gameboy-demo.md#header-and-bank-map) |
+| 2000-07 | Java Graal | Zelda Online 2's game and client with Graal art, reading `GR-V1` levels; relay on 14802 (→ §2.3.1.3) | [bin][src] (client-internals/precursors-and-fan-builds.md#java-graal-july-2000) |
+| 2001-03 | GraalX | a 2.01 pre-release that keeps the `.nw` reader and writer (→ §1.1.1) | [bin] (client-internals/precursors-and-fan-builds.md#graalx) |
+| 2014-04 | 39ster client 1.00 | an offline fan remake on an SDL engine with GameMonkey script; reads `.nw` and `GR-V1.00` to `1.03`; NPC scripts are not run | [bin] (client-internals/precursors-and-fan-builds.md#39sters-graal-client-100-2014) |
+
+| Rule | Source |
+| --- | --- |
+| 1st Graal grew out of ZeldaEditor: it carries the editor's sign, link, object-name and sign-code dialogs under the same class names; the baddy dialog and the main form were renamed | [bin] (client-internals/precursors-and-fan-builds.md#zeldaeditor-july-1998) |
+| The Graal sign alphabet (→ §3.6) is already in Zelda Online 1 | [bin] (client-internals/precursors-and-fan-builds.md#zelda-online-1-may-1998) |
+| Zelda Online 2's options hold a 10-character save code of 60 bits (position, level index, rupees, darts, power, item and story bits, a 6-bit count of set bits), XORed with a fixed mask and transposed before writing | [src] (client-internals/precursors-and-fan-builds.md#password-saves) |
+| ZeldaEditor's `objects.dat` stamp list: a name line, one width byte and one height byte, then width × height 32-bit little-endian tile ids; tile 2047 is transparent; 105 stamps in 1998, and Graal 1.21 ships the same format | [bin] (client-internals/precursors-and-fan-builds.md#objectsdat-stamps) |
+| The Java games read `arrays.dat` in the same header form as the Delphi clients (→ §3.5.3), in a fixed order of 14 lists | [src] (client-internals/precursors-and-fan-builds.md#shared-java-game-data) |
+| Java Graal reads `GR-V1` NPC lines but shows only the image, dropping the script, and skips the chest section | [src] (client-internals/precursors-and-fan-builds.md#level-format-as-the-java-code-reads-it) |
+| Zelda Online, the Java client of 1997–98, keeps text-line relay traffic on port 14801 (→ §2.3.1) | [bin] (client-internals/zelda-online-1998.md#server-protocol-text-lines-port-14801) |
+
+### 1.7.1 Behaviour of the Java precursors
+
+Zelda Online 2 and Java Graal share one engine, and every number below is the same in both [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal).
+
+| What | Value | Source |
+| --- | --- | --- |
+| main loop | 50 ms per tick (20 Hz) | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| walk | half a tile per tick while a key is held; a quarter step sideways around a block corner | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| sword | 5 ticks, hits tested on ticks 1 to 3 | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| hurt | 40 ticks, half a heart | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| pushing a wall | push pose and ledge check from tick 18 (0.9 s); a push stone moves at tick 28 (1.4 s); the counter loops from 38 back to 18 | [src][live] (client-internals/precursor-runs-2026-10-30.md#walking-into-a-wall) |
+| bush drop | one roll of 0 to 99: 25 % a green rupee, 5 % a heart, 2 % five rupees, else nothing; a lifted bush rolls the same | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| regrowth | none during a visit; every board change is cleared when the level loads | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| carrying | the player is drawn with carry sprites and the object above the head, not hidden under it | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| chat | bold serif black text with a one-pixel white offset, above the head, with no bubble; the nickname is drawn the same way under the feet | [src][live] (client-internals/precursor-runs-2026-10-30.md#chat) |
+
+### 1.7.2 The Game Boy Color demo
+
+| Rule | Source |
+| --- | --- |
+| No title screen and no HUD: the ROM goes from the Nintendo logo to room 0; a sign there reads as a welcome from the author | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator); [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999) |
+| Seven rooms of 32 × 32 tiles in banks 4 and 5; their links use the PC level link record with a room number for the file name | [bin] (client-internals/gameboy-demo.md#room-format) |
+| Select opens a carousel over a table of 31 character types, and the pick changes the player at once | [bin][live] (client-internals/precursor-runs-2026-10-30.md#game-boy-color-demo-in-an-emulator) |
+| The text font runs space, A–Z, a–z, 0–9, then punctuation, from byte 32; it is not the PC sign alphabet | [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999) |
+| Start mutes the game; the music format is open | [live] (client-internals/precursor-runs-2026-10-30.md#open) |

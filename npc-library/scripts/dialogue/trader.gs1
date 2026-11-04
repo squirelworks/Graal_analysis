@@ -1,0 +1,30 @@
+// Original NPC library: trading-chain swapper
+// Category: dialogue / speech
+// Image: a character (the fisher)
+// Events: playerenters, playertouchsme
+// Flags: trade_bait (taken), trade_fish (given) - rename along the chain
+//
+// Takes one trade item and gives the next. Chain several traders, each
+// taking the previous one's item flag.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head7.png;
+  setcharprop #C1,lightblue;
+  setcharprop #n,Fisher;
+  dir = 1;
+  setcharani idle,;
+}
+
+if (playertouchsme) {
+  if (trade_bait) {
+    unset trade_bait;
+    set trade_fish;
+    play item.wav;
+    setcharprop #c,Worms! Here, take this fish for them.;
+  } else if (trade_fish) {
+    setcharprop #c,The cook in town loves a fresh fish.;
+  } else {
+    setcharprop #c,Nothing bites without good bait.;
+  }
+}

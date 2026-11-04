@@ -1,0 +1,34 @@
+// Original NPC library: innkeeper
+// Category: dialogue / speech (shop / merchant)
+// Image: a character behind the inn counter
+// Events: playerenters, playertouchsme, playerchats
+//
+// Offers a night's rest. Saying "yes" nearby pays and refills all hearts.
+// A player who is already at full health is told so and keeps the money.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head4.png;
+  setcharprop #C1,red;
+  setcharprop #n,Innkeeper;
+  dir = 2;
+  setcharani idle,;
+  this.price = 8;             // <- price of a bed
+}
+
+if (playertouchsme) {
+  setcharprop #c,A bed for the night is #v(this.price) rupees. Say yes.;
+}
+
+if (playerchats && strequals(#c,yes) && abs(playerx - x) < 5 && abs(playery - y) < 5) {
+  if (playerhearts >= playerfullhearts) {
+    setcharprop #c,You look well rested already!;
+  } else if (playerrupees < this.price) {
+    setcharprop #c,Sorry, no money no bed.;
+  } else {
+    playerrupees -= this.price;
+    playerhearts = playerfullhearts;
+    play heal.wav;
+    setcharprop #c,Sleep well!;
+  }
+}
