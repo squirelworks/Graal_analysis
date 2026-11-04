@@ -315,3 +315,39 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | the RC builds read send `GSERV007`, `GSERV011`, `GSERV014` and `GSERV019` to `GSERV024`; none sends `GSERV025` | [bin] (protocol/gserv-1999.md#login); [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/remotecontrol.md#logins-bin) |
 | Open | which RC build sends `GSERV025`, and with which login type | [inf] (tools/remotecontrol-lineage.md) |
 | Settles it | a static read of the later RC builds in the Drive RC folder (rc2, the custom RemoteControl, the RC3 beta) | [inf] (protocol/npc-control.md#drive-material-inventory-only-not-in-git) |
+
+### E#500 Back clipping plane of the Graal3D client
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets no field of its own | [doc] (graal3d/camera.md#field-of-view) |
+| Claim B | a later public DelphiX fork calls `SetBack(5000)` during retained-mode init; that fork starts after 2004, so it is not the unit linked in 2000 | [doc] (graal3d/camera.md#still-needed) |
+| Open | which back plane the February 2000 exe uses; the static read that found no field constant did not look for `SetBack` | [inf] (graal3d/camera.md#still-needed) |
+| Settles it | a static read of the exe for a `SetBack` call, or a lab run with the native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
+
+### E#501 Class CRC of the 4.04r2 3D plug-in
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the 4.04r2 connect request carries the stock Torque class CRC, so a server needs exactly the same list of networked classes or the client is rejected with `CHR_INVALID` | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
+| Claim B | the 4.04r2 CRC table is static data holding `0xFFFFFFFF` for group 0 with no writer, so nothing computes a CRC, as in 5.12 | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
+| Open | which value a real 4.04r2 client sends; Claim B is the later, more specific read, and the 4.x plug-in note now defers to it | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Settles it | a capture of a 4.04r2 connect request | [inf] (graal3d/torque-engine-4x.md#not-done) |
+
+### E#502 Whether 4.04r2 loads `.mis` mission files
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
+| Claim B | the 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
+| Open | whether the 4.04r2 loader is present but unused, or absent | [inf] (graal3d/torque-engine-4x.md#files) |
+| Settles it | a static read of the 4.04r2 plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
+
+### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
+| Claim B | the 4.04r2 plug-in has no TorqueScript compiler or console, and `.dso` and `.cs` files are never requested or used | [bin] (graal3d/torque-engine-4x.md#overview) |
+| Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
+| Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
