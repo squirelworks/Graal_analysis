@@ -145,3 +145,6 @@ jobs:
 
       - name: pytest tools/navigator
         run: python -m pytest tools/navigator -q
+
+      - name: pytest tools/gs1-lint
+        run: python -m pytest tools/gs1-lint -q

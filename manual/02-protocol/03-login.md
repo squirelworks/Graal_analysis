@@ -54,6 +54,8 @@ Tokens are listed in → §1.2.2, frames in → §2.1.4 and ciphers in → §2.2
 | 13th Graal | `Graal7` | [bin] (protocol/relay-1998.md#game-names) |
 | 14th, 15th Graal, 1.1, 1.1.9 | `Graal8` | [bin] (protocol/relay-1998.md#game-names) |
 
+In 1st Graal, `Zelda2` is used by one branch only; the other, chosen when the network client is created, builds the name from the level file's base name as `Z` + base + `2` (`level1.zelda` gives `Zlevel12`); which branch normal play takes was not traced [bin] (client-internals/decomp-findings-2026-10-24/06-first-graal.md#game-room-name-new-detail); [bin] (client-internals/decomp-findings-2026-10-24/08-contradictions.md#contradicts-or-corrects).
+
 The constant is the fallback. On a level the client sends `G<n>` plus the level's location (a web level's URL without `http://`), so each level is its own room and players meet only on the same level and a compatible build [bin][live] (protocol/relay-1998.md#game-names).
 
 ### 2.3.1.4 `D` payloads
@@ -136,7 +138,8 @@ The first message after `connect` is an id-0 line [bin] (protocol/gserv-1999.md#
 | The server matches the token against a fixed list, stores its number (7 to 14) on the connection, then checks the minimum for the connection type; old tokens stay on the list so that RemoteControl (`GSERV011`) can log in | [bin] (protocol/gserv-1999.md#what-the-gservers-accept) |
 | Refusals and login errors (version too old, account disabled, account in use, no such account) are sent as id 16 (DISCMESSAGE) | [bin] (protocol/gserv-1999.md#what-the-gservers-accept) |
 | A token newer than the server's list is refused like an old one: GServer13 answers `GSERV016` and `GSERV018` with id 16 | [cap] (protocol/gserv-1999.md#what-the-gservers-accept) |
-| The 1.33 to 1.39 clients use the same generation with `GNW` tokens and default to the built-in guest login; their login field layout beyond the token is unmeasured | [bin] (protocol/gserv-1999.md); [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| The 1.33 to 1.39 clients use the same generation with `GNW` tokens and default to the built-in guest login | [bin] (protocol/gserv-1999.md); [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| 1.39 sends id 0 with the token `GNW07080`, then `str` account and `str` password; it dials port 14900 with no listserver step; the layout of 1.33 to 1.38 is unmeasured | [bin] (client-internals/decomp-findings-2026-10-24/07-graal-139.md#login) |
 
 Message ids and props handled per build in this generation are in → App. C.
 
@@ -159,7 +162,8 @@ Message ids and props handled per build in this generation are in → App. C.
 | `PLI_TAMPERCHECK` (39) follows 37 (→ §2.4, → §4.10) | 2.17 and later Delphi clients | [bin] (protocol/client-versions.md#game-server-login) |
 | The account name is kept obfuscated in memory and decoded only to build the login message; the map is `dec(b) = (~b - 10) & 0xFF` | 2.17, 2.22, 2.31 | [bin] (protocol/client-versions.md#game-server-login) |
 | The password is obfuscated the same way | 2.31 | [bin] (protocol/client-versions.md#game-server-login) |
-| A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) |
+| 2.00 sends the same type 0 shape with the token `GNW24011`; the account and password are neither hidden nor hashed | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#login-string-gserver) |
+| A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) ; [lab] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#token-allow-list) |
 
 ## 2.3.4 2.22, 2.31 and 3.x login (generation 5, type 5)
 

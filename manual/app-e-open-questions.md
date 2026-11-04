@@ -67,7 +67,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the cross-version timeline adds 47 at 2.02 rev2 and 168 at 2.05 rev1 | [bin] (client-internals/cross-version-timeline.md#server--client-packets) |
-| Claim B | the per-build handled-id table lists 47 already in 2.02 and 2.02 rev1, and 168 already in 2.05 rev0 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
+| Claim B | the per-build handled-id table lists 47 already in 2.02 and 2.02 rev1, and 168 already in 2.05 rev0 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
 | Open | whether the timeline grouped the revisions or the table read the wrong revision | [inf] (version-profiles/plo-handled-ids-by-build.tsv) |
 | Settles it | a re-read of the receive switch of 2.02 rev0 and 2.05 rev0 for cases 47 and 168 | [inf] (version-profiles/plo-handled-ids-by-build.tsv) |
 
@@ -95,6 +95,24 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | the 2.1 test builds save downloads with no `maps` rule and 2.17.1 has one; no client between them has been found, so the build that added it is unknown | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | Settles it | the save routine of any client from 2.1 to 2.16, if one turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
+
+### E#11 Client-to-server ids the NewWorld betas lack
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the betas send the 2.1 test set without 7, 8, 11, 15, 16, 17 and 20 | [bin] (client-internals/version-profiles/141-217.toml) |
+| Claim B | the betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+| Open | the two reads disagree on 8 (`HORSEDEL`) and 20 (`OPENCHEST`); Claim B's count of 34 is 39 less five | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
+| Settles it | a re-read of the beta send sites for constants 8 and 20 | [inf] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+
+### E#12 Whether the token digits are a build date
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the `GNW` digits are DDMMY, on or a few days before the link date | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Claim B | the dates fit the change-log order of 2.01 to 2.05, but nothing in the binary names the format | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
+| Open | the reading is a strong fit, not a stated format | [inf] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#reading-the-digits-inferred) |
+| Settles it | a vendor note or server source that decodes the token | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
 
 ### E#100 Collision of the Bush stamp tiles
 
@@ -373,6 +391,13 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | the 2.05 Ctrl+letter path draws the emote locally and sends nothing, yet captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s; they may come from a server script calling `showimg` or from an untraced path | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | Settles it | a lab capture of a real 2.05 client pressing Ctrl+A next to a second client | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
+### E#323 Level-object routines not read (2.22)
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the throw of a lifted object, what a cut or lift drops, the carrying pose, the chest and sign probe points, the glove property value the server sends, snapping after a step, and the swim and carry speed factors were not read | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Settles it | reading those routines in the 2.22 client, or a lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+
 ### E#400 Two projects called Ash
 
 | Item | Content | Source |
