@@ -3,7 +3,7 @@
 
 RemoteControl (RC) is the staff client for a game server; NPC Control (NC) is its connection to the NPC server (→ §5.5). Both are Delphi programs that reuse the game client's connection class [bin] (tools/npc-control.md#program-shape-bin). The game-server login types are in → §2.3.6.1, framing in → §2.1.4 and ciphers in → §2.2. Staff ids that game clients also handle are in → §2.4.10 and → §2.5.9.
 
-> Status: draft. Every layout here is a static read of the RC binaries; none has been checked on the wire. The checks that would settle them are listed in the protocol note's loopback list.
+> Status: draft. Every layout here is a static read of the RC binaries, except those in → §7.1.8, which one capture of the 2004 RC against a GServer-v2 fork shows. The checks that would settle the rest are listed in the protocol note's loopback list.
 
 ## 7.1 RC login and commands
 
@@ -82,6 +82,7 @@ Constant ids at the RC socket's send call sites; ids sent through a computed val
 | 2002/01/04 | 1, 2, 6, 28, 61–64, 68–79, 82–88 | [bin] (tools/remotecontrol-lineage.md#client--server-ids-per-build-bin) |
 | 2002/05/02 | 1, 2, 6, 28, 51–54, 61–64, 68–79, 82–92, 94, 96–98, plus the NC ids (→ §7.3.2) | [bin] (tools/remotecontrol-lineage.md#client--server-ids-per-build-bin) |
 | 2004 | 2, 6, 28, 51–54, 61–64, 68–76, 78, 79, 82, 84, 86, 88–92, 94, 96–98 | [bin] (tools/remotecontrol.md#ids) |
+| 2004, on the wire | also 83, 85 and 87 (rights, comments and ban get), with 73 and 76; the static row is a floor | [cap] (protocol/rc-capture-2026-11-04.md#ids-against-the-static-read) |
 
 The later names cover server options, folder config, player props get and set, accounts, bans, rights, comments and the file browser [srv] (protocol/chat-pm-rc.md#admin-and-staff). Ids 51 to 54 changed meaning:
 
@@ -118,7 +119,7 @@ From 2000/8/19 accounts move to 70 to 78, and 51 to 54 are unused until 2002/05/
 | 74 | RC_CHAT | an RC console line | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
 | 79 | NPCSERVERADDR | `s player id`, then `ip,port` (→ §7.2.2) | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 
-Players in jail can PM only RCs [srv] (protocol/chat-pm-rc.md#private-messages). The layouts of the other RC ids are unmeasured in the notes [bin] (tools/remotecontrol.md#ids).
+Players in jail can PM only RCs [srv] (protocol/chat-pm-rc.md#private-messages). The layouts of the other RC ids are unmeasured in the notes [bin] (tools/remotecontrol.md#ids), except those seen on the wire in → §7.1.8 [cap] (protocol/rc-capture-2026-11-04.md#player-props).
 
 ### 7.1.7 Features and local settings
 
@@ -135,6 +136,39 @@ Players in jail can PM only RCs [srv] (protocol/chat-pm-rc.md#private-messages).
 | account (plain) and password (DES-obfuscated, 48 printable characters) | registry `HKCU\Software\Graal\RemoteControl` | [bin] (tools/npc-control.md#local-settings-bin); [bin] (tools/remotecontrol-lineage.md#what-stays-the-same-bin) |
 
 The password scheme is a 24-byte block (length byte, up to 23 bytes of text, random padding), encrypted as three DES ECB blocks with an LSB-first key, each output byte written as two nibbles + `0x20` [bin] (tools/npc-control.md#password-obfuscation). The same scheme, with other keys, hides the RC 1.41 and 2.05 list hosts and the 1.1 guild files [bin] (tools/npc-control.md#password-obfuscation); [bin] (tools/server-tools-2001.md#graal-11-guildmaker-1999-bin).
+
+### 7.1.8 Player admin on the wire (2004)
+
+One session of the 2004 RC against a GServer-v2 fork, with one 2.22 player online; each row is a single observation [cap] (protocol/rc-capture-2026-11-04.md#setup). Notation as in → §2.1.
+
+| Step | Rule | Source |
+| --- | --- | --- |
+| after login | server → RC in this order: 25, 194, 74 three times, 190 (empty), 47, 180, 103, one 55 per player online, then 74 `Currently online: ...` | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
+| after login | the RC then sends 2 PLAYERPROPS twice and the server answers with 9 | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
+
+| Dir | Id | Layout | Source |
+| --- | ---: | --- | --- |
+| S→RC | 103 RC_MAXUPLOADFILESIZE | `i5` bytes; 20971520 seen | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
+| S→RC | 55 ADDPLAYER | `s player id`, `str account`, then props as id + value | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
+| RC→S | 73 RC_PLAYERPROPSGET2 | `s player id` | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| S→RC | 72 RC_PLAYERPROPSGET | `s player id`, `str account`, `str world`, `c n`, n bytes of props, tail | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| RC→S | 76 RC_PLAYERPROPSSET2 | `str account`, `str world`, `c n`, n bytes of props, tail, then one more byte (0 seen; → App. E#421) | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| both | props tail | `s`, `s` (flag and chest counts, order unseen → App. E#420), `c weapon count`, `str` per weapon | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| RC→S | 83 RC_PLAYERRIGHTSGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
+| S→RC | 62 RC_PLAYERRIGHTSGET | `str account`, `i5 rights`, `str IP range`, `s n` + n bytes of folder rights | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
+| RC→S | 84 RC_PLAYERRIGHTSSET | same layout as 62; folder lines as CSV (→ App. E#422) | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
+| RC→S | 85 RC_PLAYERCOMMENTSGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#comments) |
+| S→RC | 63 RC_PLAYERCOMMENTSGET | `str account`, comments as CSV (`rest`), one item per text box line | [cap] (protocol/rc-capture-2026-11-04.md#comments) |
+| RC→S | 86 RC_PLAYERCOMMENTSSET | `str account`, comments as CSV (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#comments) |
+| RC→S | 87 RC_PLAYERBANGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
+| S→RC | 64 RC_PLAYERBANGET | `str account`, `c banned`, reason (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
+| RC→S | 88 RC_PLAYERBANSET | `str account`, `c banned`, reason as CSV (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
+
+| Observation | Rule | Source |
+| --- | --- | --- |
+| props sent back | the RC's 76 leaves out props 0, 30, 34 and 36, adds 21, 22 and 23 as one zero byte each, and sends 29 as 0 | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| rights bits | the dialog's check boxes map to bits from bit 0; "Warpto x y" and "Admin message" gave 513 (bits 0 and 9) | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
+| ban menu | the player menu has Edit Ban only: the account ban, with no IP or computer id ban | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 
 ## 7.2 NC login
 
