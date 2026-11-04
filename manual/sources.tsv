@@ -2,7 +2,7 @@ path	status	sections	planned	reason
 AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventions
 ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
-CONSOLIDATED.md	pending		E	
+CONSOLIDATED.md	cited	E	E	
 README.md	excluded			repository contents list, not Graal
 archival/README.md	pending		E	
 archival/client-assets-measured.md	pending		E	
@@ -90,37 +90,37 @@ client-internals/decomp-findings-2026-10-24/life-states.tsv	cited	4.4	4
 client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4	
 client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
-client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		2.7	
-client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	pending		2.7	
-client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending		E	
-client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	pending		2.7	
+client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending		4; E	
+client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	pending		2.7; 4	
 client-internals/decomp-findings-2026-10-25-e/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		2.7	
-client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	pending		2.7	
-client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		E	
-client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	pending		2.7	
-client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	pending		3.1; 3.6	
+client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		4; E	
+client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending	E	3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	pending		3.1; 3.6; 4	
 client-internals/decomp-findings-2026-10-25-f/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	pending		3.1	
-client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	pending		2.4; 2.5	
-client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	pending		2.4	
-client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	pending		2.5	
-client-internals/decomp-findings-2026-10-25-g/04-open-points.md	pending		E	
+client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	pending		2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	pending		2.4; 4	
+client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	pending		2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/04-open-points.md	pending		4; E	
 client-internals/decomp-findings-2026-10-25-g/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	pending		2.5	
-client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	pending		2.4; 2.5	
-client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	pending		E	
-client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md	pending		3.1	
-client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	pending		2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	pending		2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	pending		4; E	
+client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-j/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1	
-client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	pending		2.7	
 client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending		E	
@@ -216,19 +216,19 @@ docs/book/00-how-to-read.md	pending	G	E
 docs/book/01-a-level-and-a-session.md	pending		E	
 docs/book/02-the-player.md	pending		E	
 docs/book/03-the-machines.md	pending		E	
-docs/book/04-where-the-notes-disagree.md	pending		E	
+docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/gani.txt	cited	3.3	3.3	
-formats/glevnw01.txt	cited	3.1	3.1	
-formats/gmap.md	cited	3.2	3.2	
+formats/glevnw01.txt	cited	3.1; E	3.1	
+formats/gmap.md	cited	3.2; E	3.2	
 formats/gobjset01.md	cited	3.4; E	3.4	
 formats/graalsav.md	cited	3.7	3.7	
-formats/grmap001.txt	cited	3.2	3.2	
+formats/grmap001.txt	cited	3.2; E	3.2	
 formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	cited	3.8	3.8	
-formats/level-binary-client.md	cited	3.1; 3.6	3.1	
-formats/level-binary.md	cited	1; 3.1	3.1	
+formats/level-binary-client.md	cited	3.1; 3.6; E	3.1	
+formats/level-binary.md	cited	1; 3.1; E	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/sign-text.md	cited	3.6	3.6	
@@ -257,23 +257,23 @@ npc-library/reference/forcesay.txt	pending		8
 npc-library/reference/npcControl-NPC.txt	pending		8	
 npc-library/tile-patterns.md	pending		8	
 protocol/OPCODE-SUMMARY.md	pending		2.4; 2.5; A	
-protocol/PROTOCOL-CHEATSHEET.md	pending		2	
+protocol/PROTOCOL-CHEATSHEET.md	pending	E	2	
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/client-versions.md	pending	2.1; 2.2; 2.3; 2.5	1; 2.2	
-protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3; 2.5	2.1; 2.2	
+protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3; 2.5; E	2.1; 2.2	
 protocol/cross-version-anchors.md	pending		2	
 protocol/crosscheck-captures-vs-research.md	pending		2	
 protocol/file-transfer.md	cited	2.7; E	2.7	
-protocol/format-notes-from-salvage.md	pending		2	
+protocol/format-notes-from-salvage.md	pending	E	2	
 protocol/graphics-movement-bytecode.md	pending	8.3; 8.4; E	8.4	
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	pending		2	
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/listserver.md	cited	6; E	6	
-protocol/login-and-walk.md	pending	2.3; 2.4; 7	2.3	
+protocol/login-and-walk.md	pending	2.3; 2.4; 7; E	2.3	
 protocol/login-frames-by-version-2026-10-25.md	pending	2.1; 6; E	2.3	
-protocol/login-recovery-start.md	excluded		2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
+protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	pending	2.2; 2.3; E	2.3	
 protocol/medium-term-expansion.md	pending		2	
 protocol/medium-term-slice.md	pending		2	
@@ -295,37 +295,37 @@ protocol/v5v6-lab-play.md	pending	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E	1; 2.3
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
 protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E	1; 2.10	
-recovered-drive-tools/INVENTORY.md	pending		11	
-recovered-drive-tools/SALVAGE_CANDIDATES.md	pending		11	
-recovered-drive-tools/SALVAGE_PLACEMENT.md	pending		11	
-recovered-drive-tools/SEIHAI_SERVERTOOLS_MAP.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/GCD/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/GChar/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Graal_Auto_Key/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Graal_Digger/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/README.md	pending		11	
-recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/TextConvert/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver_pe_GServersource/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserverstat/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserverstat2/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	pending		11	
+recovered-drive-tools/INVENTORY.md	excluded		11	download inventory of the recovered Drive corpus; logistics, no Graal behaviour
+recovered-drive-tools/SALVAGE_CANDIDATES.md	excluded		11	reimplementation placement plan
+recovered-drive-tools/SALVAGE_PLACEMENT.md	excluded		11	reimplementation placement plan
+recovered-drive-tools/SEIHAI_SERVERTOOLS_MAP.md	excluded		11	reimplementation placement plan
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/GCD/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/GChar/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/Graal_Auto_Key/SUMMARY.md	excluded		11	trainer; hack tooling is out of scope
+recovered-drive-tools/ghidra-analysis/Graal_Digger/SUMMARY.md	excluded		11	trainer; hack tooling is out of scope
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/README.md	excluded		11	index of the salvage pipeline; the summaries it lists are cited or excluded one by one
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/TextConvert/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver_pe_GServersource/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserverstat/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/gserverstat2/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
 recovered-hacks/DEFENSE_PROPOSALS.md	excluded		4.10; 11	operator defence proposals for game servers; not client behaviour
 recovered-hacks/INVENTORY.md	pending		4.10; 11	
 recovered-hacks/THREAT_TAXONOMY.md	pending	4.10	4.10; 11	
@@ -359,35 +359,35 @@ server-notes/ash-overview.md	cited	5; E	5
 server-notes/lab-servers-2026-10-30.md	cited	5; 6; E	5	
 server-notes/public-allowed-versions.md	cited	5; E	5	
 server-notes/setcharprop-hash-n.md	cited	5	5	
-tools/README.md	pending		11	
-tools/build-diff/README.md	pending		11	
-tools/classic-tools/README.md	pending		6; 11	
-tools/classic-tools/character-designer.md	pending		6; 11	
-tools/classic-tools/graal-level-gen.md	pending		6; 11	
-tools/classic-tools/gserverstat.md	pending	5	6; 11	
-tools/classic-tools/serverlist3.md	pending	6	6; 11	
-tools/classic-tools/text-convert.md	pending		6; 11	
-tools/generators-222/README.md	pending		11	
-tools/generators.md	pending		11	
-tools/ghidra/README.md	pending		11	
-tools/ghidra/VERSION.txt	pending		11	
-tools/gif2mng.md	pending		11	
-tools/graaleditor-vs-205.md	pending		11	
-tools/graaleditor.md	pending		11	
-tools/graalshop.md	pending		11	
+tools/README.md	excluded		11	index of the tools folder; the notes it lists are cited or excluded one by one
+tools/build-diff/README.md	excluded		11	repository analysis tooling, not Graal
+tools/classic-tools/README.md	cited	11	6; 11	
+tools/classic-tools/character-designer.md	cited	11	6; 11	
+tools/classic-tools/graal-level-gen.md	cited	11	6; 11	
+tools/classic-tools/gserverstat.md	cited	5; 11	6; 11	
+tools/classic-tools/serverlist3.md	cited	6; 11; E	6; 11	
+tools/classic-tools/text-convert.md	cited	11	6; 11	
+tools/generators-222/README.md	cited	11	11	
+tools/generators.md	cited	11	11	
+tools/ghidra/README.md	excluded		11	repository analysis tooling, not Graal
+tools/ghidra/VERSION.txt	excluded		11	repository analysis tooling, not Graal
+tools/gif2mng.md	cited	11	11	
+tools/graaleditor-vs-205.md	cited	11	11	
+tools/graaleditor.md	cited	11; E	11	
+tools/graalshop.md	cited	11	11	
 tools/lab-servers/README.md	cited	5; 6	6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
 tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
 tools/lab-servers/clver-5-24-lab/proxy-files.txt	excluded		6	raw lab proxy log; the result is summarised in tools/lab-servers/README.md
-tools/lab-setup.md	pending		11	
-tools/level-convert/README.md	pending		11	
-tools/level-convert/SEIHAI-FORMAT.md	pending		11	
-tools/level-editor/222-reference.md	pending		11	
-tools/level-editor/README.md	pending		11	
-tools/level-editor/formats-crossref.md	pending		11	
-tools/level-editor/seihai-tracking.md	pending		11	
-tools/level-editor/version-deltas.md	pending		11	
-tools/level-tools-gaps/README.md	pending		11	
+tools/lab-setup.md	excluded		11	lab procedure
+tools/level-convert/README.md	excluded		11	a reimplementation converter written for this project
+tools/level-convert/SEIHAI-FORMAT.md	excluded		11	reimplementation package format
+tools/level-editor/222-reference.md	cited	11; E	11	
+tools/level-editor/README.md	cited	11	11	
+tools/level-editor/formats-crossref.md	cited	11; E	11	
+tools/level-editor/seihai-tracking.md	excluded		11	reimplementation tracking checklist
+tools/level-editor/version-deltas.md	cited	11; E	11	
+tools/level-tools-gaps/README.md	cited	11	11	
 tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
 tools/npc-control.md	cited	6; 7; E	7	
 tools/npcserver-2001.md	cited	5; 7	7	
@@ -395,7 +395,7 @@ tools/release/README.md	excluded			repository tooling for the notes, not Graal
 tools/release/how-to-read.md	excluded			repository tooling for the notes, not Graal
 tools/remotecontrol-lineage.md	cited	7; E	7	
 tools/remotecontrol.md	cited	7; E	7	
-tools/respawn-lab/README.md	pending		11	
+tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	cited	5; 6; 7; E	7	
 torque/README.md	cited	10	10	
 torque/engine-and-formats.md	cited	10; E	10	
