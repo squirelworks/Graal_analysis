@@ -40,7 +40,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 12 | Part VIII | done (#196) |
 | 13 | Parts IX, X | done (#205) |
 | 14 | Part XI + App. D, E | done |
-| 15 | audit and PDF build | audit done: `check_manual.py --final` passes; portable builder `build_manual.py` builds on all 3 OSes in CI; PDF not yet committed to the repo |
+| 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm.pdf` built with `build_manual.py` from commit b8643ec, 347 pages A4 |
 
 ## Checks
 

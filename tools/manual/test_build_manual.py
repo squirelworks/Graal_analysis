@@ -74,3 +74,12 @@ def test_html_build(tmp_path):
     assert build_manual.TITLE in text
     assert 'build of abc1234' in text
     assert '<table' in text and 'id="TOC"' in text
+
+
+def test_scrub_browser_version_keeps_length():
+    version = '.'.join(['153', '0', '0', '0']).encode()
+    pdf = b'/Creator (Mozilla/5.0 HeadlessChrome/' + version + b' Safari/537.36)'
+    out = build_manual.scrub_browser_version(pdf)
+    assert len(out) == len(pdf)
+    assert b'HeadlessChrome/153_0_0_0 ' in out
+    assert b'Safari/537.36' in out
