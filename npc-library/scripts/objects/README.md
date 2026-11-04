@@ -22,5 +22,5 @@ Part of the [original NPC library](../README.md). Covers the `object / signs`, `
 | `block-pushable.gs1` | Block the player can push and pull. |
 | `block-night.gs1` | Shown only at night, or only by day, from a `night` flag. |
 | `block-chime.gs1` | Plays a sound when bumped, at most once a second. |
-| `block-dropper.gs1` | Places up to four crates (`putnpc`) at eight-second intervals. |
-| `crate.gs1` | Liftable crate that breaks into splinters when thrown. |
+| `block-dropper.gs1` | Places up to four crates (`putnpc`) at eight-second intervals. Save `crate.gs1` on the server as `crate.txt`. |
+| `crate.gs1` | Liftable crate that breaks into splinters when thrown (image: a crate; events: playerenters, wasthrown). The file has no comments, because it is placed with `putnpc`. |

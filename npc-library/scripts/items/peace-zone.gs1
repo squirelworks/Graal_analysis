@@ -5,16 +5,22 @@
 //
 // Disables the player's weapons while they are inside a rectangle of the
 // level (a town square, a shrine) and enables them again as soon as they
-// step out. Checks four times a second. Leaving the level with weapons off
-// is avoided by turning them on again whenever the player is outside.
+// step out. Checks ten times a second.
+// Place the zone well away from level links and warps. The zone can only
+// turn weapons back on while the player is still in this level, so leaving
+// from inside it (a warp, a link, dying) keeps weapons off in the next
+// levels, and the server saves that to the account (lab run, 2026-11-04).
+// Put weapons-on.gs1 in every level reachable from the zone; it turns
+// weapons back on when the player arrives.
 
 if (playerenters) {
   timereverywhere;
   hide;
+  enableweapons;
   this.x1 = 16; this.y1 = 16;   // <- top-left of the zone
   this.x2 = 48; this.y2 = 40;   // <- bottom-right
   this.inside = 0;
-  timeout = 0.25;
+  timeout = 0.1;
 }
 
 if (timeout) {
@@ -30,5 +36,5 @@ if (timeout) {
     enableweapons;
   }
   this.inside = this.now;
-  timeout = 0.25;
+  timeout = 0.1;
 }

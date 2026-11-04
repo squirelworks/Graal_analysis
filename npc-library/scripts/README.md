@@ -14,7 +14,7 @@ The target is GS1 as the **2.05 rev 2** client parses it: the 161-command table 
 
 - commands that 2.05 parses but ignores (§8.2.4.9);
 - commands that only the 2.22 documentation has (§8.2.7.3);
-- `#` codes beyond `#c`, `#s(...)` and `#v(...)` (the full set is open, App. E#203);
+- `#` codes beyond `#c`, `#s(...)`, `#v(...)` and the `#b` line break (the full set is open, App. E#203; `#b` was confirmed in a real 2.05r2 client);
 - conditions that can be between 0 and 1 (App. E#200), so every test is a comparison or a flag.
 
 They also avoid the commands that the 2.22 documentation drops (the † rows of §8.2.4), so they should run unchanged on the later 2.x clients up to 2.22. That is an inference from the tables; no lab run has confirmed it yet. Clients from 2.3 onwards run NPCs on the NPC server and 4.x onwards use GS2 (§8.3), so these scripts are for classic offline and 2.x-era servers.
@@ -25,9 +25,26 @@ They also avoid the commands that the 2.22 documentation drops (the † rows of 
 python tools/gs1-lint/gs1lint.py npc-library/scripts
 ```
 
+## Tested in a real client
+
+All 96 scripts were run in a real 2.05r2 client on a GServer-v2 lab on 2026-11-04. That run found eleven problems, all fixed here, and the lint now checks for the ones it can see:
+
+- Text in function arguments is written bare, spaces included. 2.05 keeps quote marks as part of the text, so `strequals(#c,"buy bombs")` never matches. The lint reports quoted text as an error.
+- `say2` does not wrap. Keep each line to about 32 characters and break lines with `#b`. The box shows three lines and pages on. The lint warns about long lines.
+- An empty `setcharprop #c,` does not clear a chat bubble. Text that should disappear is shown with `message` and cleared with `message ;`. The lint reports the empty form.
+- The word `toweapons` must not appear in a comment, because GServer-v2 names the weapon after the first one in the text. The lint reports it.
+- A script placed with `putnpc` must be a file the server serves (`.txt` unless `foldersconfig` serves `.gs1`) and must have no comments, because putnpc joins the lines before comments are removed. `crate.gs1` and `bat-swoop.gs1` are comment-free for that reason, and a test checks every `putnpc` target.
+- `playerfullhearts` cannot be written (`playerrupees`, `playerbombs`, `playerdarts` and `playerhearts` can), so heart containers are given as the `fullheart` item.
+- An explosion placed by an NPC does not hurt the player, so scripts that should hurt use `hurt`.
+- `playertouchsme` only fires while the player moves, so anything that acts on a player standing still checks the position on a timer.
+- A thrown NPC keeps the spot where it landed.
+- Weapons switched off with `disableweapons` stay off in other levels, and the server saves that to the account. `items/weapons-on.gs1` turns them back on in the levels around a peace zone.
+
+The results, one line per script, are in the lab notes for that run.
+
 ## Conventions
 
-- Every file starts with a header that gives its name, the category in `behaviours.md` it covers, a suggested image, the events it uses, and any flags it reads or sets.
+- Every file starts with a header that gives its name, the category in `behaviours.md` it covers, a suggested image, the events it uses, and any flags it reads or sets. The two scripts placed with `putnpc` are the exception: they have no comments, and their family README carries the header.
 - Values meant to be changed are marked `// <-`.
 - Flags that must be unique per copy (a chest's "opened" flag, for example) are named in the header. Rename them in every place they appear.
 - Image and sound names are placeholders. Use whatever your level's art provides.

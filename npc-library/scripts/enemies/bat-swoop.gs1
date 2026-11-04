@@ -1,12 +1,3 @@
-// Original NPC library: swooping bat
-// Category: combat / baddies
-// Image: bat sheet, wings up at x 0 and down at x 32, 32x32
-// Events: playerenters, playertouchsme, washit, wasshot, timeout
-//
-// Flutters in a small circle around its roost. When the player comes
-// within five tiles it swoops at where the player was at that moment,
-// then flutters back up. Flaps by swapping two frames. One hit kills.
-
 if (playerenters) {
   setimgpart bat.png,0,0,32,32;
   dontblock;
@@ -14,7 +5,7 @@ if (playerenters) {
   this.rx = x;
   this.ry = y;
   this.a = 0;
-  this.mode = 0;              // 0 circling, 1 swooping, 2 returning
+  this.mode = 0;
   this.alive = 1;
   this.flap = 0;
   timeout = 0.05;

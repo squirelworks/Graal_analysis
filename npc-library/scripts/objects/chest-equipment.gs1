@@ -17,7 +17,7 @@ if (playerenters) {
 
 if (playertouchsme && playerdir == 0 && !chest_armoury) {
   if (playerswordpower >= 3) {
-    say2 Only an old blade inside. Yours is better.;
+    say2 Only an old blade inside.#bYours is better.;
   } else {
     set chest_armoury;
     setimgpart chest.png,32,0,32,32;

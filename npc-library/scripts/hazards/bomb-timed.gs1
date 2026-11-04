@@ -6,6 +6,9 @@
 // Lighting it (touch or hit) starts a three-second countdown shown above
 // it; then it explodes with a large radius. Useful for blasting cracked
 // walls from a distance. It is back on the next visit.
+// An explosion placed by an NPC does not hurt the player on 2.05 (lab
+// run, 2026-11-04), so a player within three tiles of the barrel is hurt
+// by the script itself.
 
 if (playerenters) {
   setimg barrel.png;
@@ -23,5 +26,6 @@ if (timeout && this.lit == 1) {
   this.lit = 2;
   message ;
   putexplosion 3,x+1,y+1;
+  if (abs(playerx + 1.5 - (x + 1)) < 3 && abs(playery + 2 - (y + 1)) < 3) hurt 2;
   hide;
 }

@@ -12,5 +12,5 @@ if (playerenters) {
 
 // Read only when the player faces up at the sign (direction 0).
 if (playertouchsme && playerdir == 0) {
-  say2 Mill Road - the bridge to the east is out.;   // <- text
+  say2 Mill Road - the bridge#bto the east is out.;   // <- text
 }

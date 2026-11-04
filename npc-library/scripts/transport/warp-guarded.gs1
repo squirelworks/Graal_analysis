@@ -29,7 +29,7 @@ if (playertouchsme) {
     } else if (playerdir == 2 && !onwall(playerx + 1.5, playery + 1)) {
       playery -= 1;
     }
-    say2 The guard's seal is missing. You may not pass.;
+    say2 The guard's seal is missing.#bYou may not pass.;
   }
 }
 

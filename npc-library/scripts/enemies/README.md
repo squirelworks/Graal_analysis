@@ -15,7 +15,7 @@ Hit handling: `washit` (sword, damage = `playerswordpower`), `wasshot` (arrow) a
 | `guard-patrol.gs1` | Walks a square route with a view strip ahead. Shouts and chases intruders without a pass, then rejoins at the nearest corner. Out for 20 s after 5 hits. |
 | `burrower.gs1` | A harmless mound that drifts toward the player and bursts out for 1.5 s when close. It can only be hit while out. |
 | `blocker.gs1` | Mirrors the player's sideways position along a lane. Swords bounce off and an arrow stuns it for 2 s. |
-| `bat-swoop.gs1` | Circles its roost and swoops at the player's position, then flies back. Two-frame flap. |
+| `bat-swoop.gs1` | Circles its roost and swoops at the player's position when they come within five tiles, then flies back. Two-frame flap (bat sheet, wings up at x 0 and down at x 32, 32x32). One hit kills. Events: playerenters, playertouchsme, washit, wasshot, timeout. The file has no comments, because `spawners/spawner-npc.gs1` places it with `putnpc` (see that folder's README). |
 | `boss-golem.gs1` | Two-phase boss: a fireball ring, then faster with charges. Invulnerable flash after each hit. Defeat sets a flag and drops a heart container. |
 | `wave-controller.gs1` | Invisible arena controller: three waves of built-in baddies (`putcomp`), each started by `compusdied`, then a reward. |
 | `baddy-reset.gs1` | Clears the built-in baddies on entry and places a fresh set with `putnewcomp`, or none once a flag is set. |

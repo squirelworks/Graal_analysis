@@ -23,6 +23,23 @@ What it checks:
   without a definition
 - a script that tests `timeout` also sets `timeout` or uses `sleep`
 
+Rules from the real-client lab run (2.05 rev 2 on a GServer-v2 lab,
+2026-11-04):
+
+- no "quoted" strings: 2.05 keeps the quote marks as part of the text, so
+  `strequals(#c,"buy bombs")` never matches; write the words bare
+- the word `toweapons` must not appear in a comment: the server takes the
+  first `toweapons` in the script text as the command and names the weapon
+  after the comment
+- each `say2` line fits the box: 2.05 does not wrap, so text past about 32
+  characters runs off the edge (`#v(...)` counts as 4, `#s(...)` and `#c`
+  as 12). `#b` breaks the line; the box shows three lines and pages on
+- an empty `setcharprop #c,` does not clear the chat bubble; `message ;`
+  clears the text an NPC shows with `message`
+- scripts placed with `putnpc` must carry no `//` comments (see
+  `putnpc_targets`): putnpc joins the lines before comments are removed, so
+  the first comment swallows the rest of the script
+
 Usage: gs1lint.py [--dialect 2.05] FILE_OR_DIR ...
 Exit status 1 when any error is found.
 """
@@ -455,8 +472,31 @@ class Parser:
         raise LintError(tok.line, f'unexpected {tok.text or "end of line"!r} in expression')
 
     def call_arg(self):
-        # String arguments may be bare `#` codes or plain words (playersays(hello)).
-        self.expr()
+        # String arguments may be bare `#` codes or plain words, several words
+        # included (strequals(#c,buy bombs)); 2.05 takes the text up to the
+        # next `,` or `)` as it is.
+        start = self.i
+        try:
+            self.expr()
+            if self.cur.text in (',', ')'):
+                return
+        except LintError:
+            pass
+        self.i = start
+        depth = 0
+        while True:
+            t = self.cur
+            if t.kind == 'eof' or t.text == ';':
+                raise LintError(t.line, 'unterminated function argument')
+            if t.text == '(':
+                depth += 1
+            elif t.text == ')':
+                if depth == 0:
+                    return
+                depth -= 1
+            elif t.text == ',' and depth == 0:
+                return
+            self.take()
 
 
 # ---------------------------------------------------------------- driver
@@ -472,14 +512,61 @@ class Finding:
         return f'{self.path}:{self.line}: {self.level}: {self.msg}'
 
 
+SAY2_WIDTH = 32
+
+
+def _say2_width(text: str) -> int:
+    text = re.sub(r'#v\([^()]*(?:\([^()]*\)[^()]*)*\)', 'x' * 4, text)
+    text = re.sub(r'#s\([^()]*\)', 'x' * 12, text)
+    text = text.replace('#c', 'x' * 12)
+    return len(text.strip())
+
+
+def lab_checks(src: str, toks: list[Tok]) -> list[tuple[int, str, str]]:
+    """Checks that come from the real-client lab run rather than the manual."""
+    found = []
+    for t in toks:
+        if t.kind == 'string':
+            found.append((t.line, 'error', f'quoted text {t.text}: 2.05 keeps the quote marks, so it never matches; write the words bare'))
+    for m in re.finditer(r'//[^\n]*|/\*.*?\*/', src, re.DOTALL):
+        if re.search(r'\btoweapons\b', m.group()):
+            line = src.count('\n', 0, m.start()) + 1
+            found.append((line, 'error', 'the word `toweapons` in a comment: the server takes the comment text as the weapon name'))
+    for i, t in enumerate(toks[:-3]):
+        if t.text == 'setcharprop' and toks[i + 1].text == '#c' and toks[i + 2].text == ',' and toks[i + 3].text == ';':
+            found.append((t.line, 'error', 'an empty `setcharprop #c,` does not clear the chat bubble on 2.05; use `message` and an empty `message ;`'))
+    for i, t in enumerate(toks):
+        if t.kind == 'name' and t.text == 'say2' and (i == 0 or toks[i - 1].text in (';', '{', '}', ')', 'else')):
+            # rebuild the text from the source line(s) up to the closing ';'
+            start = sum(len(l) + 1 for l in src.split('\n')[:t.line - 1])
+            m = re.compile(r'\bsay2\s+([^;]*);').search(src, start)
+            if m:
+                for part in m.group(1).split('#b'):
+                    if _say2_width(part) > SAY2_WIDTH:
+                        found.append((t.line, 'warning', f'`say2` line is {_say2_width(part)} characters; 2.05 does not wrap and cuts it off past about {SAY2_WIDTH}; break it with #b'))
+                        break
+    return found
+
+
+def putnpc_targets(src: str) -> list[str]:
+    """Script file names this script passes to `putnpc`."""
+    return re.findall(r'^\s*putnpc\s+[^,;]*,\s*([^,;\s]+)', src, re.MULTILINE)
+
+
 def lint_text(src: str, path: str = '<text>', table: Table | None = None) -> list[Finding]:
     table = table or load_table()
     out: list[Finding] = []
     try:
-        p = Parser(tokenize(src), table, out.append)
-        p.script()
+        toks = tokenize(src)
     except LintError as e:
         return [Finding(path, e.line, 'error', e.msg)]
+    lab = [Finding(path, line, level, msg) for line, level, msg in lab_checks(src, toks)]
+    try:
+        p = Parser(toks, table, out.append)
+        p.script()
+    except LintError as e:
+        return lab + [Finding(path, e.line, 'error', e.msg)]
+    out = lab + out
     for fn, line in p.called.items():
         if fn not in p.defined:
             out.append(Finding(path, line, 'error', f'`{fn}()` is called but never defined'))
