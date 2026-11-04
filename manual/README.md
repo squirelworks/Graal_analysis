@@ -1,6 +1,6 @@
 # Graal Technical Reference Manual
 
-Version 0.0.3. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
+Version 0.0.4. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
 
 This folder is the reference manual for Graal itself: clients, wire protocol, file formats, servers, listserver, RC and NC, NPC scripting, Graal3D, the Torque-era clients and tools. It is organised by subject, not by note. Start with `00-conventions.md`, which fixes scope, numbering, citation and notation.
 
@@ -41,11 +41,13 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 13 | Parts IX, X | done (#205) |
 | 14 | Part XI + App. D, E | done |
 | 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm-0.0.3.pdf` built with `build_manual.py` from commit b8643ec, 347 pages A4 |
+| 16 | coverage audit and 0.0.4 | done: every flagged note carried or given a reason, `check_carry.py` in CI; `manual/pdf/graal-trm-0.0.4.pdf` built with `build_manual.py --version 0.0.4` from commit 3a700ad, 377 pages A4 |
 
 ## Checks
 
 ```
 python tools/manual/check_manual.py
+python tools/manual/check_carry.py
 python -m pytest tools/manual -q
 ```
 

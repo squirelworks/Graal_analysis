@@ -15,6 +15,7 @@ Binary sign text uses one packed alphabet. The same encoding is used in the sign
 | other characters | written as the escape `#K(n)`, with `n` the decimal character code spelled in alphabet codes | [2.05][srv] (formats/sign-text.md#encoding) |
 | controls | bytes under 32 are controls and are not shown | [2.05][srv] (formats/sign-text.md#encoding) |
 | line break | the editor writes CRLF as `#K(13)` and the newline code; in a raw dump that is the bytes `v*eUWf` and a byte with the high bit set | [test] (formats/sign-text.md#encoding) |
+| in the corpus | 2,381 signs in 808 levels, 684 of them at (0, 0) (text kept by index); 498 `#K(n)` escapes with n other than 13, most often 95 (`_`), 164, 61 (`=`), 42 (`*`), 36 (`$`), 64 (`@`), 94 (`^`), 124 (`\|`), 134, 233, 169 and 43 (`+`) | [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md) |
 
 The alphabet, from code 0 [2.05] (formats/level-binary-client.md#sign-text-in-files):
 
