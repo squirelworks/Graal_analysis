@@ -41,6 +41,32 @@ The recovered trainers of the period are summarised here only for what the clien
 | what the server sees | only the resulting actions (dig, use, walk, chat), at the rates the tool's waits allow | [inf] (recovered-hacks/behaviour-models.md#what-a-server-can-see); [inf] (recovered-hacks/static-2026-11-01/README.md#what-a-checker-can-use) |
 | window titles | some tools look for the client window by title, and some show their own named window; such a window is the kind of thing the 2.31 scan compares, but whether its list names any of them is unknown (→ App. E#321) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
 
+### 4.10.1.4 The recovered trainers, tool by tool
+
+The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and costume script spam, and one archive blocked as malware and never opened; a caps-lock utility filed with them is not a Graal tool [bin] (recovered-hacks/THREAT_TAXONOMY.md#attack-class-overview). Their loops were read statically and none was run; the waits are client-side waits, not server cooldowns, so they are the rates a server would see [bin] (recovered-hacks/behaviour-models.md#what-a-server-can-see).
+
+| Tool | What it sends | Rate and waits | Window check | Source |
+| --- | --- | --- | --- | --- |
+| AutoD (2001) | `d` | every 1 ms, forever | none | [bin] (recovered-hacks/behaviour-models.md#autod-bin) |
+| AutoS | `s#` | no delay, forever | none | [bin] (recovered-hacks/behaviour-models.md#autos-bin) |
+| AutoIdle | a fixed pass of 48 left and right arrow taps | no sleep | none | [bin] (recovered-hacks/behaviour-models.md#autoidle-bin) |
+| Graal Auto Key | nothing to the game: renames the active window to `Graal Auto` after 2 s, then exits; the other RpgWarrior tools look for that title | once | renames | [bin] (recovered-hacks/behaviour-models.md#graal-auto-key-bin) |
+| WaterGet v1.1 | Down twice, `a` | key delay 300 ms, then 2000 ms per pass | none | [bin] (recovered-hacks/behaviour-models.md#waterget-v11-bin) |
+| WaterGet v1.0 | `S` nineteen times 1000 ms apart, then two idle directions twice each | 2000 ms, 500 ms between directions | `Graal Auto` must be active | [bin] (recovered-hacks/behaviour-models.md#waterget-v10-bin) |
+| Random Walker | one of: nothing, Up, Down, Left or Right five times, or `S` five times, drawn at random | key delay 200 ms | `Graal Auto` | [bin] (recovered-hacks/behaviour-models.md#random-walker-bin) |
+| Graal Prayer | Tab, then the chat text `/use_skill praying` and Enter three times 2000 ms apart, a weapon shortcut, `s` ten times, another shortcut and the idle direction; a helper sends Up ten times | key delays 0 to 100 ms, sleeps of 500 to 2000 ms | `Graal Auto` (the helper none) | [bin] (recovered-hacks/behaviour-models.md#prayer-bin) |
+| Graal Load | each line of a chosen text file written into the client window, then Return; the bundled `bomb.txt` is 164 lines of costume commands and a countdown | 150 ms per line | finds the window by its text | [bin] (recovered-hacks/behaviour-models.md#graal-load-bin) |
+| AFK Bot | three phrases in turn (`I am AFK` and two more) into the focused chat box | one every 3000 ms | none; 3 s to click the chat box or it stops | [bin] (recovered-hacks/behaviour-models.md#afk-bot-bin) |
+| AFK Scroll Bot | one phrase scrolled across chat, first character moved to the end each tick | 100 ms tick | none | [bin] (recovered-hacks/behaviour-models.md#afk-scroll-bot-bin) |
+| Graal Text Sender 1.3.5 | operator text in six modes (word scroller, middle in-out letters, word stay, two words repeat, letter-by-letter to-alls and shout-outs) | 100 ms timer, per-mode waits set by the operator | looks up the client window; declares `GetAsyncKeyState` but never calls it, so it is not a key logger | [bin] (recovered-hacks/behaviour-models.md#graal-text-sender-bin) |
+
+| Rule | Source |
+| --- | --- |
+| The AutoIt tools are compiled AutoIt 2.60 to 2.64 scripts packed with UPX, using only input and window-message calls (`keybd_event`, `mouse_event`, `SendMessageA`, `PostMessageA`, `FindWindowA`, `BlockInput`); the VB6 tools import only the VB runtime | [bin] (recovered-hacks/THREAT_TAXONOMY.md#group-2--rpgwarrior--selzar-autoit-input-macros-gameplay-automation); [bin] (recovered-hacks/TRAINER_RE_NOTES.md) |
+| Digger's archive is truncated (36,111 of 41,893 bytes of a UPX image), so its loop is lost; its howto says to equip a shovel, stand on grass and focus the client | [bin] (recovered-hacks/behaviour-models.md#not-recovered) |
+| The miner archive is blocked by the file host as malware and was never downloaded, so nothing is known of it beyond its size | [file] (recovered-hacks/THREAT_TAXONOMY.md#group-4--suspected-malware-download-blocked) |
+| A static pass over the remaining images found the same input-only pattern and nothing that speaks the game protocol | [bin] (recovered-hacks/static-2026-11-01/README.md) |
+
 ## 4.10.2 Animation state as others see it
 
 ### 4.10.2.1 2.05: the sprite prop
