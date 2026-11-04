@@ -1,0 +1,45 @@
+// Original NPC library: talking villager
+// Category: dialogue / speech
+// Image: none (drawn as a character)
+// Events: playerenters, playertouchsme, timeout
+//
+// A character NPC that answers each touch with the next of four lines in a
+// chat bubble, then starts over. The bubble clears after four seconds.
+
+if (playerenters) {
+  timereverywhere;
+  showcharacter;
+  setcharprop #3,head5.png;
+  setcharprop #C0,white;
+  setcharprop #C1,green;
+  setcharprop #C2,white;
+  setcharprop #C3,brown;
+  setcharprop #C4,black;
+  setcharprop #n,Old Tam;
+  dir = 2;
+  setcharani idle,;
+  this.line = 0;
+  this.wait = 0;
+}
+
+if (playertouchsme && this.wait == 0) {
+  this.wait = 1;
+  this.line++;
+  if (this.line > 4) this.line = 1;
+  if (this.line == 1) setcharprop #c,Fine weather for fishing.;
+  if (this.line == 2) setcharprop #c,The ferry runs at all hours now.;
+  if (this.line == 3) setcharprop #c,Mind the crabs on the east beach.;
+  if (this.line == 4) setcharprop #c,Off you go, then.;
+  timeout = 1;
+  this.clear = 4;
+}
+
+if (timeout) {
+  this.wait = 0;
+  this.clear--;
+  if (this.clear <= 0) {
+    setcharprop #c,;
+  } else {
+    timeout = 1;
+  }
+}
