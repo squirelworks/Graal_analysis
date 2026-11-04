@@ -1,0 +1,31 @@
+// Original NPC library: wardrobe
+// Category: interaction / flags (clothes racks), dialogue / speech
+// Image: a clothes rack
+// Events: playerenters, playertouchsme, timeout
+//
+// Each touch puts the player in the next of four outfits (coat, sleeves,
+// shoes, belt colours). A short delay between changes stops it cycling
+// while the player leans on the rack.
+
+if (playerenters) {
+  timereverywhere;
+  setimg rack.png;
+  this.pick = 0;
+  this.ready = 1;
+}
+
+if (playertouchsme && playerdir == 0 && this.ready == 1) {
+  this.ready = 0;
+  timeout = 0.6;
+  this.pick++;
+  if (this.pick > 4) this.pick = 1;
+  if (this.pick == 1) { setcoatcolor red; setsleevecolor white; setshoecolor brown; setbeltcolor black; }
+  if (this.pick == 2) { setcoatcolor darkblue; setsleevecolor lightblue; setshoecolor black; setbeltcolor brown; }
+  if (this.pick == 3) { setcoatcolor green; setsleevecolor yellow; setshoecolor brown; setbeltcolor darkgreen; }
+  if (this.pick == 4) { setcoatcolor purple; setsleevecolor pink; setshoecolor darkpurple; setbeltcolor white; }
+  play cloth.wav;
+}
+
+if (timeout) {
+  this.ready = 1;
+}
