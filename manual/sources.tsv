@@ -287,6 +287,7 @@ protocol/pcap-2026-10-04.md	pending		2
 protocol/player-props.md	cited	2.6; 2.8; B	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
+protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
 protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
 protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
