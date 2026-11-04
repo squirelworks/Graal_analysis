@@ -4,16 +4,16 @@ ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
 CONSOLIDATED.md	cited	E	E	
 README.md	excluded			repository contents list, not Graal
-archival/README.md	pending		E	
-archival/client-assets-measured.md	pending		E	
-archival/foot-test-sdl.md	pending		E	
-archival/tools-early.md	pending		E	
-archival/version-tokens-early.md	pending		E	
-archive/ember-avelan-experimental.md	pending		E	
-archive/game-assets-2026-11-01.md	pending		E	
-archive/game-assets-graphics-sound-2026-11-01.md	pending		E	
-archive/game-assets-websites-2026-11-01.md	pending		E	
-archive/game-assets-worlds-2026-11-01.md	pending		E	
+archival/README.md	excluded		E	index of archived early notes; each note has its own row
+archival/client-assets-measured.md	excluded		E	archived early measurement, superseded by the later notes the manual cites
+archival/foot-test-sdl.md	excluded		E	archived foot test of an outside SDL reimplementation, not the real clients (same reason as client-internals/foot-test.md)
+archival/tools-early.md	excluded		E	archived early measurement, superseded by the later notes the manual cites
+archival/version-tokens-early.md	excluded		E	archived early measurement, superseded by the later notes the manual cites
+archive/ember-avelan-experimental.md	excluded		E	notes of a decommissioned experimental project; not evidence about the original clients
+archive/game-assets-2026-11-01.md	excluded		E	inventory of the owner's off-repo asset folder; nothing from it is committed or measured
+archive/game-assets-graphics-sound-2026-11-01.md	excluded		E	inventory of the owner's off-repo asset folder; nothing from it is committed or measured
+archive/game-assets-websites-2026-11-01.md	excluded		E	inventory of the owner's off-repo asset folder; nothing from it is committed or measured
+archive/game-assets-worlds-2026-11-01.md	excluded		E	inventory of the owner's off-repo asset folder; nothing from it is committed or measured
 ash/ALGORITHMS.md	cited	5	5.2	
 ash/ARCHITECTURE.md	cited	5; 7	5.2	
 ash/ARCHIVAL-NOTE.md	cited	E	5.2	
@@ -90,15 +90,15 @@ client-internals/decomp-findings-2026-10-24/life-states.tsv	cited	4.4	4
 client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4	
 client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
-client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending		4; E	
-client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	cited	2.7	2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	cited	2.7	2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending	E	4; E	
+client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	cited	2.7; 4.3	2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/README.md	cited	2.7	4	
 client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		4; E	
-client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending	E	3.1; 4	
 client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.1; 4	
@@ -122,12 +122,12 @@ client-internals/decomp-findings-2026-10-25-j/README.md	excluded		4	index of the
 client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
-client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	pending		2.7	
-client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending		E	
+client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	cited	2.7	2.7	
+client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending	E	E	
 client-internals/decomp-findings-2026-10-25-k/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		E	
-client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	pending		2.7	
+client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		3.5	
 client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
@@ -182,9 +182,9 @@ client-internals/offline-tutorial-205.md	cited	4.8; E	4.8
 client-internals/player-mannerisms-live.md	pending	4.1; 4.2; 4.3; 4.5; E	4	
 client-internals/precursor-runs-2026-10-30.md	pending		4	
 client-internals/precursors-and-fan-builds.md	pending		4	
-client-internals/prior-attempts.md	pending		4	
-client-internals/reference-reimplementations/2dadventureclient.md	pending		4	
-client-internals/reference-reimplementations/README.md	pending		4	
+client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
+client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
+client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	pending	8.3	4	
 client-internals/relay-room-bridge.md	pending		4	
 client-internals/rendering-observations.md	cited	4.1	4	
@@ -213,9 +213,9 @@ client-internals/water-and-ganis.md	cited	4.1; 4.2; 4.3	4
 client-internals/zelda-online-1998.md	pending		4	
 docs/NEXT.md	excluded			repository task list, not Graal
 docs/book/00-how-to-read.md	pending	G	E	
-docs/book/01-a-level-and-a-session.md	pending		E	
-docs/book/02-the-player.md	pending		E	
-docs/book/03-the-machines.md	pending		E	
+docs/book/01-a-level-and-a-session.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
+docs/book/02-the-player.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
+docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
@@ -276,10 +276,10 @@ protocol/login-and-walk.md	pending	2.3; 2.4; 7; E	2.3
 protocol/login-frames-by-version-2026-10-25.md	pending	2.1; 6; E	2.3	
 protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	pending	2.2; 2.3; E	2.3	
-protocol/medium-term-expansion.md	pending		2	
-protocol/medium-term-slice.md	pending		2	
+protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
+protocol/medium-term-slice.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/npc-control.md	cited	7; E	7	
-protocol/offline-expansion.md	pending		2	
+protocol/offline-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/packet-id-diff.md	pending		2.4; 2.5; A	
 protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
 protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	
@@ -328,27 +328,27 @@ recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	cited	11	1
 recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	cited	11	11	
 recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
 recovered-hacks/DEFENSE_PROPOSALS.md	excluded		4.10; 11	operator defence proposals for game servers; not client behaviour
-recovered-hacks/INVENTORY.md	pending		4.10; 11	
+recovered-hacks/INVENTORY.md	excluded		4.10; 11	archive inventory of the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3)
 recovered-hacks/THREAT_TAXONOMY.md	pending	4.10	4.10; 11	
 recovered-hacks/TRAINER_RE_NOTES.md	pending	4.10	4.10; 11	
 recovered-hacks/Trainers/AutoPrograms by RpgWarrior/Graal_Miner.zip.BLOCKED.txt	excluded			placeholder for an archive withheld from the repository
 recovered-hacks/Trainers/Graal_Miner.zip.BLOCKED.txt	excluded			placeholder for an archive withheld from the repository
 recovered-hacks/behaviour-models.md	pending	4.10	4.10; 11	
 recovered-hacks/defense-checklist.md	excluded		4.10; 11	operator defence checklist for game servers; not client behaviour
-recovered-hacks/ghidra-analysis/AFK_Bot/SUMMARY.md	pending		4.10; 11	
-recovered-hacks/ghidra-analysis/GTS/SUMMARY.md	pending		4.10; 11	
-recovered-hacks/ghidra-analysis/Graal_Digger/SUMMARY.md	pending		4.10; 11	
-recovered-hacks/ghidra-analysis/Graal_Prayer/SUMMARY.md	pending		4.10; 11	
-recovered-hacks/ghidra-analysis/Graal_Prayer_data/SUMMARY.md	pending		4.10; 11	
-recovered-hacks/remaining-2026-11-01.md	pending		4.10; 11	
+recovered-hacks/ghidra-analysis/AFK_Bot/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/ghidra-analysis/GTS/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/ghidra-analysis/Graal_Digger/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/ghidra-analysis/Graal_Prayer/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/ghidra-analysis/Graal_Prayer_data/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/remaining-2026-11-01.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3)
 recovered-hacks/static-2026-11-01/README.md	pending	4.10	4.10; 11	
-recovered-hacks/static-2026-11-01/autod.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/autoidle.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/autos.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/capslock.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/listserver.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/random-walker.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/waterget.md	pending		4.10; 11	
+recovered-hacks/static-2026-11-01/autod.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/static-2026-11-01/autoidle.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/static-2026-11-01/autos.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/static-2026-11-01/capslock.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/static-2026-11-01/listserver.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/static-2026-11-01/random-walker.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
+recovered-hacks/static-2026-11-01/waterget.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
 release/0.0.1/README.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
 release/0.0.1/RELEASE-0.0.1.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
 release/0.0.1/contents.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source

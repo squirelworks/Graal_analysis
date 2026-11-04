@@ -58,3 +58,49 @@ The request messages are laid out in → §2.4.7 and the replies in → §2.5.7;
 | 5.x | then 34 for `idle.gani`, `sprites.png`, `body.png`, `head0.png`, `shield1.png` and the `guigames_*` images, and 23 for the fonts (`arial.ttf`, `arialbd.ttf`) and `tiledefs<server>.txt` | [cap] (protocol/file-transfer.md#what-5x-asks-for-at-login-cap) |
 
 Update packages and their messages (105, 106, 187) are in → §2.5.7.
+
+## 2.7.5 The client's request lists
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| The client keeps three name lists: wanted (asked with 23), update-asked (asked with 34) and settled (a reply came back) | 2.00, 2.05 rev 2, 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#lists) |
+| No local copy: the name is appended to the wanted list unless already there, and sent while that list holds at most four names | same | [bin] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#asking) |
+| A local copy: the name is appended to the update-asked list unless it is there or settled, and sent while that list holds at most four; so each local file is checked at most once per connection | same | [bin] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#asking) |
+| The time in 34 is the local file's last-write time in Unix seconds; at login it matched the files' times for the sword, shield and body images | same; 2.22 (lab) | [bin][cap] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#asking) |
+| Builds with no id 34 never check a local copy | 1.33 to 1.41 | [bin] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#asking) |
+| Any reply (the file, up to date, send failed, or the end of a large file) removes the name from both lists and adds it to the settled list; if the name was among the first four, the name now fourth goes out; the two lists release independently | same | [bin] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#replies) |
+| Four of each kind were on the wire before the first reply | 2.22 (lab) | [cap] (client-internals/decomp-findings-2026-10-25-e/README.md#top-facts) |
+| The client never compares times; the server decides | same | [bin] (client-internals/decomp-findings-2026-10-25-e/README.md#top-facts) |
+| A name answered with 30 is not asked for again on that connection: a missing step sound was asked for once however often the player walked | 2.22 (lab) | [cap] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#failed-names) |
+| Images and ganis: a local file is used and checked, a missing one asked for; sounds: asked for only when missing, never checked; levels: no file transfer (board messages and the level modtime instead, → §3.8); a gmap: checked when present, asked for when missing | 2.05 rev 2, 2.22; gmap 2.22 (lab) | [bin][cap] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#who-asks) |
+| In 2.05 rev 2 and 2.22 the request side was read from the matching reply-side code and the lab | 2.05 rev 2, 2.22 | [inf] (client-internals/decomp-findings-2026-10-25-e/request-rules.tsv) |
+
+## 2.7.6 Saving a download
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| A received file is held in memory and written to disk only when `saveimages` is on (default on, → §3.9.3) | 2.05 rev 2 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-e/02-save-rules.md#whether-a-file-is-written) |
+| An empty or missing stream is never saved: nothing is written or deleted and the loaders are not told | 1.39, 2.00, 2.05 rev 2, 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#the-guard) |
+| A file the client already has is replaced where it is; a new one is placed by name, compared without case | 2.00 and later | [bin] (client-internals/decomp-findings-2026-10-25-e/02-save-rules.md#where) |
+| From 2.1 the saved file gets the time from the reply, so the next check carries the server's time; before 2.1 it keeps the download time | 2.1 and later; earlier | [bin] (client-internals/decomp-findings-2026-10-25-e/02-save-rules.md#time-of-the-saved-file) |
+
+Where a new download is saved, by build:
+
+| Builds | Folders | Source |
+| --- | --- | --- |
+| 1.33 to 1.41 | everything in `levels/webgifs`; 1.39 saves only `.gif`, `.png` and `.mng`, deletes an old copy first and sets no time | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
+| 1.42 NewMain | the earlier build adds `ganis`, `heads`, `swords`, `shields`; the later adds `sounds` for `.wav` and `bomys` | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
+| 2.00, 2.01 | `sounds` for `.wav`; under `levels`: `bomys` (names starting `bomy` or `b_`), `ganis` (`.gani`), `emoticons` (names starting `emoticon`), `heads`, `bodies`, `swords`, `shields` (names containing those words), else `webgifs` | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
+| 2.02 to 2.05 rev 2, both 2.1 test builds | as 2.00, plus `hats` (`hat` then a digit as the fourth character) | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
+| 2.17.1, 2.22, 2.31 | as 2.05, plus `maps` for `.gmap` and for `.txt`, `.gif`, `.png`, `.mng` names containing `map`; a 2.22 gmap download was saved as `maps/<name>` | [bin][cap] (client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv); [cap] (client-internals/decomp-findings-2026-10-25-e/02-save-rules.md#where) |
+| 2.1 to 2.16 | no binary; when `maps` arrived is unknown (→ App. E#10) | [doc] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
+
+## 2.7.7 Finding a local file
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Names are folded A to Z only, then compared byte for byte; accented letters do not match across case | 2.05 rev 2, 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#case-fold) |
+| A file of that name in the current directory wins first: the game folder in 2.22, the `levels` folder in 2.05 rev 2 (or a world opened from elsewhere) | 2.05 rev 2, 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#which-copy-is-used) |
+| 2.22 indexes the game folder at startup, files before subdirectories in listing order, skipping top-level `pms`, `profiles` and `weblevels` and `.code` files; for a duplicate name the newer last-write time wins, and an equal time keeps the first found | 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#which-copy-is-used) |
+| 2.05 rev 2 looks up on demand: the current directory, then a remembered path, then a depth-first search of an opened world's folder and the game folder with the same skips; the first hit wins and is remembered | 2.05 rev 2 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#which-copy-is-used) |
+| For two different files of one name, 2.22 draws the newer and 2.05 rev 2 the first found | 2.05 rev 2, 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv) |
