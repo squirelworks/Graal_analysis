@@ -1,0 +1,22 @@
+// Original NPC library: NPC hatchery
+// Category: spawn / timers
+// Image: an egg cluster
+// Events: playerenters, timeout
+// Needs: ../enemies/bat-swoop.gs1 (or any NPC script) next to the level
+//
+// Hatches one NPC from a script file every ten seconds, up to three per
+// visit. Uses putnpc (image, script, x, y); online the client asks the
+// server to create the NPC (manual §8.2.4.4).
+
+if (playerenters) {
+  setimg eggs.png;
+  this.made = 0;
+  timeout = 10;
+}
+
+if (timeout && this.made < 3) {
+  this.made++;
+  play hatch.wav;
+  putnpc bat.png,bat-swoop.gs1,x,y-2;
+  timeout = 10;
+}

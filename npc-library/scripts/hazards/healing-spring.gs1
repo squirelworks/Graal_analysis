@@ -1,0 +1,27 @@
+// Original NPC library: healing spring
+// Category: combat / hazards (negative damage)
+// Image: a sparkling pool, drawn under the player
+// Events: playerenters, playertouchsme, timeout
+//
+// The opposite of spikes: standing in it heals half a heart every second.
+// hurt with a negative value heals (manual §8.2.4.6, from the 2000
+// documentation).
+
+if (playerenters) {
+  timereverywhere;
+  setimg spring.png;
+  dontblock;
+  drawunderplayer;
+  this.ready = 1;
+}
+
+if (playertouchsme && this.ready == 1 && playerhearts < playerfullhearts) {
+  this.ready = 0;
+  hurt -1;
+  play heal.wav;
+  timeout = 1;
+}
+
+if (timeout) {
+  this.ready = 1;
+}

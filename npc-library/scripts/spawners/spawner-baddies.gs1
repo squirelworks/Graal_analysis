@@ -1,0 +1,30 @@
+// Original NPC library: monster den
+// Category: spawn / timers
+// Image: a cave mouth or nest
+// Events: playerenters, timeout, wasshot, washit, exploded
+//
+// Every six seconds, while fewer than three baddies are alive in the level,
+// sends out a frog beside the den. Destroying the den (five hits; bombs
+// count three) stops it for the visit.
+
+if (playerenters) {
+  setimg den.png;
+  this.hp = 5;
+  this.alive = 1;
+  timeout = 6;
+}
+
+if ((washit || wasshot) && this.alive == 1) { this.hp--; play hit.wav; }
+if (exploded && this.alive == 1) { this.hp -= 3; }
+if (this.hp <= 0 && this.alive == 1) {
+  this.alive = 0;
+  putexplosion 1,x+1,y+1;
+  hide;
+}
+
+if (timeout && this.alive == 1) {
+  if (compuscount < 3) {       // <- cap
+    putcomp frog,x+2.5,y+1;    // <- which baddy
+  }
+  timeout = 6;
+}
