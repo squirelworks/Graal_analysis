@@ -1,0 +1,24 @@
+// Original NPC library: rupee chest (once per player)
+// Category: object / chests
+// Image: chest sheet, closed frame at x 0 and open frame at x 32, 32x32 each
+// Events: playerenters, playertouchsme
+// Flag set: chest_cellar_1 (rename per chest, in all three places)
+//
+// Opens when the player touches it from below facing up, gives rupees once,
+// and shows the open frame on every later visit.
+
+if (playerenters) {
+  if (chest_cellar_1) {
+    setimgpart chest.png,32,0,32,32;     // open
+  } else {
+    setimgpart chest.png,0,0,32,32;      // closed
+  }
+}
+
+if (playertouchsme && playerdir == 0 && !chest_cellar_1) {
+  set chest_cellar_1;
+  setimgpart chest.png,32,0,32,32;
+  playerrupees += 30;                    // <- reward
+  play chest.wav;
+  say2 You found 30 rupees!;
+}

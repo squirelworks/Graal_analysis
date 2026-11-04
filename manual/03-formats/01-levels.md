@@ -12,7 +12,9 @@ A Graal level is one 64×64 board of tiles plus its links, baddies, NPCs, chests
 | magics in the 2.05 string table | `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00` to `GR-V1.03`, `GLEVNW01`; each set appears three times, one copy next to the GWEBL001 cache code (→ §3.8) | [2.05] (formats/level-binary.md) |
 | server loader | picks the loader from the extension `.nw`, `.graal` or `.zelda`; for an unknown extension, from the 8-byte magic | [srv] (formats/glevnw01.txt) |
 | server magic fallback | `GLEVNW01` → text loader; `GR-V1.01`, `GR-V1.02`, `GR-V1.03` → binary Graal loader; `Z3-V1.03`, `Z3-V1.04` → Zelda loader | [srv] (formats/glevnw01.txt) |
-| real files | a reader must decide by the magic, not the extension: `.zelda` names hold GR-V1 files and `.graal` names hold `Z3-V1.04` files | [test] (formats/level-binary.md#z3-v1-differences) |
+| real files | a reader must decide by the magic, not the extension: `.zelda` names hold GR-V1 files and `.graal` names hold `Z3-V1.04` files | [test] (formats/level-binary.md#z3-v1-differences) ; [test] (client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md) |
+| `.zelda` names | 694 of 801 distinct `.zelda`-named files in the old builds are `GR-V1.00` to `GR-V1.03`; 1st Graal's 16 levels are all `Z3-V1.04` under `.graal` names | [test] (client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md); [test] (client-internals/decomp-findings-2026-10-25-j/by-build.tsv) |
+| client magics | every client tested, 1st Graal to 2.31 and the NewWorld betas, carries `Z3-V1.03` and `Z3-V1.04` and no third `Z3-V1` revision; the 1st Graal and 1.39 loaders compare the 8 magic bytes only | [bin] (client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md) |
 | 2.05 writer | always writes `GR-V1.03` for a level that is not saved as `.nw` | [2.05] (formats/level-binary.md#open) |
 | 2.31 writer | writes `GR-V1.04` only when the level has a height map, `GR-V1.03` otherwise | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 
@@ -48,7 +50,10 @@ Z3-V1 has **no NPC section and no chest section** [srv] (formats/level-binary.md
 | negative arrival | a negative `newx` or `newy` means "keep the player's own coordinate" | [test] (formats/level-binary.md#z3-v1-differences) |
 | baddy bytes | the three raw bytes `x y type` are taken before the line end is looked for, because `0x0A` can be an `x` or a `y` | [test] (formats/level-binary.md#z3-v1-differences) |
 | baddy types | values 0 to 6 occur; Zelda Online's names for them are green, blue and red soldier, shot soldier, swamp soldier, jumping hare, octopus | [test] (formats/level-binary.md#z3-v1-differences) |
-| sample | the rules were checked against 139 distinct real files | [test] (formats/level-binary.md#z3-v1-differences) |
+| link destinations | no destination name contains a space; `Z3-V1.03` links name `.zelda` or `.editor` files, `Z3-V1.04` links `.graal`, `.zelda` or `.editor` | [test] (client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md#destination-extensions) |
+| verses | every `Z3-V1.04` record carries the verse line, most with all three verses empty; no `Z3-V1.03` record has one | [test] (client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md#computers-baddies) |
+| a GR-V1 reader on Z3-V1 | integer link parsing drops 124 decimal links, a computer line end left in the stream shifts every later record, and a negative arrival is taken as a literal coordinate | [test] (client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md) |
+| sample | the rules were checked against 139 distinct real files | [test] (formats/level-binary.md#z3-v1-differences) ; [test] (client-internals/decomp-findings-2026-10-25-j/format-stats.tsv); [test] (client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md) |
 
 ## 3.1.2 GR-V1 (.graal)
 
@@ -79,6 +84,7 @@ The board is a packed bit stream with run-length codes, not a 64×64 array of 2-
 | single run | the next tile is written `count` times, then `count` resets to 1 | [srv] (formats/level-binary.md#board-bit-stream) |
 | double run | two tiles A and B are read and `A B` is written `count` times (`{double 4} 5 6` → `5 6 5 6 5 6 5 6`), then the count resets | [srv] (formats/level-binary.md#board-bit-stream) |
 | fill order | tiles fill `board[x + 64*y]` row by row, layer 0 only, until 4096 tiles are produced | [srv] (formats/level-binary.md#board-bit-stream) |
+| double flag | the Java Zelda Online reader keeps the double flag until a double run completes, the GR-V1 reader clears it at the next control code; no real file shows a difference (0 of 663) | [test] (client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md) |
 | tile range | a 12-bit file cannot address tiles ≥ 2048, because the flag takes the top bit; that is why 1.02 widened the code to 13 bits for the 4096-tile `pics1` | [inf] (formats/level-binary.md#board-bit-stream) |
 
 Code width per magic:
@@ -113,6 +119,7 @@ The 2.05 writer walks the 4096 tiles in order and picks one case at each positio
 | missing level | a link to a level that does not exist is dropped | [srv] (formats/level-binary.md#records) |
 | arrival | `newx` and `newy` may be `playerx` or `playery`, optionally followed by a signed number (`playery+10`) | [srv] (formats/level-binary.md#records) |
 | terminator | a line `#` or an empty line | [srv][2.05] (formats/level-binary.md#layout) |
+| negative arrival | 805 of 5381 distinct GR-V1 links in the old builds have a negative arrival; that 2.x reads it as "keep the player's coordinate", as Z3-V1 does, is inferred | [test][inf] (client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md#negative-arrivals) |
 
 How the client resolves an arrival expression is in → §4.
 
@@ -124,7 +131,8 @@ How the client resolves an arrival expression is in → §4.
 | verse line | three verses separated by `\`: sight, hurt, attack | [srv] (formats/level-binary.md#records) |
 | line end | the client reads up to a `\n` that comes after at least 3 bytes, so the binary bytes may contain `0x0A` | [2.05] (formats/level-binary-client.md#section-rules-in-the-client-reader-205) |
 | terminator | `FF FF FF` followed by an empty line; the client stops at a record whose first byte is ≥ `0x80` | [srv] (formats/level-binary.md#records); [2.05] (formats/level-binary-client.md#section-rules-in-the-client-reader-205) |
-| x of 0 | a valid baddy; real levels have them | [test] (formats/grv1-decoder/README.md) |
+| x of 0 | a valid baddy; real levels have them; a reader that stops at x = 0 loses them and reads the rest of the baddy bytes as NPC lines | [test] (formats/grv1-decoder/README.md); [test] (client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md) |
+| corpus | 902 baddies in 99 of 3113 levels; types 0 to 9 all occur | [test] (client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md); [test] (client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv) |
 | short record | the reference decoder also ends the section at a record shorter than 3 bytes | [test] (formats/grv1-decoder/README.md) |
 
 ### 3.1.2.5 NPCs and chests
@@ -134,7 +142,7 @@ How the client resolves an arrival expression is in → §4.
 | NPC | `GCHAR x, GCHAR y, image#script`; the script uses `0xA7` for a newline; an empty image is a script-only NPC | [srv] (formats/level-binary.md#records) |
 | chest | `GCHAR x, GCHAR y, GCHAR item, GCHAR signindex` | [srv] (formats/level-binary.md#records) |
 
-Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). The chest item index table is in → §8.
+Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). NPC bytes are single bytes and can lie outside 0 to 63, as 165 NPCs in the corpus do. A level with no chests still ends the section with a bare `#`. Chest items 0 to 11, 16, 17, 19 and 24 occur, plus one 78, outside the 25-name table; 343 of 375 chests have sign index −1, which is "no sign" [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md); [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md). The chest item index table is in → §8.
 
 ### 3.1.2.6 Signs
 
@@ -144,7 +152,8 @@ Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (form
 | alphabet | the same as signs on the wire: `byte - 32` indexes the sign table (→ §3.6) | [2.05] (formats/level-binary-client.md#sign-text-in-files) |
 | line break | the token `v*eUWf` + `0x80` decodes to `#K(13)` and a newline; it is the explicit line-break marker, not a space | [test] (formats/level-binary-client.md#sign-text-in-files) |
 | end | 2.05 reads signs to end of file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| signs at (0,0) | common in real levels and hold dialogue text, so they are probably messages that NPC scripts show by index rather than signs on the map | [inf] (formats/level-binary-client.md#sign-text-in-files) |
+| signs at (0,0) | common in real levels and hold dialogue text, so they are probably messages that NPC scripts show by index rather than signs on the map | [inf] (formats/level-binary-client.md#sign-text-in-files) ; [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md) |
+| no signs | a level with no signs ends after the chest `#`, with no empty line; in 3113 files nothing follows the signs | [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md) |
 
 ### 3.1.2.7 GR-V1.04 height block
 

@@ -1,0 +1,15 @@
+// Original NPC library: push block
+// Category: object / blocks
+// Image: a stone block, 32x32
+// Events: playerenters
+//
+// A block the player can push and pull with the built-in movement. Nothing
+// else is scripted; puzzle logic that watches where it ends up lives in a
+// separate NPC (see the switch scripts in the interaction family).
+
+if (playerenters) {
+  setimg block.png;
+  canbepushed;
+  canbepulled;
+  cannotbecarried;
+}

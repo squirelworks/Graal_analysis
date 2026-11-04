@@ -1,0 +1,44 @@
+// Original NPC library: swinging door
+// Category: object / doors
+// Image: a closed door, 32x32 or 32x48
+// Events: playerenters, playertouchsme, timeout
+//
+// Opens (hides) when touched and closes again after two seconds, but never
+// shuts on a player who is still standing in the doorway: it waits another
+// half second instead. timereverywhere makes every client run the timer,
+// not only the level leader, so the door also closes for a player who is
+// alone in the level when the leader leaves.
+
+function playerinside() {
+  // 1 when the player's feet overlap the door rectangle.
+  this.inside = 0;
+  if (playerx + 2 > x && playerx + 1 < x + this.w && playery + 3 > y && playery + 2 < y + this.h) {
+    this.inside = 1;
+  }
+}
+
+if (playerenters) {
+  setimg door.png;
+  timereverywhere;
+  this.w = 2;                 // <- door width in tiles
+  this.h = 2;                 // <- door height in tiles
+  this.opentime = 2;          // <- seconds open
+  this.open = 0;
+}
+
+if (playertouchsme && this.open == 0) {
+  this.open = 1;
+  play door.wav;
+  hide;
+  timeout = this.opentime;
+}
+
+if (timeout && this.open == 1) {
+  playerinside();
+  if (this.inside == 1) {
+    timeout = 0.5;
+  } else {
+    this.open = 0;
+    show;
+  }
+}

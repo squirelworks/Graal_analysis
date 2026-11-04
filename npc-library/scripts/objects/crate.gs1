@@ -1,0 +1,17 @@
+// Original NPC library: liftable crate (spawned by block-dropper.gs1)
+// Category: object / blocks
+// Image: a crate
+// Events: playerenters, wasthrown
+//
+// The player can lift and throw it; it breaks with a burst of splinters
+// when it lands.
+
+if (playerenters) {
+  setimg crate.png;
+  canbecarried;
+}
+
+if (wasthrown) {
+  putleaps 3,x,y;          // 3 = the sign-splinter leaps
+  destroy;
+}
