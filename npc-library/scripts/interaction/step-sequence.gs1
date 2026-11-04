@@ -1,0 +1,52 @@
+// Original NPC library: stepping-stone order puzzle
+// Category: interaction / triggers
+// Image: none (invisible controller; the three stones are tiles)
+// Events: playerenters, timeout
+// Flag set on success: stones_solved (rename to suit)
+//
+// Three floor stones must be stepped on in the order 1, 2, 3. The
+// controller watches the player's feet; a wrong stone resets the order
+// with a buzz, the right third stone sets the flag and plays a fanfare.
+// Put the stone positions (top-left tile of each 2x2 stone) in the
+// marked lines. Stepping twice on the same stone does nothing.
+
+function stoneunder() {
+  // which stone (1..3) the player's feet are on, 0 for none
+  this.fx = playerx + 1.5;
+  this.fy = playery + 2.5;
+  this.on = 0;
+  if (this.fx >= this.s1x && this.fx < this.s1x + 2 && this.fy >= this.s1y && this.fy < this.s1y + 2) this.on = 1;
+  if (this.fx >= this.s2x && this.fx < this.s2x + 2 && this.fy >= this.s2y && this.fy < this.s2y + 2) this.on = 2;
+  if (this.fx >= this.s3x && this.fx < this.s3x + 2 && this.fy >= this.s3y && this.fy < this.s3y + 2) this.on = 3;
+}
+
+if (playerenters) {
+  timereverywhere;
+  hide;
+  this.s1x = 20; this.s1y = 30;   // <- stone 1
+  this.s2x = 30; this.s2y = 26;   // <- stone 2
+  this.s3x = 40; this.s3y = 30;   // <- stone 3
+  this.next = 1;
+  this.last = 0;
+  if (!stones_solved) timeout = 0.1;
+}
+
+if (timeout && !stones_solved) {
+  stoneunder();
+  if (this.on != 0 && this.on != this.last) {
+    if (this.on == this.next) {
+      play click.wav;
+      this.next++;
+      if (this.next > 3) {
+        set stones_solved;
+        play secret.wav;
+      }
+    } else {
+      play buzz.wav;
+      this.next = 1;
+      if (this.on == 1) this.next = 2;
+    }
+  }
+  this.last = this.on;
+  if (!stones_solved) timeout = 0.1;
+}

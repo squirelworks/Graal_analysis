@@ -257,6 +257,7 @@ npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8
 npc-library/reference/forcesay.txt	pending		8	
 npc-library/reference/npcControl-NPC.txt	pending		8	
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/interaction/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/objects/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/transport/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/tile-patterns.md	pending		8	

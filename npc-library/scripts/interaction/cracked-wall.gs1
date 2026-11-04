@@ -1,0 +1,28 @@
+// Original NPC library: bombable wall
+// Category: interaction / visibility, combat / targets
+// Image: a cracked wall section, e.g. 32x48
+// Events: playerenters, exploded, washit
+// Flag set: wall_cave_open (rename per wall)
+//
+// Only an explosion breaks it, and it stays broken. A sword hit gives a
+// hollow sound as a hint.
+
+if (playerenters) {
+  if (wall_cave_open) {
+    hide;
+  } else {
+    setimg crackedwall.png;
+  }
+}
+
+if (exploded && !wall_cave_open) {
+  set wall_cave_open;
+  putleaps 2,x,y;
+  putleaps 2,x+1,y+1;
+  play secret.wav;
+  hide;
+}
+
+if (washit && !wall_cave_open) {
+  play hollow.wav;
+}

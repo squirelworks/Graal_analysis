@@ -1,0 +1,30 @@
+// Original NPC library: chair or bench
+// Category: dialogue / speech (seats)
+// Image: a chair seen from above, 32x32
+// Events: playerenters, playertouchsme, timeout
+//
+// Walking into the chair seats the player on it, facing down, with the sit
+// animation; the chair draws under the player so they appear on it. The
+// player stands up by walking away. A short pause after sitting stops the
+// chair from re-seating the player while they leave.
+
+if (playerenters) {
+  timereverywhere;
+  setimg chair.png;
+  drawunderplayer;
+  dontblock;
+  this.ready = 1;
+}
+
+if (playertouchsme && this.ready == 1) {
+  this.ready = 0;
+  playerx = x - 0.5;
+  playery = y - 1;
+  setplayerdir down;
+  setani sit,;
+  timeout = 1.5;
+}
+
+if (timeout) {
+  this.ready = 1;
+}

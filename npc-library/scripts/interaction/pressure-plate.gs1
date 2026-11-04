@@ -1,0 +1,46 @@
+// Original NPC library: pressure plate
+// Category: interaction / triggers
+// Image: plate sheet, raised at x 0 and pressed at x 32, 32x32 each
+// Events: playerenters, timeout
+// Flag set while pressed: plate_hall (rename per plate)
+//
+// Held down while the player stands on it, or while a pushed block sits
+// on it (any NPC whose top-left is within half a tile counts). Releases
+// as soon as both leave. Checks five times a second.
+
+function check() {
+  this.down = 0;
+  if (playerx + 1.5 >= x && playerx + 1.5 < x + 2 && playery + 2.5 >= y && playery + 2.5 < y + 2) {
+    this.down = 1;
+  }
+  for (this.i = 0; this.i < npcscount; this.i++) {
+    if (npcs[this.i].id != id && abs(npcs[this.i].x - x) < 0.5 && abs(npcs[this.i].y - y) < 0.5) {
+      this.down = 1;
+    }
+  }
+}
+
+if (playerenters) {
+  timereverywhere;
+  setimgpart plate.png,0,0,32,32;
+  dontblock;
+  drawunderplayer;
+  this.was = 0;
+  timeout = 0.2;
+}
+
+if (timeout) {
+  check();
+  if (this.down != this.was) {
+    this.was = this.down;
+    if (this.down == 1) {
+      set plate_hall;
+      setimgpart plate.png,32,0,32,32;
+      play click.wav;
+    } else {
+      unset plate_hall;
+      setimgpart plate.png,0,0,32,32;
+    }
+  }
+  timeout = 0.2;
+}
