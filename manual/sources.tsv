@@ -262,6 +262,8 @@ npc-library/scripts/README.md	excluded			original example scripts written for th
 npc-library/scripts/dialogue/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/enemies/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/interaction/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/items/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/minigames/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/objects/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/transport/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/tile-patterns.md	excluded		8	scan output that read script text as tile ids (the pairs decode to ASCII); not usable

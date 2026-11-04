@@ -1,0 +1,70 @@
+// Original NPC library: whack-a-mole
+// Category: minigame
+// Image: sheet with an empty hole at x 0 and a mole at x 32, 32x32
+// Events: playerenters, playertouchsme, washit, timeout
+//
+// One mole pops out of one of six holes laid out in two rows of three
+// (3 tiles apart). Hit it with the sword before it ducks (0.9 s, getting
+// faster). Touch the mole while it is down to start; a round is 20 moles.
+// Pays one rupee per hit and a bonus for a perfect round.
+
+function pop() {
+  this.hole = int(random(0,6));
+  x = this.bx + (this.hole % 3) * 3;
+  y = this.by + int(this.hole / 3) * 3;
+  setimgpart mole.png,32,0,32,32;
+  this.out = 1;
+  this.left = 0.9 - this.n * 0.02;
+}
+
+if (playerenters) {
+  timereverywhere;
+  this.bx = x;
+  this.by = y;
+  setimgpart mole.png,0,0,32,32;
+  this.playing = 0;
+}
+
+if (playertouchsme && this.playing == 0) {
+  this.playing = 1;
+  this.n = 0;
+  this.hits = 0;
+  this.out = 0;
+  this.left = 1;
+  message Get ready!;
+  timeout = 0.1;
+}
+
+if (washit && this.playing == 1 && this.out == 1) {
+  this.hits++;
+  this.out = 0;
+  play bonk.wav;
+  setimgpart mole.png,0,0,32,32;
+  this.left = 0.4;
+}
+
+if (timeout && this.playing == 1) {
+  this.left -= 0.1;
+  if (this.left <= 0) {
+    if (this.out == 1) {
+      this.out = 0;
+      setimgpart mole.png,0,0,32,32;
+      this.left = 0.4;
+    } else if (this.n < 20) {
+      this.n++;
+      pop();
+    } else {
+      this.playing = 0;
+      this.pay = this.hits;
+      if (this.hits == 20) this.pay += 50;
+      playerrupees += this.pay;
+      message #v(this.hits)/20 - #v(this.pay) rupees;
+      x = this.bx;
+      y = this.by;
+    }
+  }
+  if (this.playing == 1) {
+    message #v(this.hits)/#v(this.n);
+    timeout = 0.1;
+  }
+}
