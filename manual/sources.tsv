@@ -22,6 +22,7 @@ ash/INDEX.md	cited	5; E	5.2
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
+client-internals/baddies-222.md	cited	2.6; 8.2; E	4.3	
 client-internals/bare-level-names.md	cited	3.1	4	
 client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
 client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
@@ -377,10 +378,12 @@ server-notes/03-protocol.md	cited	5; 6	5
 server-notes/04-algorithms.md	cited	5; 7	5	
 server-notes/README.md	excluded		5	index of server-notes/; its notes are cited directly
 server-notes/ash-overview.md	cited	5; E	5	
+server-notes/baddies-serverside.md	pending		5	
 server-notes/lab-servers-2026-10-30.md	cited	5; 6; E	5	
 server-notes/public-allowed-versions.md	cited	5; E	5	
 server-notes/setcharprop-hash-n.md	cited	5	5	
 tools/README.md	excluded		11	index of the tools folder; the notes it lists are cited or excluded one by one
+tools/baddy-222/README.md	excluded		11	usage notes for the baddy gani generator and capture checker; the findings are in client-internals/baddies-222.md
 tools/build-diff/README.md	excluded		11	repository analysis tooling, not Graal
 tools/classic-tools/README.md	cited	11	6; 11	
 tools/classic-tools/character-designer.md	cited	11	6; 11	
