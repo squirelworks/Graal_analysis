@@ -1,0 +1,24 @@
+// Original NPC library: wild portal
+// Category: transport / level-warps
+// Image: a swirling portal
+// Events: playerenters, playertouchsme
+//
+// Each touch sends the player to one of three places, picked at random.
+
+if (playerenters) {
+  setimg portal.png;
+  dontblock;
+  drawunderplayer;
+}
+
+if (playertouchsme) {
+  play portal.wav;
+  this.pick = int(random(0,3));
+  if (this.pick == 0) {
+    setlevel2 island_north.graal,30,30;
+  } else if (this.pick == 1) {
+    setlevel2 island_south.graal,30,30;
+  } else {
+    setlevel2 island_west.graal,30,30;
+  }
+}
