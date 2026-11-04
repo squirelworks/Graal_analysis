@@ -262,6 +262,60 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | the per-facing probe offsets for link following; the flag that skips the 3 × 3 neighbour table; which big map 2.05 uses offline and whether 2.22 does the same with `PLO_BIGMAP` (171); how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 | Settles it | reading the probe table and the flag in 2.05, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
+
+### E#309 Knockback distance of 1.39
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the 1.39 binary moves the player one tile per tick while the hurt counter reads 39 down to 35: five steps | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
+| Claim B | the offline 1.39 run measured four tiles of knockback on the touch-NPC test | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| Open | whether the live run lost a step to collision or to the ±1 tick of the video timing | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
+| Settles it | a fresh 1.39 knockback re-measure on open ground | [inf] (version-profiles/matrix/rules-139.md#still-open) |
+
+### E#310 Where the once-per-second hit stamp sits
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the per-attacker second-of-day stamp is shared by the sword and both hit messages, and is stored before the guild test | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
+| Claim B | in 2.00 to 2.05 rev 2 the stamp is in the hurt-message path only; it was not found in the sword judge of any build | [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
+| Settles it | a lab test of two sword hits from one attacker inside one second on 2.05 | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
+
+### E#311 Blast hit zone and the occasional full-heart hit
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | a blast piece hurts when its centre, offset by one tile, is under one tile from the player's centre on both axes | [2.05] (client-internals/damage-sources.md#bombs-and-explosions) |
+| Claim B | in the 2.22 lab, with a bomb 0.5 or 1.5 tiles off the victim's row, hits came at y offsets +1, +3 and -3 but not at 0 or ±2, and at x offsets ±4 and +5 but not 0 or ±1: a pattern keyed on the bomb's half-tile y rather than a plain radius; a few trials took a full heart instead of a half without a clear rule | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Settles it | reading the 2.22 explosion routine and repeating the sweep with one bomb per trial | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+
+### E#312 The last byte of a shot
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the last byte of `PLO_ARROWADD` (19) is the shot type, `byte - 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
+| Claim B | in the 2.22 lab an injected shot hurt only when that byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Settles it | reading the 2.22 shot receiver, or a capture of a real arrow that hurts | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+
+### E#313 Do arrows and fireballs pass walls
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | in the 2.05 shot flow types 0 and 1 skip the blocking test that stops types 2 and 3, which would let arrows and fireballs fly through walls; the test's arguments were not recovered | [2.05] (client-internals/damage-sources.md#open) |
+| Settles it | a lab shot at a wall on 2.05 | [inf] (client-internals/damage-sources.md#open) |
+
+### E#314 Gmap list order and the level-entry save
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the order of the gmap's level list and when it is updated against the entry save decide whether entering a gmap from outside saves the respawn point | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| Settles it | a lab walk from a plain level into a gmap and back on 2.05, dying on each side | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+
+### E#315 The level-entry save in the 2.1 test builds
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| Settles it | reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 ### E#400 Two projects called Ash
 
 | Item | Content | Source |
