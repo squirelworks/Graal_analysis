@@ -31,10 +31,10 @@ client-internals/carry-hide-and-glove.md	pending		4
 client-internals/chat-text.md	pending		4	
 client-internals/client-architecture-205.md	pending		4	
 client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
-client-internals/combat-200-204.md	pending		4.3	
+client-internals/combat-200-204.md	cited	4.3; E	4.3	
 client-internals/config-and-input.md	cited	3.9	3.9	
 client-internals/cross-version-timeline.md	pending	1; 8.2; C; E	1	
-client-internals/damage-sources.md	pending		4	
+client-internals/damage-sources.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	pending		4	
 client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md	cited	4.1; 4.2	4	
@@ -64,30 +64,30 @@ client-internals/decomp-findings-2026-10-24-c/plo_decode_signatures.tsv	pending	
 client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv	pending		4	
 client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv	pending		4	
 client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md	pending		4	
-client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md	pending		4	
-client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md	pending		4	
+client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md	cited	4.3	4	
+client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md	cited	4.4; E	4	
+client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-24-d/README.md	pending		4	
-client-internals/decomp-findings-2026-10-24-d/damage-rules.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-d/entry-save-rule.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-d/open-questions.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24/01-death-respawn.md	pending		4	
+client-internals/decomp-findings-2026-10-24-d/damage-rules.tsv	cited	4.3	4	
+client-internals/decomp-findings-2026-10-24-d/entry-save-rule.tsv	cited	4.4	4	
+client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv	cited	4.3	4	
+client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv	cited	4.4	4	
+client-internals/decomp-findings-2026-10-24-d/open-questions.tsv	cited	4.4; E	4	
+client-internals/decomp-findings-2026-10-24/01-death-respawn.md	cited	4.3; 4.4	4	
 client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md	pending		4	
 client-internals/decomp-findings-2026-10-24/03-player-list-popup.md	pending		4	
-client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	pending		4	
+client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	pending		4	
 client-internals/decomp-findings-2026-10-24/06-first-graal.md	pending		4	
 client-internals/decomp-findings-2026-10-24/07-graal-139.md	pending		4	
 client-internals/decomp-findings-2026-10-24/08-contradictions.md	pending		4	
 client-internals/decomp-findings-2026-10-24/README.md	pending		4	
-client-internals/decomp-findings-2026-10-24/constants-205.tsv	pending	4.1	4	
+client-internals/decomp-findings-2026-10-24/constants-205.tsv	pending	4.1; 4.4	4	
 client-internals/decomp-findings-2026-10-24/gani-name-table.tsv	pending		4	
 client-internals/decomp-findings-2026-10-24/gani-short-codes.tsv	pending		4	
 client-internals/decomp-findings-2026-10-24/gani-to-step.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24/life-states.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24/player-modes.tsv	pending	4.2	4	
+client-internals/decomp-findings-2026-10-24/life-states.tsv	cited	4.4	4	
+client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4	
 client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	pending		4	
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	pending		4	
 client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		4	
@@ -121,14 +121,14 @@ client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	pending	
 client-internals/decomp-findings-2026-10-25-j/README.md	pending		4	
 client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		4	
 client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	pending		4	
+client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	pending		4	
 client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending		4	
 client-internals/decomp-findings-2026-10-25-k/README.md	pending		4	
-client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	pending		4	
+client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		4	
 client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; E	4	
+client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; E	4	
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		4	
 client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	pending		4	
 client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	pending		4	
@@ -137,17 +137,17 @@ client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	pending		4
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	pending		4	
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
-client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2	4	
+client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3	4	
 client-internals/decomp-findings-2026-10-28-b/README.md	pending		4	
 client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	pending		4	
-client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	pending		4	
+client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	pending		4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
 client-internals/des-and-hidden-strings.md	pending		4	
 client-internals/drive-clients-inventory.md	pending		4	
 client-internals/early-clients.md	pending		4	
 client-internals/feature-specs/01-sound.md	pending	8.2	4.7	
-client-internals/feature-specs/02-weapons-combat.md	pending	8.1; 8.3; 8.4; E	4.3	
+client-internals/feature-specs/02-weapons-combat.md	pending	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	pending		4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
 client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10	
@@ -167,19 +167,19 @@ client-internals/gameboy-demo.md	pending		4
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	pending		4	
 client-internals/item-drops.md	pending		4.5	
-client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending		4	
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending	4.3; 4.4; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; E	4.2	
 client-internals/level-editor-205.md	pending	8.1	4.9	
 client-internals/live-behaviour-404.md	pending	8.1; 8.3	4	
 client-internals/live-checks-editor-offline-sound.md	pending		4	
 client-internals/live-gserver13.md	pending	4.1; 4.2	5.1	
-client-internals/live-trace-205.md	pending	4.1; 4.2	4	
+client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
 client-internals/live-trace-early.md	pending	4.1; 4.2	4	
 client-internals/newworld-betas.md	pending	4.1; 8.2	4	
 client-internals/offline-play.md	pending		4.8	
 client-internals/offline-training.md	pending		4.8	
 client-internals/offline-tutorial-205.md	pending		4.8	
-client-internals/player-mannerisms-live.md	pending	4.1; 4.2; E	4	
+client-internals/player-mannerisms-live.md	pending	4.1; 4.2; 4.3; E	4	
 client-internals/precursor-runs-2026-10-30.md	pending		4	
 client-internals/precursors-and-fan-builds.md	pending		4	
 client-internals/prior-attempts.md	pending		4	
@@ -191,7 +191,7 @@ client-internals/rendering-observations.md	cited	4.1	4
 client-internals/saved-passwords.md	pending		4	
 client-internals/sign-panel.md	pending		4	
 client-internals/sound-and-music.md	pending	3.10	3.10; 4.7	
-client-internals/status-bit-0x20.md	pending		4.6	
+client-internals/status-bit-0x20.md	cited	4.3	4.6	
 client-internals/status-display.md	pending		4.6	
 client-internals/v2.00-connect-path.md	pending		4	
 client-internals/version-id-map.md	pending	1	1; C	
@@ -209,7 +209,7 @@ client-internals/version/docs/GraalEditor-architecture.md	pending		1; C
 client-internals/version/docs/graal.txt	pending		1; C	
 client-internals/version/docs/graaleditor.txt	pending		1; C	
 client-internals/versions-133-139.md	pending		1; C	
-client-internals/water-and-ganis.md	cited	4.1; 4.2	4	
+client-internals/water-and-ganis.md	cited	4.1; 4.2; 4.3	4	
 client-internals/zelda-online-1998.md	pending		4	
 docs/NEXT.md	excluded			repository task list, not Graal
 docs/book/00-how-to-read.md	pending	G	E	
@@ -243,7 +243,7 @@ graal3d/lab-2026-10-30.md	pending		9
 graal3d/protocol.md	pending		9	
 graal3d/reference-server/README.md	pending		9	
 graal3d/torque-engine-4x.md	pending	8.3	10	
-live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; E	4	
+live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; 4.3; 4.4; E	4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4	
@@ -291,7 +291,7 @@ protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A
 protocol/udp-p2p.md	pending		2.9	
 protocol/v3x-clients.md	pending	2.2; 2.3; 2.5	1; 2.3; 10	
 protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; E	1; 2.3; 10	
-protocol/v5v6-lab-play.md	pending	0; 2.2; 4.1; 4.2; 8.3; E	1; 2.3	
+protocol/v5v6-lab-play.md	pending	0; 2.2; 4.1; 4.2; 4.3; 8.3; E	1; 2.3	
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
 protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; E	1; 2.10	
@@ -424,8 +424,8 @@ version-profiles/matrix/README.md	pending	1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4
 version-profiles/matrix/builds-deltas.md	pending		C; 4	
 version-profiles/matrix/builds-static-survey.tsv	pending	4.1; E	C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	
-version-profiles/matrix/rules-139.md	pending	4.2; E	C; 4	
-version-profiles/matrix/rules-1st-graal.md	pending	4.2; E	C; 4	
+version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	
+version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	
 version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	
