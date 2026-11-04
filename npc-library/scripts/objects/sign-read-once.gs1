@@ -1,0 +1,30 @@
+// Original NPC library: one-time message
+// Category: object / signs
+// Image: a letter or scroll lying on the ground
+// Events: playerenters, playertouchsme, playerendsreading
+// Flag set: letter_read_mill (rename per copy)
+//
+// A note the player reads once. After the text box closes the note vanishes
+// and stays gone on later visits because of the flag.
+
+if (playerenters) {
+  if (letter_read_mill) {
+    hide;
+  } else {
+    setimg letter.png;
+    dontblock;
+    drawunderplayer;
+  }
+}
+
+if (playertouchsme && !letter_read_mill) {
+  this.reading = 1;
+  say2 If you find this, the key is under the third stone from the well.;
+}
+
+// Fires when the player closes the text box.
+if (playerendsreading && this.reading == 1) {
+  this.reading = 0;
+  set letter_read_mill;
+  hide;
+}

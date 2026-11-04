@@ -1,0 +1,28 @@
+// Original NPC library: equipment chest
+// Category: object / chests
+// Image: chest sheet as in chest-rupees.gs1
+// Events: playerenters, playertouchsme
+// Flag set: chest_armoury (rename per chest)
+//
+// Upgrades the player's sword, but only if it is an upgrade: a player who
+// already has sword power 3 or more is told the chest holds nothing better.
+
+if (playerenters) {
+  if (chest_armoury) {
+    setimgpart chest.png,32,0,32,32;
+  } else {
+    setimgpart chest.png,0,0,32,32;
+  }
+}
+
+if (playertouchsme && playerdir == 0 && !chest_armoury) {
+  if (playerswordpower >= 3) {
+    say2 Only an old blade inside. Yours is better.;
+  } else {
+    set chest_armoury;
+    setimgpart chest.png,32,0,32,32;
+    setsword sword3.png,3;        // <- image and power
+    play chest.wav;
+    say2 You found a fire sword!;
+  }
+}

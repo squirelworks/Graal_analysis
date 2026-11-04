@@ -32,6 +32,10 @@ genre / topic / book-NN / chapter-NN / page.json
 
 `index.json` lists every genre and topic with script and book counts and a short own-words `behaviour` summary; the same summaries are in [behaviours.md](behaviours.md), the spec for rewriting NPCs from scratch.
 
+## Original library
+
+[`scripts/`](scripts/README.md) holds new NPC scripts written from scratch against the behaviour summaries and manual §8, organised by family. None of it comes from the scraped bodies.
+
 ## Reference
 
 `reference/` holds the small NPC material from shanalysis:
