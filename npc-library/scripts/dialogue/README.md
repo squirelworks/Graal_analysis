@@ -2,7 +2,7 @@
 
 Part of the [original NPC library](../README.md). Covers `dialogue / speech` in [`behaviours.md`](../../behaviours.md), plus the shop and merchant class of the archived catalogue (manual §8.1.10). The seats from the same category are in `interaction/seat.gs1`.
 
-Most of these NPCs are drawn with `showcharacter` and speak through the chat bubble (`setcharprop #c,...`). Chat input is read with `playerchats` and `#c`. Text with spaces is quoted in function arguments, which matches the `S` argument rule of §8.2.1.
+Most of these NPCs are drawn with `showcharacter` and speak through the chat bubble (`setcharprop #c,...`). Chat input is read with `playerchats` and `#c`. Text with spaces is quoted in function arguments, which matches the `S` argument rule of §8.2.1, with one exception: `strequals` compares its arguments as written, quote marks included, so `strequals(#c,"buy bombs")` never matches what the player types. Compare unquoted: `strequals(#c,buy bombs)` (tested in a real 2.05r2 client, 2026-11-04).
 
 These scripts change money and health by assigning to `playerrupees`, `playerbombs`, `playerdarts`, `playerhearts` and `playerfullhearts`. The manual lists them as 2.05 variables (§8.2.5) but does not say which are writable. Writing them is an inference that a lab run should confirm.
 
