@@ -133,3 +133,73 @@ Lifting with glove power 3 on the lab level [live] (client-internals/live-behavi
 | black stone (990) | 3 | 1834 1835 / 1850 1851 | byte 0xe9 (201), not decoded | none | yes | 14.3 s | [live] (client-internals/live-behaviour-404.md#pots-stones-and-black-stones) |
 
 The respawn times are GServer-v2's 15 s timer checked once a second, not the client's (→ §4.5.7) [live][src] (client-internals/live-behaviour-404.md#pots-stones-and-black-stones).
+
+## 4.11.6 2.04 to 2.05 rev 2: what changed in the code
+
+The three builds closest to 2.05 rev 2 were matched function by function on address-free instruction streams; unmatched counts are an upper bound on real churn [bin] (client-internals/build-diff-204-205.md#how-the-matching-works).
+
+| Pair | Functions (old / new) | Identical | Changed | Only old | Only new | Source |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2.05 rev1 → rev2 | 6522 / 6529 | 6345 | 94 | 83 | 90 | [bin] (client-internals/build-diff-204-205.md#how-the-matching-works) |
+| 2.04 → 2.05 rev2 | 6471 / 6529 | 5799 | 558 | 114 | 172 | [bin] (client-internals/build-diff-204-205.md#how-the-matching-works) |
+
+| Rule | Source |
+| --- | --- |
+| 2.05 rev1 to rev2 moves about 20 game functions with identical class layouts and GS1 table: player counting reads both tests through one object (the "playerscount is fixed" note), the tutorial no longer creates a map object at start-up, one level-reset path drops a game-mode-5 flag and takes a loop bound from the main form instead of 632, and one of three `§`-to-CR/LF helpers is dropped | [bin][doc] (client-internals/build-diff-204-205.md#205-rev1--rev2) |
+| rev2 is linked against a rebuilt VCL: its library units differ in shape from rev1's, while rev1's library matches 2.04's | [bin] (client-internals/build-diff-204-205.md#205-rev1--rev2) |
+| 2.05 adds the classes `TGraalMap` (gmaps) and `TADP`, and drops `TEditorBaddy` and `TEditorLevel` | [bin] (client-internals/build-diff-204-205.md#204--205) |
+| `TDrawableObject` gains a virtual method in 2.05, so every level-object class's slot numbers move by one: 2.04 `X.virt_N` is 2.05 `X.virt_(N+1)` | [bin] (client-internals/build-diff-204-205.md#204--205) |
+| `TAdventureLevel` grows from 96 to 184 bytes (gmap and `.nw` state), `TAdventureCommand` from 68 to 76, and `TServerPlayer`, `TPlayer` and `TEditorNPC` shrink by 4 | [bin] (client-internals/build-diff-204-205.md#204--205) |
+| The `GLEVNW01` reader and writer are new code beside the binary reader; the writer emits one `BOARD 0 <y> 64 0 <tiles>` line per row, and a new chest-line parser reports "Wrong chest data!" (→ §3.1) | [bin] (client-internals/build-diff-204-205.md#204--205) |
+| New GS1 in 2.05: `loadmap`, `setz`, `updateterrain`, `setbacktile2` and an argument form of `setbacktile`; the table holds 161 commands, and only `loadmap` has an executor case (→ §8.2) | [bin] (client-internals/build-diff-204-205.md#204--205) |
+| 2.05 writes PMs to `pms\messages_<name>.txt`, adds a `drawaslight` draw check, a script-editor button that handles `/* */` comments and tabs, and an editor routine clamping `playerx`/`playery` to 0–61; 2.04's `tempsitc.ttf` installer is left uncalled and the `Courier New` default is gone | [bin] (client-internals/build-diff-204-205.md#204--205) |
+| Anti-debug: 2.05, its revisions, the 2.1 test builds and both NewWorld betas link the third-party `TADP` component with `Kill_Debugers`, `Stop_Execution`, `Anti_Procdump` and `Kill_Monitors` all on; it walks processes, modules and heaps and stops the client when it finds a debugger, loader or monitor (names such as `FPLOADER.EXE`). Builds up to 2.04 do not have it (→ §4.10.1) | [bin] (client-internals/build-diff-204-205.md#anti-debug-component-adp-new-in-205) |
+
+## 4.11.7 The 2.05 rev 2 client's parts
+
+2.05 rev 2 (`GNW03081`) is a Delphi build on DelphiX (DirectDraw, DirectSound, DirectInput) with zlib 1.1.2; its classes are named by RTTI [2.05] (client-internals/client-architecture-205.md#client-205-rev-2-architecture).
+
+| Area | Classes and role | Source |
+| --- | --- | --- |
+| network | `TGraalClient` (socket, out buffer, zlib flush, `u16be` frame); `TServerListClient` (listserver link, no cipher, handles ids 0 and 1); `TAdventureClient` (game link, gen-3 send, a receive jump table of 59 ids, the login builder); `TWebClient` (HTTP for web levels and `openurl`); `TAdventureServer` (offline stand-in) | [2.05][inf] (client-internals/client-architecture-205.md#networking-classes) |
+| socket rules | the game socket keeps the gen-3 iterator, the key and a first-message flag; disconnecting renames the server `Offline`; messages flush at 0x1000 bytes and the link drops at 256 KB queued | [2.05] (client-internals/client-architecture-205.md#networking-classes) |
+| game model | `TAdventure` (main window and loop); `TAdventureLevel`, `TBoard`, `TBoardModify`; `TLevelObject` and its extras, leaps, bombs, explosions, balls, flying objects and carried objects; `TServerPlayer` with `TPlayer` and `TEditorNPC`; `TComputer` (baddy); `TAdventureHorse`; `TDisplayedNPCImg`, `TTempWeaponImg`; `TAdventureWeapon`; `TTileDef`, `TTempTile`; `TGraalMap`; the `TGraalAni*` gani model; `TCachedStream` | [2.05][inf] (client-internals/client-architecture-205.md#game-model) |
+| script engine | `TAdventureCommand`, `TAdventureOperation` and `TAdventureVariable` parse-tree nodes with `TArray`, `TInteger`, `TDouble` and `TStringPosList` values, run by a recursive tree walk (→ §8.1) | [2.05] (client-internals/client-architecture-205.md#script-engine) |
+| forms | connect, reconnect, server list, load level, server message, short message, player list and its options, profile, options, more options, links, sign codes, `TPersonAction` (the NPC "Set Npc's Action" editor, not a player menu), chest editor, debugger; editor and client are one executable until 2.3 (→ §4.9) | [2.05] (client-internals/client-architecture-205.md#ui-forms) |
+| other code | a Delphi DES class (`UDesCipher`) for saved passwords, the hidden listserver host and the web cache, not the wire; GIF, MNG and JPEG decoders | [2.05] (client-internals/client-architecture-205.md#other-formats-seen-in-205) |
+
+| Rule | Source |
+| --- | --- |
+| 2.05 hides the listserver host as a DES ciphertext and key built one `Chr()` at a time, and the port and `newmain` as plain characters built the same way; a hosts entry for the host is enough to redirect it | [2.05][cap] (client-internals/des-and-hidden-strings.md#hidden-strings); [2.05] (client-internals/des-and-hidden-strings.md#notes-for-tool-writers) |
+| 2.22 keeps its in-memory copies of the three listserver hosts and port, and the account name in the config and before login, through `dec(b) = (NOT b − 10) & 0xFF`; the plain values come from `arrays2.dat`, so a memory search for the names finds nothing | [2.22][cap] (client-internals/des-and-hidden-strings.md#hidden-strings) |
+| 2.22 saved passwords: a 49-character value starting with a marker is decrypted with a second key held by the options form, anything else with the first, so old saves still load; new saves use the second key (→ §3.7) | [2.22] (client-internals/des-and-hidden-strings.md#des-saved-passwords-and-the-web-cache-pointers) |
+| None of these schemes protect anything; they keep strings out of a casual `strings` dump | [inf] (client-internals/des-and-hidden-strings.md#notes-for-tool-writers) |
+
+## 4.11.8 Client features 2.00 to 2.31 by release notes
+
+The shipped `newfeatures2001.txt` to `newfeatures2005.txt` are named by release year: 2001 covers 2.00–2.12, 2002 2.13–2.17, 2003 2.18–2.21, 2004 2.22 and 2005 2.3–2.31 [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231).
+
+| Version | Release-note highlights | On the wire | Source |
+| --- | --- | --- | --- |
+| 2.00 | online only: 2/3/4-player mode and save games removed; bush rupees and pot hearts go server-side; `warpto <account>` for GPs | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.01 | level preloading on maps; `hitobjects` as the fair replacement for `hitplayer`; `openurl2` | 36/46 | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.02 | hats and signs with images; string parsing; free-server limits on light effects and complex ganis | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.03 | `triggeraction`; `/` chat commands in RC and NC; the built-in zlib.dll replaced by in-game code "because it has been abused" | 38/48 | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.04 | gani `PLAYSOUND PARAM1`, `replacegani`, sound and animation changes | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.05, 2.05 rev 2 | mostly bug fixes; server name in the window title | type 0, gen 3, 59 S→C ids | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.1 | new start window and server list with account info; an image engine without GDI; gani scripts (`SCRIPT … SCRIPTEND`); string arrays; `play2`; auto-mapping; big map and minimap set by the game server (`bigmap=`, `minimap=`); ghost mode for free players; Alt+0 log window; `graalversion` | 170–174 | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.12 | Graal2001/Graal2002 client compatibility; multi-level editing; `wraptext`, `wraptext2` | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.13 | editor control-NPCs; a new RC with file browser and server list, RC and NC in one program (→ §7) | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.14 | two server-list tabs; voice chat; player-list status icons (`playerlisticons=`); `serverwarp <world>`; files over 64 KB (`downloadpos`); gmaps auto-download | 180, 178, 68/69 | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.15 | bug fixes, "enabling Graal2002"; `showimg2` | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.16 | real transparency (`seteffectmode`); gani attributes `#P10`–`#P30`; a UDP check with a warning when UDP is blocked | props 54–74 | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.17 | Graal Kingdoms speed-ups; level heights stored in level files instead of the gmap | 185; adds 39 and the signed `arrays2.dat` | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.18 | "new password encryption" for stored passwords; preloaded levels on entering a server | | [doc] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.19 | released alongside v3; new start screen and server list; "better compression" (bz2); `this.` strings on the client; on NPC-server servers the client stops sending non-`client.` strings | `GNW15053`, gen 4 | [doc][srv] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.2 | multi-byte sign text (Korean, Chinese, Japanese); server-side tile changes on gmaps via `updateboard2` | 186 | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.21 | "network traffic reduced drastically"; `triggeraction 0,0,clientside,…` reaches a weapon's client-side part | `GNW01113`, compression byte | [doc][srv] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.22 | a third server-list tab for playerworlds under construction (gold and VIP only); `gravity`; `downloadsize` | gen 5, `GNW03014` | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.3 | editor and online client split; `FILENAMECACHE.txt`; a new timer; B-tree NPC lookup; classic client-side mode removed; Graal3D tab; `graal://` with `serverstartparams`; full-precision positions; `timevar2`; more hacking checks | 44 dropped; 189 and 84 in 2.31 | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+| 2.31 | float-to-string fix, keyboard config saved, gmap NPC border crossing fixed | `GNW28015` | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
+
+A feature announced as "enabled later" often shows in a client's receive switch one or more versions before servers used it (full-precision moves in 2.3, level heights in 2.17), so a handled id does not prove servers of that era sent it [bin][inf] (client-internals/feature-timeline.md#reading-the-timeline-against-the-binaries).
