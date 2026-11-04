@@ -1,0 +1,45 @@
+// Original NPC library: warp ring (pickup that becomes a weapon)
+// Category: transport / level-warps (warp-ring pickups), combat / weapons
+// Image: a ring
+// Events: playerenters, playertouchsme, weaponfired, timeout
+//
+// Lying in a level, it is a pickup: touching it adds it to the weapons as
+// "Warpring" (toweapons copies this NPC and its script) and removes the
+// pickup. As a weapon, firing it freezes the player, spins them round for
+// a second and sends them to one of three towns at random.
+// The same script handles both roles; isweapon tells them apart.
+
+if (playerenters && !isweapon) {
+  if (hasweapon(Warpring)) {
+    hide;
+  } else {
+    setimg ring.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !isweapon) {
+  play item.wav;
+  toweapons Warpring;
+  hide;
+}
+
+if (weaponfired && isweapon && this.spin <= 0) {
+  freezeplayer 1.2;
+  play warp.wav;
+  this.spin = 12;
+  timeout = 0.1;
+}
+
+if (timeout && isweapon && this.spin > 0) {
+  this.spin--;
+  setplayerdir (playerdir + 1) % 4;
+  if (this.spin > 0) {
+    timeout = 0.1;
+  } else {
+    this.pick = int(random(0,3));
+    if (this.pick == 0) setlevel2 town_north.graal,30,32;
+    if (this.pick == 1) setlevel2 town_east.graal,30,32;
+    if (this.pick == 2) setlevel2 town_south.graal,30,32;
+  }
+}

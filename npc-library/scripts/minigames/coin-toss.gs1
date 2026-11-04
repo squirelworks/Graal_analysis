@@ -1,0 +1,53 @@
+// Original NPC library: coin-toss dealer
+// Category: minigame (game of chance)
+// Image: none (character)
+// Events: playerenters, playertouchsme, playerchats, timeout
+//
+// Say "heads" or "tails" nearby to bet 10 rupees. The dealer flips (a short
+// pause for suspense) and pays double on a win. One bet at a time.
+
+if (playerenters) {
+  timereverywhere;
+  showcharacter;
+  setcharprop #3,head11.png;
+  setcharprop #C1,purple;
+  setcharprop #n,Dealer;
+  dir = 2;
+  setcharani idle,;
+  this.bet = 10;              // <- stake
+  this.busy = 0;
+}
+
+if (playertouchsme && this.busy == 0) {
+  setcharprop #c,#v(this.bet) rupees a toss. Say heads or tails.;
+}
+
+if (playerchats && this.busy == 0 && abs(playerx - x) < 5 && abs(playery - y) < 5) {
+  this.call = -1;
+  if (strequals(#c,heads)) this.call = 0;
+  if (strequals(#c,tails)) this.call = 1;
+  if (this.call >= 0) {
+    if (playerrupees < this.bet) {
+      setcharprop #c,Come back when you can pay.;
+    } else {
+      playerrupees -= this.bet;
+      this.busy = 1;
+      setcharprop #c,Flipping...;
+      play coin.wav;
+      timeout = 1;
+    }
+  }
+}
+
+if (timeout && this.busy == 1) {
+  this.busy = 0;
+  this.side = int(random(0,2));
+  if (this.side == this.call) {
+    playerrupees += this.bet * 2;
+    if (this.side == 0) setcharprop #c,Heads! You win #v(this.bet * 2).;
+    else setcharprop #c,Tails! You win #v(this.bet * 2).;
+  } else {
+    if (this.side == 0) setcharprop #c,Heads. Better luck next time.;
+    else setcharprop #c,Tails. Better luck next time.;
+  }
+}

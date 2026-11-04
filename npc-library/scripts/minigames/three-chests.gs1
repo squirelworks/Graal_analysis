@@ -1,0 +1,73 @@
+// Original NPC library: pick-a-chest game (one script, three chests)
+// Category: minigame
+// Image: chest sheet, closed at x 0, open-empty at x 32, open-prize at x 64
+// Events: playerenters, playertouchsme, timeout
+// Flag: chestgame_busy; string: chestgame_prize (shared by the copies)
+//
+// Place three copies side by side and set this.me to 0, 1 and 2. A try
+// costs 5 rupees: touch any closed chest. Which chest holds the prize is
+// drawn in advance into the string chestgame_prize, so the three copies
+// agree. When one is picked, all three open for two seconds (each copy
+// polls the busy flag), then close, and copy 0 draws a new prize spot.
+
+function showme() {
+  this.prize = strtofloat(#s(chestgame_prize));
+  if (this.prize == this.me) {
+    setimgpart chests.png,64,0,32,32;
+  } else {
+    setimgpart chests.png,32,0,32,32;
+  }
+}
+
+if (playerenters) {
+  timereverywhere;
+  this.me = 0;                // <- 0, 1 or 2 for the three copies
+  setimgpart chests.png,0,0,32,32;
+  this.open = 0;
+  this.cool = 0;
+  if (this.me == 0) {
+    unset chestgame_busy;
+    setstring chestgame_prize,#v(int(random(0,3)));
+  }
+  timeout = 0.2;
+}
+
+if (playertouchsme && this.open == 0 && !chestgame_busy) {
+  if (playerrupees < 5) {
+    message 5 rupees a try;
+  } else {
+    playerrupees -= 5;
+    set chestgame_busy;
+    showme();
+    if (this.prize == this.me) {
+      playerrupees += 15;
+      play fanfare.wav;
+      message 15 rupees!;
+    } else {
+      play buzz.wav;
+      message Empty!;
+    }
+  }
+}
+
+if (timeout) {
+  if (this.cool > 0) this.cool -= 0.2;
+  if (this.open == 0 && chestgame_busy && this.cool <= 0) {
+    this.open = 1;
+    this.left = 2;
+    showme();
+  } else if (this.open == 1) {
+    this.left -= 0.2;
+    if (this.left <= 0) {
+      this.open = 0;
+      this.cool = 1;
+      message ;
+      setimgpart chests.png,0,0,32,32;
+      if (this.me == 0) {
+        unset chestgame_busy;
+        setstring chestgame_prize,#v(int(random(0,3)));
+      }
+    }
+  }
+  timeout = 0.2;
+}

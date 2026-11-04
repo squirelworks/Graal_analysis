@@ -1,0 +1,30 @@
+// Original NPC library: sword in the stone
+// Category: combat / weapons (weapon pickups)
+// Image: sheet with a sword in a stone at x 0 and the empty stone at x 32
+// Events: playerenters, playertouchsme
+// Flags read: quest_shrine_visited (from interaction/flag-stone.gs1)
+//
+// Only a player who has done the shrine quest can draw the sword; others
+// are told the blade will not move. Drawing it sets sword power 2 and
+// leaves the empty stone.
+
+if (playerenters) {
+  if (playerswordpower >= 2) {
+    setimgpart swordstone.png,32,0,32,32;
+  } else {
+    setimgpart swordstone.png,0,0,32,32;
+  }
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (playerswordpower >= 2) {
+    say2 Only an empty stone now.;
+  } else if (quest_shrine_visited) {
+    setsword sword2.png,2;
+    setimgpart swordstone.png,32,0,32,32;
+    play fanfare.wav;
+    say2 The blade slides free!;
+  } else {
+    say2 The blade will not move.;
+  }
+}

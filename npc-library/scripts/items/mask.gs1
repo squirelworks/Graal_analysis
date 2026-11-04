@@ -1,0 +1,38 @@
+// Original NPC library: disguise mask
+// Category: combat / weapons (change the player's look)
+// Image: a mask
+// Events: playerenters, playertouchsme, weaponfired
+// Flag: mask_on (while worn)
+//
+// A pickup that becomes the weapon "Mask". Firing it swaps the player's
+// head for the mask's head image and back. Guards in enemies/guard-patrol
+// can be told to ignore a masked player by giving them the guard_pass
+// flag here as well.
+
+if (playerenters && !isweapon) {
+  if (hasweapon(Mask)) {
+    hide;
+  } else {
+    setimg mask.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !isweapon) {
+  play item.wav;
+  toweapons Mask;
+  hide;
+}
+
+if (weaponfired && isweapon) {
+  if (mask_on) {
+    unset mask_on;
+    unset guard_pass;
+    sethead head0.png;        // <- the player's usual head
+  } else {
+    set mask_on;
+    set guard_pass;
+    sethead head_mask.png;    // <- masked head image
+  }
+  play cloth.wav;
+}

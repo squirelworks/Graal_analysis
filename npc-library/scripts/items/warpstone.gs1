@@ -1,0 +1,26 @@
+// Original NPC library: warp stone (key item for transport/teleporter-keyed.gs1)
+// Category: transport / local-warps (warp-item stands), interaction / flags
+// Image: a small round stone
+// Events: playerenters, playertouchsme, weaponfired
+//
+// A pickup that becomes the weapon "Warpstone". It does nothing when fired
+// except remind the player what it is for; owning it is what matters.
+
+if (playerenters && !isweapon) {
+  if (hasweapon(Warpstone)) {
+    hide;
+  } else {
+    setimg stone.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !isweapon) {
+  play item.wav;
+  toweapons Warpstone;
+  hide;
+}
+
+if (weaponfired && isweapon) {
+  setplayerprop #c,The stone hums near the runes.;
+}
