@@ -146,7 +146,7 @@ The encryption generation numbering is that of GServer-v2, as the notes use it [
 | Public hosts | never named; written `<listserver-host>`, `<login-host>`, `<public-host>`, `<lan-host>`, or described ("the 1999 list host") |
 | Lab hosts | "the loopback address"; no dotted literal |
 | Ports | lab ports only (14802, 14803, 14804, 14900, 14921–14923); a historical default port that is part of a format or protocol is given as the notes give it |
-| Accounts | the clients' built-in guest login only; no other account names, passwords or licence secrets |
+| Accounts | the clients' built-in guest login only; no other account names, passwords or license secrets |
 | Binary internals | no code addresses, no disassembler names, no decompiled text, no raw string dumps |
 | Outside projects | GServer-v2, gs2lib and similar sources are summarised and cited through the notes, never quoted |
 
