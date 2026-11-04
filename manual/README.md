@@ -33,7 +33,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 4 | Part II §2.4 + App. A | done |
 | 5 | Part II §2.5 | done |
 | 6 | Part II §2.6 + App. B | done |
-| 6b | Part II §2.7–2.10 | stub |
+| 6b | Part II §2.7–2.10 | done |
 | 7, 8 | Part III | done (#197) |
 | 9, 10 | Part IV | stub |
 | 11 | Parts V to VII | stub |
