@@ -4,8 +4,8 @@
 // Events: playerenters, playertouchsme, timeout
 //
 // Plays a sound when bumped, at most once a second so leaning on it does
-// not spam the sound. Set a different sound per post to build a tune
-// puzzle with interaction/switch-sequence.gs1.
+// not spam the sound. Set a different sound per post for a set of
+// tuned chimes.
 
 if (playerenters) {
   timereverywhere;            // each client runs its own timer
