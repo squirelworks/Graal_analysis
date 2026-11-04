@@ -18,6 +18,13 @@ A Graal level is one 64×64 board of tiles plus its links, baddies, NPCs, chests
 | 2.05 writer | always writes `GR-V1.03` for a level that is not saved as `.nw` | [2.05] (formats/level-binary.md#open) |
 | 2.31 writer | writes `GR-V1.04` only when the level has a height map, `GR-V1.03` otherwise | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 
+| Rule | Detail | Source |
+| --- | --- | --- |
+| bare names | no client adds `.zelda` to a level name without an extension, and none swaps `.zelda` for `.graal` when a file is missing; a link or warp loads the name as written | [bin] (client-internals/bare-level-names.md#findings) |
+| editor | the editor's open and save buttons (and from 1.3 the snapshot save) add `.graal` to a name typed without an extension | [bin] (client-internals/bare-level-names.md#findings) |
+| built-in names | 1st to 9th Graal compare the current level with fixed names such as `level1.zelda` and `cave2.zelda` or warp to them | [bin] (client-internals/bare-level-names.md#findings) |
+| scope | read in 26 Windows builds, 1st Graal to 1.32 and 2.05; that the loader uses the name unchanged is inferred | [bin][inf] (client-internals/bare-level-names.md#confirmed-inferred-not-tested) |
+
 Which builds accept which magics is in the build catalogue (→ §1.1).
 
 ## 3.1.1 Z3-V1 (.zelda)

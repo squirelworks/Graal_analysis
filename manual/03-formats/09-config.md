@@ -101,7 +101,33 @@ MO is the More Options dialog and PL the Player List Options dialog; labels are 
 | total | about 29 keys in the string table | 86 keys in the compared file | [2.05][doc] (client-internals/config-and-input.md#update-2026-10-21-205-vs-222-graalconfig) |
 | `serveraddr`, `loadcolorsfromserver`, `gamemode` | not read or written | unmeasured | [2.05] (client-internals/graalconfig-reference.md#keys-in-older-notes-that-205-does-not-read) |
 
-The three keys in the last row come from an older public key list; if they exist, they belong to later clients [2.05] (client-internals/graalconfig-reference.md#keys-in-older-notes-that-205-does-not-read).
+The three keys in the last row come from an older public key list [2.05] (client-internals/graalconfig-reference.md#keys-in-older-notes-that-205-does-not-read). The static survey places them in earlier clients, not later ones: `gamemode` from 1.1 to 1.41, `serveraddr` from 1.21 to 1.39, `loadcolorsfromserver` from 1.21 to NewMain [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys).
+
+### 3.9.6.1 Plain key strings added and dropped, 1998 to 2.31
+
+From 1.38 some keys are built one character at a time, so a build can read a key that is missing here; three-letter fragments such as `ekv` are such keys [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys).
+
+| Build | Added | Dropped | Source |
+| --- | --- | --- | --- |
+| 6th Graal | `joystickon`, `musicon`, `reversestereo`, `soundfxon`, `waitvertical` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 8th Graal | `saveimages` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.1 | `editnickname`, `gamemode` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.21 | `accountname`, `loadcolorsfromserver`, `password`, `serveraddr`, `serverport` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.28 beta 2 | `compabilitydraw`, `externalchat`, `language`, `nodecompressionerror` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.3 test | `font`, `fontsize` | `accountname`, `password` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.31 | `fixedport`, `fixedudpport`, `noudp` | `editnickname` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.32 | `nomassmessages` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.33 | `nodirectinput` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.35 | `nohtmlinpms` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.36 | `limitnicknames`, `nicknamelimit` | `serverport` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.38 | | `externalchat` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.39 | `dontconnectlevels`, `dontloadlistheads`, `nohtmlimages`, `notoalls`, `sortplayersbyname` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.41 rev 1 | `dontsavepasswords`, `fullscreenmode`, `usewinamp` | `serveraddr` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| NewMain 1.42 | `dontsavepms`, `dontusedirectx7`, `head`, `joyselected` | `gamemode` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.00 | | `loadcolorsfromserver` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.1 test 2 | `startinfullscreen` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.17.1 | `automapping`, the `micro*` and `voice*` keys, `midivolume`, `mp3volume`, `quickplayerworlds`, `radiovolume`, `sfxvolume` | `musicon`, `soundfxon`, `usewinamp` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.31 | `cachefilenames` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
 
 ## 3.9.7 Dropped files
 
