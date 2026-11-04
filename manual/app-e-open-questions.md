@@ -80,6 +80,15 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether 2.00 parses player prop 36 and NPC prop 36 | [inf] (version-profiles/plo-npcprops-layouts.tsv) |
 | Settles it | a re-read of the 2.00 prop switches at ids 36 | [inf] (version-profiles/plo-playerprops-layouts.tsv) |
 
+### E#9 Uploads from game clients
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | game clients cannot upload; the RC file-browser ids are for RemoteControl only | [srv] (protocol/file-transfer.md#upload-rc-only) |
+| Claim B | 6.01r1 and 6.03r7 send the file-browser and upload ids (93, 96–98, 155, 156) with an upload queue, and 3.153 and 5.00r7 send several of them | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/3.04-3.153.md#client--server-ids) |
+| Open | whether a server accepts these from a game connection, and which game feature sends them | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Settles it | a capture of a 6.x game client using the upload path against a server | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 | Item | Content | Source |
@@ -336,3 +345,92 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | loading `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` runs an extra setup step in 2.05; what the step does was not traced | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
 | Settles it | loading each name offline on 2.05 in the lab and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
+### E#400 Two projects called Ash
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | Ash is a Python rewrite of the gs2emu protocol, with its own world and default port 14812; it is not the Reborn 2.4 binary | [src] (server-notes/01-lineage.md#what-is-binary--world-only); [src] (server-notes/ash-overview.md) |
+| Claim B | Ash is the blueprint pack of the 2006 39ster 2.1 GServer, which describes that server as written, not a rewrite; default port 14822 | [src] (ash/INDEX.md); [src] (ash/ARCHIVAL-NOTE.md) |
+| Open | whether the two are one project at two stages or two projects that share a name; the manual keeps them apart (→ §5.2, → §5.3.1) | [inf] (ash/ARCHIVAL-NOTE.md) |
+| Settles it | the Drive archives of both, compared by date and content | [doc] (ash/ARCHIVAL-NOTE.md#full-archive) |
+
+### E#401 Listserver reply ids 1 and 2
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | id 1 is NULL (empty) and id 2 is STATUS text with `\r` as a line break; 2.17, 2.22 and the public service send status text as id 2 | [srv] (protocol/listserver.md#listserver--client); [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
+| Claim B | RC 1.41 (2002) reads id 1 as one more server entry and id 2 as the end of the list, then disconnects | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| Open | whether the 2002 listserver used 1 and 2 differently from the later Reborn listserver, or the RC reads them its own way | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| Settles it | a 2002-era listserver binary or capture, or a re-read of the 2.05 handler for id 1 | [inf] (protocol/listserver.md#205-specifics-205) |
+
+### E#402 The 2000-era listserver reply
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the real 2.00-era listserver reply is observed: one plain zlib frame, id 0 only, 4 rows, no status, site or upgrade lines (the public service's 14923 reply to a classic login) | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
+| Claim B | what a real 2.00-era listserver sends is still unobserved; the two-frame list that 2.00 accepted in the lab came from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205) |
+| Open | whether today's 14923 legacy reply is the same as the service of 2000 to 2002 | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
+| Settles it | a capture of a real 2.00 or 2.05 against the 14923 service, or a 2000-era listserver binary | [inf] (protocol/login-frames-by-version-2026-10-25.md#captures-that-would-settle-it-all-read-only-list-requests) |
+
+### E#403 Classic logins on port 14922
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | a real 2.17.1 sends a classic login (shape B) to port 14922, the port in its signed `arrays2.dat` | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
+| Claim B | the public 14922 accepts a classic login and never answers it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
+| Open | whether the 2001-era service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether the zlib header (`78 DA` against `78 9C`) matters for a classic frame | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Settles it | a list-only capture of a pristine 2.17.1 against the public service; this touches a public server and needs the owner's written permission | [doc] (AGENTS.md#labs) |
+
+### E#404 A public server refusing 2.05 inside its own range
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the server's printed range runs from 1.41r1 to iPhone Belote 1.5, which in the current version table covers every 2.x to 6.x entry, 2.05 included | [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| Claim B | the same server refused 2.05 (`GNW03081`) | [cap] (server-notes/public-allowed-versions.md#the-refusals-on-record) |
+| Open | which version table the server runs; an older table with no 2.05 entry would explain both | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| Settles it | one 5.00r7 or 6.03r7 login to that server, with the owner's written permission | [inf] (server-notes/public-allowed-versions.md#open) |
+
+### E#405 RC token `GSERV025`
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the server knows the RC tokens `GSERV023` to `GSERV025` | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
+| Claim B | the RC builds read send `GSERV007`, `GSERV011`, `GSERV014` and `GSERV019` to `GSERV024`; none sends `GSERV025` | [bin] (protocol/gserv-1999.md#login); [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/remotecontrol.md#logins-bin) |
+| Open | which RC build sends `GSERV025`, and with which login type | [inf] (tools/remotecontrol-lineage.md) |
+| Settles it | a static read of the later RC builds in the Drive RC folder (rc2, the custom RemoteControl, the RC3 beta) | [inf] (protocol/npc-control.md#drive-material-inventory-only-not-in-git) |
+
+### E#500 Back clipping plane of the Graal3D client
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets no field of its own | [doc] (graal3d/camera.md#field-of-view) |
+| Claim B | a later public DelphiX fork calls `SetBack(5000)` during retained-mode init; that fork starts after 2004, so it is not the unit linked in 2000 | [doc] (graal3d/camera.md#still-needed) |
+| Open | which back plane the February 2000 exe uses; the static read that found no field constant did not look for `SetBack` | [inf] (graal3d/camera.md#still-needed) |
+| Settles it | a static read of the exe for a `SetBack` call, or a lab run with the native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
+
+### E#501 Class CRC of the 4.04r2 3D plug-in
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the 4.04r2 connect request carries the stock Torque class CRC, so a server needs exactly the same list of networked classes or the client is rejected with `CHR_INVALID` | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
+| Claim B | the 4.04r2 CRC table is static data holding `0xFFFFFFFF` for group 0 with no writer, so nothing computes a CRC, as in 5.12 | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
+| Open | which value a real 4.04r2 client sends; Claim B is the later, more specific read, and the 4.x plug-in note now defers to it | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Settles it | a capture of a 4.04r2 connect request | [inf] (graal3d/torque-engine-4x.md#not-done) |
+
+### E#502 Whether 4.04r2 loads `.mis` mission files
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
+| Claim B | the 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
+| Open | whether the 4.04r2 loader is present but unused, or absent | [inf] (graal3d/torque-engine-4x.md#files) |
+| Settles it | a static read of the 4.04r2 plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
+
+### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
+| Claim B | the 4.04r2 plug-in has no TorqueScript compiler or console, and `.dso` and `.cs` files are never requested or used | [bin] (graal3d/torque-engine-4x.md#overview) |
+| Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
+| Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
