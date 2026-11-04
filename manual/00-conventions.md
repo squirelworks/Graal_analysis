@@ -159,7 +159,7 @@ These rules come from the repository's agent rules [doc] (AGENTS.md#no-real-serv
 | check the manual | `python tools/manual/check_manual.py` |
 | check before the final audit | `python tools/manual/check_manual.py --final` (also fails on any `pending` row in `sources.tsv`) |
 | run the checker's tests | `python -m pytest tools/manual -q` |
-| build the PDF | `python tools/manual/build_manual.py` (pandoc, then Chromium prints A4; default output `manual/pdf/graal-trm.pdf`) |
+| build the PDF | `python tools/manual/build_manual.py` (pandoc, then Chromium prints A4; default output `manual/pdf/graal-trm.pdf`; `--version X` labels the edition and names the file `graal-trm-X.pdf`) |
 
 Each manual file begins with a header comment `<!-- manual: kind=K status=S -->`:
 

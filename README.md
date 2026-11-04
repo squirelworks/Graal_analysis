@@ -35,14 +35,18 @@ These notes expand the existing foundation without adding raw decompile material
 - `formats/gobjset01.md` — stamp format and the 2×2 Bush example.
 - `npc-library/scripts/` — the original NPC library: new GS1 scripts written from scratch against `npc-library/behaviours.md` and manual §8, by family, each checked by `tools/gs1-lint`.
 - `npc-library/gs1-commands.md` — control flow, common commands, pattern letters, offline wiring priority.
+- `npc-library/gs1-commands-by-version.md` — which GS1 commands every client from 2nd Graal (1998) to 5.00r7 (2007) knows, read from each binary's command list: change by build, every command's first and last build, and the 208 × 61 matrix in `gs1-commands-by-version.tsv`. Scanner: `tools/gs1-table-scan/`.
 - `protocol/session-opcodes-cleaned.md` — common server-to-client meanings that match GLEVNW01 records.
 - `client-internals/config-and-input.md` — graalconfig keys, device path, drop-files behavior.
 - `client-internals/rendering-observations.md` — frame loop, draw path, offline blit next step.
 - `client-internals/water-and-ganis.md` — the built-in animation name table, swim and lava, splashes, break-effect sounds (2.05).
 - `client-internals/status-display.md` — the HUD: `state.png` rects, screen positions, heart rows and `showstats` bits (2.05 routine; 2.22 sheet and picture match).
+- `client-internals/spyfire-by-version.md` — when the GS1 `spyfire` command started working (2.0; a table-only entry in 1.41 rev1 and NewMain 1.42), and `callweapon` (2.01).
 - `client-internals/bare-level-names.md` — no client from 1st Graal to 2.05 adds `.zelda` to a bare level name or falls back between extensions; the editor adds `.graal` on save.
 - `client-internals/id24-205.md` — id 24 in 2.05 is the same weapon-image list as later (tags 0 to 6, 60-call full-list countdown, UDP id 15 twin); corrects the "four-field form" note.
 - `client-internals/damage-sources.md` — hearts taken by bombs, blasts, arrows and the other shots, thrown objects and baddies; hit boxes and the no-kill rule (2.05).
+- `client-internals/npcaction.md` — what `PLO_NPCACTION` (26) does: `GINT3` npc id + script text to the end of the message, replaces a server-wide NPC's (id ≥ 1000) script and fires `playerenters`; handled 1.28 beta 2 to 2.03, never after; lab-confirmed on 2.00.
+- `client-internals/serveroptions-198.md` — what the client does with `PLO_SERVEROPTIONS` (198): stores one `GINT5` on the connection and never reads it (5.24r3, 6.03 Linux and Windows); plus when `PLO_SETACTIVELEVEL` (156) arrived (2.01).
 - `client-internals/combat-200-204.md` — the sword hit test and hurt packet in 2.00 to 2.04 compared with 2.05 rev 2 (2.04 is the same; what 2.00 to 2.03 lack, by build).
 - `client-internals/status-bit-0x20.md` — STATUS bit 0x20 is the `hidesword` timer; how it is set and what it gates (2.05).
 - `client-internals/sign-panel.md` — the sign panel from `letters.png` (glyph grid, frame, `#` button codes, paging keys) and what an NPC with no image draws (2.05).

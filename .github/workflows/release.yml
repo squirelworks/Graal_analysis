@@ -1,7 +1,8 @@
 name: release
 
-# Drafts a GitHub release for a book version whose PDFs are already in the tree:
-# release/0.0.1/ for 0.0.1, book/<version>/ from 0.0.2 on. Run it by hand
+# Drafts a GitHub release for a version whose PDFs are already in the tree:
+# release/0.0.1/ for 0.0.1, book/<version>/ for 0.0.2, and from 0.0.3 on the
+# Technical Reference Manual at manual/pdf/graal-trm-<version>.pdf. Run it by hand
 # (Actions, release, Run workflow) with the version and, optionally, the commit
 # the tag should point at. Nothing is tagged until the owner presses Publish on
 # the draft (AGENTS.md: no tag or release without the owner's go-ahead).
@@ -10,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Book version, without the v (e.g. 0.0.2)'
+        description: 'Version, without the v (e.g. 0.0.3)'
         required: true
       target:
         description: 'Commit the tag should point at (empty = the commit this run is on)'
@@ -40,11 +41,17 @@ jobs:
           cp "docs/releases/$TAG.md" "$RUNNER_TEMP/notes.md"
           SHA=$(git rev-parse --verify "${TARGET:-$GITHUB_SHA}^{commit}")
           git checkout -q "$SHA"
-          if [ -d "release/$VERSION" ]; then DIR="release/$VERSION"; else DIR="book/$VERSION"; fi
-          ls "$DIR"/*.pdf > /dev/null || { echo "::error::no PDFs in $DIR at $SHA"; exit 1; }
           mkdir dist
-          cp "$DIR"/*.pdf dist/
-          tar czf "dist/graal-analysis-$VERSION-pdfs.tar.gz" -C "$DIR" .
+          TITLE="Graal Analysis $VERSION"
+          if [ -f "manual/pdf/graal-trm-$VERSION.pdf" ]; then
+            cp "manual/pdf/graal-trm-$VERSION.pdf" dist/
+            TITLE="Graal Technical Reference Manual $VERSION"
+          else
+            if [ -d "release/$VERSION" ]; then DIR="release/$VERSION"; else DIR="book/$VERSION"; fi
+            ls "$DIR"/*.pdf > /dev/null || { echo "::error::no PDFs in $DIR at $SHA"; exit 1; }
+            cp "$DIR"/*.pdf dist/
+            tar czf "dist/graal-analysis-$VERSION-pdfs.tar.gz" -C "$DIR" .
+          fi
           if gh release view "$TAG" >/dev/null 2>&1; then
             if [ "$(gh release view "$TAG" --json isDraft -q .isDraft)" = true ]; then
               gh release upload "$TAG" dist/* --clobber
@@ -55,6 +62,6 @@ jobs:
               echo "$TAG is already published; updated its notes only."
             fi
           else
-            gh release create "$TAG" dist/* --draft --target "$SHA" --title "Graal Analysis $VERSION" --notes-file "$RUNNER_TEMP/notes.md"
+            gh release create "$TAG" dist/* --draft --target "$SHA" --title "$TITLE" --notes-file "$RUNNER_TEMP/notes.md"
           fi
           echo "Draft: $(gh release view "$TAG" --json url -q .url)" >> "$GITHUB_STEP_SUMMARY"

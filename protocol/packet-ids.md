@@ -38,7 +38,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 23 | 0x37 | `PLO_ITEMDEL` | ✔ |   |
 | 24 | 0x38 | `PLO_NPCMOVED` | ✔ |   |
 | 25 | 0x39 | `PLO_SIGNATURE` | ✔ | `c v`: 1 = the client quits; 0 = quits unless the host is the loopback address; other values ignored (layout read in 2.17–2.31; the id is handled from 2.00) **[bin]** |
-| 26 | 0x3a | `PLO_NPCACTION` | · | purpose unknown; client 6.037 ignores it |
+| 26 | 0x3a | `PLO_NPCACTION` | · | `i3 npc id` + script text to the end of the message (no length, `§` line breaks): replaces the script of a server-wide NPC (id ≥ 1000) the client already has, then fires `playerenters` if it is in the active level. Handled 1.28 beta 2 to 2.03, removed in 2.04 and never handled again (lab-confirmed on 2.00); client 6.037 ignores it. See `../client-internals/npcaction.md` **[bin]** |
 | 27 | 0x3b | `PLO_BADDYHURT` | ✔ |   |
 | 28 | 0x3c | `PLO_FLAGSET` | ✔ |   |
 | 29 | 0x3d | `PLO_NPCDEL` | ✔ |   |
@@ -161,7 +161,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 194 | 0xe2 | `PLO_CLEARWEAPONS` | · | empty; precedes the weapon list |
 | 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others) |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` | · | `list type,name,saveToDisk,desKey,crc32` (type weapon/npc/class/gani; key = two i5) |
-| 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions` |
+| 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions`; stored and never read up to 6.03 (`client-internals/serveroptions-198.md`) |
 | 252 | — | `PLO_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLO_BUNDLE` | · | several packets in one |
 

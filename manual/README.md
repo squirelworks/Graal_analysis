@@ -1,6 +1,6 @@
 # Graal Technical Reference Manual
 
-Version 1.0, in progress. Specification: issue #191.
+Version 0.0.3. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
 
 This folder is the reference manual for Graal itself: clients, wire protocol, file formats, servers, listserver, RC and NC, NPC scripting, Graal3D, the Torque-era clients and tools. It is organised by subject, not by note. Start with `00-conventions.md`, which fixes scope, numbering, citation and notation.
 
@@ -40,7 +40,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 12 | Part VIII | done (#196) |
 | 13 | Parts IX, X | done (#205) |
 | 14 | Part XI + App. D, E | done |
-| 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm.pdf` built with `build_manual.py` from commit 55c00ec, 349 pages A4 |
+| 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm-0.0.3.pdf` built with `build_manual.py` from commit b8643ec, 347 pages A4 |
 
 ## Checks
 
@@ -49,4 +49,4 @@ python tools/manual/check_manual.py
 python -m pytest tools/manual -q
 ```
 
-`python tools/manual/build_manual.py` builds the PDF on Linux, macOS or Windows: pandoc turns the chapters into one HTML page, then Chromium (through the `playwright` package) prints it to A4 at `manual/pdf/graal-trm.pdf`. `--out` writes it elsewhere. It needs pandoc (or `pip install pypandoc_binary`) and `pip install playwright` followed by `python -m playwright install chromium`. CI builds the PDF on all three systems in the `manual-pdf` job and keeps the Linux copy as a workflow artifact. The PDF is committed to `manual/pdf/` only when the owner asks for a build (work-plan PR 15). No tag or release is made from this folder without the owner's go-ahead.
+`python tools/manual/build_manual.py` builds the PDF on Linux, macOS or Windows: pandoc turns the chapters into one HTML page, then Chromium (through the `playwright` package) prints it to A4 at `manual/pdf/graal-trm.pdf`. `--version X` puts the version on the title page and names the file `graal-trm-X.pdf`; `--out` writes it elsewhere. It needs pandoc (or `pip install pypandoc_binary`) and `pip install playwright` followed by `python -m playwright install chromium`. CI builds the PDF on all three systems in the `manual-pdf` job and keeps the Linux copy as a workflow artifact. The PDF is committed to `manual/pdf/` only when the owner asks for a build (work-plan PR 15). No tag or release is made from this folder without the owner's go-ahead.

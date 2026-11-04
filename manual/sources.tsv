@@ -176,6 +176,8 @@ client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
 client-internals/live-trace-early.md	cited	4.1; 4.2	4	
 client-internals/newworld-betas.md	cited	4.1; 8.2	4	
+client-internals/npcaction.md	cited	2.5	2.5	
+client-internals/serveroptions-198.md	cited	2.5	2.5	
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
@@ -191,6 +193,7 @@ client-internals/rendering-observations.md	cited	4.1	4
 client-internals/saved-passwords.md	cited	3.7	4	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
+client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	
 client-internals/status-display.md	cited	4.6	4.6	
 client-internals/v2.00-connect-path.md	cited	6	4	
@@ -220,6 +223,7 @@ docs/book/04-where-the-notes-disagree.md	cited	E	E
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/gani.txt	cited	3.3	3.3	
 formats/glevnw01.txt	cited	3.1; E	3.1	
@@ -254,6 +258,8 @@ npc-library/README.md	cited	8.1	8
 npc-library/archival-scripting-notes.md	cited	8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
 npc-library/gs1-command-reference-205.md	cited	8.1; 8.2; E	8	
+npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
+npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
@@ -391,6 +397,8 @@ tools/graaleditor-vs-205.md	cited	11	11
 tools/graaleditor.md	cited	11; E	11	
 tools/graalshop.md	cited	11	11	
 tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
+tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the scanner behind gs1-commands-by-version.md), not Graal
+tools/gs1-table-scan/builds.tsv	excluded			build list and binary MD5s for the scanner; the facts are in gs1-commands-by-version.md
 tools/lab-servers/README.md	cited	5; 6	6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
 tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
