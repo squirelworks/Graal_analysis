@@ -33,29 +33,20 @@ python tools/gs1-lint/gs1lint.py npc-library/scripts
 - Image and sound names are placeholders. Use whatever your level's art provides.
 - Positions are in tiles, and `x`, `y` is the NPC's top-left corner.
 
-## Scripts
+## Families
 
-### objects/ — signs, chests, doors, blocks
+Each family folder has its own README with a table of what every script does.
 
-| File | What it does |
+| Folder | Covers (`behaviours.md` categories) |
 | --- | --- |
-| `sign-basic.gs1` | Shows one line when the player faces it. |
-| `sign-quest.gs1` | Notice board whose text follows two quest flags. |
-| `sign-read-once.gs1` | A note that vanishes for good once read (`playerendsreading`). |
-| `sign-countdown.gs1` | Touch to start a countdown drawn above the post. Says "Time!" at zero. |
-| `sign-hush.gs1` | Reading it stops the background music. |
-| `chest-rupees.gs1` | Pays rupees once per player and keeps the open frame on later visits. |
-| `chest-random.gs1` | Weighted random drop (rupees, bombs, arrows or a heart container) placed in front of the chest. |
-| `chest-password.gs1` | Gives a riddle on touch. Saying the answer nearby opens it. |
-| `chest-equipment.gs1` | Sword upgrade that refuses if the player's sword is already as good. |
-| `chest-mimic.gs1` | First touch springs an explosion and a hit. After that it is an empty box. |
-| `door-timed.gs1` | Opens on touch, closes after 2 s, waits while the player stands in the doorway. Runs on every client. |
-| `door-key.gs1` | Locked door that uses up a small key and stays open. |
-| `key-pickup.gs1` | The small key for `door-key.gs1`. Holds one key at a time. |
-| `door-password.gs1` | Gate that opens for 5 s when a nearby player says the word. |
-| `door-clear-room.gs1` | Shutter that lifts when the level's last baddy dies (`compusdied`). |
-| `block-pushable.gs1` | Block the player can push and pull. |
-| `block-night.gs1` | Shown only at night, or only by day, from a `night` flag. |
-| `block-chime.gs1` | Plays a sound when bumped, at most once a second. |
-| `block-dropper.gs1` | Places up to four crates (`putnpc`) at eight-second intervals. |
-| `crate.gs1` | Liftable crate that breaks into splinters when thrown. |
+| [`objects/`](objects/README.md) | signs, chests, doors and keys, blocks (object / *) |
+| [`transport/`](transport/README.md) | level warps, lifts, teleporter pads (transport / *) |
+| [`interaction/`](interaction/README.md) | switches, quest flags, scenery set-up, breakables and liftables, seats, wardrobes (interaction / *, dialogue seats) |
+| [`dialogue/`](dialogue/README.md) | talkers, quest givers, keyword NPCs, shopkeepers (dialogue / speech) |
+| [`enemies/`](enemies/README.md) | lungers, wanderers, chasers, shooters, guards, bosses, wave controllers (combat / baddies, combat / weapons AI) |
+| [`hazards/`](hazards/README.md) | spikes, fire, push-back traps, turrets, timed bombs (combat / hazards) |
+| [`spawners/`](spawners/README.md) | respawners, enemy spawners, followers, animation cycles (spawn / timers, misc / other) |
+| [`items/`](items/README.md) | weapon pickups, warp ring, digging tool, zone rules (combat / weapons, interaction / flags) |
+| [`minigames/`](minigames/README.md) | races, target ranges, games of chance (no single category; built from the same parts) |
+
+A folder appears when its pull request is merged.
