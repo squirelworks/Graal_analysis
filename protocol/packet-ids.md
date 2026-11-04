@@ -38,7 +38,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 23 | 0x37 | `PLO_ITEMDEL` | ✔ |   |
 | 24 | 0x38 | `PLO_NPCMOVED` | ✔ |   |
 | 25 | 0x39 | `PLO_SIGNATURE` | ✔ | `c v`: 1 = the client quits; 0 = quits unless the host is the loopback address; other values ignored (layout read in 2.17–2.31; the id is handled from 2.00) **[bin]** |
-| 26 | 0x3a | `PLO_NPCACTION` | · | `i3 npc id` + script text to the end of the message (no length, `§` line breaks): replaces the script of an NPC the client already has, then fires `playerenters` if it is in the active level. Handled 1.31 to 2.03, removed in 2.04; client 6.037 ignores it. See `../client-internals/npcaction.md` **[bin]** |
+| 26 | 0x3a | `PLO_NPCACTION` | · | `i3 npc id` + script text to the end of the message (no length, `§` line breaks): replaces the script of a server-wide NPC (id ≥ 1000) the client already has, then fires `playerenters` if it is in the active level. Handled 1.28 beta 2 to 2.03, removed in 2.04 and never handled again (lab-confirmed on 2.00); client 6.037 ignores it. See `../client-internals/npcaction.md` **[bin]** |
 | 27 | 0x3b | `PLO_BADDYHURT` | ✔ |   |
 | 28 | 0x3c | `PLO_FLAGSET` | ✔ |   |
 | 29 | 0x3d | `PLO_NPCDEL` | ✔ |   |

@@ -47,7 +47,7 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 
 | Rule | Builds | Source |
 | --- | --- | --- |
-| No build in the notes handles 26 (`PLO_NPCACTION`) after 2.03 (it is handled from at least 1.31), or 152 and 167 | 2.04 to 2.31 | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/client-versions.md#server--client-ids-handled) |
+| No build in the notes handles 26 (`PLO_NPCACTION`) after 2.03 (it is handled from 1.28 beta 2), or 152 and 167 | 2.04 to 6.03 | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/client-versions.md#server--client-ids-handled) |
 | Revisions of one version share every handler shape (2.05 rev1 differs by one constant in 8), so any revision stands for the others; on the wire only 2.02 rev2 differs, by its token and id 37 | 2.00 to 2.05 | [bin] (client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md#revisions-of-the-same-version) |
 | 2.00 has no active-level reference, since 156 arrives in 2.01; level-addressed messages act on the current level | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#active-level-gating) |
 | 2.01 rewrites 0, 14 and 15 so the handler no longer waits for and then requests the level, the code side of map preloading; 154 and 155 go through a shared helper | 2.01 | [bin] (client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md#200---201) |
@@ -166,7 +166,7 @@ How damage is applied after a hit is in → §4.3.
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
 | 24 | `PLO_NPCMOVED` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 26 | `PLO_NPCACTION` | `i3 npc id`, `rest` = script text to the end of the message (no length prefix, `§` line breaks) | handled by 1.31 to 2.03; replaces the script of a known NPC (unknown id ignored), clears its compiled script, then fires `playerenters` if the NPC is in the active level and the player is there; the SCRIPT prop cannot do this because it is ignored once an NPC has a script | [bin] (client-internals/npcaction.md); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
+| 26 | `PLO_NPCACTION` | `i3 npc id`, `rest` = script text to the end of the message (no length prefix, `§` line breaks) | handled by 1.28 beta 2 to 2.03; replaces the script of a known server-wide NPC (id ≥ 1000; level NPCs and unknown ids are ignored), clears its compiled script, then fires `playerenters` if the NPC is in the active level and the player is there; the SCRIPT prop cannot do this because it is ignored once an NPC has a script | [bin][lab] (client-internals/npcaction.md); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
 | 29 | `PLO_NPCDEL` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 33 | `PLO_NPCWEAPONADD` | `str name` + NPCPROP stream (normally `c 0` IMAGE + `str image`, `c 1` SCRIPT + `s len` + GS1 text) | a name the player already has is ignored; the weapon gets the `playerenters` event; a script line break is `§`, byte `A7` from a latin-1 server and `C2 A7` from a UTF-8 server | [srv][2.05] (protocol/packet-layouts.md#weapons); [cap] (client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md#weapon-scripts-and-line-breaks) |
 | 34 | `PLO_NPCWEAPONDEL` | `rest` = weapon name | removes the weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
