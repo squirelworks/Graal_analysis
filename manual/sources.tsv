@@ -22,7 +22,7 @@ ash/INDEX.md	cited	5; E	5.2
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
-client-internals/bare-level-names.md	pending		4	
+client-internals/bare-level-names.md	cited	3.1	4	
 client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
 client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
 client-internals/build-catalogue.md	cited	0; 1; 2.1; 2.2; E	1; C	
@@ -143,7 +143,7 @@ client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	ta
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
-client-internals/des-and-hidden-strings.md	pending		4	
+client-internals/des-and-hidden-strings.md	cited	3.7	4	
 client-internals/drive-clients-inventory.md	pending		4	
 client-internals/early-clients.md	pending		4	
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
@@ -163,7 +163,7 @@ client-internals/feature-specs/14-friends-ignore.md	cited	4.10	4.10
 client-internals/feature-specs/README.md	cited	4.10; E	4.10	
 client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
-client-internals/gameboy-demo.md	pending		4	
+client-internals/gameboy-demo.md	cited	1	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	cited	2.4	4	
 client-internals/item-drops.md	cited	4.5; E	4.5	
@@ -180,15 +180,15 @@ client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline 
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
 client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
-client-internals/precursor-runs-2026-10-30.md	pending		4	
-client-internals/precursors-and-fan-builds.md	pending		4	
+client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3	4	
+client-internals/precursors-and-fan-builds.md	cited	1; 2.3	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	
-client-internals/relay-room-bridge.md	pending		4	
+client-internals/relay-room-bridge.md	cited	2.3	4	
 client-internals/rendering-observations.md	cited	4.1	4	
-client-internals/saved-passwords.md	pending		4	
+client-internals/saved-passwords.md	cited	3.7	4	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/status-bit-0x20.md	cited	4.3	4.6	
@@ -210,7 +210,7 @@ client-internals/version/docs/graal.txt	pending		1; C
 client-internals/version/docs/graaleditor.txt	pending		1; C	
 client-internals/versions-133-139.md	pending		1; C	
 client-internals/water-and-ganis.md	cited	4.1; 4.2; 4.3	4	
-client-internals/zelda-online-1998.md	pending		4	
+client-internals/zelda-online-1998.md	cited	1	4	
 docs/NEXT.md	excluded			repository task list, not Graal
 docs/book/00-how-to-read.md	cited	G	E	
 docs/book/01-a-level-and-a-session.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
