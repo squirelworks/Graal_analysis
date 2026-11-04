@@ -1,0 +1,24 @@
+// Original NPC library: trapped chest
+// Category: object / chests (see also combat / hazards)
+// Image: chest sheet as in chest-rupees.gs1
+// Events: playerenters, playertouchsme
+// Flag set: chest_trap_seen (rename per chest)
+//
+// The first touch springs a trap: a small explosion and a hit. After that
+// the chest is just an open, empty box.
+
+if (playerenters) {
+  if (chest_trap_seen) {
+    setimgpart chest.png,32,0,32,32;
+  } else {
+    setimgpart chest.png,0,0,32,32;
+  }
+}
+
+if (playertouchsme && !chest_trap_seen) {
+  set chest_trap_seen;
+  setimgpart chest.png,32,0,32,32;
+  putexplosion 1,x+0.5,y+0.5;
+  hurt 2;
+  say2 It was a trap!;
+}

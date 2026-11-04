@@ -19,51 +19,51 @@ ash/ARCHITECTURE.md	cited	5; 7	5.2
 ash/ARCHIVAL-NOTE.md	cited	E	5.2	
 ash/BLUEPRINT.md	cited	5	5.2	
 ash/INDEX.md	cited	5; E	5.2	
-ash/OPCODE-MAP.md	pending		2.4; 2.5; A	
+ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/bare-level-names.md	pending		4	
 client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
-client-internals/body-colours-and-attributes.md	pending	2.6	2.6	
-client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
-client-internals/build-diff-204-205.md	pending	8.2	4	
+client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
+client-internals/build-catalogue.md	cited	0; 1; 2.1; 2.2; E	1; C	
+client-internals/build-diff-204-205.md	cited	8.2	4	
 client-internals/carry-hide-and-glove.md	cited	4.5; E	4	
 client-internals/chat-text.md	cited	2.8; 4.6	4	
 client-internals/client-architecture-205.md	pending		4	
 client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
 client-internals/combat-200-204.md	cited	4.3; E	4.3	
 client-internals/config-and-input.md	cited	3.9	3.9	
-client-internals/cross-version-timeline.md	pending	1; 8.2; C; E	1	
+client-internals/cross-version-timeline.md	cited	1; 8.2; C; E	1	
 client-internals/damage-sources.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	cited	2.5	2.5; 4	
 client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md	cited	4.1; 4.2; 4.10	4	
 client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md	cited	2.3; 2.5	2.2; 2.4; 4	
-client-internals/decomp-findings-2026-10-24-b/05-open-items.md	pending	E	4; E	
+client-internals/decomp-findings-2026-10-24-b/05-open-items.md	cited	E	4; E	
 client-internals/decomp-findings-2026-10-24-b/06-crosscheck.md	excluded		4	cross-check of the batch against earlier repo notes; the facts it confirms or corrects are in the batch notes on their own rows
 client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md	cited	2.4; 2.5; 6	2.4; 2.5; 4	
 client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md	cited	2.4; 2.5	2.4; 2.5; 4	
 client-internals/decomp-findings-2026-10-24-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24-c/01-toolchain-and-coverage.md	excluded		4	record of the decompile toolchain and method; no client behaviour
-client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md	pending		1; 2.2; 4	
-client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md	pending		2.1; 2.2; 4	
-client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	pending		2.5; 4	
-client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	pending		2.4; 4	
-client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md	pending		2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md	cited	1; E	1; 2.2; 4	
+client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md	cited	2.1	2.1; 2.2; 4	
+client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	cited	2.5; E	2.5; 4	
+client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	cited	2.4; E	2.4; 4	
+client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md	cited	2.5	2.4; 2.5; 4	
 client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	cited	2.9	2.9; 4	
-client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	pending		1; 4	
-client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	pending		1; 4; 8.2	
-client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md	pending		4; E	
+client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	cited	2.4; 2.5; 8.2; E	1; 4	
+client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	cited	8.2	1; 4; 8.2	
+client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md	cited	2.4; E	4; E	
 client-internals/decomp-findings-2026-10-24-c/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24-c/classes_by_build.tsv	excluded		4	class-name counts per build; no client behaviour
 client-internals/decomp-findings-2026-10-24-c/coverage_by_build.tsv	excluded		4	decompile coverage counts per build; no client behaviour
 client-internals/decomp-findings-2026-10-24-c/handler_shape_changes.tsv	excluded		4	similarity scores of handler bodies between builds; the behaviour changes are written up in 06-handler-changes-by-build.md
-client-internals/decomp-findings-2026-10-24-c/id_changes_between_builds.tsv	pending		2.4; 2.5; 4	
-client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv	pending		2.4; 4	
+client-internals/decomp-findings-2026-10-24-c/id_changes_between_builds.tsv	cited	2.4	2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv	cited	2.4	2.4; 4	
 client-internals/decomp-findings-2026-10-24-c/plo_decode_signatures.tsv	excluded		4	heuristic field layouts marked not authoritative; superseded by version-profiles/plo-layouts-217-231.tsv
-client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv	pending		2.5; 4	
-client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv	pending		4; 8.2	
-client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv	pending		1; 2.2; 4	
+client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv	cited	2.5	2.5; 4	
+client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv	cited	8.2	4; 8.2	
+client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv	cited	1	1; 2.2; 4	
 client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md	cited	4.4; E	4	
 client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md	cited	4.3; E	4	
@@ -77,10 +77,10 @@ client-internals/decomp-findings-2026-10-24/01-death-respawn.md	cited	4.3; 4.4	4
 client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/03-player-list-popup.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	cited	4.3	4	
-client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	pending		2.6	
-client-internals/decomp-findings-2026-10-24/06-first-graal.md	pending		2.3	
-client-internals/decomp-findings-2026-10-24/07-graal-139.md	pending		2.3; 2.4	
-client-internals/decomp-findings-2026-10-24/08-contradictions.md	pending		E	
+client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	cited	2.1	2.6	
+client-internals/decomp-findings-2026-10-24/06-first-graal.md	cited	2.3	2.3	
+client-internals/decomp-findings-2026-10-24/07-graal-139.md	cited	2.1; 2.3	2.3; 2.4	
+client-internals/decomp-findings-2026-10-24/08-contradictions.md	cited	2.3	E	
 client-internals/decomp-findings-2026-10-24/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24/constants-205.tsv	cited	4.1; 4.4	4	
 client-internals/decomp-findings-2026-10-24/gani-name-table.tsv	cited	4.10	4	
@@ -99,12 +99,12 @@ client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	excluded		2.7
 client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	excluded		4; E	table form of 03-open-points.md in the same folder, which App. E cites
 client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	cited	2.7	2.7; 4	
-client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending	E	3.1; 4	
-client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	pending		3.1; 3.6; 4	
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	cited	E	3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	cited	3.1	3.1; 3.6; 4	
 client-internals/decomp-findings-2026-10-25-f/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	cited	3.1	3.1; 4	
 client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	cited	2.4	2.4; 2.5; 4	
 client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	cited	2.4	2.4; 4	
 client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	cited	2.5	2.5; 4	
@@ -113,14 +113,14 @@ client-internals/decomp-findings-2026-10-25-g/README.md	excluded		4	index of the
 client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	cited	2.5	2.5; 4	
 client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	cited	2.4	2.4; 2.5; 4	
 client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	excluded		4; E	table form of 04-open-points.md in the same folder, which §2.4 cites
-client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	cited	3.1	3.1; 4	
 client-internals/decomp-findings-2026-10-25-j/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/by-build.tsv	cited	3.1	3.1; 4	
+client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	cited	3.1	3.1; 4	
 client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-k/03-open-points.md	cited	E	E	
@@ -129,11 +129,11 @@ client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4
 client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	excluded		E	table form of 03-open-points.md in the same folder, which App. E cites
 client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
-client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		3.5	
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	cited	3.5	3.5	
 client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
-client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	pending		2.5	
+client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	cited	2.5	2.5	
 client-internals/decomp-findings-2026-10-25-l/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	pending		E	
+client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	cited	E	E	
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
@@ -147,45 +147,45 @@ client-internals/des-and-hidden-strings.md	pending		4
 client-internals/drive-clients-inventory.md	pending		4	
 client-internals/early-clients.md	pending		4	
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
-client-internals/feature-specs/02-weapons-combat.md	pending	4.3; 8.1; 8.3; 8.4; E	4.3	
-client-internals/feature-specs/03-inventory.md	pending	4.10	4.10	
+client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
+client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
-client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10	
-client-internals/feature-specs/06-gmap-overworld.md	pending	3.2	3.2; 4.10	
+client-internals/feature-specs/05-save-load.md	cited	3.7	3.7; 4.10	
+client-internals/feature-specs/06-gmap-overworld.md	cited	3.2	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	excluded		2.9	reimplementation feature spec; its protocol facts are restated from protocol/udp-p2p.md and packet-layouts.md, cited in §2.9
 client-internals/feature-specs/08-tampercheck.md	cited	4.10; E	4.10	
 client-internals/feature-specs/09-options.md	cited	4.6	4.6	
 client-internals/feature-specs/10-right-click-menu.md	cited	4.10	4.10	
 client-internals/feature-specs/11-emotes-ganis.md	cited	4.10; E	4.10	
-client-internals/feature-specs/12-motd-rules.md	pending	4.10	4.10	
-client-internals/feature-specs/13-ban-kick.md	pending	4.10	4.10	
+client-internals/feature-specs/12-motd-rules.md	cited	4.10	4.10	
+client-internals/feature-specs/13-ban-kick.md	cited	4.10	4.10	
 client-internals/feature-specs/14-friends-ignore.md	cited	4.10	4.10	
-client-internals/feature-specs/README.md	pending	4.10; E	4.10	
-client-internals/feature-timeline.md	pending	8.1; 8.2; 8.3	4	
+client-internals/feature-specs/README.md	cited	4.10; E	4.10	
+client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	pending		4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	cited	2.4	4	
 client-internals/item-drops.md	cited	4.5; E	4.5	
-client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending	4.3; 4.4; 4.5; E	4	
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
-client-internals/live-behaviour-404.md	pending	8.1; 8.3	4	
+client-internals/live-behaviour-404.md	cited	8.1; 8.3	4	
 client-internals/live-checks-editor-offline-sound.md	cited	4.5; 4.6; 4.7; 4.8; 4.9	4	
 client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1	
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
-client-internals/live-trace-early.md	pending	4.1; 4.2	4	
-client-internals/newworld-betas.md	pending	4.1; 8.2	4	
+client-internals/live-trace-early.md	cited	4.1; 4.2	4	
+client-internals/newworld-betas.md	cited	4.1; 8.2	4	
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
-client-internals/player-mannerisms-live.md	pending	4.1; 4.2; 4.3; 4.5; E	4	
+client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
 client-internals/precursor-runs-2026-10-30.md	pending		4	
 client-internals/precursors-and-fan-builds.md	pending		4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
-client-internals/reference-reimplementations/levelscripteditor.md	pending	8.3	4	
+client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	
 client-internals/relay-room-bridge.md	pending		4	
 client-internals/rendering-observations.md	cited	4.1	4	
 client-internals/saved-passwords.md	pending		4	
@@ -194,14 +194,14 @@ client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7
 client-internals/status-bit-0x20.md	cited	4.3	4.6	
 client-internals/status-display.md	cited	4.6	4.6	
 client-internals/v2.00-connect-path.md	cited	6	4	
-client-internals/version-id-map.md	pending	1	1; C	
-client-internals/version-profiles/141-217.toml	pending	2.4	1; C	
+client-internals/version-id-map.md	cited	1	1; C	
+client-internals/version-profiles/141-217.toml	cited	2.4; E	1; C	
 client-internals/version-profiles/README.md	pending		1; C	
 client-internals/version-profiles/list-ports.md	pending		1; C	
-client-internals/version-profiles/v121-v132.toml	pending	2.4; E	1; C	
-client-internals/version-profiles/v133-v139.toml	pending	2.4	1; C	
+client-internals/version-profiles/v121-v132.toml	cited	2.4; E	1; C	
+client-internals/version-profiles/v133-v139.toml	cited	2.4	1; C	
 client-internals/version-profiles/v1998-v11.toml	pending		1; C	
-client-internals/version-tokens.md	pending	1; 2.3	1; C	
+client-internals/version-tokens.md	cited	1; 2.3	1; C	
 client-internals/version/README.md	pending		1; C	
 client-internals/version/VERSION.md	pending		1; C	
 client-internals/version/docs/GraalEditor-README.md	pending		1; C	
@@ -212,7 +212,7 @@ client-internals/versions-133-139.md	pending		1; C
 client-internals/water-and-ganis.md	cited	4.1; 4.2; 4.3	4	
 client-internals/zelda-online-1998.md	pending		4	
 docs/NEXT.md	excluded			repository task list, not Graal
-docs/book/00-how-to-read.md	pending	G	E	
+docs/book/00-how-to-read.md	cited	G	E	
 docs/book/01-a-level-and-a-session.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/02-the-player.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
@@ -232,7 +232,7 @@ formats/level-binary.md	cited	1; 3.1; E	3.1
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/sign-text.md	cited	3.6	3.6	
-formats/tile-walk.md	pending	3.4; 3.5; E	3.5; 4.2	
+formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
 graal3d/camera.md	cited	9; E	9	
@@ -243,7 +243,7 @@ graal3d/lab-2026-10-30.md	cited	9	9
 graal3d/protocol.md	cited	9	9	
 graal3d/reference-server/README.md	excluded		9	a server reimplementation written from the notes; its matching message stream is cited through the lab note
 graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
-live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
+live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4	
@@ -256,47 +256,49 @@ npc-library/gs1-commands.md	cited	8.1; 8.2; E	8
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
 npc-library/reference/forcesay.txt	pending		8	
 npc-library/reference/npcControl-NPC.txt	pending		8	
+npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/interaction/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/objects/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/tile-patterns.md	pending		8	
-protocol/OPCODE-SUMMARY.md	pending		2.4; 2.5; A	
-protocol/PROTOCOL-CHEATSHEET.md	pending	E	2	
+protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md
+protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
-protocol/client-versions.md	pending	2.1; 2.2; 2.3; 2.5	1; 2.2	
+protocol/client-versions.md	cited	2.1; 2.2; 2.3; 2.5	1; 2.2	
 protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3; 2.5; E	2.1; 2.2	
-protocol/cross-version-anchors.md	pending		2	
-protocol/crosscheck-captures-vs-research.md	pending		2	
+protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
+protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/file-transfer.md	cited	2.7; E	2.7	
-protocol/format-notes-from-salvage.md	pending	E	2	
-protocol/graphics-movement-bytecode.md	pending	8.3; 8.4; E	8.4	
+protocol/format-notes-from-salvage.md	cited	E	2	
+protocol/graphics-movement-bytecode.md	cited	8.3; 8.4; E	8.4	
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
-protocol/lab-checks-2026-10-24.md	pending		2	
+protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/listserver.md	cited	6; E	6	
-protocol/login-and-walk.md	pending	2.3; 2.4; 7; E	2.3	
-protocol/login-frames-by-version-2026-10-25.md	pending	2.1; 6; E	2.3	
+protocol/login-and-walk.md	cited	2.3; 2.4; 7; E	2.3	
+protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	
 protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
-protocol/login-session-known.md	pending	2.2; 2.3; E	2.3	
+protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
 protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/medium-term-slice.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/npc-control.md	cited	7; E	7	
 protocol/offline-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
-protocol/packet-id-diff.md	pending		2.4; 2.5; A	
+protocol/packet-id-diff.md	excluded		2.4; 2.5; A	method note: the 2.05 file it compared was the GS1 interpreter, not the packet dispatcher; no packet facts of its own
 protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
-protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	
-protocol/pcap-2026-10-04.md	pending		2	
+protocol/packet-layouts.md	cited	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	
+protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
 protocol/player-props.md	cited	2.6; 2.8; B	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
-protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
+protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
-protocol/v3x-clients.md	pending	2.2; 2.3; 2.5; 10	1; 2.3; 10	
-protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E	1; 2.3; 10	
-protocol/v5v6-lab-play.md	pending	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E	1; 2.3	
-protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
-protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
-protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E	1; 2.10	
+protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10	1; 2.3; 10	
+protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E	1; 2.3; 10	
+protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E	1; 2.3	
+protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E	1; 2.3	
+protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
+protocol/v6x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E	1; 2.10	
 recovered-drive-tools/INVENTORY.md	excluded		11	download inventory of the recovered Drive corpus; logistics, no Graal behaviour
 recovered-drive-tools/SALVAGE_CANDIDATES.md	excluded		11	reimplementation placement plan
 recovered-drive-tools/SALVAGE_PLACEMENT.md	excluded		11	reimplementation placement plan
@@ -330,11 +332,11 @@ recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	cited	11	11
 recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
 recovered-hacks/DEFENSE_PROPOSALS.md	excluded		4.10; 11	operator defence proposals for game servers; not client behaviour
 recovered-hacks/INVENTORY.md	excluded		4.10; 11	archive inventory of the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3)
-recovered-hacks/THREAT_TAXONOMY.md	pending	4.10	4.10; 11	
-recovered-hacks/TRAINER_RE_NOTES.md	pending	4.10	4.10; 11	
+recovered-hacks/THREAT_TAXONOMY.md	cited	4.10	4.10; 11	
+recovered-hacks/TRAINER_RE_NOTES.md	cited	4.10	4.10; 11	
 recovered-hacks/Trainers/AutoPrograms by RpgWarrior/Graal_Miner.zip.BLOCKED.txt	excluded			placeholder for an archive withheld from the repository
 recovered-hacks/Trainers/Graal_Miner.zip.BLOCKED.txt	excluded			placeholder for an archive withheld from the repository
-recovered-hacks/behaviour-models.md	pending	4.10	4.10; 11	
+recovered-hacks/behaviour-models.md	cited	4.10	4.10; 11	
 recovered-hacks/defense-checklist.md	excluded		4.10; 11	operator defence checklist for game servers; not client behaviour
 recovered-hacks/ghidra-analysis/AFK_Bot/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
 recovered-hacks/ghidra-analysis/GTS/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
@@ -342,7 +344,7 @@ recovered-hacks/ghidra-analysis/Graal_Digger/SUMMARY.md	excluded		4.10; 11	per-s
 recovered-hacks/ghidra-analysis/Graal_Prayer/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
 recovered-hacks/ghidra-analysis/Graal_Prayer_data/SUMMARY.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
 recovered-hacks/remaining-2026-11-01.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3)
-recovered-hacks/static-2026-11-01/README.md	pending	4.10	4.10; 11	
+recovered-hacks/static-2026-11-01/README.md	cited	4.10	4.10; 11	
 recovered-hacks/static-2026-11-01/autod.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
 recovered-hacks/static-2026-11-01/autoidle.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
 recovered-hacks/static-2026-11-01/autos.md	excluded		4.10; 11	per-sample static notes on the recovered trainers; the manual uses only the behaviour summary (§4.10.1.3) and keeps tool details out
@@ -405,12 +407,12 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/network.md	cited	10	10	
 torque/scripting.md	cited	10	10	
 torque/wire-by-build.md	cited	10; E	10	
-version-profiles/2.22-2.31.md	pending	2.4; 2.6; 2.7; 2.9	1; C	
-version-profiles/2.22-2.31.toml	pending	2.4	1; C	
-version-profiles/3.04-3.153.md	pending	2.4; 2.5; E	1; C	
-version-profiles/3.04-3.153.toml	pending	2.4	1; C	
-version-profiles/4.04-4.20.toml	pending	2.4	1; C	
-version-profiles/5.00-6.03.toml	pending	2.4; E	1; C	
+version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9	1; C	
+version-profiles/2.22-2.31.toml	cited	2.4	1; C	
+version-profiles/3.04-3.153.md	cited	2.4; 2.5; E	1; C	
+version-profiles/3.04-3.153.toml	cited	2.4	1; C	
+version-profiles/4.04-4.20.toml	cited	2.4	1; C	
+version-profiles/5.00-6.03.toml	cited	2.4; E	1; C	
 version-profiles/drive-clients-exes.tsv	pending		1; C	
 version-profiles/gen3-insertion-200-205.tsv	cited	2.1; 2.2; 2.3	2.2	
 version-profiles/lab-200-listserver-handshake.tsv	pending		1; C	
@@ -423,9 +425,9 @@ version-profiles/lab-mac-tiger-2026-10-31.md	pending		1; C
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5	1; C	
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5	1; C	
 version-profiles/lab-v5-2026-10-30.md	pending		1; C	
-version-profiles/matrix/README.md	pending	1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
+version-profiles/matrix/README.md	cited	1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
 version-profiles/matrix/builds-deltas.md	pending		C; 4	
-version-profiles/matrix/builds-static-survey.tsv	pending	4.1; E	C; 4	
+version-profiles/matrix/builds-static-survey.tsv	cited	4.1; E	C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	
 version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	
 version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	
@@ -438,7 +440,7 @@ version-profiles/plo-npcprops-layouts.tsv	cited	2.6; E	2.5; A
 version-profiles/plo-otherplprops-layouts.tsv	cited	2.6	2.5; A	
 version-profiles/plo-playerprops-layouts.tsv	cited	2.6; E	2.5; A	
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	
-version-profiles/tampercheck-words.tsv	pending		4.10	
+version-profiles/tampercheck-words.tsv	cited	2.4	4.10	
 version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	
 version-profiles/version-coverage-2026-10-24.md	pending		1; C	
 version-profiles/version-coverage-2026-10-24.tsv	pending		1; C	

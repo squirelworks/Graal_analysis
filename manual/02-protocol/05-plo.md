@@ -25,13 +25,15 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | Build | Count | Ids handled | Source |
 | --- | ---: | --- | --- |
 | NewMain 24, 26 | 51 | 0–45, 75, 100, 150, 151, 153 (bound `0x99`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
-| 2.00 (rev0–rev3) | 53 | 0–45, 75, 100, 150, 151, 153–155 (bound `0x9b`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#server---client-ids-handled-200) |
-| 2.01 (+rev1) | 55 | 0–46, 75, 100, 150, 151, 153–156 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
-| 2.02 (rev0–rev2) | 56 | 0–47, 75, 100, 150, 151, 153–156; disputed for rev0 and rev1 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
-| 2.03 | 58 | 0–48, 75, 100, 150, 151, 153–156, 165 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
-| 2.04 | 58 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166 (26 dropped) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
-| 2.05 (rev0–rev2) | 59 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166, 168 (bound `0xa8`); disputed for rev0 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 2.1 test 2, test 3 | 61 | the 2.05 set plus 49, 169 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
+| 2.00 (rev0–rev3) | 53 | 0–45, 75, 100, 150, 151, 153–155 (bound `0x9b`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#server---client-ids-handled-200) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.01 (+rev1) | 55 | 0–46, 75, 100, 150, 151, 153–156 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.02 (rev0–rev2) | 56 | 0–47, 75, 100, 150, 151, 153–156; disputed for rev0 and rev1 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.03 | 58 | 0–48, 75, 100, 150, 151, 153–156, 165 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.04 | 58 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166 (26 dropped) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.05 (rev0–rev2) | 59 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166, 168 (bound `0xa8`); disputed for rev0 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [2.05] (protocol/packet-ids.md#server--client-plo_) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.1 test 2, test 3 | 61 | the 2.05 set plus 49, 169 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| NewWorld beta 1 | 53 | the 2.05 set without 2, 4, 17, 18, 154, 155 | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+| NewWorld beta 2 | 55 | the beta 1 set plus 49, 169 | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
 | 2.17.1 | 79 | 0–25, 27–49, 68, 69, 75, 100, 150, 151, 153–156, 165, 166, 168–185 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
 | 2.22 | 80 | the 2.17.1 set plus 186 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
 | 2.31 | 81 | the 2.22 set without 44, plus 84 and 189 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (protocol/client-versions.md#server--client-ids-handled) |
@@ -46,6 +48,11 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | Rule | Builds | Source |
 | --- | --- | --- |
 | No build in the notes handles 26 (`PLO_NPCACTION`) after 2.03, or 152 and 167 | 2.04 to 2.31 | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/client-versions.md#server--client-ids-handled) |
+| Revisions of one version share every handler shape (2.05 rev1 differs by one constant in 8), so any revision stands for the others; on the wire only 2.02 rev2 differs, by its token and id 37 | 2.00 to 2.05 | [bin] (client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md#revisions-of-the-same-version) |
+| 2.00 has no active-level reference, since 156 arrives in 2.01; level-addressed messages act on the current level | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#active-level-gating) |
+| 2.01 rewrites 0, 14 and 15 so the handler no longer waits for and then requests the level, the code side of map preloading; 154 and 155 go through a shared helper | 2.01 | [bin] (client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md#200---201) |
+| 0, 6 and 14 gain checks that skip reloading a level that is already loaded | 2.1 test 3 | [bin] (client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md#21-test2---test3); [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#21-test2-and-test3) |
+| NewMain 24 and 26 have one handler set between them, but differ from 2.00 more than any 2.0x revision does, so NewMain is a separate branch | NewMain | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newmain-24--26) |
 | 2.31 drops 44 (`HASNPCSERVER`); the 2.3 release notes say Classic switched to the NPC server | 2.31 | [bin][doc] (protocol/client-versions.md#server--client-ids-handled) |
 | 3.04 lacks 170, 177, 182 and 183, which 2.22 handles, and adds 84, 101 and 102 | 3.04 | [bin] (version-profiles/3.04-3.153.md#server--client-ids) |
 | 4.20r8 drops nothing against 3.153 and adds 13 ids | 4.20r8 | [bin] (protocol/v4x-clients.md#server--client-ids) |
@@ -61,7 +68,7 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 1 | `PLO_LEVELLINK` | `rest` = `dest x y w h newx newy`, split on spaces | see the rules below | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client); [bin] (version-profiles/plo-levellink-layouts.tsv) |
 | 2 | `PLO_BADDYPROPS` | `c id` + BDPROP stream (→ §2.6) | an unknown id creates the baddy | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client) |
 | 3 | `PLO_NPCPROPS` | `i3 id` + NPCPROP stream (→ §2.6); id > 0 | ids below 1000 are level NPCs, created in the object level; 1000 and up are server-wide; a new NPC gets the `playerenters` event if the player is in that level | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client) |
-| 4 | `PLO_LEVELCHEST` | `c opened, c x, c y` (whole tiles); if not opened, also `c item, c signindex` | a closed chest with fewer than 5 bytes is dropped | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client) |
+| 4 | `PLO_LEVELCHEST` | `c opened, c x, c y` (whole tiles); if not opened, also `c item, c signindex` | a closed chest with fewer than 5 bytes is dropped; an opened chest draws nothing by itself, so on a board with no chest tiles the short form leaves no trace | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client); [cap] (client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md#why-no-chests-were-drawn) |
 | 5 | `PLO_LEVELSIGN` | `c x, c y` (whole tiles) + sign-alphabet text (→ §3) | needs at least 2 bytes | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client) |
 | 6 | `PLO_LEVELNAME` | `rest` = level file name | sets the named level, and the object level when there is no NPC server | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client) |
 | 7 | `PLO_BOARDMODIFY` | one run: `c x, c y, c w, c h` + w × h `s tile`, row-major | needs `len ≥ w*h*2+4` | [srv][2.05] (protocol/packet-layouts.md#level-data-server--client) |
@@ -158,9 +165,9 @@ How damage is applied after a hit is in → §4.3.
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
 | 24 | `PLO_NPCMOVED` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 26 | `PLO_NPCACTION` | unmeasured | handled by 2.00 to 2.03 only; purpose unknown | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
+| 26 | `PLO_NPCACTION` | `i3 npc id`, `rest` | handled by 2.00 to 2.03 only, and acts only while the player's level is the active level; purpose unknown | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
 | 29 | `PLO_NPCDEL` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 33 | `PLO_NPCWEAPONADD` | `str name` + NPCPROP stream (normally `c 0` IMAGE + `str image`, `c 1` SCRIPT + `s len` + GS1 text) | a name the player already has is ignored; the weapon gets the `playerenters` event | [srv][2.05] (protocol/packet-layouts.md#weapons) |
+| 33 | `PLO_NPCWEAPONADD` | `str name` + NPCPROP stream (normally `c 0` IMAGE + `str image`, `c 1` SCRIPT + `s len` + GS1 text) | a name the player already has is ignored; the weapon gets the `playerenters` event; a script line break is `§`, byte `A7` from a latin-1 server and `C2 A7` from a UTF-8 server | [srv][2.05] (protocol/packet-layouts.md#weapons); [cap] (client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md#weapon-scripts-and-line-breaks) |
 | 34 | `PLO_NPCWEAPONDEL` | `rest` = weapon name | removes the weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 43 | `PLO_DEFAULTWEAPON` | `c item index` (0–24: a built-in weapon such as bow, bomb, sword) | adds the built-in weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 44 | `PLO_HASNPCSERVER` | empty | the client stops applying NPC props itself | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-layouts-217-231.tsv) |

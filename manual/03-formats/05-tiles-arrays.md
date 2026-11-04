@@ -110,6 +110,20 @@ The 2×2 Bush stamp ids 2, 3, 18 and 19 are walls in the 4096-byte table and wal
 | 21 | 4 × 4 | packed values; use not traced in detail | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
 | 24 | 356 ints, packed | used by the item, bomb and extras objects | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
 
+Meanings read from the uses in the 2.22 client [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file):
+
+| # | Content (2.22) | Source |
+| --- | --- | --- |
+| 0 | passable tile ids; any other tile is a wall (→ App. E#101, E#608) | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 1 | liquid tile ids, water and lava | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 3 | the liquid tiles that are lava | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 9, 10 | cuttable 2×2 objects and the tiles a cut leaves, indexed type, column, row: the bush `2 3 / 18 19` and `420 421 / 436 437` | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 11, 12 | liftable 2×2 objects and the tiles a lift leaves: five types, among them the bush and the rock `34 35 / 50 51` | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 13 | closed chest tiles 1784, 1785, 1800, 1801 | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 14 | open chest tiles 829, 845 / 830, 846 | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+
+A loader that reads only the first four arrays as flat lists is right for 0 to 3 and misses the nested arrays 9 to 12 [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file).
+
 ## 3.5.4 arrays2.dat
 
 2.05 does not reference `arrays2.dat`, `graal.sig` or `arrays2.sig` and has no signature check [2.05] (formats/arrays-and-signatures.md#summary). In 2.17, 2.22 and 2.31 the file is plain text with CRLF lines, numbered from 0; 2.22 needs at least 5 lines [2.22] (formats/arrays-and-signatures.md#arrays2dat).
