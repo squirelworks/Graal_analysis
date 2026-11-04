@@ -76,6 +76,12 @@ def test_html_build(tmp_path):
     assert '<table' in text and 'id="TOC"' in text
 
 
+@pytest.mark.skipif(shutil.which('pandoc') is None, reason='pandoc not installed')
+def test_html_build_with_version(tmp_path):
+    html = build_manual.build_html('# Part\n', tmp_path, 'abc1234', build_manual.find_pandoc(), '0.0.3')
+    assert 'version 0.0.3, build of abc1234' in html.read_text(encoding='utf-8')
+
+
 def test_scrub_browser_version_keeps_length():
     version = '.'.join(['153', '0', '0', '0']).encode()
     pdf = b'/Creator (Mozilla/5.0 HeadlessChrome/' + version + b' Safari/537.36)'

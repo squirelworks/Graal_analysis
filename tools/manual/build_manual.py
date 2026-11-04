@@ -5,11 +5,13 @@ From the repository root, on Linux, macOS or Windows:
 
     python tools/manual/build_manual.py
     python tools/manual/build_manual.py --out some/dir/trm.pdf
+    python tools/manual/build_manual.py --version 0.0.3
 
 Steps: join the chapter files in manual order (dropping the
 `<!-- manual: ... -->` marker lines), turn them into one HTML page with
 pandoc, then print that page to an A4 PDF with Chromium. The default output
-is `manual/pdf/graal-trm.pdf`. Build it into the repo only when the owner
+is `manual/pdf/graal-trm.pdf`, or `manual/pdf/graal-trm-<version>.pdf` with
+`--version`. Build it into the repo only when the owner
 asks for a build (issue #191, work-plan item 15).
 
 Needs:
@@ -120,7 +122,8 @@ def commit_of(root: Path) -> str:
         return 'unknown'
 
 
-def build_html(markdown: str, work: Path, commit: str, pandoc: str) -> Path:
+def build_html(markdown: str, work: Path, commit: str, pandoc: str,
+               version: str | None = None) -> Path:
     src = work / 'all.md'
     src.write_text(markdown, encoding='utf-8')
     head = work / 'head.html'
@@ -131,7 +134,7 @@ def build_html(markdown: str, work: Path, commit: str, pandoc: str) -> Path:
             pandoc, str(src), '-f', 'gfm', '-t', 'html5', '-s',
             '--toc', '--toc-depth=2',
             '--metadata', f'title={TITLE}',
-            '--metadata', f'subtitle=build of {commit}',
+            '--metadata', 'subtitle=' + (f'version {version}, ' if version else '') + f'build of {commit}',
             '-H', str(head), '-o', str(html),
         ],
         check=True,
@@ -177,20 +180,24 @@ def page_count(pdf: bytes) -> int:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('--root', type=Path, default=ROOT, help='repository root')
-    ap.add_argument('--out', type=Path, help='PDF path (default manual/pdf/graal-trm.pdf)')
+    ap.add_argument('--version', help='edition label, such as 0.0.3: shown on the title page and '
+                    'used in the default file name')
+    ap.add_argument('--out', type=Path,
+                    help='PDF path (default manual/pdf/graal-trm[-VERSION].pdf)')
     ap.add_argument('--html', type=Path, help='also keep the HTML page here')
     ap.add_argument('--chromium', default=os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE'),
                     help='Chromium executable to use instead of the Playwright download')
     args = ap.parse_args(argv)
 
     root = args.root.resolve()
-    out = (args.out or root / 'manual' / 'pdf' / 'graal-trm.pdf').resolve()
+    name = f'graal-trm-{args.version}.pdf' if args.version else 'graal-trm.pdf'
+    out = (args.out or root / 'manual' / 'pdf' / name).resolve()
     out.parent.mkdir(parents=True, exist_ok=True)
     commit = commit_of(root)
     markdown = join_chapters(chapter_files(root / 'manual'))
     pandoc = find_pandoc()
     with tempfile.TemporaryDirectory(prefix='graal-trm-') as tmp:
-        html = build_html(markdown, Path(tmp), commit, pandoc)
+        html = build_html(markdown, Path(tmp), commit, pandoc, args.version)
         if args.html:
             shutil.copyfile(html, args.html)
         print_pdf(html, out, args.chromium)
