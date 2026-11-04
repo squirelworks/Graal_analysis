@@ -1,0 +1,30 @@
+// Original NPC library: paid crossing
+// Category: transport / level-warps
+// Image: a ferryman (showcharacter) on the jetty
+// Events: playerenters, playertouchsme, playerchats
+//
+// Touch the ferryman to hear the fare. Say "yes" nearby to pay and cross.
+// A player who cannot pay is told how much is missing.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head3.png;
+  setcharprop #C1,brown;
+  setcharprop #n,Ferryman;
+  setcharani idle,;
+  this.fare = 15;             // <- price in rupees
+}
+
+if (playertouchsme) {
+  setcharprop #c,Across the lake for #v(this.fare) rupees. Say yes.;
+}
+
+if (playerchats && strequals(#c,yes) && abs(playerx - x) < 4 && abs(playery - y) < 4) {
+  if (playerrupees >= this.fare) {
+    playerrupees -= this.fare;
+    setcharprop #c,Hold on tight!;
+    setlevel2 lake_far_shore.graal,20,30;
+  } else {
+    setcharprop #c,You need #v(this.fare - playerrupees) more.;
+  }
+}
