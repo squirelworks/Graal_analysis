@@ -316,6 +316,35 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | Settles it | reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+
+### E#316 Glove power steps
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | every player starts at glove 1, which lifts the bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
+| Claim B | a bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
+| Settles it | a lab lift of each object on 2.05 at glove 0, 1, 2 and 3 | [inf] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
+
+### E#317 The 1.x pickup box and item draw order
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | only 1.3's pixel overlap for picking up a floor item was read; the 1.x box in tiles, and whether items are drawn under or over players, are not known | [bin] (client-internals/item-drops.md#open) |
+| Settles it | reading the pickup test of 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
+
+### E#318 Level reload on re-entry offline
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | whether 2.05 offline reloads a level from disk when the player re-enters it, which would bring a cut bush back | [bin] (client-internals/board-respawn.md#open) |
+| Settles it | a lab run on 2.05 offline: cut a bush, leave the level, come back and read the board | [inf] (client-internals/board-respawn.md#open) |
+
+### E#319 The single-player start levels
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | loading `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` runs an extra setup step in 2.05; what the step does was not traced | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
+| Settles it | loading each name offline on 2.05 in the lab and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 ### E#400 Two projects called Ash
 
 | Item | Content | Source |
