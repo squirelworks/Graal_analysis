@@ -256,6 +256,8 @@ npc-library/README.md	cited	8.1	8
 npc-library/archival-scripting-notes.md	cited	8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
 npc-library/gs1-command-reference-205.md	cited	8.1; 8.2; E	8	
+npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
+npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
@@ -393,6 +395,8 @@ tools/graaleditor-vs-205.md	cited	11	11
 tools/graaleditor.md	cited	11; E	11	
 tools/graalshop.md	cited	11	11	
 tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
+tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the scanner behind gs1-commands-by-version.md), not Graal
+tools/gs1-table-scan/builds.tsv	excluded			build list and binary MD5s for the scanner; the facts are in gs1-commands-by-version.md
 tools/lab-servers/README.md	cited	5; 6	6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
 tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md

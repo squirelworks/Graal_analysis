@@ -35,6 +35,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `formats/gobjset01.md` — stamp format and the 2×2 Bush example.
 - `npc-library/scripts/` — the original NPC library: new GS1 scripts written from scratch against `npc-library/behaviours.md` and manual §8, by family, each checked by `tools/gs1-lint`.
 - `npc-library/gs1-commands.md` — control flow, common commands, pattern letters, offline wiring priority.
+- `npc-library/gs1-commands-by-version.md` — which GS1 commands every client from 2nd Graal (1998) to 5.00r7 (2007) knows, read from each binary's command list: change by build, every command's first and last build, and the 208 × 61 matrix in `gs1-commands-by-version.tsv`. Scanner: `tools/gs1-table-scan/`.
 - `protocol/session-opcodes-cleaned.md` — common server-to-client meanings that match GLEVNW01 records.
 - `client-internals/config-and-input.md` — graalconfig keys, device path, drop-files behavior.
 - `client-internals/rendering-observations.md` — frame loop, draw path, offline blit next step.

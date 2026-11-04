@@ -97,6 +97,7 @@ The NewWorld `TAdventureLevel` (33968 bytes) and beta 2 `TGraalMap` (34060 bytes
 ## GS1 commands
 
 Count of commands in the table, and what each build adds over the previous one.
+The same lists for every build from 2nd Graal (1998) to 5.00r7 (2007), read by a scanner, are in `npc-library/gs1-commands-by-version.md`.
 The table is followed directly by a short direction table (`up`, `right`), and in some builds by other keyword lists (`*=`, `:=`, the 1.33 soldier names, and `nwweek` / `nwmonth` / `nwmin` in the NewWorld betas).
 Those entries are not counted. In 2.05 this gives 161 commands, matching the earlier count on main.
 
