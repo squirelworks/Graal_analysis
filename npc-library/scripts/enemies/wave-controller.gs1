@@ -1,0 +1,56 @@
+// Original NPC library: arena waves
+// Category: combat / baddies (controller)
+// Image: none (invisible)
+// Events: playerenters, compusdied, timeout
+// Flag set: arena_cleared (rename to suit)
+//
+// Runs three waves of the built-in baddies in an arena level. Each wave
+// starts two seconds after the previous one is wiped out (compusdied).
+// After the third wave it sets the flag and drops a reward. A cleared
+// arena stays quiet. Spawn points and baddy types are in the wave
+// functions.
+
+function wave1() {
+  putcomp graysoldier,20,20;
+  putcomp graysoldier,40,20;
+}
+
+function wave2() {
+  putcomp bluesoldier,20,20;
+  putcomp bluesoldier,40,20;
+  putcomp shootingsoldier,30,14;
+}
+
+function wave3() {
+  putcomp redsoldier,20,20;
+  putcomp redsoldier,40,20;
+  putcomp goldenwarrior,30,30;
+}
+
+if (playerenters) {
+  hide;
+  if (!arena_cleared) {
+    removecompus;
+    this.wave = 0;
+    message ;
+    timeout = 2;
+  }
+}
+
+if (compusdied && !arena_cleared && this.wave > 0) {
+  if (this.wave >= 3) {
+    set arena_cleared;
+    play fanfare.wav;
+    lay2 goldrupee,32,32;
+  } else {
+    timeout = 2;
+  }
+}
+
+if (timeout && !arena_cleared) {
+  this.wave++;
+  play gong.wav;
+  if (this.wave == 1) wave1();
+  if (this.wave == 2) wave2();
+  if (this.wave == 3) wave3();
+}
