@@ -8,6 +8,7 @@
 // puzzle with interaction/switch-sequence.gs1.
 
 if (playerenters) {
+  timereverywhere;            // each client runs its own timer
   setimg chime.png;
   this.ready = 1;
 }

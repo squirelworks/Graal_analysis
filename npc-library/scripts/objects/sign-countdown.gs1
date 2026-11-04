@@ -8,6 +8,7 @@
 // post of a timed challenge.
 
 if (playerenters) {
+  timereverywhere;            // each client runs its own timer
   setimg clockpost.png;
   this.seconds = 10;          // <- length of the countdown
   this.left = 0;
