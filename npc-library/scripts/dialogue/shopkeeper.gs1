@@ -39,8 +39,8 @@ if (playertouchsme) {
 
 if (playerchats && abs(playerx - x) < 5 && abs(playery - y) < 5) {
   this.what = 0;
-  if (strequals(#c,"buy bombs")) { this.what = 1; this.price = this.pbombs; }
-  if (strequals(#c,"buy arrows")) { this.what = 2; this.price = this.parrows; }
-  if (strequals(#c,"buy heart")) { this.what = 3; this.price = this.pheart; }
+  if (strequals(#c,buy bombs)) { this.what = 1; this.price = this.pbombs; }
+  if (strequals(#c,buy arrows)) { this.what = 2; this.price = this.parrows; }
+  if (strequals(#c,buy heart)) { this.what = 3; this.price = this.pheart; }
   if (this.what > 0) sell();
 }
