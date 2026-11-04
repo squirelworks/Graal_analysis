@@ -1,0 +1,42 @@
+// Original NPC library: shovel (edits the tile in front of the player)
+// Category: interaction / flags (digging tool)
+// Image: a shovel
+// Events: playerenters, playertouchsme, weaponfired
+//
+// A pickup that becomes the weapon "Shovel". Firing it digs the tile in
+// front of the player: if that tile is plain ground (tile type 0), it is
+// replaced with a hole tile and the board is redrawn. Each dig has a one
+// in five chance of turning up a rupee. Online, updateboard also tells the
+// server (manual §8.2.4.8, from the documentation).
+//
+// Set this.hole to the tile number of a dug-hole tile in your tileset.
+
+if (playerenters && !isweapon) {
+  if (hasweapon(Shovel)) {
+    hide;
+  } else {
+    setimg shovel.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !isweapon) {
+  play item.wav;
+  toweapons Shovel;
+  hide;
+}
+
+if (weaponfired && isweapon) {
+  this.hole = 2047;           // <- tile number of the dug hole
+  // the tile one step in front of the player's feet
+  this.tx = int(playerx + 1.5 + vecx(playerdir));
+  this.ty = int(playery + 2 + vecy(playerdir));
+  if (this.tx >= 0 && this.tx < 64 && this.ty >= 0 && this.ty < 64 && tiletype(this.tx,this.ty) == 0) {
+    board[this.tx + this.ty * 64] = this.hole;
+    updateboard this.tx,this.ty,1,1;
+    play dig.wav;
+    if (random(0,5) < 1) lay2 greenrupee,this.tx,this.ty;
+  } else {
+    play clink.wav;
+  }
+}

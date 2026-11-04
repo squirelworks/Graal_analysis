@@ -218,6 +218,8 @@ docs/book/02-the-player.md	excluded		E	0.0.2 book chapter drafted from the worki
 docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
+docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/gani.txt	cited	3.3	3.3	
 formats/glevnw01.txt	cited	3.1; E	3.1	
@@ -258,8 +260,11 @@ npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does 
 npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/dialogue/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/enemies/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/hazards/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/interaction/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/items/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/minigames/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/objects/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/spawners/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/transport/README.md	excluded			original example scripts written for the repo, not evidence about Graal
@@ -276,6 +281,7 @@ protocol/format-notes-from-salvage.md	cited	E	2
 protocol/graphics-movement-bytecode.md	cited	8.3; 8.4; E	8.4	
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
+protocol/link-test-2026-11-04.md	cited	2.5		
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/listserver.md	cited	6; E	6	

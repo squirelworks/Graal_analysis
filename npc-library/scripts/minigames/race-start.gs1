@@ -1,0 +1,52 @@
+// Original NPC library: race start post (pair with race-finish.gs1)
+// Category: minigame
+// Image: a starting flag
+// Events: playerenters, playertouchsme, timeout
+// Flags: race_running, race_finished (shared with the finish post)
+// String kept: race_best (best time in tenths of a second)
+//
+// Touch to start. The clock runs above the post in tenths of a second and
+// stops when the finish post sets race_finished. A new best time is kept
+// in the player's race_best string and paid with 20 rupees. Giving up
+// takes 60 seconds, after which the race resets.
+
+if (playerenters) {
+  timereverywhere;
+  setimg startflag.png;
+  unset race_running;
+  unset race_finished;
+  this.t = 0;
+}
+
+if (playertouchsme && !race_running) {
+  set race_running;
+  unset race_finished;
+  this.t = 0;
+  play start.wav;
+  message GO!;
+  timeout = 0.1;
+}
+
+if (timeout && race_running) {
+  this.t++;
+  message #v(int(this.t / 10)).#v(this.t % 10);
+  if (this.t >= 600) {
+    unset race_running;
+    message Too slow!;
+  } else {
+    timeout = 0.1;
+  }
+}
+
+if (timeout && race_finished) {
+  unset race_finished;
+  this.best = strtofloat(#s(race_best));
+  if (this.best <= 0 || this.t < this.best) {
+    setstring race_best,#v(this.t);
+    playerrupees += 20;
+    play fanfare.wav;
+    message New record: #v(int(this.t / 10)).#v(this.t % 10) s!;
+  } else {
+    message #v(int(this.t / 10)).#v(this.t % 10) s - best #v(int(this.best / 10)).#v(this.best % 10);
+  }
+}

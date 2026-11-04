@@ -1,0 +1,38 @@
+// Original NPC library: blast rod
+// Category: combat / weapons
+// Image: a rod with a red gem
+// Events: playerenters, playertouchsme, weaponfired, timeout
+//
+// A pickup that becomes the weapon "Blastrod". Firing it costs one bomb
+// and sets off a small explosion three tiles in front of the player.
+// Half-second cool-down.
+
+if (playerenters && !isweapon) {
+  if (hasweapon(Blastrod)) {
+    hide;
+  } else {
+    setimg rod.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !isweapon) {
+  play item.wav;
+  toweapons Blastrod;
+  hide;
+}
+
+if (weaponfired && isweapon && this.cool <= 0) {
+  if (playerbombs < 1) {
+    setplayerprop #c,(no bombs);
+  } else {
+    playerbombs--;
+    putexplosion 1,playerx + 1.5 + vecx(playerdir) * 3,playery + 2 + vecy(playerdir) * 3;
+    this.cool = 1;
+    timeout = 0.5;
+  }
+}
+
+if (timeout && isweapon) {
+  this.cool = 0;
+}
