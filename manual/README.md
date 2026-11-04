@@ -49,4 +49,4 @@ python tools/manual/check_manual.py
 python -m pytest tools/manual -q
 ```
 
-The PDF is built only when the owner asks for a build (work-plan PR 15). No tag or release is made from this folder without the owner's go-ahead.
+`tools/manual/buildpdf.sh <repo-root> <out.pdf>` builds the PDF (pandoc to HTML, then Chromium prints A4). The PDF is built only when the owner asks for a build (work-plan PR 15). No tag or release is made from this folder without the owner's go-ahead.
