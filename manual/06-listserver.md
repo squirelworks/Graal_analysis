@@ -51,7 +51,7 @@ The listserver login differs by client generation, not by build; inside a genera
 | The classic frames (A and B) carry no field that could name a build | [cap] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
 | The real clients compress at zlib's best level (stream starts `78 DA`); a `78 9C` stream with the same deflate body is answered by the public service for shape C | [cap] (protocol/login-frames-by-version-2026-10-25.md#one-byte-level-difference-that-applies-to-every-seihai-frame) |
 | The 2.05 list connection derives from the game connection's base class and keeps its base send path, which has no generation-3 insertion | [2.05] (protocol/listserver.md#205-specifics-205) |
-| A real 2.00 sends one frame (id 0 + `newmain`), makes no second listserver connection, and accepts a 2.17-style two-frame reply from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205); [cap] (client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md#200-listserver-handshake-client-side-observed-list-reply-synthetic) |
+| A real 2.00 sends one frame (id 0 + `newmain`), makes no second listserver connection, and accepts a 2.17-style two-frame reply from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205); [cap] (client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md#200-listserver-handshake-client-side-observed-list-reply-synthetic); [cap] (version-profiles/lab-200-listserver-handshake.tsv) |
 | After the list, 2.17 logs in to the game server as type 0 with a key, `GNW22122`, account and password, in generation 3 | [cap] (protocol/listserver.md#217-list-host-bin) |
 | What 1.41, 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured; 1.42 and 2.01 to 2.04 share 2.00's built-in list data and are expected to send shape A | [inf] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5) |
 
@@ -70,7 +70,7 @@ The listserver login differs by client generation, not by build; inside a genera
 
 | Rule | Builds | Source |
 | --- | --- | --- |
-| The receive handler switches on ids 0 and 1 only | 2.05 | [2.05] (protocol/listserver.md#205-specifics-205) |
+| The receive handler switches on ids 0 and 1 only | 2.05 | [2.05] (protocol/listserver.md#205-specifics-205); [2.05] (client-internals/client-architecture-205.md#networking-classes) |
 | A client fills the list as soon as id 0 arrives after its id 0 `newmain`; it does not wait for id 1, and closes the socket about 2 s after it gets the list | 2.05 | [cap] (protocol/listserver.md#205-specifics-205) |
 | The window shows the fields in record order: name, language, description, URL, version, players, address, port | 2.05 | [cap] (protocol/listserver.md#205-specifics-205) |
 | The list client acts on ids 0 and 1 only; any other id, including 2, 3 and 5, is ignored | 2.00 | [bin] (client-internals/v2.00-connect-path.md#list-reply-bin) |
