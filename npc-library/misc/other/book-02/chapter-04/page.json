@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "4bluelampani.gif",
-      "script": "/4bluelampani.gif",
       "count": 1,
       "files": [
         "monster1.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "9Abluelampani.gif",
-      "script": "9Qbluelampani.gif",
       "count": 1,
       "files": [
         "monster2.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "YMbluelampani.gif",
-      "script": "JAbluelampani.gif",
       "count": 1,
       "files": [
         "monster2.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "U;bluelampani.gif",
       "count": 1,
       "files": [
         "monster2.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Abluelampani.gif",
-      "script": "N+bluelampani.gif",
       "count": 1,
       "files": [
         "monster2.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "5bluelampani.gif",
-      "script": "XPbluelampani.gif",
       "count": 1,
       "files": [
         "night.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "8ninjibartender.gif",
-      "script": "G9ninjiguard.gif",
       "count": 1,
       "files": [
         "ninjimainroom.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "cannon.gif",
-      "script": "=)brother1.gif",
       "count": 1,
       "files": [
         "nwotown.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "kagato_b.gif",
-      "script": "> organ.gif",
       "count": 1,
       "files": [
         "palace_greathall.graal"
-      ]
+      ],
+      "script_chars": 11
     },
     {
       "image": "organ.gif",
-      "script": "6 organ.gif",
       "count": 1,
       "files": [
         "palace_greathall2.graal"
-      ]
+      ],
+      "script_chars": 11
     },
     {
       "image": "-9garmour.gif",
-      "script": "%9garmour.gif",
       "count": 1,
       "files": [
         "palace_level3_house2_2.graal"
-      ]
+      ],
+      "script_chars": 13
     },
     {
       "image": "bigbadburn.gif",
-      "script": "if (blastomatic) {shootfireblast down} I)cheesepan.gif",
       "count": 1,
       "files": [
         "pizzashack.graal"
-      ]
+      ],
+      "script_chars": 54
     },
     {
       "image": "bigbadburn.gif",
-      "script": "if (blastomatic) {shootfireblast down} B bigbadburn.gif",
       "count": 1,
       "files": [
         "pizzashack.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "bigbadburn.gif",
-      "script": "if (blastomatic) {shootfireblast down} @ bigbadburn.gif",
       "count": 1,
       "files": [
         "pizzashack.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "bigbadburn.gif",
-      "script": "if (blastomatic) {shootfireblast down} ; bigbadburn.gif",
       "count": 1,
       "files": [
         "pizzashack.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "TDbluelampani.gif",
-      "script": "T<bluelampani.gif",
       "count": 1,
       "files": [
         "resort1.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "BFbluelampani.gif",
-      "script": "<Fbluelampani.gif",
       "count": 1,
       "files": [
         "resort1.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Dbluelampani.gif",
-      "script": "*=bluelampani.gif",
       "count": 1,
       "files": [
         "resort1.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "IDbluelampani.gif",
-      "script": "I<bluelampani.gif",
       "count": 1,
       "files": [
         "resort2.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "5Dbluelampani.gif",
-      "script": "5=bluelampani.gif",
       "count": 1,
       "files": [
         "resort3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "@Gbluelampani.gif",
       "count": 1,
       "files": [
         "resort7.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "2goldenbush.gif",
-      "script": "5:goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "9:goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "=:goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "0Ggoldenbush.gif",
-      "script": "$Ngoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     }
   ]
 }

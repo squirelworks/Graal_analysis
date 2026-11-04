@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "bluestone.gif",
-      "script": ".0bluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "bluestone.gif",
-      "script": "*,bluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "bluestone.gif",
-      "script": "&(bluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "Pbluestone.gif",
-      "script": ":Tbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "4Xbluestone.gif",
-      "script": ":Vbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "6Xbluestone.gif",
-      "script": "6Rbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "2Xbluestone.gif",
-      "script": "4Pbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "8Tbluestone.gif",
-      "script": "4Vbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "0Pbluestone.gif",
-      "script": "0Xbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "Tbluestone.gif",
-      "script": ".Pbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "Pbluestone.gif",
-      "script": ",Rbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "Vbluestone.gif",
-      "script": "*Pbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "Rbluestone.gif",
-      "script": "(Vbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "Vbluestone.gif",
-      "script": "(Pbluestone.gif",
       "count": 1,
       "files": [
         "brugestower1_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "MXbluestone.gif",
-      "script": "+=brugitemage_ss.gif",
       "count": 1,
       "files": [
         "brugestower2_4.graal"
-      ]
+      ],
+      "script_chars": 20
     },
     {
       "image": "2Vbluestone.gif",
-      "script": "2Xbluestone.gif",
       "count": 1,
       "files": [
         "brugestower2_4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "4bluestone.gif",
-      "script": ":5bluestone.gif",
       "count": 1,
       "files": [
         "brugestower3_1.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "97bluestone.gif",
-      "script": "99bluestone.gif",
       "count": 1,
       "files": [
         "brugestower3_1.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "B4bluestone.gif",
-      "script": "D5bluestone.gif",
       "count": 1,
       "files": [
         "brugestower3_1.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "E7bluestone.gif",
-      "script": "E9bluestone.gif",
       "count": 1,
       "files": [
         "brugestower3_1.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "C2bluestone.gif",
-      "script": "D0bluestone.gif",
       "count": 1,
       "files": [
         "brugestower3_1.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "2bluestone.gif",
-      "script": ":0bluestone.gif",
       "count": 1,
       "files": [
         "brugestower3_1.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "82bluelampani.gif",
-      "script": "G/bluelampani.gif",
       "count": 1,
       "files": [
         "captinusahouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "5gnom.gif",
-      "script": "/2preistguy.gif",
       "count": 1,
       "files": [
         "ccbadcastle6.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "cccurtain.gif",
-      "script": "if(washit) { putleaps 0,x=1,y; putleaps 0,x,y; putleaps 0,x-1,y+2; hide } E8",
       "count": 1,
       "files": [
         "cccastle14.graal"
-      ]
+      ],
+      "script_chars": 76
     }
   ]
 }

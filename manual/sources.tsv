@@ -250,6 +250,7 @@ live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4
 live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	pending		4	
 npc-library/README.md	cited	8.1	8	
 npc-library/archival-scripting-notes.md	cited	8.1	8	
+npc-library/behaviours.md	pending		8	
 npc-library/gs1-command-reference-205.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
