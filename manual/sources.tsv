@@ -36,13 +36,13 @@ client-internals/config-and-input.md	cited	3.9	3.9
 client-internals/cross-version-timeline.md	pending	1; 8.2; C; E	1	
 client-internals/damage-sources.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	cited	4.10	4	
-client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	pending		2.5; 4	
+client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	cited	2.5	2.5; 4	
 client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md	cited	4.1; 4.2; 4.10	4	
-client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md	pending		2.2; 2.4; 4	
+client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md	cited	2.3; 2.5	2.2; 2.4; 4	
 client-internals/decomp-findings-2026-10-24-b/05-open-items.md	pending	E	4; E	
 client-internals/decomp-findings-2026-10-24-b/06-crosscheck.md	excluded		4	cross-check of the batch against earlier repo notes; the facts it confirms or corrects are in the batch notes on their own rows
-client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md	pending		2.4; 2.5; 4	
-client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md	pending		2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md	cited	2.4; 2.5; 6	2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md	cited	2.4; 2.5	2.4; 2.5; 4	
 client-internals/decomp-findings-2026-10-24-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24-c/01-toolchain-and-coverage.md	excluded		4	record of the decompile toolchain and method; no client behaviour
 client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md	pending		1; 2.2; 4	
@@ -92,12 +92,12 @@ client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	cited	2.7	2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending	E	4; E	
+client-internals/decomp-findings-2026-10-25-e/03-open-points.md	cited	E	4; E	
 client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	cited	2.7; 4.3	2.7; 4	
 client-internals/decomp-findings-2026-10-25-e/README.md	cited	2.7	4	
-client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		2.7; 4	
+client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	excluded		2.7; 4	earlier form of the folder table; superseded by decomp-findings-2026-10-25-k/save-folders-by-build.tsv, which §2.7 cites
 client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	cited	2.7	2.7; 4	
-client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		4; E	
+client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	excluded		4; E	table form of 03-open-points.md in the same folder, which App. E cites
 client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	cited	2.7	2.7; 4	
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending	E	3.1; 4	
@@ -105,14 +105,14 @@ client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.
 client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	pending		3.1; 3.6; 4	
 client-internals/decomp-findings-2026-10-25-f/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	pending		3.1; 4	
-client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	pending		2.4; 2.5; 4	
-client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	pending		2.4; 4	
-client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	pending		2.5; 4	
-client-internals/decomp-findings-2026-10-25-g/04-open-points.md	pending		4; E	
+client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	cited	2.4	2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	cited	2.4	2.4; 4	
+client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	cited	2.5	2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/04-open-points.md	cited	2.4; 2.5	4; E	
 client-internals/decomp-findings-2026-10-25-g/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	pending		2.5; 4	
-client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	pending		2.4; 2.5; 4	
-client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	pending		4; E	
+client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	cited	2.5	2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	cited	2.4	2.4; 2.5; 4	
+client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	excluded		4; E	table form of 04-open-points.md in the same folder, which §2.4 cites
 client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	pending		3.1; 4	
@@ -123,10 +123,10 @@ client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1; 4
 client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1; 4	
 client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	cited	2.7	2.7	
-client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending	E	E	
+client-internals/decomp-findings-2026-10-25-k/03-open-points.md	cited	E	E	
 client-internals/decomp-findings-2026-10-25-k/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4	
-client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		E	
+client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	excluded		E	table form of 03-open-points.md in the same folder, which App. E cites
 client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		3.5	
@@ -165,7 +165,7 @@ client-internals/feature-timeline.md	pending	8.1; 8.2; 8.3	4
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	pending		4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
-client-internals/id24-205.md	pending		4	
+client-internals/id24-205.md	cited	2.4	4	
 client-internals/item-drops.md	cited	4.5; E	4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending	4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
@@ -193,7 +193,7 @@ client-internals/sign-panel.md	cited	4.6; 4.9	4
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/status-bit-0x20.md	cited	4.3	4.6	
 client-internals/status-display.md	cited	4.6	4.6	
-client-internals/v2.00-connect-path.md	pending		4	
+client-internals/v2.00-connect-path.md	cited	6	4	
 client-internals/version-id-map.md	pending	1	1; C	
 client-internals/version-profiles/141-217.toml	pending	2.4	1; C	
 client-internals/version-profiles/README.md	pending		1; C	
@@ -378,6 +378,7 @@ tools/gif2mng.md	cited	11	11
 tools/graaleditor-vs-205.md	cited	11	11	
 tools/graaleditor.md	cited	11; E	11	
 tools/graalshop.md	cited	11	11	
+tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
 tools/lab-servers/README.md	cited	5; 6	6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
 tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md

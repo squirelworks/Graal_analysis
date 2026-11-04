@@ -51,7 +51,7 @@ The listserver login differs by client generation, not by build; inside a genera
 | The classic frames (A and B) carry no field that could name a build | [cap] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
 | The real clients compress at zlib's best level (stream starts `78 DA`); a `78 9C` stream with the same deflate body is answered by the public service for shape C | [cap] (protocol/login-frames-by-version-2026-10-25.md#one-byte-level-difference-that-applies-to-every-seihai-frame) |
 | The 2.05 list connection derives from the game connection's base class and keeps its base send path, which has no generation-3 insertion | [2.05] (protocol/listserver.md#205-specifics-205) |
-| A real 2.00 sends one frame (id 0 + `newmain`), makes no second listserver connection, and accepts a 2.17-style two-frame reply from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205) |
+| A real 2.00 sends one frame (id 0 + `newmain`), makes no second listserver connection, and accepts a 2.17-style two-frame reply from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205); [cap] (client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md#200-listserver-handshake-client-side-observed-list-reply-synthetic) |
 | After the list, 2.17 logs in to the game server as type 0 with a key, `GNW22122`, account and password, in generation 3 | [cap] (protocol/listserver.md#217-list-host-bin) |
 | What 1.41, 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured; 1.42 and 2.01 to 2.04 share 2.00's built-in list data and are expected to send shape A | [inf] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5) |
 
@@ -73,6 +73,9 @@ The listserver login differs by client generation, not by build; inside a genera
 | The receive handler switches on ids 0 and 1 only | 2.05 | [2.05] (protocol/listserver.md#205-specifics-205) |
 | A client fills the list as soon as id 0 arrives after its id 0 `newmain`; it does not wait for id 1, and closes the socket about 2 s after it gets the list | 2.05 | [cap] (protocol/listserver.md#205-specifics-205) |
 | The window shows the fields in record order: name, language, description, URL, version, players, address, port | 2.05 | [cap] (protocol/listserver.md#205-specifics-205) |
+| The list client acts on ids 0 and 1 only; any other id, including 2, 3 and 5, is ignored | 2.00 | [bin] (client-internals/v2.00-connect-path.md#list-reply-bin) |
+| Id 1 carries one server record in the id 0 record layout and appends it to the list; when it is then the only row, it is selected | 2.00 | [bin] (client-internals/v2.00-connect-path.md#list-reply-bin) |
+| After id 0 the client fills the list and closes the list socket; a row is drawn only with at least 6 fields, and the detail view needs at least 8 | 2.00 | [bin] (client-internals/v2.00-connect-path.md#list-reply-bin) |
 | RC 1.41 reads 0 (server list), 1 (one more server entry), 2 (end, disconnect) and 4 (error text, disconnect), and shows name and player count | RC 1.41 | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | 2.22 shows the status lines and the Show More and Donations buttons, and files tagged servers under tabs (→ §6.4) | 2.22 | [lab] (tools/lab-servers/README.md#tests-run-2026-10-30) |
 
@@ -153,6 +156,8 @@ Every field is a `str` [cap] (protocol/public-listserver-2026-10-25.md#frame-and
 | Rule | Source |
 | --- | --- |
 | Pre-2.2 clients get no prefix for bronze | [srv] (protocol/listserver.md#listserver--client) |
+| Connect needs a selected record with at least 8 fields and takes the address and port from fields 7 and 8; with either empty it shows "The connection could not be established!" without dialling (2.00) | [bin] (client-internals/v2.00-connect-path.md#connect-bin) |
+| A missing core asset (`objects.dat`, `arrays.dat` or one of the main images) sets a fatal flag at Start that is never cleared; the server list still works, but Connect then returns before creating the player, leaving a grey game window with no socket (2.00) | [bin] (client-internals/v2.00-connect-path.md#the-fatal-flag); [cap] (client-internals/v2.00-connect-path.md#lab-rule-for-200) |
 | The public 14923 legacy list sent untagged rows in its 4-row form; 3 of 4 rows also appear in the current list with the same address, port and version text | [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
 | A 2003 fan listserver sets the `P ` prefix for a server marked `Favorite=Yes`, so the client files it under Gold | [bin] (tools/server-tools-2001.md#win32-listserver-by-rick-2003--contains-a-password-stealer-bin) |
 | Field bytes are passed through as sent: a captured address field had lost its leading characters, and a name carried three literal `0x3F` bytes | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |

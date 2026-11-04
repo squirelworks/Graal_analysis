@@ -15,6 +15,7 @@ Field notation is in → §0.6, the message envelope in → §2.1.2, and the log
 | Handlers for level objects (bombs, arrows, items, explosions, hits, trigger actions, horses, push-away) act only while the player stands in the named level | 2.05 | [2.05] (protocol/packet-layouts.md#how-205-reads-a-message-205) |
 | A message the server re-emits for another player starts with `s player id`; with an unknown id, bombs, arrows, explosions and items are still shown without an owner, while fire spy, throw carried and player hits are dropped | 2.05 | [2.05] (protocol/packet-layouts.md#how-205-reads-a-message-205) |
 | 2.17.1, 2.22 and 2.31 read "comma text" through the client's comma-text parser, which allows double quotes | 2.17.1, 2.22, 2.31 | [bin] (protocol/packet-layouts.md#server--client-ids-above-48-and-related-217-222-231-bin) |
+| The receive dispatcher takes the id as the first byte minus 32, checks it against a bound, and goes through an index table; the bound is id 185 in 2.17.1, 186 in 2.22 and 189 in 2.31 | 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md#dispatcher-shape-all-builds) |
 | 4.20r6 and 4.20r8 take 100 and 108 before the main switch | 4.20r6, 4.20r8 | [bin] (protocol/v4x-clients.md#server--client-ids) |
 
 ## 2.5.2 Ids handled by build
@@ -24,7 +25,7 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | Build | Count | Ids handled | Source |
 | --- | ---: | --- | --- |
 | NewMain 24, 26 | 51 | 0–45, 75, 100, 150, 151, 153 (bound `0x99`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
-| 2.00 (rev0–rev3) | 53 | 0–45, 75, 100, 150, 151, 153–155 (bound `0x9b`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
+| 2.00 (rev0–rev3) | 53 | 0–45, 75, 100, 150, 151, 153–155 (bound `0x9b`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#server---client-ids-handled-200) |
 | 2.01 (+rev1) | 55 | 0–46, 75, 100, 150, 151, 153–156 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
 | 2.02 (rev0–rev2) | 56 | 0–47, 75, 100, 150, 151, 153–156; disputed for rev0 and rev1 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
 | 2.03 | 58 | 0–48, 75, 100, 150, 151, 153–156, 165 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
@@ -86,7 +87,7 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 2.17.1 and 2.22 also have a helper that builds a default link with `newx` and `newy` preset to `playerx` and `playery`, used for editor and edge cases | 2.17.1, 2.22 | [bin] (version-profiles/plo-levellink-layouts.tsv) |
 | `dest` is field 0, so a level name with a space cannot be linked | 2.00 to 2.31 | [bin] (version-profiles/plo-levellink-layouts.tsv) |
 | Only `PLO_BOARDPACKET` carries raw little-endian tiles; every other board message uses GCHAR headers and GSHORT tiles | server | [srv] (protocol/packet-layouts.md#board-modify-correction) |
-| 186: bytes after the tiles are not read, so a complete second record in the trailer is not applied; a payload one byte short is dropped silently with no disconnect; a block past column 63 is clipped | 2.22, 2.31 (lab, injected frames; no server seen sending 186) | [cap] (version-profiles/lab-boardmodify2-186-trailer.tsv); [bin][cap] (protocol/packet-ids.md#server--client-plo_) |
+| 186: bytes after the tiles are not read, so a complete second record in the trailer is not applied; a payload one byte short is dropped silently with no disconnect; a block past column 63 is clipped | 2.22, 2.31 (lab, injected frames; no server seen sending 186) | [cap] (version-profiles/lab-boardmodify2-186-trailer.tsv); [bin][cap] (protocol/packet-ids.md#server--client-plo_); [cap] (client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md#plo_boardmodify2-186-222-and-231-client-reaction-observed-frames-synthetic) |
 | In a two-client capture the server sent `PLO_BOARDMODIFY` with the reported bytes to both clients, the reporter included, and 15.0 s later (`respawntime = 15`) sent the original tiles back | 2.05 with GServer-v2 | [cap] (protocol/packet-layouts.md#board-change-on-the-wire-cap) |
 | On level entry an empty `PLO_LEVELBOARD` followed the board packet and `PLO_LEVELMODTIME` | 2.05 with GServer-v2 | [cap] (protocol/packet-layouts.md#board-change-on-the-wire-cap) |
 
@@ -231,10 +232,14 @@ Chat display and the private-message rules are in → §2.8.
 
 | Rule | Builds | Source |
 | --- | --- | --- |
-| On 178 the client closes the old connection and connects to the host in field 2 and the port in field 3 with a fresh login (new key, same stored credentials), with no listserver step | 2.31 (lab) | [cap] (version-profiles/plo-layouts-217-231.tsv); [cap] (version-profiles/lab-serverwarp178.tsv) |
+| On 178 the client closes the old connection and connects to the host in field 2 and the port in field 3 with a fresh login (new key, same stored credentials), with no listserver step | 2.31 (lab) | [cap] (version-profiles/plo-layouts-217-231.tsv); [cap] (version-profiles/lab-serverwarp178.tsv); [cap] (client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md#c-plo_serverwarp-178) |
 | Field 1 of 178 is not needed: a bogus name still connects; a decoy host in field 0 is never contacted | 2.31 (lab) | [cap] (version-profiles/lab-serverwarp178.tsv) |
 | With host and port in other positions the client makes no connection, closes the old one and shows "The connection couldn't be established!"; with three fields it does nothing | 2.31 (lab) | [cap] (version-profiles/lab-serverwarp178.tsv) |
 | The old connection closes 2 to 3 ms before the new connection's SYN | 2.31 (lab) | [cap] (version-profiles/lab-serverwarp178.tsv) |
+| 178 is split by the client's comma-text reader: white space (bytes 1 to 0x20) before an item is skipped; a quoted item ends at its closing quote, two quotes in a row are one quote, and an unclosed quote runs to the end; an unquoted item ends at a comma or a byte of 0x20 or less; a comma at the very end adds no item, an empty item between commas is kept; a NUL ends the text | 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv) |
+| So a server name with a space must be quoted: `x,Main Server,h,1` reads as five items and connects to the host `Server` | 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md#the-splitter) |
+| Item 1 becomes the current server's name, without a two-character type prefix when its second character is a space; 2.31 also puts it in the window caption, alone if it contains "graal" in any case, else after `Graal: `; the name is not used to connect | 2.17.1 to 2.31; caption 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md#the-connect-routine) |
+| A real service's 178 text, item 0 in particular, has never been captured | all | [doc] (client-internals/decomp-findings-2026-10-25-g/04-open-points.md) |
 | 182 and 183 are a process scan used as an anti-cheat check (→ §4.10) | 5.00r7 | [bin][inf] (protocol/v5x-clients.md#server--client-ids-500r7) |
 
 ## 2.5.9 Staff and NPC-control messages

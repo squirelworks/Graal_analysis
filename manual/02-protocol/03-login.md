@@ -159,7 +159,8 @@ Message ids and props handled per build in this generation are in → App. C.
 | `PLI_TAMPERCHECK` (39) follows 37 (→ §2.4, → §4.10) | 2.17 and later Delphi clients | [bin] (protocol/client-versions.md#game-server-login) |
 | The account name is kept obfuscated in memory and decoded only to build the login message; the map is `dec(b) = (~b - 10) & 0xFF` | 2.17, 2.22, 2.31 | [bin] (protocol/client-versions.md#game-server-login) |
 | The password is obfuscated the same way | 2.31 | [bin] (protocol/client-versions.md#game-server-login) |
-| A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) |
+| 2.00 sends the same type 0 shape with the token `GNW24011`; the account and password are neither hidden nor hashed | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#login-string-gserver) |
+| A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) ; [lab] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#token-allow-list) |
 
 ## 2.3.4 2.22, 2.31 and 3.x login (generation 5, type 5)
 
