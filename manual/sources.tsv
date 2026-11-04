@@ -23,12 +23,12 @@ ash/OPCODE-MAP.md	pending		2.4; 2.5; A
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/bare-level-names.md	pending		4	
-client-internals/board-respawn.md	pending		4.5; 5	
+client-internals/board-respawn.md	cited	4.5; E	4.5; 5	
 client-internals/body-colours-and-attributes.md	pending	2.6	2.6	
 client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
 client-internals/build-diff-204-205.md	pending	8.2	4	
-client-internals/carry-hide-and-glove.md	pending		4	
-client-internals/chat-text.md	pending		4	
+client-internals/carry-hide-and-glove.md	cited	4.5; E	4	
+client-internals/chat-text.md	cited	4.6	4	
 client-internals/client-architecture-205.md	pending		4	
 client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
 client-internals/combat-200-204.md	cited	4.3; E	4.3	
@@ -128,9 +128,9 @@ client-internals/decomp-findings-2026-10-25-k/README.md	pending		4
 client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		4	
 client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; E	4	
+client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		4	
-client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	pending		4	
+client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
 client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	pending		4	
 client-internals/decomp-findings-2026-10-25-l/README.md	pending		4	
 client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	pending		4	
@@ -140,13 +140,13 @@ client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4
 client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3	4	
 client-internals/decomp-findings-2026-10-28-b/README.md	pending		4	
 client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	pending		4	
-client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3	4	
-client-internals/decomp-findings-2026-10-28/02-item-list.md	pending		4	
+client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
+client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
 client-internals/des-and-hidden-strings.md	pending		4	
 client-internals/drive-clients-inventory.md	pending		4	
 client-internals/early-clients.md	pending		4	
-client-internals/feature-specs/01-sound.md	pending	8.2	4.7	
+client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	pending	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	pending		4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
@@ -154,7 +154,7 @@ client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10
 client-internals/feature-specs/06-gmap-overworld.md	pending	3.2	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	pending		2.9	
 client-internals/feature-specs/08-tampercheck.md	pending		4.10	
-client-internals/feature-specs/09-options.md	pending		4.6	
+client-internals/feature-specs/09-options.md	cited	4.6	4.6	
 client-internals/feature-specs/10-right-click-menu.md	pending		4.10	
 client-internals/feature-specs/11-emotes-ganis.md	pending		4.10	
 client-internals/feature-specs/12-motd-rules.md	pending		4.10	
@@ -166,20 +166,20 @@ client-internals/foot-test.md	excluded		4	superseded single-point wall test meas
 client-internals/gameboy-demo.md	pending		4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	pending		4	
-client-internals/item-drops.md	pending		4.5	
-client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending	4.3; 4.4; E	4	
-client-internals/ledges-push-pull.md	cited	4.2; E	4.2	
-client-internals/level-editor-205.md	pending	8.1	4.9	
+client-internals/item-drops.md	cited	4.5; E	4.5	
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	pending	4.3; 4.4; 4.5; E	4	
+client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
+client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
 client-internals/live-behaviour-404.md	pending	8.1; 8.3	4	
-client-internals/live-checks-editor-offline-sound.md	pending		4	
+client-internals/live-checks-editor-offline-sound.md	cited	4.5; 4.6; 4.7; 4.8; 4.9	4	
 client-internals/live-gserver13.md	pending	4.1; 4.2	5.1	
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
 client-internals/live-trace-early.md	pending	4.1; 4.2	4	
 client-internals/newworld-betas.md	pending	4.1; 8.2	4	
-client-internals/offline-play.md	pending		4.8	
-client-internals/offline-training.md	pending		4.8	
-client-internals/offline-tutorial-205.md	pending		4.8	
-client-internals/player-mannerisms-live.md	pending	4.1; 4.2; 4.3; E	4	
+client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
+client-internals/offline-training.md	cited	4.8	4.8	
+client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
+client-internals/player-mannerisms-live.md	pending	4.1; 4.2; 4.3; 4.5; E	4	
 client-internals/precursor-runs-2026-10-30.md	pending		4	
 client-internals/precursors-and-fan-builds.md	pending		4	
 client-internals/prior-attempts.md	pending		4	
@@ -189,10 +189,10 @@ client-internals/reference-reimplementations/levelscripteditor.md	pending	8.3	4
 client-internals/relay-room-bridge.md	pending		4	
 client-internals/rendering-observations.md	cited	4.1	4	
 client-internals/saved-passwords.md	pending		4	
-client-internals/sign-panel.md	pending		4	
-client-internals/sound-and-music.md	pending	3.10	3.10; 4.7	
+client-internals/sign-panel.md	cited	4.6; 4.9	4	
+client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/status-bit-0x20.md	cited	4.3	4.6	
-client-internals/status-display.md	pending		4.6	
+client-internals/status-display.md	cited	4.6	4.6	
 client-internals/v2.00-connect-path.md	pending		4	
 client-internals/version-id-map.md	pending	1	1; C	
 client-internals/version-profiles/141-217.toml	pending	2.4	1; C	
@@ -243,7 +243,7 @@ graal3d/lab-2026-10-30.md	pending		9
 graal3d/protocol.md	pending		9	
 graal3d/reference-server/README.md	pending		9	
 graal3d/torque-engine-4x.md	pending	8.3	10	
-live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; 4.3; 4.4; E	4	
+live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; 4.3; 4.4; 4.5; E	4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4	
@@ -291,7 +291,7 @@ protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A
 protocol/udp-p2p.md	pending		2.9	
 protocol/v3x-clients.md	pending	2.2; 2.3; 2.5	1; 2.3; 10	
 protocol/v4x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; E	1; 2.3; 10	
-protocol/v5v6-lab-play.md	pending	0; 2.2; 4.1; 4.2; 4.3; 8.3; E	1; 2.3	
+protocol/v5v6-lab-play.md	pending	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E	1; 2.3	
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
 protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; E	1; 2.10	
