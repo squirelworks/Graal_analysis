@@ -10,7 +10,8 @@
 // turn weapons back on while the player is still in this level, so leaving
 // from inside it (a warp, a link, dying) keeps weapons off in the next
 // levels, and the server saves that to the account (lab run, 2026-11-04).
-// Any later NPC that calls enableweapons undoes it.
+// Put weapons-on.gs1 in every level reachable from the zone; it turns
+// weapons back on when the player arrives.
 
 if (playerenters) {
   timereverywhere;

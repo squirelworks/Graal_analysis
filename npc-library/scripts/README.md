@@ -38,7 +38,7 @@ All 96 scripts were run in a real 2.05r2 client on a GServer-v2 lab on 2026-11-0
 - An explosion placed by an NPC does not hurt the player, so scripts that should hurt use `hurt`.
 - `playertouchsme` only fires while the player moves, so anything that acts on a player standing still checks the position on a timer.
 - A thrown NPC keeps the spot where it landed.
-- Weapons switched off with `disableweapons` stay off in other levels, and the server saves that to the account.
+- Weapons switched off with `disableweapons` stay off in other levels, and the server saves that to the account. `items/weapons-on.gs1` turns them back on in the levels around a peace zone.
 
 The results, one line per script, are in the lab notes for that run.
 

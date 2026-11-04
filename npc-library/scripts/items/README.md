@@ -10,7 +10,8 @@ Each weapon script plays two roles. Lying in a level it is a pickup. On touch it
 | `warpstone.gs1` | Weapon `Warpstone`, the key item for `transport/teleporter-keyed.gs1`. |
 | `shovel.gs1` | Weapon `Shovel`: turns plain ground in front of the player into a hole tile (`board[]`, `updateboard`) and sometimes finds a rupee. |
 | `sword-shrine.gs1` | Sword in the stone. Only a player who finished the shrine quest can draw it (sword power 2). |
-| `peace-zone.gs1` | Turns weapons off inside a rectangle and back on outside it. Keep the zone away from links and warps: leaving the level from inside it leaves weapons off, and the server saves that to the account. |
+| `peace-zone.gs1` | Turns weapons off inside a rectangle and back on outside it. Keep the zone away from links and warps: leaving the level from inside it leaves weapons off, and the server saves that to the account. Pair it with `weapons-on.gs1`. |
+| `weapons-on.gs1` | Invisible; turns weapons back on when the player enters. Put one in every level reachable from a peace zone, including where players restart after dying. |
 | `blast-rod.gs1` | Weapon `Blastrod`: spends a bomb for an explosion 3 tiles ahead. |
 | `mask.gs1` | Weapon `Mask`: swaps the player's head image and sets `guard_pass` while worn. |
 | `heart-piece.gs1` | Four pieces make a heart container. The count is kept in the string `heartpieces`. The fourth piece drops a `fullheart` item, because `playerfullhearts` cannot be written on 2.05. |
