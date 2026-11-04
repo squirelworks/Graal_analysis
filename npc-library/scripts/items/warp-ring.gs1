@@ -4,7 +4,7 @@
 // Events: playerenters, playertouchsme, weaponfired, timeout
 //
 // Lying in a level, it is a pickup: touching it adds it to the weapons as
-// "Warpring" (toweapons copies this NPC and its script) and removes the
+// "Warpring" (the weapon command copies this NPC and its script) and removes the
 // pickup. As a weapon, firing it freezes the player, spins them round for
 // a second and sends them to one of three towns at random.
 // The same script handles both roles; isweapon tells them apart.
