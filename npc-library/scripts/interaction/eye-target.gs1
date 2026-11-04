@@ -1,0 +1,22 @@
+// Original NPC library: eye switch
+// Category: combat / targets
+// Image: eye sheet, open at x 0 and shut at x 32, 32x32 each
+// Events: playerenters, wasshot
+// Flag set: eye_east (rename per eye)
+//
+// Only an arrow closes the eye. Swords and bombs do nothing, which makes a
+// clean bow puzzle. Pair with gate-flag.gs1 reading the same flag.
+
+if (playerenters) {
+  if (eye_east) {
+    setimgpart eye.png,32,0,32,32;
+  } else {
+    setimgpart eye.png,0,0,32,32;
+  }
+}
+
+if (wasshot && !eye_east) {
+  set eye_east;
+  setimgpart eye.png,32,0,32,32;
+  play hit.wav;
+}
