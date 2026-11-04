@@ -1,0 +1,22 @@
+// Original NPC library: liftable spiked ball
+// Category: combat / hazards
+// Image: a spiked ball, 32x32
+// Events: playerenters, playertouchsme, wasthrown
+//
+// Hurts when walked into, but a player with a glove can lift and throw it;
+// it shatters where it lands, hitting whatever is there with sword force.
+
+if (playerenters) {
+  setimg spikeball.png;
+  canbecarried;
+}
+
+if (playertouchsme && !carrying) {
+  hurt 1;
+}
+
+if (wasthrown) {
+  hitobjects 2,x+1,y+1;
+  putleaps 2,x,y;
+  hide;
+}

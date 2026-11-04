@@ -1,0 +1,40 @@
+// Original NPC library: rising spikes
+// Category: combat / hazards
+// Image: sheet with spikes down at x 0 and up at x 32, 32x32
+// Events: playerenters, playertouchsme, timeout
+//
+// Up for one second, down for two, on a cycle. Hurts only while up, and
+// also catches a player who is standing on it when the spikes rise. Set
+// this.offset differently on a row of spikes to make a wave.
+
+function onme() {
+  this.on = 0;
+  if (playerx + 1.5 >= x && playerx + 1.5 < x + 2 && playery + 2.5 >= y && playery + 2.5 < y + 2) this.on = 1;
+}
+
+if (playerenters) {
+  timereverywhere;
+  setimgpart spikes2.png,0,0,32,32;
+  dontblock;
+  drawunderplayer;
+  this.up = 0;
+  this.offset = 0;            // <- seconds of delay before the first rise
+  timeout = 2 + this.offset;
+}
+
+if (playertouchsme && this.up == 1) hurt 1;
+
+if (timeout) {
+  if (this.up == 0) {
+    this.up = 1;
+    setimgpart spikes2.png,32,0,32,32;
+    play spikes.wav;
+    onme();
+    if (this.on == 1) hurt 1;
+    timeout = 1;
+  } else {
+    this.up = 0;
+    setimgpart spikes2.png,0,0,32,32;
+    timeout = 2;
+  }
+}

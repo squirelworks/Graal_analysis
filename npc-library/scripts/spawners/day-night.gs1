@@ -1,0 +1,38 @@
+// Original NPC library: day and night controller
+// Category: spawn / timers, object / blocks (night-only objects)
+// Image: none (invisible)
+// Events: playerenters, timeout
+// Flag set: night (read by objects/block-night.gs1)
+//
+// Keeps a clock that runs while the player is in the level: four minutes of
+// day, then four of night. At night it darkens the screen with seteffect
+// and sets the night flag. seteffect works offline or on a server with an
+// NPC server (manual §8.1.9); the flag works everywhere.
+
+function apply() {
+  if (this.t >= this.day) {
+    if (!night) set night;
+    seteffect 0,0,0.2,0.5;
+  } else {
+    if (night) unset night;
+    seteffect 0,0,0,0;
+  }
+}
+
+if (playerenters) {
+  timereverywhere;
+  hide;
+  this.day = 240;             // <- seconds of day
+  this.night = 240;           // <- seconds of night
+  this.t = 0;
+  if (night) this.t = this.day;
+  apply();
+  timeout = 1;
+}
+
+if (timeout) {
+  this.t++;
+  if (this.t >= this.day + this.night) this.t = 0;
+  apply();
+  timeout = 1;
+}

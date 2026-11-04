@@ -1,0 +1,26 @@
+// Original NPC library: aimed fire spitter
+// Category: combat / hazards
+// Image: a dragon-head statue
+// Events: playerenters, timeout
+//
+// Every two seconds, if the player is within eight tiles, spits a fireball
+// in whichever of the four directions points most nearly at the player.
+
+if (playerenters) {
+  setimg dragonhead.png;
+  timeout = 2;
+}
+
+if (timeout) {
+  this.ddx = playerx + 0.5 - x;
+  this.ddy = playery + 1 - y;
+  if (abs(this.ddx) < 8 && abs(this.ddy) < 8) {
+    if (abs(this.ddx) > abs(this.ddy)) {
+      if (this.ddx > 0) this.aim = 3; else this.aim = 1;
+    } else {
+      if (this.ddy > 0) this.aim = 2; else this.aim = 0;
+    }
+    shootfireball this.aim;
+  }
+  timeout = 2;
+}
