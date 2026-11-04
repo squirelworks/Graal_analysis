@@ -35,6 +35,9 @@ jobs:
         run: |
           echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || { echo "::error::bad version $VERSION"; exit 1; }
           TAG="v$VERSION"
+          # Hand-written notes, reviewed in a PR, read from this run's commit.
+          [ -f "docs/releases/$TAG.md" ] || { echo "::error::No release notes: write docs/releases/$TAG.md in a PR first"; exit 1; }
+          cp "docs/releases/$TAG.md" "$RUNNER_TEMP/notes.md"
           SHA=$(git rev-parse --verify "${TARGET:-$GITHUB_SHA}^{commit}")
           git checkout -q "$SHA"
           if [ -d "release/$VERSION" ]; then DIR="release/$VERSION"; else DIR="book/$VERSION"; fi
@@ -42,14 +45,14 @@ jobs:
           mkdir dist
           cp "$DIR"/*.pdf dist/
           tar czf "dist/graal-analysis-$VERSION-pdfs.tar.gz" -C "$DIR" .
-          NOTES="Graal Analysis $VERSION. The PDFs are attached one by one and as one archive. Contents and page counts: $DIR/README.md. Notes viewer: python3 tools/navigator/navigator.py (loopback port 8765)."
           if gh release view "$TAG" >/dev/null 2>&1; then
             if [ "$(gh release view "$TAG" --json isDraft -q .isDraft)" = true ]; then
               gh release upload "$TAG" dist/* --clobber
+              gh release edit "$TAG" --target "$SHA" --notes-file "$RUNNER_TEMP/notes.md"
             else
               echo "$TAG is already published; leaving it as it is."
             fi
           else
-            gh release create "$TAG" dist/* --draft --target "$SHA" --title "Graal Analysis $VERSION" --notes "$NOTES"
+            gh release create "$TAG" dist/* --draft --target "$SHA" --title "Graal Analysis $VERSION" --notes-file "$RUNNER_TEMP/notes.md"
           fi
           echo "Draft: $(gh release view "$TAG" --json url -q .url)" >> "$GITHUB_STEP_SUMMARY"
