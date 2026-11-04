@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "B9teleporter.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer}",
       "count": 1,
       "files": [
         "sardontower27.graal"
-      ]
+      ],
+      "script_chars": 45
     },
     {
       "image": "teleporter.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} LDsardonguard.gif",
       "count": 1,
       "files": [
         "sardontower28.graal"
-      ]
+      ],
+      "script_chars": 63
     },
     {
       "image": "B7teleporter.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} 2E",
       "count": 1,
       "files": [
         "sardontower28.graal"
-      ]
+      ],
+      "script_chars": 48
     },
     {
       "image": "dlstatue.gif",
-      "script": "if (playerenters) {canbepushed;canbepulled} if (playerenters && playerscount=1) {x=19; y=12} 7,dlstatue.gif",
       "count": 1,
       "files": [
         "sardontower3.graal"
-      ]
+      ],
+      "script_chars": 107
     },
     {
       "image": "dlstatue.gif",
-      "script": "if (playerenters) {canbepushed;canbepulled} if (playerenters && playerscount=1) {x=45; y=12}",
       "count": 1,
       "files": [
         "sardontower3.graal"
-      ]
+      ],
+      "script_chars": 92
     },
     {
       "image": "dlstatue.gif",
-      "script": "if (playerenters) {canbepushed;canbepulled} if (playerenters && playerscount=1) {x=23; y=9} G)dlstatue.gif",
       "count": 1,
       "files": [
         "sardontower5.graal"
-      ]
+      ],
+      "script_chars": 106
     },
     {
       "image": "dlstatue.gif",
-      "script": "if (playerenters) {canbepushed;canbepulled} if (playerenters && playerscount=1) {x=37; y=14} 9.dlstatue.gif",
       "count": 1,
       "files": [
         "sardontower6.graal"
-      ]
+      ],
+      "script_chars": 107
     },
     {
       "image": "3Edlstatue.gif",
-      "script": "if(playerenters){canbepushed;canbepulled} if(playerenters && playerscount=1){x=43; y=37} KEdlstatue.gif",
       "count": 1,
       "files": [
         "sardontower8.graal"
-      ]
+      ],
+      "script_chars": 103
     },
     {
       "image": "K9dlstatue.gif",
-      "script": "if(playerenters){canbepushed;canbepulled} if (playerenters && playerscount=1) {x=43; y=25} 39dlstatue.gif",
       "count": 1,
       "files": [
         "sardontower9.graal"
-      ]
+      ],
+      "script_chars": 105
     },
     {
       "image": "3phatpachyclouds.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} Xphatpachyclouds.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 66
     },
     {
       "image": "smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} X6smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "U6smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} W5smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "_7smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} I4smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "1smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} <1smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "0smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} 72smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "94smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} C-smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} =+smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} .0smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "smalltree.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} B3smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "phatpachyclouds.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer} H.smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "HJredorb.gif",
-      "script": "if (playertouchsme) {openurl reddragons.cjb.net} AU",
       "count": 1,
       "files": [
         "scavengerhouseinside.graal"
-      ]
+      ],
+      "script_chars": 51
     },
     {
       "image": "Vx_doomsword.gif",
-      "script": "if (playerenters) { x=x-.5; y=y-.5; } GVx_doomsword.gif",
       "count": 1,
       "files": [
         "swordpalaceentrance.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "9Px_doomsword.gif",
-      "script": "if (playerenters) { x=x-.5; y=y-.5; } IPx_doomsword.gif",
       "count": 1,
       "files": [
         "swordpalaceentrance.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "AIx_doomsword.gif",
-      "script": "if (playerenters) { x=x-.5; y=y-.5; } GIx_doomsword.gif",
       "count": 1,
       "files": [
         "swordpalaceentrance.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "Sx_doomsword.gif",
-      "script": "if (playerenters) { x=x-.5; y=y-.5; } 0/x_doomsword.gif",
       "count": 1,
       "files": [
         "swordpalaceentrance.graal"
-      ]
+      ],
+      "script_chars": 55
     }
   ]
 }

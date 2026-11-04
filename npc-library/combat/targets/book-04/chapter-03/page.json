@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "Hgrave1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } (3grave1.gif",
       "count": 1,
       "files": [
         "dotd5.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "grave1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } E rain.gif",
       "count": 1,
       "files": [
         "dotd5.graal"
-      ]
+      ],
+      "script_chars": 221
     },
     {
       "image": "DKzombie.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {message teo skpic dawd } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } )5zombie.gif",
       "count": 1,
       "files": [
         "dotd5.graal"
-      ]
+      ],
+      "script_chars": 245
     },
     {
       "image": "zombie.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {message Red Dragons... funnnee huohuohuo } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 6;ghost_s.gif",
       "count": 1,
       "files": [
         "dotd5.graal"
-      ]
+      ],
+      "script_chars": 264
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } > deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } . deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *!deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :!deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } J!deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } )",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 212
     },
     {
       "image": "bigbadburn.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } OPdeadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "EHdeadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F8deadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "7deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } $Hdeadtree.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "OAgrave1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 7Sdead.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 221
     },
     {
       "image": "Jpurpfire.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } /Jpurpfire.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "Wpurpfire.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >Wpurpfire.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "PDzombie.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {message we all riseeee } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1>zombie.gif",
       "count": 1,
       "files": [
         "dotd6.graal"
-      ]
+      ],
+      "script_chars": 245
     },
     {
       "image": "44pachuka2pre.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?4",
       "count": 1,
       "files": [
         "eletric.graal"
-      ]
+      ],
+      "script_chars": 213
     },
     {
       "image": "1Lbook15.gif",
-      "script": "if (playertouchsme) {say 0;unset toinventory gotgirlsdiaryfromforest;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "elfhut1.graal"
-      ]
+      ],
+      "script_chars": 239
     },
     {
       "image": "8Cbookopen.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } D6portrate.gif",
       "count": 1,
       "files": [
         "esmersroom.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "BIchibi.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0;setshield chibishield.gif,playershieldpower} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "fairy.graal"
-      ]
+      ],
+      "script_chars": 258
     },
     {
       "image": "G9bro.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N5bookstack.gif",
       "count": 1,
       "files": [
         "fckeep.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "O6bookstack.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } M5bookstack.gif",
       "count": 1,
       "files": [
         "fckeep.graal"
-      ]
+      ],
+      "script_chars": 226
     }
   ]
 }

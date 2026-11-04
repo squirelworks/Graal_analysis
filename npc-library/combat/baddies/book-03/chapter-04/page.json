@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "MGoldStatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } IIGoldStatue.gif",
       "count": 1,
       "files": [
         "midasrealmcave1.graal"
-      ]
+      ],
+      "script_chars": 178
     },
     {
       "image": "MIGoldStatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } QIGoldStatue.gif",
       "count": 1,
       "files": [
         "midasrealmcave1.graal"
-      ]
+      ],
+      "script_chars": 178
     },
     {
       "image": "GoldStatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } M=GoldStatue.gif",
       "count": 1,
       "files": [
         "midasrealmcave1.graal"
-      ]
+      ],
+      "script_chars": 178
     },
     {
       "image": "UIGoldStatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } U=GoldStatue.gif",
       "count": 1,
       "files": [
         "midasrealmcave1.graal"
-      ]
+      ],
+      "script_chars": 178
     },
     {
       "image": "GoldStatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } YIGoldStatue.gif",
       "count": 1,
       "files": [
         "midasrealmcave1.graal"
-      ]
+      ],
+      "script_chars": 178
     },
     {
       "image": "U8GoldPillar.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } [8GoldPillar.gif",
       "count": 1,
       "files": [
         "midasrealmcave4.graal"
-      ]
+      ],
+      "script_chars": 178
     },
     {
       "image": "W9GoldGate.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {hide; say 1; } if (playerendsreading) { } if (exploded) { } Y9GoldGate.gif",
       "count": 1,
       "files": [
         "midasrealmcave4.graal"
-      ]
+      ],
+      "script_chars": 194
     },
     {
       "image": "Antispell.gif",
-      "script": "if (playerenters) {if (AntiGoldSpell) hide; } if (playertouchsme) {say 3; set AntiGoldSpell; toinventory AntiGoldSpell; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } [/GoldSign.gif",
       "count": 1,
       "files": [
         "midasrealmcave4.graal"
-      ]
+      ],
+      "script_chars": 252
     },
     {
       "image": "GoldRock.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { } >'GoldRock.gif",
       "count": 1,
       "files": [
         "midasrealmcave4.graal"
-      ]
+      ],
+      "script_chars": 176
     },
     {
       "image": "6Gfodguy.gif",
-      "script": "if (playerenters) {set InMidasFoDCave; set MidasFoDCaveFound } if (playertouchsme) {say 0;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } EMmidasshopbombs.gif",
       "count": 1,
       "files": [
         "midasrealmx.graal"
-      ]
+      ],
+      "script_chars": 280
     },
     {
       "image": "3door.gif",
-      "script": "if (playerenters) {hide } if (playertouchsme) {setlevel boiler.graal } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {show } if (playerendsreading) { }",
       "count": 1,
       "files": [
         "mimic.graal"
-      ]
+      ],
+      "script_chars": 172
     },
     {
       "image": "Ctanaraus.gif",
-      "script": "if (playerenters && tantisfuckingdead) {hide } if (playertouchsme) {say 2} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {timeout=0.5 } if (timeout) {hide; putexplosion 1,x,y; set tantisfuckingdead; putleaps 3,x,y; putcomp dragon,x,y; } if (playerenters && !tantisfuckingdead) {message aoowwww}",
       "count": 1,
       "files": [
         "mine5.graal"
-      ]
+      ],
+      "script_chars": 342
     },
     {
       "image": "blackdoor.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 8=blackdoor2.gif",
       "count": 1,
       "files": [
         "mine6.graal"
-      ]
+      ],
+      "script_chars": 230
     },
     {
       "image": "blackdoor.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } K&blackdoor.gif",
       "count": 1,
       "files": [
         "mine6.graal"
-      ]
+      ],
+      "script_chars": 229
     },
     {
       "image": "6zolbar.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { take greenrupee; take bluerupee; take redrupee; take goldrupee; if (rupees<5000){ say 5; } if (rupees>=5000) { rupees=0; say 6; lay superbomb; } } if (compusdied) { } if (playerendsreading) { } if (exploded) { } <Cbluelampani.gif",
       "count": 1,
       "files": [
         "moffice.graal"
-      ]
+      ],
+      "script_chars": 324
     },
     {
       "image": "MonsterKid.gif",
-      "script": "if (playerenters) hide; if (compusdied && MagicBaddyGone) show; if (playerendsreading) hide; ?Hteleporter.gif",
       "count": 1,
       "files": [
         "monster3.graal"
-      ]
+      ],
+      "script_chars": 109
     },
     {
       "image": "Cblackdoor2.gif",
-      "script": "if (baddylv1gone) {hide} if (playerenters && !baddylv1gone) {show} <[",
       "count": 1,
       "files": [
         "mountainblob2.graal"
-      ]
+      ],
+      "script_chars": 69
     },
     {
       "image": "Cblackdoor2.gif",
-      "script": "if (baddylv2gone) {hide} if (playerenters && !baddylv2gone) {show} >Q",
       "count": 1,
       "files": [
         "mountainblob3.graal"
-      ]
+      ],
+      "script_chars": 69
     },
     {
       "image": "Cblackdoor2.gif",
-      "script": "if (baddylv3gone) {hide} if (playerenters && !baddylv3gone) {show} FM",
       "count": 1,
       "files": [
         "mountainblob4.graal"
-      ]
+      ],
+      "script_chars": 69
     },
     {
       "image": "Cblackdoor2.gif",
-      "script": "if (baddylv4gone) {hide} if (playerenters && !baddylv4gone) {show} =O",
       "count": 1,
       "files": [
         "mountainblob5.graal"
-      ]
+      ],
+      "script_chars": 69
     },
     {
       "image": "E4shooterfucker.gif",
-      "script": "timeout=1; if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) {shootarrow down;} 64shooterfucker.gif",
       "count": 1,
       "files": [
         "mountainblob6.graal"
-      ]
+      ],
+      "script_chars": 237
     },
     {
       "image": "5Jninjiguard.gif",
-      "script": "if (compusdied) {say 0; } if (playertouchsme) {say 2; } '<ninjiguard2.gif",
       "count": 1,
       "files": [
         "ninjimain.graal"
-      ]
+      ],
+      "script_chars": 73
     },
     {
       "image": "beerhost.gif",
-      "script": "if (playerenters) {say 0 } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "nobodyscottage.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "BUmaid.gif",
-      "script": "if (playerenters) {say 0 } if (playertouchsme) {say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 'Lbeerhost.gif",
       "count": 1,
       "files": [
         "nobodysdinningroom.graal"
-      ]
+      ],
+      "script_chars": 238
     },
     {
       "image": "GLbrother2.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } G<redguy.gif",
       "count": 1,
       "files": [
         "nobodysdinningroom.graal"
-      ]
+      ],
+      "script_chars": 231
     }
   ]
 }

@@ -7,59 +7,59 @@
   "scripts": [
     {
       "image": "bluelampani.gif",
-      "script": "K&bluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "W&bluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "G5bluelampani.gif",
-      "script": "*Dbluelampani.gif",
       "count": 1,
       "files": [
         "usaroom.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "GDbluelampani.gif",
-      "script": "87usabed.gif",
       "count": 1,
       "files": [
         "usaroom.graal"
-      ]
+      ],
+      "script_chars": 12
     },
     {
       "image": "Bhith.gif",
-      "script": "if (washit) set usedbomb; ;Dhitv.gif",
       "count": 1,
       "files": [
         "whoopa_arcade1.graal"
-      ]
+      ],
+      "script_chars": 36
     },
     {
       "image": "Dhitv.gif",
-      "script": "if (washit) set usedbomb; <Fnowplaying.gif",
       "count": 1,
       "files": [
         "whoopa_arcade1.graal"
-      ]
+      ],
+      "script_chars": 42
     },
     {
       "image": "97smallbomb.gif",
-      "script": ">3ballofire.gif",
       "count": 1,
       "files": [
         "whoopa_arcade1.graal"
-      ]
+      ],
+      "script_chars": 15
     }
   ]
 }

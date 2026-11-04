@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "SBdiary2.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { say 3} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } RTbottle.gif",
       "count": 1,
       "files": [
         "cccastle13.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "MTbottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } PRbottle.gif",
       "count": 1,
       "files": [
         "cccastle13.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "XBbottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;;hibiscus.gif",
       "count": 1,
       "files": [
         "cccastle13.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "blackbaddy.gif",
-      "script": "if (playerenters && go99) {x=27 } if (playertouchsme) { if (gotpermission) {say 1;x=27;set go99} if (!gotpermission){say 2} } if (playertouchsother && gotpermission) {x=27} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @+blackbaddy.gif",
       "count": 1,
       "files": [
         "cccastle31.graal"
-      ]
+      ],
+      "script_chars": 327
     },
     {
       "image": "bro.gif",
-      "script": "if (playerenters) {} if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @9",
       "count": 1,
       "files": [
         "cccastle5.graal"
-      ]
+      ],
+      "script_chars": 217
     },
     {
       "image": "NAmonster.gif",
-      "script": "if (playerenters) {message Argh! } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "cccastleeast.graal"
-      ]
+      ],
+      "script_chars": 227
     },
     {
       "image": "door1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } O;blackbaddy.gif",
       "count": 1,
       "files": [
         "cccastlesouth.graal"
-      ]
+      ],
+      "script_chars": 231
     },
     {
       "image": "79bctarget1.gif",
-      "script": "if (playerenters) {timeout=.1; drawunderplayer;x=23} if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } >Cbcshootinggamebow.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 250
     },
     {
       "image": "bctarget2.gif",
-      "script": "if (playerenters) {timeout=.1;x=23;} if (wasshot) {misses+=1} if (timeout) { x=x+.25; if (x>41) x=21; //if (x<21) x=41; timeout=.1; } I9bcrighttargethole.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 157
     },
     {
       "image": "9bctarget1.gif",
-      "script": "if (playerenters) {timeout=.1; drawunderplayer;x=26} if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } =9bctarget1.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 242
     },
     {
       "image": "9bctarget1.gif",
-      "script": "if (playerenters) {timeout=.1; drawunderplayer;x=32} if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } C9bctarget1.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 242
     },
     {
       "image": "F9bctarget1.gif",
-      "script": "if (playerenters) {timeout=.1; drawunderplayer;x=38} if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; } =?",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 229
     },
     {
       "image": "79bcmissbar.gif",
-      "script": "if (playerenters) {drawunderplayer; } if (wasshot) {misses+=1; } ;<bctarget2.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 80
     },
     {
       "image": "bctarget2.gif",
-      "script": "if (playerenters) {timeout=.1;x=31;} if (wasshot) {misses+=1} if (timeout) { x=x+.25; if (x>41) x=21; //if (x<21) x=41; timeout=.1; } C<bctarget2.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 149
     },
     {
       "image": "bctarget2.gif",
-      "script": "if (playerenters) {timeout=.1;x=39;} if (wasshot) {misses+=1} if (timeout) { x=x+.25; if (x>41) x=21; //if (x<21) x=41; timeout=.1; } ;;bctarget2.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 149
     },
     {
       "image": "bctarget2.gif",
-      "script": "if (playerenters) {timeout=.1;x=31;} if (wasshot) {misses+=1} if (timeout) { x=x-.4; //if (x>41) x=21; if (x<21) x=41; timeout=.1; } C;bctarget2.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 148
     },
     {
       "image": "bctarget2.gif",
-      "script": "if (playerenters) {timeout=.1;x=39;} if (wasshot) {misses+=1} if (timeout) { x=x-.4; //if (x>41) x=21; if (x<21) x=41; timeout=.1; } 5;bclefttargethole.gif",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 155
     },
     {
       "image": "I9bctarget1.gif",
-      "script": "if (playerenters) {timeout=.1; drawunderplayer;x=41} if (wasshot) { hits+=1; if (hits=1) say 2; if (hits=2) say 3; if (hits=3) say 4; if (hits=4) say 5; if (hits=5) say 6; } if (timeout) { x=x+.5; if (x>41) x=21; timeout=.1; }",
       "count": 1,
       "files": [
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "K7bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2,door1.gif",
       "count": 1,
       "files": [
         "cclevel15.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "Odoordown.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;;winddemon.gif",
       "count": 1,
       "files": [
         "cctempleb7.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "ATgreytree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } !!",
       "count": 1,
       "files": [
         "ccvillage3.graal"
-      ]
+      ],
+      "script_chars": 213
     },
     {
       "image": "divingboard.gif",
-      "script": "if (playerenters) {dontblock; drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -1",
       "count": 1,
       "files": [
         "citymap2.graal"
-      ]
+      ],
+      "script_chars": 239
     },
     {
       "image": "Jassassin.gif",
-      "script": "if (playerenters) {} if (playertouchsme) {} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 8Jassassin.gif",
       "count": 1,
       "files": [
         "darkstreamhome.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "-Qweirdoblondepachukite.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { say 1; playerheadset=25; setskincolor pink; setcoatcolor black; setsleevecolor darkred; setshoecolor darkred; setbeltcolor red; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >Gbluelampani.gif",
       "count": 1,
       "files": [
         "darkstreamhome.graal"
-      ]
+      ],
+      "script_chars": 356
     },
     {
       "image": "8Gbluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;Jassassin.gif",
       "count": 1,
       "files": [
         "darkstreamhome.graal"
-      ]
+      ],
+      "script_chars": 225
     }
   ]
 }

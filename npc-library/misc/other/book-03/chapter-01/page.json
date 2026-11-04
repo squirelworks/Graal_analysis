@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "Pgoldenbush.gif",
-      "script": "!Sgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "Ugoldenbush.gif",
-      "script": "1Sgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "1Ugoldenbush.gif",
-      "script": "/Ugoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "X^goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "RZgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "RXgoldenbush.gif",
-      "script": "RRgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "RTgoldenbush.gif",
-      "script": "RVgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "XZgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "XXgoldenbush.gif",
-      "script": "XVgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "XTgoldenbush.gif",
-      "script": "XRgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "XPgoldenbush.gif",
-      "script": "RPgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "RNgoldenbush.gif",
-      "script": "XNgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "XLgoldenbush.gif",
-      "script": "RLgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "RJgoldenbush.gif",
-      "script": "XJgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "RHgoldenbush.gif",
-      "script": "XHgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "XFgoldenbush.gif",
-      "script": "RFgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "RDgoldenbush.gif",
-      "script": "RBgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "R>goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "R:goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "X<goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "X@goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "XBgoldenbush.gif",
-      "script": "XDgoldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "G:goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "K:goldenbush.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 16
     },
     {
       "image": "goldenbush.gif",
-      "script": "A8door.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 10
     }
   ]
 }
