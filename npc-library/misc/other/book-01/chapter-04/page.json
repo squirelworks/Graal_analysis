@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "top.gif",
-      "script": "// NPC made by King Dan if (playerchats) {message",
       "count": 1,
       "files": [
         "ccforest3.graal"
-      ]
+      ],
+      "script_chars": 49
     },
     {
       "image": "stone.gif",
-      "script": "X^stone.gif",
       "count": 1,
       "files": [
         "cclevel30.graal"
-      ]
+      ],
+      "script_chars": 11
     },
     {
       "image": "1newguard2.gif",
-      "script": ".1newguard2.gif",
       "count": 1,
       "files": [
         "ccpirate9.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "N0newguard1.gif",
-      "script": "DOnewguard2.gif",
       "count": 1,
       "files": [
         "ccprison2.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "5Onewguard2.gif",
-      "script": "NAnewguard1.gif",
       "count": 1,
       "files": [
         "ccprison2.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "00newguard1.gif",
-      "script": "0Bnewguard1.gif",
       "count": 1,
       "files": [
         "ccprison2.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "newguard1.gif",
-      "script": "2Mnewguard2.gif",
       "count": 1,
       "files": [
         "ccprison4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "AMnewguard2.gif",
-      "script": "K.newguard1.gif",
       "count": 1,
       "files": [
         "ccprison4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "newguard1.gif",
-      "script": "-.newguard1.gif",
       "count": 1,
       "files": [
         "ccprison4.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "NLbluelampani.gif",
-      "script": "0Lbluelampani.gif",
       "count": 1,
       "files": [
         "dldungeon1.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "N.bluelampani.gif",
       "count": 1,
       "files": [
         "dldungeon1.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Ibluflm.gif",
-      "script": "if (has_permission) {hide; } !Jbluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Kbluflm.gif",
-      "script": "if (has_permission) {hide; } !Lbluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Mbluflm.gif",
-      "script": "if (has_permission) {hide; } !Nbluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Obluflm.gif",
-      "script": "if (has_permission) {hide; } !Pbluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Qbluflm.gif",
-      "script": "if (has_permission) {hide; } \"Ibluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Jbluflm.gif",
-      "script": "if (has_permission) {hide; } \"Kbluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Lbluflm.gif",
-      "script": "if (has_permission) {hide; } \"Mbluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Nbluflm.gif",
-      "script": "if (has_permission) {hide; } \"Obluflm.gif",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Pbluflm.gif",
-      "script": "if (has_permission) {hide; }",
       "count": 1,
       "files": [
         "dlentrance2.graal"
-      ]
+      ],
+      "script_chars": 28
     },
     {
       "image": "R2bluelampani.gif",
-      "script": "R9bluelampani.gif",
       "count": 1,
       "files": [
         "dlhqdorm.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "RBbluelampani.gif",
-      "script": "RJbluelampani.gif",
       "count": 1,
       "files": [
         "dlhqdorm.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Jbluelampani.gif",
-      "script": ",Bbluelampani.gif",
       "count": 1,
       "files": [
         "dlhqdorm.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": ",2bluelampani.gif",
       "count": 1,
       "files": [
         "dlhqdorm.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "8Pbluelampani.gif",
       "count": 1,
       "files": [
         "dlhqlead1.graal"
-      ]
+      ],
+      "script_chars": 17
     }
   ]
 }

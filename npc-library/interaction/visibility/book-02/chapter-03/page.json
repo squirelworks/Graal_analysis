@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U;bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y;bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [Ebluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "YEbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [Abluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "YAbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } WAbluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "UAbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U?bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y?bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } Y=bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } U=bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } S=bluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "bluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } SAbluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "SCbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } SEbluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "UCbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } [Cbluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "WCbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } YCbluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "UEbluebush.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y;} if (exploded || washit) {hide; putleaps 0,x,y; putleaps 1,x,y; putleaps 5,x,y; putleaps 4,x,y; } WEbluebush.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 232
     },
     {
       "image": "4Uredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } 2Uredstone.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 126
     },
     {
       "image": "0Uredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } .Uredstone.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 126
     },
     {
       "image": "Uredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } *Uredstone.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 126
     },
     {
       "image": "Uredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } @Uredstone.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 126
     },
     {
       "image": "BUredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } DUredstone.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 126
     },
     {
       "image": "FUredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } HUredstone.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 126
     },
     {
       "image": "JUredstone.gif",
-      "script": "if (playerenters) {canbecarried } if (wasthrown) {hide; putleaps 2,x,y;} if (exploded) {hide; putleaps 2,x,y; } 6)beer.gif",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 122
     },
     {
       "image": "night.gif",
-      "script": "if (playerenters && !night) {hide } if (playerenters && night) {show } if (night) {show} if (playerenters) {dontblock; drawoverplayer} if (!night) {hide}",
       "count": 1,
       "files": [
         "moumoufarm.graal"
-      ]
+      ],
+      "script_chars": 153
     },
     {
       "image": "stone.gif",
-      "script": "if (playerenters) {canbecarried;} if (wasthrown) {putleaps 2,x,y; hide; set rox1gone; } if (exploded) {hide; putleaps 2,x,y; set rox1gone;} if (playerenters && rox1gone) {hide } X)stone.gif",
       "count": 1,
       "files": [
         "moumoufarm2.graal"
-      ]
+      ],
+      "script_chars": 189
     },
     {
       "image": "stone.gif",
-      "script": "if (playerenters) {canbecarried;} if (wasthrown) {putleaps 2,x,y; hide; set rox3gone; } if (exploded) {hide; putleaps 2,x,y; set rox3gone;} if (playerenters && rox3gone) {hide } V)stone.gif",
       "count": 1,
       "files": [
         "moumoufarm2.graal"
-      ]
+      ],
+      "script_chars": 189
     }
   ]
 }

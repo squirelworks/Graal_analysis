@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "KUiceblock.gif",
-      "script": "if (neatman) {hide;dontblock;drawunderplayer} KXiceblock.gif",
       "count": 1,
       "files": [
         "AssHome3.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "99bcrobbygameblock.gif",
-      "script": "if (playertouchsme&&allyoucaneat){hide;} 9;bar.gif",
       "count": 1,
       "files": [
         "brandon4.graal"
-      ]
+      ],
+      "script_chars": 50
     },
     {
       "image": "brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters) { Respawn=9.5; RespawnMod=2; hide; } if (timeout) { timeout=Respawn+random(0,RespawnMod); } <Xbrugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 156
     },
     {
       "image": "Ubrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } :Vbrugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "9Xbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } BXbrugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "BUbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } DVbrugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "EXbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } >@brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } >>brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } ><brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } <<brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } >.brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "E4brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } I)brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "O0brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } U+brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "brugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } N=brugarablock.gif",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "QGbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters && !this.init=1) {this.init=1; hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; }",
       "count": 1,
       "files": [
         "brugestower1_2.graal"
-      ]
+      ],
+      "script_chars": 197
     },
     {
       "image": "BIbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters) { hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } AKbrugarablock.gif",
       "count": 1,
       "files": [
         "brugestowerprize.graal"
-      ]
+      ],
+      "script_chars": 188
     },
     {
       "image": "AGbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters) { hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } ?Fbrugarablock.gif",
       "count": 1,
       "files": [
         "brugestowerprize.graal"
-      ]
+      ],
+      "script_chars": 188
     },
     {
       "image": "Gbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters) { hide; timeout=.05; } if (timeout) { timeout=Respawn+random(0,RespawnMod); putnpc BrugaraBlock.gif,BrugaraBlock.txt,x,y; } <Ibrugarablock.gif",
       "count": 1,
       "files": [
         "brugestowerprize.graal"
-      ]
+      ],
+      "script_chars": 188
     },
     {
       "image": "CYbrugarablock.gif",
-      "script": "//Brugara Block //By Bruges if (playerenters) { timereverywhere; Respawn=11.5; RespawnMod=2; hide; timeout=0.5; } if (timeout) { set KilledBrugesBoss; timeout=0.5 } ;Z",
       "count": 1,
       "files": [
         "brugestowerprize.graal"
-      ]
+      ],
+      "script_chars": 167
     },
     {
       "image": "5blocked.gif",
-      "script": "if (playertouchsme) {play stef89.mid } G5blocked.gif",
       "count": 1,
       "files": [
         "cccastle11.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "blocked.gif",
-      "script": "if (playertouchsme) {play stef87.mid } GGblocked.gif",
       "count": 1,
       "files": [
         "cccastle11.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "Gblocked.gif",
-      "script": "if (playertouchsme) {play stef49.mid } 3Gblocked.gif",
       "count": 1,
       "files": [
         "cccastle11.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "blocked.gif",
-      "script": "if (playertouchsme) {play stef12.mid } 2Eblock2.gif",
       "count": 1,
       "files": [
         "cccastle11.graal"
-      ]
+      ],
+      "script_chars": 51
     },
     {
       "image": "9block.gif",
-      "script": "if (playerenters) { if(!ccunderstoodstory) { show; x=29; y=25 } if(ccunderstoodstory) { hide; x=29; y=25 } } if(playertouchsme) {message Talk to him up there;timeout=2} if (timeout) {message } if (playersays(0,yes)) {y=50} <)cclarry.gif",
       "count": 1,
       "files": [
         "cchouse3.graal"
-      ]
+      ],
+      "script_chars": 236
     },
     {
       "image": "block.gif",
-      "script": "if (playertouchsme) {playerx=54;}",
       "count": 1,
       "files": [
         "ccpirate6.graal"
-      ]
+      ],
+      "script_chars": 33
     }
   ]
 }

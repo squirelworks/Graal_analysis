@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "O5bookstack.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N8book15.gif",
       "count": 1,
       "files": [
         "fckeep.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "tent.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } MAbuttrfly.gif",
       "count": 1,
       "files": [
         "fctown.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "6Hfcmeteo.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?%bluelampani.gif",
       "count": 1,
       "files": [
         "fczoo.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 6:deadtree.gif",
       "count": 1,
       "files": [
         "fczoo.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "2deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 22fcmeteo.gif",
       "count": 1,
       "files": [
         "fczoo.graal"
-      ]
+      ],
+      "script_chars": 224
     },
     {
       "image": "J2fcmeteo.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =:grave1.gif",
       "count": 1,
       "files": [
         "fczoo.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "J2standingleft3.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "field4.graal"
-      ]
+      ],
+      "script_chars": 215
     },
     {
       "image": "book16.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } $2book16.gif",
       "count": 1,
       "files": [
         "firesharkroom.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "T4doorjam3.gif",
-      "script": "if (playerenters) {x=52;y=20;show;timeout=0.05} if (playerenters) {drawoverplayer;dontblock } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } D4doorjam3.gif",
       "count": 1,
       "files": [
         "fox1.graal"
-      ]
+      ],
+      "script_chars": 297
     },
     {
       "image": "Bbluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2Bbluelampani.gif",
       "count": 1,
       "files": [
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) {play stef63.mid } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H:bluelampani.gif",
       "count": 1,
       "files": [
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 243
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) {play stef63.mid } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } \\.bluelampani.gif",
       "count": 1,
       "files": [
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 243
     },
     {
       "image": "doorjam2.gif",
-      "script": "if (playerenters) {drawoverplayer;dontblock;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } D4doorjam3.gif",
       "count": 1,
       "files": [
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 249
     },
     {
       "image": "D5doorjam.gif",
-      "script": "if (playerenters) {drawoverplayer;dontblock } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B5doubledoor1.gif",
       "count": 1,
       "files": [
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 252
     },
     {
       "image": "F5doubledoor2.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {hide;timeout=1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) {show }",
       "count": 1,
       "files": [
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "0foxenstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say sign0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 3(",
       "count": 1,
       "files": [
         "foxshouse1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } I/bluelampani.gif",
       "count": 1,
       "files": [
         "foxshouse1.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "IEbluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1Ebluelampani.gif",
       "count": 1,
       "files": [
         "foxshouse1.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "0foxenstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say sign0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :Ffoxenstatue.gif",
       "count": 1,
       "files": [
         "foxshouse1.graal"
-      ]
+      ],
+      "script_chars": 237
     },
     {
       "image": "Ffoxenstatue.gif",
-      "script": "if (playerenters) {setletters foxletters-charset.gif } if (playertouchsme) {say sign0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "foxshouse1.graal"
-      ]
+      ],
+      "script_chars": 252
     },
     {
       "image": "F3bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F;bluelampani.gif",
       "count": 1,
       "files": [
         "foxshouse10.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "Afoxenstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say sign0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0;foxenstatue.gif",
       "count": 1,
       "files": [
         "foxshouse11.graal"
-      ]
+      ],
+      "script_chars": 237
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } GIbluelampani.gif",
       "count": 1,
       "files": [
         "foxshouse11.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } $Lbluelampani.gif",
       "count": 1,
       "files": [
         "foxshouse11.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "2Lbluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } H:tolit.gif",
       "count": 1,
       "files": [
         "foxshouse11.graal"
-      ]
+      ],
+      "script_chars": 222
     }
   ]
 }

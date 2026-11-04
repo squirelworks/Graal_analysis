@@ -7,227 +7,227 @@
   "scripts": [
     {
       "image": "cogsign.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 24,
       "files": [
         "CoGtown1.graal",
         "KylesRoom.graal",
         "b39_water1.graal"
-      ]
+      ],
+      "script_chars": 210
     },
     {
       "image": "K6beerhost.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } K:bar.gif",
       "count": 4,
       "files": [
         "jaypee2leftsuite1.graal",
         "jaypee2leftsuite2.graal",
         "jaypee2leftsuite3.graal"
-      ]
+      ],
+      "script_chars": 220
     },
     {
       "image": "16beerhost.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1:bar.gif",
       "count": 4,
       "files": [
         "jaypee2rightsuite1.graal",
         "jaypee2rightsuite2.graal",
         "jaypee2rightsuite3.graal"
-      ]
+      ],
+      "script_chars": 220
     },
     {
       "image": "4sign.gif",
-      "script": "if (playerenters) {hide } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {show;} if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 4,
       "files": [
         "mountainspider3.graal",
         "mountainspider4.graal",
         "mountainspider6.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "Oswitchgreen.gif",
-      "script": "if (playertouchsme) { unset floor1; unset floor2; unset floor4; say 2; setgif switchred.gif; play ge64elvt.mid; timeout = 7;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { stopmidi; play Atlantis.mid; say 4; setgif switchgreen.gif; set floor3;} 5Oswitchgreen.gif",
       "count": 3,
       "files": [
         "greatnhelevate.graal",
         "greatnhelevate2.graal",
         "greatnhelevate3.graal"
-      ]
+      ],
+      "script_chars": 379
     },
     {
       "image": "fencegirl.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { if(hasaccount)say 0; if(!hasaccount)say 1; } if (playertouchsother) { } if (playerlaysitem) { take bluerupee; take greenrupee; take redrupee; take goldrupee; if(rupees>=10) { say 2; set hasaccount; } } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout)",
       "count": 2,
       "files": [
         "Enix_bank2.graal",
         "Enix_banksignup.graal"
-      ]
+      ],
+      "script_chars": 355
     },
     {
       "image": "59bclefttargethole.gif",
-      "script": "if (playerenters) {drawoverplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 59brugescorelogo_small.gif",
       "count": 2,
       "files": [
         "bcshootinggame.graal",
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 252
     },
     {
       "image": "bclefttargethole.gif",
-      "script": "if (playerenters) {drawoverplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } I;bcrighttargethole.gif",
       "count": 2,
       "files": [
         "bcshootinggame.graal",
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 249
     },
     {
       "image": "bcrighttargethole.gif",
-      "script": "if (playerenters) {drawoverplayer; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 8G",
       "count": 2,
       "files": [
         "bcshootinggame.graal",
         "cchouse6.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "dcbrugessecretary.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 2,
       "files": [
         "desertcastlebrugesoffice.graal",
         "othouse1.graal"
-      ]
+      ],
+      "script_chars": 216
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =.bluelampani.gif",
       "count": 2,
       "files": [
         "fox1.graal",
         "fox2.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "ARrack.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;Rcloats8.gif",
       "count": 2,
       "files": [
         "gandgetawayh.graal",
         "gandshouse.graal"
-      ]
+      ],
+      "script_chars": 224
     },
     {
       "image": "0Ubook15.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } %,bookopen.gif",
       "count": 2,
       "files": [
         "gandgetawayh.graal",
         "gandshouse.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "0Oswitchgreen.gif",
-      "script": "if (playertouchsme) { unset floor2; unset floor3; unset floor4; say 0; setgif switchred.gif; play ge64elvt.mid; timeout = 7;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { stopmidi; play Atlantis.mid; say 4; setgif switchgreen.gif; set floor1;} :S",
       "count": 2,
       "files": [
         "greatnhelevate2.graal",
         "greatnhelevate3.graal"
-      ]
+      ],
+      "script_chars": 364
     },
     {
       "image": "slot.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *!slot.gif",
       "count": 2,
       "files": [
         "hooster32hotel.graal",
         "hooster32hotel.graal"
-      ]
+      ],
+      "script_chars": 221
     },
     {
       "image": "zoraasdw.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 2,
       "files": [
         "lifemountain10.graal",
         "owkpub.graal"
-      ]
+      ],
+      "script_chars": 215
     },
     {
       "image": "oct.gif",
-      "script": "if (1stroundliz) {;shootball;timeout=2; this.hearts=7 } if (kinglizdied) {hide } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {this.hearts-=playerswordpower } if (exploded) {this.hearts-=playerbombpower} if (waspelt) {this.hearts--} if (wasshot) {this.hearts-=playershootpower} if (this.hearts<1) {hide} if (timeout && 1stroundliz) {;t",
       "count": 2,
       "files": [
         "lizboss.graal",
         "lizboss.graal"
-      ]
+      ],
+      "script_chars": 400
     },
     {
       "image": "lizardking.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 2,
       "files": [
         "mine11.graal",
         "sardonbasement2.graal"
-      ]
+      ],
+      "script_chars": 214
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Y",
       "count": 2,
       "files": [
         "moerahnsoh_guildhouse.graal",
         "moerahnsoh_guildhouse.graal"
-      ]
+      ],
+      "script_chars": 212
     },
     {
       "image": "Target.gif",
-      "script": "if (playerenters) timeout = 0.5; hide; if (timeout) { x = random(5,10); timeout = 0.5; } if (wasshot) {hide; set MT1; unset Target1} if (Target1) {show} ?Usign.gif",
       "count": 1,
       "files": [
         "Archery1.graal"
-      ]
+      ],
+      "script_chars": 163
     },
     {
       "image": "Target.gif",
-      "script": "if (playerenters) timeout = 0.5; hide; if (timeout) { x = random(25,30); timeout = 0.5; } if (wasshot) {hide; set MT3; unset Target3} if (Target3) {show} )",
       "count": 1,
       "files": [
         "Archery1.graal"
-      ]
+      ],
+      "script_chars": 155
     },
     {
       "image": "Target.gif",
-      "script": "if (playerenters) timeout = 0.5; hide; if (timeout) { x = random(35,40); timeout = 0.5; } if (wasshot) {hide; set MT4; unset Target4} if (Target4) {show} ,",
       "count": 1,
       "files": [
         "Archery1.graal"
-      ]
+      ],
+      "script_chars": 155
     },
     {
       "image": "Target.gif",
-      "script": "if (playerenters) timeout = 0.5; hide; if (timeout) { x = random(45,50); timeout = 0.5; } if (wasshot) {hide; set MT5; unset Target5} if (Target5) {show} /",
       "count": 1,
       "files": [
         "Archery1.graal"
-      ]
+      ],
+      "script_chars": 155
     },
     {
       "image": "Target.gif",
-      "script": "if (playerenters) timeout = 0.5; hide; if (timeout) { x = random(55,60); timeout = 0.5; } if (wasshot) {hide; set MT6; unset Target6} if (Target6) {show}",
       "count": 1,
       "files": [
         "Archery1.graal"
-      ]
+      ],
+      "script_chars": 153
     },
     {
       "image": "Target.gif",
-      "script": "if (playerenters) timeout = 0.5; hide; if (timeout) { x = random(15,20); timeout = 0.5; } if (wasshot) {hide; set MT2; unset Target2} if (Target2) {show} %:Target.gif",
       "count": 1,
       "files": [
         "Archery1.graal"
-      ]
+      ],
+      "script_chars": 166
     }
   ]
 }

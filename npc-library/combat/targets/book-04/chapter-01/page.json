@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "1Ibottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 0Cbottle.gif",
       "count": 1,
       "files": [
         "dlhqhall.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "6Ibottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 5Cbottle.gif",
       "count": 1,
       "files": [
         "dlhqhall.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "2Gbottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 3Gbottle.gif",
       "count": 1,
       "files": [
         "dlhqhall.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "4Hbottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2Dbottle.gif",
       "count": 1,
       "files": [
         "dlhqhall.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "4Cbottle.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 8Ebottle.gif",
       "count": 1,
       "files": [
         "dlhqhall.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "4Abottle.gif",
-      "script": "if (playerenters) {drawoverplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } P>chilidog.gif",
       "count": 1,
       "files": [
         "dlhqhall.graal"
-      ]
+      ],
+      "script_chars": 239
     },
     {
       "image": "setbook.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 11 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } WMbluelampani.gif",
       "count": 1,
       "files": [
         "dlhqlead2.graal"
-      ]
+      ],
+      "script_chars": 234
     },
     {
       "image": "4cathedralsteps.gif",
-      "script": "if (playerenters) {dontblock; drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >5cathedralsteps.gif",
       "count": 1,
       "files": [
         "dlthrone.graal"
-      ]
+      ],
+      "script_chars": 256
     },
     {
       "image": "3cathedralsteps.gif",
-      "script": "if (playerenters) {dontblock; drawunderplayer} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 8(walltile2.gif",
       "count": 1,
       "files": [
         "dlthrone.graal"
-      ]
+      ],
+      "script_chars": 251
     },
     {
       "image": "-Adk-stand.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } KEfloor.gif",
       "count": 1,
       "files": [
         "dlthrone2.graal"
-      ]
+      ],
+      "script_chars": 227
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Q5deadtree.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 5%deadtree.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "-Odeadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } GLdeadtree.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "PLdeadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } D?bigbadburn.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 227
     },
     {
       "image": "bigbadburn.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ?4bigbadburn.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 227
     },
     {
       "image": "9Rbigbadburn.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @Rbigbadburn.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 227
     },
     {
       "image": "grave1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } T@grave1.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "grave1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ! rain.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 221
     },
     {
       "image": "zombie.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } zombie.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 221
     },
     {
       "image": "Ezombie.gif",
-      "script": "if (playerenters) {stopmidi } if (playertouchsme) {message i'm allready dead } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :Wzombie.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 256
     },
     {
       "image": "6pachukitepullr2.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } +A",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 218
     },
     {
       "image": "blood.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } \"@standingright2.gif",
       "count": 1,
       "files": [
         "dotd1.graal"
-      ]
+      ],
+      "script_chars": 231
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ECdeadtree.gif",
       "count": 1,
       "files": [
         "dotd2.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "deadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;Pdeadtree.gif",
       "count": 1,
       "files": [
         "dotd2.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "SPdeadtree.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 4/purpfire.gif",
       "count": 1,
       "files": [
         "dotd2.graal"
-      ]
+      ],
+      "script_chars": 225
     }
   ]
 }

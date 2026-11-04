@@ -2,6 +2,8 @@
 
 3,172 unique scripts (the scrape reported 3,187, but 15 records were lost to truncated source pages; see `partial_pages` in the `npcs.json` meta), broken into a hierarchy so no single file is large.
 
+**Script bodies are not in this repo.** On 2026-11-04 the `script` field was removed from every record in `page.json` and `npcs.json`, because it was text copied verbatim from the original levels. Page records keep the image name, occurrence count, up to three source level names and `script_chars` (the original body length); `npcs.json` records also keep event and command names and the truncation flag. The full copies are kept outside the repo by the owner (project files, `graal-analysis-audit/moved/npc-library/`, same layout). Notes that need a script should describe it and quote only a short excerpt.
+
 ## Structure
 
 ```
@@ -42,7 +44,7 @@ genre / topic / book-NN / chapter-NN / page.json
 
 ## Flat file
 
-`npcs.json.bak` is the original 1 MB flat dump, kept for reference. Use the hierarchy.
+`npcs.json` is the flat aggregate of the page files (metadata only, as above). The older `npcs.json.bak` flat dump is not tracked.
 
 ## GS1 references
 

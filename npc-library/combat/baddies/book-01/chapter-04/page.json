@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "desertcastlechest.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } D?desertcastlechest.gif",
       "count": 1,
       "files": [
         "DesertCastleCave1.graal"
-      ]
+      ],
+      "script_chars": 241
     },
     {
       "image": "desertcastlechest.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } FAdesertcastlechest.gif",
       "count": 1,
       "files": [
         "DesertCastleCave1.graal"
-      ]
+      ],
+      "script_chars": 241
     },
     {
       "image": "Gdcastlesign.gif",
-      "script": "if (playerenters) {if (DesertCastlePathOpen) hide; } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } ) fodarms.gif",
       "count": 1,
       "files": [
         "DesertCastleOut1.graal"
-      ]
+      ],
+      "script_chars": 264
     },
     {
       "image": "atm.gif",
-      "script": "if (playerenters) { set bank_set;} if (playertouchsme) {set bank_save } if (playertouchsother) { } if (playerlaysitem) if(!hasaccount)say 6; {if(hasaccount){ take greenrupee; take redrupee; take bluerupee; take goldrupee; take bombs; take bomb; take darts; set bank_save; rupees_in_bank+=rupees; bombs_in_bank+=bombs; darts_in_bank+=darts; } } if (compusdied) { } if (playerendsreading) { } if (explo",
       "count": 1,
       "files": [
         "Enix_deposit_room2.graal"
-      ]
+      ],
+      "script_chars": 400
     },
     {
       "image": "blackbaddy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } F;brother1.gif",
       "count": 1,
       "files": [
         "GoHmeet.graal"
-      ]
+      ],
+      "script_chars": 158
     },
     {
       "image": "30brother2.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {setbeltcolor darkred;setcoatcolor black; setsleevecolor black; setshoecolor brown; say 1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
       "count": 1,
       "files": [
         "SSGuestHouse.graal"
-      ]
+      ],
+      "script_chars": 231
     },
     {
       "image": "twiggy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } ;)sephblock.gif",
       "count": 1,
       "files": [
         "SSwarnedya.graal"
-      ]
+      ],
+      "script_chars": 159
     },
     {
       "image": "brother1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 10 } if (playertouchsother) { } if (playerlaysitem) { take bluerupee; } if (rupees>= 5) { lay darts; say 11; rupees -= 5; } if (compusdied) { } if (playerendsreading) { }",
       "count": 1,
       "files": [
         "SecretShopGS.graal"
-      ]
+      ],
+      "script_chars": 217
     },
     {
       "image": "emeraldbaddy.gif",
-      "script": "if (playerenters && skyfloor1){ playerx=33; playery=10; say 0; } if (playertouchsme) {say 1; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {unset skyfloor1; } if (exploded) { }",
       "count": 1,
       "files": [
         "Skytf1.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "sign.gif",
-      "script": "if (playerenters && skyfloor2) {playerx=33 ; playery=8 ; unset skyfloor2; say 1; } if (playertouchsme) {say 0; } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
       "count": 1,
       "files": [
         "Skytf2.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "P-nastybed.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer } if (playertouchsme && playeringuild Brady) {setsword lightsaber2.gif,playerswordpower;setshield fireshield.gif,playershieldpower} if (playertouchsme && playeringuild BRADY) {setsword lightsaber2.gif,playerswordpower;setshield fireshield.gif,playershieldpower } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading",
       "count": 1,
       "files": [
         "Yanhouse.graal"
-      ]
+      ],
+      "script_chars": 400
     },
     {
       "image": "goldenbush.gif",
-      "script": "if (playerenters) { if (!Ab5rock) say 0;show; if (Ab5rock) { hide; removecompus; } } if (compusdied) { hide; if (!Ab5rock) say 1; set Ab5rock; }",
       "count": 1,
       "files": [
         "abermose5.graal"
-      ]
+      ],
+      "script_chars": 144
     },
     {
       "image": "rocks.gif",
-      "script": "if (playerenters) {say 0 } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) { }",
       "count": 1,
       "files": [
         "abermose8.graal"
-      ]
+      ],
+      "script_chars": 166
     },
     {
       "image": "see.gif",
-      "script": "if (playerenters) {play welcome.wav } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
       "count": 1,
       "files": [
         "azraelB.graal"
-      ]
+      ],
+      "script_chars": 159
     },
     {
       "image": "BNmohawk.gif",
-      "script": "if (playerenters) {say0; } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) {take redrupee; take greenrupee; take bluerupee; take heart; take sword; take battleaxe; take shield; say1 } if (compusdied) {say2 } if (playerendsreading) {hide } if (exploded) { }",
       "count": 1,
       "files": [
         "ban2.graal"
-      ]
+      ],
+      "script_chars": 279
     },
     {
       "image": "3brother1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } 1Fwinddemon1.gif",
       "count": 1,
       "files": [
         "butt2.graal"
-      ]
+      ],
+      "script_chars": 138
     },
     {
       "image": "3skullkey.gif",
-      "script": "if (playerenters) {hide;x=30;y=19} if (playertouchsme) {set ccthronekey;hide;say 1} if (compusdied) {show;say 0}",
       "count": 1,
       "files": [
         "ccbadcastle10.graal"
-      ]
+      ],
+      "script_chars": 112
     },
     {
       "image": "monster.gif",
-      "script": "if (playerenters) { if(!ccgameover){ x=30; y=30; blockagain; timeout=3 } if(ccgameover){dontblock;hide} } if(playerendsreading){ if(ccheardbaddyking){shootball;timeout=1} if(!ccheardbaddyking) {timeout=1} } if(timeout){ if(ccheardbaddyking) {setlevel ccbadcastle6.graal} if(!ccheardbaddyking) {say 1;set ccheardbaddyking} } >Tdoordown.gif",
       "count": 1,
       "files": [
         "ccbadcastle5.graal"
-      ]
+      ],
+      "script_chars": 338
     },
     {
       "image": "cloats7.gif",
-      "script": "if (playerenters) {hide} if (compusdied && !ccwearingbaddyclothes) { show; say 1; unset cctobadland;} if (playertouchsme) { setcoatcolor black; setsleevecolor lightgray; setshoecolor black; setskincolor orange; setbeltcolor lightgray; say 2; set ccwearingbaddyclothes; } ;,",
       "count": 1,
       "files": [
         "ccbadhouse1.graal"
-      ]
+      ],
+      "script_chars": 273
     },
     {
       "image": "6baddybluesitting.gif",
-      "script": "if(playertouchsme){say 2} @6baddygoldsitting2.gif",
       "count": 1,
       "files": [
         "cccastle10.graal"
-      ]
+      ],
+      "script_chars": 49
     },
     {
       "image": "65p-key.gif",
-      "script": "if (playerenters) {hide} if(compusdied && spidergod8) { show; set ccgoingtodesert } if(playertouchsme) {hide;set ccgotdesertkey} :3cclarry.gif",
       "count": 1,
       "files": [
         "cchouse4.graal"
-      ]
+      ],
+      "script_chars": 142
     },
     {
       "image": "F-gate1.gif",
-      "script": "// NPC made by <yourname> if (playerenters) {setgif gate1.gif } if (playertouchsme && ccnowthebaddysdiemwahaha) { setgif gate2.gif; timeout=2; timereverywhere } if(timeout) {setgif gate1.gif;play punch.wav} G6blackbaddy.gif",
       "count": 1,
       "files": [
         "cclevel11.graal"
-      ]
+      ],
+      "script_chars": 223
     },
     {
       "image": "grave1.gif",
-      "script": "if(exploded && ccnowthebaddysdiemwahaha) { hide; putleaps 2,x+1,y+1; putleaps 2,x+1,y; putleaps 2,x+1,y+2; } if(playerenters) {show;x=36;y=14} =(",
       "count": 1,
       "files": [
         "cclevel16.graal"
-      ]
+      ],
+      "script_chars": 145
     },
     {
       "image": "black.gif",
-      "script": "if (playertouchsme && ccnowthebaddysdiemwahaha) {set cctomines;setlevel ccmine1.graal} F/black.gif",
       "count": 1,
       "files": [
         "cclevel16.graal"
-      ]
+      ],
+      "script_chars": 98
     },
     {
       "image": "black.gif",
-      "script": "if (playertouchsme && ccnowthebaddysdiemwahaha) {set cctomines;setlevel ccmine1.graal} if(playerenters) { if(ccnowthebaddysdiemwahaha) {show} if (!ccnowthebaddysdiemwahaha) {hide} }",
       "count": 1,
       "files": [
         "cclevel16.graal"
-      ]
+      ],
+      "script_chars": 181
     }
   ]
 }
