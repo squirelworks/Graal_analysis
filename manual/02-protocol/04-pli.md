@@ -85,7 +85,8 @@ The summary lists for 1.21 and 1.32 in the 1999 protocol note disagree with the 
 | A warp to the level the player is already in only moves the player and sends nothing, in most states | 2.05 | [2.05] (protocol/packet-layouts.md#level-navigation-client--server) |
 | A real warp also sends UDP id 24 to gmap neighbours (→ §2.9) | 2.05 | [2.05] (protocol/packet-layouts.md#level-navigation-client--server) |
 | 2.17 has one send site for 30 instead of two | 2.17 | [bin] (client-internals/version-profiles/141-217.toml) |
-| 46 is sent on every level entry (login, gmap edge crossings, doors, edge links, server warps), just before the first props message of the new level, in the same frame | 2.31 | [cap] (protocol/packet-ids.md#client--server-pli_); [cap] (version-profiles/lab-enterlevel-231.tsv) |
+| 46 is sent on every level entry (login, gmap edge crossings, doors, edge links, server warps), just before the first props message of the new level, in the same frame | 2.31 | [cap] (protocol/packet-ids.md#client--server-pli_); [cap] (version-profiles/lab-enterlevel-231.tsv); [cap] (client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md#pli_enterlevel-46-real-231-client-observed); [cap] (client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md#a-pli_enterlevel-46-on-doors-edge-links-and-server-warps) |
+| 46 comes from one send site at the start of the routine that switches the current level, whenever connected; its `GCHAR 1` is a constant in the code; 2.17.1 and 2.22 have no send site | 2.31; 2.17.1, 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md) |
 | At login, 46 is the first message of the client's second frame, before 35 and 44 | 2.31 | [cap] (version-profiles/lab-enterlevel-231.tsv) |
 | On a gmap cell crossing the props after 46 carry the new cell in props 43 or 44 and a local coordinate that starts again at the cell edge | 2.31 | [cap] (version-profiles/lab-enterlevel-231.tsv) |
 | 2.22 sends no 46; 2.31 does not re-send id 39 on level entry | 2.22, 2.31 | [cap] (protocol/packet-ids.md#client--server-pli_) |
@@ -227,14 +228,30 @@ How chat is shown, and the server-to-client forms, are in → §2.8.
 
 | Rule | Builds | Source |
 | --- | --- | --- |
-| 24 is also sent on its own about every 5.1 s with one byte (value 9) | 2.31; 2.22 only while another player is in the level; 2.17 every 5 s after login | [cap] (protocol/packet-ids.md#client--server-pli_); [cap] (client-internals/version-profiles/141-217.toml) |
-| The meaning of the 24 payload is unknown; receivers showed no visible reaction to the values 0, 1, 5, 9, 14, 58, 95, to the bytes `xx.png`, or to an empty payload, and the server neither disconnected nor logged an invalid packet | 2.31 sender, 2.x receiver | [cap] (version-profiles/lab-showimg24-relay.tsv) |
+| 24 is also sent on its own about every 5.1 s with one byte (value 9) | 2.31; 2.22 only while another player is in the level; 2.17 every 5 s after login | [cap] (protocol/packet-ids.md#client--server-pli_); [cap] (client-internals/version-profiles/141-217.toml); [cap] (client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md#b-pli_showimgplayer-24) |
+| The meaning of the 24 payload: receivers showed no visible reaction to the values 0, 1, 5, 9, 14, 58, 95, to the bytes `xx.png`, or to an empty payload, and the server neither disconnected nor logged an invalid packet; the client reads show it is the weapon-image list of → §2.4.9.1 | 2.31 sender, 2.x receiver | [cap] (version-profiles/lab-showimg24-relay.tsv); [bin] (client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md#what-the-text-is) |
 | 39 is sent right after `PLI_LANGUAGE` at login | 2.17, 2.22, 2.31 | [cap] (protocol/packet-ids.md#client--server-pli_) |
 | 39 bytes: 2.17 `2a 7b ad 19 5e 23 12 43 d8 2c`, 2.22 `25 0e 4d 0f 96 2b 03 ed e6 31`, 2.31 `29 16 55 b7 60 2e 87 c9 eb 82`; identical across logins, accounts and login keys | 2.17, 2.22, 2.31 | [cap] (version-profiles/tampercheck-values.tsv) |
 | 39 re-sends: 2.17 once at login; 2.22 at login, on every gmap edge crossing and after every client-initiated level-link request, but not after a server-side warp; 2.31 at login and then about every 3.2 s | 2.17, 2.22, 2.31 | [cap] (version-profiles/2.22-2.31.md#wire-protocol); [cap] (version-profiles/tampercheck-values.tsv) |
 | How the 39 bytes are computed is a client integrity check (→ §4.10) | 2.17, 2.22, 2.31 | [bin] (version-profiles/2.22-2.31.md#wire-protocol) |
 | Because GServer-v2 discards 39, whether a different value would be rejected is unmeasured | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 | 44 is sent just before the login props | 2.17 | [cap] (client-internals/version-profiles/141-217.toml) |
+
+### 2.4.9.1 The id 24 weapon-image list
+
+Id 24 carries the images that the sender's weapon scripts show (`showimg` and the `changeimg*` commands), as changes against the list sent last; the relay is `PLO_SHOWIMGPLAYER` (32):
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| a record starts with 0x2a + the image index (0 to 199); tag bytes 0x20 + tag follow with their data; a byte of 0x2a or more starts the next record; an unknown tag skips one data byte; a tag with no data ends the text | 2.05, 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md#what-the-text-is); [2.05] (client-internals/id24-205.md#what-205-sends) |
+| tag 0 name (`GCHAR` length + bytes; empty removes the image), 1 x, 2 y (half tiles, or screen units at layer 10 and over; units unconfirmed), 3 layer − 1, 4 visible part (0x20 whole image, or 0x21 + left and top as two 7-bit bytes each + width and height, clamped to 0..16000 and 0..220), 5 red, green, blue and alpha over 200, 6 zoom over 10, 7 draw order − 0x52, 8 mode | 2.17.1 to 2.31 (receiver read in 2.31) | [bin] (client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv) |
+| 2.05 sends tags 0 to 6 only: layer only when not 1, part only when its size is above 0, colours only when one is not 1.0, zoom only when not 1.0 | 2.05 | [2.05] (client-internals/id24-205.md#what-205-sends) |
+| a leading 0x29 (`GCHAR` 9) marks a full list; after it the receiver removes every image of that player the text did not name; with no images the full list is the marker alone, the one byte every real client was seen to send | 2.05 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md#what-the-text-is); [2.05] (client-internals/id24-205.md#what-205-sends) |
+| a full list goes out when a countdown wraps: every 61st call in 2.05, every 102 ticks (101 calls, the call after a send skipped) in 2.17.1 to 2.31, which fits the 5.1 s seen at 50 ms a tick; the first tick after login is a wrap; an empty text is not sent | 2.05; 2.17.1 to 2.31 | [2.05] (client-internals/id24-205.md#what-205-sends); [bin][inf] (client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md#sender) |
+| a UDP copy goes out when it can (id 15 in 2.05, → §2.9); the TCP copy goes out when UDP is off for the client or does not reach some player in the level; 2.31 always sends the TCP copy; a wrap that finds the test false is lost | 2.05, 2.17.1, 2.22; 2.31 | [2.05] (client-internals/id24-205.md#what-205-sends); [bin] (client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md#the-tcp-test) |
+| a new image gets layer 1, colours 200 each, zoom 10 and mode 0; fields other than the name apply only to an image that exists | 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md#receiver) |
+| the sender's own value formatting, the "UDP reaches this player" flag of the 2.22 test, and how the images are drawn are unmeasured | 2.17.1 to 2.31 | [doc] (client-internals/decomp-findings-2026-10-25-g/04-open-points.md) |
+| an earlier note's four-field form (index, x, y, name) for 2.05 and earlier is wrong for 2.05; builds before 2.05 were not read | 2.05 | [2.05] (client-internals/id24-205.md#correction) |
 
 ## 2.4.10 Staff messages sent by game clients
 
