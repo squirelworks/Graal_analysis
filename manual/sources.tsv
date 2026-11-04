@@ -35,111 +35,111 @@ client-internals/combat-200-204.md	cited	4.3; E	4.3
 client-internals/config-and-input.md	cited	3.9	3.9	
 client-internals/cross-version-timeline.md	pending	1; 8.2; C; E	1	
 client-internals/damage-sources.md	cited	4.3; E	4	
-client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md	cited	4.1; 4.2	4	
-client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/05-open-items.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/06-crosscheck.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md	pending		4	
-client-internals/decomp-findings-2026-10-24-b/README.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/01-toolchain-and-coverage.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/README.md	pending		4	
-client-internals/decomp-findings-2026-10-24-c/classes_by_build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/coverage_by_build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/handler_shape_changes.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/id_changes_between_builds.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/plo_decode_signatures.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv	pending		4	
+client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	cited	4.10	4	
+client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	pending		2.5	
+client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md	cited	4.1; 4.2; 4.10	4	
+client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md	pending		2.2; 2.4	
+client-internals/decomp-findings-2026-10-24-b/05-open-items.md	pending	E	E	
+client-internals/decomp-findings-2026-10-24-b/06-crosscheck.md	excluded		4	cross-check of the batch against earlier repo notes; the facts it confirms or corrects are in the batch notes on their own rows
+client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md	pending		2.4; 2.5	
+client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md	pending		2.4; 2.5	
+client-internals/decomp-findings-2026-10-24-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-24-c/01-toolchain-and-coverage.md	excluded		4	record of the decompile toolchain and method; no client behaviour
+client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md	pending		1; 2.2	
+client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md	pending		2.1; 2.2	
+client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	pending		2.5	
+client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	pending		2.4	
+client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md	pending		2.4; 2.5	
+client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	pending		2.9	
+client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	pending		1	
+client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	pending		1; 8.2	
+client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md	pending		E	
+client-internals/decomp-findings-2026-10-24-c/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-24-c/classes_by_build.tsv	excluded		4	class-name counts per build; no client behaviour
+client-internals/decomp-findings-2026-10-24-c/coverage_by_build.tsv	excluded		4	decompile coverage counts per build; no client behaviour
+client-internals/decomp-findings-2026-10-24-c/handler_shape_changes.tsv	excluded		4	similarity scores of handler bodies between builds; the behaviour changes are written up in 06-handler-changes-by-build.md
+client-internals/decomp-findings-2026-10-24-c/id_changes_between_builds.tsv	pending		2.4; 2.5	
+client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv	pending		2.4	
+client-internals/decomp-findings-2026-10-24-c/plo_decode_signatures.tsv	excluded		4	heuristic field layouts marked not authoritative; superseded by version-profiles/plo-layouts-217-231.tsv
+client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv	pending		2.5	
+client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv	pending		8.2	
+client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv	pending		1; 2.2	
 client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md	cited	4.4; E	4	
 client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md	cited	4.3; E	4	
-client-internals/decomp-findings-2026-10-24-d/README.md	pending		4	
+client-internals/decomp-findings-2026-10-24-d/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24-d/damage-rules.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/entry-save-rule.tsv	cited	4.4	4	
 client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv	cited	4.4	4	
 client-internals/decomp-findings-2026-10-24-d/open-questions.tsv	cited	4.4; E	4	
 client-internals/decomp-findings-2026-10-24/01-death-respawn.md	cited	4.3; 4.4	4	
-client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md	pending		4	
-client-internals/decomp-findings-2026-10-24/03-player-list-popup.md	pending		4	
+client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md	cited	4.10	4	
+client-internals/decomp-findings-2026-10-24/03-player-list-popup.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	cited	4.3	4	
-client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	pending		4	
-client-internals/decomp-findings-2026-10-24/06-first-graal.md	pending		4	
-client-internals/decomp-findings-2026-10-24/07-graal-139.md	pending		4	
-client-internals/decomp-findings-2026-10-24/08-contradictions.md	pending		4	
-client-internals/decomp-findings-2026-10-24/README.md	pending		4	
-client-internals/decomp-findings-2026-10-24/constants-205.tsv	pending	4.1; 4.4	4	
-client-internals/decomp-findings-2026-10-24/gani-name-table.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24/gani-short-codes.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24/gani-to-step.tsv	pending		4	
+client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	pending		2.6	
+client-internals/decomp-findings-2026-10-24/06-first-graal.md	pending		2.3	
+client-internals/decomp-findings-2026-10-24/07-graal-139.md	pending		2.3; 2.4	
+client-internals/decomp-findings-2026-10-24/08-contradictions.md	pending		E	
+client-internals/decomp-findings-2026-10-24/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-24/constants-205.tsv	cited	4.1; 4.4	4	
+client-internals/decomp-findings-2026-10-24/gani-name-table.tsv	cited	4.10	4	
+client-internals/decomp-findings-2026-10-24/gani-short-codes.tsv	cited	4.10	4	
+client-internals/decomp-findings-2026-10-24/gani-to-step.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/life-states.tsv	cited	4.4	4	
 client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4	
-client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	pending		4	
-client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		4	
-client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	pending		4	
-client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending		4	
-client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	pending		4	
-client-internals/decomp-findings-2026-10-25-e/README.md	pending		4	
-client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		4	
-client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending		4	
-client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		4	
-client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	pending		4	
-client-internals/decomp-findings-2026-10-25-f/README.md	pending		4	
-client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	pending		4	
-client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	pending		4	
-client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	pending		4	
-client-internals/decomp-findings-2026-10-25-g/04-open-points.md	pending		4	
-client-internals/decomp-findings-2026-10-25-g/README.md	pending		4	
-client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	pending		4	
-client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	pending		4	
-client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	pending		4	
-client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md	pending		4	
-client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	pending		4	
-client-internals/decomp-findings-2026-10-25-j/README.md	pending		4	
-client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		4	
+client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4	
+client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
+client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	pending		2.7	
+client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	pending		2.7	
+client-internals/decomp-findings-2026-10-25-e/03-open-points.md	pending		E	
+client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	pending		2.7	
+client-internals/decomp-findings-2026-10-25-e/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-e/download-folders.tsv	pending		2.7	
+client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	pending		2.7	
+client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	pending		E	
+client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	pending		2.7	
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	pending		3.1; 3.6	
+client-internals/decomp-findings-2026-10-25-f/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-f/corpus-stats.tsv	pending		3.1	
+client-internals/decomp-findings-2026-10-25-g/01-id24-image-list.md	pending		2.4; 2.5	
+client-internals/decomp-findings-2026-10-25-g/02-id46-level-switch.md	pending		2.4	
+client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	pending		2.5	
+client-internals/decomp-findings-2026-10-25-g/04-open-points.md	pending		E	
+client-internals/decomp-findings-2026-10-25-g/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-g/comma-text-rules.tsv	pending		2.5	
+client-internals/decomp-findings-2026-10-25-g/image-text-format.tsv	pending		2.4; 2.5	
+client-internals/decomp-findings-2026-10-25-g/open-questions.tsv	pending		E	
+client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-j/by-build.tsv	pending		3.1	
+client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	pending		3.1	
 client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
-client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	pending		4	
-client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending		4	
-client-internals/decomp-findings-2026-10-25-k/README.md	pending		4	
+client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	pending		2.7	
+client-internals/decomp-findings-2026-10-25-k/03-open-points.md	pending		E	
+client-internals/decomp-findings-2026-10-25-k/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv	cited	4.3	4	
-client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		4	
-client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	pending		4	
+client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	pending		E	
+client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	pending		2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
-client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		4	
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	pending		3.5	
 client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
-client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	pending		4	
-client-internals/decomp-findings-2026-10-25-l/README.md	pending		4	
-client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	pending		4	
+client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	pending		2.5	
+client-internals/decomp-findings-2026-10-25-l/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	pending		E	
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
-client-internals/decomp-findings-2026-10-25-m/README.md	pending		4	
+client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3	4	
-client-internals/decomp-findings-2026-10-28-b/README.md	pending		4	
-client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	pending		4	
+client-internals/decomp-findings-2026-10-28-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
+client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	table form of 01-tile-type-tests.md in the same folder, which the manual cites
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
@@ -148,19 +148,19 @@ client-internals/drive-clients-inventory.md	pending		4
 client-internals/early-clients.md	pending		4	
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	pending	4.3; 8.1; 8.3; 8.4; E	4.3	
-client-internals/feature-specs/03-inventory.md	pending		4.10	
+client-internals/feature-specs/03-inventory.md	pending	4.10	4.10	
 client-internals/feature-specs/04-death-respawn.md	pending		4.4	
 client-internals/feature-specs/05-save-load.md	pending	3.7	3.7; 4.10	
 client-internals/feature-specs/06-gmap-overworld.md	pending	3.2	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	pending		2.9	
-client-internals/feature-specs/08-tampercheck.md	pending		4.10	
+client-internals/feature-specs/08-tampercheck.md	cited	4.10; E	4.10	
 client-internals/feature-specs/09-options.md	cited	4.6	4.6	
-client-internals/feature-specs/10-right-click-menu.md	pending		4.10	
-client-internals/feature-specs/11-emotes-ganis.md	pending		4.10	
-client-internals/feature-specs/12-motd-rules.md	pending		4.10	
-client-internals/feature-specs/13-ban-kick.md	pending		4.10	
-client-internals/feature-specs/14-friends-ignore.md	pending		4.10	
-client-internals/feature-specs/README.md	pending		4.10	
+client-internals/feature-specs/10-right-click-menu.md	cited	4.10	4.10	
+client-internals/feature-specs/11-emotes-ganis.md	cited	4.10; E	4.10	
+client-internals/feature-specs/12-motd-rules.md	pending	4.10	4.10	
+client-internals/feature-specs/13-ban-kick.md	pending	4.10	4.10	
+client-internals/feature-specs/14-friends-ignore.md	cited	4.10	4.10	
+client-internals/feature-specs/README.md	pending	4.10; E	4.10	
 client-internals/feature-timeline.md	pending	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	pending		4	
@@ -243,7 +243,7 @@ graal3d/lab-2026-10-30.md	pending		9
 graal3d/protocol.md	pending		9	
 graal3d/reference-server/README.md	pending		9	
 graal3d/torque-engine-4x.md	pending	8.3	10	
-live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; 4.3; 4.4; 4.5; E	4	
+live-runs/2gta-222-2026-10-30/README.md	pending	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	pending		4	
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	pending		4	
@@ -326,21 +326,21 @@ recovered-drive-tools/ghidra-analysis/gserverstat2/SUMMARY.md	pending		11
 recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	pending		11	
 recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	pending		11	
 recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	pending		11	
-recovered-hacks/DEFENSE_PROPOSALS.md	pending		4.10; 11	
+recovered-hacks/DEFENSE_PROPOSALS.md	excluded		4.10; 11	operator defence proposals for game servers; not client behaviour
 recovered-hacks/INVENTORY.md	pending		4.10; 11	
-recovered-hacks/THREAT_TAXONOMY.md	pending		4.10; 11	
-recovered-hacks/TRAINER_RE_NOTES.md	pending		4.10; 11	
+recovered-hacks/THREAT_TAXONOMY.md	pending	4.10	4.10; 11	
+recovered-hacks/TRAINER_RE_NOTES.md	pending	4.10	4.10; 11	
 recovered-hacks/Trainers/AutoPrograms by RpgWarrior/Graal_Miner.zip.BLOCKED.txt	excluded			placeholder for an archive withheld from the repository
 recovered-hacks/Trainers/Graal_Miner.zip.BLOCKED.txt	excluded			placeholder for an archive withheld from the repository
-recovered-hacks/behaviour-models.md	pending		4.10; 11	
-recovered-hacks/defense-checklist.md	pending		4.10; 11	
+recovered-hacks/behaviour-models.md	pending	4.10	4.10; 11	
+recovered-hacks/defense-checklist.md	excluded		4.10; 11	operator defence checklist for game servers; not client behaviour
 recovered-hacks/ghidra-analysis/AFK_Bot/SUMMARY.md	pending		4.10; 11	
 recovered-hacks/ghidra-analysis/GTS/SUMMARY.md	pending		4.10; 11	
 recovered-hacks/ghidra-analysis/Graal_Digger/SUMMARY.md	pending		4.10; 11	
 recovered-hacks/ghidra-analysis/Graal_Prayer/SUMMARY.md	pending		4.10; 11	
 recovered-hacks/ghidra-analysis/Graal_Prayer_data/SUMMARY.md	pending		4.10; 11	
 recovered-hacks/remaining-2026-11-01.md	pending		4.10; 11	
-recovered-hacks/static-2026-11-01/README.md	pending		4.10; 11	
+recovered-hacks/static-2026-11-01/README.md	pending	4.10	4.10; 11	
 recovered-hacks/static-2026-11-01/autod.md	pending		4.10; 11	
 recovered-hacks/static-2026-11-01/autoidle.md	pending		4.10; 11	
 recovered-hacks/static-2026-11-01/autos.md	pending		4.10; 11	
