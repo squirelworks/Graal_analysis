@@ -1,0 +1,19 @@
+// Original NPC library: baddy re-placer
+// Category: combat / baddies
+// Image: none (invisible)
+// Events: playerenters
+// Flag read: village_safe
+//
+// Clears the level's built-in baddies and places a fresh set on each
+// visit; once the village is safe, places none. Uses putnewcomp so each
+// one gets its own image and power.
+
+if (playerenters) {
+  hide;
+  removecompus;
+  if (!village_safe) {
+    putnewcomp graysoldier,12,40,soldier_rust.png,1;
+    putnewcomp graysoldier,50,40,soldier_rust.png,1;
+    putnewcomp frog,30,52,frog.png,1;
+  }
+}

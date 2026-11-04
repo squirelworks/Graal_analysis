@@ -1,0 +1,105 @@
+// Original NPC library: two-phase boss
+// Category: combat / baddies (boss)
+// Image: a 64x64 stone golem (sheet: normal at x 0, angry at x 64)
+// Events: playerenters, playertouchsme, washit, wasshot, exploded, timeout
+// Flag set: boss_golem_down (opens the way, see door-clear-room or a gate)
+//
+// Phase 1 (hp 20..11): walks toward the player slowly; every three seconds
+//   stamps, throwing a ring of four fireballs.
+// Phase 2 (hp 10..1): turns red, moves faster and alternates a charge at
+//   the player with the fireball ring.
+// Hits from the sword do the player's sword power, arrows 1, bombs 3. It
+// flashes briefly after each hit and cannot be hurt during the flash.
+// On defeat: explosions, a heart container, the flag. A defeated boss
+// stays gone on later visits.
+
+function hit() {
+  if (this.flash <= 0) {
+    this.hp -= this.dmg;
+    this.flash = 0.5;
+    play bosshit.wav;
+    if (this.hp <= 10 && this.phase == 1) {
+      this.phase = 2;
+      setimgpart golem.png,64,0,64,64;
+      this.speed = 0.12;
+      play roar.wav;
+    }
+    if (this.hp <= 0) die();
+  }
+}
+
+function die() {
+  this.phase = 9;
+  set boss_golem_down;
+  putexplosion 2,x+1,y+1;
+  putexplosion 2,x+3,y+3;
+  lay2 fullheart,x+1.5,y+1.5;
+  play bossdie.wav;
+  hide;
+}
+
+function ring() {
+  shootfireball 0;
+  shootfireball 1;
+  shootfireball 2;
+  shootfireball 3;
+  play stomp.wav;
+}
+
+if (playerenters) {
+  if (boss_golem_down) {
+    hide;
+    this.phase = 9;
+  } else {
+    setimgpart golem.png,0,0,64,64;
+    this.hp = 20;
+    this.phase = 1;
+    this.speed = 0.06;
+    this.attack = 3;
+    this.flash = 0;
+    this.charge = 0;
+    timeout = 0.05;
+  }
+}
+
+if (playertouchsme && this.phase != 9) hurt 2;
+
+if (washit && this.phase != 9) { this.dmg = playerswordpower; hit(); }
+if (wasshot && this.phase != 9) { this.dmg = 1; hit(); }
+if (exploded && this.phase != 9) { this.dmg = 3; hit(); }
+
+if (timeout && this.phase != 9) {
+  if (this.flash > 0) {
+    this.flash -= 0.05;
+    if (this.flash > 0 && int(this.flash * 20) % 2 == 0) hide; else show;
+  }
+  this.ddx = playerx - (x + 1);
+  this.ddy = playery - (y + 1);
+  this.len = (this.ddx ^ 2 + this.ddy ^ 2) ^ 0.5;
+  if (this.charge > 0) {
+    // phase 2 charge: fast straight line, stops at walls
+    this.charge -= 0.05;
+    if (!onwall(x + 2 + this.cx * 3, y + 2 + this.cy * 3)) {
+      x += this.cx;
+      y += this.cy;
+    } else {
+      this.charge = 0;
+    }
+  } else if (this.len > 1) {
+    x += this.ddx / this.len * this.speed;
+    y += this.ddy / this.len * this.speed;
+  }
+  this.attack -= 0.05;
+  if (this.attack <= 0) {
+    if (this.phase == 2 && this.charge <= 0 && random(0,2) < 1 && this.len > 0) {
+      this.cx = this.ddx / this.len * 0.5;
+      this.cy = this.ddy / this.len * 0.5;
+      this.charge = 0.8;
+      play roar.wav;
+    } else {
+      ring();
+    }
+    if (this.phase == 1) this.attack = 3; else this.attack = 2;
+  }
+  timeout = 0.05;
+}

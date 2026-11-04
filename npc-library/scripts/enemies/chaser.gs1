@@ -1,0 +1,96 @@
+// Original NPC library: chaser
+// Category: combat / baddies
+// Image: none (drawn as a character with the sword gani when it strikes)
+// Events: playerenters, playertouchsme, washit, wasshot, timeout
+//
+// Notices the player within seven tiles and follows, sliding along walls
+// one axis at a time. Loses interest beyond eleven tiles and walks home.
+// Knocked back two tiles when hit; four hits kill and drop a coin.
+
+function trymove() {
+  // move by (this.dx, this.dy), one axis at a time, so it slides on walls
+  if (!onwall(x + this.dx + 0.5, y + 1) && !onwall(x + this.dx + 1.5, y + 2)) x += this.dx;
+  if (!onwall(x + 0.5, y + this.dy + 1) && !onwall(x + 1.5, y + this.dy + 2)) y += this.dy;
+}
+
+function towards() {
+  // sets this.dx, this.dy to a step of this.speed toward (this.tx, this.ty)
+  this.ddx = this.tx - x;
+  this.ddy = this.ty - y;
+  this.len = (this.ddx * this.ddx + this.ddy * this.ddy) ^ 0.5;
+  this.dx = 0;
+  this.dy = 0;
+  if (this.len > 0.1) {
+    this.dx = this.ddx / this.len * this.speed;
+    this.dy = this.ddy / this.len * this.speed;
+  }
+}
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head20.png;
+  setcharprop #C1,darkred;
+  setcharprop #1,sword1.png;
+  setcharani walk,;
+  this.homex = x;
+  this.homey = y;
+  this.hp = 4;
+  this.alive = 1;
+  this.chasing = 0;
+  this.speed = 0.25;
+  this.knock = 0;
+  timeout = 0.05;
+}
+
+if (playertouchsme && this.alive == 1) {
+  setcharani sword,;
+  hurt 1;
+}
+
+if ((washit || wasshot) && this.alive == 1 && this.knock <= 0) {
+  this.hp--;
+  play hit.wav;
+  // knock back away from the player
+  this.tx = playerx;
+  this.ty = playery;
+  towards();
+  this.kx = -this.dx * 2;
+  this.ky = -this.dy * 2;
+  this.knock = 0.25;
+  if (this.hp <= 0) {
+    this.alive = 0;
+    putleaps 4,x,y;
+    lay2 redrupee,x+0.5,y+1;
+    hide;
+  }
+}
+
+if (timeout && this.alive == 1) {
+  this.dist = ((playerx - x) ^ 2 + (playery - y) ^ 2) ^ 0.5;
+  if (this.knock > 0) {
+    this.knock -= 0.05;
+    this.dx = this.kx * 0.2;
+    this.dy = this.ky * 0.2;
+    trymove();
+  } else {
+    if (this.chasing == 0 && this.dist < 7) this.chasing = 1;
+    if (this.chasing == 1 && this.dist > 11) this.chasing = 0;
+    if (this.chasing == 1) {
+      this.tx = playerx;
+      this.ty = playery;
+    } else {
+      this.tx = this.homex;
+      this.ty = this.homey;
+    }
+    towards();
+    trymove();
+    // face the main direction of travel
+    if (abs(this.dx) > abs(this.dy)) {
+      if (this.dx > 0) dir = 3; else dir = 1;
+    } else if (this.dy != 0) {
+      if (this.dy > 0) dir = 2; else dir = 0;
+    }
+    if (this.dx == 0 && this.dy == 0) setcharani idle,; else setcharani walk,;
+  }
+  timeout = 0.05;
+}

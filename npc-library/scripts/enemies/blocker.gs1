@@ -1,0 +1,45 @@
+// Original NPC library: blocker
+// Category: combat / weapons (AI)
+// Image: a broad armoured creature, 32x32
+// Events: playerenters, playertouchsme, wasshot, timeout
+//
+// Guards a corridor by mirroring the player's sideways position: it slides
+// left and right along its row to stay in front of the player, never
+// leaving its lane. Swords bounce off. Any arrow stuns it for two
+// seconds, which is the way through. The blue tint while stunned uses
+// setcoloreffect, which 2.05 applies only offline or on a server with an
+// NPC server (manual §8.1.9); elsewhere the stun still works, untinted.
+
+if (playerenters) {
+  setimg blocker.png;
+  this.lane = y;
+  this.minx = x - 4;          // <- lane ends
+  this.maxx = x + 4;
+  this.stun = 0;
+  timeout = 0.05;
+}
+
+if (playertouchsme && this.stun <= 0) {
+  hurt 1;
+}
+
+if (wasshot) {
+  this.stun = 2;
+  play stun.wav;
+  setcoloreffect 0.5,0.5,1,1;
+}
+
+if (timeout) {
+  if (this.stun > 0) {
+    this.stun -= 0.05;
+    if (this.stun <= 0) setcoloreffect 1,1,1,1;
+  } else {
+    this.want = playerx + 0.5;
+    if (this.want < this.minx) this.want = this.minx;
+    if (this.want > this.maxx) this.want = this.maxx;
+    if (abs(this.want - x) > 0.2) {
+      if (this.want > x) x += 0.2; else x -= 0.2;
+    }
+  }
+  timeout = 0.05;
+}
