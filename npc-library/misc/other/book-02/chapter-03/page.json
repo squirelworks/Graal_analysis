@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "Nbluelampani.gif",
-      "script": "ONbluelampani.gif",
       "count": 1,
       "files": [
         "house22.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "O0bluelampani.gif",
-      "script": "/0bluelampani.gif",
       "count": 1,
       "files": [
         "house22.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "C1bluelampani.gif",
-      "script": "O1bluelampani.gif",
       "count": 1,
       "files": [
         "house8.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "E;bluelampani.gif",
       "count": 1,
       "files": [
         "house9.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Cgoldenbush.gif",
-      "script": "if (washit && playerswordpower>=4) { putleaps 0,x,y; hide; }",
       "count": 1,
       "files": [
         "housegolden1.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "book15.gif",
-      "script": "4&bookopen.gif",
       "count": 1,
       "files": [
         "icegolemroom.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "bluelampani.gif",
-      "script": "6Cbeerhost.gif",
       "count": 1,
       "files": [
         "jaypee2bar.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "2Xbluelampani.gif",
-      "script": "2>bluelampani.gif",
       "count": 1,
       "files": [
         "jaypee2kitchen.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Rbluelampani.gif",
-      "script": "*Lbluelampani.gif",
       "count": 1,
       "files": [
         "level14.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "6Nbluelampani.gif",
-      "script": "HNbluelampani.gif",
       "count": 1,
       "files": [
         "level19.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "RMbluelampani.gif",
-      "script": "@Mbluelampani.gif",
       "count": 1,
       "files": [
         "level33.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "RObluelampani.gif",
-      "script": "XObluelampani.gif",
       "count": 1,
       "files": [
         "level41.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "R4bluelampani.gif",
-      "script": "L4bluelampani.gif",
       "count": 1,
       "files": [
         "level5.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "H9bluelampani.gif",
-      "script": "V9bluelampani.gif",
       "count": 1,
       "files": [
         "level5.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "beer.gif",
-      "script": "if (washit) {playery=15} ?Ucclarry.gif",
       "count": 1,
       "files": [
         "lifemountain6.graal"
-      ]
+      ],
+      "script_chars": 38
     },
     {
       "image": "bluelampani.gif",
-      "script": "3*bluelampani.gif",
       "count": 1,
       "files": [
         "mine3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "S,bluelampani.gif",
       "count": 1,
       "files": [
         "mine3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "QPbluelampani.gif",
-      "script": "SPbluelampani.gif",
       "count": 1,
       "files": [
         "mine3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "1Pbluelampani.gif",
-      "script": "3Pbluelampani.gif",
       "count": 1,
       "files": [
         "mine3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "G,bluelampani.gif",
       "count": 1,
       "files": [
         "mine4.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "2bluelampani.gif",
-      "script": "?2bluelampani.gif",
       "count": 1,
       "files": [
         "mine4.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "blackswitch.gif",
-      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door1Up; } 8Ablackdoor3.gif",
       "count": 1,
       "files": [
         "mine6.graal"
-      ]
+      ],
+      "script_chars": 78
     },
     {
       "image": "blackswitch.gif",
-      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door2Up; } -/blackdoor.gif",
       "count": 1,
       "files": [
         "mine6.graal"
-      ]
+      ],
+      "script_chars": 77
     },
     {
       "image": "IDblackswitch.gif",
-      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door4Up; } K.blackswitch.gif",
       "count": 1,
       "files": [
         "mine6.graal"
-      ]
+      ],
+      "script_chars": 79
     },
     {
       "image": "blackswitch.gif",
-      "script": "drawunderplayer; if (wasshooted || washit) { set M6Door4Up; } R;blackdoor2.gif",
       "count": 1,
       "files": [
         "mine6.graal"
-      ]
+      ],
+      "script_chars": 78
     }
   ]
 }

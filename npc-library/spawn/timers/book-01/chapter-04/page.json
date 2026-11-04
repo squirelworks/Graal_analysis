@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "Qbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; =Qbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Qbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; CQbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "FTbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; FWbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "7Qbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; FQbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "3Tbrugitemage_ss.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc BrugiteMage_ss.gif,BrugiteMage.txt,x,y; } if (timeout) destroy; KTbrugitemage_ss.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 124
     },
     {
       "image": "TJbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; WJbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Jbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; &Jbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "TGbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; TDbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "TAbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; T;brugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "WGbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; WDbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "WAbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; T>brugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "brugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; W;brugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Gbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; )Gbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Dbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; )Abrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Dbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; &Abrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "brugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; )>brugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "brugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; &;brugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_1.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Uterrorwing.gif",
-      "script": "if (playerenters) {timeout=0.05; timereverywhere;} if (timeout) { message Iron Boots!; setshoecolor gray; timeout=1; set BrugesTowerIronBoots } 7Wbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 168
     },
     {
       "image": "7Tbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; :Qbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Qbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; @Qbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "CQbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; FTbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "FWbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; 7Qbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "FQbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; 7Nbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Nbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; =Nbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     },
     {
       "image": "Nbrugestowerspikes1.gif",
-      "script": "if (playerenters) { timeout=.05; putnpc brugestowerspikes1.gif,brugesspikes.txt,x,y; } if (timeout) destroy; CNbrugestowerspikes1.gif",
       "count": 1,
       "files": [
         "brugestower2_2.graal"
-      ]
+      ],
+      "script_chars": 133
     }
   ]
 }

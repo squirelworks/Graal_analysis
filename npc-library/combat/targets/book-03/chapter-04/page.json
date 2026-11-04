@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "JMoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } NMoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "RQoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } RMoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "JAoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } FEoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "JEoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } NEoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "REoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N9octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "J9octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } F9octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "B9octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B=octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } R9octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "J1octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N1octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "J-octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } J)octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "R1octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } R-octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "9octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B1octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "B-octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } B)octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "1octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :-octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2-octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *-octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "1octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } .1octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "21octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *9octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "9octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 29octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "69octstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2=octstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "Aoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } *Eoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "Eoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } :Eoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "Aoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 2Eoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "6Eoctstatue.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >Eoctstatue.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 226
     },
     {
       "image": "pachukitesleepl1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >9shera.gif",
       "count": 1,
       "files": [
         "dlhqdorm.graal"
-      ]
+      ],
+      "script_chars": 222
     }
   ]
 }

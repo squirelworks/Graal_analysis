@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "9Fsmokeani.gif",
-      "script": "if (playertouchsme) {hurt -4} 5Fsmokeani.gif",
       "count": 1,
       "files": [
         "jaypee2steam1.graal"
-      ]
+      ],
+      "script_chars": 44
     },
     {
       "image": "1Fsmokeani.gif",
-      "script": "if (playertouchsme) {hurt -4} =Bsmokeani.gif",
       "count": 1,
       "files": [
         "jaypee2steam1.graal"
-      ]
+      ],
+      "script_chars": 44
     },
     {
       "image": "1Jsmokeani.gif",
-      "script": "if (playertouchsme) {hurt -4} 9Jsmokeani.gif",
       "count": 1,
       "files": [
         "jaypee2steam1.graal"
-      ]
+      ],
+      "script_chars": 44
     },
     {
       "image": "8Lsmokeani.gif",
-      "script": "if (playertouchsme) {hurt -4}",
       "count": 1,
       "files": [
         "jaypee2steam2.graal"
-      ]
+      ],
+      "script_chars": 29
     },
     {
       "image": "DTredguy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 5Tredguy.gif",
       "count": 1,
       "files": [
         "kcastle2b.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "8Tredguy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } @Tredguy.gif",
       "count": 1,
       "files": [
         "kcastle2b.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "GTredguy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 1} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "kcastle2b.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "Tredguy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } DTredguy.gif",
       "count": 1,
       "files": [
         "kcastle2c.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "GTredguy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { } 8Tredguy.gif",
       "count": 1,
       "files": [
         "kcastle2c.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "5Tredguy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {say 0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) {hurt 0} if (exploded || washit || wasshooted || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "kcastle2c.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "9monster.gif",
-      "script": "if (playerenters) {playery = 40; playerx = 30; hurt 0; putexplosion 8, x, y; timeout = 1.5} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {putexplosion 2, x, y; if (washit) {setlevel kcastle4c.graal} } if (timeout) {shootball; timeout = 0.5} \\@bowmachine2.gif",
       "count": 1,
       "files": [
         "kcastle4b.graal"
-      ]
+      ],
+      "script_chars": 347
     },
     {
       "image": "9monster.gif",
-      "script": "if (playerenters) {playery = 40; playerx = 30; hurt 0; putexplosion 8, x, y; timeout = 1.5} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (washit) {putexplosion 2, x, y; if (washit) {setlevel kcastle4d.graal} } if (timeout) {shootball; timeout = 0.5} \\@bowmachine2.gif",
       "count": 1,
       "files": [
         "kcastle4c.graal"
-      ]
+      ],
+      "script_chars": 347
     },
     {
       "image": "DGblackbaddy.gif",
-      "script": "if (playertouchsme) { if (NinjaClothesForLi) { say 3; x = 39; set L12letfree; } if (!NinjaClothesForLi) { say 2; set L12hurt; } } if (playertouchsother) { if (NinjaClothesForLi) x = 39; } if (playerenters) { if (L12letfree) x = 39; } if (playerendsreading) { if (L12hurt) { unset L12hurt; hurt 1; } } if (playerenters && !L12letfree){x = 36} AGblackbaddy.g",
       "count": 1,
       "files": [
         "level12.graal"
-      ]
+      ],
+      "script_chars": 356
     },
     {
       "image": "56beer.gif",
-      "script": "if (playerenters) {hide;x=21;y=22 } if (playerendsreading && beer1) {show;canbecarried;} if (playertouchsme) {hurt -20 } if (wasthrown) {putleaps 5,x,y;hide;unset beer1;x=21;y=22} 3*beer.gif",
       "count": 1,
       "files": [
         "lifemountain6.graal"
-      ]
+      ],
+      "script_chars": 190
     },
     {
       "image": "6beer.gif",
-      "script": "if (playerenters) {hide;x=27;y=22 } if (playerendsreading && beer3) {show;canbecarried;} if (playertouchsme) {hurt -4} if (wasthrown) {putleaps 5,x,y;hide;unset beer3;x=27;y=22} ?7beer.gif",
       "count": 1,
       "files": [
         "lifemountain6.graal"
-      ]
+      ],
+      "script_chars": 188
     },
     {
       "image": "JAbeer.gif",
-      "script": "if (playerenters) {hide;x=42;y=33 } if (playerendsreading && beer2) {show;canbecarried;} if (playertouchsme) {hurt -4 } if (wasthrown) {putleaps 5,x,y;hide;unset beer2;x=42;y=33} )9beer.gif",
       "count": 1,
       "files": [
         "lifemountain6.graal"
-      ]
+      ],
+      "script_chars": 189
     },
     {
       "image": "beer.gif",
-      "script": "if (playerenters) {hide;x=17;y=31 } if (playerendsreading && beer5) {show;canbecarried} if (playertouchsme) {hurt -20 } if (wasthrown) {putleaps 5,x,y;hide;unset beer5;x=17;y=31} G0",
       "count": 1,
       "files": [
         "lifemountain6.graal"
-      ]
+      ],
+      "script_chars": 181
     },
     {
       "image": "bigoct.gif",
-      "script": "if (playerenters) { say 0;timeout = 1; } if (timeout) { shootball; x=random(16,43); timeout = 2.5; } if (playertouchsme) {hurt 1} if (compusdied) {playerx=33;playery=33;setlevel lizardden11.graal }",
       "count": 1,
       "files": [
         "lizardden10.graal"
-      ]
+      ],
+      "script_chars": 197
     },
     {
       "image": "bigoct.gif",
-      "script": "if (playerenters) { if (!main2kilt){timeout = 0.5; ozhp=7;} if (main2kilt){hide} } if (timeout && visible) { if(!main2kilt){ shootball; timeout = 1.5; } } if (playertouchsme) {hurt1} if (exploded || washit || wasshooted || waspelt) { ozhp=ozhp-1; if(ozhp=0){ hide; } }",
       "count": 1,
       "files": [
         "lizardden20.graal"
-      ]
+      ],
+      "script_chars": 268
     },
     {
       "image": "0blackbaddy.gif",
-      "script": "if (playerenters) {say00 } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded) {say00 } 30emeraldbaddy.gif",
       "count": 1,
       "files": [
         "lordscorpion'shouse15.graal"
-      ]
+      ],
+      "script_chars": 195
     },
     {
       "image": "blackbaddy.gif",
-      "script": "if (playerenters) {say00 } if (playertouchsme) {hurt3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) {setcoatcolor white } if (playerendsreading) {reducebombs3 } '9blackbaddy.gif",
       "count": 1,
       "files": [
         "lordscorpion'shouse6.graal"
-      ]
+      ],
+      "script_chars": 200
     },
     {
       "image": "49blackbaddy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } '=blackbaddy.gif",
       "count": 1,
       "files": [
         "lordscorpion'shouse6.graal"
-      ]
+      ],
+      "script_chars": 165
     },
     {
       "image": "blackbaddy.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {hurt1 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { }",
       "count": 1,
       "files": [
         "lordscorpion'shouse6.graal"
-      ]
+      ],
+      "script_chars": 148
     },
     {
       "image": "5-bbottle.gif",
-      "script": "if (playerenters&&!mccoke) hide; if (mccoke) {show; } if (playertouchsme) { hurt -1; hide; unset mccoke; } if (playerlaysitem && mccoke) { set !mccoke; } >)beerhost.gif",
       "count": 1,
       "files": [
         "mcgraals3.graal"
-      ]
+      ],
+      "script_chars": 168
     },
     {
       "image": "pie.gif",
-      "script": "if (playerenters&&!mcpie) hide; if (mcpie) {show;} if (playertouchsme) { hurt -3; hide; unset mcpie } if (playerlaysitem && mcpie) { set !mcpie;} 6/mcnugg.gif",
       "count": 1,
       "files": [
         "mcgraals3.graal"
-      ]
+      ],
+      "script_chars": 158
     }
   ]
 }

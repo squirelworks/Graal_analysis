@@ -1,0 +1,67 @@
+# NPC behaviour by category
+
+Own-words behaviour summaries for each genre and topic in the NPC library. They describe what the original level scripts did, as a spec for writing new NPCs from scratch. No original script text is reproduced. The same text is in `index.json` under `behaviour`.
+
+## combat / baddies (452 scripts)
+
+Enemy and trap NPCs. Most are event skeletons that react when the player enters, touches them, drops an item, or when all baddies in the level die (show a reward, open the way, say a line). Active ones run a fast timer (about 0.05 s), store their home position, and when the player lines up on the same row or column within a tile or two, lunge in that direction until they hit a wall, then return. Common actions: show a sign line, set or clear a flag, change level, fire a ball, re-place or remove the level's built-in baddies.
+
+## combat / hazards (192 scripts)
+
+Things that hurt on contact: spikes, fire, traps, booby-trapped chests. On touch they take hearts from the player (sometimes heal with a negative value) and often push the player back a tile in a stored direction if the target tile is free. Some hide until a password is spoken, some can be picked up and thrown, some vanish (destroy) after triggering, and some fire projectiles on a timer.
+
+## combat / targets (728 scripts)
+
+Objects that react to being hit, shot, bombed or thrown at (bushes, pots, switches, crates). Most are the default event skeleton with a reaction only on the hit events: hide, leave leaps or an explosion, show a line, play a sound, or set a flag. Many also set physical traits on entry: can be carried, pushed or pulled, does not block, drawn under or over the player.
+
+## combat / weapons (28 scripts)
+
+Larger self-contained AI scripts and weapon pickups. Typical AI: wander inside a rectangular region, picking a random direction and speed on a timer and bouncing off walls; burrowing or blocking enemies that pop up near the player. Weapon pickups add a weapon to the player, can disable the player's weapons in a zone, drop bombs or explosions, or change the player's look.
+
+## dialogue / speech (373 scripts)
+
+Talking NPCs and furniture. On touch they show one of the level's sign lines, often choosing the line from flags (quest progress), taking or giving items, playing a sound, or changing the player's clothing colours. Some respond to keywords the player says. Seats move the player to a fixed spot, face them a direction and swap draw order so the player sits on the object.
+
+## interaction / flags (11 scripts)
+
+Quest-state switches. On touch they set or clear named flags, give the player a weapon and remove themselves, or change the player's outfit (clothes racks). One adds a digging tool that, when fired, edits the board tile in front of the player.
+
+## interaction / triggers (411 scripts)
+
+Mostly scenery set-up run on level entry: make the object non-blocking, draw it under or over the player, make it pushable, pullable or carryable, remember its position, or recolour the player on touch. Many are one-liners whose only job is to configure how the image behaves.
+
+## interaction / visibility (180 scripts)
+
+Breakables and liftables. On entry they draw under the player and are often carryable; when bombed, thrown or hit they hide and leave leaps or an explosion at their position. A few follow the player, freeze the player briefly or hand over a weapon.
+
+## misc / other (257 scripts)
+
+Image-only NPCs with no script (decorative animations such as lamps) plus a handful of tiny effects that set a flag, leave leaps or fire a blast when hit.
+
+## object / blocks (35 scripts)
+
+Static or conditional obstacles: draw under the player, show only at night or only during the day, play a tune when bumped, or place further NPCs on a timer.
+
+## object / chests (10 scripts)
+
+Reward containers. On touch they show a line and, if conditions hold (a flag, a spoken password), give a sword, shield or head, drop a random reward chosen from weighted ranges, or swap to an opened image. They set a flag so the reward is given once.
+
+## object / doors (108 scripts)
+
+Doors and gates. The common pattern: when touched, hide for a short time (about 2 s, timer running even when the player is elsewhere) and then reappear; or reappear when the player re-enters. Locked variants check a flag or a spoken password first, show a line, and may block again afterwards.
+
+## object / signs (15 scripts)
+
+Readable signs: on touch show a sign line, picking the line from flags; some hide once read, stop the music, or show a countdown.
+
+## spawn / timers (328 scripts)
+
+Timed behaviour: respawners (when hit, hide, wait a few seconds, reappear only when the player is not standing on the spot), spawners that place enemies or NPCs on a schedule, objects that follow the player once touched, animation cycles that swap images on a timer, arrow shooters, and timed explosions. Timers often run level-wide so state advances while the player is away.
+
+## transport / level-warps (27 scripts)
+
+Warps that move the player to a position in another level on touch, choosing the destination from flags (lift floors). Warp-ring pickups add a weapon that, when fired, freezes and spins the player for a moment and then warps them, sometimes to a random destination.
+
+## transport / local-warps (32 scripts)
+
+Teleporter pads and warp-item stands inside a level: non-blocking, drawn under the player, and on touch check whether the player owns the warp item and show the matching line.

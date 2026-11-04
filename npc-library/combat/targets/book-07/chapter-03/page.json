@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "91bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme&&playerdir=1) { playerhearts+=40} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 9/bluelampani.gif",
       "count": 1,
       "files": [
         "tseng10.graal"
-      ]
+      ],
+      "script_chars": 257
     },
     {
       "image": "2couch.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { }",
       "count": 1,
       "files": [
         "tseng10.graal"
-      ]
+      ],
+      "script_chars": 195
     },
     {
       "image": "pachukiteup2.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { say1;set scaredoffman;lay redrupee} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (scaredoffman) { hide } //couch.gif",
       "count": 1,
       "files": [
         "tseng11.graal"
-      ]
+      ],
+      "script_chars": 283
     },
     {
       "image": "6grave1.gif",
-      "script": "if (playerenters) { canbepulled;canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @7deadman.gif",
       "count": 1,
       "files": [
         "tseng12.graal"
-      ]
+      ],
+      "script_chars": 248
     },
     {
       "image": "Swarpring.gif",
-      "script": "if (playerenters&&!gottsengwarp) { show} if (playertouchsme) {say2; toweapons Tseng WarpRing;set gottsengwarp; hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (weaponfired) { playerx=21;playery=53; setlevel tseng1.graal } if (playersays(drop tseng warp) ) { destroy; unset g",
       "count": 1,
       "files": [
         "tseng12.graal"
-      ]
+      ],
+      "script_chars": 400
     },
     {
       "image": "8Pdoor.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {hide } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } I4",
       "count": 1,
       "files": [
         "tseng13.graal"
-      ]
+      ],
+      "script_chars": 217
     },
     {
       "image": "couch.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } -&couch.gif",
       "count": 1,
       "files": [
         "tseng14.graal"
-      ]
+      ],
+      "script_chars": 247
     },
     {
       "image": "chest.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { say0} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (playersays(the password is ???) ) { setshield spikesheild.gif,players[0].shieldpower; setsword boltsword.gif,players[0].swordpower } O:fizzaretip.gif",
       "count": 1,
       "files": [
         "tseng14.graal"
-      ]
+      ],
+      "script_chars": 368
     },
     {
       "image": "fizzaretip.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } N",
       "count": 1,
       "files": [
         "tseng14.graal"
-      ]
+      ],
+      "script_chars": 212
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { canbepulled;canbepushed} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } %9bluelampani.gif",
       "count": 1,
       "files": [
         "tseng14.graal"
-      ]
+      ],
+      "script_chars": 251
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { canbepulled;canbepushed} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } Q/bluelampani.gif",
       "count": 1,
       "files": [
         "tseng14.graal"
-      ]
+      ],
+      "script_chars": 251
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { canbepulled;canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } %7bluelampani.gif",
       "count": 1,
       "files": [
         "tseng15.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { canbepulled;canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } R,bluelampani.gif",
       "count": 1,
       "files": [
         "tseng15.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "62bluelampani.gif",
-      "script": "if (playerenters) { canbepulled;canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } G1bluelampani.gif",
       "count": 1,
       "files": [
         "tseng15.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "beerhost.gif",
-      "script": "if (playerenters) { disableweapons} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1$beerhost.gif",
       "count": 1,
       "files": [
         "tseng16.graal"
-      ]
+      ],
+      "script_chars": 239
     },
     {
       "image": "-Mbluelampani.gif",
-      "script": "if (playerenters) { canbepulled; canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "1bluelampani.gif",
-      "script": "if (playerenters) { canbepulled; canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } &>bluelampani.gif",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 253
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { canbepulled; canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ELbluelampani.gif",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 253
     },
     {
       "image": "baddybluesitting.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { message It's me , Bad Max. Now , mind ur own business! ; timeout=3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message } 79misty.gif",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 297
     },
     {
       "image": "5initiate.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { say3 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 10lethallemongif.gif",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 236
     },
     {
       "image": "1Lbrother2.gif",
-      "script": "if (playerenters) { disableweapons} if (playertouchsme) { say7} if (playertouchsother) { } if (playerlaysitem) { take greenrupee;take bluerupee;take redrupee} if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout){ } if (rupees=1) { set showcider;rupees-=1;say9 } if (rupees=5) { set showpizza;rupees-=5 ;say9} if (rupees=30) { set showbigcombo;",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 400
     },
     {
       "image": "Dmeatmed.gif",
-      "script": "if (playerenters) {hide } if (playertouchsme) { playerhearts+=10;unset showbigcombo;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (showbigcombo) { show } @Knowplaying.gif",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 298
     },
     {
       "image": "Cbluelampani.gif",
-      "script": "if (playerenters) { canbepulled; canbepushed } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } %",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 237
     },
     {
       "image": "pachuka1.gif",
-      "script": "if (playerenters) { } if (playertouchsme) {message Get out!!!; timeout=5 } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { message } (Ggreenpotion.gif",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 265
     },
     {
       "image": "Fmeatmed.gif",
-      "script": "if (playerenters) {hide } if (playertouchsme) { playerhearts+=6;unset showpizza;unset showbigcombo;hide} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } if (showpizza) { show} if (showbigcombo) { show }",
       "count": 1,
       "files": [
         "tseng2.graal"
-      ]
+      ],
+      "script_chars": 319
     }
   ]
 }

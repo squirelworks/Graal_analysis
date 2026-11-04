@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "FMbiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} JEbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "BIbiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} JIbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "Ebiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} &5biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "9biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} .=biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "29biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 61biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "B9biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} F5biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "F-biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} N5biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "V5biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} B%biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "-biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 6-biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena2.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 6Ubiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "2Ibiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} >Mbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "Qbiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} FUbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "6Mbiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} *Ibiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "Ibiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} FQbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "FAbiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} >Abiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} RAbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "R5biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} F-biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "61biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 6)biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "9biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} :=biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 2Abiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "F1biglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} K]",
       "count": 1,
       "files": [
         "dlbombarena3.graal"
-      ]
+      ],
+      "script_chars": 75
     },
     {
       "image": "2Ibiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} &=biglift.gif",
       "count": 1,
       "files": [
         "dlbombarena4.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "2Abiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} 6Mbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena4.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "6Ubiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} FMbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena4.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "Ebiglift.gif",
-      "script": "if (playerenters) {drawunderplayer} if (exploded) {hide; putleaps 2,x,y} BMbiglift.gif",
       "count": 1,
       "files": [
         "dlbombarena4.graal"
-      ]
+      ],
+      "script_chars": 86
     }
   ]
 }

@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "CHbluelampani.gif",
-      "script": "?Hbluelampani.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "8/bluelampani.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "bluelampani.gif",
-      "script": "X(bluelampani.gif",
       "count": 1,
       "files": [
         "resortoutside.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "59bluelampani.gif",
-      "script": "H?bluelampani.gif",
       "count": 1,
       "files": [
         "room23.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "07bluelampani.gif",
-      "script": ";7bluelampani.gif",
       "count": 1,
       "files": [
         "room24a.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "I2dlstatue.gif",
-      "script": "D2dlstatue.gif",
       "count": 1,
       "files": [
         "sardontower11.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "RTbookopen.gif",
-      "script": "TQbookstack.gif",
       "count": 1,
       "files": [
         "sardontower29.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "2Jdlstatue.gif",
-      "script": "2.dlstatue.gif",
       "count": 1,
       "files": [
         "sardontower7.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "dlstatue.gif",
-      "script": "EIdlstatue.gif",
       "count": 1,
       "files": [
         "sardontowerout.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "5Idlstatue.gif",
-      "script": "B;dlstatue.gif",
       "count": 1,
       "files": [
         "sardontowerout.graal"
-      ]
+      ],
+      "script_chars": 14
     },
     {
       "image": "KZphatpachyclouds.gif",
-      "script": "L(phatpachyclouds.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 21
     },
     {
       "image": "phatpachyclouds.gif",
-      "script": "K5smalltree.gif",
       "count": 1,
       "files": [
         "sardontowerroof.graal"
-      ]
+      ],
+      "script_chars": 15
     },
     {
       "image": "C-dbluebaddy.gif",
-      "script": "if (rupees>=5) {lay bombs; rupees-=5 } if (playerlaysitem) {take bluerupee} if (playerlaysitem) {take greenrupee} )0beer.gif",
       "count": 1,
       "files": [
         "shop.graal"
-      ]
+      ],
+      "script_chars": 124
     },
     {
       "image": "dbluebaddy.gif",
-      "script": "ADalienswitch.gif",
       "count": 1,
       "files": [
         "skytf1r3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "IDalienswitch.gif",
-      "script": ":Dalienswitch.gif",
       "count": 1,
       "files": [
         "skytf1r3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Halienswitch.gif",
-      "script": ":Lalienswitch.gif",
       "count": 1,
       "files": [
         "skytf1r3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "Palienswitch.gif",
-      "script": "APalienswitch.gif",
       "count": 1,
       "files": [
         "skytf1r3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "IPalienswitch.gif",
-      "script": "PPalienswitch.gif",
       "count": 1,
       "files": [
         "skytf1r3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "PLalienswitch.gif",
-      "script": "PHalienswitch.gif",
       "count": 1,
       "files": [
         "skytf1r3.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "EVbluelampani.gif",
-      "script": "KVbluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "EQbluelampani.gif",
-      "script": "KQbluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "EFbluelampani.gif",
-      "script": "EAbluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "KAbluelampani.gif",
-      "script": "KFbluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "E6bluelampani.gif",
-      "script": "K6bluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     },
     {
       "image": "E1bluelampani.gif",
-      "script": "K1bluelampani.gif",
       "count": 1,
       "files": [
         "sonichouse.graal"
-      ]
+      ],
+      "script_chars": 17
     }
   ]
 }

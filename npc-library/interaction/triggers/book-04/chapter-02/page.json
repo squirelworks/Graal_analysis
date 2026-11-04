@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "18galenseat.gif",
-      "script": "if (playertouchsme && playeringuild CC) {dontblock; drawunderplayer} @3pachseat.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 83
     },
     {
       "image": "uwseat.gif",
-      "script": "if (playertouchsme && playeringuild weapon) {dontblock; drawunderplayer} @8stefanseat.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 89
     },
     {
       "image": "1Bgoldseat.gif",
-      "script": "if (playertouchsme) {drawunderplayer; dontblock} 1Fgoldseat.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 63
     },
     {
       "image": "1Jgoldseat.gif",
-      "script": "if (playertouchsme) {drawunderplayer; dontblock} @Fgoldseat.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 63
     },
     {
       "image": "Jgoldseat.gif",
-      "script": "if (playertouchsme) {drawunderplayer; dontblock} G1graalwithblood.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 69
     },
     {
       "image": "FoDButton.gif",
-      "script": "if (playertouchsme) { openurl www.geocities.com/TimesSquare/9901/FoD/Join.html } 7?trapdoor.gif",
       "count": 1,
       "files": [
         "midashouse4_b.graal"
-      ]
+      ],
+      "script_chars": 95
     },
     {
       "image": "fodarms.gif",
-      "script": "if (playerenters) {dontblock; drawunderplayer; } if (playertouchsme) {} 7;fodbutton.gif",
       "count": 1,
       "files": [
         "midasrealmx.graal"
-      ]
+      ],
+      "script_chars": 87
     },
     {
       "image": "GMmidasshoparrows.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } if (playertouchsme) { playerdarts = 99; } CMmidasshoplife.gif",
       "count": 1,
       "files": [
         "midasrealmx.graal"
-      ]
+      ],
+      "script_chars": 111
     },
     {
       "image": "IMmidasshopredrupee.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } if (playertouchsme) { playerrupees += 100; } JMmidasshopredrupee.gif",
       "count": 1,
       "files": [
         "midasrealmx.graal"
-      ]
+      ],
+      "script_chars": 118
     },
     {
       "image": "Efloor.gif",
-      "script": "if (playerenters && !littlewacky) {dontblock;drawunderplayer} if (littlewacky){canbecarried; setgif egg.gif;} if (wasthrown) {setgif chick.gif; } 8Bchiken.gif",
       "count": 1,
       "files": [
         "mouoffice.graal"
-      ]
+      ],
+      "script_chars": 158
     },
     {
       "image": "7gerudotentfront.gif",
-      "script": "if (playerenters) { drawunderplayer; } \\/gerudotentfront.gif",
       "count": 1,
       "files": [
         "newdesertarea.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "gerudotentfront.gif",
-      "script": "if (playerenters) { drawunderplayer; } \\ gerudotentfront.gif",
       "count": 1,
       "files": [
         "newdesertarea.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "gerudotentfront.gif",
-      "script": "if (playerenters) { drawunderplayer; } PHinfernas_s_s.gif",
       "count": 1,
       "files": [
         "newdesertarea.graal"
-      ]
+      ],
+      "script_chars": 57
     },
     {
       "image": "floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } N$floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } G+floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } U$floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } U2floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "N2floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } G2floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "U9floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } U@floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "UGfloor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } UNfloor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "UUfloor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } NUfloor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "NNfloor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } NGfloor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "GUfloor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } GNfloor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "Nfloor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } @Ufloor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     },
     {
       "image": "floor4.gif",
-      "script": "if (playerenters) { dontblock; drawunderplayer; } G@floor4.gif",
       "count": 1,
       "files": [
         "nightclub2.graal"
-      ]
+      ],
+      "script_chars": 62
     }
   ]
 }

@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "gray.gif",
-      "script": "if (playertouchsme) {setsleevecolorgray} B?green.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "green.gif",
-      "script": "if (playertouchsme) {setbeltcolorgreen } B?green.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "green.gif",
-      "script": "if (playertouchsme) {setbeltcolorgreen } I0gray.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 51
     },
     {
       "image": "I0gray.gif",
-      "script": "if (playertouchsme) {setbeltcolorgray} I0gray.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 49
     },
     {
       "image": "C4lightblue.gif",
-      "script": "if (playertouchsme) {setbeltcolorlightblue} F?lightgray.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 59
     },
     {
       "image": "lightgreen.gif",
-      "script": "if (playertouchsme) {setsleevecolorlightgreen } H?orange.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "BCpink.gif",
-      "script": "if (playertouchsme) {setsleevecolorpink} DCpurple.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 53
     },
     {
       "image": "CCred.gif",
-      "script": "if (playertouchsme) {setsleevecolorred } ECwhite.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "FCyellow.gif",
-      "script": "if (playertouchsme) {setsleevecoloryellow } 4<black.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "blue.gif",
-      "script": "if (playertouchsme) { setskincolorblue} 8<brown.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 51
     },
     {
       "image": "darkblue.gif",
-      "script": "if (playertouchsme) { setskincolordarkblue} D<brown.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 55
     },
     {
       "image": "darkgreen.gif",
-      "script": "if (playertouchsme) {setskincolordarkgreen} 9<darkpurple.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "green.gif",
-      "script": "if (playertouchsme) {setskincolorgreen } 4?gray.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 51
     },
     {
       "image": "darkred.gif",
-      "script": "if (playertouchsme) {setskincolordarkred} 7?lightblue.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 57
     },
     {
       "image": "lightgray.gif",
-      "script": "if (playertouchsme) {setskincolorlightgray } 8?lightgreen.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 61
     },
     {
       "image": "orange.gif",
-      "script": "if (playertouchsme) {setskincolororange } 4Cpink.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 52
     },
     {
       "image": "5Cred.gif",
-      "script": "if (playertouchsme) {setskincolorred } 6Cpurple.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 51
     },
     {
       "image": "7Cwhite.gif",
-      "script": "if (playertouchsme) {setskincolorwhite } 8Cyellow.gif",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 53
     },
     {
       "image": "9Caqua.gif",
-      "script": "if (playertouchsme) {setskincolorcynober}",
       "count": 1,
       "files": [
         "ArmasClothes4.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "dekushieldhead.gif",
-      "script": "if (playertouchsme) {setshielddekushield.gif,playershieldpower } ;.mirrorshieldzeldahead.gif",
       "count": 1,
       "files": [
         "ArmasSwordsandShields.graal"
-      ]
+      ],
+      "script_chars": 92
     },
     {
       "image": "62excaliurswordhead.gif",
-      "script": "if (playertouchsme) {setswordexcaliursword.gif,playershieldpower } ?.nightstickhead.gif",
       "count": 1,
       "files": [
         "ArmasSwordsandShields.graal"
-      ]
+      ],
+      "script_chars": 87
     },
     {
       "image": "hackcorpswordhead.gif",
-      "script": "if (playertouchsme) { setswordhackcorpssword.gif,playershieldpower} ?1hackcorpsaxehead.gif",
       "count": 1,
       "files": [
         "ArmasSwordsandShields.graal"
-      ]
+      ],
+      "script_chars": 90
     },
     {
       "image": "dekushieldhead.gif",
-      "script": "if (playertouchsme) {setshielddekushield.gif,playershieldpower } C1swordoflifehead.gif",
       "count": 1,
       "files": [
         "ArmasSwordsandShields.graal"
-      ]
+      ],
+      "script_chars": 86
     },
     {
       "image": "hackcorpsshieldhead.gif",
-      "script": "if (playertouchsme) {setshieldhackcorpsshield.gif,playershieldpower } G1riotshieldhead.gif",
       "count": 1,
       "files": [
         "ArmasSwordsandShields.graal"
-      ]
+      ],
+      "script_chars": 90
     },
     {
       "image": "G4bloodysmilehead.gif",
-      "script": "if (playertouchsme) {setshieldbloodysmile.gif,playershieldpower } A,rainbowhead.gif",
       "count": 1,
       "files": [
         "ArmasSwordsandShields.graal"
-      ]
+      ],
+      "script_chars": 83
     }
   ]
 }
