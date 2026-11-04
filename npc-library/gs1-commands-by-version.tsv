@@ -1,0 +1,209 @@
+command	first_delphi	last_delphi	first_engine	last_engine	2nd Graal	3rd Graal	4th Graal	4th Graal alpha	5th Graal	5th Graal alpha	6th Graal	7th Graal	8th Graal	9th Graal alpha	9th Graal	10th Graal 1.0	11th Graal	12th Graal	13th Graal 1.1b1	14th Graal 1.1	15th Graal	1.1.9	1.1	1.21	1.28b2	1.3 test	1.31	1.32	1.33	1.34	1.35	1.36	1.37	1.38	1.39	1.41r1	NM24	NM26	2.0	2.0r1	2.0r2	2.0r3	2.01	2.01r1	2.02	2.02r1	2.02r2	2.03	2.04	2.05	2.05r1	NWb1	2.05r2	2.1t2	2.1t3	NWb2	2.17.1	2.22	2.31	3.04 Linux	3.153 Mac	4.04r2 Win	4.20r6 Mac	4.20r8 Win	5.00r7 Win
+addstring	NWb2	2.31	3.04 Linux	5.00r7 Win																																																				1	1	1	1	1	1	1	1	1	1
+addtiledef	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+addtiledef2	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+attachplayertoobj	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+blockagain	6th Graal	2.31	3.04 Linux	5.00r7 Win							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+blockagainlocal	1.34	2.31	3.04 Linux	5.00r7 Win																										1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+break	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+callnpc	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+callweapon	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+canbecarried	7th Graal	2.31	3.04 Linux	5.00r7 Win								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+canbepulled	13th Graal 1.1b1	2.31	3.04 Linux	5.00r7 Win															1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+canbepushed	13th Graal 1.1b1	2.31	3.04 Linux	5.00r7 Win															1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+cannotbecarried	7th Graal	2.31	3.04 Linux	5.00r7 Win								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+cannotbepulled	13th Graal 1.1b1	2.31	3.04 Linux	5.00r7 Win															1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+cannotbepushed	13th Graal 1.1b1	2.31	3.04 Linux	5.00r7 Win															1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+canwarp	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+canwarp2	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+carryobject	1.34	2.31	3.04 Linux	5.00r7 Win																										1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+changeimgcolors	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+changeimgmode	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+changeimgpart	1.38	2.31	3.04 Linux	5.00r7 Win																														1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+changeimgvis	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+changeimgzoom	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+continue	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+deletestring	NWb2	2.31	3.04 Linux	5.00r7 Win																																																				1	1	1	1	1	1	1	1	1	1
+destroy	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+detachplayer	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+disabledefmovement	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+disablemap	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+disablepause	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+disableselectweapons	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+disableweapons	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+dontblock	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+dontblocklocal	1.34	2.31	3.04 Linux	5.00r7 Win																										1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+drawaslight	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+drawoverplayer	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+drawovertrees	1.41r1	2.31																																		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1						
+drawunderplayer	6th Graal	2.31	3.04 Linux	5.00r7 Win							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+else	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+enabledefmovement	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+enablefeatures	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+enablemap	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+enablepause	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+enableselectweapons	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+enableweapons	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+explodebomb	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+followplayer	6th Graal	2.31	3.04 Linux	5.00r7 Win							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+for	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+freezeplayer	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+freezeplayer2	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+function	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hide	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hideimg	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hideimgs	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+hidelocal	1.34	2.31	3.04 Linux	5.00r7 Win																										1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hideplayer	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hidesword	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hitcompu	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hitnpc	1.38	2.31	3.04 Linux	5.00r7 Win																														1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hitobjects	2.01	2.31	3.04 Linux	5.00r7 Win																																							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hitplayer	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+hurt	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+if	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+insertstring	NWb2	2.31	3.04 Linux	5.00r7 Win																																																				1	1	1	1	1	1	1	1	1	1
+join	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+lay	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+lay2	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+loadmap	2.05	2.31	3.04 Linux	5.00r7 Win																																														1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+message	14th Graal 1.1	2.31	3.04 Linux	5.00r7 Win																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+move	2.03	2.31	3.04 Linux	5.00r7 Win																																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+noplayerkilling	9th Graal	2.31	3.04 Linux	5.00r7 Win											1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+openurl	6th Graal	2.31	3.04 Linux	5.00r7 Win							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+openurl2	2.01	2.31	3.04 Linux	5.00r7 Win																																							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+play	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+play2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+playlooped	1.37	2.31	3.04 Linux	5.00r7 Win																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putbomb	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putcomp	4th Graal alpha	2.31	3.04 Linux	5.00r7 Win				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putexplosion	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putexplosion2	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+puthorse	7th Graal	2.31	3.04 Linux	5.00r7 Win								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putleaps	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putnewcomp	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putnpc	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+putnpc2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+putobject	1.21	2.31																						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1						
+reducebombs	3rd Graal	5th Graal				1	1	1	1																																																								
+reducedarts	3rd Graal	5th Graal				1	1	1	1																																																								
+reducerupees	3rd Graal	5th Graal				1	1	1	1																																																								
+reflectarrow	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removearrow	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removebomb	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removecompus	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removeexplo	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removehorse	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removeitem	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+removestring	NWb2	2.31	3.04 Linux	5.00r7 Win																																																				1	1	1	1	1	1	1	1	1	1
+removetiledefs	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+replaceani	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+replacestring	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+resetfocus	1.33	2.31	3.04 Linux	5.00r7 Win																									1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+return	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+savelog	2.17.1	2.31	3.153 Mac	5.00r7 Win																																																					1	1	1		1	1	1	1	1
+savelog2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+say	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+say2	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+sendpm	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+sendrpgmessage	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+sendtonc	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+sendtorc	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+serverwarp	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+set	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setani	1.39	2.31	3.04 Linux	5.00r7 Win																															1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setarray	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setbackpal	1.28b2	2.31																							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1						
+setbacktile	1.34	2.31																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1						
+setbacktile2	2.05	2.31																																																1	1	1	1	1	1	1	1	1	1						
+setbeltcolor	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setbody	1.33	2.31																											1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1						
+setbow	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setcharani	1.39	2.31	3.04 Linux	5.00r7 Win																															1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setchargender	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setcharprop	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setcoatcolor	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setcoloreffect	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setcursor	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+setcursor2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+seteffect	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+seteffectmode	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+setfocus	1.33	2.31	3.04 Linux	5.00r7 Win																									1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setgender	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setgif	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setgifpart	1.3 test	2.31	3.04 Linux	5.00r7 Win																						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+sethead	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setimg	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setimgpart	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setletters	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setlevel	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setlevel2	1.38	2.31	3.04 Linux	5.00r7 Win																														1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setmap	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setminimap	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setmusicvolume	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setplayerdir	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setplayerprop	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setplayerx	3rd Graal	5th Graal				1	1	1	1																																																								
+setplayery	3rd Graal	5th Graal				1	1	1	1																																																								
+setpm	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+setshape	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setshape2	2.04	2.31	3.04 Linux	5.00r7 Win																																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setshield	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setshoecolor	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setshootparams	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+setskincolor	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setsleevecolor	3rd Graal	2.31	3.04 Linux	5.00r7 Win		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setspritesimage			5.00r7 Win	5.00r7 Win																																																													1
+setstatusimage			5.00r7 Win	5.00r7 Win																																																													1
+setstring	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setsword	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+seturllevel	6th Graal	2.31	3.04 Linux	5.00r7 Win							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setx	2nd Graal	5th Graal			1	1	1	1	1																																																								
+sety	2nd Graal	5th Graal			1	1	1	1	1																																																								
+setz	2.05	2.31	3.04 Linux	5.00r7 Win																																														1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+setzoomeffect	NM24	2.31	3.04 Linux	5.00r7 Win																																	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+shoot	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+shootarrow	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+shootball	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+shootfireball	7th Graal	2.31	3.04 Linux	5.00r7 Win								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+shootfireblast	7th Graal	2.31	3.04 Linux	5.00r7 Win								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+shootnuke	7th Graal	2.31	3.04 Linux	5.00r7 Win								1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+show	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+showani	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+showani2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+showcharacter	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+showfile	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+showimg	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+showimg2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+showlocal	1.34	2.31	3.04 Linux	5.00r7 Win																										1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+showpoly	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+showpoly2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+showstats	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+showtext	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+showtext2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+sleep	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+spyfire	1.41r1	2.31	3.04 Linux	5.00r7 Win																																1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+stopmidi	6th Graal	2.31	3.04 Linux	5.00r7 Win							1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+stopsound	1.37	2.31	3.04 Linux	5.00r7 Win																													1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+take	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+take2	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+takehorse	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+takeplayercarry	4th Graal alpha	2.31	3.04 Linux	5.00r7 Win				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+takeplayerhorse	1.36	2.31	3.04 Linux	5.00r7 Win																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+throwcarry	1.34	2.31	3.04 Linux	5.00r7 Win																										1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+timereverywhere	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+timershow	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+toinventory	5th Graal alpha	2.31	3.04 Linux	5.00r7 Win						1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+tokenize	2.02	2.31	3.04 Linux	5.00r7 Win																																									1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+tokenize2	2.02	2.31	3.04 Linux	5.00r7 Win																																									1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+toweapons	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+triggeraction	2.03	2.31	3.04 Linux	5.00r7 Win																																												1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+unfreezeplayer	2.0	2.31	3.04 Linux	5.00r7 Win																																			1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+unset	2nd Graal	2.31	3.04 Linux	5.00r7 Win	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+unseteffect	1.21	1.33																						1	1	1	1	1	1																																				
+updateboard	1.21	2.31	3.04 Linux	5.00r7 Win																				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+updateterrain	2.05	2.31	3.04 Linux	5.00r7 Win																																														1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+while	1.28b2	2.31	3.04 Linux	5.00r7 Win																					1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+with	2.17.1	2.31	3.04 Linux	3.04 Linux																																																					1	1	1	1					
+wraptext	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
+wraptext2	2.17.1	2.31	3.04 Linux	5.00r7 Win																																																					1	1	1	1	1	1	1	1	1
