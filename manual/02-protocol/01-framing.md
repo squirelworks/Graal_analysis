@@ -30,7 +30,7 @@ Graal's own types add `0x20` to every 7-bit group, so an encoded value is printa
 | A message is `GCHAR(id)`, the payload, then `\n` | 1.21 to 6.x | [bin] (protocol/gserv-1999.md#framing); [srv][2.05] (protocol/codec-and-framing.md#messages); [bin] (protocol/v6x-clients.md#cipher-and-framing-classic-mode) |
 | Several messages are concatenated in one frame | 1.21 to 6.x | [srv][2.05] (protocol/codec-and-framing.md#messages); [bin] (protocol/gserv-1999.md#framing) |
 | The wire byte of the id is the logical id + `0x20`; an id above 223 cannot be sent as one GCHAR | all binary generations | [srv] (protocol/packet-ids.md) |
-| The sender refuses a payload that already contains `\n`; binary payloads use the raw-data escape (→ §2.1.3) | 2.05 | [2.05] (protocol/codec-and-framing.md#messages) |
+| The sender refuses a payload that already contains `\n`; binary payloads use the raw-data escape (→ §2.1.3) | 1.39, 2.05 | [2.05] (protocol/codec-and-framing.md#messages); [bin] (client-internals/decomp-findings-2026-10-24/05-205-props-misc.md); [bin] (client-internals/decomp-findings-2026-10-24/07-graal-139.md#framing-and-encryption) |
 | An outgoing message containing `\n` is refused with "Illegal characters in the outgoing data" | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#cipher-and-framing-classic-mode) |
 | The receiver splits an inflated frame on `\n` | 1.21 to 2.05 | [bin] (protocol/gserv-1999.md#framing); [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
 | An id the receive dispatcher has no case for is ignored silently; 2.05 has 59 cases | 2.05 | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
@@ -65,11 +65,14 @@ Encryption generations are defined in → §2.2.1; builds per generation are in 
 
 | Rule | Builds | Source |
 | --- | --- | --- |
+| 1.39 flushes when the queue would pass 4095 bytes and writes the frame to the socket in 256-byte slices; it drops the link when more than 256 KiB of compressed output is pending | 1.39 | [bin] (client-internals/decomp-findings-2026-10-24/07-graal-139.md#framing-and-encryption) |
 | Messages collect in an out buffer, compressed and flushed at `0x1000` bytes or at the end of the tick | 2.00 to 2.05, 2.17 | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205); [bin] (version-profiles/gen3-insertion-200-205.tsv); [bin] (protocol/client-versions.md#game-server-login) |
 | The link is dropped when more than `0x40000` bytes are queued unsent | 2.00 to 2.05, 2.17, 2.22, 2.31 | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205); [bin] (version-profiles/gen3-insertion-200-205.tsv); [bin] (protocol/client-versions.md#gen-5-send-on-the-client-222-231-remotecontrol-bin) |
 | The same limit is `0x800000` bytes | RemoteControl (gen 5) | [bin] (protocol/client-versions.md#gen-5-send-on-the-client-222-231-remotecontrol-bin) |
 | Buffers flush at `0x1000` | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#cipher-and-framing-classic-mode) |
 | The client links zlib 1.1.2 (Delphi ZLib unit) | 2.05 | [2.05] (protocol/codec-and-framing.md#frame) |
+| zlib is a compiled-in unit in 2.00 to 2.01 rev1 and from 2.03 on; 2.02, 2.02 rev1 and 2.02 rev2 import an external `zlib.dll` and need it beside the program; the wire format is the same | 2.00 to 2.1 test | [bin] (client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md#where-zlib-comes-from-the-one-real-difference) |
+| The NewWorld betas and NewMain 24 and 26 use the same transport and login shape as 2.00 to 2.05 | NewWorld, NewMain | [bin] (client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md#encryption-generations) |
 | The 1998 relay read buffer is 1 KB | 1st Graal to 1.1.9 | [bin] (protocol/relay-1998.md#summary) |
 | A UDP peer message is not framed this way (→ §2.9) | 1.28 beta 2 and later | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
 

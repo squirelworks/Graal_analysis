@@ -346,6 +346,8 @@ The executor matches commands against one table of fixed-size records [bin] (cli
 | NewWorld beta 1 | 161 | none; same table as 2.05 | [bin] (client-internals/cross-version-timeline.md#gs1-commands; client-internals/newworld-betas.md#gs1-changes) |
 | NewWorld beta 2 | 165 | `addstring`, `insertstring`, `removestring`, `deletestring`, inserted after `loadmap` | [bin] (client-internals/cross-version-timeline.md#gs1-commands; client-internals/newworld-betas.md#gs1-changes) |
 
+Every command or variable the 2.01 to 2.05 change logs name appears in that build's string table; the only undocumented additions are `actionplayer`, `lighteffectsenabled` (2.03) and the `bomy_*` animation names [bin][doc] (client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md#vocabulary-scriptidentifier-strings-resources-excluded); [bin] (client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv). The 2.1 tests add the strings `ascii`, `defnpc`, `playeronline`, `startinfullscreen` and `tiles` (test 2) and `groundheights`, `waterheight`, `playerhp` and `playermaxhp` (test 3) outside the command table [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#21-test2-and-test3).
+
 Being in the table does not mean a command does anything. Executor cases were read for 2.05 (→ §8.2.4.9) and for the NewWorld betas against their bases; other builds have not been checked [bin] (client-internals/cross-version-timeline.md#gs1-commands).
 
 ### 8.2.7.1 NewWorld betas

@@ -65,7 +65,7 @@ Same LCG and key as generation 3, with one iterator per direction, both seeded `
 | 1 | on send, compress the body first (→ §2.2.4) | [srv][2.22] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | 2 | `groups = min(ceil(len / 4), limit)`, with `limit` 12 for an uncompressed body (`0x02`) and 4 for zlib or bz2 (`0x04`, `0x06`) | [srv][2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | 3 | for each group: advance `it` once, XOR the 4 body bytes with the little-endian bytes of `it` | [srv][2.22] (protocol/codec-and-framing.md#gen-45-partial-xor) |
-| 4 | a short last group still advances `it` and is XORed byte by byte with the low bytes of `it` | [srv][2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
+| 4 | a short last group still advances `it` and is XORed byte by byte with the low bytes of `it` | [srv][2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) ; [cap] (protocol/lab-checks-2026-10-24.md#gen-5-xor-confirmation) |
 | 5 | on receive, undo the XOR first, then decompress | [srv] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 
 | Evidence for the step rule | Source |
