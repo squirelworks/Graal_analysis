@@ -140,6 +140,9 @@ jobs:
       - name: Check the reference manual
         run: python tools/manual/check_manual.py
 
+      - name: Check that cited notes are carried
+        run: python tools/manual/check_carry.py
+
       - name: pytest tools/manual
         run: python -m pytest tools/manual -q
 

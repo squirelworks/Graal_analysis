@@ -299,6 +299,7 @@ Change-log dated editor features, from the shipped `newfeatures` files [doc] (to
 | Assimilator ("GIF2PNG") | offline batch checker and converter for scripts, levels, text and animations | asset files | [bin] (recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md) |
 | PNGView | offline image viewer | PNG | [bin] (recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md) |
 | TilesEditor (39ster, Reborn line) | offline 64-bit Qt editor for levels, tiles, links, chests and NPCs (anonymous and external classes), layers, grid snap, map export | levels | [bin] (recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md) |
+| Recovered third-party trainers (AutoIt and VB6 macro tools such as AutoD, WaterGet and the AFK bots) | AFK chat bots, input macros and chat or costume spam that act on the stock client's window from outside; read statically, none run; groups and tool-by-tool behaviour → §4.10.1.4 | — | [bin] (recovered-hacks/TRAINER_RE_NOTES.md); [bin] (recovered-hacks/behaviour-models.md); [bin] (recovered-hacks/static-2026-11-01/README.md); [doc] (recovered-hacks/THREAT_TAXONOMY.md) |
 | DClient setup | a VB6-era installer bootstrap; its cabinet is truncated, so the client cannot be rebuilt | — | [bin] (recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md) |
 
 Recovered server binaries, described in Part V [bin] (recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md):

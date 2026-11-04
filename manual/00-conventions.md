@@ -146,7 +146,7 @@ The encryption generation numbering is that of GServer-v2, as the notes use it [
 | Public hosts | never named; written `<listserver-host>`, `<login-host>`, `<public-host>`, `<lan-host>`, or described ("the 1999 list host") |
 | Lab hosts | "the loopback address"; no dotted literal |
 | Ports | lab ports only (14802, 14803, 14804, 14900, 14921–14923); a historical default port that is part of a format or protocol is given as the notes give it |
-| Accounts | the clients' built-in guest login only; no other account names, passwords or licence secrets |
+| Accounts | the clients' built-in guest login only; no other account names, passwords or license secrets |
 | Binary internals | no code addresses, no disassembler names, no decompiled text, no raw string dumps |
 | Outside projects | GServer-v2, gs2lib and similar sources are summarised and cited through the notes, never quoted |
 
@@ -158,6 +158,7 @@ These rules come from the repository's agent rules [doc] (AGENTS.md#no-real-serv
 | --- | --- |
 | check the manual | `python tools/manual/check_manual.py` |
 | check before the final audit | `python tools/manual/check_manual.py --final` (also fails on any `pending` row in `sources.tsv`) |
+| check that cited notes are carried | `python tools/manual/check_carry.py` (a `cited` row with no reason fails when a planned section does not cite the note, or when under 30 % of a Markdown note's distinctive terms appear in the manual; `--report` lists the lowest carries) |
 | run the checker's tests | `python -m pytest tools/manual -q` |
 | build the PDF | `python tools/manual/build_manual.py` (pandoc, then Chromium prints A4; default output `manual/pdf/graal-trm.pdf`; `--version X` labels the edition and names the file `graal-trm-X.pdf`) |
 
