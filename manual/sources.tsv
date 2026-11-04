@@ -14,16 +14,16 @@ archive/game-assets-2026-11-01.md	pending		E
 archive/game-assets-graphics-sound-2026-11-01.md	pending		E	
 archive/game-assets-websites-2026-11-01.md	pending		E	
 archive/game-assets-worlds-2026-11-01.md	pending		E	
-ash/ALGORITHMS.md	pending		5.2	
-ash/ARCHITECTURE.md	pending		5.2	
-ash/ARCHIVAL-NOTE.md	pending		5.2	
-ash/BLUEPRINT.md	pending		5.2	
-ash/INDEX.md	pending		5.2	
+ash/ALGORITHMS.md	cited	5	5.2	
+ash/ARCHITECTURE.md	cited	5; 7	5.2	
+ash/ARCHIVAL-NOTE.md	cited	E	5.2	
+ash/BLUEPRINT.md	cited	5	5.2	
+ash/INDEX.md	cited	5; E	5.2	
 ash/OPCODE-MAP.md	pending		2.4; 2.5; A	
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/bare-level-names.md	pending		4	
-client-internals/board-respawn.md	pending		4.5; 5	
+client-internals/board-respawn.md	pending	5	4.5; 5	
 client-internals/body-colours-and-attributes.md	pending	2.6	2.6	
 client-internals/build-catalogue.md	pending	0; 1; 2.1; 2.2; E	1; C	
 client-internals/build-diff-204-205.md	pending	8.2	4	
@@ -172,7 +172,7 @@ client-internals/ledges-push-pull.md	pending		4.2
 client-internals/level-editor-205.md	pending	8.1	4.9	
 client-internals/live-behaviour-404.md	pending	8.1; 8.3	4	
 client-internals/live-checks-editor-offline-sound.md	pending		4	
-client-internals/live-gserver13.md	pending		5.1	
+client-internals/live-gserver13.md	cited	5	5.1	
 client-internals/live-trace-205.md	pending		4	
 client-internals/live-trace-early.md	pending		4	
 client-internals/newworld-betas.md	pending	8.2	4	
@@ -258,7 +258,7 @@ npc-library/reference/npcControl-NPC.txt	pending		8
 npc-library/tile-patterns.md	pending		8	
 protocol/OPCODE-SUMMARY.md	pending		2.4; 2.5; A	
 protocol/PROTOCOL-CHEATSHEET.md	pending		2	
-protocol/chat-pm-rc.md	pending	2.4; 2.5; 2.8	2.8; 7	
+protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/client-versions.md	pending	2.1; 2.2; 2.3; 2.5	1; 2.2	
 protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3; 2.5	2.1; 2.2	
 protocol/cross-version-anchors.md	pending		2	
@@ -266,26 +266,26 @@ protocol/crosscheck-captures-vs-research.md	pending		2
 protocol/file-transfer.md	cited	2.7; E	2.7	
 protocol/format-notes-from-salvage.md	pending		2	
 protocol/graphics-movement-bytecode.md	pending	8.3; 8.4; E	8.4	
-protocol/gserv-1999.md	pending	2.1; 2.2; 2.3; 2.9; C; E	2.3; 5.1	
+protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	pending		2	
-protocol/listserver-login-type-matrix-2026-10-25.md	pending		6	
-protocol/listserver-login-type-matrix-2026-10-25.tsv	pending		6	
-protocol/listserver.md	pending		6	
-protocol/login-and-walk.md	pending	2.3; 2.4	2.3	
-protocol/login-frames-by-version-2026-10-25.md	pending	2.1	2.3	
+protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
+protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
+protocol/listserver.md	cited	6; E	6	
+protocol/login-and-walk.md	pending	2.3; 2.4; 7	2.3	
+protocol/login-frames-by-version-2026-10-25.md	pending	2.1; 6; E	2.3	
 protocol/login-recovery-start.md	excluded		2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	pending	2.2; 2.3; E	2.3	
 protocol/medium-term-expansion.md	pending		2	
 protocol/medium-term-slice.md	pending		2	
-protocol/npc-control.md	pending		7	
+protocol/npc-control.md	cited	7; E	7	
 protocol/offline-expansion.md	pending		2	
 protocol/packet-id-diff.md	pending		2.4; 2.5; A	
 protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
 protocol/packet-layouts.md	pending	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	
 protocol/pcap-2026-10-04.md	pending		2	
 protocol/player-props.md	cited	2.6; 2.8; B	2.6; B	
-protocol/public-listserver-2026-10-25.md	pending		6	
-protocol/public-listserver-2026-10-25.tsv	pending		6	
+protocol/public-listserver-2026-10-25.md	cited	6; E	6	
+protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
 protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
 protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
@@ -351,21 +351,21 @@ recovered-hacks/static-2026-11-01/waterget.md	pending		4.10; 11
 release/0.0.1/README.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
 release/0.0.1/RELEASE-0.0.1.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
 release/0.0.1/contents.md	excluded			generated 0.0.1 binder of the notes; draft input, not a source
-server-notes/01-lineage.md	pending		5	
-server-notes/03-protocol.md	pending		5	
-server-notes/04-algorithms.md	pending		5	
-server-notes/README.md	pending		5	
-server-notes/ash-overview.md	pending		5	
-server-notes/lab-servers-2026-10-30.md	pending		5	
-server-notes/public-allowed-versions.md	pending		5	
-server-notes/setcharprop-hash-n.md	pending		5	
+server-notes/01-lineage.md	cited	5; E	5	
+server-notes/03-protocol.md	cited	5; 6	5	
+server-notes/04-algorithms.md	cited	5; 7	5	
+server-notes/README.md	excluded		5	index of server-notes/; its notes are cited directly
+server-notes/ash-overview.md	cited	5; E	5	
+server-notes/lab-servers-2026-10-30.md	cited	5; 6; E	5	
+server-notes/public-allowed-versions.md	cited	5; E	5	
+server-notes/setcharprop-hash-n.md	cited	5	5	
 tools/README.md	pending		11	
 tools/build-diff/README.md	pending		11	
 tools/classic-tools/README.md	pending		6; 11	
 tools/classic-tools/character-designer.md	pending		6; 11	
 tools/classic-tools/graal-level-gen.md	pending		6; 11	
-tools/classic-tools/gserverstat.md	pending		6; 11	
-tools/classic-tools/serverlist3.md	pending		6; 11	
+tools/classic-tools/gserverstat.md	pending	5	6; 11	
+tools/classic-tools/serverlist3.md	pending	6	6; 11	
 tools/classic-tools/text-convert.md	pending		6; 11	
 tools/generators-222/README.md	pending		11	
 tools/generators.md	pending		11	
@@ -375,10 +375,10 @@ tools/gif2mng.md	pending		11
 tools/graaleditor-vs-205.md	pending		11	
 tools/graaleditor.md	pending		11	
 tools/graalshop.md	pending		11	
-tools/lab-servers/README.md	pending		6	
-tools/lab-servers/clver-5-24-lab/console-patched.txt	pending		6	
-tools/lab-servers/clver-5-24-lab/console-stock.txt	pending		6	
-tools/lab-servers/clver-5-24-lab/proxy-files.txt	pending		6	
+tools/lab-servers/README.md	cited	5; 6	6	
+tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
+tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
+tools/lab-servers/clver-5-24-lab/proxy-files.txt	excluded		6	raw lab proxy log; the result is summarised in tools/lab-servers/README.md
 tools/lab-setup.md	pending		11	
 tools/level-convert/README.md	pending		11	
 tools/level-convert/SEIHAI-FORMAT.md	pending		11	
@@ -389,14 +389,14 @@ tools/level-editor/seihai-tracking.md	pending		11
 tools/level-editor/version-deltas.md	pending		11	
 tools/level-tools-gaps/README.md	pending		11	
 tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
-tools/npc-control.md	pending		7	
-tools/npcserver-2001.md	pending		7	
+tools/npc-control.md	cited	6; 7; E	7	
+tools/npcserver-2001.md	cited	5; 7	7	
 tools/release/README.md	excluded			repository tooling for the notes, not Graal
 tools/release/how-to-read.md	excluded			repository tooling for the notes, not Graal
-tools/remotecontrol-lineage.md	pending		7	
-tools/remotecontrol.md	pending		7	
+tools/remotecontrol-lineage.md	cited	7; E	7	
+tools/remotecontrol.md	cited	7; E	7	
 tools/respawn-lab/README.md	pending		11	
-tools/server-tools-2001.md	pending		7	
+tools/server-tools-2001.md	cited	5; 6; 7; E	7	
 torque/README.md	pending		10	
 torque/engine-and-formats.md	pending		10	
 torque/network.md	pending		10	
