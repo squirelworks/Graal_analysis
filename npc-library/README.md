@@ -30,7 +30,7 @@ genre / topic / book-NN / chapter-NN / page.json
 
 ## Index
 
-`index.json` lists every genre and topic with script and book counts.
+`index.json` lists every genre and topic with script and book counts and a short own-words `behaviour` summary; the same summaries are in [behaviours.md](behaviours.md), the spec for rewriting NPCs from scratch.
 
 ## Reference
 
