@@ -24,14 +24,14 @@ if (playerenters) {
 if (playertouchsme) {
   this.talk = 3;
   setcharani idle,;
-  setcharprop #c,Lovely day for a walk!;
+  message Lovely day for a walk!;
 }
 
 if (timeout) {
   if (this.talk > 0) {
     this.talk -= 0.05;
     if (this.talk <= 0) {
-      setcharprop #c,;
+      message ;
       setcharani walk,;
     }
   } else if (this.pause > 0) {

@@ -18,7 +18,7 @@ if (playerenters) {
 
 if (playertouchsme && !key_cellar_taken) {
   if (has_small_key) {
-    say2 Your hands are full - use the key you carry first.;
+    say2 Your hands are full - use the#bkey you carry first.;
   } else {
     set has_small_key;
     set key_cellar_taken;

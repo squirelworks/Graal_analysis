@@ -3,8 +3,11 @@
 // Image: none (drawn as a character)
 // Events: playerenters, playertouchsme, timeout
 //
-// A character NPC that answers each touch with the next of four lines in a
-// chat bubble, then starts over. The bubble clears after four seconds.
+// A character NPC that answers each touch with the next of four lines,
+// shown above its head, then starts over. The text clears after four
+// seconds. It uses message rather than the chat bubble (#c), because on
+// 2.05 an empty setcharprop #c does not clear the bubble (lab run,
+// 2026-11-04) while an empty message does.
 
 if (playerenters) {
   timereverywhere;
@@ -26,10 +29,10 @@ if (playertouchsme && this.wait == 0) {
   this.wait = 1;
   this.line++;
   if (this.line > 4) this.line = 1;
-  if (this.line == 1) setcharprop #c,Fine weather for fishing.;
-  if (this.line == 2) setcharprop #c,The ferry runs at all hours now.;
-  if (this.line == 3) setcharprop #c,Mind the crabs on the east beach.;
-  if (this.line == 4) setcharprop #c,Off you go, then.;
+  if (this.line == 1) message Fine weather for fishing.;
+  if (this.line == 2) message The ferry runs at all hours now.;
+  if (this.line == 3) message Mind the crabs on the east beach.;
+  if (this.line == 4) message Off you go, then.;
   timeout = 1;
   this.clear = 4;
 }
@@ -38,7 +41,7 @@ if (timeout) {
   this.wait = 0;
   this.clear--;
   if (this.clear <= 0) {
-    setcharprop #c,;
+    message ;
   } else {
     timeout = 1;
   }

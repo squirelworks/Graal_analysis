@@ -18,7 +18,7 @@ if (playertouchsme && playerdir == 0) {
   } else if (quest_shrine_needed) {
     set quest_shrine_visited;
     play secret.wav;
-    say2 You trace the carving. It glows - the hermit will want to know.;
+    say2 You trace the carving.#bIt glows - the hermit will#bwant to know.;
   } else {
     say2 Old carvings, too worn to read.;
   }

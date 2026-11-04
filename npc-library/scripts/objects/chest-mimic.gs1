@@ -5,7 +5,8 @@
 // Flag set: chest_trap_seen (rename per chest)
 //
 // The first touch springs a trap: a small explosion and a hit. After that
-// the chest is just an open, empty box.
+// the chest is just an open, empty box. The explosion is for show: one
+// placed by an NPC does not hurt the player on 2.05, so the hit is a hurt.
 
 if (playerenters) {
   if (chest_trap_seen) {

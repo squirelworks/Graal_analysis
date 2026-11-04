@@ -11,5 +11,5 @@ if (playerenters) {
 
 if (playertouchsme && playerdir == 0) {
   stopmidi;
-  say2 Silence, please. The scholars are working.;
+  say2 Silence, please. The scholars#bare working.;
 }

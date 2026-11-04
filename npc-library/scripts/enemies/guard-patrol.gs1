@@ -78,7 +78,7 @@ if ((washit || wasshot) && this.mode != 2) {
     this.mode = 2;
     this.down = 20;
     setcharani dead,;
-    setcharprop #c,;
+    message ;
   }
 }
 
@@ -102,7 +102,7 @@ if (timeout) {
       looks();
       if (this.seen == 1) {
         this.mode = 1;
-        setcharprop #c,Halt! Intruder!;
+        message Halt! Intruder!;
         play alarm.wav;
       }
     }
@@ -116,7 +116,7 @@ if (timeout) {
     if (this.len > 12) {
       this.mode = 0;
       this.speed = 0.15;
-      setcharprop #c,;
+      message ;
       setcharani walk,;
       // rejoin the route at the nearest corner
       this.best = 999;

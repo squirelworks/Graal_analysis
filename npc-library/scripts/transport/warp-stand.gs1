@@ -12,8 +12,8 @@ if (playerenters) {
 
 if (playertouchsme && playerdir == 0) {
   if (hasweapon(Warpstone)) {
-    say2 The stone in your bag hums. The runes will answer you now.;
+    say2 The stone in your bag hums.#bThe runes will answer you now.;
   } else {
-    say2 An empty hollow, shaped for a small round stone.;
+    say2 An empty hollow, shaped for a#bsmall round stone.;
   }
 }

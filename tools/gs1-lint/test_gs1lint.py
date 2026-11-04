@@ -113,6 +113,30 @@ class BadScripts(unittest.TestCase):
         self.assertTrue(warnings('if (timeout) { hide; }'))
 
 
+class LabFindings(unittest.TestCase):
+    """Rules from the real-client lab run of 2026-11-04."""
+
+    def test_quoted_text(self):
+        self.assertTrue(errors('if (playerchats && strequals(#c,"buy bombs")) { hide; }'))
+        self.assertEqual(errors('if (playerchats && strequals(#c,buy bombs)) { hide; }'), [])
+
+    def test_toweapons_in_comment(self):
+        self.assertTrue(errors('// toweapons copies the NPC\nif (playertouchsme) { toweapons Ring; }'))
+        self.assertEqual(errors('// added as a weapon\nif (playertouchsme) { toweapons Ring; }'), [])
+
+    def test_empty_chat_bubble(self):
+        self.assertTrue(errors('if (timeout) { setcharprop #c,; }'))
+        self.assertEqual(errors('if (created) { message ; }'), [])
+
+    def test_say2_width(self):
+        self.assertTrue(warnings('if (playertouchsme) { say2 The healer is ill. Anyone able to help, ask at the inn.; }'))
+        self.assertEqual(warnings('if (playertouchsme) { say2 Mill Road: the bridge is out.; }'), [])
+        self.assertEqual(warnings('if (playertouchsme) { say2 The healer is ill. Anyone#bable to help, ask at the inn.; }'), [])
+
+    def test_putnpc_targets(self):
+        self.assertEqual(gs1lint.putnpc_targets('if (timeout) {\n  putnpc bat.png,bat-swoop.txt,x,y;\n}'), ['bat-swoop.txt'])
+
+
 class Library(unittest.TestCase):
     """Every script in the original NPC library must lint clean."""
 
@@ -122,6 +146,22 @@ class Library(unittest.TestCase):
         bad = []
         for f in files:
             bad += [str(x) for x in gs1lint.lint_text(f.read_text(encoding='utf-8'), str(f.relative_to(REPO)), TABLE)]
+        self.assertEqual(bad, [])
+
+    def test_putnpc_scripts_have_no_comments(self):
+        # putnpc joins the script's lines before GServer-v2 removes comments,
+        # so the first // swallows the rest of the script (lab run, 2026-11-04).
+        root = REPO / 'npc-library' / 'scripts'
+        files = sorted(root.rglob('*.gs1')) if root.is_dir() else []
+        by_stem = {f.stem: f for f in files}
+        bad = []
+        for f in files:
+            for target in gs1lint.putnpc_targets(f.read_text(encoding='utf-8')):
+                stem = Path(target).stem
+                if stem not in by_stem:
+                    bad.append(f'{f.name}: putnpc target {target} is not in the library')
+                elif '//' in by_stem[stem].read_text(encoding='utf-8'):
+                    bad.append(f'{by_stem[stem].name} is placed by putnpc in {f.name} but has // comments')
         self.assertEqual(bad, [])
 
 

@@ -7,8 +7,10 @@
 //
 // Step 1: asks for three blue herbs and sets quest_herbs_given.
 // Step 2: counts the herbs the player holds and says how many are left.
-// Step 3: with all three, takes them, pays 50 rupees and one heart
-//         container, and sets quest_herbs_done.
+// Step 3: with all three, takes them, pays 50 rupees, drops a heart
+//         container at the player's feet and sets quest_herbs_done.
+// playerfullhearts cannot be written on 2.05 (lab run, 2026-11-04), so
+// the heart container is a fullheart item for the player to pick up.
 // Afterwards: a thank-you line.
 
 function countherbs() {
@@ -46,8 +48,7 @@ if (playertouchsme && this.wait == 0) {
     unset herb_3;
     set quest_herbs_done;
     playerrupees += 50;
-    playerfullhearts += 1;
-    playerhearts = playerfullhearts;
+    lay2 fullheart,playerx + 1,playery + 2;
     play reward.wav;
     setcharprop #c,Wonderful! Take this, with my thanks.;
   }

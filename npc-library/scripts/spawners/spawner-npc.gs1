@@ -2,11 +2,16 @@
 // Category: spawn / timers
 // Image: an egg cluster
 // Events: playerenters, timeout
-// Needs: ../enemies/bat-swoop.gs1 (or any NPC script) next to the level
+// Needs: ../enemies/bat-swoop.gs1 saved on the server as bat-swoop.txt
+//        (or any comment-free NPC script)
 //
 // Hatches one NPC from a script file every ten seconds, up to three per
 // visit. Uses putnpc (image, script, x, y); online the client asks the
 // server to create the NPC (manual §8.2.4.4).
+// On GServer-v2 the script must be a file the server serves (.txt, unless
+// foldersconfig serves .gs1) and must hold no comments, because putnpc
+// joins its lines before comments are removed (lab run, 2026-11-04).
+// bat-swoop.gs1 is kept comment-free for that reason.
 
 if (playerenters) {
   setimg eggs.png;
@@ -17,6 +22,6 @@ if (playerenters) {
 if (timeout && this.made < 3) {
   this.made++;
   play hatch.wav;
-  putnpc bat.png,bat-swoop.gs1,x,y-2;
+  putnpc bat.png,bat-swoop.txt,x,y-2;
   timeout = 10;
 }

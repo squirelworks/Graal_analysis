@@ -24,6 +24,15 @@ python -m pytest tools/gs1-lint -q                        # tests (also run in C
 | a call in an expression that is not a 2.05 expression function | error | §8.2.5 |
 | a script function called but never defined | error | §8.1.3 |
 | tests `timeout` but never sets `timeout` or calls `sleep` | warning | §8.1.4 |
+| "quoted" text (2.05 keeps the quote marks, so `strequals(#c,"buy")` never matches) | error | lab run |
+| the word `toweapons` in a comment (GServer-v2 names the weapon after it) | error | lab run |
+| an empty `setcharprop #c,` (it does not clear the bubble; use `message ;`) | error | lab run |
+| a `say2` line over 32 characters between `#b` breaks (2.05 does not wrap) | warning | lab run |
+
+"Lab run" means a real 2.05r2 client on a GServer-v2 lab, 2026-11-04. A
+further `Library` test checks that every script named in a `putnpc` is in the
+library and has no `//` comments, because putnpc joins the lines before the
+server removes comments.
 
 The four disputed signatures of App. E#201 (`toinventory`, `puthorse`,
 `showimg`, `replaceani`) accept either reading.

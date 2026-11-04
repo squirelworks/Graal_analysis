@@ -19,7 +19,7 @@ if (playerenters) {
 
 if (playertouchsme && !letter_read_mill) {
   this.reading = 1;
-  say2 If you find this, the key is under the third stone from the well.;
+  say2 If you find this, the key is#bunder the third stone#bfrom the well.;
 }
 
 // Fires when the player closes the text box.
