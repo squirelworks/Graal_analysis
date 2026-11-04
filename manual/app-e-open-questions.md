@@ -183,3 +183,73 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | 2.05 does not compile GS1 to bytecode; OpenGS1's opcode set is an independent reimplementation that 2.05 does not share | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-commands.md#update-2026-10-21) |
 | Open | whether OpenGS1's format matches any official client's bytecode (3.153 or 4.x), or only OpenGS1 itself | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Settles it | comparing a captured official bytecode message (→ App. E#207) with the OpenGS1 layout | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+
+### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the static survey records no form timer for 4th Graal alpha, 5th Graal and 5th Graal alpha (idle loop), while 4th Graal and 6th Graal on either side have the 50 ms form timer | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
+| Claim B | eras A to D all drive the tick from a DelphiX timer with interval 50 on the main form | [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
+| Open | whether these three builds run from the idle handler, or keep a timer the survey did not find; the tick length is 50 ms either way only if the idle gate is 50 ms there too | [inf] (version-profiles/matrix/builds-static-survey.tsv) |
+| Settles it | reading the main form and the frame routine of the three builds | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+
+### E#301 Frame loop of the 3.x and 4.x clients
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
+| Settles it | a timed walk of a 3.x and a 4.x client on the lab server | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+
+### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | the walking code multiplies the half-tile step by a speed factor: 1.0 on foot, 1.2 in a high speed state; hiding gives 0.1 tile per tick | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step); [live] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
+| Open | factors 0.4 and 0.8 also exist (0.8 depends on a carried object); which states use them is not traced; carrying measured live does not slow the walk | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settles it | a lab walk in each candidate state (riding, shield, carrying each object kind) on 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+
+### E#303 Two unidentified lists in the blocked-point test
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the blocked-point test reads a list of objects with two flags and a player-sized body box (only with a client option on), and a list of 1.5 × 2 boxes with an enabled flag; neither is identified (signs, baddies, dropped objects and other players are candidates) | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settles it | tracing what fills each list, or a lab test of walking into each kind of level object | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+
+### E#304 Stopping positions and the wire rounding of nudged positions
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | the flush snap and the 0.1 nudges are read from the 2.05, 2.17.1, 2.22 and 2.31 walking routines | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step) |
+| Open | the stopping positions are not confirmed on a live client; how the client rounds a position that is not on a half-tile when it sends it is not captured | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settles it | a lab walk towards a rock from both half-tile alignments on 2.22, with the props messages captured | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+
+### E#305 The 2.22 push frame field
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | 2.22 plays `push` as 5 frames × 4 ticks, looping, as 2.05 does | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| Claim B | a memory trace of 2.22 against a public server showed a push frame field cycling 0 to 3 every tick from the moment the blocked count passed 18 | [live] (live-runs/2gta-222-2026-10-30/README.md) |
+| Open | whether the traced field is the gani frame or another per-tick counter; the second run used the server's own push gani | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
+| Settles it | reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
+
+### E#306 The flag that picks `lift2.wav` for a pull
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | a successful pull plays `lift.wav`, or `lift2.wav` by a player flag that was not traced | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
+| Settles it | tracing the flag in 2.05's pull routine | [inf] (client-internals/ledges-push-pull.md#open) |
+
+### E#307 Probe, nudge and step tables of 1st Graal and 1.39
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | both builds test six probes per facing step and use the 18 / 38 blocked-step counter; 1st Graal has a nudge table | [bin] (version-profiles/matrix/rules-1st-graal.md#wall-and-walk-test-bin); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
+| Open | the numeric probe offsets, nudge offsets and step table of both builds; whether they equal 2.05's | [bin] (version-profiles/matrix/rules-139.md#still-open) |
+| Settles it | reading the tables from both exports | [inf] (version-profiles/matrix/rules-1st-graal.md) |
+
+### E#308 Link probe offsets and the neighbour-table flag
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the per-facing probe offsets for link following; the flag that skips the 3 × 3 neighbour table; which big map 2.05 uses offline and whether 2.22 does the same with `PLO_BIGMAP` (171); how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
+| Settles it | reading the probe table and the flag in 2.05, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
