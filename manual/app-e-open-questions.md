@@ -183,3 +183,12 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | 2.05 does not compile GS1 to bytecode; OpenGS1's opcode set is an independent reimplementation that 2.05 does not share | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-commands.md#update-2026-10-21) |
 | Open | whether OpenGS1's format matches any official client's bytecode (3.153 or 4.x), or only OpenGS1 itself | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Settles it | comparing a captured official bytecode message (→ App. E#207) with the OpenGS1 layout | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+
+### E#500 Back clipping plane of the Graal3D client
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets no field of its own | [doc] (graal3d/camera.md#field-of-view) |
+| Claim B | a later public DelphiX fork calls `SetBack(5000)` during retained-mode init; that fork starts after 2004, so it is not the unit linked in 2000 | [doc] (graal3d/camera.md#still-needed) |
+| Open | which back plane the February 2000 exe uses; the static read that found no field constant did not look for `SetBack` | [inf] (graal3d/camera.md#still-needed) |
+| Settles it | a static read of the exe for a `SetBack` call, or a lab run with the native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
