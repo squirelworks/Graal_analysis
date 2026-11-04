@@ -220,7 +220,7 @@ docs/book/04-where-the-notes-disagree.md	pending		E
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/gani.txt	cited	3.3	3.3	
-formats/glevnw01.txt	cited	3.1	3.1	
+formats/glevnw01.txt	cited	3.1; E	3.1	
 formats/gmap.md	cited	3.2	3.2	
 formats/gobjset01.md	cited	3.4; E	3.4	
 formats/graalsav.md	cited	3.7	3.7	
@@ -295,37 +295,37 @@ protocol/v5v6-lab-play.md	pending	0; 2.2; 8.3; E	1; 2.3
 protocol/v5v6-windows-unpacked.md	pending	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	pending	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
 protocol/v6x-clients.md	pending	2.1; 2.2; 2.3; 2.4; 2.5; E	1; 2.10	
-recovered-drive-tools/INVENTORY.md	pending		11	
-recovered-drive-tools/SALVAGE_CANDIDATES.md	pending		11	
-recovered-drive-tools/SALVAGE_PLACEMENT.md	pending		11	
-recovered-drive-tools/SEIHAI_SERVERTOOLS_MAP.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/GCD/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/GChar/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Graal_Auto_Key/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Graal_Digger/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/README.md	pending		11	
-recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/TextConvert/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserver_pe_GServersource/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserverstat/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/gserverstat2/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	pending		11	
-recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	pending		11	
+recovered-drive-tools/INVENTORY.md	excluded		11	download inventory of the recovered Drive corpus; logistics, no Graal behaviour
+recovered-drive-tools/SALVAGE_CANDIDATES.md	excluded		11	reimplementation placement plan
+recovered-drive-tools/SALVAGE_PLACEMENT.md	excluded		11	reimplementation placement plan
+recovered-drive-tools/SEIHAI_SERVERTOOLS_MAP.md	excluded		11	reimplementation placement plan
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/GCD/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/GChar/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/Graal_Auto_Key/SUMMARY.md	excluded		11	trainer; hack tooling is out of scope
+recovered-drive-tools/ghidra-analysis/Graal_Digger/SUMMARY.md	excluded		11	trainer; hack tooling is out of scope
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/README.md	excluded		11	index of the salvage pipeline; the summaries it lists are cited or excluded one by one
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/TextConvert/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserver_pe_GServersource/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/gserverstat/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/gserverstat2/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	cited	11	11	
+recovered-drive-tools/ghidra-analysis/serverlist3/SUMMARY.md	excluded		11	the same tool as the classic-tools note, which is the fuller read and is cited
 recovered-hacks/DEFENSE_PROPOSALS.md	pending		4.10; 11	
 recovered-hacks/INVENTORY.md	pending		4.10; 11	
 recovered-hacks/THREAT_TAXONOMY.md	pending		4.10; 11	
@@ -359,35 +359,35 @@ server-notes/ash-overview.md	pending		5
 server-notes/lab-servers-2026-10-30.md	pending		5	
 server-notes/public-allowed-versions.md	pending		5	
 server-notes/setcharprop-hash-n.md	pending		5	
-tools/README.md	pending		11	
-tools/build-diff/README.md	pending		11	
-tools/classic-tools/README.md	pending		6; 11	
-tools/classic-tools/character-designer.md	pending		6; 11	
-tools/classic-tools/graal-level-gen.md	pending		6; 11	
-tools/classic-tools/gserverstat.md	pending		6; 11	
-tools/classic-tools/serverlist3.md	pending		6; 11	
-tools/classic-tools/text-convert.md	pending		6; 11	
-tools/generators-222/README.md	pending		11	
-tools/generators.md	pending		11	
-tools/ghidra/README.md	pending		11	
-tools/ghidra/VERSION.txt	pending		11	
-tools/gif2mng.md	pending		11	
-tools/graaleditor-vs-205.md	pending		11	
-tools/graaleditor.md	pending		11	
-tools/graalshop.md	pending		11	
+tools/README.md	excluded		11	index of the tools folder; the notes it lists are cited or excluded one by one
+tools/build-diff/README.md	excluded		11	repository analysis tooling, not Graal
+tools/classic-tools/README.md	cited	11	6; 11	
+tools/classic-tools/character-designer.md	cited	11	6; 11	
+tools/classic-tools/graal-level-gen.md	cited	11	6; 11	
+tools/classic-tools/gserverstat.md	cited	11	6; 11	
+tools/classic-tools/serverlist3.md	cited	11	6; 11	
+tools/classic-tools/text-convert.md	cited	11	6; 11	
+tools/generators-222/README.md	cited	11	11	
+tools/generators.md	cited	11	11	
+tools/ghidra/README.md	excluded		11	repository analysis tooling, not Graal
+tools/ghidra/VERSION.txt	excluded		11	repository analysis tooling, not Graal
+tools/gif2mng.md	cited	11	11	
+tools/graaleditor-vs-205.md	cited	11	11	
+tools/graaleditor.md	cited	11; E	11	
+tools/graalshop.md	cited	11	11	
 tools/lab-servers/README.md	pending		6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	pending		6	
 tools/lab-servers/clver-5-24-lab/console-stock.txt	pending		6	
 tools/lab-servers/clver-5-24-lab/proxy-files.txt	pending		6	
-tools/lab-setup.md	pending		11	
-tools/level-convert/README.md	pending		11	
-tools/level-convert/SEIHAI-FORMAT.md	pending		11	
-tools/level-editor/222-reference.md	pending		11	
-tools/level-editor/README.md	pending		11	
-tools/level-editor/formats-crossref.md	pending		11	
-tools/level-editor/seihai-tracking.md	pending		11	
-tools/level-editor/version-deltas.md	pending		11	
-tools/level-tools-gaps/README.md	pending		11	
+tools/lab-setup.md	excluded		11	lab procedure
+tools/level-convert/README.md	excluded		11	a reimplementation converter written for this project
+tools/level-convert/SEIHAI-FORMAT.md	excluded		11	reimplementation package format
+tools/level-editor/222-reference.md	cited	11; E	11	
+tools/level-editor/README.md	cited	11	11	
+tools/level-editor/formats-crossref.md	cited	11; E	11	
+tools/level-editor/seihai-tracking.md	excluded		11	reimplementation tracking checklist
+tools/level-editor/version-deltas.md	cited	11; E	11	
+tools/level-tools-gaps/README.md	cited	11	11	
 tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
 tools/npc-control.md	pending		7	
 tools/npcserver-2001.md	pending		7	
@@ -395,7 +395,7 @@ tools/release/README.md	excluded			repository tooling for the notes, not Graal
 tools/release/how-to-read.md	excluded			repository tooling for the notes, not Graal
 tools/remotecontrol-lineage.md	pending		7	
 tools/remotecontrol.md	pending		7	
-tools/respawn-lab/README.md	pending		11	
+tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	pending		7	
 torque/README.md	pending		10	
 torque/engine-and-formats.md	pending		10	
