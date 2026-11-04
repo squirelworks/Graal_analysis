@@ -35,11 +35,11 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 1.38 | 0–24, 26–33 | as above | [bin] (client-internals/version-profiles/v133-v139.toml) |
 | 1.39 | 0–24, 26–33, 80, 81 | as above | [bin] (client-internals/version-profiles/v133-v139.toml) |
 | 1.41 rev1 | 0–24, 26–30, 32, 33, 80, 81 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml) |
-| 1.42 (NewMain), NewMain 24 and 26, 2.00 (rev0–rev3) | 0–24, 26–30, 32–34, 80, 81 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml); [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) |
-| 2.01 (+rev1), 2.02, 2.02 rev1 | 0–24, 26–30, 32–36, 80, 81 | unmeasured | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) |
-| 2.02 rev2 | 0–24, 26–30, 32–37, 80, 81 | unmeasured | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) |
-| 2.03, 2.04, 2.05 (rev0–rev2), 2.1 test 2 and test 3 | 0–24, 26–30, 32–38, 80, 81 | unmeasured | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) |
-| NewWorld beta 1, beta 2 | the 2.1 test set without 7, 8, 11, 15, 16, 17, 20 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml) |
+| 1.42 (NewMain), NewMain 24 and 26, 2.00 (rev0–rev3) | 0–24, 26–30, 32–34, 80, 81 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml); [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) |
+| 2.01 (+rev1), 2.02, 2.02 rev1 | 0–24, 26–30, 32–36, 80, 81 | unmeasured | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) |
+| 2.02 rev2 | 0–24, 26–30, 32–37, 80, 81 | unmeasured | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) |
+| 2.03, 2.04, 2.05 (rev0–rev2), 2.1 test 2 and test 3 | 0–24, 26–30, 32–38, 80, 81 | unmeasured | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) |
+| NewWorld beta 1, beta 2 | the 2.1 test set without 7, 8, 11, 15, 16, 17, 20; disputed → App. E#11 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml); [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
 | 2.14 to 2.16 | the 2.1 set plus 41 | inferred; no binaries of 2.1 to 2.16 in the archive | [inf] (client-internals/version-profiles/141-217.toml) |
 | 2.17 (the 2.17.1 binary) | 0–24, 26–30, 32–41, 43–45, 80, 81 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml) |
 | 2.22 | 0–24, 26–30, 32–35, 37–41, 43, 44, 80 | floor; 36, 42 and 45 not matched to a call site | [bin][cap] (version-profiles/2.22-2.31.md#wire-protocol); [bin] (version-profiles/2.22-2.31.toml) |
@@ -64,6 +64,9 @@ The *First sent* column of the tables below names the earliest build in this tab
 | No sender was found for 25 (`PLI_UNKNOWN25`) or 31 (`PLI_PACKETCOUNT`) | 2.05 | [2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 6.x sends none of 21 (`PUTNPC`), 25, 31, 39 (`TAMPERCHECK`) or 40 (`SHOOT`) as a constant | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | 3.04 and 3.153 send no 39 or 44, unlike their Windows twin, and add 36 and 81 | 3.04, 3.153 | [bin] (version-profiles/3.04-3.153.md#client--server-ids) |
+| 6 (`PLI_TOALL`) is a real sender in every build of the family, with the chat text cut to 200 characters before sending | 2.00 to 2.1 test | [bin] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md); [bin] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#corrections-to-batch-b--earlier-notes) |
+| No id is removed anywhere from 2.00 to 2.1 test 3, and none of 25, 31 or any id from 39 up has a constant send, so the tamper check (39) is not part of this family | 2.00 to 2.1 test | [bin] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md); [bin] (client-internals/decomp-findings-2026-10-24-c/id_changes_between_builds.tsv) |
+| 36 and 38 look like TCP copies of UDP 25 and 26: one routine sends the UDP message, then repeats it over TCP when a flag says the server needs it; what sets the flag is unknown | 2.01 to 2.1 test | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
 | 2.02 rev1 has no `PLI_LANGUAGE` (37) send site and sends none in the lab; rev2 is the first build that sends 37 | 2.02 rev1, rev2 | [bin][cap] (client-internals/version-profiles/141-217.toml) |
 | Ids 4.x adds over 3.x: 44 (window list for PLO 182), 50 (large-packet length), 157 and 161 (file requests carrying an `i5` time), 158 (weapon by name), 162 | 4.20r8 | [bin] (protocol/v4x-clients.md#client--server-ids) |
 

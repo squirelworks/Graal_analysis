@@ -70,6 +70,8 @@ Encryption generations are defined in → §2.2.1; builds per generation are in 
 | The same limit is `0x800000` bytes | RemoteControl (gen 5) | [bin] (protocol/client-versions.md#gen-5-send-on-the-client-222-231-remotecontrol-bin) |
 | Buffers flush at `0x1000` | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#cipher-and-framing-classic-mode) |
 | The client links zlib 1.1.2 (Delphi ZLib unit) | 2.05 | [2.05] (protocol/codec-and-framing.md#frame) |
+| zlib is a compiled-in unit in 2.00 to 2.01 rev1 and from 2.03 on; 2.02, 2.02 rev1 and 2.02 rev2 import an external `zlib.dll` and need it beside the program; the wire format is the same | 2.00 to 2.1 test | [bin] (client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md#where-zlib-comes-from-the-one-real-difference) |
+| The NewWorld betas and NewMain 24 and 26 use the same transport and login shape as 2.00 to 2.05 | NewWorld, NewMain | [bin] (client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md#encryption-generations) |
 | The 1998 relay read buffer is 1 KB | 1st Graal to 1.1.9 | [bin] (protocol/relay-1998.md#summary) |
 | A UDP peer message is not framed this way (→ §2.9) | 1.28 beta 2 and later | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
 
