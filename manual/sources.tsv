@@ -176,6 +176,7 @@ client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
 client-internals/live-trace-early.md	cited	4.1; 4.2	4	
 client-internals/newworld-betas.md	cited	4.1; 8.2	4	
+client-internals/npcaction.md	cited	2.5	2.5	
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
