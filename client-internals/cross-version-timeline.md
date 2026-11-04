@@ -122,7 +122,7 @@ Those entries are not counted. In 2.05 this gives 161 commands, matching the ear
 | NewWorld beta 1 | 161 | same table as 2.05 |
 | NewWorld beta 2 | 165 | `addstring`, `insertstring`, `removestring`, `deletestring` |
 
-A command being in the table does not mean it does anything. #4 lists the 2.05 commands that have no executor case, so they parse and are ignored. Examples include `setz`, `updateterrain` and `setbacktile2` (2.05), `setbacktile` (1.34), `drawovertrees` and `canwarp` (1.41), `canwarp2` (1.42), `join`, `freezeplayer2` and `unfreezeplayer` (2.0), and `seturllevel`, `setfocus` and `resetfocus`. See #4 for the full list. This note has not checked executor cases in the other builds.
+A command being in the table does not mean it does anything. #4 lists the 2.05 commands that have no executor case, so they parse and are ignored. Examples include `setz`, `updateterrain` and `setbacktile2` (2.05), `setbacktile` (1.34), `drawovertrees` and `canwarp` (1.41), `canwarp2` (1.42), `join`, `freezeplayer2` and `unfreezeplayer` (2.0), and `seturllevel`, `setfocus` and `resetfocus`. See #4 for the full list. This note has not checked executor cases in the other builds. `spyfire-by-version.md` checks one command across builds: `spyfire` has no executor case in 1.41 rev1 or NewMain 1.42 and works from 2.0; `callweapon` works from 2.01.
 
 New commands are inserted in the middle of the table, not appended. So the internal index of a command changes between builds, and an executor decompiled in one build cannot reuse another build's case numbers.
 
