@@ -203,3 +203,74 @@ The shipped `newfeatures2001.txt` to `newfeatures2005.txt` are named by release 
 | 2.31 | float-to-string fix, keyboard config saved, gmap NPC border crossing fixed | `GNW28015` | [doc][bin] (client-internals/feature-timeline.md#client-feature-timeline-200-to-231) |
 
 A feature announced as "enabled later" often shows in a client's receive switch one or more versions before servers used it (full-precision moves in 2.3, level heights in 2.17), so a handled id does not prove servers of that era sent it [bin][inf] (client-internals/feature-timeline.md#reading-the-timeline-against-the-binaries).
+
+## 4.11.9 Crossing gmap edges (2.22, 2.31)
+
+A real 2.22 client walked east, south, west and north across a 2×2 gmap of open-grass levels on a lab server; the gmap file format is in → §3.2 [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap).
+
+| Rule | Source |
+| --- | --- |
+| Three different "maps" must not be mixed: level links (S→C 1, walking into one sends 0 or 30); bigmap-style server maps (`maps =`, a text grid the server alone uses to know which levels are adjacent); and gmaps (`gmaps =`, `GRMAP001`), where the client walks continuously. The `bigmap =` and `minimap =` options are a fourth thing: overlay settings sent as S→C 171 and 172 at login, and setting `bigmap` breaks gmaps | [srv] (client-internals/feature-specs/06-gmap-overworld.md#three-different-maps-do-not-mix) |
+| At login the server sends S→C 49 (x×2, y×2, z+50, cell x, cell y, then the gmap name), `LEVELNAME` (6) with the level and again with the gmap name, 174, 10 and 156 with the gmap name; the client fetches the `.gmap` itself and sends 35 (`i5` modtime + name, 0 on a cold cache) for the three neighbour levels | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| A crossing uses only ordinary props, with no level-warp message: the cell prop (43 or 44) changes in the same props message as the wrapped coordinate (local = global − 64 × cell), and position props go out only on whole-tile steps | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| 2.22 sends flag sets `gr.x` and `gr.y` on every half-tile step carrying the global position (past 63.5) from the server's movement weapon, and re-sends 39 on each crossing; going west, 39 goes at global x 63.5 and the next props carry X = 63.0 and cell 0 | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| The server answers each crossing in one frame: 6 with the new level, 39 (level modtime, only when not cached), 0 (an empty board), 6 with the gmap name, 174, 10, 156 | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| 2.31 sends 46 (`GCHAR 1`) first, then the props with the cell prop and wrapped coordinate, and does not re-send 39 at the crossing (→ §2.4) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#needs) |
+| UDP id 24 ("entered level") goes to peers in the 3×3 neighbourhood; the server keeps 39 per level so the next entry can use 30 or 35 with a cached board | [srv] (client-internals/feature-specs/06-gmap-overworld.md#gmap-wire-behaviour-srv) |
+
+## 4.11.10 What each executable names, 1998 to 2.31
+
+A static survey lists, per build in link order, what each executable adds (+) or drops (−) against the one before. From 1.38 some config keys are built one character at a time, so a key can be read while missing from the list; garbled three-letter keys (`ekv`, `u5j`, `d4n`, `kxs`, `azg`) are such fragments [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys).
+
+| Build | `graalconfig.txt` keys | Source |
+| --- | --- | --- |
+| 6th Graal (beta5) | + `joystickon`, `musicon`, `reversestereo`, `soundfxon`, `waitvertical` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 8th Graal (beta8) | + `saveimages` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.1 | + `editnickname`, `gamemode` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.21 | + `accountname`, `loadcolorsfromserver`, `password`, `serveraddr`, `serverport` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.28 beta2 | + `compabilitydraw`, `externalchat`, `language`, `nodecompressionerror` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.3 test | + `font`, `fontsize`; − `accountname`, `password` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.31 | + `fixedport`, `fixedudpport`, `noudp`; − `editnickname` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.32 | + `nomassmessages` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.33 | + `nodirectinput` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.35 | + `nohtmlinpms` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.36 | + `limitnicknames`, `nicknamelimit`; − `serverport` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.38 | − `externalchat` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.39 | + `dontconnectlevels`, `dontloadlistheads`, `nohtmlimages`, `notoalls`, `sortplayersbyname` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 1.41 rev1 | + `dontsavepasswords`, `fullscreenmode`, `usewinamp`; − `serveraddr` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| NewMain 1.42 | + `dontsavepms`, `dontusedirectx7`, `head`, `joyselected`; − `gamemode` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.00 | − `loadcolorsfromserver` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.1 test 2 | + `startinfullscreen` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.17.1 | + `automapping`, `microactivatebyvolume`, `microactivatekey`, `microactivationlevel`, `microinputdevice`, `microon`, `midivolume`, `mp3volume`, `quickplayerworlds`, `radiovolume`, `sfxvolume`, `voicecodec`, `voicevolume`; − `musicon`, `soundfxon`, `usewinamp` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| 2.31 | + `cachefilenames` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+| Graal3D | `bodytex`, `bodyx`, `fixedport`, `fixedudpport`, `headx`, `noudp`, `serveraddr`, `serverport` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
+
+| Build | Delphi forms (windows) | Source |
+| --- | --- | --- |
+| 1st Graal | + `TADVENTURE`, `TCONNECTFRAME`, `TEDITBADDY`, `TEDITSIGNS`, `TLINKLIST`, `TLINKOPTIONS`, `TLOADLEVEL`, `TOBJECTNAME`, `TOPTIONS`, `TSHOWCODES` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 2nd Graal | + `TCHESTEDIT`, `TEDITPERSON`, `TPERSONACTION` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 3rd Graal | + `TEDITFLAGS` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 5th Graal | + `TMOREOPTIONS` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 6th Graal (beta5) | + `TOPENURL` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 9th Graal alpha | + `TRECONNECTFRAME` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 1.1 | + `TCONTROLSFRAME` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 1.21 | + `TDEBUGGERFRAME` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 1.28 beta2 | + `TEDITCHARACTER`, `TMESSAGEEDITOR`, `TPLAYERLIST` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 1.32 | + `TRTFMESSAGE` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 1.39 | + `TPLAYERLISTOPTIONS`, `TPROFILEEDIT` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 1.41 rev1 | + `TSERVERLISTFRAME`, `TSERVERMESSAGE`, `TSHORTMESSAGE`, `TWAABOUT`; − `TRTFMESSAGE` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 2.04 | + `TOBJECTSET` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| NewWorld betas | − `TCHESTEDIT`, `TEDITBADDY` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 2.1 test 2 | + `TEDITNPC`; − `TEDITPERSON`, `TOBJECTSET`, `TPERSONACTION`, `TSHOWCODES` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 2.17.1 | + `TABOUTDLG`, `TLOGFRAME`, `TRPGFRAME`, `TTILESARRAYFRAME`; − `TWAABOUT` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| 2.31 | − `TCHESTEDIT`, `TDEBUGGERFRAME`, `TEDITBADDY`, `TEDITCHARACTER`, `TEDITFLAGS`, `TEDITNPC`, `TEDITSIGNS`, `TLINKLIST`, `TLINKOPTIONS`, `TOBJECTNAME`, `TTILESARRAYFRAME` (the editor leaves the client) | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| Graal3D | `TADVENTURE`, `TCONNECTFRAME`, `TEDITLOOK`, `TMOREOPTIONS` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+
+| Rule | Source |
+| --- | --- |
+| Sound names in the executable: 4th Graal alpha has `arrow`, `axe`, `bomb`, `chest`, `crush`, `dead`, `extra`, `frog`, `lift`, `put`, `sword`, `swordon`; 7th adds `water`; 8th adds `arrowon`, `compudead`, `fire`, `goal`, `horse`, `horse2`, `item`, `item2`, `jump`, `lift2`, `nextpage`, `sign`, `steps`, `steps2`, `stonemove`, `thunder`; 1.1.9 Gold drops `horse`, `horse2`, `steps2`; 1.34 brings back `horse2`; NewMain 1.42 drops `dead`, `goal`, `sign` (→ §4.7) | [bin] (version-profiles/matrix/builds-deltas.md#sound-effect-names-wav) |
+| The NewWorld betas drop `chest`, `compudead`, `frog`, `item2`, `jump`, `stonemove` and `swordon`, which 2.05 rev2 and 2.17.1 carry | [bin] (version-profiles/matrix/builds-deltas.md#sound-effect-names-wav) |
+| Images: 1st Graal names `letters`, `link`, `map`, `opps`, `pics1`, `state` (`.gif`); 3rd adds `heads.gif`; 5th adds `sprites.gif`; 1.21 brings the baddy, head, shield, sword, bomb and bow images; 1.33 moves the core sheets from `.gif` to `.png`; 2.00 adds lights, gates, doors and the tutorial maps; the NewWorld betas swap to `bodynw.png`, `pics1nw.png`, `spritesnw.png`, `newsword.png`; 2.17.1 moves the remaining item images to `.png` and adds the Kingdoms body parts, `picso.png` and `graal2002letters.png`; 2.31 drops `graalmap.png`, `shield1.gif`, `ss_arrow.png`, `ss_bomb.png` (→ §3.10) | [bin] (version-profiles/matrix/builds-deltas.md#image-names-the-executable-refers-to) |
+| Fonts named: `Courier`, `MS Sans Serif`, `System` from 1st Graal; `Courier` dropped in 6th; `Courier` and `Courier New` from 1.34; `Arial` from 2.17.1 | [bin] (version-profiles/matrix/builds-deltas.md#font-names-in-the-executable) |
+| In the shared Drive archive (73 exes in 55 folders) every PE timestamp is the same dummy 1992 date, so only file-version strings date the builds; it holds 2.00 and its revisions 1 to 3 but no 2.1.x release, 2.17, 2.22 or 2.31 (→ §1.1.1) | [file] (client-internals/drive-clients-inventory.md#drive-clients-set-what-it-contains-2026-10-24); [file] (client-internals/drive-clients-inventory.md#versions-present) |
+| Under Wine the 2.0x exes from that archive stop at "Cannot open file … commands.rtf" until another build's data files are put beside them | [cap] (client-internals/drive-clients-inventory.md#running-them-wine) |

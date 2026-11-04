@@ -56,8 +56,8 @@ Three writers emit the signature, each with a different set of keys; `GENERATED`
 | Build | Gmap reader | Map path in use | Source |
 | --- | --- | --- | --- |
 | 2.05 rev 2 | has the `GRMAP001` string, a reader that knows `WIDTH`, `HEIGHT`, `GENERATED`, `GENSEED`, `GENBASE`, `GENEVENBORDERS`, `GENHEIGHT`, `GENCHAOS`, `LEVHEIGHT`, `LEVCHAOS`, `MAPIMG`, `HEIGHTMAP` … `HEIGHTMAPEND`, `RANDOMSEEDS` … `RANDOMSEEDSEND` and `HEIGHTS`, and a map class; no static caller of the reader was found, so it may be dormant | the text big map and minimap below; no gmap warp handler and no gmap cell prop name | [2.05] (formats/gmap.md#205) |
-| 2.22 | unmeasured | gmap crossing captured in the lab (→ §4.10) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
-| 2.31 | unmeasured | gmap crossing captured in the lab (→ §4.10) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#needs) |
+| 2.22 | unmeasured | gmap crossing captured in the lab (→ §4.11.9) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| 2.31 | unmeasured | gmap crossing captured in the lab (→ §4.11.9) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#needs) |
 
 An earlier version of the gmap note said 2.05 had no `GRMAP001` string; that was wrong, and the build catalogue also lists it for 2.05 [2.05] (formats/gmap.md#205).
 

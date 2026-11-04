@@ -144,14 +144,14 @@ client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
 client-internals/des-and-hidden-strings.md	cited	3.7; 4.11	4	
-client-internals/drive-clients-inventory.md	cited	1	4	
+client-internals/drive-clients-inventory.md	cited	1; 4.11	4	
 client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superseded by client-internals/build-catalogue.md, client-internals/versions-133-139.md and protocol/relay-1998.md, which the manual cites
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
 client-internals/feature-specs/04-death-respawn.md	cited	4.4	4.4	
 client-internals/feature-specs/05-save-load.md	cited	3.7	3.7; 4.10	
-client-internals/feature-specs/06-gmap-overworld.md	cited	3.2	3.2; 4.10	
+client-internals/feature-specs/06-gmap-overworld.md	cited	3.2; 4.11	3.2; 4.10	
 client-internals/feature-specs/07-udp-peer.md	excluded		2.9	reimplementation feature spec; its protocol facts are restated from protocol/udp-p2p.md and packet-layouts.md, cited in §2.9
 client-internals/feature-specs/08-tampercheck.md	cited	4.10; E	4.10	
 client-internals/feature-specs/09-options.md	cited	4.6	4.6	
@@ -445,7 +445,7 @@ version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
 version-profiles/matrix/README.md	cited	1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
-version-profiles/matrix/builds-deltas.md	cited	3.9	C; 4	
+version-profiles/matrix/builds-deltas.md	cited	3.9; 4.11	C; 4	
 version-profiles/matrix/builds-static-survey.tsv	cited	4.1; E	C; 4	
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	
 version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	
