@@ -161,7 +161,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 194 | 0xe2 | `PLO_CLEARWEAPONS` | · | empty; precedes the weapon list |
 | 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others) |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` | · | `list type,name,saveToDisk,desKey,crc32` (type weapon/npc/class/gani; key = two i5) |
-| 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions` |
+| 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions`; stored and never read up to 6.03 (`client-internals/serveroptions-198.md`) |
 | 252 | — | `PLO_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLO_BUNDLE` | · | several packets in one |
 
