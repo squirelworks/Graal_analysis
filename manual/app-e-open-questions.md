@@ -89,6 +89,13 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether a server accepts these from a game connection, and which game feature sends them | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | Settles it | a capture of a 6.x game client using the upload path against a server | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 
+### E#10 When the `maps` download folder arrived
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the 2.1 test builds save downloads with no `maps` rule and 2.17.1 has one; no client between them has been found, so the build that added it is unknown | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
+| Settles it | the save routine of any client from 2.1 to 2.16, if one turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 | Item | Content | Source |
