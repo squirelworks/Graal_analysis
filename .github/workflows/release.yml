@@ -50,7 +50,9 @@ jobs:
               gh release upload "$TAG" dist/* --clobber
               gh release edit "$TAG" --target "$SHA" --notes-file "$RUNNER_TEMP/notes.md"
             else
-              echo "$TAG is already published; leaving it as it is."
+              # Published: only the notes change. The tag, its commit and the files stay.
+              gh release edit "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
+              echo "$TAG is already published; updated its notes only."
             fi
           else
             gh release create "$TAG" dist/* --draft --target "$SHA" --title "Graal Analysis $VERSION" --notes-file "$RUNNER_TEMP/notes.md"
