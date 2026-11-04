@@ -163,14 +163,14 @@ client-internals/feature-specs/14-friends-ignore.md	cited	4.10; 2.8	4.10
 client-internals/feature-specs/README.md	cited	4.10; E	4.10	
 client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
-client-internals/gameboy-demo.md	cited	1	4	
+client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/id24-205.md	cited	2.4	4	
 client-internals/item-drops.md	cited	4.5; E	4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
-client-internals/live-behaviour-404.md	cited	8.1; 8.3	4	
+client-internals/live-behaviour-404.md	cited	8.1; 8.3; 4.11	4	
 client-internals/live-checks-editor-offline-sound.md	cited	4.5; 4.6; 4.7; 4.8; 4.9	4	
 client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1	
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
@@ -182,13 +182,13 @@ client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline 
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
 client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
-client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3	4	
-client-internals/precursors-and-fan-builds.md	cited	1; 2.3	4	
+client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
+client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	
-client-internals/relay-room-bridge.md	cited	2.3	4	
+client-internals/relay-room-bridge.md	cited	2.3; 4.11	4	
 client-internals/rendering-observations.md	cited	4.1	4	
 client-internals/saved-passwords.md	cited	3.7	4	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
