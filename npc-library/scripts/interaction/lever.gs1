@@ -1,0 +1,45 @@
+// Original NPC library: lever
+// Category: interaction / flags, combat / targets
+// Image: lever sheet, off frame at x 0 and on frame at x 32, 32x32 each
+// Events: playerenters, playertouchsme, washit, timeout
+// Flag set/cleared: lever_bridge (rename per lever)
+//
+// Pull it by touching it facing up, or hit it with the sword. Each use
+// flips the flag; gates and bridges read it (see gate-flag.gs1). A short
+// lock stops one swing from flipping it twice.
+
+function draw() {
+  if (lever_bridge) {
+    setimgpart lever.png,32,0,32,32;
+  } else {
+    setimgpart lever.png,0,0,32,32;
+  }
+}
+
+function flip() {
+  if (this.lock == 0) {
+    this.lock = 1;
+    timeout = 0.4;
+    if (lever_bridge) {
+      unset lever_bridge;
+    } else {
+      set lever_bridge;
+    }
+    play lever.wav;
+    draw();
+  }
+}
+
+if (playerenters) {
+  timereverywhere;
+  this.lock = 0;
+  draw();
+}
+
+if ((playertouchsme && playerdir == 0) || washit) {
+  flip();
+}
+
+if (timeout) {
+  this.lock = 0;
+}

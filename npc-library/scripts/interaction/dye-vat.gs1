@@ -1,0 +1,21 @@
+// Original NPC library: dye vat
+// Category: interaction / triggers
+// Image: a vat of coloured water
+// Events: playerenters, playertouchsme
+//
+// Touching the vat dyes the player's coat its colour, for a fee.
+
+if (playerenters) {
+  setimg vat.png;
+  this.fee = 5;               // <- price
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (playerrupees >= this.fee) {
+    playerrupees -= this.fee;
+    setcoatcolor orange;      // <- colour
+    play splash.wav;
+  } else {
+    message #v(this.fee) rupees a dip.;
+  }
+}

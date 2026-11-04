@@ -1,0 +1,31 @@
+// Original NPC library: teleporter pad (in-level)
+// Category: transport / local-warps
+// Image: a glowing floor rune
+// Events: playerenters, playertouchsme, timeout
+//
+// Moves the player to the paired pad in the same level. Place two copies
+// and give each the other's position. After a jump both pads ignore the
+// player for a second, so arriving on the far pad does not bounce back.
+// The cool-down is a player flag, shared by every pad in the level.
+
+if (playerenters) {
+  timereverywhere;            // every client runs its own cool-down
+  setimg rune.png;
+  dontblock;
+  drawunderplayer;
+  this.tx = 50;               // <- the other pad's x
+  this.ty = 12;               // <- the other pad's y
+}
+
+if (playertouchsme && !pad_cooling) {
+  set pad_cooling;
+  putleaps 4,playerx + 1,playery + 1;
+  play teleport.wav;
+  playerx = this.tx - 0.5;
+  playery = this.ty - 1;
+  timeout = 1;
+}
+
+if (timeout) {
+  unset pad_cooling;
+}

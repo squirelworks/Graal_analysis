@@ -1,0 +1,23 @@
+// Original NPC library: pot
+// Category: interaction / visibility, combat / targets
+// Image: a pot, 32x32
+// Events: playerenters, washit, wasthrown, exploded
+//
+// Can be lifted and thrown. Breaks when thrown, hit by a sword or caught in
+// an explosion, leaving shards and sometimes a green rupee (one in four).
+// It comes back the next time the player enters the level.
+
+function smash() {
+  putleaps 2,x,y;
+  if (random(0,4) < 1) lay2 greenrupee,x+0.5,y+0.5;
+  hide;
+}
+
+if (playerenters) {
+  setimg pot.png;
+  canbecarried;
+}
+
+if (washit || wasthrown || exploded) {
+  smash();
+}

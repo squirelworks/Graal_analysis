@@ -1,0 +1,19 @@
+// Original NPC library: warp-stone pedestal
+// Category: transport / local-warps
+// Image: a stone pedestal
+// Events: playerenters, playertouchsme
+//
+// Tells the player whether they already own the warp stone, and points
+// those who do toward the runes.
+
+if (playerenters) {
+  setimg pedestal.png;
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (hasweapon(Warpstone)) {
+    say2 The stone in your bag hums. The runes will answer you now.;
+  } else {
+    say2 An empty hollow, shaped for a small round stone.;
+  }
+}

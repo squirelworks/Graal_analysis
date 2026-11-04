@@ -1,0 +1,17 @@
+// Original NPC library: level warp
+// Category: transport / level-warps
+// Image: none needed (stairs or a doorway in the tiles); an image is optional
+// Events: playerenters, playertouchsme
+//
+// Sends the player to a fixed spot in another level on touch. It does not
+// block and draws under the player, so it can sit on top of stair tiles.
+
+if (playerenters) {
+  setimg warpmark.png;        // <- or a transparent 32x32 image
+  dontblock;
+  drawunderplayer;
+}
+
+if (playertouchsme) {
+  setlevel2 cave_entrance.graal,30,52;   // <- level, x, y
+}
