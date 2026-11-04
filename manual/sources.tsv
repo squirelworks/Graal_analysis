@@ -17,7 +17,7 @@ archive/game-assets-worlds-2026-11-01.md	excluded		E	inventory of the owner's of
 ash/ALGORITHMS.md	cited	5	5.2	
 ash/ARCHITECTURE.md	cited	5; 7	5.2	
 ash/ARCHIVAL-NOTE.md	cited	E	5.2	§5.2 not needed: the note separates two projects named Ash, carried as App. E#400; §5.2 describes the tree from the other ash notes (coverage audit 2026-11-04)
-ash/BLUEPRINT.md	cited	5	5.2	
+ash/BLUEPRINT.md	cited	5	5.2	term carry low by design: the missing terms are the 2006 tree's C++ class and function names; its source tree, data walk, wire frame and special ops are carried in §5.2 (coverage audit 2026-11-04)
 ash/INDEX.md	cited	5; E	5.2	
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source

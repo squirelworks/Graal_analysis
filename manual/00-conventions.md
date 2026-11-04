@@ -158,6 +158,7 @@ These rules come from the repository's agent rules [doc] (AGENTS.md#no-real-serv
 | --- | --- |
 | check the manual | `python tools/manual/check_manual.py` |
 | check before the final audit | `python tools/manual/check_manual.py --final` (also fails on any `pending` row in `sources.tsv`) |
+| check that cited notes are carried | `python tools/manual/check_carry.py` (a `cited` row with no reason fails when a planned section does not cite the note, or when under 30 % of a Markdown note's distinctive terms appear in the manual; `--report` lists the lowest carries) |
 | run the checker's tests | `python -m pytest tools/manual -q` |
 | build the PDF | `python tools/manual/build_manual.py` (pandoc, then Chromium prints A4; default output `manual/pdf/graal-trm.pdf`; `--version X` labels the edition and names the file `graal-trm-X.pdf`) |
 
