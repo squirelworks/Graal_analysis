@@ -1,0 +1,27 @@
+// Original NPC library: fused bomb barrel
+// Category: combat / hazards, spawn / timers
+// Image: a barrel with a fuse
+// Events: playerenters, playertouchsme, washit, timeout
+//
+// Lighting it (touch or hit) starts a three-second countdown shown above
+// it; then it explodes with a large radius. Useful for blasting cracked
+// walls from a distance. It is back on the next visit.
+
+if (playerenters) {
+  setimg barrel.png;
+  this.lit = 0;
+}
+
+if ((playertouchsme || washit) && this.lit == 0) {
+  this.lit = 1;
+  play fuse.wav;
+  timershow;
+  timeout = 3;
+}
+
+if (timeout && this.lit == 1) {
+  this.lit = 2;
+  message ;
+  putexplosion 3,x+1,y+1;
+  hide;
+}

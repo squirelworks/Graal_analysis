@@ -1,0 +1,26 @@
+// Original NPC library: frame animation
+// Category: spawn / timers (animation cycles), misc / other
+// Image: a horizontal strip of equal frames (here 4 frames of 32x32)
+// Events: playerenters, timeout
+//
+// Steps through the frames of a strip on a timer: torches, water wheels,
+// flags. Change the frame count, size and speed in the marked lines.
+// Purely visual, so every client runs its own copy.
+
+if (playerenters) {
+  timereverywhere;
+  dontblock;
+  this.frames = 4;            // <- frames in the strip
+  this.w = 32;                // <- frame width in pixels
+  this.h = 32;                // <- frame height in pixels
+  this.speed = 0.15;          // <- seconds per frame
+  this.f = 0;
+  setimgpart torch.png,0,0,this.w,this.h;
+  timeout = this.speed;
+}
+
+if (timeout) {
+  this.f = (this.f + 1) % this.frames;
+  setimgpart torch.png,this.f * this.w,0,this.w,this.h;
+  timeout = this.speed;
+}

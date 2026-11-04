@@ -1,0 +1,35 @@
+// Original NPC library: falling rock (one shot)
+// Category: combat / hazards
+// Image: a crack in the ceiling, then a rock (sheet: crack at x 0, rock at x 32)
+// Events: playerenters, playertouchsme, timeout
+//
+// The first time the player steps under the crack, a rock falls after a
+// short warning, hurts if the player is still there, and stays as rubble.
+// Removes itself (destroy) once it has fallen, so it never triggers again
+// in this level. Online, destroy removes it from the server's level too
+// (manual §8.2.3), which suits a one-time trap.
+
+function under() {
+  this.on = 0;
+  if (abs(playerx + 0.5 - x) < 1 && abs(playery + 1 - y) < 1) this.on = 1;
+}
+
+if (playerenters) {
+  setimgpart rockfall.png,0,0,32,32;
+  dontblock;
+  drawoverplayer;
+  this.armed = 1;
+}
+
+if (playertouchsme && this.armed == 1) {
+  this.armed = 0;
+  play rumble.wav;
+  timeout = 0.6;
+}
+
+if (timeout && this.armed == 0) {
+  under();
+  if (this.on == 1) hurt 2;
+  putleaps 2,x,y;
+  destroy;
+}

@@ -261,10 +261,12 @@ npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server 
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/dialogue/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/enemies/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/hazards/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/interaction/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/items/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/minigames/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/objects/README.md	excluded			original example scripts written for the repo, not evidence about Graal
+npc-library/scripts/spawners/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/scripts/transport/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/tile-patterns.md	excluded		8	scan output that read script text as tile ids (the pairs decode to ASCII); not usable
 protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md

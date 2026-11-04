@@ -1,0 +1,26 @@
+// Original NPC library: fire that throws the player back
+// Category: combat / hazards
+// Image: a flame, 32x32 (animate it with an animated image if you like)
+// Events: playerenters, playertouchsme
+//
+// Burns for a heart and throws the player one tile back the way they came,
+// but only if that tile is free; against a wall the player just takes the
+// hurt's own knockback. Blocks so the player cannot stand in it.
+
+if (playerenters) {
+  setimg flame.png;
+}
+
+if (playertouchsme) {
+  hurt 2;
+  this.bx = 0;
+  this.by = 0;
+  if (playerdir == 0) this.by = 1;
+  if (playerdir == 1) this.bx = 1;
+  if (playerdir == 2) this.by = -1;
+  if (playerdir == 3) this.bx = -1;
+  if (!onwall(playerx + 1.5 + this.bx, playery + 2.5 + this.by)) {
+    playerx += this.bx;
+    playery += this.by;
+  }
+}

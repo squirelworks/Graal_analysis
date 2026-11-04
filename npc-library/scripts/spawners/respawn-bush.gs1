@@ -1,0 +1,39 @@
+// Original NPC library: regrowing bush
+// Category: spawn / timers, combat / targets
+// Image: a bush, 32x32
+// Events: playerenters, washit, wasthrown, exploded, timeout
+//
+// Cut, thrown or blown up, it leaves leaves and hides; eight seconds later
+// it grows back, but only when the player is not standing on the spot
+// (otherwise it tries again every half second). Runs on every client so
+// each player's bushes regrow.
+
+function playeron() {
+  this.on = 0;
+  if (playerx + 2.5 > x && playerx + 0.5 < x + 2 && playery + 3 > y && playery + 1 < y + 2) this.on = 1;
+}
+
+if (playerenters) {
+  timereverywhere;
+  setimg bush.png;
+  canbecarried;
+  this.gone = 0;
+}
+
+if ((washit || wasthrown || exploded) && this.gone == 0) {
+  this.gone = 1;
+  putleaps 0,x,y;
+  if (random(0,6) < 1) lay2 greenrupee,x+0.5,y+0.5;
+  hide;
+  timeout = 8;
+}
+
+if (timeout && this.gone == 1) {
+  playeron();
+  if (this.on == 1) {
+    timeout = 0.5;
+  } else {
+    this.gone = 0;
+    show;
+  }
+}
