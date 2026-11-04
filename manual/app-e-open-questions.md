@@ -345,6 +345,27 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Open | loading `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` runs an extra setup step in 2.05; what the step does was not traced | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
 | Settles it | loading each name offline on 2.05 in the lab and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
+
+### E#320 Does any server check the tamper check
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the clients only send `PLI_TAMPERCHECK` (39); the open-source server discards it, and four public servers accepted a 2.22 login without it for 20 s; whether any server checks the value, or its periodic re-send from 2.31, is unknown | [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
+| Settles it | a 2.31 session on a public server with the re-send withheld or altered, which needs the user's approval for a public login | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
+
+### E#321 The 2.31 window blacklist
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | 2.31 compares top-level window titles and classes with an obfuscated list every 3.2 s; the list and the client's reaction to a match are not decoded | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| Settles it | decoding the list in 2.31 and a lab run with a window of a listed title open | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
+
+### E#322 How others see a key emote
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the 2.05 Ctrl+letter path draws the emote locally and sends nothing, yet captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s; they may come from a server script calling `showimg` or from an untraced path | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| Settles it | a lab capture of a real 2.05 client pressing Ctrl+A next to a second client | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
 ### E#400 Two projects called Ash
 
 | Item | Content | Source |
