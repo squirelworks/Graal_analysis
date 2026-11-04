@@ -180,7 +180,7 @@ HEIGHTSEND
 | position | after the signs and one empty line | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 | reader | accepts the block after the signs whatever the magic says; matches `HEIGHTSEND` case-insensitively; keeps at most 9 rows of 9 values | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 | board | unchanged: 13 bits, the same run codes | [2.31] (formats/level-binary-client.md#gr-v104-231) |
-| same overlay | the 9×9 grid is the `HEIGHTS` overlay that GLEVNW01 carries and TerrainGenerator writes (→ §3.1.3.4) | [2.31] (formats/level-binary-client.md#gr-v104-231) |
+| same overlay | the 9×9 grid is the `HEIGHTS` overlay that GLEVNW01 carries and TerrainGenerator writes (→ §3.1.3.5) | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 | meaning | a 9×9 grid fits the corners of an 8×8 grid of 8×8-tile cells on a 64×64 level | [inf] (formats/level-binary-client.md#gr-v104-231) |
 | where | in 2.31, GR-V parsing appears only in the web-level cache code, the one place that client both writes and reads GR-V1.04 (→ §3.8) | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 
@@ -242,7 +242,16 @@ BOARD x y width layerindex tilesdata
 | baddy | `BADDY x y type`, verse lines, `BADDYEND` | type is a name or 0 to 9; verses may be shortened, but `BADDYEND` is required | [srv] (formats/glevnw01.txt) |
 | chest | `CHEST x y item signindex` | item is a name or 0 to 24, resolved by the server's item table; an unknown item drops the chest | [srv] (formats/glevnw01.txt) |
 
-### 3.1.3.4 Other writers of the same keywords
+### 3.1.3.4 GSERVL01
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| magic | `GSERVL01`, a second text-level signature known to the 3.x clients | [bin] (protocol/v3x-clients.md#file-formats) |
+| parser | read by the same parser as GLEVNW01 | [bin] (protocol/v3x-clients.md#file-formats) |
+| keywords | `BOARD`, `LINK`, `CHEST`, `SIGN`, `NPC`…`NPCEND`, `BADDY`…`BADDYEND`, `HEIGHTS`…`HEIGHTSEND`, and `REPLACENPCS`…`REPLACENPCSEND`, which the client skips | [bin] (protocol/v3x-clients.md#file-formats) |
+| later builds | 4.x lists it among the magics it knows, as in 3.x | [bin] (protocol/v4x-clients.md) |
+
+### 3.1.3.5 Other writers of the same keywords
 
 Three tools write level text, and only two of them produce what the loader accepts [GE] (formats/glevnw01.txt):
 

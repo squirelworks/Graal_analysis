@@ -34,7 +34,18 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 | The staff-guild list is sent at login as `PLO_STAFFGUILDS` (47) | server; 2.05 | [srv][2.05] (protocol/chat-pm-rc.md#admin-and-staff) |
 | The staff tools run their own logins: RC `GSERV023` to `GSERV025`, NC `NCL11012`, RC2 as type 6 on generation 5 (→ §7) | server | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
 
-## 2.8.4 Profiles
+## 2.8.4 Buddy and list text requests
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Buddy requests go in `PLI_SENDTEXT` as the tokens `GraalEngine`, `lister`, then `verifybuddies`, `addbuddy` or `deletebuddy`, then the account list | 2.17+; server | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
+| The server forwards those three options to the listserver, never for guest accounts, and stores nothing itself | server | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
+| The listserver answers with `PLO_SERVERTEXT` (82) carrying `weapon`, `lister`, `buddylist`, then a comma list of accounts | listserver | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
+| `PLI_REQUESTTEXT` types `pmservers`, `pmserverplayers <server>`, `pmunmapserver` and `pmguilds` go to the listserver for the cross-server and guild tabs | server | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
+| A real 2.22 client sent no buddy request on add or delete; it only wrote `buddyaccounts.txt`, so the token layout on the wire is unmeasured (→ §4.10.5.2) | 2.22 | [cap] (client-internals/feature-specs/14-friends-ignore.md#lab-findings-from-a-real-222-client-2026-10-24-cap) |
+| `PLI_MUTEPLAYER` (43) is `s playerId, c 1/0`; GServer-v2 registers no handler, so it counts as an invalid packet, and more than 5 invalid packets disconnect the client; two sends from a 2.22 client did not | 2.17+; server | [srv][cap] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
+
+## 2.8.5 Profiles
 
 | Rule | Builds | Source |
 | --- | --- | --- |
