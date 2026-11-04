@@ -68,7 +68,7 @@ The rights levels are no rights, Graalian Police, Trusted Admin and Administrato
 | timer | a 1000 ms timer walks every loaded level, empty or not, and decrements each countdown | [bin] (client-internals/board-respawn.md#respawn-tick-bin) |
 | restore | at < 1 the server removes the record, sends `PLO_BOARDMODIFY` (7) with the **old** tiles to everyone in the level, the original sender included, and writes them back into its board | [bin][live] (client-internals/board-respawn.md#respawn-tick-bin) |
 | timing | for R = 10 the countdown starts at 7..12 and the first tick comes 0 to 1 s after the change, so the restore lands 6 to 12 s later; 7 and 12 are half as likely as 8 to 11 | [bin] (client-internals/board-respawn.md#respawn-tick-bin) |
-| measured | 60 of 60 2 × 2 changes respawned after 6.21 to 11.98 s, mean 9.21 s; other sizes never respawned; restored tiles were the level's own tiles | [live] (client-internals/board-respawn.md#measured-live) |
+| measured | 60 of 60 2 × 2 changes respawned after 6.21 to 11.98 s, mean 9.21 s; other sizes never respawned; restored tiles were the level's own tiles | [live] (client-internals/board-respawn.md#measured-live); [live] (version-profiles/lab-gs13-respawn.tsv) |
 | re-entry | a player with no change list gets the level as on a first visit; otherwise only the queued changes go out and the list is dropped; the exact packet is hard to read | [bin][inf] (client-internals/board-respawn.md#level-re-entry-bin) |
 | disconnect | the player's change lists are freed | [bin] (client-internals/board-respawn.md#level-re-entry-bin) |
 

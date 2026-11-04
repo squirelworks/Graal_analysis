@@ -10,6 +10,7 @@ This chapter describes GS1, the NPC and weapon script language of the 1.x and 2.
 | Item | Rule | Source |
 | --- | --- | --- |
 | host | Classic NPCs are pure client-side; the archived script corpus shows no separate server VM | [doc] (npc-library/archival-scripting-notes.md#runtime-model-highlights-classic-client) |
+| corpus | the archived level scripts sort into genres; baddies (452 scripts) and hazards (192) lead, and most baddy NPCs are event skeletons that react to the player entering or touching them, an item drop, or all baddies dying | [doc] (npc-library/behaviours.md#combat--baddies-452-scripts); [doc] (npc-library/behaviours.md#combat--hazards-192-scripts) |
 | kinds of script | a level NPC, a weapon NPC (made by `toweapons -Name`), and a child NPC made by `putnpc` | [doc] (npc-library/archival-scripting-notes.md#runtime-model-highlights-classic-client) |
 | delivery to 2.05 | NPC and weapon scripts arrive as source text in the NPC script prop (`NPCPROP_SCRIPT`) | [2.05] (npc-library/gs1-reference-205.md#execution-model-205) |
 | weapon delivery | PLO 33 NPCWEAPONADD carries `str name` and an NPC prop stream with image and script; a name the player already has is ignored; 2.05 fires `playerenters` on the new weapon | [srv][2.05] (client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
