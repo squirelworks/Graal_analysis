@@ -19,7 +19,7 @@ ash/ARCHITECTURE.md	cited	5; 7	5.2
 ash/ARCHIVAL-NOTE.md	cited	E	5.2	
 ash/BLUEPRINT.md	cited	5	5.2	
 ash/INDEX.md	cited	5; E	5.2	
-ash/OPCODE-MAP.md	pending		2.4; 2.5; A	
+ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/bare-level-names.md	pending		4	
@@ -257,18 +257,18 @@ npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8
 npc-library/reference/forcesay.txt	pending		8	
 npc-library/reference/npcControl-NPC.txt	pending		8	
 npc-library/tile-patterns.md	pending		8	
-protocol/OPCODE-SUMMARY.md	pending		2.4; 2.5; A	
+protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md
 protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/client-versions.md	cited	2.1; 2.2; 2.3; 2.5	1; 2.2	
 protocol/codec-and-framing.md	cited	0; 1; 2.1; 2.2; 2.3; 2.5; E	2.1; 2.2	
-protocol/cross-version-anchors.md	pending		2	
-protocol/crosscheck-captures-vs-research.md	pending		2	
+protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
+protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/file-transfer.md	cited	2.7; E	2.7	
 protocol/format-notes-from-salvage.md	cited	E	2	
 protocol/graphics-movement-bytecode.md	cited	8.3; 8.4; E	8.4	
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
-protocol/lab-checks-2026-10-24.md	pending		2	
+protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/listserver.md	cited	6; E	6	
@@ -280,15 +280,15 @@ protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not ev
 protocol/medium-term-slice.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/npc-control.md	cited	7; E	7	
 protocol/offline-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
-protocol/packet-id-diff.md	pending		2.4; 2.5; A	
+protocol/packet-id-diff.md	excluded		2.4; 2.5; A	method note: the 2.05 file it compared was the GS1 interpreter, not the packet dispatcher; no packet facts of its own
 protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
 protocol/packet-layouts.md	cited	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	
-protocol/pcap-2026-10-04.md	pending		2	
+protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
 protocol/player-props.md	cited	2.6; 2.8; B	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
-protocol/session-opcodes-cleaned.md	pending		2.4; 2.5; A	
+protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
 protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10	1; 2.3; 10	
 protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E	1; 2.3; 10	
@@ -436,7 +436,7 @@ version-profiles/plo-npcprops-layouts.tsv	cited	2.6; E	2.5; A
 version-profiles/plo-otherplprops-layouts.tsv	cited	2.6	2.5; A	
 version-profiles/plo-playerprops-layouts.tsv	cited	2.6; E	2.5; A	
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	
-version-profiles/tampercheck-words.tsv	pending		4.10	
+version-profiles/tampercheck-words.tsv	cited	2.4	4.10	
 version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	
 version-profiles/version-coverage-2026-10-24.md	pending		1; C	
 version-profiles/version-coverage-2026-10-24.tsv	pending		1; C	
