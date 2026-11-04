@@ -422,6 +422,5 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | Rule | Source |
 | --- | --- |
 | No `.dts`, `.dif`, `.ter` or `.mis` file ships with any Graal client: the 3D content always came from the server | [file] (torque/engine-and-formats.md#3d-resource-formats) |
-| No 3D server software or 3D level data is in the archives | [file] (torque/README.md#what-a-seihai-suite-would-need-in-order) |
 | 3.153 maps terrain textures to detail textures and footstep sound types in script (→ §10.4.4) | [file] (torque/engine-and-formats.md#3d-resource-formats) |
 | 4.04r2 ships 3D GUI skins in `levels3d/gui/`, help pages in `levels3d/help/*.hfl` and nine `languages3D/language*.cs` tables of `$language::Name = "text";` lines, probably loaded by server GUI scripts | [file][inf] (graal3d/torque-engine-4x.md#files) |
