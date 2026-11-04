@@ -190,7 +190,18 @@ Real 2.05 rev 2, 2.17.1 and 2.22 reach the game and walk on a GServer-v2 build w
 | file (2.1+) | `PLO_RAWDATA` with the total, then `PLO_FILE`: `i5` time, `c` name length, name, bytes (→ §2.7) | [src] (server-notes/03-protocol.md#file-send-21) |
 | props | the prop encodings are in → §2.6 | [src] (server-notes/03-protocol.md#player-props) |
 
-### 5.3.6 Board respawn
+### 5.3.6 Word filter
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| file | `config/rules.txt` is the word filter, not a rules text players see | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
+| header | optional `WARNMESSAGE` and `SHOWWORDSTORC`, then `RULE` … `RULEEND` blocks | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
+| rule fields | `CHECK` (pm, chat, nick, toall), `MATCH` (`?` is a wildcard), `PRECISION` (number or percent), `WORDPOSITION` (full, start, part), `ACTION` (log, tellrc, replace, warn, jail, ban), optional per-rule `WARNMESSAGE` | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
+| applied to | chat (prop 12), PMs, toall and nickname changes | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
+| actions | `replace` swaps the matched letters for `*`; `warn` replaces the whole message with the warn text; `log` and `tellrc` go to the server log and RCs; `jail` and `ban` are stubs and do nothing | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
+| chat echo | when a chat line was changed, the server sends the new CURCHAT back to the sender so its own bubble shows the filtered text | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
+
+### 5.3.7 Board respawn
 
 | Rule | Source |
 | --- | --- |
@@ -285,7 +296,26 @@ The second server refused 2.05 although `GNW03081` lies inside its printed range
 | `this.` flags | current NPC | yes, for database NPCs | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | `server.` flags | world-wide, shared with other NPC servers of the world, never sent to players | yes | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 
-The command list and client support per build are in → §8.1 and → §8.2; the PM admin interface and the NC socket that replaced it are in → §7.3.
+| Command group | Commands | Source |
+| --- | --- | --- |
+| flow and core | `destroy`, `if`, `while`, `for`, `break`, `continue`, `sleep`, `set`, `unset`, `setstring`, `message` | [doc] (tools/npcserver-2001.md#3-commands) |
+| NPC appearance and state | `setgif`/`setimg`, `setgifpart`/`setimgpart`, `setshape`, `drawoverplayer`, `drawunderplayer`, `dontblock`, `blockagain`, `show`, `hide`, `noplayeronwall`, `showcharacter`, `setcharprop`, `setcharani`, `setchargender`, `putbomb`, `putexplosion`, `putexplosion2`, `setarray` | [doc] (tools/npcserver-2001.md#3-commands) |
+| server-side additions | `canwarp`, `canwarp2`, `cannotwarp`, `callnpc`, `with (players[i])`, `with (getplayer(acct))`, `with (npcs[i])`, `with (getnpcs(name))`, `join`, `warpto`, `tokenize`, `tokenize2` | [doc] (tools/npcserver-2001.md#3-commands) |
+| acting on the current player | `setplayerprop`, `setani`, `setgender`, `say`, `enableweapons`, `disableweapons`, `toweapons`, `addweapon`, `removeweapon`, `setlevel2`, `freezeplayer2`, `unfreezeplayer` | [doc] (tools/npcserver-2001.md#3-commands) |
+| string helpers | `strlen`, `startswith(part,str)`, `indexof(part,str)` (−1 if absent), `#e(start,len,str)`, `#T(str)` (trim), `tokenscount`, `#t(i)` | [doc] (tools/npcserver-2001.md#3-commands) |
+
+| Command | Rule | Source |
+| --- | --- | --- |
+| `noplayeronwall` | `onwall` and `onwall2` stop counting players on this NPC | [doc] (tools/npcserver-2001.md#3-commands) |
+| `canwarp` | database NPCs only; the NPC warps through links exactly as a player would | [doc] (tools/npcserver-2001.md#3-commands) |
+| `canwarp2` | database NPCs only; for wandering overworld NPCs: normal links, checks `onwall` at the destination, refuses small links such as house doors | [doc] (tools/npcserver-2001.md#3-commands) |
+| `with` | swaps the current player or NPC for the block; commands are skipped if the target does not exist; local variables still resolve to the caller; `sleep`, `break` and `continue` inside the block leave the swapped context in place | [doc] (tools/npcserver-2001.md#3-commands) |
+| `join class` | loads `class.txt` from the scripts folder; an NPC holds its own script then each joined class; a class loaded by another NPC is shared, so updating it updates every member; later scripts can override functions | [doc] (tools/npcserver-2001.md#3-commands) |
+| `warpto` | moves the NPC to another level; database NPCs only | [doc] (tools/npcserver-2001.md#3-commands) |
+| `addweapon` | like `toweapons`, but the weapon script comes from the database and the weapon must already exist | [doc] (tools/npcserver-2001.md#3-commands) |
+| `tokenize`, `tokenize2` | `tokenize` splits on spaces and commas; `tokenize2` adds extra delimiters | [doc] (tools/npcserver-2001.md#3-commands) |
+
+Client support for these commands per build is in → §8.1 and → §8.2; the PM admin interface and the NC socket that replaced it are in → §7.3.
 
 ### 5.5.2 Message codes on a script-running server
 

@@ -157,9 +157,9 @@ client-internals/feature-specs/08-tampercheck.md	cited	4.10; E	4.10
 client-internals/feature-specs/09-options.md	cited	4.6	4.6	
 client-internals/feature-specs/10-right-click-menu.md	cited	4.10	4.10	
 client-internals/feature-specs/11-emotes-ganis.md	cited	4.10; E	4.10	
-client-internals/feature-specs/12-motd-rules.md	cited	4.10	4.10	
+client-internals/feature-specs/12-motd-rules.md	cited	4.10; 5	4.10	
 client-internals/feature-specs/13-ban-kick.md	cited	4.10	4.10	
-client-internals/feature-specs/14-friends-ignore.md	cited	4.10	4.10	
+client-internals/feature-specs/14-friends-ignore.md	cited	4.10; 2.8	4.10	
 client-internals/feature-specs/README.md	cited	4.10; E	4.10	
 client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
@@ -310,8 +310,8 @@ protocol/rc-capture-2026-11-04.md	cited	6; 7; E
 protocol/relay-1998.md	cited	2.1; 2.2; 2.3	2.3; 4	
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/udp-p2p.md	cited	2.8; 2.9	2.9	
-protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10	1; 2.3; 10	
-protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E	1; 2.3; 10	
+protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10; 3.1	1; 2.3; 10	
+protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E; 3.1	1; 2.3; 10	
 protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E	1; 2.3	
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E	1; 2.3	
@@ -426,7 +426,7 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/network.md	cited	10	10	
 torque/scripting.md	cited	10	10	
 torque/wire-by-build.md	cited	10; E	10	
-version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9	1; C	
+version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2	1; C	
 version-profiles/2.22-2.31.toml	cited	2.4	1; C	
 version-profiles/3.04-3.153.md	cited	2.4; 2.5; E	1; C	
 version-profiles/3.04-3.153.toml	cited	2.4	1; C	

@@ -172,7 +172,7 @@ How damage is applied after a hit is in → §4.3.
 | 34 | `PLO_NPCWEAPONDEL` | `rest` = weapon name | removes the weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 43 | `PLO_DEFAULTWEAPON` | `c item index` (0–24: a built-in weapon such as bow, bomb, sword) | adds the built-in weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 44 | `PLO_HASNPCSERVER` | empty | the client stops applying NPC props itself | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-layouts-217-231.tsv) |
-| 131 | `PLO_NPCBYTECODE` | `i3 code`, bytecode | script and class registration (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
+| 131 | `PLO_NPCBYTECODE` | `i3 code`, bytecode | script and class registration: 3.153 registers classes (`joinedclasses`) and `public.` variables from it, with 132 and 133 (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 133 | `PLO_UNKNOWN133` | `rest` = text | maybe registers a class script | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 134 | `PLO_GANISCRIPT` | gani text | 3.153 parses the gani text in place | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 140 | `PLO_NPCWEAPONSCRIPT` | `s info_length`, script | class and weapon script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |

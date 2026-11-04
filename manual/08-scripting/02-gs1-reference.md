@@ -378,6 +378,9 @@ From the release notes; the binaries have not been read for the command tables o
 | 2.21 | `triggeraction 0,0,clientside,…` reaches a weapon's client-side part | [doc] (client-internals/feature-timeline.md) |
 | 2.22 | `gravity`, `downloadsize` | [doc] (client-internals/feature-timeline.md) |
 | 2.3 | classic client-side NPC mode removed; `timevar2` | [doc] (client-internals/feature-timeline.md) |
+| 2.22 (symbol table, against 2.17) | added `gravity`, `textwidth(zoom,font,style,text)`, `textheight(zoom,font,style)`, `isthisflagset`, `isplayerflagset`, and a `#R` message code with a string argument; removed `isflagset`, which the two new tests replace | [bin] (version-profiles/2.22-2.31.md#gs1-script-differences-from-the-clients-symbol-table-bin) |
+| 2.31 (symbol table, against 2.22) | added `timevar2`, `downloadsize`, `onwall2(x,y,w,h)`, `onwater2(x,y,w,h)`; nothing removed | [bin] (version-profiles/2.22-2.31.md#gs1-script-differences-from-the-clients-symbol-table-bin) |
+| 2.22 `downloadsize` | announced in the 2.22 notes but absent from the 2.22 symbol table; a 2.22 script sees it as undefined (0) | [bin][doc][inf] (version-profiles/2.22-2.31.md#gs1-script-differences-from-the-clients-symbol-table-bin) |
 
 ### 8.2.7.3 2.05 against the 2.22 documentation
 

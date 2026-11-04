@@ -29,4 +29,4 @@ OBJECTEND
 | objects | 288 named multi-tile objects across the five sets | [file] (formats/gobjset01.md) |
 | first stamp | `objectsStandard` begins with the 2×2 "Bush", base64 `ACAD` / `ASAT` → ids 2, 3, 18, 19 | [file] (formats/gobjset01.md) |
 | Bush collision | `disputed → App. E#100` | [file] (formats/gobjset01.md); [src] (formats/tile-walk.md#stamp-vocabulary) |
-| generator stamps | in DungeonGenerator, stamp id 0 is a 4×4 ground fill and stamp id 1 is a hole that is not written (→ §3.1.3.4) | [bin] (formats/gobjset01.md) |
+| generator stamps | in DungeonGenerator, stamp id 0 is a 4×4 ground fill and stamp id 1 is a hole that is not written (→ §3.1.3.5) | [bin] (formats/gobjset01.md) |
