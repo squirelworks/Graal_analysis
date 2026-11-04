@@ -33,6 +33,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `formats/tile-walk.md` — sheet selection, type-0 allow lists, wall/water rules, stamp ids.
 - `formats/sign-text.md` — network alphabet vs file alphabet, controls, drop-in decoder note.
 - `formats/gobjset01.md` — stamp format and the 2×2 Bush example.
+- `npc-library/scripts/` — the original NPC library: new GS1 scripts written from scratch against `npc-library/behaviours.md` and manual §8, by family, each checked by `tools/gs1-lint`.
 - `npc-library/gs1-commands.md` — control flow, common commands, pattern letters, offline wiring priority.
 - `protocol/session-opcodes-cleaned.md` — common server-to-client meanings that match GLEVNW01 records.
 - `client-internals/config-and-input.md` — graalconfig keys, device path, drop-files behavior.

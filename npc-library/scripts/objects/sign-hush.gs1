@@ -1,0 +1,15 @@
+// Original NPC library: quiet-please sign
+// Category: object / signs
+// Image: a sign
+// Events: playerenters, playertouchsme
+//
+// A library or shrine sign: reading it stops the background music.
+
+if (playerenters) {
+  setimg sign.png;
+}
+
+if (playertouchsme && playerdir == 0) {
+  stopmidi;
+  say2 Silence, please. The scholars are working.;
+}

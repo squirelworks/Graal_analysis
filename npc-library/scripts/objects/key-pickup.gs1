@@ -1,0 +1,28 @@
+// Original NPC library: small key pickup (companion to door-key.gs1)
+// Category: object / doors
+// Image: a small key
+// Events: playerenters, playertouchsme
+// Flags: has_small_key (set here), key_cellar_taken (rename per key)
+//
+// The player holds at most one key at a time, like a classic dungeon. A
+// player who already carries one is told so and the key stays put.
+
+if (playerenters) {
+  if (key_cellar_taken) {
+    hide;
+  } else {
+    setimg smallkey.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !key_cellar_taken) {
+  if (has_small_key) {
+    say2 Your hands are full - use the key you carry first.;
+  } else {
+    set has_small_key;
+    set key_cellar_taken;
+    play item.wav;
+    hide;
+  }
+}

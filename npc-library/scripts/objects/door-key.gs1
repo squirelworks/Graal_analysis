@@ -1,0 +1,28 @@
+// Original NPC library: locked door that uses up a key
+// Category: object / doors
+// Image: a locked door
+// Events: playerenters, playertouchsme
+// Flags: has_small_key (given by a key pickup), door_cellar_open (set here)
+//
+// Without a key: says it is locked. With a key: uses the key, stays open
+// for good. Rename door_cellar_open per door; keep has_small_key shared by
+// every key and every door of the dungeon.
+
+if (playerenters) {
+  if (door_cellar_open) {
+    hide;
+  } else {
+    setimg lockeddoor.png;
+  }
+}
+
+if (playertouchsme && !door_cellar_open) {
+  if (has_small_key) {
+    unset has_small_key;
+    set door_cellar_open;
+    play unlock.wav;
+    hide;
+  } else {
+    say2 The door is locked.;
+  }
+}
