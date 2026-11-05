@@ -430,7 +430,7 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
-torque/study-torque-clients.md	cited	E	10	
+torque/study-torque-clients.md	cited	E	10	new 2026-11-05 synthesis; only its App. E#503 evidence is carried so far, and the per-era findings and the 3.04 script surface go into §10 once Squirrel has reviewed the study and the rebuild plan
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
