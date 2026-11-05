@@ -24,6 +24,7 @@ book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not 
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/baddies-222.md	cited	2.6; 4.3; 5; 8.2; E	4.3	
 client-internals/bare-level-names.md	cited	3.1	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
+client-internals/beta-hud-layouts.tsv	pending		4.6	per-build HUD layouts of the 1998 betas to 1.28b2, measured from captures; for the HUD section's early-builds table
 client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
 client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
 client-internals/build-catalogue.md	cited	0; 1; 2.1; 2.2; E	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -185,6 +186,7 @@ client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4
 client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
+client-internals/rebuild-traces-2026-11-05.md	pending		4.6; 4.11; 6	graal-delphi v0.0.4 traces (HUD text, start windows, 2.22 layers and timer, 2.31 list buttons); to be folded into the HUD, side-builds and listserver sections
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §8.3 (coverage audit 2026-11-04)
