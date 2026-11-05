@@ -30,7 +30,7 @@ open-point closed.
 - [ ] **4. pyReborn study into the repo.** Needs Squirrel's `pyreborn-vs-seihai.md` and
   `parser-probe-main.rs` (project files). Add as `client-internals/pyreborn-study/`
   with the MIT note; keep `file:line` citations; drop pasted pyReborn code.
-  *Blocked until Squirrel provides the files.*
+  *Blocked until Squirrel provides the files.* Tracked in #244 (on hold).
 
 - [x] **5. Graal3D collision as plain behaviour (unblocks `seihai-g3d` G3D-1).**
   Per-face step test in `graal3d/collision.md` with tags: radius 5, step height 30,
@@ -75,7 +75,7 @@ open-point closed.
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
   (a horse does not change it). **Still open:** full vs empty login default checks
   (the set, and whether they share a frame); maps folder in 2.1–2.16 (the client
-  archive still has no build between the 2.1 test builds and 2.22).
+  archive still has no build between the 2.1 test builds and 2.22). Tracked in #245.
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
   NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,
@@ -92,7 +92,7 @@ open-point closed.
   `version-profiles/matrix/rules-1st-graal.md` (static read of the VCL-lossy export;
   the death-counter increment is not tagged). 1.32 remains: the Decompile folder
   was listed again on 2026-11-01 (client exports and Accessories) and still has
-  no 1.32 export, so no death, hurt or wall number was added.*
+  no 1.32 export, so no death, hurt or wall number was added.* Tracked in #246 (on hold).
 
 - [ ] **12. Keep Seihai's fixture reader working.** Any PR that edits
   `version-profiles/*.toml` or `client-internals/version-profiles/*.toml` runs Seihai's
@@ -103,9 +103,25 @@ open-point closed.
   fill matrix unknown #3. Ask before planning; public servers are off-limits without
   Squirrel's OK. Proceeded without a capture (`protocol/login-session-known.md`):
   what the existing notes already say a Login server sends, and what is still
-  unobserved. The look itself stays open.
+  unobserved. The look itself stays open. Tracked in #247 (Squirrel decides).
 
-- [ ] **14. Graal Technical Reference Manual (1.0).** Spec: issue #191. Fifteen PRs in
-  the order the issue lists; do not stack on an open one. PR 1 (skeleton, conventions,
-  `manual/sources.tsv`, `tools/manual/check_manual.py`, navigator area, three-OS CI)
-  is the first; Part I + App. C is next.
+- [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
+  All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
+  the three-OS PDF build. TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.
+
+- [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
+  1.0.0"): 0.0.5 coverage proof (`tools/manual/coverage.py` and one prose PR per
+  Part) is next, then 0.0.6 implementability, 0.0.7 triage of the unknowns, 0.0.8
+  release quality, 1.0.0 sign-off (Squirrel's call). Tick the items in #191 as PRs land.
+
+- [ ] **16. Torque study and the 3.04 plan.** #242 (open): `torque/study-torque-clients.md`
+  and `torque/rebuild-plan-3.04.md`. Follow-ups in #243: stage 0 reference captures of
+  the real 3.04 in the cloud lab, the TGE 1.x licence check, Part X. The rebuild itself
+  is graal-delphi's (squirelworks/graal-delphi#109, on hold; language decision
+  squirelworks/graal-delphi#110, Squirrel decides).
+
+## Handoff
+
+The project moves to Cursor on 2026-11-07. Start with graal-delphi's
+`HANDOFF-CURSOR.md` (state of both repos, rules, on-hold work, open decisions),
+then this file and `AGENTS.md`.

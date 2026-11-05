@@ -57,7 +57,9 @@ PRs; they never merge, never push to `main`, never create a tag or release.
 - Before pushing, run the leak checks below on your diff. A PR that adds a host,
   address or `FUN_` name is not ready.
 - Add the new note to `README.md`'s contents list in the same PR, and close the item in
-  the matching open-points file (strike it and link the new note).
+  the matching open-points file (tick its `- [ ]` box, strike it and link the new note).
+  Every incremental fix or open-point list is a GitHub task list (`- [ ]` / `- [x]`),
+  including `docs/NEXT.md` and issue bodies.
 - **Stop and ask Squirrel** (leave the task, go to the next) where a task says
   "Squirrel decides".
 - Leave the built-in guest password as it is on `main`. Do not redact it again.
@@ -75,7 +77,8 @@ git grep -niE 'graalonline\.com|graal\.in\b|graalreborn\.(com|net)'
 
 ## Task list
 
-See `docs/NEXT.md` for the ordered open work.
+See `docs/NEXT.md` for the ordered open work, issue #191 for the manual's roadmap
+to 1.0.0, and graal-delphi's `HANDOFF-CURSOR.md` for the state of both repos.
 
 ## Cursor Cloud specific instructions
 
