@@ -26,6 +26,24 @@ graal-delphi's rule is "in the language they were written in". 3.x was C++ on To
 
 Either way the yardstick is the same: the original client's own script, GUI and font files run unmodified and the result matches the lab captures. Torque source may be read for behaviour only under its own licence (Torque3D is MIT; check TGE 1.x's terms before reading it), and no Graal decompile goes into the rebuild, as now.
 
+## Checklist
+
+Tick a stage when its test passes. The rebuild work is tracked in
+squirelworks/graal-delphi#109 (on hold), the research follow-ups here in #243.
+
+- [ ] Decision: the Torque layer's language (squirelworks/graal-delphi#110)
+- [ ] Stage 0: reference captures of the real 3.04
+- [ ] Stage 1: script VM and sim objects
+- [ ] Stage 2: GUI canvas, controls, profiles, fonts, theme
+- [ ] Stage 3: input, console, prefs
+- [ ] Stage 4: `GuiGraalCtrl` (0.0.2 for 3.04)
+- [ ] Stage 5: 2D parity (0.0.3 for 3.04)
+- [ ] Stage 6: 3.153 shell
+- [ ] Stage 7: 3.153 Torque UDP link
+- [ ] Stage 8: 3.153 3D play
+- [ ] Stage 9: 4.04r2 launcher and engine split
+- [ ] Stage 10: 4.20r8 and 5.00r7
+
 ## Stages for 3.04
 
 Each stage ends in a test that can fail. "Real" means the original `graalexe` 3.04 run in the existing lab (Linux, loopback servers); reference shots are in the project folder (`graal-decompile/v3x/lab/shots/`, `ato/stage1-start-window-304.png`).
