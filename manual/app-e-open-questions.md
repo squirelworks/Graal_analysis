@@ -513,6 +513,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | the 4.04r2 plug-in has no TorqueScript compiler or console, and `.dso` and `.cs` files are never requested or used | [bin] (graal3d/torque-engine-4x.md#overview) |
 | Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
 | Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Evidence (2026-11-05) | the 4.04r2, 5.00r7 and 5.12 3D DLLs contain no `exec`, `.dso` or script-compiler strings; 4.04r2 keeps console variables only (`Con::Prompt`, `Con::printLevel`); this favours Claim B | [bin] (torque/study-torque-clients.md#6-what-the-2d-delphi-engine-lacks-per-era) |
 
 ### E#600 Tile layer as GraalEditor writes it
 
