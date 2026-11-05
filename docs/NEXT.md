@@ -114,14 +114,16 @@ open-point closed.
   Part) is next, then 0.0.6 implementability, 0.0.7 triage of the unknowns, 0.0.8
   release quality, 1.0.0 sign-off (Squirrel's call). Tick the items in #191 as PRs land.
 
-- [ ] **16. Torque study and the 3.04 plan.** #242 (open): `torque/study-torque-clients.md`
-  and `torque/rebuild-plan-3.04.md`. Follow-ups in #243: stage 0 reference captures of
-  the real 3.04 in the cloud lab, the TGE 1.x licence check, Part X. The rebuild itself
-  is graal-delphi's (squirelworks/graal-delphi#109, on hold; language decision
-  squirelworks/graal-delphi#110, Squirrel decides).
+- [ ] **16. Torque study and the 3.04 plan. On hold, no target release** (Squirrel,
+  2026-11-05). The study and plan are merged (#242, stage checklist #250):
+  `torque/study-torque-clients.md`, `torque/rebuild-plan-3.04.md`. Follow-ups wait in
+  #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
+  The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
+  parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
 
 ## Handoff
 
-The project moves to Cursor on 2026-11-07. Start with graal-delphi's
+The project moves to Cursor on 2026-11-07. Graal_analysis work there continues
+from this list and #191 (TRM 0.0.5 is next). Start with graal-delphi's
 `HANDOFF-CURSOR.md` (state of both repos, rules, on-hold work, open decisions),
 then this file and `AGENTS.md`.
