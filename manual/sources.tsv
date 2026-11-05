@@ -178,7 +178,6 @@ client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4
 client-internals/live-trace-early.md	cited	4.1; 4.2	4	
 client-internals/newworld-betas.md	cited	4.1; 8.2	4	
 client-internals/npcaction.md	cited	2.5	2.5	
-client-internals/serveroptions-198.md	cited	2.5	2.5	
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
@@ -192,6 +191,7 @@ client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Pa
 client-internals/relay-room-bridge.md	cited	2.3; 4.11	4	
 client-internals/rendering-observations.md	cited	4.1	4	
 client-internals/saved-passwords.md	cited	3.7	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
+client-internals/serveroptions-198.md	cited	2.5	2.5	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/spyfire-by-version.md	cited	8.2		
@@ -428,7 +428,9 @@ tools/server-tools-2001.md	cited	5; 6; 7; E	7
 torque/README.md	cited	10	10	
 torque/engine-and-formats.md	cited	10; E	10	
 torque/network.md	cited	10	10	
+torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
+torque/study-torque-clients.md	cited	E	10	
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
