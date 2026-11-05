@@ -204,7 +204,7 @@ Both betas send client type 0, the key byte, `G2N15041`, the account and the pas
 - **Movement.** GANI (10) goes out as a string. While idle the client re-sends `idle` about every 100 ms, because the control NPC calls `setani` each tick (2.05 sends it only now and then). Walking sends X and Y in half tiles plus SPRITE, and nwb2 re-sends `walk` on each step.
 - **Keys.** S does nothing online, so a server has to give the sword as an NPC weapon. A plays the grab animation. The control NPC comes from the local `controlnpc.txt` as the weapon `Control-NPC`, added when the player is created.
 - **Time (packet 42).** The payload is a GINT4: minutes since 1000/01/01 00:00 on the NW calendar (28-day months, 10 months, 280-day year). A value of 162310450 showed as 1402/06/16 14:10 on the HUD clock.
-- **Offline Training** in nwb1 runs without a server (HUD 150/150, clock 1000/01/01).
+- **Offline Training** in nwb1 runs without a server (HUD 150/150, clock 1000/01/01). The status bar's layout and the key-letter font are in `rebuild-traces-2026-11-05.md#newworld-beta-status-bar`.
 
 ### Client → server set
 

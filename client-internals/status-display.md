@@ -70,8 +70,12 @@ status display.
   2.05.
 * The routine of any build before 2.05, including how 1.41 uses its three
   button cells.
-* The text drawing that prints the glove and sword power: its font, colour
-  and anchor.
+* ~~The text drawing that prints the glove and sword power: its font, colour
+  and anchor.~~ Traced under Wine in the 2.0x and 2.1x builds: the
+  `graalconfig.txt` font (Tempus Sans ITC, cell 24, bold), white over a blue
+  shadow. The key letters were traced too (Helvetica 26 bold from (16, 32),
+  (81, 32), (146, 32); the Q in Helvetica 10 at (146, 27)). See
+  `rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace`.
 
 ## The selected weapon (2.05 rev 2)
 
