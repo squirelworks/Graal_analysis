@@ -16,6 +16,7 @@ That means anyone who can read the registry, or a `.reg` export or backup of tha
 
 - DES in ECB mode, standard tables, with one twist: **each key byte is bit-reversed** before the key schedule (bit 0 becomes bit 7). This is how the Acme Labs Java `DesCipher` handles keys, and the client's DES unit behaves the same. **[2.05]** **[test]**
 - Equivalent: standard DES with the key `bitreverse(k[0]) … bitreverse(k[7])`.
+- **Later clients keep the quirk (2026-11-06).** The libtomcrypt DES in the 4.04r2 `GraalEngine.dll` and the 6.03r7 Windows client, run in an emulator, gives `CEE55ACD2386B23F` for key `133457799BBCDFF1` and block `0123456789ABCDEF` (textbook DES: `85E813540F0AB405`), and matches "standard DES with bit-reversed key bytes" on every random pair tried. `graaldes.py` gives the same value. The real 6.03r7 client loaded an encrypted `.gpake` package built this way (`formats/gpak.md`). So the PLO 104 package keys, and very likely the `GRESCR01` script cache, need this DES too. **[bin]** **[test]**
 
 ## String format (48 characters)
 

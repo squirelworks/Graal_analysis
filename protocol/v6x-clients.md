@@ -65,6 +65,7 @@ From the game connection's receive dispatcher.
 
 - **6.03r7 (92 ids):** 0–25, 27–40, 42, 43, 45–49, 67, 68, 69, 74, 82, 84, 101, 102, 104–107, 109, 111, 131, 134, 140, 150, 151, 153–156, 166, 168, 170, 172–174, 176, 178–180, 182, 183, 185–187, 189, 190, 191, 194, 195, 197, 198. **[bin]**
 - **6.01r1 (91 ids):** the same without 111. **[bin]**
+- **Before the switch (both builds):** 100 (`PLO_RAWDATA`, sets the raw-data length) and 108 (ping, answered with 162) are taken before the main switch, as in 4.20. The two lists above were read from the switch alone, so both builds really handle these two more ids. (Added 2026-11-06, `unknown-ids-2026-11-06.md`.) **[bin]**
 - Against 5.00r7: drops 41, 75, 132, 133, 165, 169, 171, 175, 181, 184, 193; adds 109, 111 and 198. **[bin]**
   - 109: a GINT5 time plus two strings, handed to the file layer (probably a file redirect; the 6.11 native handler list has `setfileredirect(u,s,s)`). **[inf]**
   - 111: writes `creationtime.dat`. **[bin]**
@@ -72,7 +73,7 @@ From the game connection's receive dispatcher.
 
 Payloads of the new ids **[bin]**:
 
-- **109:** `i5` time (five 7-bit groups), then a `c`-length string A and a `c`-length string B. The client passes (B, A, time) to the file layer. Most likely a file redirect (6.11 names a native handler `setfileredirect(u,s,s)`). **[bin][inf]**
+- **109:** `i5` time (five 7-bit groups), then a `c`-length string A and a `c`-length string B. The client passes (B, A, time) to the file layer. B is parsed as an `http://` or `https://` URL and fetched through an HTTP connection object named `HTTP_<host>_<port>_<path>`; A is the file name it is stored under (or redirected from). This fits 6.11's native `setfileredirect(u,s,s)`. **[bin][inf]**
 - **198:** one `i5`, stored on the connection. Nothing else in 6.03 reads it back.
 - **111:** no fields. The receive dispatcher passes the whole packet body to one function that writes it, byte for byte, to `creationtime.dat` in the client's own folder (the same base folder the other cache files use), replacing the file. The client sends nothing back. A matching loader that reads the file into a string exists, but no direct call to it was found, so what reads the value (probably a script builtin) is not known. **[bin][inf]**
 
@@ -99,7 +100,7 @@ All outgoing packets go through one virtual send method `(id, body)`. It writes 
 | 157, 158, 161 | `PLI_UPDATEGANI`, `PLI_UPDATESCRIPT`, `PLI_UPDATECLASS` | script and gani requests |
 | 159 | `PLI_UPDATEPACKAGEREQUESTFILE` | |
 | 160 | `PLI_RC_FOLDERDELETE` | 6.03 only |
-| 162 | (no gs2lib name) | **new.** Reply to a server request: `!` followed by a 2-byte value (2 × 7-bit groups, capped at 0x6FFF) the server sent. Probably the ping answer that 6.11 calls `onSendPingAnswer` **[inf]** |
+| 162 | `PLI_RC_UNKNOWN162` | The answer to PLO 108 subtype 0: `!` followed by a 2-byte value (2 × 7-bit groups, capped at 0x6FFF) the server sent; the ping answer that 6.11 calls `onSendPingAnswer`. The RCs send the same id empty as a 60 s keepalive (`unknown-ids-2026-11-06.md`) **[bin]** |
 
 The other ids (0–20, 22–24, 26–30, 32–36, 38, 41, 47, 48) have the same meaning as in 2.x–5.x. **[bin][inf]**
 

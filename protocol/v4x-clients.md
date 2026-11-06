@@ -90,7 +90,7 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 183 | The client checks whether a given string is in that window list and answers. |
 | 190 | Fires `onServerListerConnect` (the `Login` server has accepted the session). |
 | 191 | A projectile (`SHOOT2`): x, y, z, three angle and speed values, a gani name with optional parameters, then a script string. |
-| 193 | A 5-byte GINT time and a file name: the client checks its cached copy (mod time, then CRC). |
+| 193 | A GINT5 **CRC32** and a weapon name: if `weblevels/weapons/<name>.code` exists and its zlib CRC32 matches, the client loads the cached script; otherwise it asks with id 158. (Corrected 2026-11-06: the GINT5 is a CRC32, not a mod time; `unknown-ids-2026-11-06.md`.) |
 | 194 | Clears the client's lists of weapon and class scripts and their name index. |
 | 195 | A gani name and gani text: the client loads it as a gani (server-pushed gani scripts). |
 | 196 | Same layout as 193; the 4.20r8 handler reads it and does nothing else. |

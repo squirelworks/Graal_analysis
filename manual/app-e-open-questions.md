@@ -43,15 +43,16 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | which list is right for 5.00r7; both are floors, since sends through a variable are not captured | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
 | Settles it | a 5.00r7 capture of a throw, or a re-read of the send wrappers for id 11 | [inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
 
-### E#5 Meaning of id 162 from the client
+### E#5 Meaning of id 162 from the client (settled)
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | gs2lib names 162 `PLI_RC_UNKNOWN162`: an empty message from the RC3 beta | [srv] (protocol/packet-ids.md#client--server-pli_) |
 | Claim B | 4.20r8 sends 162 as the answer to S→C 108 | [bin] (protocol/v4x-clients.md#client--server-ids) |
 | Claim C | 6.01r1 and 6.03r7 send 162 as a reply to a server request: `!` followed by a 2-byte value (two 7-bit groups, capped at `0x6FFF`) the server sent; probably the ping answer that 6.11 calls `onSendPingAnswer` | [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Open | whether B and C are the same message, and how the RC3 beta's empty 162 relates to them | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Open | ~~whether B and C are the same message, and how the RC3 beta's empty 162 relates to them~~ settled below | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | Settles it | a capture of a 4.x or 6.x client answering S→C 108 | [inf] (protocol/v4x-clients.md#client--server-ids) |
+| Settled | one message, a ping: 4.20r6, 4.20r8, 6.01r1 and 6.03r7 send 162 only from their 108 handler, with the same code in 4.20r8 and 6.03r7; the 2010 RC and RC3 send it empty every 60 s and have no 108 handler; a capture of the game-client answer is still missing | [bin] (protocol/unknown-ids-2026-11-06.md) |
 
 ### E#6 Client-to-server constants of 1.21 and 1.32
 
