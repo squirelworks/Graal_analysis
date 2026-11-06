@@ -274,6 +274,24 @@ The 2.22 client drops nothing when a baddy dies. GServer-v2 drops on mode 9 when
 
 Whether the original GServer dropped items, and with what odds, is not known **[inf]**.
 
+### 1.x clients roll the drop themselves **[bin]**
+
+Before NewMain 1.42 the drop is not the server's: the client rolls it when a baddy dies. One `Random(100)` per death, the item lands on the baddy's position, and online the client announces it the same way as a bush drop (see `item-drops.md`):
+
+| Roll | Item | Gray, blue, red soldier, frog, octopus, golden warrior, lizardon | Shooting soldier (3), swamp soldier (4), dragon (9) |
+| --- | --- | --- | --- |
+| 0 to 9 | green rupee | 10 % | 10 % |
+| 10 to 14 | blue rupee | 5 % | 5 % |
+| 15 to 29 | heart | 15 % | 15 % |
+| 30 to 74 | darts | – | 45 % |
+| the rest | nothing | 70 % | 25 % |
+
+- A baddy never drops a red or gold rupee, bombs or anything else, and drops at most one item.
+- The roll runs when a baddy goes to dying (mode 5): when its hurt time ends with power below 1; at once for a frog on any hit; after a short delay for a swamp soldier; and for an octopus a few steps into any hurt, whatever its power.
+- Online, only the client that runs the level's baddies (the leader) is expected to reach the death code; another client only lowers the power and sends `PLI_BADDYHURT` **[inf]**.
+- **Builds.** The same odds and types in every client from 7th Graal (beta 7, 1998-12) to 1.41 (graal_gr1411): 1.0, 1.1, 1.1.9, 1.21, 1.28 beta 2, 1.3 beta, 1.31 to 1.39 and 1.41 were all read. From 1.38 the code picks the item by its number (0, 1, 5, 4) instead of its name. 1st Graal to 6th Graal give darts to types 3 and 4 only, and 1st to 4th Graal roll the heart before the blue rupee (heart 10 to 24, blue rupee 25 to 29), so the odds are the same. NewMain 24/26 and the NewWorld betas have no client roll.
+- So a 1.x-compatible server should leave `baddyitems` off for 1.x clients, as it does for `bushitems`.
+
 ## Respawn **[srv]**
 
 GServer-v2 waits `baddyrespawntime` seconds (default 60) after mode 9, then resets the baddy to its start position, its start power, the start mode for its type, and BDPROP 7 = `(2 << 2) | 2` (body and head down), and sends it to the level.

@@ -17,7 +17,8 @@ The captures, their decoded message lists and screenshots are in the project fil
 | 1.42 (NewMain) to 2.31 | The server (`PLO_ITEMADD`, 22). Offline nothing drops **[bin][doc]** | Pickup: `PLI_ITEMTAKE` (32). Timeout: `PLI_ITEMDEL` (13) **[bin][cap]** |
 
 - **The change is at 1.42, not 2.00.** NewMain 1.42's `newfeatures142.txt` says "bush rupees and pot hearts are server-side", and the roll is gone from NewMain 24 and 26 **[doc][bin]**. 1.41 (graal_gr1411) still has it **[bin]**.
-- **No client ever rolls arrows**, and no client drops anything for a stone **[bin]**. Arrows from a bush come only from a server that has them in its table (GServer-v2: `rand() % 6` includes darts **[src]**).
+- **Baddies:** 1.x clients also roll the baddy drop themselves (10 % green rupee, 5 % blue, 15 % heart, and 45 % darts for the shooting soldier, swamp soldier and dragon). See `baddies-222.md`, "1.x clients roll the drop themselves".
+- **No client ever rolls arrows for a bush**, and no client drops anything for a stone **[bin]**. Arrows from a bush come only from a server that has them in its table (GServer-v2: `rand() % 6` includes darts **[src]**).
 - **Stones.** The only client path that touches a stone is the bomb blast, which destroys a sign, pot or stone and gives a heart only for the pot **[bin]**. "Something with rocks" is most likely bombs breaking them.
 
 ## The 1.x roll **[bin]**
