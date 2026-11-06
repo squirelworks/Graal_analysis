@@ -179,7 +179,7 @@ How damage is applied after a hit is in → §4.3.
 | 165 | `PLO_MOVE` | `i3 npc id` (> 0), `rest` = move data | passed to the NPC movement routine | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 166 | `PLO_SHOWIMGNPC` | `i3 npc id`, `rest` = props | applies the props to that NPC in the active level | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 189 | `PLO_MOVE2` | `i3 npc id`, `rest` | as 165, with an extra flag set | [bin] (version-profiles/plo-layouts-217-231.tsv) |
-| 193 | `PLO_UNKNOWN193` | `i5` time, file name | 4.20r8 checks its cached copy (mod time, then CRC); 5.00r7 routes it to an NPC and raises the script level to at least 3 | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 193 | `PLO_UNKNOWN193` | `i5` CRC32, `rest` = weapon name | raises the script level to at least 3; loads `weblevels/weapons/<name>.code` if its zlib CRC32 matches, else asks for the script with `PLI_UPDATESCRIPT` (158); 4.04r2 to 5.12 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 194 | `PLO_CLEARWEAPONS` | empty; precedes the weapon list | 4.20r8 clears its weapon and class script lists; 5.00r7 clears every loaded level and the level caches | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 195 | `PLO_LOADGANI` | `str gani`, then the gani text | loaded as a server-sent gani script | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 196 | (no gs2lib name) | as 193 | 4.20r8 reads it and does nothing else | [bin] (protocol/v4x-clients.md#server--client-ids) |
@@ -203,7 +203,7 @@ The download sequence, sizes and failure handling are in → §2.7.
 | 102 | `PLO_FILE` | behind 100 (→ §2.7) | a received file | [srv] (protocol/codec-and-framing.md#raw-data-escape) |
 | 105 | `PLO_UPDATEPACKAGESIZE` | package name and an `i5` size | sets a size or modification time on a cached object | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 106 | `PLO_UPDATEPACKAGEDONE` | unmeasured | fires `onUpdatePackageDownloaded`, and `onPackagesDownloadComplete` after the last one; 4.20r8 restarts itself when its own executable was in a package | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
-| 109 | `PLO_UNKNOWN109` | `i5` time, then a `c`-length string A and a `c`-length string B | passes (B, A, time) to the file layer; most likely a file redirect | [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |
+| 109 | `PLO_UNKNOWN109` | `i5` time, then a `c`-length string A (local name) and a `c`-length string B (URL) | fetches B over HTTP and stores it as A with that mod time; a file redirect; 5.24r4 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | 111 | `PLO_SETNETCOOKIE` | `rest`, no fields | written byte for byte to `creationtime.dat` in the client's folder, replacing it; nothing is sent back | [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | 187 | `PLO_UPDATEPACKAGEISUPDATED` | unmeasured | a package-update message | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 198 | `PLO_SERVEROPTIONS` | `i5` value | stored on the connection; nothing else in 6.03 reads it | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
@@ -235,8 +235,8 @@ Chat display and the private-message rules are in → §2.8.
 | 183 | `PLO_HASPROCESSRUNNING` | `rest` = names | the client answers with `PLI_PROCESSRUNNING` (45): 1 if the string occurs in its own list, else 0 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 184 | `PLO_TAKESCREENSHOT` | `rest` = file name | accepted only with a `.png` extension; saves a screenshot under the screenshots folder; sends nothing back | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 190 | `PLO_SERVERLISTCONNECTED` | unmeasured | fires `onServerListerConnect`: the `Login` server has accepted the session (→ §2.3) | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
-| 108 | `PLO_UNKNOWN108` | a subtype, then data | 4.20r6 and 4.20r8: subtype 0 makes the client answer with id 162 (→ App. E#5); subtype 1 stores a value on the connection | [bin] (protocol/v4x-clients.md#server--client-ids) |
-| 104 | `PLO_UNKNOWN104` | `str data` holding `c`, `i5`, `i5` | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 108 | `PLO_UNKNOWN108` | `c sub`, `s value` | ping: subtype 0 makes the client answer with id 162 echoing the value (→ App. E#5); subtype 1 stores the value on the connection; 4.20r6, 4.20r8, 6.01r1, 6.03r7, taken before the main switch; not 5.x | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids) |
+| 104 | `PLO_UNKNOWN104` | `str file`, `c a`, `i5 lo`, `i5 hi`; lo and hi joined little-endian | stores an 8-byte DES key for that lower-cased file name; a `.gpake` package or `.enc` file decrypts with it once 45, 69 or 102 arrives for the file; 3.153 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][lab] (formats/gpak.md) |
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -264,11 +264,11 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
-| 60 | `PLO_UNKNOWN60` | unmeasured | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 81 | `PLO_UNKNOWN81` | unmeasured | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 83 | `PLO_UNKNOWN83` | unmeasured | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 110 | `PLO_UNKNOWN110` | unmeasured | ignored by clients | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 124 | `PLO_UNKNOWN124` | unmeasured | seen by RC3; possibly player flags (untested) | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 60 | `PLO_UNKNOWN60` | unmeasured | no game client (1.21 to 6.03r7) or staff client (1999 RCs to RC3, NPC Control) handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
+| 81 | `PLO_UNKNOWN81` | unmeasured | no game or staff client handles it; not an NC id, against the gserver's comment | [bin] (protocol/unknown-ids-2026-11-06.md) |
+| 83 | `PLO_UNKNOWN83` | unmeasured | no game or staff client handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
+| 110 | `PLO_UNKNOWN110` | unmeasured | no game or staff client handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
+| 124 | `PLO_UNKNOWN124` | unmeasured; RC3 reads nothing from the body | RC3 only: prints `received player flags`; no game client and no older RC handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 132 | `PLO_UNKNOWN132` | unmeasured | 5.07 only; 6.037 ignores it; 3.153 uses it for script and class registration | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |

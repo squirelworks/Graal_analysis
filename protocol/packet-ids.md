@@ -72,7 +72,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 57 | 0x59 | `PLO_RC_ACCOUNTPROPSGET` | · |   |
 | 58 | 0x5a | `PLO_RC_ACCOUNTCHANGE` | · |   |
 | 59 | 0x5b | `PLO_RC_PLAYERPROPSCHANGE` | · |   |
-| 60 | 0x5c | `PLO_UNKNOWN60` | · | client 5.07+ ignores it |
+| 60 | 0x5c | `PLO_UNKNOWN60` | · | no game or staff client handles it (1.21 to 6.03r7, RCs 1999 to RC3); the 1.33 RC used 60 client → server for "edit player: Apply" **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 61 | 0x5d | `PLO_RC_SERVERFLAGSGET` | · |   |
 | 62 | 0x5e | `PLO_RC_PLAYERRIGHTSGET` | · |   |
 | 63 | 0x5f | `PLO_RC_PLAYERCOMMENTSGET` | · |   |
@@ -93,23 +93,23 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 78 | 0x6e | `PLO_NC_CONTROL` | · | repurposed by Graal Reborn; original purpose unknown; client 5.07+ ignores it |
 | 79 | 0x6f | `PLO_NPCSERVERADDR` | · | two bytes (0, 2), then `ip,port` text; client 5. ignores it |
 | 80 | 0x70 | `PLO_NC_LEVELLIST` | · | `str levels`; client 5.07+ ignores it |
-| 81 | 0x71 | `PLO_UNKNOWN81` | · | client 5.07+ ignores it |
+| 81 | 0x71 | `PLO_UNKNOWN81` | · | no game or staff client handles it; not an NC id (RC3's NC socket and NPC Control `NCL15031` lack it), against the gserver's "probably NC related" **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 82 | 0x72 | `PLO_SERVERTEXT` | · | reply to PLI_REQUESTTEXT / PLI_SENDTEXT |
-| 83 | 0x73 | `PLO_UNKNOWN83` | · | client 5.07+ ignores it |
+| 83 | 0x73 | `PLO_UNKNOWN83` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 84 | 0x74 | `PLO_LARGEFILESIZE` | · | `i5 size` (2.31 only) **[bin]** |
 | 100 | 0x84 | `PLO_RAWDATA` | ✔ | `i3 length` |
 | 101 | 0x85 | `PLO_BOARDPACKET` | ✔ via RAWDATA |   |
 | 102 | 0x86 | `PLO_FILE` | ✔ via RAWDATA |   |
 | 103 | 0x87 | `PLO_RC_MAXUPLOADFILESIZE` | · | `i5 bytes`: RC upload limit (default 20 MiB) |
-| 104 | 0x88 | `PLO_UNKNOWN104` | · | `str data` holding `c`, `i5`, `i5` (an 8-byte value) |
+| 104 | 0x88 | `PLO_UNKNOWN104` | · | `str file`, `c a`, `i5 lo`, `i5 hi`: the DES key for an encrypted package or `.enc` file, keyed by lower-cased file name; 3.153 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`, `formats/gpak.md`) |
 | 105 | 0x89 | `PLO_UPDATEPACKAGESIZE` | · | package-update message (5.07, 6.037) |
 | 106 | 0x8a | `PLO_UPDATEPACKAGEDONE` | · | package-update message (5.07, 6.037) |
 | 107 | 0x8b | `PLO_BOARDLAYER` | · | like LEVELBOARD, for extra layers |
-| 108 | 0x8c | `PLO_UNKNOWN108` | · |   |
-| 109 | 0x8d | `PLO_UNKNOWN109` | · | `i5 modtime`, `str url`: fetch a file over HTTP (connector?) |
-| 110 | 0x8e | `PLO_UNKNOWN110` | · | ignored by clients |
+| 108 | 0x8c | `PLO_UNKNOWN108` | · | ping: `c sub`, `s value`; sub 0 → the client answers PLI 162, sub 1 stores the value; 4.20 and 6.x, taken before the main switch **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 109 | 0x8d | `PLO_UNKNOWN109` | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP; 5.24r4 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 110 | 0x8e | `PLO_UNKNOWN110` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 111 | 0x8f | `PLO_SETNETCOOKIE` | · | `rest cookie` |
-| 124 | 0x9c | `PLO_UNKNOWN124` | · | seen by RC3; possibly player flags (untested) |
+| 124 | 0x9c | `PLO_UNKNOWN124` | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` | · | `i3 code`, `bytecode` |
 | 132 | 0xa4 | `PLO_UNKNOWN132` | · | 5.07 only; client 6.037 ignores it |
 | 133 | 0xa5 | `PLO_UNKNOWN133` | · | rest = text; maybe registers a class script |
@@ -132,7 +132,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 165 | 0xc5 | `PLO_MOVE` | ✔ | client 6.037 ignores it; `i3 npc id` (> 0) + move data **[bin]** |
 | 166 | 0xc6 | `PLO_SHOWIMGNPC` | ✔ | `i3 npc id` + prop list **[bin]** |
 | 167 | 0xc7 | `PLO_NC_WEAPONLISTGET` | · | `c name1 length`, `name1`, `c name2 length`, `name2`; client 5.07+ ignores it |
-| 168 | 0xc8 | `PLO_UNKNOWN168` | ✔ | sent by the login server; payload ignored; local-player reset (2.17–2.31) **[bin]** |
+| 168 | 0xc8 | `PLO_UNKNOWN168` | ✔ | sent by the login server; payload ignored; local-player reset (2.17–2.31); sets a one-shot "logged in" flag on the player object in 4.20 and 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 169 | 0xc9 | `PLO_UPGRADEURL` | · | with DISCONNECT: the reconnect button becomes "Upgrade" and opens this URL; rest = URL text **[bin]** |
 | 170 | 0xca | `PLO_GHOSTMODE` | · | `c flag` (> 0 = ghost on) **[bin]** |
 | 171 | 0xcb | `PLO_BIGMAP` | · | client 6.037 ignores it; comma text `txt,png,x,y` (≥ 4 fields used); x, y parsed as floats **[bin]** |
@@ -145,7 +145,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 178 | 0xd2 | `PLO_SERVERWARP` | · | comma text, ≥ 4 fields: field 0 unused, 1 = server name, 2 = host, 3 = port; the client closes the connection and reconnects with a fresh login, no listserver step (2.31 lab; the lab text came from the open-source listserver reimplementation) **[bin][cap]** |
 | 179 | 0xd3 | `PLO_RPGWINDOW` | · | rest = text **[bin]** |
 | 180 | 0xd4 | `PLO_STATUSLIST` | · | rest = text **[bin]** |
-| 181 | 0xd5 | `PLO_UNKNOWN181` | · | `s player id`, `c toggle` (length ≥ 3) **[bin]** |
+| 181 | 0xd5 | `PLO_UNKNOWN181` | · | `s player id`, `c toggle` (length ≥ 3); sets a boolean on that player, meaning unknown; 2.17 to 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 182 | 0xd6 | `PLO_LISTPROCESSES` | · | no payload; client answers `PLI_PROCESSLIST` (44) **[bin]** |
 | 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** |
 | 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** |
@@ -157,8 +157,8 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 190 | 0xde | `PLO_SERVERLISTCONNECTED` | · |  |
 | 191 | 0xdf | `PLO_SHOOT2` | · | 5.07 / 6.037 |
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` | · | `str name`, `str image`, `script`; client 5.07+ ignores it |
-| 193 | 0xe1 | `PLO_UNKNOWN193` | · | `i5 ?`, `?` |
-| 194 | 0xe2 | `PLO_CLEARWEAPONS` | · | empty; precedes the weapon list |
+| 193 | 0xe1 | `PLO_UNKNOWN193` | · | `i5 crc32`, rest = weapon name: load the cached `weblevels/weapons/<name>.code` if its CRC32 matches, else request it with PLI 158; 4.04r2 to 5.12 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 194 | 0xe2 | `PLO_CLEARWEAPONS` | · | empty; precedes the weapon list; clears weapon and class scripts (how much differs by version); 4.04r2 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others) |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` | · | `list type,name,saveToDisk,desKey,crc32` (type weapon/npc/class/gani; key = two i5) |
 | 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions`; stored and never read up to 6.03 (`client-internals/serveroptions-198.md`) |
@@ -198,7 +198,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 22 | 0x36 | `PLI_NPCDEL` | ✔ |   |
 | 23 | 0x37 | `PLI_WANTFILE` | ✔ |   |
 | 24 | 0x38 | `PLI_SHOWIMGPLAYER` | ✔ | 2.31 also sends it by itself about every 5.1 s with a 1-byte payload (value 9 seen); 2.22 does the same only while another player is in the level; the server relays it unchanged as 32; meaning unknown **[cap]** |
-| 25 | 0x39 | `PLI_UNKNOWN25` | · |   |
+| 25 | 0x39 | `PLI_UNKNOWN25` | · | weapon upload, laid out as `PLO_NPCWEAPONADD` (name, image, script); sent by 1.21 to 1.37 only **[bin][cap]** (`unknown-ids-2026-11-06.md`) |
 | 26 | 0x3a | `PLI_HURTPLAYER` | ✔ |   |
 | 27 | 0x3b | `PLI_EXPLOSION` | ✔ |   |
 | 28 | 0x3c | `PLI_PRIVATEMESSAGE` | ✔ |   |
@@ -298,7 +298,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 159 | 0xbf | `PLI_UPDATEPACKAGEREQUESTFILE` | · | order?, package file name, modtime |
 | 160 | 0xc0 | `PLI_RC_FOLDERDELETE` | · |   |
 | 161 | 0xc1 | `PLI_UPDATECLASS` | · | `i5 modtime` + rest = class name |
-| 162 | 0xc2 | `PLI_RC_UNKNOWN162` | · | empty; RC3 beta |
+| 162 | 0xc2 | `PLI_RC_UNKNOWN162` | · | ping: game clients (4.20, 6.x) answer PLO 108 with `!` + `s value`; RCs (2010, RC3) send it empty every 60 s **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 252 | — | `PLI_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLI_BUNDLE` | · | several packets in one |
 

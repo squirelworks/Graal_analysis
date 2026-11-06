@@ -84,3 +84,38 @@ python3 gwebl.py FILE.code --raw plain.bin                             # decrypt
 ```
 
 The module also has `encrypt_stream` (re-creates files byte for byte), `read_board` / `write_board`, and `parse_grv` for plain `.graal` data.
+
+## The 5.x and 6.x `.code` cache
+
+Added 2026-11-06, read from the unpacked 5.24r4, 6.00b1, 6.00r2 and 6.03r7 Windows clients. Tags as above, plus **[bin]** read from those builds.
+
+By 5.x `weblevels` holds more than levels. Every file in it is a download cache, named `.code`, so the next visit can skip a download. These files have nothing to do with the 1999 Guildmaker `guildname.code` / `reg.code` files in `graalsav.md`, apart from the extension.
+
+| Kind | Path (6.03r7) | Format |
+|---|---|---|
+| Level | `weblevels\<host>\<level>-<port>.code` (the reader also tries `<level>.code`) | `GWEBL001`, as above |
+| Weapon script | `weblevels\<host>\weapons\<name>.code` | `GRESCR01` |
+| Class script | `weblevels\<host>\classes\<name>.code` | `GRESCR01` |
+| Gani | `weblevels\<host>\ganis\<name>.code` | not traced |
+
+- **[bin]** The weapon and gani caches and the `GRESCR01` reader and writer are in all four builds, so this started in 5.x. The class path was checked in 6.03r7 only.
+- **[bin]** The gani and level caches share one file helper. The gani file contents have not been traced.
+
+### `GRESCR01` (weapon and class scripts)
+
+- The file is the 8-byte magic `GRESCR01`, then the script body, DES-ECB encrypted. **[bin]**
+- Written when the server sends a script with 140 `PLO_NPCWEAPONSCRIPT` (header `type,name,cacheflag,i5,i5`, then the plain body) and the cache flag is 1. The two `i5` values, as little-endian 32-bit words, are the 8-byte DES key. **[bin]** (`protocol/v5x-clients.md`)
+- When the server says "use your cache" with 197 `PLO_LOADSCRIPT`, it sends the key and a CRC32. The client decrypts its copy and checks the CRC32 of the plaintext; on a match it loads the copy, otherwise it asks again with PLI 158 (`PLI_UPDATESCRIPT`). **[bin]**
+- The key is never stored on disk, but it crosses the wire in clear on every connection, so the encryption only stops casual reading.
+- The body is probably GS2 source text, not bytecode, because it arrives as plain text. **[inf]** No real file has been decrypted yet.
+- Before 5.24, 4.04r2 to 5.12 used PLO 193 for the same job: `i5 crc32` + weapon name, checked against `weblevels/weapons/<name>.code` (`protocol/unknown-ids-2026-11-06.md`). **[bin]**
+
+### File lookup skips them
+
+- **[bin]** When 6.03r7 scans the game folder it ignores files ending in `.code` and does not enter the top-level `pms`, `profiles` or `weblevels` folders, the same rule as 2.22 (`client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md`). Other lookups also skip `.code`, so a cached copy never stands in for a real file.
+
+### Still open
+
+- Decrypt a real `GRESCR01` file with a key from a capture, to confirm the body is GS2 source.
+- Trace the gani cache format.
+- Check the class cache path in builds before 6.03r7.
