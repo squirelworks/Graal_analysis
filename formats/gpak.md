@@ -3,7 +3,7 @@
 Date: 2026-11-06
 
 Read from the 4.20r8 (`GraalEngine.dll`) and 6.03r7 clients, then loaded in a lab run with the
-real 6.03r7 client, plain and encrypted. Tags: **[bin]** read from a client binary · **[lab]** seen in a lab run ·
+real 6.03r7 and 4.20r8 clients, plain and encrypted. Tags: **[bin]** read from a client binary · **[lab]** seen in a lab run ·
 **[test]** checked here with the sample files · **[inf]** inferred.
 
 The key packet (PLO 104) and the other ids read in the same pass are in
@@ -15,12 +15,13 @@ The key packet (PLO 104) and the other ids read in the same pass are in
 |---|---|
 | ZIP container read with minizip; entry limits; path and name mapping | confirmed in both clients **[bin]** |
 | A plain `.gpak` loads in the real **6.03r7** client | **confirmed [lab]**: sent by the lab server, the package's image was drawn in game |
-| A plain `.gpak` in 4.20r8 | ignored when it is registered **[bin]**; `.zip` should work instead |
+| A plain `.gpak` in 4.20r8 | **confirmed ignored [lab]**: saved but never loaded, whether pre-placed in `levels/gpaks/` or sent by the server; the same bytes renamed `.zip` load, so it is the name, not the contents **[bin][lab]** |
 | `.gpake` = per-entry DES-ECB over full blocks, tail plain, no padding | confirmed in both clients' code **[bin]** |
 | Key = PLO 104 halves, little-endian, looked up by lower-cased file name, switched on by 45 / 69 / 102 | confirmed in 4.20r8, 6.03r7 table matches **[bin]** |
-| The client's DES is standard DES with every key byte bit-reversed (the 2.05 quirk) | confirmed by running the client's own DES code in an emulator: 6.03r7 and 4.04r2 **[bin]**; 4.20r8 assumed |
+| The client's DES is standard DES with every key byte bit-reversed (the 2.05 quirk) | confirmed by running the client's own DES code in an emulator: 6.03r7 and 4.04r2 **[bin]**; 4.20r8 decrypts a package built this way **[lab]** |
 | An encrypted `.gpake` loads in the real **6.03r7** client | **confirmed [lab]**, once the writer used the bit-reversed key; a wrong key is refused |
-| Either kind loads in the real 4.20r8 client | not tested yet (see Lab results) |
+| Packages in the real **4.20r8** client | **confirmed [lab]**: `.zip` loads (pre-placed and server-sent); `.gpake` loads and decrypts when PLO 104 comes first; `.gpak` does not load |
+| Packages in the real **4.04r2** client | **none load [lab]**, under any name: its engine has no ZIP reader; its only `.gpak` / `.gpake` code picks the download folder **[bin]** |
 | `a` must be 1 for a loose `.enc` in 6.03r7; ignored for packages | confirmed for that path **[bin]**; other values unknown |
 | Stored entries work as well as deflate | **[inf]** (standard minizip) |
 
@@ -61,7 +62,12 @@ for one loose file with no ZIP around it. **[bin]**
   `.gpak` comparison in the same routine can never be reached. So 4.20r8 ignores a plain
   `.gpak`. Mac 4.20r6 has the same shape. Why is not known; it may be a deliberate "encrypted
   packages only" rule.
-- Both clients put downloaded packages under `levels/gpaks/`.
+- **4.20r8 [lab]:** the extension match is case-sensitive: `tb.GPAK` is not treated as a package.
+- **4.04r2 [bin][lab]:** no ZIP reader at all, so no package loads under any name. (The 3D
+  plug-in's own Torque resource manager, `graal3d/torque-engine-4x.md`, is a separate thing.)
+- Downloads **[lab]:** 4.20r8 and 6.03r7 save server-sent `.gpak` / `.gpake` files under
+  `levels/gpaks/`. 4.20r8 saved a server-sent `.zip` under `levels/images/downloads/` and
+  still loaded it.
 
 ## Encryption (`.gpake`, `.enc`)
 
@@ -128,10 +134,29 @@ PLO 100 + 102 carrying the package.
 - Logs, screenshots and the emulator scripts are kept with the project's handoff files, not
   in this repo.
 
-> **TODO, result pending: the real 4.20r8 client.** A second lab run is testing plain
-> `.gpak`, `.zip` and `.gpake` names on 4.20r8, from the local `levels/gpaks/` folder and sent
-> by the lab server. Fill in the client, server commit, what was sent, before / after and the
-> redacted log names per `AGENTS.md`, then update the status table above.
+**Run 2026-11-06, 4.20r8 [lab]:** the Windows 4.20r8 `Graal4.exe` and `GraalEngine.dll`
+(from the packet-logger build, with its logging hook undone as in the 2026-10-31 v4 lab and the
+logger DLL left out) on top of a 4.04r2 install folder, under Wine 9.0 in a loopback-only
+network namespace. Online: the lab GServer-v2 (`tools/lab-servers/run-lab.sh stock`) with
+`G3D20126` allowed, behind the same gen-5 proxy, which injected the packets while the client
+sat in the "Login" session (scripts still run and images are drawn there; no 178 warp). Each
+test package held one 48 × 48 PNG in its own colour under a unique entry name, drawn by name
+with `showimg`; a loose PNG in `levels/` was the control.
+
+| Test | `.gpak` | `.zip` | `.gpake` |
+|---|---|---|---|
+| File already in `levels/gpaks/` at startup (offline) | not loaded | **loaded** | not loaded (no key offline, as expected) |
+| The same `.gpak` bytes renamed `.zip` | — | **loaded** | — |
+| `tb.GPAK` (upper case) | not loaded | | |
+| Sent by the server (PLO 100 + 102) | saved to `levels/gpaks/`, not loaded | saved to `levels/images/downloads/`, **loaded** | PLO 104 first, then the file: saved to `levels/gpaks/`, **loaded and decrypted** (the sample's 16 × 16 tile drawn correctly) |
+| 4.04r2 (its own exe and dll), files in `levels/gpaks/` | not loaded | not loaded | — |
+
+This matches the disassembly: 4.20r8 returns nothing for `.gpak` and opens `.zip` and
+`.gpake` as packages. The `.gpake` result also shows that 4.20r8's DES has the same
+bit-reversed key bytes. Logs and screenshots are kept with the project's handoff files.
+
+So a server that serves packages to every 4.20+ client should use `.gpake` (with PLO 104), or
+`.zip`; a plain `.gpak` only works from 6.x on (5.x not tested).
 
 ### Other `.code` caches
 
