@@ -457,6 +457,7 @@ torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-li
 torque/README.md	cited	10	10	
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
+torque/era-transition.md	cited	10	10	
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	

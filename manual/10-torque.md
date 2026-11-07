@@ -151,6 +151,19 @@ The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed
 | `horizSizing` and the other Torque field names | Absent, as in unpacked 6.00 | [bin] (client-internals/unpacked-6037.md#gui) |
 | Torque modules | `GameConnection`, `SimObject`, DTS, `TAdventure` and SDL are absent. `-printmap` writes Torque 2D datablock text and does not run a module | [bin] (client-internals/unpacked-6037.md#torque-names-that-remain) |
 
+### 10.1.12 Monolith, hybrid, residual, gone
+
+The clients are four stages of one TGE 1.2-era base, not one host and not current Torque3D. 3.04 reports version 1100 (`1.100`) and the connect string `Torque Game Engine Demo`. The 4.04r2 3D DLL is the TGE 1.2/1.3 line. [bin][inf] (torque/era-transition.md#the-base-is-tge-12-not-a-later-torque); [bin] (torque/engine-and-formats.md#which-torque)
+
+| Stage | What Torque still does | Builds | Source |
+| --- | --- | --- | --- |
+| Monolith | Boots the process, runs `.dso` menus through `ActionMap`, owns the canvas. The 2D game is `GuiGraalCtrl`. `ShapeBase` and `Player` are still compiled in. | 3.04, 3.153 | [bin] (torque/era-transition.md#monolith-3x) |
+| Hybrid | A Delphi launcher. `GraalEngine.dll` keeps `GuiCanvas` and `GuiControl` and runs `TAdventure`, with no `SimObject` console in unpacked 4.2.0.8. `Graal3DEngine.dll` is near-stock TGE in 4.04r2, and `GameObject` with no `ShapeBase` in 4.2.0.8. 4.20r6 is already that `GameObject` model. | 4.04r2, 4.2.0.8, 4.20r6 | [bin] (torque/era-transition.md#hybrid-4x) |
+| Residual | `SimObject` and `GameConnection` remain on the 3D side. The TGE game layer is gone. 5.0.0.7 accepts only protocol 24. 5.12 keeps terrain, interiors and DTS in one DLL. | 5.0.0.7, 5.12 | [bin] (torque/era-transition.md#residual-early-5x) |
+| Gone | No Torque console, sim, net or `.dso`. Unpacked 6.00 is `quattro_lib` and the session socket is `TSocket`. `GuiGraal3DCtrl` is a playfield name. | 5.24r3 and later, including 6.x | [bin] (torque/era-transition.md#gone-524r3-and-6x) |
+
+The gone cut is 5.24r3. 6.x does not restore `GameConnection`. [bin] (torque/era-transition.md#four-stages)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
