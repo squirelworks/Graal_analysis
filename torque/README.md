@@ -27,7 +27,7 @@ Related notes elsewhere: `protocol/v3x-clients.md` (3.04 / 3.153 Graal TCP side)
 | 4.20r6 Mac | Sep 2006 | one C++ binary (PPC) | Torque core + netcode, Graal game layer | `GameObject` model as in 5.12, no datablocks | `Graal3D`, 21 / 21 | GS2 / native |
 | 5.12 Win | Oct 2007 | Delphi launcher + one engine DLL, still named `Graal3DEngine.dll` | Torque core + netcode, but the game layer is Graal's own | `GameObject` + `GameShapeDTS/DIF/3DS/FT`, no datablocks, no `Player`/`ShapeBase` | `Graal3D`, 24 / 24 | GS2 / native |
 | 5.24r3 and later | 2010+ | engine linked into `Graal.exe` | Torque 3D gone (only a leftover `GuiGraal3DCtrl` name) | none | n/a | GS2 |
-| 6.x | 2010–2014 | native C++ per platform | none (see `protocol/v6x-clients.md`) | none | n/a | GS2 |
+| 6.x | 2010–2014 | native C++ per platform (`quattro_lib` on Windows 6.00) | no Torque 3D; GS2 keeps Torque control names (`client-internals/engine-600r2.md`) | none | n/a | GS2 |
 
 All rows are **[bin]**, except the 3.153 script column (**[file]**). The 3.153 and 4.20r6 rows, and the per-build wire details, are in [wire-by-build.md](wire-by-build.md).
 

@@ -148,6 +148,8 @@ client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4
 client-internals/des-and-hidden-strings.md	cited	3.7; 4.11	4	
 client-internals/drive-clients-inventory.md	cited	1; 4.11	4	
 client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superseded by client-internals/build-catalogue.md, client-internals/versions-133-139.md and protocol/relay-1998.md, which the manual cites
+client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
+client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
@@ -183,6 +185,8 @@ client-internals/npcaction.md	cited	2.5	2.5
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
+client-internals/packed-6037.md	cited	1	1	§1.8.7 carries the version-resource identity and that the decompile is a packer stub
+client-internals/packed-6113.md	cited	1	1	§1.8.7 carries the 6.113 identity and that the decompile is a packer stub; the Mac 6.11 comparison stays a pointer at the existing 6.11 note
 client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
 client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
@@ -439,7 +443,7 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
-torque/study-torque-clients.md	cited	E	10	new 2026-11-05 synthesis; only its App. E#503 evidence is carried so far, and the per-era findings and the 3.04 script surface go into §10 once Squirrel has reviewed the study and the rebuild plan
+torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)

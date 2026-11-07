@@ -125,6 +125,19 @@ open-point closed.
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
     Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
     on writing the module stands.
+  - [x] Unpacked Windows 6.00r2 and 6.00r4 (static read): no Torque 3D subsystem.
+    `GuiGraal3DCtrl` is a GUI type beside `GuiGraalCtrl`. Torque field names and
+    `GuiTilesCtrl` are absent from these two images.
+    `client-internals/engine-600r2.md`, `client-internals/engine-600r4.md`.
+    The rebuild stays on hold.
+
+- [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
+  is the June 2011 Windows exports and two packed exes. A readable engine for
+  the packed 6.037 and 6.113 executables is still open.
+  - [x] Unpacked 6.00r2 and 6.00r4 are `quattro_lib`: OpenGL drawing, a GS2
+    shell, `TServer*` world objects and `TSocket`. Packed 6.037 and 6.113
+    decompile as packer stubs. `client-internals/engine-600r2.md`,
+    `engine-600r4.md`, `packed-6037.md`, `packed-6113.md`.
 
 ## Handoff
 

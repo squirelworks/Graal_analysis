@@ -97,6 +97,8 @@ Same engine as 3.04 for PPC/Carbon/AGL, plus Graal's Torque net changes (`Graal3
 
 No Torque engine (see §2). 6.01r1 and 6.03r7 Linux use SDL + OpenGL; Windows 5.24r3 to 6.03r7 carry ~367 OpenGL entry names; Mac 6.11 has its own build. The GS2 GUI keeps Torque's control names (`GuiControlProfile`, `GuiWindowCtrl`, `GuiScrollCtrl`, `GuiMLTextCtrl`, `GuiBitmapButtonCtrl`, `GuiTextListCtrl`, …) and adds Graal ones (`GuiShowImgCtrl`, `GuiTilesCtrl`, `GuiPMCtrl`, `GuiStartMenuCtrl`, `GuiAccountPasswordCtrl`, `GuiSlideShowCtrl`, `GuiAccordionCtrl`, `GuiAnimationCtrl`). 5.24r3 still carries Torque field names (`horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder`, `pushToBack`). **[bin]**
 
+Unpacked Windows 6.00r2 and 6.00r4 (12 and 26 June 2011) agree there is no Torque 3D. They do not contain `GuiTilesCtrl` or those field names; the field names stay a 5.24r3 finding. `GuiGraal3DCtrl` is a live GUI type beside `GuiGraalCtrl`. See `client-internals/engine-600r2.md`. **[bin]**
+
 ## 4. What ships, and in what format (3.04)
 
 The 3.04 `release/` tree, 556 files. **[file]**

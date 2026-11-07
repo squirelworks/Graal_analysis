@@ -9,7 +9,8 @@ Date: 2026-10-30. Tags as in `README.md`.
 - **4.04r2** `Graal3DEngine.dll` (built from `K:\src\graalv4\user\engine\…`) is still near-stock TGE: `Player`, `AIPlayer`, `Item`, `Projectile`, `Explosion`, `Debris`, `Splash`, `Precipitation`, `Lightning`, wheeled/flying/hover vehicles, `PathCamera`, `Trigger`, `PhysicalZone`, `InteriorInstance`, `TSStatic`, the `fx*` replicators and `fxLight`, `DecalManager`, and every matching `…Data` datablock. It imports 623 symbols from the 2D `GraalEngine.dll`. **[bin]**
 - **5.12** `Graal3DEngine.dll` (Oct 2007) is one engine for 2D and 3D. It keeps Torque's core (console, `SimObject`/`SimSet`/`SimGroup`, `NetConnection`/`GameConnection`, ghosting, `SceneObject`, `TerrainBlock`, interiors, `TSShape` DTS, `Sky`, `Sun`, `WaterBlock`, `fxSunLight`, the world and terrain editors) but **drops the TGE game layer**: no datablocks, no `GameBase`/`ShapeBase`/`Player`/vehicles/projectiles/items, no `ScriptObject`, no audio emitters. Graal's own classes take their place (below). **[bin]**
 - **4.20r6 Mac** (Sep 2006) already has the 5.12 model: `GameObject` and Graal's replicators, no datablocks, protocol 21. So the TGE game layer was dropped between 4.04r2 and 4.20r6. **[bin]** (`wire-by-build.md`)
-- **5.24r3 onward** has no Torque 3D left (no `GameConnection`, `TerrainBlock`, `Interior` or DTS code); only the class name `GuiGraal3DCtrl` survives. **[bin]**
+- **5.24r3 onward** has no Torque 3D left (no `GameConnection`, `TerrainBlock`, `Interior` or DTS code). **[bin]**
+- Unpacked Windows 6.00r2 and 6.00r4 (product versions 6.002 and 6.004) still have none of those classes and none of the Torque mission, terrain or shape formats. `GuiGraal3DCtrl` is used by the GUI walk beside `GuiGraalCtrl`. The Torque GUI field names are not in these two images. Detail is `client-internals/engine-600r2.md`. **[bin]**
 
 ## The 5.12 3D object model
 
