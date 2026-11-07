@@ -299,6 +299,7 @@ protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against othe
 protocol/file-transfer.md	cited	2.7; E	2.7	
 protocol/format-notes-from-salvage.md	cited	E	2	Part 2 not needed: an early format summary superseded by the notes Part 3 cites; cited in App. E where it disagrees with them (coverage audit 2026-11-04)
 protocol/graphics-movement-bytecode.md	cited	8.3; 8.4; E	8.4	
+protocol/gs2-6113.md	cited	8.3; 10	8.3; 10	§8.3.6 and §10.1.9 carry that 6.113 adds no opcode; the 6.00 fold table and the compiler line citations stay in the note
 protocol/gs2-client-only-opcodes.md	cited	8.3	8.3	per-opcode effects of the bytes the client runs and the compiler does not emit; §8.3 points here from the GS2 section
 protocol/gs2-client-vm.md	cited	8.3; 8.4; E	8.3; 8.4	opcode catalogue, client debug names, and the peephole stay in the note; §8.3 and §8.4 carry the container, that it is not GSHORT, and the load path
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	

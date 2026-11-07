@@ -2,7 +2,7 @@
 
 Date: 2026-11-07. Static read of the upload `Graal 6.1.1.3.exe`. Nothing was run. Tags: **[bin]**.
 
-The earlier passes on this same listing are `packed-6113.md` and `skipped-v6-read.md`. This note is the identification after the 2026-11-07 gap archive was opened. The wire neighbour-diff is `protocol/v6113-wire.md`.
+The earlier passes on this same listing are `packed-6113.md` and `skipped-v6-read.md`. This note is the identification after the 2026-11-07 gap archive was opened. The wire neighbour-diff is `protocol/v6113-wire.md`. The GS2 neighbour-diff is `protocol/gs2-6113.md`.
 
 ## Still no engine image
 
