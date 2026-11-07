@@ -11,6 +11,11 @@ Tags: **[bin]** read from a client binary · **[file]** read from shipped data �
 - [wire-by-build.md](wire-by-build.md): which builds are Torque, the handshake and class table per build (3.04, 3.153, 4.04r2, 4.20r6, 5.12), the networked class sets, the 5.12 game packets (no moves, client-reported position) and the 5.12 `GameObject` update.
 - [engine-and-formats.md](engine-and-formats.md): engine version, classes per build, 3D resource formats (DTS, DIF, TER, 3DS), terrain streaming, rendering devices.
 - [study-torque-clients.md](study-torque-clients.md): what each Torque-era client really is (Torque monolith 3.x, Delphi shell + C++ engine 4.x–5.12, Graal's own engine from 5.24r3), a marker scan of 17 binaries from 3.04 to 6.11, the 3.04 shipped files and formats, the native surface the 3.04 scripts need, the 4.x/5.00 draw-callback bridge that puts 2D content into the Torque world, and what the 2D rebuild lacks per era.
+- [304-adventure.md](304-adventure.md): the Linux 3.04 2D session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player): license files, HUD sheets, mouse and chat, which level magics log a local enter.
+- [304-draw.md](304-draw.md): tiles, graphics, ganis, show-images and the `TDrawableObject` family in that binary.
+- [304-npcs.md](304-npcs.md): NPC triggers, bow baddies, weapon rectangles, `shapetiletypes` and the polygon verb.
+- [304-net.md](304-net.md): Graal TCP (`TGraalConnection`, server list, player list) beside an untouched Torque `GameConnection`.
+- [304-audio-ui.md](304-audio-ui.md): fmod startup, wav / mid / stream file types, and the audio prefs on `GuiGraalCtrl`.
 - [rebuild-plan-3.04.md](rebuild-plan-3.04.md): a staged plan for a Torque-faithful rebuild starting with 3.04, the test that ends each stage, and what "0.0.2" means for each era.
 - `tools/`: `dsodis.py` / `dsodec.py` (DSO disassembler and decompiler), `tbits.py` (Torque bit stream and Huffman strings), `tq.py` (a minimal Torque server that completes the 5.12 handshake), `conn.c` (the injector that makes a real 5.12 client join a 3D server and drives its frames under Wine).
 
