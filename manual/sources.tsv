@@ -175,6 +175,7 @@ client-internals/gs2-6113.md	cited	8.4	8.4
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 client-internals/id24-205.md	cited	2.4	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
+client-internals/issho-cut.md	cited	10	10	
 client-internals/item-drops.md	cited	4.5; E	4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
