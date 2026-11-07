@@ -134,7 +134,24 @@ The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows 
 
 The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the entry, which clears a breakpoint byte, mixes four kilobytes and then breakpoints. The other 103 are export names for a `CyaInt` TLS client, AES-CBC, HMAC, SHA-256 and RSA; those bodies do not implement the named calls, several names share one body, and the zlib names are not functions in the listing. The file has no GS2 switch, GUI class or socket import. [bin] (client-internals/decompile-6113.md#how-the-bytes-split)
 
-### 10.1.11 What the unpacked 6.1.1.3 image is
+### 10.1.11 What unpacked Windows 6.037 runs
+
+The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed words 6.0.3.7), compiler banner 16 November 2012 18:58:51. The code section holds `quattro_lib` and `TSocket`. It is not the packed 6.037 shell. [bin] (client-internals/unpacked-6037.md#what-this-file-is)
+
+| What the listing shows | Unpacked 6.037 | Source |
+| --- | --- | --- |
+| Program | One `quattro_lib` executable. No Delphi launcher, no engine DLL, no SDL. `ExeReplacer.exe` is still launched | [bin] (client-internals/unpacked-6037.md#one-program) |
+| Packer residue | Seven sections, including a blank name, two eight-letter names and `.SCY`. The export directory is still named `QPlay.exe`. The entry is the C runtime cookie setup | [bin] (client-internals/unpacked-6037.md#what-this-file-is) |
+| Connection | `TSocket`, newline refused, key byte masked to seven bits, gen-3/5 seed, next field 3. No plaintext `G3D` token. The receive switch is the 92-id Linux 6.03r7 set | [bin] (client-internals/unpacked-6037.md#connection) |
+| TLS | CyaSSL is called with the SSLv3 client method. `zlibVersion` returns `1.2.3`; inflate callers pass `1.2.5` | [bin] (client-internals/unpacked-6037.md#what-this-file-is); [bin] (client-internals/unpacked-6037.md#connection) |
+| GS2 | Cases 54, 121 and 200–242. No case 48 or 49, and nothing above 242, as in unpacked 6.00. `GRESCR01` on a `.code` file of at least eight bytes | [bin] (client-internals/unpacked-6037.md#gs2) |
+| `GuiGraalCtrl` | Still the type the GUI walk drops | [bin] (client-internals/unpacked-6037.md#gui) |
+| `GuiGraal3DCtrl` | Absent. The shell looks up `GraalControl` and `GraalControl3D` | [bin] (client-internals/unpacked-6037.md#gui) |
+| `GuiTilesCtrl` | Constructed. Unpacked 6.00 does not have the name (→ §10.1.5) | [bin] (client-internals/unpacked-6037.md#gui); [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| `horizSizing` and the other Torque field names | Absent, as in unpacked 6.00 | [bin] (client-internals/unpacked-6037.md#gui) |
+| Torque modules | `GameConnection`, `SimObject`, DTS, `TAdventure` and SDL are absent. `-printmap` writes Torque 2D datablock text and does not run a module | [bin] (client-internals/unpacked-6037.md#torque-names-that-remain) |
+
+### 10.1.12 What the unpacked 6.1.1.3 image is
 
 A later listing of the same 8 August 2014 executable decompiles the engine. The upload is a Ghidra C listing and an HTML listing, not a raw executable and not `Graal.exe` plus a DLL. The version resource, the timestamp and the virtual image size match the stub in §10.1.9. The header entry is the Visual C++ security-cookie initializer, and about 9,300 functions recover. [bin] (client-internals/unpacked-6113.md#what-the-image-is); [bin] (client-internals/unpacked-6113.md#the-engine-is-visible)
 
@@ -145,10 +162,9 @@ A later listing of the same 8 August 2014 executable decompiles the engine. The 
 | Engine | `quattro_lib` / `Quattro Play`, `TSocket`, `TServerPlayer`, `GuiGraalCtrl`, OpenGL, FMOD, `GRESCR01`. Original file name `Graal.exe` | [bin] (client-internals/unpacked-6113.md#the-engine-is-visible) |
 | Packer left behind | Export directory still named `QPlay.exe` (in `fbndyrix`). Import directory in `.SCY`. Blank section still holds `Themida`, `WinLicense` and Oreans driver names | [bin] (client-internals/unpacked-6113.md#packer-names-that-remain) |
 
-### 10.1.12 Torque names in the unpacked 6.1.1.3 image
+### 10.1.13 Torque names in the unpacked 6.1.1.3 image
 
 Against unpacked 6.00 (→ §10.1.5), this image still has no `SimObject`, `GameConnection`, `TerrainBlock`, `MissionGroup`, `TAdventure`, `graal_set` or `horizSizing`. The GUI walk compares `GuiGraalCtrl`. `GuiGraal3DCtrl` is not a string here; the shell looks up `GraalControl3D` beside `GUIContainer`. `GuiTilesCtrl` is registered beside `GuiControl`, which the 6.00 notes recorded as absent. A file reader matches five `new t2d…(` constructors, and `-printmap` takes a datablock file and a level file. That is text, not a Torque console. The hold on writing the module stands. [bin] (client-internals/unpacked-6113.md#torque-names-against-unpacked-600)
-
 ## 10.2 Join sequence
 
 | Step | What happens | Source |

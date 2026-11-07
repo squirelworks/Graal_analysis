@@ -110,6 +110,10 @@ open-point closed.
     The clear hello is `GNP1905C`; the bytes after it are ciphertext, so the
     Login server's packet ids stay unobserved.
     `protocol/v6113-list-capture.md`. The parent item stays open.
+  - [x] Full capture, 2026-11-07, 15236 frames. TCP 14900 is present.
+    Three completed sessions start with `GNP1905C`; one SYN is unanswered.
+    No UDP datagram to those remotes, and no UDP on 14900, 14901 or 14899.
+    `protocol/v6113-udp.md`. The parent item stays open.
 
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
@@ -195,7 +199,17 @@ open-point closed.
     no compiled-in token, `0xFE` send slots, and the 6.00 GS2 switch
     (cases 54 and 121, folds 234–242, no 48 or 49).
     `protocol/unpacked-6113-wire.md`, `protocol/gs2-unpacked-6113.md`.
+  - [x] Unpacked Windows 6.037 (static read, 2026-11-07). The listing
+    is the `quattro_lib` engine: a code section, `TSocket`, and a GS2
+    switch with cases 54, 121 and 200–242 and without 48 or 49.
+    `GuiTilesCtrl` is constructed. `GuiGraal3DCtrl` is not a string.
+    The packed 6.037 shell is unchanged. `client-internals/unpacked-6037.md`.
     Item 17 stays open.
+  - [x] Static read for the 6.x repro checks (2026-11-07). The setprotocol
+    header is filled `T`, then `I`, then `E`, then `L`. Ids 93 and 163 on
+    the 6.1.1.3 generation-5 path send id 50 first. `onToall` takes a
+    player and a text. The bind method's name was not found; the events
+    are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.    Item 17 stays open.
 
 ## Handoff
 
