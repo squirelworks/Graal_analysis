@@ -442,6 +442,9 @@ tools/server-tools-2001.md	cited	5; 6; 7; E	7
 torque/4208-engine.md	cited	10	10	§10.1.7 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
 torque/4208-g3d.md	cited	10	10	§10.1.7 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
 torque/4208-launcher.md	cited	10	10	§10.1.7 carries the 94 slots, when the canvas is drawn and who keeps drawing after a 3D start; the per-job callback behaviour, Flash version test and command line stay in the note
+torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay in the note; §10.1.8 carries the session, the script object, the extra setters, and the absence of SimObject and .dso
+torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
+torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	

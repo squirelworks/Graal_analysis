@@ -103,6 +103,20 @@ The unpacked 4.2.0.8 launcher, `GraalEngine.dll` and `Graal3DEngine.dll` are thr
 
 `GameObject` is a `SceneObject` with script properties for shape, motion, mounting and interiors. `onGraal3DLoginStep` is raised for ghost objects (step 2), then mission lighting (step 3), and again when `GUIContainer3D` is installed (step 6). A terrain chunk is a compressed square; the byte layout is not in the decompile. `Interior::read` rejects a non-zero first value. `ShapeBase` and Torque's `Player` are absent. [bin] (torque/4208-g3d.md#what-gameobject-is); [bin] (torque/4208-g3d.md#the-login-steps); [bin] (torque/4208-g3d.md#what-a-terrain-chunk-is); [bin] (torque/4208-g3d.md#what-an-interior-read-rejects)
 
+### 10.1.8 What 5.0.0.7 does
+
+File version `5.0.0.7` is a Delphi launcher, `GraalEngine.dll`, and `Graal3DEngine.dll`. The launcher resolves 95 `graal_set*` names and loads the engine before it registers them. A zero return from `graal_engineInitialize` shows `The execution file is corrupted.` [bin] (torque/5007-launcher.md#startup); [bin] (torque/5007-launcher.md#what-it-resolves)
+
+Against the 4.2.0.8 launcher's 94 names, this launcher adds the colour-matrix pair, fullscreen get and set, `graal_setShowGraalWindow`, screen capture, Flash clipping and forced texture transparency. It no longer resolves the external history, log and PM setters, stretched graphics, the screenshot setter, Flash panel size, or `graal_setLogGraalMessage`. [bin] (torque/5007-launcher.md#what-it-resolves)
+
+The engine defines 118 setters. The 23 the launcher does not resolve are the 3D bridge (connect, `GameObject`, terrain height, script events, window lock) and three external-window setters neither host calls. `SimObject` and `.dso` are absent from `GraalEngine.dll`. [bin] (torque/5007-engine.md#setters-the-launcher-does-not-resolve); [bin] (torque/5007-engine.md#no-simobject-and-no-dso)
+
+`TAdventure` is the session. A server name whose second character is a space loses its first two characters, and a name that starts with `3 ` asks the launcher through `graal_setStartGraal3D` and then connects the 3D side at listed port + 1. Any other server puts `GUIContainer` on `GuiCanvas`. The timer calls `handleClient`, which drops a dead link and raises `onPlayerLogout`. [bin] (torque/5007-engine.md#session)
+
+A script object is a `TGraalVar` with a `TScriptExecutionSpace`. `runScript` walks that space's actions on a machine borrowed from the universe. The factory refuses to build `GuiGraalCtrl` or `GuiGraal3DCtrl` as an ordinary object. [bin] (torque/5007-engine.md#how-a-script-runs); [bin] (torque/5007-engine.md#the-graal-control)
+
+In the 3D DLL, `GameObject`'s property table is parented on `SceneObject`. Two mission steps download ghosts and then light the mission, and the following step sets the canvas to `GUIContainer`. A terrain chunk load reads a compressed file under `levels3d`/`heights` for that server. The connect check reads 4 bytes and accepts only 24; any other value returns `CHR_PROTOCOL`. An interior file's first 4 bytes must be 0, and an interior resource's first 4 bytes must be 44. [bin] (torque/5007-g3d.md#gameobject); [bin] (torque/5007-g3d.md#mission-phases); [bin] (torque/5007-g3d.md#terrain-chunks); [bin] (torque/5007-g3d.md#protocol); [bin] (torque/5007-g3d.md#interiors)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
