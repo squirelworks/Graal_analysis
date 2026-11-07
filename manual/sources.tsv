@@ -210,7 +210,7 @@ client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
-client-internals/torque-surface-by-era.md	cited	10	10	§10.1.13 carries the era rows and the stock, patched, or Graal-only marks; per-class method counts and the graal-client-repro comments stay in the note
+client-internals/torque-surface-by-era.md	cited	10	10	§10.1.14 carries the era rows and the stock, patched, or Graal-only marks; per-class method counts and the graal-client-repro comments stay in the note
 client-internals/unpacked-6037.md	cited	10	10	§10.1.11 carries the version, that the C++ core is visible, the GS2 case set and the GUI-name changes; the cipher fields, the inflate version split and the printmap text stay in the note
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -472,8 +472,8 @@ torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
+torque/skipped-version-stamps.md	cited	10	10	§10.1.13 carries the version strings, fixed words and companies on the skipped exports
 torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
-torque/skipped-version-stamps.md	cited	10	10	
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
