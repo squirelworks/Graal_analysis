@@ -152,7 +152,7 @@ client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superse
 client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
 client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
-client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7, §10.1.13 and §10.1.14 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
+client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7, §10.1.14 and §10.1.15 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
@@ -474,8 +474,8 @@ torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
+torque/skipped-version-stamps.md	cited	10	10	§10.1.13 carries the version strings, fixed words and companies on the skipped exports
 torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
-torque/skipped-version-stamps.md	cited	10	10	
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
