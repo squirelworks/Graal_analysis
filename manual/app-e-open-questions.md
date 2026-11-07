@@ -207,9 +207,9 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
-| Open | GS2 syntax, standard library and event model; the bytecode format; how the client stores received bytecode; whether later clients use another format | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Settles it | a lab note decoding a captured bytecode message from a 4.x client session, and a note on the GS2 documentation in the archived websites | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Known | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids. GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00 load four-segment bytecode and run the opcode switch in → §8.3.6 | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
+| Open | GS2 syntax and the standard library; the opcode helpers the engine note did not open; which gameplay site fires each `script_event` name; packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
+| Settles it | a lab note of a captured bytecode message, and a reading of the built-in command table and the source compiler's grammar | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 
 ### E#208 What the OpenGS1 opcode set describes
 

@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.4 GS2 bytecode
 
-This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The format of the bytecode that 4.x and later clients receive is not in the notes (→ App. E#207). The only bytecode format the notes describe is OpenGS1's, a reimplementation, given in → §8.4.3 for reference.
+This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The bytecode GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and the unpacked 6.00 clients load is → §8.3.6. OpenGS1's format, a reimplementation, is → §8.4.3. Which message id carries a weapon script is disputed → App. E#202. Syntax and the standard library stay open → App. E#207.
 
-> Status: draft. The GS2 bytecode format itself is open (→ App. E#207); the id that carries it is disputed (→ App. E#202).
+> Status: draft. The format those engines load is in §8.3.6. Syntax and the standard library stay open (→ App. E#207); the id that carries a weapon script is disputed (→ App. E#202).
 
 ## 8.4.1 Transport
 
@@ -15,11 +15,11 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 | with NPC props | an NPC is sent as `PLO_NPCPROPS` plus the optional `PLO_NPCBYTECODE` | [srv] (protocol/graphics-movement-bytecode.md#other-level-objects) |
 | 2.05 | the 2.05 receive switch does not handle it | [srv][2.05] (protocol/packet-ids.md) |
 | other ids | a second reading puts GS2 bytecode on id 197 → App. E#202 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
-| how the client stores it | not traced | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| how the client stores it | the 4.2.0.8 engine parses the bytes into instructions and attaches them to the `TGraalVar` (→ §8.3.6) | [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
 
 ## 8.4.2 Format
 
-The notes do not decode the bytecode a 4.x or later client receives, and do not say whether it shares anything with OpenGS1's format → App. E#207 [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation).
+The format GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and the unpacked 6.00 clients load is four big-endian segments and the opcode switch in → §8.3.6. OpenGS1's layout stays the separate reimplementation in → §8.4.3. Syntax and the standard library stay open → App. E#207. [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source)
 
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
 
