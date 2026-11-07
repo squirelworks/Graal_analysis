@@ -185,6 +185,12 @@ open-point closed.
     do not implement the CyaSSL or zlib calls, and the file has no GS2
     switch, GUI class or socket import.
     `client-internals/decompile-6113.md`. Item 17 stays open.
+  - [x] Unpacked Windows 6.037 (static read, 2026-11-07). The listing
+    is the `quattro_lib` engine: a code section, `TSocket`, and a GS2
+    switch with cases 54, 121 and 200–242 and without 48 or 49.
+    `GuiTilesCtrl` is constructed. `GuiGraal3DCtrl` is not a string.
+    The packed 6.037 shell is unchanged. `client-internals/unpacked-6037.md`.
+    Item 17 stays open.
 
 ## Handoff
 
