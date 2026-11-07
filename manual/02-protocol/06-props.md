@@ -251,3 +251,9 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1).
 | From 2.3 GServer-v2 puts X2 and Y2 before X and Y in other-player props | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 
 Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. Two notes disagree on the 2.00 ranges → App. E#8.
+
+## 2.6.7 Property ids in unpacked 6.1.1.3 and 6.0.3.7
+
+The outgoing player encoder in both unpacked images walks ids 0 through 83. Twelve of those ids have no case: 3, 25, 27, 28, 29, 30, 34, 36, 50, 51, 77 and 83. The baddy encoder walks 0 through 10, with a case for each. The two builds use the same id lists. [bin] (protocol/v6-props.md)
+
+`tclient_setplayerprops`, `tclient_setnpcprops`, `tclient_setbaddyprops` and `tclient_setotherplayerprops` in 6.1.1.3 each store one string. No numbered NPC id table is in either image. [bin] (protocol/v6-props.md)
