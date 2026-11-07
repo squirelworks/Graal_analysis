@@ -134,6 +134,17 @@ The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows 
 
 The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the entry, which clears a breakpoint byte, mixes four kilobytes and then breakpoints. The other 103 are export names for a `CyaInt` TLS client, AES-CBC, HMAC, SHA-256 and RSA; those bodies do not implement the named calls, several names share one body, and the zlib names are not functions in the listing. The file has no GS2 switch, GUI class or socket import. [bin] (client-internals/decompile-6113.md#how-the-bytes-split)
 
+### 10.1.11 What the unpacked 6.1.1.3 image is
+
+A later listing of the same 8 August 2014 executable decompiles the engine. The upload is a Ghidra C listing and an HTML listing, not a raw executable and not `Graal.exe` plus a DLL. The version resource, the timestamp and the virtual image size match the stub in §10.1.9. The header entry is the Visual C++ security-cookie initializer, and about 9,300 functions recover. [bin] (client-internals/unpacked-6113.md#what-the-image-is); [bin] (client-internals/unpacked-6113.md#the-engine-is-visible)
+
+| What this listing shows | Unpacked 6.1.1.3 | Source |
+| --- | --- | --- |
+| Version | String `6.113`, fixed words 6.1.1.3, Eurocenter Games, copyright 2014. Compiler strings `Aug 8 2014` and `17:16:33`. Image timestamp 8 August 2014, 13:19:46 UTC. Linker major 9, minor 0 | [bin] (client-internals/unpacked-6113.md#what-the-image-is) |
+| Shape | One 32-bit GUI image, seven sections. `.text` is marked initialized data. `.SCY` is marked code. Virtual image 6,504,448 bytes | [bin] (client-internals/unpacked-6113.md#what-the-image-is) |
+| Engine | `quattro_lib` / `Quattro Play`, `TSocket`, `TServerPlayer`, `GuiGraalCtrl`, OpenGL, FMOD, `GRESCR01`. Original file name `Graal.exe` | [bin] (client-internals/unpacked-6113.md#the-engine-is-visible) |
+| Packer left behind | Export directory still named `QPlay.exe` (in `fbndyrix`). Import directory in `.SCY`. Blank section still holds `Themida`, `WinLicense` and Oreans driver names | [bin] (client-internals/unpacked-6113.md#packer-names-that-remain) |
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |

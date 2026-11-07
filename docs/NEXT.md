@@ -181,6 +181,11 @@ open-point closed.
     do not implement the CyaSSL or zlib calls, and the file has no GS2
     switch, GUI class or socket import.
     `client-internals/decompile-6113.md`. Item 17 stays open.
+  - [x] Unpacked Windows 6.1.1.3 image read (2026-11-07). The upload is a
+    Ghidra listing of the 8 August 2014 executable, not a raw exe. The
+    `quattro_lib` engine is visible (about 9,300 functions). Packer
+    section names and Oreans strings remain.
+    `client-internals/unpacked-6113.md`. Item 17 stays open.
 
 ## Handoff
 
