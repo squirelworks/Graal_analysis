@@ -466,11 +466,14 @@ torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay
 torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
 torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
+torque/engine-4208.md	cited	10	10	callback names, class counts, phase-ack names and sub-object keys stay in the note; §10.1.14 carries the launcher / engine / 3D split
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
+torque/v4-404r2-exe.md	cited	10	10	the two exe zips are one packer stub; §10.1.14 says they are not the engines
+torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.14 names both
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.13 carries the version strings, fixed words and companies on the skipped exports
