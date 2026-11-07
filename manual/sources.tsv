@@ -145,9 +145,13 @@ client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	ta
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
+client-internals/decompile-6113.md	cited	10	10	§10.1.10 carries the function count and that the named bodies do not implement the TLS calls; the subsystem table and the byte split stay in the note
 client-internals/des-and-hidden-strings.md	cited	3.7; 4.11	4	
 client-internals/drive-clients-inventory.md	cited	1; 4.11	4	
 client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superseded by client-internals/build-catalogue.md, client-internals/versions-133-139.md and protocol/relay-1998.md, which the manual cites
+client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
+client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
+client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
@@ -167,7 +171,11 @@ client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3; 4.11	4
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
+client-internals/gs2-6113.md	cited	8.4	8.4	
+client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
+client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 client-internals/id24-205.md	cited	2.4	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
+client-internals/issho-cut.md	cited	10	10	
 client-internals/item-drops.md	cited	4.5; E	4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
@@ -182,6 +190,8 @@ client-internals/npcaction.md	cited	2.5	2.5
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
+client-internals/packed-6037.md	cited	1	1	§1.8.7 carries the version-resource identity and that the decompile is a packer stub
+client-internals/packed-6113.md	cited	1	1	§1.8.7 carries the 6.113 identity and that the decompile is a packer stub; the Mac 6.11 comparison stays a pointer at the existing 6.11 note
 client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
 client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
@@ -195,10 +205,12 @@ client-internals/rendering-observations.md	cited	4.1	4
 client-internals/saved-passwords.md	cited	3.7	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/serveroptions-198.md	cited	2.5	2.5	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
+client-internals/skipped-v6-read.md	cited	10	10	§10.1.6 carries the stub, the QPlay.exe export directory and the TLS names that differ; the full export lists stay in the note
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
+client-internals/unpacked-6037.md	cited	10	10	§10.1.11 carries the version, that the C++ core is visible, the GS2 case set and the GUI-name changes; the cipher fields, the inflate version split and the printmap text stay in the note
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/141-217.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -224,6 +236,7 @@ docs/book/02-the-player.md	excluded		E	0.0.2 book chapter drafted from the worki
 docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
+docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
@@ -267,6 +280,7 @@ npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
+npc-library/preagonal-gs2.md	cited	8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
 npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
@@ -290,6 +304,9 @@ protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against othe
 protocol/file-transfer.md	cited	2.7; E	2.7	
 protocol/format-notes-from-salvage.md	cited	E	2	Part 2 not needed: an early format summary superseded by the notes Part 3 cites; cited in App. E where it disagrees with them (coverage audit 2026-11-04)
 protocol/graphics-movement-bytecode.md	cited	8.3; 8.4; E	8.4	
+protocol/gs2-6113.md	cited	8.3; 10	8.3; 10	§8.3.6 and §10.1.9 carry that 6.113 adds no opcode; the 6.00 fold table and the compiler line citations stay in the note
+protocol/gs2-client-only-opcodes.md	cited	8.3	8.3	per-opcode effects of the bytes the client runs and the compiler does not emit; §8.3 points here from the GS2 section
+protocol/gs2-client-vm.md	cited	8.3; 8.4; E	8.3; 8.4	opcode catalogue, client debug names, and the peephole stay in the note; §8.3 and §8.4 carry the container, that it is not GSHORT, and the load path
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
 protocol/link-test-2026-11-04.md	cited	2.5		
@@ -321,6 +338,14 @@ protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E; 3.1; 1	1; 2.3
 protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
+protocol/v6-props.md	cited	2.6	2.6	§2.6.7 carries the player range 0–83, the twelve ids with no case, and the baddy range 0–10; the per-id field widths stay in the note
+protocol/v6-repro-facts.md	pending		2.10	setprotocol field order, the id-50 prefix, onToall arguments and the bind events, from the unpacked 6.0.3.7 and 6.1.1.3 listings; for the server-defined protocol section
+protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.12 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
+protocol/v6113-hello.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.5 carry the token and the six-byte header. The cipher after the zlib member stays in the note
+protocol/v6113-list-capture.md	cited	1; 6	1; 6	
+protocol/v6113-pli.md	cited	2.4	2.4	§2.4.12 carries sendraw, senddata, the 254 script slot and the 6.037 id-5 login; the 55 event names stay in the note
+protocol/v6113-udp.md	cited	1	1	§1.8.7 carries that this capture has TCP 14900 and no UDP on 14900, 14901 or 14899; the port table stays in the note
+protocol/v6113-wire.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 has no token and no wire of its own; the contradiction table stays in the note
 protocol/v6x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E; 1	1; 2.10	
 protocol/v7x-properties-and-gs2.md	cited	2.6; 8.3; 8.4; E	2.6; 8.4	
 protocol/v7x-protocol.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; E	2.3; 2.4	
@@ -431,17 +456,26 @@ tools/remotecontrol-lineage.md	cited	7; E	7
 tools/remotecontrol.md	cited	7; E	7	
 tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	cited	5; 6; 7; E	7	
-torque/304-adventure.md	cited	10	10	§10.1.4 carries the session in one row; mouse, chat, the local-level magic gate, gmap keys and the console methods stay in the note
-torque/304-audio-ui.md	cited	10	10	§10.1.4 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
-torque/304-draw.md	cited	10	10	§10.1.4 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note
-torque/304-net.md	cited	10	10	§10.1.4 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
-torque/304-npcs.md	cited	10	10	§10.1.4 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note
+torque/304-adventure.md	cited	10	10	§10.1.13 carries the session in one row; mouse, chat, the local-level magic gate, gmap keys and the console methods stay in the note
+torque/304-audio-ui.md	cited	10	10	§10.1.13 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
+torque/304-draw.md	cited	10	10	§10.1.13 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note
+torque/304-net.md	cited	10	10	§10.1.13 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
+torque/304-npcs.md	cited	10	10	§10.1.13 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note
+torque/4208-engine.md	cited	10	10	§10.1.7 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
+torque/4208-g3d.md	cited	10	10	§10.1.7 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
+torque/4208-launcher.md	cited	10	10	§10.1.7 carries the 94 slots, when the canvas is drawn and who keeps drawing after a 3D start; the per-job callback behaviour, Flash version test and command line stay in the note
+torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay in the note; §10.1.8 carries the session, the script object, the extra setters, and the absence of SimObject and .dso
+torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
+torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
+torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
-torque/study-torque-clients.md	cited	E	10	new 2026-11-05 synthesis; only its App. E#503 evidence is carried so far, and the per-era findings and the 3.04 script surface go into §10 once Squirrel has reviewed the study and the rebuild plan
+torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
+torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
+torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
