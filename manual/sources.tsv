@@ -322,6 +322,8 @@ protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
 protocol/v6x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E; 1	1; 2.10	
+protocol/v7x-properties-and-gs2.md	cited	2.6; 8.3; 8.4; E	2.6; 8.4	
+protocol/v7x-protocol.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; E	2.3; 2.4	
 recovered-drive-tools/INVENTORY.md	excluded		11	download inventory of the recovered Drive corpus; logistics, no Graal behaviour
 recovered-drive-tools/SALVAGE_CANDIDATES.md	excluded		11	reimplementation placement plan
 recovered-drive-tools/SALVAGE_PLACEMENT.md	excluded		11	reimplementation placement plan

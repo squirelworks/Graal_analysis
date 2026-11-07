@@ -99,11 +99,13 @@ open-point closed.
   `tools/gen_profile_fixture.py` against the edited file. Do not commit the generated
   fixture to `seihai` from here.
 
-- [ ] **13. Later, Squirrel decides:** a capture of a real 5.x/6.x `Login` session to
-  fill matrix unknown #3. Ask before planning; public servers are off-limits without
-  Squirrel's OK. Proceeded without a capture (`protocol/login-session-known.md`):
-  what the existing notes already say a Login server sends, and what is still
-  unobserved. The look itself stays open. Tracked in #247 (Squirrel decides).
+- [ ] **13. Deferred: a capture of a real 5.x/6.x `Login` session** (matrix unknown #3).
+  On hold. Do not connect. Tracked by GitHub issue #247. The decision stays open.
+  `protocol/login-session-known.md` records what a Login server is already known to
+  send and which steps are still unobserved. Resume only in this order, the same
+  order as #247: (1) the owner comments yes or no on #247; (2) if yes, write the
+  capture plan before any connection; (3) redact per `AGENTS.md` and write the note;
+  (4) tick this task. Public servers stay off until that written yes is on the issue.
 
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
