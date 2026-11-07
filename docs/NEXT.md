@@ -122,9 +122,9 @@ open-point closed.
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
   parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
-  - [x] Read the 3.04 Linux engine from the decompile export (2026-11-07):
-    `torque/engine-304.md` and `torque/console-304.tsv`. Stock TGE stays in the
-    binary; Graal's game is `GuiGraalCtrl`. The hold on writing the module stands.
+  - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
+    Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
+    on writing the module stands.
 
 ## Handoff
 
