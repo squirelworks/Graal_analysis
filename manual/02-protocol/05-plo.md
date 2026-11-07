@@ -272,3 +272,13 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 | 132 | `PLO_UNKNOWN132` | unmeasured | 5.07 only; 6.037 ignores it; 3.153 uses it for script and class registration | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
+
+## 2.5.12 Native handler slots in unpacked 6.1.1.3
+
+Unpacked 6.1.1.3 does not compile a wire-id to handler map. A script list of numbers is converted to byte pairs and installed; a second script method zeros all 256 wire-id slots. [bin] (protocol/v6113-handlers.md)
+
+Indexes 0 to 94 select a native function, except index 90, which is empty. A handler byte of 95 or more is ignored, apart from the four special pair bytes 252 to 255. [bin] (protocol/v6113-handlers.md)
+
+No default pair list is compiled in. The installer writes nothing when the script list has fewer than two numbers. [bin] (protocol/v6113-handlers.md)
+
+Unpacked 6.0.3.7 has no 95-slot native table. Wire id 104 has no compiled receive case in 6.1.1.3; the only case 104 is a GS2 opcode. [bin] (protocol/v6113-handlers.md)
