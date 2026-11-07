@@ -72,3 +72,11 @@ Opcodes, by name; the notes give no numeric values:
 | A `.code` file shorter than eight bytes is rejected. The magic is `GRESCR01`, and the CRC32 covers the bytes after those eight | 6.1.1.3 | [bin] (client-internals/gs2-6113.md#load-path-and-the-code-cache) |
 | The dispatcher has 152 cases, from 11 through 242, with no case 48, 49 or 200. Cases 54, 121, 201–242 are present. Unpacked 6.037 has the same set | 6.1.1.3, 6.037 | [bin] (client-internals/gs2-6113.md#opcode-range) |
 | Those cases include the opcodes the Preagonal compiler does not emit. A full builtin table was not extracted | 6.1.1.3 | [bin][doc] (client-internals/gs2-6113.md#against-preagonal) |
+
+## 8.4.5 Built-in names in unpacked 6.1.1.3 and 6.0.3.7
+
+Both unpacked images store the eighteen math names `abs`, `atan`, `atan2`, `ceil`, `cos`, `floor`, `log`, `max`, `min`, `pi`, `pow`, `random`, `round`, `sin`, `sqrt`, `sqrt1_2`, `sqrt2` and `tan`. [bin] (client-internals/gs2-builtins-6113.md)
+
+Of the names Preagonal's compiler turns into opcodes, these images contain `abs`, `cos`, `log`, `max`, `min`, `pow`, `random`, `sin`, `format` and `sleep`. They do not contain `arctan`, `exp`, `vecx`, `vecy`, `arraylen` or `tokenize`. [bin][doc] (client-internals/gs2-builtins-6113.md)
+
+`putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7. [bin] (client-internals/gs2-builtins-6113.md)
