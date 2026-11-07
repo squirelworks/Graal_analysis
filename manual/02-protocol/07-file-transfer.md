@@ -104,3 +104,10 @@ Where a new download is saved, by build:
 | 2.22 indexes the game folder at startup, files before subdirectories in listing order, skipping top-level `pms`, `profiles` and `weblevels` and `.code` files; for a duplicate name the newer last-write time wins, and an equal time keeps the first found | 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#which-copy-is-used) |
 | 2.05 rev 2 looks up on demand: the current directory, then a remembered path, then a depth-first search of an opened world's folder and the game folder with the same skips; the first hit wins and is remembered | 2.05 rev 2 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#which-copy-is-used) |
 | For two different files of one name, 2.22 draws the newer and 2.05 rev 2 the first found | 2.05 rev 2, 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv) |
+
+## 2.7.8 Unpacked Windows 6.1.1.3 packages
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| The only `.gupd` file name in the image is `basepackage.gupd`. `package_mainfiles.gupd` is not in the listing. `game_console.log` is a path the client opens, and the log is not in the repository | 6.1.1.3 | [bin] (protocol/v6113-files.md#names-in-the-image) |
+| `onSendUpdatePackage` and `onSendDownloadFile` are present. A numeric request id for `basepackage.gupd` was not recovered | 6.1.1.3 | [bin] (protocol/v6113-files.md#request-ids) |

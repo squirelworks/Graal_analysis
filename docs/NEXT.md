@@ -134,6 +134,7 @@ open-point closed.
     script, Graal TCP beside stock Torque, fmod): `torque/304-adventure.md`,
     `torque/304-draw.md`, `torque/304-npcs.md`, `torque/304-net.md`,
     `torque/304-audio-ui.md`. The rebuild stays on hold.
+  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
     Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
     on writing the module stands.
