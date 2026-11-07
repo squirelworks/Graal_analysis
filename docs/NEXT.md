@@ -167,6 +167,9 @@ macOS CI is paused until the polish stage.
   - [x] GS2 script machine in GraalEngine 4.2.0.8 and GraalEngine 5.0.0.7
     (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`.
     The Torque rebuild stays on hold. No Seihai crate was started.
+  - [x] Cross-version Torque surface (2026-11-07): which modules are
+    present, only a name, or absent from 3.04 through unpacked 6.00.
+    `client-internals/torque-surface-by-era.md`. The hold stands.
   - [x] Read 5.0.0.7 for behaviour (2026-11-07): the launcher session,
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
