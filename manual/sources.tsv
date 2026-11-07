@@ -273,6 +273,7 @@ npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
+npc-library/preagonal-gs2.md	cited	8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
 npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal

@@ -52,3 +52,11 @@ These GS2 names appear in the notes; each row gives only what the source says ab
 | Tool | Relevance | Source |
 | --- | --- | --- |
 | LevelScriptEditor | lists every NPC of a folder of `.nw` levels and replaces identical scripts in one go; it reads like a tool for porting GS1 scripts to GS2 on a big world | [src][inf] (client-internals/reference-reimplementations/levelscripteditor.md#what-it-is) |
+
+## 8.3.5 A third-party compiler and VM
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| What it is | a public C# compiler and a public C# VM, both MPL-2.0; a lead for a later clean-room machine | [doc] (npc-library/preagonal-gs2.md#licence) |
+| What runs | the compiler takes GS2 source; the engine loads bytecode, and its tests pass the compiler's bytes in | [doc] (npc-library/preagonal-gs2.md#pipeline) |
+| Open | → App. E#207 stays open. The note records a third-party tree | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
