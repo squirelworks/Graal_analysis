@@ -161,6 +161,9 @@ open-point closed.
   - [x] GS2 container, opcodes, and weapon/class load for 4.2.0.8,
     5.0.0.7, and unpacked 6.00r2 and 6.00r4.
     `protocol/gs2-client-vm.md`. Item 17 stays open.
+  - [x] Effects of the GS2 opcodes the client VM accepts and the
+    Preagonal compiler does not emit, including folds 200–242.
+    `protocol/gs2-client-only-opcodes.md`. Item 17 stays open.
 
 ## Handoff
 

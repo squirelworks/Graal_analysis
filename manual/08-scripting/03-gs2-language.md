@@ -72,4 +72,4 @@ The bytecode these clients run is a big-endian four-segment container. Segment l
 | 5.x and 6.00 | `GRESCR01` cache; the wire header is unchanged from → §8.3.2 | [bin] (protocol/gs2-client-vm.md#script-cache) |
 | compiler lead | the MPL-2.0 checklist in → §8.3.5, compared with these clients | [doc] (protocol/gs2-client-vm.md#compiler-and-builtins) |
 
-The opcode names, the peephole, and the bytes the client runs which that compiler does not emit stay in the note [bin] (protocol/gs2-client-vm.md#what-differs).
+The opcode names, the peephole, and the bytes the client runs which that compiler does not emit stay in the note [bin] (protocol/gs2-client-vm.md#what-differs). The effect of each of those bytes is [bin] (protocol/gs2-client-only-opcodes.md).

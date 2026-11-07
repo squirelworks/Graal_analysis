@@ -210,7 +210,7 @@ Unpacked 6.00r2 and 6.00r4 compare the same `GRESCR01` magic on a `.code` file o
 
 Tags: **[bin]** the clients above. **[doc]** the Preagonal compiler at `7878bc5` (`npc-library/preagonal-gs2.md`).
 
-The client accepts every opcode the compiler emits. The compiler does not emit bytes the client still runs:
+The client accepts every opcode the compiler emits. The compiler does not emit bytes the client still runs. The effect of each of those bytes is in `protocol/gs2-client-only-opcodes.md`.
 
 | Bytes | Client | Compiler |
 | --- | --- | --- |
