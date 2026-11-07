@@ -145,6 +145,7 @@ client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	ta
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
+client-internals/decompile-6113.md	cited	10	10	§10.1.10 carries the function count and that the named bodies do not implement the TLS calls; the subsystem table and the byte split stay in the note
 client-internals/des-and-hidden-strings.md	cited	3.7; 4.11	4	
 client-internals/drive-clients-inventory.md	cited	1; 4.11	4	
 client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superseded by client-internals/build-catalogue.md, client-internals/versions-133-139.md and protocol/relay-1998.md, which the manual cites

@@ -171,6 +171,12 @@ open-point closed.
     Neighbour diff against unpacked 6.00: `client-internals/engine-6113.md`,
     `protocol/v6113-wire.md`, `protocol/gs2-6113.md`. Issho is not
     implemented. Item 17 stays open.
+  - [x] Read the 6.1.1.3 decompile itself (2026-11-07). The listing is
+    106 functions. Three are the entry (clear a breakpoint byte, mix four
+    kilobytes, breakpoint). The other 103 are export names whose bodies
+    do not implement the CyaSSL or zlib calls, and the file has no GS2
+    switch, GUI class or socket import.
+    `client-internals/decompile-6113.md`. Item 17 stays open.
 
 ## Handoff
 

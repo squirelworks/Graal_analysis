@@ -130,6 +130,10 @@ The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows 
 | GS2 | No opcode switch. Unpacked 6.00 already has cases 54 and 121 and folds 234–242, and does not have 48 or 49. This file cannot extend that | [bin] (protocol/gs2-6113.md#what-6113-cannot-show) |
 | Torque names | Console, `SimObject`, `GameConnection`, `ShapeBase`, `Player`, `graal_set`, `horizSizing`, `GuiTilesCtrl` and `TAdventure` are already gone in unpacked 6.00. `GuiGraalCtrl` and `GuiGraal3DCtrl` are that build's playfield. This listing has none of those names. Issho is v6; v7 Unity is not a profile this file supports | [bin] (client-internals/engine-6113.md#what-is-gone-by-6113) |
 
+### 10.1.10 What the 6.1.1.3 decompile contains
+
+The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the entry, which clears a breakpoint byte, mixes four kilobytes and then breakpoints. The other 103 are export names for a `CyaInt` TLS client, AES-CBC, HMAC, SHA-256 and RSA; those bodies do not implement the named calls, several names share one body, and the zlib names are not functions in the listing. The file has no GS2 switch, GUI class or socket import. [bin] (client-internals/decompile-6113.md#how-the-bytes-split)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
