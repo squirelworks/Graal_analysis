@@ -464,25 +464,25 @@ torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay
 torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
 torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
-torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.13 carries the class split and who calls graal_set, and the setter groups stay in the note while the Torque rebuild is on hold
-torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.13 carries the single-exe shape, and the string diff against 5.31r4 stays in the note while the Torque rebuild is on hold
-torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.13 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note while the Torque rebuild is on hold
+torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.14 carries the class split and who calls graal_set, and the setter groups stay in the note while the Torque rebuild is on hold
+torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.14 carries the single-exe shape, and the string diff against 5.31r4 stays in the note while the Torque rebuild is on hold
+torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.14 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note while the Torque rebuild is on hold
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
-torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.13 carries the one-line identification
-torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.13 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
-torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.13 carries what it loads, and the setter split is cited from torque/engine-5007.md
-torque/stub-512.md	cited	10	10	packer stub; §10.1.13 carries the file version and that the engine DLL is not in the zip
-torque/stub-5243.md	cited	10	10	packer stub; §10.1.13 carries the file version 5.243
-torque/stub-524r4.md	cited	10	10	packer stub; §10.1.13 carries the file version 5.244
-torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.13 carries that one fact
+torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.14 carries the one-line identification
+torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.14 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
+torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.14 carries what it loads, and the setter split is cited from torque/engine-5007.md
+torque/stub-512.md	cited	10	10	packer stub; §10.1.14 carries the file version and that the engine DLL is not in the zip
+torque/stub-5243.md	cited	10	10	packer stub; §10.1.14 carries the file version 5.243
+torque/stub-524r4.md	cited	10	10	packer stub; §10.1.14 carries the file version 5.244
+torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.14 carries that one fact
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
+torque/skipped-version-stamps.md	cited	10	10	§10.1.13 carries the version strings, fixed words and companies on the skipped exports
 torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
-torque/skipped-version-stamps.md	cited	10	10	
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
