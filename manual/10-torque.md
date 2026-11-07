@@ -103,6 +103,21 @@ The unpacked 4.2.0.8 launcher, `GraalEngine.dll` and `Graal3DEngine.dll` are thr
 
 `GameObject` is a `SceneObject` with script properties for shape, motion, mounting and interiors. `onGraal3DLoginStep` is raised for ghost objects (step 2), then mission lighting (step 3), and again when `GUIContainer3D` is installed (step 6). A terrain chunk is a compressed square; the byte layout is not in the decompile. `Interior::read` rejects a non-zero first value. `ShapeBase` and Torque's `Player` are absent. [bin] (torque/4208-g3d.md#what-gameobject-is); [bin] (torque/4208-g3d.md#the-login-steps); [bin] (torque/4208-g3d.md#what-a-terrain-chunk-is); [bin] (torque/4208-g3d.md#what-an-interior-read-rejects)
 
+### 10.1.8 Which modules each era still has
+
+A module is present when that image registers it, recovers methods, records the C++ type, or emits a `Class::method` error. A stub is the name alone. The 4.2.0.8 and 5.0.0.7 launchers are omitted below: both listings have DirectDraw and none of these modules. [bin] (client-internals/torque-surface-by-era.md#how-a-cell-is-counted); [bin] (client-internals/torque-surface-by-era.md#the-table)
+
+| Era | What of Torque is in the image | Source |
+| --- | --- | --- |
+| 3.04 Linux | Console, `SimObject`, `ActionMap`, `GuiCanvas`, `GuiControl`, `GBitmap`, terrain, interiors, DTS, `GameConnection`, `ShapeBase`, `Player`, vehicles and datablocks. Graal's console class is `GuiGraalCtrl` | [bin] (client-internals/torque-surface-by-era.md#304-linux) |
+| 4.2.0.8 and 5.0.0.7 engine DLL | `GuiCanvas`, `GuiControl` and `GBitmap`. No console, `SimObject` or `ActionMap`. The game types are `TAdventure`, `TGraalVar`, `TScriptExecutionSpace` and `TShowImg` | [bin] (client-internals/torque-surface-by-era.md#4208-windows); [bin] (client-internals/torque-surface-by-era.md#5007-windows) |
+| 4.2.0.8 and 5.0.0.7 3D DLL | `SimObject`, `ActionMap`, terrain, interiors, DTS, `GameConnection` and `GameObject`. No `ShapeBase`, `Player`, vehicles or datablock class. 5.0.0.7 adds the names `GameShapeDTS`, `GameShapeDIF` and `GameShapeFT` | [bin] (client-internals/torque-surface-by-era.md#4208-windows); [bin] (client-internals/torque-surface-by-era.md#5007-windows) |
+| 5.30r3 and 5.31r4 | No Torque world and no `GuiCanvas`. Control names remain, and so do `horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder` and `pushToBack` | [bin] (client-internals/torque-surface-by-era.md#530r3-and-531r4) |
+| 6.00r2 and 6.00r4 | The same control names, without those field names. `TAdventure` does not occur | [bin] (client-internals/torque-surface-by-era.md#600r2-and-600r4) |
+| Packed 5.12, 5.24, 6.037 and 6.113 | Packer listings. None of the module names | [bin] (client-internals/torque-surface-by-era.md#packed-listings) |
+
+`GameConnection` in 3.04 uses the stock method names. `BigDataStartEvent` and `TerrainChunkEvent` on the 4.2.0.8 and 5.0.0.7 3D DLLs are the Graal patch. `GameObject`, `GuiGraalCtrl`, `TAdventure`, `TGraalVar`, `TScriptExecutionSpace` and `TShowImg` are Graal-only. A stock name whose body was not diffed against a TGE tree is uncompared. [bin] (client-internals/torque-surface-by-era.md#against-stock-tge)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |

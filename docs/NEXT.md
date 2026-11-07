@@ -141,6 +141,9 @@ open-point closed.
     runs the session and has no `SimObject` console. `GameObject` in
     `Graal3DEngine.dll` is a `SceneObject`. `torque/4208-launcher.md`,
     `torque/4208-engine.md`, `torque/4208-g3d.md`. The hold stands.
+  - [x] Cross-version Torque surface (2026-11-07): which modules are
+    present, only a name, or absent from 3.04 through unpacked 6.00.
+    `client-internals/torque-surface-by-era.md`. The hold stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for
