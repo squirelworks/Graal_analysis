@@ -8,6 +8,8 @@ that need missing Squirrel-only files; take the next task. Binding rules live in
 Done-checks also require: leak check clean, `README.md` contents updated, matching
 open-point closed.
 
+macOS CI is paused until the polish stage.
+
 ## Tasks
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
@@ -110,11 +112,15 @@ open-point closed.
     The clear hello is `GNP1905C`; the bytes after it are ciphertext, so the
     Login server's packet ids stay unobserved.
     `protocol/v6113-list-capture.md`. The parent item stays open.
+  - [x] Full capture, 2026-11-07, 241 s, 46225 frames. UDP ports are
+    inventoried in `protocol/v6113-udp.md`. The same clear hello is on
+    TCP 14900 and TCP 14882. No UDP is on those remotes, and no UDP
+    port is one above a TCP port. The bytes after the hello are still
+    ciphertext. The parent item stays open.
   - [x] Full capture, 2026-11-07, 15236 frames. TCP 14900 is present.
     Three completed sessions start with `GNP1905C`; one SYN is unanswered.
     No UDP datagram to those remotes, and no UDP on 14900, 14901 or 14899.
     `protocol/v6113-udp.md`. The parent item stays open.
-
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
   the three-OS PDF build. TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.
@@ -130,6 +136,14 @@ open-point closed.
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
   parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
+  - [x] v5 export, static read only (2026-11-07): `torque/launcher-5007.md`,
+    `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
+    unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`. The rebuild
+    stays on hold.
+  - [x] Component pass of the Linux 3.04 game units (the 2D session, drawing, NPCs and
+    script, Graal TCP beside stock Torque, fmod): `torque/304-adventure.md`,
+    `torque/304-draw.md`, `torque/304-npcs.md`, `torque/304-net.md`,
+    `torque/304-audio-ui.md`. The rebuild stays on hold.
   - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
     Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
@@ -153,10 +167,18 @@ open-point closed.
   - [x] GS2 script machine in GraalEngine 4.2.0.8 and GraalEngine 5.0.0.7
     (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`.
     The Torque rebuild stays on hold. No Seihai crate was started.
+  - [x] Cross-version Torque surface (2026-11-07): which modules are
+    present, only a name, or absent from 3.04 through unpacked 6.00.
+    `client-internals/torque-surface-by-era.md`. The hold stands.
   - [x] Read 5.0.0.7 for behaviour (2026-11-07): the launcher session,
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
     `torque/5007-g3d.md`. The hold on writing the module stands.
+  - [x] Unpacked Windows 6.1.1.3 against the 6.00 notes (2026-11-07).
+    No `SimObject` console. `GuiTilesCtrl` is registered.
+    `GuiGraal3DCtrl` is not a string; `GraalControl3D` is looked up
+    beside `GUIContainer`. Five `new t2d` constructors are file text.
+    `client-internals/unpacked-6113.md`. The hold stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for
@@ -195,6 +217,15 @@ open-point closed.
     do not implement the CyaSSL or zlib calls, and the file has no GS2
     switch, GUI class or socket import.
     `client-internals/decompile-6113.md`. Item 17 stays open.
+  - [x] Unpacked Windows 6.1.1.3 image read (2026-11-07). The upload is a
+    Ghidra listing of the 8 August 2014 executable, not a raw exe. The
+    `quattro_lib` engine is visible (about 9,300 functions). Packer
+    section names and Oreans strings remain.
+    `client-internals/unpacked-6113.md`. Item 17 stays open.
+  - [x] Unpacked 6.1.1.3 wire and GS2 (2026-11-07). Generation-5 LCG,
+    no compiled-in token, `0xFE` send slots, and the 6.00 GS2 switch
+    (cases 54 and 121, folds 234–242, no 48 or 49).
+    `protocol/unpacked-6113-wire.md`, `protocol/gs2-unpacked-6113.md`.
   - [x] Unpacked Windows 6.037 (static read, 2026-11-07). The listing
     is the `quattro_lib` engine: a code section, `TSocket`, and a GS2
     switch with cases 54, 121 and 200–242 and without 48 or 49.

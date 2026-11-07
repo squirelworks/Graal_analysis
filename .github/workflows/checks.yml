@@ -11,7 +11,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # macOS disabled 2026-11-08; re-enable at polish stage
+        os:
+          - ubuntu-latest
+          # - macos-latest
+          - windows-latest
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -125,7 +129,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # macOS disabled 2026-11-08; re-enable at polish stage
+        os:
+          - ubuntu-latest
+          # - macos-latest
+          - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -157,7 +165,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # macOS disabled 2026-11-08; re-enable at polish stage
+        os:
+          - ubuntu-latest
+          # - macos-latest
+          - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

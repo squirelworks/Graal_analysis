@@ -42,6 +42,7 @@ The listserver login differs by client generation, not by build; inside a genera
 | B: id 0 then id 1 | 2.17.1 (port 14922 from its signed `arrays2.dat`) | one plain zlib frame holding id 0 `newmain` and id 1 (`str account`, `str password`); no token, key or cipher | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes); [cap] (protocol/listserver.md#217-list-host-bin) |
 | C: id 7, then generation 5 | 2.22, 2.31 (port 14922) | frame 1, plain zlib, 18 bytes decoded: id 7, one key byte, `GNW30123`, `newmain`, `\n`; frame 2, generation 5 with compression byte `0x02`: id 1, XORed with the key | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
 | D: 6.113 on port 14900 | Windows 6.113, one owner-supplied capture | not a list frame: token `GNP1905C`, then ciphertext; no id 0, 1 or 7 and no `newmain` | [cap] (protocol/v6113-list-capture.md#against-the-listserver-note) |
+| E: 6.113 full capture | Windows 6.113, the full capture the same day | the same hello on TCP 14900 and on TCP 14882; still no clear list id. The hosts that answer send no UDP | [cap] (protocol/v6113-udp.md#graal-tcp) |
 | generation 4 | 2.19 to 2.21 | id 4 `c key` + token, then bz2 frames with partial XOR (limit 4) | [srv] (protocol/listserver.md#client--listserver); [lab] (tools/lab-servers/README.md#our-listserver-version-2) |
 | RC 1.41 | RC 1.41 (2002) | id 0 `rc`, then id 1 `str account`, `str password` | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 

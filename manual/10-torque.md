@@ -186,6 +186,65 @@ Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte
 | The engine builds a `TGraalVar` for `StartScript_GraalGui`, `StartScript_MoveMap2D`, `StartScript_MoveMap3D` and the other start scripts, and it special-cases the control names `GuiGraalCtrl` and `GuiGraal3DCtrl` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
 | `Graal3DEngine.dll` is the `GameObject` world: `GameConnection`, `TerrainBlock`, interiors, two login phases (`onGraal3DLoginStep`), and `TerrainChunkEvent`. `ShapeBase` and Torque's `Player` are absent | [bin] (torque/engine-4208.md#graal3denginedll-gameobject-torque) |
 
+### 10.1.15 The 3.04 game components
+
+Linux 3.04 keeps stock Torque (`GameConnection`, `NetConnection`, and the `sim/netConnection.cc` / `game/gameConnection.cc` sources) beside Graal's own 2D game. `TGraalConnection` is a separate C++ type with no base class. The binary has no `Graal3D` string and no `BigData` event. [bin] (torque/304-net.md#beside-torque)
+
+| Component | What the 3.04 units do | Source |
+| --- | --- | --- |
+| Session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player) | Wakes once, opens the three license files, loads the HUD sheets, and logs a local level entry only for seven file magics | [bin] (torque/304-adventure.md#session-start) |
+| Drawing | The `TDrawableObject` family, `pics1.png` and tiledefs, gani text, polygon show-images | [bin] (torque/304-draw.md#types) |
+| NPCs and script | `playerenters` and the other trigger names, bow baddies, weapon rectangles, `shapetiletypes` | [bin] (torque/304-npcs.md#triggers) |
+| Graal TCP | Login id 5 then language id 37, the server list into `AdventureGui`, the player list and profiles | [bin] (torque/304-net.md#the-game-connection) |
+| Sound | fmod at mix rate 44100, wav samples, mid modules, and the mp3-class streams | [bin] (torque/304-audio-ui.md#fmod) |
+
+### 10.1.16 This v5 export
+
+One static read of a v5 export (nothing run). File-version strings below are the version resources in that export [bin] (torque/launcher-5007.md#what-the-decompile-is):
+
+| Fact | Source |
+| --- | --- |
+| `Graal.exe` 5.0.0.7 is a Delphi launcher. It loads `GRAALENGINE.DLL` and `GRAAL3DENGINE.DLL`, resolves `graal_engineInitialize` and 95 `graal_set*` names, and shows a warning that the execution file is corrupted if initialisation fails | [bin] (torque/launcher-5007.md#what-it-loads) |
+| `GraalEngine.dll` defines `TAdventure`, `TGraalVar`, `TShowImg`, `TGraalAni`, `GuiGraalCtrl` and Torque GUI classes (`GuiCanvas`, `GuiControl`). It defines 118 `graal_set*` setters. `SimObject`, `GameConnection`, `ActionMap` and `.dso` are absent | [bin] (torque/engine-5007.md#graals-game; torque/engine-5007.md#torque-that-remains) |
+| The launcher resolves the Flash, external-window, login and `graal_setStartGraal3D` setters. The 3D DLL calls the OpenGL and `GameObject` setters, then `graal_engineInitialize`. Three external-window setters are defined and named by neither host | [bin] (torque/engine-5007.md#who-calls-the-setters) |
+| `Graal3DEngine.dll` in this export is the `GameObject` era: `SimObject`, `GameConnection`, `ActionMap`, `TerrainBlock`, terrain chunks, `GameShapeDTS` / `DIF` / `FT`. `ShapeBase`, `PlayerData` and a datablock download phase are absent. Interior read strings are present | [bin] (torque/g3d-5007.md#torque-that-is-still-here; torque/g3d-5007.md#interiors-and-terrain) |
+| Mission logs are a ghost-object download (step 2), mission lighting (step 3), lighting done (step 4), the initial control object (step 5), then step 6 attaches `GUIContainer` | [bin] (torque/g3d-5007.md#mission-phases) |
+| A check writes `CHR_PROTOCOL` unless the tested value is greater than 23 and less than 25 | [bin] (torque/g3d-5007.md#protocol-window) |
+| The packed 5.12 exe's version resource is `5.1.2.0` and the decompile is a stub. That zip has no `Graal3DEngine.dll` | [bin] (torque/stub-512.md#what-the-decompile-is) |
+| The packed exes named 5.2.4.3 and 5.24r4 have version resources `5.243` and `5.244`. Both decompiles are stubs | [bin] (torque/stub-5243.md#what-the-decompile-is; torque/stub-524r4.md#what-the-decompile-is) |
+| `freetype6.dll` is FreeType 2.1.10.2079. The `fmod.dll` version resource says FMOD 3.75 and the recovered code is a packer stub | [bin] (torque/freetype6-5007.md#what-the-decompile-is; torque/stub-fmod-5007.md#what-the-decompile-is) |
+| Unpacked 5.30r3 and 5.31r4 are one exe each, file versions `5.303` (compile string `Oct 18 2010`) and `5.314` (compile string `Jan 5 2011`), source tree `quattro_lib`. `graal_set`, `SimObject` and `GameConnection` are absent. `GuiGraalCtrl`, `GuiGraal3DCtrl` and the Torque GUI field names remain | [bin] (torque/engine-530r3.md#what-the-decompile-is; torque/engine-530r3.md#torque; torque/engine-531r4.md#what-the-decompile-is; torque/engine-531r4.md#torque) |
+
+### 10.1.17 Which modules each era still has
+
+A module is present when that image registers it, recovers methods, records the C++ type, or emits a `Class::method` error. A stub is the name alone. The 4.2.0.8 and 5.0.0.7 launchers are omitted below: both listings have DirectDraw and none of these modules. [bin] (client-internals/torque-surface-by-era.md#how-a-cell-is-counted); [bin] (client-internals/torque-surface-by-era.md#the-table)
+
+| Era | What of Torque is in the image | Source |
+| --- | --- | --- |
+| 3.04 Linux | Console, `SimObject`, `ActionMap`, `GuiCanvas`, `GuiControl`, `GBitmap`, terrain, interiors, DTS, `GameConnection`, `ShapeBase`, `Player`, vehicles and datablocks. Graal's console class is `GuiGraalCtrl` | [bin] (client-internals/torque-surface-by-era.md#304-linux) |
+| 4.2.0.8 and 5.0.0.7 engine DLL | `GuiCanvas`, `GuiControl` and `GBitmap`. No console, `SimObject` or `ActionMap`. The game types are `TAdventure`, `TGraalVar`, `TScriptExecutionSpace` and `TShowImg` | [bin] (client-internals/torque-surface-by-era.md#4208-windows); [bin] (client-internals/torque-surface-by-era.md#5007-windows) |
+| 4.2.0.8 and 5.0.0.7 3D DLL | `SimObject`, `ActionMap`, terrain, interiors, DTS, `GameConnection` and `GameObject`. No `ShapeBase`, `Player`, vehicles or datablock class. 5.0.0.7 adds the names `GameShapeDTS`, `GameShapeDIF` and `GameShapeFT` | [bin] (client-internals/torque-surface-by-era.md#4208-windows); [bin] (client-internals/torque-surface-by-era.md#5007-windows) |
+| 5.30r3 and 5.31r4 | No Torque world and no `GuiCanvas`. Control names remain, and so do `horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder` and `pushToBack` | [bin] (client-internals/torque-surface-by-era.md#530r3-and-531r4) |
+| 6.00r2 and 6.00r4 | The same control names, without those field names. `TAdventure` does not occur | [bin] (client-internals/torque-surface-by-era.md#600r2-and-600r4) |
+| Packed 5.12, 5.24, 6.037 and 6.113 | Packer listings. None of the module names | [bin] (client-internals/torque-surface-by-era.md#packed-listings) |
+
+`GameConnection` in 3.04 uses the stock method names. `BigDataStartEvent` and `TerrainChunkEvent` on the 4.2.0.8 and 5.0.0.7 3D DLLs are the Graal patch. `GameObject`, `GuiGraalCtrl`, `TAdventure`, `TGraalVar`, `TScriptExecutionSpace` and `TShowImg` are Graal-only. A stock name whose body was not diffed against a TGE tree is uncompared. [bin] (client-internals/torque-surface-by-era.md#against-stock-tge)
+
+### 10.1.18 What the unpacked 6.1.1.3 image is
+
+A later listing of the same 8 August 2014 executable decompiles the engine. The upload is a Ghidra C listing and an HTML listing, not a raw executable and not `Graal.exe` plus a DLL. The version resource, the timestamp and the virtual image size match the stub in §10.1.9. The header entry is the Visual C++ security-cookie initializer, and about 9,300 functions recover. [bin] (client-internals/unpacked-6113.md#what-the-image-is); [bin] (client-internals/unpacked-6113.md#the-engine-is-visible)
+
+| What this listing shows | Unpacked 6.1.1.3 | Source |
+| --- | --- | --- |
+| Version | String `6.113`, fixed words 6.1.1.3, Eurocenter Games, copyright 2014. Compiler strings `Aug 8 2014` and `17:16:33`. Image timestamp 8 August 2014, 13:19:46 UTC. Linker major 9, minor 0 | [bin] (client-internals/unpacked-6113.md#what-the-image-is) |
+| Shape | One 32-bit GUI image, seven sections. `.text` is marked initialized data. `.SCY` is marked code. Virtual image 6,504,448 bytes | [bin] (client-internals/unpacked-6113.md#what-the-image-is) |
+| Engine | `quattro_lib` / `Quattro Play`, `TSocket`, `TServerPlayer`, `GuiGraalCtrl`, OpenGL, FMOD, `GRESCR01`. Original file name `Graal.exe` | [bin] (client-internals/unpacked-6113.md#the-engine-is-visible) |
+| Packer left behind | Export directory still named `QPlay.exe` (in `fbndyrix`). Import directory in `.SCY`. Blank section still holds `Themida`, `WinLicense` and Oreans driver names | [bin] (client-internals/unpacked-6113.md#packer-names-that-remain) |
+
+### 10.1.19 Torque names in the unpacked 6.1.1.3 image
+
+Against unpacked 6.00 (→ §10.1.5), this image still has no `SimObject`, `GameConnection`, `TerrainBlock`, `MissionGroup`, `TAdventure`, `graal_set` or `horizSizing`. The GUI walk compares `GuiGraalCtrl`. `GuiGraal3DCtrl` is not a string here; the shell looks up `GraalControl3D` beside `GUIContainer`. `GuiTilesCtrl` is registered beside `GuiControl`, which the 6.00 notes recorded as absent. A file reader matches five `new t2d…(` constructors, and `-printmap` takes a datablock file and a level file. That is text, not a Torque console. The hold on writing the module stands. [bin] (client-internals/unpacked-6113.md#torque-names-against-unpacked-600)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
@@ -203,6 +262,7 @@ Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte
 | The client's own UDP port is random unless the fixed-port option is on, then `fixedudpport` (default 14899) | [bin][file] (torque/network.md#how-a-client-gets-to-a-3d-server) |
 | 28000 is only the Torque address parser's default for an address without a port | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
 | Seen live: the 5.12 client sent the Torque challenge to UDP *P* + 1 and opened TCP *P* in the same millisecond; the TCP side carried the ordinary 5.x login frame with the built-in guest account, then ids 37 and 23 | [run] (torque/network.md#how-a-client-gets-to-a-3d-server) |
+| The 6.113 full capture does not show that pair. TCP 14900 and TCP 14882 carry the Graal hello, and neither remote has a UDP datagram. No UDP port in the file is a TCP port plus one | [cap] (protocol/v6113-udp.md#against-port-plus-one) |
 | The 3D connection lives only as long as the TCP one: when the lab TCP listener closed, the client reported "You have been disconnected from the game server." and sent a Torque disconnect | [run] (torque/network.md#the-full-handshake-live) |
 | In 4.04r2 a Torque time-out ("The 3D server connection has timed out") also drops the TCP session | [bin] (graal3d/torque-engine-4x.md#callbacks-the-dll-gives-the-engine) |
 | 4.04r2 gives the 3D side the account name, nickname and password through the engine; no session key or cookie is passed | [bin] (graal3d/torque-engine-4x.md#state-the-dll-receives) |

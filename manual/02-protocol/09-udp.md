@@ -17,6 +17,7 @@ A channel between clients that the game server never sees; the server only relay
 | `noudp` defaults to on | 2.22, 2.31 | [bin] (version-profiles/2.22-2.31.md#wire-protocol) |
 | The client sends its own port as PLPROP UDPPORT (31, `i3`); a peer's address is PLPROP IPADDR (30, `i5`, a 32-bit address) plus UDPPORT, both arriving in `PLO_OTHERPLPROPS` | 2.05 | [2.05] (protocol/udp-p2p.md#setup) |
 | A datagram is accepted only from the address and port of a known player | 2.05 | [2.05] (protocol/udp-p2p.md#datagram) |
+| A 241 s full capture of a running 6.113 client has 10643 UDP datagrams. None of them is to a host that answered the Graal TCP hello on 14900 or 14882. Ports 14899, 14900 and 14901 are not UDP ports in that file, and no UDP port is one greater than a TCP port | 6.113 | [cap] (protocol/v6113-udp.md#against-port-plus-one) |
 
 ## 2.9.2 Datagram
 
@@ -73,3 +74,10 @@ The ids are their own space, not PLI or PLO numbers; the wire byte is again the 
 | UDP 25 and 26 first appear in the same builds as their TCP twins, PLI 36 (2.01) and PLI 38 (2.03) | 2.01, 2.03 | [bin] (version-profiles/udp-ids-200-204.tsv); [bin] (client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md) |
 | The Torque-era 3.04 client kept the channel byte for byte | 3.04 | [cap] (protocol/udp-p2p.md#304-linux-lab-2026-10-30-cap) |
 | Whether 2.1 to 2.31 used the channel on the wire is unmeasured; 2.22 also used UDP for voice chat | 2.1 to 2.31 | [doc] (protocol/udp-p2p.md#open) |
+
+## 2.9.5 Unpacked Windows 6.1.1.3
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| A datagram socket opener is present. The game connect path does not call it. Script can, through the method that reports "Binding of port" | 6.1.1.3 | [bin] (protocol/v6113-udp-code.md#what-is-in-the-image) |
+| The 6.113 captures have no client datagram on the TCP 14900 remotes. That matches the connect path, and it leaves the script opener in the image | 6.1.1.3 | [bin][cap] (protocol/v6113-udp-code.md#against-the-captures) |
