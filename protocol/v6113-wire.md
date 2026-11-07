@@ -2,7 +2,7 @@
 
 Date: 2026-11-07. Static read. Nothing was run. Tags: **[bin]** this image · **[bin]** the neighbour notes cited below · **[cap]** the Windows captures those notes already record.
 
-`client-internals/engine-6113.md` identifies the file. It is the `QPlay.exe` packer stub. This page is what that means for login, framing, packet ids, property streams and file transfer, and where `protocol/v6x-clients.md` and `protocol/v5v6-windows-unpacked.md` disagree. 6.00r2, 6.00r4, 6.01r1, 6.03r7 and the 6.00 betas are used only as that diff. No 6.113 behaviour below is invented from them.
+`client-internals/engine-6113.md` identifies the file. It is the `QPlay.exe` packer stub. This page is what that means for login, framing, packet ids, property streams and file transfer, and where `protocol/v6x-clients.md` and `protocol/v5v6-windows-unpacked.md` disagree. 6.00r2, 6.00r4, 6.01r1, 6.03r7 and the 6.00 betas are used only as that diff. No 6.113 behaviour below is invented from them. A capture of the running client is `protocol/v6113-list-capture.md`; it does not put a token into this listing. **[cap]**
 
 ## What 6.113 cannot show
 
