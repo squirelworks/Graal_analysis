@@ -115,7 +115,10 @@ open-point closed.
     TCP 14900 and TCP 14882. No UDP is on those remotes, and no UDP
     port is one above a TCP port. The bytes after the hello are still
     ciphertext. The parent item stays open.
-
+  - [x] Full capture, 2026-11-07, 15236 frames. TCP 14900 is present.
+    Three completed sessions start with `GNP1905C`; one SYN is unanswered.
+    No UDP datagram to those remotes, and no UDP on 14900, 14901 or 14899.
+    `protocol/v6113-udp.md`. The parent item stays open.
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
   the three-OS PDF build. TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.
@@ -186,6 +189,18 @@ open-point closed.
     do not implement the CyaSSL or zlib calls, and the file has no GS2
     switch, GUI class or socket import.
     `client-internals/decompile-6113.md`. Item 17 stays open.
+  - [x] Unpacked Windows 6.037 (static read, 2026-11-07). The listing
+    is the `quattro_lib` engine: a code section, `TSocket`, and a GS2
+    switch with cases 54, 121 and 200–242 and without 48 or 49.
+    `GuiTilesCtrl` is constructed. `GuiGraal3DCtrl` is not a string.
+    The packed 6.037 shell is unchanged. `client-internals/unpacked-6037.md`.
+    Item 17 stays open.
+  - [x] Static read for the 6.x repro checks (2026-11-07). The setprotocol
+    header is filled `T`, then `I`, then `E`, then `L`. Ids 93 and 163 on
+    the 6.1.1.3 generation-5 path send id 50 first. `onToall` takes a
+    player and a text. The bind method's name was not found; the events
+    are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.
+    Item 17 stays open.
 
 ## Handoff
 
