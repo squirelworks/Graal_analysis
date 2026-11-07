@@ -69,6 +69,7 @@ The Graal changes a compatible peer adds to open TGE [bin] (graal3d/torque-engin
 | Graal's C++ draw types are `TDrawableObject`, `TLevelObject`, `TGaniObject`, `TServerPlayer`, `TDrawableSurface` and `TSurfaceOwner`, plus `TGraalConnection`. None of them is a Torque console class, and `TGraalConnection` is not a child of `NetConnection` | [bin] (torque/engine-304.md#graal-types) |
 | `ShapeBase` still has 79 decoded methods here, `fxSunLight` 51 and `GameConnection` 30. The classes 5.12 drops are the TGE game layer (`Player`, vehicles, items, projectiles), not the console or the editors | [bin] (torque/engine-304.md#what-later-builds-drop) |
 | The console surface is 857 functions and methods, almost all of them stock TGE | [bin] (torque/engine-304.md#the-split) |
+| Torque registers every script command at startup as a namespace (a class, or global), a name, a help sentence and a minimum and maximum argument count. The 3.04 Linux registrar has 857 entries (252 global, 67 classes). Later clients shrink it: the 4.x and 5.00 2D engine keeps GUI classes and has no `SimObject` console and no `.dso`; the 3D DLL keeps `SimObject` and `GameConnection`; from 5.24r3 the single executable (the scan includes the unpacked 5.31) has no `SimObject` and no `GameConnection`, and keeps GUI field names plus `GuiGraalCtrl` and `GuiGraal3DCtrl` | [bin] (torque/console-registrar.md#how-a-command-is-registered; torque/console-registrar.md#the-304-linux-registry; torque/console-registrar.md#later-clients) |
 
 ## 10.2 Join sequence
 

@@ -8,7 +8,7 @@ Read from the Linux `graalexe` 3.04 binary (the same program as `G3D03014`: Unix
 
 3.04 does not replace Torque's game. It compiles stock TGE and a second game beside it. **[bin]**
 
-Stock TGE is still the console, the sim objects, the resource manager, the GUI, the OpenGL texture manager, `ActionMap`, terrain, interiors, DTS shapes, sky, water, the world and terrain editors, and the TGE game layer (`Player`, `ShapeBase`, vehicles, items, projectiles, triggers, lightning, precipitation). The console surface is 857 functions and methods. Almost all of them are that stock engine.
+Stock TGE is still the console, the sim objects, the resource manager, the GUI, the OpenGL texture manager, `ActionMap`, terrain, interiors, DTS shapes, sky, water, the world and terrain editors, and the TGE game layer (`Player`, `ShapeBase`, vehicles, items, projectiles, triggers, lightning, precipitation). The console surface is 857 functions and methods. Almost all of them are that stock engine. How Torque fills that list, the count by class, and how later clients shrink it, is [console-registrar.md](console-registrar.md).
 
 Graal's game is the console class `GuiGraalCtrl`. The `graal/` sources cover the adventure client, baddies, the connection and the player, ganis, graphics, levels, NPCs, the player list, script functions, the server list, show images, sounds, surfaces, tiles, weapons, the cipher and the converted classes.
 
