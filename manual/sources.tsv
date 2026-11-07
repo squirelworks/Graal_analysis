@@ -171,6 +171,7 @@ client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3; 4.11	4
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
+client-internals/gs2-vm-from-engines.md	cited	8.3; 8.4; E	8.3	§8.3.7 carries the object, the lookup, the events, the clock and the bytecode segments. The opcode table, the fusion numbers and the per-version case list stay in the note
 client-internals/gs2-6113.md	cited	8.4	8.4	
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
@@ -210,6 +211,7 @@ client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
+client-internals/themida-pack.md	cited	1	1	§1.8.7 carries that 6.037 and 6.113 are the Themida / WinLicense shell and that the vendor strings are in the unpacked 5.30, 5.31 and 6.00 listings; the per-file table stays in the note
 client-internals/unpacked-6037.md	cited	10	10	§10.1.11 carries the version, that the C++ core is visible, the GS2 case set and the GUI-name changes; the cipher fields, the inflate version split and the printmap text stay in the note
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
