@@ -134,6 +134,7 @@ open-point closed.
     `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
     unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`. The rebuild
     stays on hold.
+  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
     Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
     on writing the module stands.

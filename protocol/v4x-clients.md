@@ -150,7 +150,7 @@ In this installer the stub is `0xDE`, the directory is `0xD7`, and the file bloc
 ### What 4.04r2 ships
 
 - `Graal4.exe` (Delphi launcher), `GraalEngine.dll` (linked 3 March 2006, about 1,650 exports), `fmod.dll` (UPX), `ExeReplacer_temp.exe` (August 2005, the Windows twin of the Mac `ExeReplacer`), and `graalv4_installfiles.txt`, a list of the installed files. **[bin][file]**
-- **`Graal3DEngine.dll`** (linked 3 March 2006): the Torque 3D world as a separate DLL (details below). It exports `loadGraal3DEngine`, `runGraal3DEngine` and `endGraal3DEngine`, and imports 623 symbols from `GraalEngine.dll`. Its source paths are `K:\src\graalv4\user\engine\…` (Torque's `console`, `core`, `dgl`, `game/net`, …). So 3D is a plug-in on top of the 2D engine in 4.x; the 4.20r8 packet-logger set does not include this DLL. **[bin]**
+- **`Graal3DEngine.dll`** (linked 3 March 2006): the Torque 3D world as a separate DLL (details below). It exports `loadGraal3DEngine`, `runGraal3DEngine` and `endGraal3DEngine`, and imports 623 symbols from `GraalEngine.dll`. Its source paths are `K:\src\graalv4\user\engine\…` (Torque's `console`, `core`, `dgl`, `game/net`, …). So 3D is a plug-in on top of the 2D engine in 4.x; the 4.20r8 packet-logger set does not include this DLL. A later export named 4.2.0.8 does include it ([engine-4208.md](../torque/engine-4208.md)). **[bin]**
 - `license.graal` is byte-identical to the Mac 4.20r6 one (`<login-host-4x>:14900`). `levels/`, `levels3d/gui`, `levels3d/help`, `languages3D/` and `sounds/` match the Mac 4.20r6 tree; `pics1.png` is byte-identical. **[file]**
 
 ### Protocol and engine differences from 4.20r8
