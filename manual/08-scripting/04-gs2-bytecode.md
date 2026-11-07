@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.4 GS2 bytecode
 
-This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The bytecode GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and the unpacked 6.00 clients load is → §8.3.6. OpenGS1's format, a reimplementation, is → §8.4.3. Which message id carries a weapon script is disputed → App. E#202. Syntax and the standard library stay open → App. E#207.
+This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2 and → §8.3.6. The runner, including the value-stack cap and opcodes 9 and 10, is → §8.3.7. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax, the standard library, and the event model stay open (→ App. E#207). Which message carries the container is still disputed (→ App. E#202).
 
-> Status: draft. The format those engines load is in §8.3.6. Syntax and the standard library stay open (→ App. E#207); the id that carries a weapon script is disputed (→ App. E#202).
+> Status: draft. The container for the builds in §8.4.2 is recorded. The runner is in §8.3.7. Syntax, the standard library, and the event model stay open (→ App. E#207). The id that carries the container is disputed (→ App. E#202).
 
 ## 8.4.1 Transport
 
@@ -15,11 +15,17 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 | with NPC props | an NPC is sent as `PLO_NPCPROPS` plus the optional `PLO_NPCBYTECODE` | [srv] (protocol/graphics-movement-bytecode.md#other-level-objects) |
 | 2.05 | the 2.05 receive switch does not handle it | [srv][2.05] (protocol/packet-ids.md) |
 | other ids | a second reading puts GS2 bytecode on id 197 → App. E#202 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
-| how the client stores it | the 4.2.0.8 engine parses the bytes into instructions and attaches them to the `TGraalVar` (→ §8.3.6) | [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
+| how the client stores it | a 24-byte instruction record and an op-index program counter (→ §8.4.2). 4.2.0.8 attaches those instructions to the `TGraalVar` (→ §8.3.7) | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
 
 ## 8.4.2 Format
 
-The format GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and the unpacked 6.00 clients load is four big-endian segments and the opcode switch in → §8.3.6. OpenGS1's layout stays the separate reimplementation in → §8.4.3. Syntax and the standard library stay open → App. E#207. [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source)
+4.2.0.8, 5.0.0.7, and unpacked 6.00r2 and 6.00r4 parse one container: four big-endian segments (event mask, functions, strings, opcodes) and `F0`–`F6` operands. It does not share OpenGS1's layout (→ §8.4.3). The runner is → §8.3.7. Syntax, the standard library, and the event model stay open → App. E#207.
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| container | big-endian types 1–4, not GSHORT, not the `0xAC` wrapper | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
+| later builds | 5.0.0.7 and 6.00 add dispatcher cases; 6.00 adds folds 234–242 | [bin] (protocol/gs2-client-vm.md#opcodes-added-after-4208) |
+| still open | GS2 syntax, standard library, event model | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
 
@@ -58,3 +64,19 @@ Opcodes, by name; the notes give no numeric values:
 | `OP_JEZ`, `OP_JNZ` | conditional jumps | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_STOP` | halt | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_DBG_OUT` | debug output | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
+
+## 8.4.4 Unpacked Windows 6.1.1.3
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| A `.code` file shorter than eight bytes is rejected. The magic is `GRESCR01`, and the CRC32 covers the bytes after those eight | 6.1.1.3 | [bin] (client-internals/gs2-6113.md#load-path-and-the-code-cache) |
+| The dispatcher has 152 cases, from 11 through 242, with no case 48, 49 or 200. Cases 54, 121, 201–242 are present. Unpacked 6.037 has the same set | 6.1.1.3, 6.037 | [bin] (client-internals/gs2-6113.md#opcode-range) |
+| Those cases include the opcodes the Preagonal compiler does not emit. A full builtin table was not extracted | 6.1.1.3 | [bin][doc] (client-internals/gs2-6113.md#against-preagonal) |
+
+## 8.4.5 Built-in names in unpacked 6.1.1.3 and 6.0.3.7
+
+Both unpacked images store the eighteen math names `abs`, `atan`, `atan2`, `ceil`, `cos`, `floor`, `log`, `max`, `min`, `pi`, `pow`, `random`, `round`, `sin`, `sqrt`, `sqrt1_2`, `sqrt2` and `tan`. [bin] (client-internals/gs2-builtins-6113.md)
+
+Of the names Preagonal's compiler turns into opcodes, these images contain `abs`, `cos`, `log`, `max`, `min`, `pow`, `random`, `sin`, `format` and `sleep`. They do not contain `arctan`, `exp`, `vecx`, `vecy`, `arraylen` or `tokenize`. [bin][doc] (client-internals/gs2-builtins-6113.md)
+
+`putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7. [bin] (client-internals/gs2-builtins-6113.md)

@@ -111,7 +111,7 @@ Sleep, `waitfor` and `scheduleEvent` use one double clock. **[bin]**
 
 The 3.153 note's "sleep yields for `t` seconds" agrees with the 3D clock. The 2D 0.05 step is additional.
 
-Opcode 9 adds one to a counter stored in the instruction itself (the same double slot as a numeric operand) and stops the script when the result is greater than 10000, with the text `Loop limit exceeded`. Starting from 0, the 10001st execution of that instruction is the one that stops. **[bin]** agrees that the counter lives in the instruction and that the limit is 10000. The comparison is "greater than 10000 after the increment", which the 3.153 note had not read off the binary.
+Opcode 9 (`loopcheck`) adds one and stops the script when the count is greater than 10000, with the text `Loop limit exceeded`. Starting from 0, the 10001st execution is the one that stops. Opcode 10 (`savestackpos`) stores the stack height on the frame and does not jump. The compiler names for those two bytes are not what this dispatcher does. **[bin]** (`protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes`)
 
 ## Bytecode and source
 
@@ -171,7 +171,7 @@ The engine's control dispatch (the same numbers as the server-to-client message 
 
 The executor switches on the instruction's opcode integer. The binary does not store the `OP_` names. The names in the first column are the ones in the Seihai opcode note, used only where the effect read here is that operation. A stack value's tag is 0 (the argument marker), 1 (number), 2 (string), 3 (object), 4 (variable name) or 5 (resolved variable). **[bin]** agrees with the 3.153 note's tags.
 
-The value stack grows 100 slots at a time and refuses to grow when the size plus 100 would pass 10000, so the cap is 10000. The 3.153 note's cap of 256 is not what 4.2.0.8 does. An underflow sets the stack index to -1 and stops the script. **[bin]**
+The value stack grows 100 slots at a time and refuses to grow when the size plus 100 would pass 10000, so the cap is 10000. A cap of 256 is not what 4.2.0.8 does. An underflow sets the stack index to -1 and stops the script. **[bin]**
 
 Jumps add the operand, truncated toward zero, to the base of the current instruction list (the script, or one joined class). In a script with no joined class the base is 0, so the operand is an instruction index, which agrees with the open-compiler note. **[bin]**
 

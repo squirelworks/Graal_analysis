@@ -65,3 +65,15 @@ The named send slots, each with the event 6.11 raises when its slot holds `0xFE`
 | 16 | `onSendDeleteNPC` | 35 | `onSendWantImage` | 55 | `onSendPingAnswer` | [bin] (protocol/v6x-clients.md#the-611-named-send-slots) |
 | 17 | `onSendDeleteWeapon` | 36 | `onSendImageUpdate` | 56 | `onSendWindowList` | [bin] (protocol/v6x-clients.md#the-611-named-send-slots) |
 | 18 | `onSendExtra` | 37 | `onSendImageUpdateCRC` | | | [bin] (protocol/v6x-clients.md#the-611-named-send-slots) |
+
+## 2.10.5 The Windows 6.1.1.3 hello
+
+Unpacked Windows 6.1.1.3 has the same script methods. The port 14900 capture's first bytes are the clear token `GNP1905C` and then a six-byte header (→ §1.8.7).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| `GNP1905C` is not a stored string, scrambled or clear, and `graalversion` (the number 6.113) is not turned into the digits `1905`. How those digits are chosen was not found | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-eight-characters) |
+| `sendraw` appends the caller's bytes with no packet id and no header, which is the path that can write those eight bytes | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-eight-characters) |
+| `setprotocol` writes an `I`/`L`/`T`/`E` header. `L` is the header length plus the body length. `E` 1 is zlib and `E` 2 is bzip2 at block size 5. The template is not in the image | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-six-bytes-after-the-token) |
+| A 6-byte header plus the capture's 273-byte zlib member is 279, and `01 17` sits in the captured header. The cipher after that member was not found | 6.1.1.3 | [bin][cap] (protocol/v6113-hello.md#what-the-cipher-is) |
+| Unpacked 6.0.3.7 stores `g3d0311c`, upper-cases it, and sends it as id 5. 6.1.1.3 has no such string | 6.0.3.7 and 6.1.1.3 | [bin] (protocol/v6113-hello.md#against-unpacked-6037) |

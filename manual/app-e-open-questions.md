@@ -207,9 +207,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids. GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00 load four-segment bytecode and run the opcode switch in → §8.3.6 | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
-| Open | GS2 syntax and the standard library; the opcode helpers the engine note did not open; which gameplay site fires each `script_event` name; packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
-| Settles it | a lab note of a captured bytecode message, and a reading of the built-in command table and the source compiler's grammar | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
+| Known | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse one four-segment container, do not share OpenGS1's layout, and run the switch in → §8.3.6 and → §8.3.7. The value stack caps at 10000. Opcode 9 stops past 10000. Opcode 10 stores the stack height and does not jump | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#opcodes) |
+| Open | GS2 syntax, the standard library and the event model. The container and the dispatcher for those builds are recorded. Still open: the opcode helpers the engine note did not open, which gameplay site fires each `script_event` name, and packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Settles it | a lab note decoding a captured bytecode message from a 4.x client session, a reading of the built-in command table and the source compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
@@ -217,7 +218,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Claim A | the graphics-and-bytecode note calls the OpenGS1 VM "GS1 bytecode" and lists the full GS1 opcode set and constant-table layout as known | [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode) |
 | Claim B | 2.05 does not compile GS1 to bytecode; OpenGS1's opcode set is an independent reimplementation that 2.05 does not share | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-commands.md#update-2026-10-21) |
-| Open | whether OpenGS1's format matches any official client's bytecode (3.153 or 4.x), or only OpenGS1 itself | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 do not use OpenGS1's layout | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
+| Open | whether 3.153's bytecode matches OpenGS1, or only OpenGS1 itself | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Settles it | comparing a captured official bytecode message (→ App. E#207) with the OpenGS1 layout | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
