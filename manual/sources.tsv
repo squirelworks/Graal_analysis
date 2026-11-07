@@ -344,6 +344,7 @@ protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E; 3.1; 1	1; 2.3
 protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
+protocol/v6113-files.md	cited	2.7	2.7	
 protocol/v6-props.md	cited	2.6	2.6	§2.6.7 carries the player range 0–83, the twelve ids with no case, and the baddy range 0–10; the per-id field widths stay in the note
 protocol/v6-repro-facts.md	pending		2.10	setprotocol field order, the id-50 prefix, onToall arguments and the bind events, from the unpacked 6.0.3.7 and 6.1.1.3 listings; for the server-defined protocol section
 protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.12 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
@@ -469,11 +470,14 @@ torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay
 torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
 torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
+torque/engine-4208.md	cited	10	10	callback names, class counts, phase-ack names and sub-object keys stay in the note; §10.1.14 carries the launcher / engine / 3D split
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
+torque/v4-404r2-exe.md	cited	10	10	the two exe zips are one packer stub; §10.1.14 says they are not the engines
+torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.14 names both
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.13 carries the version strings, fixed words and companies on the skipped exports
