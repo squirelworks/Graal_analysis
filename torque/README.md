@@ -18,6 +18,7 @@ Tags: **[bin]** read from a client binary · **[file]** read from shipped data �
 - [study-torque-clients.md](study-torque-clients.md): what each Torque-era client really is (Torque monolith 3.x, Delphi shell + C++ engine 4.x–5.12, Graal's own engine from 5.24r3), a marker scan of 17 binaries from 3.04 to 6.11, the 3.04 shipped files and formats, the native surface the 3.04 scripts need, the 4.x/5.00 draw-callback bridge that puts 2D content into the Torque world, and what the 2D rebuild lacks per era.
 - [v4-404r2-exe.md](v4-404r2-exe.md) and [v4-420r8-exe.md](v4-420r8-exe.md): two exports named as the 4.04r2 and 4.20r8 executables. They are one packer stub, not a client.
 - [engine-4208.md](engine-4208.md): the later file-version 4.2.0.8 Windows export (Delphi launcher, `GraalEngine.dll`, `Graal3DEngine.dll`).
+- [skipped-version-stamps.md](skipped-version-stamps.md): version resources still present on the packer-stub exports the engine reads left unread (the identical 4.04r2 and 4.20r8 exe uploads, 5.12, 5.2.4.3, 5.24r4, fmod, and the packed 6.0.3.7 and 6.1.1.3 exes).
 - [rebuild-plan-3.04.md](rebuild-plan-3.04.md): a staged plan for a Torque-faithful rebuild starting with 3.04, the test that ends each stage, and what "0.0.2" means for each era.
 - `tools/`: `dsodis.py` / `dsodec.py` (DSO disassembler and decompiler), `tbits.py` (Torque bit stream and Huffman strings), `tq.py` (a minimal Torque server that completes the 5.12 handshake), `conn.c` (the injector that makes a real 5.12 client join a 3D server and drives its frames under Wine).
 
