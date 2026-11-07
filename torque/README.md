@@ -22,6 +22,7 @@ Tags: **[bin]** read from a client binary · **[file]** read from shipped data �
 - [304-npcs.md](304-npcs.md): NPC triggers, bow baddies, weapon rectangles, `shapetiletypes` and the polygon verb.
 - [304-net.md](304-net.md): Graal TCP (`TGraalConnection`, server list, player list) beside an untouched Torque `GameConnection`.
 - [304-audio-ui.md](304-audio-ui.md): fmod startup, wav / mid / stream file types, and the audio prefs on `GuiGraalCtrl`.
+- v5 export, static read 2026-11-07, nothing run: [launcher-5007.md](launcher-5007.md) (Delphi `Graal.exe` 5.0.0.7), [engine-5007.md](engine-5007.md) (`GraalEngine.dll`, the `graal_set` API and Graal's game), [g3d-5007.md](g3d-5007.md) (`Graal3DEngine.dll`, GameObject-era Torque), [freetype6-5007.md](freetype6-5007.md) and [stub-fmod-5007.md](stub-fmod-5007.md) (the two libraries beside that client), [stub-512.md](stub-512.md), [stub-5243.md](stub-5243.md) and [stub-524r4.md](stub-524r4.md) (packer stubs, file versions `5.1.2.0`, `5.243`, `5.244`), [engine-530r3.md](engine-530r3.md) and [engine-531r4.md](engine-531r4.md) (unpacked single exes, file versions `5.303` and `5.314`).
 - [v4-404r2-exe.md](v4-404r2-exe.md) and [v4-420r8-exe.md](v4-420r8-exe.md): two exports named as the 4.04r2 and 4.20r8 executables. They are one packer stub, not a client.
 - [engine-4208.md](engine-4208.md): the later file-version 4.2.0.8 Windows export (Delphi launcher, `GraalEngine.dll`, `Graal3DEngine.dll`).
 - [skipped-version-stamps.md](skipped-version-stamps.md): version resources still present on the packer-stub exports the engine reads left unread (the identical 4.04r2 and 4.20r8 exe uploads, 5.12, 5.2.4.3, 5.24r4, fmod, and the packed 6.0.3.7 and 6.1.1.3 exes). Manual §10.1.13.
@@ -43,6 +44,8 @@ Related notes elsewhere: `protocol/v3x-clients.md` (3.04 / 3.153 Graal TCP side)
 | 6.x | 2010–2014 | native C++ per platform (`quattro_lib` on Windows 6.00) | no Torque 3D; GS2 keeps Torque control names (`client-internals/engine-600r2.md`) | none | n/a | GS2 |
 
 All rows are **[bin]**, except the 3.153 script column (**[file]**). The 3.153 and 4.20r6 rows, and the per-build wire details, are in [wire-by-build.md](wire-by-build.md).
+
+The 2026-11-07 v5 export agrees with the 5.00 split (Delphi launcher, `GraalEngine.dll`, `Graal3DEngine.dll`) and with 5.12's shape only as far as the packed exe: that zip has no engine DLL, file version `5.1.2.0`, and the decompile is a stub. The 5.00 3D DLL in the export is already the `GameObject` era (two mission phases, terrain chunks, a protocol check that passes only 24) and it does contain interior read strings. `ShapeBase` and a datablock phase are absent. The unpacked 5.30r3 and 5.31r4 exes are one binary each (`quattro_lib`, file versions `5.303` and `5.314`) with the GUI names left and no `graal_set`, `SimObject` or `GameConnection`. **[bin]** ([g3d-5007.md](g3d-5007.md), [engine-531r4.md](engine-531r4.md))
 
 ## What a Seihai suite would need, in order
 
