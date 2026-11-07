@@ -272,3 +272,11 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 | 132 | `PLO_UNKNOWN132` | unmeasured | 5.07 only; 6.037 ignores it; 3.153 uses it for script and class registration | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
+
+## 2.5.11 Unpacked Windows 6.1.1.3
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Wire id 104 has no compiled receive case. It runs only when a script pair names it, and that pair is not in the image | 6.1.1.3 | [bin] (protocol/v6113-plo.md#packet-104) |
+| `setindatahandlers` installs (wire id, handler) pairs into 256 slots. 255 clears, 254 is the script sentinel, 253 and 252 save the wire id, and 0 to 94 select a native function. Index 90 is empty | 6.1.1.3 | [bin] (protocol/v6113-plo.md#incoming-registration) |
+| `setoutdatahandlers` fills 256 outgoing ids with all-ones, then copies the script list, at most 256 entries | 6.1.1.3 | [bin] (protocol/v6113-plo.md#outgoing) |
