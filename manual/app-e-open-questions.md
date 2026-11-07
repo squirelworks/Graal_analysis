@@ -208,9 +208,9 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Item | Content | Source |
 | --- | --- | --- |
 | Known | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
-| Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse one four-segment container and do not share OpenGS1's layout | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
-| Open | GS2 syntax, standard library and event model. The container and the dispatcher for those builds are no longer the open item | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Settles it | a lab note decoding a captured bytecode message from a 4.x client session, and a note on the GS2 documentation in the archived websites | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse one four-segment container, do not share OpenGS1's layout, and run the switch in → §8.3.6 and → §8.3.7. The value stack caps at 10000. Opcode 9 stops past 10000. Opcode 10 stores the stack height and does not jump | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#opcodes) |
+| Open | GS2 syntax, the standard library and the event model. The container and the dispatcher for those builds are recorded. Still open: the opcode helpers the engine note did not open, which gameplay site fires each `script_event` name, and packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Settles it | a lab note decoding a captured bytecode message from a 4.x client session, a reading of the built-in command table and the source compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
