@@ -21,7 +21,7 @@ If the compressor returns nothing, `E` is written again as 0 and the original bo
 
 ## Ids 93 and 163 on the generation-5 path
 
-While 6.1.1.3 is still on the generation-5 framer, a send of id 93 or id 163 first sends id 50. The body of that id 50 is a three-byte length of the original body length plus 2, capped at the raw-data cap, each byte stored as a seven-bit group plus 32. The original packet is then written as id plus 32, the body, and a newline. Those two ids skip the newline refusal. Every other generation-5 send that contains a newline is refused with "Illegal characters in the outgoing data". A buffer whose length reaches 4096 bytes is flushed. **[bin]**
+While 6.1.1.3 is still on the generation-5 framer, a send of id 93 or id 163 first sends id 50. The body of that id 50 is a three-byte length of the original body length plus 2, capped at 3670015, each byte stored as a seven-bit group plus 32. The original packet is then written as id plus 32, the body, and a newline. Those two ids skip the newline refusal. Every other generation-5 send that contains a newline is refused with "Illegal characters in the outgoing data". A buffer whose length reaches 4096 bytes is flushed. **[bin]**
 
 The 6.0.3.7 send function has the same newline refusal, and it skips that refusal for ids 93 and 163. It does not itself send the id 50 prefix. Where 6.0.3.7 would add that prefix: not found. **[bin]**
 
