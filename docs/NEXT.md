@@ -106,6 +106,14 @@ open-point closed.
   order as #247: (1) the owner comments yes or no on #247; (2) if yes, write the
   capture plan before any connection; (3) redact per `AGENTS.md` and write the note;
   (4) tick this task. Public servers stay off until that written yes is on the issue.
+  - [x] Owner-supplied capture, 2026-11-07, port 14900, Windows 6.113.
+    The clear hello is `GNP1905C`; the bytes after it are ciphertext, so the
+    Login server's packet ids stay unobserved.
+    `protocol/v6113-list-capture.md`. The parent item stays open.
+  - [x] Full capture, 2026-11-07, 15236 frames. TCP 14900 is present.
+    Three completed sessions start with `GNP1905C`; one SYN is unanswered.
+    No UDP datagram to those remotes, and no UDP on 14900, 14901 or 14899.
+    `protocol/v6113-udp.md`. The parent item stays open.
 
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
@@ -144,6 +152,10 @@ open-point closed.
   - [x] Cross-version Torque surface (2026-11-07): which modules are
     present, only a name, or absent from 3.04 through unpacked 6.00.
     `client-internals/torque-surface-by-era.md`. The hold stands.
+  - [x] Read 5.0.0.7 for behaviour (2026-11-07): the launcher session,
+    `TAdventure` and the script space, and the 3D mission, terrain and
+    protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
+    `torque/5007-g3d.md`. The hold on writing the module stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for
@@ -157,6 +169,37 @@ open-point closed.
     CyaSSL, zlib and ciphers; the bytes at those exports are not the
     library, and the engine is still not in these two files.
     `client-internals/skipped-v6-read.md`. Item 17 stays open.
+  - [x] GS2 container, opcodes, and weapon/class load for 4.2.0.8,
+    5.0.0.7, and unpacked 6.00r2 and 6.00r4.
+    `protocol/gs2-client-vm.md`. Item 17 stays open.
+  - [x] Effects of the GS2 opcodes the client VM accepts and the
+    Preagonal compiler does not emit, including folds 200–242.
+    `protocol/gs2-client-only-opcodes.md`. Item 17 stays open.
+  - [x] Windows 6.1.1.3 re-read after the 2026-11-07 gap archive.
+    The archive is the existing cleaned notes, not an unpacked image.
+    The executable is still the `QPlay.exe` stub: one `KERNEL32` import,
+    CyaSSL and zlib export names, no login, no GS2 switch, no Torque class.
+    Neighbour diff against unpacked 6.00: `client-internals/engine-6113.md`,
+    `protocol/v6113-wire.md`, `protocol/gs2-6113.md`. Issho is not
+    implemented. Item 17 stays open.
+  - [x] Read the 6.1.1.3 decompile itself (2026-11-07). The listing is
+    106 functions. Three are the entry (clear a breakpoint byte, mix four
+    kilobytes, breakpoint). The other 103 are export names whose bodies
+    do not implement the CyaSSL or zlib calls, and the file has no GS2
+    switch, GUI class or socket import.
+    `client-internals/decompile-6113.md`. Item 17 stays open.
+  - [x] Unpacked Windows 6.037 (static read, 2026-11-07). The listing
+    is the `quattro_lib` engine: a code section, `TSocket`, and a GS2
+    switch with cases 54, 121 and 200–242 and without 48 or 49.
+    `GuiTilesCtrl` is constructed. `GuiGraal3DCtrl` is not a string.
+    The packed 6.037 shell is unchanged. `client-internals/unpacked-6037.md`.
+    Item 17 stays open.
+  - [x] Static read for the 6.x repro checks (2026-11-07). The setprotocol
+    header is filled `T`, then `I`, then `E`, then `L`. Ids 93 and 163 on
+    the 6.1.1.3 generation-5 path send id 50 first. `onToall` takes a
+    player and a text. The bind method's name was not found; the events
+    are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.
+    Item 17 stays open.
 
 ## Handoff
 
