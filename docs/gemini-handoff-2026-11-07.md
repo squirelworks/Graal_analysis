@@ -32,3 +32,15 @@ No new client behaviour. The useful sentences are already written more precisely
 ## Left out of the repo
 
 The stalled-client note names a public login host. That string is not in this commit. The archive itself has no passwords, keys, or player messages. It only warns that some 5.00r7 folder elsewhere holds private messages, profiles, and a buddy list; those files were not in the tarball. No decompiled C and no binary addresses.
+
+## Dirty pack, same day
+
+A second archive from this pass was read after the note above. It holds address dumps, local paths, string scans, and a cleaned 7.x write-up. Addresses, paths, hosts, and the bundles are not copied.
+
+The 3.04 string list matches the study: one binary, with SimObject, NetConnection, GameConnection, TGraalConnection, datablocks, and the console compiler. [bin]
+
+Scans of the 4.20r8 and 5.00r7 engine DLLs find TGraalConnection and do not find NetConnection, GameConnection, SimObject, or datablock. Hits on "ghost" are Graal words (ghostani, ghostsnear, a ghost-always login event) and the colour name ghostwhite. Those scans did not include a separate 3D plug-in, so they do not change the plug-in finding in `torque/study-torque-clients.md`. [bin]
+
+The 6.x scan's seven "Torque" hits are that colour name, a printmap datablock tool, two `t2d` datablock constructor strings, and TGraalConnection. Those constructor strings are not a Torque 2D engine. [bin]
+
+The pack's cleaned note still says 7.x is a Unity host around `Graal3DEngine.dll`, under an internal name Quattro. The only support in the archive is an address-level index, which is not copied. Issues #257, #258, and #259 stay open.
