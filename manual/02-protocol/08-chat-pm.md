@@ -69,3 +69,10 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 | 9 | favourite quote: the quote box's lines joined with spaces, trimmed, cut to 220 characters | [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205) |
 
 Each text field is trimmed before sending [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205).
+
+## 2.8.6 Unpacked Windows 6.1.1.3
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Another player's line arrives as the script event `onToall`, raised by `tclient_settoallmsg` on the TCP incoming path. The UDP callback does not raise it | 6.1.1.3 | [bin] (protocol/v6113-chat.md#the-arrival-path) |
+| No compiled PLO id is assigned to that event. The wire id is the script pair, which is not in the image | 6.1.1.3 | [bin] (protocol/v6113-chat.md#which-plo) |
