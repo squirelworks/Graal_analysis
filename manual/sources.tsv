@@ -541,3 +541,13 @@ version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	Appendix A not needed: App
 version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning review for the Seihai version selector; its facts come from the per-build notes and lab records the manual cites
 version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
+protocol/v7-graal3d-identity-and-builds.md	cited	1; E		v7 Worlds identity and build catalogue
+protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E		v7 framing paths and remapper
+protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5; E		v7 PLI slots and PLO handlers
+protocol/v7-graal3d-player-properties.md	cited	2.6; E		v7 script-visible property names and PLPROP
+protocol/v7-graal3d-property-streams.md	cited	2.6; E		v7 property stream wire model
+protocol/v7-graal3d-gs2-and-scripts.md	cited	8.3; 8.4; E		v7 GRESCR01 and GS2 VM
+protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package transfer
+protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9; E		v7 chat, world, UDP status
+protocol/v7-graal3d-discovery-extras.md	cited	E		v7 open-item status and extras
+client-internals/v7-graal3d-unity-bridge.md	cited	E		v7 Unity/Quattro bridge surface
