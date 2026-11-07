@@ -125,6 +125,9 @@ open-point closed.
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
     Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
     on writing the module stands.
+  - [x] Version resources on the skipped packer stubs (2026-11-07):
+    `torque/skipped-version-stamps.md`. The two v4 exe uploads are one
+    decompile, file version 4.0.4.2. The hold on writing the module stands.
 
 ## Handoff
 
