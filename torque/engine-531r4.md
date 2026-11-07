@@ -24,4 +24,4 @@ Files: `GR-V1.00` through `GR-V1.05`, `Z3-V1.03`, `Z3-V1.04`, `basepackage.gupd`
 
 ## Differences from 5.30r3
 
-Strings in this build that the October executable does not have: `Jan 5 2011`, `Adventure openDefaultViewer`, `clearEmptyGlobalVars`, `fromplayerid`, `onRemotePlayerChats` (5.30 has `@onRemotePlayerChats`), and a `C:\Windows\Fonts\` path. The October build's `Graal has been activated!`, `StartScript QuitDialog`, and the extension list that includes `gxml` are absent here; a lone `.gxml` string remains. File version `5.303` versus `5.314`. The Torque and Graal-type picture above is the same in both. **[bin]**
+This build, and not the October executable, has a 5 January 2011 compile banner, `Adventure openDefaultViewer`, `clearEmptyGlobalVars`, `fromplayerid`, `onRemotePlayerChats` (5.30 spells that chat event with a leading `@`), and a Windows fonts directory path. The October build's activation log, its quit-dialog start script, and an extension list that includes `gxml` are absent here; a lone `.gxml` string remains. File version `5.303` versus `5.314`. The Torque and Graal-type picture above is the same in both. **[bin]**

@@ -10,7 +10,7 @@ It is a Delphi program. It opens `SOFTWARE\Borland\Delphi\RTL` and `Software\Bor
 
 ## What it loads
 
-It loads `GRAALENGINE.DLL` and resolves `graal_engineInitialize` plus 95 `graal_set*` names with `GetProcAddress`. If that initialisation fails it shows "The execution file is corrupted." It also resolves `startGraalExeReplacer` and `startGraalProfiler`. It loads `GRAAL3DENGINE.DLL` from two call sites. **[bin]**
+It loads `GRAALENGINE.DLL` and resolves `graal_engineInitialize` plus 95 `graal_set*` names with `GetProcAddress`. If that initialisation fails it shows a warning that the execution file is corrupted. It also resolves `startGraalExeReplacer` and `startGraalProfiler`. It loads `GRAAL3DENGINE.DLL` from two call sites. **[bin]**
 
 The names it resolves, and the ones only the 3D DLL calls, are listed in [engine-5007.md](engine-5007.md#who-calls-the-setters). This launcher resolves the Flash panels, the external player list and options windows, the microphone, `graal_setOnServerLogin`, `graal_setOnServerListerConnect`, `graal_setStartGraal3D`, `graal_setShowGraalWindow`, and the language and translation-URL setters. It does not resolve the 3D-only setters (`graal_setIsOpenGLEnvironment`, `graal_setCreateGraal3DGameObject`, `graal_setConnectTo3DServer`, and the rest of that list). **[bin]**
 

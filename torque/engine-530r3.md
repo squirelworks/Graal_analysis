@@ -22,4 +22,4 @@ Level magics `GR-V1.00` through `GR-V1.05` are present, as are `GRESCR` and `GRP
 
 ## Differences from 5.31r4
 
-The two unpacked exes are the same program a few months apart, not copies. Strings only in this build: `Graal has been activated!`, `StartScript QuitDialog`, the extension list `zip,gpak,app,nw,graal,gmap,gxml`, and the date `Oct 18 2010`. Strings only in 5.31r4 are in [engine-531r4.md](engine-531r4.md#differences-from-530r3). Both still have a separate `.gxml` string. **[bin]**
+The two unpacked exes are the same program a few months apart, not copies. Only this build logs that Graal has been activated, names a quit-dialog start script, and lists the extensions zip, gpak, app, nw, graal, gmap and gxml. Its compile banner is 18 October 2010. What only 5.31r4 has is in [engine-531r4.md](engine-531r4.md#differences-from-530r3). Both still have a separate `.gxml` string. **[bin]**
