@@ -14,7 +14,7 @@ No new client behaviour. The useful sentences are already written more precisely
 ## Dropped
 
 - **"TGE 1.2-era, do not re-litigate."** 3.04's own version call is 1.100. Calling every later build 1.2 flattens the 1.2/1.3 reading of the 4.04r2 plug-in and the 5.24 cut.
-- **"Modern Torque3D is the wrong base."** A project instruction, and too broad. `torque/README.md` already says an open TGE 1.x base covers most of the 4.04r2 world, while 5.12's `GameObject` layer is Graal's.
+- **"Modern Torque3D is the wrong base."** Settled owner direction, not a measurement of a client. Seihai builds its own engine and does not bring in Torque3D. graal-client-repro is the separate project for historical fidelity. `torque/README.md` already says an open TGE 1.x base covers most of the 4.04r2 world, while 5.12's `GameObject` layer is Graal's.
 - **Monolith, then hybrid, then "residual" early 5.x, then 6.x.** 4.20r6 Mac is one binary, not a Delphi hybrid. 5.00r7 and 5.12 still ship a Torque 3D plug-in (`SimObject`, `GameConnection`, terrain, DTS). Torque's engine is already gone in 5.24r3, before 6.x. "Residual" is not a behaviour.
 - **3D servers use the Torque parser's default UDP port.** `protocol/v3x-clients.md` already says that number is only the default when no port is given. The client uses the listed port plus one.
 - **List login flushes between id 7 and id 1.** The 3.04 lab sent both in one plain zlib frame (`version-profiles/lab-304-linux-2026-10-30.md`). The handoff repeats the static-read mistake that note corrected.
@@ -27,7 +27,7 @@ No new client behaviour. The useful sentences are already written more precisely
 - **Precursor table, bit widths, GraalX, the CRC patch, the packet logger.** Same facts, fewer of them, and the CRC patch omits the 8-byte diff.
 - **Roadmap for another repository** (`common/torque/{full,hybrid,residual}`, a modular login, a new encrypted handshake). Layout and policy, not observed client behaviour. No Torque code was added anywhere, and nothing in the Seihai repos was changed.
 - **Issue #243** (land the Torque study and capture 3.04 stage 0). The study is already on main (`torque/study-torque-clients.md`, merged as #242). This archive has no `console.log`, screenshots, or `prefs.cs`.
-- **Decision log, "treat as fixed."** It claims the owner settled a split between Seihai and a historical-client repo. This tarball is not that conversation. Not recorded as policy.
+- **Decision log, "treat as fixed."** The split is settled owner direction: Seihai uses its own engine, and graal-client-repro pursues historical fidelity. It is not observed client behaviour. The archive's `common/torque/{full,hybrid,residual}` layout stays a plan, not a behaviour.
 
 ## Left out of the repo
 

@@ -224,6 +224,7 @@ docs/book/02-the-player.md	excluded		E	0.0.2 book chapter drafted from the worki
 docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
+docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
