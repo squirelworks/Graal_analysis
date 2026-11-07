@@ -49,6 +49,18 @@ This is not a second program and not a DLL split. The original file name is `Gra
 
 The connection and the file names are `protocol/unpacked-6113-wire.md`. The GS2 walker and the opcode switch are `protocol/gs2-unpacked-6113.md`. **[bin]**
 
+## Torque names against unpacked 6.00
+
+Compared with `engine-600r2.md` and `engine-600r4.md`. There is still no Torque 3D subsystem. Absent, as in those notes: `SimObject`, `GameConnection`, `TerrainBlock`, `Interior`, `MissionGroup`, `TAdventure`, `graal_set`, `horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `pushToBack`, `makeFirstResponder`. The draw-profiler names `Game_Draw`, `Game_Draw_GetDrawObjects`, `Game_Draw_Player`, `Game_Draw_Texts` and `Draw_Tiles` are still registered. `onMouseYawPitch`, `levels3d` and `graal3://` are still strings. **[bin]**
+
+The GUI walk compares a control's type with `GuiGraalCtrl` and drops it when a parent flag is clear. `GuiGraal3DCtrl` is not a string in this image. The shell looks up `GUIContainer`, then `GraalControl3D`, by name. `GraalControl` is also a name. `ChatBar` and `ChatBar3D` are both present. **[bin]**
+
+`GuiTilesCtrl` is registered beside `GuiControl`. The 6.00 notes record that name as absent. **[bin]**
+
+A file reader matches these constructors as text, and does not start a `SimObject` console: `new t2dImageMapDatablock(`, `new t2dAnimationDatablock(`, `new t2dTileLayer(`, `new t2dAnimatedSprite(`, `new t2dStaticSprite(`. A `-printmap` option takes a datablock file and a level file. If the datablock file does not open, the message is that the datablock file (the first parameter) failed. Loading it prints "Loading the datablock file". **[bin]**
+
+The shell scripts are `StartScript_Profiles`, `StartScript_GraalGui`, `StartScript_MessageBoxDialog`, `StartScript_SetupDialog`, `StartScript_SelectFileDialog`, `StartScript_Connector` and `StartScript_Fail`. `StartScript_FileScanDialog` is not among them. **[bin]**
+
 ## Packer names that remain
 
 The image is not a clean rebuild. The export directory is still named `QPlay.exe`, and that directory sits in the section `fbndyrix`. The import directory sits in `.SCY`, not in the short `.idata` section. No product string `Themida` appears among the `quattro_lib` type names. The blank section still holds packer strings: `Themida`, `WinLicense`, a WinLicense registry key, and Oreans driver names (`oreans32.sys`, `oreansx64.sys`, `oreans.vxd`). **[bin]**

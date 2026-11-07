@@ -149,6 +149,11 @@ open-point closed.
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
     `torque/5007-g3d.md`. The hold on writing the module stands.
+  - [x] Unpacked Windows 6.1.1.3 against the 6.00 notes (2026-11-07).
+    No `SimObject` console. `GuiTilesCtrl` is registered.
+    `GuiGraal3DCtrl` is not a string; `GraalControl3D` is looked up
+    beside `GUIContainer`. Five `new t2d` constructors are file text.
+    `client-internals/unpacked-6113.md`. The hold stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for

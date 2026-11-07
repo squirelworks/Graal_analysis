@@ -145,6 +145,10 @@ A later listing of the same 8 August 2014 executable decompiles the engine. The 
 | Engine | `quattro_lib` / `Quattro Play`, `TSocket`, `TServerPlayer`, `GuiGraalCtrl`, OpenGL, FMOD, `GRESCR01`. Original file name `Graal.exe` | [bin] (client-internals/unpacked-6113.md#the-engine-is-visible) |
 | Packer left behind | Export directory still named `QPlay.exe` (in `fbndyrix`). Import directory in `.SCY`. Blank section still holds `Themida`, `WinLicense` and Oreans driver names | [bin] (client-internals/unpacked-6113.md#packer-names-that-remain) |
 
+### 10.1.12 Torque names in the unpacked 6.1.1.3 image
+
+Against unpacked 6.00 (→ §10.1.5), this image still has no `SimObject`, `GameConnection`, `TerrainBlock`, `MissionGroup`, `TAdventure`, `graal_set` or `horizSizing`. The GUI walk compares `GuiGraalCtrl`. `GuiGraal3DCtrl` is not a string here; the shell looks up `GraalControl3D` beside `GUIContainer`. `GuiTilesCtrl` is registered beside `GuiControl`, which the 6.00 notes recorded as absent. A file reader matches five `new t2d…(` constructors, and `-printmap` takes a datablock file and a level file. That is text, not a Torque console. The hold on writing the module stands. [bin] (client-internals/unpacked-6113.md#torque-names-against-unpacked-600)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
