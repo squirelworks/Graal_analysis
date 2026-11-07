@@ -8,6 +8,8 @@ that need missing Squirrel-only files; take the next task. Binding rules live in
 Done-checks also require: leak check clean, `README.md` contents updated, matching
 open-point closed.
 
+macOS CI is paused until the polish stage.
+
 ## Tasks
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
