@@ -230,6 +230,7 @@ docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the wor
 docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
+docs/preagonal-gs2-clean-room-2026-11-07.md	excluded			licence and method note for a later compiler; not evidence about the original clients
 docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
