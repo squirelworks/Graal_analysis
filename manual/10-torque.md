@@ -158,6 +158,21 @@ The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed
 | Torque console, `SimObject`, `GameConnection`, and UDP on the listed port plus one | v3 to v5 | [doc] (client-internals/issho-cut.md#ato-v3-to-v5) |
 | `quattro_lib`, `TSocket`, `TServerPlayer`, OpenGL, `fmod`, `GRESCR01` and the GS2 switch | unpacked 6.037 and 6.1.1.3 | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
 | `GuiWindowCtrl` and `GuiControlProfile` remain as strings. `SimObject` and `GameConnection` do not | both unpacked images | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
+### 10.1.5 Version resources on the skipped exports
+
+Packer-stub uploads from the v4, v5 and v6 decompile sets still carry a version resource. The recovered code is not the client. [bin] (torque/skipped-version-stamps.md#what-was-skipped)
+
+The `4.0.4.2` exe stub and the `5.1.2.0` stub share one string table: four-part file version, a one-character product version, description `Graal Online client`, internal name `Graal client`, company `Linux Cyberjoueur`, no year. From `5.243` on, the file and product strings are the collapsed form (`5.243`, `5.244`, `6.037`, `6.113`) and the fixed words stay four-part (`5.2.4.3`, `5.2.4.4`, `6.0.3.7`, `6.1.1.3`). Those later Graal stubs name `Linux Cyberjoueurs` or `Eurocenter Games` and a copyright year (`2010`, `2012`, `2014`). [bin] (torque/skipped-version-stamps.md#two-layouts)
+
+| Upload | Code | File version string | Fixed words | Product version string | Original file | Company and year | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `Graal 4.04r2.exe` and `Graal v4.20r8[Windows].exe` (one decompile) | stub | `4.0.4.2` | `4.0.4.2` | `4` | `Graal.exe` | `Linux Cyberjoueur`, no year | [bin] (torque/skipped-version-stamps.md#v4-exe-pair) |
+| `Graal 5.12.exe` | stub | `5.1.2.0` | `5.1.2.0` | `5` | `Graal.exe` | `Linux Cyberjoueur`, no year | [bin] (torque/skipped-version-stamps.md#graal-512) |
+| `Graal 5.2.4.3.exe` | stub | `5.243` | `5.2.4.3` | `5.243` | `Graal.exe` | `Linux Cyberjoueurs`, `2010` | [bin] (torque/skipped-version-stamps.md#graal-5243) |
+| `Graal v5.24r4.exe` | stub | `5.244` | `5.2.4.4` | `5.244` | `Graal.exe` | `Linux Cyberjoueurs`, `2010` | [bin] (torque/skipped-version-stamps.md#graal-524r4) |
+| `fmod.dll` in the 4.2.0.8 and 5.0.0.7 archives (one decompile) | stub | `3.75` | `3.7.5.0` | `3.75` | `fmod.dll` | Firelight Technologies, `1994-2005` | [bin] (torque/skipped-version-stamps.md#fmod) |
+| `Graal 6.0.3.7.exe` | stub | `6.037` | `6.0.3.7` | `6.037` | `Graal.exe` | `Linux Cyberjoueurs`, `2012` | [bin] (torque/skipped-version-stamps.md#graal-6037) |
+| `Graal 6.1.1.3.exe` | stub | `6.113` | `6.1.1.3` | `6.113` | `Graal.exe` | `Eurocenter Games`, `2014` | [bin] (torque/skipped-version-stamps.md#graal-6113) |
 
 ### 10.1.13 Which modules each era still has
 
