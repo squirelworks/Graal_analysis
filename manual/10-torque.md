@@ -57,6 +57,23 @@ The Graal changes a compatible peer adds to open TGE [bin] (graal3d/torque-engin
 | Scene lighting is Torque's, cached per mission and run as the last mission-load phase | [bin] (torque/engine-and-formats.md#rendering) |
 | Under Wine with software OpenGL the 5.12 Torque side starts on switching to 3D, but the launcher faults re-initialising DirectDraw and stops driving the engine's frame export; the 3D view was not seen | [run] (torque/engine-and-formats.md#rendering) |
 
+### 10.1.4 This v5 export
+
+One static read of a v5 export (nothing run). File-version strings below are the version resources in that export [bin] (torque/launcher-5007.md#what-the-decompile-is):
+
+| Fact | Source |
+| --- | --- |
+| `Graal.exe` 5.0.0.7 is a Delphi launcher. It loads `GRAALENGINE.DLL` and `GRAAL3DENGINE.DLL`, resolves `graal_engineInitialize` and 95 `graal_set*` names, and shows "The execution file is corrupted." if initialisation fails | [bin] (torque/launcher-5007.md#what-it-loads) |
+| `GraalEngine.dll` defines `TAdventure`, `TGraalVar`, `TShowImg`, `TGraalAni`, `GuiGraalCtrl` and Torque GUI classes (`GuiCanvas`, `GuiControl`). It defines 118 `graal_set*` setters. `SimObject`, `GameConnection`, `ActionMap` and `.dso` are absent | [bin] (torque/engine-5007.md#graals-game; torque/engine-5007.md#torque-that-remains) |
+| The launcher resolves the Flash, external-window, login and `graal_setStartGraal3D` setters. The 3D DLL calls the OpenGL and `GameObject` setters, then `graal_engineInitialize`. Three external-window setters are defined and named by neither host | [bin] (torque/engine-5007.md#who-calls-the-setters) |
+| `Graal3DEngine.dll` in this export is the `GameObject` era: `SimObject`, `GameConnection`, `ActionMap`, `TerrainBlock`, terrain chunks, `GameShapeDTS` / `DIF` / `FT`. `ShapeBase`, `PlayerData` and a datablock download phase are absent. Interior read strings are present | [bin] (torque/g3d-5007.md#torque-that-is-still-here; torque/g3d-5007.md#interiors-and-terrain) |
+| Mission logs are phase 1 "Download Ghost Objects" (step 2), phase 2 "Mission Lighting" (step 3), "Mission lighting done" (step 4), "Initial Control Object" (step 5), then step 6 attaches `GUIContainer` | [bin] (torque/g3d-5007.md#mission-phases) |
+| A check writes `CHR_PROTOCOL` unless the tested value is greater than 23 and less than 25 | [bin] (torque/g3d-5007.md#protocol-window) |
+| The packed 5.12 exe's version resource is `5.1.2.0` and the decompile is a stub. That zip has no `Graal3DEngine.dll` | [bin] (torque/stub-512.md#what-the-decompile-is) |
+| The packed exes named 5.2.4.3 and 5.24r4 have version resources `5.243` and `5.244`. Both decompiles are stubs | [bin] (torque/stub-5243.md#what-the-decompile-is; torque/stub-524r4.md#what-the-decompile-is) |
+| `freetype6.dll` is FreeType 2.1.10.2079. The `fmod.dll` version resource says FMOD 3.75 and the recovered code is a packer stub | [bin] (torque/freetype6-5007.md#what-the-decompile-is; torque/stub-fmod-5007.md#what-the-decompile-is) |
+| Unpacked 5.30r3 and 5.31r4 are one exe each, file versions `5.303` (compile string `Oct 18 2010`) and `5.314` (compile string `Jan 5 2011`), source tree `quattro_lib`. `graal_set`, `SimObject` and `GameConnection` are absent. `GuiGraalCtrl`, `GuiGraal3DCtrl` and the Torque GUI field names remain | [bin] (torque/engine-530r3.md#what-the-decompile-is; torque/engine-530r3.md#torque; torque/engine-531r4.md#what-the-decompile-is; torque/engine-531r4.md#torque) |
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
