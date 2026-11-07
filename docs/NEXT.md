@@ -122,6 +122,10 @@ open-point closed.
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
   parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
+  - [x] v5 export, static read only (2026-11-07): `torque/launcher-5007.md`,
+    `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
+    unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`. The rebuild
+    stays on hold.
 
 ## Handoff
 
