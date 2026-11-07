@@ -280,3 +280,13 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 | Wire id 104 has no compiled receive case. It runs only when a script pair names it, and that pair is not in the image | 6.1.1.3 | [bin] (protocol/v6113-plo.md#packet-104) |
 | `setindatahandlers` installs (wire id, handler) pairs into 256 slots. 255 clears, 254 is the script sentinel, 253 and 252 save the wire id, and 0 to 94 select a native function. Index 90 is empty | 6.1.1.3 | [bin] (protocol/v6113-plo.md#incoming-registration) |
 | `setoutdatahandlers` fills 256 outgoing ids with all-ones, then copies the script list, at most 256 entries | 6.1.1.3 | [bin] (protocol/v6113-plo.md#outgoing) |
+
+## 2.5.12 Native handler slots in unpacked 6.1.1.3
+
+Unpacked 6.1.1.3 does not compile a wire-id to handler map. A script list of numbers is converted to byte pairs and installed; a second script method zeros all 256 wire-id slots. [bin] (protocol/v6113-handlers.md)
+
+Indexes 0 to 94 select a native function, except index 90, which is empty. A handler byte of 95 or more is ignored, apart from the four special pair bytes 252 to 255. [bin] (protocol/v6113-handlers.md)
+
+No default pair list is compiled in. The installer writes nothing when the script list has fewer than two numbers. [bin] (protocol/v6113-handlers.md)
+
+Unpacked 6.0.3.7 has no 95-slot native table. Wire id 104 has no compiled receive case in 6.1.1.3; the only case 104 is a GS2 opcode. [bin] (protocol/v6113-handlers.md)
