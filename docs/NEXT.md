@@ -110,11 +110,15 @@ open-point closed.
     The clear hello is `GNP1905C`; the bytes after it are ciphertext, so the
     Login server's packet ids stay unobserved.
     `protocol/v6113-list-capture.md`. The parent item stays open.
+  - [x] Full capture, 2026-11-07, 241 s, 46225 frames. UDP ports are
+    inventoried in `protocol/v6113-udp.md`. The same clear hello is on
+    TCP 14900 and TCP 14882. No UDP is on those remotes, and no UDP
+    port is one above a TCP port. The bytes after the hello are still
+    ciphertext. The parent item stays open.
   - [x] Full capture, 2026-11-07, 15236 frames. TCP 14900 is present.
     Three completed sessions start with `GNP1905C`; one SYN is unanswered.
     No UDP datagram to those remotes, and no UDP on 14900, 14901 or 14899.
     `protocol/v6113-udp.md`. The parent item stays open.
-
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
   the three-OS PDF build. TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.

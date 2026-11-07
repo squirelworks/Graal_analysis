@@ -215,6 +215,7 @@ Linux 3.04 keeps stock Torque (`GameConnection`, `NetConnection`, and the `sim/n
 | The client's own UDP port is random unless the fixed-port option is on, then `fixedudpport` (default 14899) | [bin][file] (torque/network.md#how-a-client-gets-to-a-3d-server) |
 | 28000 is only the Torque address parser's default for an address without a port | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
 | Seen live: the 5.12 client sent the Torque challenge to UDP *P* + 1 and opened TCP *P* in the same millisecond; the TCP side carried the ordinary 5.x login frame with the built-in guest account, then ids 37 and 23 | [run] (torque/network.md#how-a-client-gets-to-a-3d-server) |
+| The 6.113 full capture does not show that pair. TCP 14900 and TCP 14882 carry the Graal hello, and neither remote has a UDP datagram. No UDP port in the file is a TCP port plus one | [cap] (protocol/v6113-udp.md#against-port-plus-one) |
 | The 3D connection lives only as long as the TCP one: when the lab TCP listener closed, the client reported "You have been disconnected from the game server." and sent a Torque disconnect | [run] (torque/network.md#the-full-handshake-live) |
 | In 4.04r2 a Torque time-out ("The 3D server connection has timed out") also drops the TCP session | [bin] (graal3d/torque-engine-4x.md#callbacks-the-dll-gives-the-engine) |
 | 4.04r2 gives the 3D side the account name, nickname and password through the engine; no session key or cookie is passed | [bin] (graal3d/torque-engine-4x.md#state-the-dll-receives) |
