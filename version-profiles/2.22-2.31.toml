@@ -24,7 +24,7 @@ ctype_small_zlib_if_shorter = true     # under 0x30 bytes zlib is used only if i
 xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }   # caps; steps = min(ceil(len/4), cap), a partial last group still steps
 lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
 out_queue_drop_bytes = 0x40000
-listserver = { port = 14922, first_message_id = 7, token = "GNW30123", list_name = "newmain", config = "arrays2.dat + arrays2.sig" }
+listserver = { host = "<list-host-reborn>", port = 14922, kind = "supported", port_status = "confirmed", first_message_id = 7, token = "GNW30123", list_name = "newmain", config = "arrays2.dat + arrays2.sig" }
 file_modtime = true                    # PLO_FILE carries i5 modtime (all >= 2.1)
 large_files = true                     # LARGEFILESTART/END (68/69), 32000-byte chunks (>= 2.14)
 image_ext_default = ".png"             # server adds no .gif for >= 2.1
@@ -60,8 +60,10 @@ gserver_allowed_by_default = true      # stock allowedversions.txt enables GNW03
 
 [version.features]
 editor_in_client = true                # F4 editor, F5 load level, F6 debugger, editor toolbars and dialogs
-offline_training_button = true         # start window: Start Online / Training / Options
-start_window_buttons = ["&Start Online", "&Training", "&Options"]
+offline_training_button = true         # start window, seen live: Training / Options / Get an account! / Start
+start_window_buttons = ["Training", "Options", "Get an account!", "Start"]
+f1_buttons = ["General options", "Edit level (F4)", "Load level (F5)", "Debugger (F6)", "Playerlist (F7)", "Serverlist (F8)"]
+serverlist_tab_for_unprefixed_server = "Bronze"   # live, lab listserver
 serverlist_tabs = ["Gold", "Silver", "Bronze"]   # see notes: may be a Graal Reborn patch
 graal3d_tab = false
 url_protocols = false                  # no graal:// or graal3:// registration
@@ -82,6 +84,7 @@ token = "GNW14015"
 token_src = "srv"
 base = "2.31"
 inferred = true
+listserver_port_status = "confirmed"   # no 2.3 build; Seihai's gen-5 login got the current list on 14922 and 14923 (2026-10-25)
 notes = "No binary. Same as 2.31 except the 2.31 bug fixes (float-to-string, keyboard config save, gmap NPC border crossing, unused F1 buttons). GServer-v2 applies its bigmap push workaround to 2.31 only."
 gserver_allowed_by_default = false
 
@@ -114,8 +117,10 @@ gserver_allowed_by_default = false
 
 [version.features]
 editor_in_client = false               # GraalEditor.exe is a separate program
-offline_training_button = false
-start_window_buttons = ["&Start Online", "&Editor", "&Options"]   # Editor launches GraalEditor.exe
+offline_training_button = true         # still present in 2.31 (seen live)
+start_window_buttons = ["Training", "Editor", "Options", "Get an account!", "Start"]   # Editor launches GraalEditor.exe
+f1_buttons = ["General options", "Load level (F5)", "Playerlist (F7)", "Serverlist (F8)"]   # Edit level and Debugger hidden at run time; F4 does nothing
+serverlist_tab_for_unprefixed_server = "Hosted"   # live, lab listserver
 serverlist_tabs = ["Graal Gold", "Graal 3D", "Classic", "Hosted"]
 graal3d_tab = true                     # selecting a 3D server starts Graal3.exe
 url_protocols = true                   # registers graal:// and graal3://, sends serverstartparams

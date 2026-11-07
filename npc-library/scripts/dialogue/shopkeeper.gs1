@@ -1,0 +1,46 @@
+// Original NPC library: shopkeeper (chat to buy)
+// Category: dialogue / speech (shop / merchant)
+// Image: a character behind a counter
+// Events: playerenters, playertouchsme, playerchats
+//
+// Say "buy bombs", "buy arrows" or "buy heart" near the counter. The
+// shopkeeper checks the price and the player's rupees, takes the money and
+// hands over the goods. Prices are in the marked lines.
+
+function sell() {
+  // this.price and this.what are set by the caller
+  if (playerrupees < this.price) {
+    setcharprop #c,That is #v(this.price) rupees. Come back with more.;
+  } else {
+    playerrupees -= this.price;
+    if (this.what == 1) playerbombs += 10;
+    if (this.what == 2) playerdarts += 15;
+    if (this.what == 3) playerhearts = playerfullhearts;
+    play buy.wav;
+    setcharprop #c,Thank you, come again!;
+  }
+}
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head2.png;
+  setcharprop #C1,orange;
+  setcharprop #n,Shopkeeper;
+  dir = 2;
+  setcharani idle,;
+  this.pbombs = 20;           // <- 10 bombs
+  this.parrows = 15;          // <- 15 arrows
+  this.pheart = 10;           // <- full heal
+}
+
+if (playertouchsme) {
+  setcharprop #c,Bombs #v(this.pbombs) - arrows #v(this.parrows) - healing #v(this.pheart). Say buy ...;
+}
+
+if (playerchats && abs(playerx - x) < 5 && abs(playery - y) < 5) {
+  this.what = 0;
+  if (strequals(#c,buy bombs)) { this.what = 1; this.price = this.pbombs; }
+  if (strequals(#c,buy arrows)) { this.what = 2; this.price = this.parrows; }
+  if (strequals(#c,buy heart)) { this.what = 3; this.price = this.pheart; }
+  if (this.what > 0) sell();
+}

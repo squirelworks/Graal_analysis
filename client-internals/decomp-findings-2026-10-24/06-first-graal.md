@@ -3,7 +3,7 @@
 Checked against `relay-1998.md` and `early-clients.md`.
 
 ## Connection and login
-- Default relay host 127.0.0.1, port **14801**, through the event-driven socket component (matches the existing notes).
+- Default relay host the loopback address, port **14801**, through the event-driven socket component (matches the existing notes).
 - No login token, no account, no password, no compression, no cipher. Lines are text ending in a newline; first character is the command.
 - Join line: `N<game>#def`. The client always sends the name `def` and sends the real nickname later in a `D` payload.
 

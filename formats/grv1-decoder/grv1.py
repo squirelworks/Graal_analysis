@@ -18,8 +18,14 @@ GLYPHS2 = {(74, 75): '#h', (87, 88): '#4'}
 
 
 def code_width(magic):
-    # The 2.05 client reads 13-bit codes only for GR-V1.02 and GR-V1.03.
-    return 13 if magic in (b'GR-V1.02', b'GR-V1.03') else 12
+    # Z3-V1.02 is the Java Zelda Online width (formats/level-binary.md).
+    # GR-V1.04 uses the same 13-bit board as GR-V1.03 (level-binary-client.md).
+    # 2.05 itself picks 13 bits only for GR-V1.02 and GR-V1.03.
+    if magic == b'Z3-V1.02':
+        return 11
+    if magic in (b'GR-V1.02', b'GR-V1.03', b'GR-V1.04'):
+        return 13
+    return 12
 
 
 class Reader:
@@ -129,7 +135,7 @@ def load(data):
             lv['npcs'].append({'x': s[0] - 32, 'y': s[1] - 32,
                                'image': img.decode('latin1'),
                                'script': script.replace(b'\xa7', b'\n').decode('latin1')})
-    if magic in (b'GR-V1.01', b'GR-V1.02', b'GR-V1.03'):
+    if magic in (b'GR-V1.01', b'GR-V1.02', b'GR-V1.03', b'GR-V1.04'):
         while True:                               # chests
             s = r.line()
             if not s or s == b'#':
@@ -142,7 +148,30 @@ def load(data):
             break
         lv['signs'].append({'x': s[0] - 32, 'y': s[1] - 32,
                             'text': decode_sign(s[2:])})
+    # 2.31 stops signs at the first empty line. A HEIGHTS block may follow
+    # whatever the magic says; the writer uses GR-V1.04 when the block is there.
+    nxt = r.line()
+    if nxt == b'HEIGHTS':
+        lv['heights'] = _read_heights(r)
     return lv
+
+
+def _read_heights(r):
+    """Up to 9 rows of up to 9 comma-separated decimals, closed by HEIGHTSEND."""
+    rows = []
+    while True:
+        row = r.line()
+        if row is None or row.upper() == b'HEIGHTSEND':
+            break
+        if len(rows) >= 9:
+            continue
+        vals = []
+        for part in row.decode('latin1').split(',')[:9]:
+            part = part.strip()
+            if part:
+                vals.append(float(part))
+        rows.append(vals)
+    return rows
 
 
 def main():
@@ -157,6 +186,8 @@ def main():
     print('%s  links=%d baddies=%d npcs=%d chests=%d signs=%d' % (
         lv['magic'], len(lv['links']), len(lv['baddies']), len(lv['npcs']),
         len(lv['chests']), len(lv['signs'])))
+    if 'heights' in lv:
+        print('  heights %d rows' % len(lv['heights']))
     for k in ('links', 'baddies', 'chests'):
         for e in lv[k]:
             print(' ', k[:-1] if k != 'baddies' else 'baddy', e)

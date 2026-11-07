@@ -1,0 +1,9 @@
+if (playerenters) {
+  setimg crate.png;
+  canbecarried;
+}
+
+if (wasthrown) {
+  putleaps 3,x,y;
+  destroy;
+}

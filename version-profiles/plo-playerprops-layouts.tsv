@@ -1,0 +1,13 @@
+build	field_index	field_name	type	behaviour	tag
+2.00	0	props	PLPROP_stream	No player-id prefix. Whole payload after the id is a PLPROP stream: (GCHAR prop_id, value)* until the end. Needs at least 2 bytes left to start a prop; a lone trailing id byte is dropped.	[bin]
+2.00	1	plprop_ids	accept_set	Self stream switch accepts prop ids 0-35.	[bin]
+2.04	0	props	PLPROP_stream	Same as 2.00/2.05 (no prefix). Signature table left this row blank; manual read of the endpoints and batch-c "no layout change" for neighbouring long handlers. 2.04 decompile not on Drive.	[bin]
+2.04	1	plprop_ids	accept_set	Between 2.00 (0-35) and 2.05 (0-42).	[bin]
+2.05r2	0	props	PLPROP_stream	No prefix. Whole payload is the self PLPROP stream. Loop needs more than 1 byte remaining.	[bin]
+2.05r2	1	plprop_ids	accept_set	Self stream accepts 0-42. Stops at 43 and up (including 50/51 in this stream — those ids are other-player-only here).	[bin]
+2.17.1	0	props	PLPROP_stream	No prefix. Same stream shape.	[bin]
+2.17.1	1	plprop_ids	accept_set	Self stream accepts through 74; stops at 50, 51, 53.	[bin]
+2.22	0	props	PLPROP_stream	No prefix. Same stream shape.	[bin]
+2.22	1	plprop_ids	accept_set	Self stream accepts through 74 (send-side builder also knows 75/76); stops at 50, 51, 53.	[bin]
+2.31	0	props	PLPROP_stream	No prefix. Same stream shape.	[bin]
+2.31	1	plprop_ids	accept_set	Self stream accepts through 80 (including X2/Y2/Z2 at 78-80); stops at 50, 51, 53, 75-77.	[bin]

@@ -1,0 +1,62 @@
+// Original NPC library: shooting gallery target
+// Category: minigame
+// Image: a round target, 32x32
+// Events: playerenters, playertouchsme, wasshot, timeout
+//
+// Touch the target to pay 10 rupees and start a 30-second round. The
+// target pops up at one of five spots, stays 1.2 seconds, then jumps to
+// another; each arrow hit scores and moves it at once. At the end the
+// score is shown and paid: 2 rupees a hit, 30 extra for 10 or more.
+
+function jump() {
+  this.spot = (this.spot + 1 + int(random(0,4))) % 5;
+  x = this.bx + this.spot * 4;
+  this.up = 1.2;
+}
+
+if (playerenters) {
+  timereverywhere;
+  setimg target.png;
+  this.bx = x;                // the five spots run 4 tiles apart to the right
+  this.spot = 0;
+  this.playing = 0;
+  this.price = 10;
+}
+
+if (playertouchsme && this.playing == 0) {
+  if (playerrupees < this.price) {
+    message #v(this.price) rupees to play;
+  } else {
+    playerrupees -= this.price;
+    this.playing = 1;
+    this.left = 30;
+    this.score = 0;
+    jump();
+    play start.wav;
+    timeout = 0.1;
+  }
+}
+
+if (wasshot && this.playing == 1) {
+  this.score++;
+  play hit.wav;
+  jump();
+}
+
+if (timeout && this.playing == 1) {
+  this.left -= 0.1;
+  this.up -= 0.1;
+  if (this.up <= 0) jump();
+  message #v(this.score) hits - #v(int(this.left)) s;
+  if (this.left <= 0) {
+    this.playing = 0;
+    x = this.bx;
+    this.pay = this.score * 2;
+    if (this.score >= 10) this.pay += 30;
+    playerrupees += this.pay;
+    message #v(this.score) hits: you win #v(this.pay) rupees!;
+    play fanfare.wav;
+  } else {
+    timeout = 0.1;
+  }
+}

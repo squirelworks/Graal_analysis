@@ -60,7 +60,7 @@ Lab capture, two 2.05 clients in one level (`tools/lab-setup.md`). Player B drop
    - The server sent `PLO_ITEMDEL` (23) to A only, not back to B.
 5. **Respawn:**
    - Exactly 15.0 s after the change (`respawntime = 15`), the server sent `PLO_BOARDMODIFY` again for every patch, with the original tiles: bush 34 35 50 51, grass 2 3 18 19.
-   - Clients do not request the respawn. It is pushed by the server.
+   - Clients do not request the respawn. It is pushed by the server. This is GServer-v2's fixed timer. The original GServer13 used a random 6–12 s for the default `respawntime` 10, only for 2 × 2 changes, and did not echo a change to its sender: see `client-internals/board-respawn.md`.
 6. **Level entry:** an empty `PLO_LEVELBOARD` (0) followed the board packet and `LEVELMODTIME` on level entry, as described above.
 
 ## Player state (server → client)
@@ -86,7 +86,7 @@ The client sends its own action. The server re-emits it to the rest of the level
 |----:|----:|------|---------------------|-----------------------------------|-----|
 | 4 | 11 | BOMBADD | `c x×2, c y×2, c power (+8 = the bomb is the sender's), c fuse` | `s player` + the same 4 bytes; power = `v & 7`, value 8 (bit 3) = owned by that player | [srv][2.05] |
 | 5 | 12 | BOMBDEL | `c x×2, c y×2` | **no player id**: `c x×2, c y×2`; removes the bomb at exactly that point | [srv][2.05] |
-| 9 | 19 | ARROWADD | `c x×2, c y×2, c flags, c type`, then one byte sent as `v + 33` instead of `v + 32`; flags = `dir & 3`, +4 extra effect, +8 owned | `s player` + the same 5 bytes; needs ≥ 5 | [srv][2.05] |
+| 9 | 19 | ARROWADD | `c x×2, c y×2, c flags, c sprite`, then the projectile type (0 arrow, 1 fireball, 2 fireblast, 3 nuke) sent as `v + 33` instead of `v + 32`; flags = `dir & 3`, +4 first removes a matching shot, +8 owned | `s player` + the same 5 bytes; needs ≥ 5. Receiver rules: `client-internals/damage-sources.md`, "Other players' bombs, blasts and shots" | [srv][2.05] |
 | 10 | 20 | FIRESPY | `c (a × 8 + b)` | `s player` + that byte; the receiver uses only `a` | [srv][2.05] |
 | 11 | 21 | THROWCARRIED | empty | `s player` only | [srv][2.05] |
 | 26 | 40 | HURTPLAYER | `s victim, c (dx+4)×16, c (dy+4)×16, c power` [+ `i3 npc`] | `s attacker` + `c dx, c dy, c power` [+ `i3 npc`] | [srv][2.05] |

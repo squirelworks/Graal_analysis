@@ -1,0 +1,16 @@
+// Original NPC library: weapons back on (companion to peace-zone.gs1)
+// Category: combat / weapons (zones)
+// Image: none (invisible)
+// Events: playerenters
+//
+// Put one in every level a player can reach straight from a peace zone:
+// the levels its links and warps lead to, and wherever players start after
+// dying. A zone can only switch weapons back on while the player is still
+// in its level, so without this a player who leaves from inside the zone
+// keeps weapons off, and the server saves that to the account (lab run,
+// 2026-11-04: an enableweapons on entry turns them back on).
+
+if (playerenters) {
+  hide;
+  enableweapons;
+}

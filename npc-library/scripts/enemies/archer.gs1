@@ -1,0 +1,71 @@
+// Original NPC library: archer
+// Category: combat / baddies
+// Image: none (character)
+// Events: playerenters, playertouchsme, washit, wasshot, timeout
+//
+// Keeps its distance: backs away when the player is closer than four tiles,
+// steps in when farther than nine. Whenever the player is in line (same
+// row or column within a tile), it turns and fires an arrow, at most once
+// every 1.5 seconds. Two hits kill.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head21.png;
+  setcharprop #C1,darkgreen;
+  setcharani idle,;
+  this.hp = 2;
+  this.alive = 1;
+  this.reload = 0;
+  timeout = 0.05;
+}
+
+if (playertouchsme && this.alive == 1) hurt 1;
+
+if ((washit || wasshot) && this.alive == 1) {
+  this.hp--;
+  play hit.wav;
+  if (this.hp <= 0) {
+    this.alive = 0;
+    putleaps 4,x,y;
+    lay2 darts,x+0.5,y+1;
+    hide;
+  }
+}
+
+if (timeout && this.alive == 1) {
+  this.ddx = playerx - x;
+  this.ddy = playery - y;
+  this.dist = (this.ddx ^ 2 + this.ddy ^ 2) ^ 0.5;
+  // keep range, along the longer axis
+  this.step = 0;
+  if (this.dist < 4) this.step = -0.15;
+  if (this.dist > 9) this.step = 0.15;
+  if (this.step != 0) {
+    if (abs(this.ddx) > abs(this.ddy)) {
+      if (this.ddx > 0) this.mx = this.step; else this.mx = -this.step;
+      if (!onwall(x + this.mx + 1, y + 2)) x += this.mx;
+    } else {
+      if (this.ddy > 0) this.my = this.step; else this.my = -this.step;
+      if (!onwall(x + 1, y + this.my + 2)) y += this.my;
+    }
+  }
+  // shoot when in line
+  if (this.reload > 0) this.reload -= 0.05;
+  if (this.reload <= 0) {
+    this.aim = -1;
+    if (abs(this.ddy) < 1) {
+      if (this.ddx > 0) this.aim = 3; else this.aim = 1;
+    } else if (abs(this.ddx) < 1) {
+      if (this.ddy > 0) this.aim = 2; else this.aim = 0;
+    }
+    if (this.aim >= 0) {
+      dir = this.aim;
+      setcharani shoot,;
+      shootarrow this.aim;
+      this.reload = 1.5;
+    } else {
+      setcharani idle,;
+    }
+  }
+  timeout = 0.05;
+}

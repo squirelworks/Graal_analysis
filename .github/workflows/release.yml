@@ -1,0 +1,67 @@
+name: release
+
+# Drafts a GitHub release for a version whose PDFs are already in the tree:
+# release/0.0.1/ for 0.0.1, book/<version>/ for 0.0.2, and from 0.0.3 on the
+# Technical Reference Manual at manual/pdf/graal-trm-<version>.pdf. Run it by hand
+# (Actions, release, Run workflow) with the version and, optionally, the commit
+# the tag should point at. Nothing is tagged until the owner presses Publish on
+# the draft (AGENTS.md: no tag or release without the owner's go-ahead).
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version, without the v (e.g. 0.0.3)'
+        required: true
+      target:
+        description: 'Commit the tag should point at (empty = the commit this run is on)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Draft the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || { echo "::error::bad version $VERSION"; exit 1; }
+          TAG="v$VERSION"
+          # Hand-written notes, reviewed in a PR, read from this run's commit.
+          [ -f "docs/releases/$TAG.md" ] || { echo "::error::No release notes: write docs/releases/$TAG.md in a PR first"; exit 1; }
+          cp "docs/releases/$TAG.md" "$RUNNER_TEMP/notes.md"
+          SHA=$(git rev-parse --verify "${TARGET:-$GITHUB_SHA}^{commit}")
+          git checkout -q "$SHA"
+          mkdir dist
+          TITLE="Graal Analysis $VERSION"
+          if [ -f "manual/pdf/graal-trm-$VERSION.pdf" ]; then
+            cp "manual/pdf/graal-trm-$VERSION.pdf" dist/
+            TITLE="Graal Technical Reference Manual $VERSION"
+          else
+            if [ -d "release/$VERSION" ]; then DIR="release/$VERSION"; else DIR="book/$VERSION"; fi
+            ls "$DIR"/*.pdf > /dev/null || { echo "::error::no PDFs in $DIR at $SHA"; exit 1; }
+            cp "$DIR"/*.pdf dist/
+            tar czf "dist/graal-analysis-$VERSION-pdfs.tar.gz" -C "$DIR" .
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            if [ "$(gh release view "$TAG" --json isDraft -q .isDraft)" = true ]; then
+              gh release upload "$TAG" dist/* --clobber
+              gh release edit "$TAG" --target "$SHA" --notes-file "$RUNNER_TEMP/notes.md"
+            else
+              # Published: only the notes change. The tag, its commit and the files stay.
+              gh release edit "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
+              echo "$TAG is already published; updated its notes only."
+            fi
+          else
+            gh release create "$TAG" dist/* --draft --target "$SHA" --title "$TITLE" --notes-file "$RUNNER_TEMP/notes.md"
+          fi
+          echo "Draft: $(gh release view "$TAG" --json url -q .url)" >> "$GITHUB_STEP_SUMMARY"

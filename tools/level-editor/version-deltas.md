@@ -83,4 +83,4 @@ From the shipped `newfeatures` files, dated by the heading each entry sits under
 - **Before 1.28b2**: no character dialog, no level class; 2nd Graal adds chests and person dialogs; 3rd Graal adds the flags dialog; 1st Graal has no chest or NPC dialog.
 - **New World betas**: no chest and no baddy; heights and map present in beta 1.
 - **2.1 test builds**: combined NPC dialog, predefined NPCs, tiledef type, no sign-codes window.
-- **2.31 and later client**: no editor; the standalone editor takes over (Thinstall).
+- **2.31 and later client**: no editor; the standalone editor takes over (Thinstall). The 2.31 start screen has an *Editor* button that launches `GraalEditor.exe` (seen live, `client-internals/live-checks-editor-offline-sound.md`).

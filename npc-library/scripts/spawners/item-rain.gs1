@@ -1,0 +1,43 @@
+// Original NPC library: rupee shower
+// Category: spawn / timers
+// Image: a cloud
+// Events: playerenters, playertouchsme, timeout
+//
+// A festival cloud: touch it and for ten seconds it drops a random rupee
+// somewhere in a 10x6 area below it every half second. Rests for a minute
+// before it can be started again.
+
+if (playerenters) {
+  setimg cloud.png;
+  dontblock;
+  drawoverplayer;
+  this.left = 0;
+  this.rest = 0;
+}
+
+if (playertouchsme && this.left <= 0 && this.rest <= 0) {
+  this.left = 10;
+  play chime.wav;
+  timeout = 0.5;
+}
+
+if (timeout) {
+  if (this.left > 0) {
+    this.left -= 0.5;
+    this.r = random(0,10);
+    this.px = x - 4 + random(0,10);
+    this.py = y + 2 + random(0,6);
+    if (this.r < 7) {
+      lay2 greenrupee,this.px,this.py;
+    } else if (this.r < 9.5) {
+      lay2 bluerupee,this.px,this.py;
+    } else {
+      lay2 redrupee,this.px,this.py;
+    }
+    if (this.left <= 0) this.rest = 60;
+    timeout = 0.5;
+  } else if (this.rest > 0) {
+    this.rest -= 0.5;
+    if (this.rest > 0) timeout = 0.5;
+  }
+}

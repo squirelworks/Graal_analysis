@@ -173,7 +173,7 @@ otherwise over both (see udp-p2p.md).
 | Op | Command | Args | What 2.05 does |
 |---|---|---|---|
 | 673 | `showcharacter` | – | Draws the NPC as a player character (once; later calls do nothing). |
-| 675 | `setcharprop` | M,M | Sets a character property from a message code: `#1` sword image, `#2` shield image, `#3` head image, `#5` horse image (creates the horse if needed), `#8` body image, `#C0`..`#C5` colours (name or number), `#P1`..`#P5` attributes, `#c` chat text (not in preview mode), `#n` nickname. Other codes are ignored. |
+| 675 | `setcharprop` | M,M | Sets a character property from a message code: `#1` sword image, `#2` shield image, `#3` head image, `#5` horse image (creates the horse if needed), `#8` body image, `#C0`..`#C5` colours (name or number), `#P1`..`#P5` attributes, `#c` chat text (not in preview mode), `#n` nickname. Other codes are ignored. The first word is the property code (not expanded as a message). Codes inside the **value** are expanded first; on script-running servers `#n` in that value is the triggering player's nickname, while property code `#n` writes the NPC's nickname — see `server-notes/setcharprop-hash-n.md`. |
 | 709 | `setcharani` | S,S | Sets the character's gani and its parameter string. |
 | 733 | `setchargender` | S | `male` sets male; anything else sets female. |
 | 684 | `carryobject` | L | Character carries the object (0..10; `none` = 10). Only for `showcharacter` NPCs; switches to the carry gani. |

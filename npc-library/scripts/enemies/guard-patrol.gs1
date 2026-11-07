@@ -1,0 +1,133 @@
+// Original NPC library: patrolling guard
+// Category: combat / baddies
+// Image: none (character with sword and shield)
+// Events: playerenters, playertouchsme, washit, wasshot, timeout
+// Flag read: guard_pass (a player with it is let through)
+//
+// Walks a square route of four corners. It "sees" up to six tiles in the
+// direction it faces, a tile and a half either side. Seeing a player
+// without the pass, it shouts and gives chase until the player is twelve
+// tiles off, then resumes the route from the nearest corner. Five hits
+// put it out of action for 20 seconds.
+
+function towards() {
+  this.ddx = this.tx - x;
+  this.ddy = this.ty - y;
+  this.len = (this.ddx ^ 2 + this.ddy ^ 2) ^ 0.5;
+  this.dx = 0;
+  this.dy = 0;
+  if (this.len > 0.05) {
+    this.dx = this.ddx / this.len * this.speed;
+    this.dy = this.ddy / this.len * this.speed;
+    if (abs(this.dx) > abs(this.dy)) {
+      if (this.dx > 0) dir = 3; else dir = 1;
+    } else {
+      if (this.dy > 0) dir = 2; else dir = 0;
+    }
+  }
+}
+
+function corner() {
+  // this.tx, this.ty = corner number this.leg (0..3)
+  this.tx = this.ox;
+  this.ty = this.oy;
+  if (this.leg == 1 || this.leg == 2) this.tx = this.ox + this.w;
+  if (this.leg == 2 || this.leg == 3) this.ty = this.oy + this.h;
+}
+
+function looks() {
+  // 1 if the player is inside the view strip in front of the guard
+  this.seen = 0;
+  this.ddx = playerx - x;
+  this.ddy = playery - y;
+  if (dir == 0 && this.ddy < 0 && this.ddy > -6 && abs(this.ddx) < 1.5) this.seen = 1;
+  if (dir == 2 && this.ddy > 0 && this.ddy < 6 && abs(this.ddx) < 1.5) this.seen = 1;
+  if (dir == 1 && this.ddx < 0 && this.ddx > -6 && abs(this.ddy) < 1.5) this.seen = 1;
+  if (dir == 3 && this.ddx > 0 && this.ddx < 6 && abs(this.ddy) < 1.5) this.seen = 1;
+}
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head15.png;
+  setcharprop #C1,gray;
+  setcharprop #1,sword2.png;
+  setcharprop #2,shield1.png;
+  setcharprop #n,Guard;
+  this.ox = x;
+  this.oy = y;
+  this.w = 10;                // <- route width in tiles
+  this.h = 6;                 // <- route height in tiles
+  this.leg = 1;
+  this.speed = 0.15;
+  this.mode = 0;              // 0 patrol, 1 chase, 2 knocked out
+  this.hp = 5;
+  setcharani walk,;
+  timeout = 0.05;
+}
+
+if (playertouchsme && this.mode == 1) {
+  setcharani sword,;
+  hurt 1;
+}
+
+if ((washit || wasshot) && this.mode != 2) {
+  this.hp--;
+  play hit.wav;
+  this.mode = 1;
+  if (this.hp <= 0) {
+    this.mode = 2;
+    this.down = 20;
+    setcharani dead,;
+    message ;
+  }
+}
+
+if (timeout) {
+  if (this.mode == 2) {
+    this.down -= 0.05;
+    if (this.down <= 0) {
+      this.hp = 5;
+      this.mode = 0;
+      setcharani walk,;
+    }
+  } else if (this.mode == 0) {
+    corner();
+    towards();
+    x += this.dx;
+    y += this.dy;
+    if (this.len <= 0.2) {
+      this.leg = (this.leg + 1) % 4;
+    }
+    if (!guard_pass) {
+      looks();
+      if (this.seen == 1) {
+        this.mode = 1;
+        message Halt! Intruder!;
+        play alarm.wav;
+      }
+    }
+  } else {
+    this.tx = playerx;
+    this.ty = playery;
+    this.speed = 0.25;
+    towards();
+    if (!onwall(x + this.dx + 1, y + 2)) x += this.dx;
+    if (!onwall(x + 1, y + this.dy + 2)) y += this.dy;
+    if (this.len > 12) {
+      this.mode = 0;
+      this.speed = 0.15;
+      message ;
+      setcharani walk,;
+      // rejoin the route at the nearest corner
+      this.best = 999;
+      for (this.k = 0; this.k < 4; this.k++) {
+        this.leg = this.k;
+        corner();
+        this.d = abs(this.tx - x) + abs(this.ty - y);
+        if (this.d < this.best) { this.best = this.d; this.bestleg = this.k; }
+      }
+      this.leg = this.bestleg;
+    }
+  }
+  timeout = 0.05;
+}

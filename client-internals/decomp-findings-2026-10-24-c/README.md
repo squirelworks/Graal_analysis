@@ -16,7 +16,7 @@ Scope: 20 Drive builds decompiled with Ghidra 12.2 and named with IDR under Wine
 | 07-udp-channel.md | UDP channel in 2.0x, ids per build |
 | 08-test-builds-newworld-newmain.md | 2.1 test2/test3, NewWorld, NewMain |
 | 09-features-classes-vocabulary.md | vendor changelog vs binary evidence, classes, script strings |
-| 10-open-questions-and-corrections.md | corrections to earlier notes, open items, Seihai implications |
+| 10-open-questions-and-corrections.md | corrections to earlier notes, open items, Seihai implications (items 1, 3, 4 closed by the version-profiles layout TSVs) |
 | coverage_by_build.tsv | per build: size, function count, IDR, id counts |
 | plo_handled_ids_by_build.tsv | server-to-client ids handled |
 | pli_sent_ids_by_build.tsv | client-to-server ids with a send |

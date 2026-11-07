@@ -1,12 +1,13 @@
 topic	what is open	importance
 per-player field in hurt packet path	attacker field must equal victim field; meaning untraced	high
-status bit 0x20	sword gate needs it clear; meaning untraced	medium
+status bit 0x20	answered: the hidesword timer (see ../status-bit-0x20.md)	done
 sword knockback	vector not read off	medium
-other hurt callers	bombs, arrows, baddies: power mapping not done	medium
+other hurt callers	answered for bombs, arrows, thrown objects and baddy touch (see ../damage-sources.md); baddy projectiles not read	low
 guild test on hurt packet	not shown to apply	low
 gmap list order and update timing	decides whether entering a gmap from outside saves	medium
 end-of-respawn save	stores respawn point or death spot online?	high
-entry rule in 2.00-2.04 and 2.1 test builds	not read; 2.1 test inferred from missing constant	medium
+entry rule in 2.00-2.04	answered: same steps as 2.05, group test included (see 02)	done
+entry rule in 2.1 test builds	not read; inferred from missing constant	medium
 offline default start axis order	tutorial level named, axes unknown	low
 CURPOWER on damage	unknown whether the client sends it	low
 lab	nothing seen on a wire	high

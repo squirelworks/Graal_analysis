@@ -1,0 +1,25 @@
+// Original NPC library: quest marker stone
+// Category: interaction / flags
+// Image: a carved stone
+// Events: playerenters, playertouchsme
+// Flags: quest_shrine_visited (set), quest_shrine_needed (read)
+//
+// Marks a quest step as done when touched, but only while the quest is
+// active, so stumbling on it early does nothing. After that it changes its
+// line.
+
+if (playerenters) {
+  setimg runestone.png;
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (quest_shrine_visited) {
+    say2 The carving still glows faintly.;
+  } else if (quest_shrine_needed) {
+    set quest_shrine_visited;
+    play secret.wav;
+    say2 You trace the carving.#bIt glows - the hermit will#bwant to know.;
+  } else {
+    say2 Old carvings, too worn to read.;
+  }
+}

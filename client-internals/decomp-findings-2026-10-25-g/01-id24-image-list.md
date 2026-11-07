@@ -36,4 +36,4 @@ The first byte of a text may be the marker 0x29 (a closing parenthesis). As a GC
 - The sender's own value formatting for each field. The units above are the receiver's reading, so the units of x, y, colours and zoom are unconfirmed.
 - What the per-player "UDP reaches this player" flag in the 2.22 test is and how it is set.
 - How the client draws the images (layers, the screen-unit mode of layer 10 and over, colour and zoom).
-- 2.05 and earlier use a four-field form (index, x, y, name) for the same id. It was not decoded.
+- 2.05 uses the same tagged form (tags 0 to 6) with a 60-call full-list countdown: `../id24-205.md`. Builds before 2.05 were not read.

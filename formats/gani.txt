@@ -70,8 +70,7 @@ is written only in movie mode.
 is copied through as text.
 It is not executed by the editor.
 .SH SPRITE ROW
-The writer
-.RI ( FUN_00479500 )
+The sprite-row writer
 emits fixed-width columns: id padded to 4, sheet name padded to 14,
 then x, y, w, h padded to 4, then the description.
 That is why client files look like:

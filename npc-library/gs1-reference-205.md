@@ -129,7 +129,7 @@ Absent in 2.05 but documented for 2.22: `actionleftmouse`/`actionrightmouse`/`ac
 ## Constants **[doc]**
 
 - **Items** (`lay`, `take`, chest item index): 0 greenrupee, 1 bluerupee, 2 redrupee, 3 bombs, 4 darts, 5 heart, 6 glove1, 7 bow, 8 bomb, 9 shield, 10 sword, 11 fullheart, 12 superbomb, 13 battleaxe, 14 goldensword, 15 mirrorshield, 16 glove2, 17 lizardshield, 18 lizardsword, 19 goldrupee, 20 fireball, 21 fireblast, 22 nukeshot, 23 joltbomb, 24 spinattack. GServer's `LevelItemType` agrees. **[srv]**
-- **Baddies:** 0 graysoldier, 1 bluesoldier, 2 redsoldier, 3 shootingsoldier, 4 swampsoldier, 5 frog, 6 octopus, 7 goldenwarrior, 8 lizardon, 9 dragon. 2.05 also has `baddyhare.gif`, so a hare type exists. Its index is open.
+- **Baddies:** 0 graysoldier, 1 bluesoldier, 2 redsoldier, 3 shootingsoldier, 4 swampsoldier, 5 frog, 6 octopus, 7 goldenwarrior, 8 lizardon, 9 dragon. 2.05 also has `baddyhare.gif`, so a hare type exists. ~~Its index is open.~~ It is type 5, `frog`: 2.22 draws type 5 with the hare image (`client-internals/baddies-222.md`).
 - **Baddy modes:** 0 walking, 1 looking, 2 hunting, 3 hurt, 4 bumped, 5 dying, 6 shooting (swamp), 7 jumping (frog), 8 shooting (spider), 9 dead.
 - **Directions:** 0 up, 1 left, 2 down, 3 right.
 - **Player sprites:** 0 idle; 1–8 walk; 9–13 sword; 14–18 push; 19–22 pull; 23 lift; 24 carry idle; 25–32 carry walk; 33 shoot; 34–36 ride; 37 sit; 38 sleep; 39 hurt; 40 dead (39 and 40 only on `showcharacter` NPCs).

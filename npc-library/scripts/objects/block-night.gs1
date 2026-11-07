@@ -1,0 +1,16 @@
+// Original NPC library: night-only or day-only obstacle
+// Category: object / blocks
+// Image: e.g. a closed market stall, or ghostly barrier
+// Events: playerenters
+// Flag read: night (set by spawners/day-night.gs1, or by your server)
+//
+// this.when = 1 shows the object only at night, 0 only by day.
+
+if (playerenters) {
+  this.when = 1;              // <- 1 night only, 0 day only
+  if ((night && this.when == 1) || (!night && this.when == 0)) {
+    setimg barrier.png;
+  } else {
+    hide;
+  }
+}

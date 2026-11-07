@@ -10,7 +10,9 @@ notes) are not inherited.
 Every resolved key carries a source tag in `src`: the profile's own `src` entry, else
 its `src_default` (`src_features` for features). When a profile with no binary
 (`src_default` other than bin) inherits a binary-read value, the tag becomes
-`inf (as <base>)`, because that value was not checked in this version.
+`inf (as <base>)`, because that value was not checked in this version. A lab run
+covers only the build that was run, so an inherited `lab` tag becomes `inf (as <base>)`
+too (or `bin` when the value was also read from this profile's binary).
 
 Output is the flattened profiles as JSON (default) or one markdown block per version.
 """
@@ -38,6 +40,10 @@ def resolve(doc):
         tag = raw.get('src_default', 'bin')
         ftag = raw.get('src_features', 'doc+forms' if tag == 'bin' else 'doc')
         own = raw.get('src', {})
+        if 'base' in raw:
+            for k, t in out['src'].items():
+                if 'lab' in t:
+                    out['src'][k] = 'bin' if 'bin' in t and 'bin' in tag else f"inf (as {raw['base']})"
         if 'base' in raw and 'bin' not in tag:
             for k, t in out['src'].items():
                 if 'bin' in t or 'forms' in t:

@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "-alienleft.gif",
-      "script": "if (playertouchsme) say 2; \\1alienleft.gif",
       "count": 1,
       "files": [
         "alien1.graal"
-      ]
+      ],
+      "script_chars": 42
     },
     {
       "image": "5alienleft.gif",
-      "script": "if (playertouchsme) say 4; J!aliendown.gif",
       "count": 1,
       "files": [
         "alien1.graal"
-      ]
+      ],
+      "script_chars": 42
     },
     {
       "image": "alienright.gif",
-      "script": "if (playertouchsme) say 0; *&alienleft.gif",
       "count": 1,
       "files": [
         "alien1.graal"
-      ]
+      ],
+      "script_chars": 42
     },
     {
       "image": "2aliendown.gif",
-      "script": "if (playertouchsme) say 10; \"Dalienright.gif",
       "count": 1,
       "files": [
         "alien1.graal"
-      ]
+      ],
+      "script_chars": 44
     },
     {
       "image": "alienup.gif",
-      "script": "if (playertouchsme) say 6; =<alienup.gif",
       "count": 1,
       "files": [
         "alien1.graal"
-      ]
+      ],
+      "script_chars": 40
     },
     {
       "image": "Nalienleft.gif",
-      "script": "if (playertouchsme) say 11; AWalienup.gif",
       "count": 1,
       "files": [
         "alien1.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "89alienswitch.gif",
-      "script": "if (playertouchsme && !alienSwitch) { set alienSwitch; say 0; } =>alienleft.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 79
     },
     {
       "image": "Haliendown.gif",
-      "script": "if (playertouchsme) say 9; \"Galienright.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "Kalienright.gif",
-      "script": "if (playertouchsme) say 5; \"Oalienright.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "6alienright.gif",
-      "script": "if (playertouchsme) say 1; \"2alienright.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "alienright.gif",
-      "script": "if (playertouchsme) say 3; +$alienright.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "aliendown.gif",
-      "script": "if (playertouchsme) say 16; X2aliendown.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "X5alienup.gif",
-      "script": "if (playertouchsme) say 15; \\Nalienleft.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "Galienleft.gif",
-      "script": "if (playertouchsme) say 13; LWalienup.gif",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "8Yalienright.gif",
-      "script": "if (playertouchsme) say 10;",
       "count": 1,
       "files": [
         "alien2.graal"
-      ]
+      ],
+      "script_chars": 27
     },
     {
       "image": "aliendown.gif",
-      "script": "if (playertouchsme) say 4; U%alienleft.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 42
     },
     {
       "image": "4aliendown.gif",
-      "script": "if (playertouchsme) say 6; Y5alienright.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "7alienup.gif",
-      "script": "if (playertouchsme) say 8; I@aliendown.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 42
     },
     {
       "image": "TSalienright.gif",
-      "script": "if (playertouchsme) say 10; XSalienleft.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "Malienup.gif",
-      "script": "if (playertouchsme) say 16; @Malienup.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 41
     },
     {
       "image": "Ralienright.gif",
-      "script": "if (playertouchsme) say 14; >Ralienleft.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "CTaliendown.gif",
-      "script": "if (playertouchsme) say 18; 2Yalienleft.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "Kalienup.gif",
-      "script": "if (playertouchsme) say 12; $1aliendown.gif",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 43
     },
     {
       "image": "8alienup.gif",
-      "script": "if (playertouchsme) say 3;",
       "count": 1,
       "files": [
         "alien3.graal"
-      ]
+      ],
+      "script_chars": 26
     },
     {
       "image": "W3alienleft.gif",
-      "script": "if (playertouchsme) say 0; 1$aliendown.gif",
       "count": 1,
       "files": [
         "alien4.graal"
-      ]
+      ],
+      "script_chars": 42
     }
   ]
 }

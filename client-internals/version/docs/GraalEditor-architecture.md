@@ -74,6 +74,6 @@ TAdventure  caption "Graal"
 
 ## Binary facts
 
-- Unpacked image base `0x400000`, `SizeOfImage 0x1B1000`, entry RVA `0x155D4C`.
+- Unpacked image base `0x400000`, `SizeOfImage 0x1B1000`, entry point in the code section.
 - Version resource (also present, UTF-16, in the packed stub): CompanyName `Linux Cyberjoueur`, FileVersion `2.3.1.1`, InternalName `Graal editor`, ProductName `GraalEditor`.
 - On-disk packed file is the Thinstall stub. Do not point IDR or a Delphi decompiler at `graal/GraalEditor.exe`. Point them at `unpacked/GraalEditor.exe`.

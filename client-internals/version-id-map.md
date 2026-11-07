@@ -38,6 +38,9 @@ Per-build hashes, dates and the rest are in `build-catalogue.md`.
 | `G3D03014` | Linux 3.04 rev 1 (= 3.041 in the server table below) | 3.x client binary (same date stamp as GNW03014) |
 | `G3D28015` | Mac OS X 3.153 | 3.x client binary (same date stamp as GNW28015) |
 | `G3D30123` | 3.x listserver login | 3.x client binary |
+| `G3D17026` | Windows 4.04r2 | 4.x engine DLL (date stamp 17 Feb 2006) |
+| `G3D27076` | Mac OS X 4.20r6 | 4.x client binary (date stamp 27 Jul 2006) |
+| `G3D20126` | Windows 4.20r8 | 4.x engine DLL (date stamp 20 Dec 2006) |
 
 ## Filename → build
 
@@ -53,7 +56,7 @@ Token is eight `_LStrFromChar` immediates in `TAdventureClient_Create`, not a st
 Update 2026-10-21: the login line is GCHAR client type 0, then GCHAR key (`rand & 0x7F`), then the token. The "random prefix" is that key (see `protocol/login-and-walk.md`).
 
 ## Confirmed in Graal 139.exe.c
-FUN_004c7208 builds the token as char immediates: G N W 0 7 0 8 0 → GNW07080.
+The login/token builder builds the token as char immediates: G N W 0 7 0 8 0 → GNW07080.
 Connects to port 14900 (PTR_s_14900).
 
 ## 1st Graal.exe.c

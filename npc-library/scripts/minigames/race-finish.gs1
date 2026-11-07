@@ -1,0 +1,19 @@
+// Original NPC library: race finish line (pair with race-start.gs1)
+// Category: minigame
+// Image: a chequered strip, non-blocking
+// Events: playerenters, playertouchsme
+//
+// Crossing it during a race stops the clock: it swaps race_running for
+// race_finished, which the start post reads on its next tick.
+
+if (playerenters) {
+  setimg finishline.png;
+  dontblock;
+  drawunderplayer;
+}
+
+if (playertouchsme && race_running) {
+  unset race_running;
+  set race_finished;
+  play finish.wav;
+}

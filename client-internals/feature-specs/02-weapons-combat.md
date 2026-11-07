@@ -42,7 +42,7 @@ How 2.05 receives hits is in `protocol/packet-layouts.md` "Hits": HURTPLAYER app
 
 ## 2.05 sword swing and hit box **[2.05][dec]**
 From the 2.05 rev2 decompile (2026-10-24); details in `../decomp-findings-2026-10-24/04-sword-hitbox.md`.
-- **Start of a swing.** Needs weapons allowed by the level or server, sword power not 0, not swimming without a horse, and not already in the charged-spin mode. A normal swing is mode 6; a charged spin is mode 13 and needs the has-spin flag (STATUS bit 0x40). The client plays the sword, ridesword or spin gani and a sound, then checks for a cuttable bush at the sword tip. The sprite sent to others follows animation steps 9 to 13 (S 6 to 10, see 11).
+- **Start of a swing.** Needs weapons allowed by the level or server, sword power not 0, not swimming without a horse, and not already in the charged-spin mode. A normal swing is mode 6. A spin is mode 13: it needs the has-spin flag (STATUS bit 0x40) and starts when S is pressed again while mode 6 is still running. It is not a hold-to-charge; see `../player-mannerisms-live.md`. The client plays the sword, ridesword or spin gani and a sound, then checks for a cuttable bush at the sword tip. The sprite sent to others follows animation steps 9 to 13 (S 6 to 10, see 11).
 - **The victim's client decides a hit**; the attacker only broadcasts position, direction and sprite. A hit counts when **all** of these hold:
   - the attacker is on step 9 to 13 (S 6 to 10);
   - the victim is **0 to 4 tiles ahead** of the attacker in the facing direction;

@@ -14,6 +14,7 @@ Compare with `Graal_analysis_draft/protocol/udp-p2p.md` (2.05 rev2).
 | 2.04 | 11, 16, 17, 19, 20, 25, 26 found (other call sites go through a changed wrapper form; not recovered) |
 | 2.05 | the 2.05 rev2 set from `udp-p2p.md`; the scan found only the movement sender (id 0) |
 
-- These are partial: ids 0 (movement), 15 (showimg) and 22 (chat) use other call forms in this family and were not recovered by this scan. The additions match the TCP ids: UDP 25/26 appear in the same builds as PLI 36 (2.01) and PLI 38 (2.03), which supports the "UDP + TCP twin" reading in `05`.
-- So the 2.00 client has bomb, arrow, firespy, explosion, horse, throw, item UDP messages (ids 10-14, 16-20); hit objects arrive in 2.01 and trigger action in 2.03.
+- These were partial in the first scan: ids 0 (movement), 15 (showimg) and 22 (chat) use a broadcast helper (prepend GCHAR id, send to every peer with a UDP port) rather than a naked constant at sendto. Manual read recovered them for 2.00 and 2.05; see `version-profiles/udp-ids-200-204.tsv`. Receive switch cases are wire bytes 0x20 / 0x2f / 0x36.
+- The additions match the TCP ids: UDP 25/26 appear in the same builds as PLI 36 (2.01) and PLI 38 (2.03), which supports the "UDP + TCP twin" reading in `05`.
+- So the 2.00 client has movement, showimg, chat, bomb, arrow, firespy, explosion, horse, throw and item UDP messages (ids 0, 10-20, 22); hit objects arrive in 2.01 and trigger action in 2.03.
 - A 2.00 client has no hit-objects message on either channel.

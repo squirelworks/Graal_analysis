@@ -6,7 +6,7 @@ The Delphi editor was recovered by running the stub decompressor and then the Th
 
 ## Why the dump looks empty
 
-`Export/GraalEditor.exe.c` decompiles the outer stub only (`entry` → `FUN_00401780` → `FUN_004013a0`). The optional-header `LoaderFlags` field is reused as a file offset (`0xFC94E`) of a 0x38-byte package header. Magic is `0x82D0B188`. The first block is the Thinstall runtime (`X:\thinstall\stub\ts_stub.cc`), not the editor. Ghidra never saw the Delphi code, so IDR had nothing with a Delphi VMT to reconstruct.
+`Export/GraalEditor.exe.c` decompiles the outer stub only (entry into the stub startup, then the package-open helper). The optional-header `LoaderFlags` field is reused as a file offset of a 0x38-byte package header (the last 0x38 bytes of the file). Magic is `0x82D0B188`. The first block is the Thinstall runtime (`X:\thinstall\stub\ts_stub.cc`), not the editor. Ghidra never saw the Delphi code, so IDR had nothing with a Delphi VMT to reconstruct.
 
 ## What the program is
 
@@ -41,7 +41,7 @@ Thinstall virtual path `%InstallPath%`:
 | `GraalEditor.exe` | Delphi editor, version resource 2.3.1.1 |
 | `hvdi.dll` | Bundled helper, 133,632 bytes. No Graal strings; not the editor core |
 | `arrays.dat` | 11,500-byte sorted dword table (count word `0x03A6`) |
-| `arrays2.dat` | Server list: `listserver.graalonline.com:14922` and two fallbacks |
+| `arrays2.dat` | Server list: `<list-host-3x>:14922` and two fallbacks |
 | `arrays2.sig`, `graaleditor.sig` | 0x80-byte signatures. Stub string: `Not ready to verify signature, must have valid public key` |
 | `thinstall.log` | Virtual log path |
 

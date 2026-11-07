@@ -122,7 +122,12 @@ def sign_text(enc):
 
 def parse_grv(buf, pos=0, keep_sections=True):
     ver = buf[pos:pos+8].decode('latin1'); pos += 8
-    bits = 13 if ver in ('GR-V1.02', 'GR-V1.03', 'GR-V1.04') else 12
+    if ver == 'Z3-V1.02':
+        bits = 11
+    elif ver in ('GR-V1.02', 'GR-V1.03', 'GR-V1.04'):
+        bits = 13
+    else:
+        bits = 12
     tiles, pos = read_board(buf, pos, bits)
     lines_at = pos
     def line():

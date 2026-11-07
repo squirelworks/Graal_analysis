@@ -1,0 +1,12 @@
+// Original NPC library: overhang (tree crown, archway top, awning)
+// Category: interaction / triggers
+// Image: the part that should hide the player when they walk under it
+// Events: playerenters
+//
+// Draws over the player and never blocks.
+
+if (playerenters) {
+  setimg archtop.png;
+  dontblock;
+  drawoverplayer;
+}

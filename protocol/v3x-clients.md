@@ -9,7 +9,7 @@ Sources: the Graal 3.04 Linux installer (Makeself and a 2014 tgz repack, same ga
 - 3.x is a **C++ rewrite on the Torque Game Engine** (GarageGames). It is not Delphi. The menus, prefs and key binds are compiled TorqueScript (`.dso`, format version 33). Levels, NPCs, GS1, ganis and the Graal network protocol are native code. **[bin][file]**
 - Linux 3.04 (Jan 2004): i386 ELF, UPX-packed, stripped. Uses SDL 1.2, OpenAL and fmod. Mac 3.153 (Feb 2005): PowerPC Mach-O, Carbon, stripped. Both were built by "Linux Cyberjoueurs" (Paris). **[bin][file]**
 - Neither build has a usable symbol table. Naming comes from RTTI class names (e.g. `TGraalConnection`, `TServerListClient`, `TServerLevel`, `TServerNPC`, `TGraalScript`, `GuiGraalCtrl`), from source file names left in allocation tracking (`graal/client.cpp`, `graal/serverlist.cpp`, `graal/levels.cpp`, `graal/npcs.cpp`, `graal/descipher.cpp`, …) and from the Torque console method table. This is a different code base from the Delphi 2.x clients, so the names do not carry over to them. **[bin]**
-- The 3.153 data tree adds a 3D mode (`levels3d/`, `scripts/` with Torque mission, terrain and `GameConnection` scripts). 3D servers run the Torque engine's own UDP protocol on port 28000, alongside the Graal TCP protocol. **[file][bin]**
+- The 3.153 data tree adds a 3D mode (`levels3d/`, `scripts/` with Torque mission, terrain and `GameConnection` scripts). 3D servers run the Torque engine's own UDP protocol alongside the Graal TCP protocol, on the listed port + 1 (28000 is only the Torque address parser's default when no port is given; see `torque/network.md` and `torque/wire-by-build.md`). On the wire 3.153 is `Graal3D` protocol 19 with Graal's class table, not stock TGE. **[file][bin]**
 
 ## Version tokens
 
@@ -22,12 +22,12 @@ These two 3.x tokens carry the same date stamps as the 2.22 and 2.31 Windows tok
 
 ## Listserver
 
-- **Host and port are not compiled in.** They come from `license/license.graal`, a short CRLF text file: the primary host `listserver.graalonline.com`, port `14922`, the site name, the signup and translate URLs, then `listserver2` and `listserver3` as fallbacks. **[file]**
+- **Host and port are not compiled in.** They come from `license/license.graal`, a short CRLF text file: the primary host `<list-host-3x>`, port `14922`, the site name, the signup and translate URLs, then `listserver2` and `listserver3` as fallbacks. **[file]**
 - The file is **RSA-signed**. `license/sig.license` holds a 1024-bit RSA signature (PKCS#1 v1.5 over SHA-1, public exponent 17) as 256 hex characters. `license/sig.graal` signs the shipped (packed) executable file in the same way. The public key is embedded in the client as a hex-encoded DER key. All three signatures check out against it, so the client can tell if the host list or the executable has been edited. **[bin][file]**
 - Login sequence: **[bin]**
   1. id 7: key GCHAR, then `G3D30123newmain`. This is the first message of the connection. It is sent in fixed mode 3 (zlib, no cipher, no type byte).
-  2. Flush. The socket switches to gen 5.
-  3. id 1: `str account`, `str password`.
+  2. id 1: `str account`, `str password`. In the lab run of 3.04 this came in **the same plain zlib frame** as id 7. **[cap]**
+  3. The socket switches to gen 5 for what follows; the lab listserver's gen-5 reply was accepted. **[cap]**
 - Server → client: 0 server list, 2 account status text (shown on the server list screen; marks the login as accepted), 4 error text (message box). 1, 3, 5 and 6 are accepted and ignored. **[bin]**
 - Server list (id 0): `GCHAR count`, then per server `GCHAR fieldcount` and that many `str`. Field 0 is the name and field 5 the player count. **[bin]**
 - **Category prefix on the server name.** It decides which tab lists the server: **[bin]**
@@ -42,7 +42,7 @@ These two 3.x tokens carry the same date stamps as the 2.22 and 2.31 Windows tok
 
 ## Game-server login and cipher
 
-- Login: id **5**, key GCHAR (`rand & 0x7F`), token, `str account`, `str password`. Then id **37** (language). Neither build sends id 39 (`PLI_TAMPERCHECK`) after login, which 2.22 and 2.31 do. The account and password are used as plain strings, with no `dec(b) = (~b − 10)` step as in 2.17+. **[bin]**
+- Login: id **5**, key GCHAR (`rand & 0x7F`), token, `str account`, `str password`. Then id **37** (language). Neither build sends id 39 (`PLI_TAMPERCHECK`) after login, which 2.22 and 2.31 do (3.04 confirmed on the wire, `version-profiles/lab-304-linux-2026-10-30.md`). The account and password are used as plain strings, with no `dec(b) = (~b − 10)` step as in 2.17+. **[bin]**
 - **Cipher and framing are gen 5, the same as the 2.22/2.31 Windows clients.** The same LCG (`it = it * 0x08088405 + key`, seed `0x04A80B38`, one iterator per direction). Login frame in fixed mode 3, then dynamic: type 2 (raw) or 4 (zlib) under 0x30 bytes, 4 under 0x1000, otherwise 6 (bz2). Even types are partially XORed (one LCG step per 4-byte group present, at most 12 groups for type 2 and 4 for types 4 and 6; a partial last group still steps). Frame `u16be (len + 1)`, type byte, body. See `codec-and-framing.md` and `client-versions.md` (PR #8, not yet on main) for the full rule. **[bin]**
 
 ## Server → client ids handled
@@ -69,7 +69,7 @@ Read from each build's main receive switch. Names from gs2lib. **[bin]**
 
 Counts: 3.04 handles 79 ids, 3.153 handles 88.
 
-Client → server: login 5 and language 37 are confirmed. Most other sends go through an indirect call, so the full table is still open.
+Client → server: the full sent-id sets (3.04 complete, 3.153 all but six ids), prop ranges and post-login sends are in `version-profiles/3.04-3.153.md` and `.toml`.
 
 ## File formats
 

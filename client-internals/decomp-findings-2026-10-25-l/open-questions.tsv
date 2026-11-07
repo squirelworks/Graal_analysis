@@ -1,0 +1,9 @@
+question	status	note
+throw of a lifted object (flight, landing, damage)	open	not read
+what a cut or lift drops	open	spawn routine takes the entry index; not read
+carrying pose and where the carried object is drawn	open	not read
+probe point for chests and signs	open	assumed equal to the A-key probe; the lift probe is read
+which glove property value the server sends	open	the wire property was not matched
+position snapping after a step	open	fractional part within 0.0625 of an edge snaps; details not read
+speed factors for swimming and carrying	open	not read; only 1.0 on foot and 1.2 fast were read
+the two A-key probe points near chests by tile id	open	chest-by-tile front tile vs chest-by-record distance: exact points not read

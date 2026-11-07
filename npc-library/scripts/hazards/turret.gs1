@@ -1,0 +1,21 @@
+// Original NPC library: arrow turret
+// Category: combat / hazards, spawn / timers
+// Image: a statue head facing the firing direction
+// Events: playerenters, timeout
+//
+// Fires an arrow in a fixed direction on a steady beat, but only while the
+// player is in the level. Change this.dir and this.rate per turret; give
+// neighbours different offsets for a staggered volley.
+
+if (playerenters) {
+  setimg turret.png;
+  this.dir = 2;               // <- 0 up, 1 left, 2 down, 3 right
+  this.rate = 1.2;            // <- seconds between arrows
+  this.offset = 0;            // <- delay before the first arrow
+  timeout = this.rate + this.offset;
+}
+
+if (timeout) {
+  shootarrow this.dir;
+  timeout = this.rate;
+}

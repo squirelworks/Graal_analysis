@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "Ewhite.gif",
-      "script": "if (playertouchsme && selecthead) {playerheadset=27} ;Jwhite.gif",
       "count": 1,
       "files": [
         "jaypee2giftshop.graal"
-      ]
+      ],
+      "script_chars": 64
     },
     {
       "image": "Nwhite.gif",
-      "script": "if (playertouchsme && selecthead) {playerheadset=22} ;Nwhite.gif",
       "count": 1,
       "files": [
         "jaypee2giftshop.graal"
-      ]
+      ],
+      "script_chars": 64
     },
     {
       "image": "Jwhite.gif",
-      "script": "if (playertouchsme && selecthead) {playerheadset=21} AJwhite.gif",
       "count": 1,
       "files": [
         "jaypee2giftshop.graal"
-      ]
+      ],
+      "script_chars": 64
     },
     {
       "image": "ANwhite.gif",
-      "script": "if (playertouchsme && selecthead) {playerheadset=25} ;Ewhite.gif",
       "count": 1,
       "files": [
         "jaypee2giftshop.graal"
-      ]
+      ],
+      "script_chars": 64
     },
     {
       "image": "white.gif",
-      "script": "if (playertouchsme && selecthead) {playerheadset=28} ANclear.gif",
       "count": 1,
       "files": [
         "jaypee2giftshop.graal"
-      ]
+      ],
+      "script_chars": 64
     },
     {
       "image": "64divingboard2.gif",
-      "script": "if (playerenters) {dontblock; drawunderplayer } 1Sdoor.gif",
       "count": 1,
       "files": [
         "jaypee2level.graal"
-      ]
+      ],
+      "script_chars": 58
     },
     {
       "image": "couch.gif",
-      "script": "if (playertouchsme) {dontblock; drawunderplayer}",
       "count": 1,
       "files": [
         "jaypee2poolhouse.graal"
-      ]
+      ],
+      "script_chars": 48
     },
     {
       "image": "bccranebar.gif",
-      "script": "if (playerenters) {drawoverplayer;} @>bro.gif",
       "count": 1,
       "files": [
         "koroco.graal"
-      ]
+      ],
+      "script_chars": 45
     },
     {
       "image": "5Fhotspringani.gif",
-      "script": "// Now the pool looks like a hot spring if (playerenters) { drawunderplayer; }",
       "count": 1,
       "files": [
         "krakenhouse3.graal"
-      ]
+      ],
+      "script_chars": 78
     },
     {
       "image": "DIredwater.gif",
-      "script": "if (playerenters) { x=36; y=41; dontblock; drawunderplayer; redx = x; redy = y; }",
       "count": 1,
       "files": [
         "krakenhouse7.graal"
-      ]
+      ],
+      "script_chars": 81
     },
     {
       "image": "nlimits.gif",
-      "script": "if (playerenters) { play stef29.mid; } .Qdoor.gif",
       "count": 1,
       "files": [
         "level16.graal"
-      ]
+      ],
+      "script_chars": 49
     },
     {
       "image": "bridgetask.gif",
-      "script": "if (playertouchsme) playerx = 29; .?",
       "count": 1,
       "files": [
         "level29.graal"
-      ]
+      ],
+      "script_chars": 36
     },
     {
       "image": "8dlstatue.gif",
-      "script": "if (playerenters) {canbepulled; canbepushed} *8dlstatue.gif",
       "count": 1,
       "files": [
         "level32.graal"
-      ]
+      ],
+      "script_chars": 59
     },
     {
       "image": "68dlstatue.gif",
-      "script": "if (playerenters) {canbepulled; canbepushed} :8dlstatue.gif",
       "count": 1,
       "files": [
         "level32.graal"
-      ]
+      ],
+      "script_chars": 59
     },
     {
       "image": "8Ufloor.gif",
-      "script": "if (playerenters) {dontblock; drawunderplayer } 8Tblank2.gif",
       "count": 1,
       "files": [
         "level33.graal"
-      ]
+      ],
+      "script_chars": 60
     },
     {
       "image": "Wclouds.gif",
-      "script": "if (playerenters) {dontblock; drawoverplayer } FVclouds.gif",
       "count": 1,
       "files": [
         "level34.graal"
-      ]
+      ],
+      "script_chars": 59
     },
     {
       "image": "5Vclouds.gif",
-      "script": "if (playerenters) {dontblock; drawoverplayer } RVclouds.gif",
       "count": 1,
       "files": [
         "level34.graal"
-      ]
+      ],
+      "script_chars": 59
     },
     {
       "image": "Uclouds.gif",
-      "script": "if (playerenters) {dontblock; drawoverplayer }",
       "count": 1,
       "files": [
         "level34.graal"
-      ]
+      ],
+      "script_chars": 46
     },
     {
       "image": "angel.gif",
-      "script": "if (playerenters) {dontblock; drawoverplayer; } >3angelsstep.gif",
       "count": 1,
       "files": [
         "level38.graal"
-      ]
+      ],
+      "script_chars": 64
     },
     {
       "image": "9tube4.gif",
-      "script": "// NPC made by <yourname> if (playerenters) { dontblock; drawunderplayer; } ;6tube2.gif",
       "count": 1,
       "files": [
         "level8.graal"
-      ]
+      ],
+      "script_chars": 87
     },
     {
       "image": "6tube3.gif",
-      "script": "// NPC made by <yourname> if (playerenters) { } if (playertouchsme) { } ;,tube5.gif",
       "count": 1,
       "files": [
         "level8.graal"
-      ]
+      ],
+      "script_chars": 83
     },
     {
       "image": "82smokeani.gif",
-      "script": "if (playerenters) {dontblock; drawoverplayer; } :Cdoor.gif",
       "count": 1,
       "files": [
         "level9.graal"
-      ]
+      ],
+      "script_chars": 58
     },
     {
       "image": "Ibell.gif",
-      "script": "if (playerenters) {play stef11.mid }",
       "count": 1,
       "files": [
         "lifemountain4.graal"
-      ]
+      ],
+      "script_chars": 36
     },
     {
       "image": "alter.gif",
-      "script": "if (playertouchsme) {dontblock; drawunderplayer} @Bgoldseat.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 63
     },
     {
       "image": "azseat.gif",
-      "script": "if (playertouchsme && playeringuild AZRAEL) {dontblock; drawunderplayer} 13mandiseat.gif",
       "count": 1,
       "files": [
         "mandichurch.graal"
-      ]
+      ],
+      "script_chars": 88
     }
   ]
 }

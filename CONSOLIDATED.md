@@ -47,7 +47,7 @@ Cleaned notes derived from public server sources (GServer-v2, gs2lib, graal-serv
 
 ## NPC scripting
 
-3,172 unique scripts scraped from 1,420 GR-V1 levels. Stored in `npc-library/npcs.json`. The scrape reported 3,187; 15 records were lost to truncated source pages (see `partial_pages` in `npcs.json` meta).
+3,172 unique scripts scraped from 1,420 GR-V1 levels. Indexed in `npc-library/npcs.json` (metadata only: image, counts, source levels, events, commands; the copied script bodies were moved out of the repo on 2026-11-04, see `npc-library/README.md`). The scrape reported 3,187; 15 records were lost to truncated source pages (see `partial_pages` in `npcs.json` meta).
 
 ### Common events (by frequency)
 | Event | Scripts |

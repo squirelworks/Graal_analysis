@@ -1,0 +1,35 @@
+// Original NPC library: teleporter that needs the warp stone
+// Category: transport / local-warps
+// Image: a dormant rune
+// Events: playerenters, playertouchsme, timeout
+//
+// Like teleporter-pad.gs1, but works only for a player who owns the weapon
+// "Warpstone" (see items/). Without it the pad says what is missing.
+
+if (playerenters) {
+  timereverywhere;            // every client runs its own cool-down
+  setimg rune_dim.png;
+  dontblock;
+  drawunderplayer;
+  this.tx = 10;
+  this.ty = 50;
+  this.cool = 0;
+}
+
+if (playertouchsme && this.cool == 0) {
+  this.cool = 1;
+  timeout = 1;
+  if (hasweapon(Warpstone)) {
+    setimg rune.png;
+    play teleport.wav;
+    playerx = this.tx - 0.5;
+    playery = this.ty - 1;
+  } else {
+    message The rune is cold. Something is missing.;
+  }
+}
+
+if (timeout) {
+  this.cool = 0;
+  message ;
+}

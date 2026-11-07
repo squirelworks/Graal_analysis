@@ -1,0 +1,50 @@
+// Original NPC library: strolling villager
+// Category: dialogue / speech
+// Image: none (drawn as a character)
+// Events: playerenters, playertouchsme, timeout
+//
+// Walks back and forth between two points on the same row, pausing at each
+// end, and stops to talk when touched.
+
+if (playerenters) {
+  showcharacter;
+  setcharprop #3,head6.png;
+  setcharprop #C1,yellow;
+  setcharprop #n,Walker;
+  this.left = x;              // starts at the left end
+  this.right = x + 8;         // <- walk 8 tiles to the right
+  this.step = 0.25;
+  this.pause = 0;
+  this.talk = 0;
+  dir = 3;
+  setcharani walk,;
+  timeout = 0.05;
+}
+
+if (playertouchsme) {
+  this.talk = 3;
+  setcharani idle,;
+  message Lovely day for a walk!;
+}
+
+if (timeout) {
+  if (this.talk > 0) {
+    this.talk -= 0.05;
+    if (this.talk <= 0) {
+      message ;
+      setcharani walk,;
+    }
+  } else if (this.pause > 0) {
+    this.pause -= 0.05;
+    if (this.pause <= 0) setcharani walk,;
+  } else {
+    if (dir == 3) {
+      x += this.step;
+      if (x >= this.right) { x = this.right; dir = 1; this.pause = 1.5; setcharani idle,; }
+    } else {
+      x -= this.step;
+      if (x <= this.left) { x = this.left; dir = 3; this.pause = 1.5; setcharani idle,; }
+    }
+  }
+  timeout = 0.05;
+}

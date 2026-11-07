@@ -45,7 +45,7 @@ The game socket keeps the gen-3 iterator, the key, and a "first message sent" fl
 ## Other formats seen in 2.05
 
 - **GWEBL001**: a web-level cache file. It starts with the magic `GWEBL001`, then GSTRING fields and a GSHORT version that is checked against the client. The client also computes a running product hash over a key string, seeded with `0x04A80B38`. **[2.05]** The field list is not fully traced.
-- A Delphi DES cipher class (`UDesCipher`) is linked in. It is not the game wire codec. It protects the saved passwords, the hidden listserver host (`www.graalonline.com`, port 14921, list `newmain`), and the `GWEBL001` web-level cache. **[2.05]**
+- A Delphi DES cipher class (`UDesCipher`) is linked in. It is not the game wire codec. It protects the saved passwords, the hidden listserver host (`<list-host-classic>`, port 14921, list `newmain`), and the `GWEBL001` web-level cache. **[2.05]**
 - Image decoders: GIF (`TGifAnimation`), MNG (`TMNGAnimation`), JPEG. MNG animation fits with `gif2mng`.
 
 ## Level magics accepted

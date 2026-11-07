@@ -1,0 +1,24 @@
+// Original NPC library: chime post
+// Category: object / blocks
+// Image: a bell or chime post
+// Events: playerenters, playertouchsme, timeout
+//
+// Plays a sound when bumped, at most once a second so leaning on it does
+// not spam the sound. Set a different sound per post for a set of
+// tuned chimes.
+
+if (playerenters) {
+  timereverywhere;            // each client runs its own timer
+  setimg chime.png;
+  this.ready = 1;
+}
+
+if (playertouchsme && this.ready == 1) {
+  this.ready = 0;
+  play chime1.wav;            // <- sound
+  timeout = 1;
+}
+
+if (timeout) {
+  this.ready = 1;
+}

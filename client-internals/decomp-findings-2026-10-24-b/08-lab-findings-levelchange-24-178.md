@@ -49,7 +49,7 @@ Table: `version-profiles/lab-showimg24-relay.tsv`.
 - A lab-only proxy replaced the payload of each client 24 with `GCHAR 0`, `1`, `5`, `14`, `58`, `95`, the six bytes `xx.png`, and an empty payload. The server relayed each one verbatim as 32. No disconnect, no invalid-packet entry in the server log, no error. Neither 2.31 nor 2.22 showed any visible reaction: screenshots matched the baseline apart from an animated status bar. The lab had no player sprites or emoticon files, so a drawn image could not have shown anyway.
 
 **Conclusion**
-- The stock server treats 24 as an opaque payload to relay. The 2.31 form is a single byte 9, unlike the four-field emote form (index, x, y, name length and name) that the 2.05 notes describe. What the 9 means, and what a receiving client does with a one-byte payload, is **unresolved**. An emote-form payload with a real image file in the receiver's folder was not tried.
+- The stock server treats 24 as an opaque payload to relay. The 2.31 form is a single byte 9, unlike the four-field emote form (index, x, y, name length and name) that the 2.05 notes describe. What the 9 means, and what a receiving client does with a one-byte payload, is **unresolved**. An emote-form payload with a real image file in the receiver's folder was not tried. (Later read: 2.05 does not use a four-field form; it sends the same tagged image list, see `../id24-205.md`.)
 
 ## C. PLO_SERVERWARP (178)
 Table: `version-profiles/lab-serverwarp178.tsv`. Real 2.31 client only.

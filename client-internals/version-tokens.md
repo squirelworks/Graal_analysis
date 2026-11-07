@@ -17,6 +17,18 @@ Internal version strings recovered from the public version list. No decompile ma
 | G3D03014 | Linux 3.04 (Torque rewrite; 2.22 protocol, see `protocol/v3x-clients.md`) |
 | G3D28015 | Mac OS X 3.153 (2.31 protocol) |
 | G3D30123 | 3.x listserver token (the 3.x form of GNW30123) |
+| G3D17026 | Windows 4.04r2 (`GraalEngine.dll`, March 2006) |
+| G3D27076 | Mac OS X 4.20r6 (Delphi launcher + C++ engine era; see `protocol/v4x-clients.md`) |
+| G3D20126 | Windows 4.20r8 (`GraalEngine.dll`) |
+| G3D20126 | Windows 4.20r8 (engine DLL; logs into the `Login` game server) |
+| G3D22067 | Windows 5.00r7 (engine DLL, Jul 2007; see `protocol/v5x-clients.md`) |
+| G3D14097 | Windows 5.12 (lab capture; see `protocol/v5v6-windows-unpacked.md`) |
+| G3D03048 | Windows 6.00 beta1 (lab capture) |
+| G3D15010 | Windows 6.00 beta2, 5.24r3, 5.24r4 (lab capture) |
+| G3D26090 | Windows 5.30r3, 5.31r4, 6.00r2, 6.00r4 (lab capture) |
+| G3D0311C | Windows 6.03r7 (lab capture; Linux 6.03r7 sends G3D0511C) |
+| G3D0108A | Linux 6.01r1 (see `protocol/v6x-clients.md`) |
+| G3D0511C | Linux 6.03r7 |
 
 Filename builds in the client tree: Graal_2171 = 2.171, Graal_222 = 2.22, Graal_231 = 2.31.
 

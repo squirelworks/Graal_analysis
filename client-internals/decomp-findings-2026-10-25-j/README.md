@@ -28,7 +28,7 @@ Material: the old client builds' level folders (1st Graal to 15th Graal, Graal 1
 
 ## Open
 
-- Which build tries `.zelda` for a bare level name, and whether a missing `.zelda` link falls back to the `.graal` of the same stem. No binary traced says.
+- (Answered later in `../bare-level-names.md`: no build tries `.zelda` for a bare name and none falls back; the editor adds `.graal` to a name saved without an extension.)
 - The 2.0 to 2.31 loaders were checked for the magic strings only, not traced.
 - Java sign alphabet versus the shared one for codes 82 to 88 (5 real signs touch 82 or 83; not compared).
 - Computer type names beyond the Java source's 0 to 6 (none seen).

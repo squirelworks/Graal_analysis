@@ -7,203 +7,203 @@
   "scripts": [
     {
       "image": "7Ereceptionist.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 1?bluelampani.gif",
       "count": 1,
       "files": [
         "jaypee2inforoom.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } KQbluelampani.gif",
       "count": 1,
       "files": [
         "jaypee2inforoom.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "Obluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } M7bluelampani.gif",
       "count": 1,
       "files": [
         "jaypee2suites.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "7bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 9Dbeerhost.gif",
       "count": 1,
       "files": [
         "jaypee2suites.graal"
-      ]
+      ],
+      "script_chars": 225
     },
     {
       "image": "bluelampani.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } P/bluelampani.gif",
       "count": 1,
       "files": [
         "jaypee2tunnel.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "night.gif",
-      "script": "if (playerenters) {dontblock; drawoverplayer;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 8%pond2.gif",
       "count": 1,
       "files": [
         "kfield4.graal"
-      ]
+      ],
+      "script_chars": 247
     },
     {
       "image": "B4eaten1.gif",
-      "script": "if (playerenters&&HahaNick) {setgif plant.gif} if (playertouchsme) {say 0; } if (playertouchsme&&HahaNick) {say 1;} if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 72plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 265
     },
     {
       "image": "81plant.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;1plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "2plant.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =1plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "2plant.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >0plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "plant.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 7/plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "plant.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >2plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "plant.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @0plant.gif",
       "count": 1,
       "files": [
         "kgh1.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "B3roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 72roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "81roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } ;1roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "2roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } =1roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "2roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >0roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } 7/roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } >2roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "roots.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } @0roots.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 222
     },
     {
       "image": "7hahanick.gif",
-      "script": "if (playerenters) {canbecarried } if (playertouchsme) {say 0; set HahaNick;} if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) {setgif hahanick2.gif; } if (timeout) { } night.gif",
       "count": 1,
       "files": [
         "kgh2.graal"
-      ]
+      ],
+      "script_chars": 272
     },
     {
       "image": "bloodstrek2.gif",
-      "script": "if (playerenters) {dontblock;drawunderplayer;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "khouse1.graal"
-      ]
+      ],
+      "script_chars": 235
     },
     {
       "image": "6-bloodstrek.gif",
-      "script": "if (playerenters) { dontblock;drawunderplayer;} if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { }",
       "count": 1,
       "files": [
         "khouse2.graal"
-      ]
+      ],
+      "script_chars": 236
     },
     {
       "image": "n_doomsword.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } C7n_mammsword.gif",
       "count": 1,
       "files": [
         "koroco.graal"
-      ]
+      ],
+      "script_chars": 228
     },
     {
       "image": "n_throwsword.gif",
-      "script": "if (playerenters) { } if (playertouchsme) { } if (playertouchsother) { } if (playerlaysitem) { } if (compusdied) { } if (playerendsreading) { } if (exploded || washit || wasshot || waspelt) { } if (timeout) { } G;n_doomsword.gif",
       "count": 1,
       "files": [
         "koroco.graal"
-      ]
+      ],
+      "script_chars": 228
     }
   ]
 }

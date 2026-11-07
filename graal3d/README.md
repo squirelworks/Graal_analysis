@@ -4,11 +4,19 @@ Date: 2026-10-21
 
 Graal3D is a separate 3D side project shipped as `graal3d.7z`: a client, `Graal3D.exe`, and its own server, `GServer.exe`.
 Both carry resource stamps from 2000-02-05, between the 2D releases V1.32 (`GSERV018`) and V1.33 (the first `GNW` token).
-These notes come from static reads of both binaries (RTTI, form resources, strings) and a decompiler pass.
+These notes come from static reads of both binaries (RTTI, form resources, strings), a decompiler pass, and a live lab on 2026-10-30.
 No decompiler output is reproduced here.
+
+**Does it use a gserver?** Yes, its own: `GServer.exe` from the same archive (TCP 14901). It does not talk to the 2D GServer or the list server. Players also exchange position and chat directly over UDP once the server has told each client the others' addresses.
 
 - [protocol.md](protocol.md): framing, login, packet ids, the player property table, peer-to-peer UDP, admin commands.
 - [formats.md](formats.md): config files, the registry password, `accounts.txt`, levels and models.
+- [client-behaviour.md](client-behaviour.md): controls, walking, running, jumping, camera and the chat log, for a per-version profile.
+- [collision.md](collision.md): per-face step test for a `Collider` (radius 5, step height 30, slope and wall rules, probe order), static read of the February 2000 client.
+- [camera.md](camera.md): follow distance 220, look height +80, turn ±5°/tick, pitch −0.15 rad; field of view 0.5 (opening about 53.13°). The far plane stays open.
+- [lab-2026-10-30.md](lab-2026-10-30.md): the live run of both programs under Wine, what it confirmed and its limits.
+- [reference-server/](reference-server/): a small Python server written from these notes. The real client logs into it, and it matches the original server's messages on the lab session.
+- [torque-engine-4x.md](torque-engine-4x.md): the **other** Graal 3D, the Torque-based `Graal3DEngine.dll` of the 4.x clients (2006), and how a 4.x client connects to a 3D server.
 
 ## What ships
 
@@ -29,7 +37,7 @@ There are no `.graal`/`.nw` loaders, no GANI, no tiles and no NPC scripting in e
 | Class | Purpose |
 |---|---|
 | `TAdventure` | Main window: the 3D view, a chat edit line, the frame timer. Ctrl+Enter toggles fullscreen, Esc quits, F1 and F2 open the two option windows. Enter in the chat line sets the chat text. |
-| `TConnectFrame` | Start window: nickname (default `Stefan`), host (default `127.0.0.1`), port `14901`, account and password (both `guest`). |
+| `TConnectFrame` | Start window: nickname (default `Stefan`), host (default: the loopback address), port `14901`, account and password (both `guest`). |
 | `TMoreOptions` | "Hardware options": fixed UDP port (default 14898) and "Don't use UDP". |
 | `TEditLook` | "Player look": `bodyx`, `headx`, `bodytex`, arm, shoe and hand colours. |
 
@@ -71,7 +79,7 @@ The server holds at most 200 players. Player ids are the lowest free slot from 1
 
 ## Open points
 
-- The two client globals set by packets 4 and 6 are written but their readers were not traced. Packet 4 follows 2D "leader" semantics on the server side.
-- Movement and camera maths in the frame timer were not mapped in detail.
+- Packets 4 and 6 set client values that nothing reads (checked 2026-10-30). Packet 4 follows 2D "leader" semantics on the server side.
+- Movement maths: see [client-behaviour.md](client-behaviour.md). Collision: see [collision.md](collision.md). Camera follow numbers and field of view: see [camera.md](camera.md). ~~FOV still **[inf]**.~~ **Closed** there: Direct3DRM field **0.5**, opening `2×atan(0.5)` ≈ 53.13°. The far plane stays open: the library initial back plane is 100 **[doc]**, a later DelphiX fork calls `SetBack(5000)`, and the February 2000 exe was not re-read for `SetBack`.
 - No admin client for Graal3D is in the archives. The admin protocol below comes from the server alone.
-- Nothing here has been checked against a live run. Running `GServer.exe` with a scripted client in the lab would confirm the login and UDP handover.
+- The live run (see [lab-2026-10-30.md](lab-2026-10-30.md)) confirmed the TCP side. UDP between two real clients still needs Microsoft's `d3drm.dll`, which Wine does not provide. Collision was not lab-confirmed for the same reason.

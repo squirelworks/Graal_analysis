@@ -14,7 +14,7 @@ In 2.05 the editor is not a separate program. It lives in the main window (`TAdv
 |-----|-----------|-------|
 | F4 | open the editor | Refused when connected: "You cannot open the editor in the online mode." **[2.05]** |
 | F5 | Load level dialog (`TLoadLevel`) | Asks first when online: loading a level disconnects you. |
-| P / Play button | back to game mode on the current level | "Please save the level under a new name before playing!" if the level is unsaved or unnamed. |
+| P / Play button | back to game mode on the current level | A named, modified level is saved first ("Level saved"). "Please save the level under a new name before playing!" if it has no name. |
 | Close button | close the current level tab | Asks "Save changes to …" when modified. |
 
 Entering the editor tears down the game state for the current level: looped sounds stop, NPC and baddy instances are freed, and the level the player stood on is opened as a tab (re-read from disk, so unsaved runtime board changes are not carried over). The scroll position centres on the player. **[2.05]**
@@ -50,7 +50,7 @@ The editor uses Delphi shift states. Ctrl is the main modifier.
 | L | Edit links |
 | S | Edit signs |
 | P | Play |
-| M | Generate a map image (`graalmap.png`, "Generating the map may take some minutes. Proceed?") |
+| M | Generate a map image (`graalmap.png`, "Generating the map may take some minutes. Proceed?"). It walks the level list of the loaded big map (`bigmap.txt` or the list a `setmap` NPC loaded), 56×56 px per level, and does not follow links. |
 
 L, S, P and M are ignored while a combo box in the side panel has focus.
 
@@ -106,7 +106,7 @@ There are 10 types: Gray Soldier, Blue Soldier, Red Soldier, Shooting Soldier, S
 
 ### NPCs (`TEditPerson`, `TPersonAction`)
 
-An NPC has a GIF image (or none) and a GS1 script. The script editor has *Test* (syntax check, with the error shown in a status line) and *Style*, plus the usual Undo/Cut/Copy/Paste menu. Runtime flags set by scripts while testing appear in *Edit flags* (`TEditFlags`). That dialog edits the offline flag list, not anything stored in the level.
+An NPC has a GIF image (or none) and a GS1 script. The script editor has *Test* (syntax check, with the error shown in a status line) and *Style*, plus the usual Undo/Cut/Copy/Paste menu. Runtime flags set by scripts while testing appear in *Edit flags* (`TEditFlags`). That dialog edits the in-memory flag list, not anything stored in the level. The list survives Play and a return to the editor, but it is never written to disk and is lost on exit (live).
 
 ### Character NPCs (`TEditCharacter`)
 
@@ -138,5 +138,4 @@ The 2.05 loader picks the code width by magic: **13 bits only for `GR-V1.02` and
 
 ## Open
 
-- How *Generate map* walks the neighbouring levels has not been traced.
-- Whether the *Edit flags* list is saved anywhere offline.
+- *Generate map* and *Edit flags* were answered live; see `live-checks-editor-offline-sound.md`.

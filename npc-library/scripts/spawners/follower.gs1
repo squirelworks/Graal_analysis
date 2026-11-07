@@ -1,0 +1,41 @@
+// Original NPC library: pet that follows the player
+// Category: spawn / timers (followers)
+// Image: a small animal, 32x32
+// Events: playerenters, playertouchsme, timeout
+// Flag set: pet_found (it keeps following on later visits)
+//
+// Sits still until touched; from then on trots after the player, staying
+// two tiles behind, and waits when close. followplayer exists but works
+// offline only (manual §8.2.4.5), so this pet moves itself and works the
+// same online. It does not block, so it cannot trap the player.
+
+if (playerenters) {
+  setimg puppy.png;
+  dontblock;
+  timereverywhere;
+  if (pet_found) {
+    x = playerx + 2;
+    y = playery + 1;
+  }
+  timeout = 0.05;
+}
+
+if (playertouchsme && !pet_found) {
+  set pet_found;
+  play bark.wav;
+}
+
+if (timeout) {
+  if (pet_found) {
+    this.ddx = playerx + 0.5 - x;
+    this.ddy = playery + 1.5 - y;
+    this.len = (this.ddx ^ 2 + this.ddy ^ 2) ^ 0.5;
+    if (this.len > 2) {
+      this.sp = 0.2;
+      if (this.len > 6) this.sp = 0.5;   // catch up
+      x += this.ddx / this.len * this.sp;
+      y += this.ddy / this.len * this.sp;
+    }
+  }
+  timeout = 0.05;
+}

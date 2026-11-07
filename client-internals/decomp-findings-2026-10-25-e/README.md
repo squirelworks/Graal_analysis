@@ -10,7 +10,9 @@ Scope: what the real clients keep, what they re-request, and when a local file c
 | 01-request-lists.md | the three name lists, the window of four, which loaders ask for what, how replies settle names |
 | 02-save-rules.md | whether and where a download is written, the folder table, the time of the saved file, name lookup |
 | 03-open-points.md | what was not resolved and what would settle it |
+| 04-name-index-case-link.md | which copy of a duplicated name is used, the A–Z case fold, and the packet 40 link (a horse does not change it) |
 | request-rules.tsv | the request-side rules, one per row, with builds and evidence |
+| name-index-rules.tsv | the index, fold and packet-40 link, one row each |
 | download-folders.tsv | the save-folder decision table per build |
 | open-questions.tsv | unresolved points |
 

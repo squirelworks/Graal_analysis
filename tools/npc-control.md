@@ -4,7 +4,7 @@ Date: 2026-10-21
 
 Source: static read of the Delphi `rc141.exe` ("GServer2 Remote Control 2002/05/02"), the first RemoteControl build that contains NPC Control. Also `NPCControl1.3` (a 2001 docs bundle with no binary). Tags: **[bin]** read from the binary · **[doc]** from the 2001 text files · **[inf]** inferred.
 
-The later 2004 RemoteControl is in `remotecontrol.md` on the cross-version branch. This note covers the 2002 build, which is where NPC Control first appears.
+The later 2004 RemoteControl is in `remotecontrol.md`. This note covers the 2002 build, which is where NPC Control first appears. **Protocol layouts for `seihai-rc`:** `../protocol/npc-control.md`.
 
 ## What the NPCControl 1.3 bundle is **[doc]**
 
@@ -54,7 +54,7 @@ The RC never asks the user for an NPC-server address. It finds it like this:
 3. The server answers with id **79** (`PLO_NPCSERVERADDR`): `GSHORT player id`, then `ip,port`. The RC acts on it only if the NC socket is not already open and only if that player's nickname contains `(Server)`.
 4. The RC opens the NC socket to that address and sends the NC login above. The status bar shows "Connected to NPC-Server".
 
-The defaults `127.0.0.1` and `14804` in the binary are unused leftovers of the old start dialog. **[inf]** The 2001 doc's "(NPC Admin)" PM interface (see `npcserver-2001.md`) is the older channel that this socket replaced.
+The defaults (the loopback address and `14804`) in the binary are unused leftovers of the old start dialog. **[inf]** The 2001 doc's "(NPC Admin)" PM interface (see `npcserver-2001.md`) is the older channel that this socket replaced.
 
 ## Routing on the NC socket **[bin]**
 
@@ -132,4 +132,4 @@ The RC password key is the 8-byte string `\!x<|.ak`. Decoding is the reverse; a 
 - Replies handled: 0 (server list: `GCHAR count`, then per server `GCHAR field count` + that many `str` fields), 1 (one more server entry), 2 (end, disconnect), 4 (error text, disconnect).
 - The server list shows name and player count. Connect uses the chosen server's ip and port.
 
-The same key and nibble encoding hide the 2.05 client's list host, which the 2.05 notes left open: 2.05 rev 2 decodes to `www.graalonline.com`, port `14921`, version string `newmain`. **[bin]**
+The same key and nibble encoding hide the 2.05 client's list host, which the 2.05 notes left open: 2.05 rev 2 decodes to `<list-host-classic>`, port `14921`, version string `newmain`. **[bin]**

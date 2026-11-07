@@ -1,0 +1,61 @@
+// Original NPC library: burrower
+// Category: combat / weapons (AI), combat / baddies
+// Image: sheet with a dirt mound at x 0 and the creature at x 32, 32x32
+// Events: playerenters, playertouchsme, washit, timeout
+//
+// Lives underground as a harmless mound that drifts toward the player.
+// Within two tiles it bursts out for 1.5 seconds: then it hurts on touch
+// and can be hit. Afterwards it burrows again. Only hittable while out;
+// three hits kill.
+
+if (playerenters) {
+  setimgpart burrower.png,0,0,32,32;
+  dontblock;
+  drawunderplayer;
+  this.out = 0;
+  this.hp = 3;
+  this.alive = 1;
+  this.rest = 0;
+  timeout = 0.05;
+}
+
+if (playertouchsme && this.out == 1) hurt 1;
+
+if (washit && this.out == 1 && this.alive == 1) {
+  this.hp--;
+  play hit.wav;
+  if (this.hp <= 0) {
+    this.alive = 0;
+    putleaps 1,x,y;
+    hide;
+  }
+}
+
+if (timeout && this.alive == 1) {
+  this.ddx = playerx + 0.5 - x;
+  this.ddy = playery + 1 - y;
+  if (this.out == 1) {
+    this.left -= 0.05;
+    if (this.left <= 0) {
+      this.out = 0;
+      this.rest = 1;
+      setimgpart burrower.png,0,0,32,32;
+      dontblock;
+      drawunderplayer;
+    }
+  } else {
+    if (this.rest > 0) this.rest -= 0.05;
+    if (abs(this.ddx) + abs(this.ddy) < 2 && this.rest <= 0) {
+      this.out = 1;
+      this.left = 1.5;
+      putleaps 1,x,y;
+      setimgpart burrower.png,32,0,32,32;
+      blockagain;
+    } else {
+      // drift toward the player underground
+      if (abs(this.ddx) > 0.2) { if (this.ddx > 0) x += 0.1; else x -= 0.1; }
+      if (abs(this.ddy) > 0.2) { if (this.ddy > 0) y += 0.1; else y -= 0.1; }
+    }
+  }
+  timeout = 0.05;
+}

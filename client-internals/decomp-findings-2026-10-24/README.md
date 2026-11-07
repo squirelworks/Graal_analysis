@@ -18,6 +18,6 @@ Tables (TSV): sprite-step-table, gani-to-step, gani-name-table, gani-short-codes
 ## Gaps still open
 - Wire representation of swim (none found) and how others see emotes.
 - Damage formula (inferred sword power / 2).
-- Meaning of a few unlabelled mode values and status bit 0x20.
+- Meaning of a few unlabelled mode values. (Status bit 0x20 is now answered: `../status-bit-0x20.md`.)
 - Exact "same name group" rule for the saved respawn point.
 - 1st Graal room-name branch selection; 1.39 popup, death and sword.

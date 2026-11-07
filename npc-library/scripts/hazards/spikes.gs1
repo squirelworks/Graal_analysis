@@ -1,0 +1,17 @@
+// Original NPC library: floor spikes
+// Category: combat / hazards
+// Image: spikes, 32x32
+// Events: playerenters, playertouchsme
+//
+// Hurts on contact. Does not block, so the player walks onto it and is
+// knocked back by the hurt; draws under the player.
+
+if (playerenters) {
+  setimg spikes.png;
+  dontblock;
+  drawunderplayer;
+}
+
+if (playertouchsme) {
+  hurt 1;                     // <- half-hearts
+}

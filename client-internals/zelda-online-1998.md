@@ -68,3 +68,7 @@ After board:
 | Java applet | Delphi client |
 
 This is the last point before the version-token and binary-packet era.
+
+## See also
+
+`precursors-and-fan-builds.md` (2026-10-29) covers both Java versions from the uploads in more depth. Zelda Online 1 is a single-player applet with no network code. Zelda Online 2 ships 51 levels. It also covers the 11-bit `Z3-V1.02` code width, the full GServ line set, password saves, the ZeldaEditor and how its dialogs became 1st Graal's editor, and Java Graal.

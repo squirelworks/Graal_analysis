@@ -49,7 +49,7 @@ UI labels are the dialog captions. MO = More Options, PL = Player List Options.
 | `keyset_<action>_joystickbutton` | string | per action | Controls frame | One of `Joy_Up`, `Joy_Down`, `Joy_Left`, `Joy_Right`, `Button1`…`Button12` |
 | `keyset_<action>_key0` … `_key2` | string | per action | Controls frame | Three key slots per action, by key name (`Up`, `Num 8`, `Space`, `Tab`, …). Empty means unbound. |
 | `language` | string | `English` | Connect frame language box | |
-| `font` | string | `Tempus Sans ITC` | MO "Font:" | Chat and name font. The 2.22 folder ships this font file. |
+| `font` | string | `Tempus Sans ITC` | MO "Font:" | Chat and name font. The 2.22 folder ships this font file. Defaults per build in `chat-text.md` |
 | `fontsize` | int | 24 | MO "Size:" | |
 | `fixedport` | bool | false | MO "Use fixed port for data packages:" | |
 | `fixedudpport` | int | 14899 | MO port box | Used when `fixedport` is true |

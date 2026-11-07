@@ -1,0 +1,246 @@
+# Player mannerisms seen in real clients (1.39, 1.41, 2.05 rev 2, 2.22)
+
+Date: 2026-10-30. What the player does, tick by tick, in four real clients run under Wine with no network.
+
+* **2.05 rev 2.** The player state was read every 3 ms from outside the process while xdotool held keys, and the screen was recorded at 60 fps. Tag **[live]**. The test level is `lab1.nw` (described below).
+* **1.39, NewMain 1.41 (`graalnm24`) and 2.22.** These were traced the same way, from their own player records (see "Other builds" below). Tags **[1.39]**, **[1.41]**, **[2.22]**. Where only video was used, the tag is **[video]**, and those counts are good to ±1 tick.
+* **The gani files.** These are the files that the timings come from. Tag **[gani]**.
+
+A tick is the 50 ms game tick. Speeds are in tiles. This note has no addresses and no decompiler text. The harness, the level, the raw traces and the gani comparison script are in the project files under `graal-decompile/live-trace/mannerisms/`. Stills are in `mannerisms-shots/`.
+
+## Summary table (2.05 rev 2)
+
+| action | what the client does | timing |
+|---|---|---|
+| walk | `walk`, 0.5 tile per tick, one gani frame per tick (8 frames) | 8-tick cycle |
+| key released | `idle` in the same tick, frame 0 | 0 ticks |
+| run into a wall | `walk` keeps cycling in place; `push` on the **18th** blocked tick | 0.9 s |
+| push pose | 5 frames × 4 ticks; restarts at frame 0 each time the 20-step push cycle wraps | 20-tick loop |
+| slide along a wall | holding Down into a wall and adding Right walks right at full speed with `walk`. The blocked count drops to 1 and stays there. | — |
+| lift (A) | `lift` for **6 ticks**, then `carrystill`. The object counts as carried from the 5th tick. | 0.3 s |
+| carry walk | `carry`, still 0.5 tile per tick, 8 frames × 1 tick | — |
+| hide (D while carrying) | `hiddenstill` / `hidden`; walking is **0.1 tile per tick**; only the object is drawn | — |
+| throw (A, or S from hiding) | `idle` in the same tick | 0 ticks |
+| sword (S) | `sword` 5 frames × 1 tick, then `idle`. The player stops while it plays. | 5 ticks |
+| spin (S again during a swing, has-spin status) | the swing is cut off in the next tick and `spin` plays: 13 frames × 1 tick, then `idle` | 13 ticks (0.65 s) |
+| hurt | `hurt` for 31 ticks (12 if an arrow is held); knockback 1 tile per tick for 5 ticks; blinking and no further hits for 40 ticks | 1.55 s / 2.0 s |
+| swim | `swim` from the first tick the point (x + 1.5, y + 2) is on water; 0.5 tile per tick; 8 frames × 2 ticks; **keeps animating when standing still** | 16-tick cycle |
+| grab / pull | `grab` on A at a wall. `pull` starts on the arrow away from the wall: 3 frames × 2 ticks, with a pull try every 18 ticks. | — |
+
+## Walking, idle and running in place **[live]**
+
+* Each walk tick moves 0.5 tiles and advances the `walk` frame by one (0 to 7, then 0). The first tick after the key goes down already moves the player.
+* Letting go of the arrow switches to `idle` frame 0 in the next tick. There is no slow-down and no finishing step. In `idle` nothing in the player state changes from tick to tick.
+* **Against a wall.** A refused step still advances the walk frame, so the player runs in place. The blocked-step count goes 1, 2, …, 17, and `push` replaces `walk` on the 18th. This is the same count as the ledge jump (`ledges-push-pull.md`). Deep water (tile 3644) counts as a wall.
+* **The push pose.** Each push frame lasts 4 ticks (`push.gani`: 5 frames, each `WAIT 3`). When the count reaches 38 it goes back to 18, and the gani starts again from frame 0. Five frames of 4 ticks make exactly that 20-tick cycle, so the pose loops seamlessly.
+* **Sliding along a wall.** Still holding Down into the wall, add Right. The player walks right at the full 0.5 tile per tick in `walk`, and the push pose is gone in that tick. Let go of Right and the player runs in place again from walk frame 0. The blocked count goes on from where it had dropped to (1), so the full 18 ticks have to pass again before `push`.
+* Pressing the arrow again into the wall after letting go starts the count at 1, with no push straight away.
+
+## Lifting, carrying, hiding and throwing **[live]**
+
+Test objects: a bush, a pot, a light stone, a black stone and a sign in a row (`lab1.nw`, y = 20).
+
+* **Lift.** A at the bush (or the pot) plays `lift` at once. A five-step counter runs 4 down to 0, and the carried flag is set on the 5th tick. `carrystill` follows on the **7th tick** (6 ticks of `lift`, as `lift.gani` = 1 frame with `WAIT 5`). The bush tile turns into its stump at once (`arrays.dat` array 12).
+* **Carry.** Walking while carrying plays `carry` (8 frames, one per tick) at the normal 0.5 tile per tick. There is no slow-down. Stopping plays `carrystill`. The object is drawn over the head. In the video the head and arms are hidden behind it (`205-pot-throw.png`, first frame).
+* **Hide** (D while carrying a bush). In the same tick the pose becomes `hiddenstill`, and the player's "hidden" flag (STATUS bit 0x02, see `carry-hide-and-glove.md`) is set. Only the bush is drawn, where the player stands. Body, head and shadow are all gone (`205-hidden-under-bush.png`).
+  * Walking while hidden plays `hidden` at **0.1 tile per tick**. That is a fifth of the walk speed, which confirms the 0.2 factor in `carry-hide-and-glove.md`. The gani frame does not advance: `hidden.gani` is one frame with `WAIT 4` and a step sound.
+  * Stopping goes back to `hiddenstill`.
+  * D again leaves the hiding place, back to `carrystill` in the same tick.
+  * S while hidden throws the bush. The player is in `idle` in that tick, with the hidden flag cleared and the carried flag cleared.
+* **Throw** (A while carrying). The player is in `idle` in the same tick. Video of a pot thrown upwards (`205-pot-throw.png`, one frame per tick):
+  * The object flies about 6 tiles in 9 ticks. Its shadow moves along the ground while the object itself is drawn rising and then falling back onto the shadow.
+  * It breaks into four pieces that spread out over 4 ticks and then vanish.
+  * The pot's base tile (the grey plinth) stays where it was lifted.
+* A at a black stone with glove 1 does nothing: no lift and no grab. The stone is not a wall tile.
+
+## Sword **[live]**
+
+* S plays `sword` in the next tick. Five frames of one tick each, then `idle` (`sword.gani`: 5 frames, `SETBACKTO idle`).
+  * The player does not move while it plays, even with an arrow held.
+  * With the arrow still held, walking resumes in the tick after the swing, from walk frame 0.
+  * Holding S does not swing again. Every swing needs a new press.
+  * Holding S for 2.5 s gives no charge and no spin, with or without the spin status. See the next section.
+* **What it looks like** (facing up, `205-sword-up-bush-cut.png`):
+  * The blade sweeps from the right side over the head to the left.
+  * The bush in front is cut on the **first** swing frame. The leaves fly up and out for about 8 ticks, and the stump is left behind.
+  * The shield stays drawn on the right during the swing.
+* **Offline editor play with no sword.** A player started from the editor has sword power 0. S still plays the full `sword` gani and sound, but no blade is drawn and nothing is cut. Give the player a sword (`setsword sword1.gif,1` in a level NPC) to test cutting.
+
+## Spin attack **[live, online]**
+
+Recorded on the online lab: the stub server sent `STATUS` (prop 18) = 0x54 (male, weapons allowed, has spin). The offline editor has no way to set the has-spin status.
+
+* **It is a second press, not a charge.** In 2.05 the spin starts when S is pressed again while `sword` is still playing. Holding S down does nothing extra.
+  * The decompile agrees: the S handler checks "already in the sword mode (6) and has spin", then switches to the spin mode (13) instead of starting a new swing.
+  * The client only sees a new press if S was up for at least one tick in between. A release and re-press inside the same 50 ms tick is missed.
+  * A press on swing frames 2, 3 or 4 all worked. A press after the swing has ended (the player is back on `idle`) starts a normal swing, not a spin.
+  * A press during the spin is ignored. It does not queue another spin or a swing.
+* **Timing.**
+  * The swing is cut off: `spin` frame 0 shows in the tick after the second press, so a press on frame 3 skips sword frame 4.
+  * `spin` is 13 frames of one tick each (650 ms), then `idle` in the next tick.
+  * The client stores the facing direction when the spin starts.
+  * The client sends `GANI=spin` to the server once at the start and `GANI=idle` at the end, and asks for `spin.gani` the first time.
+* **What it looks like** (`205-spin-attack.png`, facing down; first row is the swing, then the spin):
+  * The blade sweeps once round the player with a pale blue trail, starting from the facing direction and turning down, right, up, left and back to down.
+  * The body turns with the blade, so the back view shows when the blade is above.
+* **2.22 does the same** [2.22]. It was run online against the patched GServer-v2 beta4 lab server, with `STATUS 84` in the account file.
+  * A second press on swing frame 3 cut the swing off, and `spin` ran 13 × 1 tick, then `idle`.
+  * Holding S gave one swing only, and a third press during the spin was ignored.
+  * The 2.22 pack's own `spin.gani` looks the same, blade trail included (`222-spin-attack.png`).
+  * A brand-new account created with `STATUS 84` once stalled on "Loading account…"; an existing account edited to 84 logged in fine. Not chased further.
+* Not checked: which bushes the spin cuts and whether it hits players or NPCs.
+
+## Hurt, knockback and blinking **[live]**
+
+The test NPC runs `if (playertouchsme) { hurt 1; }`.
+
+* Touching it plays `hurt` in the same tick and takes half a heart (3 → 2.5).
+* **Knockback.** The player moves **1 tile per tick for 5 ticks**, along the direction from the NPC's image centre to the player's centre. In the run it went from (29.5, 48) to (28.79, 52.95), which is 5.0 tiles. This is exactly the decompile's description (`decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md`).
+  * If the player is inside a blocking NPC's image, every knock step is refused and the player does not move. A large image, such as `bomb1.png` at 128 × 320, makes this happen.
+* **Pose.** `hurt` is shown for **31 ticks** (`hurt.gani`: 1 frame, `WAIT 30`), then `idle`. The hurt pose keeps the facing.
+* **Can't be hurt again** for 40 ticks (2 s) from the hit. The second touch in the run came only after that.
+* **Blinking.** For the whole 40 ticks the player's body is drawn in one tick and left out in the next: only the shadow shows on the "off" ticks (`205-hurt-knockback-blink.png`). It goes on after `hurt` has given way to `idle`.
+* **Walking again with an arrow held.** The hurt counter starts at 40 and drops by one each tick. While it is above 29 the arrows are ignored. From the 12th tick after the hit (counter 28), a held arrow walks again and `walk` replaces `hurt`. So `hurt` lasts 31 ticks only when no arrow is held. Re-run 2.05 with Left held through the hit: hurt at tick 88, knockback ended at tick 93, walking at tick 100. Blinking and the 40-tick no-rehit go on regardless.
+
+## Swimming **[live]**
+
+Water tile 461 (passable, liquid); the pool starts at x = 40.
+
+* The switch to `swim` happens on the tick where x + 1.5 reaches 40 (x = 38.5). Leaving the water happens where x + 1.5 drops below 40 (x = 37.5). In that tick `walk` comes back, at frame 0.
+* Swimming speed is the same 0.5 tile per tick as walking.
+* `swim` steps one frame every **2 ticks** (8 frames, `WAIT 1`), so the stroke takes 0.8 s.
+* **It keeps animating while the player is not moving.** It does not reset when the player turns.
+* The splash at entry and exit is in `water-and-ganis.md`.
+
+## Grab and pull **[live]**
+
+At a wall of deep-water tiles, facing down:
+
+* A at the wall plays `grab` at once and holds it.
+* Holding the arrow away from the wall (Up) plays `pull`: 3 frames of 2 ticks each (`pull.gani`, `WAIT 1`). The pull cycle counter goes 2 … 19 and back to 2, so it repeats every 18 ticks, as in `ledges-push-pull.md`. Nothing moves against a wall.
+* **Letting go of the arrow while still holding A.** The cycle counter drops to 1, but the pose stays `pull` and keeps animating. It does not go back to `grab`.
+* **Letting go of A as well.** The pose still stays `pull`, animating in place, until the next key moves the player. This answers the open question in `ledges-push-pull.md`: nothing sets `idle` there, and the stale pull loop is what is drawn.
+
+## Other builds: 1.39, NewMain 1.41 and 2.22
+
+### How each was run
+
+* **1.39** is the last client before ganis, and its player animation is built into the executable. It runs in its own One Player mode, which loads `levels/start1.graal`.
+  * The test level was rewritten as a `GR-V1.03` file with the same objects (`mkgraal.py`). The objects are moved so that the view does not clamp at the edges: the row of five at y = 24, the water at x 42 to 59, the wall at y = 44, and the bushes at y = 34.
+  * The player starts at (21.5, 28).
+  * Keys reach the game only with `nodirectinput=true` and `joystickon=false` in `graalconfig.txt`.
+* **NewMain 1.41.1** (`graalnm24`, January 2001) is the first gani client. It is an update pack: copy it over the 1.39 folder, because it needs 1.39's `headsconfig.txt` and GIF heads. It opens a `.nw` in the editor and plays it the same way as 2.05 (`startnw.sh`).
+* **2.22** (`Graal_222.exe` in the Reborn folder) also opens in the editor. Its Load dialog did not take the typed start position, so the player started at the default (30.5, 30).
+* **Finding the player record.** In each build the record starts with its class pointer, followed by x at +4 and y at +0xC (doubles), as in 2.05. One global points to it. `diffscan.py` finds it by walking a known distance; it checks doubles at both 4-byte alignments.
+
+### Cross-version table
+
+"=" means the same as 2.05.
+
+| behaviour | 1.39 | 1.41 | 2.05 rev 2 | 2.22 |
+|---|---|---|---|---|
+| walk speed / frame cycle | 0.5 per tick, 8 ticks [video] | = | 0.5 per tick, 8 frames × 1 tick | = |
+| blocked count: push at 18, wrap 38 → 18 | **=** (the same counter) | = | yes | = (push in the tick after 18 blocked ticks) |
+| push pose frames | about 2 ticks each [video] | 4 ticks (`push.gani`) | 4 ticks | = (5 × 4 ticks, looping) |
+| lift | counter 4 → 0, carried on the 5th tick; no lift pose of its own | `lift` 6 ticks, then `carrystill` | = | = |
+| carried-object id | 261 for a bush (the same sprite number) | – | 261 | – |
+| hide (D while carrying) | hidden flag; walk 0.1 per tick | hidden flag, but the pose **stays `carrystill` / `carry`**, with the legs cycling at 0.1 per tick | `hiddenstill` / `hidden` | = 2.05 |
+| S throws from hiding | yes | yes | yes | yes |
+| S throws while carrying (not hidden) | – | – | yes [dec] (not traced live) | **yes**: `carrystill` to `idle` in the tick after the press, no `sword` frame |
+| sword | counter 1 → 6 (5 ticks); cuts the bush | `sword` 5 ticks; cuts the bush on the first frame (`141-sword-up-bush-cut.png`) | = | – |
+| hurt: lock-out / no-rehit | 40 ticks | 40 | 40 | = |
+| knockback | **4 steps** of 1 tile (4 tiles) | 5 steps (5 tiles) | 5 steps | = (4.9 tiles on the same test) |
+| hurt pose | about 10 ticks, then the normal pose [video] | `hurt` 31 ticks | 31 ticks; 12 with an arrow held | = (12 with an arrow held) |
+| blinking | starts **only after the hurt pose**, then every other tick until tick 40 [video] | from the hit, every other tick | from the hit | – |
+| swim entry / exit point | x + 1.5 on liquid | = | = | = |
+| swim speed | 0.5 per tick | = | = | = |
+| standing still in water | the water ring keeps alternating; the head stays still [video] | **`swim` frame resets to 0 and freezes** | keeps animating | keeps animating; the frame resets to 0 at the stop, then runs on |
+| letting go of the arrow while pulling | – | back to **`grab`** | stays `pull`, looping | stays `pull`, looping |
+| letting go of A after a pull | – | `grab` stays until the next action | `pull` loops until the next move | = 2.05 |
+
+### Notes per build
+
+* **1.39 hurt** [1.39]. The touch NPC uses the same `hurt 1`. The pose shows the player's back with the arms out (`139-hurt-then-blink.png`).
+* **1.39 sliding past a blocking NPC** [1.39]. Walking right into a character NPC's side nudged the player along it by 0.125 tiles per tick. The player got around it, and `playertouchsme` did not fire on that contact. A timer NPC that tests `playerx` / `playery` was used for the hurt test instead.
+* **1.39 swim** [1.39]. Only the head and a water ring are drawn. Standing still, the ring alternates between two shapes (`139-swim-standing.png`).
+* **1.41 hide** [1.41]. The `graalnm24` gani folder does hold `hidden.gani` and `hiddenstill.gani`, but the 1.41 client does not play them. The hidden player keeps the carry poses, and the leg cycle still runs one frame per tick at a fifth of the speed.
+* **1.41 sword** [1.41]. With `setsword sword1.gif,1` the blade is drawn and the bush in front is cut on the first swing frame, as in 2.05.
+* **2.22 sword while carrying** [2.22]. In the `t222` run the bush is lifted, D hides, the player walks hidden, D comes out (`carrystill`), then S. The tick after S shows `idle`, with no `sword` frame: the sword key throws, as the 2.05 key handler does. 2.31 was not run. Not run in any build: S during the six `lift` ticks, and a throw with an arrow held.
+* **2.22** [2.22]. Lift, hide, the stuck pull loop, swimming in place, push and hurt all behave as in 2.05. The hurt test was the same walk into the touch NPC from the right, with the arrow held, and gave the same knockback and the same 12 ticks before walking resumed. The only difference seen is that `swim` restarts at frame 0 when the player stops.
+
+## 5.x and 6.x Windows clients
+
+`protocol/v5v6-lab-play.md` has the same tests on 5.24r4, 5.30r3 and 6.03r7, timed from their own messages on a lab server. Walk 0.5 tile per tick, `push` at about 0.9 s, `lift` for 0.3 s then `carrystill`, throw in the same tick, and `sword` for 5 ticks with the bush cut as the swing starts are all the same as 2.05. New in those builds: while pushing, the client sends the trigger action `pushed,0` once a second. Chat is outlined text with no bubble, and it is cleared by the client after about 3 s. Hiding under a bush or stone (status bit 0x02, only the object drawn, 1.5 px per tick) and the pot's "D does nothing" also match 2.05. Grab and pull start in the next tick, and the client sends `pulled,1` 0.85 s into a pull. A hit plays `hurt` for 1.55 s, which is the 31 ticks of the `hurt` gani below, and pushes the player 5 tiles in 5 ticks. Swimming is as fast as walking.
+
+## The built-in ganis across the gani sets **[gani]**
+
+The 2.0x archives in the project hold only the executables, and the 2.05 client fetches its ganis from the server. The gani sets on hand are:
+
+* NewMain 2.4 and 2.6, the first gani clients (December 2000 files);
+* NewWorld beta 1 (August 2001);
+* the Graal Reborn 2.22 pack.
+
+NewMain 2.4 and 2.6 are identical. In the table below, frames × ticks gives the ticks per frame (1 + WAIT); ">x" is SETBACKTO x; L means LOOP.
+
+| gani | NewMain 2.4 / 2.6 | NW beta 1 | 2.22 pack |
+|---|---|---|---|
+| idle | 1 | 1 | 1 |
+| walk | 8 × 1, L | 8 × 1, L | 8 × 1, L |
+| walkslow | 8 × 2, L | – | 8 × 2, L |
+| sword | 5 × 1, >idle | 5 × 1 | 5 × 1, >idle |
+| spin | 13 × 1, >idle | – | 13 × 1, >idle |
+| push | 5 × 4, L | **3 × 4**, L | 5 × 4, L |
+| pull | 3 × 2, L | 3 × 2, L | 3 × 2, L |
+| grab | 1 | 1 | 1 |
+| lift | 1 × 6, >carrystill | **6 × 1** | 1 × 6, >carrystill |
+| carry | 8 × 1, L | 8 × 1, L | 8 × 1, L |
+| hidden | 1 × 5, L, single direction | (no frames) | 1 × 5, L, single direction |
+| kick | 1 × 5, >idle | 1 × 5 | **1 × 11**, >idle |
+| shoot | 1 × 11, >idle | 1 × 11 | 1 × 11, >idle |
+| hurt | 1 × 31, >idle | 31 frames (10 × 2 then 21 × 1) | 1 × 31, >idle |
+| dead | **13 × 4** (52 ticks) | 5 frames, >gameover | **15 frames** (3 × 7 + 2 × 8 = 37 ticks) |
+| swim / lava | 8 × 2, L | 8 frames (6 × 2 + 2 × 1) | 8 × 2, L |
+| ride | 4 × 2, L | 4 × 2, L | 4 × 2, L |
+| sleep | 1 | **2 × 19**, L | 1 |
+
+* Every 2.05 live timing above matches the NewMain / 2.22 column: walk, push, pull, lift, carry, sword, hurt and swim.
+* **The hidden ganis.** In NewMain, `hidden` and `hiddenstill` draw only a shadow, and the client itself draws the carried object. The 2.22 pack adds the object to the gani as an `ATTR3` sprite (`bushitem.png`). A 2.22 server's ganis drawn by the 2.05 client would therefore show the bush twice.
+* Every set keeps the same sounds on the same frames: `steps2.wav` on walk frames 0 and 4, `sword.wav` on frame 0, `lift.wav` on lift and hurt, and `water.wav` / `water2.wav` on swim / lava.
+* The full per-file output, with frame-content hashes, is `gani-compare.txt` in the project folder.
+
+## Asset gotcha: 2.05 loads only GIF heads, bodies and swords **[live]**
+
+Given the 2.22 folder, where heads, bodies, swords and shields are PNG, 2.05 rev 2 looks only for `head0.gif` and the like. It finds nothing and draws the player with no body. That is the "missing body" in `live-trace-205.md`, and it is not a Wine bug. Converting `levels/{heads,bodies,swords,shields}/*.png` to `.gif` next to them fixes it. A Seihai 2.05 profile that resolves player images should try `.gif` only.
+
+## What Seihai does differently (from its `client/src/pose.rs`, 2026-10-30)
+
+Seihai was not changed here. These are what a 2.05 profile would need:
+
+1. **Push.** Seihai shows `push` after 17 blocked steps and advances it one frame per blocked step. The real client shows it on the 18th and holds each frame for 4 ticks (it honours `WAIT`).
+2. **Pull.** Seihai steps `pull` once per tick; the real client steps it once every 2 ticks. Seihai drops the pose on release; the real client leaves `pull` looping.
+3. **Gani WAIT.** Seihai does not read per-frame `WAIT`. The real hurt pose is 31 ticks with no arrow held, or 12 ticks before a held arrow walks again (Seihai uses a 500 ms minimum). Lift is 6 ticks. Swim is 2 ticks per frame, which Seihai already uses.
+4. **Swim while still.** Seihai steps `swim` per step taken. The real client keeps it animating when the player stands still in water.
+5. **Hurt blink.** There is no blink in Seihai. The real client draws the body on alternate ticks for 40 ticks.
+6. **Hide.** There is no `hiddenstill` / `hidden`, no 0.1 tile per tick walk and no hidden flag in Seihai.
+7. **Lift pose.** Seihai goes straight to `carrystill`. The real client plays `lift` for 6 ticks first.
+8. **Spin.** Seihai records the `spinattack` flag but never plays `spin`. The real client turns a second S press during a swing into a 13-tick spin.
+
+## Harness
+
+* `act.py <name> "<keys>"` runs a key script, for example `down:Up w:0.6 up:Up tap:a`. It records the player state (gani, frame, position, every changed field) and 60 fps video at the same time. A `tap` holds the key for 120 ms: shorter taps are lost between ticks. `NOMEM=1` records video only, for builds whose player record has not been mapped.
+* `sh.py` prints a trace, with the key presses interleaved.
+* `mkgraal.py` writes the 1.39 test level as `GR-V1.03`, with NPCs given on the command line. `start139.sh` starts 1.39 in One Player mode, and `startnw.sh <dir> <exe> <level> <x> <y>` starts an editor-era build on a `.nw`.
+* The per-build settings for `act.py` (process name, player-record global, gani offset) are in `README.md` in the project folder.
+* `act.py` also takes `gx:` / `gy:` steps, which walk until the player reaches that x or y.
+* `mklevel.py` writes `lab1.nw`:
+  * five liftable objects in a row at y = 20;
+  * a pool of water tile 461 at x 40 to 55, y 10 to 30;
+  * a deep-water wall at y = 40;
+  * four bushes at y = 50;
+  * a `setsword` NPC, a touch-to-hurt NPC at (30, 44) and a `lay spinattack` NPC.
+* `gani.py` summarises and compares gani folders.
+
+## Open
+
+* **The spin attack in 1.39 and 1.41.** It was seen only in 2.05 and 2.22, online. Offline, neither `lay spinattack`, `set canspin` nor a `spinattack` chest gave the has-spin status.
+* **1.39's push and walk frames** are not in its player record as plain numbers; they were read from video only.

@@ -1,0 +1,22 @@
+// Original NPC library: notice board that follows quest progress
+// Category: object / signs
+// Image: a notice board
+// Events: playerenters, playertouchsme
+// Flags read: quest_herbs_given, quest_herbs_done (rename to suit)
+//
+// The board shows a different notice at each step of a quest. The quest
+// NPCs set the flags; the board only reads them, so it can sit anywhere.
+
+if (playerenters) {
+  setimg noticeboard.png;
+}
+
+if (playertouchsme && playerdir == 0) {
+  if (quest_herbs_done) {
+    say2 Thanks to all who helped. The#bhealer's hut is open again.;
+  } else if (quest_herbs_given) {
+    say2 Wanted: three blue herbs.#bBring them to the healer.;
+  } else {
+    say2 The healer is ill. Anyone#bable to help, ask at the inn.;
+  }
+}

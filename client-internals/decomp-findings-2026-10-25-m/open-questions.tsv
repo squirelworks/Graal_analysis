@@ -1,0 +1,9 @@
+question	status	note
+the object list with two flags and a player-sized box (checked only with a client option on)	open	found in the blocking test; what it holds was not identified
+the 1.5 x 2 box list with an enabled flag (x + 0.25 to x + 1.75, y to y + 2)	open	found in the blocking test; not identified (signs, baddies, something else)
+NPC shape blocking (rectangle versus per-tile shapes)	open	two shape kinds are read; the per-tile one compares a tile type to 20
+speed factors other than 1.0 and 1.2	open	slower factors exist for swimming and carrying (0.2, 0.4, 0.8); the 0.8 case depends on a carried object; not tied to states
+the push/pull block probes	open	a separate probe set; not read
+which tile lookup the second passable list serves	open	two lists are tried in turn; the second one's origin was not traced
+stopping positions on a live 2.22 client	open	the rule is read from the binary; a lab walk toward a rock from both alignments would confirm the flush snap
+wire rounding of a nudged position	open	the client sends its own rounding of a non-half-tile position; not captured

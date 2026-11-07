@@ -14,7 +14,7 @@ Notes on the small server-side tools uploaded with the NPC Control bundle. Tags:
 2. reads every value under `HKCU\Software\Graal\Client` (where the Graal client keeps its saved login) and joins them as `name:<tab>value` lines;
 3. Base64-encodes that text and opens `iexplore` on a third-party URL (stored Base64-encoded in the exe) with the data appended.
 
-That sends the user's saved Graal account details to someone else's web server. The About box also opens a graalonline.com URL whose parameter is an insulting message. The tool's listserver behavior is not otherwise interesting.
+That sends the user's saved Graal account details to someone else's web server. The About box also opens a <graalonline-site> URL whose parameter is an insulting message. The tool's listserver behavior is not otherwise interesting.
 
 ## gs2emu-serverlist (TheDgtl snapshot `de66a3f`) **[src]**
 

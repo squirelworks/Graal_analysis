@@ -1,5 +1,5 @@
 step	condition	result	builds
 1	level left is empty	save	all read
 2	index(new)*index(old) < 0 in current gmap list (-1 = absent)	save	all read
-3	name groups differ	save	2.05 rev2 only
+3	name groups differ	save	2.00 (all revisions) to 2.05 rev2; not in 2.17.1, 2.22, 2.31
 4	otherwise	do not save	all read

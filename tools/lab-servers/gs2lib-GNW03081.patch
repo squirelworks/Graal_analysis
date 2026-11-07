@@ -1,0 +1,25 @@
+diff --git a/src/IUtil.cpp b/src/IUtil.cpp
+index 4791abf..9131053 100755
+--- a/src/IUtil.cpp
++++ b/src/IUtil.cpp
+@@ -74,9 +74,9 @@ static const char* const clientVersions[] =
+ 	"",		// CLVER_1_391,
+ 	"",		// CLVER_1_392,
+ 	"",		// CLVER_1_4,
+-	"",		// CLVER_1_41,
++	"",		// CLVER_1_41,
+ 	"GNW13110",		// CLVER_1_411,
+-	"GNW31101",		// CLVER_2_1,
++	"GNW03081",		// CLVER_2_1,
+ 	"GNW01012",		// CLVER_2_12,
+ 	"GNW23012",		// CLVER_2_13,
+ 	"GNW30042",		// CLVER_2_14,
+@@ -165,7 +165,7 @@ static const char* const clientVersionString[] =
+ 	"",		// CLVER_1_391,
+ 	"",		// CLVER_1_392,
+ 	"",		// CLVER_1_4,
+-	"",		// CLVER_1_41,
++	"2.05",	// CLVER_1_41 (lab)
+ 	"1.41r1",	// CLVER_1_411,
+ 	"2.1",		// CLVER_2_1,
+ 	"2.12",		// CLVER_2_12,

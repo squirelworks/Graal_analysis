@@ -1,0 +1,12 @@
+// Original NPC library: floor decal (rug, puddle, shadow, flowers)
+// Category: interaction / triggers
+// Image: the decal
+// Events: playerenters
+//
+// Draws under the player and never blocks.
+
+if (playerenters) {
+  setimg rug.png;
+  dontblock;
+  drawunderplayer;
+}

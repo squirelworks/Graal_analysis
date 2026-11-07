@@ -1,0 +1,11 @@
+rule	builds	evidence
+file-name fold is A-Z to a-z only; other bytes unchanged	2.05 rev 2, 2.22	04-name-index-case-link.md [bin]
+index key is the folded base name; compare is exact on that fold	2.05 rev 2, 2.22	same
+a file of that name in the current directory beats the index (game folder in 2.22; the levels directory in 2.05 rev 2)	2.05 rev 2, 2.22	same
+2.22 walk: files of a directory before its subdirectories, directory-listing order; later last-write time replaces; equal or earlier time keeps the first path	2.22	same
+2.22 skips game-folder children pms, profiles, weblevels, and files whose folded extension is .code	2.22	same
+2.05 rev 2 lookup: remembered path, else depth-first search of the opened world root then the game folder, first hit only	2.05 rev 2	same
+2.05 rev 2 full-folder indexer is present and would keep the first name, but nothing calls it	2.05 rev 2	same
+packet 40 dropped unless the attacker's link integer equals the victim's; new players are 0	2.05 rev 2, 2.22	same
+horse image is a different slot and does not write that integer	2.05 rev 2, 2.22	same
+2.22 link is the layer/parent value (layer number minus one, plus the parent's link)	2.22	same

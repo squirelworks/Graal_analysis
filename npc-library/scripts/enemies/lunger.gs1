@@ -1,0 +1,97 @@
+// Original NPC library: lunger
+// Category: combat / baddies
+// Image: a 32x32 creature
+// Events: playerenters, playertouchsme, washit, wasshot, timeout
+//
+// Sits at home. When the player lines up with it on the same row or column
+// (within a tile) and within ten tiles, it charges that way at speed until
+// it hits a wall, waits a moment, then walks back home. Touching it hurts.
+// Three sword hits kill it until the player re-enters the level.
+//
+// States: 0 waiting, 1 charging, 2 stunned at the wall, 3 returning, 9 dead.
+
+function blocked() {
+  // 1 when the next step (this.dx, this.dy) would put a corner in a wall
+  this.nx = x + this.dx;
+  this.ny = y + this.dy;
+  this.hit = 0;
+  if (onwall(this.nx, this.ny) || onwall(this.nx + 1.9, this.ny) || onwall(this.nx, this.ny + 1.9) || onwall(this.nx + 1.9, this.ny + 1.9)) {
+    this.hit = 1;
+  }
+}
+
+function hurtme() {
+  this.hp -= this.dmg;
+  play hit.wav;
+  if (this.hp <= 0) {
+    this.state = 9;
+    putleaps 4,x,y;
+    if (random(0,2) < 1) lay2 heart,x+0.5,y+0.5;
+    hide;
+  }
+}
+
+if (playerenters) {
+  setimg lunger.png;
+  this.homex = x;
+  this.homey = y;
+  this.hp = 3;
+  this.speed = 0.6;           // <- tiles per tick while charging (ticks are 0.05 s)
+  this.state = 0;
+  timeout = 0.05;
+}
+
+if (playertouchsme && this.state != 9) {
+  hurt 1;
+}
+
+if (washit && this.state != 9) {
+  this.dmg = playerswordpower;
+  hurtme();
+}
+
+if (wasshot && this.state != 9) {
+  this.dmg = 1;
+  hurtme();
+}
+
+if (timeout && this.state != 9) {
+  this.px = playerx + 0.5;    // player's body, top-left of a 2x2 box
+  this.py = playery + 1;
+  if (this.state == 0) {
+    this.dx = 0;
+    this.dy = 0;
+    if (abs(this.py - y) < 1 && abs(this.px - x) < 10) {
+      if (this.px > x) this.dx = this.speed; else this.dx = -this.speed;
+    } else if (abs(this.px - x) < 1 && abs(this.py - y) < 10) {
+      if (this.py > y) this.dy = this.speed; else this.dy = -this.speed;
+    }
+    if (this.dx != 0 || this.dy != 0) this.state = 1;
+  } else if (this.state == 1) {
+    blocked();
+    if (this.hit == 1) {
+      this.state = 2;
+      this.wait = 0.6;
+    } else {
+      x = this.nx;
+      y = this.ny;
+    }
+  } else if (this.state == 2) {
+    this.wait -= 0.05;
+    if (this.wait <= 0) this.state = 3;
+  } else if (this.state == 3) {
+    // walk home at a third of the charge speed, one axis at a time
+    this.step = this.speed / 3;
+    if (abs(x - this.homex) > this.step) {
+      if (x < this.homex) x += this.step; else x -= this.step;
+    } else if (abs(y - this.homey) > this.step) {
+      x = this.homex;
+      if (y < this.homey) y += this.step; else y -= this.step;
+    } else {
+      x = this.homex;
+      y = this.homey;
+      this.state = 0;
+    }
+  }
+  timeout = 0.05;
+}

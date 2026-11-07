@@ -12,7 +12,7 @@ The notes come from static analysis of the shipped executables. No decompiler ou
 | | Gen 1 (1st Graal to 1.1.9) | Gen 2 (1.21 on) |
 |---|---|---|
 | Server | Lobby/relay, no game logic | GServer: accounts, levels, NPCs, flags, weapons |
-| Port | 14801 local default, 14802 Cyberjoueur | 14804 (`www.graalonline.com`) for 1.21 to 1.3 test, 14900 from 1.31 |
+| Port | 14801 local default, 14802 Cyberjoueur | 14804 (`<list-host-classic>`) for 1.21 to 1.3 test, 14900 from 1.31 |
 | Framing | Text lines | `u16` big-endian length, then a zlib stream |
 | Message ids | One letter (`D` plus a type letter) | `chr(id+32)` as the first byte of each line |
 | Identity | Server-given 8-character id, nickname sent as data | Account and password at login |
@@ -73,7 +73,8 @@ Then it checks the minimum for the connection type.
 
 The older tokens stay on the list so that RemoteControl (GSERV011) can still log in.
 Refusals and login errors ("The account has been disabled by an admin.", "The account is already in use.", "An account with the name and password you typed in doesn't exist.") go out as server id 16, which is DISCMESSAGE in the later numbering.
-After a good player login the 1.3 server sends the player's props (9), flags (28), NPC weapons (33) and the other players' props (8), among others.
+Captured under Wine (`client-internals/live-trace-early.md`): after a good player login GServer13 sends 9 (own props), 28 (flags, only if the account has any), 14 (warp), 100 followed by a separate frame holding 101 and the board, 6 (level name), 1 (links), 5 (signs), 39 (level modification time), 3 (NPC props with scripts), and 10. GServer 1.28 sends the same sequence without 39, which arrives with the 1.3 level cache. GServer 1.21 also sends no 39, and it packs the whole reply (9, 14, 100, 101 with the board, 6, 1, 10) into a single zlib frame. When another player is already on the level, the newcomer gets an 8 (other player's props) right after its own 9.
+A token newer than the server's list is refused like an old one: GServer13 answers GSERV016 (1.31) and GSERV018 (1.32) with id 16 "You need at least Graal version 1.3 to play on this server." **[cap]**
 
 ## Message ids
 
@@ -90,13 +91,25 @@ The 1.21 handlers line up with the later names: 1 links (`TEditorLink`), 2 baddy
 
 The client-to-server ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32. Other sends pass the id in a register, so these lists are not complete.
 
+## Props by build
+
+| | 1.21 | 1.28 b2 | 1.3 test | 1.31 | 1.32 |
+|---|---|---|---|---|---|
+| Player props the client parses | 0–24 | 0–31 | 0–32 | 0–32 | 0–33 |
+| Player props the client sends | 0–24 | 0–24, 26, 31 | 0–24, 26, 31, 32 | same as 1.3 | 0–24, 26, 31–33 |
+| NPC props | 0–17 | 0–32 | 0–34 | 0–34 | 0–34 |
+| Baddy props | 0–10 | 0–10 | 0–10 | 0–10 | 0–10 |
+
+The prop numbers grow at the end, so a decoder can use the later tables (`player-props.md`) and stop at the build's last id.
+Per-build values, and the client-to-server ids, are in `client-internals/version-profiles/v121-v132.toml`.
+
 ## UDP (1.28 beta 2 on)
 
 The 1.28 beta 2 notes call this "direct data packages", and it is the first build that links `bind`, `sendto` and `recvfrom`.
-The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
+The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. In 1.28 beta 2 captures, a walking client sent id 0 to the other player every 100 ms, while the server got only the changed props over TCP and forwarded nothing. Id 0 carries X, Y, SPRITE, STATUS and CARRYSPRITE (props 15 to 19; `0x1F` is −1, nothing carried), the same fields that 2.05 sends in UDP id 0. Id 12 is arrow add, with the same 5 bytes as relay `A`. One player per level sends the level NPCs' arrows to the others: the level leader, picked by the server with id 10 (`ISLEADER`, empty). The server sends 10 at the end of the first player's login reply, and to the next player when the leader leaves. **[cap]** The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
 The main loop reads TCP and UDP separately ("tcp read", "udp read" in the 1.32 profiler labels).
 1.31 adds `noudp=` and `fixedudpport=` to `graalconfig.txt` (the catalogue gives 14899 as the fixed-port default).
-The UDP payload ids in this era have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
+The client handles UDP ids 0 and 10 to 22 in 1.28 beta 2 and 1.3 test, and 0 and 10 to 23 from 1.31. These are the same ids, with the same +32 offset, that 1.33 handles. Ids 0 (movement) and 12 (arrow add) match 2.05 on the wire. A newcomer sends one empty id 22 to each player already in the level; 2.05 uses 22 for chat. The other ids have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
 
 ## Open questions
 

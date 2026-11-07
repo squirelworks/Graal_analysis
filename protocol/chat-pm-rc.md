@@ -6,6 +6,8 @@ Sources: GServer-v2 `TPlayer.cpp`, `TPlayerRC.cpp` (GPLv3, summarized); 2.05 tab
 
 ## Chat bubble
 
+How the line is drawn and how long it stays, per build: `client-internals/chat-text.md`.
+
 Local chat is not a message id. It is the `PLPROP_CURCHAT` (12) string inside `PLI_PLAYERPROPS`. The server forwards it to the level as `PLO_OTHERPLPROPS`. Server commands typed in chat (`setnick`, `/sethead`, …) are parsed from the same prop. **[srv]** The one exception is toall: when the chat-bar text (lower-cased and trimmed) starts with `toall:`, 2.05 sends the rest as `PLI_TOALL` (6) instead of as CURCHAT. **[2.05]**
 
 ## Toall
@@ -34,7 +36,7 @@ Mass PMs and guild PMs use the same packet with different type labels. Players i
 | C→S | 51–98 | RC_* | server options, folder config, player props get/set, accounts, bans, rights, comments, file browser | · (RC client only) |
 | C→S | 103–119 | NC_* | NPC-control: NPC get/set/warp, classes, weapons | · |
 
-The staff tools run their own logins: RC `GSERV023`–`025`, NC `NCL11012`, RC2 type 6 on gen 5. Their packet details live in `tools/remotecontrol.md`.
+The staff tools run their own logins: RC `GSERV023`–`025`, NC `NCL11012`, RC2 type 6 on gen 5. NC packet layouts: `protocol/npc-control.md`. RC details: `tools/remotecontrol.md`.
 
 ## Profiles
 

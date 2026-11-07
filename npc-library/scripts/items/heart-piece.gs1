@@ -1,0 +1,36 @@
+// Original NPC library: heart piece
+// Category: interaction / flags, object / chests (rewards)
+// Image: a quarter heart
+// Events: playerenters, playertouchsme
+// Flag set: heartpiece_cave (rename per piece)
+// String kept: heartpieces (count of pieces held, 0..3)
+//
+// Four pieces make a heart container. Each piece adds one to the count;
+// the fourth turns the count back to zero and drops a heart container
+// (the fullheart item) where the piece was. playerfullhearts cannot be
+// written on 2.05 (lab run, 2026-11-04), so the item does the work.
+
+if (playerenters) {
+  if (heartpiece_cave) {
+    hide;
+  } else {
+    setimg heartpiece.png;
+    dontblock;
+  }
+}
+
+if (playertouchsme && !heartpiece_cave) {
+  set heartpiece_cave;
+  hide;
+  this.n = strtofloat(#s(heartpieces)) + 1;
+  if (this.n >= 4) {
+    setstring heartpieces,0;
+    lay2 fullheart,x,y;
+    play fanfare.wav;
+    say2 Four pieces: a whole heart!;
+  } else {
+    setstring heartpieces,#v(this.n);
+    play item.wav;
+    say2 Heart piece! #v(4 - this.n) more to go.;
+  }
+}

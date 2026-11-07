@@ -1,0 +1,28 @@
+// Original NPC library: crate dropper
+// Category: object / blocks
+// Image: a chute or hatch
+// Events: playerenters, timeout
+// Needs: crate.gs1 saved on the server as crate.txt (any NPC script works)
+//
+// Every eight seconds places a new NPC a little below itself, up to four in
+// total per visit. Offline the client creates the NPC directly; online it
+// asks the server to (putnpc, manual §8.2.4.4).
+// On GServer-v2 the placed script must be a file the server serves (.txt,
+// unless foldersconfig serves .gs1) and must hold no comments at all,
+// because putnpc joins its lines before comments are removed and the first
+// comment swallows the rest. crate.gs1 is kept comment-free for that
+// reason (lab run, 2026-11-04).
+
+if (playerenters) {
+  setimg hatch.png;
+  dontblock;
+  this.made = 0;
+  this.limit = 4;             // <- how many per visit
+  timeout = 8;
+}
+
+if (timeout && this.made < this.limit) {
+  this.made++;
+  putnpc crate.png,crate.txt,x,y+2;
+  timeout = 8;
+}

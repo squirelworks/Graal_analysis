@@ -1,0 +1,359 @@
+// Gray soldier: the 2.22 client's baddy type 0, as a serverside GS1 NPC.
+//
+// Spec: client-internals/baddies-222.md. Guide: server-notes/baddies-serverside.md.
+// Written for the built-in NPC-server of seihai-gserver-v2 (serverside = true).
+// Draws with the ganis that tools/baddy-222/gen_ganis.py writes from your
+// own arrays.dat (prefix "baddy", image baddygray.png).
+//
+// One AI step every 0.1 s, as the client does (every second 50 ms tick).
+// The server owns every decision; clients only draw the NPC.
+//
+// this.mode: 0 walk, 1 look about, 2 hunt, 3 hurt, 4 bumped by a shield,
+//            5 dying, 9 dead (waiting to respawn). Same numbers as BDPROP 5.
+
+if (created) {
+  showcharacter;
+  setcharprop #3,;
+  setcharprop #n,;
+  dontblock;                     // no box of its own, so onwall does not see itself
+  noplayeronwall;                // players must not block the line to the target
+  this.kind = 0;                 // 0 graysoldier: shield, half-heart touch
+  this.maxpower = 2;             // arrays: 2 3 4 3 2 1 1 6 12 8 by type
+  this.touch = 1;                // half hearts per touch (2 for type 7)
+  this.respawn = 60;             // seconds, GServer's baddyrespawntime default
+  this.drops = 0;                // 1: drop like GServer's baddyitems option
+  this.sx = x;
+  this.sy = y;
+  // direction vectors (0 up, 1 left, 2 down, 3 right), a quarter tile
+  this.vx = {0,-0.25,0,0.25};
+  this.vy = {-0.25,0,0.25,0};
+  // head turns while looking about, by counter div 4
+  this.look = {1,1,0,-1,-1,0,1,1,0,-1,-1};
+  // three probe points per direction, from the baddy's x, y (2 x 2 body):
+  // a: 0.5 tile ahead (walking, hunting forward)
+  this.ax = {0.1,1,1.9, -0.5,-0.5,-0.5, 0.1,1,1.9, 2.5,2.5,2.5};
+  this.ay = {-0.5,-0.5,-0.5, 0.1,1,1.9, 2.5,2.5,2.5, 0.1,1,1.9};
+  // b: 0.1 tile outside (the hunt's side step)
+  this.bx = {0.1,1,1.9, -0.1,-0.1,-0.1, 0.1,1,1.9, 2.1,2.1,2.1};
+  this.by = {-0.1,-0.1,-0.1, 0.1,1,1.9, 2.1,2.1,2.1, 0.1,1,1.9};
+  // c: 0.1 tile inside the edge (unstick, knockback)
+  this.cx = {0.1,1,1.9, 0.1,0.1,0.1, 0.1,1,1.9, 1.9,1.9,1.9};
+  this.cy = {0.1,0.1,0.1, 0.1,1,1.9, 1.9,1.9,1.9, 0.1,1,1.9};
+  this.respawning = 1;
+  timeout = 0.1;
+}
+
+if (timeout) {
+  // ---------- respawn (the server's job in 2.22: mode 9, then a timer)
+  if (this.respawning == 1) {
+    this.respawning = 0;
+    x = this.sx; y = this.sy;
+    this.power = this.maxpower;
+    this.mode = 0; this.dir = 2; this.head = 2;
+    this.c = int(random(0,20)) + 40;
+    this.lost = 0; this.target = -1; this.best = 1000;
+    this.fresh0 = 1; this.fresh1 = 1; this.fresh2 = 1;   // sight, hurt, attack verses
+    this.versetime = -1;
+    this.anim = -1;
+  }
+  if (this.mode == 9) {
+    this.respawning = 1;
+    timeout = this.respawn;
+  } else {
+    // ---------- sword hits, tested every step for every player swinging
+    // (2.22 tests every player whose gani is the sword, every tick)
+    this.active = (this.mode < 3);
+    for (this.i = 0; this.i < playerscount && this.active == 1; this.i++) {
+      if (strequals(#m(this.i),sword)) {
+        this.px = players[this.i].x + 1.5;
+        this.py = players[this.i].y + 2;
+        this.bx0 = x + 1;
+        this.by0 = y + 1;
+        this.adx = abs(this.px - this.bx0);
+        this.ady = abs(this.py - this.by0);
+        this.pd = players[this.i].dir % 4;
+        this.block = 0;
+        this.hit = 0;
+        // shield: types 0, 1, 2 and 7, facing the swing
+        if ((this.pd + 2) % 4 == this.dir) {
+          if (this.pd == 0 && !(this.by0 + 5 < this.py || this.py <= this.by0 + 2 || this.adx > 2 || this.bx0 + 0.5 <= this.px)) this.block = 1;
+          if (this.pd == 1 && !(this.bx0 + 5 < this.px || this.px <= this.bx0 + 2 || this.ady > 2 || this.py <= this.by0 - 0.5)) this.block = 1;
+          if (this.pd == 2 && !(this.py < this.by0 - 5 || this.by0 - 2 <= this.py || this.adx > 2 || this.px <= this.bx0 - 0.5)) this.block = 1;
+          if (this.pd == 3 && !(this.px < this.bx0 - 5 || this.bx0 - 2 <= this.px || this.ady > 2 || this.py <= this.by0 - 0.5)) this.block = 1;
+        }
+        if (this.block == 0) {
+          if (this.pd == 0 && !(this.by0 + 4 < this.py || this.py < this.by0 || this.adx >= 2)) this.hit = 1;
+          if (this.pd == 1 && !(this.bx0 + 4 < this.px || this.px < this.bx0 || this.ady >= 2)) this.hit = 1;
+          if (this.pd == 2 && !(this.py < this.by0 - 4 || this.by0 < this.py || this.adx > 2)) this.hit = 1;
+          if (this.pd == 3 && !(this.px < this.bx0 - 4 || this.bx0 < this.px || this.ady > 2)) this.hit = 1;
+        }
+        if (this.hit == 1 || this.block == 1) {
+          if (this.hit == 1) {
+            this.power = this.power - players[this.i].swordpower;
+            this.mode = 3;
+            this.len = 2;
+          } else {
+            this.mode = 4;
+            this.len = 0.8;
+          }
+          this.c = 8;
+          this.kx = -(this.px - this.bx0) * 2;
+          this.ky = -(this.py - this.by0) * 2;
+          this.n = (this.kx * this.kx + this.ky * this.ky) ^ 0.5;
+          if (this.n <= 0) { this.kx = -this.len; this.ky = 0; }
+          else { this.kx = this.kx * this.len / this.n; this.ky = this.ky * this.len / this.n; }
+          this.active = 0;
+        }
+      }
+    }
+
+    // ---------- pick a target: the nearest player (centre to centre, the
+    // larger of the two distances); after the first, only ones in sight
+    this.bx0 = x + 1;
+    this.by0 = y + 1;
+    this.target = -1;
+    this.best = 1000;
+    this.tdir = this.dir;
+    for (this.i = 0; this.i < playerscount; this.i++) {
+      if (players[this.i].hearts > 0) {
+        this.px = players[this.i].x + 1.5;
+        this.py = players[this.i].y + 2;
+        this.dxp = this.px - this.bx0;
+        this.dyp = this.py - this.by0;
+        this.d = abs(this.dxp); if (abs(this.dyp) > this.d) this.d = abs(this.dyp);
+        if (abs(this.dyp) <= abs(this.dxp)) { if (this.dxp <= 0) this.sd = 1; else this.sd = 3; }
+        else { if (this.dyp <= 0) this.sd = 0; else this.sd = 2; }
+        // sight test in direction this.sd
+        this.cone = 1;
+        if (this.sd == 0 && (this.by0 <= this.py || abs(this.dyp) < abs(this.dxp))) this.cone = 0;
+        if (this.sd == 1 && (this.bx0 <= this.px || abs(this.dxp) < abs(this.dyp))) this.cone = 0;
+        if (this.sd == 2 && (this.py <= this.by0 || abs(this.dyp) < abs(this.dxp))) this.cone = 0;
+        if (this.sd == 3 && (this.px <= this.bx0 || abs(this.dxp) < abs(this.dyp))) this.cone = 0;
+        this.seen = 0;
+        if (this.cone == 1 && this.d <= 20) {
+          this.seen = 1;
+          for (this.k = 0; this.k < this.d && this.seen == 1; this.k++) {
+            if (onwall(this.bx0 + this.dxp * this.k / this.d, this.by0 + this.dyp * this.k / this.d)) this.seen = 0;
+          }
+        }
+        if (this.d < this.best && (this.best == 1000 || this.seen == 1)) {
+          this.best = this.d; this.target = this.i; this.tdir = this.sd;
+        }
+      }
+    }
+    if (this.target >= 0) {
+      this.tx = players[this.target].x + 1.5;
+      this.ty = players[this.target].y + 2;
+    }
+
+    // ---------- the AI step, by mode
+    if (this.mode == 0 || this.mode == 1) {
+      if (this.mode == 0) {
+        if (this.head == this.dir) {
+          this.c = this.c - 1;
+          if (this.c < 0) { this.mode = 1; this.c = 44; }
+          if (this.mode == 0) {
+            this.blocked = 0;
+            for (this.k = 0; this.k < 3; this.k++) {
+              this.qx = x + this.ax[this.dir * 3 + this.k];
+              this.qy = y + this.ay[this.dir * 3 + this.k];
+              if (onwall(this.qx, this.qy) || this.qx < 0 || this.qy < 0 || this.qx >= 64 || this.qy >= 64) this.blocked = 1;
+            }
+            if (this.blocked == 1) {
+              this.head = (this.dir + 2) % 4;     // look back
+              this.dir = (this.dir + 3) % 4;
+              if (this.c % 2 == 0) this.c = this.c - 1;
+            } else {
+              x = x + this.vx[this.dir];
+              y = y + this.vy[this.dir];
+            }
+          }
+        } else {
+          if (this.c % 2 == 0) this.dir = this.head;
+          else this.c = this.c - 1;
+        }
+      } else {
+        this.c = this.c - 1;
+        if (this.c < 0) {
+          this.dir = int(random(0,4)); this.head = this.dir;
+          this.mode = 0; this.c = int(random(0,20)) + 40;
+        } else {
+          this.head = (this.look[int(this.c / 4)] + this.dir + 4) % 4;
+        }
+      }
+      // sight check with the head (walk and look)
+      if (this.target >= 0 && this.best < 20) {
+        this.dxp = this.tx - (x + 1); this.dyp = this.ty - (y + 1);
+        this.d = abs(this.dxp); if (abs(this.dyp) > this.d) this.d = abs(this.dyp);
+        this.cone = 1;
+        if (this.head == 0 && (y + 1 <= this.ty || abs(this.dyp) < abs(this.dxp))) this.cone = 0;
+        if (this.head == 1 && (x + 1 <= this.tx || abs(this.dxp) < abs(this.dyp))) this.cone = 0;
+        if (this.head == 2 && (this.ty <= y + 1 || abs(this.dyp) < abs(this.dxp))) this.cone = 0;
+        if (this.head == 3 && (this.tx <= x + 1 || abs(this.dxp) < abs(this.dyp))) this.cone = 0;
+        this.seen = this.cone;
+        for (this.k = 0; this.k < this.d && this.seen == 1; this.k++) {
+          if (onwall(x + 1 + this.dxp * this.k / this.d, y + 1 + this.dyp * this.k / this.d)) this.seen = 0;
+        }
+        if (this.seen == 1) {
+          this.mode = 2; this.c = 16; this.dir = this.tdir; this.head = this.tdir; this.lost = 0;
+          if (this.fresh0 == 1) { this.fresh0 = 0; this.verse = 0; this.versetime = 20; }
+        }
+      }
+    } else if (this.mode == 2) {
+      if (this.c >= 6) {
+        this.c = this.c - 1;                // the pause before the chase
+      } else {
+        this.c = (this.c + 3) % 4;
+        if (this.target >= 0) {
+          this.dxp = this.tx - (x + 1); this.dyp = this.ty - (y + 1);
+          this.adx = abs(this.dxp); this.ady = abs(this.dyp);
+          // still in sight along the current direction?
+          this.cone = 1;
+          if (this.dir == 0 && (y + 1 <= this.ty || this.ady < this.adx)) this.cone = 0;
+          if (this.dir == 1 && (x + 1 <= this.tx || this.adx < this.ady)) this.cone = 0;
+          if (this.dir == 2 && (this.ty <= y + 1 || this.ady < this.adx)) this.cone = 0;
+          if (this.dir == 3 && (this.tx <= x + 1 || this.adx < this.ady)) this.cone = 0;
+          this.d = this.adx; if (this.ady > this.d) this.d = this.ady;
+          this.seen = this.cone;
+          if (this.d > 20) this.seen = 0;
+          for (this.k = 0; this.k < this.d && this.seen == 1; this.k++) {
+            if (onwall(x + 1 + this.dxp * this.k / this.d, y + 1 + this.dyp * this.k / this.d)) this.seen = 0;
+          }
+          if (this.seen == 1) this.lost = 0;
+          else {
+            this.lost = this.lost + 1;
+            if (this.lost > 40) { this.mode = 1; this.c = 44; }
+          }
+          if (this.mode == 2) {
+            if (this.ady <= this.adx) {
+              if (this.dxp <= 0) this.main = 1; else this.main = 3;
+              if (this.dyp <= 0) this.side = 0; else this.side = 2;
+              if (this.adx <= 0) this.ratio = 0; else this.ratio = this.ady / this.adx;
+            } else {
+              if (this.dyp <= 0) this.main = 0; else this.main = 2;
+              if (this.dxp <= 0) this.side = 1; else this.side = 3;
+              this.ratio = this.adx / this.ady;
+            }
+            this.want = this.main;
+            if (this.ady < 2 && this.adx < 2 && this.seen == 0) this.main = this.dir;
+            for (this.pass = 0; this.pass < 2; this.pass++) {
+              this.mb = 0; this.sb = 0;
+              for (this.k = 0; this.k < 3; this.k++) {
+                if (onwall(x + this.ax[this.main * 3 + this.k], y + this.ay[this.main * 3 + this.k])) this.mb = 1;
+                if (onwall(x + this.bx[this.side * 3 + this.k], y + this.by[this.side * 3 + this.k])) this.sb = 1;
+              }
+              if (this.pass == 0 && this.want != this.main && this.mb == 1) this.main = this.want;
+              else this.pass = 2;
+            }
+            this.dir = this.main; this.head = this.main;
+            this.sp = 2;                    // 3 for type 8
+            if (this.mb == 0 && this.sb == 1) {
+              x = x + this.vx[this.main] * this.sp; y = y + this.vy[this.main] * this.sp;
+            } else if (this.mb == 0 && this.sb == 0) {
+              x = x + this.vx[this.main] * this.sp + this.vx[this.side] * this.sp * this.ratio;
+              y = y + this.vy[this.main] * this.sp + this.vy[this.side] * this.sp * this.ratio;
+            } else if (this.mb == 1 && this.sb == 0) {
+              x = x + this.vx[this.side] * this.sp; y = y + this.vy[this.side] * this.sp;
+            }
+            if (this.mb == 1) {
+              // unstick: onto the half-tile grid, then half a tile off each blocked side
+              x = int(x * 2 + 0.5) / 2; y = int(y * 2 + 0.5) / 2;
+              for (this.e = 0; this.e < 4; this.e++) {
+                this.hitwall = 0;
+                for (this.k = 0; this.k < 3; this.k++) {
+                  if (onwall(x + this.cx[this.e * 3 + this.k], y + this.cy[this.e * 3 + this.k])) this.hitwall = 1;
+                }
+                if (this.hitwall == 1) {
+                  if (this.e == 0) y = y + 0.5;
+                  if (this.e == 1) x = x + 0.5;
+                  if (this.e == 2) y = y - 0.5;
+                  if (this.e == 3) x = x - 0.5;
+                }
+              }
+            }
+          }
+        }
+      }
+    } else if (this.mode == 3 || this.mode == 4) {
+      if (this.c > 2) {
+        x = x + this.kx; y = y + this.ky;
+        this.hitwall = 0;
+        for (this.k = 0; this.k < 12; this.k++) {
+          if (onwall(x + this.cx[this.k], y + this.cy[this.k])) this.hitwall = 1;
+        }
+        if (this.hitwall == 1) { x = x - this.kx; y = y - this.ky; }
+      }
+      this.c = this.c - 1;
+      if (this.c < 1) {
+        if (this.power < 1) { this.mode = 5; this.c = 14; }
+        else {
+          if (this.mode == 3 && this.fresh1 == 1) {
+            this.fresh1 = 0; this.fresh0 = 0; this.verse = 1; this.versetime = 20;
+          }
+          this.mode = 2; this.c = 12; this.head = this.tdir; this.lost = 0;
+        }
+      }
+    } else if (this.mode == 5) {
+      if (this.c >= 0) this.c = this.c - 1;
+      if (this.c < 0) {
+        this.mode = 9;
+        if (this.drops == 1) {
+          this.r = int(random(0,12));
+          if (this.r == 0 || (this.r >= 6 && this.r <= 9)) lay greenrupee;
+          if (this.r == 1) lay bluerupee;
+          if (this.r == 2) lay redrupee;
+          if (this.r == 3) lay bombs;
+          if (this.r == 4) lay darts;
+          if (this.r == 5) lay heart;
+        }
+      }
+    }
+
+    // ---------- touching a player hurts it (each client tests its own
+    // player in 2.22; the client's 40-tick hurt lock-out stops repeats)
+    if (this.mode < 3) {
+      for (this.i = 0; this.i < playerscount; this.i++) {
+        this.px = players[this.i].x + 1.5;
+        this.py = players[this.i].y + 2;
+        if (abs(this.px - (x + 1)) <= 1 && abs(this.py - (y + 1)) <= 1) {
+          hitplayer this.i, this.touch, x + 1, y + 1;
+          if (this.fresh0 == 0 && this.fresh2 == 1) { this.fresh2 = 0; this.verse = 2; this.versetime = 20; }
+        }
+      }
+    }
+
+    // ---------- verses: 20 steps (2 s) over the head. In 2.22 each baddy
+    // carries its own three verses (BDPROP 8-10, from the level's baddy
+    // entry); these are the level editor's defaults, and an empty one
+    // says nothing.
+    if (this.versetime == 20) {
+      if (this.verse == 0) message Stop!;
+      if (this.verse == 1) message Ouch!;
+    }
+    if (this.versetime >= 0) {
+      this.versetime = this.versetime - 1;
+      if (this.versetime < 0) message ;
+    }
+
+    // ---------- what the clients see
+    dir = this.dir;
+    this.want = 1;                                        // stand
+    if (this.mode == 0 || (this.mode == 2 && this.c < 6)) this.want = 2;   // walk
+    if (this.mode == 1 && (this.head + 4 - this.dir) % 4 == 1) this.want = 3;
+    if (this.mode == 1 && (this.head + 4 - this.dir) % 4 == 3) this.want = 4;
+    if (this.mode == 3) this.want = 5;
+    if (this.mode == 5) this.want = 6;
+    if (this.mode == 9) this.want = 7;
+    if (this.want != this.anim) {
+      this.anim = this.want;
+      if (this.anim == 1) setcharani baddy-stand,;
+      if (this.anim == 2) setcharani baddy-walk,;
+      if (this.anim == 3) setcharani baddy-look1,;
+      if (this.anim == 4) setcharani baddy-look3,;
+      if (this.anim == 5) setcharani baddy-hurt,;
+      if (this.anim == 6) setcharani baddy-die,;
+      if (this.anim == 7) setcharani baddy-gone,;
+    }
+    timeout = 0.1;
+  }
+}

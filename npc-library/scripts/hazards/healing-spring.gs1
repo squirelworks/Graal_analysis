@@ -1,0 +1,38 @@
+// Original NPC library: healing spring
+// Category: combat / hazards (the opposite of one)
+// Image: a sparkling pool, 2x2 tiles, drawn under the player
+// Events: playerenters, timeout
+//
+// The opposite of spikes: standing in it heals half a heart every second.
+// playertouchsme only fires while the player moves, so a player standing
+// still in a dontblock NPC would never heal (lab run, 2026-11-04). The
+// spring checks the player's feet against its own area on a timer instead.
+// playerhearts can be written on 2.05, capped here at playerfullhearts.
+
+if (playerenters) {
+  timereverywhere;
+  setimg spring.png;
+  dontblock;
+  drawunderplayer;
+  this.w = 2;                 // <- size of the pool in tiles
+  this.h = 2;
+  this.tick = 0;
+  timeout = 0.25;
+}
+
+if (timeout) {
+  this.fx = playerx + 1.5;
+  this.fy = playery + 2;
+  if (this.fx >= x && this.fx < x + this.w && this.fy >= y && this.fy < y + this.h && playerhearts < playerfullhearts) {
+    this.tick++;
+    if (this.tick >= 4) {
+      this.tick = 0;
+      playerhearts += 0.5;
+      if (playerhearts > playerfullhearts) playerhearts = playerfullhearts;
+      play heal.wav;
+    }
+  } else {
+    this.tick = 0;
+  }
+  timeout = 0.25;
+}

@@ -1,0 +1,188 @@
+name: checks
+
+on:
+  push:
+    branches: [main, 'cursor/**']
+  pull_request:
+
+jobs:
+  leak-and-smoke:
+    name: leak-and-smoke (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # Git Bash on Windows, so the grep steps and heredocs run unchanged.
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pytest
+        run: python -m pip install pytest
+
+      - name: Leak check — no tracked .pyc
+        run: |
+          if git ls-files | grep -E '\.pyc$'; then
+            echo 'tracked .pyc files found' >&2
+            exit 1
+          fi
+
+      - name: Leak check — no FUN_/DAT_/binary offsets
+        run: |
+          if git grep -nE 'FUN_[0-9a-fA-F]{6}|DAT_[0-9a-fA-F]{6}|\b0x00[4-6][0-9a-fA-F]{5}\b'; then
+            echo 'binary address / Ghidra name leak' >&2
+            exit 1
+          fi
+
+      - name: Leak check — no dotted IP literals
+        run: |
+          # Skip version-like strings (e.g. 2.2.2.0). Fails on loopback and any other IPv4.
+          if git grep -nE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | grep -vE '\b[0-9]\.[0-9]+\.[0-9]+\.[0-9]+\b'; then
+            echo 'dotted IP literal leak' >&2
+            exit 1
+          fi
+
+      - name: Leak check — no official hostnames
+        run: |
+          if git grep -niE 'graalonline\.com|graal\.in\b|graalreborn\.(com|net)'; then
+            echo 'official hostname leak' >&2
+            exit 1
+          fi
+
+      - name: pytest tools/lab-servers
+        run: python -m pytest tools/lab-servers -q
+
+      - name: pytest tools/navigator
+        run: python -m pytest tools/navigator -q
+
+      - name: pytest classic tool references
+        run: python -m pytest tools/classic-tools -q
+
+      - name: pytest level conversion chain
+        run: python -m pytest tools/level-convert -q
+
+      - name: pytest Graal 2.22 generator references
+        run: python -m pytest tools/generators-222 -q
+
+      - name: pytest level-tool gaps and the GR-V reader
+        run: python -m pytest formats/grv1-decoder tools/level-tools-gaps -q
+
+      - name: Smoke resolve.py
+        run: |
+          python client-internals/version-profiles/resolve.py \
+            client-internals/version-profiles/v1998-v11.toml \
+            > "$RUNNER_TEMP/resolve-out.json"
+          python -c 'import json, os; d=json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "resolve-out.json"))); assert isinstance(d, list) and d'
+
+      - name: Smoke grv1-decoder on a synthetic level
+        run: |
+          python <<'PY'
+          import os, pathlib, sys
+          sys.path.insert(0, 'formats/grv1-decoder')
+          from grv1 import load
+
+          def pack_codes(codes, width):
+              buf = nbits = 0
+              out = bytearray()
+              for code in codes:
+                  buf |= (code & ((1 << width) - 1)) << nbits
+                  nbits += width
+                  while nbits >= 8:
+                      out.append(buf & 0xff)
+                      buf >>= 8
+                      nbits -= 8
+              if nbits:
+                  out.append(buf & 0xff)
+              return bytes(out)
+
+          width, flag = 12, 1 << 11
+          codes = []
+          remaining = 4096
+          while remaining:
+              n = min(255, remaining)
+              codes.append(flag | n)
+              codes.append(0)
+              remaining -= n
+          data = b'GR-V1.00' + pack_codes(codes, width) + b'#\n\x80#\n'
+          path = pathlib.Path(os.environ['RUNNER_TEMP']) / 'synth.graal'
+          path.write_bytes(data)
+          lv = load(path.read_bytes())
+          assert lv['magic'] == 'GR-V1.00'
+          assert len(lv['board']) == 4096
+          print('grv1 smoke ok', lv['magic'], len(lv['board']))
+          PY
+          python formats/grv1-decoder/grv1.py "$RUNNER_TEMP/synth.graal"
+
+  manual:
+    name: manual (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pytest
+        run: python -m pip install pytest
+
+      - name: Check the reference manual
+        run: python tools/manual/check_manual.py
+
+      - name: Check that cited notes are carried
+        run: python tools/manual/check_carry.py
+
+      - name: pytest tools/manual
+        run: python -m pytest tools/manual -q
+
+      - name: pytest tools/navigator
+        run: python -m pytest tools/navigator -q
+
+      - name: pytest tools/gs1-lint
+        run: python -m pytest tools/gs1-lint -q
+
+  manual-pdf:
+    name: manual PDF (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pandoc and Playwright
+        run: python -m pip install pypandoc_binary playwright
+
+      - name: Install Chromium (Linux, with system libraries)
+        if: runner.os == 'Linux'
+        run: python -m playwright install --with-deps chromium
+
+      - name: Install Chromium
+        if: runner.os != 'Linux'
+        run: python -m playwright install chromium
+
+      - name: Build the reference manual PDF
+        run: python tools/manual/build_manual.py --out "${{ runner.temp }}/graal-trm.pdf"
+
+      - name: Keep the Linux PDF
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: graal-trm-pdf
+          path: ${{ runner.temp }}/graal-trm.pdf

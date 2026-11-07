@@ -36,10 +36,10 @@ The first value is always the magic string (`Graalsav1` … `Graalsav9`, `Graals
 | Graalsav6 | 13th | same | `.save` | no |
 | Graalsav7 | 14th, 15th | same | `.save` (14th), `.gsave` (15th) | 15th on |
 | Graalsav8 | 1.1, 1.1.9 | 7 and 8 | `.gsave` | yes |
-| Graalsv11 | 1.21 to 1.32 (1.33 to 1.41 rev1 carry the string; not traced) | 9, 10 and 11 | `.gsave` | yes |
+| Graalsv11 | 1.21 to 1.41 rev1 (writer traced in 1.21 and 1.32; later builds by string references) | 9, 10 and 11 | `.gsave` | yes |
 
 3rd and 4th Graal reuse Graalsav1 (the 4th alpha was built later than 4th, as the build catalogue notes).
-Earlier catalogue rows listed 1.21 to 1.39 as "Graalsav9". Those builds read 9 too, but they write `Graalsv11` and also read `Graalsv10`, and a search for `Graalsav` misses both. The record layout was read from 1.21 and 1.32. For 1.33 to 1.39 only the magics were checked.
+Earlier catalogue rows listed 1.21 to 1.39 as "Graalsav9". Those builds read 9 too, but they write `Graalsv11` and also read `Graalsv10`, and a search for `Graalsav` misses both. The record layout was read from 1.21 and 1.32. In 1.33 to 1.41 rev1 the three magics are referenced the same way as in 1.32 (two references to `Graalsv11`, one each to the readers' `Graalsav9` and `Graalsv10`), so they write `Graalsv11` too, but the record itself was not re-read.
 No build in the set writes `Graalsav9` or `Graalsv10`. The v9 and v10 layouts below come only from the 1.21 to 1.32 readers, so they presumably match saves from a 1.2x build that isn't in the archive.
 From 15th Graal saving only works on a level from the Cyberjoueur server or on the online start level. From 1.21 the client refuses to save in online mode: "The server saves your game if you have an own account."
 

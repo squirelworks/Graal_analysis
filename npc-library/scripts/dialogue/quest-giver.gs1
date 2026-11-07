@@ -1,0 +1,59 @@
+// Original NPC library: fetch-quest giver
+// Category: dialogue / speech
+// Image: a character (the healer)
+// Events: playerenters, playertouchsme, timeout
+// Flags: quest_herbs_given, quest_herbs_done (set here);
+//        herb_1, herb_2, herb_3 (set by three herb pickups, see herb.gs1)
+//
+// Step 1: asks for three blue herbs and sets quest_herbs_given.
+// Step 2: counts the herbs the player holds and says how many are left.
+// Step 3: with all three, takes them, pays 50 rupees, drops a heart
+//         container at the player's feet and sets quest_herbs_done.
+// playerfullhearts cannot be written on 2.05 (lab run, 2026-11-04), so
+// the heart container is a fullheart item for the player to pick up.
+// Afterwards: a thank-you line.
+
+function countherbs() {
+  this.herbs = 0;
+  if (herb_1) this.herbs++;
+  if (herb_2) this.herbs++;
+  if (herb_3) this.herbs++;
+}
+
+if (playerenters) {
+  timereverywhere;
+  showcharacter;
+  setcharprop #3,head12.png;
+  setcharprop #C1,lightblue;
+  setcharprop #n,Healer Mira;
+  dir = 2;
+  setcharani idle,;
+  this.wait = 0;
+}
+
+if (playertouchsme && this.wait == 0) {
+  this.wait = 1;
+  timeout = 2;
+  countherbs();
+  if (quest_herbs_done) {
+    setcharprop #c,I feel much better. Thank you!;
+  } else if (!quest_herbs_given) {
+    set quest_herbs_given;
+    setcharprop #c,Please find me three blue herbs from the marsh.;
+  } else if (this.herbs < 3) {
+    setcharprop #c,#v(3 - this.herbs) more herbs, please.;
+  } else {
+    unset herb_1;
+    unset herb_2;
+    unset herb_3;
+    set quest_herbs_done;
+    playerrupees += 50;
+    lay2 fullheart,playerx + 1,playery + 2;
+    play reward.wav;
+    setcharprop #c,Wonderful! Take this, with my thanks.;
+  }
+}
+
+if (timeout) {
+  this.wait = 0;
+}
