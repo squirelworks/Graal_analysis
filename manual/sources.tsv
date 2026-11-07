@@ -466,18 +466,18 @@ torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay
 torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
 torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
-torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.14 carries the class split and who calls graal_set, and the setter groups stay in the note while the Torque rebuild is on hold
-torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.14 carries the single-exe shape, and the string diff against 5.31r4 stays in the note while the Torque rebuild is on hold
-torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.14 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note while the Torque rebuild is on hold
+torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.16 carries the class split and who calls graal_set, and the setter groups stay in the note while the Torque rebuild is on hold
+torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.16 carries the single-exe shape, and the string diff against 5.31r4 stays in the note while the Torque rebuild is on hold
+torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.16 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note while the Torque rebuild is on hold
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
-torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.14 carries the one-line identification
-torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.14 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
-torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.14 carries what it loads, and the setter split is cited from torque/engine-5007.md
-torque/stub-512.md	cited	10	10	packer stub; §10.1.14 carries the file version and that the engine DLL is not in the zip
-torque/stub-5243.md	cited	10	10	packer stub; §10.1.14 carries the file version 5.243
-torque/stub-524r4.md	cited	10	10	packer stub; §10.1.14 carries the file version 5.244
-torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.14 carries that one fact
+torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.16 carries the one-line identification
+torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.16 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
+torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.16 carries what it loads, and the setter split is cited from torque/engine-5007.md
+torque/stub-512.md	cited	10	10	packer stub; §10.1.16 carries the file version and that the engine DLL is not in the zip
+torque/stub-5243.md	cited	10	10	packer stub; §10.1.16 carries the file version 5.243
+torque/stub-524r4.md	cited	10	10	packer stub; §10.1.16 carries the file version 5.244
+torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.16 carries that one fact
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
