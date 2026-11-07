@@ -38,7 +38,7 @@ Socket object field **framing mode**:
 
 Outgoing send:
 
-- Reject text still present: `Illegal characters in the outgoing data`.
+- Outgoing body is rejected if it contains illegal characters (a diagnostic is logged).
 - Body must not contain newline (`0x0A`); otherwise abort with that string.
 - Wire form: `(id + 0x20)` + body + `'\n'`.
 - Optional one-byte “compression/extra” nibble inserted after the id when a sticky flag is set.
@@ -51,7 +51,7 @@ Incoming receive:
 - Optional lightweight XOR/decode passes keyed off a per-socket compression mode (`1`–`6`).
 - Message split on newline; first byte decoded as `id = byte - 0x20`, then dispatched through the socket vtable.
 
-Socket guards: `Cannot send data, socket is not initialized yet.`, `socketerror`, `Received invalid data (1|2|3) from …`.
+Socket guards: send is refused if the socket is not yet initialized; receive paths log a socket error or an invalid-data diagnostic (three numbered cases) and may drop the connection.
 
 ### Server-defined path (mode 1) **[bin]**
 
@@ -71,7 +71,7 @@ Template receive:
 - Reads length / type / counter / extra from the configured offsets.
 - Mode byte `2` skips leading `0xFF` padding before the header.
 - Extra field low nibble selects payload treatment: `0` raw copy, `1` inflate-style, `2` alternate inflate.
-- Counter must be previous+1 (masked to the counter width); failure → `Received invalid data (3) from …` and socket kill.
+- Counter must be previous+1 (masked to the counter width); failure logs an invalid-data diagnostic and kills the socket.
 - Dispatch: vtable call with `(packet_id & 0xff, payload)`.
 - Special packet-id equal to a configured “nested” id re-enters the same parser (framed-in-framed).
 
@@ -184,7 +184,7 @@ Prefix with `onsend` / `onSend` as needed. Canonical PLI/PLO tables: `protocol/v
 
 ### Native inbound handlers (`< 0x5F`) **[bin][doc]**
 
-The pair-installer’s native table has **95** slots. Bodies are present but almost nameless in cleartext. **Best names** = the 6.11 `onSend*` list above for slots 0…56 (same indices the PLI bridges use). Remaining slots 57…94 are allocated but unnamed in this pass.
+The pair-installer’s native table has **95** slots. Bodies are present but almost nameless in cleartext. The outgoing `onSend*` names above are for the **PLI (client→server) slot space only**. They are not evidence that the same indices name the inbound (PLO) handler slots. Native inbound name↔slot correlation has not been recovered. Remaining slots 57…94 are allocated but unnamed.
 
 **Wire id → handler cannot be dumped statically:** the 256-dword inbound remapper is filled at runtime from script `(wire_id, slot)` pairs. Without a live session remapper image you only get:
 

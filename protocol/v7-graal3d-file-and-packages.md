@@ -47,11 +47,11 @@ PLO side: `tclient_setpackagestart` / `setpackageend`, `tclient_download*` famil
 
 | Signal | Meaning |
 |---|---|
-| `File download: ` / `File download: error when downloading ` | download log lines (`game_console.log` family) |
-| `Web file is too huge, download skipped: ` | hard skip for oversized web files |
-| `is too big to upload (max ` | upload size cap (limit value not decoded this pass) |
-| `SelectFile_ForUpload` | upload file picker hook |
-| `assetBundleName to download=` | Unity asset-bundle download path |
+| Download progress / error log lines | written to the console log on file fetch |
+| Oversized web-file skip | download aborted when the web file exceeds an internal size limit |
+| Upload size-cap message | upload rejected when the file exceeds a maximum (exact limit not decoded) |
+| Upload file-picker hook | native entry that opens a file dialog for upload |
+| Asset-bundle download path | Unity AssetBundle name passed to the download path |
 | Exports `TFileDownload_CanDownload` / `_Download` / `_Update`, `SendFileToHttpRequest` | concurrent native download object + HTTP send |
 
 **Concurrent request window / exact byte caps / retry counters:** not recovered as clear constants this pass — only the error strings and download object API. Note the gap; do not invent numbers.

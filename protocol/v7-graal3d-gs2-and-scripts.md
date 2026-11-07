@@ -68,7 +68,7 @@ Do not claim a numeric opcode map for Worlds until a decrypted `Ld/GS2` body is 
 | Probe | Result |
 |---|---|
 | Event-queue / array / string caps as named constants | **not recovered** as clear symbols this pass |
-| Script level / security level checks | script-level raising exists in the 5.x/6.x protocol family; v7 still has script objects + read-only var guard (`Write to read-only var `) |
+| Script level / security level checks | script-level raising exists in the 5.x/6.x protocol family; v7 still has script objects and a guard that rejects writes to read-only variables (a diagnostic is logged) |
 
 Gap noted — no invented numbers.
 

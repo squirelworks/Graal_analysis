@@ -154,7 +154,8 @@ Many registry entries (`alpha`, `isbuddy`, `peltwith*`, `zoom`, …) are **scrip
 | 44 | `onsendplayerproperties` | primary property sync send hook |
 | 45 | `onsendnpcproperties` (6.11 name; gap in v7 pair dump) | NPC prop sync |
 | 46 / 47 | `onsendflag` / `onsendunsetflag` | flag set/clear |
-| 22 / 23 | baddy properties / shot | NPC/baddy props |
+| 22 | Shot (own slot) | projectile fire |
+| 23 | BaddyProperties (shares remapper cell with 22) | baddy prop stream (C→S) |
 | 14 / 15 | weaponhit / playerhurt | combat → hearts/hp side effects |
 
 Script-side position setters still cleartext: `onServerSetPlayerX` / `Y` / `Z`, plus `SetPlayerPosition`. **[bin]**
