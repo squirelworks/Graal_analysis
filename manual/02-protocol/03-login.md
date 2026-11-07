@@ -263,3 +263,11 @@ Other login tokens the server knows: NC `NCL11012` and `NCL21075`, RC `GSERV023`
 | GServer-v2 as a `Login` stand-in, to 5.x and 6.x clients | 190, the level load (14, 6, 100, 101, chests, 156, 3), staff and status lists (47, 180), start and HTML messages (179, 41), 182 (the client answers with its window titles on 44); 178 is not in this burst | [wire] (protocol/login-session-known.md#the-lab-burst-these-clients-accepted) |
 
 The bytes a public 5.x or 6.x `Login` server sends are unobserved (→ App. E#3).
+
+## 2.3.7 Unpacked 6.037 against unpacked 6.1.1.3
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| 6.037 stores `g3d0311c`, upper-cases it, and sends it as id 5 on the generation-5 framer. 6.1.1.3 has no `G3D` or `GNP` string | 6.037, 6.1.1.3 | [bin] (protocol/v6037-hello-diff.md#login-token) |
+| 6.1.1.3 adds `setprotocol`, `sendraw` and `senddata`. Those names are absent from 6.037 | 6.1.1.3 | [bin] (protocol/v6037-hello-diff.md#framing) |
+| 6.1.1.3 names `tclient_setplayerprops`, `tclient_setotherplayerprops`, `tclient_setnpcprops` and `tclient_setbaddyprops`. 6.037 has none of those names. The property-field bytes were not compared | 6.037, 6.1.1.3 | [bin] (protocol/v6037-hello-diff.md#property-streams) |
