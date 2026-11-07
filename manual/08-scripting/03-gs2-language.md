@@ -52,3 +52,25 @@ These GS2 names appear in the notes; each row gives only what the source says ab
 | Tool | Relevance | Source |
 | --- | --- | --- |
 | LevelScriptEditor | lists every NPC of a folder of `.nw` levels and replaces identical scripts in one go; it reads like a tool for porting GS1 scripts to GS2 on a big world | [src][inf] (client-internals/reference-reimplementations/levelscripteditor.md#what-it-is) |
+
+## 8.3.5 A third-party compiler and VM
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| What it is | a public C# compiler and a public C# VM, both MPL-2.0; a lead for a later clean-room machine | [doc] (npc-library/preagonal-gs2.md#licence) |
+| What runs | the compiler takes GS2 source; the engine loads bytecode, and its tests pass the compiler's bytes in | [doc] (npc-library/preagonal-gs2.md#pipeline) |
+| Open | → App. E#207 stays open for syntax, the standard library, and the event model. The note records a third-party tree | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+
+## 8.3.6 What the clients run
+
+The bytecode these clients run is a big-endian four-segment container. Segment lengths are raw 32-bit counts, so they are not GSHORT (→ §2.1.1). The container is not OpenGS1's layout (→ §8.4.3). Packet 140 and packet 197 stay the envelopes in → §8.3.2. The script object parses the segments, not the `0xAC` file wrapper in → §8.3.5.
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| segments | types 1–4: event mask, functions, strings, opcodes; markers `F0`–`F6` | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
+| 4.2.0.8 weapons | `weblevels` `.code` by CRC32; no `GRESCR01`; 195 is a gani | [bin] (protocol/gs2-client-vm.md#how-4208-loads-a-weapon-or-a-class) |
+| 5.x and 6.00 | `GRESCR01` cache; the wire header is unchanged from → §8.3.2 | [bin] (protocol/gs2-client-vm.md#script-cache) |
+| 6.113 | no container and no opcode switch in the Windows listing. It adds nothing past 6.00's cases 54 and 121 and folds 234–242, and it cannot show whether 48 and 49 returned | [bin] (protocol/gs2-6113.md#what-6113-cannot-show) |
+| compiler lead | the MPL-2.0 checklist in → §8.3.5, compared with these clients | [doc] (protocol/gs2-client-vm.md#compiler-and-builtins) |
+
+The opcode names, the peephole, and the bytes the client runs which that compiler does not emit stay in the note [bin] (protocol/gs2-client-vm.md#what-differs). The effect of each of those bytes is [bin] (protocol/gs2-client-only-opcodes.md).

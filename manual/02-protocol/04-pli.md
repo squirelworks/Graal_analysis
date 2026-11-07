@@ -282,3 +282,11 @@ The login message itself and the server's reply are in → §2.3. What the clien
 | 2.22 | 37 `English`, 39, then 34 for the default images (sword, shield, body, bomb), 23, and 2; 44 in answer to the server's 182 | [cap] (version-profiles/2.22-2.31.md#wire-protocol) |
 | 2.31 | 37, 39, then in the second frame 46 before the props, 35 and 44 | [cap] (version-profiles/2.22-2.31.md#wire-protocol); [cap] (version-profiles/lab-enterlevel-231.tsv) |
 | 6.01r1, 6.03r7 | 37 right after login; no 39 | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
+
+## 2.4.12 Outgoing senders in unpacked 6.1.1.3 and 6.0.3.7
+
+Unpacked 6.1.1.3 has two fixed sends. `sendraw` uses id −1 and appends the caller's bytes. `senddata` sends the id and the body the caller passes. [bin] (protocol/v6113-pli.md)
+
+Fifty-five named actions each read one slot of a 256-wide outgoing table. A negative slot does not send. Slot 254 raises the matching `onSend` script event. Any other value is the packet id. `setoutdatahandlers` fills the table with the all-ones dword, then copies the script list, and stops at 256. [bin] (protocol/v6113-pli.md)
+
+Unpacked 6.0.3.7 has none of those names. Its login send is packet id 5, the upper-cased token. [bin] (protocol/v6113-pli.md)
