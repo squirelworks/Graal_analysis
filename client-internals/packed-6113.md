@@ -10,4 +10,4 @@ The decompile is the same kind of packer stub as `packed-6037.md`: the entry run
 
 This export does not show how the 6.113 engine is split. The Mac 6.11 connector in `protocol/v6x-clients.md` is a different binary. **[bin]**
 
-A later read of the same listing, after the 2026-11-07 gap archive, is `engine-6113.md`. The archive did not add an unpacked image.
+A later read of the same listing, after the 2026-11-07 gap archive, is `engine-6113.md`. The archive did not add an unpacked image. The shell is the Themida / WinLicense wrapper in `client-internals/themida-pack.md`, and the C++ core is not in this export.
