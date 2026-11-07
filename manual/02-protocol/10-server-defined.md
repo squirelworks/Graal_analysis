@@ -77,3 +77,7 @@ Unpacked Windows 6.1.1.3 has the same script methods. The port 14900 capture's f
 | `setprotocol` writes an `I`/`L`/`T`/`E` header. `L` is the header length plus the body length. `E` 1 is zlib and `E` 2 is bzip2 at block size 5. The template is not in the image | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-six-bytes-after-the-token) |
 | A 6-byte header plus the capture's 273-byte zlib member is 279, and `01 17` sits in the captured header. The cipher after that member was not found | 6.1.1.3 | [bin][cap] (protocol/v6113-hello.md#what-the-cipher-is) |
 | Unpacked 6.0.3.7 stores `g3d0311c`, upper-cases it, and sends it as id 5. 6.1.1.3 has no such string | 6.0.3.7 and 6.1.1.3 | [bin] (protocol/v6113-hello.md#against-unpacked-6037) |
+
+## 2.10.6 Unpacked Windows 6.1.1.3
+
+The unpacked Windows image still contains the generation-5 LCG: seed `0x04A80B38`, step times `0x08088405` plus 1. It has no compiled-in `G3D` or `GNP` token. Each outgoing sender compares its own slot with `0xFE` and then calls a script event; the Mac slot numbers in the table above are not the order of the names in this image. `onSendNPCProperties` is the one Mac event name this image does not have. `StartScript_Connector`, `StartScript_Fail` and the three `scriptssl*` fields are present. `setprotocol`, `setindatahandlers` and `con.gs` are not plaintext strings. [bin] (protocol/unpacked-6113-wire.md#generation-5-cipher); [bin] (protocol/unpacked-6113-wire.md#script-send-slots); [bin] (protocol/unpacked-6113-wire.md#connector-names)
