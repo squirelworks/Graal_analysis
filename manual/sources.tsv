@@ -332,6 +332,7 @@ protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E; 3.1; 1	1; 2.3
 protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
+protocol/v6113-wire.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 has no token and no wire of its own; the contradiction table stays in the note
 protocol/v6x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E; 1	1; 2.10	
 protocol/v7x-properties-and-gs2.md	cited	2.6; 8.3; 8.4; E	2.6; 8.4	
 protocol/v7x-protocol.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; E	2.3; 2.4	

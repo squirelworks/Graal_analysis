@@ -126,6 +126,7 @@ The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows 
 | Version | String `6.113`, fixed words 6.1.1.3, Eurocenter Games, copyright 2014, image timestamp 8 August 2014. No version token | [bin] (client-internals/engine-6113.md#what-this-file-is) |
 | Connection, GS2 VM, property parsers, file cache, GUI classes | Absent. The recovered code is the dword walk and a breakpoint | [bin] (client-internals/engine-6113.md#subsystem-map) |
 | Export names | CyaSSL through TLS 1.2, DTLS, AES-CBC, HMAC, SHA-256, and zlib. The bytes at those exports are not the library | [bin] (client-internals/engine-6113.md#the-export-surface) |
+| Login, framing, packet ids, property streams, `GRESCR01` | Not in this image. Neighbour notes disagree on the key byte, the 6.03 token, ids 100 and 108, and the oldest level magics | [bin][cap] (protocol/v6113-wire.md#contradictions) |
 
 ## 10.2 Join sequence
 
