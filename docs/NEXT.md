@@ -186,6 +186,11 @@ open-point closed.
     `quattro_lib` engine is visible (about 9,300 functions). Packer
     section names and Oreans strings remain.
     `client-internals/unpacked-6113.md`. Item 17 stays open.
+  - [x] Unpacked 6.1.1.3 wire and GS2 (2026-11-07). Generation-5 LCG,
+    no compiled-in token, `0xFE` send slots, and the 6.00 GS2 switch
+    (cases 54 and 121, folds 234–242, no 48 or 49).
+    `protocol/unpacked-6113-wire.md`, `protocol/gs2-unpacked-6113.md`.
+    Item 17 stays open.
 
 ## Handoff
 

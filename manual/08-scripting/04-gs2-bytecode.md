@@ -25,6 +25,7 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 | --- | --- | --- |
 | container | big-endian types 1–4, not GSHORT, not the `0xAC` wrapper | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
 | later builds | 5.0.0.7 and 6.00 add dispatcher cases; 6.00 adds folds 234–242 | [bin] (protocol/gs2-client-vm.md#opcodes-added-after-4208) |
+| unpacked 6.1.1.3 | same four segments, 24-byte instructions, cases 54 and 121 and folds 234–242; 48 and 49 stay absent (→ §8.4.4) | [bin] (protocol/gs2-unpacked-6113.md#what-the-dispatcher-adds-past-600) |
 | still open | GS2 syntax, standard library, event model | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
@@ -64,3 +65,7 @@ Opcodes, by name; the notes give no numeric values:
 | `OP_JEZ`, `OP_JNZ` | conditional jumps | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_STOP` | halt | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_DBG_OUT` | debug output | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
+
+## 8.4.4 Unpacked Windows 6.1.1.3
+
+The unpacked Windows 6.1.1.3 image walks the same four segment types and stores a decoded instruction in 24 bytes. Operand markers `F0`–`F6` keep the 6.00 widths. The dispatcher adds no case past 242. Cases 54, 121 and folds 234–242 are present. Cases 48 and 49 are not. A `.code` file of at least eight bytes is accepted when the magic is `GRESCR01`, the cache flag is 1, and the CRC32 of the bytes after the magic matches. [bin] (protocol/gs2-unpacked-6113.md#container); [bin] (protocol/gs2-unpacked-6113.md#what-the-dispatcher-adds-past-600); [bin] (protocol/gs2-unpacked-6113.md#script-cache)

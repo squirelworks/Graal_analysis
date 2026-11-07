@@ -47,7 +47,7 @@ The packed 6.113 listing and this one share the version resource, the 8 August 2
 
 This is not a second program and not a DLL split. The original file name is `Graal.exe`. The body is the `quattro_lib` program already described for unpacked 6.00: source paths under `quattro_lib`, the name `Quattro Play`, `TSocket`, `TServerPlayer` and the other `TServer*` world objects, `GuiGraalCtrl`, `StartScript_GraalGui`, OpenGL startup text, an FMOD open-failure string, and `d3d9.dll` loaded by name. The script cache magic `GRESCR01` is present. A CyaSSL cipher-name function decompiles here; in the packed listing those export names did not have library bodies. **[bin]** (`client-internals/engine-600r2.md#what-the-export-is`)
 
-The connection, the GS2 dispatcher and the Torque-name diff are the later notes on this same image. **[bin]**
+The connection and the file names are `protocol/unpacked-6113-wire.md`. The GS2 walker and the opcode switch are `protocol/gs2-unpacked-6113.md`. **[bin]**
 
 ## Packer names that remain
 

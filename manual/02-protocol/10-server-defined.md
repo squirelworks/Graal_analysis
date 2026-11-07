@@ -65,3 +65,7 @@ The named send slots, each with the event 6.11 raises when its slot holds `0xFE`
 | 16 | `onSendDeleteNPC` | 35 | `onSendWantImage` | 55 | `onSendPingAnswer` | [bin] (protocol/v6x-clients.md#the-611-named-send-slots) |
 | 17 | `onSendDeleteWeapon` | 36 | `onSendImageUpdate` | 56 | `onSendWindowList` | [bin] (protocol/v6x-clients.md#the-611-named-send-slots) |
 | 18 | `onSendExtra` | 37 | `onSendImageUpdateCRC` | | | [bin] (protocol/v6x-clients.md#the-611-named-send-slots) |
+
+### 2.10.5 Unpacked Windows 6.1.1.3
+
+The unpacked Windows image still contains the generation-5 LCG: seed `0x04A80B38`, step times `0x08088405` plus 1. It has no compiled-in `G3D` or `GNP` token. Each outgoing sender compares its own slot with `0xFE` and then calls a script event; the Mac slot numbers in the table above are not the order of the names in this image. `onSendNPCProperties` is the one Mac event name this image does not have. `StartScript_Connector`, `StartScript_Fail` and the three `scriptssl*` fields are present. `setprotocol`, `setindatahandlers` and `con.gs` are not plaintext strings. [bin] (protocol/unpacked-6113-wire.md#generation-5-cipher); [bin] (protocol/unpacked-6113-wire.md#script-send-slots); [bin] (protocol/unpacked-6113-wire.md#connector-names)
