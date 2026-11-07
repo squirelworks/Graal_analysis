@@ -175,7 +175,7 @@ The `4.0.4.2` exe stub and the `5.1.2.0` stub share one string table: four-part 
 | `Graal 6.0.3.7.exe` | stub | `6.037` | `6.0.3.7` | `6.037` | `Graal.exe` | `Linux Cyberjoueurs`, `2012` | [bin] (torque/skipped-version-stamps.md#graal-6037) |
 | `Graal 6.1.1.3.exe` | stub | `6.113` | `6.1.1.3` | `6.113` | `Graal.exe` | `Eurocenter Games`, `2014` | [bin] (torque/skipped-version-stamps.md#graal-6113) |
 
-### 10.1.14 Which modules each era still has
+### 10.1.17 Which modules each era still has
 
 A module is present when that image registers it, recovers methods, records the C++ type, or emits a `Class::method` error. A stub is the name alone. The 4.2.0.8 and 5.0.0.7 launchers are omitted below: both listings have DirectDraw and none of these modules. [bin] (client-internals/torque-surface-by-era.md#how-a-cell-is-counted); [bin] (client-internals/torque-surface-by-era.md#the-table)
 
