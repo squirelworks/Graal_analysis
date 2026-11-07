@@ -199,6 +199,7 @@ open-point closed.
     player and a text. The bind method's name was not found; the events
     are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.
     Item 17 stays open.
+
 ## Handoff
 
 The project moves to Cursor on 2026-11-07. Graal_analysis work there continues
