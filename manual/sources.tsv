@@ -205,6 +205,7 @@ client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
+client-internals/torque-surface-by-era.md	pending			cross-version module table; manual section follows when 4.x and 5.x/6.x are in the note
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/141-217.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
