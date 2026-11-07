@@ -165,6 +165,7 @@ A later listing of the same 8 August 2014 executable decompiles the engine. The 
 ### 10.1.13 Torque names in the unpacked 6.1.1.3 image
 
 Against unpacked 6.00 (→ §10.1.5), this image still has no `SimObject`, `GameConnection`, `TerrainBlock`, `MissionGroup`, `TAdventure`, `graal_set` or `horizSizing`. The GUI walk compares `GuiGraalCtrl`. `GuiGraal3DCtrl` is not a string here; the shell looks up `GraalControl3D` beside `GUIContainer`. `GuiTilesCtrl` is registered beside `GuiControl`, which the 6.00 notes recorded as absent. A file reader matches five `new t2d…(` constructors, and `-printmap` takes a datablock file and a level file. That is text, not a Torque console. The hold on writing the module stands. [bin] (client-internals/unpacked-6113.md#torque-names-against-unpacked-600)
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |

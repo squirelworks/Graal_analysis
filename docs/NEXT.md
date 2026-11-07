@@ -209,7 +209,8 @@ open-point closed.
     header is filled `T`, then `I`, then `E`, then `L`. Ids 93 and 163 on
     the 6.1.1.3 generation-5 path send id 50 first. `onToall` takes a
     player and a text. The bind method's name was not found; the events
-    are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.    Item 17 stays open.
+    are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.
+    Item 17 stays open.
 
 ## Handoff
 
