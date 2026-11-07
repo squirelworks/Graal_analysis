@@ -168,6 +168,8 @@ Id 140 is still the weapon-script message in the packet table. Its body is not t
 
 Read from the 5.0.0.7 `GraalEngine.dll` export and from the unpacked Windows 6.00r2 and 6.00r4 executables. Nothing was run. 6.00r4's dispatcher cases are the same set as 6.00r2. **[bin]**
 
+`torque/5007-engine.md` describes `setScript`, `runScript`, and `executeFunction` for this DLL and leaves the opcode loop unread. The cases in this section are that loop. **[bin]** (`torque/5007-engine.md#how-a-script-runs`)
+
 ### Same container
 
 Both generations walk segment types 1–4 and stop on any other type. Segment 1 is still one 32-bit event mask. Segment 2 still strips a leading `public.` (seven characters) and records the function as public. Segment 4 still uses markers `F0`–`F6` with the same widths and the same string-versus-number split. The 4.2.0.8 peephole is still there, with the same results (200–233). 6.00 walks the decoded instructions at a stride of 24 bytes, the same record size as 4.2.0.8. **[bin]**
