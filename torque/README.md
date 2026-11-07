@@ -16,6 +16,11 @@ Tags: **[bin]** read from a client binary · **[file]** read from shipped data �
 - [skipped-v4-read.md](skipped-v4-read.md): the two skipped Windows exe listings (labeled 4.04r2 and 4.20r8) are one file, and that file is the Thinstall outer loader. The wrapped client is not in the listing.
 - [skipped-v5-read.md](skipped-v5-read.md): packed 5.12 still names its Delphi forms; the packed 5.2.4.3 and 5.24r4 exes do not; `fmod.dll` beside 5.0.0.7 is the UPX FMOD listing, same bytes as the 4.2.0.8 copy.
 - [study-torque-clients.md](study-torque-clients.md): what each Torque-era client really is (Torque monolith 3.x, Delphi shell + C++ engine 4.x–5.12, Graal's own engine from 5.24r3), a marker scan of 17 binaries from 3.04 to 6.11, the 3.04 shipped files and formats, the native surface the 3.04 scripts need, the 4.x/5.00 draw-callback bridge that puts 2D content into the Torque world, and what the 2D rebuild lacks per era.
+- [304-adventure.md](304-adventure.md): the Linux 3.04 2D session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player): license files, HUD sheets, mouse and chat, which level magics log a local enter.
+- [304-draw.md](304-draw.md): tiles, graphics, ganis, show-images and the `TDrawableObject` family in that binary.
+- [304-npcs.md](304-npcs.md): NPC triggers, bow baddies, weapon rectangles, `shapetiletypes` and the polygon verb.
+- [304-net.md](304-net.md): Graal TCP (`TGraalConnection`, server list, player list) beside an untouched Torque `GameConnection`.
+- [304-audio-ui.md](304-audio-ui.md): fmod startup, wav / mid / stream file types, and the audio prefs on `GuiGraalCtrl`.
 - [v4-404r2-exe.md](v4-404r2-exe.md) and [v4-420r8-exe.md](v4-420r8-exe.md): two exports named as the 4.04r2 and 4.20r8 executables. They are one packer stub, not a client.
 - [engine-4208.md](engine-4208.md): the later file-version 4.2.0.8 Windows export (Delphi launcher, `GraalEngine.dll`, `Graal3DEngine.dll`).
 - [skipped-version-stamps.md](skipped-version-stamps.md): version resources still present on the packer-stub exports the engine reads left unread (the identical 4.04r2 and 4.20r8 exe uploads, 5.12, 5.2.4.3, 5.24r4, fmod, and the packed 6.0.3.7 and 6.1.1.3 exes). Manual §10.1.13.

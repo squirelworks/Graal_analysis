@@ -17,6 +17,7 @@ A channel between clients that the game server never sees; the server only relay
 | `noudp` defaults to on | 2.22, 2.31 | [bin] (version-profiles/2.22-2.31.md#wire-protocol) |
 | The client sends its own port as PLPROP UDPPORT (31, `i3`); a peer's address is PLPROP IPADDR (30, `i5`, a 32-bit address) plus UDPPORT, both arriving in `PLO_OTHERPLPROPS` | 2.05 | [2.05] (protocol/udp-p2p.md#setup) |
 | A datagram is accepted only from the address and port of a known player | 2.05 | [2.05] (protocol/udp-p2p.md#datagram) |
+| A 241 s full capture of a running 6.113 client has 10643 UDP datagrams. None of them is to a host that answered the Graal TCP hello on 14900 or 14882. Ports 14899, 14900 and 14901 are not UDP ports in that file, and no UDP port is one greater than a TCP port | 6.113 | [cap] (protocol/v6113-udp.md#against-port-plus-one) |
 
 ## 2.9.2 Datagram
 
