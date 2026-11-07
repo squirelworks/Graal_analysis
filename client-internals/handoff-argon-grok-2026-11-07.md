@@ -39,3 +39,15 @@ Public hostnames appeared in two summary lines and are omitted. The archive warn
 
 - Graal_analysis #243 and graal-client-repro #110 leave the Torque rebuild's language to the owner. This note does not start the observatory, the scaffold, a 3.04 stage-0 capture, or a 7.x Unity pass.
 - `docs/NEXT.md` item 13, tracked in #247, stays the owner's call. This archive does not contain a 5.x/6.x `Login` capture.
+
+## Dirty pack, same day
+
+A second archive from this pass was read after the table above. It holds address dumps, local paths, string scans, and a cleaned 7.x write-up. Addresses, paths, hosts, and the bundles are not copied.
+
+The 3.04 string list matches the study: one binary, with SimObject, NetConnection, GameConnection, TGraalConnection, datablocks, and the console compiler. [bin]
+
+Scans of the 4.20r8 and 5.00r7 engine DLLs find TGraalConnection and do not find NetConnection, GameConnection, SimObject, or datablock. Hits on "ghost" are Graal words (ghostani, ghostsnear, a ghost-always login event) and the colour name ghostwhite. Those scans did not include a separate 3D plug-in, so they do not change the plug-in finding in `torque/study-torque-clients.md`. [bin]
+
+The 6.x scan's seven "Torque" hits are that colour name, a printmap datablock tool, two `t2d` datablock constructor strings, and TGraalConnection. Those constructor strings are not a Torque 2D engine. [bin]
+
+The pack's cleaned note still says 7.x is a Unity host around `Graal3DEngine.dll`, under an internal name Quattro. The only support in the archive is an address-level index, which is not copied. Issues #257, #258, and #259 stay open.
