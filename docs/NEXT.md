@@ -136,6 +136,11 @@ open-point closed.
     a `QPlay.exe` TLS surface and not Torque.
     `torque/skipped-v4-read.md`, `torque/skipped-v5-read.md`,
     `client-internals/skipped-v6-read.md`. The hold stands.
+  - [x] Unpacked Windows 4.2.0.8, static read (2026-11-07). The launcher
+    draws by host slots until a 3D start replaces them. `GraalEngine.dll`
+    runs the session and has no `SimObject` console. `GameObject` in
+    `Graal3DEngine.dll` is a `SceneObject`. `torque/4208-launcher.md`,
+    `torque/4208-engine.md`, `torque/4208-g3d.md`. The hold stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for
