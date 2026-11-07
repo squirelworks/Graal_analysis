@@ -197,6 +197,10 @@ open-point closed.
     player and a text. The bind method's name was not found; the events
     are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.
     Item 17 stays open.
+  - [x] Version resources on the skipped packer stubs (2026-11-07):
+    `torque/skipped-version-stamps.md`. The two v4 exe uploads are one
+    decompile, file version 4.0.4.2. The hold on writing the module stands.
+    Manual §10.1.13.
 
 ## Handoff
 
