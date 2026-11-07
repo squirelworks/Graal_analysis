@@ -201,10 +201,9 @@ open-point closed.
     player and a text. The bind method's name was not found; the events
     are `onBind` and `onBindFailed`. `protocol/v6-repro-facts.md`.
     Item 17 stays open.
-
-## Handoff
-
-The project moves to Cursor on 2026-11-07. Graal_analysis work there continues
+  - [x] Version resources on the skipped packer stubs (2026-11-07):
+    `torque/skipped-version-stamps.md`. The two v4 exe uploads are one
+    decompile, file version 4.0.4.2. The hold on writing the module stands.
 from this list and #191 (TRM 0.0.5 is next). Start with graal-delphi's
 `HANDOFF-CURSOR.md` (state of both repos, rules, on-hold work, open decisions),
 then this file and `AGENTS.md`.

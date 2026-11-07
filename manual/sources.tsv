@@ -237,6 +237,7 @@ docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the wor
 docs/book/04-where-the-notes-disagree.md	cited	E	E	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
+docs/preagonal-gs2-clean-room-2026-11-07.md	excluded			licence and method note for a later compiler; not evidence about the original clients
 docs/releases/v0.0.1.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
@@ -476,6 +477,7 @@ torque/scripting.md	cited	10	10
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
+torque/skipped-version-stamps.md	cited	10	10	
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
