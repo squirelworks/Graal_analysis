@@ -164,6 +164,13 @@ open-point closed.
   - [x] Effects of the GS2 opcodes the client VM accepts and the
     Preagonal compiler does not emit, including folds 200–242.
     `protocol/gs2-client-only-opcodes.md`. Item 17 stays open.
+  - [x] Windows 6.1.1.3 re-read after the 2026-11-07 gap archive.
+    The archive is the existing cleaned notes, not an unpacked image.
+    The executable is still the `QPlay.exe` stub: one `KERNEL32` import,
+    CyaSSL and zlib export names, no login, no GS2 switch, no Torque class.
+    Neighbour diff against unpacked 6.00: `client-internals/engine-6113.md`,
+    `protocol/v6113-wire.md`, `protocol/gs2-6113.md`. Issho is not
+    implemented. Item 17 stays open.
 
 ## Handoff
 

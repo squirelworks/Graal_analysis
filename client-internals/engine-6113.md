@@ -75,3 +75,29 @@ A search of the listing finds none of the unpacked 6.00 markers `quattro_lib`, `
 The 6.00 betas are not this file either. They are January 2010 MoleBox wrappers, older than 5.24r3, and they send `G3D03048` (beta1) and `G3D15010` (beta2). **[bin]** (`protocol/v5v6-windows-unpacked.md`)
 
 The string lists of unpacked 6.00r2 and 6.00r4 still differ only by the two-week delta in `engine-600r4.md`: r4 adds `resolveHost` and the HTTP keep-alive headers; r2 alone names `rsa.c`, `sha1.c`, `truetype`, `type1` and `Server List`. None of those strings are in the 6.113 listing. **[bin]**
+
+## What is gone by 6.1.1.3
+
+The readable post-Torque engine is unpacked Windows 6.00 (`engine-600r2.md`, `engine-600r4.md`). This 6.113 listing is the stub in the sections above, so the absence below is the 6.00 image plus a search of the 6.113 listing. **[bin]**
+
+Already gone in unpacked 6.00, and absent as names from 6.113 as well: the Torque console, `SimObject`, `GameConnection`, `ShapeBase`, Torque's `Player`, `graal_set`, `TAdventure`, `GuiTilesCtrl`, and the Torque GUI fields `horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder` and `pushToBack`. Tiles in 6.00 are the `Draw_Tiles` pass. **[bin]** (`client-internals/engine-600r2.md#no-torque-3d`, `client-internals/engine-600r2.md#gui-and-script-objects`, `client-internals/engine-6113.md#subsystem-map`)
+
+What still hooks the session in unpacked 6.00, and what 6.113 does not reintroduce: `GuiGraalCtrl` and `GuiGraal3DCtrl` are the playfield. The GUI walk compares a control's type with both names and drops either one when a flag on the parent is clear. There is no scene graph behind `GuiGraal3DCtrl`, and neither name is a `graal_set` slot. No Torque field name survives beside them to change layout or movement. The lab timings for 6.00 and 6.03 match 2.05: walk a half tile per 50 ms tick. This 6.113 file has neither control name and no movement constant. **[bin]** (`client-internals/engine-600r2.md#no-torque-3d`) **[cap]** (`protocol/v5v6-lab-play.md#play-what-the-client-does`)
+
+`MissionGroup` in 6.00 is a script object looked up by name. `onMouseYawPitch` and a builtin described as recolouring 3D terrain are script text. `levels3d` is a content folder. `graal3://` is an option-list string with no recovered call. None of those are in the 6.113 listing, and none of them is a Torque UDP connection. **[bin]** (`client-internals/engine-600r2.md#what-torque-names-remain`)
+
+### Ato and Issho
+
+Seihai issue 377 asks for mae, ato and issho crates, and its text puts 7.x in issho with 6.x. The cut this reading supports is narrower. Ato is v3–v5: `graal_set`, `TAdventure`, and, where the 3D DLL is loaded, the mission. Issho is v6: the quattro program, `TSocket`, gen-5 framing, the GS2 VM and `GRESCR01`. By unpacked 6.00 that Torque list is already gone. Windows 6.113, image timestamp 8 August 2014, still has no readable replacement and no Unity bridge. v7 Unity is not a supported profile. This pass does not implement Issho, and it does not fill the crate. A readable engine for the packed 6.113 executable is still open. **[bin]**
+
+## For graal-client-repro
+
+`gh issue comment` was not sent. The text that would have been posted:
+
+Windows 6.1.1.3 in the current upload is the `QPlay.exe` packer stub, not a profile to copy. Version string `6.113`, fixed version 6.1.1.3, Eurocenter Games, image timestamp 8 August 2014, one import `SetCurrentDirectoryA`, export names for CyaSSL (through TLS 1.2, DTLS, AES-CBC, HMAC, SHA-256) and zlib, bodies not the library. No login token, no GS2 VM, no property parser, no `graal_set`, no `GuiGraalCtrl`. The post-Torque shape to follow is unpacked 6.00 (`client-internals/engine-600r2.md` in Graal_analysis). Do not point the Torque module at this file. Do not treat the export ordinals as GS2 opcodes.
+
+## For seihai 377
+
+`gh issue comment` was not sent. The text that would have been posted:
+
+Issho is v6. Ato is v3–v5. v7 Unity is not a supported profile, and this Windows 6.113 file does not put a Unity bridge or a 7.x property layout into Issho. The readable v6 engine is unpacked 6.00: `TSocket`, gen-5 framing, GS2 with cases 54 and 121 and folds 234–242, `GRESCR01` on `.code`, playfield types `GuiGraalCtrl` and `GuiGraal3DCtrl`. The packed 6.113 executable is still a stub, so it does not add a packet id, a property encoding or an opcode. Please leave the 7.x sentence in the issue out of the crate boundary. This pass does not add the crate.
