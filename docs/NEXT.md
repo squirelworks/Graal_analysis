@@ -106,6 +106,10 @@ open-point closed.
   order as #247: (1) the owner comments yes or no on #247; (2) if yes, write the
   capture plan before any connection; (3) redact per `AGENTS.md` and write the note;
   (4) tick this task. Public servers stay off until that written yes is on the issue.
+  - [x] Owner-supplied capture, 2026-11-07, port 14900, Windows 6.113.
+    The clear hello is `GNP1905C`; the bytes after it are ciphertext, so the
+    Login server's packet ids stay unobserved.
+    `protocol/v6113-list-capture.md`. The parent item stays open.
 
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
