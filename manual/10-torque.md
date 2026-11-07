@@ -158,7 +158,8 @@ The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed
 | Torque console, `SimObject`, `GameConnection`, and UDP on the listed port plus one | v3 to v5 | [doc] (client-internals/issho-cut.md#ato-v3-to-v5) |
 | `quattro_lib`, `TSocket`, `TServerPlayer`, OpenGL, `fmod`, `GRESCR01` and the GS2 switch | unpacked 6.037 and 6.1.1.3 | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
 | `GuiWindowCtrl` and `GuiControlProfile` remain as strings. `SimObject` and `GameConnection` do not | both unpacked images | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
-### 10.1.5 Version resources on the skipped exports
+
+### 10.1.13 Version resources on the skipped exports
 
 Packer-stub uploads from the v4, v5 and v6 decompile sets still carry a version resource. The recovered code is not the client. [bin] (torque/skipped-version-stamps.md#what-was-skipped)
 
@@ -174,7 +175,7 @@ The `4.0.4.2` exe stub and the `5.1.2.0` stub share one string table: four-part 
 | `Graal 6.0.3.7.exe` | stub | `6.037` | `6.0.3.7` | `6.037` | `Graal.exe` | `Linux Cyberjoueurs`, `2012` | [bin] (torque/skipped-version-stamps.md#graal-6037) |
 | `Graal 6.1.1.3.exe` | stub | `6.113` | `6.1.1.3` | `6.113` | `Graal.exe` | `Eurocenter Games`, `2014` | [bin] (torque/skipped-version-stamps.md#graal-6113) |
 
-### 10.1.13 The 4.2.0.8 Windows split
+### 10.1.14 The 4.2.0.8 Windows split
 
 Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte for byte, with no Graal or Torque class. The file-version 4.2.0.8 archive is the client that can be read, and it includes `Graal3DEngine.dll`, which the packet-logger upload did not. [bin] (torque/v4-404r2-exe.md; torque/v4-420r8-exe.md) [bin] (torque/engine-4208.md#how-the-three-fit)
 
