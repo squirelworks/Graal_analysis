@@ -122,6 +122,7 @@ open-point closed.
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
   parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
+  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
 
 ## Handoff
 

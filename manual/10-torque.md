@@ -16,7 +16,7 @@ From 2004 to 2007 the Graal client was built on GarageGames' Torque Game Engine 
 | 3.153 Mac | Feb 2005 | one C++ binary (Carbon, PPC) | full TGE with Graal's net-layer changes | stock TGE world and `main3D.cs` client scripts | `Graal3D` / 19 | TorqueScript `.dso` | [bin][file] (torque/README.md#lineage-at-a-glance) |
 | 4.04r2 Win | Mar 2006 | Delphi launcher, `GraalEngine.dll` (2D) and `Graal3DEngine.dll` (3D plug-in) | 2D engine on Torque base classes; the 3D DLL near-stock TGE | stock TGE with datablocks | `Graal3D` / 19 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
 | 4.20r6 Mac | Sep 2006 | one C++ binary (PPC) | Torque core and netcode, Graal game layer | `GameObject` model, no datablocks | `Graal3D` / 21 | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
-| 4.20r8 Win | Jan 2007 | 2D engine on Torque base classes | — | unmeasured: the upload has no `Graal3DEngine.dll` | unmeasured | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
+| 4.20r8 Win | Jan 2007 | 2D engine on Torque base classes | — | packet-logger upload has no `Graal3DEngine.dll` (later file-version 4.2.0.8 export: → §10.1.4) | unmeasured | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) [bin] (torque/engine-4208.md#how-the-three-fit) |
 | 5.12 Win | Oct 2007 | Delphi launcher and one engine DLL, still named `Graal3DEngine.dll` | Torque core and netcode; the game layer is Graal's own | `GameObject` and `GameShape*`, no datablocks, no `Player`/`ShapeBase` | `Graal3D` / 24 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
 | 5.24r3 and later | 2010+ | engine linked into `Graal.exe` | no Torque 3D; only the name `GuiGraal3DCtrl` is left | none | n/a | GS2 | [bin] (torque/engine-and-formats.md#which-torque) |
 | 6.x | 2010–2014 | native C++ per platform | none | none | n/a | GS2 | [bin] (torque/README.md#lineage-at-a-glance) |
@@ -56,6 +56,17 @@ The Graal changes a compatible peer adds to open TGE [bin] (graal3d/torque-engin
 | In 4.04r2 the loaded plug-in registers its own handler for every drawing callback of the 2D engine, so in 3D mode the Torque DLL owns the window and the 2D game draws through Torque's canvas | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 | Scene lighting is Torque's, cached per mission and run as the last mission-load phase | [bin] (torque/engine-and-formats.md#rendering) |
 | Under Wine with software OpenGL the 5.12 Torque side starts on switching to 3D, but the launcher faults re-initialising DirectDraw and stops driving the engine's frame export; the 3D view was not seen | [run] (torque/engine-and-formats.md#rendering) |
+
+### 10.1.4 The 4.2.0.8 Windows split
+
+Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte for byte, with no Graal or Torque class. The file-version 4.2.0.8 archive is the client that can be read, and it includes `Graal3DEngine.dll`, which the packet-logger upload did not. [bin] (torque/v4-404r2-exe.md; torque/v4-420r8-exe.md) [bin] (torque/engine-4208.md#how-the-three-fit)
+
+| Fact | Source |
+| --- | --- |
+| The launcher registers 94 `graal_set…` callbacks and loads `GraalEngine.dll`. The 3D DLL adds 19 names the launcher does not register, including `CreateGraal3DGameObject`, `GetGraal3DTerrainHeight` and `SendGraal3DScriptEvent` | [bin] (torque/engine-4208.md#how-the-three-fit) |
+| `GraalEngine.dll` keeps Torque's `GuiCanvas` and `GuiControl` and has no `SimObject`, `ActionMap` or `.dso`. The game is `TAdventure`, `TShowImg` and `TGraalAni`. Scripts are `TGraalVar` and `TScriptExecutionSpace` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
+| The engine builds a `TGraalVar` for `StartScript_GraalGui`, `StartScript_MoveMap2D`, `StartScript_MoveMap3D` and the other start scripts, and it special-cases the control names `GuiGraalCtrl` and `GuiGraal3DCtrl` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
+| `Graal3DEngine.dll` is the `GameObject` world: `GameConnection`, `TerrainBlock`, interiors, two login phases (`onGraal3DLoginStep`), and `TerrainChunkEvent`. `ShapeBase` and Torque's `Player` are absent | [bin] (torque/engine-4208.md#graal3denginedll-gameobject-torque) |
 
 ## 10.2 Join sequence
 
