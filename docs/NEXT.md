@@ -158,6 +158,9 @@ open-point closed.
     CyaSSL, zlib and ciphers; the bytes at those exports are not the
     library, and the engine is still not in these two files.
     `client-internals/skipped-v6-read.md`. Item 17 stays open.
+  - [x] GS2 container, opcodes, and weapon/class load for 4.2.0.8,
+    5.0.0.7, and unpacked 6.00r2 and 6.00r4.
+    `protocol/gs2-client-vm.md`. Item 17 stays open.
 
 ## Handoff
 

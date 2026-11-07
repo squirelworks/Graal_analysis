@@ -163,3 +163,83 @@ There is no `GRESCR01` magic in this engine. A weapon cache file is `weblevels`,
 Id 195 is a gani name and gani text. Id 196 has the same layout as 193, and this build's handler reads it and does nothing else. Neither id is the script container. **[bin]** (`protocol/v4x-clients.md`)
 
 Id 140 is still the weapon-script message in the packet table. Its body is not the `0xAC` wrapper, and it is not GSHORT inside the container. **[srv]** (`protocol/packet-ids.md`)
+
+## 5.0.0.7 and unpacked 6.00
+
+Read from the 5.0.0.7 `GraalEngine.dll` export and from the unpacked Windows 6.00r2 and 6.00r4 executables. Nothing was run. 6.00r4's dispatcher cases are the same set as 6.00r2. **[bin]**
+
+### Same container
+
+Both generations walk segment types 1–4 and stop on any other type. Segment 1 is still one 32-bit event mask. Segment 2 still strips a leading `public.` (seven characters) and records the function as public. Segment 4 still uses markers `F0`–`F6` with the same widths and the same string-versus-number split. The 4.2.0.8 peephole is still there, with the same results (200–233). 6.00 walks the decoded instructions at a stride of 24 bytes, the same record size as 4.2.0.8. **[bin]**
+
+5.0.0.7's jumps, in the cases read, store the operand as the index into the one instruction list being stepped. They do not add a second base. A single script still matches the compiler's op index. **[bin]**
+
+### Opcodes added after 4.2.0.8
+
+The 4.2.0.8 switch is the base. Later dispatchers only add cases. **[bin]**
+
+| Build | Added cases | What was read |
+| --- | --- | --- |
+| 5.0.0.7 | 48, 49, 54, 121 | 48 and 49 require a non-empty stack and then call a helper; the helper was not read, so it is not named. 54 builds a value with type tag 4 from the top of the stack, copying a string onto it when one is present. 121 adds the two numbers, unless either value has the string type tag, in which case both go through the string helper |
+| 6.00r2 and 6.00r4 | 54, 121, and 234–242 | 54 and 121 match the 5.0.0.7 cases. 48 and 49 are not in this switch. 234–242 are the extra folds below |
+
+The compiler emits none of these. **[doc]** (`npc-library/preagonal-gs2.md`)
+
+6.00 folds more pairs after decode. The byte stream still uses `F0`–`F6` as operands, so a folded opcode in that range exists only on the decoded list. **[bin]**
+
+| First | Next | Result |
+| --- | --- | --- |
+| 20 `loadfloat` | 131 `getarraycell` | 240 |
+| 22 `loadmember` | 6 `call`, or 45 `setreg`, or 47 `makeprop`, when the name resolves and that object is flagged | 241, and the resolved object is stored on the instruction |
+| 22 | 35 `makemember`, then 33, 34, 36, or 47 | 236, 237, 238, or 239. 47 is skipped when the opcode after it is 45 |
+| 22 | 35, and none of those four follow | 234 |
+| 22 | 36 | 235 |
+| 47 `makeprop` | 45 `setreg` | 242, the next instruction's number is copied, and the type tag is set to number |
+
+### Script cache
+
+5.0.0.7 knows `GRESCR01`. The reader accepts a file only when it is longer than the magic, the magic matches, and the CRC32 of the bytes after the magic matches the value passed in. It then runs the key over that body and returns the plaintext to the script loader. A cache flag other than 1 returns an empty script. **[bin]**
+
+The on-wire header around that body is already recorded: id 140 is a GSHORT length, then `type,name,cache flag`, then two GINT5 words that are the DES key, then the plain body; id 197 is the cache-hit form with the same key and a CRC32; id 195 is still a gani. **[bin]** (`protocol/v5x-clients.md`, `formats/gwebl001-cache.md`)
+
+Unpacked 6.00r2 and 6.00r4 compare the same `GRESCR01` magic on a `.code` file of at least eight bytes. The class and weapon paths and the DES step are the cache note's, not a second format. **[bin]** (`formats/gwebl001-cache.md`)
+
+## What differs
+
+Tags: **[bin]** the clients above. **[doc]** the Preagonal compiler at `7878bc5` (`npc-library/preagonal-gs2.md`).
+
+The client accepts every opcode the compiler emits. The compiler does not emit bytes the client still runs:
+
+| Bytes | Client | Compiler |
+| --- | --- | --- |
+| 43, 45, 46, 47, 104, 190 | `makeoldscriptvar`, `setreg`, `getreg`, `makeprop`, `compare`, `loadparams` | not in the `Op` enum |
+| 66, 67 | value and/or, folded onward to `andfloat` / `orfloat` | not emitted; jumps stay at 3 and 5 |
+| 48, 49 | 5.0.0.7 only | not emitted |
+| 54, 121 | 5.0.0.7 and 6.00 | not emitted |
+| 161, 162, 185–188 | named `break`, `continue`, `loadserver`, `loadserverr`, `loadclient`, `loadclientr`, and not dispatched | not emitted |
+| 200–233, and 234–242 on 6.00 | folded by the client after decode | not emitted |
+
+The other way, names for the same byte:
+
+| Byte | Client name | Compiler name |
+| --- | --- | --- |
+| 9 | `loopcheck`, and it does stop past 10000 | `CmdCall` |
+| 10 | `savestackpos` | `Jmp`, described on the engine side as a byte-offset jump. 4.2.0.8 stores the stack height and does not jump |
+| 51 | `massassign` | end of a parameter list |
+| 116, 117 | `beginswith`, `endson` | `starts`, `ends` |
+
+The compiler's default file header (byte `0xAC`, raw 16-bit length, `type,name,0,`) is not a segment stream, not GSHORT, and not packet 140's body. `setScript` on these clients will not run a file that starts with that wrapper. The bytes they run are the four segments. Packet 140 and packet 197 are the envelopes in `protocol/v5x-clients.md`. **[bin][doc]**
+
+## For graal-client-repro issues
+
+Issues #151–#155 were read with `gh issue view`. The repro repo was not edited. `gh issue comment` on #151 returned "Resource not accessible by integration" and was not retried. The comments below are what would have been posted.
+
+**#151** (TGE 1.2 surface). 3.04 stays TorqueScript plus GS1. Do not add this opcode table to that surface. GS2 starts with the 4.2.0.8 dispatcher in this note.
+
+**#152** (Torque scaffold). No GS2 opcode or load path goes into `common/torque`. Unchanged.
+
+**#153** (login, historical source left untouched). Unchanged. A later script VM reads the four segments, not packet 140's GSHORT header and not the compiler's `0xAC` wrapper.
+
+**#154** (7.x research). Do not take a 40-byte instruction slot, or ids 195 and 196 as the script body, from the 7.x properties note. These clients decode a 24-byte instruction. 195 is a gani in 4.20r8 and in 5.x. Script bytes are the four-segment container, cached as `.code` (4.2.0.8, CRC32) or `GRESCR01` (5.0.0.7 and unpacked 6.00).
+
+**#155** (parked Torque module pointed at 3.04). Do not point that module at this VM. 3.04 is not the GS2 dispatcher.
