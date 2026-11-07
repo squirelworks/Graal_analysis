@@ -66,6 +66,7 @@ Counts of string hits per binary (both 8-bit and UTF-16 strings). 0 means the ma
 | The 2D game on screen | `GraalGui.gui` creates `GuiControl(AdventureGui)` holding `GuiGraalCtrl(Adventure)` (640 × 480, relative sizing) with a child `GuiTextEditCtrl(ChatBar)` whose `altCommand` is `Adventure.setChat(ChatBar.getValue());`. `AdventureGui::onWake` pushes `moveMap`; `onSleep` pops it. **[file]** |
 | Input | Keys go through Torque's `ActionMap` (`moveMap`) to script, which calls the native control: `Adventure.moveUp/Down/Left/Right`, `doA`, `doS`, `doD`, `doQ`, `doP`, `doM`, `doMicro`. **[file][bin]** (3.153 method table; 3.04's binds use the same map) |
 | Lab | Runs natively on Linux; draws the classic top-down view with the stock HUD and white chat with a blue shadow. **[run]** (`version-profiles/lab-304-linux-2026-10-30.md`) |
+| Console surface | 31 methods on `GuiGraalCtrl`, including `playerListProfile` and `doA`/`doS`/`doD`/`doQ`/`doP`/`doM`. No `setNickName`, `setAccountName`, `setLanguage` or `retrieveAccountFields` (those are the 3.153 table). Argument counts: `engine-304.md`. **[bin]** |
 
 ### 3.153 Mac (Feb 2005, token `G3D28015`)
 
