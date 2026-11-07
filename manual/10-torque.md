@@ -151,6 +151,14 @@ The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed
 | `horizSizing` and the other Torque field names | Absent, as in unpacked 6.00 | [bin] (client-internals/unpacked-6037.md#gui) |
 | Torque modules | `GameConnection`, `SimObject`, DTS, `TAdventure` and SDL are absent. `-printmap` writes Torque 2D datablock text and does not run a module | [bin] (client-internals/unpacked-6037.md#torque-names-that-remain) |
 
+### 10.1.12 The cut between the Torque years and the 6.x core
+
+| What | Who | Source |
+| --- | --- | --- |
+| Torque console, `SimObject`, `GameConnection`, and UDP on the listed port plus one | v3 to v5 | [doc] (client-internals/issho-cut.md#ato-v3-to-v5) |
+| `quattro_lib`, `TSocket`, `TServerPlayer`, OpenGL, `fmod`, `GRESCR01` and the GS2 switch | unpacked 6.037 and 6.1.1.3 | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
+| `GuiWindowCtrl` and `GuiControlProfile` remain as strings. `SimObject` and `GameConnection` do not | both unpacked images | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |
