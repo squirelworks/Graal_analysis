@@ -130,6 +130,12 @@ open-point closed.
     `GuiTilesCtrl` are absent from these two images.
     `client-internals/engine-600r2.md`, `client-internals/engine-600r4.md`.
     The rebuild stays on hold.
+  - [x] Read the skipped packed listings (2026-11-07). The two v4 exe
+    listings are one Thinstall loader. Packed 5.12 still names its Delphi
+    forms. `fmod.dll` is the UPX export list. Packed 6.037 and 6.113 export
+    a `QPlay.exe` TLS surface and not Torque.
+    `torque/skipped-v4-read.md`, `torque/skipped-v5-read.md`,
+    `client-internals/skipped-v6-read.md`. The hold stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for
@@ -138,6 +144,11 @@ open-point closed.
     shell, `TServer*` world objects and `TSocket`. Packed 6.037 and 6.113
     decompile as packer stubs. `client-internals/engine-600r2.md`,
     `engine-600r4.md`, `packed-6037.md`, `packed-6113.md`.
+  - [x] The packed 6.037 and 6.113 listings were read past the stub
+    (2026-11-07). The export directory is named `QPlay.exe` and lists
+    CyaSSL, zlib and ciphers; the bytes at those exports are not the
+    library, and the engine is still not in these two files.
+    `client-internals/skipped-v6-read.md`. Item 17 stays open.
 
 ## Handoff
 

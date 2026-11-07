@@ -11,11 +11,13 @@ Tags: **[bin]** read from a client binary · **[file]** read from shipped data �
 - [wire-by-build.md](wire-by-build.md): which builds are Torque, the handshake and class table per build (3.04, 3.153, 4.04r2, 4.20r6, 5.12), the networked class sets, the 5.12 game packets (no moves, client-reported position) and the 5.12 `GameObject` update.
 - [engine-and-formats.md](engine-and-formats.md): engine version, classes per build, 3D resource formats (DTS, DIF, TER, 3DS), terrain streaming, rendering devices.
 - [engine-304.md](engine-304.md): the 3.04 Linux binary read as an engine. Stock TGE is still compiled in, Graal's game is `GuiGraalCtrl`, and later builds drop the TGE game layer from this superset.
+- [skipped-v4-read.md](skipped-v4-read.md): the two skipped Windows exe listings (labeled 4.04r2 and 4.20r8) are one file, and that file is the Thinstall outer loader. The wrapped client is not in the listing.
+- [skipped-v5-read.md](skipped-v5-read.md): packed 5.12 still names its Delphi forms; the packed 5.2.4.3 and 5.24r4 exes do not; `fmod.dll` beside 5.0.0.7 is the UPX FMOD listing, same bytes as the 4.2.0.8 copy.
 - [study-torque-clients.md](study-torque-clients.md): what each Torque-era client really is (Torque monolith 3.x, Delphi shell + C++ engine 4.x–5.12, Graal's own engine from 5.24r3), a marker scan of 17 binaries from 3.04 to 6.11, the 3.04 shipped files and formats, the native surface the 3.04 scripts need, the 4.x/5.00 draw-callback bridge that puts 2D content into the Torque world, and what the 2D rebuild lacks per era.
 - [rebuild-plan-3.04.md](rebuild-plan-3.04.md): a staged plan for a Torque-faithful rebuild starting with 3.04, the test that ends each stage, and what "0.0.2" means for each era.
 - `tools/`: `dsodis.py` / `dsodec.py` (DSO disassembler and decompiler), `tbits.py` (Torque bit stream and Huffman strings), `tq.py` (a minimal Torque server that completes the 5.12 handshake), `conn.c` (the injector that makes a real 5.12 client join a 3D server and drives its frames under Wine).
 
-Related notes elsewhere: `protocol/v3x-clients.md` (3.04 / 3.153 Graal TCP side), `protocol/v4x-clients.md` and `graal3d/torque-engine-4x.md` (4.x, including the 4.04r2 `Graal3DEngine.dll` read: BigData events, commands, protocol 19), `protocol/v5x-clients.md` (5.x TCP side), `graal3d/` (the unrelated February 2000 DirectX Graal3D).
+Related notes elsewhere: `protocol/v3x-clients.md` (3.04 / 3.153 Graal TCP side), `protocol/v4x-clients.md` and `graal3d/torque-engine-4x.md` (4.x, including the 4.04r2 `Graal3DEngine.dll` read: BigData events, commands, protocol 19), `protocol/v5x-clients.md` (5.x TCP side), `client-internals/skipped-v6-read.md` (the packed 6.037 and 6.113 listings: a `QPlay.exe` export directory, no Torque), `graal3d/` (the unrelated February 2000 DirectX Graal3D).
 
 ## Lineage at a glance
 
