@@ -149,6 +149,9 @@ open-point closed.
     runs the session and has no `SimObject` console. `GameObject` in
     `Graal3DEngine.dll` is a `SceneObject`. `torque/4208-launcher.md`,
     `torque/4208-engine.md`, `torque/4208-g3d.md`. The hold stands.
+  - [x] GS2 script machine in GraalEngine 4.2.0.8 and GraalEngine 5.0.0.7
+    (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`.
+    The Torque rebuild stays on hold. No Seihai crate was started.
   - [x] Read 5.0.0.7 for behaviour (2026-11-07): the launcher session,
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
@@ -166,6 +169,10 @@ open-point closed.
     CyaSSL, zlib and ciphers; the bytes at those exports are not the
     library, and the engine is still not in these two files.
     `client-internals/skipped-v6-read.md`. Item 17 stays open.
+  - [x] The GS2 opcode switch in unpacked 6.00r2 and 6.00r4 (2026-11-07),
+    same note as the 4.2 and 5.0 engines:
+    `client-internals/gs2-vm-from-engines.md`. Item 17 stays open for the
+    packed 6.037 and 6.113 executables. No Seihai crate was started.
   - [x] GS2 container, opcodes, and weapon/class load for 4.2.0.8,
     5.0.0.7, and unpacked 6.00r2 and 6.00r4.
     `protocol/gs2-client-vm.md`. Item 17 stays open.
