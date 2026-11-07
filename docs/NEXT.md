@@ -174,6 +174,11 @@ macOS CI is paused until the polish stage.
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
     `torque/5007-g3d.md`. The hold on writing the module stands.
+  - [x] Unpacked Windows 6.1.1.3 against the 6.00 notes (2026-11-07).
+    No `SimObject` console. `GuiTilesCtrl` is registered.
+    `GuiGraal3DCtrl` is not a string; `GraalControl3D` is looked up
+    beside `GUIContainer`. Five `new t2d` constructors are file text.
+    `client-internals/unpacked-6113.md`. The hold stands.
 
 - [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. A readable engine for
@@ -212,6 +217,15 @@ macOS CI is paused until the polish stage.
     do not implement the CyaSSL or zlib calls, and the file has no GS2
     switch, GUI class or socket import.
     `client-internals/decompile-6113.md`. Item 17 stays open.
+  - [x] Unpacked Windows 6.1.1.3 image read (2026-11-07). The upload is a
+    Ghidra listing of the 8 August 2014 executable, not a raw exe. The
+    `quattro_lib` engine is visible (about 9,300 functions). Packer
+    section names and Oreans strings remain.
+    `client-internals/unpacked-6113.md`. Item 17 stays open.
+  - [x] Unpacked 6.1.1.3 wire and GS2 (2026-11-07). Generation-5 LCG,
+    no compiled-in token, `0xFE` send slots, and the 6.00 GS2 switch
+    (cases 54 and 121, folds 234–242, no 48 or 49).
+    `protocol/unpacked-6113-wire.md`, `protocol/gs2-unpacked-6113.md`.
   - [x] Unpacked Windows 6.037 (static read, 2026-11-07). The listing
     is the `quattro_lib` engine: a code section, `TSocket`, and a GS2
     switch with cases 54, 121 and 200–242 and without 48 or 49.
