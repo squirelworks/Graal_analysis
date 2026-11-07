@@ -64,3 +64,11 @@ Opcodes, by name; the notes give no numeric values:
 | `OP_JEZ`, `OP_JNZ` | conditional jumps | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_STOP` | halt | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_DBG_OUT` | debug output | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
+
+## 8.4.4 Unpacked Windows 6.1.1.3
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| A `.code` file shorter than eight bytes is rejected. The magic is `GRESCR01`, and the CRC32 covers the bytes after those eight | 6.1.1.3 | [bin] (client-internals/gs2-6113.md#load-path-and-the-code-cache) |
+| The dispatcher has 152 cases, from 11 through 242, with no case 48, 49 or 200. Cases 54, 121, 201–242 are present. Unpacked 6.037 has the same set | 6.1.1.3, 6.037 | [bin] (client-internals/gs2-6113.md#opcode-range) |
+| Those cases include the opcodes the Preagonal compiler does not emit. A full builtin table was not extracted | 6.1.1.3 | [bin][doc] (client-internals/gs2-6113.md#against-preagonal) |
