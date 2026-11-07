@@ -26,28 +26,38 @@ Other stock names that have console methods here: `SimObject` 10, `SimSet` 9, `A
 
 C++ types that are not console classes: `TDrawableObject`, `TLevelObject`, `TGaniObject`, `TServerPlayer`, `TDrawableSurface`, `TSurfaceOwner`, `TGraalConnection`. Absent: `TAdventure`, `TGraalVar`, `TScriptExecutionSpace`, `TShowImg`, `GuiGraal3DCtrl`, `GameObject`, and every `GameShape` name. **[bin]**
 
-| Module | 3.04 | Lineage |
-| --- | --- | --- |
-| Console and script loader | present | stock name; body uncompared. `.dso` literal not recovered in this listing |
-| `SimObject` | present | stock name; body uncompared |
-| `ActionMap` | present | stock name; body uncompared |
-| `GuiCanvas` | present | stock name; body uncompared |
-| `GuiControl` | present | stock name; body uncompared |
-| `GBitmap` | present | stock name; body uncompared |
-| Terrain (`TerrainBlock`) | present | stock name; body uncompared |
-| Interiors (`InteriorInstance`) | present | stock name; body uncompared |
-| DTS (`TSMesh`, `.dts`) | present | stock name; body uncompared |
-| `GameConnection` | present | stock method names; body uncompared |
-| `ShapeBase` | present | stock name; body uncompared |
-| `Player` | present | stock name; body uncompared |
-| Vehicles | present (`WheeledVehicle`, `FlyingVehicle`; `HoverVehicle` stub) | stock names; body uncompared |
-| Datablocks (`SimDataBlock`, `transmitDataBlocks`) | present | stock name; body uncompared |
-| `GameObject` | gone | Graal-only; not in this image |
-| `GuiGraalCtrl` | present | Graal-only |
-| `GuiGraal3DCtrl` | gone | Graal-only; not in this image |
-| `TAdventure` | gone | Graal-only; not in this image |
-| `TGraalVar` | gone | Graal-only; not in this image |
-| `TScriptExecutionSpace` | gone | Graal-only; not in this image |
-| `TShowImg` | gone | Graal-only; not in this image |
+| Module | 3.04 | 4.2 launcher | 4.2 engine | 4.2 3D | Lineage where it is present |
+| --- | --- | --- | --- | --- | --- |
+| Console and script loader | present | gone | gone | gone | stock name in 3.04; body uncompared |
+| `SimObject` | present | gone | gone | present | stock name; body uncompared |
+| `ActionMap` | present | gone | gone | present | stock name; body uncompared |
+| `GuiCanvas` | present | gone | present | stub | stock name; body uncompared. The 3D DLL calls the engine's canvas |
+| `GuiControl` | present | gone | present | present | stock name; body uncompared. The 3D image has the type |
+| `GBitmap` | present | gone | present | stub | stock name; body uncompared. The 3D image has `GBitmapInstance` only |
+| Terrain | present | gone | gone | present | stock name; body uncompared. 4.2 adds `TerrainChunkEvent` |
+| Interiors | present | gone | gone | present | stock name; body uncompared. 4.2 keeps `Interior::read` |
+| DTS | present | gone | gone | present | stock name; body uncompared. 4.2 names `TSShapeInstance` |
+| `GameConnection` | present | gone | gone | present | 3.04 method names are stock; body uncompared. 4.2 adds `BigDataStartEvent` and `BigDataChunkEvent` (patched) |
+| `ShapeBase` | present | gone | gone | gone | stock name in 3.04; body uncompared |
+| `Player` | present | gone | gone | gone | stock name in 3.04; body uncompared |
+| Vehicles | present | gone | gone | gone | stock names in 3.04; `HoverVehicle` is a 3.04 stub |
+| Datablocks | present | gone | gone | stub | stock class in 3.04. 4.2 keeps the field name `datablock` and not `SimDataBlock` |
+| `GameObject` | gone | gone | gone | present | Graal-only |
+| `GuiGraalCtrl` | present | gone | stub | gone | Graal-only. 4.2 engine keeps the name and does not build the class |
+| `GuiGraal3DCtrl` | gone | gone | stub | gone | Graal-only name on the 4.2 engine only |
+| `TAdventure` | gone | gone | present | stub | Graal-only. Methods are on the engine; the 3D DLL only names the type |
+| `TGraalVar` | gone | gone | present | present | Graal-only |
+| `TScriptExecutionSpace` | gone | gone | present | stub | Graal-only. Methods are on the engine |
+| `TShowImg` | gone | gone | present | stub | Graal-only. Methods are on the engine |
 
-4.2.0.8, 5.0.0.7 and the later own-engine images are the following sections.
+## 4.2.0.8 Windows
+
+Three images. The launcher listing has DirectDraw and none of the module names in the table. What the 94 host slots do is `torque/4208-launcher.md`. **[bin]**
+
+`GraalEngine.dll` keeps Torque's canvas, controls and bitmap reader, and drops the console. `GuiCanvas` has 55 methods (`renderFrame`, dialogs, mouse lock, hints). `GuiControl` has 85. `GBitmap` has 38, and the readers are PNG, JPEG, GIF, DDS, TGA, BMP and JPEG 2000. There is no `SimObject`, no `ActionMap`, no `.dso`, no `GameConnection`, no terrain, no interior, no DTS, no `ShapeBase`, no `Player`, no vehicle and no datablock class. The Torque GUI field names (`horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder`, `pushToBack`) are still in this DLL. **[bin]**
+
+The Graal types that 3.04 does not have are C++ classes here. `TAdventure` has 27 methods: client pump, keys, mouse, paint, warp, chat, level coordinates. `TScriptExecutionSpace` has 26: run, join and leave class, schedule, ignore events. `TGraalVar` has 85: script vars, arrays, XML, `runScript`. `TShowImg` has 66, including image, polygon, text, shape, layer and a 3D attach. `TGraalUniverse` has 5 (`addStaticObject`, `removeStaticObject`, `clearVars`). `GuiGraalCtrl` and `GuiGraal3DCtrl` are names, not method classes. How a session and a show-image actually run is `torque/4208-engine.md`. **[bin]**
+
+`Graal3DEngine.dll` is the Torque world with Graal's object, not 3.04's game layer. Types: `SimObject`, `SimSet`, `SimGroup`, `NetObject`, `SceneObject`, `NetConnection`, `GameConnection`, `TerrainBlock`, `GameObject`. Error strings name `ActionMap`, `Interior`, `InteriorResource`, `TSShapeInstance`, `TSThread`, `Terraformer`, `TerrainEditor`, `SceneLighting` and `LightManager`. Event names `BigDataStartEvent`, `BigDataChunkEvent` and `TerrainChunkEvent` are the Graal net patch. Display-device names are OpenGL, Voodoo2 and the OpenGL-to-Direct3D wrapper. `WaterBlock`, `fxSunLight` and the sky field names are present. `ShapeBase`, `Player`, the vehicle classes and `SimDataBlock` are absent; `datablock` survives as a field name. `GameShape`, `GameShapeDTS`, `GameShapeDIF` and `GameShapeFT` do not occur. What `GameObject` exposes, and what an interior read rejects, is `torque/4208-g3d.md`. **[bin]**
+
+5.0.0.7 and the own-engine images are the following sections.
