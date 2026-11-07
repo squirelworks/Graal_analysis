@@ -28,7 +28,7 @@ The 5.x and 6.01/6.03 clients open an ordinary game connection and name the serv
 
 ## Still unobserved
 
-A public Login session was not captured.
+A public Login session was not captured. That capture is deferred: GitHub issue #247 and `docs/NEXT.md` task 13. Do not connect. Public servers stay off until the owner comments yes on #247.
 
 - The bytes a public 5.x or 6.x Login server sends, including the payload of S→C 190.
 - The GUI script text for the server list, the account screens and the `ChatBar` control.
