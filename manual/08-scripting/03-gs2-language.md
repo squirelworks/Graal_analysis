@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.3 GS2 language
 
-GS2 is the script language of the 4.x and later clients. The notes record where GS2 appears, how it is delivered and the names of the events and functions seen in clients and labs. They do not document its syntax, standard library or event model; that gap is → App. E#207. GS1 is in → §8.1.
+GS2 is the script language of the 4.x and later clients. Where it appears and how it is delivered are below. The script machine in GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and the unpacked 6.00 clients is → §8.3.6. Syntax and the standard library stay open (→ App. E#207). GS1 is in → §8.1.
 
-> Status: draft. Complete for what the notes hold; the language itself is open (→ App. E#207).
+> Status: draft. The machine in those three engines is in §8.3.6; syntax and the standard library stay open (→ App. E#207).
 
 ## 8.3.1 Where GS2 appears
 
@@ -59,11 +59,11 @@ These GS2 names appear in the notes; each row gives only what the source says ab
 | --- | --- | --- |
 | What it is | a public C# compiler and a public C# VM, both MPL-2.0; a lead for a later clean-room machine | [doc] (npc-library/preagonal-gs2.md#licence) |
 | What runs | the compiler takes GS2 source; the engine loads bytecode, and its tests pass the compiler's bytes in | [doc] (npc-library/preagonal-gs2.md#pipeline) |
-| Open | → App. E#207 stays open for syntax, the standard library, and the event model. The note records a third-party tree | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Open | → App. E#207 stays open for syntax, the standard library, and the event model. The note records a third-party tree, which is not a reading of the clients | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ## 8.3.6 What the clients run
 
-The bytecode these clients run is a big-endian four-segment container. Segment lengths are raw 32-bit counts, so they are not GSHORT (→ §2.1.1). The container is not OpenGS1's layout (→ §8.4.3). Packet 140 and packet 197 stay the envelopes in → §8.3.2. The script object parses the segments, not the `0xAC` file wrapper in → §8.3.5.
+The bytecode these clients run is a big-endian four-segment container. Segment lengths are raw 32-bit counts, so they are not GSHORT (→ §2.1.1). The container is not OpenGS1's layout (→ §8.4.3). Packet 140 and packet 197 stay the envelopes in → §8.3.2. The script object parses the segments, not the `0xAC` file wrapper in → §8.3.5. The runner that executes it is → §8.3.7.
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -74,3 +74,18 @@ The bytecode these clients run is a big-endian four-segment container. Segment l
 | compiler lead | the MPL-2.0 checklist in → §8.3.5, compared with these clients | [doc] (protocol/gs2-client-vm.md#compiler-and-builtins) |
 
 The opcode names, the peephole, and the bytes the client runs which that compiler does not emit stay in the note [bin] (protocol/gs2-client-vm.md#what-differs). The effect of each of those bytes is [bin] (protocol/gs2-client-only-opcodes.md).
+
+## 8.3.7 The script machine in the 4.2, 5.0 and 6.00 engines
+
+GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each contain this runner. The 3.04 Linux client is TorqueScript menus plus native GS1. The container is → §8.3.6. The opcode names, including opcodes 9 and 10, are in `protocol/gs2-client-vm.md`. The fusion numbers and the per-version case list stay in the note. [bin] (client-internals/gs2-vm-from-engines.md#which-binaries-contain-the-machine)
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| Script object | a `TGraalVar` owns one `TScriptExecutionSpace`. Player, NPC and level are `TServerPlayer`, `TServerNPC` and `TServerLevel`. A class is a `TGraalScript` in a global table, joined onto the runner. A weapon is a named variable given bytecode, with an encrypted `.code` cache | [bin] (client-internals/gs2-vm-from-engines.md#script-objects) |
+| Call | the name on top is looked up in this script, then in the other object's script, then in the built-in commands. Too few arguments is `Not enough parameters for`. A miss becomes the number 0. More than 9999 frames already stacked is `Callstack overrun` | [bin] (client-internals/gs2-vm-from-engines.md#how-a-call-finds-a-function) |
+| Unqualified name | `temp`, `params`, `this`, `thiso`, `player`, `playero`, `level`, then `client` / `clientr` / `serverr`. Then `with` objects, the active frame, a property of `thiso`, the level, the universe, and `playero`. No leading `$` | [bin] (client-internals/gs2-vm-from-engines.md#how-an-unqualified-name-is-resolved) |
+| Events | functions. The runner queues `created`, `initialized` and `istimeout`. A leading `on` is stripped by `waitfor`. `playerenters` is the first name in the `script_event` mask | [bin] (client-internals/gs2-vm-from-engines.md#events) |
+| Clock | one double. In 2D, each script pass adds 0.05 once the clock is non-zero. Otherwise it is seconds from the performance counter. Opcode 9 adds 1 and stops with `Loop limit exceeded` when the count is greater than 10000 | [bin] (client-internals/gs2-vm-from-engines.md#timers); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
+| Bytecode | segment layout is → §8.3.6. A trailing `0x0A` is not required. Id 131 is a three-byte Graal integer then the bytes. Id 140 stays an envelope (→ §8.3.6) and is not a case of this engine's control dispatch | [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
+| Stack | tags 0..5. The value stack grows by 100 and the cap is 10000, not 256. Opcode 10 stores that height on the frame and does not jump. Other jumps are the truncated operand plus the current list's base | [bin] (client-internals/gs2-vm-from-engines.md#opcodes); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
+| 5.0 and 6.00 | 5.0 adds opcodes 48, 49, 54 and 121 and the same 0.05 clock. 6.00r2 and 6.00r4 add 54, 121 and 234..242; the 0.05 step was not found there | [bin] (client-internals/gs2-vm-from-engines.md#differences-between-the-three-engines) |

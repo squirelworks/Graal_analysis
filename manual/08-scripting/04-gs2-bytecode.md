@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.4 GS2 bytecode
 
-This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax and the event model stay open (→ App. E#207). Which message carries the container is still disputed (→ App. E#202).
+This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2 and → §8.3.6. The runner, including the value-stack cap and opcodes 9 and 10, is → §8.3.7. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax, the standard library, and the event model stay open (→ App. E#207). Which message carries the container is still disputed (→ App. E#202).
 
-> Status: draft. The container for the builds in §8.4.2 is recorded; syntax, the standard library, and the event model stay open (→ App. E#207). The id that carries the container is disputed (→ App. E#202).
+> Status: draft. The container for the builds in §8.4.2 is recorded. The runner is in §8.3.7. Syntax, the standard library, and the event model stay open (→ App. E#207). The id that carries the container is disputed (→ App. E#202).
 
 ## 8.4.1 Transport
 
@@ -15,11 +15,11 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 | with NPC props | an NPC is sent as `PLO_NPCPROPS` plus the optional `PLO_NPCBYTECODE` | [srv] (protocol/graphics-movement-bytecode.md#other-level-objects) |
 | 2.05 | the 2.05 receive switch does not handle it | [srv][2.05] (protocol/packet-ids.md) |
 | other ids | a second reading puts GS2 bytecode on id 197 → App. E#202 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
-| how the client stores it | a 24-byte instruction record and an op-index program counter, for the builds in → §8.4.2 | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
+| how the client stores it | a 24-byte instruction record and an op-index program counter (→ §8.4.2). 4.2.0.8 attaches those instructions to the `TGraalVar` (→ §8.3.7) | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
 
 ## 8.4.2 Format
 
-4.2.0.8, 5.0.0.7, and unpacked 6.00r2 and 6.00r4 parse one container: four big-endian segments (event mask, functions, strings, opcodes) and `F0`–`F6` operands. It does not share OpenGS1's layout (→ §8.4.3). Syntax, the standard library, and the event model stay open → App. E#207.
+4.2.0.8, 5.0.0.7, and unpacked 6.00r2 and 6.00r4 parse one container: four big-endian segments (event mask, functions, strings, opcodes) and `F0`–`F6` operands. It does not share OpenGS1's layout (→ §8.4.3). The runner is → §8.3.7. Syntax, the standard library, and the event model stay open → App. E#207.
 
 | Item | Rule | Source |
 | --- | --- | --- |
