@@ -186,6 +186,18 @@ Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte
 | The engine builds a `TGraalVar` for `StartScript_GraalGui`, `StartScript_MoveMap2D`, `StartScript_MoveMap3D` and the other start scripts, and it special-cases the control names `GuiGraalCtrl` and `GuiGraal3DCtrl` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
 | `Graal3DEngine.dll` is the `GameObject` world: `GameConnection`, `TerrainBlock`, interiors, two login phases (`onGraal3DLoginStep`), and `TerrainChunkEvent`. `ShapeBase` and Torque's `Player` are absent | [bin] (torque/engine-4208.md#graal3denginedll-gameobject-torque) |
 
+### 10.1.15 The 3.04 game components
+
+Linux 3.04 keeps stock Torque (`GameConnection`, `NetConnection`, and the `sim/netConnection.cc` / `game/gameConnection.cc` sources) beside Graal's own 2D game. `TGraalConnection` is a separate C++ type with no base class. The binary has no `Graal3D` string and no `BigData` event. [bin] (torque/304-net.md#beside-torque)
+
+| Component | What the 3.04 units do | Source |
+| --- | --- | --- |
+| Session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player) | Wakes once, opens the three license files, loads the HUD sheets, and logs a local level entry only for seven file magics | [bin] (torque/304-adventure.md#session-start) |
+| Drawing | The `TDrawableObject` family, `pics1.png` and tiledefs, gani text, polygon show-images | [bin] (torque/304-draw.md#types) |
+| NPCs and script | `playerenters` and the other trigger names, bow baddies, weapon rectangles, `shapetiletypes` | [bin] (torque/304-npcs.md#triggers) |
+| Graal TCP | Login id 5 then language id 37, the server list into `AdventureGui`, the player list and profiles | [bin] (torque/304-net.md#the-game-connection) |
+| Sound | fmod at mix rate 44100, wav samples, mid modules, and the mp3-class streams | [bin] (torque/304-audio-ui.md#fmod) |
+
 ## 10.2 Join sequence
 
 | Step | What happens | Source |

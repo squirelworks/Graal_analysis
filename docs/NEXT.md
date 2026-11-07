@@ -130,6 +130,10 @@ open-point closed.
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
   parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
+  - [x] Component pass of the Linux 3.04 game units (the 2D session, drawing, NPCs and
+    script, Graal TCP beside stock Torque, fmod): `torque/304-adventure.md`,
+    `torque/304-draw.md`, `torque/304-npcs.md`, `torque/304-net.md`,
+    `torque/304-audio-ui.md`. The rebuild stays on hold.
   - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
     Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
