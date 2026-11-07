@@ -8,10 +8,9 @@ Date: 2026-11-07. Static read of the unpacked 6.1.1.3 listing. Nothing was run. 
 | --- | --- |
 | `basepackage.gupd` | Compared with a name being opened, and passed into the package helpers that run when packages are collected |
 | `.gupd` | The suffix those helpers match |
-| `all update packages (.gupd files) ha` | The start of a status string. The rest of the sentence is truncated in the listing |
-| `some update packages (.gupd files) h` | The start of a second status string |
-| `downloaded an update package (.gupd)` | The start of a third status string |
 | `game_console.log` | Joined onto a directory path and opened. The log text is not in the repository, so no request id was read from it |
+
+Three status texts sit beside those names. One says every update package is done, one says only some of them are, and one says an update package was downloaded. Each sentence is cut off in the listing, so only that complete, partial, or downloaded outcome is recovered. **[bin]**
 
 `package_mainfiles.gupd`: not found. No other `.gupd` file name was found. **[bin]**
 
