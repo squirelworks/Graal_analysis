@@ -169,6 +169,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim C | id 197 is `PLO_LOADSCRIPT`, a list `type,name,saveToDisk,desKey,crc32` | [srv] (protocol/packet-ids.md) |
 | Open | whether 197 carries bytecode, a script-load descriptor, or both in different server versions, and how it relates to 131 | [inf] (protocol/packet-ids.md; protocol/packet-layouts.md) |
 | Settles it | a capture of a 4.x or 5.x client receiving an NPC with a GS2 script from a lab server | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Linux 4.04r2 partial result | A static message-131 path strips a three-byte identifier and reaches the compiled-segment reader. No network fixture was delivered; lookup roles, the indirect initialization callback, messages 140/197 and cache validation remain unresolved. The 97-case switch count is not a complete handled-ID count (→ §2.5.13) | [bin] (protocol/linux-404r2-receive-scope.md) |
 
 ### E#203 The 2.05 `#` message-code set
 
@@ -211,7 +212,11 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse one four-segment container, do not share OpenGS1's layout, and run the switch in → §8.3.6 and → §8.3.7. The value stack caps at 10000. Opcode 9 stops past 10000. Opcode 10 stores the stack height and does not jump | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#opcodes) |
 | Open | GS2 syntax, the standard library and the event model. The container and the dispatcher for those builds are recorded. Still open: the opcode helpers the engine note did not open, which gameplay site fires each `script_event` name, and packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Settles it | a lab note decoding a captured bytecode message from a 4.x client session, a reading of the built-in command table and the source compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Linux 4.04r2 event result | Two instrumented dispatches repeat top-level execution; queued delivery follows the running handler. This partially qualifies the event question, without closing joined-class or other lifecycle semantics (→ §8.3.8) | [cap] (client-internals/linux-404r2-events.md) |
+| Linux 4.04r2 continuation result | A positive-sleep snapshot preserves the next instruction through restore; elapsed timing, cancellation and replacement remain unmeasured (→ §8.3.9) | [cap] (client-internals/linux-404r2-sleep.md) |
 | Linux 4.04r2 catalog correction | Correct grouping gives 176 types and 332 globals, restoring 38 root-object declarations; binding, conversion and inherited behavior remain unmeasured (→ §8.3.10) | [test] (client-internals/linux-404r2-api-ownership.md) |
+| Earlier Linux 4.04r2 VM boundary | Dispatch ends at 190 and slot 11 selects a common skip path; one insertion control completes unchanged. Static frame fields and helper semantics remain qualified (→ §8.4.6) | [bin][cap] (client-internals/linux-404r2-vm-dispatch.md) |
+| Linux 4.04r2 embedded linkage | Fourteen structurally validated script candidates include one profile payload matched to live input before executor entry; this is not corpus-wide execution or historical server-content recovery (→ §8.4.7) | [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 

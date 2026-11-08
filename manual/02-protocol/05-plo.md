@@ -290,3 +290,12 @@ Indexes 0 to 94 select a native function, except index 90, which is empty. A han
 No default pair list is compiled in. The installer writes nothing when the script list has fewer than two numbers. [bin] (protocol/v6113-handlers.md)
 
 Unpacked 6.0.3.7 has no 95-slot native table. Wire id 104 has no compiled receive case in 6.1.1.3; the only case 104 is a GS2 opcode. [bin] (protocol/v6113-handlers.md)
+
+## 2.5.13 Linux 4.04r2 object-script delivery and receive-switch scope
+
+| Observation | Exact scope | Limit | Source |
+| --- | --- | --- | --- |
+| 97 explicit receive cases | Static switch mapping with direct handler edges | Not the complete handled-message count: transport pre-dispatch remains to be included | [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage) |
+| Missing switch case | No case in this particular dispatch map | Does not prove rejection of that message | [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage) |
+| Message 131 | Requires a three-byte identifier; a positive decoded identifier selects an object lookup, the prefix is stripped, and remaining bytes reach the script setter, context loader and compiled-segment reader | Static path only; complete identifier encoding, lookup roles and indirect initialization callback not fully established; no network fixture delivered | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
+| Other script delivery and cache validation | Messages 140/197 and other weapon/class paths remain under research | The map and message-131 trace do not settle all roles, field layouts or cross-platform compatibility (→ App. E#202) | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
