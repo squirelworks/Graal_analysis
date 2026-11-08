@@ -2,7 +2,7 @@
 
 Date: 2026-10-14
 
-Derived from observed client behavior, public tiletype tables, and format documentation. No decompile material.
+Derived from observed client behavior, public tiletype tables, and format documentation, with a later sanitized static file-membership correction cited below.
 
 ## Sheet loading
 
@@ -26,11 +26,11 @@ These rules match the offline session’s existing behavior of rejecting moves o
 
 The two allow lists are populated when the sheet is loaded. They contain the tile ids that the original client treats as non-blocking on a type-0 sheet. The lists are not stored in `tiledefs.txt`; that file only names the sheet, prefix, and type. An offline session that wants exact classic walk behavior must either embed the same allow lists or derive them from a known-good `pics1` extraction.
 
-One exported type-0 mask counted 3,195 non-blocking tiles and 682 blocking tiles. The type 1/2 grid counts above are independent of that mask.
+One exported type-0 mask counted 3,195 non-blocking tiles and 682 blocking tiles. The type 1/2 grid counts above are independent of that mask. The [bounded file inspection](arrays-membership-2026-11-09.md) instead finds a union of 1,035 values in one exact 11,500-byte input, including 101 values present only in list 1. That file is not linked to the earlier mask's producer, sheet or coverage; its counts do not establish runtime walkability. **[file]**
 
 ## Stamp vocabulary
 
-Stamp id 0 is a 4×4 ground fill. Stamp id 1 is a hole and is never written. The 2×2 Bush stamp writes the four ids 2, 3, 18, 19. These ids appear in the type-0 walk tables and are therefore walkable when the sheet is type 0. A generator or editor that places stamps by name can emit the same ids without inventing tile codes.
+Stamp id 0 is a 4×4 ground fill. Stamp id 1 is a hole and is never written. The 2×2 Bush stamp writes the four ids 2, 3, 18, 19. The earlier claim that these ids appear in the type-0 lists is contradicted by [the inspected files](arrays-membership-2026-11-09.md): all four values are absent from both first arrays of the 25 successfully decoded distinct inputs. This does not establish runtime blocking in any selected client/sheet; that consumer question remains open. **[file]** A generator or editor that places stamps by name can emit the same ids without inventing tile codes.
 
 ## Offline next step
 

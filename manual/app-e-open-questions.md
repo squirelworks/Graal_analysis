@@ -119,19 +119,19 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | the 2×2 Bush stamp writes ids 2, 3, 18 and 19, whose type bytes are 20 and 22, so the bush is wall | [file] (formats/gobjset01.md); [src] (formats/tiletypes.txt) |
-| Claim B | ids 2, 3, 18 and 19 appear in the type-0 walk tables and are therefore walkable when the sheet is type 0 | [live] (formats/tile-walk.md#stamp-vocabulary) |
-| Open | Claim A reads a 4096-byte type table kept by an outside client; Claim B reads the official client's type-0 allow lists; which one the official client applies to these ids on a type-0 sheet is not settled | [inf] (formats/tiletypes.txt) |
-| Settles it | looking up ids 2, 3, 18 and 19 in arrays 0 and 1 of a shipped `arrays.dat` (→ §3.5.3), or walking into a placed bush in a lab client | [inf] (formats/tile-walk.md#type-0-allow-lists) |
+| Established file result | the inspected first two arrays exclude Bush values 2, 3, 18 and 19; the earlier membership assertion is superseded within that collection | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| Existing type-table evidence | the outside client's type bytes describe walls; they do not establish the selected official client's active collision path | [src] (formats/tiletypes.txt) |
+| Open | actual blocking of a placed bush for an exact client, table and selected sheet | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Settles it | identify that exact consumer or record a controlled scene; file membership alone does not settle runtime collision | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#101 Size of the type-0 allow lists
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | the type-0 allow lists are arrays 0 and 1 of `arrays.dat`, of 934 and 116 tile ids | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
-| Claim B | one exported type-0 mask counted 3195 non-blocking and 682 blocking tiles | [live] (formats/tile-walk.md#type-0-allow-lists) |
-| Open | 934 + 116 ids do not add up to 3195 walkable tiles, and 3195 + 682 is not 4096; the notes do not say how the exported mask was made | [inf] (formats/tile-walk.md#type-0-allow-lists) |
-| Settles it | rebuilding the mask from arrays 0 and 1 of a shipped `arrays.dat` and comparing it with the exported one | [inf] (formats/arrays-and-signatures.md#arraysdat) |
+| Established file result | the exact-input lengths, overlap and union are in → §3.5.3.1; they do not reproduce the earlier mask count | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| Earlier mask | the export counted 3195 non-blocking and 682 blocking tiles | [live] (formats/tile-walk.md#type-0-allow-lists) |
+| Open | mask producer, coverage, mapping and selected sheet remain unlinked to the inspected input; no runtime walkability total follows | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Settles it | link the original mask and exact file to the producing client path and sheet before interpreting or comparing runtime categories | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#102 Tile id to pixel position on pics1
 
@@ -600,10 +600,11 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | the first array of `arrays.dat` is the passable list; tiles in it get type 0 and everything else type 22 | [doc] (CONSOLIDATED.md#tiles) |
-| Claim B | in the old tile mode a tile blocks unless it is in array 0 (934 ids) or array 1 (116 ids) | [2.05] (formats/arrays-and-signatures.md) |
-| Open | whether the one-list summary predates the 2.05 read or describes another reader; the list sizes are → App. E#101 | [inf] (formats/arrays-and-signatures.md) |
-| Settles it | a 2.05 session recording, for ids in array 1 only, whether the player can walk on them | [inf] (formats/arrays-and-signatures.md) |
+| Existing one-list claim | the first array supplies passable tiles and all others are walls | [doc] (CONSOLIDATED.md#tiles) |
+| Existing two-list claim | the old-mode 2.05 path checks arrays 0 and 1 | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
+| Established file distinction | the operations differ for the exact inspected input → §3.5.3.1; this does not identify a runtime consumer | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Open | which operation each exact client path uses, and how the older summary relates to it; the new inspection did not trace consumers | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Settles it | trace the exact consumer or test distinguishing list-1-only values in a controlled client scene | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#609 macOS archive labels and application identity
 

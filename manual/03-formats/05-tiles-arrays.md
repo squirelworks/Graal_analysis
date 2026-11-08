@@ -74,7 +74,7 @@ A 4096-byte table copied from the standard tileset, one type byte per id, is kep
 | throw | throw handling does not stop on type `0x14` (20) | [bin] (formats/tiletypes.txt); [live] (formats/tile-walk.md#collision-rules) |
 | water | type 11 does not block; it changes the displayed tile and may set a swimming flag | [live] (formats/tile-walk.md#collision-rules) |
 
-The 2×2 Bush stamp ids 2, 3, 18 and 19 are walls in the 4096-byte table and walkable through the type-0 allow lists `disputed → App. E#100`.
+The Bush-value membership correction is recorded in → §3.5.3.1; runtime collision remains open → App. E#100 [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
 
 ## 3.5.3 arrays.dat
 
@@ -123,6 +123,17 @@ Meanings read from the uses in the 2.22 client [bin] (client-internals/decomp-fi
 | 14 | open chest tiles 829, 845 / 830, 846 | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 
 A loader that reads only the first four arrays as flat lists is right for 0 to 3 and misses the nested arrays 9 to 12 [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file).
+
+### 3.5.3.1 Bounded packaged-file membership
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| identity | 11,500-byte input, researcher-supplied SHA-256 b65905ad1e1d1e48d2b7841525c749272426e5160d187f05e8d6b37946296927; appears in 2.22-labelled and 2.3-labelled packages and a loose copy; release identity and runtime loading are unverified | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| structure | 25 top-level arrays, no trailing bytes; list 0/list 1 mean the first two structural positions, not runtime categories | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| first lists | 934 and 116 internally unique values; 15 shared; union 1,035 values within 0–4095; list 1 contributes 101 values absent from list 0 | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| Bush values | 2, 3, 18 and 19 are absent from both lists, also in all 25 successfully parsed distinct inputs; file membership does not establish runtime collision | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| collection validation | 53 occurrences, 26 hashes; 25 parse completely and reproduce original bytes on re-encoding; an unsupported 39ster-labelled representation is excluded; other inputs have different shapes and counts | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance and one-list versus two-list consumption remain open → App. E#100, E#101, E#608 | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ## 3.5.4 arrays2.dat
 

@@ -42,6 +42,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
 
+- [x] **Bound arrays.dat membership claims.** ~~Check the disputed list membership and union counts.~~ [Static file note](../formats/arrays-membership-2026-11-09.md) preserves input identity and E#100/E#101/E#608 runtime questions.
+
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section
   ("no raw decompiles, code or binary addresses").
