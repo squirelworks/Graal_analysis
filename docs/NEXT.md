@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Compare Linux receive cases and the 4.20r6 compiled-input chain.** ~~Publish the completed sanitized scope.~~ [Source note](../protocol/linux-cross-version-receive.md) retains exact-build limits and remaining measurements.
+
 - [x] **Correct the 4.04r2 script-extension absence claim.** ~~Recheck the defined-string export against retained code.~~ [Filter and native mission evidence](../torque/404r2-resource-filter.md) corrects the missing-literal inference; E#502–503 remain partially open for local-reader reachability.
 
 - [x] **Narrow Appendix E#606 height-block placement.** ~~Test the exclusive claim that HEIGHTS belongs only in level files.~~ [Reader and fixture evidence](../formats/gmap-heights-404r2.md) supports named gmap blocks for Windows 4.04r2; rendering, server and packaging claims remain unmeasured.
