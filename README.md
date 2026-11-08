@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Link a recovered Linux 4.04r2 script to live loading](client-internals/linux-404r2-embedded-scripts.md) — Structural checks cover fourteen recovered streams; a corrected hash read links exactly one profile payload to a live loader/executor path, without publishing script bodies or assets.
+
 - [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.
 
 - [Archived macOS compatibility](workingpapers/macos/client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.

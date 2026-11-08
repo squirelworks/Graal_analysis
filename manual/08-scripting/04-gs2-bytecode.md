@@ -83,3 +83,13 @@ Both unpacked images store the eighteen math names `abs`, `atan`, `atan2`, `ceil
 Of the names Preagonal's compiler turns into opcodes, these images contain `abs`, `cos`, `log`, `max`, `min`, `pow`, `random`, `sin`, `format` and `sleep`. They do not contain `arctan`, `exp`, `vecx`, `vecy`, `arraylen` or `tokenize`. [bin][doc] (client-internals/gs2-builtins-6113.md)
 
 `putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7. [bin] (client-internals/gs2-builtins-6113.md)
+
+## 8.4.7 Linux 4.04r2 embedded scripts and live linkage
+
+| Evidence | Observation | Limit | Source |
+| --- | --- | --- | --- |
+| Bounded embedded-zlib extraction | Fourteen valid four-segment candidates, 129 named entries and 15,799 decoded instructions; instruction bytes round-trip and indexes are in range | Structural validation is not corpus-wide execution | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
+| Profile-script input | A corrected read of 9,530 live bytes matches the recovered payload digest; the same run enters the native executor | One loader/executor linkage, not all streams or complete profile execution | [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution) |
+| Native reader/writer recovery | Operations available for focused review | Does not itself supply a full format specification | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
+
+The wrong-representation hash attempt remains superseded; only the corrected read supplies the match. Historical server-delivered content, cross-platform equivalence and 3D gameplay are not established. Remaining container/execution questions → App. E#207. [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution); [bin] (client-internals/linux-404r2-embedded-scripts.md#boundary)
