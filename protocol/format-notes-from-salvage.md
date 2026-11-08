@@ -18,7 +18,11 @@ Promoted from `/recycler/salvage/seihai-original-data/docs/` and dropin formats.
 - Headers: SH-V1.00–03, GR-V1.00–03, GLEVAS01, GLEVNW01, Z3-V1.03/04
 
 ### GRMAP001 (.gmap)
-- Level list with HEIGHTS blocks, not a board itself
+- A grid/list of levels rather than a tile board. The Windows 4.04r2 reader
+  supports both coarse `HEIGHTMAP` and named per-level `HEIGHTS` blocks;
+  level files may also carry their own heights. This is a build-scoped
+  clarification, not a universal writer/server rule. **[bin][file]**
+  ([height-block evidence](../formats/gmap-heights-404r2.md)).
 
 ## Collision (tiletypes)
 - Client does not inspect the tileset image
