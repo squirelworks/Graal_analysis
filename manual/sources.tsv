@@ -576,3 +576,4 @@ torque/404r2-resource-filter.md	cited	10; E	10; E	filter and mission-path bounds
 client-internals/receive-dispatch-revision-boundaries-2026-11-09.md	cited	2.5; E	2.5; E	Exact-input hashes and validation bookkeeping remain in the source note; receive-route presence and limits carried in 2.5 and E#7.
 client-internals/linux-304-startup-reader.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 formats/linux-torque-resource-scope.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
+client-internals/linux-cross-version-embedded-controls.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
