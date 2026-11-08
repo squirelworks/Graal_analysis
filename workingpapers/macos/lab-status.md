@@ -1,5 +1,10 @@
 # macOS lab status on 2026-11-08
 
+This is the historical preparation snapshot. The
+[2026-11-09 follow-up](debugger-validation-2026-11-09.md) supersedes its pending
+PowerPC debugger and initial Lion boot-test status; client rendering and v6
+execution remain unverified by that later collection.
+
 ## PowerPC Tiger
 
 `[lab]` Source `TIGER-STATUS` records QEMU Power Mac emulation with a G4 CPU,
