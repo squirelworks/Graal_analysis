@@ -100,3 +100,12 @@ GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each con
 | Trigger arity control | Event name alone is rejected; an additional value permits delivery | This fixture's call only, not a universal variadic signature | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
 
 The fixture replaces process input, not the executable file or its signature checks. Server and server commit are none. Joined classes, public calls and complete event semantics remain open → App. E#207. [cap] (client-internals/linux-404r2-events.md#experiment-boundary)
+
+## 8.3.10 Linux 4.04r2 published API membership
+
+| Catalog fact | Exact-input result | Limit | Source |
+| --- | --- | --- | --- |
+| Correct declaration grouping | 176 published types and 332 globals; 38 declarations belong to the root script object rather than globals | Total declaration count unchanged; this corrects derived metadata, not runtime behavior | [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction) |
+| Evidence class | Client-published scripting surface | Binding effects, conversions, inherited behavior and native C++ layout are not established by declaration membership | [test] (client-internals/linux-404r2-api-ownership.md#what-membership-does-not-establish) |
+
+Other catalog builds require their own correction records; these counts are not generalized. Standard-library semantics remain open → App. E#207. [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction)

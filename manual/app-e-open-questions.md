@@ -169,6 +169,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim C | id 197 is `PLO_LOADSCRIPT`, a list `type,name,saveToDisk,desKey,crc32` | [srv] (protocol/packet-ids.md) |
 | Open | whether 197 carries bytecode, a script-load descriptor, or both in different server versions, and how it relates to 131 | [inf] (protocol/packet-ids.md; protocol/packet-layouts.md) |
 | Settles it | a capture of a 4.x or 5.x client receiving an NPC with a GS2 script from a lab server | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Linux 4.04r2 partial result | A static message-131 path strips a three-byte identifier and reaches the compiled-segment reader. No network fixture was delivered; lookup roles, the indirect initialization callback, messages 140/197 and cache validation remain unresolved. The 97-case switch count is not a complete handled-ID count (→ §2.5.13) | [bin] (protocol/linux-404r2-receive-scope.md) |
 
 ### E#203 The 2.05 `#` message-code set
 
@@ -212,6 +213,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | GS2 syntax, the standard library and the event model. The container and the dispatcher for those builds are recorded. Still open: the opcode helpers the engine note did not open, which gameplay site fires each `script_event` name, and packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Settles it | a lab note decoding a captured bytecode message from a 4.x client session, a reading of the built-in command table and the source compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Linux 4.04r2 event result | Two instrumented dispatches repeat top-level execution; queued delivery follows the running handler. This partially qualifies the event question, without closing joined-class or other lifecycle semantics (→ §8.3.8) | [cap] (client-internals/linux-404r2-events.md) |
+| Linux 4.04r2 catalog correction | Correct grouping gives 176 types and 332 globals, restoring 38 root-object declarations; binding, conversion and inherited behavior remain unmeasured (→ §8.3.10) | [test] (client-internals/linux-404r2-api-ownership.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
@@ -609,3 +611,20 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
 | Open | Exact-input linkage to the historical 3.153 attribution, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
 | Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+
+### E#610 Windows 4.04r2 offline initialization versus gameplay
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (workingpapers/windows/README.md#controlled-offline-transition) |
+
+### E#611 Windows 4.04r2 pickup semantics and input qualification
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Static recovery separates pickup action, carried category and carrying flag; no interaction was captured successfully | [bin][cap] (client-internals/404r2-carry-state.md) |
+| Open | Meaning of the pickup-bound field, configured physical key-to-action path, and asset/effect qualification of the provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A version-specific semantic read for the bound field and input route, separate asset mapping, and a complete scene capturing each selected action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Timing dependency | The countdown cannot supply elapsed timing without the clocks in → App. E#301 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |

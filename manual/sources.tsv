@@ -558,6 +558,9 @@ workingpapers/macos/README.md	excluded			macOS workingpaper index; each underlyi
 workingpapers/macos/client-compatibility.md	cited	1; E	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
 workingpapers/macos/lab-status.md	excluded			installation and debugger preparation status with pending client tests; not manual evidence
 workingpapers/sources.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
-workingpapers/windows/README.md	excluded			bounded capture handoff and test limits; not cited by the manual
+workingpapers/windows/README.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 workingpapers/macos/debugger-validation-2026-11-09.md	excluded			bounded debugger and installer research status; no new established gameplay behavior
+client-internals/404r2-carry-state.md	cited	4.5; E	4.5; E	static interaction relationships carried; private retrieval and research process are outside manual scope
+client-internals/linux-404r2-api-ownership.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+protocol/linux-404r2-receive-scope.md	cited	2.5; E	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-events.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
