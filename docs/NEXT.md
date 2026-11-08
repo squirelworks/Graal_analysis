@@ -14,6 +14,20 @@ macOS CI is paused until the polish stage.
 
 - [x] **Correct the 4.04r2 script-extension absence claim.** ~~Recheck the defined-string export against retained code.~~ [Filter and native mission evidence](../torque/404r2-resource-filter.md) corrects the missing-literal inference; E#502–503 remain partially open for local-reader reachability.
 
+- [x] **Narrow Appendix E#606 height-block placement.** ~~Test the exclusive claim that HEIGHTS belongs only in level files.~~ [Reader and fixture evidence](../formats/gmap-heights-404r2.md) supports named gmap blocks for Windows 4.04r2; rendering, server and packaging claims remain unmeasured.
+
+- [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../workingpapers/macos/resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
+
+- [x] **Link a recovered Linux 4.04r2 script to live loading.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-embedded-scripts.md) preserves the exact-build scope and remaining questions.
+
+- [x] **Bound Linux 4.04r2 opcode dispatch and frame evidence.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-vm-dispatch.md) preserves the exact-build scope and remaining questions.
+
+- [x] **Record Linux 4.04r2 sleep continuation preservation.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-sleep.md) preserves the exact-build scope and remaining questions.
+
+- [x] **Record Linux 4.04r2 event ordering and deferred delivery.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-events.md) preserves the exact-build scope and remaining questions.
+
+- [x] **Trace Linux 4.04r2 object-script delivery.** ~~Carry the static message-131 path and receive-switch scope into reference documentation.~~ [Source note](../protocol/linux-404r2-receive-scope.md) preserves network-fixture, lookup, callback and transport limits.
+
 - [x] **Correct Linux 4.04r2 script API declaration ownership.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-api-ownership.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Publish the reviewed 4.04r2 carry-state relationships.** ~~Separate pickup transition, carried category and boolean carrying state.~~ [Static note](../client-internals/404r2-carry-state.md) and §4.5 carry the relationships; timing, keys, glove bounds and scene validation remain open in App. E#611.
