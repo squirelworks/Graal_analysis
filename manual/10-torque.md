@@ -179,6 +179,8 @@ The `4.0.4.2` exe stub and the `5.1.2.0` stub share one string table: four-part 
 
 Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte for byte, with no Graal or Torque class. The file-version 4.2.0.8 archive is the client that can be read, and it includes `Graal3DEngine.dll`, which the packet-logger upload did not. [bin] (torque/v4-404r2-exe.md; torque/v4-420r8-exe.md) [bin] (torque/engine-4208.md#how-the-three-fit)
 
+A later original-carrier 4.04r2 recovery supplies a separate shape-based 3D component that retains `ShapeBase`; it is distinct from the later 4.2.0.8 `GameObject` image below. Its repaired import directory cannot independently verify the earlier named-import count. Recovery availability and load-only limits: → §1.8.5. [bin] (torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity)
+
 | Fact | Source |
 | --- | --- |
 | The launcher registers 94 `graal_set…` callbacks and loads `GraalEngine.dll`. The 3D DLL adds 19 names the launcher does not register, including `CreateGraal3DGameObject`, `GetGraal3DTerrainHeight` and `SendGraal3DScriptEvent` | [bin] (torque/engine-4208.md#how-the-three-fit) |
