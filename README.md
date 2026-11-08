@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Bound Linux 4.20r6 clock updates and advertised 3D-state predicate](client-internals/linux-420r6-clock-property.md) — Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D.
+
 - [Bound Linux 4.20r6 container operands and post-load fusion](client-internals/linux-420r6-reader-fusion.md) — Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences.
 
 - [Bound Linux 4.20r6 selector-11 saved-state and registration paths](client-internals/linux-420r6-selector11.md) — Document static state saving and first-match pending-record replacement without inventing wait/timeout API results.
