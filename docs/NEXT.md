@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Completed Linux workingpapers (2026-11-09).** ~~Collect Linux engine recovery in a dedicated retrieval folder.~~ [Linux handoff](../workingpapers/linux/README.md) indexes architecture findings, selected function recovery, complete scripting catalogs and bounded runtime evidence. Raw artifacts remain owner-held.
+
 - [x] **Completed Windows workingpapers (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../workingpapers/windows/README.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
 
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
