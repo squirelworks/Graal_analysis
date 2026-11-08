@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Correct the 4.04r2 script-extension absence claim.** ~~Recheck the defined-string export against retained code.~~ [Filter and native mission evidence](../torque/404r2-resource-filter.md) corrects the missing-literal inference; E#502–503 remain partially open for local-reader reachability.
+
 - [x] **Narrow Appendix E#606 height-block placement.** ~~Test the exclusive claim that HEIGHTS belongs only in level files.~~ [Reader and fixture evidence](../formats/gmap-heights-404r2.md) supports named gmap blocks for Windows 4.04r2; rendering, server and packaging claims remain unmeasured.
 
 - [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../workingpapers/macos/resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
@@ -45,6 +47,8 @@ macOS CI is paused until the polish stage.
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
 
 - [x] **Correct E#201 stored signatures.** ~~Reconcile four literal GS1 letter sequences.~~ [Exact-input note](../npc-library/gs1-signatures-205-followup.md) corrects the table; runtime argument semantics remain open.
+
+- [x] **Correct E#300 static timer presence.** ~~Reconcile the three missing survey timer cells.~~ [Exact-build note](../client-internals/early-form-timers-2026-11-09.md) records stored configuration; runtime timing remains open.
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section
