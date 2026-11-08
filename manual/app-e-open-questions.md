@@ -608,3 +608,11 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
 | Open | Exact-input linkage to the historical 3.153 attribution, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
 | Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+
+### E#610 Windows 4.04r2 offline initialization versus gameplay
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (workingpapers/windows/README.md#controlled-offline-transition) |

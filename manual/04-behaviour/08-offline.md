@@ -76,3 +76,14 @@ This chapter gives how the client plays without a game server: the ways in, wher
 | 2.22, 2.31 | Training starts on `offlinetutorial_b-2.graal`, the centre of the grid; its NPCs play `cauldron_bubbles.wav` and `fire_torch0` to `fire_torch2` as soon as it loads; the maps are the client's own `bigmap.txt` and `minimap.txt` plus per-level map parts | [live] (client-internals/live-checks-editor-offline-sound.md#the-training-button) |
 | start screens | 2.05: Training, Options, Start; 2.22 adds Get an account!; 2.31 adds Editor, which launches the separate GraalEditor (→ §11.6) | [live] (client-internals/live-checks-editor-offline-sound.md#the-training-button) |
 | GraalEditor 2.3.1.1 | carries the same 9 names and `tiledefsOffline.txt` | [inf] (client-internals/offline-tutorial-205.md#later-clients) |
+
+## 4.8.5 Windows 4.04r2: bounded initialization evidence
+
+| Condition | Before | After or observed result | Limit | Source |
+| --- | --- | --- | --- | --- |
+| Controlled startup, no server or login | Client initialization | Native game/UI window construction, successful DirectDraw initialization call, and opens of configuration, cache, GUI assets and four supplied animations | Window visibility, successful decoding and a rendered gameplay scene are unmeasured by these hooks | [cap] (workingpapers/windows/README.md#startup-capture) |
+| Harness invokes an internal offline transition on the UI thread | No adventure object | Offline-mode flag set; adventure object allocated; observed message-loop callbacks continue for 20.031 seconds after the call returns | Instrumented invocation, not a normal user action or documented API; a playable level, movement and bush interactions remain unmeasured by this capture | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+
+These observations do not establish that 4.04r2 uses the 2.05 entry conditions or arrival rules in → §4.8.1–4.8.2. Earlier unsuccessful harness attempts are not successful offline sessions. [cap] (workingpapers/windows/README.md#controlled-offline-transition)
+
+Remaining scene and mechanic validation: → App. E#610.
