@@ -1,0 +1,13 @@
+source_id	platform	evidence_kind	owner_project_file	sha256	availability
+MAC-CLIENTS	macos	static	Lab/MacPPC/output/client-inventory.json	48ac2dc42df13296409017ecc195f0708d5a87370a36882541f4a5c99de0a43f	owner-held project files; retrieve by identifier
+TIGER-STATUS	macos	lab	Lab/MacPPC/STATUS.md	bc7e9c9a5d624d8d36039d605d8410e214f0439ebe407aad9012b57bae06d4a9	owner-held project files; retrieve by identifier
+TIGER-INSTALL	macos	installation-log	Lab/MacPPC/output/install-logs/install.log	3e1e42c0193ffea9856153849684e20764e531c2b41b9402f920efefbd4df8e5	owner-held project files; retrieve by identifier
+TIGER-GDB	macos	firmware-debugger-smoke	Lab/MacPPC/output/gdbstub-smoke.json	f8b449613e7883d0e20ba09a4138db5fd9833794e95ea9ffbcd6d214ae25cc00	owner-held project files; retrieve by identifier
+LION-MEDIA	macos	media-verification	Lab/MacIntel/output/media-manifest.json	ffb238481af7ff5c4e1c1f72ecbc4fb51a5c8e8e0684aa8be18250ac33d30efd	owner-held project files; retrieve by identifier
+LION-CLIENT	macos	static-input-identity	Lab/MacIntel/output/client-identity.json	7c0d0f61486dc155d6e2eb3c8714ef34d94eaf838e0423d01cdd01d1a679010a	owner-held project files; retrieve by identifier
+WIN-STARTUP	windows	runtime-analysis	Analysis/runtime/findings.md	ff3bd7074cfe9eb655fdea125721a8725e678e862b6738b48ac0c3c04047e7e3	owner-held project files; retrieve by identifier
+WIN-TRACE	windows	runtime-capture	Lab/evidence/graal-trace-v2.jsonl	570e5c4cc753fe80f16e7ff657134f9a221ae6e8acb97ccfab781df86fa87c7f	owner-held project files; retrieve by identifier
+WIN-OFFLINE	windows	controlled-runtime-analysis	Analysis/runtime/offline-initialization.md	28181c180e0d85193c092309f6ba95000ff357415cb10fea293c4decc35392ad	owner-held project files; retrieve by identifier
+WIN-OFFLINE-TRACE	windows	controlled-runtime-capture	Lab/evidence/graal-offline-v3.jsonl	454df339417a8f5ffc4a6b18b8351b9a6b5d58b2c70ae39301a07414a7b377ce	owner-held project files; retrieve by identifier
+LINUX-VERIFY	linux	tooling-verification	Lab/Linux/output/verification-summary.json	656fb4a87d191298d30194a602faa8052799173a2ca7af9ba7c2447ec355d8d1	owner-held project files; retrieve by identifier
+LINUX-PREFLIGHT	linux	static-preflight	Lab/Linux/output/engine-teardown/preflight-index.json	142e58f2bee908ac0fbb6c6a72e45a3f38031a4e829678af3f0f91d1d658741d	owner-held project files; retrieve by identifier
