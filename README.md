@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Windows 4.04r2 offline evidence](manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) — captured startup and instrumented state transition, with scene and gameplay limits.
+
 - `workingpapers/` — platform research handoff and evidence-source index, with Windows and macOS teardown material in their own folders; Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
 
 - `manual/` — the Graal Technical Reference Manual (1.0, in progress; spec: issue #191). One Markdown file per chapter, `manual/sources.tsv` maps every note to the sections that cite it. Check it with `python tools/manual/check_manual.py`.

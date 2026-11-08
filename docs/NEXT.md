@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry bounded 4.04r2 initialization into the manual.** ~~Distinguish startup and instrumented offline state changes from gameplay.~~ [§4.8.5](../manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) carries the observations; complete-scene validation remains open in App. E#610.
+
 - [x] **Completed Windows workingpapers (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../workingpapers/windows/README.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
 
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.

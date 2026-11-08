@@ -558,4 +558,4 @@ workingpapers/macos/README.md	excluded			macOS workingpaper index; each underlyi
 workingpapers/macos/client-compatibility.md	excluded			static architecture preflight for future macOS tests; not cited by the manual
 workingpapers/macos/lab-status.md	excluded			installation and debugger preparation status with pending client tests; not manual evidence
 workingpapers/sources.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
-workingpapers/windows/README.md	excluded			bounded capture handoff and test limits; not cited by the manual
+workingpapers/windows/README.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope

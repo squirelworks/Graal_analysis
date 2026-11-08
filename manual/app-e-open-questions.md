@@ -598,3 +598,11 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | in the old tile mode a tile blocks unless it is in array 0 (934 ids) or array 1 (116 ids) | [2.05] (formats/arrays-and-signatures.md) |
 | Open | whether the one-list summary predates the 2.05 read or describes another reader; the list sizes are → App. E#101 | [inf] (formats/arrays-and-signatures.md) |
 | Settles it | a 2.05 session recording, for ids in array 1 only, whether the player can walk on them | [inf] (formats/arrays-and-signatures.md) |
+
+### E#610 Windows 4.04r2 offline initialization versus gameplay
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (workingpapers/windows/README.md#controlled-offline-transition) |
