@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.
+
 - [Archived macOS compatibility](workingpapers/macos/client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.
 
 - [Windows 4.04r2 recovery scope](torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) — distinguishes the historical packer-stub export from later recovered components and load-only 3D evidence.
