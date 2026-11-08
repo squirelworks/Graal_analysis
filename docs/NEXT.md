@@ -52,6 +52,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Correct E#300 static timer presence.** ~~Reconcile the three missing survey timer cells.~~ [Exact-build note](../client-internals/early-form-timers-2026-11-09.md) records stored configuration; runtime timing remains open.
 
+- [x] **Resolve E#7 receive-revision discrepancy.** ~~Check the disputed 47/168 revision boundaries.~~ [Exact-input note](../client-internals/receive-dispatch-revision-boundaries-2026-11-09.md) settles static route presence only.
+
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section
   ("no raw decompiles, code or binary addresses").
