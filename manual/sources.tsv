@@ -565,6 +565,7 @@ client-internals/linux-404r2-api-ownership.md	cited	8.3; E	8.3; E	experiment set
 protocol/linux-404r2-receive-scope.md	cited	2.5; E	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-events.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-sleep.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+client-internals/early-form-timers-2026-11-09.md	cited	4.1; E	4.1; E	Input identity and validation metadata retained in source note; configuration and remaining timing limits carried in 4.1 and E#300.
 client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-embedded-scripts.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 workingpapers/macos/resource-identity.md	cited	1; E	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note

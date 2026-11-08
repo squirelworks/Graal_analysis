@@ -3,9 +3,9 @@ archive	build	md5	exe_size	forms	main_window	main_font	frame_timer_ms	wav_names	
 2ndgraal	2nd Graal	f74b35fc7975a4873087f7fd2aa1d79b	777216	13	648x516	MS Sans Serif 14px	50	0	0	6	gif 448x96		gif 1024x512	gif 256x224
 3rdgraal	3rd Graal	fc78fbc96bdbc6ca22ae56d3ed8635ab	665600	14	648x516	MS Sans Serif 14px	50	0	0	7	gif 448x137		gif 1024x512	gif 256x224
 4thgraal	4th Graal	e040af2e19912419ab80aa6dd202b4ea	666112	14	648x516	MS Sans Serif 14px	50	0	0	7	gif 448x137		gif 1024x512	gif 256x224
-4thgraalalpha	4th Graal alpha	8cae23a58e1b1b10f3149bdbe53d0431	711680	14	unparsed		none (idle loop)	12	0	7	gif 448x137		gif 1024x512	gif 256x224
-5thgraal	5th Graal	0e7c3573f0a916f8b2376060e768fe96	723968	15	unparsed		none (idle loop)	12	0	7	gif 448x137	gif 256x1584	gif 1280x512	gif 256x224
-5thgraalalpha	5th Graal alpha	e54397e7d4f59d30b77d5cf0475335a1	739840	15	unparsed		none (idle loop)	12	0	8	gif 448x137	gif 256x1584	gif 1280x512	gif 256x224
+4thgraalalpha	4th Graal alpha	8cae23a58e1b1b10f3149bdbe53d0431	711680	14	unparsed		50	12	0	7	gif 448x137		gif 1024x512	gif 256x224
+5thgraal	5th Graal	0e7c3573f0a916f8b2376060e768fe96	723968	15	unparsed		50	12	0	7	gif 448x137	gif 256x1584	gif 1280x512	gif 256x224
+5thgraalalpha	5th Graal alpha	e54397e7d4f59d30b77d5cf0475335a1	739840	15	unparsed		50	12	0	8	gif 448x137	gif 256x1584	gif 1280x512	gif 256x224
 6thgraal	6th Graal (beta5)	53c3caf3d930534db3f44f346f5d651a	750080	16	648x516	MS Sans Serif 14px	50	12	5	8	gif 298x96	gif 256x1584	gif 1280x512	gif 256x224
 7thgraal	7th Graal (beta7)	deb40c31268e499fc4436b8d0687f05d	766976	16	648x516	MS Sans Serif 14px	50	13	5	8	gif 427x109	gif 256x1584	gif 1280x512	gif 256x224
 8thgraal	8th Graal (beta8)	a49aa1b773e41741f211867fd5ea55d7	775680	16	648x516	MS Sans Serif 14px	50	29	6	8	gif 427x109	gif 256x1610	gif 1280x512	gif 256x224

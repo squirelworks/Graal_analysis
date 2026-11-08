@@ -232,10 +232,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | the static survey records no form timer for 4th Graal alpha, 5th Graal and 5th Graal alpha (idle loop), while 4th Graal and 6th Graal on either side have the 50 ms form timer | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
-| Claim B | eras A to D all drive the tick from a DelphiX timer with interval 50 on the main form | [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
-| Open | whether these three builds run from the idle handler, or keep a timer the survey did not find; the tick length is 50 ms either way only if the idle gate is 50 ms there too | [inf] (version-profiles/matrix/builds-static-survey.tsv) |
-| Settles it | reading the main form and the frame routine of the three builds | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+| Superseded observation | the survey formerly reported no form timer for these three builds; the exact-input follow-up finds a configured timer in every one | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
+| Static resolution | the configured timer and its static binding are described in → §4.1.2; the three survey interval cells are corrected | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
+| Open | actual callback execution, elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Settles it | runtime observation of those exact builds, preserving the distinction between declared interval and elapsed time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 
 ### E#301 Frame loop of the 3.x and 4.x clients
 
