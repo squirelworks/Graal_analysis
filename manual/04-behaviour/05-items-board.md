@@ -13,6 +13,7 @@ This chapter gives the client's side of lifting, carrying, hiding and throwing, 
 | probe | one tile beyond the middle of the leading edge (→ §4.3.2) | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#other-probes-same-routine-family) |
 | 2.04 change | from 2.04 the whole 2 × 2 must match before anything happens; 1.3 matched only the single tile under the probe and wrote the leftover block at the derived corner | [bin][doc] (client-internals/board-respawn.md#sending-the-change) |
 | writing | cut and lift share one routine: it writes the leftover tiles, then, only online, sends `PLI_BOARDMODIFY` (1) with the 2 × 2; nothing is sent if the tiles were already equal | [2.05] (client-internals/board-respawn.md#sending-the-change) |
+| Windows 4.04r2, static | the attack-linked tile edit requires a complete two-by-two pattern; its first pattern and replacement also occur in pickup, whose category is tested by the bush property; no successful cut was captured | [bin] (client-internals/404r2-carry-state.md#board-matching) |
 
 The objects (`arrays.dat`; the same in 1.21, 1.3 test and the 2.22 install, one index lower in 1.21):
 
@@ -53,7 +54,18 @@ By build:
 | 1.39 | counter 4 to 0, carried on the 5th tick; no lift pose; carried bush id 261 | hidden flag; walk 0.1 per tick | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 1.41 | `lift` 6 ticks, then `carrystill` | hidden flag, but the pose stays `carrystill` / `carry`, the legs cycling at 0.1 per tick; `hidden.gani` is shipped but not played | [live][1.41] (client-internals/player-mannerisms-live.md#notes-per-build) |
 | 2.05 rev 2, 2.22 | as above | `hiddenstill` / `hidden`; D toggles | [live][2.05][2.22] (client-internals/player-mannerisms-live.md#cross-version-table); [shot] (live-runs/2gta-222-2026-10-30/README.md#lift-hide-under-it-throw) |
+| Windows 4.04r2, static | static sequence → §4.5.2.1; elapsed duration unmeasured | state relationships → §4.5.2.1; captured behavior unmeasured | [bin] (client-internals/404r2-carry-state.md#pickup-carrying-and-hiding) |
 | 5.24r4, 5.30r3, 6.03r7 | `lift` and the board change in the key's tick, `carrystill` 0.30 s later; a throw sends id 11 and `idle` in the same tick | hidden at about 1.5 px per tick; D with a pot does nothing | [wire] (protocol/v5v6-lab-play.md) |
+
+### 4.5.2.1 Windows 4.04r2 static transition limits
+
+| Relationship | Static observation | Limit | Source |
+| --- | --- | --- | --- |
+| Pickup | Transitional action and countdown initialization precede a later update setting the carrying flag; the carried category and boolean carrying property read different state | Countdown initial value five does not establish total frames or elapsed duration; glove-bound semantics remain unmeasured | [bin] (client-internals/404r2-carry-state.md#pickup-carrying-and-hiding); [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
+| Hiding | Bush and two stone categories, or a carried-object pointer, permit selection of a hiding-related state and animation; its movement branch starts with a smaller magnitude | Physical keys, distance per real-time tick and captured hiding behavior remain unmeasured | [bin] (client-internals/404r2-carry-state.md#pickup-carrying-and-hiding) |
+| Release | Creates a level carry entity and clears player carry fields under animation-dependent conditions | Separate exit-helper conditions remain untraced; no universal drop/unhide rule established | [bin] (client-internals/404r2-carry-state.md#pickup-carrying-and-hiding) |
+
+These are static findings, not gameplay confirmation; older and later lab timings remain version-specific. Open questions: → App. E#611. [bin][cap] (client-internals/404r2-carry-state.md#timing-and-input-limits)
 
 ## 4.5.3 Sword cut
 

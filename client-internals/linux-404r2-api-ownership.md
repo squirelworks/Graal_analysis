@@ -5,7 +5,7 @@ executable SHA-256 `50f2057117cfafd5a1151d6e6fdd1413095fa71445ff274bf923ce7dc041
 a Windows component or another release bearing a similar label.
 
 The publication editor reviewed the sanitized 2026-11-09 research handoff and
-verified its digest. Underlying evidence digests and observations are supplied by
+recorded its digest. Underlying evidence digests and observations are supplied by
 the researcher; raw code, captures and client assets were not opened to fill gaps.
 Source IDs resolve through [the evidence index](../workingpapers/sources.tsv).
 
