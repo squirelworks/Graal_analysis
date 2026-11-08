@@ -9,7 +9,8 @@ or platform has been run successfully.
   and the separate Tiger and Lion preparation states.
 - [Windows](windows/README.md): completed code-recovery inventory, original-carrier
   3D provenance, startup capture and controlled offline transition.
-- [Linux](linux/README.md): verified lab tooling and indexed archived build preflights.
+- [Linux](linux/README.md): completed engine teardown, function-recovery coverage,
+  scripting catalogs and bounded runtime observations.
 - [Evidence sources](sources.tsv): stable source identifiers, original project
   file locations and SHA-256 digests for retrieval from the owner's project files.
 - [Handling and handoff](handling.md): source boundaries and requirements for later agents.
