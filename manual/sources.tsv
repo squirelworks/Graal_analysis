@@ -560,3 +560,4 @@ workingpapers/macos/lab-status.md	excluded			installation and debugger preparati
 workingpapers/sources.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
 workingpapers/windows/README.md	excluded			bounded capture handoff and test limits; not cited by the manual
 workingpapers/macos/debugger-validation-2026-11-09.md	excluded			bounded debugger and installer research status; no new established gameplay behavior
+protocol/linux-404r2-receive-scope.md	cited	2.5; E	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
