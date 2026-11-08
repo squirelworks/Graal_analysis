@@ -25,8 +25,25 @@ that a particular virtual GPU or debugger is compatible.
 
 `[bin]` These comparisons concern main executables only. They do not establish
 identical resources, complete application bundles or authenticated release names.
-The separate published [3.153 study](../../protocol/v3x-clients.md) retains its
-own input identity; equivalence with these archive-labelled inputs is unmeasured.
+
+## Archive labels and the historical 3.153 claim
+
+`[bin]` The earlier [upload comparison](../../protocol/v3x-clients.md#the-uploads-for-the-record)
+explicitly reports that the Mac uploads labelled 3.04 and 3.15r2 are byte-identical
+and both are the 3.153 image. This is an existing release-identification claim,
+not merely a study of an unrelated version, and it is retained as that author's evidence.
+
+`[bin]` The current `MAC-V3-ARCHIVE-IDENTITY-20261109` record independently reports
+matching main-executable digests for the two archive labels, but says release
+authentication was not performed. The earlier note does not provide a full input
+digest that can be compared with this record. Consequently, whether the earlier
+image comparison used these exact inputs remains unverified by this collection.
+Executable equality here supports the earlier equality claim in shape; it does
+not independently authenticate its 3.153 attribution or whole-image equality.
+
+`[inf]` A sanitized comparison tying the earlier inputs' full digests and build
+metadata to this collection would settle that linkage. Until then, retain both
+the historical 3.153 attribution and the newer record's narrower identity limits.
 
 `[lab]` The PowerPC and Intel executables need separate machine architectures.
 The current Tiger machine emulates a PowerPC Mac; the prepared Lion machine is

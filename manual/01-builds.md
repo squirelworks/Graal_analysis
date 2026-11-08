@@ -584,7 +584,7 @@ Lab measurements kept as tables beside them:
 
 | Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
 | --- | --- | --- | --- | --- |
-| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest; labels do not authenticate two releases or equivalence with the separately studied 3.153 | [bin] (workingpapers/macos/client-compatibility.md) |
+| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest; the historical note identifies its two uploads as 3.153, but exact-input linkage to this collection remains unverified (→ App. E#609) | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
 | v4.04r2; v4.20r6 | PowerPC | unmeasured | Distinct main executables | [bin] (workingpapers/macos/client-compatibility.md) |
 | v5.12; four unknown-v5 copies | PowerPC | unmeasured | All five main-executable digests match; resource and whole-bundle identity remain unmeasured | [bin] (workingpapers/macos/client-compatibility.md) |
 | v6.11r1 | Intel 64-bit | 10.7.0 | Metadata requirement; virtual graphics and runtime compatibility remain unmeasured by this inventory | [bin] (workingpapers/macos/client-compatibility.md) |

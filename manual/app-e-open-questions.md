@@ -603,7 +603,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Observed | Archive inputs labelled v3.04 and v3.15r2 share one PowerPC main-executable digest; five v5 copies also share a main-executable digest | [bin] (workingpapers/macos/client-compatibility.md) |
-| Separate evidence | The published Mac 3.153 study describes its own upload and build identity; equivalence to the newly inventoried v3-labelled inputs is unmeasured | [bin] (workingpapers/macos/client-compatibility.md) |
-| Open | Authenticated release identity of the archive-labelled v3 inputs, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md) |
-| Settles it | A sanitized comparison linking authenticated build metadata and main-executable digests to the earlier 3.153 input, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md) |
+| Historical claim | The earlier upload comparison explicitly identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Current observation | The newer collection's two v3-labelled main executables share a PowerPC digest, but this collection did not independently authenticate their release version; its five v5 copies also share a main-executable digest | [bin] (workingpapers/macos/client-compatibility.md) |
+| Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Open | Exact-input linkage to the historical 3.153 attribution, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
