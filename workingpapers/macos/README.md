@@ -5,6 +5,9 @@ and Linux. The current evidence establishes executable compatibility targets
 and bounded entry-level debugger checks. It does not establish rendered gameplay.
 
 - [Client compatibility](client-compatibility.md): PowerPC v3–v5 and Intel v6.
+- [Extracted-resource identity](resource-identity.md): regular-file contents and
+  relative names match within the v3 and v5 groups; original-container and label
+  authentication remain separate questions.
 - [Historical lab status](lab-status.md): the 2026-11-08 Tiger recovery and Lion preparation snapshot.
 - [2026-11-09 debugger and installer follow-up](debugger-validation-2026-11-09.md):
   four distinct PowerPC inputs pass bounded entry checks; Lion/v6 remains unvalidated.

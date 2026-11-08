@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../workingpapers/macos/resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
+
 - [x] **Correct Linux 4.04r2 script API declaration ownership.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-api-ownership.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Publish the reviewed 4.04r2 carry-state relationships.** ~~Separate pickup transition, carried category and boolean carrying state.~~ [Static note](../client-internals/404r2-carry-state.md) and §4.5 carry the relationships; timing, keys, glove bounds and scene validation remain open in App. E#611.
