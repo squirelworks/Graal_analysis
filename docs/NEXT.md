@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound later Linux dispatch ranges and observed cached jumps.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-cross-version-dispatch.md) retains exact-build limits and remaining measurements.
+
 - [x] **Compare bounded Linux embedded-script corpora across builds.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-cross-version-embedded-controls.md) retains exact-build limits and remaining measurements.
 
 - [x] **Bound Linux packaged Torque streams and resource comparisons.** ~~Publish the completed sanitized scope.~~ [Source note](../formats/linux-torque-resource-scope.md) retains exact-build limits and remaining measurements.

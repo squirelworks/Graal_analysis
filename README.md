@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Bound later Linux dispatch ranges and observed cached jumps](client-internals/linux-cross-version-dispatch.md) — Separate static selector classifications, executor-entry stops and three observed startup cached jumps.
+
 - [Compare bounded Linux embedded-script corpora across builds](client-internals/linux-cross-version-embedded-controls.md) — Use whole-payload equality and round-trip controls without asserting feature removal or native semantic equivalence.
 
 - [Bound Linux packaged Torque streams and resource comparisons](formats/linux-torque-resource-scope.md) — Record exact round-trips for 39 legacy compiled streams and bounded later-tree negative results.
