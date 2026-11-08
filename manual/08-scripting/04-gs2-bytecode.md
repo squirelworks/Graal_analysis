@@ -104,3 +104,10 @@ Later-build opcode and frame descriptions retain their own identities. Unrecover
 | Native reader/writer recovery | Operations available for focused review | Does not itself supply a full format specification | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
 
 The wrong-representation hash attempt remains superseded; only the corrected read supplies the match. Historical server-delivered content, cross-platform equivalence and 3D gameplay are not established. Remaining container/execution questions → App. E#207. [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution); [bin] (client-internals/linux-404r2-embedded-scripts.md#boundary)
+
+## 8.4.8 Compare bounded Linux embedded-script corpora across builds
+
+[bin] Bounded extraction finds 14 containers in 4.04r2, 13 in each 4.20 revision and each 6.01 architecture, and 12 in 6.03r7 x64. The 4.20 pair and 6.01 architecture pair each agree on all 13 inflated payloads; 6.03 is an exact subset of 6.01. Its missing scanned payload has nine entries and 247 instructions, without proving feature removal. Five payloads match between 4.04 and 4.20. [bin] (client-internals/linux-cross-version-embedded-controls.md)
+
+
+[bin] Entry/instruction totals are 119/15,208 for each 4.20 corpus, 55/5,053 for each 6.01 corpus and 46/4,806 for 6.03. All 78 occurrences validate four unique segments numbered 1–4, candidate entry/string bounds and exact instruction-byte reconstruction; maximum observed tag is 189. Neither 3.04 duplicate yields an accepted bounded zlib stream. Roster alignment remains a candidate comparison. Extraction runs no client/server and proves neither execution nor native semantic equivalence; E#207 remains partial. [bin] (client-internals/linux-cross-version-embedded-controls.md)
