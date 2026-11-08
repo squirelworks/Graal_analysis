@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Correct Linux 4.04r2 script API declaration ownership.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-api-ownership.md) preserves the exact-build scope and remaining questions.
+
 - [x] **Publish the reviewed 4.04r2 carry-state relationships.** ~~Separate pickup transition, carried category and boolean carrying state.~~ [Static note](../client-internals/404r2-carry-state.md) and §4.5 carry the relationships; timing, keys, glove bounds and scene validation remain open in App. E#611.
 
 - [x] **Carry bounded 4.04r2 initialization into the manual.** ~~Distinguish startup and instrumented offline state changes from gameplay.~~ [§4.8.5](../manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) carries the observations; complete-scene validation remains open in App. E#610.
