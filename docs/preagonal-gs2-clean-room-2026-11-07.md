@@ -79,3 +79,10 @@ Not in our notes, so not code until a lab or our own write-up specifies them:
 Learn what the programs do from the readme, the build and parity notes, the package metadata and the issue text. Write Rust only from Seihai's grammar, opcode notes and tests. Opening their source to close a gap blocks implementing that gap in the same change. This change did not open their source, did not vendor it, and did not add a submodule. The gaps above stay uncoded. Pull request 376 remains the compiler, on its own branch.
 
 Evidence: static read of the public docs and of Seihai's notes. No lab. No client.
+
+## Later bounded official-client observation
+
+The [Linux 4.04r2 event experiment](../client-internals/linux-404r2-events.md) now records repeated top-level execution before two tested event dispatches and deferred delivery in one object lifecycle. It narrows the historical open question above; it does not adopt third-party VM code as evidence or establish all-version semantics. **[cap]**
+
+- [x] ~~Test the top-level claim in a controlled official-client fixture.~~ The linked exact-build experiment supplies a bounded result.
+- [ ] Measure joined classes and other event lifecycles before generalizing.
