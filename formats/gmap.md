@@ -6,6 +6,14 @@ Sources: GServer-v2 `TMap.cpp` (GPLv3, summarized); 2.05 string table; `grmap001
 
 `grmap001.txt` covers the three **writers** (dungeon generator, terrain generator, GraalLevelGen). This note covers the **reader** keys.
 
+## Windows 4.04r2 height-block follow-up
+
+The [bounded height-block read](gmap-heights-404r2.md) establishes both a coarse
+`HEIGHTMAP` branch and a named per-level `HEIGHTS` branch in this client reader.
+A separately identified Mac tutorial fixture contains both forms. `HEIGHTS`
+therefore is not confined to level files. This does not extend the server keys
+below or establish renderer behavior. **[bin][file]**
+
 ## Keys read by GServer **[srv]**
 
 | Key | Args | Meaning |

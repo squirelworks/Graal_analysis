@@ -58,6 +58,9 @@ Three writers emit the signature, each with a different set of keys; `GENERATED`
 | 2.05 rev 2 | has the `GRMAP001` string, a reader that knows `WIDTH`, `HEIGHT`, `GENERATED`, `GENSEED`, `GENBASE`, `GENEVENBORDERS`, `GENHEIGHT`, `GENCHAOS`, `LEVHEIGHT`, `LEVCHAOS`, `MAPIMG`, `HEIGHTMAP` … `HEIGHTMAPEND`, `RANDOMSEEDS` … `RANDOMSEEDSEND` and `HEIGHTS`, and a map class; no static caller of the reader was found, so it may be dormant | the text big map and minimap below; no gmap warp handler and no gmap cell prop name | [2.05] (formats/gmap.md#205) |
 | 2.22 | unmeasured | gmap crossing captured in the lab (→ §4.11.9) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
 | 2.31 | unmeasured | gmap crossing captured in the lab (→ §4.11.9) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#needs) |
+| Windows 4.04r2 | separate coarse `HEIGHTMAP` and named per-level `HEIGHTS` branches; the latter normalizes a level filename, looks it up and stores samples in its height record with nine-by-nine capacity | no new rendering or server run; a separate Mac 4.04r2 file fixture contains one four-by-four coarse grid and nine named nine-by-nine grids | [bin][file] (formats/gmap-heights-404r2.md) |
+
+For Windows 4.04r2's matching-level branch, storage is limited to nine rows and nine values per row with fixed nine-value strides. Fewer than 81 supplied values do not by themselves cause rejection; excess values are not stored by this branch. Missing-cell defaults and numeric-error handling remain unmeasured. [bin] (formats/gmap-heights-404r2.md#reader-support)
 
 An earlier version of the gmap note said 2.05 had no `GRMAP001` string; that was wrong, and the build catalogue also lists it for 2.05 [2.05] (formats/gmap.md#205).
 
