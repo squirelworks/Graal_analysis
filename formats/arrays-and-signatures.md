@@ -48,6 +48,12 @@ The client reads exactly 25 arrays in a fixed order into 25 globals at startup. 
 
 All tile ids index the 4096-tile `pics1` sheet. Mapping every table to a gameplay rule needs more tracing, and isn't needed to load the file.
 
+### Bounded packaged-file follow-up
+
+The [2026-11-09 static inspection](arrays-membership-2026-11-09.md) identifies the 11,500-byte input by hash and confirms 25 arrays, with first-list lengths 934 and 116, overlap 15 and union 1,035. Its 101 list-1-only values distinguish the union from list 0 alone. Bush values 2, 3, 18 and 19 are absent from both lists. These are file observations, not new verification of the consumer meanings above. **[file]**
+
+Across 53 occurrences, 25 of 26 distinct inputs round-trip completely; an unsupported 39ster-labelled representation is excluded. Package labels do not authenticate a release or establish runtime loading, and the exact counts do not generalize across inputs. See the follow-up for identity, validation scope and remaining E#100/E#101/E#608 questions. **[file]**
+
 ## arrays2.dat
 
 Plain text, CRLF lines. The 2.22 client needs at least 5 lines. Lines are numbered from 0. **[2.22]**
