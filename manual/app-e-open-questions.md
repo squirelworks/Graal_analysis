@@ -511,7 +511,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | Claim B | the 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
-| Open | whether the 4.04r2 loader is present but unused, or absent | [inf] (graal3d/torque-engine-4x.md#files) |
+| Retained-code result | Native mission phases and network ghost construction populate the mission group, including deferred preloading; this is a positive network path, not proof that a separate local mission reader is absent | [bin] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| Open | whether a separate 4.04r2 local mission reader exists and is reachable; the positive network path does not close that question | [bin][inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
 | Settles it | a static read of the 4.04r2 plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
@@ -519,10 +520,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
-| Claim B | the 4.04r2 plug-in has no TorqueScript compiler or console, and `.dso` and `.cs` files are never requested or used | [bin] (graal3d/torque-engine-4x.md#overview) |
+| Historical Claim B | the earlier note inferred no TorqueScript compiler/console and no `.dso`/`.cs` use; the retained-code result narrows download exclusion to one branch and does not establish absence of local readers | [bin] (graal3d/torque-engine-4x.md#overview); [bin] (torque/404r2-resource-filter.md#download-filter) |
 | Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
 | Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Evidence (2026-11-05) | the 4.04r2, 5.00r7 and 5.12 3D DLLs contain no `exec`, `.dso` or script-compiler strings; 4.04r2 keeps console variables only (`Con::Prompt`, `Con::printLevel`); this favours Claim B | [bin] (torque/study-torque-clients.md#6-what-the-2d-delphi-engine-lacks-per-era) |
+| Corrected evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and participate with `.ter` in a resource-miss download exclusion filter. The earlier defined-string export omitted them; the no-`.dso`-strings claim is withdrawn for this image. Later 5.00r7/5.12 scans are not re-evaluated | [bin] (torque/404r2-resource-filter.md#download-filter) |
 
 ### E#600 Tile layer as GraalEditor writes it
 
@@ -582,10 +583,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | a gmap is "a level list that carries HEIGHTS blocks and is not itself a board" | [doc] (protocol/format-notes-from-salvage.md) |
-| Claim B | `HEIGHTS` belongs to each level file, `HEIGHTMAP` belongs to the TerrainGenerator gmap only, and a server reads a gmap that has neither; `GENERATED` means a file name, a flag, or is absent, depending on the writer | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md) |
-| Open | whether the salvage sentence means the level's `HEIGHTS`, the gmap's `HEIGHTMAP`, or both | [doc] (docs/book/04-where-the-notes-disagree.md#what-generated-names-and-where-heights-lives) |
-| Settles it | a correction in the salvage note naming which block it means | [doc] (docs/book/04-where-the-notes-disagree.md#what-generated-names-and-where-heights-lives) |
+| Clarified Claim A | the salvage note describes a level grid rather than a tile board; its wording now names coarse and per-level height forms with explicit Windows 4.04r2 reader scope | [doc] (protocol/format-notes-from-salvage.md); [bin][file] (formats/gmap-heights-404r2.md) |
+| Historical Claim B | `HEIGHTS` belongs to level files and `HEIGHTMAP` to the generator gmap; writer/server variants differ. Read as exclusive placement, this claim is too broad for the later evidence | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md); [bin][file] (formats/gmap-heights-404r2.md) |
+| Bounded resolution | Windows 4.04r2 reads both coarse `HEIGHTMAP` and named per-level `HEIGHTS` inside a gmap; a separate archive-labelled Mac 4.04r2 fixture contains both forms. `HEIGHTS` is not confined to level files (→ §3.2.4) | [bin][file] (formats/gmap-heights-404r2.md) |
+| Remaining limit | The salvage author's historical intent, rendering, server support and original Windows fixture packaging are not established. Its wording is corrected to state the measured build scope | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
 
 ### E#607 Leftover lines in the protocol cheat sheet
 
