@@ -104,3 +104,10 @@ Later-build opcode and frame descriptions retain their own identities. Unrecover
 | Native reader/writer recovery | Operations available for focused review | Does not itself supply a full format specification | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
 
 The wrong-representation hash attempt remains superseded; only the corrected read supplies the match. Historical server-delivered content, cross-platform equivalence and 3D gameplay are not established. Remaining container/execution questions → App. E#207. [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution); [bin] (client-internals/linux-404r2-embedded-scripts.md#boundary)
+
+## 8.4.9 Bound later Linux dispatch ranges and observed cached jumps
+
+[bin] Both 4.20 revisions guard selectors through 233 (234 positions: 80 common fallback and 154 other targets), compared with 4.04's range through 190. The three 6.x inputs share executable-target sets and cache native destinations per decoded instruction. Their inspected prefix through 242 has 167 executable-mapping pointers and 76 zeros; a 243-entry extent is inferred. Adjacent non-code data/zeros are not safe no-ops, and internal selectors are not automatically wire bytes. [bin] (client-internals/linux-cross-version-dispatch.md)
+
+
+[cap] Five unchanged startups reach executor entry, without hitting the new frame candidates. Three separate 6.x captures each single-step one selector-23 cached jump after its cached/static/register destinations agree. Termination follows the jump; handler completion and event scheduling are unmeasured. Eight untruncated captures retain identity and verify owned cleanup, with no server. E#207 remains partial. [cap] (client-internals/linux-cross-version-dispatch.md)
