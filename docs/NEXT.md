@@ -12,8 +12,6 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
-- [x] **Correct E#201 stored signatures.** ~~Reconcile four literal GS1 letter sequences.~~ [Exact-input note](../npc-library/gs1-signatures-205-followup.md) corrects the table; runtime argument semantics remain open.
-
 - [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../workingpapers/macos/resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
 
 - [x] **Link a recovered Linux 4.04r2 script to live loading.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-embedded-scripts.md) preserves the exact-build scope and remaining questions.
@@ -43,6 +41,8 @@ macOS CI is paused until the polish stage.
 - [x] **Completed Windows workingpapers (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../workingpapers/windows/README.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
 
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
+
+- [x] **Correct E#201 stored signatures.** ~~Reconcile four literal GS1 letter sequences.~~ [Exact-input note](../npc-library/gs1-signatures-205-followup.md) corrects the table; runtime argument semantics remain open.
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section
