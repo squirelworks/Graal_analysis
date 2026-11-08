@@ -14,6 +14,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Update the macOS preparation handoff.** ~~Record the later bounded PowerPC debugger checks and initial Lion boot test.~~ [Follow-up](../workingpapers/macos/debugger-validation-2026-11-09.md) preserves warnings and pending renderer/gameplay validation; Lion/v6 remains unvalidated.
 
+- [x] **Carry macOS executable compatibility into the manual.** ~~Register the reviewed architecture and minimum-OS inventory as reference evidence.~~ [Compatibility note](../workingpapers/macos/client-compatibility.md) feeds §1.9; archive-label and resource equivalence remain open in App. E#609.
+
 - [x] **Reconcile the 4.04r2 artifact-availability gap.** ~~Link the historical packer-stub note to the later recovered components.~~ [Recovery scope](../torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) closes availability only; static claim comparison and a complete 3D session remain open.
 
 - [x] **Completed Linux workingpapers (2026-11-09).** ~~Collect Linux engine recovery in a dedicated retrieval folder.~~ [Linux handoff](../workingpapers/linux/README.md) indexes architecture findings, selected function recovery, complete scripting catalogs and bounded runtime evidence. Raw artifacts remain owner-held.
