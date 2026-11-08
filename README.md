@@ -6,6 +6,10 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Compare bounded Linux embedded-script corpora across builds](client-internals/linux-cross-version-embedded-controls.md) — Use whole-payload equality and round-trip controls without asserting feature removal or native semantic equivalence.
 
+- [Bound Linux packaged Torque streams and resource comparisons](formats/linux-torque-resource-scope.md) — Record exact round-trips for 39 legacy compiled streams and bounded later-tree negative results.
+
+- [Bound Linux 3.04 startup and successful compiled-script reading](client-internals/linux-304-startup-reader.md) — Separate duplicate unpacked labels, startup-check outcomes and a successful unchanged-original compiled reader return.
+
 - [Windows 4.04r2 3D filtering](torque/404r2-resource-filter.md) — short script-extension checks and positive native mission paths, with local-reader reachability still open.
 
 - [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.
