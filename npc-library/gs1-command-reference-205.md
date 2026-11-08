@@ -9,6 +9,8 @@ the client wins and the row says so. **[inf]** marks a reading that is not fully
 This replaces the guesses in [gs1-commands.md](gs1-commands.md) for 2.05. That file's pattern-letter list and its `warp` / `jump` rows
 were wrong; see "Corrections" at the end.
 
+The four literal signatures for `toinventory`, `puthorse`, `showimg` and `replaceani` were corrected by the [exact-input static follow-up](gs1-signatures-205-followup.md). Their stored letters are distinct from the argument-behavior explanations below; conversion and coercion were not re-tested. **[bin]**
+
 ## How the interpreter works
 
 - Scripts are compiled once, on level load, into a flat list of statement nodes. Each node holds a command number, up to two string
@@ -196,7 +198,7 @@ otherwise over both (see udp-p2p.md).
 | 611..615 | `setskincolor`, `setcoatcolor`, `setsleevecolor`, `setshoecolor`, `setbeltcolor` | C | Player colour slots 0..4. |
 | 674 | `setplayerprop` | M,M | Same codes as `setcharprop` but on the player: `#1 #2 #3 #5 #8 #C0..#C5 #P1..#P5 #c`. `#c` sets the chat text with a 60-tick timeout and sends it online. `#7` is **not** handled (doc lists it). |
 | 708 | `setani` | S,S | Player gani and parameter string. |
-| 749 | `replaceani` | S,S | Replaces one of the 31 default gani names (walk, idle, sword, ...) with another gani file. Online gate applies. |
+| 749 | `replaceani` | MM | Replaces one of the 31 default gani names (walk, idle, sword, ...) with another gani file. Online gate applies. |
 | 732 | `setgender` | S | `male` sets male; anything else sets female. |
 | 603 | `hurt` | R | Hurts the player by half-hearts and knocks them away from the NPC's centre. Skipped when the player cannot be hurt right now (dead, in a protected state, or flagged unhittable on an NPC-server). 0 or negative heals (doc). |
 | 654 | `freezeplayer` | R | Freezes the player for 0..30 seconds (clamped) and drops what they carry. |
@@ -210,7 +212,7 @@ otherwise over both (see udp-p2p.md).
 | 723 | `showstats` | R | Bitmask of status-bar parts to show (doc: 1 ASD, 2 icons, 4 rupees, 8 bombs, ...). |
 | 750 | `attachplayertoobj` | R,R | Type 0 only (NPC): attaches the player to the NPC with that id. Online gate applies. |
 | 752 | `detachplayer` | – | Detaches the player if attached. |
-| 632 | `toinventory` | M | Sets the flag and moves the NPC into the inventory. Offline it leaves the level and the run ends; online a copy goes to the inventory and the NPC stays. Only for NPCs of the current level. |
+| 632 | `toinventory` | S | Sets the flag and moves the NPC into the inventory. Offline it leaves the level and the run ends; online a copy goes to the inventory and the NPC stays. Only for NPCs of the current level. |
 | 656 | `toweapons` | M | Adds a copy of the NPC as weapon *name* (replacing one with the same name, in the same slot), runs its `playerenters`, selects it, and sends it online. A `/` in the name keeps only the part after it. |
 
 ### Combat, items, level objects
@@ -226,7 +228,7 @@ otherwise over both (see udp-p2p.md).
 | 628 | `putexplosion` | R,R,R | Explosion of radius *r* at (x, y), with sound. |
 | 722 | `putexplosion2` | R,R,R,R | Power, radius, x, y; power 3 is a jolt-bomb explosion. |
 | 629 | `putleaps` | R,R,R | Leaps of type 0..5 at (x, y) (bush, swamp, stone, sign, ball, water). |
-| 640 | `puthorse` | F,R,R | Horse with that image at (x, y). |
+| 640 | `puthorse` | MRR | Horse with that image at (x, y). |
 | 692 | `removebomb` | R | Deletes bomb *index*. |
 | 697 | `explodebomb` | R | Detonates bomb *index* now. |
 | 693 | `removearrow` | R | Deletes arrow *index* (local only, doc). |
@@ -257,7 +259,7 @@ otherwise over both (see udp-p2p.md).
 | 746 | `addtiledef` | S,S,R | Use image *file* instead of `pics1.png` for levels starting with *prefix*. Online gate applies. |
 | 747 | `addtiledef2` | S,S,R,R | Same, but pastes the image at (x, y) of the tileset. Online gate applies. |
 | 748 | `removetiledefs` | S | Removes tile definitions for *prefix*. Online gate applies. |
-| 657 | `showimg` | R,F,R,R | Image *index* at (x, y), on the NPC's layer +1 (player's for weapons). Re-using an index replaces it; the same file only moves. A name starting with `@` is a text image. |
+| 657 | `showimg` | RMRR | Image *index* at (x, y), on the NPC's layer +1 (player's for weapons). Re-using an index replaces it; the same file only moves. A name starting with `@` is a text image. |
 | 704 | `changeimgpart` | R,R,R,R,R | Visible part of image *index*; x, y clamped to 0..16000, w, h to 0..220. |
 | 718 | `changeimgvis` | R,R | Layer of image *index*: 0, 1, 2 = under / level with / over the NPC; 3 = light layer (like `drawaslight`); 4 = screen (over the status bar). |
 | 730 | `changeimgcolors` | R,R,R,R,R | Colour multiply for image *index*. Online gate applies. |

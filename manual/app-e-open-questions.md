@@ -155,10 +155,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | `toinventory` is `S`; `puthorse` is `MRR`; `showimg` is `RMRR`; `replaceani` is `MM` | [2.05] (npc-library/gs1-reference-205.md#commands-161-205) |
-| Claim B | `toinventory` is `M`; `puthorse` is `F,R,R`; `showimg` is `R,F,R,R`; `replaceani` is `S,S` | [2.05] (npc-library/gs1-command-reference-205.md#commands) |
-| Open | which letters the 2.05 table holds for these four commands; both notes say they read the same table | [inf] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#commands) |
-| Settles it | re-reading the signature strings of ops 632, 640, 657 and 749 in the 2.05 rev 2 table | [inf] (npc-library/gs1-reference-205.md#commands-161-205) |
+| Static resolution | exact-input stored letters are recorded in → §8.2; the follow-up agrees with the earlier reference and corrects the command reference's alternatives | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
+| Superseded claim | the command reference formerly printed `M`, `F,R,R`, `R,F,R,R` and `S,S` respectively; those are not the stored sequences for the four commands in the checked input | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
+| Open | whether differing argument descriptions express equivalent runtime semantics; conversion and coercion remain untested | [bin] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
+| Settles it | targeted parser/executor observations or controlled runtime tests of argument conversion in that exact build | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
 
 ### E#202 Which message carries GS2 bytecode
 
@@ -232,10 +232,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | the static survey records no form timer for 4th Graal alpha, 5th Graal and 5th Graal alpha (idle loop), while 4th Graal and 6th Graal on either side have the 50 ms form timer | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
-| Claim B | eras A to D all drive the tick from a DelphiX timer with interval 50 on the main form | [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
-| Open | whether these three builds run from the idle handler, or keep a timer the survey did not find; the tick length is 50 ms either way only if the idle gate is 50 ms there too | [inf] (version-profiles/matrix/builds-static-survey.tsv) |
-| Settles it | reading the main form and the frame routine of the three builds | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+| Superseded observation | the survey formerly reported no form timer for these three builds; the exact-input follow-up finds a configured timer in every one | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
+| Static resolution | the configured timer and its static binding are described in → §4.1.2; the three survey interval cells are corrected | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
+| Open | actual callback execution, elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Settles it | runtime observation of those exact builds, preserving the distinction between declared interval and elapsed time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 
 ### E#301 Frame loop of the 3.x and 4.x clients
 
@@ -511,7 +511,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | Claim B | the 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
-| Open | whether the 4.04r2 loader is present but unused, or absent | [inf] (graal3d/torque-engine-4x.md#files) |
+| Retained-code result | Native mission phases and network ghost construction populate the mission group, including deferred preloading; this is a positive network path, not proof that a separate local mission reader is absent | [bin] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| Open | whether a separate 4.04r2 local mission reader exists and is reachable; the positive network path does not close that question | [bin][inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
 | Settles it | a static read of the 4.04r2 plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
@@ -519,10 +520,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
-| Claim B | the 4.04r2 plug-in has no TorqueScript compiler or console, and `.dso` and `.cs` files are never requested or used | [bin] (graal3d/torque-engine-4x.md#overview) |
+| Historical Claim B | the earlier note inferred no TorqueScript compiler/console and no `.dso`/`.cs` use; the retained-code result narrows download exclusion to one branch and does not establish absence of local readers | [bin] (graal3d/torque-engine-4x.md#overview); [bin] (torque/404r2-resource-filter.md#download-filter) |
 | Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
 | Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Evidence (2026-11-05) | the 4.04r2, 5.00r7 and 5.12 3D DLLs contain no `exec`, `.dso` or script-compiler strings; 4.04r2 keeps console variables only (`Con::Prompt`, `Con::printLevel`); this favours Claim B | [bin] (torque/study-torque-clients.md#6-what-the-2d-delphi-engine-lacks-per-era) |
+| Corrected evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and participate with `.ter` in a resource-miss download exclusion filter. The earlier defined-string export omitted them; the no-`.dso`-strings claim is withdrawn for this image. Later 5.00r7/5.12 scans are not re-evaluated | [bin] (torque/404r2-resource-filter.md#download-filter) |
 
 ### E#600 Tile layer as GraalEditor writes it
 
