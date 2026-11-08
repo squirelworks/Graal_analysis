@@ -568,3 +568,4 @@ client-internals/linux-404r2-sleep.md	cited	8.3; E	8.3; E	experiment setup and d
 client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-embedded-scripts.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 workingpapers/macos/resource-identity.md	cited	1; E	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
+formats/gmap-heights-404r2.md	cited	3.2; E	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
