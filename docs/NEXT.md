@@ -14,6 +14,12 @@ macOS CI is paused until the polish stage.
 
 - [x] **Publish the reviewed 4.04r2 carry-state relationships.** ~~Separate pickup transition, carried category and boolean carrying state.~~ [Static note](../client-internals/404r2-carry-state.md) and §4.5 carry the relationships; timing, keys, glove bounds and scene validation remain open in App. E#611.
 
+- [x] **Carry bounded 4.04r2 initialization into the manual.** ~~Distinguish startup and instrumented offline state changes from gameplay.~~ [§4.8.5](../manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) carries the observations; complete-scene validation remains open in App. E#610.
+
+- [x] **Update the macOS preparation handoff.** ~~Record the later bounded PowerPC debugger checks and initial Lion boot test.~~ [Follow-up](../workingpapers/macos/debugger-validation-2026-11-09.md) preserves warnings and pending renderer/gameplay validation; Lion/v6 remains unvalidated.
+
+- [x] **Carry macOS executable compatibility into the manual.** ~~Register the reviewed architecture and minimum-OS inventory as reference evidence.~~ [Compatibility note](../workingpapers/macos/client-compatibility.md) feeds §1.9; archive-label and resource equivalence remain open in App. E#609.
+
 - [x] **Reconcile the 4.04r2 artifact-availability gap.** ~~Link the historical packer-stub note to the later recovered components.~~ [Recovery scope](../torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) closes availability only; static claim comparison and a complete 3D session remain open.
 
 - [x] **Completed Linux workingpapers (2026-11-09).** ~~Collect Linux engine recovery in a dedicated retrieval folder.~~ [Linux handoff](../workingpapers/linux/README.md) indexes architecture findings, selected function recovery, complete scripting catalogs and bounded runtime evidence. Raw artifacts remain owner-held.

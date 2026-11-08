@@ -599,6 +599,24 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether the one-list summary predates the 2.05 read or describes another reader; the list sizes are → App. E#101 | [inf] (formats/arrays-and-signatures.md) |
 | Settles it | a 2.05 session recording, for ids in array 1 only, whether the player can walk on them | [inf] (formats/arrays-and-signatures.md) |
 
+### E#609 macOS archive labels and application identity
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Historical claim | The earlier upload comparison explicitly identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Current observation | The newer collection's two v3-labelled main executables share a PowerPC digest, but this collection did not independently authenticate their release version; its five v5 copies also share a main-executable digest | [bin] (workingpapers/macos/client-compatibility.md) |
+| Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Open | Exact-input linkage to the historical 3.153 attribution, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+
+### E#610 Windows 4.04r2 offline initialization versus gameplay
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (workingpapers/windows/README.md#controlled-offline-transition) |
+
 ### E#611 Windows 4.04r2 pickup semantics and input qualification
 
 | Item | Content | Source |

@@ -6,6 +6,12 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Windows 4.04r2 carry states](client-internals/404r2-carry-state.md) — static pickup, carrying and hiding relationships, with timing, input and runtime limits; carried into manual §4.5.
 
+- [Windows 4.04r2 offline evidence](manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) — captured startup and instrumented state transition, with scene and gameplay limits.
+
+- [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.
+
+- [Archived macOS compatibility](workingpapers/macos/client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.
+
 - [Windows 4.04r2 recovery scope](torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) — distinguishes the historical packer-stub export from later recovered components and load-only 3D evidence.
 
 - `workingpapers/` — platform research handoff and evidence-source index, with Windows, macOS and Linux teardown material in their own folders; Linux includes completed engine-recovery coverage and bounded startup observations, and Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
