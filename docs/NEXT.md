@@ -46,6 +46,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
 
+- [x] **Correct E#201 stored signatures.** ~~Reconcile four literal GS1 letter sequences.~~ [Exact-input note](../npc-library/gs1-signatures-205-followup.md) corrects the table; runtime argument semantics remain open.
+
 - [x] **Correct E#300 static timer presence.** ~~Reconcile the three missing survey timer cells.~~ [Exact-build note](../client-internals/early-form-timers-2026-11-09.md) records stored configuration; runtime timing remains open.
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
