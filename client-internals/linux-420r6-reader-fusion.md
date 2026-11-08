@@ -4,7 +4,7 @@ The editor reviewed only the sanitized 2026-11-09 Linux cross-version handoff an
 
 Runtime observations use owned isolated Linux guest/process workflows with no server or server commit, no online login/gameplay and ordinary debugger breakpoints. New probes patch neither executable/signature checks nor script input. Bounded termination and owned-group cleanup do not assert that every system process was inspectable; separately identified unreadable kernel workers are outside the owned client/debugger group.
 
-[bin] The new selected 4.20r6 native package is researcher-reported host-verified: 316 unique selected C-export entries and 2,929 manifest files, five repaired retained-dossier deliveries and zero unresolved requested facets. This is selected recovery coverage, not complete source/semantics. Five expanded jobs for 3.04, 4.20r8, both 6.01 architectures and 6.03r7 remain pending.
+[bin] The new selected 4.20r6 native package is researcher-reported host-verified: 316 unique selected C-export entries and 2,929 manifest files, five repaired retained-dossier deliveries and zero unresolved requested facets. This is selected recovery coverage, not complete source/semantics. At the cited handoff revision, five expanded native jobs were pending; their completion is not asserted here.
 
 ## Exact executable inputs
 
