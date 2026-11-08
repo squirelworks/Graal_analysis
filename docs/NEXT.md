@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound Linux 4.20r6 container operands and post-load fusion.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-reader-fusion.md) retains exact-build limits and remaining measurements.
+
 - [x] **Bound Linux 4.20r6 selector-11 saved-state and registration paths.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-selector11.md) retains exact-build limits and remaining measurements.
 
 - [x] **Compare Linux receive cases and the 4.20r6 compiled-input chain.** ~~Publish the completed sanitized scope.~~ [Source note](../protocol/linux-cross-version-receive.md) retains exact-build limits and remaining measurements.
