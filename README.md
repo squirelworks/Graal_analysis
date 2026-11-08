@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Bound Linux 4.04r2 opcode dispatch and frame evidence](client-internals/linux-404r2-vm-dispatch.md) — Earlier Linux dispatch ends at 190 and is kept separate from later Windows wait/fused-opcode behavior; static frame observations remain explicitly unconfirmed by a live helper stop.
+
 - [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.
 
 - [Archived macOS compatibility](workingpapers/macos/client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.
