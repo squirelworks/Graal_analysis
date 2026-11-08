@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [macOS extracted-resource identity](workingpapers/macos/resource-identity.md) — regular-file comparison within the v3/v5 archive groups, with historical-label and container limits retained.
+
 - [Link a recovered Linux 4.04r2 script to live loading](client-internals/linux-404r2-embedded-scripts.md) — Structural checks cover fourteen recovered streams; a corrected hash read links exactly one profile payload to a live loader/executor path, without publishing script bodies or assets.
 
 - [Bound Linux 4.04r2 opcode dispatch and frame evidence](client-internals/linux-404r2-vm-dispatch.md) — Earlier Linux dispatch ends at 190 and is kept separate from later Windows wait/fused-opcode behavior; static frame observations remain explicitly unconfirmed by a live helper stop.

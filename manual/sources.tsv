@@ -568,3 +568,4 @@ client-internals/linux-404r2-sleep.md	cited	8.3; E	8.3; E	experiment setup and d
 npc-library/gs1-signatures-205-followup.md	cited	8.2; E	8.2; E	Input identity and validation metadata retained in source note; stored letters and semantic limits carried in 8.2 and E#201.
 client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-embedded-scripts.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+workingpapers/macos/resource-identity.md	cited	1; E	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
