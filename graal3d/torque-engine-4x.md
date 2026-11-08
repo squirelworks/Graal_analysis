@@ -18,7 +18,7 @@ Evidence tags as in `protocol/v4x-clients.md`: **[bin]** read from the binary, *
   - a Torque UDP connection on **port + 1**.
 
   Both are opened together. **[bin]**
-- The Torque console and TorqueScript are gone. Every engine object is exposed to Graal's GS2 script objects instead. There is no TorqueScript compiler, and `.dso` files are never requested. **[bin]**
+- Engine objects are exposed to Graal's GS2 script objects. A [retained-code follow-up](../torque/404r2-resource-filter.md) finds `.dso` and `.cs` extension checks in one resource-miss download filter, which excludes those extensions and `.ter`. This is not proof that every local reader or compiler path is absent; the earlier categorical non-use inference is withdrawn pending reachability checks. **[bin]**
 
 ## Hand-off from 2D
 
@@ -276,7 +276,7 @@ The Graal TCP connection stays up for the whole session. **[bin]**
 | Images | `.png`, `.jpg`, `.jp2`, `.jng`, `.mng`, `.gif`, `.bmp`, `.bm8`, `.tga`, `.dds`. **[bin]** |
 | `.zip`, `.gpake` | Archives the resource manager opens. **[bin]** |
 | `.mis` | Not used. The mission arrives over the network. **[bin][inf]** |
-| `.dso`, `.cs` | Not used as TorqueScript; never downloaded. **[bin]** |
+| `.dso`, `.cs` | Excluded by one observed resource-miss download branch; separate local-reader reachability remains unmeasured. See [retained-code follow-up](../torque/404r2-resource-filter.md). **[bin]** |
 | `levels3d/gui/*.png` | Shipped GUI skins: `default*` and `guiblue_*` controls, player-list and PM-bubble images, `defaultnamehud.png`, `default3darrow.png`, the title screen. **[file]** |
 | `levels3d/help/*.hfl` | Help pages (About, Links, Key shortcuts). **[file]** |
 | `languages3D/language*.cs` | Nine languages, each a list of `$language::Name = "text";` lines. Neither binary names these files, so they are probably loaded by server GUI scripts. **[file][inf]** |

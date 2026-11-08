@@ -562,3 +562,4 @@ workingpapers/windows/README.md	cited	4.8; E	4.8; E	§4.8 carries bounded initia
 workingpapers/macos/debugger-validation-2026-11-09.md	excluded			bounded debugger and installer research status; no new established gameplay behavior
 client-internals/404r2-carry-state.md	cited	4.5; E	4.5; E	static interaction relationships carried; private retrieval and research process are outside manual scope
 client-internals/linux-404r2-api-ownership.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+torque/404r2-resource-filter.md	cited	10; E	10; E	filter and mission-path bounds carried; private retained-code mappings remain in source note
