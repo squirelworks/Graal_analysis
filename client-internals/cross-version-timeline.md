@@ -139,14 +139,16 @@ New commands are inserted in the middle of the table, not appended. So the inter
 | NewMain 1.42 | + 42, 44, 45, 150, 151, 153 |
 | 2.0 | + 154, 155 |
 | 2.01 | + 46, 156 |
-| 2.02 rev2 | + 47 |
+| 2.02 rev0–rev2 | + 47; distinct static receive branch in all three checked inputs |
 | 2.03 | + 48, 165 |
 | 2.04 | + 166; − 26 |
-| 2.05 rev1 / rev2 | + 168 |
+| 2.05 rev0–rev2 | + 168; distinct static receive branch in all three checked inputs |
 | NewWorld betas | 2.05 minus 2, 4, 17, 18, 154, 155 |
 | 2.1 tests | 2.05 plus 49, 169 |
 
 Id 42 is not handled until NewMain 1.42, although 43 is handled from 1.38 on. NewWorld drops six ids at once, alongside the removed baddy, horse and chest classes.
+
+The [exact-input revision follow-up](receive-dispatch-revision-boundaries-2026-11-09.md) corrects the former 2.02 rev2 and 2.05 rev1 boundaries for these messages. These are Windows x86 static routing observations, not runtime handling or a first-ever historical occurrence. The per-build receive table already agrees. **[bin]**
 
 ### Prop parsers
 

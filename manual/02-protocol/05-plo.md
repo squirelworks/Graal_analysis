@@ -20,6 +20,8 @@ Field notation is in → §0.6, the message envelope in → §2.1.2, and the log
 
 ## 2.5.2 Ids handled by build
 
+For the six checked Windows x86 2.02/2.05 revisions, the corroborated entries mean distinct static receive routes, not successful runtime handling; payloads and effects require separate evidence [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#validation-and-limits).
+
 Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive switch tests, written as in the source.
 
 | Build | Count | Ids handled | Source |
@@ -27,10 +29,10 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | NewMain 24, 26 | 51 | 0–45, 75, 100, 150, 151, 153 (bound `0x99`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
 | 2.00 (rev0–rev3) | 53 | 0–45, 75, 100, 150, 151, 153–155 (bound `0x9b`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#server---client-ids-handled-200) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
 | 2.01 (+rev1) | 55 | 0–46, 75, 100, 150, 151, 153–156 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
-| 2.02 (rev0–rev2) | 56 | 0–47, 75, 100, 150, 151, 153–156; disputed for rev0 and rev1 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.02 (rev0–rev2) | 56 | 0–47, 75, 100, 150, 151, 153–156 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv); [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#distinct-receive-routes) |
 | 2.03 | 58 | 0–48, 75, 100, 150, 151, 153–156, 165 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
 | 2.04 | 58 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166 (26 dropped) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
-| 2.05 (rev0–rev2) | 59 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166, 168 (bound `0xa8`); disputed for rev0 → App. E#7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [2.05] (protocol/packet-ids.md#server--client-plo_) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
+| 2.05 (rev0–rev2) | 59 | 0–25, 27–48, 75, 100, 150, 151, 153–156, 165, 166, 168 (bound `0xa8`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [2.05] (protocol/packet-ids.md#server--client-plo_) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv); [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#distinct-receive-routes) |
 | 2.1 test 2, test 3 | 61 | the 2.05 set plus 49, 169 | [bin] (version-profiles/plo-handled-ids-by-build.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv) |
 | NewWorld beta 1 | 53 | the 2.05 set without 2, 4, 17, 18, 154, 155 | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
 | NewWorld beta 2 | 55 | the beta 1 set plus 49, 169 | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
