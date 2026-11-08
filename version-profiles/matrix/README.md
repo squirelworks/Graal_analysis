@@ -120,3 +120,7 @@ Ranked by how much it changes what a player would notice.
 | `seihai-gaps.md` | Seihai's profiles against this matrix. |
 
 The survey script, the form parser, the Wine helpers and the screenshots are in the project folder under `graal-decompile/version-matrix/`, not in this repo.
+
+## Early timer survey correction
+
+The three formerly missing timer cells are corrected by [the exact-build form follow-up](../../client-internals/early-form-timers-2026-11-09.md). Their 50 ms values describe stored configuration, not measured callback cadence. The era summary above must not be read as a runtime measurement of those builds. **[bin]**
