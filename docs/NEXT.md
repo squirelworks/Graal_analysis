@@ -14,6 +14,16 @@ macOS CI is paused until the polish stage.
 
 - [x] **Bound Linux 4.20r6 selector-11 saved-state and registration paths.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-selector11.md) retains exact-build limits and remaining measurements.
 
+- [x] **Compare Linux receive cases and the 4.20r6 compiled-input chain.** ~~Publish the completed sanitized scope.~~ [Source note](../protocol/linux-cross-version-receive.md) retains exact-build limits and remaining measurements.
+
+- [x] **Bound later Linux dispatch ranges and observed cached jumps.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-cross-version-dispatch.md) retains exact-build limits and remaining measurements.
+
+- [x] **Compare bounded Linux embedded-script corpora across builds.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-cross-version-embedded-controls.md) retains exact-build limits and remaining measurements.
+
+- [x] **Bound Linux packaged Torque streams and resource comparisons.** ~~Publish the completed sanitized scope.~~ [Source note](../formats/linux-torque-resource-scope.md) retains exact-build limits and remaining measurements.
+
+- [x] **Bound Linux 3.04 startup and successful compiled-script reading.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-304-startup-reader.md) retains exact-build limits and remaining measurements.
+
 - [x] **Correct the 4.04r2 script-extension absence claim.** ~~Recheck the defined-string export against retained code.~~ [Filter and native mission evidence](../torque/404r2-resource-filter.md) corrects the missing-literal inference; E#502–503 remain partially open for local-reader reachability.
 
 - [x] **Narrow Appendix E#606 height-block placement.** ~~Test the exclusive claim that HEIGHTS belongs only in level files.~~ [Reader and fixture evidence](../formats/gmap-heights-404r2.md) supports named gmap blocks for Windows 4.04r2; rendering, server and packaging claims remain unmeasured.

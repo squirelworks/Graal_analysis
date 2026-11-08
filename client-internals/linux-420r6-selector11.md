@@ -4,7 +4,7 @@ The editor reviewed only the sanitized 2026-11-09 Linux cross-version handoff an
 
 Runtime observations use owned isolated Linux guest/process workflows with no server or server commit, no online login/gameplay and ordinary debugger breakpoints. New probes patch neither executable/signature checks nor script input. Bounded termination and owned-group cleanup do not assert that every system process was inspectable; separately identified unreadable kernel workers are outside the owned client/debugger group.
 
-[bin] The new selected 4.20r6 native package is researcher-reported host-verified: 316 unique selected C-export entries and 2,929 manifest files, five repaired retained-dossier deliveries and zero unresolved requested facets. This is selected recovery coverage, not complete source/semantics. Five expanded jobs for 3.04, 4.20r8, both 6.01 architectures and 6.03r7 remain pending.
+[bin] The new selected 4.20r6 native package is researcher-reported host-verified: 316 unique selected C-export entries and 2,929 manifest files, five repaired retained-dossier deliveries and zero unresolved requested facets. This is selected recovery coverage, not complete source/semantics. At the cited handoff revision, five expanded native jobs were pending; their completion is not asserted here.
 
 ## Exact executable inputs
 
@@ -27,7 +27,7 @@ Runtime observations use owned isolated Linux guest/process workflows with no se
 
 ## Saved state and replacement boundary
 
-[bin] The save helper transfers the next-instruction position and clears the active position, copies typed stack values and transfers collections while selectively reconstructing some entries. Insertion normalizes the event key, substitutes current-owner naming for an empty requested target, destroys the first matching pending record and appends a new record. This proves first-match replacement on that path, without proving global uniqueness, removal of every duplicate, delivery order or full cancellation/destruction behavior.
+[bin] The save helper transfers the next-instruction position and clears the active position, copies typed stack values and transfers collections while selectively reconstructing some entries. Insertion normalizes the event key. An empty requested target permits the matcher to compare against the current owner's name. This is a conditional, asymmetric matching fallback; canonical rewriting of stored or query targets is not established. Only the first matching pending record is removed; insertion destroys it and appends the new record. This proves first-match replacement on that path, without proving global uniqueness, removal of every duplicate, delivery order or full cancellation/destruction behavior.
 
 [bin] The expression-value capacity helper grows by 100 slots, refusing growth beyond 10,000; selector 11 requests one slot. Capacity failure is distinct from call-frame depth and event reception. Prepared numeric branch values are not established public success/failure returns.
 
