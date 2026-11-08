@@ -617,3 +617,10 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | No `.dts`, `.dif`, `.ter` or `.mis` file ships with any Graal client: the 3D content always came from the server | [file] (torque/engine-and-formats.md#3d-resource-formats) |
 | 3.153 maps terrain textures to detail textures and footstep sound types in script (→ §10.4.4) | [file] (torque/engine-and-formats.md#3d-resource-formats) |
 | 4.04r2 ships 3D GUI skins in `levels3d/gui/`, help pages in `levels3d/help/*.hfl` and nine `languages3D/language*.cs` tables of `$language::Name = "text";` lines, probably loaded by server GUI scripts | [file][inf] (graal3d/torque-engine-4x.md#files) |
+
+## 10.7 Bound Linux 3.04 startup and successful compiled-script reading
+
+[bin] The two 3.04-labelled unpacked trees are identical across 528 regular files each; the packed original is a separate input. [cap] The tested unpacked initializer fails its first observed signature check. The unchanged original passes both checks after its temporary/display environment is corrected. The comparison does not isolate packing as the cause. [bin] (client-internals/linux-304-startup-reader.md); [cap] (client-internals/linux-304-startup-reader.md)
+
+
+[cap] In another original-input launch, the compiled reader returns true for `common/main.cs`: post-read state has 474 code words and 39 line pairs, matching the packaged version-33, 1,903-byte compiled file. The boolean is its low return byte, not unspecified upper bits. Packaged-file identity is retained; runtime memory-payload hashing and instruction execution are unmeasured. Termination and cleanup follow the reader return. No server, offline game or Windows E#503 resolution is claimed. [cap] (client-internals/linux-304-startup-reader.md)

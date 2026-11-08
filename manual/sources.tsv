@@ -574,3 +574,4 @@ formats/arrays-membership-2026-11-09.md	cited	3.4; 3.5; E	3.4; 3.5; E	Private id
 formats/gmap-heights-404r2.md	cited	3.2; E	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
 torque/404r2-resource-filter.md	cited	10; E	10; E	filter and mission-path bounds carried; private retained-code mappings remain in source note
 client-internals/receive-dispatch-revision-boundaries-2026-11-09.md	cited	2.5; E	2.5; E	Exact-input hashes and validation bookkeeping remain in the source note; receive-route presence and limits carried in 2.5 and E#7.
+client-internals/linux-304-startup-reader.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
