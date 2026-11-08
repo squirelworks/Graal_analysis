@@ -216,6 +216,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Linux 4.04r2 continuation result | A positive-sleep snapshot preserves the next instruction through restore; elapsed timing, cancellation and replacement remain unmeasured (→ §8.3.9) | [cap] (client-internals/linux-404r2-sleep.md) |
 | Linux 4.04r2 catalog correction | Correct grouping gives 176 types and 332 globals, restoring 38 root-object declarations; binding, conversion and inherited behavior remain unmeasured (→ §8.3.10) | [test] (client-internals/linux-404r2-api-ownership.md) |
 | Earlier Linux 4.04r2 VM boundary | Dispatch ends at 190 and slot 11 selects a common skip path; one insertion control completes unchanged. Static frame fields and helper semantics remain qualified (→ §8.4.6) | [bin][cap] (client-internals/linux-404r2-vm-dispatch.md) |
+| Linux 4.04r2 embedded linkage | Fourteen structurally validated script candidates include one profile payload matched to live input before executor entry; this is not corpus-wide execution or historical server-content recovery (→ §8.4.7) | [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 

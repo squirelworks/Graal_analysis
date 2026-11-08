@@ -14,6 +14,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Correct E#201 stored signatures.** ~~Reconcile four literal GS1 letter sequences.~~ [Exact-input note](../npc-library/gs1-signatures-205-followup.md) corrects the table; runtime argument semantics remain open.
 
+- [x] **Link a recovered Linux 4.04r2 script to live loading.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-embedded-scripts.md) preserves the exact-build scope and remaining questions.
+
 - [x] **Bound Linux 4.04r2 opcode dispatch and frame evidence.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-vm-dispatch.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Record Linux 4.04r2 sleep continuation preservation.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-sleep.md) preserves the exact-build scope and remaining questions.
