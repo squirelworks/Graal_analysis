@@ -140,7 +140,7 @@ That list is small enough to build and test against the shipped files one by one
 |---|---|---|---|
 | Boot from the client's own `main.cs` with mod paths | **yes** | no | no |
 | TorqueScript VM that runs `.dso` v33 (Graal opcode table, big-endian floats on PPC) and plain `.cs` | **yes** | 4.04r2 local-reader/VM reachability remains unmeasured: [retained code](404r2-resource-filter.md) contains short `.dso`/`.cs` literals in a download filter, invalidating the earlier absence claim. The earlier 5.00r7/5.12 defined-string scans reported no `exec`, `.dso` or script-compiler strings; those inputs are not rechecked here | no |
-| Console object model (`SimObject`, `SimGroup`, names, fields, packages, namespaces, `schedule`) | **yes** | 3D DLL keeps `SimObject`/`SimGroup`, without a script language | no |
+| Console object model (`SimObject`, `SimGroup`, names, fields, packages, namespaces, `schedule`) | **yes** | 3D DLL keeps `SimObject`/`SimGroup`; the earlier "without a script language" conclusion is a disputed inference. Local VM reachability remains unmeasured (see [retained-code follow-up](404r2-resource-filter.md) and [App. E#503](../manual/app-e-open-questions.md#e503-whether-404r2-reads-dso-compiled-torquescript)) | no |
 | Torque GUI canvas + stock control set + profiles + themes, sized from `.gui` files | **yes** | engine DLL keeps the class model, launcher draws | GS2 re-implementation of the same model |
 | `.gft` font cache reader and Torque text rendering | **yes** | 3D DLL | no (TrueType: Tempus Sans, Arial) |
 | Torque texture manager over OpenGL (PNG/JPEG/GIF/MNG/JPEG 2000 via `GBitmap`) | **yes** | 3D DLL | own OpenGL |

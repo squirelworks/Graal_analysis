@@ -275,7 +275,7 @@ The Graal TCP connection stays up for the whole session. **[bin]**
 | `.gft`, `.dml` | TGE font and material-list files. **[bin]** |
 | Images | `.png`, `.jpg`, `.jp2`, `.jng`, `.mng`, `.gif`, `.bmp`, `.bm8`, `.tga`, `.dds`. **[bin]** |
 | `.zip`, `.gpake` | Archives the resource manager opens. **[bin]** |
-| `.mis` | Not used. The mission arrives over the network. **[bin][inf]** |
+| `.mis` | The earlier "not used" conclusion is a disputed inference. A network-populated mission path is identified; separate local mission-reader reachability remains unresolved. See [retained-code follow-up](../torque/404r2-resource-filter.md) and [App. E#502](../manual/app-e-open-questions.md#e502-whether-404r2-loads-mis-mission-files). **[bin][inf]** |
 | `.dso`, `.cs` | Excluded by one observed resource-miss download branch; separate local-reader reachability remains unmeasured. See [retained-code follow-up](../torque/404r2-resource-filter.md). **[bin]** |
 | `levels3d/gui/*.png` | Shipped GUI skins: `default*` and `guiblue_*` controls, player-list and PM-bubble images, `defaultnamehud.png`, `default3darrow.png`, the title screen. **[file]** |
 | `levels3d/help/*.hfl` | Help pages (About, Links, Key shortcuts). **[file]** |
