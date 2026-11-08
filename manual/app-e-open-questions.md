@@ -598,3 +598,12 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | in the old tile mode a tile blocks unless it is in array 0 (934 ids) or array 1 (116 ids) | [2.05] (formats/arrays-and-signatures.md) |
 | Open | whether the one-list summary predates the 2.05 read or describes another reader; the list sizes are → App. E#101 | [inf] (formats/arrays-and-signatures.md) |
 | Settles it | a 2.05 session recording, for ids in array 1 only, whether the player can walk on them | [inf] (formats/arrays-and-signatures.md) |
+
+### E#611 Windows 4.04r2 pickup semantics and input qualification
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Static recovery separates pickup action, carried category and carrying flag; no interaction was captured successfully | [bin][cap] (client-internals/404r2-carry-state.md) |
+| Open | Meaning of the pickup-bound field, configured physical key-to-action path, and asset/effect qualification of the provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A version-specific semantic read for the bound field and input route, separate asset mapping, and a complete scene capturing each selected action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Timing dependency | The countdown cannot supply elapsed timing without the clocks in → App. E#301 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |

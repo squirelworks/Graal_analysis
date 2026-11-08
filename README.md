@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Windows 4.04r2 carry states](client-internals/404r2-carry-state.md) — static pickup, carrying and hiding relationships, with timing, input and runtime limits; carried into manual §4.5.
+
 - `workingpapers/` — platform research handoff and evidence-source index, with Windows and macOS teardown material in their own folders; Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
 
 - `manual/` — the Graal Technical Reference Manual (1.0, in progress; spec: issue #191). One Markdown file per chapter, `manual/sources.tsv` maps every note to the sections that cite it. Check it with `python tools/manual/check_manual.py`.
