@@ -155,10 +155,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | `toinventory` is `S`; `puthorse` is `MRR`; `showimg` is `RMRR`; `replaceani` is `MM` | [2.05] (npc-library/gs1-reference-205.md#commands-161-205) |
-| Claim B | `toinventory` is `M`; `puthorse` is `F,R,R`; `showimg` is `R,F,R,R`; `replaceani` is `S,S` | [2.05] (npc-library/gs1-command-reference-205.md#commands) |
-| Open | which letters the 2.05 table holds for these four commands; both notes say they read the same table | [inf] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#commands) |
-| Settles it | re-reading the signature strings of ops 632, 640, 657 and 749 in the 2.05 rev 2 table | [inf] (npc-library/gs1-reference-205.md#commands-161-205) |
+| Static resolution | exact-input stored letters are recorded in → §8.2; the follow-up agrees with the earlier reference and corrects the command reference's alternatives | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
+| Superseded claim | the command reference formerly printed `M`, `F,R,R`, `R,F,R,R` and `S,S` respectively; those are not the stored sequences for the four commands in the checked input | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
+| Open | whether differing argument descriptions express equivalent runtime semantics; conversion and coercion remain untested | [bin] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
+| Settles it | targeted parser/executor observations or controlled runtime tests of argument conversion in that exact build | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
 
 ### E#202 Which message carries GS2 bytecode
 
