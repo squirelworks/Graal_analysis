@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../workingpapers/macos/resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
+
 - [x] **Link a recovered Linux 4.04r2 script to live loading.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-embedded-scripts.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Bound Linux 4.04r2 opcode dispatch and frame evidence.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-vm-dispatch.md) preserves the exact-build scope and remaining questions.
