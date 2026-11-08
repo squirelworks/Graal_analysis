@@ -170,6 +170,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether 197 carries bytecode, a script-load descriptor, or both in different server versions, and how it relates to 131 | [inf] (protocol/packet-ids.md; protocol/packet-layouts.md) |
 | Settles it | a capture of a 4.x or 5.x client receiving an NPC with a GS2 script from a lab server | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Linux 4.04r2 partial result | A static message-131 path strips a three-byte identifier and reaches the compiled-segment reader. No network fixture was delivered; lookup roles, the indirect initialization callback, messages 140/197 and cache validation remain unresolved. The 97-case switch count is not a complete handled-ID count (→ §2.5.13) | [bin] (protocol/linux-404r2-receive-scope.md) |
+| Linux cross-version follow-up | Preserve tag normalization and exact-build case behavior without publishing an unproved delivery grammar. The broader question remains partial (→ §2.5.14) | [bin] (protocol/linux-cross-version-receive.md) |
 
 ### E#203 The 2.05 `#` message-code set
 
@@ -217,6 +218,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Linux 4.04r2 catalog correction | Correct grouping gives 176 types and 332 globals, restoring 38 root-object declarations; binding, conversion and inherited behavior remain unmeasured (→ §8.3.10) | [test] (client-internals/linux-404r2-api-ownership.md) |
 | Earlier Linux 4.04r2 VM boundary | Dispatch ends at 190 and slot 11 selects a common skip path; one insertion control completes unchanged. Static frame fields and helper semantics remain qualified (→ §8.4.6) | [bin][cap] (client-internals/linux-404r2-vm-dispatch.md) |
 | Linux 4.04r2 embedded linkage | Fourteen structurally validated script candidates include one profile payload matched to live input before executor entry; this is not corpus-wide execution or historical server-content recovery (→ §8.4.7) | [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
+| Linux cross-version follow-up | Use whole-payload equality and round-trip controls without asserting feature removal or native semantic equivalence. The broader question remains partial (→ §8.4.8) | [bin] (client-internals/linux-cross-version-embedded-controls.md) |
+| Linux cross-version follow-up | Separate static selector classifications, executor-entry stops and three observed startup cached jumps. The broader question remains partial (→ §8.4.9) | [bin] [cap] (client-internals/linux-cross-version-dispatch.md) |
+| Linux cross-version follow-up | Document static state saving and first-match pending-record replacement without inventing wait/timeout API results. The broader question remains partial (→ §8.3.11) | [bin] (client-internals/linux-420r6-selector11.md) |
+| Linux cross-version follow-up | Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences. The broader question remains partial (→ §8.4.10) | [bin] (client-internals/linux-420r6-reader-fusion.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 

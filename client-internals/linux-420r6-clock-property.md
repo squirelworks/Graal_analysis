@@ -4,7 +4,7 @@ The editor reviewed only the sanitized 2026-11-09 Linux cross-version handoff an
 
 Runtime observations use owned isolated Linux guest/process workflows with no server or server commit, no online login/gameplay and ordinary debugger breakpoints. New probes patch neither executable/signature checks nor script input. Bounded termination and owned-group cleanup do not assert that every system process was inspectable; separately identified unreadable kernel workers are outside the owned client/debugger group.
 
-[bin] The new selected 4.20r6 native package is researcher-reported host-verified: 316 unique selected C-export entries and 2,929 manifest files, five repaired retained-dossier deliveries and zero unresolved requested facets. This is selected recovery coverage, not complete source/semantics. Five expanded jobs for 3.04, 4.20r8, both 6.01 architectures and 6.03r7 remain pending.
+[bin] The new selected 4.20r6 native package is researcher-reported host-verified: 316 unique selected C-export entries and 2,929 manifest files, five repaired retained-dossier deliveries and zero unresolved requested facets. This is selected recovery coverage, not complete source/semantics. At the cited handoff revision, five expanded native jobs were pending; their completion is not asserted here.
 
 ## Exact executable inputs
 
@@ -20,7 +20,7 @@ Runtime observations use owned isolated Linux guest/process workflows with no se
 
 [bin] Raw property registration binds the advertised global read-only boolean `isgraal3d` to a small getter returning the same byte that the clock predicate reads. The byte defaults to zero in a zero-filled ELF section. Bounded direct-address references identify three writer owners; the observed set-to-one branch follows an input-prefix test for `3 `. The property name follows the registration binding rather than an analyst label. Registration/raw bytes support the callable getter entry, without asserting a standalone decompiled getter boundary.
 
-[bin] The updater's other branch uses a wall-clock helper. With the byte zero, it seeds once and then adds the fixed increment per call. Direct encoded-reference scans do not exclude alias, indirect or module writes. No nonzero live branch, successful 3D connection or rendering is observed; E#301's frame-driver and timed-walk questions remain open.
+[bin] With the byte zero and the clock nonzero, it adds 0.05 per call; if the clock is zero, or the byte is nonzero, it refreshes from the wall-clock helper. The probe observed one seed and five increments; it does not prove that the clock can never be reset or reseeded. Direct encoded-reference scans do not exclude alias, indirect or module writes. No nonzero live branch, successful 3D connection or rendering is observed; E#301's frame-driver and timed-walk questions remain open.
 
 ## Capture and optional bridge boundary
 
