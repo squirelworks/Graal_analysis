@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Bound Linux 4.20r6 selector-11 saved-state and registration paths](client-internals/linux-420r6-selector11.md) — Document static state saving and first-match pending-record replacement without inventing wait/timeout API results.
+
 - [Compare Linux receive cases and the 4.20r6 compiled-input chain](protocol/linux-cross-version-receive.md) — Preserve tag normalization and exact-build case behavior without publishing an unproved delivery grammar.
 
 - [Bound later Linux dispatch ranges and observed cached jumps](client-internals/linux-cross-version-dispatch.md) — Separate static selector classifications, executor-entry stops and three observed startup cached jumps.

@@ -220,6 +220,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Linux 4.04r2 embedded linkage | Fourteen structurally validated script candidates include one profile payload matched to live input before executor entry; this is not corpus-wide execution or historical server-content recovery (→ §8.4.7) | [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
 | Linux cross-version follow-up | Use whole-payload equality and round-trip controls without asserting feature removal or native semantic equivalence. The broader question remains partial (→ §8.4.8) | [bin] (client-internals/linux-cross-version-embedded-controls.md) |
 | Linux cross-version follow-up | Separate static selector classifications, executor-entry stops and three observed startup cached jumps. The broader question remains partial (→ §8.4.9) | [bin] [cap] (client-internals/linux-cross-version-dispatch.md) |
+| Linux cross-version follow-up | Document static state saving and first-match pending-record replacement without inventing wait/timeout API results. The broader question remains partial (→ §8.3.11) | [bin] (client-internals/linux-420r6-selector11.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
