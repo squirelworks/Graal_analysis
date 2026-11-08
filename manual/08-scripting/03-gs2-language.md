@@ -119,3 +119,10 @@ This is an input-substitution experiment with no server or server commit; later 
 | Evidence class | Client-published scripting surface | Binding effects, conversions, inherited behavior and native C++ layout are not established by declaration membership | [test] (client-internals/linux-404r2-api-ownership.md#what-membership-does-not-establish) |
 
 Other catalog builds require their own correction records; these counts are not generalized. Standard-library semantics remain open → App. E#207. [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction)
+
+## 8.3.11 Bound Linux 4.20r6 selector-11 saved-state and registration paths
+
+[bin] Selector 11 is a handler in examined 4.20/6.x builds, unlike the 4.04 skip path; the detailed result is r6-only. It consumes one numeric and two string-like values. Saving requires a nonempty name, ordered positive numeric input and contexts; zero does not enter this path as an indefinite wait. Registration precedes caller lowercase/leading-`on` removal. Empty/current-owner, distinguished global and named routes do not establish full comparison or subscription rules. [bin] (client-internals/linux-420r6-selector11.md)
+
+
+[bin] State saving transfers the next instruction, clears active execution, copies typed values and transfers/reconstructs collections. Insertion normalizes the key, applies current-owner naming for an empty target, destroys the first matching pending record and appends a replacement. It does not establish uniqueness, complete cancellation or delivery order. Capacity grows by 100 up to 10,000; the requested single slot and alternate numeric branch values are not event/timeout success semantics. The stock corpus has no selector-11 input or public-prefix directory entry. No new runtime experiment/server ran; coercion, resume and lifecycle semantics remain open in E#207. [bin] (client-internals/linux-420r6-selector11.md)
