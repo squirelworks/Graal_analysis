@@ -4,6 +4,40 @@ The owner-held collection contains recovered-image analysis, engine and shell
 metadata, player dossiers, original REA records, runtime traces and lab harnesses.
 Raw code and binary details are not reproduced here.
 
+## Completed code-recovery collection
+
+`[bin]` The owner's Windows collection was refreshed on 2026-11-09 after the
+Graal 4.04r2 code export completed. Source `WIN-CODE-COVERAGE` records five
+analyzed components: the main engine, the original carrier's separate 3D engine,
+the client shell, audio library and updater helper. Of 19,724 identified
+functions, 19,721 produced decompiler output; three retained assembly-only
+coverage after bounded retries. These counts describe identified functions,
+not a percentage of original source recovered or a successful rebuild.
+
+`[bin]` `WIN-CODE-INVENTORY` identifies the owner-held artifact manifest.
+`WIN-CODE-PROJECT` identifies the saved editable analysis project and
+`WIN-CODE-PACKAGE` the complete private reference package. The local retrieval
+root is `workingpapers/windows/`; its README and catalog locate the code,
+resources, metadata, original evidence and harnesses. Raw artifacts remain
+outside this public repository. The source index records their digests.
+
+`[cap]` `WIN-3D-PROVENANCE` records a controlled load-only capture of the separate
+3D module from the original packed client. Server and server commit were none.
+The harness requested the client's existing module-loading operation; the
+recorded before/after state changed from no loaded module to a valid loaded
+module with a complete mapped-image capture. It did not invoke 3D gameplay
+initialization. An adjacent archived engine was not substituted.
+
+`[inf]` The recovered code requires further reconstruction before it can build.
+Static code and a loaded module do not establish playable 3D, exact gameplay
+mechanics or independent clean-room implementation. Research agents should
+publish reviewed plain-behaviour findings here; implementing agents follow
+[the handling boundary](../handling.md) and their own specifications and tests.
+
+- [x] ~~Collect the completed Windows code export and provenance in a dedicated folder.~~ Owner-held `workingpapers/windows/` and the source identifiers above provide retrieval.
+- [ ] Resolve or document the three remaining decompiler timeouts before claiming complete identified-function C coverage.
+- [ ] Validate reconstructed behaviour independently before using it as an implementation requirement.
+
 ## Startup capture
 
 `[cap]` Source `WIN-STARTUP` analyzes `WIN-TRACE`, a 51.760-second controlled

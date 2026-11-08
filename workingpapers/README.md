@@ -1,12 +1,14 @@
 # Platform workingpapers
 
-Research handoff collected on 2026-11-08. These notes separate static findings,
+Research handoff collected on 2026-11-08, with the completed Windows extraction
+indexed on 2026-11-09. These notes separate static findings,
 captured behaviour and lab preparation. They are not a claim that every client
 or platform has been run successfully.
 
 - [macOS](macos/README.md): its own teardown folder, with architecture findings
   and the separate Tiger and Lion preparation states.
-- [Windows](windows/README.md): startup capture and controlled offline transition.
+- [Windows](windows/README.md): completed code-recovery inventory, original-carrier
+  3D provenance, startup capture and controlled offline transition.
 - [Linux](linux/README.md): verified lab tooling and indexed archived build preflights.
 - [Evidence sources](sources.tsv): stable source identifiers, original project
   file locations and SHA-256 digests for retrieval from the owner's project files.
