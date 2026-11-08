@@ -279,7 +279,7 @@ TCP traffic in 3D mode, 4.04r2 [bin] (graal3d/torque-engine-4x.md#the-tcp-gserve
 | S→C 0 `LEVELBOARD`, 14 `PLAYERWARP`, 28 `FLAGSET`, 31 `FLAGDEL`, 49 `PLAYERWARP2`, 101 `BOARDPACKET` | ignored; level, warps and flags come from the 3D server | [bin] (graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode) |
 | level requests at start-up, getweapon, client-variable and flag sets, server-side triggers | rerouted to the 3D server (→ §10.5.3) | [bin] (graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode) |
 | chat, PMs, the player list, file transfer, RC | not touched by the switch, so presumably still TCP | [inf] (graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode) |
-| missing 3D resources | fetched with the normal TCP file download by lower-case name, except `.dso`, `.cs` and `.ter` (→ §2.7) | [bin] (graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode) |
+| missing 3D resources | one observed resource-miss branch normalizes the name, extracts its extension and requests a download only when it differs from `.dso`, `.cs` and `.ter`; this does not establish absence of local readers (→ §2.7) | [bin] (torque/404r2-resource-filter.md#download-filter) |
 
 ## 10.3 Handshake by build
 
@@ -405,6 +405,8 @@ Game-packet bodies after the header [bin] (graal3d/torque-engine-4x.md#server--c
 | 4.04r2 raises `onGraal3DLoginStep` 1 to 5: phases 1, 2 and 3, lighting done (`$missionRunning = 1`), and the first control object (switch to the 3D GUI) | [bin] (graal3d/torque-engine-4x.md#mission-start) |
 | 5.12 starts the value at −1 and raises 2 (phase 1), 3 (phase 2), 4 (lighting done), 5 (first control object) and 6 (TCP file downloads finished, the `GraalControl3D` GUI attached) | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 | The 3.153 loading screen is a snowball rolling across `LoadingGui`, with the Christmas 2004 3D images | [file] (torque/scripting.md#what-the-3153-scripts-do) |
+
+The retained Windows 4.04r2 review traces native datablock/ghost/lighting phase dispatch and network-class construction into the mission group, with a deferred-preload path. This is positive network-mission evidence; separate local mission/script readers remain unresolved (→ App. E#502, → App. E#503). No new 3D session or file-loading trace was obtained. [bin] (torque/404r2-resource-filter.md#positive-native-mission-path)
 
 ## 10.4 DSO v33
 

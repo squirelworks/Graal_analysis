@@ -511,7 +511,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | Claim B | the 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
-| Open | whether the 4.04r2 loader is present but unused, or absent | [inf] (graal3d/torque-engine-4x.md#files) |
+| Retained-code result | Native mission phases and network ghost construction populate the mission group, including deferred preloading; this is a positive network path, not proof that a separate local mission reader is absent | [bin] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| Open | whether a separate 4.04r2 local mission reader exists and is reachable; the positive network path does not close that question | [bin][inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
 | Settles it | a static read of the 4.04r2 plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
@@ -519,10 +520,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
-| Claim B | the 4.04r2 plug-in has no TorqueScript compiler or console, and `.dso` and `.cs` files are never requested or used | [bin] (graal3d/torque-engine-4x.md#overview) |
+| Historical Claim B | the earlier note inferred no TorqueScript compiler/console and no `.dso`/`.cs` use; the retained-code result narrows download exclusion to one branch and does not establish absence of local readers | [bin] (graal3d/torque-engine-4x.md#overview); [bin] (torque/404r2-resource-filter.md#download-filter) |
 | Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
 | Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Evidence (2026-11-05) | the 4.04r2, 5.00r7 and 5.12 3D DLLs contain no `exec`, `.dso` or script-compiler strings; 4.04r2 keeps console variables only (`Con::Prompt`, `Con::printLevel`); this favours Claim B | [bin] (torque/study-torque-clients.md#6-what-the-2d-delphi-engine-lacks-per-era) |
+| Corrected evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and participate with `.ter` in a resource-miss download exclusion filter. The earlier defined-string export omitted them; the no-`.dso`-strings claim is withdrawn for this image. Later 5.00r7/5.12 scans are not re-evaluated | [bin] (torque/404r2-resource-filter.md#download-filter) |
 
 ### E#600 Tile layer as GraalEditor writes it
 
