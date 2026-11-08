@@ -90,3 +90,32 @@ GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each con
 | Bytecode | segment layout is → §8.3.6. A trailing `0x0A` is not required. Id 131 is a three-byte Graal integer then the bytes. Id 140 stays an envelope (→ §8.3.6) and is not a case of this engine's control dispatch | [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
 | Stack | tags 0..5. The value stack grows by 100 and the cap is 10000, not 256. Opcode 10 stores that height on the frame and does not jump. Other jumps are the truncated operand plus the current list's base | [bin] (client-internals/gs2-vm-from-engines.md#opcodes); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
 | 5.0 and 6.00 | 5.0 adds opcodes 48, 49, 54 and 121 and the same 0.05 clock. 6.00r2 and 6.00r4 add 54, 121 and 234..242; the 0.05 step was not found there | [bin] (client-internals/gs2-vm-from-engines.md#differences-between-the-three-engines) |
+
+## 8.3.8 Linux 4.04r2 event ordering
+
+| Tested condition | Observation | Limit | Source |
+| --- | --- | --- | --- |
+| Instrumented profile-script fixture | Top-level statements run before the creation handler and again before the queued handler; a second control reproduces the order | Two tested event dispatches in one lifecycle, not an all-version rule | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
+| Handler queues another event | Its following statement runs before the queued handler | Delivery is deferred in this experiment; other event sources remain unmeasured | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
+| Trigger arity control | Event name alone is rejected; an additional value permits delivery | This fixture's call only, not a universal variadic signature | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
+
+The fixture replaces process input, not the executable file or its signature checks. Server and server commit are none. Joined classes, public calls and complete event semantics remain open → App. E#207. [cap] (client-internals/linux-404r2-events.md#experiment-boundary)
+
+## 8.3.9 Linux 4.04r2 sleep continuation
+
+| Condition | Observation | Unmeasured | Source |
+| --- | --- | --- | --- |
+| Controlled persistent main-menu script requests positive sleep | Saves the next instruction, clears the running position, restores the same snapshot and next instruction, then executes the following statement | Cancellation and replacement while suspended | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
+| Sleep versus another queued event | Top-level output does not recur for the continuation, but recurs before the separately queued event | Other object lifecycles | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
+| Requested sleep 0.15 seconds | Requested duration is retained across save/restore | Calibrated elapsed delay, clock rate, frame dependence and timeout precision; no exact wall-clock duration established | [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits) |
+
+This is an input-substitution experiment with no server or server commit; later Windows fixed-step clocks are not imported. Remaining scheduler questions → App. E#207. [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits)
+
+## 8.3.10 Linux 4.04r2 published API membership
+
+| Catalog fact | Exact-input result | Limit | Source |
+| --- | --- | --- | --- |
+| Correct declaration grouping | 176 published types and 332 globals; 38 declarations belong to the root script object rather than globals | Total declaration count unchanged; this corrects derived metadata, not runtime behavior | [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction) |
+| Evidence class | Client-published scripting surface | Binding effects, conversions, inherited behavior and native C++ layout are not established by declaration membership | [test] (client-internals/linux-404r2-api-ownership.md#what-membership-does-not-establish) |
+
+Other catalog builds require their own correction records; these counts are not generalized. Standard-library semantics remain open → App. E#207. [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction)
