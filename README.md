@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Windows 4.04r2 carry states](client-internals/404r2-carry-state.md) — static pickup, carrying and hiding relationships, with timing, input and runtime limits; carried into manual §4.5.
+
 - [Windows 4.04r2 offline evidence](manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) — captured startup and instrumented state transition, with scene and gameplay limits.
 
 - [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.

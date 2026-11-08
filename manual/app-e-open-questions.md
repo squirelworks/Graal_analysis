@@ -616,3 +616,12 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
 | Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
 | Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (workingpapers/windows/README.md#controlled-offline-transition) |
+
+### E#611 Windows 4.04r2 pickup semantics and input qualification
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Static recovery separates pickup action, carried category and carrying flag; no interaction was captured successfully | [bin][cap] (client-internals/404r2-carry-state.md) |
+| Open | Meaning of the pickup-bound field, configured physical key-to-action path, and asset/effect qualification of the provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A version-specific semantic read for the bound field and input route, separate asset mapping, and a complete scene capturing each selected action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Timing dependency | The countdown cannot supply elapsed timing without the clocks in → App. E#301 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
