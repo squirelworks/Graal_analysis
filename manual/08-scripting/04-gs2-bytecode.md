@@ -104,3 +104,10 @@ Later-build opcode and frame descriptions retain their own identities. Unrecover
 | Native reader/writer recovery | Operations available for focused review | Does not itself supply a full format specification | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
 
 The wrong-representation hash attempt remains superseded; only the corrected read supplies the match. Historical server-delivered content, cross-platform equivalence and 3D gameplay are not established. Remaining container/execution questions → App. E#207. [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution); [bin] (client-internals/linux-404r2-embedded-scripts.md#boundary)
+
+## 8.4.10 Bound Linux 4.20r6 container operands and post-load fusion
+
+[bin] The r6 reader uses big-endian four-byte framing/directory numbers and NUL-terminated names. Removing a leading `public.` marker and forwarding a flag does not define runtime visibility. Markers 240–242 select string entries (one/two-byte unsigned indexes; four-byte form checks nonnegative representation); 243–245 supply signed integers; 246 uses an incompletely reviewed numeric-text converter. Other bytes append tagged records; marker branches modify the latest record. Corpus controls do not cover multiple-marker overwrite, and strict validator rejection is not native bounds/default behavior. [bin] (client-internals/linux-420r6-reader-fusion.md)
+
+
+[bin] A jump-index pass and adjacent-pattern fusion rewrite selected records to internal tags 200–233 while retaining collection positions and advancing past matches; a current first tag 11 stays unchanged. This explains a corpus maximum of 189 alongside a larger internal range, without asserting transmitted fused values or a recovered compiler. Offline review runs no client/server. Malformed-input behavior, numeric grammar and public/joined semantics remain open in E#207. [bin] (client-internals/linux-420r6-reader-fusion.md)

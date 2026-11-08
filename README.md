@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Bound Linux 4.20r6 container operands and post-load fusion](client-internals/linux-420r6-reader-fusion.md) — Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences.
+
 - [Windows 4.04r2 3D filtering](torque/404r2-resource-filter.md) — short script-extension checks and positive native mission paths, with local-reader reachability still open.
 
 - [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.
