@@ -94,3 +94,13 @@ Of the names Preagonal's compiler turns into opcodes, these images contain `abs`
 | Static frame helper | Depth guard, overrun path, frame-like allocation, prior-position save, push and active-state change | Field meanings remain inferred; no successful new live stop confirms this helper | [bin] (client-internals/linux-404r2-vm-dispatch.md#guarded-frame-transition) |
 
 Later-build opcode and frame descriptions retain their own identities. Unrecovered helpers and correspondence remain open → App. E#207. [bin] (client-internals/linux-404r2-vm-dispatch.md#version-and-semantic-limits)
+
+## 8.4.7 Linux 4.04r2 embedded scripts and live linkage
+
+| Evidence | Observation | Limit | Source |
+| --- | --- | --- | --- |
+| Bounded embedded-zlib extraction | Fourteen valid four-segment candidates, 129 named entries and 15,799 decoded instructions; instruction bytes round-trip and indexes are in range | Structural validation is not corpus-wide execution | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
+| Profile-script input | A corrected read of 9,530 live bytes matches the recovered payload digest; the same run enters the native executor | One loader/executor linkage, not all streams or complete profile execution | [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution) |
+| Native reader/writer recovery | Operations available for focused review | Does not itself supply a full format specification | [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks) |
+
+The wrong-representation hash attempt remains superseded; only the corrected read supplies the match. Historical server-delivered content, cross-platform equivalence and 3D gameplay are not established. Remaining container/execution questions → App. E#207. [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution); [bin] (client-internals/linux-404r2-embedded-scripts.md#boundary)
