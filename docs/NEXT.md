@@ -14,6 +14,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Correct E#300 static timer presence.** ~~Reconcile the three missing survey timer cells.~~ [Exact-build note](../client-internals/early-form-timers-2026-11-09.md) records stored configuration; runtime timing remains open.
 
+- [x] **Bound Linux 4.04r2 opcode dispatch and frame evidence.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-vm-dispatch.md) preserves the exact-build scope and remaining questions.
+
 - [x] **Record Linux 4.04r2 sleep continuation preservation.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-sleep.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Record Linux 4.04r2 event ordering and deferred delivery.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-events.md) preserves the exact-build scope and remaining questions.

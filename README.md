@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Bound Linux 4.04r2 opcode dispatch and frame evidence](client-internals/linux-404r2-vm-dispatch.md) — Earlier Linux dispatch ends at 190 and is kept separate from later Windows wait/fused-opcode behavior; static frame observations remain explicitly unconfirmed by a live helper stop.
+
 - [Record Linux 4.04r2 sleep continuation preservation](client-internals/linux-404r2-sleep.md) — The same snapshot and next instruction link a positive sleep to its continuation; the requested duration is not treated as measured elapsed time.
 
 - [Record Linux 4.04r2 event ordering and deferred delivery](client-internals/linux-404r2-events.md) — Two repeated controls establish top-level execution before the tested events and deferred delivery. A preserved arity failure remains qualified to its fixture.
