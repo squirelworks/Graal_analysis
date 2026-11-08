@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Trace Linux 4.04r2 object-script delivery.** ~~Carry the static message-131 path and receive-switch scope into reference documentation.~~ [Source note](../protocol/linux-404r2-receive-scope.md) preserves network-fixture, lookup, callback and transport limits.
+
 - [x] **Correct Linux 4.04r2 script API declaration ownership.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-api-ownership.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Publish the reviewed 4.04r2 carry-state relationships.** ~~Separate pickup transition, carried category and boolean carrying state.~~ [Static note](../client-internals/404r2-carry-state.md) and §4.5 carry the relationships; timing, keys, glove bounds and scene validation remain open in App. E#611.

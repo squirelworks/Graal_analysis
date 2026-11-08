@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Linux 4.04r2 object-script delivery](protocol/linux-404r2-receive-scope.md) — static message-131 path into the compiled-script reader, with the 97-case switch count kept separate from complete handled-message coverage.
+
 - [Correct Linux 4.04r2 script API declaration ownership](client-internals/linux-404r2-api-ownership.md) — Correct a derived ownership error without changing raw output or total declarations. Script API membership remains separate from native layout and behavior.
 
 - [Windows 4.04r2 carry states](client-internals/404r2-carry-state.md) — static pickup, carrying and hiding relationships, with timing, input and runtime limits; carried into manual §4.5.
