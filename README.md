@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Record Linux 4.04r2 sleep continuation preservation](client-internals/linux-404r2-sleep.md) — The same snapshot and next instruction link a positive sleep to its continuation; the requested duration is not treated as measured elapsed time.
+
 - [Record Linux 4.04r2 event ordering and deferred delivery](client-internals/linux-404r2-events.md) — Two repeated controls establish top-level execution before the tested events and deferred delivery. A preserved arity failure remains qualified to its fixture.
 
 - [Linux 4.04r2 object-script delivery](protocol/linux-404r2-receive-scope.md) — static message-131 path into the compiled-script reader, with the 97-case switch count kept separate from complete handled-message coverage.

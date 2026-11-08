@@ -101,6 +101,16 @@ GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each con
 
 The fixture replaces process input, not the executable file or its signature checks. Server and server commit are none. Joined classes, public calls and complete event semantics remain open → App. E#207. [cap] (client-internals/linux-404r2-events.md#experiment-boundary)
 
+## 8.3.9 Linux 4.04r2 sleep continuation
+
+| Condition | Observation | Unmeasured | Source |
+| --- | --- | --- | --- |
+| Controlled persistent main-menu script requests positive sleep | Saves the next instruction, clears the running position, restores the same snapshot and next instruction, then executes the following statement | Cancellation and replacement while suspended | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
+| Sleep versus another queued event | Top-level output does not recur for the continuation, but recurs before the separately queued event | Other object lifecycles | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
+| Requested sleep 0.15 seconds | Requested duration is retained across save/restore | Calibrated elapsed delay, clock rate, frame dependence and timeout precision; no exact wall-clock duration established | [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits) |
+
+This is an input-substitution experiment with no server or server commit; later Windows fixed-step clocks are not imported. Remaining scheduler questions → App. E#207. [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits)
+
 ## 8.3.10 Linux 4.04r2 published API membership
 
 | Catalog fact | Exact-input result | Limit | Source |

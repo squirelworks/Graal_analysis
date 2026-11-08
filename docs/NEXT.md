@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Record Linux 4.04r2 sleep continuation preservation.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-sleep.md) preserves the exact-build scope and remaining questions.
+
 - [x] **Record Linux 4.04r2 event ordering and deferred delivery.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-events.md) preserves the exact-build scope and remaining questions.
 
 - [x] **Trace Linux 4.04r2 object-script delivery.** ~~Carry the static message-131 path and receive-switch scope into reference documentation.~~ [Source note](../protocol/linux-404r2-receive-scope.md) preserves network-fixture, lookup, callback and transport limits.
