@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Archived macOS compatibility](workingpapers/macos/client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.
+
 - `workingpapers/` — platform research handoff and evidence-source index, with Windows and macOS teardown material in their own folders; Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
 
 - `manual/` — the Graal Technical Reference Manual (1.0, in progress; spec: issue #191). One Markdown file per chapter, `manual/sources.tsv` maps every note to the sections that cite it. Check it with `python tools/manual/check_manual.py`.

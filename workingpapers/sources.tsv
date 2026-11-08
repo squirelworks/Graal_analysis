@@ -16,3 +16,4 @@ WIN-CODE-PROJECT	windows	saved-analysis-project	Extraction/RecoveredCode-GhidraP
 WIN-CODE-PACKAGE	windows	private-reference-package	Graal404r2-RecoveredCode.zip	018144105d37ad2224095b7eb1c69718dba3eae78e5a626d97e921cdef05ef5d	owner-held project files; retrieve by identifier
 LINUX-VERIFY	linux	tooling-verification	Lab/Linux/output/verification-summary.json	656fb4a87d191298d30194a602faa8052799173a2ca7af9ba7c2447ec355d8d1	owner-held project files; retrieve by identifier
 LINUX-PREFLIGHT	linux	static-preflight	Lab/Linux/output/engine-teardown/preflight-index.json	142e58f2bee908ac0fbb6c6a72e45a3f38031a4e829678af3f0f91d1d658741d	owner-held project files; retrieve by identifier
+MAC-V3-ARCHIVE-IDENTITY-20261109	macos	sanitized-static-identity	owner-held sanitized record MAC-V3-ARCHIVE-IDENTITY-20261109	9b5f4cfd4d642ae8fcb374f7e56f548c3bf740d414817e4932afd9646d879d5c	researcher-reported observations; editor verified sanitized record digest only

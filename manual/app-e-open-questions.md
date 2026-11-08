@@ -598,3 +598,12 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Claim B | in the old tile mode a tile blocks unless it is in array 0 (934 ids) or array 1 (116 ids) | [2.05] (formats/arrays-and-signatures.md) |
 | Open | whether the one-list summary predates the 2.05 read or describes another reader; the list sizes are → App. E#101 | [inf] (formats/arrays-and-signatures.md) |
 | Settles it | a 2.05 session recording, for ids in array 1 only, whether the player can walk on them | [inf] (formats/arrays-and-signatures.md) |
+
+### E#609 macOS archive labels and application identity
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Observed | Archive inputs labelled v3.04 and v3.15r2 share one PowerPC main-executable digest; five v5 copies also share a main-executable digest | [bin] (workingpapers/macos/client-compatibility.md) |
+| Separate evidence | The published Mac 3.153 study describes its own upload and build identity; equivalence to the newly inventoried v3-labelled inputs is unmeasured | [bin] (workingpapers/macos/client-compatibility.md) |
+| Open | Authenticated release identity of the archive-labelled v3 inputs, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md) |
+| Settles it | A sanitized comparison linking authenticated build metadata and main-executable digests to the earlier 3.153 input, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md) |

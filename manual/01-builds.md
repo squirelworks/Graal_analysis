@@ -578,3 +578,16 @@ Lab measurements kept as tables beside them:
 | `lab-levelchange-46-222-231.tsv` | level changes in 2.22 and 2.31: request, server reply and id 46 order | [lab] (version-profiles/lab-levelchange-46-222-231.tsv) |
 | `lab-serverwarp178.tsv` | how 2.31 reacts to variants of the S→C 178 fields | [lab] (version-profiles/lab-serverwarp178.tsv) |
 | `lab-showimg24-relay.tsv` | C→S 24 payloads and how the server relays them to other players | [lab] (version-profiles/lab-showimg24-relay.tsv) |
+
+## 1.9 Archived macOS executable compatibility
+
+| Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
+| --- | --- | --- | --- | --- |
+| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest; labels do not authenticate two releases or equivalence with the separately studied 3.153 | [bin] (workingpapers/macos/client-compatibility.md) |
+| v4.04r2; v4.20r6 | PowerPC | unmeasured | Distinct main executables | [bin] (workingpapers/macos/client-compatibility.md) |
+| v5.12; four unknown-v5 copies | PowerPC | unmeasured | All five main-executable digests match; resource and whole-bundle identity remain unmeasured | [bin] (workingpapers/macos/client-compatibility.md) |
+| v6.11r1 | Intel 64-bit | 10.7.0 | Metadata requirement; virtual graphics and runtime compatibility remain unmeasured by this inventory | [bin] (workingpapers/macos/client-compatibility.md) |
+
+The PowerPC headers declare legacy graphics and application-framework dependencies but no exact minimum OS version. Neither these dependencies nor the Intel build's declared minimum establishes successful rendering, input or gameplay. The separately captured Tiger runs retain their own scope (→ §1.8.4, → §1.8.5). [bin] (workingpapers/macos/client-compatibility.md)
+
+Unresolved archive-label and resource identity: → App. E#609.
