@@ -577,10 +577,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | a gmap is "a level list that carries HEIGHTS blocks and is not itself a board" | [doc] (protocol/format-notes-from-salvage.md) |
-| Claim B | `HEIGHTS` belongs to each level file, `HEIGHTMAP` belongs to the TerrainGenerator gmap only, and a server reads a gmap that has neither; `GENERATED` means a file name, a flag, or is absent, depending on the writer | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md) |
-| Open | whether the salvage sentence means the level's `HEIGHTS`, the gmap's `HEIGHTMAP`, or both | [doc] (docs/book/04-where-the-notes-disagree.md#what-generated-names-and-where-heights-lives) |
-| Settles it | a correction in the salvage note naming which block it means | [doc] (docs/book/04-where-the-notes-disagree.md#what-generated-names-and-where-heights-lives) |
+| Clarified Claim A | the salvage note describes a level grid rather than a tile board; its wording now names coarse and per-level height forms with explicit Windows 4.04r2 reader scope | [doc] (protocol/format-notes-from-salvage.md); [bin][file] (formats/gmap-heights-404r2.md) |
+| Historical Claim B | `HEIGHTS` belongs to level files and `HEIGHTMAP` to the generator gmap; writer/server variants differ. Read as exclusive placement, this claim is too broad for the later evidence | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md); [bin][file] (formats/gmap-heights-404r2.md) |
+| Bounded resolution | Windows 4.04r2 reads both coarse `HEIGHTMAP` and named per-level `HEIGHTS` inside a gmap; a separate archive-labelled Mac 4.04r2 fixture contains both forms. `HEIGHTS` is not confined to level files (→ §3.2.4) | [bin][file] (formats/gmap-heights-404r2.md) |
+| Remaining limit | The salvage author's historical intent, rendering, server support and original Windows fixture packaging are not established. Its wording is corrected to state the measured build scope | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
 
 ### E#607 Leftover lines in the protocol cheat sheet
 

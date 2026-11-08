@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.
+
 - [Correct Linux 4.04r2 script API declaration ownership](client-internals/linux-404r2-api-ownership.md) — Correct a derived ownership error without changing raw output or total declarations. Script API membership remains separate from native layout and behavior.
 
 - [Windows 4.04r2 carry states](client-internals/404r2-carry-state.md) — static pickup, carrying and hiding relationships, with timing, input and runtime limits; carried into manual §4.5.
