@@ -584,9 +584,9 @@ Lab measurements kept as tables beside them:
 
 | Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
 | --- | --- | --- | --- | --- |
-| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest; the historical note identifies its two uploads as 3.153, but exact-input linkage to this collection remains unverified (→ App. E#609) | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest and matching regular-file contents/names across two extracted copies of 718 files each; historical 3.153 attribution remains unlinked to these exact inputs (→ App. E#609) | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (workingpapers/macos/resource-identity.md) |
 | v4.04r2; v4.20r6 | PowerPC | unmeasured | Distinct main executables | [bin] (workingpapers/macos/client-compatibility.md) |
-| v5.12; four unknown-v5 copies | PowerPC | unmeasured | All five main-executable digests match; resource and whole-bundle identity remain unmeasured | [bin] (workingpapers/macos/client-compatibility.md) |
+| v5.12; four unknown-v5 copies | PowerPC | unmeasured | Five main-executable digests match; regular-file contents/names match across all five extracted copies of 73 files each; original containers and filesystem metadata unmeasured | [bin] (workingpapers/macos/client-compatibility.md); [test] (workingpapers/macos/resource-identity.md) |
 | v6.11r1 | Intel 64-bit | 10.7.0 | Metadata requirement; virtual graphics and runtime compatibility remain unmeasured by this inventory | [bin] (workingpapers/macos/client-compatibility.md) |
 
 The PowerPC headers declare legacy graphics and application-framework dependencies but no exact minimum OS version. Neither these dependencies nor the Intel build's declared minimum establishes successful rendering, input or gameplay. The separately captured Tiger runs retain their own scope (→ §1.8.4, → §1.8.5). [bin] (workingpapers/macos/client-compatibility.md)

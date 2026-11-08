@@ -23,8 +23,11 @@ its suitability still requires client runtime testing.
 frameworks recorded in the private inventory. A declared OS minimum does not prove
 that a particular virtual GPU or debugger is compatible.
 
-`[bin]` These comparisons concern main executables only. They do not establish
-identical resources, complete application bundles or authenticated release names.
+`[bin]` The main-executable inventory alone does not establish identical resources,
+complete application bundles or authenticated release names. A separate
+[resource comparison](resource-identity.md) now establishes matching regular-file
+contents and relative names within the extracted v3 and v5 groups. It does not
+authenticate original containers, filesystem metadata or release names. `[test]`
 
 ## Archive labels and the historical 3.153 claim
 
@@ -53,4 +56,6 @@ are documented separately in the [Tiger lab note](../../version-profiles/lab-mac
 the absence of execution in this inventory does not invalidate those observations.
 
 - [ ] Authenticate the two v3 archive labels against the separately studied 3.153 input.
-- [ ] Compare resource manifests before asserting whole-bundle equivalence.
+- [x] ~~Compare extracted regular-file resources where executable digests match.~~
+  [Revision 1](resource-identity.md) supplies that result; original containers and
+  filesystem metadata remain outside the comparison.

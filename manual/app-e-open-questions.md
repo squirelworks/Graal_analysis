@@ -216,6 +216,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Linux 4.04r2 continuation result | A positive-sleep snapshot preserves the next instruction through restore; elapsed timing, cancellation and replacement remain unmeasured (→ §8.3.9) | [cap] (client-internals/linux-404r2-sleep.md) |
 | Linux 4.04r2 catalog correction | Correct grouping gives 176 types and 332 globals, restoring 38 root-object declarations; binding, conversion and inherited behavior remain unmeasured (→ §8.3.10) | [test] (client-internals/linux-404r2-api-ownership.md) |
 | Earlier Linux 4.04r2 VM boundary | Dispatch ends at 190 and slot 11 selects a common skip path; one insertion control completes unchanged. Static frame fields and helper semantics remain qualified (→ §8.4.6) | [bin][cap] (client-internals/linux-404r2-vm-dispatch.md) |
+| Linux 4.04r2 embedded linkage | Fourteen structurally validated script candidates include one profile payload matched to live input before executor entry; this is not corpus-wide execution or historical server-content recovery (→ §8.4.7) | [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
@@ -611,8 +612,9 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Historical claim | The earlier upload comparison explicitly identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
 | Current observation | The newer collection's two v3-labelled main executables share a PowerPC digest, but this collection did not independently authenticate their release version; its five v5 copies also share a main-executable digest | [bin] (workingpapers/macos/client-compatibility.md) |
 | Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
-| Open | Exact-input linkage to the historical 3.153 attribution, and whether resources match wherever main-executable digests match | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
-| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities, plus separate resource manifests | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Resource follow-up | Regular-file contents and relative names match across two v3 extractions of 718 files each and five v5 extractions of 73 files each; timestamps, permissions, empty directories and original containers were not compared | [test] (workingpapers/macos/resource-identity.md) |
+| Open | Exact-input linkage to the historical 3.153 attribution; extracted regular-file equality does not authenticate historical labels or original containers | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (workingpapers/macos/resource-identity.md) |
+| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities; broader container/metadata equivalence requires separate evidence if claimed | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (workingpapers/macos/resource-identity.md) |
 
 ### E#610 Windows 4.04r2 offline initialization versus gameplay
 
