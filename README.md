@@ -6,7 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.
 
-- `workingpapers/` — platform research handoff and evidence-source index, with Windows and macOS teardown material in their own folders; Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
+- `workingpapers/` — platform research handoff and evidence-source index, with Windows, macOS and Linux teardown material in their own folders; Linux includes completed engine-recovery coverage and bounded startup observations, and Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
 
 - `manual/` — the Graal Technical Reference Manual (1.0, in progress; spec: issue #191). One Markdown file per chapter, `manual/sources.tsv` maps every note to the sections that cite it. Check it with `python tools/manual/check_manual.py`.
 - `release/0.0.1/` — document PDFs for version 0.0.1, grouped along this contents list, with appendices. Chiaki tags `v0.0.1`. The notes viewer is part of the source tree at `tools/navigator/`.
