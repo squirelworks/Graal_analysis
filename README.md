@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Record Linux 4.04r2 event ordering and deferred delivery](client-internals/linux-404r2-events.md) — Two repeated controls establish top-level execution before the tested events and deferred delivery. A preserved arity failure remains qualified to its fixture.
+
 - [Linux 4.04r2 object-script delivery](protocol/linux-404r2-receive-scope.md) — static message-131 path into the compiled-script reader, with the 97-case switch count kept separate from complete handled-message coverage.
 
 - [Correct Linux 4.04r2 script API declaration ownership](client-internals/linux-404r2-api-ownership.md) — Correct a derived ownership error without changing raw output or total declarations. Script API membership remains separate from native layout and behavior.
