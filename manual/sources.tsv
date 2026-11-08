@@ -551,3 +551,11 @@ protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package trans
 protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9; E		v7 chat, world, UDP status
 protocol/v7-graal3d-discovery-extras.md	cited	E		v7 open-item status and extras
 client-internals/v7-graal3d-unity-bridge.md	cited	E		v7 Unity/Quattro bridge surface
+workingpapers/README.md	excluded			platform research handoff index; not cited as manual evidence
+workingpapers/handling.md	excluded			research handling and agent handoff rules; not client behaviour
+workingpapers/linux/README.md	excluded			tooling verification and preflight handoff; client results need individual review
+workingpapers/macos/README.md	excluded			macOS workingpaper index; each underlying note has its own source-map row
+workingpapers/macos/client-compatibility.md	excluded			static architecture preflight for future macOS tests; not cited by the manual
+workingpapers/macos/lab-status.md	excluded			installation and debugger preparation status with pending client tests; not manual evidence
+workingpapers/sources.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
+workingpapers/windows/README.md	excluded			bounded capture handoff and test limits; not cited by the manual
