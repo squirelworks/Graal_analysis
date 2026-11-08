@@ -14,6 +14,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Publish the reviewed 4.04r2 carry-state relationships.** ~~Separate pickup transition, carried category and boolean carrying state.~~ [Static note](../client-internals/404r2-carry-state.md) and §4.5 carry the relationships; timing, keys, glove bounds and scene validation remain open in App. E#611.
 
+- [x] **Reconcile the 4.04r2 artifact-availability gap.** ~~Link the historical packer-stub note to the later recovered components.~~ [Recovery scope](../torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) closes availability only; static claim comparison and a complete 3D session remain open.
+
 - [x] **Completed Linux workingpapers (2026-11-09).** ~~Collect Linux engine recovery in a dedicated retrieval folder.~~ [Linux handoff](../workingpapers/linux/README.md) indexes architecture findings, selected function recovery, complete scripting catalogs and bounded runtime evidence. Raw artifacts remain owner-held.
 
 - [x] **Completed Windows workingpapers (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../workingpapers/windows/README.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
