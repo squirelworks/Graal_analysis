@@ -496,7 +496,7 @@ torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered 
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
-torque/v4-404r2-exe.md	cited	10	10	the two exe zips are one packer stub; §10.1.14 says they are not the engines
+torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.14 names both
 torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
