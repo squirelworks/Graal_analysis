@@ -71,3 +71,10 @@ The canonical place of each tick count:
 - → §4.2.10 swimming and the lava burn (101 ticks)
 - → §4.3 sword, spin, hurt and knockback
 - → §4.4 the death timer
+
+## 4.1.6 Bound Linux 4.20r6 clock updates and advertised 3D-state predicate
+
+[cap] Six unchanged-startup updater returns in Linux 4.20r6 have a zero branch byte. The initial zero clock is seeded within the observer's wall-clock interval; the next five values each match binary-double previous value plus 0.05. Debugger pauses prevent inferring a 50 ms frame period, 20 Hz rendering, movement timing or sleep latency. [cap] (client-internals/linux-420r6-clock-property.md)
+
+
+[bin] Registration directly binds global read-only `isgraal3d` to the getter for that predicate byte, whose ELF default is zero. Three direct-reference writer owners are identified; the set-to-one branch follows a `3 ` input prefix. Indirect/alias/module writes remain possible. The other updater branch uses wall time; no live nonzero branch, 3D connection or rendering is observed. [cap] Inputs/signatures/executable/mode byte stay unchanged; the untruncated capture retains executable equality and verifies cleanup, with no server. E#301 remains open for frame-driver and walk measurements. [bin][inf] Separate callback adapters provide no complete ABI, module activation or Windows reader result. [bin] (client-internals/linux-420r6-clock-property.md); [cap] (client-internals/linux-420r6-clock-property.md); [inf] (client-internals/linux-420r6-clock-property.md)

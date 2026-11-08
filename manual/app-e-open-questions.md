@@ -243,6 +243,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | --- | --- | --- |
 | Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | Settles it | a timed walk of a 3.x and a 4.x client on the lab server | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+| Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D. The broader question remains partial (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
 
