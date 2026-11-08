@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Reconcile the 4.04r2 artifact-availability gap.** ~~Link the historical packer-stub note to the later recovered components.~~ [Recovery scope](../torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) closes availability only; static claim comparison and a complete 3D session remain open.
+
 - [x] **Completed Windows workingpapers (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../workingpapers/windows/README.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
 
 - [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
