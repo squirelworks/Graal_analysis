@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Compare Linux receive cases and the 4.20r6 compiled-input chain.** ~~Publish the completed sanitized scope.~~ [Source note](../protocol/linux-cross-version-receive.md) retains exact-build limits and remaining measurements.
+
 - [x] **Bound later Linux dispatch ranges and observed cached jumps.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-cross-version-dispatch.md) retains exact-build limits and remaining measurements.
 
 - [x] **Compare bounded Linux embedded-script corpora across builds.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-cross-version-embedded-controls.md) retains exact-build limits and remaining measurements.

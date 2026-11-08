@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Compare Linux receive cases and the 4.20r6 compiled-input chain](protocol/linux-cross-version-receive.md) — Preserve tag normalization and exact-build case behavior without publishing an unproved delivery grammar.
+
 - [Bound later Linux dispatch ranges and observed cached jumps](client-internals/linux-cross-version-dispatch.md) — Separate static selector classifications, executor-entry stops and three observed startup cached jumps.
 
 - [Compare bounded Linux embedded-script corpora across builds](client-internals/linux-cross-version-embedded-controls.md) — Use whole-payload equality and round-trip controls without asserting feature removal or native semantic equivalence.
