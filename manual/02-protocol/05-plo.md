@@ -202,7 +202,7 @@ The download sequence, sizes and failure handling are in → §2.7.
 | 68 | `PLO_LARGEFILESTART` | `rest` = file name | stores the name; 2.31 also clears the stored size | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 69 | `PLO_LARGEFILEEND` | `rest` = file name | if it equals the stored name, the accumulated stream is processed as one received file | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 84 | `PLO_LARGEFILESIZE` | `i5 size` | stored | [bin] (version-profiles/plo-layouts-217-231.tsv) |
-| 102 | `PLO_FILE` | behind 100 (→ §2.7) | a received file | [srv] (protocol/codec-and-framing.md#raw-data-escape) |
+| 102 | `PLO_FILE` | behind 100; exact 2.05r2 counted layout → §2.7.9 | a received file; persistence limits are build/fixture-specific | [srv] (protocol/codec-and-framing.md#raw-data-escape); [2.05][bin] (protocol/file-205r2-prefix-lf.md) |
 | 105 | `PLO_UPDATEPACKAGESIZE` | package name and an `i5` size | sets a size or modification time on a cached object | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 106 | `PLO_UPDATEPACKAGEDONE` | unmeasured | fires `onUpdatePackageDownloaded`, and `onPackagesDownloadComplete` after the last one; 4.20r8 restarts itself when its own executable was in a package | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 109 | `PLO_UNKNOWN109` | `i5` time, then a `c`-length string A (local name) and a `c`-length string B (URL) | fetches B over HTTP and stores it as A with that mod time; a file redirect; 5.24r4 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |

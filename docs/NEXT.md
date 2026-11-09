@@ -74,6 +74,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Recover the 1st Graal half of E#307.** ~~Read exact step, probe and nudge tables.~~ [Static geometry](../client-internals/first-graal-movement-2026-11-09.md) preserves 1.39 and runtime-state limits.
 
+- [x] **Correct original 2.05r2 FILE framing.** ~~Separate receiver evidence from historical server branches.~~ [Exact-input note](../protocol/file-205r2-prefix-lf.md) keeps persistence and fixture residuals open; server patches remain deferred.
+
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section
   ("no raw decompiles, code or binary addresses").
