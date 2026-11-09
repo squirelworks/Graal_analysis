@@ -166,7 +166,7 @@ otherwise over both (see udp-p2p.md).
 | 726 | `seteffect` | R,R,R,R | Global screen tint r, g, b, a (day/night). Online gate applies. |
 | 727 | `setcoloreffect` | R,R,R,R | Per-NPC colour multiply r, g, b, a. Online gate applies. |
 | 728 | `setzoomeffect` | R | Per-NPC zoom factor. Online gate applies. |
-| 745 | `move` | R,R,R,R | Smoothly moves the NPC by dx, dy over *time* seconds with option bits. **[inf: option bits not decoded]** |
+| 745 | `move` | R,R,R,R | Queues relative movement; the [exact 2.05r2 consumer follow-up](gs1-move-205r2.md) defines queue replacement, collision/completion and options 4/8/16/32/64. Scheduler cadence remains unmeasured. **[2.05][bin]** |
 | 653 | `destroy` | – | Removes the NPC from the level (and from the weapon list), sends the deletes online, ends the run. |
 | 652 | `putnpc` | Q,Q,R,R | Offline: creates a new NPC with that image and script file at (x, y) and runs its `playerenters`. Online: asks the server instead. |
 

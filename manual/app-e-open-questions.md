@@ -201,9 +201,9 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | the documentation gives cachetype 0–2, +4 block check, +8 event when done, +16 apply direction | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
-| Open | how 2.05 handles each bit; the 2.05 reading did not decode them | [inf] (npc-library/gs1-command-reference-205.md#npc-appearance-and-behaviour) |
-| Settles it | reading the 2.05 `move` executor | [inf] (npc-library/gs1-command-reference-205.md#npc-appearance-and-behaviour) |
+| Established | the exact Windows 2.05r2 queued consumer now supplies static replacement, progression, collision and option behavior → §8.2.9 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
+| Open | caller frequency/catch-up, complete collision eligibility, unidentified object collection, later event execution, exceptional numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| Settles it | targeted exact-input caller/state tracing and controlled runtime observations for these residuals | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ### E#207 GS2 language and bytecode format
 
