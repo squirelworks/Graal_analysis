@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "evidenceId": "W500-EVENT-QUEUE-20261109",
+  "inputSha256": "dde0fc851e8aaba165a83578745cf10372eca3786219e917966ab3230c7c6bf1",
+  "inputProvenance": "Backup engine from used, updated and patched installed archive labelled Windows 5.00r7; not authenticated vendor-original provenance",
+  "oracleKind": "static-derived",
+  "originalClientExecuted": false,
+  "purpose": "Independently authored abstract receiver-boundary contracts, not script payloads or observed runtime output",
+  "preconditions": ["Inspected receiver gates permit delivery", "Allocation succeeds", "Owner is synthetic", "No script body executes until explicit synthetic service"],
+  "cases": [
+    {
+      "id": "named-null-dedup-and-priority",
+      "entry": "named receiver",
+      "initialQueue": [],
+      "deliveries": [
+        {"route": "fixture", "name": "alpha", "argument": null, "expectedQueueNames": ["alpha"]},
+        {"route": "fixture", "name": "alpha", "argument": null, "expectedQueueNames": ["alpha"]},
+        {"route": "fixture", "name": "beta", "argument": null, "expectedQueueNames": ["alpha", "beta"]},
+        {"route": "fixture", "name": "created", "argument": null, "expectedQueueNames": ["created", "alpha", "beta"]}
+      ],
+      "expectedExecutionCountBeforeService": 0,
+      "syntheticServiceProposal": {"expectedMarkerOrder": ["created", "alpha", "beta"], "scope": "Proposed queue adapter recording executor only; not historical VM execution semantics"}
+    },
+    {
+      "id": "named-lifecycle-priority",
+      "entry": "named receiver",
+      "initialQueueNames": ["alpha"],
+      "independentCases": [
+        {"deliverName": "istimeout", "argument": null, "expectedQueueNames": ["istimeout", "alpha"]},
+        {"deliverName": "created", "argument": null, "expectedQueueNames": ["created", "alpha"]},
+        {"deliverName": "initialized", "argument": null, "expectedQueueNames": ["initialized", "alpha"]}
+      ],
+      "qualification": "Internal literal names, not a demonstrated mapping from source-language event spellings"
+    },
+    {
+      "id": "named-limit-before-dedup",
+      "entry": "named receiver",
+      "setup": "Fill with 999 distinct ordinary names, common route fixture and null arguments",
+      "nextDelivery": {"name": "unique-last", "argument": null},
+      "expectedCountAfterNextDelivery": 1000,
+      "thenDeliverDuplicateOfExistingAction": true,
+      "expectedDuplicateResult": "event-overrun error before duplicate suppression",
+      "expectedFinalCount": 1000
+    },
+    {
+      "id": "enum-limit-and-tail",
+      "entry": "enum receiver",
+      "setup": "Existing execution space and positive event-interest check; actual enum-to-name mapping not assumed",
+      "expectedAcceptedInsertion": "tail",
+      "atExistingCount1000": "event-overrun error; count unchanged"
+    }
+  ],
+  "excluded": ["Real scheduler cadence", "All virtual gates", "Public event enum/name mapping", "Non-null argument stringification and collisions", "Class download deferral", "Cross-owner fairness", "Reentrant VM execution", "Other client builds"]
+}

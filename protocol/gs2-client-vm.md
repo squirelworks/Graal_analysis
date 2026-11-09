@@ -249,3 +249,6 @@ Issues #151–#155 were read with `gh issue view`. The repro repo was not edited
 ### Unpacked Windows 6.03 weapon-cache follow-up
 
 [bin] The exact [Windows 6.03 weapon caller](../formats/windows-603-weapon-cache.md) distinguishes returned bytes from success and checks stored-body CRC before transformation. An eight-byte magic-only file does not satisfy that caller for zero or nonzero expected CRC. This narrows cache acceptance only; it does not change the separately studied 5.00/6.00 input contracts or demonstrate script execution.
+### Installed Windows 5.00 queue follow-up
+
+[bin] The separately identified used/patched backup input has a bounded [queue delivery contract](../client-internals/windows-500-event-queue.md), including its 1,000-action gate and named/enum distinctions. Preserve exact identities when comparing this with the older event-overrun statement above; the new static input is not a runtime validation or a universal replacement limit.
