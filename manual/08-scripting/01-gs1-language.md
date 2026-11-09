@@ -3,7 +3,7 @@
 
 This chapter describes GS1, the NPC and weapon script language of the 1.x and 2.x clients, as the 2.05 rev 2 client parses and runs it. The command-by-command reference, the expression tables and the per-build changes are in → §8.2. The later language is in → §8.3.
 
-> Status: draft. The `#` message-code helper/field semantics and the member-name mapping of the object arrays remain open; the bounded `move` consumer is described in §8.2.9, with scheduling and collision residuals (→ App. E#203, App. E#204, App. E#206).
+> Status: draft. The `#` message-code helper/field semantics and object-array writes and fallback details remain open; the bounded `move` consumer is described in §8.2.9, with scheduling and collision residuals (→ App. E#203, App. E#204, App. E#206).
 
 ## 8.1.1 Where scripts run
 

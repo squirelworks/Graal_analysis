@@ -185,9 +185,9 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | each of `compus[i]`, `bombs[i]`, `arrows[i]`, `items[i]`, `explos[i]`, `horses[i]` and `signs[i]` has as many member ids in 2.05 as the 2.22 documentation has names | [2.05][doc] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
-| Open | which name maps to which id; the manual gives the documentation's names in its order, which is an inference | [inf] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
-| Settles it | tracing the 2.05 member parser | [inf] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
+| Checked-build resolution | explicit suffix records and first-success parser establish the seven families' name-to-ID mappings: 36 records, 35 distinct spellings; carried in §8.2 | [bin] (npc-library/gs1-object-members-205r2.md#parser-binding) |
+| Arrow defect | dx663 binds first; duplicate dx664 vertical getter is shadowed. No builtin dy spelling; observing unassigned dy0 does not establish general fallback or no vertical movement | [bin][lab] (npc-library/gs1-object-members-205r2.md#parser-binding; npc-library/gs1-object-members-205r2.md#original-client-corroboration) |
+| Open | writes/setter side effects, unknown-member fallback, scanner details, enum meanings, specialized getters/integrity consequences and cross-version changes | [bin] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
 
 ### E#205 Index of the hare baddy (settled)
 
