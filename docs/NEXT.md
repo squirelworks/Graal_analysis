@@ -72,6 +72,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Locate the 1st Graal death-counter increment.** ~~Resolve the earlier limited-export gap.~~ [Static counter note](../client-internals/first-graal-death-counter-2026-11-09.md) establishes progression to 30 without a wall-clock duration.
 
+- [x] **Recover the 1st Graal half of E#307.** ~~Read exact step, probe and nudge tables.~~ [Static geometry](../client-internals/first-graal-movement-2026-11-09.md) preserves 1.39 and runtime-state limits.
+
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section
   ("no raw decompiles, code or binary addresses").

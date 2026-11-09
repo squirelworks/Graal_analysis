@@ -3,7 +3,7 @@
 
 This chapter gives the walking step, the wall test, what blocks a point, the blocked-step counter and the actions that hang off it (push pose, ledge jump, pushing blocks and NPCs), grab and pull, water and lava, link following, and the gates that stop movement. Tile type values and the `arrays.dat` lists are defined in → §3.5; this chapter only says how movement uses them. Units are tiles and 50 ms ticks (→ §4.1.1). Facings are 0 up, 1 left, 2 down, 3 right.
 
-> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; 1st Graal and 1.39 are read for the shape of the rule but not its offset tables; 3.x and 4.x are not in the notes. Open points are App. E#302 to E#309.
+> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#302 to E#309.
 
 ## 4.2.1 The step
 
@@ -69,11 +69,41 @@ Six points per facing, offsets from the sprite's top-left, read at the position 
 
 | Build | Rule | Source |
 | --- | --- | --- |
-| 1st Graal | six probes per facing, first four decide; a blocked step is undone on the stepped axis and the free axis snapped (facings 0 and 2 snap y down, 1 and 3 snap x onto a half-tile); a pattern of the six probes adds a nudge from a second table; the probe, nudge and step tables are unread (→ App. E#307) | [bin] (version-profiles/matrix/rules-1st-graal.md#wall-and-walk-test-bin) |
+| 1st Graal | exact-input static step/probe/nudge and stepped-axis snapping rules are in → §4.2.2.3; cadence and exceptional gates remain unmeasured | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
 | 1.1 (15th) | after bumping furniture x carried a 0.025 offset (26.925) while walking, which fits a nudge rule of the 2.05 kind; not read | [live][inf] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
 | 1.39 | six probe offsets per facing step; the numeric tables are unread (→ App. E#307) | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | 1.39 | walking into a character NPC's side nudged the player along it at 0.125 tile per tick, and `playertouchsme` did not fire on that contact | [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
 | 2.05, 2.17.1, 2.22, 2.31 | as §4.2.2.1 to §4.2.4; the four agree on every table and constant | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md) |
+
+### 4.2.2.3 Exact 1st Graal geometry
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| input scope | exact Windows x86 executable identified in the source note; no 1.39 or later-build equivalence is established | [bin] (client-internals/first-graal-movement-2026-11-09.md#input-and-evidence-boundary) |
+| position | separate little-endian doubles for world X/Y; integer parts select cells of a 64×64 board, supporting tile units | [bin] (client-internals/first-graal-movement-2026-11-09.md#coordinates-and-candidate-step) |
+| camera | ordinary 640-pixel-wide viewport: x + 1.5 − 20 horizontally, y + 2 − 14 vertically, clamped to the board; screen displacement is not world displacement | [bin] (client-internals/first-graal-movement-2026-11-09.md#coordinates-and-candidate-step) |
+| initial position | new-game/restart stores (24.5, 30) via the coordinate setters; second local player adds 12 to X | [bin] (client-internals/first-graal-movement-2026-11-09.md#coordinates-and-candidate-step) |
+
+Offsets below are ordered probes 0–5 from the candidate after adding the facing step; true means blocked [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes).
+
+| Facing | Candidate delta | Ordered offsets | Source |
+| --- | --- | --- | --- |
+| up | (0, −0.5) | (0.6, 1.05), (1.4, 1.05), (1.6, 1.05), (2.4, 1.05), (2.525, 1.05), (0.475, 1.05) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
+| left | (−0.5, 0) | (0.55, 1.1), (0.55, 1.9), (0.55, 2.1), (0.55, 2.9), (0.55, 3.025), (0.55, 0.975) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
+| down | (0, +0.5) | (0.6, 2.95), (1.4, 2.95), (1.6, 2.95), (2.4, 2.95), (2.525, 2.95), (0.475, 2.95) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
+| right | (+0.5, 0) | (2.45, 1.1), (2.45, 1.9), (2.45, 2.1), (2.45, 2.9), (2.45, 3.025), (2.45, 0.975) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| nudge axis/size | up/down: ±0.125 X; left/right: ±0.125 Y | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| positive nudge | probe 0 blocked and probes 2, 3, 4 clear | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| negative nudge | otherwise, probes 0 and 1 clear, probe 3 blocked and probe 5 clear; no new six-probe collection follows either nudge | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| refusal | any of probes 0–3 blocked selects pushing and undoes the original facing delta; sideways nudge remains and clears the push count, otherwise the count increments | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| snapping convention | for nonnegative coordinates, trunc is truncation toward zero; the helpers explicitly select it; all snaps affect the stepped axis | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| up/down snap | when Y has a positive fractional part: up sets Y to trunc(Y); down sets Y to trunc(Y + 1) | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| left/right snap | when X + 0.5 has a positive fractional part: left sets X to trunc(X + 0.5) − 0.5; right sets X to trunc(X + 1.5) − 0.5 | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| counters | count ≥ 38 becomes 18; at 18 a passing ledge predicate selects an eight-tick hop; a count-28 helper can suppress position commits, with full semantics untraced | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
+| limits | static constants/branches only; no new runtime cadence, all-state-gate or complete object-list validation; 1.39 tables remain open → App. E#307 | [bin] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 
 ## 4.2.3 What blocks a point
 
