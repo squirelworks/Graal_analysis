@@ -4,6 +4,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
 
 - [Imported Linux provenance and recovery gaps](workingpapers/linux/imported-provenance-and-gaps.md) — checked document identities and duplicate logs, with third-party installer/recovery claims explicitly unverified.
