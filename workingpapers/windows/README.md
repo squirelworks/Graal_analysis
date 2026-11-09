@@ -74,3 +74,5 @@ failed before a successful transition and must not be counted as successful runs
 Sources and digests are in [the source index](../sources.tsv). Existing cleaned
 mechanic notes elsewhere in this repository retain their own evidence scope;
 this collection does not supersede them.
+
+- [Imported v4 alias and retained identity](v4-import-provenance.md): separately corroborated carrier hash/resource fields; supplied alias, collection label and official release provenance remain distinct.
