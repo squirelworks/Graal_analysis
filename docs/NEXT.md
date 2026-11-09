@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Correct exact build-614 special-length arithmetic.** ~~Carry the retained static erratum.~~ [Note](../protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin); runtime and extreme-size handling remain unvalidated.
+
 - [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ [Note](../workingpapers/linux/imported-provenance-and-gaps.md) registers document hashes and limits.
 - [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported3.151/5.12 recovery failures into independently verified findings.
 
