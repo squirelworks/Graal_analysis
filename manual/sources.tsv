@@ -590,3 +590,4 @@ npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract, ru
 npc-library/gs1-condition-truth-205r2.md	cited	8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
 npc-library/gs1-move-205r2.md	cited	8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
+docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.

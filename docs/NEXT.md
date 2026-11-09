@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Plan further use of the retained platform research.** ~~Audit the publication baseline and assign next directions.~~ [Publication and experiment plan](research-data-publication-plan.md) separates completed intake, proposed derived references and assigned experiments.
+- [ ] Publish the nominated completed platform scopes, then build a claim-to-evidence index and a small independently authored fixture set with reviewed acceptance criteria; keep unknown build/lifecycle cells explicit.
+
 - [x] **Link the exact 2.05r2 #p producer.** ~~Trace dispatch to its shared parameter list.~~ [Source](../npc-library/gs1-event-parameters-205r2.md) corrects callnpc delivery and retains queue/lifetime limits.
 - [ ] Extend event-parameter checks to nested contexts, scheduling, case/escaping, other event/source categories and builds; other E#203 field/format/render gaps remain.
 - [x] **Resolve E#204 checked-build name-to-ID mapping.** ~~Replace documentation-order inference.~~ [Source](../npc-library/gs1-object-members-205r2.md) preserves first-match duplicate arrow dx and bounded getter semantics.
