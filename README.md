@@ -5,6 +5,9 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 ## Contents
 
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
+- [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
+
+- [Imported Linux provenance and recovery gaps](workingpapers/linux/imported-provenance-and-gaps.md) — checked document identities and duplicate logs, with third-party installer/recovery claims explicitly unverified.
 
 - [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
 - [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle.
@@ -290,6 +293,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 - `protocol/gs2-client-vm.md`: the bytecode container and opcode checklist a graal-client-repro client and a Seihai script VM can cite. The compiler half is the MPL-2.0 Preagonal trees (already studied in `npc-library/preagonal-gs2.md`). The client half is the 4.2.0.8, 5.0.0.7 and unpacked 6.00 dispatchers.
 - `protocol/gs2-client-only-opcodes.md`: the effect of the opcodes those clients dispatch and the Preagonal compiler does not emit, including the folds.
 
+- [Shared Mac v5 animation-group acceptance and cleanup](workingpapers/macos/v5-animation-group-lifecycle.md) — exact-input static behavior and runtime limits.
 - [PowerPC receive framing and partial-group advancement](workingpapers/macos/ppc-receive-framing.md) — exact-input static behavior and runtime limits.
 - [Unpacked Windows 6.03 weapon-cache success](formats/windows-603-weapon-cache.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
 - [Installed Windows 5.00 queue boundaries](client-internals/windows-500-event-queue.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
