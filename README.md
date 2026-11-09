@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Supplied 701750 bridge/clock checkpoint](client-internals/v7-701750-bridge-clock.md) — exact recovered-input static edges, clock store and state getter; cadence and lifecycle remain open.
+
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
 

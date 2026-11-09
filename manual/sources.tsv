@@ -603,3 +603,5 @@ protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenan
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
+
+client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; exact analysis identities and selected-range verification bookkeeping remain in source.

@@ -194,3 +194,5 @@ LNX-IMPORT-GEMINI-603-X64-LOG	linux	imported-document-review	owner-held imported
 
 W2052-FIELD6-INDEPENDENT-20261109	windows	sanitized-static-corroboration	owner-held selected-actor carried-NPC corroboration receipt	0a74e6b93a6a7646a151551526172a3aa703383e4b126c9921a22bd15d329e2b	actual sanitized receipt digest matched; original-byte identity and native checks researcher-supplied; no runtime or full receiver validation
 W2052-FIELD6-SEMANTIC-20261109	windows	sanitized-static-corroboration	owner-held selected-actor carried-NPC corroboration receipt	0a74e6b93a6a7646a151551526172a3aa703383e4b126c9921a22bd15d329e2b	actual sanitized receipt digest matched; original-byte identity and native checks researcher-supplied; no runtime or full receiver validation
+
+W701750-FOCUSED-NATIVE-20261109	windows	sanitized-focused-static-receipt	owner-held supplied-input bridge/clock publication receipt	bcab277fb582f58b74e30f564b31a1389f736e0324f5c0a26925e304b0336f9c	receipt digest matched; ten-function validation/input identities researcher-supplied; no publisher native rerun or original derivation certification
