@@ -98,7 +98,7 @@ v7 embeds the long-standing **`(GCHAR id, value)*`** player-property stream. Enc
 | 8 | SWORDPOWER (historical name) | Selected arithmetic adds 30, clamps to 10–50, substitutes zero for 30, then applies byte bias 32; name/getter and optional image behavior are not revalidated here |
 | 9 | SHIELDPOWER (historical name) | Selected arithmetic adds 10, clamps to 10–13, substitutes zero for 10, then applies byte bias 32; name/getter and optional image behavior are not revalidated here |
 | 11 | HEADGIF | head-default path or `len+100` + image (classic form) |
-| 15 / 16 | X / Y (historical names) | Selected path doubles the value, uses a floor-style helper with successive 0.5 and 0.0001 addends, then byte bias 32; finite values in the representable conversion range only |
+| 15 / 16 | X / Y (historical names) | Retained observations identify doubling, constants 0.5 and 0.0001, a floor-style helper and byte bias 32. The sanitized summary does not establish their exact parenthesization, floating precision, conversion range or integer/byte-narrowing order; no reproducible encoding formula or near-boundary result is supplied |
 | 35 | BODYIMG | GSTRING |
 | 45 | Z | legacy: `GCHAR(z + 50)` (via `+ 0x52` with GCHAR bias) |
 | 78–80 | X2 / Y2 / Z2 | higher-precision path present |

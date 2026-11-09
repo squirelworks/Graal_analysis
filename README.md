@@ -4,6 +4,14 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
+
+- [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
+- [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
+- [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
+
+- [Imported Linux provenance and recovery gaps](workingpapers/linux/imported-provenance-and-gaps.md) — checked document identities and duplicate logs, with third-party installer/recovery claims explicitly unverified.
+
 - [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
 - [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle.
 - [Linux network/bootstrap evidence gates](version-profiles/linux-network-bootstrap-evidence.md) — seven exact inputs, independent measured gates and explicit source-scoped unknowns.
