@@ -2,9 +2,7 @@
 
 Publication prose is derived only from the sanitized owner handoffs listed below. Their file hashes were independently computed during preparation; underlying native observations and original-carrier identities are researcher-supplied. Raw code, native addresses, client assets and private capture payloads are excluded. These source IDs identify handoff documents, not newly materialized raw captures.
 
-Subsequent work: the dedicated `linux-603-network-gs2-execution-handoff-20261109.md`
-and `linux-followup-results-20261109.md` now add controlled6.03 network GS2
-parsing, execution and sleep continuation. The neutral seven-client matrix below
+Subsequent work: the published [Linux 6.03 network GS2 note](linux-603-network-gs2.md) records controlled parsing, execution and sleep continuation for that exact build. The neutral seven-client matrix below
 remains a separate accepted-login baseline, with its visual limitations intact.
 
 The local server was built from squirelworks/seihai-gserver-v2 commit `1b0a6e15641aa542168d5fd0878517d15d990adc`, with reviewed lab changes to its pinned gs2lib dependency and platform-specific cipher selection. Final executable SHA-256: `97d891fda061811af625c7b2d28b3d55c83c125b1dc23e97f9d6c973041c3743`. A host copy on D was independently hash-verified.
