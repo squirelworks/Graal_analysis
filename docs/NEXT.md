@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.
+
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
