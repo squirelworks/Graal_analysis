@@ -472,7 +472,7 @@ torque/304-adventure.md	cited	10	10	§10.1.15 carries the session in one row; mo
 torque/304-audio-ui.md	cited	10	10	§10.1.15 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
 torque/304-draw.md	cited	10	10	§10.1.15 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note; exact304 wrapper constants/key-container limits carried in10.11
 torque/304-net.md	cited	10	10	§10.1.15 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
-torque/304-npcs.md	cited	10	10	§10.1.15 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note
+torque/304-npcs.md	cited	10	10	§10.1.15 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note; selected304 local value-helper branches/limits carried in10.12
 torque/4208-engine.md	cited	10	10	§10.1.7 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
 torque/4208-g3d.md	cited	10	10	§10.1.7 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
 torque/4208-launcher.md	cited	10	10	§10.1.7 carries the 94 slots, when the canvas is drawn and who keeps drawing after a 3D start; the per-job callback behaviour, Flash version test and command line stay in the note

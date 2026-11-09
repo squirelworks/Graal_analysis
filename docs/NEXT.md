@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Linux 3.04 local value-helper branches.** ~~Publish supported retained local conversion/assignment distinctions after overlap review.~~ [Source](../torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) keeps type-specific behavior and general coercion unresolved.
+
 - [x] **Exact Linux 3.04 show-image wrapper constants.** ~~Resolve the retained eight-wrapper mapping after document-only overlap review.~~ [Source](../torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) separates internal constants/container behavior from known command presence and untested rendering.
 
 - [x] **Linux 3.04 native-call evidence boundary.** ~~Review retained callback evidence without redoing native work.~~ [Qualification](../torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) separates static dispatch from unknown argument/results and registry policies.
