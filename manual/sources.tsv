@@ -590,6 +590,7 @@ npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract, ru
 npc-library/gs1-condition-truth-205r2.md	cited	8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
 npc-library/gs1-move-205r2.md	cited	8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
+torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
 version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
 
 formats/windows-603-weapon-cache.md	cited	3.8	3.8	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
