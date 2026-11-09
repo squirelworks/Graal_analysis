@@ -1,0 +1,445 @@
+{
+  "schema": 1,
+  "kind": "derived evidence coverage dataset; no new native experiment",
+  "built_utc": "2026-11-09T06:38:16.4829919Z",
+  "server": {
+    "qualification": "Recorded lab compatibility patches; server identifies authentication fixture, not proxy GS2 body origin",
+    "commit": "1b0a6e15641aa542168d5fd0878517d15d990adc",
+    "repository": "squirelworks/seihai-gserver-v2",
+    "binary_sha256": "97d891fda061811af625c7b2d28b3d55c83c125b1dc23e97f9d6c973041c3743"
+  },
+  "statuses": "not established means no qualified evidence in these sources; it does not mean absent or broken",
+  "clients": [
+    {
+      "executable_sha256": "7901897411ffcee7b72806d5d021d0b42f5670739ad2ed97467fc86bc75690d0",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "weapon_instruction_execution": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "suspended_continuation": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "gs1_source_weapon": {
+          "evidence_class": "observed",
+          "created_marker": 1,
+          "route": "source weapon delivery",
+          "status": "observed",
+          "fresh_account_persistence": true,
+          "enters_marker": 1,
+          "source": "linux-gs1-runtime-304-20261109.md"
+        }
+      },
+      "build": "3.04-packed-x86",
+      "wire_token": "G3D03014",
+      "visual_observation": "Final neutral regression black; earlier baseline-server run rendered independent level and avatar. Separate fresh GS1 weapon execution verified.",
+      "identity_evidence_class": "source-documented file identity"
+    },
+    {
+      "executable_sha256": "50f2057117cfafd5a1151d6e6fdd1413095fa71445ff274bf923ce7dc04198aa",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "weapon_instruction_execution": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "suspended_continuation": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        }
+      },
+      "build": "4.04r2-x86",
+      "wire_token": "G3D19026",
+      "visual_observation": "green tiled surface; no avatar visibly established",
+      "identity_evidence_class": "source-documented file identity"
+    },
+    {
+      "executable_sha256": "a994afd24f5ebdcf73647ffe8b6752274a6c874058cb0db05c525bab060224d0",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "weapon_instruction_execution": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "suspended_continuation": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        }
+      },
+      "build": "4.20r6-x86",
+      "wire_token": "G3D22126",
+      "visual_observation": "black client area; no level rendering established",
+      "identity_evidence_class": "source-documented file identity"
+    },
+    {
+      "executable_sha256": "566cd371464568436265c32976babf2faa95b5fc71cce1f26cbd860b406c2a91",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "weapon_instruction_execution": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "suspended_continuation": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        }
+      },
+      "build": "4.20r8-x86",
+      "wire_token": "G3D22126",
+      "visual_observation": "black client area; no level rendering established",
+      "identity_evidence_class": "source-documented file identity"
+    },
+    {
+      "executable_sha256": "9a2cd037cd3de2ed1dcfc6e9665f5d11854862ef521397f593fa7dd8ffd64a3d",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "weapon_instruction_execution": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "suspended_continuation": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        }
+      },
+      "build": "6.01r1-x86",
+      "wire_token": "G3D0108A",
+      "visual_observation": "Black; automatic Login backend accepted, usable Login UI/bootstrap not established.",
+      "identity_evidence_class": "source-documented file identity"
+    },
+    {
+      "executable_sha256": "3f4fbb802fe5e99fd235833e45f509257e3930295a96288343f0e6ec08a141c1",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "weapon_instruction_execution": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "suspended_continuation": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        }
+      },
+      "build": "6.01r1-x64",
+      "wire_token": "G3D0108A",
+      "visual_observation": "Black; automatic Login backend accepted, usable Login UI/bootstrap not established.",
+      "identity_evidence_class": "source-documented file identity"
+    },
+    {
+      "executable_sha256": "ceeaefeb2df0668c9de921d4b967c511f85b235b25a18563534eb2f09b619c50",
+      "visual_evidence_class": "observed",
+      "gates": {
+        "local_login": {
+          "route": "neutral matrix",
+          "evidence_class": "observed",
+          "status": "observed",
+          "source": "linux-original-network-results-20261109.json"
+        },
+        "class_segment_reader": {
+          "body_bytes": 42,
+          "evidence_class": "observed",
+          "execution": "not observed for class probe",
+          "decoded_records": 2,
+          "route": "authored proxy class140",
+          "status": "observed",
+          "source": "linux-603-network-gs2-execution-handoff-20261109.md"
+        },
+        "weapon_instruction_execution": {
+          "route": "explicit33 then authored proxy140",
+          "body_bytes": 42,
+          "activating_event": "unidentified",
+          "status": "observed",
+          "script_return_value": "not established",
+          "source": "linux-603-network-gs2-execution-handoff-20261109.md",
+          "selectors": [
+            20,
+            7
+          ],
+          "native_return": 3,
+          "evidence_class": "observed"
+        },
+        "suspended_continuation": {
+          "evidence_class": "observed",
+          "selectors": [
+            20,
+            8,
+            20,
+            7
+          ],
+          "body_bytes": 50,
+          "resume_position": 2,
+          "replacement_cancellation": "not tested",
+          "source": "linux-603-network-gs2-execution-handoff-20261109.md",
+          "status": "observed",
+          "requested_sleep": 0.15,
+          "observed_interval_approx_ms": 86,
+          "precise_sleep_contract": "not established",
+          "route": "authored proxy weapon"
+        },
+        "normal_server_gs2_compiler_writer": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "positive_disk_cache_hit": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "usable_login_ui": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "complete_gameplay": {
+          "status": "not established by this dataset",
+          "evidence_class": "unmeasured"
+        },
+        "reconnect": {
+          "evidence_class": "observed",
+          "rendering_change": "none observed",
+          "second_login_accepted": true,
+          "status": "observed",
+          "source": "linux-followup-results-20261109.md",
+          "route": "valid178"
+        }
+      },
+      "build": "6.03r7-x64",
+      "wire_token": "G3D0511C",
+      "visual_observation": "Black; automatic Login backend accepted, usable Login UI/bootstrap not established.",
+      "identity_evidence_class": "source-documented file identity"
+    }
+  ],
+  "static_cache_contract": {
+    "evidence_class": "static-derived",
+    "runtime_cache_hit": "not observed",
+    "build": "6.03r7-x64",
+    "recognition_minimum_bytes": 8,
+    "header_only": "Cannot establish positive class cache hit by the reviewed nonzero-CRC path",
+    "cipher_algorithm": "not identified",
+    "expected_crc_nonzero": "Compared against stored transformed body before inverse transform; equality sets hit flag",
+    "status": "static review only",
+    "expected_crc_zero": "Direct helper skips comparison but leaves hit flag false; class197 caller instead takes its zero-CRC bypass path",
+    "recognized_prefix": "GRESCR01",
+    "missing_positive_control": {
+      "description": "Observe native writer producing a carrier from owned known-good body, then metadata-driven reread with matching key/mode and CRC",
+      "performed": false,
+      "evidence_class": "proposed"
+    },
+    "source": "linux-cross-version-incremental-handoff-20261109.md"
+  },
+  "supersession": [
+    {
+      "older": "Aggregate claim that network GS2 execution remains pending",
+      "unchanged": "Normal server compiler/writer and full language semantics remain open",
+      "replacement": "Dedicated6.03 handoff establishes bounded proxy weapon execution and continuation"
+    },
+    {
+      "older": "Sender should encode H+2",
+      "unchanged": "No universal malformed-input contract",
+      "replacement": "Sender encodes descriptor length H; receiver body starts H+2"
+    },
+    {
+      "older": "E200 entirely open",
+      "unchanged": "No cross-version truth rule",
+      "replacement": "Windows2.05r2 has exact-build published resolution337; Linux3.04 remains separate"
+    },
+    {
+      "older": "Reconnect should be tested as possible black-screen cure",
+      "unchanged": "Original Login UI/content and rendering remain unresolved",
+      "replacement": "Valid178 gives second accepted login with same black screen"
+    }
+  ],
+  "lineage": [
+    {
+      "sha256": "b34cb199713cd0041898f91adf732d941bc7a3db5683291bd0c02af43a6f4303",
+      "bytes": 3149,
+      "file": "linux-original-network-results-20261109.json"
+    },
+    {
+      "sha256": "3d0b03438457d8d2c63180d47408f0abd2370ed9707d970da92a387f7137a900",
+      "bytes": 4757,
+      "file": "linux-603-network-gs2-execution-handoff-20261109.md"
+    },
+    {
+      "sha256": "0c3c739cc0d2e48fe0ebea4babe1684e795579d0ea83174bb999e291f79cc99d",
+      "bytes": 3884,
+      "file": "linux-followup-results-20261109.md"
+    },
+    {
+      "sha256": "48e450392de8790557ca17b72c64332170d36fbb0241ae597784d11cc6625c72",
+      "bytes": 17197,
+      "file": "linux-cross-version-incremental-handoff-20261109.md"
+    },
+    {
+      "sha256": "0533b560a93191d64ca1e1fab3b5743c6d545d03edc90358b2c7364fc2177867",
+      "bytes": 1958,
+      "file": "linux-gs1-runtime-304-20261109.md"
+    },
+    {
+      "sha256": "495ac5774c2392085915e2da392a20ef3f485af4d374c85813195cc67c167335",
+      "bytes": 1604,
+      "file": "linux-gs1-e200-comparison-304-20261109.md"
+    },
+    {
+      "sha256": "bee30f870b25181cc069ae1d5a15b51abd3fd181fffe936eb25ec7f296e8952f",
+      "bytes": 828,
+      "file": "linux-packet140-length-erratum-20261109.md"
+    }
+  ]
+}
