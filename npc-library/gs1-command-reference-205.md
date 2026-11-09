@@ -126,7 +126,7 @@ otherwise over both (see udp-p2p.md).
 
 | Op | Command | Args | What 2.05 does |
 |---|---|---|---|
-| 605 | `if` | – | Evaluates the condition; jumps past the block when it is 0. |
+| 605 | `if` | – | Evaluates the compiled condition; jumps past the block when it is 0. Condition-name parsing differs from numeric message expansion; see [the exact-build truth and folding follow-up](gs1-condition-truth-205r2.md). |
 | 634 | `else` | – | Compiled away into a jump. |
 | 660 | `for` | – | Loop; condition checked each pass; stops after 10,000 passes. |
 | 668 | `while` | – | Same loop node as `for`. |

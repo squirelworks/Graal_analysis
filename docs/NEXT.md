@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Settle E#200 for the checked original 2.05 revision 2.** ~~Resolve the conflicting truth threshold.~~ [Source](../npc-library/gs1-condition-truth-205r2.md) separates zero/nonzero execution, name parsing and constant-comparison folding.
+- [ ] Extend condition checks to other builds, nonfinite/malformed values, aliases/precedence and named-flag collisions.
+
 - [x] **Bound Linux 4.20r6 clock updates and advertised 3D-state predicate.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-clock-property.md) retains exact-build limits and remaining measurements.
 
 - [x] **Bound Linux 4.20r6 container operands and post-load fusion.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-reader-fusion.md) retains exact-build limits and remaining measurements.
