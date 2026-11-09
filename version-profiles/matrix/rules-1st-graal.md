@@ -77,11 +77,11 @@ The loop that advances the shared counter while dead was not found in this expor
 
 ## Wall and walk test **[bin]**
 
-The step added for a facing comes from a per-facing table. The length is not an immediate in the routine. The offline run already measured 0.5 tile per tick (`live-runs-2026-10-30.md`); that measurement is not re-done here.
+The later [exact-input movement follow-up](../../client-internals/first-graal-movement-2026-11-09.md) supplies the previously unread step/probe/nudge tables. Its static half-tile candidate displacements corroborate, rather than remeasure, the earlier live step result. **[bin]**
 
-The candidate point is tested with six probes. The block test fails closed: a point is blocked when an object's box contains it, when it lies outside the 64 by 64 board, when either coordinate is below half a tile, or when the tile is not on the passable-tile list. The list itself was not copied out.
+The candidate is checked using six ordered points, with probes 0–3 deciding refusal. A blocked attempt undoes the original displacement and snaps the stepped axis; up and down have distinct snapping expressions. The earlier description of free-axis snapping is superseded. A selected one-eighth-tile nudge remains on the free axis and clears the push count. The follow-up gives the exact predicates and constants, without claiming a successful forward step or measured cadence. **[bin]**
 
-If any of the first four probes is blocked, the action mode becomes the push mode and the stepped axis is undone. A fractional part on the free axis is snapped (facings 0 and 2 snap Y down; facings 1 and 3 snap X onto a half-tile). A particular pattern of the six probes instead adds a nudge from a second per-facing table; the nudge offsets were not read. A nudged step clears the push counter. A plain blocked step increments it.
+The earlier point-test reading remains separately scoped: object boxes, board bounds, coordinates below half a tile and passable-list membership can block. This follow-up does not identify every object list or exceptional gate. **[bin]**
 
 The push counter wraps: a reading above 37 is set back to 18. When the counter is 18 and a ledge-tile test passes, the action mode becomes the hop and the counter becomes 8. The hop then follows a facing table for those 8 ticks and returns to the normal mode. While pushing, once the counter is above 17 and the player is not carrying, the body sprite steps through the push frames.
 
@@ -95,7 +95,7 @@ Not tagged: a listing of the Decompile folder on 2026-11-01, client exports and 
 
 ## Still open
 
-- The routine that counts the shared counter up while dead, and whether it stops at 30.
-- Exact inclusion of the 0-tile and 4-tile edges of the sword box, and unit length of a sword knockback.
-- The six walk-probe offsets, the corner-nudge offsets, and the numeric walk-step table (the 0.5 tile step is the live measurement only).
-- 1.32 for all five rules, and the rest of eras A and B.
+- [ ] The routine that counts the shared counter up while dead, and whether it stops at 30.
+- [ ] Exact inclusion of the 0-tile and 4-tile edges of the sword box, and unit length of a sword knockback.
+- [x] ~~Read the 1st Graal probe, nudge and step tables.~~ [Static follow-up](../../client-internals/first-graal-movement-2026-11-09.md) supplies exact-input values; 1.39 remains separate.
+- [ ] 1.32 for all five rules, and the rest of eras A and B.
