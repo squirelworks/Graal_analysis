@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Linux 6.01 x86 static program/state increment.** ~~Separate decoded preparation and selected saved-state behavior.~~ [Source](../client-internals/linux-601-x86-program-state.md); full handler recovery and lifecycle remain unresolved.
+
 - [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/v5-animation-group-lifecycle.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.
