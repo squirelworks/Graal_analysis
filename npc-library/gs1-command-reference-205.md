@@ -135,8 +135,8 @@ otherwise over both (see udp-p2p.md).
 | 713 | `continue` | – | Jumps to the loop's next pass. Outside a loop it ends the script. |
 | 716 | `function` | – | Compiled away. Calls to a named function become a call node (max depth 10,000). |
 | 717 | `return` | – | Pops the call stack and resumes after the call. With an empty stack it ends the script. |
-| 710 | `callnpc` | R,S | Runs NPC *index*'s script with the given event flag set. Doc: params after the event are passed as `#p(n)`. |
-| 714 | `callweapon` | R,S | Moves weapon *index* to the player's centre, then runs its script with the given event flag set. |
+| 710 | `callnpc` | R,S | Exact 2.05r2 queues the expanded event name with empty parameter text; it does not split comma suffixes into `#p` parameters. Accepted calls can overwrite pending actor parameter text. See [producer/queue follow-up](gs1-event-parameters-205r2.md). |
+| 714 | `callweapon` | R,S | Moves weapon *index* to the player's centre, then queues the expanded event name through the empty-parameter wrapper (exact-build static trace; no callweapon runtime control). |
 | 744 | `triggeraction` | R,R,S,S | Fires *action* with *params* at the object on (x, y) locally, and sends it online. From a weapon, the sender is the player. |
 
 ### NPC appearance and behaviour

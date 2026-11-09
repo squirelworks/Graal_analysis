@@ -12,10 +12,12 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Link the exact 2.05r2 #p producer.** ~~Trace dispatch to its shared parameter list.~~ [Source](../npc-library/gs1-event-parameters-205r2.md) corrects callnpc delivery and retains queue/lifetime limits.
+- [ ] Extend event-parameter checks to nested contexts, scheduling, case/escaping, other event/source categories and builds; other E#203 field/format/render gaps remain.
 - [x] **Resolve E#204 checked-build name-to-ID mapping.** ~~Replace documentation-order inference.~~ [Source](../npc-library/gs1-object-members-205r2.md) preserves first-match duplicate arrow dx and bounded getter semantics.
 - [ ] Extend object-member research to writes, fallback/scanner behavior, enum meanings, specialized getters and other builds.
 - [x] **Catalog the exact 2.05r2 outer message selectors.** ~~Extract outer membership and bounded effects.~~ [Source](../npc-library/gs1-message-codes-205r2.md) separates catalog coverage from runtime/helper semantics.
-- [ ] Complete E#203 field identities (#6/#a/#E/#L), #p producer, quoted scanners, numeric formatting and downstream rendering.
+- [ ] Complete E#203 field identities (#6/#a/#E/#L), quoted scanners, numeric formatting and downstream rendering.
 - [x] **Settle E#200 for the checked original 2.05 revision 2.** ~~Resolve the conflicting truth threshold.~~ [Source](../npc-library/gs1-condition-truth-205r2.md) separates zero/nonzero execution, name parsing and constant-comparison folding.
 - [ ] Extend condition checks to other builds, nonfinite/malformed values, aliases/precedence and named-flag collisions.
 

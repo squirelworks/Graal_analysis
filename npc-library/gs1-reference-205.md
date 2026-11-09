@@ -143,3 +143,7 @@ Absent in 2.05 but documented for 2.22: `actionleftmouse`/`actionrightmouse`/`ac
 `=`, `+=`, `-=`, `*=`, `/=`, `++`, `--`; arithmetic `+ - * / %`, `^` power; comparison `== != < > <= >=`; logic `&& || !`; `in` for ranges and sets (`x in |0,64|`, `2 in {1,2,3}`); `this.` for NPC-local variables; `#` string codes (`#s(var)`, `#v(expr)`, …, 2.x). Control flow: `if`/`else`, `for`, `while`, `break`, `continue`, `function name() {}` + `name();`, `return`, `sleep`, `timeout = n`.
 
 The exact checked 2.05 revision 2 outer expander has 44 selector bytes, or 53 spellings when the C/P families are expanded. This includes preserved display codes and empty-output `#7`, not 53 implemented operations. See [the bounded catalog and original-client controls](gs1-message-codes-205r2.md). Field meanings, helper details and rendering remain partial (E#203); message reads and property setters are separate grammars.
+
+## Exact-build event parameter follow-up
+
+[Producer/queue evidence](gs1-event-parameters-205r2.md) links `#p` and `paramscount` to dispatch's comma-split shared list, separate from `#t`/tokenize. `callnpc` and `callweapon` queue event names with empty parameter text in the checked 2.05r2; documentation about comma-suffix delivery does not describe this path. Broader message fields, scheduling and nested-context semantics remain partial.
