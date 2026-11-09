@@ -293,9 +293,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | both builds test six probes per facing step and use the 18 / 38 blocked-step counter; 1st Graal has a nudge table | [bin] (version-profiles/matrix/rules-1st-graal.md#wall-and-walk-test-bin); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
-| Open | the numeric probe offsets, nudge offsets and step table of both builds; whether they equal 2.05's | [bin] (version-profiles/matrix/rules-139.md#still-open) |
-| Settles it | reading the tables from both exports | [inf] (version-profiles/matrix/rules-1st-graal.md) |
+| Established for 1st Graal | exact-input static step, six ordered probes, one-eighth-tile nudges and stepped-axis snapping are in → §4.2.2.3; the older unread-table and free-axis descriptions are superseded | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
+| Existing 1.39 evidence | six probes and the blocked-step counter shape were read, without the numeric tables | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
+| Open | 1.39 numeric tables, cross-build equality, and complete exceptional gates/runtime cadence for the new static 1st Graal finding | [bin] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits); [1.39] (version-profiles/matrix/rules-139.md#still-open) |
+| Settles it | recover the 1.39 tables independently and validate unresolved runtime/state gates on exact inputs | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 
 ### E#308 Link probe offsets and the neighbour-table flag
 
