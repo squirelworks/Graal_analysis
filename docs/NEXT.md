@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Correct exact build-614 encoder dispatch counts and selected arithmetic.** ~~Separate selector/target/default counts from emitted-property and name claims.~~ [Source](../protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin); runtime and nonfinite/out-of-range cases remain unvalidated.
+
 - [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/v5-animation-group-lifecycle.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.

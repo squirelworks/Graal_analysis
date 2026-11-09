@@ -79,10 +79,12 @@ v7 embeds the long-standing **`(GCHAR id, value)*`** player-property stream. Enc
 
 | Direction | Behavior |
 |---|---|
-| **Encode** | `switch(id)` emitting GCHAR-prefixed fields; sword uses `power + 30` (+ image string); shield uses `power + 10`; X/Y emit `GCHAR(round(2×coord) + 0x20)`; Z uses `value + 0x52` (= +50 + 0x20 GCHAR bias) when the legacy path is active |
+| **Encode** | `switch(id)` emitting GCHAR-prefixed fields; the selected numeric-ID 8/9/15/16 arithmetic is qualified below; historical name/getter interpretations are not independently validated by this correction; Z uses `value + 0x52` (= +50 + 0x20 GCHAR bias) when the legacy path is active |
 | **Decode** | Matching `switch` over the same id space (including gattribs through ~82 / `communityname`); sword reverse is `gchar − 30` then optional image |
 
-Accepted encode ids observed in the switch (54 labels): **0–36, 42–45, 50–53, 74–82**. That lines up with the classic PLPROP table from GServer / earlier clients (**[doc]** `player-props.md`), not with the 0…94 script-registry order.
+[bin] **Exact build-614 correction (2026-11-09):** the retained two-stage encoder dispatch covers input IDs 0–82 inclusive using 83 one-byte selector entries and a 43-entry target table. Eleven input IDs take the default target: **3, 25, 27, 28, 29, 30, 34, 36, 50, 51, 77**. The other 72 are nondefault dispatch inputs, not 72 independently validated accepted/emitting properties. These compiled-table counts are not source-language case-label counts; they replace the earlier “54 labels” claim. They do not map input IDs to the separate 95-name script registry or independently establish getter/property-name meanings.
+
+[bin] Source `V7-019-SANITIZED-20261109` identifies the sanitized correction packet, SHA-256 `2f2d7610109ff2a6e12c05aefb0ceec360d69b79e629ffd37ec5cea42432f77b`. The exact supplied Windows amd64 WorldsSetup64-614 unpacked plugin has SHA-256 `daa141bbd306cc6c588ebe6d8823fd04497ca4150837a59b49e8097f27b776c3`. The researcher reports 20 retained exact-byte assertions with PE-mapped decoding; the publisher reviewed the structured report and recomputed saved dispatch counts. Neither operation re-executed the client or independently reproduced the original-to-unpacked derivation. Runtime behavior, inbound decoder behavior, nonfinite/out-of-range conversions and complete helper semantics remain unvalidated. The selected numeric arithmetic below does not newly establish historical property names.
 
 ### Encoding cheat-sheet (v7-confirmed subset)
 
@@ -93,10 +95,10 @@ Accepted encode ids observed in the switch (54 labels): **0–36, 42–45, 50–
 | 2 | CURPOWER | GCHAR from hearts×scale |
 | 4–6 | ARROWS / BOMBS / GLOVE | GCHAR |
 | 7 | BOMBPOWER | constant GCHAR |
-| 8 | SWORDPOWER | `c(clamp(power+30))` + optional image string |
-| 9 | SHIELDPOWER | `c(clamp(power+10))` + optional image |
+| 8 | SWORDPOWER (historical name) | Selected arithmetic adds 30, clamps to 10–50, substitutes zero for 30, then applies byte bias 32; name/getter and optional image behavior are not revalidated here |
+| 9 | SHIELDPOWER (historical name) | Selected arithmetic adds 10, clamps to 10–13, substitutes zero for 10, then applies byte bias 32; name/getter and optional image behavior are not revalidated here |
 | 11 | HEADGIF | head-default path or `len+100` + image (classic form) |
-| 15 / 16 | X / Y | `GCHAR(round(2×coord))` half-tiles |
+| 15 / 16 | X / Y (historical names) | Selected path doubles the value, uses a floor-style helper with successive 0.5 and 0.0001 addends, then byte bias 32; finite values in the representable conversion range only |
 | 35 | BODYIMG | GSTRING |
 | 45 | Z | legacy: `GCHAR(z + 50)` (via `+ 0x52` with GCHAR bias) |
 | 78–80 | X2 / Y2 / Z2 | higher-precision path present |

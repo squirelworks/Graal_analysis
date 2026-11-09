@@ -257,3 +257,7 @@ Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth f
 The outgoing player encoder in both unpacked images walks ids 0 through 83. Twelve of those ids have no case: 3, 25, 27, 28, 29, 30, 34, 36, 50, 51, 77 and 83. The baddy encoder walks 0 through 10, with a case for each. The two builds use the same id lists. [bin] (protocol/v6-props.md)
 
 `tclient_setplayerprops`, `tclient_setnpcprops`, `tclient_setbaddyprops` and `tclient_setotherplayerprops` in 6.1.1.3 each store one string. No numbered NPC id table is in either image. [bin] (protocol/v6-props.md)
+
+## 2.6.8 Exact build-614 encoder dispatch correction
+
+The supplied Windows amd64 build-614 unpacked plugin uses 83 selector entries for IDs 0–82 and a 43-entry target table. Default IDs are 3, 25, 27–30, 34, 36, 50, 51 and 77; 72 nondefault dispatch inputs do not prove 72 emitted/accepted properties. Selected ID 8 adds 30, clamps 10–50, substitutes zero for 30 and applies bias 32; ID 9 adds 10, clamps 10–13, substitutes zero for 10 and applies bias 32. IDs 15/16 double the value and use a floor-style helper with 0.5 then 0.0001 addends before bias 32, limited to finite representable conversions. Names/getters, inbound decoding, runtime behavior and original-to-unpacked lineage are not independently established by these static checks. [bin] (protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin)
