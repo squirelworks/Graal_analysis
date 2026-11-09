@@ -27,5 +27,5 @@ cross-collection linkage remains unverified.
   earlier 3.153 attribution across collections.
 
 See the [compatibility note](client-compatibility.md) for architecture and label
-scope, and [the source index](../sources.tsv) for the sanitized record digest.
-Original containers, per-file manifests and private retrieval paths remain private.
+scope, and [the public evidence index](../sources.tsv) for the record's source category.
+Original containers, exact digests, per-file manifests and private retrieval paths remain private.

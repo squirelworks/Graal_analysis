@@ -14,12 +14,9 @@ functions, 19,721 produced decompiler output; three retained assembly-only
 coverage after bounded retries. These counts describe identified functions,
 not a percentage of original source recovered or a successful rebuild.
 
-`[bin]` `WIN-CODE-INVENTORY` identifies the owner-held artifact manifest.
-`WIN-CODE-PROJECT` identifies the saved editable analysis project and
-`WIN-CODE-PACKAGE` the complete private reference package. The local retrieval
-root is `workingpapers/windows/`; its README and catalog locate the code,
-resources, metadata, original evidence and harnesses. Raw artifacts remain
-outside this public repository. The source index records their digests.
+Private artifact manifests, editable analysis projects, package names, retrieval
+roots, and exact digests remain owner-held. This public note reports the reviewed
+scope and limitations without providing a path to the underlying files.
 
 `[cap]` `WIN-3D-PROVENANCE` records a controlled load-only capture of the separate
 3D module from the original packed client. Server and server commit were none.
@@ -34,7 +31,7 @@ mechanics or independent clean-room implementation. Research agents should
 publish reviewed plain-behaviour findings here; implementing agents follow
 [the handling boundary](../handling.md) and their own specifications and tests.
 
-- [x] ~~Collect the completed Windows code export and provenance in a dedicated folder.~~ Owner-held `workingpapers/windows/` and the source identifiers above provide retrieval.
+- [x] ~~Collect the completed Windows code export and provenance in a dedicated folder.~~ Its private custody is tracked outside this public repository.
 - [ ] Resolve or document the three remaining decompiler timeouts before claiming complete identified-function C coverage.
 - [ ] Validate reconstructed behaviour independently before using it as an implementation requirement.
 
@@ -71,8 +68,9 @@ failed before a successful transition and must not be counted as successful runs
 - [ ] Validate each selected mechanic with before/after state and captured user action.
 - [ ] Record harness and fixture digests at capture start for reproducible follow-up.
 
-Sources and digests are in [the source index](../sources.tsv). Existing cleaned
-mechanic notes elsewhere in this repository retain their own evidence scope;
-this collection does not supersede them.
+Public evidence categories are listed in [the source index](../sources.tsv).
+Exact source identities remain private. Existing cleaned mechanic notes elsewhere
+in this repository retain their own evidence scope; this collection does not
+supersede them.
 
-- [Imported v4 alias and retained identity](v4-import-provenance.md): separately corroborated carrier hash/resource fields; supplied alias, collection label and official release provenance remain distinct.
+- [Imported v4 alias and retained identity](v4-import-provenance.md): separately corroborated resource fields; supplied alias, collection label and official release provenance remain distinct.
