@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Identify the exact 2.05r2 `#6` association.** ~~Corroborate selected actor carried-NPC image and bounded producer/consumer paths.~~ [Checkpoint](../npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint); full eligibility, selectors, receiver identity, lifetime and runtime remain open.
+
 - [x] **Correct exact build-614 special-length arithmetic.** ~~Carry the retained static erratum.~~ [Note](../protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin); runtime and extreme-size handling remain unvalidated.
 
 - [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ [Note](../workingpapers/linux/imported-provenance-and-gaps.md) registers document hashes and limits.
