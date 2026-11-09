@@ -279,3 +279,5 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 - `protocol/gs2-client-vm.md`: the bytecode container and opcode checklist a graal-client-repro client and a Seihai script VM can cite. The compiler half is the MPL-2.0 Preagonal trees (already studied in `npc-library/preagonal-gs2.md`). The client half is the 4.2.0.8, 5.0.0.7 and unpacked 6.00 dispatchers.
 - `protocol/gs2-client-only-opcodes.md`: the effect of the opcodes those clients dispatch and the Preagonal compiler does not emit, including the folds.
+
+- [PowerPC receive framing and partial-group advancement](workingpapers/macos/ppc-receive-framing.md) — exact-input static behavior and runtime limits.

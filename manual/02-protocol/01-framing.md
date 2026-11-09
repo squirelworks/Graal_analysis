@@ -84,3 +84,7 @@ Encryption generations are defined in → §2.2.1; builds per generation are in 
 | A listserver accepts gen-5 frames that start `78 9C` (default level); whether a classic frame with that header is accepted is unmeasured | public listserver | [cap] (protocol/login-frames-by-version-2026-10-25.md#one-byte-level-difference-that-applies-to-every-seihai-frame) |
 
 For the exact original 2.05r2 FILE path, the counted collector preserves every announced raw byte, including a final LF within the count; the layout and persistence qualifications are in → §2.7.9 [2.05][bin] (protocol/file-205r2-prefix-lf.md#exact-receiver-boundary).
+
+### 2.1.4.3 Exact-input Mac PowerPC receive gate
+
+Four independently inspected Mac receivers (shared v3, labels 4.04r2 and 4.20r6, shared v5) wait for a complete body after a two-byte unsigned big-endian length that excludes the prefix. A zero configured mode consumes the first body byte as selector and removes it from the transform length; a nonzero configured mode applies directly. Modes 1/2 are raw, 3/4 follow zlib and 5/6 the bzip2-linked path; even modes XOR before decompression. This is static receive evidence, not negotiation, send symmetry, live decoding or v6 evidence. [bin] (workingpapers/macos/ppc-receive-framing.md)

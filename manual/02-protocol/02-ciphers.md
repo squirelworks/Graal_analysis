@@ -58,7 +58,7 @@ Client to server only. Server-to-client traffic for a gen-3 client is plain zlib
 
 ## 2.2.3 Generation 4 and 5 partial XOR
 
-Same LCG and key as generation 3, with one iterator per direction, both seeded `0x04A80B38` [srv][2.22] (protocol/codec-and-framing.md#gen-45-partial-xor); [bin] (protocol/client-versions.md#gen-5-send-on-the-client-222-231-remotecontrol-bin).
+The server/2.22 contract below is not universal across later receivers; the independently inspected Mac PowerPC qualification follows the table. Same LCG and key as generation 3, with one iterator per direction, both seeded `0x04A80B38` [srv][2.22] (protocol/codec-and-framing.md#gen-45-partial-xor); [bin] (protocol/client-versions.md#gen-5-send-on-the-client-222-231-remotecontrol-bin).
 
 | Step | Operation | Source |
 | ---: | --- | --- |
@@ -74,7 +74,7 @@ Same LCG and key as generation 3, with one iterator per direction, both seeded `
 | 610 lab frames, both directions | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | a real 2.22 client sent 580 uncompressed and 17 zlib frames; all 17 compressed bodies had a length that was not a multiple of 4 and decode only under this rule | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | ten 5.x and 6.x Windows captures decode with this rule | [cap] (protocol/v5v6-windows-unpacked.md) |
-| an earlier rule, `floor(len / 4)` groups for compressed bodies, is wrong and leaves the iterator one step behind | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
+| for these 2.22 captures, `floor(len / 4)` groups for compressed bodies is wrong and leaves the iterator one step behind | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 
 | Builds | Step count for zlib and bz2 bodies | Source |
 | --- | --- | --- |
@@ -83,6 +83,12 @@ Same LCG and key as generation 3, with one iterator per direction, both seeded `
 | 4.04r2, 4.20r6, 4.20r8 | cap 4; rounding unmeasured | [bin] (protocol/v4x-clients.md#cipher-and-framing) |
 | 5.12 | disputed → App. E#2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [cap] (protocol/v5v6-windows-unpacked.md) |
 | 5.24r3 and later 5.x, 6.00 to 6.03r7 | `ceil(len / 4)`, capped at 4 | [cap] (protocol/v5v6-windows-unpacked.md); [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
+
+### 2.2.3.1 Exact-input Mac PowerPC receive qualification
+
+For the four exact Mac inputs identified by digest in the source note, let n be body length after any mode selector is removed, before decompression. Raw mode 2 processes min(ceil(n / 4), 12) groups, including a partial final group. Compressed modes 4/6 process min(floor(n / 4), 4) groups; an incomplete tail is unchanged and advances no state. Before each processed group, state is multiplied by 134775813 and increased by an additive object word, retaining the low 32 bits. Its bytes are XORed least-significant first despite the big-endian target. State persists through the inspected receiver's iterations. [bin] (workingpapers/macos/ppc-receive-framing.md)
+
+Initial seed, additive-word provenance, reset/rekey writers, negotiation and outgoing symmetry remain untraced. No live frame result or Windows 5.12 capture resolution follows; E#2 remains open. [bin] (workingpapers/macos/ppc-receive-framing.md)
 
 ## 2.2.4 Compression choice
 

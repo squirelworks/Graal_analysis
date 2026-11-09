@@ -23,6 +23,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether the 5.12 captures held a compressed frame short enough (under 16 bytes, length not a multiple of 4) to tell the rules apart | [inf] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 | Settles it | decoding a 5.12 capture that contains such a frame under both rules | [inf] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 
+Separately, four exact Mac PowerPC receivers use whole-group compressed advancement and partial-group raw advancement. This static Mac result does not resolve the Windows capture disagreement or prove outgoing symmetry. [bin] (workingpapers/macos/ppc-receive-framing.md)
+
 ### E#3 Public `Login` server session (5.x, 6.x)
 
 | Item | Content | Source |
