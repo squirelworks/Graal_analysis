@@ -601,3 +601,4 @@ npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and pr
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
+workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
