@@ -640,8 +640,29 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 [inf] Seven independently authored acceptance vectors distinguish formatting and branch/stack behavior. They have not been executed in the original client; fresh invocation state, errors, string lifetime and complete VM equivalence remain unproved. The implementation comparison is pinned to its inspected snapshot. No runtime or server was started for this publication. [inf] (torque/linux-304-seven-operation-contract.md).
 
+### Native-call evidence boundary
+
+[bin] A retained exact-input Linux 3.04 static review distinguishes script-defined recursive entry from registered native callback dispatch with argument-count checks; a selected resolved-call path can rewrite its word or operand to a cached form. Some registry helpers remain outside the selected export. This is static path evidence, not callback execution or complete lookup/caching policy. [bin] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
+
+[inf] Published inclusive command/method counts do not establish argument representation or callback ABI. The seven-operation executor return does not establish native callback result conversion or lifetime. Case/namespace precedence, duplicates, coercions, arity failures, cache invalidation and echo behavior remain unqualified; independent API policy tests are not original-client oracles. No new native inspection or runtime work was done for publication. [inf] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
+
+
 ## 10.10 Linux 4.20 native-object registration boundary
 
 [bin] In the selected Linux 4.20r6 paths, constructor stores and runtime type metadata identify concrete SimGroup and GameConnection objects, each containing a Graal scripting-variable base subobject. The creation callback registers those base-subobject pointers on the scripting side, exposing a concrete static native-object bridge. Names alone are not the identification evidence. [bin] (client-internals/linux-420-native-object-bridge.md).
 
 [bin] A tail-call forwarding path does not establish an ordinary C callback ABI; an optional fast path remains unresolved. The separate r8 review shows that equal embedded payloads do not imply equal execution-state layouts. Initializer execution, live TorqueScript, GUI/input and a working 3D session remain unobserved in this scope. No runtime or server was started for publication preparation. [bin] (client-internals/linux-420-native-object-bridge.md).
+
+## 10.11 Exact Linux 3.04 show-image wrapper constants
+
+[bin] Retained exact-input static findings bind showimg/showimg2 to mode 0, showani/showani2 to mode 4, showpoly/showpoly2 to mode 3 and showtext/showtext2 to mode 2, with respective flags 0/1 in every pair. These internal constants add precision to already documented command presence and polygon machinery; mode 1, signature-letter grammar, flag meaning and rendered results remain unqualified. [bin] (torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review)
+
+[bin] A selected common helper uses a numeric-derived integer display key and finds or creates its indexed object. Lookup/insertion compares that key; the insertion helper rejects an equal key and otherwise inserts by position. This is a sorted integer-key container, not a generic name map. Numeric conversion edges, ownership, full helper ABI and corruption handling remain open. [bin] (torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review)
+
+[inf] Local insertion rejection does not establish repeated-command behavior or console/namespace duplicate policy. These are retained static assertions, not new native execution or a general interpreter/callback contract; no cross-build behavior is inferred. Document digests are checked while underlying native observations remain researcher-supplied. [inf] (torque/304-draw.md#provenance-and-scope-of-this-addition)
+
+## 10.12 Exact Linux 3.04 local value-helper branches
+
+[bin] Retained exact-input static review records a numeric accessor returning zero for null input, reading a stored double on its reviewed type/slot-absent branch and otherwise dispatching through a type-specific slot. A string-result accessor dispatches through its type-specific slot or a fallback initializer. A separate assignment helper includes scalar/numeric-array paths, element conversion and selected index-guarded writes. [bin] (torque/304-npcs.md#retained-local-numeric-and-string-helper-branches)
+
+[inf] These are local branch observations, not a complete coercion, array/index or formatting specification. They do not establish universal variable defaults, an empty-string result, every runtime type, rounding/exceptional-value policy, parser grammar or storage lifetime. They are separate from the published Torque integer-to-string operation and do not establish a native callback result adapter or ABI. Underlying static findings remain researcher-supplied; only retained documents were reviewed for publication and no original-client conversion result is claimed. [inf] (torque/304-npcs.md#evidence-and-remaining-conversion-gaps)

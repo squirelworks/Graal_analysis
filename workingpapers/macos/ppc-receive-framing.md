@@ -6,13 +6,13 @@ receiver contract, not a live traffic result or a send-path specification.
 
 ## Exact input scope
 
-The archive groups and main-executable SHA-256 identities are:
+The archive groups and owner-held main-executable identities are:
 
-- Shared v3: `6eb0a1f9a894902f5903f1df9ac676e358a74fefe63dee550c82d1cf0c5d83fc`.
-- Label 4.04r2: `01dbf094d84aff84f7fcaa2f38ad42f9215cf60154aaa0ff730ff098a44dc847`.
-- Label 4.20r6: `304a4d480a63cbaf70822cca56066284f392973bf9e00f3192551bff4b540f92`.
+- Shared v3: `owner-held SHA-256 (not published)`.
+- Label 4.04r2: `owner-held SHA-256 (not published)`.
+- Label 4.20r6: `owner-held SHA-256 (not published)`.
 - Shared v5, including a copy labelled 5.12:
-  `a76dc557f7a1db8ac385f3f5fcceb6629ba53cab09d9ddbc4d989d942d206f10`.
+  `owner-held SHA-256 (not published)`.
 
 Matching executable bytes do not authenticate release labels or whole bundles.
 The findings below were obtained for each input, rather than transferred from
@@ -65,8 +65,8 @@ and are outside this deliberately shared framing contract.
 ## Evidence
 
 The four FRAME-STATIC records below are sanitized researcher-held static
-summaries, indexed by their own document digests in
-[the evidence registry](../sources.tsv). Raw exports remain owner-held.
+summaries, indexed by public evidence identifiers in
+[the evidence registry](../sources.tsv). Exact digests and raw exports remain owner-held.
 
 - `MAC-PPC-V3-FRAME-STATIC-20261109-R1`.
 

@@ -1,9 +1,9 @@
 # Linux teardown workingpapers
 
-Completed owner-held teardown collected on 2026-11-09. The dedicated local
-`workingpapers/linux/` folder contains research artifacts and the private bundle.
-This public folder contains plain-behaviour findings and retrieval identifiers.
-See [sources](../sources.tsv) and [handling](../handling.md).
+Curated public summary of a Linux client teardown, collected on 2026-11-09.
+Raw research artifacts, private bundles, exact source filenames and retrieval
+identifiers are not included. See the [public evidence index](../sources.tsv)
+and [handling policy](../handling.md).
 
 For later, separately scoped results, see the [network/bootstrap gate guide](../../version-profiles/linux-network-bootstrap-evidence.md) and its frozen seven-input dataset, and the [3.04 startup/reader study](../../client-internals/linux-304-startup-reader.md). The failures recorded below remain historical observations of their identified unpacked/packed startup attempts; later packed-input reading and network results do not establish unpacked startup success or gameplay.
 
@@ -34,7 +34,7 @@ in visible infrastructure; marker absence cannot prove removal of all inherited
 code. Native class candidates and published scripting type hierarchies are
 separate evidence classes, not interchangeable object layouts.
 
-`[bin]` Sources `LINUX-CODE` and `LINUX-VALIDATION` index 289 selected recovered
+`[bin]` Sources `LINUX-CODE` and `LINUX-VALIDATION` index the initial 289 selected recovered
 function dossiers and full per-build function inventories. Source `LINUX-API`
 verifies six complete client-published catalogs containing globals, properties
 and functions. The two 6.01 catalogs are byte-identical. Catalog differences
@@ -53,8 +53,7 @@ separate startup compatibility failure.
 `[cap]` A further 4.20r8 experiment stopped in the reviewed script frame transition
 during startup and captured stack and state. This confirms that selected routine
 executes; it does not recover the whole instruction set or validate gameplay.
-Evidence filenames: `runtime-summary.json`, `reviewed-findings.json`,
-`vm-live-capture.json`, and `vm-live.txt` in the owner-held package.
+The underlying capture filenames and raw debugger records remain private.
 
 `[lab]` Runs used separate writable copies and private network namespaces.
 Installer-supplied license directory layout was restored for older runtime
@@ -62,13 +61,11 @@ copies; executable checks were not patched. No online login or gameplay was
 exercised. Client/debugger processes were explicitly cleaned up. Organizing
 this handoff started no client, server, debugger or VM.
 
-## Retrieval and distribution
+## Distribution boundary
 
-Request `LINUX-PACKAGE` from the owner for the complete private bundle.
-`LINUX-MANIFEST` identifies its artifacts; `LINUX-VALIDATION` records build and
-export checks. The local Linux index links architecture notes, engine-grouped
-code, function maps, API catalogs, captures, REA evidence and reproduction tools.
-Raw code, addresses and debugger text remain in owner-held workingpapers.
+This public handoff contains selected findings and their limits, not the raw
+code, addresses, debugger records, private filenames, or an artifact retrieval
+map. Exact source identities and full artifact manifests remain owner-held.
 
 - [x] Index the completed Linux teardown separately from Windows and macOS.
 - [x] Preserve source identities and distinguish static and runtime findings.
@@ -80,6 +77,10 @@ Follow [AGENTS.md](../../AGENTS.md): research agents publish reviewed behaviour
 notes here. Implementation repositories may link here and must use their own
 independent specifications and tests.
 
+## Later exact-build selected review
+
+The [Linux 6.01 x86 program/state note](../../client-internals/linux-601-x86-program-state.md) records a later host-verified pass of 299 selected C exports and 20 reviewed artifacts. Those figures describe a different acquisition/review stage from the initial dossier inventory above. They must not be added as disjoint functions or treated as complete original-source or opcode recovery. Its static findings and unresolved handler/lifecycle gates remain explicitly qualified.
+
 ## Imported-document provenance
 
-The [imported Linux notes review](imported-provenance-and-gaps.md) preserves reported damaged-archive and packaging leads, independently checked document hashes and duplicate-log identity. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.
+The [imported Linux notes review](imported-provenance-and-gaps.md) preserves scoped third-party recovery leads and duplicate-document observations; exact document hashes and private source identities remain owner-held. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.

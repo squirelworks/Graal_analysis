@@ -1,5 +1,7 @@
 # Next work (ordered)
 
+- [x] **Qualify the supplied 701750 bridge and clock checkpoint.** [Note](../client-internals/v7-701750-bridge-clock.md) and manual §4.1.7 record the bounded static result. The ten retained function-validation records include the short getter; two managed-edge records are counted separately. Cadence, wrap/catch-up, collection/lifecycle semantics and older-build equivalence remain unresolved.
+
 One change per branch and PR. Verify `origin/main` and the open PR list before
 starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" or
 that need missing Squirrel-only files; take the next task. Binding rules live in
@@ -12,7 +14,19 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
-- [x] **Qualify supplied 701750 managed/native bridge and clock paths.** ~~Carry the bounded retained checkpoint.~~ [Source](../client-internals/v7-701750-bridge-clock.md); no cadence, full lifecycle or older-build equivalence established.
+- [x] **Linux 3.04 local value-helper branches.** ~~Publish supported retained local conversion/assignment distinctions after overlap review.~~ [Source](../torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) keeps type-specific behavior and general coercion unresolved.
+
+- [x] **Exact Linux 3.04 show-image wrapper constants.** ~~Resolve the retained eight-wrapper mapping after document-only overlap review.~~ [Source](../torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) separates internal constants/container behavior from known command presence and untested rendering.
+
+- [x] **Linux 3.04 native-call evidence boundary.** ~~Review retained callback evidence without redoing native work.~~ [Qualification](../torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) separates static dispatch from unknown argument/results and registry policies.
+
+- [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../workingpapers/windows/v4-import-provenance.md); official package/release provenance remains unresolved.
+
+- [x] **Correct exact build-614 encoder dispatch counts and selected arithmetic observations.** ~~Separate selector/target/default counts from emitted-property and name claims.~~ [Source](../protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin); exact IDs 15/16 conversion order/range and runtime remain unvalidated.
+
+- [x] **Linux 6.01 x86 static program/state increment.** ~~Separate decoded preparation and selected saved-state behavior.~~ [Source](../client-internals/linux-601-x86-program-state.md); full handler recovery and lifecycle remain unresolved.
+
+- [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
 
 - [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.
 

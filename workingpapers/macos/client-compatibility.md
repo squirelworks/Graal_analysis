@@ -4,7 +4,7 @@
 Mach-O header and load commands without executing them.
 The researcher-supplied sanitized record `MAC-V3-ARCHIVE-IDENTITY-20261109`
 separately confirms the v3 executable comparison; the editor verified that
-record's digest, not the original binaries.
+record's owner-held digest, not the original binaries.
 
 - Inputs archived under v3.04 and v3.15r2 labels are PowerPC and share one
   main-executable digest. These labels do not establish two distinct builds.

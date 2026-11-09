@@ -470,9 +470,9 @@ tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	cited	5; 6; 7; E	7	
 torque/304-adventure.md	cited	10	10	§10.1.15 carries the session in one row; mouse, chat, the local-level magic gate, gmap keys and the console methods stay in the note
 torque/304-audio-ui.md	cited	10	10	§10.1.15 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
-torque/304-draw.md	cited	10	10	§10.1.15 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note
+torque/304-draw.md	cited	10	10	§10.1.15 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note; exact304 wrapper constants/key-container limits carried in10.11
 torque/304-net.md	cited	10	10	§10.1.15 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
-torque/304-npcs.md	cited	10	10	§10.1.15 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note
+torque/304-npcs.md	cited	10	10	§10.1.15 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note; selected304 local value-helper branches/limits carried in10.12
 torque/4208-engine.md	cited	10	10	§10.1.7 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
 torque/4208-g3d.md	cited	10	10	§10.1.7 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
 torque/4208-launcher.md	cited	10	10	§10.1.7 carries the 94 slots, when the canvas is drawn and who keeps drawing after a 3D start; the per-job callback behaviour, Flash version test and command line stay in the note
@@ -544,7 +544,7 @@ version-profiles/version-tokens-by-build.tsv	cited	1	1.2
 protocol/v7-graal3d-identity-and-builds.md	cited	1; E		v7 Worlds identity and build catalogue
 protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; other source coverage unchanged
 protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5; E		v7 PLI slots and PLO handlers
-protocol/v7-graal3d-player-properties.md	cited	2.6; E		v7 script-visible property names and PLPROP
+protocol/v7-graal3d-player-properties.md	cited	2.6; E	2.6	Exact build-614 encoder correction carried in 2.6.8; other historical source scope unchanged
 protocol/v7-graal3d-property-streams.md	cited	2.6; E		v7 property stream wire model
 protocol/v7-graal3d-gs2-and-scripts.md	cited	8.3; 8.4; E		v7 GRESCR01 and GS2 VM
 protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package transfer
@@ -602,6 +602,12 @@ npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and pr
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
-workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
 
-client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; exact analysis identities and selected-range verification bookkeeping remain in source.
+workingpapers/windows/v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
+
+client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build stage and saved-state distinctions carried; identity, selected-recovery counts and provenance stay in source note
+
+
+formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
+workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
+client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
