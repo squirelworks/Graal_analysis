@@ -1,0 +1,68 @@
+{
+  "status": "passed-seven-original-client-local-login-matrix",
+  "server_repository": "squirelworks/seihai-gserver-v2",
+  "server_commit": "1b0a6e15641aa542168d5fd0878517d15d990adc",
+  "tested_server_sha256": "97d891fda061811af625c7b2d28b3d55c83c125b1dc23e97f9d6c973041c3743",
+  "clients": [
+    {
+      "build": "3.04-packed-x86",
+      "executable_sha256": "7901897411ffcee7b72806d5d021d0b42f5670739ad2ed97467fc86bc75690d0",
+      "wire_token": "G3D03014",
+      "local_login_accepted": true,
+      "visual": "Final neutral regression black; earlier baseline-server run rendered independent level and avatar. Separate fresh GS1 weapon execution verified."
+    },
+    {
+      "build": "4.04r2-x86",
+      "executable_sha256": "50f2057117cfafd5a1151d6e6fdd1413095fa71445ff274bf923ce7dc04198aa",
+      "wire_token": "G3D19026",
+      "local_login_accepted": true,
+      "visual": "green tiled surface; no avatar visibly established"
+    },
+    {
+      "build": "4.20r6-x86",
+      "executable_sha256": "a994afd24f5ebdcf73647ffe8b6752274a6c874058cb0db05c525bab060224d0",
+      "wire_token": "G3D22126",
+      "local_login_accepted": true,
+      "visual": "black client area; no level rendering established"
+    },
+    {
+      "build": "4.20r8-x86",
+      "executable_sha256": "566cd371464568436265c32976babf2faa95b5fc71cce1f26cbd860b406c2a91",
+      "wire_token": "G3D22126",
+      "local_login_accepted": true,
+      "visual": "black client area; no level rendering established"
+    },
+    {
+      "build": "6.01r1-x86",
+      "executable_sha256": "9a2cd037cd3de2ed1dcfc6e9665f5d11854862ef521397f593fa7dd8ffd64a3d",
+      "wire_token": "G3D0108A",
+      "local_login_accepted": true,
+      "visual": "Black; automatic Login backend accepted, usable Login UI/bootstrap not established."
+    },
+    {
+      "build": "6.01r1-x64",
+      "executable_sha256": "3f4fbb802fe5e99fd235833e45f509257e3930295a96288343f0e6ec08a141c1",
+      "wire_token": "G3D0108A",
+      "local_login_accepted": true,
+      "visual": "Black; automatic Login backend accepted, usable Login UI/bootstrap not established."
+    },
+    {
+      "build": "6.03r7-x64",
+      "executable_sha256": "ceeaefeb2df0668c9de921d4b967c511f85b235b25a18563534eb2f09b619c50",
+      "wire_token": "G3D0511C",
+      "local_login_accepted": true,
+      "visual": "Black; automatic Login backend accepted, usable Login UI/bootstrap not established."
+    }
+  ],
+  "component_validation": {
+    "version_lookup_cases": 14,
+    "codec_assertions": 272
+  },
+  "limits": [
+    "Localhost fixture acceptance is not official-service authentication",
+    "This neutral matrix claims accepted logins only. Separate later 6.03 proxy probes establish bounded GS2 execution and continuation; black visual/bootstrap gaps and full gameplay remain unresolved",
+    "3.04 compressed stepping candidates agree on observed frames; no discriminator claim",
+    "Linux4.20r6/r8 share a wire token but remain separate executable identities",
+    "All selected native exports are complete; full engine/source/language equivalence is not claimed"
+  ]
+}
