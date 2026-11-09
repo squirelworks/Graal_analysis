@@ -284,3 +284,5 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 - `protocol/gs2-client-vm.md`: the bytecode container and opcode checklist a graal-client-repro client and a Seihai script VM can cite. The compiler half is the MPL-2.0 Preagonal trees (already studied in `npc-library/preagonal-gs2.md`). The client half is the 4.2.0.8, 5.0.0.7 and unpacked 6.00 dispatchers.
 - `protocol/gs2-client-only-opcodes.md`: the effect of the opcodes those clients dispatch and the Preagonal compiler does not emit, including the folds.
+
+- [Installed Windows 5.00 queue boundaries](client-internals/windows-500-event-queue.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.

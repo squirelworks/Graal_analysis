@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound installed Windows 5.00 event queue delivery.** ~~Publish the retained static increment.~~ [Source](../client-internals/windows-500-event-queue.md) preserves exact-input provenance and static-derived fixture status.
+- [ ] Validate named/enum gates, non-null argument stringification and runtime queue/service behavior in a positively controlled matching build.
 - [x] **Bound Linux 3.04 GS1 source-weapon events and predicates.** ~~Carry the completed bounded research.~~ [Note](../npc-library/linux-304-gs1-runtime.md); remaining gates retain their own open scope.
 - [x] **Record seven exact Linux client local-login baselines.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-local-login-matrix.md); remaining gates retain their own open scope.
 - [x] **Observe Linux 6.03 network GS2 execution and continuation.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-603-network-gs2.md); remaining gates retain their own open scope.
