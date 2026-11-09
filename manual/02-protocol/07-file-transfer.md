@@ -21,9 +21,11 @@ The request messages are laid out in → §2.4.7 and the replies in → §2.5.7;
 
 ## 2.7.2 The `PLO_FILE` body
 
+The following historical rows describe server version branches; the exact original 2.05r2 receiver differs → §2.7.9 [2.05][bin] (protocol/file-205r2-prefix-lf.md#exact-receiver-boundary).
+
 | Client version (by the server's token table) | Layout behind 100 | Source |
 | --- | --- | --- |
-| below 2.1 (2.05) | `c 102`, `str filename`, then the file bytes; no modtime and no trailing `\n`; the RAWDATA length is 1 + 1 + name + data | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
+| historical server branch below 2.1 | `c 102`, `str filename`, then the file bytes; no modtime and no trailing `\n`; the RAWDATA length is 1 + 1 + name + data | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
 | 2.1 to 2.13 | `c 102`, `i5 modtime`, `str filename`, the bytes, then `\n`, in one piece | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
 | 2.14 and later | as 2.1, split into 32000-byte chunks; a file over 32000 bytes is wrapped in 68 `LARGEFILESTART`, 84 `LARGEFILESIZE` and 69 `LARGEFILEEND` | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
 
@@ -111,3 +113,17 @@ Where a new download is saved, by build:
 | --- | --- | --- |
 | The only `.gupd` file name in the image is `basepackage.gupd`. `package_mainfiles.gupd` is not in the listing. `game_console.log` is a path the client opens, and the log is not in the repository | 6.1.1.3 | [bin] (protocol/v6113-files.md#names-in-the-image) |
 | `onSendUpdatePackage` and `onSendDownloadFile` are present. A numeric request id for `basepackage.gupd` was not recovered | 6.1.1.3 | [bin] (protocol/v6113-files.md#request-ids) |
+
+## 2.7.9 Exact original Windows 2.05r2 receiver
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| counted layout | FILE opcode, five encoded metadata bytes unconditionally, encoded one-byte filename length L, L name bytes, content; for raw count N, content length is N − 7 − L | [2.05][bin] (protocol/file-205r2-prefix-lf.md#exact-receiver-boundary) |
+| LF boundary | collector bypasses normal delimiter subtraction; all N bytes reach FILE copy, including a terminal LF inside N; outside-count bytes are not content | [2.05][bin] (protocol/file-205r2-prefix-lf.md#exact-receiver-boundary) |
+| baseline mismatch | tested server commit 1b0a6e omitted prefix before 2.1, counted an added LF and emitted no empty FILE; local fixes correct those paths without changing the receiver specification | [srv][lab] (protocol/file-205r2-prefix-lf.md#server-comparison-and-controlled-checks) |
+| synthetic checks | two profiles × five fixtures improved 0/10 to 10/10 filename/content checks; not ten original-client runs | [lab] (protocol/file-205r2-prefix-lf.md#server-comparison-and-controlled-checks) |
+| original-client evidence | unchanged 2.05r2 entered local world, requested all fixtures, sent movement properties and saved exact no-LF/one-LF/binary-LF files; two-LF valid-GIF persistence required repeating unchanged server record to already-requested name | [2.05][lab] (protocol/file-205r2-prefix-lf.md#server-comparison-and-controlled-checks) |
+| residuals | initial two-LF caching and empty persistence unresolved; unsolicited alias not cached; byte-copy does not establish general retry/registration/deduplication | [lab] (protocol/file-205r2-prefix-lf.md#server-comparison-and-controlled-checks) |
+| fixture | isolated Wine/display namespaces, loopback only/no routes, unchanged executable and completed cleanup; labeled 2.31 donor resources, not authentic full 2.05 distribution | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
+| startup qualification | only copied world greeting emptied to bypass HTML/Wine stall; milestone 6 and equal level objects; default greeting unchanged; native Windows/cause unproved | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
+| limits | other clients, large-file continuation and malformed inputs remain unqualified; no server patches published in this increment | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |

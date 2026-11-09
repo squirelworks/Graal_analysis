@@ -7,7 +7,7 @@ Sources: the 2.05 command and expression tables (names and argument signatures o
 ## Execution model **[2.05]**
 
 - 2.05 does **not** compile GS1 to bytecode. NPC and weapon scripts arrive as source text (`NPCPROP_SCRIPT`), are parsed into a tree, and are interpreted recursively.
-- Command ids are `600 + table index`. `if` is 605. A condition counts as true when it evaluates to ≥ 1.0.
+- Command ids are `600 + table index`. `if` is 605. In the exact checked 2.05 revision 2 build, IF skips its block when the compiled condition evaluates to zero; ordinary finite nonzero results count as true. Condition-name parsing differs from numeric message expansion, and constant comparisons have a folding defect. See [the original-client follow-up](gs1-condition-truth-205r2.md).
 - Expressions resolve through a second table of functions and variables with numeric ids (100–825, below) and a small operator table.
 - OpenGS1's stack bytecode (Push/Assign/Jmp/…) is an independent reimplementation. Its opcode set is not something 2.05 shares. Keep Seihai's VM, but load scripts from text.
 - Command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move `, …) require an argument. The others are matched as whole words. **[inf]**
@@ -101,18 +101,18 @@ This replaces the "R = literal `real`" reading in `gs1-commands.md`.
 | 100–102 | board / conversion | `board[R]`, `strtofloat(S)`, `timevar` |
 | 200–218 | object counts and globals | `compuscount`, `playerscount`, `bombscount`, `arrowscount`, `itemscount`, `exploscount`, `horsescount`, `npcscount`, `signscount`, `selectedweapon`, `screenwidth`, `screenheight`, `tokenscount`, `paramscount`, `actionplayer`, `weaponscount`, `levelorgx`, `levelorgy` |
 | 400–455 | math, tests, string tests | `random(R,R)`, `sin(R)`, `cos(R)`, `arctan(R)`, `int(R)`, `abs(R)`, `arraylen(R)`, `testcompu(R,R)`, `testplayer(R,R)`, `testbomb(R,R)`, `testitem(R,R)`, `testexplo(R,R)`, `testhorse(R,R)`, `testnpc(R,R)`, `testsign(R,R)`, `tiletype(R,R)`, `onwall(R,R)`, `playersays(S)`, `playersays(R,S)`, `playersays2(S)`, `playersays2(R,S)`, `strequals(S,S)`, `strcontains(S,S)`, `hasweapon(S)`, `onwater(R,R)`, `keydown(R)`, `startswith(S,S)`, `indexof(S,S)`, `strlen(S)`, `onmapx(S)`, `onmapy(S)`, `vecx(R)`, `vecy(R)`, `getz(R,R)` |
-| 600–606 | compus[i].* | 7 members; the 2.22 docs list the same count: x, y, type, dir, headdir, power, mode [doc] |
-| 640–643 | bombs[i].* | 4 members; the 2.22 docs list the same count: x, y, power, time [doc] |
-| 660–666 | arrows[i].* | 7 members; the 2.22 docs list the same count: x, y, dx, dy, dir, type, from [doc] |
-| 680–683 | items[i].* | 4 members; the 2.22 docs list the same count: x, y, type, time [doc] |
-| 700–704 | explos[i].* | 5 members; the 2.22 docs list the same count: x, y, power, time, dir [doc] |
-| 720–726 | horses[i].* | 7 members; the 2.22 docs list the same count: x, y, dir, bushes, bombs, bombpower, type [doc] |
+| 600–606 | compus[i].* | x=600, y=601, type=602, dir=603, headdir=604, power=605, mode=606 |
+| 640–643 | bombs[i].* | x=640, y=641, power=642, time=643 |
+| 660–666 | arrows[i].* | x=660, y=661, dir=662, dx=663, dx=664 (shadowed), type=665, from=666 |
+| 680–683 | items[i].* | x=680, y=681, type=682, time=683 |
+| 700–704 | explos[i].* | x=700, y=701, power=702, time=703, dir=704 |
+| 720–726 | horses[i].* | x=720, y=721, dir=722, bushes=723, bombs=724, bombpower=725, type=726 |
 | 740–758 | this.* / npcs[i].* | `x`, `y`, `width`, `height`, `rupees`, `darts`, `bombs`, `hearts`, `timeout`, `glovepower`, `swordpower`, `shieldpower`, `hurtdx`, `hurtdy`, `id`, `save[2]`, `dir`, `sprite`, `ap` (the same ids reached through `npcs[i].`; `save` takes an index) |
-| 780–781 | signs[i].* | 2 members; the 2.22 docs list the same count: x, y [doc] |
+| 780–781 | signs[i].* | x=780, y=781 |
 | 800–819 | player* / players[i].* | `playerx`, `playery`, `playerrupees`, `playerdarts`, `playerbombs`, `playerhearts`, `playerfullhearts`, `playerdir`, `playerglovepower`, `playerbombpower`, `playershootpower`, `playerswordpower`, `playershieldpower`, `playerheadset`, `playersprite`, `playerid`, `playersaysnumber`, `playermp`, `playerap`, `playerhurtdx` (the same ids reached through `players[i].`) |
 | 820–825 | player* / players[i].* | `playerhurtdy`, `playerfreezetime`, `playerhurtpower`, `playerattachid`, `playerattachtype`, `playerz` (the same ids reached through `players[i].`) |
 
-Member names for `compus[i]`, `bombs[i]`, and similar objects are not in the expression table. Each group's member count matches the 2.22 doc list exactly. The names in the table are the doc names in doc order, and the mapping of names to ids is **[inf]** until the member parser is traced.
+The exact checked 2.05r2 compiled records contain explicit member suffixes. [Fresh table/parser evidence](gs1-object-members-205r2.md#parser-binding) establishes 36 records and 35 distinct family/member spellings. Arrows has two `dx` records: first-match parsing binds 663 and shadows 664's vertical getter; there is no builtin `dy` spelling. These are expression identifiers, not serialized GS1 bytecode or binary addresses. Getter binding does not establish assignment behavior.
 
 ## Built-in flags and events **[2.05]**
 
@@ -142,7 +142,7 @@ Absent in 2.05 but documented for 2.22: `actionleftmouse`/`actionrightmouse`/`ac
 
 `=`, `+=`, `-=`, `*=`, `/=`, `++`, `--`; arithmetic `+ - * / %`, `^` power; comparison `== != < > <= >=`; logic `&& || !`; `in` for ranges and sets (`x in |0,64|`, `2 in {1,2,3}`); `this.` for NPC-local variables; `#` string codes (`#s(var)`, `#v(expr)`, …, 2.x). Control flow: `if`/`else`, `for`, `while`, `break`, `continue`, `function name() {}` + `name();`, `return`, `sleep`, `timeout = n`.
 
-The full `#` string-code set for 2.05 is not yet extracted. **Open.**
+The exact checked 2.05 revision 2 outer expander has 44 selector bytes, or 53 spellings when the C/P families are expanded. This includes preserved display codes and empty-output `#7`, not 53 implemented operations. See [the bounded catalog and original-client controls](gs1-message-codes-205r2.md). Field meanings, helper details and rendering remain partial (E#203); message reads and property setters are separate grammars.
 
 ## Exact-build event parameter follow-up
 

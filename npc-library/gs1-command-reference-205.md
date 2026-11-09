@@ -38,7 +38,7 @@ The four literal signatures for `toinventory`, `puthorse`, `showimg` and `replac
   nesting at **10,000** deep. A `return` (or the end of a function body) with an empty call stack ends the script.
 - Several commands **end the current script run** after they execute: `setlevel`, `setlevel2`, `destroy`, `sleep` (non-zero),
   `toinventory` (offline), `hide` on an NPC that is following the player, and `break` / `continue` outside a loop.
-- String arguments are trimmed and message codes (`#c`, `#v(...)`, ...) are expanded before use, for almost every command.
+- String arguments are trimmed and message codes (`#c`, `#v(...)`, ...) are expanded before use, for almost every command. The [exact 2.05r2 expander follow-up](gs1-message-codes-205r2.md) separates explicit argument recursion from inserted-text rescanning and downstream display handling. Ordinary message mode zero removes `#b`; message reads do not establish property-setter grammar or additional wire color bytes.
 - **Weapon NPCs act as the player.** When the running NPC is one of the player's weapons, commands that spawn things (bombs,
   explosions, horses, projectiles, `showimg` layers, `hitobjects`, `triggeraction`, `reflectarrow`) use the player's level and count
   the player as the source, not the NPC.
@@ -126,7 +126,7 @@ otherwise over both (see udp-p2p.md).
 
 | Op | Command | Args | What 2.05 does |
 |---|---|---|---|
-| 605 | `if` | – | Evaluates the condition; jumps past the block when it is 0. |
+| 605 | `if` | – | Evaluates the compiled condition; jumps past the block when it is 0. Condition-name parsing differs from numeric message expansion; see [the exact-build truth and folding follow-up](gs1-condition-truth-205r2.md). |
 | 634 | `else` | – | Compiled away into a jump. |
 | 660 | `for` | – | Loop; condition checked each pass; stops after 10,000 passes. |
 | 668 | `while` | – | Same loop node as `for`. |
@@ -166,7 +166,7 @@ otherwise over both (see udp-p2p.md).
 | 726 | `seteffect` | R,R,R,R | Global screen tint r, g, b, a (day/night). Online gate applies. |
 | 727 | `setcoloreffect` | R,R,R,R | Per-NPC colour multiply r, g, b, a. Online gate applies. |
 | 728 | `setzoomeffect` | R | Per-NPC zoom factor. Online gate applies. |
-| 745 | `move` | R,R,R,R | Smoothly moves the NPC by dx, dy over *time* seconds with option bits. **[inf: option bits not decoded]** |
+| 745 | `move` | R,R,R,R | Queues relative movement; the [exact 2.05r2 consumer follow-up](gs1-move-205r2.md) defines queue replacement, collision/completion and options 4/8/16/32/64. Scheduler cadence remains unmeasured. **[2.05][bin]** |
 | 653 | `destroy` | – | Removes the NPC from the level (and from the weapon list), sends the deletes online, ends the run. |
 | 652 | `putnpc` | Q,Q,R,R | Offline: creates a new NPC with that image and script file at (x, y) and runs its `playerenters`. Online: asks the server instead. |
 
@@ -293,3 +293,7 @@ These are in the table, so scripts using them compile, but the executor has no h
 - `warp` and `jump` are not GS1 commands in 2.05. Warping is `setlevel` / `setlevel2`, or assigning `playerx` / `playery`.
 - `canwarp`, `canwarp2`, `join`, `setfocus`, `resetfocus`, `unfreezeplayer` compile but do nothing in 2.05.
 - `spyfire` is a game effect with a network packet (PLI 10), not a debug hook.
+
+## Exact-build object reads
+
+The [2.05r2 member-binding follow-up](gs1-object-members-205r2.md) replaces documentation-order inference with explicit compiled suffixes and first-match parser behavior. There are 36 records but 35 distinct family/member spellings: arrows binds its first `dx` and shadows the duplicate vertical getter; no builtin `dy` exists in this exact table. Bounded getter/index controls do not establish assignability, unknown-member fallback or all downstream helper behavior. Numeric IDs are expression identifiers, not serialized bytecode.

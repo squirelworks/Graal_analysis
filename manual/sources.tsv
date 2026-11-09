@@ -585,3 +585,8 @@ client-internals/linux-420r6-clock-property.md	cited	4.1; E	4.1; E	exact-input i
 client-internals/first-graal-death-counter-2026-11-09.md	cited	4.4	4.4	Static counter transition and timing limits carried in 4.4; exact-input identity and validation bookkeeping remain in source note.
 client-internals/first-graal-movement-2026-11-09.md	cited	4.2; E	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
 npc-library/gs1-event-parameters-205r2.md	cited	8.1; 8.2; E	8.1; 8.2; E	Producer, queue, splitter, runtime controls and limits carried; exact-input/evidence bookkeeping stays in source.
+npc-library/gs1-object-members-205r2.md	cited	8.2; E	8.2; E	Bindings, getters, runtime controls and limits carried; exact input and evidence bookkeeping remain in source.
+npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract, runtime qualifications and open helper semantics carried; exact-input and evidence bookkeeping retained in source.
+npc-library/gs1-condition-truth-205r2.md	cited	8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
+protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
+npc-library/gs1-move-205r2.md	cited	8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
