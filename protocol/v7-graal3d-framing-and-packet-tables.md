@@ -42,8 +42,10 @@ Outgoing send:
 - Body must not contain newline (`0x0A`); otherwise abort with that string.
 - Wire form: `(id + 0x20)` + body + `'\n'`.
 - Optional one-byte “compression/extra” nibble inserted after the id when a sticky flag is set.
-- Special internal ids **`0x5D`** and **`0xA3`**: take body length, encode length as **3-byte GCHAR** (`n + 0x20` with 7-bit chunks), then recursively send as id **`0x32`**.
+- For special internal IDs **93** and **163**, the inspected build-614 path adds two to the body length and applies a signed upper-cap comparison at **3,670,015**. It emits the resulting length using the inspected high/middle/low seven-bit-group operations with the GCHAR bias, then recursively calls the sender with internal ID **50**. This is static instruction evidence; runtime and extreme-size behavior have not been exercised. It does not independently validate production wire-ID semantics. **[bin]**
 - Flush when outbound buffer ≥ `0x1000`.
+
+**2026-11-09 exact-input correction [bin]:** `V7-008-SANITIZED-20261109` identifies the sanitized correction packet (SHA-256 `397595c9fd862b04318a8a53529637d0dd4fa5162258d78760f86cc3bcf37d34`). The inspected input is the supplied Windows amd64 WorldsSetup64-614 Themida-unpacked Graal3DEngine plugin, 26,371,072 bytes, SHA-256 `daa141bbd306cc6c588ebe6d8823fd04497ca4150837a59b49e8097f27b776c3`. The researcher reports 21 retained exact-byte assertions with PE mapping and manual instruction interpretation. The publisher checked the structured retained report and sanitized packet, not a new native run or independent original-to-dump derivation. That derivation remains unverified. This corrects the earlier body-length-only sentence; it establishes no broader helper, receive, registry or runtime contract.
 
 Incoming receive:
 

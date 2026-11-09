@@ -542,9 +542,9 @@ version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning re
 version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
 protocol/v7-graal3d-identity-and-builds.md	cited	1; E		v7 Worlds identity and build catalogue
-protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E		v7 framing paths and remapper
+protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; other source coverage unchanged
 protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5; E		v7 PLI slots and PLO handlers
-protocol/v7-graal3d-player-properties.md	cited	2.6; E		v7 script-visible property names and PLPROP
+protocol/v7-graal3d-player-properties.md	cited	2.6; E	2.6	Exact build-614 encoder correction carried in 2.6.8; other historical source scope unchanged
 protocol/v7-graal3d-property-streams.md	cited	2.6; E		v7 property stream wire model
 protocol/v7-graal3d-gs2-and-scripts.md	cited	8.3; 8.4; E		v7 GRESCR01 and GS2 VM
 protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package transfer
@@ -586,7 +586,7 @@ client-internals/first-graal-death-counter-2026-11-09.md	cited	4.4	4.4	Static co
 client-internals/first-graal-movement-2026-11-09.md	cited	4.2; E	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
 npc-library/gs1-event-parameters-205r2.md	cited	8.1; 8.2; E	8.1; 8.2; E	Producer, queue, splitter, runtime controls and limits carried; exact-input/evidence bookkeeping stays in source.
 npc-library/gs1-object-members-205r2.md	cited	8.2; E	8.2; E	Bindings, getters, runtime controls and limits carried; exact input and evidence bookkeeping remain in source.
-npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract, runtime qualifications and open helper semantics carried; exact-input and evidence bookkeeping retained in source.
+npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract and bounded #6 association checkpoint carried; runtime qualifications and other open helper semantics retained; exact input/evidence bookkeeping remains in source.
 npc-library/gs1-condition-truth-205r2.md	cited	8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
 npc-library/gs1-move-205r2.md	cited	8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
@@ -604,3 +604,9 @@ protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and prove
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 
 workingpapers/windows/v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
+
+client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build stage and saved-state distinctions carried; identity, selected-recovery counts and provenance stay in source note
+
+
+formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
+workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
