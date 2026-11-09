@@ -1,5 +1,7 @@
 # Next work (ordered)
 
+- [x] **Qualify the supplied 701750 bridge and clock checkpoint.** [Note](../client-internals/v7-701750-bridge-clock.md) and manual §4.1.7 record the bounded static result. The ten retained function-validation records include the short getter; two managed-edge records are counted separately. Cadence, wrap/catch-up, collection/lifecycle semantics and older-build equivalence remain unresolved.
+
 One change per branch and PR. Verify `origin/main` and the open PR list before
 starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" or
 that need missing Squirrel-only files; take the next task. Binding rules live in

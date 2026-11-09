@@ -610,3 +610,4 @@ client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build 
 
 formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
 workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
+client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.

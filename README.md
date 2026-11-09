@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Supplied 701750 managed/native bridge and clock checkpoint](client-internals/v7-701750-bridge-clock.md) — selected static edges, clock/store and guarded dispatch; no cadence, lifecycle or cross-build equivalence claim.
+
 - [Linux 3.04 local value-helper branches](torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) — retained static numeric/string fallback and assignment distinctions, not complete coercion or callback results.
 
 - [Exact Linux 3.04 show-image wrapper constants](torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) — retained static eight-command mode/flag map and bounded integer-key container distinction; no new rendering result.
