@@ -637,3 +637,9 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 [bin] Selected Linux 3.04 static paths establish bit-preserving immediate load, one-entry discard, consuming zero/nonzero conditional branches, absolute code-word targets, signed decimal conversion and return of the current string position. The analysis ELF and original packed executable retain distinct identities. [bin] (torque/linux-304-seven-operation-contract.md).
 
 [inf] Seven independently authored acceptance vectors distinguish formatting and branch/stack behavior. They have not been executed in the original client; fresh invocation state, errors, string lifetime and complete VM equivalence remain unproved. The implementation comparison is pinned to its inspected snapshot. No runtime or server was started for this publication. [inf] (torque/linux-304-seven-operation-contract.md).
+
+## 10.10 Linux 4.20 native-object registration boundary
+
+[bin] In the selected Linux 4.20r6 paths, constructor stores and runtime type metadata identify concrete SimGroup and GameConnection objects, each containing a Graal scripting-variable base subobject. The creation callback registers those base-subobject pointers on the scripting side, exposing a concrete static native-object bridge. Names alone are not the identification evidence. [bin] (client-internals/linux-420-native-object-bridge.md).
+
+[bin] A tail-call forwarding path does not establish an ordinary C callback ABI; an optional fast path remains unresolved. The separate r8 review shows that equal embedded payloads do not imply equal execution-state layouts. Initializer execution, live TorqueScript, GUI/input and a working 3D session remain unobserved in this scope. No runtime or server was started for publication preparation. [bin] (client-internals/linux-420-native-object-bridge.md).

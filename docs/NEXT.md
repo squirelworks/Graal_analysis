@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
+- [ ] Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session.
 - [x] **Linux 3.04 selected Torque contract.** ~~Document the seven-operation static subset.~~ [Contract](../torque/linux-304-seven-operation-contract.md) preserves identity and runtime limits.
 - [ ] Validate independently authored Torque vectors on the exact original input; this note supplies no native execution results.
 - [x] **Publish the Linux network/bootstrap evidence ledger.** ~~Convert the sanitized cohort summaries into a versioned coverage reference.~~ [Gate guide and data](../version-profiles/linux-network-bootstrap-evidence.md) preserve exact inputs, source lineage and distinct unknowns.
