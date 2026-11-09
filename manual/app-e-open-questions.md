@@ -146,10 +146,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | in 2.05 a condition counts as true when it evaluates to 1.0 or more | [2.05] (npc-library/gs1-reference-205.md#execution-model-205) |
-| Claim B | `if` evaluates its expression and jumps past its block when it is 0 | [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
-| Open | how 2.05 treats a condition between 0 and 1, or a negative one; the claims agree only for 0 and for values of 1 or more | [inf] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
-| Settles it | reading the 2.05 `if` executor's comparison, or running `if (0.5)` and `if (-1)` in a lab | [inf] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
+| Exact-build resolution | checked original Windows 2.05 revision 2 IF uses zero/nonzero for ordinary finite computed results; computed positive and negative halves are true, computed zero false | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
+| Parsing qualification | bare `0.5` is false despite numeric display 0.5; `created` is true despite numeric display zero. Condition-name resolution and numeric message expansion are separate | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
+| Separate defect | constant numeric comparisons fold to zero in this build, while dynamic comparison controls work; mechanism and observations carried in §8.1.10 | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#constant-comparison-folding) |
+| Open | other builds, nonfinite/malformed values, complete aliases/precedence and named-flag collisions | [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
 
 ### E#201 Four GS1 argument signatures in 2.05
 
@@ -176,7 +176,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Partial resolution | exact original 2.05r2 outer dispatch has 44 selector bytes / 53 family-expanded spellings, including preserved display codes and empty-output #7; supported contract carried in §8.1.10 | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage) |
+| Partial resolution | exact original 2.05r2 outer dispatch has 44 selector bytes / 53 family-expanded spellings, including preserved display codes and empty-output #7; supported contract carried in §8.1.11 | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage) |
 | Runtime controls | thirty qualified outputs from three usable offline scenes support bounded expansion behavior; fourth scene diagnostic only | [lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | Open | #6/#a/#E/#L identities, #p producer, quoted scanners, exact numeric formatting and downstream renderer semantics; other builds and live remote selectors unqualified | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | Boundary | accepted C5 storage read does not prove a sixth clothing color or alter the five-byte wire color property; property setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
@@ -202,9 +202,9 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | the documentation gives cachetype 0–2, +4 block check, +8 event when done, +16 apply direction | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
-| Open | how 2.05 handles each bit; the 2.05 reading did not decode them | [inf] (npc-library/gs1-command-reference-205.md#npc-appearance-and-behaviour) |
-| Settles it | reading the 2.05 `move` executor | [inf] (npc-library/gs1-command-reference-205.md#npc-appearance-and-behaviour) |
+| Established | the exact Windows 2.05r2 queued consumer now supplies static replacement, progression, collision and option behavior → §8.2.9 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
+| Open | caller frequency/catch-up, complete collision eligibility, unidentified object collection, later event execution, exceptional numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| Settles it | targeted exact-input caller/state tracing and controlled runtime observations for these residuals | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ### E#207 GS2 language and bytecode format
 

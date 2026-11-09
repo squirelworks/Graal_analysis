@@ -26,9 +26,11 @@ Sources: GServer-v2 `TPlayer::sendFile`, `msgPLI_WANTFILE`, `msgPLI_UPDATEFILE` 
 
 ### PLO_FILE body **[srv]**
 
+These historical rows describe the server branch, not the original 2.05r2 receiver. That exact receiver unconditionally reads five metadata bytes and preserves every byte inside its raw count; see [the receiver follow-up](file-205r2-prefix-lf.md). **[2.05][bin]**
+
 | Client | Layout |
 |--------|--------|
-| < 2.1 (**2.05**) | `c(102)` `str filename` + file bytes. No modtime, no trailing `\n`. RAWDATA length = 1 + 1 + name + data |
+| historical server branch for < 2.1 | `c(102)` `str filename` + file bytes. No modtime, no trailing `\n`. RAWDATA length = 1 + 1 + name + data |
 | 2.1 – 2.13 | `c(102)` `i5 modtime` `str filename` + bytes + `\n`, all in one piece |
 | ≥ 2.14 | as above, split into 32000-byte chunks; files > 32000 bytes are wrapped in LARGEFILESTART / LARGEFILESIZE / LARGEFILEEND |
 
@@ -91,7 +93,7 @@ Read in gs2lib `5c36ab8` (`src/IUtil.cpp` `clientVersions[]`, `include/IUtil.h` 
 
 1. A level arrives that references `head25.png`, `sword1.png`, or `walk.gani`.
 2. The client checks its local cache. For a cached file it sends `UPDATEFILE(modtime, name)`, otherwise `WANTFILE(name)`.
-3. The server replies `RAWDATA(len)` + `FILE(name, bytes)`, or `FILESENDFAILED(name)`, which for 2.05 means "missing or unchanged".
+3. The historical server reply is `RAWDATA(len)` + `FILE(name, bytes)`, or `FILESENDFAILED(name)`, which for 2.05 means "missing or unchanged". This server-derived sequence does not establish the exact original 2.05r2 FILE layout: that receiver requires five metadata bytes before the name, as established by [the later static/lab follow-up](file-205r2-prefix-lf.md). **[2.05][bin][lab]**
 
 The 2026-10-04 clear sessions show this pattern. Server frames there contain `sword1.png`, `head25.png`, `walk.gani`, and `steps.wav` pushes. **[cap]**
 
@@ -102,3 +104,7 @@ RemoteControl's folder change (0x5a wire) and upload ids are in `tools/remotecon
 ## Open
 - How 2.05 picks its local cache folder, and whether it ever sends `UPDATEFILE` for level files or only for images.
 - The 2.05 handlers for 30 and 45 were found in the jump table but have not been traced.
+
+## Original 2.05r2 counted-file residuals
+
+The [exact-input follow-up](file-205r2-prefix-lf.md) corrects prefix and LF-copy claims while distinguishing synthetic checks from original-client runs. Initial two-LF caching, empty persistence and general retry/registration rules remain open; the successful two-LF control required repeat delivery. **[2.05][bin][lab]**

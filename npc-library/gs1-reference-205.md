@@ -7,7 +7,7 @@ Sources: the 2.05 command and expression tables (names and argument signatures o
 ## Execution model **[2.05]**
 
 - 2.05 does **not** compile GS1 to bytecode. NPC and weapon scripts arrive as source text (`NPCPROP_SCRIPT`), are parsed into a tree, and are interpreted recursively.
-- Command ids are `600 + table index`. `if` is 605. A condition counts as true when it evaluates to ≥ 1.0.
+- Command ids are `600 + table index`. `if` is 605. In the exact checked 2.05 revision 2 build, IF skips its block when the compiled condition evaluates to zero; ordinary finite nonzero results count as true. Condition-name parsing differs from numeric message expansion, and constant comparisons have a folding defect. See [the original-client follow-up](gs1-condition-truth-205r2.md).
 - Expressions resolve through a second table of functions and variables with numeric ids (100–825, below) and a small operator table.
 - OpenGS1's stack bytecode (Push/Assign/Jmp/…) is an independent reimplementation. Its opcode set is not something 2.05 shares. Keep Seihai's VM, but load scripts from text.
 - Command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move `, …) require an argument. The others are matched as whole words. **[inf]**

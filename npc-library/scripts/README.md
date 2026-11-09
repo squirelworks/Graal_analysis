@@ -15,7 +15,7 @@ The target is GS1 as the **2.05 rev 2** client parses it: the 161-command table 
 - commands that 2.05 parses but ignores (§8.2.4.9);
 - commands that only the 2.22 documentation has (§8.2.7.3);
 - `#` codes beyond `#c`, `#s(...)`, `#v(...)` and mode-dependent `#b` (outer membership is cataloged but helper/renderer semantics remain partial, App. E#203; ordinary message mode zero removes `#b` in the checked original 2.05r2);
-- conditions that can be between 0 and 1 (App. E#200), so every test is a comparison or a flag.
+- unqualified condition parsing across builds (App. E#200). The exact 2.05r2 follow-up distinguishes computed nonzero truth from bare named flags and identifies a constant-comparison folding defect; comparisons alone are not a universal workaround.
 
 They also avoid the commands that the 2.22 documentation drops (the † rows of §8.2.4), so they should run unchanged on the later 2.x clients up to 2.22. That is an inference from the tables; no lab run has confirmed it yet. Clients from 2.3 onwards run NPCs on the NPC server and 4.x onwards use GS2 (§8.3), so these scripts are for classic offline and 2.x-era servers.
 

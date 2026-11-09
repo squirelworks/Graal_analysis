@@ -82,3 +82,5 @@ Encryption generations are defined in → §2.2.1; builds per generation are in 
 | --- | --- | --- |
 | Real clients compress at the best zlib level: the stream starts `78 DA` | 2.05, 2.17.1, 2.22, 2.31 | [cap] (protocol/login-frames-by-version-2026-10-25.md#one-byte-level-difference-that-applies-to-every-seihai-frame) |
 | A listserver accepts gen-5 frames that start `78 9C` (default level); whether a classic frame with that header is accepted is unmeasured | public listserver | [cap] (protocol/login-frames-by-version-2026-10-25.md#one-byte-level-difference-that-applies-to-every-seihai-frame) |
+
+For the exact original 2.05r2 FILE path, the counted collector preserves every announced raw byte, including a final LF within the count; the layout and persistence qualifications are in → §2.7.9 [2.05][bin] (protocol/file-205r2-prefix-lf.md#exact-receiver-boundary).
