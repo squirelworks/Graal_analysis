@@ -17,3 +17,5 @@ and bounded entry-level debugger checks. It does not establish rendered gameplay
 The owner's full macOS workingpapers have separate Tiger and Lion subfolders,
 including the original logs, inventories and lab helpers. Those raw records
 remain outside this public repository.
+
+- [PowerPC receive framing and partial-group advancement](ppc-receive-framing.md): bounded static findings; native runtime control remains pending.

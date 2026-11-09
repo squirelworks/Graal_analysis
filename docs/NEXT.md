@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.
+- [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
 - [ ] Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session.
 - [x] **Linux 3.04 selected Torque contract.** ~~Document the seven-operation static subset.~~ [Contract](../torque/linux-304-seven-operation-contract.md) preserves identity and runtime limits.
