@@ -544,7 +544,7 @@ version-profiles/version-tokens-by-build.tsv	cited	1	1.2
 protocol/v7-graal3d-identity-and-builds.md	cited	1; E		v7 Worlds identity and build catalogue
 protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; other source coverage unchanged
 protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5; E		v7 PLI slots and PLO handlers
-protocol/v7-graal3d-player-properties.md	cited	2.6; E		v7 script-visible property names and PLPROP
+protocol/v7-graal3d-player-properties.md	cited	2.6; E	2.6	Exact build-614 encoder correction carried in 2.6.8; other historical source scope unchanged
 protocol/v7-graal3d-property-streams.md	cited	2.6; E		v7 property stream wire model
 protocol/v7-graal3d-gs2-and-scripts.md	cited	8.3; 8.4; E		v7 GRESCR01 and GS2 VM
 protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package transfer
