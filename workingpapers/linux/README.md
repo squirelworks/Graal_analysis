@@ -83,4 +83,4 @@ The [Linux 6.01 x86 program/state note](../../client-internals/linux-601-x86-pro
 
 ## Imported-document provenance
 
-The [imported Linux notes review](imported-provenance-and-gaps.md) preserves scoped third-party recovery leads and duplicate-document observations; exact document hashes and private source identities remain owner-held. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.
+The [imported Linux notes review](imported-provenance-and-gaps.md) preserves scoped third-party recovery leads and duplicate-document observations; exact document hashes and private source identities remain owner-held. Imported extraction claims and binary identities remain unverified; this is document-provenance context, not new scripting, cache or runtime evidence.

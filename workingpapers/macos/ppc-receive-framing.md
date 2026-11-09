@@ -6,15 +6,14 @@ receiver contract, not a live traffic result or a send-path specification.
 
 ## Exact input scope
 
-The archive groups and owner-held main-executable identities are:
+Owner-held hash comparisons report these main-executable identity groups:
 
-- Shared v3: `owner-held SHA-256 (not published)`.
-- Label 4.04r2: `owner-held SHA-256 (not published)`.
-- Label 4.20r6: `owner-held SHA-256 (not published)`.
-- Shared v5, including a copy labelled 5.12:
-  `owner-held SHA-256 (not published)`.
+- The v3-labelled inputs share matching executable bytes.
+- The v4.04r2 and v4.20r6 inputs have distinct identities.
+- The v5-labelled inputs, including one labelled 5.12, share matching executable bytes.
 
-Matching executable bytes do not authenticate release labels or whole bundles.
+Exact digest values remain owner-held. Matching executable bytes do not
+authenticate release labels or whole bundles.
 The findings below were obtained for each input, rather than transferred from
 another platform by analogy.
 
