@@ -143,3 +143,7 @@ Absent in 2.05 but documented for 2.22: `actionleftmouse`/`actionrightmouse`/`ac
 `=`, `+=`, `-=`, `*=`, `/=`, `++`, `--`; arithmetic `+ - * / %`, `^` power; comparison `== != < > <= >=`; logic `&& || !`; `in` for ranges and sets (`x in |0,64|`, `2 in {1,2,3}`); `this.` for NPC-local variables; `#` string codes (`#s(var)`, `#v(expr)`, …, 2.x). Control flow: `if`/`else`, `for`, `while`, `break`, `continue`, `function name() {}` + `name();`, `return`, `sleep`, `timeout = n`.
 
 The full `#` string-code set for 2.05 is not yet extracted. **Open.**
+
+## Exact-build event parameter follow-up
+
+[Producer/queue evidence](gs1-event-parameters-205r2.md) links `#p` and `paramscount` to dispatch's comma-split shared list, separate from `#t`/tokenize. `callnpc` and `callweapon` queue event names with empty parameter text in the checked 2.05r2; documentation about comma-suffix delivery does not describe this path. Broader message fields, scheduling and nested-context semantics remain partial.

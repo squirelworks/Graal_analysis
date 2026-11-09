@@ -101,8 +101,8 @@ How an event reaches another script:
 
 | Mechanism | Rule | Source |
 | --- | --- | --- |
-| `callnpc i, event` | runs NPC *i*'s script with the given event flag set; the documentation says parameters after the event arrive as `#p(n)` | [2.05][doc] (npc-library/gs1-command-reference-205.md#control-flow) |
-| `callweapon i, event` | moves weapon *i* to the player's centre, then runs its script with the event flag set | [2.05] (npc-library/gs1-command-reference-205.md#control-flow) |
+| `callnpc i, event` | exact 2.05r2 queues the expanded event name with empty parameter text; comma suffixes are not split into `#p` values | [bin][lab] (npc-library/gs1-event-parameters-205r2.md#commands-and-local-delivery) |
+| `callweapon i, event` | moves weapon *i* to the player's centre, then queues its event name with empty parameters; static-only in this follow-up | [bin] (npc-library/gs1-event-parameters-205r2.md#commands-and-local-delivery) |
 | `triggeraction x, y, action, params` | fires `action` with its parameters at the object on (x, y) locally, and sends it online (→ §8.2.3) | [2.05] (npc-library/gs1-command-reference-205.md#control-flow) |
 | `triggeraction 0,0,clientside,…` | from 2.21, reaches a weapon's client-side part | [doc] (client-internals/feature-timeline.md) |
 
@@ -181,3 +181,19 @@ The archived catalogue classifies about 1,519 documented scripts [doc] (npc-libr
 | HUD / stats overlay | 20 | [doc] (npc-library/archival-scripting-notes.md#classification-summary-from-ash) |
 
 The commands most used in the level scrape are `hide` and `show` (in most `playertouchsme` scripts), then the level-change commands, `hurt`, `say`, and `set` / `unset` [file] (npc-library/gs1-commands.md#offline-wiring-priority).
+
+## 8.1.10 Exact 2.05r2 event parameters
+
+Event dispatch clears and fills the shared list read by `#p(index)`/`paramscount` from an actor's pending parameter text, using a literal comma separator. Numeric indices are expanded/evaluated/converted and bounds-checked; negative/out-of-range yields empty. This list is separate from the tokenize/tokenize2 list used by `#t`/`tokenscount` [bin] (npc-library/gs1-event-parameters-205r2.md#producer-and-consumer-linkage).
+
+An actor has multiple pending event names but one parameter-text field. Each accepted distinct event adds its name and replaces that field; duplicate pending names are rejected without changing it. Any pending action-prefixed name rejects another action-prefixed request. Newly accepted actions also record source context; exact name-case rules remain untraced. Thus later accepted calls can overwrite earlier pending parameters, depending on batching; rejected requests preserve them [bin] (npc-library/gs1-event-parameters-205r2.md#queue-ownership-and-overwrite-rules).
+
+`callnpc` resolves its caller-relative selector; `callweapon` resolves a zero-based weapon index and centers its actor on the player. Both queue expanded event names through an empty-parameter wrapper, rather than executing receivers synchronously or splitting comma suffixes into #p. Local `triggeraction` supplies separate parameter text, prefixes the action name and checks eligible receiver bodies; weapon delivery has an additional local-player proximity/source gate. Connected sending is separate from this offline chain [bin] (npc-library/gs1-event-parameters-205r2.md#commands-and-local-delivery).
+
+The byte splitter ends unquoted tokens at the first comma. A quote at the start removes that quote and takes text through the next quote, retaining internal commas. Tokens and remainders trim end bytes below33. Unquoted empty fields and trailing commas are skipped; quoted empty remains. Missing closing quote consumes the rest; there is no escape/backslash-aware quote search. Text after a closing quote need not start with comma. These mechanics are separate from script-level construction/quoting [bin] (npc-library/gs1-event-parameters-205r2.md#splitting-grammar).
+
+A nonnull player context rebuilds the shared list at dispatch entry; null-player early exit does not. Conditional normal cleanup clears pending actor fields but not the shared list, which may retain the current/last context until another dispatch. The nested wrapper saves/restores actor fields without a visible corresponding shared-list snapshot; this does not establish complete reentrant semantics or immutable per-event payloads. The cleanup condition's global meaning remains open [bin] (npc-library/gs1-event-parameters-205r2.md#lifetime-and-nested-context).
+
+Four original-client offline runs provide ten qualified result groups. Local alpha,beta delivery gives count2; unquoted empties/trailing comma are skipped, quoted empty retained, quoted beta,gamma stays one entry, and a mid-token quote does not protect its comma. A queued action followed by a distinct callnpc probe produces both handler markers with count0; two rejected-action controls retain the first value. A saved pre-sleep count2/alpha/beta resumes as count0/empty after requested sleep0.2, without isolating cleanup versus later overwrite or measuring elapsed timing. Long labels use a readable repeat; ordinary-empty uses the earlier clear scene, with no obscured label counted empty [lab] (npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls).
+
+Runs used unchanged original Windows2.05r2 under Wine/private displays and isolated namespaces, no server, owned levels and explicit 2.31 donor assets; all supervisors exited zero and cleanup completed. Evidence is researcher supplied, using selected fresh instructions and recovered matching bodies; no live AST/pending-field snapshots. Callweapon remains static-only. Network acceptance, every event/source category, full nested-context restoration, case/escaping, precise scheduling and other profiles remain open. Only the #p producer gap is closed; broader E#203 field/scanner/formatter/renderer questions remain [bin][lab] (npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls).

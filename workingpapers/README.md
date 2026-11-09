@@ -11,6 +11,7 @@ or platform has been run successfully.
   3D provenance, startup capture and controlled offline transition.
 - [Linux](linux/README.md): completed engine teardown, function-recovery coverage,
   scripting catalogs and bounded runtime observations.
+- [Exact 2.05r2 parameter producer](../npc-library/gs1-event-parameters-205r2.md): bounded queue/splitter chain and offline controls.
 - [Evidence sources](sources.tsv): stable source identifiers, original project
   file locations and SHA-256 digests for retrieval from the owner's project files.
 - [Handling and handoff](handling.md): source boundaries and requirements for later agents.
