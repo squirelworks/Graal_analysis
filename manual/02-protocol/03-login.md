@@ -271,3 +271,7 @@ The bytes a public 5.x or 6.x `Login` server sends are unobserved (→ App. E#3)
 | 6.037 stores `g3d0311c`, upper-cases it, and sends it as id 5 on the generation-5 framer. 6.1.1.3 has no `G3D` or `GNP` string | 6.037, 6.1.1.3 | [bin] (protocol/v6037-hello-diff.md#login-token) |
 | 6.1.1.3 adds `setprotocol`, `sendraw` and `senddata`. Those names are absent from 6.037 | 6.1.1.3 | [bin] (protocol/v6037-hello-diff.md#framing) |
 | 6.1.1.3 names `tclient_setplayerprops`, `tclient_setotherplayerprops`, `tclient_setnpcprops` and `tclient_setbaddyprops`. 6.037 has none of those names. The property-field bytes were not compared | 6.037, 6.1.1.3 | [bin] (protocol/v6037-hello-diff.md#property-streams) |
+
+## 2.3.8 Record seven exact Linux client local-login baselines
+
+[lab][cap] Seven unique original Linux executable identities reach accepted local logins on one pinned patched lab server. Exact tokens preserve shared4.20 revision and6.01 architecture pairs without collapsing their executable identities. Visual results range from a tiled surface to black windows; acceptance is not gameplay, official authentication or a proven cipher-step discriminator. [lab][cap] (protocol/linux-local-login-matrix.md).
