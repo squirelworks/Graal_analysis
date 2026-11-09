@@ -79,3 +79,7 @@ Raw code, addresses and debugger text remain in owner-held workingpapers.
 Follow [AGENTS.md](../../AGENTS.md): research agents publish reviewed behaviour
 notes here. Implementation repositories may link here and must use their own
 independent specifications and tests.
+
+## Imported-document provenance
+
+The [imported Linux notes review](imported-provenance-and-gaps.md) preserves reported damaged-archive and packaging leads, independently checked document hashes and duplicate-log identity. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.
