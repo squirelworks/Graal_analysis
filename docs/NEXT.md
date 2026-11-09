@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
+
 - [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.
 
 - [x] **Identify the exact 2.05r2 `#6` association.** ~~Corroborate selected actor carried-NPC image and bounded producer/consumer paths.~~ [Checkpoint](../npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint); full eligibility, selectors, receiver identity, lifetime and runtime remain open.
