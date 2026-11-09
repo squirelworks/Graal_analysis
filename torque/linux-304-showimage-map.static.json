@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "classification": "retained-static-wrapper-map",
+  "original_client_executed_for_map": false,
+  "analysis_input_sha256": "6e9e35a3ef1320e9705db382ea3184cec07cfce5cac9fb2a550d79fe41931e86",
+  "scope": "Linux3.04 fixed/obsolete identical x86 analysis input; constants passed into shared Graal show-image-family helper",
+  "mappings": [
+    {
+      "command": "showimg",
+      "mode": 0,
+      "flag": 0
+    },
+    {
+      "command": "showimg2",
+      "mode": 0,
+      "flag": 1
+    },
+    {
+      "command": "showani",
+      "mode": 4,
+      "flag": 0
+    },
+    {
+      "command": "showani2",
+      "mode": 4,
+      "flag": 1
+    },
+    {
+      "command": "showpoly",
+      "mode": 3,
+      "flag": 0
+    },
+    {
+      "command": "showpoly2",
+      "mode": 3,
+      "flag": 1
+    },
+    {
+      "command": "showtext",
+      "mode": 2,
+      "flag": 0
+    },
+    {
+      "command": "showtext2",
+      "mode": 2,
+      "flag": 1
+    }
+  ],
+  "source_finding": "V3-GRAAL-01 in retained graal-findings.json",
+  "limits": [
+    "No rendered-result oracle",
+    "Mode1 unresolved",
+    "Flag semantic meaning not assigned here",
+    "Signature-letter grammar unresolved",
+    "Not Torque callback ABI or namespace duplicate policy",
+    "No cross-version or modern GS2 transfer"
+  ]
+}

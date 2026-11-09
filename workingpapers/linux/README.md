@@ -34,7 +34,7 @@ in visible infrastructure; marker absence cannot prove removal of all inherited
 code. Native class candidates and published scripting type hierarchies are
 separate evidence classes, not interchangeable object layouts.
 
-`[bin]` Sources `LINUX-CODE` and `LINUX-VALIDATION` index 289 selected recovered
+`[bin]` Sources `LINUX-CODE` and `LINUX-VALIDATION` index the initial 289 selected recovered
 function dossiers and full per-build function inventories. Source `LINUX-API`
 verifies six complete client-published catalogs containing globals, properties
 and functions. The two 6.01 catalogs are byte-identical. Catalog differences
@@ -79,6 +79,10 @@ Raw code, addresses and debugger text remain in owner-held workingpapers.
 Follow [AGENTS.md](../../AGENTS.md): research agents publish reviewed behaviour
 notes here. Implementation repositories may link here and must use their own
 independent specifications and tests.
+
+## Later exact-build selected review
+
+The [Linux 6.01 x86 program/state note](../../client-internals/linux-601-x86-program-state.md) records a later host-verified pass of 299 selected C exports and 20 reviewed artifacts. Those figures describe a different acquisition/review stage from the initial dossier inventory above. They must not be added as disjoint functions or treated as complete original-source or opcode recovery. Its static findings and unresolved handler/lifecycle gates remain explicitly qualified.
 
 ## Imported-document provenance
 

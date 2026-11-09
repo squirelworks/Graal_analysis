@@ -625,6 +625,8 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 [cap] In another original-input launch, the compiled reader returns true for `common/main.cs`: post-read state has 474 code words and 39 line pairs, matching the packaged version-33, 1,903-byte compiled file. The boolean is its low return byte, not unspecified upper bits. Packaged-file identity is retained; runtime memory-payload hashing and instruction execution are unmeasured. Termination and cleanup follow the reader return. No server, offline game or Windows E#503 resolution is claimed. [cap] (client-internals/linux-304-startup-reader.md)
 
+[cap] A separate later unchanged-packed-input probe follows the same program object in one thread from compiled reading through first code-word fetch to native handler entry; next index is one. Of 474 words, 401 nonrelocation positions match and 73 relocation positions are excluded. Termination occurs at handler entry: no handler/script completion or gameplay is proved. Earlier reader-only and unpacked-startup failures retain their own stopping points. Server/commit: none; observations and original-carrier audit remain researcher-supplied. [cap] (client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint)
+
 ## 10.8 Bound Linux packaged Torque streams and resource comparisons
 
 [bin] Each duplicate 3.04 label has the same 39 version-33 streams, 48,310 numeric words and 733 line pairs. Independent serialization reproduces every stream byte-for-byte. Numeric line-pair meanings remain unassigned; out-of-range identifier-pool selections remain flagged, separately from the reader's empty-string fallback. [bin] (formats/linux-torque-resource-scope.md)
@@ -638,11 +640,26 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 [inf] Seven independently authored acceptance vectors distinguish formatting and branch/stack behavior. They have not been executed in the original client; fresh invocation state, errors, string lifetime and complete VM equivalence remain unproved. The implementation comparison is pinned to its inspected snapshot. No runtime or server was started for this publication. [inf] (torque/linux-304-seven-operation-contract.md).
 
+### Native-call evidence boundary
+
+[bin] A retained exact-input Linux 3.04 static review distinguishes script-defined recursive entry from registered native callback dispatch with argument-count checks; a selected resolved-call path can rewrite its word or operand to a cached form. Some registry helpers remain outside the selected export. This is static path evidence, not callback execution or complete lookup/caching policy. [bin] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
+
+[inf] Published inclusive command/method counts do not establish argument representation or callback ABI. The seven-operation executor return does not establish native callback result conversion or lifetime. Case/namespace precedence, duplicates, coercions, arity failures, cache invalidation and echo behavior remain unqualified; independent API policy tests are not original-client oracles. No new native inspection or runtime work was done for publication. [inf] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
+
+
 ## 10.10 Linux 4.20 native-object registration boundary
 
 [bin] In the selected Linux 4.20r6 paths, constructor stores and runtime type metadata identify concrete SimGroup and GameConnection objects, each containing a Graal scripting-variable base subobject. The creation callback registers those base-subobject pointers on the scripting side, exposing a concrete static native-object bridge. Names alone are not the identification evidence. [bin] (client-internals/linux-420-native-object-bridge.md).
 
 [bin] A tail-call forwarding path does not establish an ordinary C callback ABI; an optional fast path remains unresolved. The separate r8 review shows that equal embedded payloads do not imply equal execution-state layouts. Initializer execution, live TorqueScript, GUI/input and a working 3D session remain unobserved in this scope. No runtime or server was started for publication preparation. [bin] (client-internals/linux-420-native-object-bridge.md).
+
+## 10.11 Exact Linux 3.04 show-image wrapper constants
+
+[bin] Retained exact-input static findings bind showimg/showimg2 to mode 0, showani/showani2 to mode 4, showpoly/showpoly2 to mode 3 and showtext/showtext2 to mode 2, with respective flags 0/1 in every pair. These internal constants add precision to already documented command presence and polygon machinery; mode 1, signature-letter grammar, flag meaning and rendered results remain unqualified. [bin] (torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review)
+
+[bin] A selected common helper uses a numeric-derived integer display key and finds or creates its indexed object. Lookup/insertion compares that key; the insertion helper rejects an equal key and otherwise inserts by position. This is a sorted integer-key container, not a generic name map. Numeric conversion edges, ownership, full helper ABI and corruption handling remain open. [bin] (torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review)
+
+[inf] Local insertion rejection does not establish repeated-command behavior or console/namespace duplicate policy. These are retained static assertions, not new native execution or a general interpreter/callback contract; no cross-build behavior is inferred. Document digests are checked while underlying native observations remain researcher-supplied. [inf] (torque/304-draw.md#provenance-and-scope-of-this-addition)
 
 ## 10.12 Exact Linux 3.04 local value-helper branches
 
