@@ -5,6 +5,8 @@ Completed owner-held teardown collected on 2026-11-09. The dedicated local
 This public folder contains plain-behaviour findings and retrieval identifiers.
 See [sources](../sources.tsv) and [handling](../handling.md).
 
+For later, separately scoped results, see the [network/bootstrap gate guide](../../version-profiles/linux-network-bootstrap-evidence.md) and its frozen seven-input dataset, and the [3.04 startup/reader study](../../client-internals/linux-304-startup-reader.md). The failures recorded below remain historical observations of their identified unpacked/packed startup attempts; later packed-input reading and network results do not establish unpacked startup success or gameplay.
+
 ## Coverage and architecture
 
 `[bin]` Sources `LINUX-TEARDOWN`, `LINUX-CODE`, and `LINUX-VALIDATION` cover eight

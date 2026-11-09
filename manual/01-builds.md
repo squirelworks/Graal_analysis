@@ -592,3 +592,9 @@ Lab measurements kept as tables beside them:
 The PowerPC headers declare legacy graphics and application-framework dependencies but no exact minimum OS version. Neither these dependencies nor the Intel build's declared minimum establishes successful rendering, input or gameplay. The separately captured Tiger runs retain their own scope (→ §1.8.4, → §1.8.5). [bin] (workingpapers/macos/client-compatibility.md)
 
 Unresolved archive-label and resource identity: → App. E#609.
+
+## 1.10 Linux network/bootstrap evidence gates
+
+Seven exact Linux input identities have observed accepted local logins on one pinned patched lab server, while visual results and later execution gates remain separate. The derived ledger records exact client hashes, shared tokens, per-gate statuses and sanitized source lineage. A not-established cell concerns its specified network cohorts, not every experiment in this repository. [cap] (version-profiles/linux-network-bootstrap-evidence.md#read-the-gates-independently)
+
+The later 6.03 cohort separately records class parsing, registered-weapon execution and a suspended continuation with proxy-origin bodies; the 3.04 cohort separately records source-weapon effects and persistence. These observations do not establish normal-server GS2 compilation, exact sleep timing, a positive disk-cache hit or complete gameplay. Cache contracts remain explicitly static-only where marked. [cap] (version-profiles/linux-network-bootstrap-evidence.md#read-the-gates-independently); [bin] (version-profiles/linux-network-bootstrap-evidence.md#static-contracts-and-supersession)

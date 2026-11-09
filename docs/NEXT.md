@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Publish the Linux network/bootstrap evidence ledger.** ~~Convert the sanitized cohort summaries into a versioned coverage reference.~~ [Gate guide and data](../version-profiles/linux-network-bootstrap-evidence.md) preserve exact inputs, source lineage and distinct unknowns.
+- [ ] Extend measured gate coverage only with a qualified positive control and pinned new evidence; do not equate login, header recognition, parsing, execution and gameplay.
 - [x] **Bound unpacked Windows 6.03 weapon-cache success.** ~~Publish the retained static increment.~~ [Source](../formats/windows-603-weapon-cache.md) preserves exact-input provenance and static-derived fixture status.
 - [ ] Validate a positive weapon-cache case and other callers in an identified runnable build; header recognition alone is insufficient.
 - [x] **Bound installed Windows 5.00 event queue delivery.** ~~Publish the retained static increment.~~ [Source](../client-internals/windows-500-event-queue.md) preserves exact-input provenance and static-derived fixture status.
