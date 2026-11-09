@@ -83,3 +83,7 @@ independent specifications and tests.
 ## Later exact-build selected review
 
 The [Linux 6.01 x86 program/state note](../../client-internals/linux-601-x86-program-state.md) records a later host-verified pass of 299 selected C exports and 20 reviewed artifacts. Those figures describe a different acquisition/review stage from the initial dossier inventory above. They must not be added as disjoint functions or treated as complete original-source or opcode recovery. Its static findings and unresolved handler/lifecycle gates remain explicitly qualified.
+
+## Imported-document provenance
+
+The [imported Linux notes review](imported-provenance-and-gaps.md) preserves reported damaged-archive and packaging leads, independently checked document hashes and duplicate-log identity. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.
