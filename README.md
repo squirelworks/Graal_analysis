@@ -6,10 +6,18 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Exact Linux 3.04 show-image wrapper constants](torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) — retained static eight-command mode/flag map and bounded integer-key container distinction; no new rendering result.
 
+- [Windows v4 imported alias and retained identity](workingpapers/windows/v4-import-provenance.md) — exact carrier/resource corroboration with unresolved official release provenance.
+
+- [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
+
+- [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
+- [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
+- [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
+
 - [Imported Linux provenance and recovery gaps](workingpapers/linux/imported-provenance-and-gaps.md) — checked document identities and duplicate logs, with third-party installer/recovery claims explicitly unverified.
 
 - [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
-- [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle.
+- [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle. See the [native-call evidence boundary](torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) for static dispatch and unresolved argument/result contracts.
 - [Linux network/bootstrap evidence gates](version-profiles/linux-network-bootstrap-evidence.md) — seven exact inputs, independent measured gates and explicit source-scoped unknowns.
 - [Bound Linux 3.04 GS1 source-weapon events and predicates](npc-library/linux-304-gs1-runtime.md) — exact-build observations with delivery and execution limits.
 - [Record seven exact Linux client local-login baselines](protocol/linux-local-login-matrix.md) — exact-build observations with delivery and execution limits.

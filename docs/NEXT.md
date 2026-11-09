@@ -14,6 +14,22 @@ macOS CI is paused until the polish stage.
 
 - [x] **Exact Linux 3.04 show-image wrapper constants.** ~~Resolve the retained eight-wrapper mapping after document-only overlap review.~~ [Source](../torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) separates internal constants/container behavior from known command presence and untested rendering.
 
+- [x] **Linux 3.04 native-call evidence boundary.** ~~Review retained callback evidence without redoing native work.~~ [Qualification](../torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) separates static dispatch from unknown argument/results and registry policies.
+
+- [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../workingpapers/windows/v4-import-provenance.md); official package/release provenance remains unresolved.
+
+- [x] **Correct exact build-614 encoder dispatch counts and selected arithmetic observations.** ~~Separate selector/target/default counts from emitted-property and name claims.~~ [Source](../protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin); exact IDs 15/16 conversion order/range and runtime remain unvalidated.
+
+- [x] **Linux 6.01 x86 static program/state increment.** ~~Separate decoded preparation and selected saved-state behavior.~~ [Source](../client-internals/linux-601-x86-program-state.md); full handler recovery and lifecycle remain unresolved.
+
+- [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
+
+- [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.
+
+- [x] **Identify the exact 2.05r2 `#6` association.** ~~Corroborate selected actor carried-NPC image and bounded producer/consumer paths.~~ [Checkpoint](../npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint); full eligibility, selectors, receiver identity, lifetime and runtime remain open.
+
+- [x] **Correct exact build-614 special-length arithmetic.** ~~Carry the retained static erratum.~~ [Note](../protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin); runtime and extreme-size handling remain unvalidated.
+
 - [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ [Note](../workingpapers/linux/imported-provenance-and-gaps.md) registers document hashes and limits.
 - [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported3.151/5.12 recovery failures into independently verified findings.
 

@@ -1,0 +1,44 @@
+{
+  "classification": "independently-authored-static-derived-expectations",
+  "original_client_executed": false,
+  "input_executable_sha256": "ceeaefeb2df0668c9de921d4b967c511f85b235b25a18563534eb2f09b619c50",
+  "scope": "Linux 6.03r7 x64 local-file helper only; allocation and unreviewed transform behavior not defined",
+  "cases": [
+    {
+      "id": "missing-key",
+      "key_context": "null",
+      "mode": 1,
+      "expected": "status false; empty return"
+    },
+    {
+      "id": "wrong-mode",
+      "key_context": "nonnull",
+      "mode": 2,
+      "expected": "status false; empty return"
+    },
+    {
+      "id": "zero-expectation",
+      "key_context": "nonnull",
+      "mode": 1,
+      "carrier": "recognized prefix and sufficient length",
+      "expected_crc": 0,
+      "expected": "comparison skipped; status false even if transformed bytes return"
+    },
+    {
+      "id": "nonzero-mismatch",
+      "key_context": "nonnull",
+      "mode": 1,
+      "carrier": "recognized prefix and sufficient length",
+      "expected_crc": "nonzero mismatch with stored-body CRC",
+      "expected": "empty return and false status before inverse-side block helper"
+    },
+    {
+      "id": "conditional-match",
+      "key_context": "nonnull",
+      "mode": 1,
+      "carrier": "recognized prefix and sufficient length",
+      "expected_crc": "nonzero equal to stored-body CRC",
+      "expected": "checksum status set; output bytes and compiled-program validity not asserted"
+    }
+  ]
+}
