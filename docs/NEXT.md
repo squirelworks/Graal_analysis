@@ -14,6 +14,10 @@ macOS CI is paused until the polish stage.
 
 - [x] **Resolve E#204 checked-build name-to-ID mapping.** ~~Replace documentation-order inference.~~ [Source](../npc-library/gs1-object-members-205r2.md) preserves first-match duplicate arrow dx and bounded getter semantics.
 - [ ] Extend object-member research to writes, fallback/scanner behavior, enum meanings, specialized getters and other builds.
+- [x] **Catalog the exact 2.05r2 outer message selectors.** ~~Extract outer membership and bounded effects.~~ [Source](../npc-library/gs1-message-codes-205r2.md) separates catalog coverage from runtime/helper semantics.
+- [ ] Complete E#203 field identities (#6/#a/#E/#L), #p producer, quoted scanners, numeric formatting and downstream rendering.
+- [x] **Settle E#200 for the checked original 2.05 revision 2.** ~~Resolve the conflicting truth threshold.~~ [Source](../npc-library/gs1-condition-truth-205r2.md) separates zero/nonzero execution, name parsing and constant-comparison folding.
+- [ ] Extend condition checks to other builds, nonfinite/malformed values, aliases/precedence and named-flag collisions.
 
 - [x] **Bound Linux 4.20r6 clock updates and advertised 3D-state predicate.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-clock-property.md) retains exact-build limits and remaining measurements.
 
@@ -76,6 +80,9 @@ macOS CI is paused until the polish stage.
 - [x] **Locate the 1st Graal death-counter increment.** ~~Resolve the earlier limited-export gap.~~ [Static counter note](../client-internals/first-graal-death-counter-2026-11-09.md) establishes progression to 30 without a wall-clock duration.
 
 - [x] **Recover the 1st Graal half of E#307.** ~~Read exact step, probe and nudge tables.~~ [Static geometry](../client-internals/first-graal-movement-2026-11-09.md) preserves 1.39 and runtime-state limits.
+
+- [x] **Correct original 2.05r2 FILE framing.** ~~Separate receiver evidence from historical server branches.~~ [Exact-input note](../protocol/file-205r2-prefix-lf.md) keeps persistence and fixture residuals open; server patches remain deferred.
+- [x] **Decode bounded E#206 movement options.** ~~Read the exact queued consumer.~~ [Static follow-up](../npc-library/gs1-move-205r2.md) keeps scheduling and collision residuals open.
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,
   and this file. Fix the README opening line to match its Boundary section

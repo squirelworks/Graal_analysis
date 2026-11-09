@@ -12,6 +12,8 @@ or platform has been run successfully.
 - [Linux](linux/README.md): completed engine teardown, function-recovery coverage,
   scripting catalogs and bounded runtime observations.
 - [Exact 2.05r2 object members](../npc-library/gs1-object-members-205r2.md): compiled bindings and qualified offline controls.
+- [Exact 2.05r2 message expansion](../npc-library/gs1-message-codes-205r2.md): static catalog and qualified original-client controls.
+- [Original 2.05r2 condition truth](../npc-library/gs1-condition-truth-205r2.md): finite computed truth, condition-name parsing and constant-comparison folding.
 - [Evidence sources](sources.tsv): stable source identifiers, original project
   file locations and SHA-256 digests for retrieval from the owner's project files.
 - [Handling and handoff](handling.md): source boundaries and requirements for later agents.

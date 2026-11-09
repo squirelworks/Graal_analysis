@@ -7,7 +7,7 @@ Sources: the 2.05 command and expression tables (names and argument signatures o
 ## Execution model **[2.05]**
 
 - 2.05 does **not** compile GS1 to bytecode. NPC and weapon scripts arrive as source text (`NPCPROP_SCRIPT`), are parsed into a tree, and are interpreted recursively.
-- Command ids are `600 + table index`. `if` is 605. A condition counts as true when it evaluates to ≥ 1.0.
+- Command ids are `600 + table index`. `if` is 605. In the exact checked 2.05 revision 2 build, IF skips its block when the compiled condition evaluates to zero; ordinary finite nonzero results count as true. Condition-name parsing differs from numeric message expansion, and constant comparisons have a folding defect. See [the original-client follow-up](gs1-condition-truth-205r2.md).
 - Expressions resolve through a second table of functions and variables with numeric ids (100–825, below) and a small operator table.
 - OpenGS1's stack bytecode (Push/Assign/Jmp/…) is an independent reimplementation. Its opcode set is not something 2.05 shares. Keep Seihai's VM, but load scripts from text.
 - Command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move `, …) require an argument. The others are matched as whole words. **[inf]**
@@ -142,4 +142,4 @@ Absent in 2.05 but documented for 2.22: `actionleftmouse`/`actionrightmouse`/`ac
 
 `=`, `+=`, `-=`, `*=`, `/=`, `++`, `--`; arithmetic `+ - * / %`, `^` power; comparison `== != < > <= >=`; logic `&& || !`; `in` for ranges and sets (`x in |0,64|`, `2 in {1,2,3}`); `this.` for NPC-local variables; `#` string codes (`#s(var)`, `#v(expr)`, …, 2.x). Control flow: `if`/`else`, `for`, `while`, `break`, `continue`, `function name() {}` + `name();`, `return`, `sleep`, `timeout = n`.
 
-The full `#` string-code set for 2.05 is not yet extracted. **Open.**
+The exact checked 2.05 revision 2 outer expander has 44 selector bytes, or 53 spellings when the C/P families are expanded. This includes preserved display codes and empty-output `#7`, not 53 implemented operations. See [the bounded catalog and original-client controls](gs1-message-codes-205r2.md). Field meanings, helper details and rendering remain partial (E#203); message reads and property setters are separate grammars.

@@ -317,7 +317,7 @@ The NewWorld betas add eight time variables after the direction list. They are v
 | baddy modes | 0 walking, 1 looking, 2 hunting, 3 hurt, 4 bumped, 5 dying, 6 shooting (swamp), 7 jumping (frog), 8 shooting (spider), 9 dead | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
 | player sprites | 0 idle; 1–8 walk; 9–13 sword; 14–18 push; 19–22 pull; 23 lift; 24 carry idle; 25–32 carry walk; 33 shoot; 34–36 ride; 37 sit; 38 sleep; 39 hurt; 40 dead; 39 and 40 only on `showcharacter` NPCs | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
 | tile types (`tiletype(x,y)`) | 0 nonblocking, 2 hurting underground, 3 chair, 4 bed top, 5 bed bottom, 6 swamp, 7 lava swamp, 8 near water, 9 near lava, 11 water, 12 lava, 20 throw-through, 21 jumping stone, 22 blocking | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
-| `move` options | cachetype 0–2; +4 block check; +8 event when done; +16 apply direction; 2.05's handling of the bits is not decoded → App. E#206 | [doc] (npc-library/gs1-reference-205.md#constants-doc); [2.05][inf] (npc-library/gs1-command-reference-205.md#npc-appearance-and-behaviour) |
+| `move` options | bounded static queue/option consumer → §8.2.9; residual scheduling/collision questions → App. E#206 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
 | `showstats` mask | 1 ASD, 2 icons, 4 rupees, 8 bombs, and further bits the notes do not list | [doc] (npc-library/gs1-command-reference-205.md#the-player) |
 | `changeimgvis` layers | 0, 1, 2 under, level with, over the NPC; 3 light layer, as `drawaslight`; 4 screen, over the status bar | [2.05] (npc-library/gs1-command-reference-205.md#board-map-images) |
 | `putleaps` types | 0 bush, 1 swamp, 2 stone, 3 sign, 4 ball, 5 water | [2.05] (npc-library/gs1-command-reference-205.md#combat-items-level-objects) |
@@ -405,7 +405,23 @@ An earlier catalogue of GS1 commands, built from public tables and the scrape be
 | the 2.05 table has 163 commands, or ends at 758 | 161 commands, 600–760, ending with `show` and `hide` | [2.05] (npc-library/gs1-commands.md#update-2026-10-21; npc-library/gs1-reference-205.md#commands-161-205) |
 | 2.05 runs OpenGS1-style bytecode | 2.05 interprets a parse tree built from script text (→ §8.1.2) | [2.05] (npc-library/gs1-commands.md#update-2026-10-21) |
 
-## 8.2.9 Exact-build object getter semantics
+## 8.2.9 Queued move consumer (exact 2.05 rev 2)
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| scope | exact Windows input identified by source; static instruction checks only; no measured scheduler frequency or cross-build generalization | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| start/replacement | start includes current position and queued deltas; low bits 0 clear, 1 clear if endpoint is more than five Manhattan units away, 2/3 retain; at least 100 queued records forces clear; start is computed before clear and can become actor position | [2.05][bin] (npc-library/gs1-move-205r2.md#queue-construction) |
+| update | first consumer update sets recorded start; remaining duration/0.05 undergoes floor(value + 0.0001) for ordinary finite in-range inputs; divide remaining deltas by that integer, then subtract applied deltas and 0.05 | [2.05][bin] (npc-library/gs1-move-205r2.md#consumer-progression) |
+| completion | nonpositive integer bypasses normal collision probes; duration below 0.0001 also completes; set endpoint and remove record; sub-step duration may bypass probes on its first consumer update, not synchronously in the command | [2.05][bin] (npc-library/gs1-move-205r2.md#consumer-progression) |
+| 16 | face dominant delta axis, vertical on ties; probes use resulting facing | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
+| probes | direction-specific character body-edge point or image/shape-derived point in tiles; not a swept box | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
+| 4 | broad blocking checks remote players/NPCs/bombs, an unidentified collection, blocking tiles and conditional local-player body; moving NPC temporarily nonblocking; exact eligibility partial | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
+| 32 | same category predicate as onwater; classic board recognizes IDs strictly above 64 and below 288, another path uses a table; not a generic wall test | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
+| collision/8 | collision cancels entire queue without attempted displacement; option 8 queues movementfinished on completion or collision, not direct event-body execution | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
+| 64 | character auto-animation: water first; otherwise empty queue or both deltas below tolerance selects idle; at least half-tile delta on either axis selects walking, smaller selects slower walking; special profile uses its own names | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
+| residuals | scheduler/catch-up, full collision eligibility, event execution, overflow/nonfinite inputs, other bits and animation playback remain open → App. E#206 | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+
+## 8.2.10 Exact-build object getter semantics
 
 For these seven families, evaluation computes the numeric index and, for ordinary finite in-range values, uses `floor(value + 0.0001)`. It bounds-checks the local player's current-level list; absent level, negative or end/out-of-range index yields initialized numeric zero. Indices are mutable list positions, not persistent IDs; event/expression snapshot guarantees are unproved [bin] (npc-library/gs1-object-members-205r2.md#evaluation-and-bounds).
 
