@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Exact Linux 3.04 show-image wrapper constants.** ~~Resolve the retained eight-wrapper mapping after document-only overlap review.~~ [Source](../torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) separates internal constants/container behavior from known command presence and untested rendering.
+
 - [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ [Note](../workingpapers/linux/imported-provenance-and-gaps.md) registers document hashes and limits.
 - [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported3.151/5.12 recovery failures into independently verified findings.
 
