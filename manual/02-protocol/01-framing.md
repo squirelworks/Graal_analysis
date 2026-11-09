@@ -88,3 +88,7 @@ For the exact original 2.05r2 FILE path, the counted collector preserves every a
 ### 2.1.4.3 Exact-input Mac PowerPC receive gate
 
 Four independently inspected Mac receivers (shared v3, labels 4.04r2 and 4.20r6, shared v5) wait for a complete body after a two-byte unsigned big-endian length that excludes the prefix. A zero configured mode consumes the first body byte as selector and removes it from the transform length; a nonzero configured mode applies directly. Modes 1/2 are raw, 3/4 follow zlib and 5/6 the bzip2-linked path; even modes XOR before decompression. This is static receive evidence, not negotiation, send symmetry, live decoding or v6 evidence. [bin] (workingpapers/macos/ppc-receive-framing.md)
+
+### 2.1.4.4 Exact build-614 outgoing special-length correction
+
+[bin] In the supplied Windows amd64 WorldsSetup64-614 unpacked plugin, the special internal-ID 93/163 sender path adds two to body length, applies a signed upper-cap comparison at 3,670,015, emits the inspected biased seven-bit-group operations and recursively invokes the sender with internal ID 50. This corrects body-length-only prose for that exact input. Static checks do not establish original packed provenance, production wire IDs, helper completeness or runtime/extreme-size behavior. [bin] (protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin)
