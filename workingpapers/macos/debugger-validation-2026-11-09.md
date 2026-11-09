@@ -54,4 +54,4 @@ needs a new evidence revision rather than replacing this snapshot's digest.
 - [ ] Finish Lion installation and validate a compatible Intel process debugger.
 - [ ] Test the exact v6 input before asserting launch or gameplay compatibility.
 
-The [source index](../sources.tsv) records the sanitized evidence digests.
+The [source index](../sources.tsv) records public evidence categories; exact digests remain owner-held.

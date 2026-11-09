@@ -1,8 +1,8 @@
 # Shared Mac v5 animation-group acceptance and cleanup
 
 [bin] A focused static review on 2026-11-09 opened the GANI consumer in the
-shared PowerPC v5 executable, SHA-256
-`a76dc557f7a1db8ac385f3f5fcceb6629ba53cab09d9ddbc4d989d942d206f10`.
+shared PowerPC v5 executable identity (exact digest owner-held)
+`owner-held SHA-256 (not published)`.
 Five archive copies share this executable, including one labelled 5.12;
 the review does not authenticate those release labels. No native loader run
 or animation playback was observed for this finding.
@@ -46,7 +46,7 @@ shipped animation source, asset or native code is included.
 ## Evidence
 
 MAC-PPC-V5-GMAP-GANI-20261109-R1 is a sanitized researcher-held static summary;
-its document digest is registered in [the evidence registry](../sources.tsv).
+its public evidence identifier is registered in [the evidence registry](../sources.tsv); the exact digest remains owner-held.
 The original export remains owner-held. Other gmap observations in that source
 are deliberately excluded from this animation scope.
 

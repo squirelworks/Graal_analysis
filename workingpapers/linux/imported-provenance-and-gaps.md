@@ -4,17 +4,17 @@ Document-only review, 9 November 2026. The imported Cursor and Gemini collection
 
 ## What was independently checked
 
-[file] The reviewer read the documents identified below and computed their full SHA-256 digests. Each of the three Gemini Linux analysis-log documents also has a byte-identical counterpart in the second teardown folder, established by matching document hashes. These are duplicate documents, not independent replication or proof that any two executables match.
+[file] A prior document-only review recorded exact document digests privately and found byte-identical counterparts for three imported Linux analysis logs. These are duplicate documents, not independent replication or proof that any two executables match.
 
-[doc] The Linux analysis documents contain headless import, analysis and save-success messages. They are tool-run logs, not selected function exports. Their loading messages include truncated MD5 hints, without full SHA-256 executable identities linking these imported runs to this project's approved Linux inputs. Successful analysis logging does not establish complete decompilation or specific file/cache behavior.
+[doc] The Linux analysis documents contain headless import, analysis and save-success messages. They are tool-run logs, not selected function exports. Their loading messages include truncated MD5 hints, without independently verified executable identities linking these imported runs to approved Linux inputs. Successful analysis logging does not establish complete decompilation or specific file/cache behavior.
 
 ## Useful imported claims, not independently reproduced
 
 [doc] **Archive labelled 3.15r1 / internal label 3.151.** Cursor's inventory and extraction log say the installer identifies itself as Linux 3.151. They report a payload 139 bytes shorter than its declared size, a corrupt gzip stream and no recovered client ELF. This is a concrete replacement-archive lead and a reason to preserve both labels. The review did not rerun extraction or establish the full original-installer digest. It does not identify this archive as 3.153 or settle Appendix E#208.
 
-[doc] **Linux 5.12.** Cursor reports recovery of an installer bootstrap tar, including package name `graal-5.12.x86.package`, but failure of the game payload's bzip2 integrity checks. Its log says nine recovered blocks remained unusable and a tenth was incomplete; no client ELF was recovered. These are reported extraction outcomes, not a repair reproduced here. Bootstrap files must not be counted as a recovered 5.12 game engine.
+[doc] **Linux 5.12.** Cursor reports recovery of an installer bootstrap tar, including a bootstrap package, but failure of the game payload's bzip2 integrity checks. Its log says nine recovered blocks remained unusable and a tenth was incomplete; no client ELF was recovered. These are reported extraction outcomes, not a repair reproduced here. Bootstrap files must not be counted as a recovered 5.12 game engine.
 
-[doc] **Duplicate and installation accounting.** Cursor reports two byte-identical 4.20r8 installers and distinguishes a packed 3.04 setup helper from the packed game client. It records Makeself headers without a no-execution option, autopackage payload metadata and bundled audio-library differences between the 4.x packages. These details are useful retrieval and installation-provenance leads. Installer equality, package integrity and library contents were not independently rechecked against original archives in this review. A prepared extraction tree is not automatically a completed installation or an authenticated release.
+[doc] **Duplicate and installation accounting.** Cursor reports two byte-identical 4.20r8 installers and distinguishes a packed 3.04 setup helper from the packed game client. It records Makeself headers without a no-execution option, autopackage payload metadata and bundled audio-library differences between the 4.x packages. These details are useful follow-up and installation-provenance leads. Installer equality, package integrity and library contents were not independently rechecked against original archives in this review. A prepared extraction tree is not automatically a completed installation or an authenticated release.
 
 ## Claims excluded from established findings
 
@@ -24,19 +24,9 @@ Document-only review, 9 November 2026. The imported Cursor and Gemini collection
 
 [inf] Broad imported conclusions that Torque was completely purged or all residual strings are dead are not supported by marker absence alone. The existing [Linux architecture handoff](README.md#coverage-and-architecture) correctly separates visible infrastructure changes from proof of total code removal. No imported claim changes the published scripting, event, cache or runtime contracts here.
 
-## Source documents and retrieval
+## Evidence boundary
 
-The owner retains the archive members. No raw logs, decompilation, original scripts or private machine paths are published. IDs below resolve through [the source index](../sources.tsv); their digests identify document bytes, not client executables or ZIP containers.
-
-- `LNX-IMPORT-CURSOR-INVENTORY`: `Cursor CLI 2.zip`, member `linux-rea/inventory.md`.
-- `LNX-IMPORT-CURSOR-GAPS`: same archive, member `linux-rea/gaps.md`.
-- `LNX-IMPORT-CURSOR-EXTRACT`: same archive, member `linux-rea/extract-log.md`.
-- `LNX-IMPORT-GEMINI-OVERVIEW`: `Gemini CLI work.zip`, member `teardown-2026-11-07/v6_Teardown_Report.md`.
-- `LNX-IMPORT-GEMINI-REA`: same archive, member `teardown-2026-11-07/v6_REA_Teardown_Report.md`.
-- `LNX-IMPORT-GEMINI-GHIDRA`: same archive, member `teardown-2026-11-07/v6_Ghidra_Teardown_Report.md`.
-- `LNX-IMPORT-GEMINI-FULL-README`: same archive, member `teardown-2026-11-07/full-extract/README.md`.
-- `LNX-IMPORT-GEMINI-SCRIPT`: same archive, member `teardown-2026-11-07/full-extract/script.md`.
-- `LNX-IMPORT-GEMINI-601-X64-LOG`, `LNX-IMPORT-GEMINI-601-X86-LOG`, `LNX-IMPORT-GEMINI-603-X64-LOG`: same archive, members under `teardown-2026-11-07/evidence/` named respectively `Graal_v6.01r1_Linux_x64_analysis.txt`, `Graal_v6.01r1_Linux_x86_analysis.txt` and `Graal_v6.03r7_Linux_x64_analysis.txt`. Each has a matching counterpart under `teardown-2026-11-07 (2)/evidence/`.
+The imported source documents and archive-member mapping remain owner-held. The public index identifies evidence class and platform only; it does not expose filenames, package names, member paths, exact digests or retrieval instructions. Claims above remain attributed to the imported reports and are not represented as independently reproduced.
 
 ## Follow-up boundaries
 
