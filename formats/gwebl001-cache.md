@@ -105,9 +105,10 @@ By 5.x `weblevels` holds more than levels. Every file in it is a download cache,
 
 - The file is the 8-byte magic `GRESCR01`, then the script body, DES-ECB encrypted. **[bin]**
 - Written when the server sends a script with 140 `PLO_NPCWEAPONSCRIPT` (header `type,name,cacheflag,i5,i5`, then the plain body) and the cache flag is 1. The two `i5` values, as little-endian 32-bit words, are the 8-byte DES key. **[bin]** (`protocol/v5x-clients.md`)
-- When the server says "use your cache" with 197 `PLO_LOADSCRIPT`, it sends the key and a CRC32. The client decrypts its copy and checks the CRC32 of the plaintext; on a match it loads the copy, otherwise it asks again with PLI 158 (`PLI_UPDATESCRIPT`). **[bin]**
+- The following historical description is qualified for the exact unpacked Windows 6.03 weapon path by the [success-output follow-up](windows-603-weapon-cache.md): its CRC covers the stored body before transformation, and returned bytes do not imply cache acceptance. Other builds/callers were not retraced. **[bin]**
+- Historical description, not the corrected Windows 6.03 weapon contract: when the server says "use your cache" with 197 `PLO_LOADSCRIPT`, it sends the key and a CRC32. The client decrypts its copy and checks the CRC32 of the plaintext; on a match it loads the copy, otherwise it asks again with PLI 158 (`PLI_UPDATESCRIPT`). **[bin]**
 - The key is never stored on disk, but it crosses the wire in clear on every connection, so the encryption only stops casual reading.
-- The body is probably GS2 source text, not bytecode, because it arrives as plain text. **[inf]** No real file has been decrypted yet.
+- The earlier source-text inference is not established by unencrypted transport alone; the [GS2 container study](../protocol/gs2-client-vm.md) separately identifies binary segment readers. Historical inference: the body is probably GS2 source text, not bytecode, because it arrives as plain text. **[inf]** No real file has been decrypted yet.
 - Before 5.24, 4.04r2 to 5.12 used PLO 193 for the same job: `i5 crc32` + weapon name, checked against `weblevels/weapons/<name>.code` (`protocol/unknown-ids-2026-11-06.md`). **[bin]**
 
 ### File lookup skips them
