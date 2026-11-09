@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../workingpapers/windows/v4-import-provenance.md); official package/release provenance remains unresolved.
+
 - [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/v5-animation-group-lifecycle.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.
