@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Linux 3.04 native-call evidence boundary.** ~~Review retained callback evidence without redoing native work.~~ [Qualification](../torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) separates static dispatch from unknown argument/results and registry policies.
+
 - [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ [Note](../workingpapers/linux/imported-provenance-and-gaps.md) registers document hashes and limits.
 - [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported3.151/5.12 recovery failures into independently verified findings.
 
