@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../workingpapers/windows/v4-import-provenance.md); official package/release provenance remains unresolved.
+
 - [x] **Correct exact build-614 encoder dispatch counts and selected arithmetic observations.** ~~Separate selector/target/default counts from emitted-property and name claims.~~ [Source](../protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin); exact IDs 15/16 conversion order/range and runtime remain unvalidated.
 
 - [x] **Linux 6.01 x86 static program/state increment.** ~~Separate decoded preparation and selected saved-state behavior.~~ [Source](../client-internals/linux-601-x86-program-state.md); full handler recovery and lifecycle remain unresolved.

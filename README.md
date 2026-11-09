@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Windows v4 imported alias and retained identity](workingpapers/windows/v4-import-provenance.md) — exact carrier/resource corroboration with unresolved official release provenance.
+
 - [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
 
 - [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
