@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Linux 6.01 x86 static program/state increment.** ~~Separate decoded preparation and selected saved-state behavior.~~ [Source](../client-internals/linux-601-x86-program-state.md); full handler recovery and lifecycle remain unresolved.
+
 - [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
 
 - [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.

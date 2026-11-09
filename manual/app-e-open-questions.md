@@ -233,6 +233,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Linux cross-version follow-up | Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences. The broader question remains partial (→ §8.4.10) | [bin] (client-internals/linux-420r6-reader-fusion.md) |
 | Windows 5.00 installed-input boundary | Named/enum delivery queues separately from service; limit-before-dedup and named lifecycle priority are statically bounded for a used/patched backup input. Gates, conversions, reentrancy and runtime timing remain open (→ §8.3.12) | [bin][inf] (client-internals/windows-500-event-queue.md) |
 | Linux positive follow-up | Three exact Linux6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
+| Linux 6.01 x86 static increment | Distinguishes reader/postpass/executor preparation and mixed saved-state handling without claiming full handler recovery, runtime restore or cross-architecture layout equivalence | [bin] (client-internals/linux-601-x86-program-state.md) |
 
 
 ### E#208 What the OpenGS1 opcode set describes

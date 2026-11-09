@@ -4,6 +4,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
+
 - [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.

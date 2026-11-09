@@ -129,3 +129,9 @@ The wrong-representation hash attempt remains superseded; only the corrected rea
 ## 8.4.11 Observe Linux 6.03 network GS2 execution and continuation
 
 [lab][cap] Three exact Linux6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. [lab][cap] (protocol/linux-603-network-gs2.md).
+
+## 8.4.12 Linux 6.01 x86 decoded-program and saved-state stages
+
+[bin] In the exact Linux 6.01r1 x86 review, the reader creates decoded records with initially empty native targets. A postpass constructs fused internal tags and caches a registry pointer on one selected path; the executor separately prepares jump targets and adds a termination record. These stages do not define new source-language or serialized opcodes. [bin] (client-internals/linux-601-x86-program-state.md).
+
+[bin] Selected saved-state handling mixes copy, transfer and selective cloning, forms a deadline from a scripting clock plus positive input, and shows registration, first-match removal and replacement calls. The call-frame layout differs from 4.20. This is not a uniform deep-copy or portable snapshot contract. Trigger/restore execution, ownership of every field, subscription lifetime, cancellation order, clock cadence and public result values remain unproved. Complete export delivery did not reconstruct the full indirect handler table; no new runtime result or cross-architecture equivalence follows. [bin] (client-internals/linux-601-x86-program-state.md).
