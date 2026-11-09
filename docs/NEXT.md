@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Catalog the exact 2.05r2 outer message selectors.** ~~Extract outer membership and bounded effects.~~ [Source](../npc-library/gs1-message-codes-205r2.md) separates catalog coverage from runtime/helper semantics.
+- [ ] Complete E#203 field identities (#6/#a/#E/#L), #p producer, quoted scanners, numeric formatting and downstream rendering.
+
 - [x] **Bound Linux 4.20r6 clock updates and advertised 3D-state predicate.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-clock-property.md) retains exact-build limits and remaining measurements.
 
 - [x] **Bound Linux 4.20r6 container operands and post-load fusion.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-reader-fusion.md) retains exact-build limits and remaining measurements.
