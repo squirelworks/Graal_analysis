@@ -73,7 +73,7 @@ A keypress while dead restarts the player once that counter is above 27. The sam
 - Hearts set to 3, and the heart cap set to 3, whatever the cap was before.
 - Carry, counter and action mode cleared.
 
-The loop that advances the shared counter while dead was not found in this export. Death itself sets the counter to 0, and both the dead sprite and the restart key wait for a reading above 27. A 30-tick cap, of the kind 1.39 has, is therefore not tagged. No death sound is on this path; this build has no sound engine.
+The later [exact-input static follow-up](../../client-internals/first-graal-death-counter-2026-11-09.md) locates the dead-state updater increment: the shared counter increases while below 30 and then stops. Death clears it to zero, connecting the increment path to the existing dead-sprite and restart-key tests above 27. This supersedes the earlier limited-export gap; it is not a new elapsed-time measurement. **[bin]** No death sound is on this path; this build has no sound engine.
 
 ## Wall and walk test **[bin]**
 
@@ -95,7 +95,7 @@ Not tagged: a listing of the Decompile folder on 2026-11-01, client exports and 
 
 ## Still open
 
-- [ ] The routine that counts the shared counter up while dead, and whether it stops at 30.
+- [x] ~~Locate the dead-state counter increment and cap.~~ [Exact-input follow-up](../../client-internals/first-graal-death-counter-2026-11-09.md) establishes the static 0-to-30 progression; wall-clock duration remains unmeasured.
 - [ ] Exact inclusion of the 0-tile and 4-tile edges of the sword box, and unit length of a sword knockback.
 - [x] ~~Read the 1st Graal probe, nudge and step tables.~~ [Static follow-up](../../client-internals/first-graal-movement-2026-11-09.md) supplies exact-input values; 1.39 remains separate.
 - [ ] 1.32 for all five rules, and the rest of eras A and B.
