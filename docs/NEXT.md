@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Resolve E#204 checked-build name-to-ID mapping.** ~~Replace documentation-order inference.~~ [Source](../npc-library/gs1-object-members-205r2.md) preserves first-match duplicate arrow dx and bounded getter semantics.
+- [ ] Extend object-member research to writes, fallback/scanner behavior, enum meanings, specialized getters and other builds.
+
 - [x] **Bound Linux 4.20r6 clock updates and advertised 3D-state predicate.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-clock-property.md) retains exact-build limits and remaining measurements.
 
 - [x] **Bound Linux 4.20r6 container operands and post-load fusion.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-reader-fusion.md) retains exact-build limits and remaining measurements.

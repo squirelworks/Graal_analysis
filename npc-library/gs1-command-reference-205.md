@@ -293,3 +293,7 @@ These are in the table, so scripts using them compile, but the executor has no h
 - `warp` and `jump` are not GS1 commands in 2.05. Warping is `setlevel` / `setlevel2`, or assigning `playerx` / `playery`.
 - `canwarp`, `canwarp2`, `join`, `setfocus`, `resetfocus`, `unfreezeplayer` compile but do nothing in 2.05.
 - `spyfire` is a game effect with a network packet (PLI 10), not a debug hook.
+
+## Exact-build object reads
+
+The [2.05r2 member-binding follow-up](gs1-object-members-205r2.md) replaces documentation-order inference with explicit compiled suffixes and first-match parser behavior. There are 36 records but 35 distinct family/member spellings: arrows binds its first `dx` and shadows the duplicate vertical getter; no builtin `dy` exists in this exact table. Bounded getter/index controls do not establish assignability, unknown-member fallback or all downstream helper behavior. Numeric IDs are expression identifiers, not serialized bytecode.
