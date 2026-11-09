@@ -18,4 +18,5 @@ The owner's full macOS workingpapers have separate Tiger and Lion subfolders,
 including the original logs, inventories and lab helpers. Those raw records
 remain outside this public repository.
 
+- [Shared Mac v5 animation-group acceptance and cleanup](v5-animation-group-lifecycle.md): bounded static findings; native runtime control remains pending.
 - [PowerPC receive framing and partial-group advancement](ppc-receive-framing.md): bounded static findings; native runtime control remains pending.

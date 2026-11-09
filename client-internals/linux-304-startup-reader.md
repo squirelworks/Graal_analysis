@@ -28,6 +28,14 @@ Runtime observations use owned isolated Linux guest/process workflows with no se
 - [x] ~~Locate the tested legacy startup and compiled-reader boundaries.~~
 - [ ] Isolate signature-helper inputs and measure subsequent script execution separately.
 
+## Later relocation-aware first-handler checkpoint
+
+[cap] A later bounded probe on the unchanged original packed Linux 3.04 client links successful compiled reading to the same program object entering its executor, fetching its first code word and reaching the corresponding native handler in one thread. The next word index is one. Of 474 input code words, 401 nonrelocation positions match; 73 identifier-relocation positions are explicitly excluded from equality. This is relocation-aware linkage rather than full runtime-array byte identity. The owned inferior was terminated at handler entry. No handler completion, script completion, GUI or gameplay is claimed.
+
+[cap] The retained handoff reports unchanged input hashes, untruncated output, owned cleanup and host verification of 28 transferred artifacts. Three unsuccessful instrumentation attempts remain separate historical records. Server and server commit: none. The earlier reader-only observation keeps its original stopping point and missing runtime-payload hash; this later probe does not retroactively amend it. Windows E503 remains unresolved.
+
+The actual sanitized incremental handoff is registered as `LNX304-FIRST-HANDLER-HANDOFF-20261109`, SHA-256 `48e450392de8790557ca17b72c64332170d36fbb0241ae597784d11cc6625c72`. The publisher matched that document and the existing identity record; the original runtime carrier and its observations remain researcher-supplied. The original packed executable and unpacked static derivative retain their separate identities above. The brief later-entry mention in the [seven-operation contract](../torque/linux-304-seven-operation-contract.md) does not provide these quantified checkpoint details or original-client vector completion.
+
 ## Evidence provenance
 
 - `LNX304-IDENTITY` — researcher-supplied original private-carrier SHA-256 `1cc39d0a609b2a7f87dea26f2dd2310328ccc9cdbdd680ce641012acfcb826b6`.
