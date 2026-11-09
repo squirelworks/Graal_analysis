@@ -640,6 +640,13 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 [inf] Seven independently authored acceptance vectors distinguish formatting and branch/stack behavior. They have not been executed in the original client; fresh invocation state, errors, string lifetime and complete VM equivalence remain unproved. The implementation comparison is pinned to its inspected snapshot. No runtime or server was started for this publication. [inf] (torque/linux-304-seven-operation-contract.md).
 
+### Native-call evidence boundary
+
+[bin] A retained exact-input Linux 3.04 static review distinguishes script-defined recursive entry from registered native callback dispatch with argument-count checks; a selected resolved-call path can rewrite its word or operand to a cached form. Some registry helpers remain outside the selected export. This is static path evidence, not callback execution or complete lookup/caching policy. [bin] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
+
+[inf] Published inclusive command/method counts do not establish argument representation or callback ABI. The seven-operation executor return does not establish native callback result conversion or lifetime. Case/namespace precedence, duplicates, coercions, arity failures, cache invalidation and echo behavior remain unqualified; independent API policy tests are not original-client oracles. No new native inspection or runtime work was done for publication. [inf] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
+
+
 ## 10.10 Linux 4.20 native-object registration boundary
 
 [bin] In the selected Linux 4.20r6 paths, constructor stores and runtime type metadata identify concrete SimGroup and GameConnection objects, each containing a Graal scripting-variable base subobject. The creation callback registers those base-subobject pointers on the scripting side, exposing a concrete static native-object bridge. Names alone are not the identification evidence. [bin] (client-internals/linux-420-native-object-bridge.md).

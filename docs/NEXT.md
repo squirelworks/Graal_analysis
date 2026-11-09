@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Linux 3.04 native-call evidence boundary.** ~~Review retained callback evidence without redoing native work.~~ [Qualification](../torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) separates static dispatch from unknown argument/results and registry policies.
+
 - [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../workingpapers/windows/v4-import-provenance.md); official package/release provenance remains unresolved.
 
 - [x] **Correct exact build-614 encoder dispatch counts and selected arithmetic observations.** ~~Separate selector/target/default counts from emitted-property and name claims.~~ [Source](../protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin); exact IDs 15/16 conversion order/range and runtime remain unvalidated.
