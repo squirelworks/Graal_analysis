@@ -4,6 +4,14 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
+- [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle.
+- [Linux network/bootstrap evidence gates](version-profiles/linux-network-bootstrap-evidence.md) — seven exact inputs, independent measured gates and explicit source-scoped unknowns.
+- [Bound Linux 3.04 GS1 source-weapon events and predicates](npc-library/linux-304-gs1-runtime.md) — exact-build observations with delivery and execution limits.
+- [Record seven exact Linux client local-login baselines](protocol/linux-local-login-matrix.md) — exact-build observations with delivery and execution limits.
+- [Observe Linux 6.03 network GS2 execution and continuation](protocol/linux-603-network-gs2.md) — exact-build observations with delivery and execution limits.
+- [Research-data publication plan](docs/research-data-publication-plan.md) — completed-intake triage, versioned evidence comparisons, authored fixtures and focused follow-up experiments.
+
 - [Bound Linux 4.20r6 clock updates and advertised 3D-state predicate](client-internals/linux-420r6-clock-property.md) — Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D.
 
 - [Bound Linux 4.20r6 container operands and post-load fusion](client-internals/linux-420r6-reader-fusion.md) — Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences.
@@ -281,3 +289,5 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 - `protocol/gs2-client-only-opcodes.md`: the effect of the opcodes those clients dispatch and the Preagonal compiler does not emit, including the folds.
 
 - [PowerPC receive framing and partial-group advancement](workingpapers/macos/ppc-receive-framing.md) — exact-input static behavior and runtime limits.
+- [Unpacked Windows 6.03 weapon-cache success](formats/windows-603-weapon-cache.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
+- [Installed Windows 5.00 queue boundaries](client-internals/windows-500-event-queue.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.

@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "evidence_class": "static-derived proposed acceptance vectors",
+  "runtime_oracle": false,
+  "input": "Linux3.04 fixed x86 analysis ELF",
+  "analysis_sha256": "6e9e35a3ef1320e9705db382ea3184cec07cfce5cac9fb2a550d79fe41931e86",
+  "cases": [
+    {
+      "words": [
+        65,
+        2147483647,
+        63,
+        13
+      ],
+      "expected_text": "2147483647"
+    },
+    {
+      "words": [
+        65,
+        2147483648,
+        63,
+        13
+      ],
+      "expected_text": "-2147483648"
+    },
+    {
+      "words": [
+        65,
+        4294967295,
+        63,
+        13
+      ],
+      "expected_text": "-1"
+    },
+    {
+      "words": [
+        65,
+        17,
+        65,
+        99,
+        64,
+        63,
+        13
+      ],
+      "expected_text": "17"
+    },
+    {
+      "words": [
+        65,
+        17,
+        65,
+        0,
+        7,
+        8,
+        65,
+        99,
+        63,
+        13
+      ],
+      "expected_text": "17"
+    },
+    {
+      "words": [
+        65,
+        17,
+        65,
+        4294967295,
+        9,
+        8,
+        65,
+        99,
+        63,
+        13
+      ],
+      "expected_text": "17"
+    },
+    {
+      "words": [
+        65,
+        17,
+        12,
+        6,
+        65,
+        99,
+        63,
+        13
+      ],
+      "expected_text": "17"
+    }
+  ],
+  "limits": "No native vector execution, malformed-input contract, fresh-state guarantee or instruction-count oracle"
+}
