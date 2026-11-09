@@ -82,3 +82,11 @@ The body is an ordinary GR-V level (→ §3.1.2), but the writer fills only some
 | `… --json` | full parse | [src] (formats/gwebl001-cache.md#tool) |
 | `… --raw plain.bin` | the decrypted stream | [src] (formats/gwebl001-cache.md#tool) |
 | module | `encrypt_stream` re-creates files byte for byte; also `read_board`, `write_board` and `parse_grv` for plain `.graal` data | [src] (formats/gwebl001-cache.md#tool) |
+
+## 3.8.7 Unpacked Windows 6.03 weapon-cache acceptance
+
+[bin] In the exact inspected unpacked Windows 6.03 input, the reader first clears success. Missing key or cache flag other than 1 returns empty. At least eight bytes and GRESCR01 pass only preliminary checks. After stripping the magic, nonzero expected CRC is compared with CRC32 of the stored body **before transformation**; mismatch returns empty. Expected CRC zero skips comparison and may return transformed bytes, but success remains false. Returned bytes and cache acceptance are separate. [bin] (formats/windows-603-weapon-cache.md)
+
+[bin] The inspected weapon caller constructs its weapon-cache .code path and branches on success: false dispatches request logical ID 158; true hands returned script bytes onward. For exactly eight magic bytes the stored body is empty; its CRC with the inspected zero initialization is zero. Expected CRC zero therefore leaves success false, and any nonzero expected CRC mismatches. Both follow the request branch if surrounding caller gates permit it. [bin] (formats/windows-603-weapon-cache.md)
+
+[inf] Independently authored header-only, wrong-flag and missing-key vectors have static-derived expectations, not original-client executed results. This does not establish downstream framing, a positive cache, class-cache or all-caller behavior, decoded-container validity, transformation compatibility or GS2 execution. The input is an unpacked analysis image, not an authenticated runnable distribution; no new client/server run occurred. Other builds retain their own contracts. [inf] (formats/windows-603-weapon-cache.md)

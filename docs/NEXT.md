@@ -14,6 +14,23 @@ macOS CI is paused until the polish stage.
 
 - [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/v5-animation-group-lifecycle.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
+- [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.
+- [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
+- [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
+- [ ] Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session.
+- [x] **Linux 3.04 selected Torque contract.** ~~Document the seven-operation static subset.~~ [Contract](../torque/linux-304-seven-operation-contract.md) preserves identity and runtime limits.
+- [ ] Validate independently authored Torque vectors on the exact original input; this note supplies no native execution results.
+- [x] **Publish the Linux network/bootstrap evidence ledger.** ~~Convert the sanitized cohort summaries into a versioned coverage reference.~~ [Gate guide and data](../version-profiles/linux-network-bootstrap-evidence.md) preserve exact inputs, source lineage and distinct unknowns.
+- [ ] Extend measured gate coverage only with a qualified positive control and pinned new evidence; do not equate login, header recognition, parsing, execution and gameplay.
+- [x] **Bound unpacked Windows 6.03 weapon-cache success.** ~~Publish the retained static increment.~~ [Source](../formats/windows-603-weapon-cache.md) preserves exact-input provenance and static-derived fixture status.
+- [ ] Validate a positive weapon-cache case and other callers in an identified runnable build; header recognition alone is insufficient.
+- [x] **Bound installed Windows 5.00 event queue delivery.** ~~Publish the retained static increment.~~ [Source](../client-internals/windows-500-event-queue.md) preserves exact-input provenance and static-derived fixture status.
+- [ ] Validate named/enum gates, non-null argument stringification and runtime queue/service behavior in a positively controlled matching build.
+- [x] **Bound Linux 3.04 GS1 source-weapon events and predicates.** ~~Carry the completed bounded research.~~ [Note](../npc-library/linux-304-gs1-runtime.md); remaining gates retain their own open scope.
+- [x] **Record seven exact Linux client local-login baselines.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-local-login-matrix.md); remaining gates retain their own open scope.
+- [x] **Observe Linux 6.03 network GS2 execution and continuation.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-603-network-gs2.md); remaining gates retain their own open scope.
+- [x] **Plan further use of the retained platform research.** ~~Audit the publication baseline and assign next directions.~~ [Publication and experiment plan](research-data-publication-plan.md) separates completed intake, proposed derived references and assigned experiments.
+- [ ] Publish the nominated completed platform scopes, then build a claim-to-evidence index and a small independently authored fixture set with reviewed acceptance criteria; keep unknown build/lifecycle cells explicit.
 
 - [x] **Link the exact 2.05r2 #p producer.** ~~Trace dispatch to its shared parameter list.~~ [Source](../npc-library/gs1-event-parameters-205r2.md) corrects callnpc delivery and retains queue/lifetime limits.
 - [ ] Extend event-parameter checks to nested contexts, scheduling, case/escaping, other event/source categories and builds; other E#203 field/format/render gaps remain.
