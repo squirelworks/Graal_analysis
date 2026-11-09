@@ -5,6 +5,9 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 ## Contents
 
 - [Bound Linux 3.04 GS1 source-weapon events and predicates](npc-library/linux-304-gs1-runtime.md) — exact-build observations with delivery and execution limits.
+- [Record seven exact Linux client local-login baselines](protocol/linux-local-login-matrix.md) — exact-build observations with delivery and execution limits.
+- [Observe Linux 6.03 network GS2 execution and continuation](protocol/linux-603-network-gs2.md) — exact-build observations with delivery and execution limits.
+- [Research-data publication plan](docs/research-data-publication-plan.md) — completed-intake triage, versioned evidence comparisons, authored fixtures and focused follow-up experiments.
 
 - [Bound Linux 4.20r6 clock updates and advertised 3D-state predicate](client-internals/linux-420r6-clock-property.md) — Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D.
 
