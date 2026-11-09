@@ -42,7 +42,7 @@ This chapter describes GS1, the NPC and weapon script language of the 1.x and 2.
 | --- | --- | --- |
 | run | every event runs the whole node list from the top | [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
 | event test | events are flags tested with `if (name)`; the engine sets the flag before it runs the script (→ §8.1.5) | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `if` | evaluates its condition and jumps past its block when the condition is false; the threshold for "true" is disputed → App. E#200 | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
+| `if` | exact checked 2.05 revision 2 skips its block on zero; ordinary finite nonzero computed results are true. Condition-name parsing is separate from numeric message expansion → App. E#200 | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
 | loops | `for` and `while` are the same loop node; the condition is checked on each pass and the loop stops after 10,000 passes, as the 2000 documentation says | [2.05][doc] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
 | function calls | a call pushes a return point; nesting stops at 10,000 deep | [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
 | `return` | pops the call stack and resumes after the call; with an empty stack (or at the end of a function body) it ends the script | [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
@@ -181,3 +181,11 @@ The archived catalogue classifies about 1,519 documented scripts [doc] (npc-libr
 | HUD / stats overlay | 20 | [doc] (npc-library/archival-scripting-notes.md#classification-summary-from-ash) |
 
 The commands most used in the level scrape are `hide` and `show` (in most `playertouchsme` scripts), then the level-change commands, `hurt`, `say`, and `set` / `unset` [file] (npc-library/gs1-commands.md#offline-wiring-priority).
+
+## 8.1.10 Exact-build condition truth and comparison folding
+
+In the checked original Windows 2.05 revision 2, computed `(0.5+0)` and `(-0.5)` display their nonzero values and take the true branch; `(0+0)` displays zero and is false. Bare `0.5` displays 0.5 but is false in condition context, while `created` displays zero numerically and is true. Unrecognized bare condition tokens can become named-flag tests; numeric message expansion is a separate parsing context. These observations do not establish a threshold of one or rounding [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing).
+
+A separate compiler defect folds comparisons of constant numeric leaves to zero: observed `1==1`, `1!=0`, `1<2`, `2>1`, `1=1` and `(1+0)==1` all display zero and are false. The comparison parent becomes a zero-initialized numeric leaf before evaluation; arithmetic folding evaluates before changing the parent. Dynamic self-equality and ordering controls and `this.a==1` after assigning one work, while dynamic self-inequality is false. This is not absence of comparison support or a complete operator/precedence contract [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#constant-comparison-folding).
+
+The researcher ran sixteen owned cases in two offline Wine/virtual-display fixtures, with unchanged original executable bytes, no server or external network, explicit 2.31 donor assets and completed cleanup. Fifteen labels were fully readable in the second layout; its actor-obscured greater-than control was read from the identical script in the first. No absent label counted as false. Ten fresh selected instruction reads corroborate the mechanism, without live expression-node inspection. Evidence and target identity are researcher supplied. Other builds, nonfinite/malformed values, full aliases/precedence and flag-name collisions remain open [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits).
