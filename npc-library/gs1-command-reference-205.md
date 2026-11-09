@@ -38,7 +38,7 @@ The four literal signatures for `toinventory`, `puthorse`, `showimg` and `replac
   nesting at **10,000** deep. A `return` (or the end of a function body) with an empty call stack ends the script.
 - Several commands **end the current script run** after they execute: `setlevel`, `setlevel2`, `destroy`, `sleep` (non-zero),
   `toinventory` (offline), `hide` on an NPC that is following the player, and `break` / `continue` outside a loop.
-- String arguments are trimmed and message codes (`#c`, `#v(...)`, ...) are expanded before use, for almost every command.
+- String arguments are trimmed and message codes (`#c`, `#v(...)`, ...) are expanded before use, for almost every command. The [exact 2.05r2 expander follow-up](gs1-message-codes-205r2.md) separates explicit argument recursion from inserted-text rescanning and downstream display handling. Ordinary message mode zero removes `#b`; message reads do not establish property-setter grammar or additional wire color bytes.
 - **Weapon NPCs act as the player.** When the running NPC is one of the player's weapons, commands that spawn things (bombs,
   explosions, horses, projectiles, `showimg` layers, `hitobjects`, `triggeraction`, `reflectarrow`) use the player's level and count
   the player as the source, not the NPC.

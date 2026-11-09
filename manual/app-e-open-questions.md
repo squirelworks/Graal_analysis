@@ -176,9 +176,10 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Known | codes such as `#s(var)`, `#v(expr)`, `#c`, `#p(n)` and the `setcharprop` property codes are in use | [doc] (npc-library/gs1-reference-205.md#operators-and-syntax-doc); [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
-| Open | the full set of `#` codes 2.05 expands in string arguments | [doc] (npc-library/gs1-reference-205.md#operators-and-syntax-doc) |
-| Settles it | reading the 2.05 message-code expander | [inf] (npc-library/gs1-reference-205.md#operators-and-syntax-doc) |
+| Partial resolution | exact original 2.05r2 outer dispatch has 44 selector bytes / 53 family-expanded spellings, including preserved display codes and empty-output #7; supported contract carried in §8.1.11 | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage) |
+| Runtime controls | thirty qualified outputs from three usable offline scenes support bounded expansion behavior; fourth scene diagnostic only | [lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| Open | #6/#a/#E/#L identities, #p producer, quoted scanners, exact numeric formatting and downstream renderer semantics; other builds and live remote selectors unqualified | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| Boundary | accepted C5 storage read does not prove a sixth clothing color or alter the five-byte wire color property; property setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
 
 ### E#204 Member names of the GS1 object arrays
 
