@@ -33,6 +33,8 @@ repository-wide research gap. In particular, the earlier
 retains its separate positive result. Do not silently import that different
 experiment into a network-bootstrap cell.
 
+The [Linux workingpaper index](../workingpapers/linux/README.md) preserves the earlier teardown/startup snapshot. The later [3.04 startup/reader study](../client-internals/linux-304-startup-reader.md) separates the unpacked initialization failure from successful packed-input compiled-script reading. Those observations retain their own input and stopping-point scope; they do not establish unpacked startup or gameplay success. These discovery links do not revise the frozen JSON ledger or its source hashes.
+
 ## Static contracts and supersession
 
 [bin] The JSON's cache contract is explicitly static-only; runtime cache hit

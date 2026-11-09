@@ -245,3 +245,10 @@ Issues #151–#155 were read with `gh issue view`. The repro repo was not edited
 **#154** (7.x research). Do not take a 40-byte instruction slot, or ids 195 and 196 as the script body, from the 7.x properties note. These clients decode a 24-byte instruction. 195 is a gani in 4.20r8 and in 5.x. Script bytes are the four-segment container, cached as `.code` (4.2.0.8, CRC32) or `GRESCR01` (5.0.0.7 and unpacked 6.00).
 
 **#155** (parked Torque module pointed at 3.04). Do not point that module at this VM. 3.04 is not the GS2 dispatcher.
+
+### Unpacked Windows 6.03 weapon-cache follow-up
+
+[bin] The exact [Windows 6.03 weapon caller](../formats/windows-603-weapon-cache.md) distinguishes returned bytes from success and checks stored-body CRC before transformation. An eight-byte magic-only file does not satisfy that caller for zero or nonzero expected CRC. This narrows cache acceptance only; it does not change the separately studied 5.00/6.00 input contracts or demonstrate script execution.
+### Installed Windows 5.00 queue follow-up
+
+[bin] The separately identified used/patched backup input has a bounded [queue delivery contract](../client-internals/windows-500-event-queue.md), including its 1,000-action gate and named/enum distinctions. Preserve exact identities when comparing this with the older event-overrun statement above; the new static input is not a runtime validation or a universal replacement limit.

@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "evidenceId": "W603-CACHE-GATE-20261109",
+  "inputSha256": "2be6bf4bc7811bec48c6f03643e96d8e7e41e22b582860bb3bd7ab152fe11c6d",
+  "inputProvenance": "Unpacked Windows 6.03 analysis input; not automatically a runnable original distribution",
+  "oracleKind": "static-derived",
+  "originalClientExecuted": false,
+  "purpose": "Independently authored negative helper/caller boundary cases; no official script payload or VM execution oracle",
+  "fileHex": "4752455343523031",
+  "fileMeaning": "Exactly eight ASCII GRESCR01 bytes, empty stored body",
+  "preconditions": ["Inspected weapon caller reached with remaining surrounding gates permitting request", "File read supplies the stated bytes", "No class-cache or other-caller generalization"],
+  "cases": [
+    {"id": "header-only-zero-crc", "cacheFlag": 1, "keyPresent": true, "expectedCrc": 0, "expectedCacheSuccess": false, "expectedCallerBranch": "request logical ID 158", "reason": "CRC comparison skipped; initially false success remains false"},
+    {"id": "header-only-nonzero-crc", "cacheFlag": 1, "keyPresent": true, "expectedCrc": 1, "expectedCacheSuccess": false, "expectedCallerBranch": "request logical ID 158", "reason": "Empty stored-body CRC is zero; mismatch"},
+    {"id": "wrong-cache-flag", "cacheFlag": 2, "keyPresent": true, "expectedCrc": 0, "expectedCacheSuccess": false, "expectedReturnedBytes": "empty", "expectedCallerBranch": "request logical ID 158", "reason": "Early cache-flag gate"},
+    {"id": "missing-key", "cacheFlag": 1, "keyPresent": false, "expectedCrc": 0, "expectedCacheSuccess": false, "expectedReturnedBytes": "empty", "expectedCallerBranch": "request logical ID 158", "reason": "Early missing-key gate"}
+  ],
+  "excluded": ["Exact downstream request framing", "Positive valid-cache vector", "All direct reader callers", "Class cache", "Transformation algorithm acceptance", "Decoded container validation", "GS2 instruction execution", "Other client builds"],
+  "implementationWarning": "Header recognition and returned bytes are not accepted-cache status"
+}
