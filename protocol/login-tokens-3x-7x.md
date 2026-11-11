@@ -16,6 +16,27 @@ Each platform build has its own stamp. Windows 4.04r2 sends `G3D17026` and Linux
 
 How the token is stored is the one real change, and it only affects static reading. Up to 6.01 the client builds the token one character at a time from immediates or one-character globals, so no string literal exists. That holds for the Delphi 2.x clients and for the C++ 3.x to 6.01 engines alike[^v3][^v5][^v6]. 6.03 stores it as one scrambled lower-case string (`g3d0511c`), decoded and upper-cased at run time[^v6][^hello]. Neither form changes the bytes on the wire.
 
+## Where each build makes the token
+
+The game login is built in one place in every build: the game connection's connect routine. It logs "Connecting to the game server...", opens the socket, and logs "Done." only if the connection succeeded. Straight after that it builds the token, then the login, and sends them as id 5. It then flushes and sends id 37 with the language. Nothing touches the token before or after that routine. The server sends nothing that changes it, and no script or Torque code produces it[^where].
+
+The 2.x Delphi clients do the same in `TAdventureClient_Create`. They call `_LStrFromChar` eight times with character immediates, so no literal exists[^const]. The C++ builds keep the idea but use their string class:
+
+| Build | How the routine builds the token | Source |
+|---|---|---|
+| 3.04 Linux | Eight appends of one-character C strings (`"G"`, `"3"`, `"D"`, …) to an empty `JString`, in the connection code of `graal/client.cpp` | decompile **[bin]** |
+| 3.153 Mac | The same eight appends, in the same routine | decompile **[bin]** |
+| 4.04r2 Windows (`GraalEngine.dll`) | Eight `JString::operator<<` calls, each with a one-character global string | decompile **[bin]** |
+| 4.20r6 Mac | The same eight appends. The routine then builds the `mac` identity list, and a global flag picks one of two send paths for id 5 and id 37 | decompile **[bin]** |
+| 4.20r8 Windows | The same as 4.04r2. The linker merged the two `"2"` strings, so one global is appended twice | decompile **[bin]** |
+| 5.00r7 Windows | Eight one-character globals | v5 notes **[bin]** |
+| 5.12 Windows (`Graal3DEngine.dll`) | Eight one-character globals. Two of them are shared with other code | decompile **[bin]** |
+| 6.01r1 Linux | `"G"` plus seven one-character strings | v6 notes **[bin]** |
+| 6.03r7 Linux and Windows | One scrambled eight-byte string. The routine runs it through the per-byte decoder (`g3d0511c` or `g3d0311c`) and upper-cases the result | decompile, `v6037-hello-diff.md` **[bin]** |
+| 6.11, 7.x | No token. The connector script builds the login and sends it with `senddata` | v6 and v7 notes **[bin]** |
+
+So the token is a build-time constant all the way through 6.03. Only how it is stored changes, to keep it out of a plain `strings` search. The key byte is drawn as `rand & 0x7F` and placed in front of the first message. The account and password then follow with GCHAR lengths, and from 4.x the identity list follows them[^v4]. Lab captures of 3.04, 3.153, 4.04r2, the Linux 4.x builds, 5.x and 6.x show the same bytes as these readings[^lnx][^tiger][^play]. A debugger trace is not needed for any build up to 6.03.
+
 ## Where the token sits in the login
 
 The first byte of the login is a client-type number, and the server uses it to pick the cipher. GServer-v2 reads it as a bit index: type 0 is the classic client (gen 2, or gen 3 when a key follows), type 4 is the 2.19 to 2.21 and 3.0 to 3.01 clients (gen 4), and type 5 is 2.22 and later (gen 5)[^gs2]. In the 2.05 era the login starts with type 0, then the gen-3 key byte, then the token[^walk]. Every 3.04 to 6.03 client starts with type 5, then a key byte (`rand & 0x7F`), then the token. The whole login goes in one frame in fixed mode 3: zlib, no cipher and no type byte. After it the socket switches to the gen-5 cipher, seeded `0x04A80B38` in both directions[^v3][^v4][^v6]. Earlier notes call this byte "login id 5". It is the same byte.
@@ -79,6 +100,7 @@ The Graal3D of February 2000 is a different program. It is a DirectX client with
 [^v6]: [v6x-clients.md](v6x-clients.md), "Login server", "Login message (6.01 and 6.03)" and "6.11 Mac".
 [^lnx]: [linux-local-login-matrix.md](linux-local-login-matrix.md) and its JSON; first-frame observations on a lab GServer-v2.
 [^hello]: [v6037-hello-diff.md](v6037-hello-diff.md).
+[^where]: Static reads of the owner-held decompiles of 3.04 Linux, 3.153 Mac, 4.04r2 and 4.20r8 `GraalEngine.dll`, 4.20r6 Mac, 5.12 `Graal3DEngine.dll` and 6.03r7 Linux x64, all made on 2026-11-11 for this note. 5.00r7 and 6.01r1 come from [v5x-clients.md](v5x-clients.md) and [v6x-clients.md](v6x-clients.md).
 [^gs2]: GServer-v2 (`squirelworks/seihai-gserver-v2`), `PlayerClient::handleLogin`; gs2lib (`squirelworks/seihai-gs2lib`), `PLTYPE_*` in `IEnums.h` and the token table in `IUtil.cpp`. Both are GPL; summarised, not copied.
 [^walk]: [login-and-walk.md](login-and-walk.md); [session-opcodes-cleaned.md](session-opcodes-cleaned.md).
 [^tiger]: [lab-304-linux-2026-10-30.md](../version-profiles/lab-304-linux-2026-10-30.md); [lab-mac-tiger-2026-10-31.md](../version-profiles/lab-mac-tiger-2026-10-31.md).
