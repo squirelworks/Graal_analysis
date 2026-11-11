@@ -4,6 +4,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Where a 6.11 client's login token comes from](protocol/v6-login-token-explained.md) — plain-language account: the signed `conf.gs` connector script sends `GNP1905C` itself; the 6.111/6.113 clients do not compute it. Not yet checked for v7.
 - [Mac 6.11r1 connector request, lab run](protocol/v6x-clients.md#the-connector-request-in-a-lab-run) — DNS order, the TLS 1.2 ClientHello, then `conf.gs` over HTTP with `User-Agent: Graal/6.111`, in a Lion guest with no internet.
 - [Mac PowerPC 4.04r2, 4.20r6 and v5 start-up and input](client-internals/mac-ppc-startup-input-2026-11-09.md) — the one-shot Carbon timer that runs the engine, registered events, and how keys, characters, modifiers and the mouse become engine records; static.
 - [Windows 4.20 render entry points](client-internals/windows-420-render-seams.md) — adventure and canvas render entries that check their target first, a fake-renderer test, and who owns scripts in Windows v3 to v5.
