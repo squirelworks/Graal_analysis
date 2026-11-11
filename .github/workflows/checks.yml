@@ -168,11 +168,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS disabled 2026-11-08; re-enable at polish stage
-        os:
-          - ubuntu-latest
-          # - macos-latest
-          - windows-latest
+        # macOS disabled 2026-11-08; re-enable at polish stage.
+        # A pull request builds the PDF on Windows only: the Linux build
+        # installs Chromium's system libraries and fonts with apt, which
+        # fails whenever the runners lose the Ubuntu mirrors. A push to main
+        # builds both and keeps the Linux PDF.
+        os: ${{ github.event_name == 'pull_request' && fromJSON('["windows-latest"]') || fromJSON('["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -186,7 +187,9 @@ jobs:
 
       - name: Install Chromium (Linux, with system libraries)
         if: runner.os == 'Linux'
-        run: python -m playwright install --with-deps chromium
+        run: |
+          echo 'Acquire::Retries "5";' | sudo tee /etc/apt/apt.conf.d/80-retries
+          python -m playwright install --with-deps chromium
 
       - name: Install Chromium
         if: runner.os != 'Linux'
