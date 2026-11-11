@@ -158,6 +158,9 @@ def print_pdf(html: Path, out: Path, chromium: str | None) -> None:
             margin={'top': '14mm', 'bottom': '14mm', 'left': '12mm', 'right': '12mm'},
             display_header_footer=True, header_template='<span></span>',
             footer_template=FOOTER,
+            # outline: the PDF bookmarks panel, built from the h1-h6 headings;
+            # Chromium needs a tagged PDF to emit it.
+            tagged=True, outline=True,
         )
         browser.close()
 
