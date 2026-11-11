@@ -2,7 +2,7 @@
 
 ## Evidence boundary
 
-`[file]` Evidence record `GRAAL-ARRAYS-20261109-01` describes a static file inspection. The [evidence index](../workingpapers/sources.tsv) registers its researcher-supplied digest. The editor used sanitized research summaries only; private tables, exported membership files and raw evidence were not inspected or published. Input identities, counts and validation outcomes below are researcher-supplied.
+`[file]` Evidence record `GRAAL-ARRAYS-20261109-01` describes a static file inspection. The [evidence index](../docs/evidence-index.tsv) registers its researcher-supplied digest. The editor used sanitized research summaries only; private tables, exported membership files and raw evidence were not inspected or published. Input identities, counts and validation outcomes below are researcher-supplied.
 
 `[file]` Package labels describe collection provenance. They do not authenticate vendor releases, historical asset combinations, or which executable loaded a table. Co-packaged Windows executable metadata may identify a package's client more narrowly, but does not establish those relationships. No client ran during this inspection.
 

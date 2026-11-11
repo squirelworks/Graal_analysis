@@ -25,13 +25,13 @@ that a particular virtual GPU or debugger is compatible.
 
 `[bin]` The main-executable inventory alone does not establish identical resources,
 complete application bundles or authenticated release names. A separate
-[resource comparison](resource-identity.md) now establishes matching regular-file
+[resource comparison](macos-resource-identity.md) now establishes matching regular-file
 contents and relative names within the extracted v3 and v5 groups. It does not
 authenticate original containers, filesystem metadata or release names. `[test]`
 
 ## Archive labels and the historical 3.153 claim
 
-`[bin]` The earlier [upload comparison](../../protocol/v3x-clients.md#the-uploads-for-the-record)
+`[bin]` The earlier [upload comparison](../protocol/v3x-clients.md#the-uploads-for-the-record)
 explicitly reports that the Mac uploads labelled 3.04 and 3.15r2 are byte-identical
 and both are the 3.153 image. This is an existing release-identification claim,
 not merely a study of an unrelated version, and it is retained as that author's evidence.
@@ -52,10 +52,10 @@ the historical 3.153 attribution and the newer record's narrower identity limits
 The current Tiger machine emulates a PowerPC Mac; the prepared Lion machine is
 an Intel VM. No successful macOS client launch, rendering, input or game-mechanic
 test is established by this inventory. Earlier cloud runs of 3.153 and 4.20r6
-are documented separately in the [Tiger lab note](../../version-profiles/lab-mac-tiger-2026-10-31.md);
+are documented separately in the [Tiger lab note](lab-mac-tiger-2026-10-31.md);
 the absence of execution in this inventory does not invalidate those observations.
 
 - [ ] Authenticate the two v3 archive labels against the separately studied 3.153 input.
 - [x] ~~Compare extracted regular-file resources where executable digests match.~~
-  [Revision 1](resource-identity.md) supplies that result; original containers and
+  [Revision 1](macos-resource-identity.md) supplies that result; original containers and
   filesystem metadata remain outside the comparison.

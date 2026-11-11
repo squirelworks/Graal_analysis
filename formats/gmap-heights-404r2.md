@@ -47,6 +47,6 @@ and server descriptions retain their own writer/build scope.
 - [ ] Establish rendering, server handling and any broader writer coverage separately.
 - [ ] Measure missing-name and malformed-grid behavior before specifying rejection rules.
 
-See [the source index](../workingpapers/sources.tsv) and
+See [the source index](../docs/evidence-index.tsv) and
 [the existing gmap reader note](gmap.md). This narrows Appendix E#606; it does
 not authenticate the historical salvage author's intended meaning.

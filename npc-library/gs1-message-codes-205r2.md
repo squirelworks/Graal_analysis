@@ -83,7 +83,7 @@ The #t producer is directly linked to the list cleared and populated by tokenize
 
 The selector catalog is complete for this outer switch, but Appendix E#203 remains partial for the listed field identities, quoting, formatting and downstream renderer semantics. None of these observations extends the wire color property or proves all recognized spellings execute useful operations. Other builds, remote-player selector ordering in a live session, every helper branch and malformed-expression behavior remain unqualified.
 
-Evidence retrieval: the static, catalog and runtime identifiers above are indexed in [workingpapers/sources.tsv](../workingpapers/sources.tsv). Digests and original-client observations are researcher supplied; the editor verified the four sanitized handoff file digests, not the private evidence or executable.
+Evidence retrieval: the static, catalog and runtime identifiers above are indexed in [docs/evidence-index.tsv](../docs/evidence-index.tsv). Digests and original-client observations are researcher supplied; the editor verified the four sanitized handoff file digests, not the private evidence or executable.
 
 ## Event-parameter follow-up
 

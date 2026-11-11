@@ -7,7 +7,7 @@ a Windows component or another release bearing a similar label.
 The publication editor reviewed the sanitized 2026-11-09 research handoff and
 recorded its digest. Underlying evidence digests and observations are supplied by
 the researcher; raw code, captures and client assets were not opened to fill gaps.
-Source IDs resolve through [the evidence index](../workingpapers/sources.tsv).
+Source IDs resolve through [the evidence index](../docs/evidence-index.tsv).
 
 ## Declaration ownership correction
 
@@ -28,7 +28,7 @@ Published scripting declarations identify a script-facing surface. They are not
 proof of execution, native C++ layout, binding effects, conversion rules or inherited
 member behavior. No declaration or native type dump is reproduced here.
 
-The [Linux workingpaper inventory](../workingpapers/linux/README.md) remains the
+The [Linux teardown summary](../version-profiles/linux-teardown.md) remains the
 collection-level index. Its complete-catalog coverage is distinct from correct
 semantic grouping and from tested implementation behavior.
 

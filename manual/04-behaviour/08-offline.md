@@ -81,9 +81,9 @@ This chapter gives how the client plays without a game server: the ways in, wher
 
 | Condition | Before | After or observed result | Limit | Source |
 | --- | --- | --- | --- | --- |
-| Controlled startup, no server or login | Client initialization | Native game/UI window construction, successful DirectDraw initialization call, and opens of configuration, cache, GUI assets and four supplied animations | Window visibility, successful decoding and a rendered gameplay scene are unmeasured by these hooks | [cap] (workingpapers/windows/README.md#startup-capture) |
-| Harness invokes an internal offline transition on the UI thread | No adventure object | Offline-mode flag set; adventure object allocated; observed message-loop callbacks continue for 20.031 seconds after the call returns | Instrumented invocation, not a normal user action or documented API; a playable level, movement and bush interactions remain unmeasured by this capture | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Controlled startup, no server or login | Client initialization | Native game/UI window construction, successful DirectDraw initialization call, and opens of configuration, cache, GUI assets and four supplied animations | Window visibility, successful decoding and a rendered gameplay scene are unmeasured by these hooks | [cap] (version-profiles/windows-404r2-teardown.md#startup-capture) |
+| Harness invokes an internal offline transition on the UI thread | No adventure object | Offline-mode flag set; adventure object allocated; observed message-loop callbacks continue for 20.031 seconds after the call returns | Instrumented invocation, not a normal user action or documented API; a playable level, movement and bush interactions remain unmeasured by this capture | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 
-These observations do not establish that 4.04r2 uses the 2.05 entry conditions or arrival rules in → §4.8.1–4.8.2. Earlier unsuccessful harness attempts are not successful offline sessions. [cap] (workingpapers/windows/README.md#controlled-offline-transition)
+These observations do not establish that 4.04r2 uses the 2.05 entry conditions or arrival rules in → §4.8.1–4.8.2. Earlier unsuccessful harness attempts are not successful offline sessions. [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition)
 
 Remaining scene and mechanic validation: → App. E#610.

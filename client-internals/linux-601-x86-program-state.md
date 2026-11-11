@@ -31,6 +31,6 @@ This note adds no networking details, local-cache acceptance claim or Linux 6.01
 
 ## Evidence provenance
 
-`LNX601-X86-PROGRAM-STATE-HANDOFF` identifies the materialized sanitized incremental handoff; `LNX601-X86-PROGRAM-STATE-IDENTITIES` identifies the approved sanitized identity record. Their document digests are checked during publication preparation and registered in [the source index](../workingpapers/sources.tsv). Underlying native observations remain researcher-supplied, not independently rerun by the editor.
+`LNX601-X86-PROGRAM-STATE-HANDOFF` identifies the materialized sanitized incremental handoff; `LNX601-X86-PROGRAM-STATE-IDENTITIES` identifies the approved sanitized identity record. Their document digests are checked during publication preparation and registered in [the source index](../docs/evidence-index.tsv). Underlying native observations remain researcher-supplied, not independently rerun by the editor.
 
 The handoff supplies these original private-carrier keys and digests: `LNX601-X86-REVIEW-FINDINGS`, SHA-256 `3b34e8ea06d90a556bfd621793d9cf82d131397fd82a02d0b6ae99b3d7f68d79`; `LNX601-X86-REVIEW-VERIFICATION`, SHA-256 `4168cbb8bd63ca1d20f69d590d822ae01e2256ac355c24f1c51425bd0f709f13`; and `LNX601-X86-REVIEW-ARTIFACTS`, SHA-256 `f1fb2a8f72e6bda0c3a8bcf7b9b4097000f3e4d73034095457850b3c8da8956b`. These are retained provenance keys, not newly created raw captures or publicly attached native exports. Raw code, addresses, assets and private access details are excluded.

@@ -26,4 +26,4 @@ Evidence ID: GS1-TRUTH-205R2-20261109-03, extending GS1-205R2-20261109-01. Targe
 
 Only this exact build is qualified. Other revisions, nonfinite values, malformed syntax, every comparison alias, complete precedence, lexical corner cases and named-flag collisions remain open. Reproductions should keep numerical evaluation, condition-name resolution and this build's comparison-folding behavior separate. Silently correcting the compiler defect changes compatibility behavior.
 
-Evidence retrieval: `GS1-TRUTH-205R2-20261109-03` in [the evidence index](../workingpapers/sources.tsv). Frozen private manifest SHA-256: `dd3ca4e8d23cbcad90c8d0a28dbe657e36c7b4c376a19d76839c68a70909b10d` (researcher supplied; private material not inspected by the editor).
+Evidence retrieval: `GS1-TRUTH-205R2-20261109-03` in [the evidence index](../docs/evidence-index.tsv). Frozen private manifest SHA-256: `dd3ca4e8d23cbcad90c8d0a28dbe657e36c7b4c376a19d76839c68a70909b10d` (researcher supplied; private material not inspected by the editor).

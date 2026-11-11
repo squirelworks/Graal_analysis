@@ -48,10 +48,10 @@ and arbitrary bytes tagged as compressed data are not valid compressed members.
 ## Correction boundary and remaining work
 
 The earlier blanket partial-group sentence in
-[the v3 overview](../../protocol/v3x-clients.md) needs this Mac qualification.
+[the v3 overview](v3x-clients.md) needs this Mac qualification.
 It does not establish a Linux correction. These Mac static results do not
 settle the Windows 5.12 capture disagreement in
-[Appendix E#2](../../manual/app-e-open-questions.md).
+[Appendix E#2](../manual/app-e-open-questions.md).
 
 - [ ] Observe an unchanged Mac receiver consume one valid original local frame,
   with explicit mode/state and a raw-mode positive control.
@@ -66,7 +66,7 @@ and are outside this deliberately shared framing contract.
 
 The four FRAME-STATIC records below are sanitized researcher-held static
 summaries, indexed by public evidence identifiers in
-[the evidence registry](../sources.tsv). Exact digests and raw exports remain owner-held.
+[the evidence registry](../docs/evidence-index.tsv). Exact digests and raw exports remain owner-held.
 
 - `MAC-PPC-V3-FRAME-STATIC-20261109-R1`.
 

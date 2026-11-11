@@ -2,7 +2,7 @@
 
 ## Evidence and limits
 
-This static result covers the Windows 2.05 rev 2 executable with researcher-supplied SHA-256 `b0e39a04ca0891d0f02282a113a1cd80ddf7a1880a786c5831f26a452e8cbb08`. Evidence `GS1-MOVE-205R2-20261109-05` is registered in [the evidence index](../workingpapers/sources.tsv). The editor matched the sanitized publication document against its supplied digest; the private nine-file manifest, original instructions and executable were not independently inspected. Their verification is researcher-reported.
+This static result covers the Windows 2.05 rev 2 executable with researcher-supplied SHA-256 `b0e39a04ca0891d0f02282a113a1cd80ddf7a1880a786c5831f26a452e8cbb08`. Evidence `GS1-MOVE-205R2-20261109-05` is registered in [the evidence index](../docs/evidence-index.tsv). The editor matched the sanitized publication document against its supplied digest; the private nine-file manifest, original instructions and executable were not independently inspected. Their verification is researcher-reported.
 
 `[2.05][bin]` The researcher freshly crosschecked selected original instruction regions and reports nine frozen private files verified. No new client execution occurred. Scheduling frequency, catch-up, complete collision eligibility, nonfinite/overflow inputs, later event execution and bits outside this consumer remain unmeasured.
 

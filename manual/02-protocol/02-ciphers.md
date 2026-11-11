@@ -86,9 +86,9 @@ The server/2.22 contract below is not universal across later receivers; the inde
 
 ### 2.2.3.1 Exact-input Mac PowerPC receive qualification
 
-For the four exact Mac inputs identified by digest in the source note, let n be body length after any mode selector is removed, before decompression. Raw mode 2 processes min(ceil(n / 4), 12) groups, including a partial final group. Compressed modes 4/6 process min(floor(n / 4), 4) groups; an incomplete tail is unchanged and advances no state. Before each processed group, state is multiplied by 134775813 and increased by an additive object word, retaining the low 32 bits. Its bytes are XORed least-significant first despite the big-endian target. State persists through the inspected receiver's iterations. [bin] (workingpapers/macos/ppc-receive-framing.md)
+For the four exact Mac inputs identified by digest in the source note, let n be body length after any mode selector is removed, before decompression. Raw mode 2 processes min(ceil(n / 4), 12) groups, including a partial final group. Compressed modes 4/6 process min(floor(n / 4), 4) groups; an incomplete tail is unchanged and advances no state. Before each processed group, state is multiplied by 134775813 and increased by an additive object word, retaining the low 32 bits. Its bytes are XORed least-significant first despite the big-endian target. State persists through the inspected receiver's iterations. [bin] (protocol/macos-ppc-receive-framing.md)
 
-Initial seed, additive-word provenance, reset/rekey writers, negotiation and outgoing symmetry remain untraced. No live frame result or Windows 5.12 capture resolution follows; E#2 remains open. [bin] (workingpapers/macos/ppc-receive-framing.md)
+Initial seed, additive-word provenance, reset/rekey writers, negotiation and outgoing symmetry remain untraced. No live frame result or Windows 5.12 capture resolution follows; E#2 remains open. [bin] (protocol/macos-ppc-receive-framing.md)
 
 ## 2.2.4 Compression choice
 

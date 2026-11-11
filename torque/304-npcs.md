@@ -38,7 +38,7 @@ A body with no image name is filled from `sword1.png`, `sword2.png`, `sword3.png
 
 [doc] The existing note describes the broader script/list/string layer; the new precision is limited to the selected local branches above. `V3-GRAAL-04` in the actual retained `graal-findings.json` cites original carrier keys `V3-GRAAL-SRC-09`, `V3-GRAAL-SRC-10` and `V3-GRAAL-SRC-15`. Publication preparation reads and hashes the structured review and approved identity document; it does not reopen raw functions, assembly or executable bytes. The underlying static assertions and executable identities remain researcher-supplied.
 
-The source IDs `LNX304-LOCAL-VALUES-FINDINGS-DOC` and `LNX304-LOCAL-VALUES-IDENTITIES-DOC` resolve through [the source index](../workingpapers/sources.tsv). Their digests identify owner-held documents rather than newly materialized native captures. No raw code, native addresses, original assets or private access information is included.
+The source IDs `LNX304-LOCAL-VALUES-FINDINGS-DOC` and `LNX304-LOCAL-VALUES-IDENTITIES-DOC` resolve through [the source index](../docs/evidence-index.tsv). Their digests identify owner-held documents rather than newly materialized native captures. No raw code, native addresses, original assets or private access information is included.
 
 - [x] ~~Record the selected local numeric/string fallback and assignment branches without treating them as full coercion semantics.~~
 - [ ] Establish type-specific implementations, exact formatting, rounding/exceptional values, parser behavior and storage lifetime separately.

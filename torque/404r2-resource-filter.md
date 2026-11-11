@@ -40,7 +40,7 @@ trace was obtained, and no wire behavior was newly measured.
 - [ ] Trace local mission/script readers and their reachability before closing E#502–503.
 - [ ] Validate local-file access in an authorized isolated 3D session before claiming runtime behavior.
 
-Evidence digests in [the source index](../workingpapers/sources.tsv) are
+Evidence digests in [the source index](../docs/evidence-index.tsv) are
 researcher-supplied. The captured image came from prior load-only work; this
 static follow-up did not initialize a playable 3D world. Private mappings,
 raw code and evidence records remain owner-held.

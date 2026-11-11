@@ -1,11 +1,11 @@
-# Linux teardown workingpapers
+# Linux client teardown summary
 
 Curated public summary of a Linux client teardown, collected on 2026-11-09.
 Raw research artifacts, private bundles, exact source filenames and retrieval
-identifiers are not included. See the [public evidence index](../sources.tsv)
-and [handling policy](../handling.md).
+identifiers are not included. See the [public evidence index](../docs/evidence-index.tsv)
+and [handling policy](../AGENTS.md).
 
-For later, separately scoped results, see the [network/bootstrap gate guide](../../version-profiles/linux-network-bootstrap-evidence.md) and its frozen seven-input dataset, and the [3.04 startup/reader study](../../client-internals/linux-304-startup-reader.md). The failures recorded below remain historical observations of their identified unpacked/packed startup attempts; later packed-input reading and network results do not establish unpacked startup success or gameplay.
+For later, separately scoped results, see the [network/bootstrap gate guide](linux-network-bootstrap-evidence.md) and its frozen seven-input dataset, and the [3.04 startup/reader study](../client-internals/linux-304-startup-reader.md). The failures recorded below remain historical observations of their identified unpacked/packed startup attempts; later packed-input reading and network results do not establish unpacked startup success or gameplay.
 
 ## Coverage and architecture
 
@@ -73,14 +73,14 @@ map. Exact source identities and full artifact manifests remain owner-held.
 - [ ] Validate gameplay claims with a controlled fixture and recorded server commit.
 - [ ] Confirm inferred field meanings and indirect dispatch before relying on them.
 
-Follow [AGENTS.md](../../AGENTS.md): research agents publish reviewed behaviour
+Follow [AGENTS.md](../AGENTS.md): research agents publish reviewed behaviour
 notes here. Implementation repositories may link here and must use their own
 independent specifications and tests.
 
 ## Later exact-build selected review
 
-The [Linux 6.01 x86 program/state note](../../client-internals/linux-601-x86-program-state.md) records a later host-verified pass of 299 selected C exports and 20 reviewed artifacts. Those figures describe a different acquisition/review stage from the initial dossier inventory above. They must not be added as disjoint functions or treated as complete original-source or opcode recovery. Its static findings and unresolved handler/lifecycle gates remain explicitly qualified.
+The [Linux 6.01 x86 program/state note](../client-internals/linux-601-x86-program-state.md) records a later host-verified pass of 299 selected C exports and 20 reviewed artifacts. Those figures describe a different acquisition/review stage from the initial dossier inventory above. They must not be added as disjoint functions or treated as complete original-source or opcode recovery. Its static findings and unresolved handler/lifecycle gates remain explicitly qualified.
 
 ## Imported-document provenance
 
-The [imported Linux notes review](imported-provenance-and-gaps.md) preserves scoped third-party recovery leads and duplicate-document observations; exact document hashes and private source identities remain owner-held. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.
+An owner-held review of imported Linux notes preserves scoped third-party recovery leads and duplicate-document observations; exact document hashes and private source identities remain owner-held. Imported extraction claims and binary identities remain unverified; this is retrieval/provenance material, not new scripting, cache or runtime evidence.

@@ -87,7 +87,7 @@ For the exact original 2.05r2 FILE path, the counted collector preserves every a
 
 ### 2.1.4.3 Exact-input Mac PowerPC receive gate
 
-Four independently inspected Mac receivers (shared v3, labels 4.04r2 and 4.20r6, shared v5) wait for a complete body after a two-byte unsigned big-endian length that excludes the prefix. A zero configured mode consumes the first body byte as selector and removes it from the transform length; a nonzero configured mode applies directly. Modes 1/2 are raw, 3/4 follow zlib and 5/6 the bzip2-linked path; even modes XOR before decompression. This is static receive evidence, not negotiation, send symmetry, live decoding or v6 evidence. [bin] (workingpapers/macos/ppc-receive-framing.md)
+Four independently inspected Mac receivers (shared v3, labels 4.04r2 and 4.20r6, shared v5) wait for a complete body after a two-byte unsigned big-endian length that excludes the prefix. A zero configured mode consumes the first body byte as selector and removes it from the transform length; a nonzero configured mode applies directly. Modes 1/2 are raw, 3/4 follow zlib and 5/6 the bzip2-linked path; even modes XOR before decompression. This is static receive evidence, not negotiation, send symmetry, live decoding or v6 evidence. [bin] (protocol/macos-ppc-receive-framing.md)
 
 ### 2.1.4.4 Exact build-614 outgoing special-length correction
 

@@ -62,5 +62,5 @@ input observations. None is a substitute measurement for this 4.04r2 input.
   before publishing a tall-grass identity for this build.
 
 Evidence identities and researcher-supplied digests are in the
-[source index](../workingpapers/sources.tsv). No raw artifact or private access
+[source index](../docs/evidence-index.tsv). No raw artifact or private access
 path is included here.

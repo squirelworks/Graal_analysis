@@ -32,9 +32,8 @@ item below, fetch main and check both open and merged work for overlap.
   [event parameters](../npc-library/gs1-event-parameters-205r2.md) and
   [movement queues](../npc-library/gs1-move-205r2.md) are published. Keep residual
   lifecycle and helper questions separate from those resolved slices.
-- [macOS compatibility](../workingpapers/macos/client-compatibility.md),
-  [bounded debugger checks](../workingpapers/macos/debugger-validation-2026-11-09.md)
-  and [extracted-resource identity](../workingpapers/macos/resource-identity.md)
+- [macOS compatibility](../version-profiles/macos-client-compatibility.md)
+  and [extracted-resource identity](../version-profiles/macos-resource-identity.md)
   are published. Static subsystem and runtime findings require their own review.
 
 ## 1. Publish completed handoffs first
@@ -80,7 +79,7 @@ not a gate on publishing a supported static result.
 ## 2. Build an evidence-to-question index
 
 Status: proposed derived-data work; start with already published sources.
-Extend [the evidence index](../workingpapers/sources.tsv),
+Extend [the evidence index](evidence-index.tsv),
 [manual source map](../manual/sources.tsv) and
 [existing navigator](../tools/navigator/README.md) rather than building a second
 unrelated catalog.

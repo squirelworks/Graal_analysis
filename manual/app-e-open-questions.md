@@ -23,7 +23,7 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Open | whether the 5.12 captures held a compressed frame short enough (under 16 bytes, length not a multiple of 4) to tell the rules apart | [inf] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 | Settles it | decoding a 5.12 capture that contains such a frame under both rules | [inf] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 
-Separately, four exact Mac PowerPC receivers use whole-group compressed advancement and partial-group raw advancement. This static Mac result does not resolve the Windows capture disagreement or prove outgoing symmetry. [bin] (workingpapers/macos/ppc-receive-framing.md)
+Separately, four exact Mac PowerPC receivers use whole-group compressed advancement and partial-group raw advancement. This static Mac result does not resolve the Windows capture disagreement or prove outgoing symmetry. [bin] (protocol/macos-ppc-receive-framing.md)
 
 ### E#3 Public `Login` server session (5.x, 6.x)
 
@@ -631,20 +631,20 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Historical claim | The earlier upload comparison explicitly identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
-| Current observation | The newer collection's two v3-labelled main executables share a PowerPC digest, but this collection did not independently authenticate their release version; its five v5 copies also share a main-executable digest | [bin] (workingpapers/macos/client-compatibility.md) |
-| Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
-| Resource follow-up | Regular-file contents and relative names match across two v3 extractions of 718 files each and five v5 extractions of 73 files each; timestamps, permissions, empty directories and original containers were not compared | [test] (workingpapers/macos/resource-identity.md) |
-| Open | Exact-input linkage to the historical 3.153 attribution; extracted regular-file equality does not authenticate historical labels or original containers | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (workingpapers/macos/resource-identity.md) |
-| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities; broader container/metadata equivalence requires separate evidence if claimed | [inf] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (workingpapers/macos/resource-identity.md) |
+| Historical claim | The earlier upload comparison explicitly identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Current observation | The newer collection's two v3-labelled main executables share a PowerPC digest, but this collection did not independently authenticate their release version; its five v5 copies also share a main-executable digest | [bin] (version-profiles/macos-client-compatibility.md) |
+| Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Resource follow-up | Regular-file contents and relative names match across two v3 extractions of 718 files each and five v5 extractions of 73 files each; timestamps, permissions, empty directories and original containers were not compared | [test] (version-profiles/macos-resource-identity.md) |
+| Open | Exact-input linkage to the historical 3.153 attribution; extracted regular-file equality does not authenticate historical labels or original containers | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
+| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities; broader container/metadata equivalence requires separate evidence if claimed | [inf] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
 
 ### E#610 Windows 4.04r2 offline initialization versus gameplay
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
-| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (workingpapers/windows/README.md#controlled-offline-transition) |
-| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (workingpapers/windows/README.md#controlled-offline-transition) |
+| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 
 ### E#611 Windows 4.04r2 pickup semantics and input qualification
 

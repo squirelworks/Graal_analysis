@@ -16,7 +16,7 @@ incomplete one. End of input destroys a still-current group. Thus reaching
 end of input is not evidence that an unterminated group was committed.
 
 These are native construction/cleanup observations. They extend the general
-directive inventory in [the GANI reference](../../formats/gani.txt); they do
+directive inventory in [the GANI reference](../formats/gani.txt); they do
 not establish full placement grammar or safe rejection of every malformed input.
 
 ## Stored duration and sound metadata
@@ -46,7 +46,7 @@ shipped animation source, asset or native code is included.
 ## Evidence
 
 MAC-PPC-V5-GMAP-GANI-20261109-R1 is a sanitized researcher-held static summary;
-its public evidence identifier is registered in [the evidence registry](../sources.tsv); the exact digest remains owner-held.
+its public evidence identifier is registered in [the evidence registry](../docs/evidence-index.tsv); the exact digest remains owner-held.
 The original export remains owner-held. Other gmap observations in that source
 are deliberately excluded from this animation scope.
 

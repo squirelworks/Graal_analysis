@@ -1,4 +1,4 @@
-# Windows teardown workingpapers
+# Windows 4.04r2 teardown summary
 
 The owner-held collection contains recovered-image analysis, engine and shell
 metadata, player dossiers, original REA records, runtime traces and lab harnesses.
@@ -29,7 +29,7 @@ initialization. An adjacent archived engine was not substituted.
 Static code and a loaded module do not establish playable 3D, exact gameplay
 mechanics or independent clean-room implementation. Research agents should
 publish reviewed plain-behaviour findings here; implementing agents follow
-[the handling boundary](../handling.md) and their own specifications and tests.
+[the handling boundary](../AGENTS.md) and their own specifications and tests.
 
 - [x] ~~Collect the completed Windows code export and provenance in a dedicated folder.~~ Its private custody is tracked outside this public repository.
 - [ ] Resolve or document the three remaining decompiler timeouts before claiming complete identified-function C coverage.
@@ -68,9 +68,9 @@ failed before a successful transition and must not be counted as successful runs
 - [ ] Validate each selected mechanic with before/after state and captured user action.
 - [ ] Record harness and fixture digests at capture start for reproducible follow-up.
 
-Public evidence categories are listed in [the source index](../sources.tsv).
+Public evidence categories are listed in [the source index](../docs/evidence-index.tsv).
 Exact source identities remain private. Existing cleaned mechanic notes elsewhere
 in this repository retain their own evidence scope; this collection does not
 supersede them.
 
-- [Imported v4 alias and retained identity](v4-import-provenance.md): separately corroborated resource fields; supplied alias, collection label and official release provenance remain distinct.
+- [Imported v4 alias and retained identity](windows-v4-import-provenance.md): separately corroborated resource fields; supplied alias, collection label and official release provenance remain distinct.

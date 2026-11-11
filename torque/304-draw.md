@@ -58,7 +58,7 @@ The single-direction names, in the order the unit stores them, are `CHAR`, `SPRI
 
 [doc] Finding `V3-GRAAL-01` in the retained structured review supplies the eight wrapper constants; `V3-GRAAL-03` supplies the local key comparison/insertion result. The retained baseline comparison explicitly separates this binding precision from already published polygon and native-rendering architecture. Publication preparation reads and hashes those documents; it does not reopen decompiled functions, assembly or executable bytes. Underlying native findings and executable identities remain researcher-supplied.
 
-`LNX304-SHOWIMAGE-FINDINGS-DOC`, `LNX304-SHOWIMAGE-BASELINE-DOC` and `LNX304-SHOWIMAGE-IDENTITIES-DOC` identify the actual owner-held input documents through [the source index](../workingpapers/sources.tsv). Their digests identify documents, not original installers or newly created runtime captures. Raw code, addresses, original assets and private access paths are excluded.
+`LNX304-SHOWIMAGE-FINDINGS-DOC`, `LNX304-SHOWIMAGE-BASELINE-DOC` and `LNX304-SHOWIMAGE-IDENTITIES-DOC` identify the actual owner-held input documents through [the source index](../docs/evidence-index.tsv). Their digests identify documents, not original installers or newly created runtime captures. Raw code, addresses, original assets and private access paths are excluded.
 
 - [x] ~~Map the eight retained exact-build wrapper mode/flag pairs without repeating known command presence.~~
 - [ ] Establish unresolved mode, flag/signature semantics and rendered behavior separately before claiming a complete command contract.

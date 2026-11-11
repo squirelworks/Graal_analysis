@@ -39,7 +39,7 @@ PRs; they never merge, never push to `main`, never create a tag or release.
   not tables, not code, not the Python decoders. Those repos may *link* to a note here;
   their code is written from their own protocol docs, lab captures and tests.
 - Raw decompiles (Ghidra `.c`/`.xml`/`.html`, `.idc`, `.gzf`) never enter any repo.
-- `workingpapers/` is for reviewed, curated public summaries only. Never publish owner-side paths, raw artifact names, package/member names, full artifact digests, private availability/status fields, or retrieval instructions. Keep exact source identity records owner-held; a public evidence index may contain only non-sensitive public IDs, platform, and evidence kind.
+- Working papers stay private and owner-held; there is no `workingpapers/` folder in this repo. Publish reviewed findings as ordinary topical notes (`version-profiles/`, `client-internals/`, `protocol/`, `formats/`, `torque/`, `npc-library/`) with their evidence limits. Never publish owner-side paths, raw artifact names, package/member names, full artifact digests, private availability/status fields, lab-status handoffs or retrieval instructions. Cite owner-held evidence by public ID in `docs/evidence-index.tsv`, which may contain only the non-sensitive ID, platform and evidence kind.
   Squirrel holds them (Drive / project files). If a task needs one, ask Squirrel for
   it and commit only the plain-behaviour result.
 - pyReborn (`hosler/pyReborn`, `reborn-protocol`, `pygserver`) is MIT: summarise and

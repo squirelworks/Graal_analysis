@@ -2,7 +2,7 @@
 
 ## Input and provenance
 
-The subject is the 654,336-byte Windows x86 1st Graal input, researcher-supplied SHA-256 `03d8121711f41ac7b5a6e3fe549145d8fdfd44d22040f6706329ae83c6a1a37b`, MD5 `07452f8941fdfcdce878b035156e701c`. Evidence record `GRAAL-FIRST-MOVEMENT-20261109-01` and its retained-record digest are registered in [the evidence index](../workingpapers/sources.tsv). The record also contains a separate movement investigation.
+The subject is the 654,336-byte Windows x86 1st Graal input, researcher-supplied SHA-256 `03d8121711f41ac7b5a6e3fe549145d8fdfd44d22040f6706329ae83c6a1a37b`, MD5 `07452f8941fdfcdce878b035156e701c`. Evidence record `GRAAL-FIRST-MOVEMENT-20261109-01` and its retained-record digest are registered in [the evidence index](../docs/evidence-index.tsv). The record also contains a separate movement investigation.
 
 Input identity, instruction checks and retained-record digest are researcher-supplied. The editor reviewed the address-free original-prose handoff only, without inspecting the executable, raw instructions or private record. This documentation does not independently verify binary provenance.
 

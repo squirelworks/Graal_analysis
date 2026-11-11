@@ -6,7 +6,7 @@ It is a derived coverage dataset, not a new client run. The editor matched its
 source-document byte counts and hashes; original captures, private-carrier hashes
 and observations remain researcher-supplied. Source
 `LNX-BOOTSTRAP-LEDGER-20261109` identifies the sanitized ledger itself in
-[the evidence index](../workingpapers/sources.tsv), not a new raw capture.
+[the evidence index](../docs/evidence-index.tsv), not a new raw capture.
 
 ## Read the gates independently
 
@@ -33,7 +33,7 @@ repository-wide research gap. In particular, the earlier
 retains its separate positive result. Do not silently import that different
 experiment into a network-bootstrap cell.
 
-The [Linux workingpaper index](../workingpapers/linux/README.md) preserves the earlier teardown/startup snapshot. The later [3.04 startup/reader study](../client-internals/linux-304-startup-reader.md) separates the unpacked initialization failure from successful packed-input compiled-script reading. Those observations retain their own input and stopping-point scope; they do not establish unpacked startup or gameplay success. These discovery links do not revise the frozen JSON ledger or its source hashes.
+The [Linux teardown summary](linux-teardown.md) preserves the earlier teardown/startup snapshot. The later [3.04 startup/reader study](../client-internals/linux-304-startup-reader.md) separates the unpacked initialization failure from successful packed-input compiled-script reading. Those observations retain their own input and stopping-point scope; they do not establish unpacked startup or gameplay success. These discovery links do not revise the frozen JSON ledger or its source hashes.
 
 ## Static contracts and supersession
 

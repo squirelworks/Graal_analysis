@@ -54,4 +54,4 @@ This closes the narrow producer linkage for #p while leaving broader message-exp
 
 The narrow #p producer linkage is now established for this exact build. Preserve broader E#203 residual field/scanner/formatter/renderer tasks. General reentrant global-context restoration, every event category, every source context, precise scheduling, network action acceptance, and other profiles remain open. The observed callnpc result is not a callweapon runtime test; the latter shares the no-parameter wrapper in the static trace.
 
-Evidence retrieval: static and runtime identifiers are indexed in [workingpapers/sources.tsv](../workingpapers/sources.tsv). Digests, executable identity and observations are researcher supplied; the editor matched four sanitized handoff file digests without inspecting private evidence or the binary.
+Evidence retrieval: static and runtime identifiers are indexed in [docs/evidence-index.tsv](../docs/evidence-index.tsv). Digests, executable identity and observations are researcher supplied; the editor matched four sanitized handoff file digests without inspecting private evidence or the binary.
