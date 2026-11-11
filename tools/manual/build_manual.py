@@ -18,6 +18,8 @@ Needs:
   - pandoc on PATH, or the `pypandoc_binary` package (its bundled pandoc);
   - the `playwright` package and its Chromium
     (`pip install playwright` then `python -m playwright install chromium`).
+  - the `pypdf` package, which writes the bookmarks (the PDF outline). Without
+    it the PDF is still built, with a warning and no bookmarks.
     `--chromium PATH` or the PLAYWRIGHT_CHROMIUM_EXECUTABLE variable points it
     at a Chromium that is already installed.
 
@@ -34,6 +36,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -158,11 +161,99 @@ def print_pdf(html: Path, out: Path, chromium: str | None) -> None:
             margin={'top': '14mm', 'bottom': '14mm', 'left': '12mm', 'right': '12mm'},
             display_header_footer=True, header_template='<span></span>',
             footer_template=FOOTER,
-            # outline: the PDF bookmarks panel, built from the h1-h6 headings;
-            # Chromium needs a tagged PDF to emit it.
-            tagged=True, outline=True,
         )
         browser.close()
+
+
+class _Headings(HTMLParser):
+    """Collect (level, id, text) for every h1 and h2 that carries an id."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.found: list[tuple[int, str, str]] = []
+        self._cur: tuple[int, str] | None = None
+        self._text: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ('h1', 'h2') and dict(attrs).get('id'):
+            self._cur = (int(tag[1]), dict(attrs)['id'])
+            self._text = []
+
+    def handle_data(self, data):
+        if self._cur:
+            self._text.append(data)
+
+    def handle_endtag(self, tag):
+        if self._cur and tag == f'h{self._cur[0]}':
+            text = ' '.join(''.join(self._text).split())
+            self.found.append((self._cur[0], self._cur[1], text))
+            self._cur = None
+
+
+def outline_entries(html: str) -> list[tuple[int, str, str]]:
+    """(depth, id, title) for the bookmarks, nested Part > chapter > section.
+
+    A Part and its chapters are both h1 (`# 2 Wire protocol`, `# 2.1 Framing`);
+    a chapter whose number starts with the open Part's number goes one level
+    under it. Sections (h2) go one level under the h1 before them. The title
+    block's own heading, the pandoc contents list and the Part indexes'
+    `Chapters` lists are skipped.
+    """
+    parser = _Headings()
+    parser.feed(html)
+    out: list[tuple[int, str, str]] = []
+    part = None
+    h1_depth = 0
+    for level, ident, text in parser.found:
+        if ident in ('TOC', 'title-block-header') or (level == 2 and text == 'Chapters'):
+            continue
+        number = text.split(' ', 1)[0]
+        if level == 1:
+            if part and '.' in number and number.split('.')[0] == part:
+                h1_depth = 1
+            else:
+                part = number if re.fullmatch(r'[0-9A-Z]+', number) else None
+                h1_depth = 0
+            out.append((h1_depth, ident, text))
+        else:
+            out.append((h1_depth + 1, ident, text))
+    return out
+
+
+def add_outline(pdf_path: Path, html: str) -> int:
+    """Write the bookmarks into the PDF from the h1/h2 named destinations.
+
+    Chromium makes a named destination for each heading the contents list
+    links to (pandoc `--toc-depth=2`). Returns the number of bookmarks, or
+    -1 when pypdf is not installed.
+    """
+    try:
+        from pypdf import PdfReader, PdfWriter  # type: ignore[import-not-found]
+        from pypdf.generic import Fit  # type: ignore[import-not-found]
+    except ImportError:
+        print('warning: pypdf not found, so the PDF has no bookmarks (`pip install pypdf`)',
+              file=sys.stderr)
+        return -1
+    reader = PdfReader(str(pdf_path))
+    dests = reader.named_destinations
+    writer = PdfWriter(clone_from=reader)
+    parents: list = []
+    count = 0
+    for depth, ident, title in outline_entries(html):
+        dest = dests.get('/' + ident) or dests.get(ident)
+        if dest is None:
+            continue
+        page = reader.get_destination_page_number(dest)
+        parent = parents[depth - 1] if 0 < depth <= len(parents) else None
+        item = writer.add_outline_item(title, page, parent=parent,
+                                       fit=Fit.xyz(top=dest.top))
+        del parents[depth:]
+        parents.append(item)
+        count += 1
+    writer.page_mode = '/UseOutlines'
+    with open(pdf_path, 'wb') as fh:
+        writer.write(fh)
+    return count
 
 
 def scrub_browser_version(pdf: bytes) -> bytes:
@@ -176,7 +267,8 @@ def scrub_browser_version(pdf: bytes) -> bytes:
 
 
 def page_count(pdf: bytes) -> int:
-    """Pages in a PDF: its `/Type /Page` objects (Chromium writes no object streams)."""
+    """Pages in a PDF: its `/Type /Page` objects (neither Chromium nor pypdf's
+    default writer uses object streams)."""
     return len(re.findall(rb'/Type\s*/Page(?![a-zA-Z])', pdf))
 
 
@@ -204,10 +296,12 @@ def main(argv: list[str] | None = None) -> int:
         if args.html:
             shutil.copyfile(html, args.html)
         print_pdf(html, out, args.chromium)
+        marks = add_outline(out, html.read_text(encoding='utf-8'))
     pdf = scrub_browser_version(out.read_bytes())
     out.write_bytes(pdf)
     pages = page_count(pdf)
-    print(f'built {out} from {commit}: {pages} pages')
+    print(f'built {out} from {commit}: {pages} pages'
+          + (f', {marks} bookmarks' if marks >= 0 else ', no bookmarks'))
     return 0
 
 

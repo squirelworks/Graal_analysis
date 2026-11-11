@@ -182,7 +182,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install pandoc and Playwright
-        run: python -m pip install pypandoc_binary playwright
+        run: python -m pip install pypandoc_binary playwright pypdf
 
       - name: Install Chromium (Linux, with system libraries)
         if: runner.os == 'Linux'

@@ -89,3 +89,28 @@ def test_scrub_browser_version_keeps_length():
     assert len(out) == len(pdf)
     assert b'HeadlessChrome/153_0_0_0 ' in out
     assert b'Safari/537.36' in out
+
+
+def test_outline_nests_part_chapter_section():
+    html = (
+        '<h1 id="2-wire">2 Wire protocol</h1>'
+        '<h2 id="20-reading">2.0 Reading this Part</h2>'
+        '<h2 id="chapters">Chapters</h2>'
+        '<h1 id="21-framing">2.1 Framing <em>and</em> encodings</h1>'
+        '<h2 id="211-ints">2.1.1 Integer encodings</h2>'
+        '<h1 id="10-torque">10 Torque-era 3D</h1>'
+        '<h2 id="101-lineage">10.1 Engine lineage</h2>'
+        '<h1 id="app-a">Appendix A. Message index</h1>'
+        '<h2 id="a1">A.1 Client to server</h2>'
+        '<h3 id="deep">2.1.1.1 Too deep</h3>'
+    )
+    assert build_manual.outline_entries(html) == [
+        (0, '2-wire', '2 Wire protocol'),
+        (1, '20-reading', '2.0 Reading this Part'),
+        (1, '21-framing', '2.1 Framing and encodings'),
+        (2, '211-ints', '2.1.1 Integer encodings'),
+        (0, '10-torque', '10 Torque-era 3D'),
+        (1, '101-lineage', '10.1 Engine lineage'),
+        (0, 'app-a', 'Appendix A. Message index'),
+        (1, 'a1', 'A.1 Client to server'),
+    ]
