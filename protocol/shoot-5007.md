@@ -1,8 +1,8 @@
-# Shoot packets in the 5.0.0.7 client, and how SHOOT2 stores gravity (5.0.0.7 to 6.00b1)
+# Shoot packets in the 5.0.0.7 client, and how SHOOT2 stores gravity (5.0.0.7 to 6.03r7)
 
 Date: 2026-11-11
 
-Source: the Windows 5.0.0.7 engine (July 2007; called "5.00r7" in `v5x-clients.md`), using the unpatched engine file, read statically. The PLI_SHOOT2 sender was read in the 5.12 engine (October 2007), 5.24r4 and 6.00b1 (`v5v6-windows-unpacked.md`). Nothing was run. Tags: **[bin]** read from the client · **[srv]** read from the GServer-v2 fork (`seihai-gserver-v2`, `seihai-gs2lib`) · **[inf]** inferred.
+Source: the Windows 5.0.0.7 engine (July 2007; called "5.00r7" in `v5x-clients.md`), using the unpatched engine file, read statically. The PLI_SHOOT2 sender was read in the 5.12 engine (October 2007), 5.24r4, 6.00b1 and 6.03r7 (`v5v6-windows-unpacked.md`). Nothing was run. Tags: **[bin]** read from the client · **[srv]** read from the GServer-v2 fork (`seihai-gserver-v2`, `seihai-gs2lib`) · **[inf]** inferred.
 
 The community called this build "5.007". It's the build whose launcher reports FileVersion `5.0.0.7`.
 
@@ -14,7 +14,7 @@ The community called this build "5.007". It's the build whose launcher reports F
   - step 1/256; range about ±32 (8191/256) with 7-bit digits
   - if fewer than 2 bytes are left, gravity is 0 **[bin]**
 - **5.0.0.7 never sends PLI_SHOOT2 (48).** No send of id 48 exists in the engine. GS2 `shoot` sends **PLI_SHOOT (40)**, which has no gravity field. 5.0.0.7 only *receives* the SHOOT2 layout: as PLO_SHOOT2 (191), and as UDP peer id 30. **[bin]**
-- **The sender arrives in 5.1x, and it also writes 2 bytes.** 5.12, 5.24r4 and 6.00b1 send PLI_SHOOT2 (48) with the same body the 5.0.0.7 reader takes. Gravity is `floor(g × 256 + 0.0001)`, X2-signed, written as a GSHORT. None of these builds writes gravity as one byte. **[bin]** The one-byte gravity in GServer-v2 (below) matches no client read so far. The 6.00r2 and 6.03r7 builds are laid out differently, and their sender wasn't found.
+- **The sender arrives in 5.1x, and it also writes 2 bytes.** 5.12, 5.24r4, 6.00b1 and 6.03r7 send PLI_SHOOT2 (48) with the same body the 5.0.0.7 reader takes. Gravity is `floor(g × 256 + 0.0001)`, X2-signed, written as a GSHORT. None of these builds writes gravity as one byte. **[bin]** The one-byte gravity in GServer-v2 (below) matches no client read so far.
 
 | Gravity | v | Bytes on the wire |
 |---|---|---|
@@ -37,9 +37,9 @@ The angle and power steps match the community's figures: angle 2π/220 and power
 - "round" is `floor(x + 0.5 + 0.0001)`.
 - Power is in tiles per 0.05 s step. That makes the cap of 5 equal to 100 tiles per second. **[bin][inf]**
 
-## PLI_SHOOT2 (48), what 5.12 to 6.00b1 send **[bin]**
+## PLI_SHOOT2 (48), what 5.12 to 6.03r7 send **[bin]**
 
-The body is the PLO_SHOOT2 body below without the leading player id. One routine builds it, sends it to UDP peers as UDP id 30, then sends it over TCP as 48. Here is how each field is built:
+The body is the PLO_SHOOT2 body below without the leading player id. One routine builds it. In 5.12, 5.24r4 and 6.00b1 it sends the body to UDP peers as UDP id 30, then over TCP as 48. The 6.03r7 routine sends only the TCP 48. 6.03r7 is a rebuild with a newer compiler and does the same arithmetic in a different form: `× 220 / 2π`, `× 220 / π`, `× 220 / 5`, and gravity as `(g × 16) × 16`. Here is how each field is built:
 
 - **Position.** The sender splits the gmap position into a level (offset x, y = `floor(pos / 64 + 0.0001)`) and a position inside that level. x and y become `floor(local × 16 + 0.0001)` pixels; z becomes `floor(z × 16 + 0.0001)`. Each is then X2-signed (`2 × |v|`, plus 1 if negative) and written as a GSHORT. The GSHORT writer caps at 28671.
 - **Angle, zangle, power.** `floor(angle × 220/2π + 0.0001)`, `floor((zangle + π/2) × 220/π + 0.0001)`, `floor(power × 44 + 0.0001)`, each a GCHAR. These truncate. The 5.0.0.7 PLI_SHOOT sender rounds instead (+0.5).
@@ -113,6 +113,5 @@ Neither prediction has been checked in a lab. The GServer reader for PLI_SHOOT2 
 
 ## Not done
 
-- [x] ~~Read the first PLI_SHOOT2 (48) sender~~: 5.12, 5.24r4 and 6.00b1 send 2-byte gravity ×256 (above).
-- [ ] Read the 6.00r2, 6.01r1 and 6.03r7 senders.
+- [x] ~~Read the PLI_SHOOT2 (48) senders~~: 5.12, 5.24r4, 6.00b1 and 6.03r7 all send 2-byte gravity ×256 (above).
 - [ ] Lab check: send a PLO_SHOOT2 with known gravity to a 5.0.0.7 client and watch the arc.
