@@ -37,7 +37,7 @@ header      := "LOOP" | "CONTINUOUS" | "SINGLEDIRECTION"
              | "BACKCOLOR" "#" hex6
              | "FRAMES" count
              | "DEFAULTHEAD" file | "DEFAULTBODY" file
-             | "DEFAULTPARAM" n value | "DEFAULTATTR" n value
+             | "DEFAULTPARAM"n value | "DEFAULTATTR"n value
              | "COLOREFFECT" id args | "ZOOMEFFECT" id args
              | "ROTATEEFFECT" id args
              | "STRETCHXEFFECT" id args | "STRETCHYEFFECT" id args
@@ -48,9 +48,11 @@ movie       := "MOVIE" actor* "MOVIEEND"
 actor       := "ACTOR" name frame* "ACTOREND"
 frame       := "FRAME" index token ("," token)*
 step        := placement ("," placement)* | "WAIT" n | "PLAYSOUND" name x y
-placement   := spriteId x y | "PARAM" n x y | "ATTR" n x y
+placement   := spriteId x y | "PARAM"n x y | "ATTR"n x y
 script      := "SCRIPT" rawlines "SCRIPTEND"
 ```
+
+In `DEFAULTPARAM`, `DEFAULTATTR`, `PARAM` and `ATTR` the slot number is glued to the keyword, as in `DEFAULTATTR1 hat0.png` and `PARAM1 0 0`; every GANI in the NewWorld beta and NewMain folders is written this way [file][doc] (client-internals/graal-wiki-crosscheck-2026-11-11.md#where-the-wiki-corrects-or-extends-this-repo).
 
 ## 3.3.3 Sprite rows
 
@@ -85,6 +87,7 @@ The header keywords set how an animation plays. Each row gives a keyword and its
 | `DEFAULTPARAM`, `DEFAULTATTR` | seed the 30-row attribute grid | [bin] (formats/gani.txt) |
 | `COLOREFFECT`, `ZOOMEFFECT`, `ROTATEEFFECT`, `STRETCHXEFFECT`, `STRETCHYEFFECT`, `EFFECTMODE` | stored as an id plus arguments and applied at blit time | [bin] (formats/gani.txt) |
 | `SCRIPT` … `SCRIPTEND` | copied through as text; the editor does not execute it | [bin] (formats/gani.txt) |
+| `ROTATEPROJECTILE` | from 6.036: a projectile drawn with this GANI is turned to its flight path; the GANI must also be `SINGLEDIRECTION` and drawn facing right; not yet seen in a binary | [doc] (client-internals/graal-wiki-crosscheck-2026-11-11.md#where-the-wiki-corrects-or-extends-this-repo) |
 
 ## 3.3.5 Sprite mode body
 

@@ -37,8 +37,8 @@ header      := "LOOP"
              | "FRAMES" count
              | "DEFAULTHEAD" file
              | "DEFAULTBODY" file
-             | "DEFAULTPARAM" n value
-             | "DEFAULTATTR"  n value
+             | "DEFAULTPARAM" n value     (n glued on: DEFAULTPARAM1)
+             | "DEFAULTATTR"  n value     (n glued on: DEFAULTATTR1)
              | "COLOREFFECT"  id args
              | "ZOOMEFFECT"   id args
              | "ROTATEEFFECT" id args
@@ -54,8 +54,8 @@ step        := placement ("," placement)*
              | "WAIT" n
              | "PLAYSOUND" name x y
 placement   := spriteId x y
-             | "PARAM" n x y
-             | "ATTR"  n x y
+             | "PARAM" n x y              (n glued on: PARAM1)
+             | "ATTR"  n x y              (n glued on: ATTR4)
 script      := "SCRIPT" rawlines "SCRIPTEND"
 .fi
 .RE
@@ -155,6 +155,11 @@ objects.
 and
 .B DEFAULTATTR
 seed the 30-row attribute grid.
+The slot number is written straight after the keyword, with no space:
+.I DEFAULTATTR1 hat0.png ,
+.IR "PARAM1 0 0" .
+Every GANI in the NewWorld beta and NewMain folders is written this way
+(see client-internals/graal-wiki-crosscheck-2026-11-11.md).
 Effect lines
 .RI ( COLOREFFECT , ZOOMEFFECT , ROTATEEFFECT ,
 .IR STRETCHXEFFECT , STRETCHYEFFECT , EFFECTMODE )
