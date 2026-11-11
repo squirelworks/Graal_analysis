@@ -73,18 +73,31 @@ CSS = """\
 @page wide{size:A4 landscape;margin:14mm 12mm}
 @page wider{size:A3 landscape;margin:14mm 12mm}
 .page-wide{page:wide} .page-wider{page:wider}
-body{font-family:"DejaVu Sans","Helvetica Neue",Arial,sans-serif;font-size:9pt;line-height:1.35;max-width:none;margin:0;padding:0}
-h1{page-break-before:always;font-size:18pt;border-bottom:2px solid #333}
-h2{font-size:13pt;margin-top:1.4em} h3{font-size:11pt} h4{font-size:10pt}
-table{display:table;overflow:visible;border-collapse:collapse;width:100%;margin:.5em 0;font-size:8pt;page-break-inside:auto}
-th,td{border:1px solid #999;padding:2px 4px;vertical-align:top;word-break:normal;overflow-wrap:break-word}
-th{white-space:nowrap}
-th{background:#eee} tr{page-break-inside:avoid}
-code{font-family:"DejaVu Sans Mono",Consolas,Menlo,monospace;font-size:8pt;background:#f4f4f4}
-pre{background:#f4f4f4;padding:4px;font-size:8pt;white-space:pre-wrap}
+body{font-family:"DejaVu Sans","Helvetica Neue",Arial,sans-serif;font-size:9pt;line-height:1.4;color:#1d1d1f;max-width:none;margin:0;padding:0}
+a{color:#1f4e8c;text-decoration:none}
+h1{page-break-before:always;font-size:18pt;color:#1f3a5f;border-bottom:2px solid #1f3a5f;padding-bottom:3px;margin:0 0 .6em}
+h2{font-size:13pt;color:#1f3a5f;margin:1.4em 0 .4em;break-after:avoid}
+h3{font-size:11pt;color:#2b4c74;margin:1.2em 0 .3em;break-after:avoid}
+h4,h5,h6{font-size:10pt;color:#2b4c74;margin:1em 0 .3em;break-after:avoid}
+p{margin:.35em 0 .55em;orphans:3;widows:3}
+/* Separate borders keep every line inside the table box: with collapsed
+   borders the outer half-line on the right was clipped at the page edge. */
+table{display:table;overflow:visible;border-collapse:separate;border-spacing:0;width:calc(100% - 2px);box-sizing:border-box;
+  margin:.4em 0 1em;font-size:8pt;line-height:1.3;page-break-inside:auto;border-top:1.5px solid #1f3a5f;border-left:1px solid #c9d1dc}
+th,td{border-right:1px solid #c9d1dc;border-bottom:1px solid #c9d1dc;padding:3px 5px;vertical-align:top;text-align:left;word-break:normal;overflow-wrap:break-word}
+th{white-space:nowrap;background:#e7edf5;color:#1f3a5f;font-weight:bold;border-bottom:1.5px solid #1f3a5f}
+tbody tr:nth-child(even) td{background:#f6f8fb}
+thead{display:table-header-group} tr{page-break-inside:avoid}
+code{font-family:"DejaVu Sans Mono",Consolas,Menlo,monospace;font-size:8pt;background:#f2f4f7;border-radius:2px;padding:0 1px}
+td code{background:none;padding:0}
+pre{background:#f2f4f7;border-left:3px solid #c9d1dc;padding:5px 7px;font-size:8pt;white-space:pre-wrap}
+blockquote{margin:.6em 0;padding:.3em .8em;border-left:3px solid #c9d1dc;color:#444;background:#f8f9fb}
 p code,li code{overflow-wrap:anywhere}
 .page-wide img,.page-wider img{display:block;width:100%;height:auto}
-#TOC{page-break-after:always} #TOC ul{list-style:none;padding-left:1em}
+#title-block-header{text-align:center;padding-top:70mm;page-break-after:always}
+#title-block-header .title{font-size:28pt;color:#1f3a5f;border:none;margin-bottom:.3em}
+#title-block-header .subtitle{font-size:12pt;color:#555;font-weight:normal}
+#TOC{page-break-after:always} #TOC>ul>li{margin-top:.25em} #TOC ul{list-style:none;padding-left:1em}
 sup.fn{font-size:6pt;line-height:0;color:#555} sup.fn a{color:#555;text-decoration:none}
 .bib{font-size:7.5pt;column-count:2;column-gap:2em} .bib p{margin:0 0 1px 0;break-inside:avoid}
 .bib a{color:#000;text-decoration:none;word-break:break-all}
