@@ -1,6 +1,6 @@
 # Where the 6.11 client's outgoing cipher starts
 
-Date: 2026-11-11. Tags: **[cap]** the Windows 6.113 port 14900 capture (`v6113-list-capture.md`) · **[lab]** an offline replay of a captured connector reply to an unmodified Mac 6.111 client, owner-held record · **[bin]** the client notes cited below · **[inf]** inference.
+Date: 2026-11-11. Tags: **[cap]** the Windows 6.113 port 14900 capture (`v6113-list-capture.md`) · **[lab]** an offline replay of a captured connector reply to a lab Mac client (6.111, unmodified), owner-held record · **[bin]** the client notes cited below · **[inf]** inference.
 
 Short answer: the client sends the token and one framed packet in the clear. Every byte after that packet is RC4 ciphertext, headers included. On the wire that is stream offset **287**. The RC4 key is 16 bytes, made fresh for each session.
 
@@ -44,10 +44,7 @@ That order explains the boundary. The 0xfc/0xfd packet goes out before `setEncry
 
 The script makes the RC4 key with `generate16ByteKey`, and calls `rsa_encrypt` with a 2048-bit public key (exponent 65537) that the script carries. The 0xfc body is 256 bytes, the size of one RSA-2048 block, and is not the raw RSA of the key, so a padding scheme is used. The reading that fits is that the 0xfc body carries the session key encrypted to the operator's public key. That could not be proved without the matching private key **[lab][inf]**.
 
-What follows for a server **[inf]**:
-
-- A server that answers a stock 6.11 client must recover the session key from the 0xfc body. That needs the private key matching the public key in the signed connector script. A lab server does not have it, so it cannot read a stock client's encrypted stream.
-- A client and server that both run our own connector logic can use the same scheme with a key pair the lab controls: clear token, clear 0xfd wrapping 0xfc, then RC4 from the next byte.
+What follows for a server **[inf]**: a server that answers a stock 6.11 client must recover the session key from the 0xfc body. That needs the private key matching the public key in the signed connector script. A lab server does not have it, so it cannot read a stock client's encrypted stream.
 
 ## Open points
 
@@ -57,4 +54,4 @@ What follows for a server **[inf]**:
 
 ## Method notes
 
-The Mac run was offline. The client loaded a previously captured connector reply from a loopback responder, and its game connection went to a sink that sent nothing. The session key was read when the client set it, with hardware breakpoints on the client's RC4 and AES set-key routines through the VM's debugger stub. A memory dump taken during the session alone did not show the key or the RC4 state. No key, capture, host or dump is published.
+The lab Mac run was offline. The client loaded a previously captured connector reply from a loopback responder, and its game connection went to a sink that sent nothing. The session key was read when the client set it, with hardware breakpoints on the client's RC4 and AES set-key routines through the VM's debugger stub. A memory dump taken during the session alone did not show the key or the RC4 state. No key, capture, host or dump is published.
