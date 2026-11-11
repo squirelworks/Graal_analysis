@@ -19,6 +19,7 @@ Graal has three level formats, and the same file can carry the wrong extension. 
 | client magics | every client tested, 1st Graal to 2.31 and the NewWorld betas, carries `Z3-V1.03` and `Z3-V1.04` and no third `Z3-V1` revision; the 1st Graal and 1.39 loaders compare the 8 magic bytes only | [bin] (client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md) |
 | 2.05 writer | always writes `GR-V1.03` for a level that is not saved as `.nw` | [2.05] (formats/level-binary.md#open) |
 | 2.31 writer | writes `GR-V1.04` only when the level has a height map, `GR-V1.03` otherwise | [2.31] (formats/level-binary-client.md#gr-v104-231) |
+| Mac 4.04r2 board dispatch | the routine reads 8 header bytes and compares them: `GLEVNW01` has its own handler; every other header, including an unknown one, takes a common path that passes 12, or 13 for `GR-V1.02` and `GR-V1.03`; it has no `GR-V1.04` comparison. This is not a whitelist, and 12/13 is not proven to be a tile width | [bin][inf] (formats/gmap-heights-mac-ppc.md#404r2-board-header-dispatch) |
 
 A level name with no extension is a separate question. The rules below say what clients do with such a name, what the editor adds, and which builds were read to establish it [bin] (client-internals/bare-level-names.md#findings).
 

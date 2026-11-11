@@ -577,6 +577,20 @@ The one Mac 4.x client was run in an emulator. The rule records what its login a
 
 [bin] One translator turns Carbon input into engine records. Key down, repeat and up become values 1, 1 and 0 through a byte lookup table; characters are converted one byte at a time, so there is no Unicode path; a modifier emits a press or a release only when its bit changes; mouse movement is either window-local absolute or relative, with the wheel on its own code. On v5 the keyboard fallback builds a command string starting `e:`. Nothing was run, so live delivery, rendering and script execution are not established. [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#turning-input-into-engine-records); [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#where-input-goes-on-v5)
 
+#### Mac PowerPC graphics, transport and resources
+
+The rules below come from a broad static pass over the four Mac PowerPC executables. Nothing was run [bin] (client-internals/mac-ppc-runtime-surface-2026-11-09.md).
+
+| Rule | Source |
+| --- | --- |
+| Graphics setup is the same in all four builds:<br>• The window helper requests the AGL attributes `4, 5, 73, 72, 12` plus a depth of 16 or 32.<br>• The fullscreen helper adds `54, 50` and the requested depth. If fullscreen fails, it retries once at 60 Hz.<br>• Neither helper retries the pixel format with fewer attributes. | [bin] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#graphics-context-setup) |
+| Apple's `agl.h` names 72 and 73 `AGL_NO_RECOVERY` and `AGL_ACCELERATED`. If so, an emulated machine with no hardware OpenGL renderer finds no pixel format. That would explain the black window, but it is a lead, not a measured cause. | [inf] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#graphics-context-setup) |
+| Socket wrappers:<br>• 4.04r2 receives at most 8192 bytes per call after a zero-timeout `select`.<br>• A send makes one call, with no full-write loop.<br>• A separate wrapper reads a journal instead of the socket in replay mode. | [bin] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#transport-wrappers) |
+| Machine identity: 4.04r2, 4.20r6 and v5 look up the primary `IOEthernetInterface` through I/O Kit. That does not explain the empty MAC-hash field seen under emulation. | [bin][inf] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#machine-identity) |
+| v5 event names: one helper maps 1 and 10 to `onCreated`, 2 to `onEnterFrame`, 4 to `onMouseMove`, 5 and 6 to `onMouseDown`/`onMouseUp`, and 7 and 8 to `onKeyDown`/`onKeyUp`. These are helper-local numbers, not script event ids. | [bin] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#v5-event-name-bridge) |
+| Download folders: v5 adds branches that the opened 4.20r6 helper lacks:<br>• `.po` goes to `levels/translations`;<br>• `.wba` goes to `levels/guistyles`;<br>• `.ft` goes to `levels3d/trees`;<br>• smilie names go to `smilies`.<br>v3 routes 3D files by extension under `levels3d`. | [bin] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#where-resources-go) |
+| Packaged resources:<br>• All 44 shared v3 `.dso` files are container version 33, and each parses to the end.<br>• 4.04r2 and 4.20r6 ship nine plain `.cs` files and no `.dso`.<br>• `CFBundleVersion` is `0.6.1d1` in every build, so it is not a release id. | [file] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#packaged-resources) |
+
 ### 1.8.6 Graal 5.x: Windows 5.00r7 to 5.31r4
 
 #### Program, packers and licence files
