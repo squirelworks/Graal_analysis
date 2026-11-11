@@ -114,3 +114,34 @@ def test_outline_nests_part_chapter_section():
         (0, 'app-a', 'Appendix A. Message index'),
         (1, 'a1', 'A.1 Client to server'),
     ]
+
+
+def test_sources_become_footnotes_and_bibliography():
+    bib = build_manual.Bibliography()
+    md = (
+        'Text [bin] (a/x.md#y); [2.05] (b/y.md) and more [inf] (a/x.md).\n'
+        '\n'
+        '| Id | Rule | Source |\n'
+        '| --- | --- | --- |\n'
+        '| 1 | a `[bin]` rule [inf] | [bin] (a/x.md); [cap] (c/z.md#q) |\n'
+        '| 2 | open | disputed → App. E#1 |\n'
+    )
+    out = build_manual.move_sources(md, bib)
+    lines = out.split('\n')
+    fn = '<sup class="fn"><a href="#src-{}">{}</a>'
+    assert lines[0].startswith('Text' + fn.format(1, 1) + ',<a href="#src-2">2</a></sup> and more')
+    assert lines[2] == '| Id | Rule |'
+    assert lines[4].startswith('| 1 | a `[bin]` rule' + fn.format(1, 1))
+    assert 'src-3' in lines[4]
+    assert lines[5].startswith('| 2 | open (disputed → App. E#1) |')
+    assert list(bib.number) == ['a/x.md', 'b/y.md', 'c/z.md']
+    assert '<p id="src-3">3. <a href="https://github.com/squirelworks/Graal_analysis/blob/main/c/z.md">' in bib.chapter()
+
+
+def test_a_source_column_of_names_is_kept():
+    bib = build_manual.Bibliography()
+    md = ('| Source | Hearts | Source |\n| --- | --- | --- |\n'
+          '| lava | 1 | [2.05] (a/x.md) |\n| arrow | 0.5 | [2.05] (a/x.md) |\n')
+    out = build_manual.move_sources(md, bib).split('\n')
+    assert out[0] == '| Source | Hearts |'
+    assert out[2].startswith('| lava | 1<sup class="fn">')

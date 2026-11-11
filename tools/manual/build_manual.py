@@ -40,6 +40,11 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from check_manual import CITE_RE, TAG_RE, split_sources  # noqa: E402
+
+REPO_URL = 'https://github.com/squirelworks/Graal_analysis/blob/main/'
+SOURCE_HEADERS = {'Source', 'Sources'}
 TITLE = 'Graal Technical Reference Manual'
 MARKER = '<!-- manual:'
 
@@ -65,11 +70,15 @@ body{font-family:"DejaVu Sans","Helvetica Neue",Arial,sans-serif;font-size:9pt;l
 h1{page-break-before:always;font-size:18pt;border-bottom:2px solid #333}
 h2{font-size:13pt;margin-top:1.4em} h3{font-size:11pt} h4{font-size:10pt}
 table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:8pt;page-break-inside:auto}
-th,td{border:1px solid #999;padding:2px 4px;vertical-align:top;word-break:break-word}
+th,td{border:1px solid #999;padding:2px 4px;vertical-align:top;word-break:normal;overflow-wrap:break-word}
+th{white-space:nowrap}
 th{background:#eee} tr{page-break-inside:avoid}
 code{font-family:"DejaVu Sans Mono",Consolas,Menlo,monospace;font-size:8pt;background:#f4f4f4}
 pre{background:#f4f4f4;padding:4px;font-size:8pt;white-space:pre-wrap}
 #TOC{page-break-after:always} #TOC ul{list-style:none;padding-left:1em}
+sup.fn{font-size:6pt;line-height:0;color:#555} sup.fn a{color:#555;text-decoration:none}
+.bib{font-size:7.5pt;column-count:2;column-gap:2em} .bib p{margin:0 0 1px 0;break-inside:avoid}
+.bib a{color:#000;text-decoration:none;word-break:break-all}
 """
 
 FOOTER = (
@@ -100,6 +109,147 @@ def join_chapters(files: list[Path]) -> str:
         lines = path.read_text(encoding='utf-8').splitlines()
         parts.append('\n'.join(l for l in lines if not l.startswith(MARKER)))
     return '\n\n\n'.join(parts) + '\n'
+
+
+class Bibliography:
+    """Numbers each cited note once, in order of first citation."""
+
+    def __init__(self) -> None:
+        self.number: dict[str, int] = {}
+
+    def marker(self, paths: list[str]) -> str:
+        nums = []
+        for path in paths:
+            path = path.rstrip('/')
+            if path not in self.number:
+                self.number[path] = len(self.number) + 1
+            if self.number[path] not in nums:
+                nums.append(self.number[path])
+        if not nums:
+            return ''
+        links = ','.join(f'<a href="#src-{n}">{n}</a>' for n in nums)
+        return f'<sup class="fn">{links}</sup>'
+
+    def chapter(self) -> str:
+        lines = [
+            '# Sources',
+            '',
+            'Every fact in this manual rests on a note in the Graal_analysis repository. '
+            'A superscript number in the text or a table points to the note below; the note '
+            'carries the evidence, the build it was read on and how it was obtained. In the '
+            'repository the same citations stay on the line they support, with their evidence '
+            'tags (→ §0.3).',
+            '',
+            '<div class="bib">',
+        ]
+        for path, n in self.number.items():
+            lines.append(f'<p id="src-{n}">{n}. <a href="{REPO_URL}{path}">{path}</a></p>')
+        lines.append('</div>')
+        return '\n'.join(lines) + '\n'
+
+
+def split_row(line: str) -> list[str]:
+    """Cells of a Markdown table row; `|` inside backticks or escaped stays."""
+    body = line.strip()
+    if body.startswith('|'):
+        body = body[1:]
+    if body.endswith('|') and not body.endswith('\\|'):
+        body = body[:-1]
+    cells, cur, in_code, i = [], [], False, 0
+    while i < len(body):
+        ch = body[i]
+        if ch == '\\' and i + 1 < len(body):
+            cur.append(body[i:i + 2])
+            i += 2
+            continue
+        if ch == '`':
+            in_code = not in_code
+        if ch == '|' and not in_code:
+            cells.append(''.join(cur).strip())
+            cur = []
+        else:
+            cur.append(ch)
+        i += 1
+    cells.append(''.join(cur).strip())
+    return cells
+
+
+def _outside_code(text: str, fn) -> str:
+    """Apply fn to the parts of text that are not inline code."""
+    parts = re.split(r'(`[^`]*`)', text)
+    return ''.join(p if p.startswith('`') and p.endswith('`') and len(p) > 1 else fn(p)
+                   for p in parts)
+
+
+def footnote_text(text: str, bib: Bibliography) -> str:
+    """Turn `[tag] (path)` citations into numbered markers and drop bare tags."""
+    def fix(part: str) -> str:
+        part = CITE_RE.sub(lambda m: bib.marker(split_sources(m.group(2))), part)
+        part = TAG_RE.sub('', part)
+        part = re.sub(r'\s*;\s*(?=<sup class="fn">)', '', part)
+        part = re.sub(r'(</sup>)\s*(<sup class="fn">)', r'\1\2', part)
+        part = re.sub(r'\s+([.,;:])', r'\1', part) if '<sup class="fn">' in part else part
+        part = re.sub(r'\s+(<sup class="fn">)', r'\1', part)
+        return re.sub(r'  +', ' ', part)
+    return _outside_code(text, fix)
+
+
+def move_sources(markdown: str, bib: Bibliography) -> str:
+    """Take citations out of the reading text for the PDF.
+
+    A table's Source column is dropped and its citations become a marker at
+    the end of the row's last remaining cell; citations in prose become a
+    marker in place. Bare evidence tags are dropped. The Markdown in the
+    repository keeps its citations; this only shapes the printed page.
+    """
+    out: list[str] = []
+    lines = markdown.split('\n')
+    in_fence = False
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line.lstrip().startswith('```'):
+            in_fence = not in_fence
+            out.append(line)
+            i += 1
+            continue
+        if in_fence:
+            out.append(line)
+            i += 1
+            continue
+        if line.startswith('|') and i + 1 < len(lines) and re.match(r'^\|\s*:?-{3}', lines[i + 1]):
+            block = []
+            while i < len(lines) and lines[i].startswith('|'):
+                block.append(lines[i])
+                i += 1
+            head = split_row(block[0])
+            body = [split_row(r) for r in block[2:]]
+            # A "Source" column of citations, not one that names a damage source.
+            drop = [k for k, h in enumerate(head) if h in SOURCE_HEADERS
+                    and sum(1 for c in body if k < len(c) and CITE_RE.search(c[k]))
+                    * 2 >= max(1, sum(1 for c in body if k < len(c) and c[k]))]
+            for n, row in enumerate(block):
+                cells = split_row(row)
+                if n == 1:
+                    cells = [c for k, c in enumerate(cells) if k not in drop]
+                    out.append('| ' + ' | '.join(cells) + ' |')
+                    continue
+                cited = ''
+                if n > 0:
+                    for k in drop:
+                        if k < len(cells):
+                            text = footnote_text(cells[k], bib)
+                            marks = ''.join(re.findall(r'<sup class="fn">.*?</sup>', text))
+                            rest = re.sub(r'<sup class="fn">.*?</sup>', '', text).strip(' ;,')
+                            cited += (f' ({rest})' if rest else '') + marks
+                cells = [footnote_text(c, bib) for k, c in enumerate(cells) if k not in drop]
+                if cited and cells:
+                    cells[-1] = cells[-1].rstrip() + cited
+                out.append('| ' + ' | '.join(cells) + ' |')
+            continue
+        out.append(footnote_text(line, bib))
+        i += 1
+    return re.sub(r'</sup><sup class="fn">', ',', '\n'.join(out))
 
 
 def find_pandoc() -> str:
@@ -289,7 +439,9 @@ def main(argv: list[str] | None = None) -> int:
     out = (args.out or root / 'manual' / 'pdf' / name).resolve()
     out.parent.mkdir(parents=True, exist_ok=True)
     commit = commit_of(root)
-    markdown = join_chapters(chapter_files(root / 'manual'))
+    bib = Bibliography()
+    markdown = move_sources(join_chapters(chapter_files(root / 'manual')), bib)
+    markdown += '\n\n' + bib.chapter()
     pandoc = find_pandoc()
     with tempfile.TemporaryDirectory(prefix='graal-trm-') as tmp:
         html = build_html(markdown, Path(tmp), commit, pandoc, args.version)
