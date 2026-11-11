@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.3 GS2 language
 
-GS2 is the script language of the 4.x and later clients. Where it appears and how it is delivered are below. The script machine in GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and the unpacked 6.00 clients is → §8.3.6. Syntax and the standard library stay open (→ App. E#207). GS1 is in → §8.1.
+GS2 is the script language of the 4.x and later clients. This chapter covers where it appears and how the server delivers it (§8.3.1, §8.3.2), the script machine the 4.2, 5.0 and 6.00 engines contain (§8.3.3), how events, waits and the action queue are scheduled (§8.3.4), the names and API the clients publish (§8.3.5), and the tools and third-party compilers around the language (§8.3.6). The compiled container and the opcode dispatch are in → §8.4. GS1 is in → §8.1.
 
-> Status: draft. The machine in those three engines is in §8.3.6; syntax and the standard library stay open (→ App. E#207).
+> Status: draft. The machine in those three engines is in §8.3.3; syntax and the standard library stay open (→ App. E#207).
 
 ## 8.3.1 Where GS2 appears
 
@@ -30,7 +30,63 @@ How the server hands GS2 code to a client. Which message id carries the compiled
 | script load | `PLO_LOADSCRIPT` (197): a list `type,name,saveToDisk,desKey,crc32`; type is weapon, npc, class or gani; the key is two `i5` | [srv] (protocol/packet-ids.md) |
 | 3D mode | the 3D server, not the TCP game server, delivers the client's GS2 weapons and flags in 3D mode, as text commands `addweapon`, `weaponscript`, `deleteweapon` and `addnpc` (gives a named client-side object its script) | [bin][inf] (graal3d/torque-engine-4x.md); [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 
-## 8.3.3 Names seen in clients and labs
+## 8.3.3 The script machine in the 4.2, 5.0 and 6.00 engines
+
+GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each contain this runner. The 3.04 Linux client is TorqueScript menus plus native GS1. The container is → §8.4.2. The opcode names, including opcodes 9 and 10, are in `protocol/gs2-client-vm.md`. The fusion numbers and the per-version case list stay in the note. [bin] (client-internals/gs2-vm-from-engines.md#which-binaries-contain-the-machine)
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| Script object | a `TGraalVar` owns one `TScriptExecutionSpace`. Player, NPC and level are `TServerPlayer`, `TServerNPC` and `TServerLevel`. A class is a `TGraalScript` in a global table, joined onto the runner. A weapon is a named variable given bytecode, with an encrypted `.code` cache | [bin] (client-internals/gs2-vm-from-engines.md#script-objects) |
+| Call | the name on top is looked up in this script, then in the other object's script, then in the built-in commands. Too few arguments is `Not enough parameters for`. A miss becomes the number 0. More than 9999 frames already stacked is `Callstack overrun` | [bin] (client-internals/gs2-vm-from-engines.md#how-a-call-finds-a-function) |
+| Unqualified name | `temp`, `params`, `this`, `thiso`, `player`, `playero`, `level`, then `client` / `clientr` / `serverr`. Then `with` objects, the active frame, a property of `thiso`, the level, the universe, and `playero`. No leading `$` | [bin] (client-internals/gs2-vm-from-engines.md#how-an-unqualified-name-is-resolved) |
+| Events | functions. The runner queues `created`, `initialized` and `istimeout`. A leading `on` is stripped by `waitfor`. `playerenters` is the first name in the `script_event` mask | [bin] (client-internals/gs2-vm-from-engines.md#events) |
+| Clock | one double. In 2D, each script pass adds 0.05 once the clock is non-zero. Otherwise it is seconds from the performance counter. Opcode 9 adds 1 and stops with `Loop limit exceeded` when the count is greater than 10000 | [bin] (client-internals/gs2-vm-from-engines.md#timers); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
+| Bytecode | segment layout is → §8.4.2. A trailing `0x0A` is not required. Id 131 is a three-byte Graal integer then the bytes. Id 140 stays an envelope (→ §8.4.2) and is not a case of this engine's control dispatch | [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
+| Stack | tags 0..5. The value stack grows by 100 and the cap is 10000, not 256. Opcode 10 stores that height on the frame and does not jump. Other jumps are the truncated operand plus the current list's base | [bin] (client-internals/gs2-vm-from-engines.md#opcodes); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
+| 5.0 and 6.00 | 5.0 adds opcodes 48, 49, 54 and 121 and the same 0.05 clock. 6.00r2 and 6.00r4 add 54, 121 and 234..242; the 0.05 step was not found there | [bin] (client-internals/gs2-vm-from-engines.md#differences-between-the-three-engines) |
+
+## 8.3.4 Events, waits and the event queue
+
+The runner in §8.3.3 treats events as functions. How a queued event, a `sleep` and a pending wait are scheduled has been observed or read build by build; each reading below holds for its own build and input, and none is an all-version rule (→ App. E#207). [bin] (client-internals/gs2-vm-from-engines.md#events)
+
+#### Linux 4.04r2: event ordering
+
+| Tested condition | Observation | Limit | Source |
+| --- | --- | --- | --- |
+| Instrumented profile-script fixture | Top-level statements run before the creation handler and again before the queued handler; a second control reproduces the order | Two tested event dispatches in one lifecycle, not an all-version rule | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
+| Handler queues another event | Its following statement runs before the queued handler | Delivery is deferred in this experiment; other event sources remain unmeasured | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
+| Trigger arity control | Event name alone is rejected; an additional value permits delivery | This fixture's call only, not a universal variadic signature | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
+
+The fixture replaces process input, not the executable file or its signature checks. Server and server commit are none. Joined classes, public calls and complete event semantics remain open → App. E#207. [cap] (client-internals/linux-404r2-events.md#experiment-boundary)
+
+#### Linux 4.04r2: sleep continuation
+
+| Condition | Observation | Unmeasured | Source |
+| --- | --- | --- | --- |
+| Controlled persistent main-menu script requests positive sleep | Saves the next instruction, clears the running position, restores the same snapshot and next instruction, then executes the following statement | Cancellation and replacement while suspended | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
+| Sleep versus another queued event | Top-level output does not recur for the continuation, but recurs before the separately queued event | Other object lifecycles | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
+| Requested sleep 0.15 seconds | Requested duration is retained across save/restore | Calibrated elapsed delay, clock rate, frame dependence and timeout precision; no exact wall-clock duration established | [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits) |
+
+This is an input-substitution experiment with no server or server commit; later Windows fixed-step clocks are not imported. Remaining scheduler questions → App. E#207. [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits)
+
+#### Linux 4.20r6: selector 11, saved state and registration
+
+[bin] Selector 11 is a handler in examined 4.20/6.x builds, unlike the 4.04 skip path; the detailed result is r6-only. It consumes one numeric and two string-like values. Saving requires a nonempty name, ordered positive numeric input and contexts; zero does not enter this path as an indefinite wait. Registration precedes caller lowercase/leading-`on` removal. Empty/current-owner, distinguished global and named routes do not establish full comparison or subscription rules. [bin] (client-internals/linux-420r6-selector11.md)
+
+
+[bin] State saving transfers the next instruction, clears active execution, copies typed values and transfers/reconstructs collections. Insertion normalizes the key; an empty requested target permits comparison against the current owner's name as a conditional, asymmetric matching fallback. Canonical rewriting of stored or query targets is not established. Only the first matching pending record is removed; insertion destroys it and appends the new record. It does not establish uniqueness, complete cancellation or delivery order. Capacity grows by 100 up to 10,000; the requested single slot and alternate numeric branch values are not event/timeout success semantics. The stock corpus has no selector-11 input or public-prefix directory entry. No new runtime experiment/server ran; coercion, resume and lifecycle semantics remain open in E#207. [bin] (client-internals/linux-420r6-selector11.md)
+
+#### Windows 5.00: event delivery and the action queue
+
+[bin] In the exact backup engine from a used, updated and patched install labelled 5.00r7, delivery and execution are separate. The named route can create an execution space; the enum route needs one and an event-interest check. Both retain additional unresolved gates. Accepted actions are queued and their owner activated; script service separately checks gates/universe, updated classes and scheduled events before execution. This is not a TorqueScript loader finding. [bin] (client-internals/windows-500-event-queue.md)
+
+[bin] Both inspected receivers reject when the existing queue has 1,000 actions, before duplicate suppression. The named route suppresses matching route/name with null arguments; above nine pending entries its additional non-null comparison uses argument string representations, not pointer equality. Internal names istimeout, created and initialized prepend; other names append. The enum route appends. These internal names are not a proven public event mapping. Activation avoids duplicate owners and has an unresolved special front-insertion category; per-pass markers and list mutation handling do not establish fairness or reentrancy. [bin] (client-internals/windows-500-event-queue.md)
+
+[inf] Independently authored queue contracts cover null-argument duplicates, lifecycle insertion and overrun-before-dedup, with a synthetic recording executor only. They are static-derived, not original-client output. Allocation failure, argument conversion/collisions, class-download deferral, complete virtual gates, cross-owner ordering and actual scheduler cadence remain open. Do not import this input's limit into another build or infer 20 Hz service. Broader event semantics remain partial in App. E#207. [inf] (client-internals/windows-500-event-queue.md)
+
+## 8.3.5 Names and the published API
+
+#### Names seen in clients and labs
 
 These GS2 names appear in the notes; each row gives only what the source says about it:
 
@@ -47,71 +103,7 @@ These GS2 names appear in the notes; each row gives only what the source says ab
 | `getDatablockProperties(obj, list)` | function | lists datablock fields (name, type and attributes) for GS2 scripts | [bin] (graal3d/torque-engine-4x.md; protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 | `addtiledef("pics1.png", "", 0)` | function | called from a GS2 weapon `-System` on a 5.x/6.x lab server; the full level drew after the warp with or without that weapon | [shot] (protocol/v5v6-lab-play.md#the-login-server-mode) |
 
-## 8.3.4 Tools around GS1 and GS2
-
-| Tool | Relevance | Source |
-| --- | --- | --- |
-| LevelScriptEditor | lists every NPC of a folder of `.nw` levels and replaces identical scripts in one go; it reads like a tool for porting GS1 scripts to GS2 on a big world | [src][inf] (client-internals/reference-reimplementations/levelscripteditor.md#what-it-is) |
-
-## 8.3.5 A third-party compiler and VM
-
-| Item | Rule | Source |
-| --- | --- | --- |
-| What it is | a public C# compiler and a public C# VM, both MPL-2.0; a lead for a later clean-room machine | [doc] (npc-library/preagonal-gs2.md#licence) |
-| What runs | the compiler takes GS2 source; the engine loads bytecode, and its tests pass the compiler's bytes in | [doc] (npc-library/preagonal-gs2.md#pipeline) |
-| Open | → App. E#207 stays open for syntax, the standard library, and the event model. The note records a third-party tree, which is not a reading of the clients | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-
-## 8.3.6 What the clients run
-
-The bytecode these clients run is a big-endian four-segment container. Segment lengths are raw 32-bit counts, so they are not GSHORT (→ §2.1.1). The container is not OpenGS1's layout (→ §8.4.3). Packet 140 and packet 197 stay the envelopes in → §8.3.2. The script object parses the segments, not the `0xAC` file wrapper in → §8.3.5. The runner that executes it is → §8.3.7.
-
-| Item | Rule | Source |
-| --- | --- | --- |
-| segments | types 1–4: event mask, functions, strings, opcodes; markers `F0`–`F6` | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
-| 4.2.0.8 weapons | `weblevels` `.code` by CRC32; no `GRESCR01`; 195 is a gani | [bin] (protocol/gs2-client-vm.md#how-4208-loads-a-weapon-or-a-class) |
-| 5.x and 6.00 | `GRESCR01` cache; the wire header is unchanged from → §8.3.2 | [bin] (protocol/gs2-client-vm.md#script-cache) |
-| 6.113 | no container and no opcode switch in the Windows listing. It adds nothing past 6.00's cases 54 and 121 and folds 234–242, and it cannot show whether 48 and 49 returned | [bin] (protocol/gs2-6113.md#what-6113-cannot-show) |
-| unpacked 6.1.1.3 | the switch is present and adds no case past that 6.00 set; 48 and 49 stay absent (→ §8.4.4) | [bin] (protocol/gs2-unpacked-6113.md#what-the-dispatcher-adds-past-600) |
-| compiler lead | the MPL-2.0 checklist in → §8.3.5, compared with these clients | [doc] (protocol/gs2-client-vm.md#compiler-and-builtins) |
-
-The opcode names, the peephole, and the bytes the client runs which that compiler does not emit stay in the note [bin] (protocol/gs2-client-vm.md#what-differs). The effect of each of those bytes is [bin] (protocol/gs2-client-only-opcodes.md).
-
-## 8.3.7 The script machine in the 4.2, 5.0 and 6.00 engines
-
-GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each contain this runner. The 3.04 Linux client is TorqueScript menus plus native GS1. The container is → §8.3.6. The opcode names, including opcodes 9 and 10, are in `protocol/gs2-client-vm.md`. The fusion numbers and the per-version case list stay in the note. [bin] (client-internals/gs2-vm-from-engines.md#which-binaries-contain-the-machine)
-
-| Item | Rule | Source |
-| --- | --- | --- |
-| Script object | a `TGraalVar` owns one `TScriptExecutionSpace`. Player, NPC and level are `TServerPlayer`, `TServerNPC` and `TServerLevel`. A class is a `TGraalScript` in a global table, joined onto the runner. A weapon is a named variable given bytecode, with an encrypted `.code` cache | [bin] (client-internals/gs2-vm-from-engines.md#script-objects) |
-| Call | the name on top is looked up in this script, then in the other object's script, then in the built-in commands. Too few arguments is `Not enough parameters for`. A miss becomes the number 0. More than 9999 frames already stacked is `Callstack overrun` | [bin] (client-internals/gs2-vm-from-engines.md#how-a-call-finds-a-function) |
-| Unqualified name | `temp`, `params`, `this`, `thiso`, `player`, `playero`, `level`, then `client` / `clientr` / `serverr`. Then `with` objects, the active frame, a property of `thiso`, the level, the universe, and `playero`. No leading `$` | [bin] (client-internals/gs2-vm-from-engines.md#how-an-unqualified-name-is-resolved) |
-| Events | functions. The runner queues `created`, `initialized` and `istimeout`. A leading `on` is stripped by `waitfor`. `playerenters` is the first name in the `script_event` mask | [bin] (client-internals/gs2-vm-from-engines.md#events) |
-| Clock | one double. In 2D, each script pass adds 0.05 once the clock is non-zero. Otherwise it is seconds from the performance counter. Opcode 9 adds 1 and stops with `Loop limit exceeded` when the count is greater than 10000 | [bin] (client-internals/gs2-vm-from-engines.md#timers); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
-| Bytecode | segment layout is → §8.3.6. A trailing `0x0A` is not required. Id 131 is a three-byte Graal integer then the bytes. Id 140 stays an envelope (→ §8.3.6) and is not a case of this engine's control dispatch | [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
-| Stack | tags 0..5. The value stack grows by 100 and the cap is 10000, not 256. Opcode 10 stores that height on the frame and does not jump. Other jumps are the truncated operand plus the current list's base | [bin] (client-internals/gs2-vm-from-engines.md#opcodes); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
-| 5.0 and 6.00 | 5.0 adds opcodes 48, 49, 54 and 121 and the same 0.05 clock. 6.00r2 and 6.00r4 add 54, 121 and 234..242; the 0.05 step was not found there | [bin] (client-internals/gs2-vm-from-engines.md#differences-between-the-three-engines) |
-
-## 8.3.8 Linux 4.04r2 event ordering
-
-| Tested condition | Observation | Limit | Source |
-| --- | --- | --- | --- |
-| Instrumented profile-script fixture | Top-level statements run before the creation handler and again before the queued handler; a second control reproduces the order | Two tested event dispatches in one lifecycle, not an all-version rule | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
-| Handler queues another event | Its following statement runs before the queued handler | Delivery is deferred in this experiment; other event sources remain unmeasured | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
-| Trigger arity control | Event name alone is rejected; an additional value permits delivery | This fixture's call only, not a universal variadic signature | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
-
-The fixture replaces process input, not the executable file or its signature checks. Server and server commit are none. Joined classes, public calls and complete event semantics remain open → App. E#207. [cap] (client-internals/linux-404r2-events.md#experiment-boundary)
-
-## 8.3.9 Linux 4.04r2 sleep continuation
-
-| Condition | Observation | Unmeasured | Source |
-| --- | --- | --- | --- |
-| Controlled persistent main-menu script requests positive sleep | Saves the next instruction, clears the running position, restores the same snapshot and next instruction, then executes the following statement | Cancellation and replacement while suspended | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
-| Sleep versus another queued event | Top-level output does not recur for the continuation, but recurs before the separately queued event | Other object lifecycles | [cap] (client-internals/linux-404r2-sleep.md#saved-continuation) |
-| Requested sleep 0.15 seconds | Requested duration is retained across save/restore | Calibrated elapsed delay, clock rate, frame dependence and timeout precision; no exact wall-clock duration established | [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits) |
-
-This is an input-substitution experiment with no server or server commit; later Windows fixed-step clocks are not imported. Remaining scheduler questions → App. E#207. [cap] (client-internals/linux-404r2-sleep.md#timing-and-capture-limits)
-
-## 8.3.10 Linux 4.04r2 published API membership
+#### Linux 4.04r2: published API membership
 
 | Catalog fact | Exact-input result | Limit | Source |
 | --- | --- | --- | --- |
@@ -120,17 +112,18 @@ This is an input-substitution experiment with no server or server commit; later 
 
 Other catalog builds require their own correction records; these counts are not generalized. Standard-library semantics remain open → App. E#207. [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction)
 
-## 8.3.11 Bound Linux 4.20r6 selector-11 saved-state and registration paths
+## 8.3.6 Tools, compilers and reimplementations
 
-[bin] Selector 11 is a handler in examined 4.20/6.x builds, unlike the 4.04 skip path; the detailed result is r6-only. It consumes one numeric and two string-like values. Saving requires a nonempty name, ordered positive numeric input and contexts; zero does not enter this path as an indefinite wait. Registration precedes caller lowercase/leading-`on` removal. Empty/current-owner, distinguished global and named routes do not establish full comparison or subscription rules. [bin] (client-internals/linux-420r6-selector11.md)
+#### Tools around GS1 and GS2
 
+| Tool | Relevance | Source |
+| --- | --- | --- |
+| LevelScriptEditor | lists every NPC of a folder of `.nw` levels and replaces identical scripts in one go; it reads like a tool for porting GS1 scripts to GS2 on a big world | [src][inf] (client-internals/reference-reimplementations/levelscripteditor.md#what-it-is) |
 
-[bin] State saving transfers the next instruction, clears active execution, copies typed values and transfers/reconstructs collections. Insertion normalizes the key; an empty requested target permits comparison against the current owner's name as a conditional, asymmetric matching fallback. Canonical rewriting of stored or query targets is not established. Only the first matching pending record is removed; insertion destroys it and appends the new record. It does not establish uniqueness, complete cancellation or delivery order. Capacity grows by 100 up to 10,000; the requested single slot and alternate numeric branch values are not event/timeout success semantics. The stock corpus has no selector-11 input or public-prefix directory entry. No new runtime experiment/server ran; coercion, resume and lifecycle semantics remain open in E#207. [bin] (client-internals/linux-420r6-selector11.md)
+#### A third-party compiler and VM
 
-## 8.3.12 Installed Windows 5.00 event delivery boundary
-
-[bin] In the exact backup engine from a used, updated and patched install labelled 5.00r7, delivery and execution are separate. The named route can create an execution space; the enum route needs one and an event-interest check. Both retain additional unresolved gates. Accepted actions are queued and their owner activated; script service separately checks gates/universe, updated classes and scheduled events before execution. This is not a TorqueScript loader finding. [bin] (client-internals/windows-500-event-queue.md)
-
-[bin] Both inspected receivers reject when the existing queue has 1,000 actions, before duplicate suppression. The named route suppresses matching route/name with null arguments; above nine pending entries its additional non-null comparison uses argument string representations, not pointer equality. Internal names istimeout, created and initialized prepend; other names append. The enum route appends. These internal names are not a proven public event mapping. Activation avoids duplicate owners and has an unresolved special front-insertion category; per-pass markers and list mutation handling do not establish fairness or reentrancy. [bin] (client-internals/windows-500-event-queue.md)
-
-[inf] Independently authored queue contracts cover null-argument duplicates, lifecycle insertion and overrun-before-dedup, with a synthetic recording executor only. They are static-derived, not original-client output. Allocation failure, argument conversion/collisions, class-download deferral, complete virtual gates, cross-owner ordering and actual scheduler cadence remain open. Do not import this input's limit into another build or infer 20 Hz service. Broader event semantics remain partial in App. E#207. [inf] (client-internals/windows-500-event-queue.md)
+| Item | Rule | Source |
+| --- | --- | --- |
+| What it is | a public C# compiler and a public C# VM, both MPL-2.0; a lead for a later clean-room machine | [doc] (npc-library/preagonal-gs2.md#licence) |
+| What runs | the compiler takes GS2 source; the engine loads bytecode, and its tests pass the compiler's bytes in | [doc] (npc-library/preagonal-gs2.md#pipeline) |
+| Open | → App. E#207 stays open for syntax, the standard library, and the event model. The note records a third-party tree, which is not a reading of the clients | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |

@@ -168,11 +168,11 @@ client-internals/feature-specs/12-motd-rules.md	cited	4.10; 5	4.10
 client-internals/feature-specs/13-ban-kick.md	cited	4.10	4.10	
 client-internals/feature-specs/14-friends-ignore.md	cited	4.10; 2.8	4.10	
 client-internals/feature-specs/README.md	cited	4.10; E	4.10	
-client-internals/feature-timeline.md	cited	8.1; 8.2; 8.3; 4.11	4	
+client-internals/feature-timeline.md	cited	8; 8.1; 8.2; 8.3; 4.11	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
-client-internals/gs2-vm-from-engines.md	cited	8.3; 8.4; E	8.3	§8.3.7 carries the object, the lookup, the events, the clock and the bytecode segments. The opcode table, the fusion numbers and the per-version case list stay in the note
+client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries the object, the lookup, the events, the clock and the bytecode segments. The opcode table, the fusion numbers and the per-version case list stay in the note
 client-internals/gs2-6113.md	cited	8.4	8.4	
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
@@ -182,7 +182,7 @@ client-internals/item-drops.md	cited	4.5; E	4.5
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
-client-internals/live-behaviour-404.md	cited	8.1; 8.3; 4.11	4	
+client-internals/live-behaviour-404.md	cited	8; 8.1; 8.3; 4.11	4	
 client-internals/live-checks-editor-offline-sound.md	cited	4.5; 4.6; 4.7; 4.8; 4.9	4	
 client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1	
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
@@ -277,15 +277,15 @@ live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	excluded		4	raw decoded log exc
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
 live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
-npc-library/README.md	cited	8.1	8	
-npc-library/archival-scripting-notes.md	cited	8.1	8	
+npc-library/README.md	cited	8; 8.1	8	
+npc-library/archival-scripting-notes.md	cited	8; 8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
-npc-library/gs1-command-reference-205.md	cited	8.1; 8.2; E	8	
+npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
 npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
-npc-library/gs1-reference-205.md	cited	8.1; 8.2; 8.4; E	8	
-npc-library/preagonal-gs2.md	cited	8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
+npc-library/gs1-reference-205.md	cited	8; 8.1; 8.2; 8.4; E	8	
+npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
 npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
@@ -308,11 +308,11 @@ protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line 
 protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/file-transfer.md	cited	2.7; E	2.7	
 protocol/format-notes-from-salvage.md	cited	E	2	Part 2 not needed: an early format summary superseded by the notes Part 3 cites; cited in App. E where it disagrees with them (coverage audit 2026-11-04)
-protocol/graphics-movement-bytecode.md	cited	8.3; 8.4; E	8.4	
-protocol/gs2-6113.md	cited	8.3; 10	8.3; 10	§8.3.6 and §10.1.9 carry that 6.113 adds no opcode; the 6.00 fold table and the compiler line citations stay in the note
-protocol/gs2-client-only-opcodes.md	cited	8.3	8.3	per-opcode effects of the bytes the client runs and the compiler does not emit; §8.3 points here from the GS2 section
+protocol/graphics-movement-bytecode.md	cited	8; 8.3; 8.4; E	8.4	
+protocol/gs2-6113.md	cited	8.4; 10	8.4; 10	§8.4.2 and §10.1.9 carry that 6.113 adds no opcode; the 6.00 fold table and the compiler line citations stay in the note
+protocol/gs2-client-only-opcodes.md	cited	8.4	8.4	per-opcode effects of the bytes the client runs and the compiler does not emit; §8.4.2 points here from the container section
 protocol/gs2-client-vm.md	cited	8.3; 8.4; E	8.3; 8.4	opcode catalogue, client debug names, and the peephole stay in the note; §8.3 and §8.4 carry the container, that it is not GSHORT, and the load path
-protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1	8.3; 8.4	§8.3.6, §8.4.4 and §1.8.7 carry that unpacked 6.1.1.3 adds no opcode past 6.00 and still caches GRESCR01; the per-case skip table stays in the note
+protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1	8.3; 8.4	§8.4.2, §8.4.4 and §1.8.7 carry that unpacked 6.1.1.3 adds no opcode past 6.00 and still caches GRESCR01; the per-case skip table stays in the note
 protocol/gserv-1999.md	cited	2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
 protocol/link-test-2026-11-04.md	cited	2.5		
@@ -521,7 +521,7 @@ version-profiles/lab-mac-tiger-2026-10-31.md	cited	C; 1	1; C
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
-version-profiles/matrix/README.md	cited	1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
+version-profiles/matrix/README.md	cited	8; 1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
 version-profiles/matrix/builds-deltas.md	cited	3.9; 4.11	C; 4	Appendix C not needed: the per-build deltas are carried in §3.9 and §4.11; App. C points to §1.8 and those sections (coverage audit 2026-11-04)
 version-profiles/matrix/builds-static-survey.tsv	cited	4.1; E	C; 4	Appendix C not needed: the survey is carried in §4.1 and the open items in App. E; App. C points to those sections (coverage audit 2026-11-04)
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	Appendix C not needed: the live-run results are carried in §4.2; App. C points to §4.1 to §4.4 for behaviour by build (coverage audit 2026-11-04)
@@ -558,7 +558,7 @@ version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bou
 client-internals/404r2-carry-state.md	cited	4.5; E	4.5; E	static interaction relationships carried; private retrieval and research process are outside manual scope
 client-internals/linux-404r2-api-ownership.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 protocol/linux-404r2-receive-scope.md	cited	2.5; E	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
-client-internals/linux-404r2-events.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+client-internals/linux-404r2-events.md	cited	8; 8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-sleep.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 npc-library/gs1-signatures-205-followup.md	cited	8.2; E	8.2; E	Input identity and validation metadata retained in source note; stored letters and semantic limits carried in 8.2 and E#201.
 client-internals/early-form-timers-2026-11-09.md	cited	4.1; E	4.1; E	Input identity and validation metadata retained in source note; configuration and remaining timing limits carried in 4.1 and E#300.
@@ -581,8 +581,8 @@ client-internals/first-graal-death-counter-2026-11-09.md	cited	4.4	4.4	Static co
 client-internals/first-graal-movement-2026-11-09.md	cited	4.2; E	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
 npc-library/gs1-event-parameters-205r2.md	cited	8.1; 8.2; E	8.1; 8.2; E	Producer, queue, splitter, runtime controls and limits carried; exact-input/evidence bookkeeping stays in source.
 npc-library/gs1-object-members-205r2.md	cited	8.2; E	8.2; E	Bindings, getters, runtime controls and limits carried; exact input and evidence bookkeeping remain in source.
-npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract and bounded #6 association checkpoint carried; runtime qualifications and other open helper semantics retained; exact input/evidence bookkeeping remains in source.
-npc-library/gs1-condition-truth-205r2.md	cited	8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
+npc-library/gs1-message-codes-205r2.md	cited	8; 8.1; E	8.1; E	Selector contract and bounded #6 association checkpoint carried; runtime qualifications and other open helper semantics retained; exact input/evidence bookkeeping remains in source.
+npc-library/gs1-condition-truth-205r2.md	cited	8; 8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
 npc-library/gs1-move-205r2.md	cited	4.2; 8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
 client-internals/macos-v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
@@ -592,7 +592,7 @@ torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities 
 version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
 
 formats/windows-603-weapon-cache.md	cited	3.8	3.8	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
-client-internals/windows-500-event-queue.md	cited	8.3; E	8.3; E	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
+client-internals/windows-500-event-queue.md	cited	8; 8.3; E	8.3; E	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
