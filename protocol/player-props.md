@@ -31,7 +31,7 @@ Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRIN
 | 12 | CURCHAT | str | chat bubble text |
 | 13 | COLORS | 5 × c | color-name indexes; order probably skin, coat, sleeves, shoes, belt (matches the GS1 `set*color` commands) [inf] |
 | 14 | ID | s | |
-| 15 | X | c(x × 2) | half-tile; clients read the byte unsigned, so −16 … +111.5 tiles (see `player-x-half-tile.md`) [bin] |
+| 15 | X | c(x × 2) | half-tile; clients read the byte unsigned, so −15.5 … +111.5 tiles (see `player-x-half-tile.md`) [bin] |
 | 16 | Y | c(y × 2) | |
 | 17 | SPRITE | c | `% 4` = direction |
 | 18 | STATUS | c | bit flags, see below |
