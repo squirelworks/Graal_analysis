@@ -4,6 +4,10 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Mac 6.11r1 connector request, lab run](protocol/v6x-clients.md#the-connector-request-in-a-lab-run) — DNS order, the TLS 1.2 ClientHello, then `conf.gs` over HTTP with `User-Agent: Graal/6.111`, in a Lion guest with no internet.
+- [Mac PowerPC 4.04r2, 4.20r6 and v5 start-up and input](client-internals/mac-ppc-startup-input-2026-11-09.md) — the one-shot Carbon timer that runs the engine, registered events, and how keys, characters, modifiers and the mouse become engine records; static.
+- [Windows 4.20 render entry points](client-internals/windows-420-render-seams.md) — adventure and canvas render entries that check their target first, a fake-renderer test, and who owns scripts in Windows v3 to v5.
+- [Windows 4.04r2 tutorial run R01](version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01) — 539 shell ticks at about 50 ms with no periodic core update or render hook.
 - [Android Classic and Era 1.6 to 2.2](client-internals/android-classic.md) — seven packages; the Java host, the 50 ms frame gate, layered collision, the 64×64 board, 1/16 animation offsets and the 220-byte chat builder; static.
 - [GS2 on Android Classic 1.8](protocol/gs2-android-classic-18.md) — the container, branches, loop and stack limits, number, string and array rules, the event queue and 173 native bindings; static.
 - [What the early Windows clients show when started](version-profiles/early-windows-screen-review-2026-11.md) — screenshot review of the v0, v1 and v2 builds in an offline Wine lab.
@@ -19,6 +23,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
 
 - [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
+- [Linux 6.x class cache](formats/linux-6x-class-cache.md) — packet 197 as a metadata list with the expected CRC, why a header-only file is never a class hit, the 161 request with the stored-body CRC, and the 6.01 x86 split between 140 and 197.
+- [Mac OS X 6.11r1 GS2 runner](client-internals/mac-611r1-gs2-runner.md) — decoded records with cached handlers, the loop check, snapshot-based sleep and waitfor, and calls that wait for class downloads; static, one build.
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
 

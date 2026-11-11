@@ -12,6 +12,11 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).
+  - [ ] Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.
+
+- [x] **Windows 4.20 render entry points and the 4.04r2 R01 run.** ~~Publish the render-seam check and the instrumented tutorial run.~~ [Render](../client-internals/windows-420-render-seams.md); [R01](../version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01); the core update rate and a rendered scene remain open (App. E#301, E#610).
+
 - [x] **Publish the Android Classic static reading.** ~~Host, frame gate, collision, board, render, chat and the Classic 1.8 GS2 machine.~~ [Host and engine](../client-internals/android-classic.md); [GS2](../protocol/gs2-android-classic-18.md).
   - [ ] Decode the opaque Classic 1.8+ GANIs with a known-plaintext round trip; run the GS2 loop-budget and event-queue boundaries in an Android runtime.
 
@@ -32,6 +37,13 @@ macOS CI is paused until the polish stage.
 - [x] **Linux 6.01 x86 static program/state increment.** ~~Separate decoded preparation and selected saved-state behavior.~~ [Source](../client-internals/linux-601-x86-program-state.md); full handler recovery and lifecycle remain unresolved.
 
 - [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
+
+- [x] **Bound the Linux 6.x class-cache path.** ~~Carry the 197 metadata list, the zero-CRC path, the 161 request and the 6.01 x86 delivery split.~~ [Source](../formats/linux-6x-class-cache.md); fixtures, malformed files and execution remain untested.
+
+- [x] **Publish the Windows 5.00r7 request and segment vectors.** ~~Carry the four authored vectors for the 158/161 requests, the mask-only container and the 4.04r2 `client.` flag.~~ [Source](../client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries); none was captured or sent.
+
+- [x] **Read the Mac OS X 6.11r1 GS2 runner.** ~~Carry selected handlers, the loop check, snapshot sleep/waitfor and calls.~~ [Source](../client-internals/mac-611r1-gs2-runner.md).
+  - [ ] Authenticate the Mac 6.11r1 handler-table extent, read opcode 7 and the arithmetic/comparison handlers, and trace the snapshot queue's clock.
 
 - [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.
 

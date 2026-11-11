@@ -571,6 +571,12 @@ The one Mac 4.x client was run in an emulator. The rule records what its login a
 | --- | --- |
 | Mac 4.20r6 in qemu: the login line is `mac,"",<md5>,""` (the MAC hash came out empty under qemu); it sends 34 and 46, which the static list missed; no flag 18 for the lab's movement weapon; chat is white with a blue shadow; Apple's software renderer needed a shim dropping two AGL attributes | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#420r6) |
 
+#### Mac PowerPC start-up and input
+
+[bin] The Mac 4.04r2, 4.20r6 and v5 PowerPC clients share one start-up design: a Carbon event-loop timer calls the engine entry once, which runs initialization, then an update method until it returns zero, then shutdown, and quits the loop. On v5 the derived initialization opens a 640×480 window titled `Graal` and builds `DefaultCursor` from `defaultCursor.png`. Each registers 12 window and 15 application Carbon events. [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#start-up-one-timer-that-runs-the-whole-engine)
+
+[bin] One translator turns Carbon input into engine records. Key down, repeat and up become values 1, 1 and 0 through a byte lookup table; characters are converted one byte at a time, so there is no Unicode path; a modifier emits a press or a release only when its bit changes; mouse movement is either window-local absolute or relative, with the wheel on its own code. On v5 the keyboard fallback builds a command string starting `e:`. Nothing was run, so live delivery, rendering and script execution are not established. [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#turning-input-into-engine-records); [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#where-input-goes-on-v5)
+
 ### 1.8.6 Graal 5.x: Windows 5.00r7 to 5.31r4
 
 #### Program, packers and licence files

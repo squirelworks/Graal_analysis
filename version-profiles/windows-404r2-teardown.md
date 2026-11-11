@@ -64,6 +64,14 @@ Observed message-loop callbacks continued for 20.031 seconds after the call retu
 cutting, lifting, carrying or hiding under bushes. Earlier harness revisions
 failed before a successful transition and must not be counted as successful runs.
 
+## Instrumented tutorial run (R01)
+
+`[cap]` Run R01 is a later, separate run from the transition above; the two are not one run counted twice. It ended on 8 November 2026 at 16:41:11 UTC. The client ran in the non-interactive Windows session with instrumentation, not from the menus. Evidence `W404-R01-TUTORIAL-20261108`.
+
+`[cap]` The run recorded the instrumented offline transition, allocated adventure and level state, and a tutorial board loaded from a fixture taken from the Mac distribution. The shell's callbacks kept running: 539 shell ticks with a median interval of about 50.27 ms. No visible game was recorded, and no periodic core update or render hook fired.
+
+`[cap]` So the shell's roughly 50 ms timer kept going while the core neither updated nor drew on a schedule that the hooks could see. The run does not measure the core or player simulation rate, a frame rate, a natural start-up, gameplay under controlled input or 3D. The window and DirectDraw results above belong to the startup capture, not to R01. A static reading of the 4.20 render entry points is in [windows-420-render-seams.md](../client-internals/windows-420-render-seams.md).
+
 - [ ] Establish a complete controlled scene before treating offline initialization as gameplay.
 - [ ] Validate each selected mechanic with before/after state and captured user action.
 - [ ] Record harness and fixture digests at capture start for reproducible follow-up.

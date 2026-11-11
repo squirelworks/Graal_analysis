@@ -49,6 +49,12 @@ The opcode names, the peephole, and the bytes the client runs which that compile
 
 [bin] The r6 reader uses big-endian four-byte framing/directory numbers and NUL-terminated names. Removing a leading `public.` marker and forwarding a flag does not define runtime visibility. Markers 240–242 select string entries (one/two-byte unsigned indexes; four-byte form checks nonnegative representation); 243–245 supply signed integers; 246 uses an incompletely reviewed numeric-text converter. Other bytes append tagged records; marker branches modify the latest record. Corpus controls do not cover multiple-marker overwrite, and strict validator rejection is not native bounds/default behavior. [bin] (client-internals/linux-420r6-reader-fusion.md)
 
+#### Windows 5.00r7: segment words and four authored vectors
+
+[bin] The 5.00r7 backup engine's script setter reads the segment type and length as ordinary big-endian 32-bit words, not the printable packet integers. A `public.` prefix in the function table sets visibility 1 and `publicsoap.` sets visibility 2; the default is 0. Visibility 2 is stored metadata and does not show a callable SOAP service. [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-script-container-and-cache)
+
+[inf] Four hand-written vectors make the layers testable without an original payload. A weapon request is logical 158 with the name; a class request is logical 161 with the stored-body CRC as five offset-integer bytes and then the name; `00 00 00 01 00 00 00 04 00 00 00 01` is a container with only an event mask, so nothing in it can run; and a 4.04r2 GS1 `setstring client.` flag should leave as logical 18. These are predictions from the static reading, before outer framing and encryption. None was captured or sent to a client. [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries)
+
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
 
 OpenGS1 defines a stack-based bytecode VM for GS1 [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode). It is an independent reimplementation: 2.05 does not share its opcode set and does not run bytecode at all [2.05] (npc-library/gs1-reference-205.md#execution-model-205). How the notes first read this format is → App. E#208.
@@ -120,6 +126,22 @@ The unpacked Windows 6.1.1.3 image walks the same four segment types and stores 
 | A `.code` file shorter than eight bytes is rejected. The magic is `GRESCR01`, and the CRC32 covers the bytes after those eight | 6.1.1.3 | [bin] (client-internals/gs2-6113.md#load-path-and-the-code-cache) |
 | The dispatcher has 152 cases, from 11 through 242, with no case 48, 49 or 200. Cases 54, 121, 201–242 are present. Unpacked 6.037 has the same set | 6.1.1.3, 6.037 | [bin] (client-internals/gs2-6113.md#opcode-range) |
 | Those cases include the opcodes the Preagonal compiler does not emit. A full builtin table was not extracted | 6.1.1.3 | [bin][doc] (client-internals/gs2-6113.md#against-preagonal) |
+
+#### Mac OS X 6.11r1
+
+The Mac 6.11r1 runner was read on its own, so the paragraph and table below describe that one input. It runs decoded 40-byte records rather than the serialized bytes, and each record caches its native handler, so a handler jumps straight to the next one. A preparation pass appends opcode 164 as an end marker. The table was read through a 256-entry window whose entries 243 and 244 are zero; its true length is unknown. [bin] (client-internals/mac-611r1-gs2-runner.md#decoded-records-and-dispatch)
+
+The table lists only the behaviours that were read handler by handler; it is not an opcode map, and the opcode-7 handler is still unread. [bin] (client-internals/mac-611r1-gs2-runner.md#the-handlers-that-were-read)
+
+| Item | Mac 6.11r1 observation | Source |
+| --- | --- | --- |
+| read handlers | 0 fall through, 1 jump, 2 numeric branch and pop, 6 call, 8 sleep, 9 loop check, 11 wait for, 20 number, 21 string, 24 one, 27 pi, 164 end marker | [bin] (client-internals/mac-611r1-gs2-runner.md#the-handlers-that-were-read) |
+| loop check | default limit 10000, overridable from the owner's context; the counter lives on the opcode-9 record and resets with recompilation; no general per-instruction fuel was found | [bin] (client-internals/mac-611r1-gs2-runner.md#the-loop-check) |
+| sleep and waitfor | snapshot of function, index, stack, frames and object context; the deadline is the manager's clock plus the delay; status 2 after the snapshot | [bin] (client-internals/mac-611r1-gs2-runner.md#sleep-and-waitfor) |
+| call | arguments run down to the tag-0 marker; access and parameter count are checked; can suspend on `classesdownloaded` and retry the call | [bin] (client-internals/mac-611r1-gs2-runner.md#calls) |
+| status | 0 normal end, 1 missing prerequisites or failed loop check, 2 suspension | [bin] (client-internals/mac-611r1-gs2-runner.md#runner-status) |
+
+Nothing was run in a guest, so the clock's unit, the order of due snapshots and the native call interface are open (→ App. E#207). [bin] (client-internals/mac-611r1-gs2-runner.md#limits)
 
 ## 8.4.5 Built-in names in unpacked 6.1.1.3 and 6.0.3.7
 
