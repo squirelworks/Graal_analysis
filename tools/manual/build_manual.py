@@ -66,15 +66,20 @@ ORDER = (
 )
 
 CSS = """\
-body{font-family:"DejaVu Sans","Helvetica Neue",Arial,sans-serif;font-size:9pt;line-height:1.35;max-width:none;margin:0}
+@page{size:A4;margin:14mm 12mm}
+@page wide{size:A4 landscape;margin:14mm 12mm}
+@page wider{size:A3 landscape;margin:14mm 12mm}
+.page-wide{page:wide} .page-wider{page:wider}
+body{font-family:"DejaVu Sans","Helvetica Neue",Arial,sans-serif;font-size:9pt;line-height:1.35;max-width:none;margin:0;padding:0}
 h1{page-break-before:always;font-size:18pt;border-bottom:2px solid #333}
 h2{font-size:13pt;margin-top:1.4em} h3{font-size:11pt} h4{font-size:10pt}
-table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:8pt;page-break-inside:auto}
+table{display:table;overflow:visible;border-collapse:collapse;width:100%;margin:.5em 0;font-size:8pt;page-break-inside:auto}
 th,td{border:1px solid #999;padding:2px 4px;vertical-align:top;word-break:normal;overflow-wrap:break-word}
 th{white-space:nowrap}
 th{background:#eee} tr{page-break-inside:avoid}
 code{font-family:"DejaVu Sans Mono",Consolas,Menlo,monospace;font-size:8pt;background:#f4f4f4}
 pre{background:#f4f4f4;padding:4px;font-size:8pt;white-space:pre-wrap}
+p code,li code{overflow-wrap:anywhere}
 #TOC{page-break-after:always} #TOC ul{list-style:none;padding-left:1em}
 sup.fn{font-size:6pt;line-height:0;color:#555} sup.fn a{color:#555;text-decoration:none}
 .bib{font-size:7.5pt;column-count:2;column-gap:2em} .bib p{margin:0 0 1px 0;break-inside:avoid}
@@ -295,24 +300,81 @@ def build_html(markdown: str, work: Path, commit: str, pandoc: str,
     return html
 
 
-def print_pdf(html: Path, out: Path, chromium: str | None) -> None:
+# Usable width of each page type at 96 px per inch, after 12 mm side margins.
+PAGE_WIDTHS = (('', 186), ('page-wide', 273), ('page-wider', 396))
+PX_PER_MM = 96 / 25.4
+
+# A table goes on a wider page when it cannot fit a portrait page without
+# overflowing (its narrowest layout is still too wide), or when it has many
+# columns and would be squashed to a fraction of its natural width.
+PLACE_TABLES = """(widths) => {
+  const placed = [];
+  const tables = Array.from(document.querySelectorAll('table'));
+  for (const t of tables) {
+    const probe = t.cloneNode(true);
+    probe.style.position = 'absolute';
+    probe.style.width = 'min-content';
+    document.body.appendChild(probe);
+    const least = probe.getBoundingClientRect().width;
+    probe.style.width = 'max-content';
+    const natural = probe.getBoundingClientRect().width;
+    probe.remove();
+    const cols = t.rows[0] ? t.rows[0].cells.length : 0;
+    let cls = '';
+    if (least > widths[0][1] || (cols >= 6 && natural > 1.5 * widths[0][1])) {
+      cls = widths[widths.length - 1][0];
+      for (const [name, w] of widths.slice(1)) { if (least <= w) { cls = name; break; } }
+    }
+    const fits = least <= widths.find(([name]) => name === cls)[1];
+    if (!cls) { if (!fits) placed.push(['overflow', '', Math.round(least)]); continue; }
+    const box = document.createElement('div');
+    box.className = cls;
+    const intro = t.previousElementSibling;
+    t.parentNode.insertBefore(box, t);
+    if (intro && intro.tagName === 'P') box.appendChild(intro);
+    box.appendChild(t);
+    // keep headings that would otherwise be left alone at a page foot
+    let before = box.previousElementSibling;
+    while (before && /^H[2-6]$/.test(before.tagName)) {
+      box.insertBefore(before, box.firstChild);
+      before = box.previousElementSibling;
+    }
+    const heads = box.querySelectorAll('h2, h3, h4, h5, h6');
+    const own = heads.length ? heads[heads.length - 1] : null;
+    let e = box, head = own ? own.textContent.replace(/\\s+/g, ' ') : '';
+    while (e && !head) {
+      if (e.previousElementSibling) { e = e.previousElementSibling;
+        if (/^H[1-6]$/.test(e.tagName)) head = e.textContent.replace(/\\s+/g, ' '); }
+      else e = e.parentElement;
+    }
+    placed.push([fits ? cls : 'overflow', head, Math.round(least)]);
+  }
+  return placed;
+}"""
+
+
+def print_pdf(html: Path, out: Path, chromium: str | None) -> list[tuple[str, str, int]]:
+    """Print the page to PDF; return the tables put on wider pages."""
     try:
         from playwright.sync_api import sync_playwright  # type: ignore[import-not-found]
     except ImportError:
         raise SystemExit('playwright not found: `pip install playwright` then '
                          '`python -m playwright install chromium`')
     launch = {'executable_path': chromium} if chromium else {}
+    widths = [[name, mm * PX_PER_MM] for name, mm in PAGE_WIDTHS]
     with sync_playwright() as pw:
         browser = pw.chromium.launch(**launch)
         page = browser.new_page()
         page.goto(html.resolve().as_uri())
+        page.emulate_media(media='print')
+        placed = page.evaluate(PLACE_TABLES, widths)
         page.pdf(
-            path=str(out), format='A4',
-            margin={'top': '14mm', 'bottom': '14mm', 'left': '12mm', 'right': '12mm'},
+            path=str(out), prefer_css_page_size=True,
             display_header_footer=True, header_template='<span></span>',
             footer_template=FOOTER,
         )
         browser.close()
+    return [tuple(p) for p in placed]
 
 
 class _Headings(HTMLParser):
@@ -447,13 +509,20 @@ def main(argv: list[str] | None = None) -> int:
         html = build_html(markdown, Path(tmp), commit, pandoc, args.version)
         if args.html:
             shutil.copyfile(html, args.html)
-        print_pdf(html, out, args.chromium)
+        placed = print_pdf(html, out, args.chromium)
         marks = add_outline(out, html.read_text(encoding='utf-8'))
     pdf = scrub_browser_version(out.read_bytes())
     out.write_bytes(pdf)
     pages = page_count(pdf)
     print(f'built {out} from {commit}: {pages} pages'
           + (f', {marks} bookmarks' if marks >= 0 else ', no bookmarks'))
+    for cls, head, least in placed:
+        where = {'page-wide': 'A4 landscape', 'page-wider': 'A3 landscape'}.get(cls, cls)
+        print(f'  {where}: {head} (narrowest {least} px)')
+    overflow = [p for p in placed if p[0] == 'overflow']
+    if overflow:
+        print(f'{len(overflow)} table(s) still wider than their page', file=sys.stderr)
+        return 1
     return 0
 
 
