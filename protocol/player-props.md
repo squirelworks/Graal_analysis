@@ -65,9 +65,9 @@ Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRIN
 | 54–74 | GATTRIB10–30 | str | |
 | 75 | OSTYPE | str | 2.19+ (`wind`) |
 | 76 | TEXTCODEPAGE | i3 | 2.19+ |
-| 77 | UNKNOWN77 | ? | no client checked parses it (2.05, 2.22, 2.31); sending it aborts the rest of the stream [2.05][2.22][2.31] |
+| 77 | ONLINESECS2 | i5 | name and width from GServer-v2 `beta4`'s prop list [srv]; no client checked parses it (2.05, 2.22, 2.31), and sending it aborts the rest of the stream [2.05][2.22][2.31] |
 | 78–80 | X2 / Y2 / Z2 | s: `abs(v × 16) << 1`, low bit = sign | pixel precision, newer clients only; 4.x+ clamp the encoded value at 0x6FFF (see `player-x-half-tile.md`) [bin] |
-| 81 | UNKNOWN81 | c | player-list tab flag (unconfirmed). Above the highest id that 2.31 parses (80), so 2.31 and older stop reading at it [2.31] |
+| 81 | PLAYERLISTCATEGORY | c | player-list category, name from GServer-v2 `beta4` [srv]. Above the highest id that 2.31 parses (80), so 2.31 and older stop reading at it [2.31] |
 | 82 | COMMUNITYNAME | str | |
 
 2.05 sends props 0, 11, 13, 18, 31, and 33 together at session start, and 42, 15, 16 together on attach or move. **[2.05]** Which ids 2.05 parses depends on the stream (see "Unknown prop ids" below). **[2.05]**
@@ -160,5 +160,7 @@ Highest ids parsed by later clients (from their switch tables): **[2.22][2.31]**
 | 2.22 | 74 (stops at 50, 51, 53) | 76 (stops at 1, 3–7, 14, 22, 25–29) | 73 (stops at 48–52) |
 | 2.31 | 80 (stops at 50, 51, 53, 75–77) | 80 (stops at 1, 3–7, 14, 22, 25–29, 77) | 77 (stops at 48–52) |
 
-No client checked knows PLPROP 77 or 81, or NPCPROP 48. NPCPROP 43 is Z (`c(z + 50)`, range −50..170) from 2.22 on, and NPCPROP 77 is Z2 in 2.31.
+No client checked knows PLPROP 77 or 81, or NPCPROP 48.
+
+**NPCPROP 52 on a `beta4` server [srv][inf]:** GServer-v2 `beta4` filters NPC props by server generation only. It never sends 49–51, and on a CLASSIC server it sends nothing above 35. On a newmain or modern server it sends 52 (CURLEVEL) to every game client, with no client-version check. 2.22 and 2.31 stop at 52, so on such a server they lose every NPC prop after it: GATTRIB10–30, CLASS and X2/Y2/Z2. A server for 2.x clients should leave 52 out, or put it last, as with the OTHERPLPROPS ids above. NPCPROP 43 is Z (`c(z + 50)`, range −50..170) from 2.22 on, and NPCPROP 77 is Z2 in 2.31.
 

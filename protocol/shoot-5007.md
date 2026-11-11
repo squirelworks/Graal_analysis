@@ -111,6 +111,16 @@ The gravity and gani-length fields happen to total 3 bytes either way, so the fo
 
 Neither prediction has been checked in a lab. The GServer reader for PLI_SHOOT2 (48) assumes the same one-byte gravity with a GSHORT gani length. That layout has not been checked against a client that sends 48.
 
+### GServer-v2 `beta4` uses three gravity units **[srv]**
+
+Upstream `beta4` (2026-11-09) is not consistent with itself either:
+
+- **PLI_SHOOT (40) in, PLO_SHOOT2 out:** gravity is the script variable `gravity` cast to a byte, so the default 2.0 goes out as the byte value 2.
+- **NPC-server shots:** gravity is `gravity × 16`, so 2.0 goes out as 32.
+- **PLI_SHOOT2 (48) relay:** the received byte is echoed unchanged, and the NPC-server hook divides it by 16.
+
+None of the three is the client's 2-byte ×256 form above. The Reborn protocol docs (`hosler/reborn-protocol-docs`, `packet-structures.md`) copy the server's one-byte gravity and GSHORT gani length, and say they did not derive the SHOOT2 body independently, so they are not a second source for that layout. **[srv][doc]**
+
 ## Not done
 
 - [x] ~~Read the PLI_SHOOT2 (48) senders~~: 5.12, 5.24r4, 6.00b1 and 6.03r7 all send 2-byte gravity ×256 (above).
