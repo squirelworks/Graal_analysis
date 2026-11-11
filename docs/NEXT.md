@@ -247,7 +247,7 @@ macOS CI is paused until the polish stage.
     `protocol/v6113-udp.md`. The parent item stays open.
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
-  the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (319 pages, sources footnoted, every table introduced) is built and waits for its tag.
+  the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (304 pages, sources footnoted, every table introduced, wide tables on landscape pages) is built and waits for its tag.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
   1.0.0"): 0.0.5 publishes the current research (built, awaiting its tag), then
