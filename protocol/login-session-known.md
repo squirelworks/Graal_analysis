@@ -34,5 +34,5 @@ A public Login session was not captured. That capture is deferred: GitHub issue 
 - The GUI script text for the server list, the account screens and the `ChatBar` control.
 - The `FILE` list inside that server's `basepackage.gupd`, and any later update package.
 - The backdrop level that server chooses (name, tiles, chests, image NPCs).
-- The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client actually uses.
+- The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client actually uses. (Partly known now: the token, the `EILLLT` framing and the outgoing RC4 switch at offset 287, `v611-outgoing-cipher.md`. The incoming cipher is still unknown.)
 - The resulting look (matrix unknown #3). The lab screens are the lab world's ganis and a server named by the injected 178.

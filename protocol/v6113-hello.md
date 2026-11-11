@@ -40,3 +40,5 @@ A new connection starts on the generation-5 framer. Both directions take the sha
 `setencryptionout` selects the cipher for the new-protocol mode by a name the caller passes. The names in this image are `AES` and `RC4`. Any other name clears it. The key and the initial value come from the caller. Nothing in the connect path shows which name, key or initial value the 6.113 session used. **[bin]**
 
 The capture already shows that the bytes after the hello are not the generation-5 partial XOR. The listing agrees: that XOR belongs to the framer `setprotocol` replaces, and the six-byte header belongs to the replacement. The cipher on the bytes after the zlib member: not found. **[bin][cap]** (`protocol/v6113-list-capture.md#what-stays-ciphertext`)
+
+Update 2026-11-11: the zlib member ends the clear prefix at stream offset 287. Every byte after it is RC4 with a per-session 16-byte key, and the inflated 262 bytes are an inner `EILLLT` packet, id 0xfc. See `protocol/v611-outgoing-cipher.md`. **[lab][cap]**

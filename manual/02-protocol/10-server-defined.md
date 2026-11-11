@@ -87,6 +87,7 @@ Unpacked Windows 6.1.1.3 has the same script methods. The port 14900 capture's f
 | `sendraw` appends the caller's bytes with no packet id and no header, which is the path that can write those eight bytes | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-eight-characters) |
 | `setprotocol` writes an `I`/`L`/`T`/`E` header. `L` is the header length plus the body length. `E` 1 is zlib and `E` 2 is bzip2 at block size 5. The template is not in the image | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-six-bytes-after-the-token) |
 | A 6-byte header plus the capture's 273-byte zlib member is 279, and `01 17` sits in the captured header. The cipher after that member was not found | 6.1.1.3 | [bin][cap] (protocol/v6113-hello.md#what-the-cipher-is) |
+| The clear prefix ends at stream offset 287, after the first `EILLLT` packet (id 0xfd, wrapping an inner id 0xfc with a 256-byte body). From there the client's stream, headers included, is plain RC4 with a 16-byte key made per session; no IV is used | 6.111 Mac, 6.113 Windows | [lab][cap] (protocol/v611-outgoing-cipher.md) |
 | Unpacked 6.0.3.7 stores `g3d0311c`, upper-cases it, and sends it as id 5. 6.1.1.3 has no such string | 6.0.3.7 and 6.1.1.3 | [bin] (protocol/v6113-hello.md#against-unpacked-6037) |
 
 ## 2.10.6 Unpacked Windows 6.1.1.3
