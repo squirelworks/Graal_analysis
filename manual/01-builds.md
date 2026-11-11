@@ -3,6 +3,18 @@
 
 This part names every client build the notes cover. Every other part keys its version columns off the build names in §1.1 and the schemes defined in → §0.9.
 
+## 1.0 Reading this Part
+
+A Graal build is named by what it sends, not by the number on its installer. Every other Part keys its version columns off the builds in this Part, and the safest key is the login token, because two builds with the same marketing number can speak different protocols and two different numbers can speak the same one. 3.04 carries 2.22's date stamp and speaks 2.22's protocol; Windows and Linux 6.03r7 send different tokens; the Windows 6.113 upload is not the Mac 6.11 bundle. [bin] (protocol/v3x-clients.md#version-tokens); [cap][bin] (protocol/v5v6-windows-unpacked.md#tokens); [bin] (client-internals/packed-6113.md#what-this-file-is)
+
+**Four kinds of program carry the name.** From 1998 to 2005, 1st Graal to 2.31, the client is one Delphi executable, and its wire changes through the five encryption generations of §1.4. The 3.x clients of 2004 and 2005 are a C++ rewrite on the Torque Game Engine that keeps the 2.22 and 2.31 protocols. From 4.04r2 to 5.12 on Windows a Delphi launcher drives a C++ engine DLL. From 5.24, and in every 6.x build, launcher and engine are one native C++ program per platform. [bin][doc] (version-profiles/matrix/README.md#eras) The thirteen eras of §1.6 subdivide these four; the Torque years are Part X's subject (→ §10.0).
+
+**The line is not monotonic.** 2.00 to 2.04 drop the `.nw` reader that 1.41 rev1 and NewMain 1.42 already had, and 2.05 brings it back. [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) NewWorld beta 1 was cut from the 2.05 code and beta 2 from the 2.1 test code. [bin] (client-internals/cross-version-timeline.md#classes) The 6.00 betas of January 2010 are older than 5.24r3 and share its token. [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds) A table sorted by version number is therefore not a table sorted by code; when the two disagree, this Part follows the code.
+
+**The evidence changes with the era.** Most clients from 1998 to 2001 sit in one archive of 73 executables, so §1.1.1 can give each a hash, a link date, a FileVersion and the magics it reads. [file] (client-internals/drive-clients-inventory.md#versions-present) Later builds are known from their tokens, lab runs and static reads, and there is no per-build hash catalogue for them. [doc] (client-internals/version-tokens.md) Several gaps are real absences: of 2.1 to 2.17 only 2.17.1 survives as a binary, and 2.3 has no binary at all. [bin][doc] (version-profiles/matrix/README.md#eras) From 5.12 the Windows builds are wrapped by MoleBox or Themida, so what a static read can see depends on whether an unpacked image exists. [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds)
+
+**How the Part is laid out.** §1.1 lists the builds; §1.2 to §1.5 give the per-build keys a server or a reader needs (token, server version id, encryption generation, level and save magics); §1.6 groups them into eras; §1.7 covers the Java precursors and side builds. §1.8 is the practical half: for each generation, what a client has to do to *be* that build, with the machine-readable tables in §1.8.8. §1.9 gathers the identity and platform records whose job is to say what an archived file is, and how far that identity reaches. [file] (client-internals/versions-133-139.md#using-the-table)
+
 ## 1.1 Build catalogue
 
 ### 1.1.1 Delphi and Java clients, 1998 to 2001
@@ -487,6 +499,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 ### 1.8.5 Graal 4.x: Windows 4.04r2 and 4.20r8, Mac 4.20r6
 
+#### Program, packaging and licence
+
 | Rule | Source |
 | --- | --- |
 | On Windows 4.x is a Delphi launcher `Graal4.exe` (window, DirectDraw, input, web panel, external windows, URL handlers, `graal4config.txt`, `graal4console.log`) over an MSVC C++ `GraalEngine.dll` with about 2,000 exports, handed its callbacks through about 115 `graal_set…` calls. The Mac client is one PowerPC binary from the same source | [bin] (protocol/v4x-clients.md#what-these-clients-are) |
@@ -495,16 +509,33 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 | There is no separate listserver protocol: the client connects to the `license.graal` host (`<login-host-4x>`, port 14900) as a game server named `Login` and gets the list inside that session (→ §6) | [bin][file] (protocol/v4x-clients.md#login-server-and-licensegraal) |
 | Windows adds `sig.graallib` for the engine DLL; the check runs exe, DLL, license, and any missing file or bad signature stops the client ("The license file(s) have not been found", "The license file is invalid!"). Same RSA key as 3.x | [bin] (protocol/v4x-clients.md#login-server-and-licensegraal) |
 | Saved passwords: accounts starting `guest` are never saved; the password is DES-encrypted under a key built from the machine (MAC and `DigitalProductId` bytes) and stored as `1` + 48 characters, so it decrypts only on the saving PC; 4.04r2 keeps one `password` value, 4.20 adds per-account `<account>_pass` | [bin] (protocol/v4x-clients.md#saved-passwords) |
-| The "Packet Logger" 4.20r8 engine is a third-party modification: a one-byte patch skips the signature check, and a hook in zlib's `inflate` calls `g4_PackLog.dll`, which logs only incoming zlib frames, truncated to the compressed length, as `[id]rest`; it works only on Windows XP SP2 addresses | [bin][src] (protocol/v4x-clients.md#packet-logger-third-party-build) |
 | The 4.04r2 installer is a Thinstall (2003) virtualised bundle: an outer loader found through the PE `LoaderFlags` field, an inner stub, and a compressed directory of 151 records (14 folders) with blocks tagged stored, LZ77, LZ77 XOR 0xF0 or range-coded; the extracted files verify against their signatures (→ §11) | [bin] (protocol/v4x-clients.md#how-the-installer-is-packed) |
 | 4.04r2 ships `Graal4.exe`, `GraalEngine.dll` (3 March 2006), `Graal3DEngine.dll`, `fmod.dll`, `ExeReplacer_temp.exe` and `graalv4_installfiles.txt`; its `license.graal` and `pics1.png` are byte-identical to Mac 4.20r6's | [bin][file] (protocol/v4x-clients.md#what-404r2-ships) |
 | `ExeReplacer` swaps in a new executable and restarts it for the `GRPKG001` update system; packages live in `localversions.txt` and are driven by S→C 105, 106, 193, 196 (→ §8.3) | [bin][inf] (protocol/v4x-clients.md#what-these-clients-are); [bin] (protocol/v4x-clients.md#file-formats) |
+
+#### Third-party engines
+
+| Rule | Source |
+| --- | --- |
+| The "Packet Logger" 4.20r8 engine is a third-party modification: a one-byte patch skips the signature check, and a hook in zlib's `inflate` calls `g4_PackLog.dll`, which logs only incoming zlib frames, truncated to the compressed length, as `[id]rest`; it works only on Windows XP SP2 addresses | [bin][src] (protocol/v4x-clients.md#packet-logger-third-party-build) |
+
+#### 4.04r2 against 4.20, and the 3D plug-in
+
+| Rule | Source |
+| --- | --- |
 | 4.04r2 against 4.20r8: no layered board change (107), 108 or 196; one saved password; 4.20r8 adds a network thread, an XML parser, browser and array GUI controls, reconnect and "cheat window" checks and `MRandomLCG`; 4.04r2 still has `decryptGraalMemoryDES` | [bin] (protocol/v4x-clients.md#protocol-and-engine-differences-from-420r8) |
 | 3D in 4.04r2 is the `Graal3DEngine.dll` plug-in, loaded for a server whose name starts `3 `; it takes over every `graal_set*` callback and owns the window and OpenGL, while the 2D engine keeps game logic and the Graal connection (→ §10) | [bin][inf] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 | The later recovered Windows 4.04r2 collection separates the client shell, main engine and original-carrier 3D engine. Its load-only 3D capture establishes module loading, not 3D gameplay initialization or a working rebuild; it does not turn the earlier packer-stub export into an engine export | [bin][cap] (torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) |
+
+#### Mac 4.20r6 in the lab
+
+| Rule | Source |
+| --- | --- |
 | Mac 4.20r6 in qemu: the login line is `mac,"",<md5>,""` (the MAC hash came out empty under qemu); it sends 34 and 46, which the static list missed; no flag 18 for the lab's movement weapon; chat is white with a blue shadow; Apple's software renderer needed a shim dropping two AGL attributes | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#420r6) |
 
 ### 1.8.6 Graal 5.x: Windows 5.00r7 to 5.31r4
+
+#### Program, packers and licence files
 
 | Rule | Source |
 | --- | --- |
@@ -513,16 +544,31 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 | License files: 5.00r7 four (`license.graal`, `sig.graal`, `sig.graallib`, `sig.license`); 5.12 two (`license.graal`, `sig.license`); from 5.24 none, with the three login hosts compiled in. Every Windows build still connects to the `Login` server on 14900 | [bin][file][cap] (protocol/v5v6-windows-unpacked.md#login-server-and-license); [bin] (protocol/v5x-clients.md#license-file-and-signatures) |
 | The 5.00r7 "CRC patch" is third-party: 8 changed bytes in the license loader skip the not-found, invalid and five-line checks, so any `license.graal` is accepted | [bin] (protocol/v5x-clients.md#the-crc-patch-third-party) |
 | `GR-V1.05` adds tile layers and `GRESCR01` caches DES-encrypted class and weapon scripts whose key arrives in clear with each script (S→C 140, 197; → §3.1, → §8.3) | [bin] (protocol/v5x-clients.md#file-formats) |
+
+#### Login, tokens and wire
+
+| Rule | Source |
+| --- | --- |
 | Every build logs in by itself as guest at the login screen, with a fixed guest password shared by all the Windows builds; the machine list gains a fifth field, the quoted Windows version (`"6.2 9200 "` under Windows 8 and later) | [cap] (protocol/v5v6-windows-unpacked.md#login-message) |
 | 5.30r3, 5.31r4, 6.00r2 and 6.00r4 expire: on today's date they log "This is a beta release of Graal…" and exit, so they run only with the clock set back for the whole session; 6.03r7 has no such check | [cap][inf] (protocol/v5v6-windows-unpacked.md#running-them); [wire] (protocol/v5v6-lab-play.md#lab-setup-and-what-it-took) |
 | 5.12 sends even short bodies zlib-compressed; 5.24r3 and later send them raw, as 2.22 does | [cap] (protocol/v5v6-windows-unpacked.md#cipher-and-framing) |
 | 5.12 steps the gen-5 iterator `len / 4` rounded down for compressed frames, one step short of every later build whenever a compressed frame under 16 bytes is not a multiple of 4; a server for a 5.12 profile has to step the same way (→ §2.2.4) | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
+| Stock gs2lib does not know `G3D15010` (5.24, 6.00 beta2) or `G3D03048` (6.00 beta1); it then sends the old file layout and 5.24 saves PNG data as a file name | [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it) |
+
+#### The login lobby, chat and HUD
+
+| Rule | Source |
+| --- | --- |
 | Login lobby mode: while the current server name starts with "login", the draw-layer mask is cut, so the client draws tiles, chests and image NPCs but no characters and no HUD, and never asks for sprites, heads or bodies. S→C 178 (`PLO_SERVERWARP`) to a server with another name ends it (→ §2.3) | [cap] (version-profiles/lab-v5-2026-10-30.md#login-mode-why-nothing-is-drawn-at-first); [wire][shot] (protocol/v5v6-lab-play.md#the-login-server-mode) |
 | After the warp the client asks for `tiledefs<servername>.txt` with the space as `%032`; 5.31r4 and 6.03r7 draw no tiles before the warp | [wire][shot] (protocol/v5v6-lab-play.md#the-login-server-mode) |
-| Stock gs2lib does not know `G3D15010` (5.24, 6.00 beta2) or `G3D03048` (6.00 beta1); it then sends the old file layout and 5.24 saves PNG data as a file name | [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it) |
 | There is no built-in chat bar: the engine looks for a GUI control named `ChatBar`, which the server's scripts supply; Escape asks "Do you really want to quit Graal?" | [bin][cap] (version-profiles/lab-v5-2026-10-30.md#how-it-looks); [wire][shot] (protocol/v5v6-lab-play.md#chat-text) |
 | Chat is drawn above the head with a blue outline and no bubble, on one unwrapped line; the client clears it itself 2.97 to 2.99 s after the server set it. 5.24 draws in Arial, 6.03 in Tempus Sans ITC 24 | [wire][shot] (protocol/v5v6-lab-play.md#chat-text) |
 | HUD: 5.00r7 and 5.12 letter the item boxes A, S, D and print the sword level; 5.24r4 under Wine draws neither (unconfirmed on Windows). The player list is a native window "Players: N online" with Staff, Buddies, Guild, Normal, Ignore and Offline | [cap] (version-profiles/lab-v5-2026-10-30.md#how-it-looks) |
+
+#### Play
+
+| Rule | Source |
+| --- | --- |
 | Movement timings in 5.00r7, 5.12, 5.24r4, 5.30r3 and 6.03r7 equal 2.05's: walk 0.5 tile per 50 ms tick, push after 18 blocked ticks (0.9 s), sword 5 ticks, lift 6 ticks, hidden walk 0.1 tile per tick (→ §4.2) | [cap] (version-profiles/lab-v5-2026-10-30.md#timings); [wire] (protocol/v5v6-lab-play.md#play-what-the-client-does) |
 | The only new mannerisms on the wire are the trigger actions `pushed,0` (0.55 s into a push, then every second) and `pulled,1` (0.85 s into a pull); hurt pushes the player 5 tiles in 5 ticks and lasts about 1.55 s; swimming is as fast as walking | [wire] (protocol/v5v6-lab-play.md#grab-pull-hurt-and-swim) |
 | Lifting a pot leaves its base (1770, 1771, 1786, 1787) and the server drops a heart (S→C 22); a pot cannot hide the player, a bush or stone can (status 22, `hiddenstill`) | [wire][shot] (protocol/v5v6-lab-play.md#pots-stones-and-hiding) |
@@ -530,10 +576,22 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 ### 1.8.7 Graal 6.x: 6.00 to 6.03, Mac 6.11
 
+#### What 6.x is
+
 | Rule | Source |
 | --- | --- |
 | 6.x is one native C++ program per platform from the `graallib` code base, with no Delphi launcher and no Torque layer; Linux links SDL_mixer, X11, OpenGL and avahi; 6.03 moves zlib to 1.2.5 | [bin] (protocol/v6x-clients.md#architecture) |
 | Unpacked Windows 6.00r2 (product version 6.002, compiler date 12 June 2011) and 6.00r4 (6.004, 26 June 2011) are that program under the source tree `quattro_lib`: OpenGL drawing after a Direct3D 9 capability check, FMOD sound, GS2 shell scripts, `TServer*` world objects and a `TSocket` game connection; `ExeReplacer.exe` is still launched for packages (Torque names that remain → §10.1.8) | [bin] (client-internals/engine-600r2.md#how-the-program-is-split); [bin] (client-internals/engine-600r4.md#same-engine-as-600r2) |
+| No `license.graal`: the three login hosts are compiled in (6.03 as `host:14900` entries walked on failure) | [bin] (protocol/v6x-clients.md#login-server) |
+| Linux machine ids: MD5 of the `eth0` MAC, MD5 of the `/etc` inode number, an empty field, and the kernel release and version | [bin] (protocol/v6x-clients.md#login-message-601-and-603) |
+| Windows 6.03r7 sends `G3D0311C` and Linux 6.03r7 `G3D0511C`, so a server that accepts one need not accept the other; the token belongs to a protocol revision (four builds from 5.30r3 to 6.00r4 share `G3D26090`) | [cap][bin] (protocol/v5v6-windows-unpacked.md#tokens) |
+| The 6.00 betas (Jan 2010) are older than 5.24r3, and 6.00 beta2 sends 5.24's token, so the two lines shared one code base in early 2010 | [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds) |
+| 6.11 (Mac, 2014) fetches a connector script over HTTPS and lets the server set framing, ciphers and id tables (→ §2.10) | [bin] (protocol/v6x-clients.md#611-mac-the-connector-and-a-server-defined-protocol) |
+
+#### The packed 6.037 and 6.113 uploads
+
+| Rule | Source |
+| --- | --- |
 | The packed uploads of Windows 6.037 (2012, Linux Cyberjoueurs) and 6.113 (2014, Eurocenter Games) decompile as packer stubs. 6.037 is the known 6.03r7 executable. 6.113 is not the Mac 6.11 bundle version | [bin] (client-internals/packed-6037.md#what-this-file-is); [bin] (client-internals/packed-6113.md#what-this-file-is) |
 | Those two listings are the Themida / WinLicense shell (blank section names, two random 8-letter names, no `.text`). The strings `Themida`, `Oreans`, `SecureEngine` and `WinLicense` are in the unpacked 5.30r3, 5.31r4, 6.00r2 and 6.00r4 listings, and the 6.037 and 6.113 exports do not contain the C++ core | [bin] (client-internals/themida-pack.md#which-listings-carry-it) |
 | Windows 6.1.1.3, re-read after the 2026-11-07 gap archive, is still that stub: version string `6.113`, fixed version 6.1.1.3, image timestamp 8 August 2014, one import `SetCurrentDirectoryA`, export directory `QPlay.exe`. The archive added no unpacked engine (→ §10.1.9) | [bin] (client-internals/engine-6113.md#what-this-file-is); [bin] (client-internals/engine-6113.md#still-no-engine-image) |
@@ -545,11 +603,11 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 | The full 6.113 capture (241 s, 46225 frames) repeats that hello on TCP 14900 (two answered sessions, server marker 22) and on TCP 14882 (one session, server marker 17, 9639663 bytes from the server). No UDP datagram is to or from those remotes. No UDP port in the file is one greater than a TCP port (→ §2.9, → §10.2) | [cap] (protocol/v6113-udp.md#graal-tcp) |
 | Unpacked Windows 6.1.1.3 does not store `GNP1905C`. `sendraw` can write those eight bytes with no header, and the six-byte header is the `setprotocol` framer (`L` counts the header plus the body). Unpacked 6.0.3.7 stores `g3d0311c` and sends it, upper-cased, as id 5 (→ §2.10.5) | [bin][cap] (protocol/v6113-hello.md#the-eight-characters) |
 | A full 6.113 capture the same day has TCP 14900 (three completed sessions, each starting `GNP1905C`, and one unanswered SYN) and no UDP to those remotes. UDP 14900, 14901 and 14899 have no datagrams. The UDP in the file is other traffic on the same interface, including a short-header flow on UDP 443 to a separate remote | [cap] (protocol/v6113-udp.md#what-this-capture-shows) || Hosts, ports, tokens and URL parts are stored scrambled and decoded at run time by a per-byte decoder that depends on length and position, the same in 6.01, 6.03 and 6.11 | [bin] (protocol/v6x-clients.md#architecture) |
-| No `license.graal`: the three login hosts are compiled in (6.03 as `host:14900` entries walked on failure) | [bin] (protocol/v6x-clients.md#login-server) |
-| Linux machine ids: MD5 of the `eth0` MAC, MD5 of the `/etc` inode number, an empty field, and the kernel release and version | [bin] (protocol/v6x-clients.md#login-message-601-and-603) |
-| Windows 6.03r7 sends `G3D0311C` and Linux 6.03r7 `G3D0511C`, so a server that accepts one need not accept the other; the token belongs to a protocol revision (four builds from 5.30r3 to 6.00r4 share `G3D26090`) | [cap][bin] (protocol/v5v6-windows-unpacked.md#tokens) |
-| The 6.00 betas (Jan 2010) are older than 5.24r3, and 6.00 beta2 sends 5.24's token, so the two lines shared one code base in early 2010 | [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds) |
-| 6.11 (Mac, 2014) fetches a connector script over HTTPS and lets the server set framing, ciphers and id tables (→ §2.10) | [bin] (protocol/v6x-clients.md#611-mac-the-connector-and-a-server-defined-protocol) |
+
+#### Serving a 6.x client in the lab
+
+| Rule | Source |
+| --- | --- |
 | A server for 5.x/6.x needs a game server name that does not start with "login" (or a 178 warp), the tokens `G3D15010` and `G3D03048`, and must serve `basepackage.gupd` (a minimal `GRPKG001` with `NAME`, `VERSION`, `PLATFORM`, `MODE` will do) and `tiledefs<server>.txt`; the Themida builds fetch every image, gani and sound | [wire] (protocol/v5v6-lab-play.md#for-seihai-profiles); [wire] (protocol/v5v6-lab-play.md#the-session-on-the-wire) |
 | GServer-v2 beta4 crashes on every 6.00 login while registering the GS1 weapon `-gr_movement`, taking the GS2 bytecode branch for a weapon with no bytecode | [srv] (protocol/v5v6-lab-play.md#600r2-and-600r4-on-real-windows) |
 
@@ -580,7 +638,11 @@ Lab measurements kept as tables beside them:
 | `lab-serverwarp178.tsv` | how 2.31 reacts to variants of the S→C 178 fields | [lab] (version-profiles/lab-serverwarp178.tsv) |
 | `lab-showimg24-relay.tsv` | C→S 24 payloads and how the server relays them to other players | [lab] (version-profiles/lab-showimg24-relay.tsv) |
 
-## 1.9 Archived macOS executable compatibility
+## 1.9 Identity and platform evidence
+
+These records say what an archived file is, and where that identity stops. None of them is a behaviour reading; each keeps the scope its source gives it. [bin] (version-profiles/macos-client-compatibility.md)
+
+### 1.9.1 Archived macOS executables
 
 | Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
 | --- | --- | --- | --- | --- |
@@ -593,12 +655,12 @@ The PowerPC headers declare legacy graphics and application-framework dependenci
 
 Unresolved archive-label and resource identity: → App. E#609.
 
-## 1.10 Linux network/bootstrap evidence gates
+### 1.9.2 Linux network and bootstrap gates
 
 Seven exact Linux input identities have observed accepted local logins on one pinned patched lab server, while visual results and later execution gates remain separate. The derived ledger records exact client hashes, shared tokens, per-gate statuses and sanitized source lineage. A not-established cell concerns its specified network cohorts, not every experiment in this repository. [cap] (version-profiles/linux-network-bootstrap-evidence.md#read-the-gates-independently)
 
 The later 6.03 cohort separately records class parsing, registered-weapon execution and a suspended continuation with proxy-origin bodies; the 3.04 cohort separately records source-weapon effects and persistence. These observations do not establish normal-server GS2 compilation, exact sleep timing, a positive disk-cache hit or complete gameplay. Cache contracts remain explicitly static-only where marked. [cap] (version-profiles/linux-network-bootstrap-evidence.md#read-the-gates-independently); [bin] (version-profiles/linux-network-bootstrap-evidence.md#static-contracts-and-supersession)
 
-## 1.11 Imported Windows v4 alias and retained carrier identity
+### 1.9.3 The imported Windows v4 carrier
 
 The imported report’s supplied `4.20r8` alias and the retained collection’s `4.04r2` label refer to a carrier with SHA-256 `71378394469bcf16038ee3b335da786afcdf357fe4e8dd6329a05ba926a5e4bf`. A separate retained-resource checkpoint reports FileVersion `4.0.4.2`, ProductVersion `4`, OriginalFilename `Graal.exe` and ProductName `Graal`. This corroborates byte identity and metadata, not official release provenance. Keep the packed/stub carrier separate from subsequently recovered engine/shell/3D components; no behavior transfers from an alias. No target execution or original package authentication occurred. [file][doc] (version-profiles/windows-v4-import-provenance.md)
