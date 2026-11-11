@@ -47,7 +47,7 @@ Two independent checks, on two different machines and operating systems, point t
 
 The first was a replay. A Mac OS X 10.7 ("Lion") virtual machine, with no internet, ran an unmodified Mac 6.111 client, and a small lab web server handed it a previously captured `conf.gs` reply. The client checked the signature, accepted it, decrypted the script and ran it. Its memory was then saved to a file, and the decrypted script, with `setProtocol("EILLLT")` followed by `sendRaw("GNP1905C")`, could be read straight out of it[^lion].
 
-The second was a trace of the running Windows 6.113 client in a debugger. The token was absent from the client in every form a program could store it: not as plain text, not scrambled, not as separate characters put together at run time. The only related thing baked into the program is the *name* `StartScript_Connector`, the label it gives the script it is about to receive[^mirae].
+The second was a trace of the running Windows 6.113 client in a debugger. The token was absent from the client in every form a program could store it: not as plain text, not scrambled, not as separate characters put together at run time. The only related thing baked into the program is the *name* `StartScript_Connector`, the label it gives the script it is about to receive[^wintrace].
 
 Together they rule out the "the client converts something into the token" idea. A token that is not in the program, and that turns up word for word inside a script the program downloads, comes from the script.
 
@@ -84,7 +84,7 @@ It does **not** yet cover the version-7 "Worlds" builds. Those take a different 
 [^script]: Decrypted connector script read from the 6.111 client's memory in the same lab run **[lab]**. The script methods themselves are listed in [v6x-clients.md](v6x-clients.md), "What the script controls" **[bin]**.
 [^hdr]: [v6113-hello.md](v6113-hello.md), "The six bytes after the token"; manual §2.10.3 **[bin][cap]**.
 [^lion]: Mac OS X 10.7.5 guest, unmodified Mac 6.11r1 (`Graal/6.111`), loopback lab responder serving a replayed reply, RAM dump after the script ran; 2026-11-11, owner-held record **[lab]**.
-[^mirae]: Debugger trace of the running Windows 6.113 client, 2026-11-11, owner-held record **[lab]**; agrees with the static reading in [unpacked-6113-wire.md](unpacked-6113-wire.md) **[bin]**.
+[^wintrace]: Debugger trace of the running Windows 6.113 client, 2026-11-11, owner-held record **[lab]**; agrees with the static reading in [unpacked-6113-wire.md](unpacked-6113-wire.md) **[bin]**.
 [^scramble]: [v6037-hello-diff.md](v6037-hello-diff.md), "Login token"; [login-tokens-3x-7x.md](login-tokens-3x-7x.md), "The token itself" **[bin]**.
 [^hidden]: [v6x-clients.md](v6x-clients.md), the build notes at the top **[bin]**.
 [^conseq]: Follows from the signature check described above **[inf]**. No modified client was built for this note.
