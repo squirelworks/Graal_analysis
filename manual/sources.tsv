@@ -614,6 +614,7 @@ client-internals/mac-611r1-gs2-runner.md	cited	8.4; E	8.4; E	Read handlers, loop
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/windows-420-render-seams.md	cited	10	10	Render entry points carried in 10.1.5; the reproduction test and the v3-v5 ownership summary stay in the source note
 client-internals/android-classic.md	cited	1; 4.11	1; 4.11	Packages, host, frame gate, collision, board, render, chat and resources carried in 1.7 and 4.11.11; proposed tests stay in the source note
+client-internals/graal-wiki-crosscheck-2026-11-11.md	cited	3.3	3.3	
 protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
