@@ -54,3 +54,8 @@ W500-SCRIPT-INTERFACE-20261109	windows	researcher-static-summary
 LNX603-CLASS-CACHE-20261109	linux	researcher-static-summary
 LNX601-X86-DELIVERY-20261109	linux	researcher-static-summary
 MAC-V6-OPCODE-20261109	macos	researcher-static-summary
+MAC-PPC-404-STARTUP-INPUT-20261109	macos	researcher-static-summary
+MAC-PPC-420-STARTUP-INPUT-20261109	macos	researcher-static-summary
+MAC-PPC-V5-STARTUP-INPUT-STATIC-20261109	macos	researcher-static-summary
+W420-RENDER-SEAMS-20261109	windows	researcher-static-summary
+W404-R01-TUTORIAL-20261108	windows	lab-capture-summary

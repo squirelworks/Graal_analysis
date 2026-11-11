@@ -12,6 +12,11 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).
+  - [ ] Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.
+
+- [x] **Windows 4.20 render entry points and the 4.04r2 R01 run.** ~~Publish the render-seam check and the instrumented tutorial run.~~ [Render](../client-internals/windows-420-render-seams.md); [R01](../version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01); the core update rate and a rendered scene remain open (App. E#301, E#610).
+
 - [x] **Qualify the supplied 701750 bridge and clock checkpoint.** [Note](../client-internals/v7-701750-bridge-clock.md) and manual §4.1.7 record the bounded static result. The ten retained function-validation records include the short getter; two managed-edge records are counted separately. Cadence, wrap/catch-up, collection/lifecycle semantics and older-build equivalence remain unresolved.
 
 - [x] **Linux 3.04 local value-helper branches.** ~~Publish supported retained local conversion/assignment distinctions after overlap review.~~ [Source](../torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) keeps type-specific behavior and general coercion unresolved.

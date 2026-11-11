@@ -4,6 +4,11 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Mac 6.11r1 connector request, lab run](protocol/v6x-clients.md#the-connector-request-in-a-lab-run) — DNS order, the TLS 1.2 ClientHello, then `conf.gs` over HTTP with `User-Agent: Graal/6.111`, in a Lion guest with no internet.
+- [Mac PowerPC 4.04r2, 4.20r6 and v5 start-up and input](client-internals/mac-ppc-startup-input-2026-11-09.md) — the one-shot Carbon timer that runs the engine, registered events, and how keys, characters, modifiers and the mouse become engine records; static.
+- [Windows 4.20 render entry points](client-internals/windows-420-render-seams.md) — adventure and canvas render entries that check their target first, a fake-renderer test, and who owns scripts in Windows v3 to v5.
+- [Windows 4.04r2 tutorial run R01](version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01) — 539 shell ticks at about 50 ms with no periodic core update or render hook.
+
 - [Supplied 701750 managed/native bridge and clock checkpoint](client-internals/v7-701750-bridge-clock.md) — selected static edges, clock/store and guarded dispatch; no cadence, lifecycle or cross-build equivalence claim.
 
 - [Linux 3.04 local value-helper branches](torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) — retained static numeric/string fallback and assignment distinctions, not complete coercion or callback results.
