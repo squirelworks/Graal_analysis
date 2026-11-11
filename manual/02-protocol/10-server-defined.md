@@ -83,6 +83,7 @@ Unpacked Windows 6.1.1.3 has the same script methods. The port 14900 capture's f
 | Rule | Builds | Source |
 | --- | --- | --- |
 | `GNP1905C` is not a stored string, scrambled or clear, and `graalversion` (the number 6.113) is not turned into the digits `1905`. How those digits are chosen was not found | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-eight-characters) |
+| The token comes from the server: a captured, RSA-signed connector script calls `setProtocol("EILLLT")` and then `sendRaw("GNP1905C")`, so the client sends the script's literal string and computes nothing | 6.111 Mac, 6.113 Windows | [lab] (protocol/v6-login-token-explained.md) |
 | `sendraw` appends the caller's bytes with no packet id and no header, which is the path that can write those eight bytes | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-eight-characters) |
 | `setprotocol` writes an `I`/`L`/`T`/`E` header. `L` is the header length plus the body length. `E` 1 is zlib and `E` 2 is bzip2 at block size 5. The template is not in the image | 6.1.1.3 | [bin] (protocol/v6113-hello.md#the-six-bytes-after-the-token) |
 | A 6-byte header plus the capture's 273-byte zlib member is 279, and `01 17` sits in the captured header. The cipher after that member was not found | 6.1.1.3 | [bin][cap] (protocol/v6113-hello.md#what-the-cipher-is) |

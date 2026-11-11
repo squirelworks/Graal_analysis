@@ -39,7 +39,7 @@ From 4.x there is no listserver protocol. The client reads a host from `license.
 
 ## 6.11 and 7.x
 
-6.11 asks an HTTP connector for `conf.gs` and runs the reply as `StartScript_Connector`. That script picks the protocol and the cipher, connects to the game server and builds the login with `senddata`. So 6.11 has no fixed token. The token, packet ids, header and cipher are whatever the server's script says[^v6][^lion]. The 7.x clients use the same connector bootstrap; their framing and packet tables are in the `v7-graal3d-*` notes[^v7].
+6.11 asks an HTTP connector for `conf.gs` and runs the reply as `StartScript_Connector`. That script picks the protocol and the cipher, connects to the game server and builds the login with `senddata`. So 6.11 has no fixed token. The token, packet ids, header and cipher are whatever the server's script says[^v6][^lion]. A lab replay later read one such script: it sends `GNP1905C` as a literal with `sendRaw`, after `setProtocol("EILLLT")` (see [v6-login-token-explained.md](v6-login-token-explained.md)). The 7.x clients use the same connector bootstrap; their framing and packet tables are in the `v7-graal3d-*` notes[^v7].
 
 ## Are the G3D clients 3D?
 
