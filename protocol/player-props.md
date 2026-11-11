@@ -31,7 +31,7 @@ Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRIN
 | 12 | CURCHAT | str | chat bubble text |
 | 13 | COLORS | 5 × c | color-name indexes; order probably skin, coat, sleeves, shoes, belt (matches the GS1 `set*color` commands) [inf] |
 | 14 | ID | s | |
-| 15 | X | c(x × 2) | half-tile |
+| 15 | X | c(x × 2) | half-tile; clients read the byte unsigned, so −15.5 … +111.5 tiles (see `player-x-half-tile.md`) [bin] |
 | 16 | Y | c(y × 2) | |
 | 17 | SPRITE | c | `% 4` = direction |
 | 18 | STATUS | c | bit flags, see below |
@@ -66,7 +66,7 @@ Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRIN
 | 75 | OSTYPE | str | 2.19+ (`wind`) |
 | 76 | TEXTCODEPAGE | i3 | 2.19+ |
 | 77 | ONLINESECS2 | i5 | name and width from GServer-v2 `beta4`'s prop list [srv]; no client checked parses it (2.05, 2.22, 2.31), and sending it aborts the rest of the stream [2.05][2.22][2.31] |
-| 78–80 | X2 / Y2 / Z2 | s: `abs(v × 16) << 1`, low bit = sign | pixel precision, newer clients only |
+| 78–80 | X2 / Y2 / Z2 | s: `abs(v × 16) << 1`, low bit = sign | pixel precision, newer clients only; 4.x+ clamp the encoded value at 0x6FFF (see `player-x-half-tile.md`) [bin] |
 | 81 | PLAYERLISTCATEGORY | c | player-list category, name from GServer-v2 `beta4` [srv]. Above the highest id that 2.31 parses (80), so 2.31 and older stop reading at it [2.31] |
 | 82 | COMMUNITYNAME | str | |
 
