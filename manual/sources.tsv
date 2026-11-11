@@ -619,3 +619,4 @@ client-internals/android-classic.md	cited	1; 4.11	1; 4.11	Packages, host, frame 
 protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
+protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
