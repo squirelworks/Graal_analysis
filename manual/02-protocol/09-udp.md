@@ -7,6 +7,8 @@ A channel between clients that the game server never sees; the server only relay
 
 ## 2.9.1 Setup and addressing
 
+From 1.28 beta 2, clients can send some traffic straight to each other over UDP, past the server. The rules below say which builds have the channel, how it is set up and how peers find each other's ports [2.05] (protocol/udp-p2p.md).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | No open-source server implements this channel, because the server never sees it | server | [2.05] (protocol/udp-p2p.md) |
@@ -21,6 +23,8 @@ A channel between clients that the game server never sees; the server only relay
 
 ## 2.9.2 Datagram
 
+A UDP datagram is a stripped-down TCP message under a one-byte XOR. The rules below give the layout and how the key is chosen, with a capture that confirms it [2.05] (protocol/udp-p2p.md#datagram).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A datagram is `seq` (1 byte), then `c` UDP id and the fields, in the same G-type encodings as TCP; no zlib, no length prefix, no gen-3 insertion | 2.05 | [2.05] (protocol/udp-p2p.md#datagram) |
@@ -32,6 +36,8 @@ A channel between clients that the game server never sees; the server only relay
 | The 2.05 receive wrapper drops a bit test on a length value and moves a field offset compared with 2.00–2.04; the datagram layout does not change | 2.00 to 2.05 | [bin] (client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md) |
 
 ## 2.9.3 Routing
+
+A client decides per action whether to use UDP, TCP or both. The rules below give that choice and what stays on TCP regardless [2.05] (protocol/udp-p2p.md#routing).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -63,6 +69,8 @@ The ids are their own space, not PLI or PLO numbers; the wire byte is again the 
 | 25 | hit objects | unmeasured | PLI 36 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
 | 26 | trigger action | for example NPC id 0, x × 2, y × 2, `leftmouse` | PLI 38 | [cap] (protocol/udp-p2p.md#304-linux-lab-2026-10-30-cap) |
 
+The id table above lists the UDP messages. The rules below are what captures showed about their timing and fields [cap] (protocol/udp-p2p.md#observed-on-the-wire-cap).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | Movement goes out about every 100 ms while moving, then less often | 2.05, 1.28 beta 2 | [cap] (protocol/udp-p2p.md#observed-on-the-wire-cap); [cap] (protocol/gserv-1999.md#udp-128-beta-2-on) |
@@ -76,6 +84,8 @@ The ids are their own space, not PLI or PLO numbers; the wire byte is again the 
 | Whether 2.1 to 2.31 used the channel on the wire is unmeasured; 2.22 also used UDP for voice chat | 2.1 to 2.31 | [doc] (protocol/udp-p2p.md#open) |
 
 ## 2.9.5 Unpacked Windows 6.1.1.3
+
+In 6.1.1.3 the UDP channel survives only as code that scripts may call. The two rules say what is in the image and what the captures show [bin] (protocol/v6113-udp-code.md#what-is-in-the-image).
 
 | Rule | Builds | Source |
 | --- | --- | --- |

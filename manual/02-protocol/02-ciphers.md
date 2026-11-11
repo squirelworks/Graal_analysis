@@ -16,6 +16,8 @@ The numbering is GServer-v2's (→ §0.9).
 | 5 | client type 5; RC2 (type 6) | 2.22, 2.31, 3.04, 3.153, 4.x, 5.x, 6.01, 6.03, Delphi RemoteControl | compression byte, then partial XOR (→ §2.2.3, → §2.2.4) | [srv] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering); [bin] (protocol/v3x-clients.md#game-server-login-and-cipher); [bin] (protocol/v4x-clients.md#cipher-and-framing); [cap] (protocol/v5v6-windows-unpacked.md); [bin] (protocol/v6x-clients.md#cipher-and-framing-classic-mode) |
 | 6 | v6 | unmeasured | not implemented in the server source the notes summarise (→ §2.2.5) | [srv] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering) |
 
+The table above says which generation each build uses. The rules below add what it leaves out: the remote-control socket, which uses no cipher, the fact that generation 2 encrypts nothing, and the random-number step that generations 3 to 5 share [bin] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | The NC socket logs in as type 3 and stays zlib with no cipher | Delphi RemoteControl | [bin] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering) |
@@ -38,6 +40,8 @@ Client to server only. Server-to-client traffic for a gen-3 client is plain zlib
 | 2 | `len` = message length including the trailing `\n`; `pos0 = (it & 0xFFFF) mod len` (0-based) | [2.05] (protocol/codec-and-framing.md#gen-3-205); [bin] (version-profiles/gen3-insertion-200-205.tsv) |
 | 3 | insert the byte `((it >> 16) & 0x7F) + 0x20` at 0-based index `pos0`, before compression | [2.05] (protocol/codec-and-framing.md#gen-3-205) |
 
+The steps above are the whole algorithm. The properties below are what a decoder needs to get right in practice, and what the lab sessions confirmed [2.05][cap] (protocol/codec-and-framing.md#gen-3-205).
+
 | Property | Source |
 | --- | --- |
 | `pos0` can be 0, which puts the junk byte before the id byte; a decoder must not take offset 0 as the id until the byte is removed | [2.05][cap] (protocol/codec-and-framing.md#gen-3-205) |
@@ -46,6 +50,8 @@ Client to server only. Server-to-client traffic for a gen-3 client is plain zlib
 | The server mirrors the step and deletes the byte at 0-based `(it & 0xFFFF) mod len`, where `len` is the split-off line without `\n` but with the junk byte, which equals the client's length | [srv][2.05] (protocol/codec-and-framing.md#gen-3-205) |
 | The server's own gen-3 encoder always inserts `)` instead of an iterator-derived byte; harmless, because the receiver discards it | [srv] (protocol/codec-and-framing.md#gen-3-205) |
 | Three lab 2.05 sessions: every message after the login had the predicted byte at the predicted index, several at index 0, no mismatches | [cap] (protocol/codec-and-framing.md#gen-3-205) |
+
+Generation 3 starts somewhere between 1.39 and 1.41. The table pins that boundary and records which later builds were checked against the formula [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
 
 | Builds | Insertion | Source |
 | --- | --- | --- |
@@ -68,6 +74,8 @@ The server/2.22 contract below is not universal across later receivers; the inde
 | 4 | a short last group still advances `it` and is XORed byte by byte with the low bytes of `it` | [srv][2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) ; [cap] (protocol/lab-checks-2026-10-24.md#gen-5-xor-confirmation) |
 | 5 | on receive, undo the XOR first, then decompress | [srv] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 
+The step count above is not taken on trust. Each row is one body of evidence that the rule holds, and the last row shows the alternative reading failing [cap] (protocol/codec-and-framing.md#gen-45-partial-xor).
+
 | Evidence for the step rule | Source |
 | --- | --- |
 | 27 of 27 server-to-client frames from four public 2.22 game servers and both listserver frames, including zlib and bz2 bodies with a partial last group | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
@@ -75,6 +83,8 @@ The server/2.22 contract below is not universal across later receivers; the inde
 | a real 2.22 client sent 580 uncompressed and 17 zlib frames; all 17 compressed bodies had a length that was not a multiple of 4 and decode only under this rule | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | ten 5.x and 6.x Windows captures decode with this rule | [cap] (protocol/v5v6-windows-unpacked.md) |
 | for these 2.22 captures, `floor(len / 4)` groups for compressed bodies is wrong and leaves the iterator one step behind | [cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
+
+Builds agree on the cap but not always on rounding. The table gives the number of iterator steps each build takes for a compressed body. A row that differs from `ceil(len / 4)` needs a server that steps the same way [2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor).
 
 | Builds | Step count for zlib and bz2 bodies | Source |
 | --- | --- | --- |
@@ -111,6 +121,8 @@ Which code a client picks for each flush of `n` bytes:
 | 5.24r3 and later | `0x02`, like 2.22 | unmeasured | unmeasured | [cap] (protocol/v5v6-windows-unpacked.md) |
 | 6.01r1, 6.03r7 | `0x02` | `0x04` | `0x06` | [bin] (protocol/v6x-clients.md#cipher-and-framing-classic-mode) |
 
+The rules below complete the frame layout: what the length counts, why the login frame is different, what has not been seen, and how the older generations choose [2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor).
+
 | Rule | Source |
 | --- | --- |
 | The `u16be` length counts the type byte | [2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
@@ -119,6 +131,8 @@ Which code a client picks for each flush of `n` bytes:
 | Generations 2 and 3 compress every flush with zlib | [bin] (protocol/gserv-1999.md#framing); [2.05] (protocol/codec-and-framing.md#frame) |
 
 ## 2.2.5 Generation 6 and script-defined transports
+
+Generation 6 exists only as a name. The rules say what the late clients actually use, and how a script sent by the server can swap the transport out [srv] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering).
 
 | Rule | Builds | Source |
 | --- | --- | --- |

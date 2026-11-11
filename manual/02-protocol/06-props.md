@@ -7,6 +7,8 @@ Props are the typed fields of players, NPCs and baddies. The messages that carry
 
 ## 2.6.1 Prop streams
 
+Players, NPCs and baddies are all described by prop streams. The rules below say how a stream is laid out, where it appears and how a parser stops. The last point matters most: one unknown id loses the rest of the message [srv] (protocol/player-props.md).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A prop stream is `(c id, value)*` running to the end of the message, with no length per prop | all binary generations | [srv] (protocol/player-props.md) |
@@ -81,6 +83,8 @@ Encodings use the short names of → §0.6; `c(v + k)` means the value plus *k*,
 
 ### 2.6.2.1 STATUS bits (prop 18)
 
+Prop 18 packs several on-off states into one byte. Each row is one bit and what it means when set [srv] (protocol/player-props.md#status-bits-prop-18-srv).
+
 | Bit | Meaning | Source |
 | --- | --- | --- |
 | `0x01` | paused | [srv] (protocol/player-props.md#status-bits-prop-18-srv) |
@@ -93,6 +97,8 @@ Encodings use the short names of → §0.6; `c(v + k)` means the value plus *k*,
 
 ### 2.6.2.2 ADDITFLAGS bits (prop 33)
 
+Prop 33 is a second bit field, for settings that limit what the player receives. Each row is one bit [srv] (protocol/player-props.md#additflags-srv).
+
 | Bit | Meaning | Source |
 | --- | --- | --- |
 | `0x01` | no mass message | [srv] (protocol/player-props.md#additflags-srv) |
@@ -101,6 +107,8 @@ Encodings use the short names of → §0.6; `c(v + k)` means the value plus *k*,
 | `0x08` | voice disabled | [srv] (protocol/player-props.md#additflags-srv) |
 
 ### 2.6.2.3 Encodings as 2.05 reads them
+
+Some props have encodings the server source does not spell out. The table gives how 2.05 actually reads them, prop by prop. Most of them switch between a small default number and a custom image name [2.05] (protocol/player-props.md#205-coverage-update-2026-10-21-205).
 
 | Prop | Rule | Source |
 | --- | --- | --- |
@@ -118,6 +126,8 @@ Encodings use the short names of → §0.6; `c(v + k)` means the value plus *k*,
 
 ## 2.6.3 Body colours and attributes
 
+Prop 13 colours a player's body by recolouring a palette image. The rules below say which palette entries take which colour, and what a new player gets [2.05] (client-internals/body-colours-and-attributes.md#body-colours).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A body picture is a palette image; before drawing, palette entry 5 takes the skin colour, 6 the coat, 4 the sleeves, 3 the shoes and 1 the belt; entry 0 always takes colour 18 (black, the outline) | 2.05 | [2.05] (client-internals/body-colours-and-attributes.md#body-colours) |
@@ -128,6 +138,8 @@ Encodings use the short names of → §0.6; `c(v + k)` means the value plus *k*,
 | A player with no attribute of their own draws the GANI's `DEFAULTATTR1` to `DEFAULTATTR5`; the stock `idle.gani` names `hat0.png` as attribute 1 | 2.22 files | [file] (client-internals/body-colours-and-attributes.md#gani-attributes) |
 | GANI attribute props are strings that GANI `PARAM`/`ATTR` placeholders resolve against; 2.05 sends and receives GATTRIB1–5 but its expression table has no `gattrib` entry | 2.05 | [inf][2.05] (protocol/packet-layouts.md#gani) |
 | On the wire, animation is only a prop: `PLPROP_GANI` (10) and `NPCPROP_GANI` (12) carry the GANI name, and the client fetches the file with `PLI_WANTFILE` | server | [srv] (protocol/packet-layouts.md#gani) |
+
+The colours in prop 13 are indexes into a fixed table of 20 named colours. The table gives each index with its RGB value as 2.05 holds it [2.05] (client-internals/body-colours-and-attributes.md#body-colours).
 
 | Index | Colour | RGB | Source |
 | ---: | --- | --- | --- |
@@ -155,6 +167,8 @@ Encodings use the short names of → §0.6; `c(v + k)` means the value plus *k*,
 The looks commands that change these props are GS1 behaviour (→ §8).
 
 ## 2.6.4 NPCPROP
+
+NPCs have their own prop list. The table gives every NPCPROP id with its name and how its value is encoded. Ids with no measured encoding are marked so [srv] (protocol/player-props.md#npcprop).
 
 | Id | Name | Encoding | Source |
 | ---: | --- | --- | --- |
@@ -196,6 +210,8 @@ The looks commands that change these props are GS1 behaviour (→ §8).
 | 75 / 76 | X2 / Y2 | as PLPROP X2/Y2 | [srv] (protocol/player-props.md#npcprop) |
 | 77 | Z2 | 2 bytes, decoded like X2/Y2; sets the same Z (2.31) | [srv][2.31] (protocol/player-props.md#npcprop) |
 
+The rules below cover what the NPC table cannot show: what the script prop holds, when it is applied, and the props that the later builds add [srv][2.05] (protocol/player-props.md#npcprop).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | The SCRIPT prop (1) carries GS1 source text, not bytecode, for pre-4.0 clients | server; 2.05 | [srv][2.05] (protocol/player-props.md#npcprop) |
@@ -203,6 +219,8 @@ The looks commands that change these props are GS1 behaviour (→ §8).
 | NPCPROP 43 is Z, `c (z + 50)` with z from −50 to 170, from 2.22 on; NPCPROP 77 is Z2 in 2.31 | 2.22, 2.31 | [2.22][2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 
 ## 2.6.5 BDPROP (baddy)
+
+Baddies, the built-in enemies, have a short prop list of their own. The table gives each BDPROP with its encoding and any build differences [srv] (protocol/player-props.md#bdprop-baddy).
 
 | Id | Name | Encoding and notes | Source |
 | ---: | --- | --- | --- |
@@ -240,6 +258,8 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1).
 | NPC (3) | 2.22 | highest 73, including 43 | 48–52 | [bin] (version-profiles/plo-npcprops-layouts.tsv); [2.22] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | NPC (3) | 2.31 | highest 77 | 48–52 | [2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | baddy (2) | 2.05 | 0–10 | 11 and up | [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
+
+Because an unknown id ends a stream, a server has to know which ids each client parses. The rules below give that set for 2.05 and what was checked in 2.22 and 2.31 [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
