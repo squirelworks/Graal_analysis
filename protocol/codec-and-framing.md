@@ -13,13 +13,15 @@ All "G" types offset each 7-bit group by 0x20 so the stream stays printable and 
 | Type | Bytes | Encode | Range | Tag |
 |------|------:|--------|-------|-----|
 | GCHAR | 1 | `v + 0x20` | 0–223 | [srv][2.05] |
-| GSHORT | 2 | `(v >> 7) + 0x20`, `(v & 0x7F) + 0x20` | 0–28767 | [srv] |
-| GINT (GINT3) | 3 | 7-bit groups, high first, each `+ 0x20` | 0–3682399 | [srv] |
+| GSHORT | 2 | `(v >> 7) + 0x20`, `(v & 0x7F) + 0x20` | 0–28671 canonical; the server writes up to 28767 (see below) | [srv][bin] |
+| GINT (GINT3) | 3 | 7-bit groups, high first, each `+ 0x20` | 0–3670015 canonical; the server writes up to 3682399 | [srv][bin] |
 | GINT4 | 4 | same, four groups | — | [srv] |
 | GINT5 | 5 | first group 4 bits (`>> 28`), then four 7-bit groups | 32-bit | [srv] |
 | GSTRING | 1 + n | GCHAR length then bytes | ≤ 223 bytes | [srv][2.05] |
 
 The server clamps rather than wraps on overflow (GSHORT high byte ≤ 223). Signed values are sent as their unsigned bit pattern.
+
+The two maxima differ because the gs2lib writer clamps the *value* first (GSHORT at 28767, GINT3 at 3682399) and then puts whatever is left into the low group. Above 28671 (`223 << 7 | 127`) the high byte is already at 223, so the low byte gets values from 128 to 223, which is not a 7-bit group. **[srv]** The clients read so far cap at the canonical maximum instead: the 5.x and 6.x GSHORT writer stops at 28671 (`shoot-5007.md`), and the v7 RAWDATA length stops at 3670015 (`v7-graal3d-framing-and-packet-tables.md`). **[bin]** A server should send no more than the canonical maximum. A reader should decode the server's form with the plain `(b0 << 7) + b1 - 0x1020` and not reject a low byte above 0x9F.
 
 ## Messages
 
@@ -47,10 +49,12 @@ u16be length | body
 |----:|------|---------|--------|-----|
 | 1 | `ENCRYPT_GEN_1` | web client | none, uncompressed | [srv] |
 | 2 | `ENCRYPT_GEN_2` | client type 0 with a known token in the first 8 bytes | zlib, no cipher | [srv] |
-| 3 | `ENCRYPT_GEN_3` | **2.05**, RC, NC, NPC-server, any type-0 client whose first 8 bytes are not a known token | zlib frame; one junk byte inserted into each message | [srv][2.05] |
+| 3 | `ENCRYPT_GEN_3` | **2.05**, any type-0 client whose first 8 bytes are not a known token; in GServer `master`/efb5b90 (`TPlayer`) also legacy RC (type 1), NC (type 3) and the NPC-server | zlib frame; one junk byte inserted into each message | [srv][2.05] |
 | 4 | `ENCRYPT_GEN_4` | client type 4 (2.19–2.21, 3.0–3.01) | bz2, then XOR of the first *limit* dwords | [srv] |
 | 5 | `ENCRYPT_GEN_5` | client type 5 (2.22+), RC2 (type 6) | compression byte, then the same partial XOR | [srv] |
 | 6 | `ENCRYPT_GEN_6` | v6 | unknown, not implemented | [srv] |
+
+**Branch difference [srv]:** GServer-v2 `beta4` (`PlayerRC.cpp`, `PlayerNC.cpp`) puts legacy RC (type 1) and NC (type 3) on **gen 2** instead, and RC2 (type 6) on gen 5. In both branches NC sends no key byte. `beta4` also sends an unknown client type to gen 5 (`default:` falls through to the `PLTYPE_CLIENT3` case), where `master` disconnects it with "Your client type is unknown." The Reborn protocol docs (`hosler/reborn-protocol-docs`, `versions-encryption.md`, `rc-nc-protocols.md`) describe the `beta4` behaviour. **[srv][doc]**
 
 Client-side check (2026-10-21) **[bin]**: 2.17 also sends type 0 with gen-3 insertion, like 2.05. 2.22 and 2.31 send type 5 and use gen 5. The Delphi RemoteControl logs in as type 6 (gen 5), and its NC socket as type 3, which stays zlib with no cipher. The client-side gen-5 send rules (when each compression byte is chosen, XOR word counts) are in `client-versions.md`.
 
