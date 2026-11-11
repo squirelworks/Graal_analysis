@@ -492,6 +492,7 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.6 carries the one-line identification
 torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.6 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
 torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.6 carries what it loads, and the setter split is cited from torque/engine-5007.md
+torque/open-source-lineage.md	cited	10	10	comparison with the open Torque2D, Torque3D, dso-sharp and Marble Blast code; §10.4.3 cites the v33 opcode match, the wire and format findings stay in the note
 torque/stub-512.md	cited	10	10	packer stub; §10.1.6 carries the file version and that the engine DLL is not in the zip
 torque/stub-5243.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.243
 torque/stub-524r4.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.244

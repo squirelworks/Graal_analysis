@@ -34,7 +34,7 @@ Code inside a function body uses the function tables; code outside uses the glob
 
 ## Graal's opcode table
 
-The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJECT`, and one follows `CALLFUNC`. Worked out from the scripts (every file decodes cleanly with this table and no others) **[file]**:
+The numbering is stock TGE 1.0–1.3 (DSO version 33): two unused opcodes follow `CREATE_OBJECT`, and one follows `CALLFUNC`. TGE 1.4 (DSO version 36) dropped those three slots and renumbered the rest; dso-sharp's 1.0–1.3 table matches this one exactly ([open-source-lineage.md](open-source-lineage.md#what-matches)). Worked out from the scripts (every file decodes cleanly with this table and no others) **[file]**:
 
 | # | Opcode | # | Opcode | # | Opcode |
 |---|---|---|---|---|---|
@@ -67,7 +67,7 @@ The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJE
 | 26 | ONESCOMPLEMENT | 54 | SAVEFIELD_FLT | 82 | BREAK |
 | 27 | SHR | 55 | SAVEFIELD_STR | | |
 
-Operands: `FUNC_DECL` name, namespace, package, hasBody, end ip, argc, argc arg idents; `CREATE_OBJECT` parent ident, isDatablock, fail ip; `ADD_OBJECT` and `END_OBJECT` one flag; jumps one target; `SETCURVAR`, `SETCURVAR_CREATE`, `SETCURFIELD`, `LOADIMMED_*`, `TAG_TO_STR`, `ADVANCE_STR_APPENDCHAR` one; `CALLFUNC(_RESOLVE)` name, namespace, call type (0 function, 1 method, 2 parent). Everything else has none. This is the same operand shape as stock TGE 1.x. Opcodes 2, 3 and 72 never occur in the shipped files, so what they were is unknown.
+Operands: `FUNC_DECL` name, namespace, package, hasBody, end ip, argc, argc arg idents; `CREATE_OBJECT` parent ident, isDatablock, fail ip; `ADD_OBJECT` and `END_OBJECT` one flag; jumps one target; `SETCURVAR`, `SETCURVAR_CREATE`, `SETCURFIELD`, `LOADIMMED_*`, `TAG_TO_STR`, `ADVANCE_STR_APPENDCHAR` one; `CALLFUNC(_RESOLVE)` name, namespace, call type (0 function, 1 method, 2 parent). Everything else has none. This is the same operand shape as stock TGE 1.x. Opcodes 2, 3 and 72 never occur in the shipped files, and dso-sharp marks them unused too, so what they were is unknown.
 
 ## The decoder
 
