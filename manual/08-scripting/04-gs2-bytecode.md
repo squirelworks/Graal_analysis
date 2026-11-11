@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.4 GS2 bytecode
 
-This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2 and → §8.3.6. The runner, including the value-stack cap and opcodes 9 and 10, is → §8.3.7. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax, the standard library, and the event model stay open (→ App. E#207). Which message carries the container is still disputed (→ App. E#202).
+This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2; the per-build dispatch ranges are → §8.4.4, and the load-time fusion stages → §8.4.6. The runner, including the value-stack cap and opcodes 9 and 10, is → §8.3.3. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax, the standard library, and the event model stay open (→ App. E#207). Which message carries the container is still disputed (→ App. E#202).
 
-> Status: draft. The container for the builds in §8.4.2 is recorded. The runner is in §8.3.7. Syntax, the standard library, and the event model stay open (→ App. E#207). The id that carries the container is disputed (→ App. E#202).
+> Status: draft. The container for the builds in §8.4.2 is recorded. The runner is in §8.3.3. Syntax, the standard library, and the event model stay open (→ App. E#207). The id that carries the container is disputed (→ App. E#202).
 
 ## 8.4.1 Transport
 
@@ -15,11 +15,11 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 | with NPC props | an NPC is sent as `PLO_NPCPROPS` plus the optional `PLO_NPCBYTECODE` | [srv] (protocol/graphics-movement-bytecode.md#other-level-objects) |
 | 2.05 | the 2.05 receive switch does not handle it | [srv][2.05] (protocol/packet-ids.md) |
 | other ids | a second reading puts GS2 bytecode on id 197 → App. E#202 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
-| how the client stores it | a 24-byte instruction record and an op-index program counter (→ §8.4.2). 4.2.0.8 attaches those instructions to the `TGraalVar` (→ §8.3.7) | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
+| how the client stores it | a 24-byte instruction record and an op-index program counter (→ §8.4.2). 4.2.0.8 attaches those instructions to the `TGraalVar` (→ §8.3.3) | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
 
 ## 8.4.2 Format
 
-4.2.0.8, 5.0.0.7, and unpacked 6.00r2 and 6.00r4 parse one container: four big-endian segments (event mask, functions, strings, opcodes) and `F0`–`F6` operands. It does not share OpenGS1's layout (→ §8.4.3). The runner is → §8.3.7. Syntax, the standard library, and the event model stay open → App. E#207.
+4.2.0.8, 5.0.0.7, and unpacked 6.00r2 and 6.00r4 parse one container: four big-endian segments (event mask, functions, strings, opcodes) and `F0`–`F6` operands. It does not share OpenGS1's layout (→ §8.4.3). The runner is → §8.3.3. Syntax, the standard library, and the event model stay open → App. E#207.
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -27,6 +27,25 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 | later builds | 5.0.0.7 and 6.00 add dispatcher cases; 6.00 adds folds 234–242 | [bin] (protocol/gs2-client-vm.md#opcodes-added-after-4208) |
 | unpacked 6.1.1.3 | same four segments, 24-byte instructions, cases 54 and 121 and folds 234–242; 48 and 49 stay absent (→ §8.4.4) | [bin] (protocol/gs2-unpacked-6113.md#what-the-dispatcher-adds-past-600) |
 | still open | GS2 syntax, standard library, event model | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+
+#### What the clients run
+
+The bytecode these clients run is a big-endian four-segment container. Segment lengths are raw 32-bit counts, so they are not GSHORT (→ §2.1.1). The container is not OpenGS1's layout (→ §8.4.3). Packet 140 and packet 197 stay the envelopes in → §8.3.2. The script object parses the segments, not the `0xAC` file wrapper in → §8.3.6. The runner that executes it is → §8.3.3.
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| segments | types 1–4: event mask, functions, strings, opcodes; markers `F0`–`F6` | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
+| 4.2.0.8 weapons | `weblevels` `.code` by CRC32; no `GRESCR01`; 195 is a gani | [bin] (protocol/gs2-client-vm.md#how-4208-loads-a-weapon-or-a-class) |
+| 5.x and 6.00 | `GRESCR01` cache; the wire header is unchanged from → §8.3.2 | [bin] (protocol/gs2-client-vm.md#script-cache) |
+| 6.113 | no container and no opcode switch in the Windows listing. It adds nothing past 6.00's cases 54 and 121 and folds 234–242, and it cannot show whether 48 and 49 returned | [bin] (protocol/gs2-6113.md#what-6113-cannot-show) |
+| unpacked 6.1.1.3 | the switch is present and adds no case past that 6.00 set; 48 and 49 stay absent (→ §8.4.4) | [bin] (protocol/gs2-unpacked-6113.md#what-the-dispatcher-adds-past-600) |
+| compiler lead | the MPL-2.0 checklist in → §8.3.6, compared with these clients | [doc] (protocol/gs2-client-vm.md#compiler-and-builtins) |
+
+The opcode names, the peephole, and the bytes the client runs which that compiler does not emit stay in the note [bin] (protocol/gs2-client-vm.md#what-differs). The effect of each of those bytes is [bin] (protocol/gs2-client-only-opcodes.md).
+
+#### Linux 4.20r6: the container reader
+
+[bin] The r6 reader uses big-endian four-byte framing/directory numbers and NUL-terminated names. Removing a leading `public.` marker and forwarding a flag does not define runtime visibility. Markers 240–242 select string entries (one/two-byte unsigned indexes; four-byte form checks nonnegative representation); 243–245 supply signed integers; 246 uses an incompletely reviewed numeric-text converter. Other bytes append tagged records; marker branches modify the latest record. Corpus controls do not cover multiple-marker overwrite, and strict validator rejection is not native bounds/default behavior. [bin] (client-internals/linux-420r6-reader-fusion.md)
 
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
 
@@ -66,7 +85,29 @@ Opcodes, by name; the notes give no numeric values:
 | `OP_STOP` | halt | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_DBG_OUT` | debug output | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 
-## 8.4.4 Unpacked Windows 6.1.1.3
+## 8.4.4 Dispatch by build
+
+Each build guards its opcode dispatch over its own range, and the range grows with the engine: Linux 4.04r2 ends at 190, both Linux 4.20 revisions guard through 233, and the three Linux 6.x inputs map a prefix through 242. [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary); [bin] (client-internals/linux-cross-version-dispatch.md) The selectors above the serialized range are fused internal tags made after loading (→ §8.4.6), so they are not wire bytes. [bin] (client-internals/linux-420r6-reader-fusion.md)
+
+#### Linux 4.04r2
+
+| Item | Exact-build observation | Limit | Source |
+| --- | --- | --- | --- |
+| Dispatch table | Range ends at 190; 191 indexed slots, of which 119 select a non-skip path; slot 11 selects the common skip path | Later fused-opcode range is outside this table; helper semantics not all recovered | [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
+| Extracted stream coverage | Every opcode in fourteen recovered streams selects a non-skip slot | Does not establish execution of every stream | [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
+| Slot-11 insertion control | Tested event order and completion are unchanged | One context; later Windows wait behavior is not assigned to this value | [cap] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
+| Static frame helper | Depth guard, overrun path, frame-like allocation, prior-position save, push and active-state change | Field meanings remain inferred; no successful new live stop confirms this helper | [bin] (client-internals/linux-404r2-vm-dispatch.md#guarded-frame-transition) |
+
+Later-build opcode and frame descriptions retain their own identities. Unrecovered helpers and correspondence remain open → App. E#207. [bin] (client-internals/linux-404r2-vm-dispatch.md#version-and-semantic-limits)
+
+#### Linux 4.20 and 6.x
+
+[bin] Both 4.20 revisions guard selectors through 233 (234 positions: 80 common fallback and 154 other targets), compared with 4.04's range through 190. The three 6.x inputs share executable-target sets and cache native destinations per decoded instruction. Their inspected prefix through 242 has 167 executable-mapping pointers and 76 zeros; a 243-entry extent is inferred. Adjacent non-code data/zeros are not safe no-ops, and internal selectors are not automatically wire bytes. [bin] (client-internals/linux-cross-version-dispatch.md)
+
+
+[cap] Five unchanged startups reach executor entry, without hitting the new frame candidates. Three separate 6.x captures each single-step one selector-23 cached jump after its cached/static/register destinations agree. Termination follows the jump; handler completion and event scheduling are unmeasured. Eight untruncated captures retain identity and verify owned cleanup, with no server. E#207 remains partial. [cap] (client-internals/linux-cross-version-dispatch.md)
+
+#### Unpacked Windows 6.1.1.3
 
 The unpacked Windows 6.1.1.3 image walks the same four segment types and stores a decoded instruction in 24 bytes. Operand markers `F0`–`F6` keep the 6.00 widths. The dispatcher adds no case past 242. Cases 54, 121 and folds 234–242 are present. Cases 48 and 49 are not. A `.code` file of at least eight bytes is accepted when the magic is `GRESCR01`, the cache flag is 1, and the CRC32 of the bytes after the magic matches. [bin] (protocol/gs2-unpacked-6113.md#container); [bin] (protocol/gs2-unpacked-6113.md#what-the-dispatcher-adds-past-600); [bin] (protocol/gs2-unpacked-6113.md#script-cache)
 
@@ -84,18 +125,22 @@ Of the names Preagonal's compiler turns into opcodes, these images contain `abs`
 
 `putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7. [bin] (client-internals/gs2-builtins-6113.md)
 
-## 8.4.6 Earlier Linux 4.04r2 dispatch and frame scope
+## 8.4.6 Load-time stages and fusion
 
-| Item | Exact-build observation | Limit | Source |
-| --- | --- | --- | --- |
-| Dispatch table | Range ends at 190; 191 indexed slots, of which 119 select a non-skip path; slot 11 selects the common skip path | Later fused-opcode range is outside this table; helper semantics not all recovered | [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
-| Extracted stream coverage | Every opcode in fourteen recovered streams selects a non-skip slot | Does not establish execution of every stream | [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
-| Slot-11 insertion control | Tested event order and completion are unchanged | One context; later Windows wait behavior is not assigned to this value | [cap] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
-| Static frame helper | Depth guard, overrun path, frame-like allocation, prior-position save, push and active-state change | Field meanings remain inferred; no successful new live stop confirms this helper | [bin] (client-internals/linux-404r2-vm-dispatch.md#guarded-frame-transition) |
+#### Linux 4.20r6: post-load fusion
 
-Later-build opcode and frame descriptions retain their own identities. Unrecovered helpers and correspondence remain open → App. E#207. [bin] (client-internals/linux-404r2-vm-dispatch.md#version-and-semantic-limits)
 
-## 8.4.7 Linux 4.04r2 embedded scripts and live linkage
+[bin] A jump-index pass and adjacent-pattern fusion rewrite selected records to internal tags 200–233 while retaining collection positions and advancing past matches; a current first tag 11 stays unchanged. This explains a corpus maximum of 189 alongside a larger internal range, without asserting transmitted fused values or a recovered compiler. Offline review runs no client/server. Malformed-input behavior, numeric grammar and public/joined semantics remain open in E#207. [bin] (client-internals/linux-420r6-reader-fusion.md)
+
+#### Linux 6.01 x86: decoded program and saved state
+
+[bin] In the exact Linux 6.01r1 x86 review, the reader creates decoded records with initially empty native targets. A postpass constructs fused internal tags and caches a registry pointer on one selected path; the executor separately prepares jump targets and adds a termination record. These stages do not define new source-language or serialized opcodes. [bin] (client-internals/linux-601-x86-program-state.md).
+
+[bin] Selected saved-state handling mixes copy, transfer and selective cloning, forms a deadline from a scripting clock plus positive input, and shows registration, first-match removal and replacement calls. The call-frame layout differs from 4.20. This is not a uniform deep-copy or portable snapshot contract. Trigger/restore execution, ownership of every field, subscription lifetime, cancellation order, clock cadence and public result values remain unproved. Complete export delivery did not reconstruct the full indirect handler table; no new runtime result or cross-architecture equivalence follows. [bin] (client-internals/linux-601-x86-program-state.md).
+
+## 8.4.7 Scripts embedded in the Linux clients
+
+#### Linux 4.04r2: embedded scripts and live linkage
 
 | Evidence | Observation | Limit | Source |
 | --- | --- | --- | --- |
@@ -105,33 +150,13 @@ Later-build opcode and frame descriptions retain their own identities. Unrecover
 
 The wrong-representation hash attempt remains superseded; only the corrected read supplies the match. Historical server-delivered content, cross-platform equivalence and 3D gameplay are not established. Remaining container/execution questions → App. E#207. [cap] (client-internals/linux-404r2-embedded-scripts.md#one-payload-linked-to-execution); [bin] (client-internals/linux-404r2-embedded-scripts.md#boundary)
 
-## 8.4.8 Compare bounded Linux embedded-script corpora across builds
+#### Across Linux builds
 
 [bin] Bounded extraction finds 14 containers in 4.04r2, 13 in each 4.20 revision and each 6.01 architecture, and 12 in 6.03r7 x64. The 4.20 pair and 6.01 architecture pair each agree on all 13 inflated payloads; 6.03 is an exact subset of 6.01. Its missing scanned payload has nine entries and 247 instructions, without proving feature removal. Five payloads match between 4.04 and 4.20. [bin] (client-internals/linux-cross-version-embedded-controls.md)
 
 
 [bin] Entry/instruction totals are 119/15,208 for each 4.20 corpus, 55/5,053 for each 6.01 corpus and 46/4,806 for 6.03. All 78 occurrences validate four unique segments numbered 1–4, candidate entry/string bounds and exact instruction-byte reconstruction; maximum observed tag is 189. Neither 3.04 duplicate yields an accepted bounded zlib stream. Roster alignment remains a candidate comparison. Extraction runs no client/server and proves neither execution nor native semantic equivalence; E#207 remains partial. [bin] (client-internals/linux-cross-version-embedded-controls.md)
 
-## 8.4.9 Bound later Linux dispatch ranges and observed cached jumps
-
-[bin] Both 4.20 revisions guard selectors through 233 (234 positions: 80 common fallback and 154 other targets), compared with 4.04's range through 190. The three 6.x inputs share executable-target sets and cache native destinations per decoded instruction. Their inspected prefix through 242 has 167 executable-mapping pointers and 76 zeros; a 243-entry extent is inferred. Adjacent non-code data/zeros are not safe no-ops, and internal selectors are not automatically wire bytes. [bin] (client-internals/linux-cross-version-dispatch.md)
-
-
-[cap] Five unchanged startups reach executor entry, without hitting the new frame candidates. Three separate 6.x captures each single-step one selector-23 cached jump after its cached/static/register destinations agree. Termination follows the jump; handler completion and event scheduling are unmeasured. Eight untruncated captures retain identity and verify owned cleanup, with no server. E#207 remains partial. [cap] (client-internals/linux-cross-version-dispatch.md)
-
-## 8.4.10 Bound Linux 4.20r6 container operands and post-load fusion
-
-[bin] The r6 reader uses big-endian four-byte framing/directory numbers and NUL-terminated names. Removing a leading `public.` marker and forwarding a flag does not define runtime visibility. Markers 240–242 select string entries (one/two-byte unsigned indexes; four-byte form checks nonnegative representation); 243–245 supply signed integers; 246 uses an incompletely reviewed numeric-text converter. Other bytes append tagged records; marker branches modify the latest record. Corpus controls do not cover multiple-marker overwrite, and strict validator rejection is not native bounds/default behavior. [bin] (client-internals/linux-420r6-reader-fusion.md)
-
-
-[bin] A jump-index pass and adjacent-pattern fusion rewrite selected records to internal tags 200–233 while retaining collection positions and advancing past matches; a current first tag 11 stays unchanged. This explains a corpus maximum of 189 alongside a larger internal range, without asserting transmitted fused values or a recovered compiler. Offline review runs no client/server. Malformed-input behavior, numeric grammar and public/joined semantics remain open in E#207. [bin] (client-internals/linux-420r6-reader-fusion.md)
-
-## 8.4.11 Observe Linux 6.03 network GS2 execution and continuation
+## 8.4.8 Network GS2 on Linux 6.03
 
 [lab][cap] Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. [lab][cap] (protocol/linux-603-network-gs2.md).
-
-## 8.4.12 Linux 6.01 x86 decoded-program and saved-state stages
-
-[bin] In the exact Linux 6.01r1 x86 review, the reader creates decoded records with initially empty native targets. A postpass constructs fused internal tags and caches a registry pointer on one selected path; the executor separately prepares jump targets and adds a termination record. These stages do not define new source-language or serialized opcodes. [bin] (client-internals/linux-601-x86-program-state.md).
-
-[bin] Selected saved-state handling mixes copy, transfer and selective cloning, forms a deadline from a scripting clock plus positive input, and shows registration, first-match removal and replacement calls. The call-frame layout differs from 4.20. This is not a uniform deep-copy or portable snapshot contract. Trigger/restore execution, ownership of every field, subscription lifetime, cancellation order, clock cadence and public result values remain unproved. Complete export delivery did not reconstruct the full indirect handler table; no new runtime result or cross-architecture equivalence follows. [bin] (client-internals/linux-601-x86-program-state.md).
