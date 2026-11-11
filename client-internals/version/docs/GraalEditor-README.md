@@ -21,16 +21,18 @@ A single-window level editor (`TAdventure`, caption `Graal`) with modal tools fo
 
 ## Read this first
 
+Only this file and [GraalEditor-architecture.md](GraalEditor-architecture.md) were carried into this repository. The other documents of the original set (`packer.md`, `data-model.md`, `level-format.md`, `flows.md`, `pseudocode.md`, `ui.md` and the `diagrams/` folder) were not imported; the table below keeps their names as a record of what the set contained.
+
 | Document | Contents |
 | --- | --- |
-| [packer.md](packer.md) | What the Ghidra dump actually is |
-| [architecture.md](architecture.md) | Process, modules, class map |
-| [data-model.md](data-model.md) | Level, link, sign, NPC, baddy, chest |
-| [level-format.md](level-format.md) | On-disk sections the editor reads and writes |
-| [flows.md](flows.md) | Load, save, paint, mode switch |
-| [pseudocode.md](pseudocode.md) | Reconstructed procedures |
-| [ui.md](ui.md) | Forms recovered from DFM |
-| [diagrams/](diagrams/) | Packer, architecture, classes, load/save |
+| `packer.md` (not carried) | What the Ghidra dump actually is |
+| [GraalEditor-architecture.md](GraalEditor-architecture.md) | Process, modules, class map |
+| `data-model.md` (not carried) | Level, link, sign, NPC, baddy, chest |
+| `level-format.md` (not carried) | On-disk sections the editor reads and writes |
+| `flows.md` (not carried) | Load, save, paint, mode switch |
+| `pseudocode.md` (not carried) | Reconstructed procedures |
+| `ui.md` (not carried) | Forms recovered from DFM |
+| `diagrams/` (not carried) | Packer, architecture, classes, load/save |
 
 ## Package contents
 
