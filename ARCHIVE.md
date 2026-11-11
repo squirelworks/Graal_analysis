@@ -6,7 +6,7 @@ The analysis project that produced these notes is being decommissioned.
 
 ## What is archived
 
-A complete zip of the local analysis corpus (`Graal Client Analysis.zip`, ≈102 MB) has been placed in Google Drive under `[Grok/[Projects/`.
+A complete zip of the local analysis corpus (`Graal Client Analysis.zip`, ≈102 MB) is owner-held outside this repository.
 
 It contains:
 - Dated snapshots (2026-10-01, 2026-10-02, 2026-10-04)

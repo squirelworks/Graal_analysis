@@ -22,6 +22,8 @@ So the graal-delphi folders get these three eras wrong in three different ways:
 - **Era B (4.04r2–5.12 Windows):** the launcher really **is** Delphi, so a Delphi front end is the right shape here, but the engine behind it is a renderer-agnostic C++ core with a ~115-entry callback table, and 3D servers swap the renderer for Torque. A faithful rebuild needs that split (front end ↔ engine via callbacks), and the 3D side needs a Torque-compatible client.
 - **Era C (5.24r3+ and 6.x):** no Torque engine to reproduce. These are honestly "the 2D engine plus a newer protocol", but drawn with OpenGL and with GS2 GUI controls that follow Torque's GUI model. The folders for 6.01r1 and 6.03r7 are therefore closer to the truth than the 3.x/4.x ones, though they still lack the GS2 GUI.
 
+**After 6.x: 7.x Worlds.** The 7.x Worlds client is outside this Delphi → TGE → hybrid → own-engine line. The host is Unity: `GameAssembly.dll` (IL2CPP) owns gameplay, UI and asset bundles, and it calls a native `Graal3DEngine*.dll` plugin through exported `Quattro*` frame hooks. **[bin]** (`protocol/v7-graal3d-identity-and-builds.md`, `client-internals/v7-graal3d-unity-bridge.md`) Only the host is a clean break. The plugin still carries the 6.x Graal core: classic netcode and gen-5 framing, PLI/PLO props, the GS2 VM, the ciphers and the file cache. It reports FileVersion 6.114 and builds its login like the 6.11 connector. **[bin][inf]** (`protocol/v7x-protocol.md`) No Torque surface is involved.
+
 ## 2. Marker scan
 
 Counts of string hits per binary (both 8-bit and UTF-16 strings). 0 means the marker is absent. "eng" = `GraalEngine.dll`, "g3d" = `Graal3DEngine.dll`, "exe" = the launcher or single executable. **[bin]**

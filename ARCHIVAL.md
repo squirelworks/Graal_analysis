@@ -6,9 +6,7 @@ The local Graal research workspace (gserver dumps, Phoenix binary package, Ash P
 
 The full contents were archived as a single zip:
 
-- **Google Drive:** `/[Grok/[Projects/Graal gServers.zip`
-- **Direct link:** https://drive.google.com/file/d/1XtT0MEltbmApGG5_cL_TmR8QnvgPYsAS/view?usp=drivesdk
-- **File ID:** `1XtT0MEltbmApGG5_cL_TmR8QnvgPYsAS`
+- **Name:** `Graal gServers.zip` (owner-held; not publicly retrievable from this repository)
 - **Size:** ~27 MB
 
 That archive contains the original source dumps (`graal gservers/`), the Reborn 2.4.0 Phoenix package, the Ash Python reference server, the Ember atlas (markdown + ATLAS.html), the complete GServerStory, and supporting files.
