@@ -364,7 +364,7 @@ macOS CI is paused until the polish stage.
   - [x] Version resources on the skipped packer stubs (2026-11-07):
     `torque/skipped-version-stamps.md`. The two v4 exe uploads are one
     decompile, file version 4.0.4.2. The hold on writing the module stands.
-    Manual §10.1.13.
+    Manual §10.1.9.
 
 ## Handoff (2026-11-07, historical)
 

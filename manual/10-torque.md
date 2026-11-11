@@ -5,6 +5,20 @@ From 2004 to 2007 the Graal client was built on GarageGames' Torque Game Engine 
 
 > Status: draft.
 
+## 10.0 Reading this Part
+
+The Torque years are best understood as three different programs that share the name "Graal" and some of the same code. Before treating any table below as describing "the 3.x–5.x client", fix which of the three a build is. [bin] (torque/study-torque-clients.md#1-the-short-answer)
+
+**First, the monolith.** The 3.x clients (3.04 Linux, 3.151 Linux, 3.153 Mac) are Torque applications. TGE boots them, compiled TorqueScript draws every menu, and Torque's canvas holds the screen. Graal's 2D game is one native GUI control, `GuiGraalCtrl`, inside that canvas. The engine reports TGE version 1100 and still carries the stock game classes it does not use. [bin] (torque/study-torque-clients.md#1-the-short-answer); [bin] (torque/engine-304.md#the-split) 3.04 has none of Graal's net-layer changes. 3.153 already has them, which makes 3.153, not 3.04, the first build whose UDP wire a compatible 3D server has to speak. [bin] (torque/wire-by-build.md#the-handshake-per-build)
+
+**Second, the split programs.** From 4.04r2 to 5.12 on Windows, a Delphi launcher drives `GraalEngine.dll`, a C++ 2D engine that keeps Torque's GUI classes but draws only through callbacks into its host. Torque proper survives only in the optional `Graal3DEngine.dll`, which takes over drawing when the player joins a 3D server. [bin] (torque/study-torque-clients.md#1-the-short-answer); [bin] (torque/engine-4208.md#how-the-three-fit) Inside this era the 3D DLL changes character. 4.04r2's DLL is near-stock TGE with datablocks and `Player`. By 4.20r6 that game layer is gone and every 3D thing is a Graal `GameObject`. The break falls between the February and July 2006 tokens. [bin] (torque/engine-and-formats.md#which-torque); [bin] (torque/wire-by-build.md#the-handshake-per-build) So "the 4.x 3D client" is two incompatible object models, and the protocol number (19, 21, 24) is the reliable way to tell them apart. [bin] (torque/network.md#the-connect-request-by-version)
+
+**Third, after Torque.** From 5.24r3, and in every 6.x build, there is no Torque engine. What survives is the GS2 GUI vocabulary: Torque's control class names, plus its field names up to 5.31r4, re-implemented by Graal's own `quattro_lib`. [bin] (client-internals/torque-surface-by-era.md#530r3-and-531r4); [bin] (client-internals/torque-surface-by-era.md#600r2-and-600r4) The 6.x reads gathered in §10.1.6 and §10.1.9 are here to document that absence. The 6.x engine itself is Part I's subject (→ §1.8.7).
+
+**What is measured, and what is not.** The UDP handshake is the strongest material in this Part. 5.12 was driven live against a lab server through challenge, connect, accept and its first data packets, and the minimal accept it takes is known. [run] (torque/network.md#the-full-handshake-live) Everything after the accept rests on static reads, and no Graal client has been seen drawing a 3D world: under Wine, 5.12's launcher faults when it switches to 3D. [run] (torque/engine-and-formats.md#rendering) No 3D content shipped with any client, because missions, terrain and shapes always came from the server, and no Graal 3D server or level data is in the archives. [file] (torque/engine-and-formats.md#3d-resource-formats) The open points that would change an implementation are listed in App. E#501–E#503: the 4.04r2 class CRC, and whether 4.04r2 loads `.mis` and `.dso` files.
+
+**How the later sections are scoped.** §10.7 to §10.12 record exact-build observations on Linux 3.04 and 4.20r6: script reading, packaged streams, a seven-operation executor subset and native-call boundaries. Each is deliberately narrow. A finding there holds for that input and that path, and it is not a general statement about TorqueScript execution in Graal. [bin] (torque/linux-304-seven-operation-contract.md)
+
 ## 10.1 Engine lineage
 
 ### 10.1.1 Builds
@@ -16,10 +30,10 @@ From 2004 to 2007 the Graal client was built on GarageGames' Torque Game Engine 
 | 3.153 Mac | Feb 2005 | one C++ binary (Carbon, PPC) | full TGE with Graal's net-layer changes | stock TGE world and `main3D.cs` client scripts | `Graal3D` / 19 | TorqueScript `.dso` | [bin][file] (torque/README.md#lineage-at-a-glance) |
 | 4.04r2 Win | Mar 2006 | Delphi launcher, `GraalEngine.dll` (2D) and `Graal3DEngine.dll` (3D plug-in) | 2D engine on Torque base classes; the 3D DLL near-stock TGE | stock TGE with datablocks | `Graal3D` / 19 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
 | 4.20r6 Mac | Sep 2006 | one C++ binary (PPC) | Torque core and netcode, Graal game layer | `GameObject` model, no datablocks | `Graal3D` / 21 | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
-| 4.20r8 Win | Jan 2007 | 2D engine on Torque base classes | — | packet-logger upload has no `Graal3DEngine.dll` (later file-version 4.2.0.8 export: → §10.1.4) | unmeasured | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) [bin] (torque/engine-4208.md#how-the-three-fit) |
+| 4.20r8 Win | Jan 2007 | 2D engine on Torque base classes | — | packet-logger upload has no `Graal3DEngine.dll` (later file-version 4.2.0.8 export: → §10.1.5) | unmeasured | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) [bin] (torque/engine-4208.md#how-the-three-fit) |
 | 5.12 Win | Oct 2007 | Delphi launcher and one engine DLL, still named `Graal3DEngine.dll` | Torque core and netcode; the game layer is Graal's own | `GameObject` and `GameShape*`, no datablocks, no `Player`/`ShapeBase` | `Graal3D` / 24 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
-| 5.24r3 and later | 2010+ | engine linked into `Graal.exe` | no Torque 3D (what Windows 6.00 still names → §10.1.5) | none | n/a | GS2 | [bin] (torque/engine-and-formats.md#which-torque) |
-| 6.x | 2010–2014 | native C++ per platform | no Torque 3D; GS2 keeps Torque control names (→ §10.1.5) | none | n/a | GS2 | [bin] (torque/README.md#lineage-at-a-glance); [bin] (client-internals/engine-600r2.md#what-torque-names-remain) |
+| 5.24r3 and later | 2010+ | engine linked into `Graal.exe` | no Torque 3D (what Windows 6.00 still names → §10.1.8) | none | n/a | GS2 | [bin] (torque/engine-and-formats.md#which-torque) |
+| 6.x | 2010–2014 | native C++ per platform | no Torque 3D; GS2 keeps Torque control names (→ §10.1.8) | none | n/a | GS2 | [bin] (torque/README.md#lineage-at-a-glance); [bin] (client-internals/engine-600r2.md#what-torque-names-remain) |
 
 ### 10.1.2 Engine version and changes
 
@@ -57,7 +71,7 @@ The Graal changes a compatible peer adds to open TGE [bin] (graal3d/torque-engin
 | Scene lighting is Torque's, cached per mission and run as the last mission-load phase | [bin] (torque/engine-and-formats.md#rendering) |
 | Under Wine with software OpenGL the 5.12 Torque side starts on switching to 3D, but the launcher faults re-initialising DirectDraw and stops driving the engine's frame export; the 3D view was not seen | [run] (torque/engine-and-formats.md#rendering) |
 
-### 10.1.4 What 3.04 still contains
+### 10.1.4 Era A: what 3.04 contains
 
 3.04 Linux compiles stock TGE beside a Graal game. The stock game classes are still in the binary; Graal's 2D game is the console class `GuiGraalCtrl`, not a replacement of `Player`. [bin] (torque/engine-304.md#the-split)
 
@@ -70,32 +84,32 @@ The Graal changes a compatible peer adds to open TGE [bin] (graal3d/torque-engin
 | `ShapeBase` still has 79 decoded methods here, `fxSunLight` 51 and `GameConnection` 30. The classes 5.12 drops are the TGE game layer (`Player`, vehicles, items, projectiles), not the console or the editors | [bin] (torque/engine-304.md#what-later-builds-drop) |
 | The console surface is 857 functions and methods, almost all of them stock TGE | [bin] (torque/engine-304.md#the-split) |
 
-### 10.1.5 What Windows 6.00 still names
+#### The game components
 
-Unpacked Windows 6.00r2 (product version 6.002, 12 June 2011) and 6.00r4 (6.004, 26 June 2011) are Graal's `quattro_lib` program [bin] (client-internals/engine-600r2.md#what-the-export-is); [bin] (client-internals/engine-600r4.md#what-the-export-is). The drawing, GUI, script and socket split is in §1.8.7.
+Linux 3.04 keeps stock Torque (`GameConnection`, `NetConnection`, and the `sim/netConnection.cc` / `game/gameConnection.cc` sources) beside Graal's own 2D game. `TGraalConnection` is a separate C++ type with no base class. The binary has no `Graal3D` string and no `BigData` event. [bin] (torque/304-net.md#beside-torque)
 
-| What remains | In these two builds | Source |
+| Component | What the 3.04 units do | Source |
 | --- | --- | --- |
-| Torque 3D classes and formats (`GameConnection`, `TerrainBlock`, `Interior`, DTS, `SimObject`, `.mis`, `.ter`, `.dts`) | absent | [bin] (client-internals/engine-600r2.md#no-torque-3d) |
-| Torque GUI field names (`horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder`, `pushToBack`) | absent; those names are a 5.24r3 finding | [bin] (client-internals/engine-600r2.md#gui-and-script-objects); [bin] (torque/study-torque-clients.md#524r3-6x) |
-| `GuiControl`, `GuiControlProfile`, `GuiScrollCtrl`, `GuiWindowCtrl`, `GuiMLTextCtrl` and the other Torque control names | live GS2 controls, each with its own draw routine | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
-| `GuiGraal3DCtrl` | live type in the GUI walk, same branch as `GuiGraalCtrl` | [bin] (client-internals/engine-600r2.md#no-torque-3d) |
-| `GuiTilesCtrl` | absent; tiles are the `Draw_Tiles` pass | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
-| `MissionGroup` | script object looked up by name | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
-| `onMouseYawPitch`, and a builtin described as changing the colour of the 3D terrain | script text; no terrain block | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
-| `levels3d`, `graal3://` | a content folder, and an option-list string with no recovered call | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| Session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player) | Wakes once, opens the three license files, loads the HUD sheets, and logs a local level entry only for seven file magics | [bin] (torque/304-adventure.md#session-start) |
+| Drawing | The `TDrawableObject` family, `pics1.png` and tiledefs, gani text, polygon show-images | [bin] (torque/304-draw.md#types) |
+| NPCs and script | `playerenters` and the other trigger names, bow baddies, weapon rectangles, `shapetiletypes` | [bin] (torque/304-npcs.md#triggers) |
+| Graal TCP | Login id 5 then language id 37, the server list into `AdventureGui`, the player list and profiles | [bin] (torque/304-net.md#the-game-connection) |
+| Sound | fmod at mix rate 44100, wav samples, mid modules, and the mp3-class streams | [bin] (torque/304-audio-ui.md#fmod) |
 
-### 10.1.6 What the packed listings still show
+### 10.1.5 Era B: the Windows 4.2.0.8 split
 
-The two v4 exe listings are one file. The program is the Thinstall outer loader: `TS_LOADER` or the module path, `LoaderFlags` as the table offset, magic `0x82D0B188`, a stored block or the range coder, then relocations, imports and a jump to the unpacked entry. The import directory adds one import from each DLL of the wrapped program (registry, shell, save dialog, image list, OLE, joystick, printer). Winsock, DirectDraw, OpenGL and `GraalEngine.dll` are not in that listing. [bin] (torque/skipped-v4-read.md#one-listing); [bin] (torque/skipped-v4-read.md#what-the-loader-does); [bin] (torque/skipped-v4-read.md#what-is-in-the-clear)
+Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte for byte, with no Graal or Torque class. The file-version 4.2.0.8 archive is the client that can be read, and it includes `Graal3DEngine.dll`, which the packet-logger upload did not. [bin] (torque/v4-404r2-exe.md; torque/v4-420r8-exe.md) [bin] (torque/engine-4208.md#how-the-three-fit)
 
-Packed 5.12 keeps Delphi form resources (`TGRAALWINDOW`, `TPLAYERLIST`, and the options, profile, URL, controls and short-message forms) plus `DVCLAL`. Its recovered code does not call `LoadLibraryA`. The packed 5.2.4.3 and 5.24r4 exes bind only `LoadLibraryA` and `VirtualAlloc` and name no form. [bin] (torque/skipped-v5-read.md#the-512-resource-directory); [bin] (torque/skipped-v5-read.md#the-later-packed-exes)
+A later original-carrier 4.04r2 recovery supplies a separate shape-based 3D component that retains `ShapeBase`; it is distinct from the later 4.2.0.8 `GameObject` image below. Its repaired import directory cannot independently verify the earlier named-import count. Recovery availability and load-only limits: → §1.8.5. [bin] (torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity)
 
-`fmod.dll` in the 5.0.0.7 archive is the same UPX listing as the 4.2.0.8 copy. The export names are FMOD's sample, stream, 3D, DSP and music API, including net streams, and the recovered body is the decompressor. [bin] (torque/skipped-v5-read.md#fmod)
+| Fact | Source |
+| --- | --- |
+| The launcher registers 94 `graal_set…` callbacks and loads `GraalEngine.dll`. The 3D DLL adds 19 names the launcher does not register, including `CreateGraal3DGameObject`, `GetGraal3DTerrainHeight` and `SendGraal3DScriptEvent` | [bin] (torque/engine-4208.md#how-the-three-fit) |
+| `GraalEngine.dll` keeps Torque's `GuiCanvas` and `GuiControl` and has no `SimObject`, `ActionMap` or `.dso`. The game is `TAdventure`, `TShowImg` and `TGraalAni`. Scripts are `TGraalVar` and `TScriptExecutionSpace` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
+| The engine builds a `TGraalVar` for `StartScript_GraalGui`, `StartScript_MoveMap2D`, `StartScript_MoveMap3D` and the other start scripts, and it special-cases the control names `GuiGraalCtrl` and `GuiGraal3DCtrl` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
+| `Graal3DEngine.dll` is the `GameObject` world: `GameConnection`, `TerrainBlock`, interiors, two login phases (`onGraal3DLoginStep`), and `TerrainChunkEvent`. `ShapeBase` and Torque's `Player` are absent | [bin] (torque/engine-4208.md#graal3denginedll-gameobject-torque) |
 
-The packed 6.037 and 6.113 exes are distinct. Each export directory is named `QPlay.exe` and lists a CyaSSL client, zlib, and a hash and cipher set; the 6.113 names add TLS 1.0 through 1.2, DTLS and AES-CBC. The bytes at those exports are not that library, and neither listing names a Torque class. [bin] (client-internals/skipped-v6-read.md#the-stub); [bin] (client-internals/skipped-v6-read.md#the-export-directory); [bin] (client-internals/skipped-v6-read.md#absent-from-both)
-
-### 10.1.7 What unpacked Windows 4.2.0.8 does
+#### How the three programs run
 
 The unpacked 4.2.0.8 launcher, `GraalEngine.dll` and `Graal3DEngine.dll` are three programs. The launcher resolves 94 `graal_set` slots and calls `renderGraalCanvas` from the main form's frame; `renderGraal` is resolved and never called. A 3D start loads the 3D DLL, which keeps drawing, tiles, text, panels and the clipboard, while the launcher takes back Flash and the external windows. [bin] (torque/4208-launcher.md#when-drawing-happens); [bin] (torque/4208-launcher.md#starting-3d)
 
@@ -103,7 +117,7 @@ The unpacked 4.2.0.8 launcher, `GraalEngine.dll` and `Graal3DEngine.dll` are thr
 
 `GameObject` is a `SceneObject` with script properties for shape, motion, mounting and interiors. `onGraal3DLoginStep` is raised for ghost objects (step 2), then mission lighting (step 3), and again when `GUIContainer3D` is installed (step 6). A terrain chunk is a compressed square; the byte layout is not in the decompile. `Interior::read` rejects a non-zero first value. `ShapeBase` and Torque's `Player` are absent. [bin] (torque/4208-g3d.md#what-gameobject-is); [bin] (torque/4208-g3d.md#the-login-steps); [bin] (torque/4208-g3d.md#what-a-terrain-chunk-is); [bin] (torque/4208-g3d.md#what-an-interior-read-rejects)
 
-### 10.1.8 What 5.0.0.7 does
+### 10.1.6 Era B: Windows 5.0.0.7 and the later v5 exports
 
 File version `5.0.0.7` is a Delphi launcher, `GraalEngine.dll`, and `Graal3DEngine.dll`. The launcher resolves 95 `graal_set*` names and loads the engine before it registers them. A zero return from `graal_engineInitialize` shows `The execution file is corrupted.` [bin] (torque/5007-launcher.md#startup); [bin] (torque/5007-launcher.md#what-it-resolves)
 
@@ -117,90 +131,7 @@ A script object is a `TGraalVar` with a `TScriptExecutionSpace`. `runScript` wal
 
 In the 3D DLL, `GameObject`'s property table is parented on `SceneObject`. Two mission steps download ghosts and then light the mission, and the following step sets the canvas to `GUIContainer`. A terrain chunk load reads a compressed file under `levels3d`/`heights` for that server. The connect check reads 4 bytes and accepts only 24; any other value returns `CHR_PROTOCOL`. An interior file's first 4 bytes must be 0, and an interior resource's first 4 bytes must be 44. [bin] (torque/5007-g3d.md#gameobject); [bin] (torque/5007-g3d.md#mission-phases); [bin] (torque/5007-g3d.md#terrain-chunks); [bin] (torque/5007-g3d.md#protocol); [bin] (torque/5007-g3d.md#interiors)
 
-### 10.1.9 What Windows 6.113 still is
-
-The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows file is still one GUI executable whose export directory is named `QPlay.exe` and whose only import is `SetCurrentDirectoryA`, which the stub does not call. [bin] (client-internals/engine-6113.md#still-no-engine-image); [bin] (client-internals/engine-6113.md#the-one-import-and-the-entry)
-
-| What the listing shows | 6.1.1.3 | Source |
-| --- | --- | --- |
-| Version | String `6.113`, fixed words 6.1.1.3, Eurocenter Games, copyright 2014, image timestamp 8 August 2014. No version token | [bin] (client-internals/engine-6113.md#what-this-file-is) |
-| Connection, GS2 VM, property parsers, file cache, GUI classes | Absent. The recovered code is the dword walk and a breakpoint | [bin] (client-internals/engine-6113.md#subsystem-map) |
-| Export names | CyaSSL through TLS 1.2, DTLS, AES-CBC, HMAC, SHA-256, and zlib. The bytes at those exports are not the library | [bin] (client-internals/engine-6113.md#the-export-surface) |
-| Login, framing, packet ids, property streams, `GRESCR01` | Not in this image. Neighbour notes disagree on the key byte, the 6.03 token, ids 100 and 108, and the oldest level magics | [bin][cap] (protocol/v6113-wire.md#contradictions) |
-| GS2 | No opcode switch. Unpacked 6.00 already has cases 54 and 121 and folds 234–242, and does not have 48 or 49. This file cannot extend that | [bin] (protocol/gs2-6113.md#what-6113-cannot-show) |
-| Torque names | Console, `SimObject`, `GameConnection`, `ShapeBase`, `Player`, `graal_set`, `horizSizing`, `GuiTilesCtrl` and `TAdventure` are already gone in unpacked 6.00. `GuiGraalCtrl` and `GuiGraal3DCtrl` are that build's playfield. This listing has none of those names. Issho is v6; v7 Unity is not a profile this file supports | [bin] (client-internals/engine-6113.md#what-is-gone-by-6113) |
-
-### 10.1.10 What the 6.1.1.3 decompile contains
-
-The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the entry, which clears a breakpoint byte, mixes four kilobytes and then breakpoints. The other 103 are export names for a `CyaInt` TLS client, AES-CBC, HMAC, SHA-256 and RSA; those bodies do not implement the named calls, several names share one body, and the zlib names are not functions in the listing. The file has no GS2 switch, GUI class or socket import. [bin] (client-internals/decompile-6113.md#how-the-bytes-split)
-
-### 10.1.11 What unpacked Windows 6.037 runs
-
-The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed words 6.0.3.7), compiler banner 16 November 2012 18:58:51. The code section holds `quattro_lib` and `TSocket`. It is not the packed 6.037 shell. [bin] (client-internals/unpacked-6037.md#what-this-file-is)
-
-| What the listing shows | Unpacked 6.037 | Source |
-| --- | --- | --- |
-| Program | One `quattro_lib` executable. No Delphi launcher, no engine DLL, no SDL. `ExeReplacer.exe` is still launched | [bin] (client-internals/unpacked-6037.md#one-program) |
-| Packer residue | Seven sections, including a blank name, two eight-letter names and `.SCY`. The export directory is still named `QPlay.exe`. The entry is the C runtime cookie setup | [bin] (client-internals/unpacked-6037.md#what-this-file-is) |
-| Connection | `TSocket`, newline refused, key byte masked to seven bits, gen-3/5 seed, next field 3. No plaintext `G3D` token. The receive switch is the 92-id Linux 6.03r7 set | [bin] (client-internals/unpacked-6037.md#connection) |
-| TLS | CyaSSL is called with the SSLv3 client method. `zlibVersion` returns `1.2.3`; inflate callers pass `1.2.5` | [bin] (client-internals/unpacked-6037.md#what-this-file-is); [bin] (client-internals/unpacked-6037.md#connection) |
-| GS2 | Cases 54, 121 and 200–242. No case 48 or 49, and nothing above 242, as in unpacked 6.00. `GRESCR01` on a `.code` file of at least eight bytes | [bin] (client-internals/unpacked-6037.md#gs2) |
-| `GuiGraalCtrl` | Still the type the GUI walk drops | [bin] (client-internals/unpacked-6037.md#gui) |
-| `GuiGraal3DCtrl` | Absent. The shell looks up `GraalControl` and `GraalControl3D` | [bin] (client-internals/unpacked-6037.md#gui) |
-| `GuiTilesCtrl` | Constructed. Unpacked 6.00 does not have the name (→ §10.1.5) | [bin] (client-internals/unpacked-6037.md#gui); [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
-| `horizSizing` and the other Torque field names | Absent, as in unpacked 6.00 | [bin] (client-internals/unpacked-6037.md#gui) |
-| Torque modules | `GameConnection`, `SimObject`, DTS, `TAdventure` and SDL are absent. `-printmap` writes Torque 2D datablock text and does not run a module | [bin] (client-internals/unpacked-6037.md#torque-names-that-remain) |
-
-### 10.1.12 The cut between the Torque years and the 6.x core
-
-| What | Who | Source |
-| --- | --- | --- |
-| Torque console, `SimObject`, `GameConnection`, and UDP on the listed port plus one | v3 to v5 | [doc] (client-internals/issho-cut.md#ato-v3-to-v5) |
-| `quattro_lib`, `TSocket`, `TServerPlayer`, OpenGL, `fmod`, `GRESCR01` and the GS2 switch | unpacked 6.037 and 6.1.1.3 | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
-| `GuiWindowCtrl` and `GuiControlProfile` remain as strings. `SimObject` and `GameConnection` do not | both unpacked images | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
-
-### 10.1.13 Version resources on the skipped exports
-
-Packer-stub uploads from the v4, v5 and v6 decompile sets still carry a version resource. The recovered code is not the client. [bin] (torque/skipped-version-stamps.md#what-was-skipped)
-
-The `4.0.4.2` exe stub and the `5.1.2.0` stub share one string table: four-part file version, a one-character product version, description `Graal Online client`, internal name `Graal client`, company `Linux Cyberjoueur`, no year. From `5.243` on, the file and product strings are the collapsed form (`5.243`, `5.244`, `6.037`, `6.113`) and the fixed words stay four-part (`5.2.4.3`, `5.2.4.4`, `6.0.3.7`, `6.1.1.3`). Those later Graal stubs name `Linux Cyberjoueurs` or `Eurocenter Games` and a copyright year (`2010`, `2012`, `2014`). [bin] (torque/skipped-version-stamps.md#two-layouts)
-
-| Upload | Code | File version string | Fixed words | Product version string | Original file | Company and year | Source |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `Graal 4.04r2.exe` and `Graal v4.20r8[Windows].exe` (one decompile) | stub | `4.0.4.2` | `4.0.4.2` | `4` | `Graal.exe` | `Linux Cyberjoueur`, no year | [bin] (torque/skipped-version-stamps.md#v4-exe-pair) |
-| `Graal 5.12.exe` | stub | `5.1.2.0` | `5.1.2.0` | `5` | `Graal.exe` | `Linux Cyberjoueur`, no year | [bin] (torque/skipped-version-stamps.md#graal-512) |
-| `Graal 5.2.4.3.exe` | stub | `5.243` | `5.2.4.3` | `5.243` | `Graal.exe` | `Linux Cyberjoueurs`, `2010` | [bin] (torque/skipped-version-stamps.md#graal-5243) |
-| `Graal v5.24r4.exe` | stub | `5.244` | `5.2.4.4` | `5.244` | `Graal.exe` | `Linux Cyberjoueurs`, `2010` | [bin] (torque/skipped-version-stamps.md#graal-524r4) |
-| `fmod.dll` in the 4.2.0.8 and 5.0.0.7 archives (one decompile) | stub | `3.75` | `3.7.5.0` | `3.75` | `fmod.dll` | Firelight Technologies, `1994-2005` | [bin] (torque/skipped-version-stamps.md#fmod) |
-| `Graal 6.0.3.7.exe` | stub | `6.037` | `6.0.3.7` | `6.037` | `Graal.exe` | `Linux Cyberjoueurs`, `2012` | [bin] (torque/skipped-version-stamps.md#graal-6037) |
-| `Graal 6.1.1.3.exe` | stub | `6.113` | `6.1.1.3` | `6.113` | `Graal.exe` | `Eurocenter Games`, `2014` | [bin] (torque/skipped-version-stamps.md#graal-6113) |
-
-### 10.1.14 The 4.2.0.8 Windows split
-
-Two exports named as the 4.04r2 and 4.20r8 executables are one packer stub, byte for byte, with no Graal or Torque class. The file-version 4.2.0.8 archive is the client that can be read, and it includes `Graal3DEngine.dll`, which the packet-logger upload did not. [bin] (torque/v4-404r2-exe.md; torque/v4-420r8-exe.md) [bin] (torque/engine-4208.md#how-the-three-fit)
-
-A later original-carrier 4.04r2 recovery supplies a separate shape-based 3D component that retains `ShapeBase`; it is distinct from the later 4.2.0.8 `GameObject` image below. Its repaired import directory cannot independently verify the earlier named-import count. Recovery availability and load-only limits: → §1.8.5. [bin] (torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity)
-
-| Fact | Source |
-| --- | --- |
-| The launcher registers 94 `graal_set…` callbacks and loads `GraalEngine.dll`. The 3D DLL adds 19 names the launcher does not register, including `CreateGraal3DGameObject`, `GetGraal3DTerrainHeight` and `SendGraal3DScriptEvent` | [bin] (torque/engine-4208.md#how-the-three-fit) |
-| `GraalEngine.dll` keeps Torque's `GuiCanvas` and `GuiControl` and has no `SimObject`, `ActionMap` or `.dso`. The game is `TAdventure`, `TShowImg` and `TGraalAni`. Scripts are `TGraalVar` and `TScriptExecutionSpace` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
-| The engine builds a `TGraalVar` for `StartScript_GraalGui`, `StartScript_MoveMap2D`, `StartScript_MoveMap3D` and the other start scripts, and it special-cases the control names `GuiGraalCtrl` and `GuiGraal3DCtrl` | [bin] (torque/engine-4208.md#graalenginedll-torque-gui-beside-graals-game) |
-| `Graal3DEngine.dll` is the `GameObject` world: `GameConnection`, `TerrainBlock`, interiors, two login phases (`onGraal3DLoginStep`), and `TerrainChunkEvent`. `ShapeBase` and Torque's `Player` are absent | [bin] (torque/engine-4208.md#graal3denginedll-gameobject-torque) |
-
-### 10.1.15 The 3.04 game components
-
-Linux 3.04 keeps stock Torque (`GameConnection`, `NetConnection`, and the `sim/netConnection.cc` / `game/gameConnection.cc` sources) beside Graal's own 2D game. `TGraalConnection` is a separate C++ type with no base class. The binary has no `Graal3D` string and no `BigData` event. [bin] (torque/304-net.md#beside-torque)
-
-| Component | What the 3.04 units do | Source |
-| --- | --- | --- |
-| Session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player) | Wakes once, opens the three license files, loads the HUD sheets, and logs a local level entry only for seven file magics | [bin] (torque/304-adventure.md#session-start) |
-| Drawing | The `TDrawableObject` family, `pics1.png` and tiledefs, gani text, polygon show-images | [bin] (torque/304-draw.md#types) |
-| NPCs and script | `playerenters` and the other trigger names, bow baddies, weapon rectangles, `shapetiletypes` | [bin] (torque/304-npcs.md#triggers) |
-| Graal TCP | Login id 5 then language id 37, the server list into `AdventureGui`, the player list and profiles | [bin] (torque/304-net.md#the-game-connection) |
-| Sound | fmod at mix rate 44100, wav samples, mid modules, and the mp3-class streams | [bin] (torque/304-audio-ui.md#fmod) |
-
-### 10.1.16 This v5 export
+#### The rest of that v5 export
 
 One static read of a v5 export (nothing run). File-version strings below are the version resources in that export [bin] (torque/launcher-5007.md#what-the-decompile-is):
 
@@ -217,7 +148,7 @@ One static read of a v5 export (nothing run). File-version strings below are the
 | `freetype6.dll` is FreeType 2.1.10.2079. The `fmod.dll` version resource says FMOD 3.75 and the recovered code is a packer stub | [bin] (torque/freetype6-5007.md#what-the-decompile-is; torque/stub-fmod-5007.md#what-the-decompile-is) |
 | Unpacked 5.30r3 and 5.31r4 are one exe each, file versions `5.303` (compile string `Oct 18 2010`) and `5.314` (compile string `Jan 5 2011`), source tree `quattro_lib`. `graal_set`, `SimObject` and `GameConnection` are absent. `GuiGraalCtrl`, `GuiGraal3DCtrl` and the Torque GUI field names remain | [bin] (torque/engine-530r3.md#what-the-decompile-is; torque/engine-530r3.md#torque; torque/engine-531r4.md#what-the-decompile-is; torque/engine-531r4.md#torque) |
 
-### 10.1.17 Which modules each era still has
+### 10.1.7 Which modules each era still has
 
 A module is present when that image registers it, recovers methods, records the C++ type, or emits a `Class::method` error. A stub is the name alone. The 4.2.0.8 and 5.0.0.7 launchers are omitted below: both listings have DirectDraw and none of these modules. [bin] (client-internals/torque-surface-by-era.md#how-a-cell-is-counted); [bin] (client-internals/torque-surface-by-era.md#the-table)
 
@@ -232,7 +163,49 @@ A module is present when that image registers it, recovers methods, records the 
 
 `GameConnection` in 3.04 uses the stock method names. `BigDataStartEvent` and `TerrainChunkEvent` on the 4.2.0.8 and 5.0.0.7 3D DLLs are the Graal patch. `GameObject`, `GuiGraalCtrl`, `TAdventure`, `TGraalVar`, `TScriptExecutionSpace` and `TShowImg` are Graal-only. A stock name whose body was not diffed against a TGE tree is uncompared. [bin] (client-internals/torque-surface-by-era.md#against-stock-tge)
 
-### 10.1.18 What the unpacked 6.1.1.3 image is
+### 10.1.8 After Torque: what the 6.x images still name
+
+This section records absence. Each 6.x image below was read to establish which Torque names survive once Graal's own engine replaced Torque. The engine itself is described in §1.8.7. The table gives the cut, and the builds follow in date order. [doc] (client-internals/issho-cut.md#ato-v3-to-v5)
+
+| What | Who | Source |
+| --- | --- | --- |
+| Torque console, `SimObject`, `GameConnection`, and UDP on the listed port plus one | v3 to v5 | [doc] (client-internals/issho-cut.md#ato-v3-to-v5) |
+| `quattro_lib`, `TSocket`, `TServerPlayer`, OpenGL, `fmod`, `GRESCR01` and the GS2 switch | unpacked 6.037 and 6.1.1.3 | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
+| `GuiWindowCtrl` and `GuiControlProfile` remain as strings. `SimObject` and `GameConnection` do not | both unpacked images | [bin] (client-internals/issho-cut.md#issho-from-these-two-images) |
+
+#### Windows 6.00r2 and 6.00r4
+
+Unpacked Windows 6.00r2 (product version 6.002, 12 June 2011) and 6.00r4 (6.004, 26 June 2011) are Graal's `quattro_lib` program [bin] (client-internals/engine-600r2.md#what-the-export-is); [bin] (client-internals/engine-600r4.md#what-the-export-is). The drawing, GUI, script and socket split is in §1.8.7.
+
+| What remains | In these two builds | Source |
+| --- | --- | --- |
+| Torque 3D classes and formats (`GameConnection`, `TerrainBlock`, `Interior`, DTS, `SimObject`, `.mis`, `.ter`, `.dts`) | absent | [bin] (client-internals/engine-600r2.md#no-torque-3d) |
+| Torque GUI field names (`horizSizing`, `vertSizing`, `minExtent`, `fontType`, `fillColor`, `makeFirstResponder`, `pushToBack`) | absent; those names are a 5.24r3 finding | [bin] (client-internals/engine-600r2.md#gui-and-script-objects); [bin] (torque/study-torque-clients.md#524r3-6x) |
+| `GuiControl`, `GuiControlProfile`, `GuiScrollCtrl`, `GuiWindowCtrl`, `GuiMLTextCtrl` and the other Torque control names | live GS2 controls, each with its own draw routine | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| `GuiGraal3DCtrl` | live type in the GUI walk, same branch as `GuiGraalCtrl` | [bin] (client-internals/engine-600r2.md#no-torque-3d) |
+| `GuiTilesCtrl` | absent; tiles are the `Draw_Tiles` pass | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| `MissionGroup` | script object looked up by name | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| `onMouseYawPitch`, and a builtin described as changing the colour of the 3D terrain | script text; no terrain block | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| `levels3d`, `graal3://` | a content folder, and an option-list string with no recovered call | [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+
+#### Unpacked Windows 6.037
+
+The unpacked 6.037 listing is one GUI executable, product version `6.037` (fixed words 6.0.3.7), compiler banner 16 November 2012 18:58:51. The code section holds `quattro_lib` and `TSocket`. It is not the packed 6.037 shell. [bin] (client-internals/unpacked-6037.md#what-this-file-is)
+
+| What the listing shows | Unpacked 6.037 | Source |
+| --- | --- | --- |
+| Program | One `quattro_lib` executable. No Delphi launcher, no engine DLL, no SDL. `ExeReplacer.exe` is still launched | [bin] (client-internals/unpacked-6037.md#one-program) |
+| Packer residue | Seven sections, including a blank name, two eight-letter names and `.SCY`. The export directory is still named `QPlay.exe`. The entry is the C runtime cookie setup | [bin] (client-internals/unpacked-6037.md#what-this-file-is) |
+| Connection | `TSocket`, newline refused, key byte masked to seven bits, gen-3/5 seed, next field 3. No plaintext `G3D` token. The receive switch is the 92-id Linux 6.03r7 set | [bin] (client-internals/unpacked-6037.md#connection) |
+| TLS | CyaSSL is called with the SSLv3 client method. `zlibVersion` returns `1.2.3`; inflate callers pass `1.2.5` | [bin] (client-internals/unpacked-6037.md#what-this-file-is); [bin] (client-internals/unpacked-6037.md#connection) |
+| GS2 | Cases 54, 121 and 200–242. No case 48 or 49, and nothing above 242, as in unpacked 6.00. `GRESCR01` on a `.code` file of at least eight bytes | [bin] (client-internals/unpacked-6037.md#gs2) |
+| `GuiGraalCtrl` | Still the type the GUI walk drops | [bin] (client-internals/unpacked-6037.md#gui) |
+| `GuiGraal3DCtrl` | Absent. The shell looks up `GraalControl` and `GraalControl3D` | [bin] (client-internals/unpacked-6037.md#gui) |
+| `GuiTilesCtrl` | Constructed. Unpacked 6.00 does not have the name (above) | [bin] (client-internals/unpacked-6037.md#gui); [bin] (client-internals/engine-600r2.md#gui-and-script-objects) |
+| `horizSizing` and the other Torque field names | Absent, as in unpacked 6.00 | [bin] (client-internals/unpacked-6037.md#gui) |
+| Torque modules | `GameConnection`, `SimObject`, DTS, `TAdventure` and SDL are absent. `-printmap` writes Torque 2D datablock text and does not run a module | [bin] (client-internals/unpacked-6037.md#torque-names-that-remain) |
+
+#### Unpacked Windows 6.1.1.3
 
 A later listing of the same 8 August 2014 executable decompiles the engine. The upload is a Ghidra C listing and an HTML listing, not a raw executable and not `Graal.exe` plus a DLL. The version resource, the timestamp and the virtual image size match the stub in §10.1.9. The header entry is the Visual C++ security-cookie initializer, and about 9,300 functions recover. [bin] (client-internals/unpacked-6113.md#what-the-image-is); [bin] (client-internals/unpacked-6113.md#the-engine-is-visible)
 
@@ -243,9 +216,52 @@ A later listing of the same 8 August 2014 executable decompiles the engine. The 
 | Engine | `quattro_lib` / `Quattro Play`, `TSocket`, `TServerPlayer`, `GuiGraalCtrl`, OpenGL, FMOD, `GRESCR01`. Original file name `Graal.exe` | [bin] (client-internals/unpacked-6113.md#the-engine-is-visible) |
 | Packer left behind | Export directory still named `QPlay.exe` (in `fbndyrix`). Import directory in `.SCY`. Blank section still holds `Themida`, `WinLicense` and Oreans driver names | [bin] (client-internals/unpacked-6113.md#packer-names-that-remain) |
 
-### 10.1.19 Torque names in the unpacked 6.1.1.3 image
+Against unpacked 6.00 (above), this image still has no `SimObject`, `GameConnection`, `TerrainBlock`, `MissionGroup`, `TAdventure`, `graal_set` or `horizSizing`. The GUI walk compares `GuiGraalCtrl`. `GuiGraal3DCtrl` is not a string here; the shell looks up `GraalControl3D` beside `GUIContainer`. `GuiTilesCtrl` is registered beside `GuiControl`, which the 6.00 notes recorded as absent. A file reader matches five `new t2d…(` constructors, and `-printmap` takes a datablock file and a level file. That is text, not a Torque console. The hold on writing the module stands. [bin] (client-internals/unpacked-6113.md#torque-names-against-unpacked-600)
 
-Against unpacked 6.00 (→ §10.1.5), this image still has no `SimObject`, `GameConnection`, `TerrainBlock`, `MissionGroup`, `TAdventure`, `graal_set` or `horizSizing`. The GUI walk compares `GuiGraalCtrl`. `GuiGraal3DCtrl` is not a string here; the shell looks up `GraalControl3D` beside `GUIContainer`. `GuiTilesCtrl` is registered beside `GuiControl`, which the 6.00 notes recorded as absent. A file reader matches five `new t2d…(` constructors, and `-printmap` takes a datablock file and a level file. That is text, not a Torque console. The hold on writing the module stands. [bin] (client-internals/unpacked-6113.md#torque-names-against-unpacked-600)
+### 10.1.9 Packer stubs and version resources
+
+Several uploads named after real clients are packer shells, not the client. They are listed here so that nobody reads them as engine evidence. Their version resources are still useful for identification. [bin] (torque/skipped-version-stamps.md#what-was-skipped)
+
+#### The packed listings
+
+The two v4 exe listings are one file. The program is the Thinstall outer loader: `TS_LOADER` or the module path, `LoaderFlags` as the table offset, magic `0x82D0B188`, a stored block or the range coder, then relocations, imports and a jump to the unpacked entry. The import directory adds one import from each DLL of the wrapped program (registry, shell, save dialog, image list, OLE, joystick, printer). Winsock, DirectDraw, OpenGL and `GraalEngine.dll` are not in that listing. [bin] (torque/skipped-v4-read.md#one-listing); [bin] (torque/skipped-v4-read.md#what-the-loader-does); [bin] (torque/skipped-v4-read.md#what-is-in-the-clear)
+
+Packed 5.12 keeps Delphi form resources (`TGRAALWINDOW`, `TPLAYERLIST`, and the options, profile, URL, controls and short-message forms) plus `DVCLAL`. Its recovered code does not call `LoadLibraryA`. The packed 5.2.4.3 and 5.24r4 exes bind only `LoadLibraryA` and `VirtualAlloc` and name no form. [bin] (torque/skipped-v5-read.md#the-512-resource-directory); [bin] (torque/skipped-v5-read.md#the-later-packed-exes)
+
+`fmod.dll` in the 5.0.0.7 archive is the same UPX listing as the 4.2.0.8 copy. The export names are FMOD's sample, stream, 3D, DSP and music API, including net streams, and the recovered body is the decompressor. [bin] (torque/skipped-v5-read.md#fmod)
+
+The packed 6.037 and 6.113 exes are distinct. Each export directory is named `QPlay.exe` and lists a CyaSSL client, zlib, and a hash and cipher set; the 6.113 names add TLS 1.0 through 1.2, DTLS and AES-CBC. The bytes at those exports are not that library, and neither listing names a Torque class. [bin] (client-internals/skipped-v6-read.md#the-stub); [bin] (client-internals/skipped-v6-read.md#the-export-directory); [bin] (client-internals/skipped-v6-read.md#absent-from-both)
+
+#### Version resources
+
+Packer-stub uploads from the v4, v5 and v6 decompile sets still carry a version resource. The recovered code is not the client. [bin] (torque/skipped-version-stamps.md#what-was-skipped)
+
+The `4.0.4.2` exe stub and the `5.1.2.0` stub share one string table: four-part file version, a one-character product version, description `Graal Online client`, internal name `Graal client`, company `Linux Cyberjoueur`, no year. From `5.243` on, the file and product strings are the collapsed form (`5.243`, `5.244`, `6.037`, `6.113`) and the fixed words stay four-part (`5.2.4.3`, `5.2.4.4`, `6.0.3.7`, `6.1.1.3`). Those later Graal stubs name `Linux Cyberjoueurs` or `Eurocenter Games` and a copyright year (`2010`, `2012`, `2014`). [bin] (torque/skipped-version-stamps.md#two-layouts)
+
+| Upload | Code | File version string | Fixed words | Product version string | Original file | Company and year | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `Graal 4.04r2.exe` and `Graal v4.20r8[Windows].exe` (one decompile) | stub | `4.0.4.2` | `4.0.4.2` | `4` | `Graal.exe` | `Linux Cyberjoueur`, no year | [bin] (torque/skipped-version-stamps.md#v4-exe-pair) |
+| `Graal 5.12.exe` | stub | `5.1.2.0` | `5.1.2.0` | `5` | `Graal.exe` | `Linux Cyberjoueur`, no year | [bin] (torque/skipped-version-stamps.md#graal-512) |
+| `Graal 5.2.4.3.exe` | stub | `5.243` | `5.2.4.3` | `5.243` | `Graal.exe` | `Linux Cyberjoueurs`, `2010` | [bin] (torque/skipped-version-stamps.md#graal-5243) |
+| `Graal v5.24r4.exe` | stub | `5.244` | `5.2.4.4` | `5.244` | `Graal.exe` | `Linux Cyberjoueurs`, `2010` | [bin] (torque/skipped-version-stamps.md#graal-524r4) |
+| `fmod.dll` in the 4.2.0.8 and 5.0.0.7 archives (one decompile) | stub | `3.75` | `3.7.5.0` | `3.75` | `fmod.dll` | Firelight Technologies, `1994-2005` | [bin] (torque/skipped-version-stamps.md#fmod) |
+| `Graal 6.0.3.7.exe` | stub | `6.037` | `6.0.3.7` | `6.037` | `Graal.exe` | `Linux Cyberjoueurs`, `2012` | [bin] (torque/skipped-version-stamps.md#graal-6037) |
+| `Graal 6.1.1.3.exe` | stub | `6.113` | `6.1.1.3` | `6.113` | `Graal.exe` | `Eurocenter Games`, `2014` | [bin] (torque/skipped-version-stamps.md#graal-6113) |
+
+#### Packed Windows 6.1.1.3
+
+The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows file is still one GUI executable whose export directory is named `QPlay.exe` and whose only import is `SetCurrentDirectoryA`, which the stub does not call. [bin] (client-internals/engine-6113.md#still-no-engine-image); [bin] (client-internals/engine-6113.md#the-one-import-and-the-entry)
+
+| What the listing shows | 6.1.1.3 | Source |
+| --- | --- | --- |
+| Version | String `6.113`, fixed words 6.1.1.3, Eurocenter Games, copyright 2014, image timestamp 8 August 2014. No version token | [bin] (client-internals/engine-6113.md#what-this-file-is) |
+| Connection, GS2 VM, property parsers, file cache, GUI classes | Absent. The recovered code is the dword walk and a breakpoint | [bin] (client-internals/engine-6113.md#subsystem-map) |
+| Export names | CyaSSL through TLS 1.2, DTLS, AES-CBC, HMAC, SHA-256, and zlib. The bytes at those exports are not the library | [bin] (client-internals/engine-6113.md#the-export-surface) |
+| Login, framing, packet ids, property streams, `GRESCR01` | Not in this image. Neighbour notes disagree on the key byte, the 6.03 token, ids 100 and 108, and the oldest level magics | [bin][cap] (protocol/v6113-wire.md#contradictions) |
+| GS2 | No opcode switch. Unpacked 6.00 already has cases 54 and 121 and folds 234–242, and does not have 48 or 49. This file cannot extend that | [bin] (protocol/gs2-6113.md#what-6113-cannot-show) |
+| Torque names | Console, `SimObject`, `GameConnection`, `ShapeBase`, `Player`, `graal_set`, `horizSizing`, `GuiTilesCtrl` and `TAdventure` are already gone in unpacked 6.00. `GuiGraalCtrl` and `GuiGraal3DCtrl` are that build's playfield. This listing has none of those names. Issho is v6; v7 Unity is not a profile this file supports | [bin] (client-internals/engine-6113.md#what-is-gone-by-6113) |
+
+The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the entry, which clears a breakpoint byte, mixes four kilobytes and then breakpoints. The other 103 are export names for a `CyaInt` TLS client, AES-CBC, HMAC, SHA-256 and RSA; those bodies do not implement the named calls, several names share one body, and the zlib names are not functions in the listing. The file has no GS2 switch, GUI class or socket import. [bin] (client-internals/decompile-6113.md#how-the-bytes-split)
 
 ## 10.2 Join sequence
 
@@ -618,7 +634,7 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | 3.153 maps terrain textures to detail textures and footstep sound types in script (→ §10.4.4) | [file] (torque/engine-and-formats.md#3d-resource-formats) |
 | 4.04r2 ships 3D GUI skins in `levels3d/gui/`, help pages in `levels3d/help/*.hfl` and nine `languages3D/language*.cs` tables of `$language::Name = "text";` lines, probably loaded by server GUI scripts | [file][inf] (graal3d/torque-engine-4x.md#files) |
 
-## 10.7 Bound Linux 3.04 startup and successful compiled-script reading
+## 10.7 Linux 3.04: startup and compiled-script reading
 
 [bin] The two 3.04-labelled unpacked trees are identical across 528 regular files each; the packed original is a separate input. [cap] The tested unpacked initializer fails its first observed signature check. The unchanged original passes both checks after its temporary/display environment is corrected. The comparison does not isolate packing as the cause. [bin] (client-internals/linux-304-startup-reader.md); [cap] (client-internals/linux-304-startup-reader.md)
 
@@ -627,14 +643,14 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 [cap] A separate later unchanged-packed-input probe follows the same program object in one thread from compiled reading through first code-word fetch to native handler entry; next index is one. Of 474 words, 401 nonrelocation positions match and 73 relocation positions are excluded. Termination occurs at handler entry: no handler/script completion or gameplay is proved. Earlier reader-only and unpacked-startup failures retain their own stopping points. Server/commit: none; observations and original-carrier audit remain researcher-supplied. [cap] (client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint)
 
-## 10.8 Bound Linux packaged Torque streams and resource comparisons
+## 10.8 Linux 3.04: packaged Torque streams and the later trees
 
 [bin] Each duplicate 3.04 label has the same 39 version-33 streams, 48,310 numeric words and 733 line pairs. Independent serialization reproduces every stream byte-for-byte. Numeric line-pair meanings remain unassigned; out-of-range identifier-pool selections remain flagged, separately from the reader's empty-string fallback. [bin] (formats/linux-torque-resource-scope.md)
 
 
 [bin] A 1,463-file inventory across eight prepared trees (including eight generated launchers and both duplicate 3.04 labels; not pristine installer counts) finds no packaged `.dso` or offset-zero version-33 candidate in the six later supplied trees. All nine supplied localization script resources match across the three 4.x labels; older counterparts differ. The supplied standalone 6.x folders originally held only executables; each second prepared-tree file is a generated launcher. These are two 6.01r1 architectures and 6.03r7 x64, not three releases. The 4.x trees are 4.04r2, 4.20r6 and 4.20r8 as identified in the source note. These offline results exclude neither embedded/downloaded streams nor an engine/compiler. No process/server ran; later execution and Windows E#503 remain unproved. [bin] (formats/linux-torque-resource-scope.md)
 
-## 10.9 Seven-operation Linux 3.04 executor contract
+## 10.9 Linux 3.04: a seven-operation executor subset
 
 [bin] Selected Linux 3.04 static paths establish bit-preserving immediate load, one-entry discard, consuming zero/nonzero conditional branches, absolute code-word targets, signed decimal conversion and return of the current string position. The analysis ELF and original packed executable retain distinct identities. [bin] (torque/linux-304-seven-operation-contract.md).
 
@@ -647,13 +663,13 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 [inf] Published inclusive command/method counts do not establish argument representation or callback ABI. The seven-operation executor return does not establish native callback result conversion or lifetime. Case/namespace precedence, duplicates, coercions, arity failures, cache invalidation and echo behavior remain unqualified; independent API policy tests are not original-client oracles. No new native inspection or runtime work was done for publication. [inf] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
 
 
-## 10.10 Linux 4.20 native-object registration boundary
+## 10.10 Linux 4.20r6: native-object registration
 
 [bin] In the selected Linux 4.20r6 paths, constructor stores and runtime type metadata identify concrete SimGroup and GameConnection objects, each containing a Graal scripting-variable base subobject. The creation callback registers those base-subobject pointers on the scripting side, exposing a concrete static native-object bridge. Names alone are not the identification evidence. [bin] (client-internals/linux-420-native-object-bridge.md).
 
 [bin] A tail-call forwarding path does not establish an ordinary C callback ABI; an optional fast path remains unresolved. The separate r8 review shows that equal embedded payloads do not imply equal execution-state layouts. Initializer execution, live TorqueScript, GUI/input and a working 3D session remain unobserved in this scope. No runtime or server was started for publication preparation. [bin] (client-internals/linux-420-native-object-bridge.md).
 
-## 10.11 Exact Linux 3.04 show-image wrapper constants
+## 10.11 Linux 3.04: show-image wrapper constants
 
 [bin] Retained exact-input static findings bind showimg/showimg2 to mode 0, showani/showani2 to mode 4, showpoly/showpoly2 to mode 3 and showtext/showtext2 to mode 2, with respective flags 0/1 in every pair. These internal constants add precision to already documented command presence and polygon machinery; mode 1, signature-letter grammar, flag meaning and rendered results remain unqualified. [bin] (torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review)
 
@@ -661,7 +677,7 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 [inf] Local insertion rejection does not establish repeated-command behavior or console/namespace duplicate policy. These are retained static assertions, not new native execution or a general interpreter/callback contract; no cross-build behavior is inferred. Document digests are checked while underlying native observations remain researcher-supplied. [inf] (torque/304-draw.md#provenance-and-scope-of-this-addition)
 
-## 10.12 Exact Linux 3.04 local value-helper branches
+## 10.12 Linux 3.04: local value helpers
 
 [bin] Retained exact-input static review records a numeric accessor returning zero for null input, reading a stored double on its reviewed type/slot-absent branch and otherwise dispatching through a type-specific slot. A string-result accessor dispatches through its type-specific slot or a fallback initializer. A separate assignment helper includes scalar/numeric-array paths, element conversion and selected index-guarded writes. [bin] (torque/304-npcs.md#retained-local-numeric-and-string-helper-branches)
 

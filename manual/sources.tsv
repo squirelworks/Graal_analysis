@@ -145,14 +145,14 @@ client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	ta
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
 client-internals/decomp-findings-2026-10-28/02-item-list.md	cited	4.6	4	
 client-internals/decomp-findings-2026-10-28/03-edge-links.md	cited	4.1; 4.2; E	4	
-client-internals/decompile-6113.md	cited	10	10	§10.1.10 carries the function count and that the named bodies do not implement the TLS calls; the subsystem table and the byte split stay in the note
+client-internals/decompile-6113.md	cited	10	10	§10.1.9 carries the function count and that the named bodies do not implement the TLS calls; the subsystem table and the byte split stay in the note
 client-internals/des-and-hidden-strings.md	cited	3.7; 4.11	4	
 client-internals/drive-clients-inventory.md	cited	1; 4.11	4	
 client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superseded by client-internals/build-catalogue.md, client-internals/versions-133-139.md and protocol/relay-1998.md, which the manual cites
-client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
-client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.5 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
+client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
+client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
-client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7, §10.1.18 and §10.1.19 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
+client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
@@ -207,14 +207,14 @@ client-internals/rendering-observations.md	cited	4.1	4
 client-internals/saved-passwords.md	cited	3.7	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/serveroptions-198.md	cited	2.5	2.5	
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
-client-internals/skipped-v6-read.md	cited	10	10	§10.1.6 carries the stub, the QPlay.exe export directory and the TLS names that differ; the full export lists stay in the note
+client-internals/skipped-v6-read.md	cited	10	10	§10.1.9 carries the stub, the QPlay.exe export directory and the TLS names that differ; the full export lists stay in the note
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
 client-internals/themida-pack.md	cited	1	1	§1.8.7 carries that 6.037 and 6.113 are the Themida / WinLicense shell and that the vendor strings are in the unpacked 5.30, 5.31 and 6.00 listings; the per-file table stays in the note
-client-internals/torque-surface-by-era.md	cited	10	10	§10.1.17 carries the era rows and the stock, patched, or Graal-only marks; per-class method counts and the graal-client-repro comments stay in the note
-client-internals/unpacked-6037.md	cited	10	10	§10.1.11 carries the version, that the C++ core is visible, the GS2 case set and the GUI-name changes; the cipher fields, the inflate version split and the printmap text stay in the note
+client-internals/torque-surface-by-era.md	cited	10	10	§10.1.7 carries the era rows and the stock, patched, or Graal-only marks; per-class method counts and the graal-client-repro comments stay in the note
+client-internals/unpacked-6037.md	cited	10	10	§10.1.8 carries the version, that the C++ core is visible, the GS2 case set and the GUI-name changes; the cipher fields, the inflate version split and the printmap text stay in the note
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/141-217.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -468,40 +468,40 @@ tools/remotecontrol-lineage.md	cited	7; E	7
 tools/remotecontrol.md	cited	7; E	7	
 tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	cited	5; 6; 7; E	7	
-torque/304-adventure.md	cited	10	10	§10.1.15 carries the session in one row; mouse, chat, the local-level magic gate, gmap keys and the console methods stay in the note
-torque/304-audio-ui.md	cited	10	10	§10.1.15 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
-torque/304-draw.md	cited	10	10	§10.1.15 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note; exact304 wrapper constants/key-container limits carried in10.11
-torque/304-net.md	cited	10	10	§10.1.15 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
-torque/304-npcs.md	cited	10	10	§10.1.15 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note; selected304 local value-helper branches/limits carried in10.12
-torque/4208-engine.md	cited	10	10	§10.1.7 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
-torque/4208-g3d.md	cited	10	10	§10.1.7 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
-torque/4208-launcher.md	cited	10	10	§10.1.7 carries the 94 slots, when the canvas is drawn and who keeps drawing after a 3D start; the per-job callback behaviour, Flash version test and command line stay in the note
-torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay in the note; §10.1.8 carries the session, the script object, the extra setters, and the absence of SimObject and .dso
-torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.8 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
-torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.8 carries the 95-versus-94 difference, initialisation, and when each DLL loads
+torque/304-adventure.md	cited	10	10	§10.1.4 carries the session in one row; mouse, chat, the local-level magic gate, gmap keys and the console methods stay in the note
+torque/304-audio-ui.md	cited	10	10	§10.1.4 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
+torque/304-draw.md	cited	10	10	§10.1.4 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note; exact304 wrapper constants/key-container limits carried in10.11
+torque/304-net.md	cited	10	10	§10.1.4 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
+torque/304-npcs.md	cited	10	10	§10.1.4 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note; selected304 local value-helper branches/limits carried in10.12
+torque/4208-engine.md	cited	10	10	§10.1.5 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
+torque/4208-g3d.md	cited	10	10	§10.1.5 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
+torque/4208-launcher.md	cited	10	10	§10.1.5 carries the 94 slots, when the canvas is drawn and who keeps drawing after a 3D start; the per-job callback behaviour, Flash version test and command line stay in the note
+torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay in the note; §10.1.6 carries the session, the script object, the extra setters, and the absence of SimObject and .dso
+torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.6 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
+torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.6 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
-torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.16 carries the class split and who calls graal_set, and the setter groups stay in the note while the Torque rebuild is on hold
-torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.16 carries the single-exe shape, and the string diff against 5.31r4 stays in the note while the Torque rebuild is on hold
-torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.16 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note while the Torque rebuild is on hold
-torque/engine-4208.md	cited	10	10	callback names, class counts, phase-ack names and sub-object keys stay in the note; §10.1.14 carries the launcher / engine / 3D split
+torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.6 carries the class split and who calls graal_set, and the setter groups stay in the note while the Torque rebuild is on hold
+torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.6 carries the single-exe shape, and the string diff against 5.31r4 stays in the note while the Torque rebuild is on hold
+torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.6 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note while the Torque rebuild is on hold
+torque/engine-4208.md	cited	10	10	callback names, class counts, phase-ack names and sub-object keys stay in the note; §10.1.5 carries the launcher / engine / 3D split
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-and-formats.md	cited	10; E	10	
-torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.16 carries the one-line identification
-torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.16 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
-torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.16 carries what it loads, and the setter split is cited from torque/engine-5007.md
-torque/stub-512.md	cited	10	10	packer stub; §10.1.16 carries the file version and that the engine DLL is not in the zip
-torque/stub-5243.md	cited	10	10	packer stub; §10.1.16 carries the file version 5.243
-torque/stub-524r4.md	cited	10	10	packer stub; §10.1.16 carries the file version 5.244
-torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.16 carries that one fact
+torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.6 carries the one-line identification
+torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.6 carries the GameObject-era facts, and the event names and setter calls stay in the note while the Torque rebuild is on hold
+torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.6 carries what it loads, and the setter split is cited from torque/engine-5007.md
+torque/stub-512.md	cited	10	10	packer stub; §10.1.6 carries the file version and that the engine DLL is not in the zip
+torque/stub-5243.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.243
+torque/stub-524r4.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.244
+torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.6 carries that one fact
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
-torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.14 names both
-torque/skipped-v4-read.md	cited	10	10	§10.1.6 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
-torque/skipped-v5-read.md	cited	10	10	§10.1.6 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
-torque/skipped-version-stamps.md	cited	10	10	§10.1.13 carries the version strings, fixed words and companies on the skipped exports
-torque/study-torque-clients.md	cited	E; 10	10	§10.1.5 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
+torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both
+torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
+torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
+torque/skipped-version-stamps.md	cited	10	10	§10.1.9 carries the version strings, fixed words and companies on the skipped exports
+torque/study-torque-clients.md	cited	E; 10	10	§10.1.8 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
