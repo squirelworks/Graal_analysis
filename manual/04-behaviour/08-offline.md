@@ -77,7 +77,7 @@ This chapter gives how the client plays without a game server: the ways in, wher
 | start screens | 2.05: Training, Options, Start; 2.22 adds Get an account!; 2.31 adds Editor, which launches the separate GraalEditor (→ §11.6) | [live] (client-internals/live-checks-editor-offline-sound.md#the-training-button) |
 | GraalEditor 2.3.1.1 | carries the same 9 names and `tiledefsOffline.txt` | [inf] (client-internals/offline-tutorial-205.md#later-clients) |
 
-## 4.8.5 Windows 4.04r2: bounded initialization evidence
+## 4.8.5 Windows 4.04r2: startup and an offline transition
 
 | Condition | Before | After or observed result | Limit | Source |
 | --- | --- | --- | --- | --- |
