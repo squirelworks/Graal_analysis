@@ -608,6 +608,8 @@ formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognit
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
-client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; E	4.1; E	
+client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; 8.4; E	4.1; 8.4; E	
+formats/linux-6x-class-cache.md	cited	3.8; E	3.8; E	Class-path writer/reader order, packet 197 zero-CRC path, the 161 request and the 6.01 x86 delivery split carried in 3.8.9; identities stay in the source note
+client-internals/mac-611r1-gs2-runner.md	cited	8.4; E	8.4; E	Read handlers, loop check, snapshot sleep/waitfor, calls and status carried in 8.4.4; table-window detail and limits stay in the source note
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/windows-420-render-seams.md	cited	10	10	Render entry points carried in 10.1.5; the reproduction test and the v3-v5 ownership summary stay in the source note

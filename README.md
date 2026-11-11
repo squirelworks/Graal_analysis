@@ -20,6 +20,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
 
 - [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
+- [Linux 6.x class cache](formats/linux-6x-class-cache.md) — packet 197 as a metadata list with the expected CRC, why a header-only file is never a class hit, the 161 request with the stored-body CRC, and the 6.01 x86 split between 140 and 197.
+- [Mac OS X 6.11r1 GS2 runner](client-internals/mac-611r1-gs2-runner.md) — decoded records with cached handlers, the loop check, snapshot-based sleep and waitfor, and calls that wait for class downloads; static, one build.
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
 

@@ -33,6 +33,13 @@ macOS CI is paused until the polish stage.
 
 - [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
 
+- [x] **Bound the Linux 6.x class-cache path.** ~~Carry the 197 metadata list, the zero-CRC path, the 161 request and the 6.01 x86 delivery split.~~ [Source](../formats/linux-6x-class-cache.md); fixtures, malformed files and execution remain untested.
+
+- [x] **Publish the Windows 5.00r7 request and segment vectors.** ~~Carry the four authored vectors for the 158/161 requests, the mask-only container and the 4.04r2 `client.` flag.~~ [Source](../client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries); none was captured or sent.
+
+- [x] **Read the Mac OS X 6.11r1 GS2 runner.** ~~Carry selected handlers, the loop check, snapshot sleep/waitfor and calls.~~ [Source](../client-internals/mac-611r1-gs2-runner.md).
+  - [ ] Authenticate the Mac 6.11r1 handler-table extent, read opcode 7 and the arithmetic/comparison handlers, and trace the snapshot queue's clock.
+
 - [x] **Publish the later Linux 3.04 first-handler checkpoint.** ~~Carry same-object/thread and relocation-aware linkage.~~ [Source](../client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint); completion and original-client vector execution remain unproved.
 
 - [x] **Identify the exact 2.05r2 `#6` association.** ~~Corroborate selected actor carried-NPC image and bounded producer/consumer paths.~~ [Checkpoint](../npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint); full eligibility, selectors, receiver identity, lifetime and runtime remain open.
