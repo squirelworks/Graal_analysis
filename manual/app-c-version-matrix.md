@@ -5,6 +5,8 @@ Build and era names are defined in → §1.1 and → §1.6. Each cell points bac
 
 ## C.1 Wire and scripting by era
 
+Each row is one era of §1.6. Across it are the era's token, cipher generation, message ids, parsed props and scripting, so two eras can be compared at a glance [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
+
 | Era | Login token | Cipher gen | Message ids handled or sent | Props parsed | Scripting | Source |
 | --- | --- | --- | --- | --- | --- | --- |
 | Z | none | text lines (→ §2.3.1) | text lobby lines | n/a | none | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
@@ -47,6 +49,8 @@ Later builds: → §2.5 and the per-build tables in `version-profiles/plo-handle
 
 ## C.3 Prop parsers
 
+Each prop parser grew over time. Each row gives a parser, the ids 1.33 accepts and the ids added later, with the build that added them [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers).
+
 | Parser | 1.33 | Added later | Source |
 | --- | --- | --- | --- |
 | player props | 0–33 [inf] | 34 (1.39); 35, 36 (1.41); 37–41 (2.02 rev2); 42 (2.04); 43–45 (2.1 tests) | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
@@ -57,6 +61,8 @@ Later builds: → §2.5 and the per-build tables in `version-profiles/plo-handle
 The 1.33 player/NPC split is assumed from 1.34, where the player parser is the one that calls the sparse sub-parser [inf] (client-internals/cross-version-timeline.md#prop-parsers). Prop encodings: → §2.6.
 
 ## C.4 UDP ids handled
+
+Each row gives a build and the UDP ids it handles [bin] (client-internals/cross-version-timeline.md#udp-packets).
 
 | Build | Ids | Source |
 | --- | --- | --- |
@@ -70,6 +76,8 @@ The 1.33 player/NPC split is assumed from 1.34, where the player parser is the o
 UDP messages: → §2.9.
 
 ## C.5 GS1 command table size
+
+The GS1 command table grew build by build. Each row gives a build, the size of its table and the commands added [bin] (client-internals/cross-version-timeline.md#gs1-commands).
 
 | Build | Commands | Added | Source |
 | --- | ---: | --- | --- |
@@ -95,6 +103,8 @@ UDP messages: → §2.9.
 A command in the table may have no executor case and be parsed and ignored; new commands are inserted mid-table, so command indexes differ between builds [bin] (client-internals/cross-version-timeline.md#gs1-commands). The commands themselves: → §8.2.
 
 ## C.6 Generation 2 builds, 1.21 to 1.32
+
+The generation-2 builds are compared here on their own. Each row gives the server ids a build handles and the props it parses and sends [bin] (protocol/gserv-1999.md#message-ids).
 
 | Build | S→C ids handled | Player props parsed | Player props sent | NPC props | Baddy props | Source |
 | --- | --- | --- | --- | --- | --- | --- |

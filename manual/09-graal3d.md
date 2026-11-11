@@ -7,6 +7,8 @@ Graal3D is a separate 3D side project from February 2000, with its own Delphi cl
 
 ## 9.0 What ships and how it relates to 2D Graal
 
+Graal3D is a separate program from 2000 with its own server. The facts below say what the archive holds and where it sits among the 2D releases [file] (graal3d/README.md#what-ships).
+
 | Fact | Source |
 | --- | --- |
 | The archive `graal3d.7z` holds the client, the server, `graal3dconfig.txt`, `serverconfig.txt`, two levels (`level1.x`, `startlevel.x`), eight player-model meshes and their BMP textures | [file] (graal3d/README.md#what-ships) |
@@ -27,6 +29,8 @@ Graal3D is a separate 3D side project from February 2000, with its own Delphi cl
 
 ### 9.1.1 Encoding and frames
 
+Graal3D borrows the 2D codec. The rules below give its encodings and how a TCP frame is laid out [bin] (graal3d/protocol.md#encoding).
+
 | Rule | Source |
 | --- | --- |
 | The text codec is the 2D one: `c` is one byte + 32, `sN` is an N-byte integer with 7 bits per byte, most significant first, each byte + 32, and `str` is `c(len)` then the bytes (→ §2.1) | [bin] (graal3d/protocol.md#encoding) |
@@ -39,6 +43,8 @@ Graal3D is a separate 3D side project from February 2000, with its own Delphi cl
 | Packet ids and the prop table are numbered from scratch, not shared with 2D; positions are 3D, the angle is one byte and colours are 24-bit | [bin] (graal3d/README.md#how-it-relates-to-the-2d-graal-of-the-same-time) |
 
 ### 9.1.2 Login
+
+The rules below give the Graal3D login in order, from the server's first message to acceptance or refusal [cap] (graal3d/protocol.md#login).
 
 | Rule | Source |
 | --- | --- |
@@ -63,6 +69,8 @@ Login order on the server [cap] (graal3d/protocol.md#login):
 
 ### 9.1.3 Server → client ids
 
+These are the messages the Graal3D server sends. Each row gives the id, its name in the notes, the payload and what the client does [bin][cap] (graal3d/protocol.md#server--client).
+
 | Id | Name in the notes | Payload | Client action | Source |
 | ---: | --- | --- | --- | --- |
 | 0 | LEVEL | level text with `§` for `\n`, or empty | saves and loads it as a `.x` mesh; empty means "you already have it" (→ §9.3) | [bin][cap] (graal3d/protocol.md#server--client) |
@@ -81,6 +89,8 @@ Login order on the server [cap] (graal3d/protocol.md#login):
 
 ### 9.1.4 Client → server ids
 
+These are the messages a Graal3D client sends. Each row gives the id, the payload and the server's action [bin][cap] (graal3d/protocol.md#client--server).
+
 | Id | Payload | Server action | Source |
 | ---: | --- | --- | --- |
 | 0 | login (→ §9.1.2) | | [bin][cap] (graal3d/protocol.md#client--server) |
@@ -89,6 +99,8 @@ Login order on the server [cap] (graal3d/protocol.md#login):
 | 51–64 | admin commands | → §9.2.3 | [bin][cap] (graal3d/protocol.md#admin-commands) |
 
 ### 9.1.5 UDP between clients
+
+Like 2D Graal, Graal3D sends some traffic between clients over UDP. The rules below give how peers find each other and what goes over the channel [bin] (graal3d/protocol.md#udp-client-to-client).
 
 | Rule | Source |
 | --- | --- |
@@ -131,6 +143,8 @@ The same ids are used in both directions and inside UDP; a props payload is a ru
 | 50 | `c` | 1 = this player is in your level (add as UDP peer), 0 = not | — | server only | [bin][cap] (graal3d/protocol.md#player-properties) |
 | 51 | none | player left: remove | — | server only | [bin][cap] (graal3d/protocol.md#player-properties) |
 
+Players are described by props, as in 2D. The rules below give what some props mean and how they are sent each tick [bin] (graal3d/protocol.md#player-properties).
+
 | Rule | Source |
 | --- | --- |
 | Prop 10 colours the two arms, 17 the two hands and 11 the two feet | [bin] (graal3d/protocol.md#player-properties) |
@@ -138,6 +152,8 @@ The same ids are used in both directions and inside UDP; a props payload is a ru
 | The wire range of props 1–3 is −4000 to 4095.5 in half-unit steps, which covers the ±4000 world clamp (→ §9.5) | [bin] (graal3d/client-behaviour.md#walking-and-running) |
 
 ### 9.2.2 Server relay rules
+
+The server checks and relays props. The rules below give how it treats nicknames and guild tags and who it relays to [cap] (graal3d/protocol.md#server-relay-rules).
 
 | Rule | Source |
 | --- | --- |
@@ -167,6 +183,8 @@ The admin protocol is read from the server alone; no Graal3D admin client is in 
 | 63 | text | message to all players (8) as `Administrator <account>:§<text>` | [cap] (graal3d/protocol.md#admin-commands) |
 | 64 | `c(player id)` + text | message to one player (8) | [bin] (graal3d/protocol.md#admin-commands) |
 
+Admin sessions get their own messages. Each row gives an id the server sends out, its meaning and its layout [cap] (graal3d/protocol.md#admin-commands).
+
 | Id out | Meaning | Layout | Source |
 | ---: | --- | --- | --- |
 | 50 | account added | account id, `c(folder)`, name to end of line; one per account after an admin login | [cap] (graal3d/protocol.md#admin-commands) |
@@ -180,6 +198,8 @@ The admin protocol is read from the server alone; no Graal3D admin client is in 
 | 58 | player's account renamed | unmeasured | [bin] (graal3d/protocol.md#admin-commands) |
 | 59 | player props | `c(player id)` + props: the nickname, the full props on login, prop 14 on level entry | [cap] (graal3d/protocol.md#admin-commands) |
 
+The rules below explain the folder byte and how the admin ids line up with the 2D ones [cap][inf] (graal3d/protocol.md#admin-commands).
+
 | Rule | Source |
 | --- | --- |
 | The folder byte in 50 fits 1 for a normal account plus 4 × the admin level, and 0 for a load-only account; the formula is fitted to three accounts | [cap][inf] (graal3d/protocol.md#admin-commands) |
@@ -188,6 +208,8 @@ The admin protocol is read from the server alone; no Graal3D admin client is in 
 | Commands 51–54, 59, 60 and 62 were not exercised live | [lab] (graal3d/lab-2026-10-30.md#not-confirmed) |
 
 ### 9.2.4 Account and config files
+
+The server keeps accounts and settings in text files. The rules below give their layout [cap] (graal3d/formats.md#accountstxt-server).
 
 | Rule | Source |
 | --- | --- |
@@ -218,6 +240,8 @@ Client config `graal3dconfig.txt`, `key=value` lines read at start and written b
 
 ### 9.3.1 Level files
 
+A Graal3D level is a DirectX mesh file. The rules below say what it holds and how the two shipped levels differ [file] (graal3d/formats.md#levels-levelsx-on-the-server).
+
 | Rule | Source |
 | --- | --- |
 | A level is a DirectX retained-mode `.x` text file (`xof 0302txt 0064`); there is no tile layer, NPC or link data | [file] (graal3d/formats.md#levels-levelsx-on-the-server) |
@@ -228,6 +252,8 @@ Client config `graal3dconfig.txt`, `key=value` lines read at start and written b
 | The client's saved copy was byte-identical to the server's file in the lab | [cap] (graal3d/protocol.md#level-change) |
 
 ### 9.3.2 Level change
+
+Changing level takes a few server steps. The steps below are in order [bin] (graal3d/protocol.md#level-change).
 
 | Step | Server action | Source |
 | ---: | --- | --- |
@@ -240,6 +266,8 @@ Client config `graal3dconfig.txt`, `key=value` lines read at start and written b
 
 ### 9.3.3 Player model and textures
 
+The player is built from eight meshes. The rules below give the meshes and their textures [file] (graal3d/formats.md#player-model-client).
+
 | Rule | Source |
 | --- | --- |
 | The player is eight `.x` meshes (`xof 0303txt 0032`): body, head, two arms, two hands, two feet, each with normals, texture coordinates and a material | [file] (graal3d/formats.md#player-model-client) |
@@ -248,6 +276,8 @@ Client config `graal3dconfig.txt`, `key=value` lines read at start and written b
 | Textures are plain Windows BMPs, 24-bit or 8-bit RLE, mostly 128×128 (`clouds.bmp` is 256×256) | [file] (graal3d/formats.md#textures) |
 
 ## 9.4 Camera
+
+The camera follows the player at fixed offsets. Each row gives one quantity or rule with its value [bin] (graal3d/camera.md#status-for-g3d-2).
 
 | Quantity or rule | Value | Source |
 | --- | --- | --- |
@@ -267,6 +297,8 @@ Client config `graal3dconfig.txt`, `key=value` lines read at start and written b
 | Lab | none of these figures is lab-confirmed; Wine's retained-mode stubs break camera frames | [lab] (graal3d/camera.md#still-needed) |
 
 ## 9.5 Collision
+
+Collision uses a small set of numbers. Each row gives one quantity and its value [bin] (graal3d/collision.md#what-the-collider-needs).
 
 | Quantity | Value | Source |
 | --- | --- | --- |
@@ -291,6 +323,8 @@ Order of tests for one attempted step:
 | 4 | Reject the step if a probe is blocked, otherwise keep the (possibly slid) position | [bin] (graal3d/collision.md#order-of-tests-one-attempted-step) |
 | 5 | Drop the step if x or z leaves ±4000 | [bin] (graal3d/collision.md#order-of-tests-one-attempted-step) |
 
+The rules below give where the collision probes lie and how each set is used [bin] (graal3d/collision.md#body-probes).
+
 | Rule | Source |
 | --- | --- |
 | Ground probes: four points in the feet plane at ±5 on the facing axis and ±5 on the strafe axis, a plus shape, not a filled disc | [bin] (graal3d/collision.md#body-probes) |
@@ -306,6 +340,8 @@ Order of tests for one attempted step:
 
 ### 9.6.1 Controls
 
+Graal3D is played on the number pad. Each row gives a key and its action [bin] (graal3d/client-behaviour.md#controls).
+
 | Key | Action | Source |
 | --- | --- | --- |
 | Numpad 8 / 2 | forward / back, relative to the camera's view direction | [bin] (graal3d/client-behaviour.md#controls) |
@@ -320,6 +356,8 @@ Order of tests for one attempted step:
 
 ### 9.6.2 Walking, running and jumping
 
+The rules below give walking speed, running and the jump [bin] (graal3d/client-behaviour.md#walking-and-running).
+
 | Rule | Source |
 | --- | --- |
 | Walking speed is 8 units per 50 ms tick (160 per second) | [bin] (graal3d/client-behaviour.md#walking-and-running) |
@@ -331,6 +369,8 @@ Order of tests for one attempted step:
 
 ### 9.6.3 Animation counter
 
+Prop 5 drives the walk and jump poses. The rules below say how it counts [bin] (graal3d/client-behaviour.md#animation-counter-prop-5).
+
 | Rule | Source |
 | --- | --- |
 | Prop 5 is a tick counter for the walk and jump poses, not a pose id | [bin] (graal3d/client-behaviour.md#animation-counter-prop-5) |
@@ -338,6 +378,8 @@ Order of tests for one attempted step:
 | Where it advances each tick was not traced; that standing still freezes it is an inference | [inf] (graal3d/client-behaviour.md#animation-counter-prop-5) |
 
 ### 9.6.4 Chat
+
+Chat in Graal3D is a log, not bubbles. The rules below give how lines are added and drawn [bin] (graal3d/client-behaviour.md#chat).
 
 | Rule | Source |
 | --- | --- |
@@ -348,6 +390,8 @@ Order of tests for one attempted step:
 | The "Player look" window edits props 6–11 and 17 and saves them in `graal3dconfig.txt` | [bin] (graal3d/client-behaviour.md#look) |
 
 ### 9.6.5 Lab coverage
+
+Not every part of Graal3D was confirmed in the lab. The facts below say what was and what was not [lab] (graal3d/lab-2026-10-30.md#what-was-confirmed).
 
 | Fact | Source |
 | --- | --- |

@@ -7,6 +7,8 @@ The official and community tools around Graal, covered for the files they read a
 
 ## 11.0 Tool map
 
+The table maps each tool to its role, the files it defines or writes, and the section that describes it [2.22] (tools/level-editor/README.md#classic-graal-level-editor-notes-by-version).
+
 | Tool | Role | Files it defines or writes | Section | Source |
 | --- | --- | --- | --- | --- |
 | Built-in level editor | editor inside each client up to 2.22 | GR-V1.03, GLEVNW01, GOBJSET01 sets, map images | → §11.6 | [2.22] (tools/level-editor/README.md#classic-graal-level-editor-notes-by-version) |
@@ -21,6 +23,8 @@ The official and community tools around Graal, covered for the files they read a
 
 ### 11.1.1 Lineage and package
 
+The facts below give how the standalone editor came out of the client and what its package holds [GE][2.05] (tools/graaleditor-vs-205.md#lineage).
+
 | Fact | Source |
 | --- | --- |
 | Up to 2.22 the editor is built into the client (F4, refused online); 2.31 has no editor forms, and its start screen has an Editor button that launches `GraalEditor.exe` from the game folder | [GE][2.05] (tools/graaleditor-vs-205.md#lineage) |
@@ -32,6 +36,8 @@ The official and community tools around Graal, covered for the files they read a
 | `Greaditor.exe` (2001, in the New World beta folders) is a separate UPX-packed editor that was not unpacked | [bin] (tools/level-editor/version-deltas.md#1-the-standalone-editors-one-line-each) |
 
 ### 11.1.2 Files
+
+The rules below give which level formats GraalEditor opens and how it saves [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205).
 
 | Rule | Source |
 | --- | --- |
@@ -47,6 +53,8 @@ The official and community tools around Graal, covered for the files they read a
 
 ### 11.1.3 Additions over the 2.05 built-in editor
 
+GraalEditor adds features over the 2.05 built-in editor. Each row gives an area and what was added [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205).
+
 | Area | GraalEditor | Source |
 | --- | --- | --- |
 | terrain | per-level height overlay, "Terrain Height Spot", "Show terrain grid" | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
@@ -60,6 +68,8 @@ The official and community tools around Graal, covered for the files they read a
 | unchanged | the tile undo model, the link, sign, chest and baddy dialogs, GOBJSET01 sets, right-click copy, Generate map → `graalmap.png` | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
 
 ## 11.2 GraalShop
+
+GraalShop is the period gani editor. The facts below say what it is and where its name comes from [bin] (tools/graaleditor-vs-205.md#graalshop-the-gani-editor).
 
 | Fact | Source |
 | --- | --- |
@@ -81,6 +91,8 @@ Three writers emit `GLEVNW01` and `GRMAP001`, each with a different key set; one
 
 ### 11.3.1 Builds
 
+Several level generators survive. Each row gives a program, its date and what it writes [bin] (tools/generators-222/README.md#graal-222-generators).
+
 | Program | Date | Writes | Source |
 | --- | --- | --- | --- |
 | `TerrainGenerator.exe` | 2003-12-16 | `GRMAP001` generator form and GLEVNW01 levels of tile 0 with a 9×9 `HEIGHTS` block and edge links | [bin] (tools/generators-222/README.md#graal-222-generators) |
@@ -95,6 +107,8 @@ No generator imports a socket library; output stays in the chosen folder [bin] (
 
 ### 11.3.2 TerrainGenerator
 
+The rules below give TerrainGenerator's options and how it builds the height field [doc][bin] (tools/generators-222/README.md#terrain).
+
 | Rule | Source |
 | --- | --- |
 | Dialog fields: grid width and height, base, height, chaos, even borders, an islands preset (even borders, the rim kept at the base) and a seed | [doc][bin] (tools/generators-222/README.md#terrain) |
@@ -105,6 +119,8 @@ No generator imports a socket library; output stays in the chosen folder [bin] (
 | Edge arrivals: west 61, east 0, north 61, south 0; the other axis is `playerx` or `playery` | [bin] (tools/generators-222/README.md#terrain) |
 
 ### 11.3.3 DungeonGenerator
+
+The rules below give DungeonGenerator's options file and how it cuts a layout into levels [file] (tools/generators-222/README.md#dungeon).
 
 | Rule | Source |
 | --- | --- |
@@ -119,6 +135,8 @@ No generator imports a socket library; output stays in the chosen folder [bin] (
 | The random styles (maze, onion, spiral, rogue, snake, square spiral) come from the linked DungeonMaker 0.9 library, which reads `layouts/rooms*`, `layouts/stats*` and `layouts/constants`; its crawler steps are unmeasured | [bin][doc] (tools/level-tools-gaps/README.md#dungeonmaker-09) |
 
 ### 11.3.4 GraalLevelGen
+
+GraalLevelGen builds levels from a picture. The rules below give how the picture is read [doc] (tools/classic-tools/graal-level-gen.md#what-the-operator-does).
 
 | Rule | Source |
 | --- | --- |
@@ -151,6 +169,8 @@ Colour table, the same in the December 2000 build and the nw-gmap build [doc][bi
 
 ## 11.4 gif2mng
 
+gif2mng converts images for the client. The rules below say what it does [bin] (tools/gif2mng.md#gif2mng).
+
 | Rule | Source |
 | --- | --- |
 | A GIF converter with banner date 2004-06-03, units `UGif` and `UMNG`, zlib linked | [bin] (tools/gif2mng.md#gif2mng) |
@@ -176,6 +196,8 @@ The built-in editor, with 2.22 as the reference and every other build as a delta
 
 ### 11.6.1 Entering, window and modes (2.22)
 
+In 2.22 the editor is a mode of the game window. The rules below give how it is entered and laid out [2.22] (tools/level-editor/222-reference.md#1-entering-and-leaving).
+
 | Rule | Source |
 | --- | --- |
 | The editor is the `TAdventure` main form in a second mode; the same exe plays and edits | [2.22] (tools/level-editor/222-reference.md#1-entering-and-leaving) |
@@ -194,6 +216,8 @@ The built-in editor, with 2.22 as the reference and every other build as a delta
 
 ### 11.6.2 Level model (2.22)
 
+The editor holds a level as a set of lists. Each row gives one list and what an element holds [2.22] (tools/level-editor/222-reference.md#3-level-model).
+
 | List | Element | Source |
 | --- | --- | --- |
 | board | 64 × 64 16-bit tile ids, index y × 64 + x | [2.22] (tools/level-editor/222-reference.md#3-level-model) |
@@ -206,6 +230,8 @@ The built-in editor, with 2.22 as the reference and every other build as a delta
 | cache | recently loaded levels, for the link walker and gmaps (2.17 on) | [2.22] (tools/level-editor/222-reference.md#3-level-model) |
 
 ### 11.6.3 Open and save (2.22)
+
+The rules below give how the 2.22 editor opens and saves levels [2.22] (tools/level-editor/222-reference.md#open).
 
 | Rule | Source |
 | --- | --- |
@@ -220,6 +246,8 @@ The built-in editor, with 2.22 as the reference and every other build as a delta
 | 2.22 deletes before writing, so a crash loses the level; the 2.3 change log says the editor then writes a copy and renames it | [2.22] (tools/level-editor/222-reference.md#safety) |
 
 ### 11.6.4 Editing tools (2.22)
+
+The rules below give the editor's tools and how tiles and tile definitions are addressed [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet).
 
 | Rule | Source |
 | --- | --- |
@@ -252,6 +280,8 @@ Keys, 2.22 [2.22] (tools/level-editor/222-reference.md#13-keys):
 
 ### 11.6.5 Builds as deltas from 2.22
 
+Other builds' editors are described as differences from 2.22. Each row gives a build and its delta [2.17] (tools/level-editor/version-deltas.md#5-deltas-as-a-checklist-per-build-relative-to-222).
+
 | Builds | Delta | Source |
 | --- | --- | --- |
 | 2.17.1 | none found; same class list | [2.17] (tools/level-editor/version-deltas.md#5-deltas-as-a-checklist-per-build-relative-to-222) |
@@ -263,6 +293,8 @@ Keys, 2.22 [2.22] (tools/level-editor/222-reference.md#13-keys):
 | New World betas | no chest and no baddy editor or class; heights and map in beta 1; text format in the beta's own `levelformat.txt` | [bin] (tools/level-editor/version-deltas.md#2-class-timeline-of-the-built-in-editor) |
 | 2.1 test builds | combined NPC dialog, predefined NPCs, no sign-codes window | [bin][doc] (tools/level-editor/version-deltas.md#2-class-timeline-of-the-built-in-editor) |
 | 2.31 | no editor dialogs; the level model and GR-V1.04 reader remain for the game; no GLEVNW01 | [2.31] (tools/level-editor/version-deltas.md#3-formats-per-build) |
+
+The rules below give the loader limits that differ between builds [bin] (tools/level-editor/version-deltas.md#3-formats-per-build).
 
 | Rule | Source |
 | --- | --- |
@@ -286,6 +318,8 @@ Change-log dated editor features, from the shipped `newfeatures` files [doc] (to
 | 2.3 | editor and client become separate exes; write-copy-and-rename saving; filename cache | [doc] (tools/level-editor/version-deltas.md#4-change-log-dated-features) |
 
 ## 11.7 Other tools
+
+Other period tools are listed here. Each row gives a tool, what it does and the files it uses [bin][doc] (tools/classic-tools/text-convert.md#textconvert).
 
 | Tool | What it does | Files | Source |
 | --- | --- | --- | --- |

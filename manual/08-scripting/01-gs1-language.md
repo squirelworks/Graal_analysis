@@ -7,6 +7,8 @@ This chapter describes GS1, the NPC and weapon script language of the 1.x and 2.
 
 ## 8.1.1 Where scripts run
 
+GS1 runs on the client. The rules below say where scripts run, what the archived corpus holds, and the three kinds of script [doc] (npc-library/archival-scripting-notes.md#runtime-model-highlights-classic-client).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | host | Classic NPCs are pure client-side; the archived script corpus shows no separate server VM | [doc] (npc-library/archival-scripting-notes.md#runtime-model-highlights-classic-client) |
@@ -38,6 +40,8 @@ This chapter describes GS1, the NPC and weapon script language of the 1.x and 2.
 
 ## 8.1.3 Execution
 
+A GS1 script does not run line by line on demand. Each event runs the whole script from the top. The rules below give how events, conditions and loops behave in 2.05 [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | run | every event runs the whole node list from the top | [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works) |
@@ -68,6 +72,8 @@ A separate compiler defect folds comparisons of constant numeric leaves to zero:
 The researcher ran sixteen owned cases in two offline Wine/virtual-display fixtures, with unchanged original executable bytes, no server or external network, explicit 2.31 donor assets and completed cleanup. Fifteen labels were fully readable in the second layout; its actor-obscured greater-than control was read from the identical script in the first. No absent label counted as false. Ten fresh selected instruction reads corroborate the mechanism, without live expression-node inspection. Evidence and target identity are researcher supplied. Other builds, nonfinite/malformed values, full aliases/precedence and flag-name collisions remain open [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits).
 
 ## 8.1.4 Timeouts and sleep
+
+Scripts that wait use a timer. The rules below give how `timeout` and `sleep` work, and the rates the archived scripts use [doc] (npc-library/archival-scripting-notes.md#runtime-model-highlights-classic-client).
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -143,6 +149,8 @@ The engine keeps these flags current; a script tests them with `if` [2.05] (npc-
 
 ## 8.1.7 Flags, variables and persistence
 
+The rules below give how a script stores state: flags, string variables and arrays, and which of them last beyond the session [2.05][doc] (npc-library/gs1-command-reference-205.md#flags-and-variables).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | flags | `set name` sets a flag, `unset name` clears it; the documentation says a `server.` prefix makes it server-wide | [2.05][doc] (npc-library/gs1-command-reference-205.md#flags-and-variables) |
@@ -158,6 +166,8 @@ The engine keeps these flags current; a script tests them with `if` [2.05] (npc-
 
 ## 8.1.8 Syntax and operators
 
+GS1's operators are close to C's. Each row gives a group and its forms [doc] (npc-library/gs1-reference-205.md#operators-and-syntax-doc).
+
 | Item | Forms | Source |
 | --- | --- | --- |
 | assignment | `=`, `+=`, `-=`, `*=`, `/=`, `++`, `--` | [doc] (npc-library/gs1-reference-205.md#operators-and-syntax-doc) |
@@ -171,6 +181,8 @@ The engine keeps these flags current; a script tests them with `if` [2.05] (npc-
 | not commands | `warp` and `jump` are not GS1 commands in 2.05; warping is `setlevel` / `setlevel2` or an assignment to `playerx` / `playery` | [2.05] (npc-library/gs1-command-reference-205.md#corrections-to-gs1-commandsmd) |
 
 ## 8.1.9 Execution contexts
+
+The same command can act differently depending on what runs it. Each row gives a context and the rule that changes there [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works).
 
 | Context | Rule | Source |
 | --- | --- | --- |

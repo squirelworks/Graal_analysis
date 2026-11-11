@@ -9,6 +9,8 @@ The listserver gives a client the list of game servers and, from 2.22, checks it
 
 ### 6.1.1 Where each build looks for the list
 
+Each build finds its server list in its own way. The table gives the host and port each group of builds uses, and the list name it asks for [bin] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5).
+
 | Builds | Host and port | List name | Source |
 | --- | --- | --- | --- |
 | 1.33 to 1.39 | no listserver; the player types a game-server address | n/a | [bin] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5); [lab] (tools/lab-servers/README.md#133-to-139-on-beta4-2026-10-30) |
@@ -22,6 +24,8 @@ The listserver gives a client the list of game servers and, from 2.22, checks it
 The 2.22 client keeps the hosts from `arrays2.dat` in memory under a one-byte transform, so a plain memory search misses them [2.22] (protocol/listserver.md#222-specifics-222cap).
 
 ### 6.1.2 Client → listserver ids
+
+These are the messages a client sends to the listserver. Each row gives the id, its name and its layout [srv] (protocol/listserver.md#client--listserver-1).
 
 | Id | Name | Layout | Source |
 | ---: | --- | --- | --- |
@@ -46,6 +50,8 @@ The listserver login differs by client generation, not by build; inside a genera
 | generation 4 | 2.19 to 2.21 | id 4 `c key` + token, then bz2 frames with partial XOR (limit 4) | [srv] (protocol/listserver.md#client--listserver); [lab] (tools/lab-servers/README.md#our-listserver-version-2) |
 | RC 1.41 | RC 1.41 (2002) | id 0 `rc`, then id 1 `str account`, `str password` | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 
+The rules below say which tokens go to the listserver and which go to a game server, and what the classic frames can tell about the build [bin][cap] (protocol/listserver.md#222-specifics-222cap).
+
 | Rule | Source |
 | --- | --- |
 | `GNW30123` is the listserver token of 2.22 and 2.31, shared by both; it is not a game build token (2.22 logs in to a game server as `GNW03014`, 2.31 as `GNW28015`) | [bin][cap] (protocol/listserver.md#222-specifics-222cap); [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
@@ -61,6 +67,8 @@ The listserver login differs by client generation, not by build; inside a genera
 
 ### 6.2.1 Listserver → client ids
 
+These are the listserver's replies. Each row gives the id, its name and its layout; two are disputed and point to App. E [srv][cap] (protocol/listserver.md#listserver--client).
+
 | Id | Name | Layout | Source |
 | ---: | --- | --- | --- |
 | 0 | SVRLIST | `c count`, then one record per server (→ §6.4) | [srv][cap] (protocol/listserver.md#listserver--client) |
@@ -69,6 +77,8 @@ The listserver login differs by client generation, not by build; inside a genera
 | 3 | SITEURL | URL | [srv] (protocol/listserver.md#listserver--client) |
 | 4 | ERROR | text; the connection closes | [srv] (protocol/listserver.md#listserver--client); [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | 5 | UPGURL | donate or upgrade URL | [srv] (protocol/listserver.md#listserver--client) |
+
+The rules below give how 2.05 handles those replies and fills its server window [2.05] (protocol/listserver.md#205-specifics-205).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -84,12 +94,16 @@ The listserver login differs by client generation, not by build; inside a genera
 
 ### 6.2.2 Reply frames seen
 
+Replies were captured from three kinds of login. Each row gives one login shape and the frames that came back [cap] (protocol/listserver.md#217-list-host-bin).
+
 | Login | Reply | Source |
 | --- | --- | --- |
 | shape B from a real 2.17, lab listserver | two plain zlib frames: id 0 (the list); then id 2 status, id 3 site URL, id 5 donation URL | [cap] (protocol/listserver.md#217-list-host-bin) |
 | shape C, port 14922 of the public service | two generation-5 frames with compression byte `0x04` (zlib): id 0 list; then id 2 status, id 3 site URL, id 5 upgrade URL | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
 | shape C, port 14923 of the public service | three generation-5 frames: the legacy list first, sent straight after the id 7 frame before the client's id 1, then the two frames above | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
 | classic (shape B frame), port 14923 of the public service | one plain zlib frame, id 0 only, no status, site or upgrade lines, no trailing NUL bytes; the server then waits | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
+
+The table gives details of those reply frames that a decoder must match: trailing bytes, the status frame and its count [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived).
 
 | Detail | Value | Source |
 | --- | --- | --- |
@@ -101,6 +115,8 @@ The listserver login differs by client generation, not by build; inside a genera
 | timing, port 14923, classic | about 0.2 s after the login | [cap] (protocol/public-listserver-2026-10-25.md#timing-users-link-round-trip-about-02-s) |
 
 ### 6.2.3 The classic `serverlist3` listserver
+
+The classic `serverlist3` listserver survives as source. The rules below give its ports, framing and how it filters the list [bin] (tools/classic-tools/serverlist3.md#start-and-config).
 
 | Rule | Source |
 | --- | --- |
@@ -122,6 +138,8 @@ On 2026-10-25 the public listserver was asked for its list 38 times, once per po
 | generation 5: id 7 + `GNW30123` + `newmain`, then id 1 | 2.22, 2.3, 2.31, and the 2.05 profile of the run | modern list (8 rows) with status, site and upgrade lines | the legacy list first, then the modern list (12 or 17 rows in all) with the status lines | [cap] (protocol/listserver-login-type-matrix-2026-10-25.tsv); [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | any | 2.05 profile | port 14921: connection refused at once | n/a | [cap] (protocol/public-listserver-2026-10-25.tsv); [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
 
+The public service was tested with each login type. The rules below say which port gives a list and what varied between runs [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result).
+
 | Rule | Source |
 | --- | --- |
 | A port that gets a list: a classic login on 14923; a generation-5 login on 14922 (14923 also answers it) | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
@@ -133,6 +151,8 @@ On 2026-10-25 the public listserver was asked for its list 38 times, once per po
 Why the public 14922 ignores a classic login, and what it does with a real 2.17.1, is open (→ App. E#403). Whether the 14923 legacy list is a real 2000-era reply is disputed (→ App. E#402).
 
 ## 6.4 Server-list records
+
+Each server in the list is one record of eight fields. The table gives each field's content in order [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived).
 
 | Field | Content | Source |
 | ---: | --- | --- |
@@ -156,6 +176,8 @@ Every field is a `str` [cap] (protocol/public-listserver-2026-10-25.md#frame-and
 | `P ` | gold | 3 | [srv] (protocol/listserver.md#listserver--client); [lab] (tools/lab-servers/README.md#our-listserver-version-2) |
 | `3 ` | 3D | 4 | [srv] (protocol/listserver.md#listserver--client); [lab] (tools/lab-servers/README.md#our-listserver-version-2) |
 
+The rules below give how prefixes appear, how a client uses a record to connect and one asset check that blocks it [srv] (protocol/listserver.md#listserver--client).
+
 | Rule | Source |
 | --- | --- |
 | Pre-2.2 clients get no prefix for bronze | [srv] (protocol/listserver.md#listserver--client) |
@@ -167,6 +189,8 @@ Every field is a `str` [cap] (protocol/public-listserver-2026-10-25.md#frame-and
 
 ## 6.5 Game server link
 
+Game servers talk to the listserver over a separate link. The rules below give its framing, port and opening lines [src] (server-notes/03-protocol.md#protocol).
+
 | Rule | Source |
 | --- | --- |
 | Listserver packets on this link have no length prefix: `id + payload + \n` | [src] (server-notes/03-protocol.md#protocol) |
@@ -174,6 +198,8 @@ Every field is a `str` [cap] (protocol/public-listserver-2026-10-25.md#frame-and
 | A GServer-v2 opens with a plain `REGISTERV3` line, then zlib frames: `NEWSERVER`, `SERVERHQPASS` / `SERVERHQLEVEL`, `SETPLYR` and `PLYRADD` per player, `VERIACC2` per login, and `SENDTEXT` with its allowed versions; the older master never pings | [src] (server-notes/lab-servers-2026-10-30.md#what-our-gserver-does-with-each-client-generation-src) |
 | The newer GServer-v2 sends `SETIP` every 60 s as a keep-alive, and its `VERIACC2` carries a `s` identity length | [src] (server-notes/lab-servers-2026-10-30.md#2-gserver-v2-beta4-against-our-build) |
 | Id 16 from a GServer-v2 is a pong and 99 is the listserver's ping | [src] (tools/lab-servers/README.md#what-changed-from-the-stub-of-2026-10-22) |
+
+The table gives the ids on that link, in each direction [src] (server-notes/03-protocol.md#listserver-ids).
 
 | Direction | Id | Name | Source |
 | --- | ---: | --- | --- |
@@ -203,6 +229,8 @@ The other server-to-list ids (0 to 31) set description, language, version, URL, 
 | Id 4: player add or update (2-byte id, a flag byte, `c` length, name); with flag bit 1 set and kind 0 the listserver answers id 7 with the player id and, when queued, "N ghost(s) before you" | [bin] (tools/classic-tools/serverlist3.md#what-a-game-server-sends) |
 | Id 5: player leave (2-byte id) | [bin] (tools/classic-tools/serverlist3.md#what-a-game-server-sends) |
 | The public directory is a database table, not built from these messages; the link carries presence, the ghost queue and the address check | [bin] (tools/classic-tools/serverlist3.md#what-a-game-server-sends) |
+
+The Reborn listserver keeps its data in tables. The rows below give what it stores and how it hashes passwords [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f).
 
 | Reborn listserver data | Source |
 | --- | --- |

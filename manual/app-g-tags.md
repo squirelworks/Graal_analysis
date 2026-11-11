@@ -5,6 +5,8 @@ How tags are written and cited is fixed in → §0.3. This appendix lists every 
 
 ## G.1 Kind-of-evidence tags
 
+Each row gives one tag and the kind of evidence it marks.
+
 | Tag | The claim comes from |
 | --- | --- |
 | `[bin]` | a static read of a program: headers, resources, strings, constants, code paths, described as behaviour |
@@ -30,6 +32,8 @@ Source of this legend: the reading guide [doc] (docs/book/00-how-to-read.md#what
 A build tag names the client build the claim was read from, written with the release number as the notes write it: `[2.05]`, `[2.22]`, `[2.31]`, `[1.39]`, `[5.12]` and so on. A build tag implies a static read or trace of that build unless another tag on the same claim says otherwise. The full list of builds and their names is → §1.1.
 
 ## G.3 Combining tags
+
+A claim can carry more than one tag. Each row gives a form of combination and what it means.
 
 | Form | Meaning |
 | --- | --- |

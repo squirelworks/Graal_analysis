@@ -7,6 +7,8 @@ GS2 is the script language of the 4.x and later clients. This chapter covers whe
 
 ## 8.3.1 Where GS2 appears
 
+GS2 replaces client-side GS1 in steps. Each row gives a group of builds and the scripting they run [doc] (client-internals/feature-timeline.md).
+
 | Builds | Scripting | Source |
 | --- | --- | --- |
 | 2.3 | classic client-side NPC mode removed; Classic moves to the NPC server | [doc] (client-internals/feature-timeline.md) |
@@ -51,6 +53,8 @@ The runner in §8.3.3 treats events as functions. How a queued event, a `sleep` 
 
 #### Linux 4.04r2: event ordering
 
+Event order was tested on Linux 4.04r2 with instrumented scripts. Each row gives one condition, what was seen and the limit of that test [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence).
+
 | Tested condition | Observation | Limit | Source |
 | --- | --- | --- | --- |
 | Instrumented profile-script fixture | Top-level statements run before the creation handler and again before the queued handler; a second control reproduces the order | Two tested event dispatches in one lifecycle, not an all-version rule | [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence) |
@@ -60,6 +64,8 @@ The runner in §8.3.3 treats events as functions. How a queued event, a `sleep` 
 The fixture replaces process input, not the executable file or its signature checks. Server and server commit are none. Joined classes, public calls and complete event semantics remain open → App. E#207. [cap] (client-internals/linux-404r2-events.md#experiment-boundary)
 
 #### Linux 4.04r2: sleep continuation
+
+`sleep` was tested the same way. Each row gives a condition, what happened and what was not measured [cap] (client-internals/linux-404r2-sleep.md#saved-continuation).
 
 | Condition | Observation | Unmeasured | Source |
 | --- | --- | --- | --- |
@@ -105,6 +111,8 @@ These GS2 names appear in the notes; each row gives only what the source says ab
 
 #### Linux 4.04r2: published API membership
 
+Linux 4.04r2 publishes a catalogue of script types and globals. The table gives what the exact input shows and where that stops [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction).
+
 | Catalog fact | Exact-input result | Limit | Source |
 | --- | --- | --- | --- |
 | Correct declaration grouping | 176 published types and 332 globals; 38 declarations belong to the root script object rather than globals | Total declaration count unchanged; this corrects derived metadata, not runtime behavior | [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction) |
@@ -116,11 +124,15 @@ Other catalog builds require their own correction records; these counts are not 
 
 #### Tools around GS1 and GS2
 
+One tool from the period works on GS1 and GS2 levels. The row says what it does and why it matters [src][inf] (client-internals/reference-reimplementations/levelscripteditor.md#what-it-is).
+
 | Tool | Relevance | Source |
 | --- | --- | --- |
 | LevelScriptEditor | lists every NPC of a folder of `.nw` levels and replaces identical scripts in one go; it reads like a tool for porting GS1 scripts to GS2 on a big world | [src][inf] (client-internals/reference-reimplementations/levelscripteditor.md#what-it-is) |
 
 #### A third-party compiler and VM
+
+A modern third-party compiler and VM exist for GS2. The rules below say what they are, what runs, and what they leave open [doc] (npc-library/preagonal-gs2.md#licence).
 
 | Item | Rule | Source |
 | --- | --- | --- |
