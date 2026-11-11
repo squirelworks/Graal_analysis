@@ -428,7 +428,7 @@ DLL differs only in the licence check (`protocol/v5x-clients.md`).
 
 - Builds that are not in the project files: 1.4 (only the patched 1.41 rev1 copy exists), 2.1 to 2.16, 2.3, Windows 3.x, other 4.0x
   builds, and anything between 4.20r8 and 5.00r7.
-- Builds after 5.00r7 (5.12 onwards). The question stopped at 5.007.
+- Builds after 5.00r7 (5.12 onwards). The question stopped at 5.007. The 5.1 release notes (17 September 2007) say GS1 was removed from the client and GS2 is always used, so 5.12 and later should have no GS1 command table; this is an expectation from the notes, not a read (`client-internals/graal-wiki-crosscheck-2026-11-11.md`). **[doc]**
 - Executors: whether each listed command does something in that build. Only 2.05 has that, in
   [gs1-command-reference-205.md](gs1-command-reference-205.md).
 - Functions, flags and variables by version. The `init`, `x86` and `ppc` registration runs contain them right after the commands,
