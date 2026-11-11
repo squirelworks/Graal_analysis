@@ -299,3 +299,23 @@ The rules below follow the other names an executable carries: sounds, images and
 | Fonts named: `Courier`, `MS Sans Serif`, `System` from 1st Graal; `Courier` dropped in 6th; `Courier` and `Courier New` from 1.34; `Arial` from 2.17.1 | [bin] (version-profiles/matrix/builds-deltas.md#font-names-in-the-executable) |
 | In the shared Drive archive (73 exes in 55 folders) every PE timestamp is the same dummy 1992 date, so only file-version strings date the builds; it holds 2.00 and its revisions 1 to 3 but no 2.1.x release, 2.17, 2.22 or 2.31 (→ §1.1.1) | [file] (client-internals/drive-clients-inventory.md#drive-clients-set-what-it-contains-2026-10-24); [file] (client-internals/drive-clients-inventory.md#versions-present) |
 | Under Wine the 2.0x exes from that archive stop at "Cannot open file … commands.rtf" until another build's data files are put beside them | [cap] (client-internals/drive-clients-inventory.md#running-them-wine) |
+
+## 4.11.11 Android Classic and Era, 1.6 to 2.2
+
+The later Android packages are their own line and were only read statically, so nothing in this section is projected onto the period clients. Seven distinct packages were found among ten files; the host details come from Classic 1.7 and the engine details from Classic 1.8 x86. [file][bin] (client-internals/android-classic.md#what-was-read)
+
+[bin] The Java host owns the lifecycle, the EGL surface, input and audio, and calls the native frame entry over and over; it swaps buffers only when the engine says a frame is ready. Touch types are 1 for down, 2 for move and 3 for up, and other pointers are sent as moves while one changes. [bin] (client-internals/android-classic.md#host-and-engine)
+
+[bin] Classic 1.8 gates each frame on elapsed time, 50 ms by default. A slightly late frame moves the deadline on by one interval; a very late one resets it to now, so frames are not caught up. A passing frame handles input, then graphics state, then timers, then drawing. This is a configured gate, not a measured rate. [bin] (client-internals/android-classic.md#the-frame-gate)
+
+[bin] The wall test checks NPCs, then bombs, then chests, and only then tiles; an option adds other players. The board is 64 by 64 tiles of two bytes, and the neighbour accessor wraps coordinates to their low six bits. Animation part offsets are divided by 16 in the world modes read. Outgoing global chat is cut to 220 bytes and prefixed with one byte equal to the length plus 32; incoming messages go through a 256-entry handler table. [bin] (client-internals/android-classic.md#collision); [bin] (client-internals/android-classic.md#the-board); [bin] (client-internals/android-classic.md#animation-and-drawing); [bin] (client-internals/android-classic.md#global-chat)
+
+[file][lab] Classic 1.8 and later ship GANIs that are not plain text, and decode trials did not reproduce known plain text, so no decoder is claimed. [file][lab] (client-internals/android-classic.md#resources)
+
+## 4.11.12 What the early Windows clients show when started
+
+The research owner started the v0, v1 and v2 Windows clients offline in a Wine lab and reviewed the screenshots. This is a check of what each build draws, not a timing or movement measurement. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md)
+
+[lab][cap] All 18 v0 builds show their start screen and 16 reach an offline scene; 4th Graal alpha and 5th Graal draw only part of it, 9th Graal stays at the start screen and 9th Graal alpha stops on a missing `heads.gif`. Only 12 run summaries record a successful Start against 16 drawn scenes. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v0-1st-graal-to-15th-graal-18-builds)
+
+[lab][cap] 17 of 18 v1 builds reach a scene; 1.32 and later start in the welcome cave, and 1.19 stays at the start screen. In v2, 2.04 and the three 2.05 revisions draw the tutorial; 2.00, 2.01 rev 1 and 2.03 stop on a missing `objects.dat`; 2.02 and its revisions show a black window; the stock 2.22 warns of a corrupted executable. Scene and mechanic validation stays open (→ App. E#610). [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v1-119-to-141-18-builds); [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v2-200-to-222-23-builds)

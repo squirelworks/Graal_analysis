@@ -334,6 +334,8 @@ These builds sit around the Delphi client line. The uploads hold 9 distinct item
 | 2001-03 | GraalX | a 2.01 pre-release that keeps the `.nw` reader and writer (→ §1.1.1) | [bin] (client-internals/precursors-and-fan-builds.md#graalx) |
 | 2014-04 | 39ster client 1.00 | an offline fan remake on an SDL engine with GameMonkey script; reads `.nw` and `GR-V1.00` to `1.03`; NPC scripts are not run | [bin] (client-internals/precursors-and-fan-builds.md#39sters-graal-client-100-2014) |
 
+The later Android Classic and Era packages, 1.6 to 2.2, are a separate line and are not counted above. Ten supplied files reduce to seven packages (builds 6108 to 6201), each with a Java host and native engines for four architectures, read statically only (→ §4.11.11). [file][bin] (client-internals/android-classic.md#what-was-read)
+
 The rules below say what the precursors contributed to Graal, and what they share with it: dialogs, the sign alphabet, data files and level reading. Each row is one inheritance or difference [bin] (client-internals/precursors-and-fan-builds.md#zeldaeditor-july-1998).
 
 | Rule | Source |

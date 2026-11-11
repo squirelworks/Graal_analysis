@@ -12,6 +12,11 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Publish the Android Classic static reading.** ~~Host, frame gate, collision, board, render, chat and the Classic 1.8 GS2 machine.~~ [Host and engine](../client-internals/android-classic.md); [GS2](../protocol/gs2-android-classic-18.md).
+  - [ ] Decode the opaque Classic 1.8+ GANIs with a known-plaintext round trip; run the GS2 loop-budget and event-queue boundaries in an Android runtime.
+
+- [x] **Record what the early Windows clients show when started.** ~~v0, v1 and v2 screenshot review.~~ [Source](../version-profiles/early-windows-screen-review-2026-11.md); scene and mechanic validation remain open (App. E#610).
+
 - [x] **Qualify the supplied 701750 bridge and clock checkpoint.** [Note](../client-internals/v7-701750-bridge-clock.md) and manual §4.1.7 record the bounded static result. The ten retained function-validation records include the short getter; two managed-edge records are counted separately. Cadence, wrap/catch-up, collection/lifecycle semantics and older-build equivalence remain unresolved.
 
 - [x] **Linux 3.04 local value-helper branches.** ~~Publish supported retained local conversion/assignment distinctions after overlap review.~~ [Source](../torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) keeps type-specific behavior and general coercion unresolved.

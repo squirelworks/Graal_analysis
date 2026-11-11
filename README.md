@@ -4,6 +4,10 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Android Classic and Era 1.6 to 2.2](client-internals/android-classic.md) — seven packages; the Java host, the 50 ms frame gate, layered collision, the 64×64 board, 1/16 animation offsets and the 220-byte chat builder; static.
+- [GS2 on Android Classic 1.8](protocol/gs2-android-classic-18.md) — the container, branches, loop and stack limits, number, string and array rules, the event queue and 173 native bindings; static.
+- [What the early Windows clients show when started](version-profiles/early-windows-screen-review-2026-11.md) — screenshot review of the v0, v1 and v2 builds in an offline Wine lab.
+
 - [Supplied 701750 managed/native bridge and clock checkpoint](client-internals/v7-701750-bridge-clock.md) — selected static edges, clock/store and guarded dispatch; no cadence, lifecycle or cross-build equivalence claim.
 
 - [Linux 3.04 local value-helper branches](torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) — retained static numeric/string fallback and assignment distinctions, not complete coercion or callback results.

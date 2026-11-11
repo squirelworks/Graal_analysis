@@ -609,3 +609,6 @@ client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
 client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; E	4.1; E	
+client-internals/android-classic.md	cited	1; 4.11	1; 4.11	Packages, host, frame gate, collision, board, render, chat and resources carried in 1.7 and 4.11.11; proposed tests stay in the source note
+protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
+version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
