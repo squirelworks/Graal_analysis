@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 920" width="1584" height="920" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+<title>Graal system map: clients, servers, staff tools, formats and scripting, with the manual sections for each link</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+<style>.t{font-size:20px;font-weight:bold} .s{font-size:14px;font-weight:bold;fill:#2b5797} .r{font-size:13px;fill:#555} .b{fill:#222} .e{font-size:14px;font-weight:bold;fill:#111} .el{font-size:13px;fill:#333}</style></defs>
+<rect width="1584" height="920" fill="#fff"/>
+<rect x="30" y="40" width="360" height="600" rx="10" fill="#e8f0fb" stroke="#2b5797" stroke-width="2"/>
+<text x="42" y="64" class="t" fill="#2b5797">Clients</text>
+<text x="378" y="64" class="r" text-anchor="end">Parts I, IV</text>
+<rect x="44" y="76" width="332" height="96" rx="6" fill="#fff" stroke="#2b5797" stroke-width="1.2"/>
+<text x="54" y="95" class="s">Eras Z to G: Java, then Delphi</text>
+<text x="366" y="95" class="r" text-anchor="end">§1.1, §1.6</text>
+<text x="54" y="114" class="b" style="font-size:13.5px">1998 to 2005: Java applets, then Delphi</text>
+<text x="54" y="131" class="b" style="font-size:13.5px">1st Graal to 2.31 on Windows</text>
+<text x="54" y="148" class="b" style="font-size:13.5px">GS1 arrives as source and is parsed here</text>
+<rect x="44" y="182" width="332" height="78" rx="6" fill="#fff" stroke="#2b5797" stroke-width="1.2"/>
+<text x="54" y="201" class="s">Era H: Torque 3.x</text>
+<text x="366" y="201" class="r" text-anchor="end">Part X</text>
+<text x="54" y="220" class="b" style="font-size:13.5px">Linux 3.04, Mac OS X 3.153</text>
+<text x="54" y="237" class="b" style="font-size:13.5px">C++ on the Torque Game Engine</text>
+<rect x="44" y="270" width="332" height="78" rx="6" fill="#fff" stroke="#2b5797" stroke-width="1.2"/>
+<text x="54" y="289" class="s">Era I: 4.04r2, 4.20r6, 4.20r8</text>
+<text x="366" y="289" class="r" text-anchor="end">§1.8.5</text>
+<text x="54" y="308" class="b" style="font-size:13.5px">Delphi launcher + GraalEngine.dll</text>
+<text x="54" y="325" class="b" style="font-size:13.5px">(+ Graal3DEngine.dll); GS2 bytecode</text>
+<rect x="44" y="358" width="332" height="78" rx="6" fill="#fff" stroke="#2b5797" stroke-width="1.2"/>
+<text x="54" y="377" class="s">Era J: 5.00r7, 5.12; 5.24 to 5.31</text>
+<text x="366" y="377" class="r" text-anchor="end">§1.8.6</text>
+<text x="54" y="396" class="b" style="font-size:13.5px">5.00 and 5.12 as era I;</text>
+<text x="54" y="413" class="b" style="font-size:13.5px">one MSVC executable from 5.24</text>
+<rect x="44" y="446" width="332" height="78" rx="6" fill="#fff" stroke="#2b5797" stroke-width="1.2"/>
+<text x="54" y="465" class="s">Era K: 6.00 to 6.03r7, Mac 6.11</text>
+<text x="366" y="465" class="r" text-anchor="end">§1.8, §1.9</text>
+<text x="54" y="484" class="b" style="font-size:13.5px">one native C++ program per platform,</text>
+<text x="54" y="501" class="b" style="font-size:13.5px">no Torque layer</text>
+<rect x="44" y="534" width="332" height="78" rx="6" fill="#fff" stroke="#2b5797" stroke-width="1.2"/>
+<text x="54" y="553" class="s">Separate lines</text>
+<text x="366" y="553" class="r" text-anchor="end">§4.11.11</text>
+<text x="54" y="572" class="b" style="font-size:13.5px">v7 (Windows x64); Android Classic</text>
+<text x="54" y="589" class="b" style="font-size:13.5px">and Era 1.6 to 2.2 (read statically)</text>
+<rect x="620" y="40" width="320" height="120" rx="10" fill="#e6f4ea" stroke="#2e7d32" stroke-width="2"/>
+<text x="632" y="64" class="t" fill="#2e7d32">Listserver</text>
+<text x="928" y="64" class="r" text-anchor="end">Part VI</text>
+<text x="632" y="86" class="b" style="font-size:15px">the server list; checks each</text>
+<text x="632" y="105" class="b" style="font-size:15px">game-server login (VERIACC2)</text>
+<rect x="620" y="250" width="320" height="190" rx="10" fill="#e6f4ea" stroke="#2e7d32" stroke-width="2"/>
+<text x="632" y="274" class="t" fill="#2e7d32">Game server</text>
+<text x="928" y="274" class="r" text-anchor="end">§5.1 to §5.4</text>
+<text x="632" y="296" class="b" style="font-size:15px">GServer13 (1999), 39ster 2.1,</text>
+<text x="632" y="315" class="b" style="font-size:15px">GServer-v2 reference behaviour;</text>
+<text x="632" y="334" class="b" style="font-size:15px">accounts, allowed versions,</text>
+<text x="632" y="353" class="b" style="font-size:15px">levels, file transfer, word filter,</text>
+<text x="632" y="372" class="b" style="font-size:15px">board respawn</text>
+<rect x="620" y="500" width="320" height="110" rx="10" fill="#e6f4ea" stroke="#2e7d32" stroke-width="2"/>
+<text x="632" y="524" class="t" fill="#2e7d32">3D server</text>
+<text x="928" y="524" class="r" text-anchor="end">§10.2, §10.3</text>
+<text x="632" y="546" class="b" style="font-size:15px">eras H to J; listed as "3 …";</text>
+<text x="632" y="565" class="b" style="font-size:15px">Graal TCP on the listed port,</text>
+<text x="632" y="584" class="b" style="font-size:15px">Torque UDP on port + 1</text>
+<rect x="1150" y="40" width="400" height="100" rx="10" fill="#fdf0e1" stroke="#b26a00" stroke-width="2"/>
+<text x="1162" y="64" class="t" fill="#b26a00">RemoteControl (RC)</text>
+<text x="1538" y="64" class="r" text-anchor="end">§7.1, §11.5</text>
+<text x="1162" y="86" class="b" style="font-size:15px">staff client: chat, server flags,</text>
+<text x="1162" y="105" class="b" style="font-size:15px">accounts, player admin, file browser</text>
+<rect x="1150" y="200" width="400" height="100" rx="10" fill="#fdf0e1" stroke="#b26a00" stroke-width="2"/>
+<text x="1162" y="224" class="t" fill="#b26a00">NPC Control (NC)</text>
+<text x="1538" y="224" class="r" text-anchor="end">§7.2, §7.3</text>
+<text x="1162" y="246" class="b" style="font-size:15px">same program, own socket: NPCs,</text>
+<text x="1162" y="265" class="b" style="font-size:15px">classes and weapons</text>
+<rect x="1150" y="360" width="400" height="130" rx="10" fill="#e6f4ea" stroke="#2e7d32" stroke-width="2"/>
+<text x="1162" y="384" class="t" fill="#2e7d32">NPC server</text>
+<text x="1538" y="384" class="r" text-anchor="end">§5.5</text>
+<text x="1162" y="406" class="b" style="font-size:15px">separate program that logs into the game</text>
+<text x="1162" y="425" class="b" style="font-size:15px">server like a player; runs server-side</text>
+<text x="1162" y="444" class="b" style="font-size:15px">scripts and owns the NPCs of its levels</text>
+<rect x="30" y="700" width="390" height="175" rx="10" fill="#f1ecf8" stroke="#5e35b1" stroke-width="2"/>
+<text x="42" y="724" class="t" fill="#5e35b1">Files and formats</text>
+<text x="408" y="724" class="r" text-anchor="end">Part III</text>
+<text x="42" y="746" class="b" style="font-size:15px">levels .graal/.nw §3.1, gmap §3.2,</text>
+<text x="42" y="765" class="b" style="font-size:15px">gani §3.3, gobjset §3.4,</text>
+<text x="42" y="784" class="b" style="font-size:15px">tiles and arrays §3.5, sign text §3.6,</text>
+<text x="42" y="803" class="b" style="font-size:15px">saves §3.7, caches §3.8,</text>
+<text x="42" y="822" class="b" style="font-size:15px">config §3.9, images and sounds §3.10</text>
+<rect x="510" y="700" width="330" height="175" rx="10" fill="#f1ecf8" stroke="#5e35b1" stroke-width="2"/>
+<text x="522" y="724" class="t" fill="#5e35b1">Tools</text>
+<text x="828" y="724" class="r" text-anchor="end">Part XI</text>
+<text x="522" y="746" class="b" style="font-size:15px">built-in level editor (to 2.22),</text>
+<text x="522" y="765" class="b" style="font-size:15px">GraalEditor, GraalShop (gani),</text>
+<text x="522" y="784" class="b" style="font-size:15px">Terrain, Dungeon and Level</text>
+<text x="522" y="803" class="b" style="font-size:15px">generators, gif2mng,</text>
+<text x="522" y="822" class="b" style="font-size:15px">TextConvert and others</text>
+<rect x="900" y="700" width="330" height="175" rx="10" fill="#f1ecf8" stroke="#5e35b1" stroke-width="2"/>
+<text x="912" y="724" class="t" fill="#5e35b1">Scripting</text>
+<text x="1218" y="724" class="r" text-anchor="end">Part VIII, §10.4</text>
+<text x="912" y="746" class="b" style="font-size:15px">GS1: source text in an NPC's</text>
+<text x="912" y="765" class="b" style="font-size:15px">script prop, parsed by the client</text>
+<text x="912" y="784" class="b" style="font-size:15px">GS2: compiled before it reaches</text>
+<text x="912" y="803" class="b" style="font-size:15px">the client; one stack machine</text>
+<text x="912" y="822" class="b" style="font-size:15px">Torque scripts: DSO v33</text>
+<rect x="1290" y="700" width="250" height="175" rx="10" fill="#f3f3f3" stroke="#666" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="1302" y="724" class="t" fill="#666">Graal3D (2000)</text>
+<text x="1528" y="724" class="r" text-anchor="end">Part IX</text>
+<text x="1302" y="746" class="b" style="font-size:15px">own client and server,</text>
+<text x="1302" y="765" class="b" style="font-size:15px">TCP port 14901, UDP</text>
+<text x="1302" y="784" class="b" style="font-size:15px">between clients;</text>
+<text x="1302" y="803" class="b" style="font-size:15px">no .graal/.nw, gani,</text>
+<text x="1302" y="822" class="b" style="font-size:15px">tiles or NPC scripts</text>
+<text x="1302" y="862" class="el">a side line; shares no format</text>
+<text x="30" y="905" class="el">Arrows point from the side that connects or acts; two heads mean both ways. Dashed: inside one program. Section numbers are where the manual describes each part or link.</text>
+<path d="M390,100 L620,100" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)" marker-start="url(#a)"/>
+<text x="505" y="82" class="e" text-anchor="middle">list request and reply</text>
+<text x="505" y="99" class="el" text-anchor="middle">§6.1 to §6.4</text>
+<path d="M390,300 L620,300" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)" marker-start="url(#a)"/>
+<text x="505" y="330" class="e" text-anchor="middle">Graal TCP</text>
+<text x="505" y="347" class="el" text-anchor="middle">framing §2.1, ciphers §2.2,</text>
+<text x="505" y="364" class="el" text-anchor="middle">login §2.3, PLI §2.4,</text>
+<text x="505" y="381" class="el" text-anchor="middle">PLO §2.5, props §2.6,</text>
+<text x="505" y="398" class="el" text-anchor="middle">files §2.7, chat and PM §2.8,</text>
+<text x="505" y="415" class="el" text-anchor="middle">UDP §2.9, server-defined §2.10</text>
+<path d="M390,560 L620,560" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)" marker-start="url(#a)"/>
+<text x="505" y="590" class="e" text-anchor="middle">Torque UDP</text>
+<text x="505" y="607" class="el" text-anchor="middle">handshake, mission download</text>
+<path d="M780,250 L780,160" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="792" y="190" class="e" text-anchor="start">server link §6.5</text>
+<text x="792" y="207" class="el" text-anchor="start">REGISTERV3, then</text>
+<text x="792" y="224" class="el" text-anchor="start">zlib frames</text>
+<path d="M1150,90 L940,280" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="1000" y="250" class="e" text-anchor="start">RC login and</text>
+<text x="1000" y="267" class="el" text-anchor="start">commands §7.1</text>
+<path d="M1350,140 L1350,200" fill="none" stroke="#333" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#a)"/>
+<text x="1362" y="165" class="e" text-anchor="start">finds the NPC server</text>
+<text x="1362" y="182" class="el" text-anchor="start">address: ids 94, 79 §7.2.2</text>
+<path d="M1350,300 L1350,360" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="1362" y="325" class="e" text-anchor="start">NC socket: zlib frames,</text>
+<text x="1362" y="342" class="el" text-anchor="start">no cipher §7.2.1</text>
+<path d="M1150,410 L940,410" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)" marker-start="url(#a)"/>
+<text x="1045" y="380" class="e" text-anchor="middle">logs in</text>
+<text x="1045" y="397" class="el" text-anchor="middle">like a player</text>
+<path d="M210,640 L210,700" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="222" y="675" class="e" text-anchor="start">loads and caches</text>
+<path d="M510,815 L420,815" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="465" y="805" class="e" text-anchor="middle">write</text>
+<path d="M390,640 L940,700" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="700" y="648" class="e" text-anchor="middle">run GS1, GS2, Torque scripts</text>
+<path d="M1200,490 L1150,700" fill="none" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<text x="1190" y="590" class="e" text-anchor="start">runs server-side scripts;</text>
+<text x="1190" y="607" class="el" text-anchor="start">sends the //#CLIENTSIDE part</text>
+</svg>

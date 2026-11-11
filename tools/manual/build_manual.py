@@ -11,7 +11,10 @@ Steps: join the chapter files in manual order (dropping the
 `<!-- manual: ... -->` marker lines), turn them into one HTML page with
 pandoc, then print that page to an A4 PDF with Chromium. The default output
 is `manual/pdf/graal-trm.pdf`, or `manual/pdf/graal-trm-<version>.pdf` with
-`--version`. Build it into the repo only when the owner
+`--version`. A page wider than A4 landscape (an A3 page) is also written to
+`<name>-a3-inserts.pdf`, and `<name>-print-a4.pdf` is the same PDF with a
+placeholder A4 page at each insert's place, so the print set is an A4 run
+plus A3 inserts. Build it into the repo only when the owner
 asks for a build (issue #191, work-plan item 15).
 
 Needs:
@@ -80,6 +83,7 @@ th{background:#eee} tr{page-break-inside:avoid}
 code{font-family:"DejaVu Sans Mono",Consolas,Menlo,monospace;font-size:8pt;background:#f4f4f4}
 pre{background:#f4f4f4;padding:4px;font-size:8pt;white-space:pre-wrap}
 p code,li code{overflow-wrap:anywhere}
+.page-wide img,.page-wider img{display:block;width:100%;height:auto}
 #TOC{page-break-after:always} #TOC ul{list-style:none;padding-left:1em}
 sup.fn{font-size:6pt;line-height:0;color:#555} sup.fn a{color:#555;text-decoration:none}
 .bib{font-size:7.5pt;column-count:2;column-gap:2em} .bib p{margin:0 0 1px 0;break-inside:avoid}
@@ -484,6 +488,110 @@ def page_count(pdf: bytes) -> int:
     return len(re.findall(rb'/Type\s*/Page(?![a-zA-Z])', pdf))
 
 
+# A page is an A3 insert when it is wider than A4 landscape (842 pt).
+A3_MIN_WIDTH = 1000
+
+PLACEHOLDER = """<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@page{{size:A4;margin:0}} body{{margin:0;font-family:"DejaVu Sans",Helvetica,Arial,sans-serif}}
+.p{{height:297mm;box-sizing:border-box;padding:70mm 25mm 0;break-after:page;position:relative;text-align:center}}
+.p:last-child{{break-after:auto}} h1{{font-size:20pt;margin:0 0 6mm}} h2{{font-size:14pt;font-weight:normal;margin:0 0 14mm}}
+p{{font-size:11pt;line-height:1.5;margin:0 0 4mm}} .n{{position:absolute;bottom:6mm;left:0;right:0;font-size:7pt}}
+.frame{{border:1.5pt dashed #666;padding:12mm}}
+</style></head><body>{pages}</body></html>"""
+
+
+def insert_pages(pdf_path: Path) -> list[int]:
+    """0-based numbers of the pages wider than A4 landscape (the A3 inserts)."""
+    from pypdf import PdfReader  # type: ignore[import-not-found]
+    reader = PdfReader(str(pdf_path))
+    return [i for i, page in enumerate(reader.pages) if float(page.mediabox.width) > A3_MIN_WIDTH]
+
+
+def section_of(reader, index: int) -> str:
+    """Title of the last bookmark, at any depth, that starts on or before the page."""
+    best: tuple[int, int, str] = (-1, -1, '')
+
+    def walk(items, depth):
+        nonlocal best
+        for item in items:
+            if isinstance(item, list):
+                walk(item, depth + 1)
+                continue
+            page = reader.get_destination_page_number(item)
+            if page <= index and (page, depth) >= best[:2]:
+                best = (page, depth, str(item.title))
+    walk(reader.outline, 0)
+    return best[2]
+
+
+def write_print_set(pdf_path: Path, chromium: str | None) -> list[tuple[int, str]]:
+    """Write `<name>-a3-inserts.pdf` and `<name>-print-a4.pdf` beside the PDF.
+
+    Returns (1-based page, section) for each insert; writes nothing when the
+    PDF has no A3 page. In the print copy each A3 page becomes an A4 page that
+    says which insert goes there, so the page numbers and bookmarks of the
+    digital edition still hold.
+    """
+    try:
+        from pypdf import PdfReader, PdfWriter  # type: ignore[import-not-found]
+        from pypdf.generic import ArrayObject, DictionaryObject, NameObject  # type: ignore[import-not-found]
+    except ImportError:
+        return []
+    found = insert_pages(pdf_path)
+    if not found:
+        return []
+    reader = PdfReader(str(pdf_path))
+    total = len(reader.pages)
+    inserts_path = pdf_path.with_name(pdf_path.stem + '-a3-inserts.pdf')
+    print_path = pdf_path.with_name(pdf_path.stem + '-print-a4.pdf')
+    listed = [(i + 1, section_of(reader, i)) for i in found]
+
+    inserts = PdfWriter()
+    for n, (page_no, title) in enumerate(listed, 1):
+        inserts.add_page(reader.pages[page_no - 1])
+        inserts.add_outline_item(f'Insert {n}: page {page_no}, {title}', n - 1)
+    inserts.page_mode = '/UseOutlines'
+    with open(inserts_path, 'wb') as fh:
+        inserts.write(fh)
+
+    from html import escape
+    pages = ''.join(
+        f'<div class="p"><div class="frame"><h1>A3 insert {n} of {len(listed)}</h1>'
+        f'<h2>{escape(title)}</h2>'
+        f'<p>This page is printed separately on A3 landscape paper.</p>'
+        f'<p>Print page {n} of <b>{escape(inserts_path.name)}</b> and put it here.</p>'
+        f'<p>In the digital edition, {escape(pdf_path.name)}, it is page {page_no}.</p></div>'
+        f'<div class="n">{page_no} / {total}</div></div>'
+        for n, (page_no, title) in enumerate(listed, 1))
+    from playwright.sync_api import sync_playwright  # type: ignore[import-not-found]
+    launch = {'executable_path': chromium} if chromium else {}
+    with tempfile.TemporaryDirectory(prefix='graal-trm-') as tmp:
+        holder_path = Path(tmp) / 'placeholders.pdf'
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(**launch)
+            page = browser.new_page()
+            page.set_content(PLACEHOLDER.format(pages=pages))
+            page.pdf(path=str(holder_path), prefer_css_page_size=True)
+            browser.close()
+        holders = PdfReader(str(holder_path))
+        writer = PdfWriter(clone_from=reader)
+        for n, (page_no, _) in enumerate(listed):
+            target = writer.pages[page_no - 1]
+            holder = holders.pages[n]
+            for key in ('/Annots', '/CropBox', '/BleedBox', '/TrimBox', '/ArtBox'):
+                if key in target:
+                    del target[key]
+            target.mediabox = holder.mediabox
+            target[NameObject('/Contents')] = ArrayObject()
+            target[NameObject('/Resources')] = DictionaryObject()
+            target.merge_page(holder)
+        with open(print_path, 'wb') as fh:
+            writer.write(fh)
+    for path in (inserts_path, print_path):
+        path.write_bytes(scrub_browser_version(path.read_bytes()))
+    return listed
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('--root', type=Path, default=ROOT, help='repository root')
@@ -507,6 +615,9 @@ def main(argv: list[str] | None = None) -> int:
     pandoc = find_pandoc()
     with tempfile.TemporaryDirectory(prefix='graal-trm-') as tmp:
         html = build_html(markdown, Path(tmp), commit, pandoc, args.version)
+        figures = root / 'manual' / 'figures'
+        if figures.is_dir():
+            shutil.copytree(figures, Path(tmp) / 'figures')
         if args.html:
             shutil.copyfile(html, args.html)
         placed = print_pdf(html, out, args.chromium)
@@ -519,6 +630,12 @@ def main(argv: list[str] | None = None) -> int:
     for cls, head, least in placed:
         where = {'page-wide': 'A4 landscape', 'page-wider': 'A3 landscape'}.get(cls, cls)
         print(f'  {where}: {head} (narrowest {least} px)')
+    inserts = write_print_set(out, args.chromium)
+    if inserts:
+        print(f'  print set: {out.stem}-print-a4.pdf with {len(inserts)} A3 insert(s) '
+              f'in {out.stem}-a3-inserts.pdf')
+        for page_no, title in inserts:
+            print(f'    page {page_no}: {title}')
     overflow = [p for p in placed if p[0] == 'overflow']
     if overflow:
         print(f'{len(overflow)} table(s) still wider than their page', file=sys.stderr)

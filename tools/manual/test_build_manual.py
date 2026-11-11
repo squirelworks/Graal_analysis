@@ -149,9 +149,17 @@ def test_a_source_column_of_names_is_kept():
 
 def test_wide_tables_get_named_landscape_pages():
     import build_manual as bm
-    assert '@page wide{size:A4 landscape' in bm.CSS
-    assert '@page wider{size:A3 landscape' in bm.CSS
-    assert '.page-wide{page:wide}' in bm.CSS
+    assert '@page wide{size:A4 landscape' in build_manual.CSS
+    assert '@page wider{size:A3 landscape' in build_manual.CSS
+    assert '.page-wide{page:wide}' in build_manual.CSS
     # pandoc's template clips a too-wide table (display:block; overflow-x:auto)
-    assert 'table{display:table;overflow:visible' in bm.CSS
+    assert 'table{display:table;overflow:visible' in build_manual.CSS
     assert [name for name, _ in bm.PAGE_WIDTHS] == ['', 'page-wide', 'page-wider']
+
+
+def test_a3_pages_become_inserts():
+    assert build_manual.A3_MIN_WIDTH > 842  # wider than A4 landscape
+    assert '.page-wider img' in build_manual.CSS
+    html = build_manual.PLACEHOLDER.format(pages='<div class="p">x</div>')
+    assert '@page{size:A4;margin:0}' in html and '<div class="p">x</div>' in html
+    assert callable(build_manual.write_print_set)
