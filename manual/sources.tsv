@@ -78,13 +78,13 @@ client-internals/decomp-findings-2026-10-24-d/open-questions.tsv	cited	4.4; E	4
 client-internals/decomp-findings-2026-10-24/01-death-respawn.md	cited	4.3; 4.4	4	
 client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/03-player-list-popup.md	cited	4.10	4	
-client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	cited	4.3	4	
+client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	cited	4; 4.3	4	
 client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	cited	2.1	2.6	§2.6 not needed: its prop facts are carried in §2.6 from the later prop notes; the note is cited where it adds the send-helper rule (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24/06-first-graal.md	cited	2.3	2.3	
 client-internals/decomp-findings-2026-10-24/07-graal-139.md	cited	2.1; 2.3	2.3; 2.4	§2.4 not needed: its 1.39 send ids are carried in §2.4 from the id tables; the note is cited for framing and login (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24/08-contradictions.md	cited	2.3	E	Appendix E not needed: its corrections are settled, not open; carried in §2.3 (room name), §4.10.3 (emote lookup) and §4.11.10 (TPersonAction form) (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24/README.md	excluded		4	index of the batch folder; each of its notes has its own row
-client-internals/decomp-findings-2026-10-24/constants-205.tsv	cited	4.1; 4.4	4	
+client-internals/decomp-findings-2026-10-24/constants-205.tsv	cited	4; 4.1; 4.4	4	
 client-internals/decomp-findings-2026-10-24/gani-name-table.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/gani-short-codes.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/gani-to-step.tsv	cited	4.10	4	
@@ -178,8 +178,8 @@ client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math nam
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 client-internals/id24-205.md	cited	2.4	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 client-internals/issho-cut.md	cited	10	10	
-client-internals/item-drops.md	cited	4.5; E	4.5	
-client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4.3; 4.4; 4.5; E	4	
+client-internals/item-drops.md	cited	4; 4.5; E	4.5	
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
 client-internals/live-behaviour-404.md	cited	8; 8.1; 8.3; 4.11	4	
@@ -194,7 +194,7 @@ client-internals/offline-training.md	cited	4.8	4.8
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
 client-internals/packed-6037.md	cited	1	1	§1.8.7 carries the version-resource identity and that the decompile is a packer stub
 client-internals/packed-6113.md	cited	1	1	§1.8.7 carries the 6.113 identity and that the decompile is a packer stub; the Mac 6.11 comparison stays a pointer at the existing 6.11 note
-client-internals/player-mannerisms-live.md	cited	4.1; 4.2; 4.3; 4.5; E	4	
+client-internals/player-mannerisms-live.md	cited	4; 4.1; 4.2; 4.3; 4.5; E	4	
 client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
@@ -342,7 +342,7 @@ protocol/unknown-ids-2026-11-06.md	cited	2.4; 2.5; E	2.4; 2.5
 protocol/unpacked-6113-wire.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.6 carry the generation-5 LCG, the missing token, and the 0xFE send slots; the file-magic table stays in the note
 protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10; 3.1; 1	1; 2.3; 10	
 protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E; 3.1; 1	1; 2.3; 10	
-protocol/v5v6-lab-play.md	cited	0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
+protocol/v5v6-lab-play.md	cited	4; 0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
 protocol/v6037-hello-diff.md	cited	2.3	2.3	
@@ -521,9 +521,9 @@ version-profiles/lab-mac-tiger-2026-10-31.md	cited	C; 1	1; C
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
-version-profiles/matrix/README.md	cited	8; 1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
+version-profiles/matrix/README.md	cited	4; 8; 1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
 version-profiles/matrix/builds-deltas.md	cited	3.9; 4.11	C; 4	Appendix C not needed: the per-build deltas are carried in §3.9 and §4.11; App. C points to §1.8 and those sections (coverage audit 2026-11-04)
-version-profiles/matrix/builds-static-survey.tsv	cited	4.1; E	C; 4	Appendix C not needed: the survey is carried in §4.1 and the open items in App. E; App. C points to those sections (coverage audit 2026-11-04)
+version-profiles/matrix/builds-static-survey.tsv	cited	4; 4.1; E	C; 4	Appendix C not needed: the survey is carried in §4.1 and the open items in App. E; App. C points to those sections (coverage audit 2026-11-04)
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	Appendix C not needed: the live-run results are carried in §4.2; App. C points to §4.1 to §4.4 for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1.39 rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1st Graal rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)

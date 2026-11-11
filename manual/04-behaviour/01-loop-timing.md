@@ -73,13 +73,17 @@ The canonical place of each tick count:
 - → §4.3 sword, spin, hurt and knockback
 - → §4.4 the death timer
 
-## 4.1.6 Bound Linux 4.20r6 clock updates and advertised 3D-state predicate
+## 4.1.6 Clocks in the later engines
+
+These are exact-build static and debugger readings of how a later engine advances its clock. None of them is a measured frame cadence (→ App. E#301). [cap] (client-internals/linux-420r6-clock-property.md)
+
+#### Linux 4.20r6: clock updates and the `isgraal3d` predicate
 
 [cap] Six unchanged-startup updater returns in Linux 4.20r6 have a zero branch byte. The initial zero clock is seeded within the observer's wall-clock interval; the next five values each match binary-double previous value plus 0.05. Debugger pauses prevent inferring a 50 ms frame period, 20 Hz rendering, movement timing or sleep latency. [cap] (client-internals/linux-420r6-clock-property.md)
 
 
 [bin] Registration directly binds global read-only `isgraal3d` to the getter for that predicate byte, whose ELF default is zero. Three direct-reference writer owners are identified; the set-to-one branch follows a `3 ` input prefix. Indirect/alias/module writes remain possible. With the byte zero and the clock nonzero, it adds 0.05 per call; if the clock is zero, or the byte is nonzero, it refreshes from the wall-clock helper. The probe observed one seed and five increments; it does not prove that the clock can never be reset or reseeded. No live nonzero branch, 3D connection or rendering is observed. [cap] Inputs/signatures/executable/mode byte stay unchanged; the untruncated capture retains executable equality and verifies cleanup, with no server. E#301 remains open for frame-driver and walk measurements. [bin][inf] Separate callback adapters provide no complete ABI, module activation or Windows reader result. [bin] (client-internals/linux-420r6-clock-property.md); [cap] (client-internals/linux-420r6-clock-property.md); [inf] (client-internals/linux-420r6-clock-property.md)
 
-## 4.1.7 Supplied 701750 managed/native update checkpoint
+#### Windows x64 v7, input 701750: managed and native update
 
 The separately identified Windows x64 recovered inputs show managed Update calling native QuattroUpdate and conditional FixedUpdate forwarding. QuattroUpdate increments a counter, calls a wrapper bound to GetTickCount and stores the return as 32 bits; an inferred void pseudocode type does not override caller dataflow. Guarded QuattroFixedUpdate iterates a registered collection and dispatches onFixedUpdate with an empty argument string. Update3D wraps a one-byte state getter rather than establishing scene simulation. These are selected-range static observations: no measured cadence, wrap/catch-up policy, complete collection/lifecycle/indirect-call semantics, build-614/v6 equivalence, authenticated release provenance or independent original-to-recovered derivation. Exact image identities remain owner-held. E#301’s older-client driver question remains open. [bin] (client-internals/v7-701750-bridge-clock.md)
