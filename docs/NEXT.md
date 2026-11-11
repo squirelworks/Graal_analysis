@@ -247,12 +247,12 @@ macOS CI is paused until the polish stage.
     `protocol/v6113-udp.md`. The parent item stays open.
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
-  the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.
+  the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (419 pages) is built and waits for its tag.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
-  1.0.0"): 0.0.5 coverage proof (`tools/manual/coverage.py` and one prose PR per
-  Part) is next, then 0.0.6 implementability, 0.0.7 triage of the unknowns, 0.0.8
-  release quality, 1.0.0 sign-off (Squirrel's call). Tick the items in #191 as PRs land.
+  1.0.0"): 0.0.5 publishes the current research (built, awaiting its tag), then
+  0.0.6 coverage, 0.0.7 implementability, 0.0.8 triage of the unknowns, 0.0.9
+  release quality, 1.0.0 sign-off (Squirrel's call). Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
 - [ ] **16. Torque study and the 3.04 plan. On hold, no target release** (Squirrel,
   2026-11-05). The study and plan are merged (#242, stage checklist #250):

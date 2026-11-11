@@ -1,6 +1,6 @@
 # Graal Technical Reference Manual
 
-Version 0.0.4. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
+Version 0.0.5. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
 
 This folder is the reference manual for Graal itself: clients, wire protocol, file formats, servers, listserver, RC and NC, NPC scripting, Graal3D, the Torque-era clients and tools. It is organised by subject, not by note. Start with `00-conventions.md`, which fixes scope, numbering, citation and notation.
 
@@ -42,6 +42,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 14 | Part XI + App. D, E | done |
 | 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm-0.0.3.pdf` built with `build_manual.py` from commit b8643ec, 347 pages A4 |
 | 16 | coverage audit and 0.0.4 | done: every flagged note carried or given a reason, `check_carry.py` in CI; `manual/pdf/graal-trm-0.0.4.pdf` built with `build_manual.py --version 0.0.4` from commit 3a700ad, 377 pages A4 |
+| 17 | research publication and 0.0.5 | done: the 0.0.5 research merged (#372), reading syntheses for Parts I, II, IV, VIII and X, `coverage.py` as a report; `manual/pdf/graal-trm-0.0.5.pdf` built with `build_manual.py --version 0.0.5` from commit cca33f0, 419 pages A4 |
 
 ## Checks
 
@@ -52,6 +53,6 @@ python tools/manual/coverage.py --notes
 python -m pytest tools/manual -q
 ```
 
-`coverage.py` lists every distinctive term of a cited note that the manual does not contain, per Part. It is a report, not a gate, until the 0.0.5 prose passes have carried each miss or explained it in `manual/coverage-explained.tsv` (issue #191).
+`coverage.py` lists every distinctive term of a cited note that the manual does not contain, per Part. It is a report, not a gate, until the 0.0.6 coverage passes have carried each miss or explained it in `manual/coverage-explained.tsv` (issue #191).
 
 `python tools/manual/build_manual.py` builds the PDF on Linux, macOS or Windows: pandoc turns the chapters into one HTML page, then Chromium (through the `playwright` package) prints it to A4 at `manual/pdf/graal-trm.pdf`. `--version X` puts the version on the title page and names the file `graal-trm-X.pdf`; `--out` writes it elsewhere. It needs pandoc (or `pip install pypandoc_binary`) and `pip install playwright` followed by `python -m playwright install chromium`. CI builds the PDF on all three systems in the `manual-pdf` job and keeps the Linux copy as a workflow artifact. The PDF is committed to `manual/pdf/` only when the owner asks for a build (work-plan PR 15). No tag or release is made from this folder without the owner's go-ahead.
