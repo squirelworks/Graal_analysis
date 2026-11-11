@@ -340,6 +340,7 @@ protocol/public-listserver-2026-10-25.tsv	cited	6	6
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
+protocol/shoot-5007.md	cited	2.4; 2.5	2.5	
 protocol/udp-p2p.md	cited	2; 2.8; 2.9	2.9	
 protocol/unknown-ids-2026-11-06.md	cited	2.4; 2.5; E	2.4; 2.5	
 protocol/unpacked-6113-wire.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.6 carry the generation-5 LCG, the missing token, and the 0xFE send slots; the file-magic table stays in the note
@@ -593,7 +594,6 @@ protocol/macos-ppc-receive-framing.md	cited	2.1; 2.2; E		exact-input receiver co
 client-internals/linux-420-native-object-bridge.md	cited	10	10	exact identities and evidence lineage remain in source note; bridge relation and limits carried
 torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
 version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
-
 formats/windows-603-weapon-cache.md	cited	3.8	3.8	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
 client-internals/windows-500-event-queue.md	cited	8; 8.3; E	8.3; E	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
@@ -601,12 +601,8 @@ protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenan
 protocol/login-tokens-3x-7x.md	pending		2.3; 10	synthesis of the 3.x to 7.x login identity (tokens, type byte, machine identity, Login server, Torque 3D range); to be folded into the login and 3D sections
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
-
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
-
 client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build stage and saved-state distinctions carried; identity, selected-recovery counts and provenance stay in source note
-
-
 formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
