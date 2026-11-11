@@ -89,3 +89,59 @@ def test_scrub_browser_version_keeps_length():
     assert len(out) == len(pdf)
     assert b'HeadlessChrome/153_0_0_0 ' in out
     assert b'Safari/537.36' in out
+
+
+def test_outline_nests_part_chapter_section():
+    html = (
+        '<h1 id="2-wire">2 Wire protocol</h1>'
+        '<h2 id="20-reading">2.0 Reading this Part</h2>'
+        '<h2 id="chapters">Chapters</h2>'
+        '<h1 id="21-framing">2.1 Framing <em>and</em> encodings</h1>'
+        '<h2 id="211-ints">2.1.1 Integer encodings</h2>'
+        '<h1 id="10-torque">10 Torque-era 3D</h1>'
+        '<h2 id="101-lineage">10.1 Engine lineage</h2>'
+        '<h1 id="app-a">Appendix A. Message index</h1>'
+        '<h2 id="a1">A.1 Client to server</h2>'
+        '<h3 id="deep">2.1.1.1 Too deep</h3>'
+    )
+    assert build_manual.outline_entries(html) == [
+        (0, '2-wire', '2 Wire protocol'),
+        (1, '20-reading', '2.0 Reading this Part'),
+        (1, '21-framing', '2.1 Framing and encodings'),
+        (2, '211-ints', '2.1.1 Integer encodings'),
+        (0, '10-torque', '10 Torque-era 3D'),
+        (1, '101-lineage', '10.1 Engine lineage'),
+        (0, 'app-a', 'Appendix A. Message index'),
+        (1, 'a1', 'A.1 Client to server'),
+    ]
+
+
+def test_sources_become_footnotes_and_bibliography():
+    bib = build_manual.Bibliography()
+    md = (
+        'Text [bin] (a/x.md#y); [2.05] (b/y.md) and more [inf] (a/x.md).\n'
+        '\n'
+        '| Id | Rule | Source |\n'
+        '| --- | --- | --- |\n'
+        '| 1 | a `[bin]` rule [inf] | [bin] (a/x.md); [cap] (c/z.md#q) |\n'
+        '| 2 | open | disputed → App. E#1 |\n'
+    )
+    out = build_manual.move_sources(md, bib)
+    lines = out.split('\n')
+    fn = '<sup class="fn"><a href="#src-{}">{}</a>'
+    assert lines[0].startswith('Text' + fn.format(1, 1) + ',<a href="#src-2">2</a></sup> and more')
+    assert lines[2] == '| Id | Rule |'
+    assert lines[4].startswith('| 1 | a `[bin]` rule' + fn.format(1, 1))
+    assert 'src-3' in lines[4]
+    assert lines[5].startswith('| 2 | open (disputed → App. E#1) |')
+    assert list(bib.number) == ['a/x.md', 'b/y.md', 'c/z.md']
+    assert '<p id="src-3">3. <a href="https://github.com/squirelworks/Graal_analysis/blob/main/c/z.md">' in bib.chapter()
+
+
+def test_a_source_column_of_names_is_kept():
+    bib = build_manual.Bibliography()
+    md = ('| Source | Hearts | Source |\n| --- | --- | --- |\n'
+          '| lava | 1 | [2.05] (a/x.md) |\n| arrow | 0.5 | [2.05] (a/x.md) |\n')
+    out = build_manual.move_sources(md, bib).split('\n')
+    assert out[0] == '| Source | Hearts |'
+    assert out[2].startswith('| lava | 1<sup class="fn">')
