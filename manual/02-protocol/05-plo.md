@@ -275,7 +275,9 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
-## 2.5.11 Unpacked Windows 6.1.1.3
+## 2.5.11 Unpacked Windows 6.1.1.3: script-installed handlers
+
+#### Receive and send registration
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -283,7 +285,7 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 | `setindatahandlers` installs (wire id, handler) pairs into 256 slots. 255 clears, 254 is the script sentinel, 253 and 252 save the wire id, and 0 to 94 select a native function. Index 90 is empty | 6.1.1.3 | [bin] (protocol/v6113-plo.md#incoming-registration) |
 | `setoutdatahandlers` fills 256 outgoing ids with all-ones, then copies the script list, at most 256 entries | 6.1.1.3 | [bin] (protocol/v6113-plo.md#outgoing) |
 
-## 2.5.12 Native handler slots in unpacked 6.1.1.3
+#### The native handler slots
 
 Unpacked 6.1.1.3 does not compile a wire-id to handler map. A script list of numbers is converted to byte pairs and installed; a second script method zeros all 256 wire-id slots. [bin] (protocol/v6113-handlers.md)
 
@@ -293,7 +295,9 @@ No default pair list is compiled in. The installer writes nothing when the scrip
 
 Unpacked 6.0.3.7 has no 95-slot native table. Wire id 104 has no compiled receive case in 6.1.1.3; the only case 104 is a GS2 opcode. [bin] (protocol/v6113-handlers.md)
 
-## 2.5.13 Linux 4.04r2 object-script delivery and receive-switch scope
+## 2.5.12 Linux receive switches and compiled-script delivery
+
+#### Linux 4.04r2
 
 | Observation | Exact scope | Limit | Source |
 | --- | --- | --- | --- |
@@ -302,7 +306,7 @@ Unpacked 6.0.3.7 has no 95-slot native table. Wire id 104 has no compiled receiv
 | Message 131 | Requires a three-byte identifier; a positive decoded identifier selects an object lookup, the prefix is stripped, and remaining bytes reach the script setter, context loader and compiled-segment reader | Static path only; complete identifier encoding, lookup roles and indirect initialization callback not fully established; no network fixture delivered | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
 | Other script delivery and cache validation | Messages 140/197 and other weapon/class paths remain under research | The map and message-131 trace do not settle all roles, field layouts or cross-platform compatibility (→ App. E#202) | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
 
-## 2.5.14 Compare Linux receive cases and the 4.20r6 compiled-input chain
+#### Linux 4.20 and 6.x
 
 [bin] The examined splitters pass a zero-extended tag minus 32 to receive entry. After two special arguments, the receiver selects immediate dispatch or mutex/queue machinery; immediate tables use the unmodified argument. The queue branch is not a second established protocol switch. In both 4.20 revisions, 131/193 have distinct paths, 140 takes fallback and 197 is outside the guard. In all three examined 6.x builds, 131/140/197 have handlers and 193 takes fallback. This is exact-path coverage, not universal ID retirement. [bin] (protocol/linux-cross-version-receive.md)
 
