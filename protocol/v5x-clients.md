@@ -126,7 +126,7 @@ Ids whose purpose shows from the code that sends them **[bin][inf]**:
 
 ### How scripts reach the GRESCR01 cache
 
-- **S→C 140** sends a script. It is a GSHORT header length, then a comma-separated header: the type (`weapon` or `class`), the name, a cache flag and two GINT5 values. The script body follows in **plain text**. **[bin]**
+- **S→C 140** sends a script. It is a GSHORT header length, then a comma-separated header: the type (`weapon` or `class`), the name, a cache flag and two GINT5 values. The script body follows in **plain text**. **[bin]** A later read of the 5.00r7 backup engine's script setter finds a binary segment container (big-endian 32-bit type and length), so treat the body as unencrypted script bytes rather than source text; see `client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-script-container-and-cache`.
 - The two GINT5 values, taken as 32-bit little-endian words, are the **8-byte DES key**. When the cache flag is 1, the client writes `GRESCR01` followed by the DES-encrypted body to disk. It then loads the plain body. Classes go through `TGraalUniverse::addEncryptedClassScript`. **[bin]**
 - **S→C 197** tells the client to use its cache. It carries the same key fields plus a CRC32. The client decrypts its cached copy and checks the CRC32 of the plain text. On a match it loads the cached copy. Otherwise it asks for the script again with **C→S 158**. **[bin]**
 - So the on-disk encryption only hides scripts from casual reading. The key never stays on the client's disk, but every connection sends it in clear inside the game protocol. **[inf]**

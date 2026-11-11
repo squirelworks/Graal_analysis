@@ -607,3 +607,4 @@ formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognit
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
+client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; E	4.1; E	

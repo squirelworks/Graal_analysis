@@ -25,6 +25,7 @@ This chapter fixes the tick that every count in Part IV uses, how each build dri
 | NewMain 1.42 to 2.31 (every 2.0x, NewWorld betas 1 and 2, the 2.1 tests, 2.17.1, 2.22, 2.31) | no form timer; the frame runs from the application's idle handler behind a 50 ms gate | [bin] (version-profiles/matrix/builds-static-survey.tsv); [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | 2.31 | in addition, the main form carries a 50 ms timer that runs the 64-tick integrity cycle (→ §4.1.3) | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md) |
 | 3.x, 4.x | unmeasured | [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
+| Windows 4.04r2 | still unmeasured, but the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events → App. E#301 | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 
 ### 4.1.2.1 The frame function (idle-driven builds)
 

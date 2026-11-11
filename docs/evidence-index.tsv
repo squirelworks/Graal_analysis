@@ -44,3 +44,10 @@ VX-JAVA1-INPUT-20261109-01	java	bytecode-static
 GRAAL39STER-ENGINE-20261109-01	windows	script-static
 VX-GRAALX-NW-SAVE-20261109-01	windows	single-run
 V7-COUNTER-CROSS-BUILD-20261109	windows	researcher-static-summary
+W404-GS1-NATIVE-20261109	windows	researcher-static-summary
+W404-GS1-REGISTRY-20261109	windows	startup-dump-static
+W404-E301-CLOCK-20261109	windows	researcher-static-summary
+W404-E102-20261109	windows	researcher-static-summary
+W404-E603-E604-20261109	windows	researcher-static-summary
+W500-E4-THROW-20261109	windows	researcher-static-summary
+W500-SCRIPT-INTERFACE-20261109	windows	researcher-static-summary

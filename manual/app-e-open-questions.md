@@ -44,6 +44,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | the 5.00r7 profile lists 4–19, which includes 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
 | Open | which list is right for 5.00r7; both are floors, since sends through a variable are not captured | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
 | Settles it | a 5.00r7 capture of a throw, or a re-read of the send wrappers for id 11 | [inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
+| Static resolution | the 5.00r7 backup engine's carried-object throw path sends id 11 with an empty body; the earlier wrapper list missed it. Claim B holds for that engine; a capture is still missing | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 
 ### E#5 Meaning of id 162 from the client (settled)
 
@@ -143,6 +144,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`: eight side-by-side blocks of 512 ids, each 16 columns by 32 rows; Claim A is called wrong in a correction dated 2026-10-25 | [file] (client-internals/client-assets.md#tile-sheets) |
 | Open | the manual follows Claim B, the later correction; Claim A's note has not been updated | [inf] (client-internals/client-assets.md#tile-sheets) |
 | Settles it | correcting `formats/tiletypes.txt`, or rendering a known board with both rules against a client screenshot | [inf] (client-internals/client-assets.md#tile-sheets) |
+| Windows 4.04r2 code | the tile draw path and its invalidation path both compute Claim B's formula before optional tiledef remapping | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
 
 ### E#200 When a GS1 condition counts as true
 
@@ -263,6 +265,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | --- | --- | --- |
 | Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | Settles it | a timed walk of a 3.x and a 4.x client on the lab server | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+| Windows 4.04r2 clocks | three time notions are traced statically (elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, legacy `timeout` pass counts); no update rate is measured | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D. The broader question remains partial (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
@@ -582,6 +585,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | `Z3-V1.03` link numbers are floating point and include halves such as `43.5`; GLEVNW01 allows fractional NPC positions; of 18,710 arrival fields in an archive, 12,035 were plain numbers, halves included | [srv] (formats/level-binary.md#z3-v1-differences); [GE] (formats/glevnw01.txt); [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
 | Open | which fields the whole-tile sentence covers | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
 | Settles it | a field list for link box, link arrival, baddy, NPC, chest and sign, each with its stated type and one real file of each magic | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
+| Windows 4.04r2 reader | link boxes are floating point; arrivals stay text; baddy positions are raw bytes and NPC, chest and sign positions bytes minus 32, all whole numbers without half-tile scaling; cross-magic examples still missing | [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 
 ### E#604 Where a binary sign list ends
 
@@ -591,6 +595,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | the sign section runs until an empty line or the end of the file | [srv] (formats/level-binary.md#layout) |
 | Open | both client behaviours fit Claim B but not each other on a file with signs, a blank line and a `HEIGHTS` block; the server layout does not say which bytes are signs there | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
 | Settles it | one such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
+| Windows 4.04r2 reader | the sign reader stops after a line shorter than two bytes or at end of file and does not recognize `HEIGHTS`; only the web-level cache reader reads heights after it | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 
 ### E#605 Client listserver frames in two vocabularies
 
