@@ -7,6 +7,8 @@ This chapter gives what the client does when its hearts reach zero, the death ti
 
 ## 4.4.1 Life-states
 
+The client keeps a life-state alongside its mode. Each row gives one value and what it means; the death and respawn rules below depend on it [2.05] (client-internals/decomp-findings-2026-10-24/life-states.tsv).
+
 | Value | Life-state | Source |
 | --- | --- | --- |
 | 0 | playing | [2.05] (client-internals/decomp-findings-2026-10-24/life-states.tsv) |
@@ -15,6 +17,8 @@ This chapter gives what the client does when its hearts reach zero, the death ti
 | 4 | a state in which any key restarts, with no timer test (1st Graal, 1.39); not named | [bin] (version-profiles/matrix/rules-1st-graal.md#death-and-the-restart-bin); [1.39] (version-profiles/matrix/rules-139.md#death-and-respawn-bin) |
 
 ## 4.4.2 The death sequence (2.05)
+
+Death in 2.05 runs as a short fixed sequence. The steps below are in order, from the trigger to the dead pose [2.05] (client-internals/decomp-findings-2026-10-24/01-death-respawn.md#trigger).
 
 | Step | Rule | Source |
 | --- | --- | --- |
@@ -37,6 +41,8 @@ On the wire:
 
 ## 4.4.3 Respawn
 
+There is no automatic respawn. The rules below give the key that ends death and where the player comes back [2.05] (client-internals/decomp-findings-2026-10-24/01-death-respawn.md#respawn).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | key | once the timer has passed 27, any movement or action key respawns the player; there is no timer-only respawn, no respawn message and no server permission step | [2.05] (client-internals/decomp-findings-2026-10-24/01-death-respawn.md#respawn); [cap] (live-runs/2gta-222-2026-10-30/README.md#baddies-death-and-respawn-2118-to-2121) |
@@ -51,6 +57,8 @@ On the wire:
 
 ### 4.4.3.1 Hearts after respawn
 
+The hearts a player gets back depend on AP. Each row gives an AP band and the hearts restored, the same in 2.05 and 2.22 [2.05] (client-internals/decomp-findings-2026-10-24/01-death-respawn.md#respawn).
+
 | AP | Hearts (2.05, 2.22) | Source |
 | --- | --- | --- |
 | below 20 | 3 | [2.05] (client-internals/decomp-findings-2026-10-24/01-death-respawn.md#respawn); [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#c-curpower-semantics-settled-for-222) |
@@ -59,6 +67,8 @@ On the wire:
 | MAXPOWER 0 | 2.05 still reports CURPOWER 6 (3 hearts): the respawn hearts are not capped at a MAXPOWER of 0 | [live][2.05] (client-internals/live-trace-205.md#server-curpower-0-death-and-respawn-live-online-2026-10-29) |
 
 ### 4.4.3.2 By build
+
+Death was read in four builds. Each row is one part of the sequence, with how each build does it, so the columns can be compared across [bin] (version-profiles/matrix/rules-1st-graal.md#death-and-the-restart-bin).
 
 | Rule | 1st Graal | 1.39 | 2.05 rev 2 | 2.22 | Source |
 | --- | --- | --- | --- | --- | --- |
@@ -80,6 +90,8 @@ Run after every level entry, and at login; saving stores the new level's name, t
 | 2 | index(new) × index(old) in the current gmap's level list is negative (-1 = absent; an index of 0 gives 0, so the first list entry behaves like "absent") | save | all read | [2.05] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#the-decision-run-after-every-level-entry) |
 | 3 | the name groups differ | save | 2.00 (all revisions) to 2.05 rev 2 | [2.05] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | 4 | otherwise | do not save | all read | [2.05] (client-internals/decomp-findings-2026-10-24-d/entry-save-rule.tsv) |
+
+The respawn point is saved on level entry, but only when the new level is a different group from the old. The rules below give how 2.05 forms that group and which builds skip the test [2.05] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#the-name-group-200-to-205).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

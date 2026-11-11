@@ -7,12 +7,16 @@ The client keeps its settings in `graalconfig.txt` next to the executable and it
 
 ## 3.9.1 Where settings live
 
+A 2.05 client keeps its settings in two places. Each row gives one store, where it is and what it holds [2.05] (client-internals/graalconfig-reference.md#where-settings-live).
+
 | Store | Location | Holds | Source |
 | --- | --- | --- | --- |
 | `graalconfig.txt` | next to the executable | every option on the More Options and Player List Options dialogs, the head, language, font, joystick and key bindings | [2.05] (client-internals/graalconfig-reference.md#where-settings-live) |
 | registry | `HKEY_CURRENT_USER\Software\Graal\Client` | `nickname`, `accountname`, `password`, and one `<account>:pass` value per account | [2.05] (client-internals/graalconfig-reference.md#where-settings-live) |
 
 ## 3.9.2 graalconfig.txt file rules
+
+The rules below say how `graalconfig.txt` is read and written. The writing rule matters most: the whole file is rewritten, so a key the client does not know is lost [2.05] (client-internals/graalconfig-reference.md#where-settings-live).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -67,6 +71,8 @@ MO is the More Options dialog and PL the Player List Options dialog; labels are 
 
 ## 3.9.4 Key bindings
 
+Key bindings sit in the same file. The rules below give where the block goes, the eleven actions and how conflicts between keys are resolved [2.05] (client-internals/graalconfig-reference.md#keys-in-file-order).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | position | the joystick and key block is written right after `head=` | [2.05] (client-internals/graalconfig-reference.md#keys-in-file-order) |
@@ -79,6 +85,8 @@ MO is the More Options dialog and PL the Player List Options dialog; labels are 
 
 ## 3.9.5 Registry values
 
+The account details live in the registry. Each row gives one value and when it is read and written [2.05] (client-internals/graalconfig-reference.md#registry-values).
+
 | Value | Read | Written | Source |
 | --- | --- | --- | --- |
 | `nickname` | at startup | when the dialogs close | [2.05] (client-internals/graalconfig-reference.md#registry-values) |
@@ -86,12 +94,16 @@ MO is the More Options dialog and PL the Player List Options dialog; labels are 
 | `password` | at startup, decrypted | when the dialogs close, unless `dontsavepasswords` is true | [2.05] (client-internals/graalconfig-reference.md#registry-values) |
 | `<account>:pass` | at startup for the current account, and again when the account box changes | as `password` | [2.05] (client-internals/graalconfig-reference.md#registry-values) |
 
+Two rules cover how passwords are cleared and how they are encrypted [2.05] (client-internals/graalconfig-reference.md#registry-values).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | clearing | when More Options closes with "Don't save the passwords" ticked, the client deletes `password` and every value whose name ends in `:pass` from the key | [2.05] (client-internals/graalconfig-reference.md#registry-values) |
 | encryption | password values are encrypted with a fixed DES key, the literal that older notes called a password mask | [2.05] (client-internals/graalconfig-reference.md#registry-values); [2.05] (client-internals/config-and-input.md#graalconfigtxt) |
 
 ## 3.9.6 Keys by build
+
+The config file grew between 2.05 and 2.22. The table compares the two builds group by group [2.05][2.22] (client-internals/graalconfig-reference.md).
 
 | Key or group | 2.05 | 2.22 | Source |
 | --- | --- | --- | --- |
@@ -130,6 +142,8 @@ From 1.38 some keys are built one character at a time, so a build can read a key
 | 2.31 | `cachefilenames` | | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
 
 ## 3.9.7 Dropped files
+
+A file dragged onto the window is opened by type. The rules below give the gate and what each kind of file becomes [live] (client-internals/config-and-input.md#drop-files).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

@@ -7,6 +7,8 @@ A gmap is a grid of levels that the client walks across without a level warp. It
 
 ## 3.2.1 Three kinds of map
 
+Three different mechanisms are called a map, and they do not mix. Each row names one, the file behind it, the server option that turns it on and what the player sees [srv] (client-internals/feature-specs/06-gmap-overworld.md#three-different-maps-do-not-mix).
+
 | Kind | File | Server option | Effect | Source |
 | --- | --- | --- | --- | --- |
 | level links | none; links inside each level (→ §3.1.2.3) | none | walking into a link rectangle makes the client ask for a level warp | [srv] (client-internals/feature-specs/06-gmap-overworld.md#three-different-maps-do-not-mix) |
@@ -15,6 +17,8 @@ A gmap is a grid of levels that the client walks across without a level warp. It
 | map-screen overlays | text grid and image | `bigmap =`, `minimap =` (four comma fields `text,image,x,y`) | the server sends the overlay settings at login to 2.1 and later clients; the notes warn that setting `bigmap` breaks gmaps | [srv] (client-internals/feature-specs/06-gmap-overworld.md#three-different-maps-do-not-mix) |
 
 ## 3.2.2 GRMAP001 as the server reads it
+
+A `.gmap` file is a list of keyword lines. The table gives each key the server reads, with its arguments and meaning [srv] (formats/gmap.md#keys-read-by-gserver-srv).
 
 | Key | Arguments | Meaning | Source |
 | --- | --- | --- | --- |
@@ -27,6 +31,8 @@ A gmap is a grid of levels that the client walks across without a level warp. It
 | `NOAUTOMAPPING` | none | flag | [srv] (formats/gmap.md#keys-read-by-gserver-srv) |
 | `LOADFULLMAP` | none | flag: preload every level | [srv] (formats/gmap.md#keys-read-by-gserver-srv) |
 | `LOADATSTART` … `LOADATSTARTEND` | name list | levels to preload | [srv] (formats/gmap.md#keys-read-by-gserver-srv) |
+
+The rules below cover how those lines are split, how the world coordinates are formed, and how a client gets the file [srv] (formats/gmap.md#keys-read-by-gserver-srv).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -45,6 +51,8 @@ Three writers emit the signature, each with a different set of keys; `GENERATED`
 | TerrainGenerator (generator form) | `GRMAP001`, `WIDTH`, `HEIGHT`, `GENERATED 1`, `GENSEED`, `GENBASE`, `GENEVENBORDERS` (0 or 1), `GENHEIGHT`, `GENCHAOS`, `LEVHEIGHT`, `LEVCHAOS`, `MAPIMG <basename>.png`, one level name per row, `HEIGHTMAP` … `HEIGHTMAPEND`, `RANDOMSEEDS` … `RANDOMSEEDSEND` (one seed per level, when present) | basename, a column `A` then `AA`, a zero-padded row, and `.nw`; `GENERATED 1` is a flag here | [bin] (formats/grmap001.txt) |
 | GraalLevelGen | `GRMAP001`, `WIDTH`, `HEIGHT`, then a `LEVELNAMES` list of quoted, comma-separated file names | as listed | [bin] (formats/grmap001.txt) |
 
+The map tools write keys the server does not read. The rules below say what those keys hold and where the per-level heights go [bin] (formats/grmap001.txt).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | `MAPIMG` | the overview the client shows on the map list; the PNG TerrainGenerator saves from its preview dialog is a separate file | [bin] (formats/grmap001.txt) |
@@ -52,6 +60,8 @@ Three writers emit the signature, each with a different set of keys; `GENERATED`
 | per-level heights | each level file then carries a 9 by 9 `HEIGHTS` block (→ §3.1.2.7) | [bin] (formats/grmap001.txt) |
 
 ## 3.2.4 Client readers by build
+
+Not every client reads a gmap the same way. Each row gives one build's reader and the map path it uses; rows marked unmeasured have only lab captures of the crossing [2.05] (formats/gmap.md#205).
 
 | Build | Gmap reader | Map path in use | Source |
 | --- | --- | --- | --- |
@@ -73,6 +83,8 @@ An earlier version of the gmap note said 2.05 had no `GRMAP001` string; that was
 | big map | `bigmap.txt` | `map.png` | 10, 16, 1688, 1024 | [2.05] (formats/gmap.md#205-big-map-and-minimap-text-files-205) |
 | minimap | `minimap.txt` | `map2.png` | 664, 896 | [2.05] (formats/gmap.md#205-big-map-and-minimap-text-files-205) |
 | tutorial (offline) | `tutorialmap.txt` | `tutorialmap.png` | 3, 4, 192, 486 | [2.05] (formats/gmap.md#205-big-map-and-minimap-text-files-205) |
+
+The older big map and minimap are text grids of level names. The rules below give how 2.05 reads them and the shape of the shipped file [2.05] (formats/gmap.md#205-big-map-and-minimap-text-files-205).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

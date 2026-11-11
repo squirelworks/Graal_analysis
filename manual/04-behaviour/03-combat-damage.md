@@ -7,6 +7,8 @@ This chapter gives the sword swing and the spin, who judges a hit, the gates a h
 
 ## 4.3.1 Who judges a hit
 
+In Graal the victim's client, not the server, decides whether it was hit. The rules below set out that model and the units hearts are counted in [2.05] (client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md#who-decides-a-hit).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | the victim decides | the victim's own client judges another player's swing from that player's props (position, direction, sprite) and applies the damage; the attacker only broadcasts its props | [2.05] (client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md#who-decides-a-hit); [2.00] (client-internals/combat-200-204.md#the-same-in-every-build-200-to-205-rev-2) |
@@ -17,6 +19,8 @@ This chapter gives the sword swing and the spin, who judges a hit, the gates a h
 | integrity | hearts, AP and the heart cap are stored obfuscated twice and cross-checked; a mismatch raises a "memory problems" error (→ §4.10) | [2.05] (client-internals/decomp-findings-2026-10-24/01-death-respawn.md#anti-cheat-note) |
 
 ## 4.3.2 The sword swing
+
+The sword swing is a mode with its own gani and timing. The rules below give when it can start, where the tip probe lies, and how long it lasts [2.05] (client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md#starting-a-swing).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -43,6 +47,8 @@ By build:
 | 5.24r4, 5.30r3, 6.03r7 | `sword` 5 ticks, `idle` 0.25 s later | the cut (board change) in the same tick as the swing starts | [wire] (protocol/v5v6-lab-play.md) |
 
 ### 4.3.2.1 The spin attack
+
+A second press during a swing turns it into a spin. The rules below give the timing window, the length of the spin, and what it ignores [live][2.05] (client-internals/player-mannerisms-live.md#spin-attack-live-online).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -85,12 +91,16 @@ By build:
 
 ## 4.3.4 Sword damage
 
+Sword damage comes from one prop. The rules below give the formula, how the prop is encoded and what the formula leaves out [2.05][2.17.1][2.22][2.31] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#the-formula).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | formula | half-hearts taken = the attacker's sword power as the victim last received it in SWORDPOWER (prop 8), limited to -20 to 20; a power-3 sword takes 1.5 hearts | [2.05][2.17.1][2.22][2.31] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#the-formula) |
 | prop 8 on the wire | power 0 sends byte 0 (no image); power 1 to 4 with the matching default image (`sword1` to `sword4`) sends the power itself; anything else sends power + 30 (10 to 50) followed by the image name; the receiver reads a byte below 10 as the power and otherwise byte - 30 (→ §2.6) | [2.05] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#the-sword-power-byte-prop-8) |
 | negative power | heals, but only at AP 40 or more; hearts stop at the maximum | [2.05] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#what-happens-to-the-hearts) |
 | not in the formula | the victim's shield power, item levels and the attacker's AP were not read into it | [2.05] (client-internals/decomp-findings-2026-10-24-d/damage-rules.tsv) |
+
+The damage store changed twice. Each row gives a group of builds, how they store the received power and what a negative power does [bin] (version-profiles/matrix/rules-1st-graal.md#sword-reach-bin).
 
 | Build | Sword power store | Negative power | Source |
 | --- | --- | --- | --- |
@@ -116,6 +126,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 | lava | 0.5 every 101 ticks (→ §4.2.10.1) | the point (x + 1.5, y + 2) on lava | [live][2.05] (client-internals/live-trace-205.md#water-and-lava-live-new4nw) |
 | `PLO_HURTPLAYER` (40) | its power byte - 32 in half-hearts, capped at one heart; 0 gives hurt mode and knockback with no hearts | → §4.3.6 | [2.05] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#the-hurt-packet-id-40-and-its-power); [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-packet-40-hurt-player-real-client-as-victim-settled-for-the-cases-below) |
 
+Swords are not the only source of damage. The rules below cover ownership, overlapping hits, and baddy touch damage [2.05] (client-internals/damage-sources.md#who-can-hurt-whom).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | ownership | a bomb, blast, arrow or thrown object can belong to another player; online, a piece counts as a player's when it has an owner still in the player list; a player's source does not hurt in a level that ran `noplayerkilling`; a source with no owner (a baddy's, the level's, or one whose owner has left) always hurts | [2.05] (client-internals/damage-sources.md#who-can-hurt-whom); [2.05] (client-internals/damage-sources.md#when-a-piece-hurts-the-local-player) |
@@ -125,6 +137,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 | 1st Graal | sword and baddy touch half a heart; baddy centre (x + 1, y + 1); two projectile types (sprites 65 and 261) half a heart, the others one heart; an arrow (sprites 107 to 110) flying opposite the player's facing, with the player's sprite index below 6, is blocked | [bin] (version-profiles/matrix/rules-1st-graal.md#hurt-and-knockback-bin) |
 
 ### 4.3.5.1 Bombs and blasts
+
+Bombs and blasts are built from one command and a cross-shaped blast. The rules below give the powers, the shape and the explosion command [2.05][inf] (client-internals/damage-sources.md#bombs-and-explosions).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -137,6 +151,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 | another player's explosion (36) | at least 4 bytes; power `v & 7`, 0 read as 1 and above 3 read as 3; one cross, never the super-bomb split; one of two sounds by whether the power is 3 (that they are `thunder.wav` and `bomb.wav` is inferred) | [2.05][inf] (client-internals/damage-sources.md#explosion-36) |
 
 ### 4.3.5.2 Shots
+
+Shots fly one tile per tick. The rules below cover local and remote shots, their flight and their hit box [2.05] (client-internals/damage-sources.md#projectiles).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -151,6 +167,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 
 ## 4.3.6 Hits by message
 
+Two server messages deliver hits. The table compares them rule by rule: their payload, the gates they pass and the range they use [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#bc-addendum-fresh-runs-23102330-jst-packet-40-distance-gate).
+
 | Rule | `PLO_HURTPLAYER` (40) | `PLO_HITOBJECTS` (46) | Source |
 | --- | --- | --- | --- |
 | payload | attacker id, dx, dy, power; an optional trailing GINT3 NPC id | power, then the hit point's two bytes (half-tiles) | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#bc-addendum-fresh-runs-23102330-jst-packet-40-distance-gate); [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#packet-46-box) |
@@ -161,6 +179,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 | knockback | `(byte - 0x60) / 16` per axis, normalised to the 5-tile push; a zero vector goes 5 tiles east | the victim's centre minus the hit point | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#bc-addendum-fresh-runs-23102330-jst-packet-40-distance-gate); [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#knockback-of-a-hit) |
 | NPC id present | the hit is refused completely (no damage, no knockback); with only 2 trailing bytes it still hits | unmeasured | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#bc-addendum-fresh-runs-23102330-jst-packet-40-distance-gate) |
 | unknown attacker | refused | refused | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-packet-40-hurt-player-real-client-as-victim-settled-for-the-cases-below) |
+
+Many of the hit gates arrived in 2.01. Each row gives one gate and whether each group of builds has it [2.00][2.01] (client-internals/combat-200-204.md#what-changes-by-build).
 
 | Gate | 2.00 | 2.01, 2.02, 2.03 | 2.04 = 2.05 rev 2 | Source |
 | --- | --- | --- | --- | --- |
@@ -174,6 +194,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 
 ## 4.3.7 The hurt routine and hurt mode
 
+Every accepted hit goes through one hurt routine. The rules below give its input, when it refuses, what happens to hearts and the mode it sets [2.05] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#what-happens-to-the-hearts).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | input | a power in hearts and a knockback vector | [2.05] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#what-happens-to-the-hearts) |
@@ -186,6 +208,8 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 | carrying | 1.39: a positive-power hit may force a drop of the carried object; 1st Graal: the carry is dropped | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin); [bin] (version-profiles/matrix/rules-1st-graal.md#hurt-and-knockback-bin) |
 
 ### 4.3.7.1 Knockback
+
+A hit pushes the player back. The rules below give the vector, the steps and what happens when the way is blocked [2.05][2.17.1][2.22][2.31] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#knockback-of-a-hit).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -214,6 +238,8 @@ The twelve points, offsets from (x, y), three per edge of a box 0.6 to 2.4 acros
 | 12 | 2.4 | 2.9 | [2.05] (client-internals/decomp-findings-2026-10-25-k/knockback-probes.tsv) |
 
 ### 4.3.7.2 Hurt mode by build
+
+Hurt mode was measured across builds. Each row gives one build's lock-out, knockback, pose and blinking. The 1.39 knockback is disputed between the binary and a live run [bin] (version-profiles/matrix/rules-1st-graal.md#hurt-and-knockback-bin).
 
 | Build | Lock-out | Knockback | Hurt pose | Blinking | Source |
 | --- | --- | --- | --- | --- | --- |

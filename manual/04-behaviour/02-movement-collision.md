@@ -7,6 +7,8 @@ This chapter gives the walking step, the wall test, what blocks a point, the blo
 
 ## 4.2.1 The step
 
+Walking is built from one step per key per tick. The rules below define that step: order, facing, vector and units [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#one-key-one-step).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | one key, one step | each arrow key held is one step per tick; with several held, the steps run in the order up, left, down, right, each from the position the previous one left; a diagonal is two steps | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#one-key-one-step) |
@@ -19,6 +21,8 @@ This chapter gives the walking step, the wall test, what blocks a point, the blo
 
 ### 4.2.1.1 Speed factors
 
+The step vector is scaled by a speed factor. Each row gives one factor and the state that selects it [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step).
+
 | Factor | When | Builds | Source |
 | --- | --- | --- | --- |
 | 1.0 | on foot, carrying or not (carrying does not slow the walk) | 2.05 | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step); [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
@@ -29,6 +33,8 @@ This chapter gives the walking step, the wall test, what blocks a point, the blo
 | swimming | the same 0.5 tile per tick as walking | 1.39, 1.41, 2.05, 2.22, 5.x, 6.x | [live] (client-internals/player-mannerisms-live.md#cross-version-table); [wire] (protocol/v5v6-lab-play.md) |
 
 ### 4.2.1.2 Walking speed by build
+
+Walking speed was timed in live runs across the builds. Each row gives the step per tick and the resulting speed. The column stays the same from 1998 on [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed).
 
 | Build | Step per tick | Speed | Source |
 | --- | --- | --- | --- |
@@ -58,6 +64,8 @@ Six points per facing, offsets from the sprite's top-left, read at the position 
 | down | y + 3.0 | x + 0.525, 1.475, 1.525, 2.475, 2.525, 0.475 | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
 | right | x + 2.5 | y + 1.025, 1.975, 2.025, 2.975, 3.025, 0.975 | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
 
+Whether a step is allowed is decided by testing points on the player's body. The rules below give where those points lie, how a point maps to a tile, and what lies off the board [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#six-probe-points-per-facing).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | body box | the points lie on the leading edge of a two-tile square, x + 0.5 to x + 2.5, y + 1 to y + 3 | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#six-probe-points-per-facing) |
@@ -66,6 +74,8 @@ Six points per facing, offsets from the sprite's top-left, read at the position 
 | off the board, default tileset | the wall test checks bounds first and calls off-board a wall; the type tests skip the bounds check and read id 632, which is in no list of the 2.22 `arrays.dat` | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset) |
 
 ### 4.2.2.2 The same test in earlier builds
+
+Earlier builds were checked against the 2.05 test. Each row gives one build and how far its rule is known; several are live readings rather than reads of the code [bin] (client-internals/first-graal-movement-2026-11-09.md).
 
 | Build | Rule | Source |
 | --- | --- | --- |
@@ -76,6 +86,8 @@ Six points per facing, offsets from the sprite's top-left, read at the position 
 | 2.05, 2.17.1, 2.22, 2.31 | as §4.2.2.1 to §4.2.4; the four agree on every table and constant | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md) |
 
 ### 4.2.2.3 Exact 1st Graal geometry
+
+1st Graal's movement was read exactly from its executable. These rules give its coordinate system, camera and starting position. The input-scope row says which file they apply to [bin] (client-internals/first-graal-movement-2026-11-09.md#input-and-evidence-boundary).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -92,6 +104,8 @@ Offsets below are ordered probes 0–5 from the candidate after adding the facin
 | left | (−0.5, 0) | (0.55, 1.1), (0.55, 1.9), (0.55, 2.1), (0.55, 2.9), (0.55, 3.025), (0.55, 0.975) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
 | down | (0, +0.5) | (0.6, 2.95), (1.4, 2.95), (1.6, 2.95), (2.4, 2.95), (2.525, 2.95), (0.475, 2.95) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
 | right | (+0.5, 0) | (2.45, 1.1), (2.45, 1.9), (2.45, 2.1), (2.45, 2.9), (2.45, 3.025), (2.45, 0.975) | [bin] (client-internals/first-graal-movement-2026-11-09.md#ordered-probes) |
+
+The second table gives what 1st Graal does when a step is blocked: the sideways nudge, its conditions, and the refusal [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -119,6 +133,8 @@ Tested in this order; the first hit blocks:
 
 ### 4.2.3.1 How the tile is answered, by tileset
 
+What counts as a wall depends on the tileset type. Each row gives one type and the rule that answers the wall test for it [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset).
+
 | Tileset type | Wall | Source |
 | --- | --- | --- |
 | 0 (default, `pics1.png`) | not in array 0 and not in array 1; looked up by binary search of each sorted list, with no 4096-entry table built | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset) |
@@ -138,6 +154,8 @@ Consequences on the default tileset:
 | scripts | `onwall(x, y)` is this wall test; `onwater(x, y)` is the type 11 test, true on lava; on the classic board that test is the id range 64 ≤ id < 288, matching the type 11 step of the rule above [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision); `tiletype(x, y)` returns -1 on the default tileset, 1 on type 5, and the fixed rule on types 1 and 2 (an NPC shape's type wins when above 1); 2.00 to 2.04 carry the same three names, their code not compared | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#script-functions) |
 
 ## 4.2.4 Refused steps, nudges and snaps
+
+When a step is refused the client does more than stop. The steps below are applied in order: a corner nudge, taking the step back, and a snap flush to the wall [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#decision).
 
 | Step | Rule | Source |
 | --- | --- | --- |
@@ -162,6 +180,8 @@ Consequences of the rule:
 
 ## 4.2.5 The blocked-step counter and the push pose
 
+Refused steps are counted, and the count drives the push pose, ledge jumps and pushing. The rules below give how the count rises and resets and when the pose changes [2.05] (client-internals/ledges-push-pull.md#the-ledge-test).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | counting | a step counts when it is refused and no corner nudge was applied; a free step or a nudge sets the count to 0, and so does the first refused step after a free one | [2.05] (client-internals/ledges-push-pull.md#the-ledge-test) |
@@ -185,6 +205,8 @@ By build:
 
 ## 4.2.6 Ledge jumps
 
+At certain counts the client checks for a ledge to jump down. The rules below give when that check runs, where it looks and where the player lands [2.05] (client-internals/ledges-push-pull.md#the-ledge-test).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | when | the ledge test runs at blocked count 18, and again every 20 steps (the wrap) | [2.05] (client-internals/ledges-push-pull.md#the-ledge-test) |
@@ -204,12 +226,16 @@ The flight, per tick `i` = 0 to 7:
 | down | `y0 + [-0.2, 0.2, 0.5, 1.5, 2.8, 4.0, 5.4, 7.0][i]` | [2.05] (client-internals/ledges-push-pull.md#the-ledge-test) |
 | left, right | `x0 -/+ [1, 2, 3, 3.8, 4.5, 5.2, 5.8, 6.5][i]`, `y0 + [-0.2, -0.5, 0, 0.5, 1.1, 1.7, 2.3, 3.0][i]` | [2.05] (client-internals/ledges-push-pull.md#the-ledge-test) |
 
+Two builds were compared with that rule. Each row gives what differs from 2.05 [bin] (version-profiles/matrix/rules-1st-graal.md#wall-and-walk-test-bin).
+
 | Build | Difference | Source |
 | --- | --- | --- |
 | 1st Graal | at count 18 a passing ledge test sets the hop mode and the counter to 8; the hop follows a facing table for 8 ticks | [bin] (version-profiles/matrix/rules-1st-graal.md#wall-and-walk-test-bin) |
 | 2.22, 2.31 | the same counts, probe points, flight curve and tables as 2.05; `jump.wav` plays only while the current gani is a built-in name (→ §4.2.12) | [2.22][2.31] (client-internals/ledges-push-pull.md#222-and-231) |
 
 ## 4.2.7 Pushing blocks and NPCs
+
+Pushing a block is tried at a later count than the ledge test. The rules below give when it is tried, which tile counts as a block, and where the block may move [2.05] (client-internals/ledges-push-pull.md#pushing).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -221,6 +247,8 @@ The flight, per tick `i` = 0 to 7:
 | after | online, the 4 × 4 area round the old spot goes to the server as a board modify; the player moves one tile in the facing; `stonemove.wav` plays | [2.05] (client-internals/ledges-push-pull.md#pushing) |
 
 ### 4.2.7.1 Pushed NPCs
+
+When there is no block, the push may move an NPC instead. The rules below give how the NPC is found, the permission it needs and how its path is checked [2.05] (client-internals/ledges-push-pull.md#pushed-and-pulled-npcs).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -234,6 +262,8 @@ The flight, per tick `i` = 0 to 7:
 | 2.22 | the NPC lookup also searches the neighbouring map parts on a gmap | [2.22] (client-internals/ledges-push-pull.md#pushed-and-pulled-npcs) |
 
 ## 4.2.8 Grab and pull
+
+Grabbing and pulling use the A key. The rules below give what A does first, what can be grabbed and how holding and pulling work [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -259,6 +289,8 @@ Pose timing by build:
 
 ## 4.2.9 The push and pull trigger actions
 
+Each push and pull try is announced as a trigger action. The rules below give who sees it locally, how it goes to the server and peers, and how often it repeats [2.05] (client-internals/ledges-push-pull.md#summary).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | local | NPCs at the point see `actionpushed` or `actionpulled` | [2.05] (client-internals/ledges-push-pull.md#summary) |
@@ -268,6 +300,8 @@ Pose timing by build:
 | cadence, 5.x and 6.x | `pushed,0` about 0.55 s after `push` starts, then every 1.0 s; `pulled,1` 0.85 s into a pull | [wire] (protocol/v5v6-lab-play.md) |
 
 ## 4.2.10 Water and lava
+
+The water check runs every tick at one point on the body. The rules below give when it runs and what happens on entering and leaving the water [2.05] (client-internals/water-and-ganis.md#water).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -291,6 +325,8 @@ Swimming by build:
 
 ### 4.2.10.1 Lava burn
 
+Lava hurts on a slow cycle. The rules below give the test point, the counter and which tiles burn [2.05][inf] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | test | once per player tick, one point, the position plus (1.5, 2), against the lava list (array 3) only; the order of the two offsets is inferred | [2.05][inf] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset) |
@@ -300,11 +336,15 @@ Swimming by build:
 
 ## 4.2.11 Following links
 
+Links are tested every tick. The rules below give how the client builds the neighbour table and tests links in order [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#the-levels-neighbours).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | neighbours | on entering a level while a big map is loaded, the client fills a 3 × 3 table of level names round it from the big map's text grid (→ §3.2.5); cells off the grid stay empty; the step is skipped under an unidentified flag (→ App. E#308) | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#the-levels-neighbours) |
 | probe | each tick, the player's position plus a per-facing offset (offsets unread → App. E#308) | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
 | order | each link of the level in order; the first that fires is taken; offline the client loads the level, online it asks the server | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
+
+On a big map the client adds four edge links of its own. Each row gives one edge, the condition that fires it and where the player arrives [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link).
 
 | Link | Fires when | Arrival | Source |
 | --- | --- | --- | --- |
@@ -314,6 +354,8 @@ Swimming by build:
 | south edge: y 63, height 1, destination = south neighbour | probe y ≥ 64 facing down, or player y > 63.0, or (not loaded) probe in the rectangle | y = player y - 64 | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
 | any other link | probe in the rectangle; a probe within 1 tile of an edge (x or y ≤ 1 or ≥ 63) counts only while the player faces out across that edge | the link's new-x and new-y, evaluated as expressions; a missing or `-1` value means `playerx` / `playery` | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
 
+The rules below complete the link behaviour: the seam between neighbours, the case with no big map, and the editor's defaults [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | seam | an edge link between big-map neighbours keeps the player's exact offset across the seam (east off x 63.6 arrives at x -0.4), whatever its new-x says | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
@@ -322,6 +364,8 @@ Swimming by build:
 | level-entry messages | what the client sends on each level entry is in → §2.4 | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md#pli-46-on-every-level-entry-gchar-1) |
 
 ## 4.2.12 Gates that stop movement (2.22, 2.31)
+
+2.22 and 2.31 add flags that freeze the player. The rules below list those gates and note that 2.05 has none [2.22][2.31][inf] (client-internals/ledges-push-pull.md#222-and-231).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

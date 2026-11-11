@@ -7,6 +7,8 @@ A Graal level is one 64×64 board of tiles plus its links, baddies, NPCs, chests
 
 ## 3.1.0 Format selection
 
+Graal has three level formats, and the same file can carry the wrong extension. The rules below say how the client and the server pick a loader, and why a reader has to trust the magic over the name [2.05] (formats/level-binary.md); [srv] (formats/glevnw01.txt).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | magics in the 2.05 string table | `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00` to `GR-V1.03`, `GLEVNW01`; each set appears three times, one copy next to the GWEBL001 cache code (→ §3.8) | [2.05] (formats/level-binary.md) |
@@ -17,6 +19,8 @@ A Graal level is one 64×64 board of tiles plus its links, baddies, NPCs, chests
 | client magics | every client tested, 1st Graal to 2.31 and the NewWorld betas, carries `Z3-V1.03` and `Z3-V1.04` and no third `Z3-V1` revision; the 1st Graal and 1.39 loaders compare the 8 magic bytes only | [bin] (client-internals/decomp-findings-2026-10-25-j/03-extensions-and-magic.md) |
 | 2.05 writer | always writes `GR-V1.03` for a level that is not saved as `.nw` | [2.05] (formats/level-binary.md#open) |
 | 2.31 writer | writes `GR-V1.04` only when the level has a height map, `GR-V1.03` otherwise | [2.31] (formats/level-binary-client.md#gr-v104-231) |
+
+A level name with no extension is a separate question. The rules below say what clients do with such a name, what the editor adds, and which builds were read to establish it [bin] (client-internals/bare-level-names.md#findings).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -33,6 +37,8 @@ Z3-V1 is the Zelda Online level family. Its board coding is that of GR-V1 (→ �
 
 ### 3.1.1.1 Layout
 
+A Zelda-era level is a run of sections in a fixed order with no index. The table gives the sections in file order and the shape of each, so a reader can walk the file from top to bottom [srv] (formats/level-binary.md#layout).
+
 | Order | Section | Shape | Source |
 | --- | --- | --- | --- |
 | 1 | magic | `char[8]`: `Z3-V1.02`, `Z3-V1.03` or `Z3-V1.04` | [srv] (formats/level-binary.md#layout) |
@@ -45,11 +51,15 @@ Z3-V1 has **no NPC section and no chest section** [srv] (formats/level-binary.md
 
 ### 3.1.1.2 Revisions
 
+The three Z3 revisions differ in the width of a board code and in the baddy record. Each row gives one revision and the builds that read it [srv][test] (formats/level-binary.md#z3-v1-differences).
+
 | Magic | Code width | Baddy record | Readers | Source |
 | --- | --- | --- | --- | --- |
 | `Z3-V1.02` | 11 bits | 4 bytes, last byte always `\n` | only the 1998 Java Zelda Online games; no real file is in the notes | [srv][test] (formats/level-binary.md#z3-v1-differences); [src] (formats/grv1-decoder/README.md) |
 | `Z3-V1.03` | 12 bits | 4 bytes: `x y type` then an empty line rest; no verse line | Zelda Online, Delphi and later clients, server | [srv][test] (formats/level-binary.md#z3-v1-differences) |
 | `Z3-V1.04` | 12 bits | `x y type` then the verse line (→ §3.1.2.4) | Delphi and later clients, server | [srv][test] (formats/level-binary.md#z3-v1-differences) |
+
+The rules below come from parsing real Z3 files. They cover details the layout leaves open: number formats, arrival coordinates and the bytes of a baddy [test] (formats/level-binary.md#z3-v1-differences).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -66,6 +76,8 @@ Z3-V1 has **no NPC section and no chest section** [srv] (formats/level-binary.md
 
 ### 3.1.2.0 Layout
 
+A Graal binary level keeps the Zelda layout and adds sections at the end. The table lists the sections in file order, with the revisions that carry each one [srv] (formats/level-binary.md#layout).
+
 | Order | Section | Shape | Revisions | Source |
 | --- | --- | --- | --- | --- |
 | 1 | magic | `char[8]`: `GR-V1.00` to `GR-V1.04` | all | [srv] (formats/level-binary.md#layout); [2.31] (formats/level-binary-client.md#gr-v104-231) |
@@ -80,6 +92,8 @@ Z3-V1 has **no NPC section and no chest section** [srv] (formats/level-binary.md
 The board is a packed bit stream with run-length codes, not a 64×64 array of 2-byte tiles; only `.nw` text and the wire board form store one 16-bit value per tile [srv] (formats/level-binary.md#correction).
 
 ### 3.1.2.1 Board bit stream
+
+The board is 64 × 64 tile ids packed as a bit stream with run-length codes. The rules below give how to unpack it, from the bit order through to the run codes [srv] (formats/level-binary.md#board-bit-stream).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -119,6 +133,8 @@ The 2.05 writer walks the 4096 tiles in order and picks one case at each positio
 
 ### 3.1.2.3 Links
 
+Each link is one text line. The rules below give its fields and how a name with spaces, a missing target and a relative arrival point are handled [srv] (formats/level-binary.md#records).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | line | `dest x y w h newx newy` | [srv] (formats/level-binary.md#records) |
@@ -133,6 +149,8 @@ How the client resolves an arrival expression is in → §4.
 
 ### 3.1.2.4 Baddies
 
+Each baddy is three raw bytes and a line of verses. The rules below give the record, why its line end needs care, and how the list ends [srv] (formats/level-binary.md#records).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | record | `i8 x, i8 y, i8 type`, then a `\n`-terminated verse line | [srv] (formats/level-binary.md#records) |
@@ -145,6 +163,8 @@ How the client resolves an arrival expression is in → §4.
 
 ### 3.1.2.5 NPCs and chests
 
+NPCs and chests are short records. The table gives the fields of each in order [srv] (formats/level-binary.md#records).
+
 | Record | Shape | Source |
 | --- | --- | --- |
 | NPC | `GCHAR x, GCHAR y, image#script`; the script uses `0xA7` for a newline; an empty image is a script-only NPC | [srv] (formats/level-binary.md#records) |
@@ -153,6 +173,8 @@ How the client resolves an arrival expression is in → §4.
 Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). NPC bytes are single bytes and can lie outside 0 to 63, as 165 NPCs in the corpus do. A level with no chests still ends the section with a bare `#`. Chest items 0 to 11, 16, 17, 19 and 24 occur, plus one 78, outside the 25-name table; 343 of 375 chests have sign index −1, which is "no sign" [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md); [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md). The chest item index table is in → §8.
 
 ### 3.1.2.6 Signs
+
+Signs are stored in the sign alphabet, not in plain text. The rules below give the record, the alphabet, the line-break token and where the section ends in each build [srv] (formats/level-binary.md#records).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -196,6 +218,8 @@ The 2.05 executable carries the offline tutorial as 13 `RCDATA` resources, all p
 | `TUTORIALB2H` | `tutorial_b-2_house.graal` | [2.05] (formats/level-binary-client.md#embedded-tutorial-levels-205) |
 | `TUTORIALC1` to `TUTORIALC4` | `tutorial_c-1.graal` to `tutorial_c-4.graal` | [2.05] (formats/level-binary-client.md#embedded-tutorial-levels-205) |
 
+2.05 carries its tutorial inside the executable. The rules below say when it opens those levels and how they fit together, and give the tool that pulls them out [2.05] (formats/level-binary-client.md#embedded-tutorial-levels-205).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | selection | when the client is not connected and the requested level name starts with `tutorial`, it opens the matching resource instead of a file on disk | [2.05] (formats/level-binary-client.md#embedded-tutorial-levels-205) |
@@ -210,6 +234,8 @@ The 2.05 executable carries the offline tutorial as 13 `RCDATA` resources, all p
 ## 3.1.3 GLEVNW01 (.nw)
 
 ### 3.1.3.1 File
+
+The `.nw` level is plain text. The rules below give its general form and how it travels [srv] (formats/glevnw01.txt).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -235,6 +261,8 @@ BOARD x y width layerindex tilesdata
 
 ### 3.1.3.3 Other records
 
+Apart from the board, a `.nw` level is a list of keyword records. The table gives each record's shape and the rules that a writer must keep [srv] (formats/glevnw01.txt).
+
 | Record | Shape | Rules | Source |
 | --- | --- | --- | --- |
 | link | `LINK dest x y width height newx newy` | `dest`, `newx` and `newy` must not contain spaces | [srv] (formats/glevnw01.txt) |
@@ -244,6 +272,8 @@ BOARD x y width layerindex tilesdata
 | chest | `CHEST x y item signindex` | item is a name or 0 to 24, resolved by the server's item table; an unknown item drops the chest | [srv] (formats/glevnw01.txt) |
 
 ### 3.1.3.4 GSERVL01
+
+The 3.x clients know a second text signature. The rules below say what it is, which parser reads it and which keywords it adds [bin] (protocol/v3x-clients.md#file-formats).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

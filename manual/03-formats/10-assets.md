@@ -7,6 +7,8 @@ This chapter lists the files a client install carries, the image sheets the engi
 
 ## 3.10.1 Image sheets
 
+The client draws from a few large image sheets. The table gives each sheet's size and role [file] (client-internals/client-assets.md#tile-sheets).
+
 | File | Size | Role | Source |
 | --- | --- | --- | --- |
 | `pics1.png` | 2048×512 | standard tiles, 4096 ids of 16 px (→ §3.5.1) | [file] (client-internals/client-assets.md#tile-sheets) |
@@ -44,6 +46,8 @@ Files on disk under `levels/` in the measured install [file] (client-internals/c
 | `snapshot/` | 2 | `ss_arrow`, `ss_bomb` | [file] (client-internals/client-assets.md#levels-counts-files-on-disk) |
 | `tiledefs/` | 1 | the offline tile definition line | [file] (client-internals/client-assets.md#levels-counts-files-on-disk) |
 
+The table lists the other top-level items of the client's `levels` tree and points to where each is described [file] (client-internals/client-assets.md#other-top-level).
+
 | Top-level item | Contents | Source |
 | --- | --- | --- |
 | `maps/` | `bigmap.txt` and minimap material (→ §3.2.5) | [file] (client-internals/client-assets.md#other-top-level) |
@@ -53,12 +57,16 @@ Files on disk under `levels/` in the measured install [file] (client-internals/c
 
 ## 3.10.3 Sound and music in 2.05
 
+2.05 plays sound through three back ends. Each row gives what is played and which back end plays it [2.05] (client-internals/sound-and-music.md#205-at-a-glance).
+
 | What | Backend | Source |
 | --- | --- | --- |
 | sound effects (`.wav`) | DelphiX wave list on DirectSound | [2.05] (client-internals/sound-and-music.md#205-at-a-glance) |
 | music, Windows MCI path | an invisible media player component (MCI) | [2.05] (client-internals/sound-and-music.md#205-at-a-glance) |
 | music, Winamp path | a component that remote-controls a running Winamp 1.x or 2.x | [2.05] (client-internals/sound-and-music.md#205-at-a-glance) |
 | music volume | `midiOutSetVolume` (MCI path) or Winamp IPC messages | [2.05] (client-internals/sound-and-music.md#205-at-a-glance) |
+
+The rules below give the sound options, how a back end is chosen, and how a sound file is named, found and fetched [2.05] (client-internals/sound-and-music.md#options-graalconfigtxt).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -77,6 +85,8 @@ Files on disk under `levels/` in the measured install [file] (client-internals/c
 The voice cap, positional pan and volume rules and the GS1 sound commands are in → §4.7.
 
 ## 3.10.4 Sound libraries in 2.17, 2.22 and 2.31
+
+From 2.17 the BASS library replaces most of that. The table compares 2.05 with 2.17 to 2.31 area by area. Several rows are judged from imported names, and are tagged as inferred [2.17][2.22][2.31] (client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp).
 
 | Area | 2.05 | 2.17, 2.22, 2.31 | Source |
 | --- | --- | --- | --- |

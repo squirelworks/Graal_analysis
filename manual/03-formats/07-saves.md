@@ -19,6 +19,8 @@ Every revision is a Delphi `TWriter` value stream, not a hand-made binary layout
 | 12 | LString | 4-byte length and the characters; strings of 256 bytes or more | [bin] (formats/graalsav.md#container) |
 | 8, 9 | False, True | none | [bin] (formats/graalsav.md#container) |
 
+A save file is a list of tagged values. The rules below say how to read the tags and where the field names come from [bin] (formats/graalsav.md#container).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | integer width | the writer picks the smallest of Int8, Int16 and Int32, so a reader must go by the tag | [bin] (formats/graalsav.md#container) |
@@ -26,6 +28,8 @@ Every revision is a Delphi `TWriter` value stream, not a hand-made binary layout
 | field names | taken from 13th Graal's script variables (`playerrupees`, `playerdarts` …), whose storage lines up with that build's save record; other builds are matched by position | [bin] (formats/graalsav.md) |
 
 ## 3.7.2 Revisions by build
+
+The save format was revised many times. Each row gives one magic, the builds that write and read it, the file extension, and whether it is DES-wrapped [bin] (formats/graalsav.md#versions-by-build).
 
 | Magic | Written by | Read by | Extension | DES-wrapped | Source |
 | --- | --- | --- | --- | --- | --- |
@@ -39,6 +43,8 @@ Every revision is a Delphi `TWriter` value stream, not a hand-made binary layout
 | Graalsav8 | 1.1, 1.1.9 | 7 and 8 | `.gsave` | yes | [bin] (formats/graalsav.md#versions-by-build) |
 | Graalsav9, Graalsv10 | no build in the set | 1.21 to 1.32 readers | `.gsave` | yes | [bin] (formats/graalsav.md#versions-by-build) |
 | Graalsv11 | 1.21 to 1.41 rev 1; writer traced in 1.21 and 1.32, later builds by string references | 9, 10 and 11 | `.gsave` | yes | [bin] (formats/graalsav.md#versions-by-build) |
+
+The rules below explain the odd steps in that table and correct an earlier catalogue entry [bin] (formats/graalsav.md#versions-by-build).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -70,6 +76,8 @@ player record × n          n = 1, 2, or the player count in 3/4-player modes
 ## 3.7.4 Player record
 
 ### 3.7.4.1 Graalsav1
+
+The first revision is the simplest. The table gives its fields in file order with their types. Rows tagged as inferred have a field whose meaning is not read directly [bin] (formats/graalsav.md#graalsav1).
 
 | Order | Type | Field | Source |
 | --- | --- | --- | --- |

@@ -5,6 +5,8 @@ Binary sign text uses one packed alphabet. The same encoding is used in the sign
 
 ## 3.6.1 Encoding
 
+Sign text is stored and sent in Graal's own alphabet, not in ASCII. The rules below give the record and the alphabet, code range by code range [2.05][srv] (formats/sign-text.md#encoding).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | record | `GCHAR x`, `GCHAR y`, then the text bytes | [2.05][srv] (formats/sign-text.md#encoding) |
@@ -25,6 +27,8 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?-.,#>()#####"###
 
 ## 3.6.2 Corrections to earlier notes
 
+Earlier notes decoded signs wrongly. Each row pairs an earlier claim with its correction, so a reader who meets the old reading knows what replaced it [test] (formats/sign-text.md#correction).
+
 | Earlier claim | Correction | Source |
 | --- | --- | --- |
 | two alphabets, one for files and one for the wire | one alphabet indexed by `byte - 32` | [test] (formats/sign-text.md#correction) |
@@ -36,12 +40,16 @@ NPC scripts in the same file are plain Latin-1 with `0xA7` as the newline, not s
 
 ## 3.6.3 GLEVNW01 signs
 
+Signs in a `.nw` level do not use the alphabet. The two rules give the record and its plain text [srv] (formats/sign-text.md#glevnw01-signs).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | record | `SIGN x y`, the text, `SIGNEND`; the body may be empty (→ §3.1.3.3) | [srv] (formats/sign-text.md#glevnw01-signs) |
 | text | plain; no alphabet transform | [srv] (formats/sign-text.md#glevnw01-signs) |
 
 ## 3.6.4 Reference decoder
+
+The repository has a decoder for the alphabet. The table lists its functions and the test vectors it was checked against [src] (formats/sign-text.md#drop-in-decoder).
 
 | Function | Use | Source |
 | --- | --- | --- |

@@ -7,6 +7,8 @@ This chapter fixes the tick that every count in Part IV uses, how each build dri
 
 ## 4.1.1 The tick
 
+Everything in Part IV is counted in ticks. The rules below fix the tick's length and show that it holds from the first Delphi build to 6.x [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | length | one game tick is 50 ms (20 ticks per second) | [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules); [2.05] (client-internals/decomp-findings-2026-10-24/constants-205.tsv) |
@@ -16,6 +18,8 @@ This chapter fixes the tick that every count in Part IV uses, how each build dri
 | Graal3D | driven by a 50 ms DelphiX timer | [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 
 ## 4.1.2 What drives the tick, by build
+
+The tick is the same everywhere, but what drives it changes. Each row gives a group of builds and the timer or loop that runs its frame [bin] (version-profiles/matrix/builds-static-survey.tsv).
 
 | Builds | Driver | Source |
 | --- | --- | --- |
@@ -29,6 +33,8 @@ This chapter fixes the tick that every count in Part IV uses, how each build dri
 
 ### 4.1.2.1 The frame function (idle-driven builds)
 
+In the idle-driven builds one function runs each frame. The rules below give its order and two consequences a remake must copy: no catch-up after a stall, and input read once per tick [live] (client-internals/rendering-observations.md#frame-loop).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | order | after the 50 ms gate opens, one frame handles clock skew, network traffic, then drawing | [live] (client-internals/rendering-observations.md#frame-loop) |
@@ -36,6 +42,8 @@ This chapter fixes the tick that every count in Part IV uses, how each build dri
 | input sampling | key state is read once per tick: a key released and pressed again inside one tick is not seen as a new press, and a tap shorter than a tick can be lost | [live][2.05] (client-internals/player-mannerisms-live.md#spin-attack-live-online) |
 
 ## 4.1.3 Periodic work
+
+Some work runs every tick and some on a longer cycle. Each row gives the period, the work and the builds it was read in [live][2.05] (client-internals/player-mannerisms-live.md).
 
 | Period | Work | Builds | Source |
 | --- | --- | --- | --- |
