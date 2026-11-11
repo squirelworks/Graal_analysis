@@ -6,7 +6,7 @@ Folded here from the public-server report: **PLO_STARTMESSAGE 41, PLO_RPGWINDOW 
 ## Packets (server to client, at the end of login) **[srv]**
 | Id | Name | Payload | Versions |
 |---:|---|---|---|
-| 41 | STARTMESSAGE | the server message as one text string | 1.x-2.x; 2.05 has it (client form `TServerMessage`); newer 5/6 clients ignore it |
+| 41 | STARTMESSAGE | the server message as one text string | 1.x-2.x; 2.05 has it (client form `TServerMessage`, → [gui-windows-fkeys.md](../gui-windows-fkeys.md#the-server-message-window)); newer 5/6 clients ignore it |
 | 179 | RPGWINDOW | quoted, comma-separated lines: `"Welcome to <server name>.","<vendor> <app> programmed by <credits>."` | 2.1+ (in the 2.17/2.22 sets) |
 | 82 | SERVERTEXT | empty at login; the server sends it "to allow serverwarp and some other things". Later it carries replies to `PLI_REQUESTTEXT`/`SENDTEXT` as `weapon,type,option,data` tokens | 2.1+ |
 | 171 / 172 | BIGMAP / MINIMAP | see 06 | 2.1+ |
@@ -35,4 +35,5 @@ Real "rules" a player sees come from the server message, the RPG window and NPCs
 - Replay frames from the public report only as structure checks; the report notes all four public servers sent 41 and 179.
 
 ## NEEDS
-nothing blocking. Optional: "the 2.05 start-message handler" (does it show the HTML in `TServerMessage` immediately or only on request).
+nothing blocking.
+- [x] ~~Optional: "the 2.05 start-message handler" (does it show the HTML in `TServerMessage` immediately or only on request).~~ Immediately, in an embedded web browser, but only when the text differs from the stored `servermessage.html`; there is no way to reopen it (→ [gui-windows-fkeys.md](../gui-windows-fkeys.md#the-server-message-window)). **[bin]**

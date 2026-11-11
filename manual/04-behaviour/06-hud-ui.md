@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # 4.6 HUD, sign panel, chat text and options
 
-This chapter covers what the client draws over the game view: the status display, the sign panel, chat text and nicknames over players, and the item list window, plus what the in-game options change while playing. The file formats behind them are in → §3.6 (sign text), §3.9 (config) and §3.10 (sheets).
+This chapter covers what the client draws over the game view: the status display, the sign panel, chat text and nicknames over players, and the item list window, plus what the in-game options change while playing, the windows on the function keys, and the server message window. The file formats behind them are in → §3.6 (sign text), §3.9 (config) and §3.10 (sheets).
 
 > Status: draft. The HUD, sign panel and item list are read from 2.05 rev 2; chat text is read from every Delphi build and checked live on 2.05 rev 2. The player list window is in → §4.10.
 
@@ -237,3 +237,53 @@ The file, its keys and its parse rules are in → §3.9; this table gives what e
 | network | none of the options is sent to the server | [2.05] (client-internals/feature-specs/09-options.md#what-it-is) |
 | dialogs | More Options, Player List Options and the Controls frame; closing either dialog rewrites the whole file | [2.05] (client-internals/feature-specs/09-options.md#what-it-is) |
 | later builds | 2.17 and later add volume keys and an Audio/Microphone tab (→ §3.10.4) | [2.17][2.22] (client-internals/feature-specs/09-options.md#keys-file-order-default) |
+
+## 4.6.6 Function-key windows
+
+Every Windows client opens its side windows from the function keys, but the set changed several times between 1998 and 2.31. The table gives, for each family of builds, what each key opens. F11 and F12 do nothing in any build, F9 works only in the NewWorld betas, and Esc and Alt+Enter (fullscreen) are in every build [bin] (client-internals/gui-windows-fkeys.md#the-key-handler-by-family).
+
+| Builds | F1 | F2, F3 | F4, F5 | F6 to F10 | Source |
+| --- | --- | --- | --- | --- | --- |
+| 1st to 5th Graal | Options: save games and level editing | load and save a game | editor, Load level | none; Esc quits with no prompt | [bin] (client-internals/gui-windows-fkeys.md#1st-to-5th-graal-1998) |
+| 6th Graal to 1.1.9 | Options; 15th Graal adds More options and Controls | as before | as before; 1.1.9 ignores them while the editor or reconnect window is open | F6 to F10 repeat F1 to F5; 9th Graal adds the quit prompt on Esc | [bin] (client-internals/gui-windows-fkeys.md#6th-graal-to-119) |
+| 1.28 beta 2 to 1.39 | Options | load a game; save offline only | online, F4 refuses and F5 asks first | F6 debugger (from 1.32 offline or loopback server only), F7 player list | [bin][lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+| 1.41 rev1 | Help | as before | as before | F8 server list arrives | [bin] (client-internals/gui-windows-fkeys.md#141-rev1) |
+| NewMain, 2.0 to 2.05 rev2 | Help: the F4 to F8 windows, General options, Controls | nothing; save games are gone | as before | F6, F7, F8 as before; F10 toggles the window border from 2.02 | [bin] (client-internals/gui-windows-fkeys.md#newmain-24-and-26-20-to-205-rev2) |
+| 2.1 test2 and test3 | redesigned Help with a "Game windows" group | nothing | as before | as 2.05 | [bin] (client-internals/gui-windows-fkeys.md#21-test2-and-test3) |
+| NewWorld beta 1 and 2 | as 2.02 | nothing | as before | as 2.02; F9 moves the game clock on one hour, offline only | [bin] (client-internals/gui-windows-fkeys.md#newworld-beta-1-and-2) |
+| 2.17, 2.22, 2.31 | Options/Help; 2.31 hides Edit level and Debugger | F2 shows the RPG window from 179; F3 nothing | F4 editor (not 2.31), F5 Load level filled with the current position | F6 debugger (not 2.31), F7 player list, F8 server list while online, F10 border | [bin][cap] (client-internals/gui-windows-fkeys.md#217-222-and-231) |
+
+1.39 was run online against the lab server. Each key behaved as the static read says, with one exception: F6 closed the client [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139).
+
+| Key (1.39, online) | Seen | Source |
+| --- | --- | --- |
+| F1 | "Options" window with Load game, Save game, Edit level, Load level, More options, Controls, Close | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+| F2, F3 | a "Load save game" file dialog; a refusal to save online | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+| F4, F5 | the online-editor refusal; an OK/Cancel warning that loading a level disconnects | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+| F6 | with a loopback server the client closed within a second, three times out of three; not explained | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+| F7 | the "Playerlist" window | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+| F8 to F12 | nothing | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
+
+F8 opens the server list window, whose account and password default to `guest`. If the client has no list connection, F8 opens one on port 14921 and shows a short "Connecting to server ..." window while it waits [bin] (client-internals/gui-windows-fkeys.md#the-server-list-window-f8-141-to-205).
+
+## 4.6.7 The server message window
+
+The server message (`PLO_STARTMESSAGE`, 41, → §4.10.6) has its own window. The client stores each message in a file in the game folder and shows the window only when the text differs from the stored copy, so a player sees a message once per change. There is no key or menu to open it again [bin][lab] (client-internals/gui-windows-fkeys.md#the-server-message-window).
+
+| Builds | Form | What it does with 41 | Source |
+| --- | --- | --- | --- |
+| 1.32, 1.33 | `TRTFMessage` | loads the text as rich text and always shows it; HTML shows as raw text | [bin] (client-internals/gui-windows-fkeys.md#132-to-139-trtfmessage) |
+| 1.39 | `TRTFMessage` | skips the window if the text equals `servermessage.rtf`, otherwise saves it there and shows it; RTF is drawn, HTML shows as raw text; Save offers RTF and TXT | [bin][lab] (client-internals/gui-windows-fkeys.md#132-to-139-trtfmessage) |
+| 1.41 rev1 to 2.31 | `TServerMessage` | text starting `{\rtf1` goes to a rich-edit box and `servermessage.rtf`; anything else is HTML, written to `servermessage.html` and drawn by an embedded web browser; an unchanged file means no window | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
+
+In the HTML case the window has five browser buttons. Links load inside the window, and the caption follows the page title [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage).
+
+| Button | Action | Source |
+| --- | --- | --- |
+| 1, 2 | Back and Forward, enabled as the browser's history allows | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
+| 3 | Stop, enabled while a page loads | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
+| 4 | Refresh | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
+| 5 | go to a stored address | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
+| Close, Esc | hide the window; the caption and Close text come from the language file keys `RTFMessage` and `RTFMessage-CloseButton` | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
+
+The same form doubles as the private-message History window, opened from the player list (→ §4.10.5). It lists the conversation with that player, with the player's own lines in purple and the other player's in red [bin] (client-internals/gui-windows-fkeys.md#the-same-form-as-the-pm-history-window-205-21-tests).
