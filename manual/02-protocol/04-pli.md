@@ -151,7 +151,7 @@ Layouts read from the 2.05 senders and the server source. The server copy (PLO) 
 | 36 | `PLI_HITOBJECTS` | `c power × 2, c x×2, c y×2`, optional `i3 npc` | 2.01; not matched in 2.22 or 2.31 | re-emitted as `PLO_HITOBJECTS` (46) | [srv][2.05] (protocol/packet-layouts.md#combat-and-objects-both-directions) |
 | 38 | `PLI_TRIGGERACTION` | `i3 npc` (0 = none), `c x×2, c y×2`, `rest` = `action` or `action,params` | 2.03 | re-emitted as `PLO_TRIGGERACTION` (48) | [srv][2.05] (protocol/packet-layouts.md#combat-and-objects-both-directions); [srv] (protocol/packet-ids.md#client--server-pli_) |
 | 40 | `PLI_SHOOT` | unmeasured | 2.17; not 6.03r7 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| 48 | `PLI_SHOOT2` | unmeasured | 6.01r1 | unmeasured | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| 48 | `PLI_SHOOT2` | unmeasured | 6.01r1; not 5.0.0.7, which sends 40 | unmeasured | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (protocol/shoot-5007.md) |
 
 The table above gives the combat and board messages. The rules below record how they were seen on the wire, including one place where 2.05 and the server read a byte differently [2.05] (protocol/packet-layouts.md#board-change-on-the-wire-cap).
 
