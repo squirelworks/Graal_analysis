@@ -7,6 +7,8 @@ Field notation is in → §0.6, the message envelope in → §2.1.2, and the log
 
 ## 2.4.1 Conventions
 
+Every client-to-server message (PLI) follows the same few rules. The table states them once, with the builds they hold for, so the chapter's per-message tables need not repeat them [srv][2.05] (protocol/packet-layouts.md).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A PLI is `GCHAR(id)`, the payload, then `\n`, sent inside the frame of the build's generation | 1.21 to 6.x | [srv][2.05] (protocol/packet-layouts.md); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
@@ -59,6 +61,8 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 6.034 | as 6.03r7 | inferred | [inf] (version-profiles/5.00-6.03.toml) |
 | 6.03r7 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–162 | yes | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/5.00-6.03.toml) |
 
+The id table above says which ids a build can send. The rules below add the exceptions found in particular builds: ids with no sender, ids a family drops or adds, and a limit on one sender [2.05] (protocol/packet-ids.md#client--server-pli_).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | No sender was found for 25 (`PLI_UNKNOWN25`) or 31 (`PLI_PACKETCOUNT`) | 2.05 | [2.05] (protocol/packet-ids.md#client--server-pli_) |
@@ -74,6 +78,8 @@ The summary lists for 1.21 and 1.32 in the 1999 protocol note disagree with the 
 
 ## 2.4.3 Level navigation
 
+These are the messages a client sends to move between levels and servers. Each row gives the id and name, the payload layout, the first build that sends it, and what the server does in reply [srv][2.05] (protocol/packet-layouts.md#level-navigation-client--server).
+
 | Id | Name | Layout | First sent | Server action | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 0 | `PLI_LEVELWARP` | `c x×2, c y×2`, `rest` = level name | 1.21 | warps the player and sends the level (→ §2.5) | [srv][2.05] (protocol/packet-layouts.md#level-navigation-client--server) |
@@ -81,6 +87,8 @@ The summary lists for 1.21 and 1.32 in the 1999 protocol note disagree with the 
 | 35 | `PLI_ADJACENTLEVEL` | `i5 modtime`, `rest` = level name; `modtime` is all zeros when the level is not cached | 2.01 | sends a gmap neighbour for preloading | [srv][2.05] (protocol/packet-layouts.md#level-navigation-client--server) |
 | 41 | `PLI_SERVERWARP` | `rest` = server name | 2.17 (2.14 inferred) | the game server asks the listserver and answers with `PLO_SERVERWARP` (178) | [cap] (protocol/packet-ids.md#client--server-pli_); [cap] (version-profiles/lab-serverwarp178.tsv) |
 | 46 | `PLI_ENTERLEVEL` | `c 1` | 2.31; not 3.04 | none recorded | [cap] (protocol/packet-ids.md#client--server-pli_); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
+
+The rules below say when a build picks one of those messages over another, and what else a warp sends [2.05] (protocol/packet-layouts.md#level-navigation-client--server).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -98,11 +106,15 @@ The client's handling of the `PLO_SERVERWARP` reply is in → §2.5; the listser
 
 ## 2.4.4 Props
 
+Three messages carry property streams from the client: its own player, NPCs and baddies. The table gives each one's layout and what the server does with it. The streams themselves are in §2.6 [srv][2.05] (protocol/packet-layouts.md#other-client--server-senders-205).
+
 | Id | Name | Layout | First sent | Server action | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 2 | `PLI_PLAYERPROPS` | `rest` = PLPROP stream (→ §2.6) | 1.33 | stores the props and forwards them to the level as `PLO_OTHERPLPROPS` | [srv][2.05] (protocol/packet-layouts.md#other-client--server-senders-205); [srv] (protocol/chat-pm-rc.md#chat-bubble) |
 | 3 | `PLI_NPCPROPS` | `rest` = NPCPROP stream (→ §2.6) | 1.33 | passed through | [srv][2.05] (protocol/packet-layouts.md#other-client--server-senders-205) |
 | 15 | `PLI_BADDYPROPS` | `rest` = `c id` + BDPROP stream (→ §2.6) | 1.21; not NewWorld betas | re-emitted as `PLO_BADDYPROPS` (2) | [srv][2.05] (protocol/packet-layouts.md#combat-and-objects-both-directions) |
+
+Movement has no message of its own. The rules below show how walking rides on player props, with example bodies decoded byte by byte, and when 2.05 sends which props [srv][2.05] (protocol/login-and-walk.md#walk-frames-are-pli_playerprops).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -141,6 +153,8 @@ Layouts read from the 2.05 senders and the server source. The server copy (PLO) 
 | 40 | `PLI_SHOOT` | unmeasured | 2.17; not 6.03r7 | unmeasured | [bin] (client-internals/version-profiles/141-217.toml); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | 48 | `PLI_SHOOT2` | unmeasured | 6.01r1 | unmeasured | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
 
+The table above gives the combat and board messages. The rules below record how they were seen on the wire, including one place where 2.05 and the server read a byte differently [2.05] (protocol/packet-layouts.md#board-change-on-the-wire-cap).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | GServer-v2 reads the bomb's third byte as `(player << 2) \| power`; 2.05 writes `power + 8`, and a receiver takes the power as `v & 7` and bit 3 as "mine" | 2.05 vs server | [2.05] (protocol/packet-layouts.md#board-change-on-the-wire-cap) |
@@ -156,6 +170,8 @@ The server's respawn of board changes is behaviour and is in → §4.5.
 
 ## 2.4.6 Flags, NPCs and weapons
 
+These messages change flags, put or remove NPCs and manage weapons. Each row gives the layout, the first build that sends it and the server's action where it is known [2.05] (protocol/packet-layouts.md#other-client--server-senders-205).
+
 | Id | Name | Layout | First sent | Server action | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 18 | `PLI_FLAGSET` | `rest` = flag (`name` or `name=value`) | 1.21 | stores the flag | [2.05] (protocol/packet-layouts.md#other-client--server-senders-205) |
@@ -164,6 +180,8 @@ The server's respawn of board changes is behaviour and is in → §4.5.
 | 22 | `PLI_NPCDEL` | `i3 npc id`; only for NPCs with id > 0 | 1.21 | unmeasured | [2.05] (protocol/packet-layouts.md#other-client--server-senders-205) |
 | 29 | `PLI_NPCWEAPONDEL` | `rest` = weapon name | 1.28 beta 2 | removes the weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 33 | `PLI_WEAPONADD` | `c type`; type 0 → `c item index`; type 1 → `i3 npc id` (copy an NPC's script as a weapon) | 1.38 | adds the weapon and answers with `PLO_NPCWEAPONADD` (33) | [srv][2.05] (protocol/packet-layouts.md#weapons) |
+
+Three rules limit when those messages are sent at all [2.05] (protocol/packet-layouts.md#other-client--server-senders-205).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -189,6 +207,8 @@ The download replies and their framing are in → §2.7.
 | 159 | `PLI_UPDATEPACKAGEREQUESTFILE` | an order value (meaning unmeasured), package file name, modtime | 5.00r7 | unmeasured | [srv] (protocol/packet-ids.md#client--server-pli_) |
 | 161 | `PLI_UPDATECLASS` | `i5 modtime`, `rest` = class name | 4.04r2 | sends the class | [srv] (protocol/packet-ids.md#client--server-pli_); [bin] (protocol/v4x-clients.md#client--server-ids) |
 
+The 4.x and 5.x clients reuse some of these ids for new jobs. The rules below record those extra uses [bin][inf] (protocol/v5x-clients.md#client--server-ids-500r7).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | 5.00r7's update-package downloader uses 34 and 47 (with and without a modification time) | 5.00r7 | [bin][inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
@@ -206,6 +226,8 @@ How chat is shown, and the server-to-client forms, are in → §2.8.
 | 80 | `PLI_PROFILEGET` | `rest` = account | 1.39 | answers with `PLO_PROFILE` (75), relayed from the listserver | [srv][2.05] (protocol/chat-pm-rc.md#profiles) |
 | 81 | `PLI_PROFILESET` | ten fields, each `c length` + text (→ §2.8) | 1.39; not 6.03r7 | forwards to the listserver | [2.05] (protocol/chat-pm-rc.md#profiles) |
 
+The rules below say how a client chooses between a chat message and the chat prop, and warn about one field a server should not trust [2.05] (protocol/chat-pm-rc.md#chat-bubble).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | The chat-bar text is sent as 6 only when, lower-cased and trimmed, it starts with `toall:`; all other text goes out as the CURCHAT prop (→ §2.4.4) | 2.05 | [2.05] (protocol/chat-pm-rc.md#chat-bubble) |
@@ -213,6 +235,8 @@ How chat is shown, and the server-to-client forms, are in → §2.8.
 | Field 0 of `PLI_PROFILESET` is the profile owner's account, which can be another online player's; a server must not take it as proof of who is editing | 2.05 | [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205) |
 
 ## 2.4.9 Client checks and housekeeping
+
+These are the ids a client sends for checks and upkeep rather than for play. Several have no known server action, and the table says so rather than guess [2.05] (protocol/packet-layouts.md#other-client--server-senders-205).
 
 | Id | Name | Layout | First sent | Server action | Source |
 | ---: | --- | --- | --- | --- | --- |
@@ -228,6 +252,8 @@ How chat is shown, and the server-to-client forms, are in → §2.8.
 | 162 | `PLI_RC_UNKNOWN162` | game clients: `!` + `s value`; RCs: empty (→ App. E#5) | 4.20r6 | a ping: the game clients' answer to `PLO_UNKNOWN108`, an RC's 60 s keepalive; accept and ignore, or time it against 108 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#client--server-ids); [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603); [srv] (protocol/packet-ids.md#client--server-pli_) |
 | 252 | `PLI_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | newer gs2lib only | unmeasured | [srv] (protocol/packet-ids.md#client--server-pli_) |
 | 253 | `PLI_BUNDLE` | several messages in one (→ §2.10) | newer gs2lib only | unmeasured | [srv] (protocol/packet-ids.md#client--server-pli_) |
+
+Ids 24 and 39 were studied from captures. The rules give their timing and the exact bytes seen, and what tests showed about their meaning [cap] (protocol/packet-ids.md#client--server-pli_).
 
 | Rule | Builds | Source |
 | --- | --- | --- |

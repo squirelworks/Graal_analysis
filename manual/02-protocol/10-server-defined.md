@@ -7,6 +7,8 @@ In 6.11 the client has no fixed protocol: a script fetched at login sets the fra
 
 ## 2.10.1 The connector request
 
+Mac 6.11 does not know how to log in on its own. It first fetches a connector from the official host. The rules below describe that request [bin] (protocol/v6x-clients.md#connector-request).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | On login the client sets the server name to `Login` and requests `con.png` and `con.gs` over HTTPS and `conf.gs` over plain HTTP from the official connector host (`<login-host>`) | 6.11 Mac | [bin] (protocol/v6x-clients.md#connector-request) |
@@ -15,6 +17,8 @@ In 6.11 the client has no fixed protocol: a script fetched at login sets the fra
 | The HTTPS connection checks the server against a certificate bundle compiled into the client, and sends `User-Agent: Graal/<version>` | 6.11 Mac | [bin] (protocol/v6x-clients.md#connector-request) |
 
 ## 2.10.2 The connector script
+
+The connector is a script, and it takes over the connection. The rules below say how it is loaded, what it is given, and what that leaves to the server [bin] (protocol/v6x-clients.md#connector-reply).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -25,6 +29,8 @@ In 6.11 the client has no fixed protocol: a script fetched at login sets the fra
 
 ## 2.10.3 Framing and encryption
 
+The connector can redefine the frame and turn on a cipher. The rules below give the template language for the header and the ciphers on offer, and confirm that 6.01 and 6.03 have none of it [bin] (protocol/v6x-clients.md#what-the-script-controls).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | `setprotocol(template)` replaces the generation-5 framing with a header described by the template; the header is as long as the template | 6.11 Mac | [bin] (protocol/v6x-clients.md#what-the-script-controls) |
@@ -34,6 +40,8 @@ In 6.11 the client has no fixed protocol: a script fetched at login sets the fra
 | gs2lib names `PLI_SET_ENC_KEY` and `PLO_SET_ENC_KEY` (252, setting an AES or RC4 key and IV) and `PLI_BUNDLE` and `PLO_BUNDLE` (253, several messages in one); both are above 223, so they cannot be sent as one GCHAR | server library | [srv] (protocol/packet-ids.md#renames-between-gs2lib-versions) |
 
 ## 2.10.4 Id tables
+
+The connector also sets which wire id means what, in both directions. The rules below describe the two tables and the native handlers they point to [bin] (protocol/v6x-clients.md#what-the-script-controls).
 
 | Rule | Builds | Source |
 | --- | --- | --- |

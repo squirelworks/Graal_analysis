@@ -7,6 +7,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 
 ## 2.8.1 Local chat
 
+Local chat rides on a player prop, not on a message of its own. The rules below give how it is sent, how the server reads commands out of it, and the length limit [srv] (protocol/chat-pm-rc.md#chat-bubble).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | Local chat is not a message: it is the CURCHAT prop (12) inside `PLI_PLAYERPROPS`; the server forwards it to the level as `PLO_OTHERPLPROPS` | server; 2.05 | [srv] (protocol/chat-pm-rc.md#chat-bubble) |
@@ -19,6 +21,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 
 ## 2.8.2 Private messages
 
+Private messages are real messages with a list of recipients. The rules below cover addressing, the kinds of mass message that share the format, and who may block or be blocked [srv][2.05] (protocol/chat-pm-rc.md#private-messages).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A PM names its recipients by player id (`s count`, then the ids), so one message can go to several players | server; 2.05 | [srv][2.05] (protocol/chat-pm-rc.md#private-messages) |
@@ -28,6 +32,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 
 ## 2.8.3 Staff messages
 
+Staff reach players through a few messages of their own. The rules below give those messages and point to the staff tools' separate logins [srv][2.05] (protocol/chat-pm-rc.md#admin-and-staff).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | An admin message reaches a game client as `PLO_RC_ADMINMESSAGE` (35), `Admin <account>:` followed by `0xA7` and the text | server; 2.05 | [srv][2.05] (protocol/chat-pm-rc.md#admin-and-staff) |
@@ -35,6 +41,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 | The staff tools run their own logins: RC `GSERV023` to `GSERV025`, NC `NCL11012`, RC2 as type 6 on generation 5 (→ §7) | server | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
 
 ## 2.8.4 Buddy and list text requests
+
+Buddy lists and the cross-server tabs are text requests that the game server passes on to the listserver. The rules below give the words used each way and what the server keeps, which is nothing [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -47,6 +55,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 
 ## 2.8.5 Profiles
 
+A profile is a list of short text fields relayed from the listserver. The rules below say how it is sent and read, and how 2.05 stores it [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | `PLI_PROFILESET` and `PLO_PROFILE` are a run of `c length` + text fields, read until the message ends | 2.05 | [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205) |
@@ -54,6 +64,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 | 2.05 sends PROFILESET from the profile window's Send button, which also works in another online player's window; Close on your own profile only keeps the edits locally | 2.05 | [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205) |
 | On PROFILE, 2.05 needs at least 10 fields, drops field 0 and saves fields 1 to 9 to a local per-account profile file | 2.05 | [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205) |
 | The in-game stats in the same window (online time, kills, deaths, rating and so on) are not in this message; they most likely come from the player's props | 2.05 | [inf] (protocol/chat-pm-rc.md#profile-field-list-205-205) |
+
+The table gives what each profile field holds, by position. Field 0 names the owner and is the one a server should check [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205).
 
 | Field | Content | Source |
 | ---: | --- | --- |
@@ -71,6 +83,8 @@ The message layouts are in → §2.4.8 (client to server) and → §2.5.8 (serve
 Each text field is trimmed before sending [2.05] (protocol/chat-pm-rc.md#profile-field-list-205-205).
 
 ## 2.8.6 Unpacked Windows 6.1.1.3
+
+In 6.1.1.3, chat from other players reaches the scripts as an event. The two rules say how it arrives and why no fixed id can be given for it [bin] (protocol/v6113-chat.md#the-arrival-path).
 
 | Rule | Builds | Source |
 | --- | --- | --- |

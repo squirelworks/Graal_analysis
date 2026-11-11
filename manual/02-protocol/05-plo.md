@@ -7,6 +7,8 @@ Field notation is in → §0.6, the message envelope in → §2.1.2, and the log
 
 ## 2.5.1 How a client reads a PLO
 
+Before the per-message tables, the rules below say how a client treats any server-to-client message (PLO): short messages, unknown ids, and the two level pointers that decide where an NPC message lands [2.05] (protocol/packet-layouts.md#how-205-reads-a-message-205).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | Every handler checks a minimum length first and drops a short message silently | 2.05, 2.17.1, 2.22, 2.31 | [2.05] (protocol/packet-layouts.md#how-205-reads-a-message-205); [bin] (protocol/packet-layouts.md#server--client-ids-above-48-and-related-217-222-231-bin) |
@@ -47,6 +49,8 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 6.01r1 | 91 | the 6.03r7 set without 111 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | 6.03r7 | 92 | 0–25, 27–40, 42, 43, 45–49, 67–69, 74, 82, 84, 101, 102, 104–107, 109, 111, 131, 134, 140, 150, 151, 153–156, 166, 168, 170, 172–174, 176, 178–180, 182, 183, 185–187, 189–191, 194, 195, 197, 198 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 
+The id table above shows which ids each build handles. The rules below explain its gaps and steps: ids nobody handles after a point, why one revision stands for its siblings, and what changed in particular builds [bin] (protocol/packet-ids.md#server--client-plo_).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | No build in the notes handles 26 (`PLO_NPCACTION`) after 2.03 (it is handled from 1.28 beta 2), or 152 and 167 | 2.04 to 6.03 | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/client-versions.md#server--client-ids-handled) |
@@ -63,6 +67,8 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | A later client (5.07 and up, or 6.037, as the source note marks each id) ignores 26, 41, 44, 55, 56, 60, 78, 80, 81, 83, 132, 157, 159–164, 165, 167, 171, 175, 188 and 192 | 5.07, 6.037 | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
 ## 2.5.3 Level data
+
+These messages carry a level to the client: its board, links, signs, chests, baddies and NPCs. Each row gives the id and name, the payload layout and what the client does with it [srv][2.05] (protocol/packet-layouts.md#level-data-server--client).
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
@@ -90,6 +96,8 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 185 | `PLO_BOARDHEIGHTS` | `c mapX, c mapY, c blockX, c blockY, c w−1, c h−1`, then w × h cells of 2 raw bytes, row-major | height = `(b0 − 0x20 − 0x32) + (b1 − 0x20) / 128`; written into that gmap cell's height grid from `blockX, blockY`; mapX and mapY must lie in the gmap grid | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 186 | `PLO_BOARDMODIFY2` | `c mapX, c mapY, c x, c y, c w, c h`, then w × h `s tile`, row-major | tiles replace that gmap cell's board from `x, y`; needs `len ≥ 6 + 2*w*h` | [bin][cap] (version-profiles/plo-layouts-217-231.tsv) |
 
+Links need the most care of the level messages. The rules below give how a link is parsed and when the client takes it, from the binaries and from lab measurements [bin] (version-profiles/plo-levellink-layouts.tsv).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A link needs at least 5 space-separated fields, else the client raises "Wrong link data!"; `x y w h` are whole tiles read as floats; `newx` and `newy` are fields 5 and 6 or empty, and the literal `-1` becomes `playerx` or `playery` | 2.00, 2.04, 2.05 rev2, 2.17.1, 2.22, 2.31 | [bin] (version-profiles/plo-levellink-layouts.tsv) |
@@ -103,6 +111,8 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 
 ### 2.5.3.1 Level send order (pre-2.1 server path)
 
+When a pre-2.1 client enters a level, the server sends the messages above in a fixed order. The steps below give that order. Step 1 is the short path for a level the client already has [srv] (protocol/packet-layouts.md#pre-21-level-sequence-sendlevel141-used-for-205-srv).
+
 | Step | Messages | Source |
 | ---: | --- | --- |
 | 1 | if the client's cached modtime matches: the board changes since then, and nothing else | [srv] (protocol/packet-layouts.md#pre-21-level-sequence-sendlevel141-used-for-205-srv) |
@@ -110,6 +120,8 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 3 | then board changes, `LEVELCHEST` × n, `HORSEADD` × n, `BADDYPROPS` × n, `ISLEADER` (if leader), `NEWWORLDTIME`, `NPCPROPS` × n, and `OTHERPLPROPS` for each player in the level | [srv] (protocol/packet-layouts.md#pre-21-level-sequence-sendlevel141-used-for-205-srv) |
 
 ## 2.5.4 Players and the local player
+
+These messages describe the players: the local player and everyone else on the level. Each row gives the layout and the client's action. Note the change in the width of the player id after 1.35 [srv][2.05] (protocol/packet-layouts.md#player-state-server--client).
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
@@ -152,6 +164,8 @@ These are the server's copies of the client actions in → §2.4.5; each carries
 | 175 | `PLO_SHOOT` | `s player id`, `rest` = shot data (unmeasured) | only when the current level is the active level | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 191 | `PLO_SHOOT2` | 4.20r8: x, y, z, three angle and speed values, a gani name with optional parameters, then a script string; 5.00r7: `s id` + data routed to an object | a projectile | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 
+The table above names the combat messages. The rules below give how 2.05 decodes their bytes and when a hit actually lands [2.05] (protocol/packet-layouts.md#hits-205).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | `PLO_HURTPLAYER`: `dx`, `dy` decode as `(v − 0x60) / 16` (knockback −4 to 4) and `power` as `(v − 32) / 2` hearts, capped at 1.0 | 2.05 | [2.05] (protocol/packet-layouts.md#hits-205) |
@@ -164,6 +178,8 @@ These are the server's copies of the client actions in → §2.4.5; each carries
 How damage is applied after a hit is in → §4.3.
 
 ## 2.5.6 NPCs, weapons and scripts
+
+These messages move, script and remove NPCs and hand out weapons. Rows marked unmeasured are ids the server defines but no surviving client has been read for [srv] (protocol/packet-ids.md#server--client-plo_).
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
@@ -186,6 +202,8 @@ How damage is applied after a hit is in → §4.3.
 | 195 | `PLO_LOADGANI` | `str gani`, then the gani text | loaded as a server-sent gani script | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 196 | (no gs2lib name) | as 193 | 4.20r8 reads it and does nothing else | [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 197 | `PLO_LOADSCRIPT` | a list `type,name,saveToDisk,desKey,crc32`; type weapon, npc, class or gani; the key is two `i5` | script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+
+One rule separates the old script path from the new one [srv] (protocol/packet-layouts.md#weapons).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -240,6 +258,8 @@ Chat display and the private-message rules are in → §2.8.
 | 108 | `PLO_UNKNOWN108` | `c sub`, `s value` | ping: subtype 0 makes the client answer with id 162 echoing the value (→ App. E#5); subtype 1 stores the value on the connection; 4.20r6, 4.20r8, 6.01r1, 6.03r7, taken before the main switch; not 5.x | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 104 | `PLO_UNKNOWN104` | `str file`, `c a`, `i5 lo`, `i5 hi`; lo and hi joined little-endian | stores an 8-byte DES key for that lower-cased file name; a `.gpake` package or `.enc` file decrypts with it once 45, 69 or 102 arrives for the file; 3.153 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][lab] (formats/gpak.md) |
 
+Id 178 moves a client to another server. The rules below come from lab runs of 2.31: which fields it uses, what happens when they are wrong, and how the switch is timed [cap] (version-profiles/plo-layouts-217-231.tsv).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | On 178 the client closes the old connection and connects to the host in field 2 and the port in field 3 with a fresh login (new key, same stored credentials), with no listserver step | 2.31 (lab) | [cap] (version-profiles/plo-layouts-217-231.tsv); [cap] (version-profiles/lab-serverwarp178.tsv); [cap] (client-internals/decomp-findings-2026-10-24-b/08-lab-findings-levelchange-24-178.md#c-plo_serverwarp-178) |
@@ -264,6 +284,8 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 
 ## 2.5.10 Other ids
 
+Some ids are defined by the server but handled by no client the notes have read. The table lists them so that their silence is on record, not guessed at [bin] (protocol/unknown-ids-2026-11-06.md).
+
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
 | 60 | `PLO_UNKNOWN60` | unmeasured | no game client (1.21 to 6.03r7) or staff client (1999 RCs to RC3, NPC Control) handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
@@ -278,6 +300,8 @@ The RC ids (50 to 54, 57 to 59, 61 to 67, 70 to 74, 76, 77, 103) and the NC ids 
 ## 2.5.11 Unpacked Windows 6.1.1.3: script-installed handlers
 
 #### Receive and send registration
+
+Windows 6.1.1.3 does not compile its receive switch. Its scripts install the handlers when they run. The rules below say how that table is filled for both directions [bin] (protocol/v6113-plo.md#packet-104).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -298,6 +322,8 @@ Unpacked 6.0.3.7 has no 95-slot native table. Wire id 104 has no compiled receiv
 ## 2.5.12 Linux receive switches and compiled-script delivery
 
 #### Linux 4.04r2
+
+Each row below is one finding about the Linux 4.04r2 receive switch, with its exact scope and what it does not prove. Read the Limit column before using a row as a count of what the client accepts [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage).
 
 | Observation | Exact scope | Limit | Source |
 | --- | --- | --- | --- |

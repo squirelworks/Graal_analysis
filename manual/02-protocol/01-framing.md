@@ -16,6 +16,8 @@ Graal's own types add `0x20` to every 7-bit group, so an encoded value is printa
 | GINT5 | `i5` | 5 | first group 4 bits (`v >> 28`), then four 7-bit groups, each `+ 0x20` | 32-bit | [srv] (protocol/codec-and-framing.md#graal-integer-types) |
 | GSTRING | `str` | 1 + n | GCHAR length, then n bytes | n ≤ 223 | [srv][2.05] (protocol/codec-and-framing.md#graal-integer-types) |
 
+The encodings above are exact for values in range. The rules below cover what happens at the edges: overflow, signed values and over-long strings, plus the 1998 relay's use of the same one-character form [srv] (protocol/codec-and-framing.md#graal-integer-types).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | On overflow the server clamps rather than wraps (a GSHORT high byte is at most 223) | server | [srv] (protocol/codec-and-framing.md#graal-integer-types) |
@@ -24,6 +26,8 @@ Graal's own types add `0x20` to every 7-bit group, so an encoded value is printa
 | Numbers in 1998 relay payloads use the same `+32` single-character encoding as GCHAR | 1st Graal to 1.1.9 | [bin] (protocol/relay-1998.md#d-payloads) |
 
 ## 2.1.2 Messages and terminators
+
+Inside a frame, the unit is the message. Each rule below gives one property of how messages are written and split, with the builds it was confirmed for. The id rules decide which ids can be sent at all [bin] (protocol/gserv-1999.md#framing); [srv] (protocol/packet-ids.md).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -37,6 +41,8 @@ Graal's own types add `0x20` to every 7-bit group, so an encoded value is printa
 | Every 2.05 handler checks a minimum length first and drops a short message silently | 2.05 | [2.05] (protocol/packet-layouts.md#how-205-reads-a-message-205) |
 
 ## 2.1.3 The raw-data escape
+
+A newline ends every message, so binary data needs a way round it. The rules below describe that escape: the server announces a length, and the receiver takes that many bytes as one message. The last row is the client's own form of it [srv] (protocol/codec-and-framing.md#raw-data-escape).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -63,6 +69,8 @@ Encryption generations are defined in → §2.2.1; builds per generation are in 
 
 ### 2.1.4.1 Flush and buffer limits
 
+A client does not send each message as soon as it is made. It queues them and flushes a frame at a size limit or at the end of a tick, and it drops the link if too much is left unsent. The rules give those limits per build. A server that sends faster than a build drains will see that build disconnect [bin] (client-internals/decomp-findings-2026-10-24/07-graal-139.md#framing-and-encryption).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | 1.39 flushes when the queue would pass 4095 bytes and writes the frame to the socket in 256-byte slices; it drops the link when more than 256 KiB of compressed output is pending | 1.39 | [bin] (client-internals/decomp-findings-2026-10-24/07-graal-139.md#framing-and-encryption) |
@@ -77,6 +85,8 @@ Encryption generations are defined in → §2.2.1; builds per generation are in 
 | A UDP peer message is not framed this way (→ §2.9) | 1.28 beta 2 and later | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
 
 ### 2.1.4.2 zlib stream header
+
+The two bytes that open a zlib stream record the compression level. This matters only to a server or proxy that builds frames for a real client or listserver to accept [cap] (protocol/login-frames-by-version-2026-10-25.md#one-byte-level-difference-that-applies-to-every-seihai-frame).
 
 | Rule | Builds | Source |
 | --- | --- | --- |

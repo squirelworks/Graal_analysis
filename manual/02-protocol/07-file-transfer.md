@@ -7,11 +7,15 @@ The request messages are laid out in → §2.4.7 and the replies in → §2.5.7;
 
 ## 2.7.1 Requests and replies
 
+A client asks for a file in one of three ways. Each row gives a request, the reply when the server sends the file, the reply when it does not, and the builds that use that request [srv] (protocol/file-transfer.md#requests-client--server).
+
 | Request | Reply when the file is sent | Reply otherwise | Builds | Source |
 | --- | --- | --- | --- | --- |
 | 23 `PLI_WANTFILE` (name) | 100 `RAWDATA` + 102 `FILE` | 30 `FILESENDFAILED` (name) | 1.21 to 6.x | [srv] (protocol/file-transfer.md#requests-client--server) |
 | 34 `PLI_UPDATEFILE` (`i5` cached modtime, name) | 100 + 102 when the modtime differs | below 2.1: 30; 2.1 and later: 45 `FILEUPTODATE` | 1.42 to 6.x | [srv] (protocol/file-transfer.md#requests-client--server) |
 | 47 `PLI_VERIFYWANTSEND` (`i5 crc32`, name) | 100 + 102 when the client's copy is stale | unmeasured | 5.00r7, 5.24, 6.x | [srv] (protocol/file-transfer.md#requests-client--server); [cap] (protocol/file-transfer.md#what-5x-asks-for-at-login-cap) |
+
+The rules below cover the edge cases of those replies, which differ either side of 2.1, and say that game clients never upload [srv] (protocol/file-transfer.md#requests-client--server).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -29,6 +33,8 @@ The following historical rows describe server version branches; the exact origin
 | 2.1 to 2.13 | `c 102`, `i5 modtime`, `str filename`, the bytes, then `\n`, in one piece | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
 | 2.14 and later | as 2.1, split into 32000-byte chunks; a file over 32000 bytes is wrapped in 68 `LARGEFILESTART`, 84 `LARGEFILESIZE` and 69 `LARGEFILEEND` | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
 
+The rules below give the size limit on a single file, and how a large file arrives in chunks and is put back together [srv] (protocol/file-transfer.md#plo_file-body-srv).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | A client before 2.14 cannot receive a file over 64000 bytes; the server answers 30 instead | server | [srv] (protocol/file-transfer.md#plo_file-body-srv) |
@@ -36,6 +42,8 @@ The following historical rows describe server version branches; the exact origin
 | On 69 the client compares the name with the stored one and processes the accumulated stream as one file (→ §2.5.7) | 2.17.1 to 2.31 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 
 ## 2.7.3 The layout follows the server's token table
+
+Which file layout a client gets depends on how the server ranks its token, not on what the client can parse. The rules explain that ranking and what an unranked token causes [srv] (protocol/file-transfer.md#the-layout-follows-the-servers-token-table-not-the-client-2026-10-31).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -51,6 +59,8 @@ The following historical rows describe server version branches; the exact origin
 
 ## 2.7.4 Requests at login
 
+Each build asks for different files when it enters a server. The table gives the first requests seen per build. The late builds always start with the base package [srv][inf][cap] (protocol/file-transfer.md#typical-flow-for-205-srvinf).
+
 | Build | Requests seen | Source |
 | --- | --- | --- |
 | 2.05 | for each file a level references (for example `head25.png`, `sword1.png`, `walk.gani`): 34 when cached, else 23; the server answers 100 + 102 or 30 | [srv][inf][cap] (protocol/file-transfer.md#typical-flow-for-205-srvinf) |
@@ -62,6 +72,8 @@ The following historical rows describe server version branches; the exact origin
 Update packages and their messages (105, 106, 187) are in → §2.5.7.
 
 ## 2.7.5 The client's request lists
+
+A client does not ask for a file twice. The rules below describe the three lists it keeps, how many requests it allows in flight, and when a name moves from one list to another [bin] (client-internals/decomp-findings-2026-10-25-e/01-request-lists.md#lists).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -78,6 +90,8 @@ Update packages and their messages (105, 106, 187) are in → §2.5.7.
 | In 2.05 rev 2 and 2.22 the request side was read from the matching reply-side code and the lab | 2.05 rev 2, 2.22 | [inf] (client-internals/decomp-findings-2026-10-25-e/request-rules.tsv) |
 
 ## 2.7.6 Saving a download
+
+The rules below say when a download is written to disk, where it goes, and which modification time it keeps [bin] (client-internals/decomp-findings-2026-10-25-e/02-save-rules.md#whether-a-file-is-written).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
@@ -99,6 +113,8 @@ Where a new download is saved, by build:
 
 ## 2.7.7 Finding a local file
 
+Before asking the server, a client looks for the file on disk. The rules below give how it matches names and in which order it searches, for 2.05 rev 2 and 2.22 [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#case-fold).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | Names are folded A to Z only, then compared byte for byte; accented letters do not match across case | 2.05 rev 2, 2.22 | [bin] (client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md#case-fold) |
@@ -109,12 +125,16 @@ Where a new download is saved, by build:
 
 ## 2.7.8 Unpacked Windows 6.1.1.3 packages
 
+The unpacked 6.1.1.3 image was searched for package and download names. The two rules record what was found and what was not [bin] (protocol/v6113-files.md#names-in-the-image).
+
 | Rule | Builds | Source |
 | --- | --- | --- |
 | The only `.gupd` file name in the image is `basepackage.gupd`. `package_mainfiles.gupd` is not in the listing. `game_console.log` is a path the client opens, and the log is not in the repository | 6.1.1.3 | [bin] (protocol/v6113-files.md#names-in-the-image) |
 | `onSendUpdatePackage` and `onSendDownloadFile` are present. A numeric request id for `basepackage.gupd` was not recovered | 6.1.1.3 | [bin] (protocol/v6113-files.md#request-ids) |
 
 ## 2.7.9 Exact original Windows 2.05r2 receiver
+
+The 2.05 rev 2 file receiver was read exactly. Each row names one property of it and gives the detail. The last rows say how a server was checked against it, and how far that check goes [2.05][bin] (protocol/file-205r2-prefix-lf.md#exact-receiver-boundary).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
