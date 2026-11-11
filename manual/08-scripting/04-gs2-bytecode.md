@@ -128,7 +128,7 @@ The wrong-representation hash attempt remains superseded; only the corrected rea
 
 ## 8.4.11 Observe Linux 6.03 network GS2 execution and continuation
 
-[lab][cap] Three exact Linux6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. [lab][cap] (protocol/linux-603-network-gs2.md).
+[lab][cap] Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. [lab][cap] (protocol/linux-603-network-gs2.md).
 
 ## 8.4.12 Linux 6.01 x86 decoded-program and saved-state stages
 

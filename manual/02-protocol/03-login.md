@@ -274,4 +274,4 @@ The bytes a public 5.x or 6.x `Login` server sends are unobserved (→ App. E#3)
 
 ## 2.3.8 Record seven exact Linux client local-login baselines
 
-[lab][cap] Seven unique original Linux executable identities reach accepted local logins on one pinned patched lab server. Exact tokens preserve shared4.20 revision and6.01 architecture pairs without collapsing their executable identities. Visual results range from a tiled surface to black windows; acceptance is not gameplay, official authentication or a proven cipher-step discriminator. [lab][cap] (protocol/linux-local-login-matrix.md).
+[lab][cap] Seven unique original Linux executable identities reach accepted local logins on one pinned patched lab server. Exact tokens preserve shared 4.20 revision and 6.01 architecture pairs without collapsing their executable identities. Visual results range from a tiled surface to black windows; acceptance is not gameplay, official authentication or a proven cipher-step discriminator. [lab][cap] (protocol/linux-local-login-matrix.md).
