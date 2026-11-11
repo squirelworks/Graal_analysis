@@ -260,7 +260,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 ## Archive (2026-10-28)
 
-- `archive/ember-avelan-experimental.md`: archival notes on the decommissioned Ember/Avelan experimental walkers, tileset variants, and the type-0 mask. Full project zip is on Google Drive under `/[Grok/[Projects/Graal Enigma Playerworld.zip`.
+- `archive/ember-avelan-experimental.md`: archival notes on the decommissioned Ember/Avelan experimental walkers, tileset variants, and the type-0 mask. The full project zip is owner-held.
 
 ## Game assets (2026-11-01)
 

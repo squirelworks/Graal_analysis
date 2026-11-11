@@ -2,13 +2,9 @@
 
 **Status:** Decommissioned 2026-10-28. These notes preserve prior attempts to understand and walk the Graal environment outside the main analysis corpus. Raw assets and full source trees are archived separately.
 
-## Drive archive
+## Archive
 
-A complete zip of the experimental project is stored on Google Drive:
-
-- Path: `/[Grok/[Projects/Graal Enigma Playerworld.zip`
-- File ID: `1Zqyp3ECN8dP-dk6jBjqfRQ728_PZzbgY`
-- Link: https://drive.google.com/file/d/1Zqyp3ECN8dP-dk6jBjqfRQ728_PZzbgY/view
+A complete zip of the experimental project, `Graal Enigma Playerworld.zip`, is owner-held outside this repository.
 
 The zip contains Ember series sources, the Avelan 10×10 world, tileset variants, the tiledef plugin, stitched overworld maps, and documentation written against those trees.
 

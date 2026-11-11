@@ -4,9 +4,7 @@ This note records prior analysis of Classic Graal NPC scripting systems, perform
 
 ## Source Archive
 
-A full dump of extracted, catalogued, and documented NPC scripts plus architecture notes was packaged as **Graal Scripting.zip** (24 MB, ~3,900 files) and uploaded to Google Drive under `/[Grok/[Projects/`.
-
-Direct link: https://drive.google.com/file/d/1WDbffUEHO-rwa6FcVSXYG7KfSr1SKxVu/view
+A full dump of extracted, catalogued, and documented NPC scripts plus architecture notes was packaged as **Graal Scripting.zip** (24 MB, ~3,900 files). The archive is owner-held outside this repository.
 
 The archive contains:
 
