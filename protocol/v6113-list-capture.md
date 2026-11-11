@@ -45,7 +45,7 @@ After that prefix the bytes are opaque.
 
 No PLO id, no PLI id, no property stream and no file-transfer frame is visible. On the longer session the client's later segments are often 7 or 28 bytes, and the server sends segments of tens of kilobytes. Those are ciphertext lengths, not packet ids.
 
-The cipher is not identified. It is not the generation-5 compression byte plus partial XOR, and it is not TLS. Generation 6 is the name the server table leaves unknown (`protocol/codec-and-framing.md`). These bytes do not supply that scheme.
+The cipher is not identified from this capture alone. A later lab run on Mac 6.111 found RC4 from stream offset 287 with a per-session key (`v611-outgoing-cipher.md`). It is not the generation-5 compression byte plus partial XOR, and it is not TLS. Generation 6 is the name the server table leaves unknown (`protocol/codec-and-framing.md`). These bytes do not supply that scheme.
 
 ## Against the 6.0x notes
 
