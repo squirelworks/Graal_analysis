@@ -34,7 +34,7 @@ This is the index of every client-to-server id. Each row gives the logical id, i
 | 22 | `0x36` | `PLI_NPCDEL` | sent | → §2.4.6 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 23 | `0x37` | `PLI_WANTFILE` | sent | → §2.4.7 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 24 | `0x38` | `PLI_SHOWIMGPLAYER` | sent | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
-| 25 | `0x39` | `PLI_UNKNOWN25` | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
+| 25 | `0x39` | `PLI_TOWEAPON` (was `PLI_UNKNOWN25`; proposed `PLI_WEAPONUPLOAD`) | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 26 | `0x3a` | `PLI_HURTPLAYER` | sent | → §2.4.5 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 27 | `0x3b` | `PLI_EXPLOSION` | sent | → §2.4.5 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 28 | `0x3c` | `PLI_PRIVATEMESSAGE` | sent | → §2.4.8 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
@@ -134,7 +134,7 @@ This is the index of every client-to-server id. Each row gives the logical id, i
 | 159 | `0xbf` | `PLI_UPDATEPACKAGEREQUESTFILE` | no | → §2.4.7 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 160 | `0xc0` | `PLI_RC_FOLDERDELETE` | no | → §2.4.10 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 161 | `0xc1` | `PLI_UPDATECLASS` | no | → §2.4.7 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
-| 162 | `0xc2` | `PLI_RC_UNKNOWN162` | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
+| 162 | `0xc2` | `PLI_PONG` (was `PLI_RC_UNKNOWN162`; proposed `PLI_PING`) | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 252 | n/a (above 223) | `PLI_SET_ENC_KEY` | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 | 253 | n/a (above 223) | `PLI_BUNDLE` | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 
@@ -231,15 +231,15 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 84 | `0x74` | `PLO_LARGEFILESIZE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 100 | `0x84` | `PLO_RAWDATA` | handled | → §2.5.3 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 103 | `0x87` | `PLO_RC_MAXUPLOADFILESIZE` | no | → §7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 104 | `0x88` | `PLO_UNKNOWN104` | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 104 | `0x88` | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 105 | `0x89` | `PLO_UPDATEPACKAGESIZE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 106 | `0x8a` | `PLO_UPDATEPACKAGEDONE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 107 | `0x8b` | `PLO_BOARDLAYER` | no | → §2.5.3 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 108 | `0x8c` | `PLO_UNKNOWN108` | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 109 | `0x8d` | `PLO_UNKNOWN109` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 108 | `0x8c` | `PLO_PING` (was `PLO_UNKNOWN108`) | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 109 | `0x8d` | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 110 | `0x8e` | `PLO_UNKNOWN110` | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 111 | `0x8f` | `PLO_SETNETCOOKIE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 124 | `0x9c` | `PLO_UNKNOWN124` | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 124 | `0x9c` | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 131 | `0xa3` | `PLO_NPCBYTECODE` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 132 | `0xa4` | `PLO_UNKNOWN132` | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 133 | `0xa5` | `PLO_UNKNOWN133` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
@@ -262,7 +262,7 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 165 | `0xc5` | `PLO_MOVE` | handled | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 166 | `0xc6` | `PLO_SHOWIMGNPC` | handled | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 167 | `0xc7` | `PLO_NC_WEAPONLISTGET` | no | → §7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 168 | `0xc8` | `PLO_UNKNOWN168` | handled | → §2.5.4 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 168 | `0xc8` | `PLO_ONLINEMODE` (was `PLO_UNKNOWN168`; proposed `PLO_LOGGEDIN`) | handled | → §2.5.4 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 169 | `0xc9` | `PLO_UPGRADEURL` | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 170 | `0xca` | `PLO_GHOSTMODE` | no | → §2.5.4 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 171 | `0xcb` | `PLO_BIGMAP` | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
@@ -287,8 +287,8 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 190 | `0xde` | `PLO_SERVERLISTCONNECTED` | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 191 | `0xdf` | `PLO_SHOOT2` | no | → §2.5.5 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 192 | `0xe0` | `PLO_NC_WEAPONGET` | no | → §7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 193 | `0xe1` | `PLO_UNKNOWN193` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 194 | `0xe2` | `PLO_CLEARWEAPONS` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 193 | `0xe1` | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 194 | `0xe2` | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 195 | `0xe3` | `PLO_LOADGANI` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 197 | `0xe5` | `PLO_LOADSCRIPT` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 198 | `0xe6` | `PLO_SERVEROPTIONS` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |

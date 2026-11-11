@@ -4,6 +4,8 @@ Date: 2026-10-21
 
 Names: gs2lib `IEnums.h` (2026-10 bitbucket head, GPLv3). The names are as in gs2lib; the notes are restated in this repo's field notation (`c`, `s`, `i3`, `str`, …), not copied. The 2.05 column is taken from the 2.05 rev 2 server→client jump table and the client→server sender functions.
 
+Since 2026-11-11 the names follow upstream gs2lib's current `IEnums.h`, which the project's code repos use. Nine ids changed: each row gives the former 2026-10 name, and the name proposed in `unknown-ids-2026-11-06.md` where there was one, after the new name, so a search for either still finds the row.
+
 Wire byte = id + 0x20 (GCHAR). Ids above 223 cannot be sent as a single GCHAR.
 
 Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.05.
@@ -101,15 +103,15 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 101 | 0x85 | `PLO_BOARDPACKET` | ✔ via RAWDATA |   |
 | 102 | 0x86 | `PLO_FILE` | ✔ via RAWDATA |   |
 | 103 | 0x87 | `PLO_RC_MAXUPLOADFILESIZE` | · | `i5 bytes`: RC upload limit (default 20 MiB) |
-| 104 | 0x88 | `PLO_UNKNOWN104` | · | `str file`, `c a`, `i5 lo`, `i5 hi`: the DES key for an encrypted package or `.enc` file, keyed by lower-cased file name; 3.153 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`, `formats/gpak.md`) |
+| 104 | 0x88 | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) | · | `str file`, `c a`, `i5 lo`, `i5 hi`: the DES key for an encrypted package or `.enc` file, keyed by lower-cased file name; 3.153 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`, `formats/gpak.md`) |
 | 105 | 0x89 | `PLO_UPDATEPACKAGESIZE` | · | package-update message (5.07, 6.037) |
 | 106 | 0x8a | `PLO_UPDATEPACKAGEDONE` | · | package-update message (5.07, 6.037) |
 | 107 | 0x8b | `PLO_BOARDLAYER` | · | like LEVELBOARD, for extra layers |
-| 108 | 0x8c | `PLO_UNKNOWN108` | · | ping: `c sub`, `s value`; sub 0 → the client answers PLI 162, sub 1 stores the value; 4.20 and 6.x, taken before the main switch **[bin]** (`unknown-ids-2026-11-06.md`) |
-| 109 | 0x8d | `PLO_UNKNOWN109` | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP; 5.24r4 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 108 | 0x8c | `PLO_PING` (was `PLO_UNKNOWN108`) | · | ping: `c sub`, `s value`; sub 0 → the client answers PLI 162, sub 1 stores the value; 4.20 and 6.x, taken before the main switch **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 109 | 0x8d | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP; 5.24r4 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 110 | 0x8e | `PLO_UNKNOWN110` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 111 | 0x8f | `PLO_SETNETCOOKIE` | · | `rest cookie` |
-| 124 | 0x9c | `PLO_UNKNOWN124` | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` | · | `i3 code`, `bytecode` |
 | 132 | 0xa4 | `PLO_UNKNOWN132` | · | 5.07 only; client 6.037 ignores it |
 | 133 | 0xa5 | `PLO_UNKNOWN133` | · | rest = text; maybe registers a class script |
@@ -132,7 +134,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 165 | 0xc5 | `PLO_MOVE` | ✔ | client 6.037 ignores it; `i3 npc id` (> 0) + move data **[bin]** |
 | 166 | 0xc6 | `PLO_SHOWIMGNPC` | ✔ | `i3 npc id` + prop list **[bin]** |
 | 167 | 0xc7 | `PLO_NC_WEAPONLISTGET` | · | `c name1 length`, `name1`, `c name2 length`, `name2`; client 5.07+ ignores it |
-| 168 | 0xc8 | `PLO_UNKNOWN168` | ✔ | sent by the login server; payload ignored; local-player reset (2.17–2.31); sets a one-shot "logged in" flag on the player object in 4.20 and 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 168 | 0xc8 | `PLO_ONLINEMODE` (was `PLO_UNKNOWN168`; proposed `PLO_LOGGEDIN`) | ✔ | sent by the login server; payload ignored; local-player reset (2.17–2.31); sets a one-shot "logged in" flag on the player object in 4.20 and 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 169 | 0xc9 | `PLO_UPGRADEURL` | · | with DISCONNECT: the reconnect button becomes "Upgrade" and opens this URL; rest = URL text **[bin]** |
 | 170 | 0xca | `PLO_GHOSTMODE` | · | `c flag` (> 0 = ghost on) **[bin]** |
 | 171 | 0xcb | `PLO_BIGMAP` | · | client 6.037 ignores it; comma text `txt,png,x,y` (≥ 4 fields used); x, y parsed as floats **[bin]** |
@@ -157,8 +159,8 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 190 | 0xde | `PLO_SERVERLISTCONNECTED` | · |  |
 | 191 | 0xdf | `PLO_SHOOT2` | · | 5.07 / 6.037 |
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` | · | `str name`, `str image`, `script`; client 5.07+ ignores it |
-| 193 | 0xe1 | `PLO_UNKNOWN193` | · | `i5 crc32`, rest = weapon name: load the cached `weblevels/weapons/<name>.code` if its CRC32 matches, else request it with PLI 158; 4.04r2 to 5.12 **[bin]** (`unknown-ids-2026-11-06.md`) |
-| 194 | 0xe2 | `PLO_CLEARWEAPONS` | · | empty; precedes the weapon list; clears weapon and class scripts (how much differs by version); 4.04r2 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 193 | 0xe1 | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | · | `i5 crc32`, rest = weapon name: load the cached `weblevels/weapons/<name>.code` if its CRC32 matches, else request it with PLI 158; 4.04r2 to 5.12 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 194 | 0xe2 | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | · | empty; precedes the weapon list; clears weapon and class scripts (how much differs by version); 4.04r2 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others) |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` | · | `list type,name,saveToDisk,desKey,crc32` (type weapon/npc/class/gani; key = two i5) |
 | 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions`; stored and never read up to 6.03 (`client-internals/serveroptions-198.md`) |
@@ -198,7 +200,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 22 | 0x36 | `PLI_NPCDEL` | ✔ |   |
 | 23 | 0x37 | `PLI_WANTFILE` | ✔ |   |
 | 24 | 0x38 | `PLI_SHOWIMGPLAYER` | ✔ | 2.31 also sends it by itself about every 5.1 s with a 1-byte payload (value 9 seen); 2.22 does the same only while another player is in the level; the server relays it unchanged as 32; meaning unknown **[cap]** |
-| 25 | 0x39 | `PLI_UNKNOWN25` | · | weapon upload, laid out as `PLO_NPCWEAPONADD` (name, image, script); sent by 1.21 to 1.37 only **[bin][cap]** (`unknown-ids-2026-11-06.md`) |
+| 25 | 0x39 | `PLI_TOWEAPON` (was `PLI_UNKNOWN25`; proposed `PLI_WEAPONUPLOAD`) | · | weapon upload, laid out as `PLO_NPCWEAPONADD` (name, image, script); sent by 1.21 to 1.37 only **[bin][cap]** (`unknown-ids-2026-11-06.md`) |
 | 26 | 0x3a | `PLI_HURTPLAYER` | ✔ |   |
 | 27 | 0x3b | `PLI_EXPLOSION` | ✔ |   |
 | 28 | 0x3c | `PLI_PRIVATEMESSAGE` | ✔ |   |
@@ -298,7 +300,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 159 | 0xbf | `PLI_UPDATEPACKAGEREQUESTFILE` | · | order?, package file name, modtime |
 | 160 | 0xc0 | `PLI_RC_FOLDERDELETE` | · |   |
 | 161 | 0xc1 | `PLI_UPDATECLASS` | · | `i5 modtime` + rest = class name |
-| 162 | 0xc2 | `PLI_RC_UNKNOWN162` | · | ping: game clients (4.20, 6.x) answer PLO 108 with `!` + `s value`; RCs (2010, RC3) send it empty every 60 s **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 162 | 0xc2 | `PLI_PONG` (was `PLI_RC_UNKNOWN162`; proposed `PLI_PING`) | · | ping: game clients (4.20, 6.x) answer PLO 108 with `!` + `s value`; RCs (2010, RC3) send it empty every 60 s **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 252 | — | `PLI_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLI_BUNDLE` | · | several packets in one |
 

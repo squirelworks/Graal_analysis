@@ -60,7 +60,7 @@ Three readings of client id 162 turned out to be one message, a ping answer. The
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | gs2lib names 162 `PLI_RC_UNKNOWN162`: an empty message from the RC3 beta | [srv] (protocol/packet-ids.md#client--server-pli_) |
+| Claim A | the 2026-10 gs2lib named 162 `PLI_RC_UNKNOWN162` (upstream now `PLI_PONG`): an empty message from the RC3 beta | [srv] (protocol/packet-ids.md#client--server-pli_) |
 | Claim B | 4.20r8 sends 162 as the answer to S→C 108 | [bin] (protocol/v4x-clients.md#client--server-ids) |
 | Claim C | 6.01r1 and 6.03r7 send 162 as a reply to a server request: `!` followed by a 2-byte value (two 7-bit groups, capped at `0x6FFF`) the server sent; probably the ping answer that 6.11 calls `onSendPingAnswer` | [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | Open | ~~whether B and C are the same message, and how the RC3 beta's empty 162 relates to them~~ settled below | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |

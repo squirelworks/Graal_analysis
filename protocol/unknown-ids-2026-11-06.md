@@ -40,6 +40,22 @@ The disassembly excerpts behind this note stay in the project's handoff files, n
 | PLO 193 | `PLO_WEAPONCRC` | `i5 crc32`, rest = weapon name | 4.04r2 to 5.12 | high |
 | PLO 194 | `PLO_CLEARWEAPONS` (already named) | empty | 4.04r2 to 6.03r7 | high |
 
+## Upstream names (added 2026-11-11)
+
+On 2026-11-11 the project moved to upstream gs2lib's packet names. The code repos (the Seihai gs2lib, gserver forks and the Rust servers) use the upstream name now; the names proposed above are kept as written and stay searchable. Only the label changes: no finding in this note does.
+
+| Id | Proposed here | Upstream gs2lib name (used now) |
+|---|---|---|
+| PLI 25 | `PLI_WEAPONUPLOAD` | `PLI_TOWEAPON` |
+| PLI 162 | `PLI_PING` | `PLI_PONG` |
+| PLO 104 | `PLO_FILEKEY` | `PLO_FILEDECRYPTKEY` |
+| PLO 108 | `PLO_PING` | `PLO_PING` |
+| PLO 109 | `PLO_DOWNLOADURL` | `PLO_HTTPDOWNLOAD` |
+| PLO 124 | `PLO_RC_PLAYERFLAGS` | `PLO_RC_UNKNOWN124` |
+| PLO 168 | `PLO_LOGGEDIN` | `PLO_ONLINEMODE` |
+| PLO 193 | `PLO_WEAPONCRC` | `PLO_WEAPONHASH` |
+| PLO 194 | `PLO_CLEARWEAPONS` | `PLO_RESETCLIENT` |
+
 ## Where the gserver's comments were wrong
 
 | Id | gserver / gs2lib comment | What the clients show |
@@ -228,6 +244,8 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
 - **Settles it:** only a capture from a real (non-lab) server that sends one.
 
 ## What to change downstream
+
+Superseded for names on 2026-11-11: see "Upstream names" above.
 
 - **gs2lib / gserver names (GPL fork only):** 25 → `PLI_WEAPONUPLOAD` (the Seihai fork already
   does this), 162 → `PLI_PING`, 108 → `PLO_PING`, 124 → `PLO_RC_PLAYERFLAGS`,
