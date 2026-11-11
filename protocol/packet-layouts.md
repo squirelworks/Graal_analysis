@@ -179,7 +179,7 @@ Read from the receive handlers of the three clients (decompile pass of 2026-10-2
 | 156 | SETACTIVELEVEL | all three | raw level or .gmap name |
 | 165 | MOVE | all three | GINT3 npc id, rest = move data; in 2.05r2 complete 7-byte records (`payload-and-trigger-205r2.md#npc-movement-plo-165`) |
 | 166 | SHOWIMGNPC | all three | GINT3 npc id, rest = props |
-| 168 | UNKNOWN168 | all three | none read |
+| 168 | ONLINEMODE (was UNKNOWN168) | all three | none read |
 | 169 | UPGRADEURL | all three | raw text |
 | 170 | GHOSTMODE | all three | GCHAR flag |
 | 171 | BIGMAP | all three | comma text >=2 fields (>=4 to be used): txt, png, x, y |

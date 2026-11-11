@@ -76,7 +76,7 @@ Corrections made on 2026-10-24 from the decompile pass: topic 11 no longer says 
 | 44 | HASNPCSERVER | S to C | only with the NPC-server build; the lab build does not send it | 07 |
 | 47 | STAFFGUILDS | S to C | guild names that count as staff in the player list | 10 |
 | 156 | SETACTIVELEVEL | S to C | level name that receives following NPC/chest/baddy packets (the gmap name on a gmap) | 06 |
-| 168 | UNKNOWN168 | S to C | blank packet the login server sends | cross-cutting |
+| 168 | ONLINEMODE (was UNKNOWN168) | S to C | blank packet the login server sends | cross-cutting |
 | 171 | BIGMAP | S to C | `text,image,x,y` big map settings (2.1+) | 06 |
 | 172 | MINIMAP | S to C | `text,image,x,y` minimap settings (2.1+) | 06 |
 | 174 | GHOSTICON | S to C | 1 = ghost players present (free accounts); GServer sends 0 per level | cross-cutting |

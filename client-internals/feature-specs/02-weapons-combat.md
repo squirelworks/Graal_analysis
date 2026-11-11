@@ -11,7 +11,7 @@ Snapshots read: Graal_analysis `8da6800`, Seihai `06aacfd`, GServer-v2 (local ch
 | 197 | (bytecode) | v4+ only; replaces the script for GS2. 2.05 never sees it. |
 Client to server: `PLI_WEAPONADD` (33) type 0 = `c item index`; type 1 = `i3 npc id`. 2.05 only sends type 0. `PLI_NPCWEAPONDEL` (29) = name.
 
-GServer builds the list at login (`sendLogin`): clear (`PLO_CLEARWEAPONS`), the account's weapons, protected weapons, then default weapons if the `defaultweapons` option is on. The weapon script text comes from `TWeapon`; for pre-v4 clients the script is sent as plain GS1 text.
+GServer builds the list at login (`sendLogin`): clear (`PLO_RESETCLIENT`, formerly `PLO_CLEARWEAPONS`), the account's weapons, protected weapons, then default weapons if the `defaultweapons` option is on. The weapon script text comes from `TWeapon`; for pre-v4 clients the script is sent as plain GS1 text.
 
 ## Combat packets **[srv][2.05][cap]**
 The client is authoritative. It sends its own action and the server re-emits it to the rest of the level with `s player id` in front. In 2.05 most of these also go over UDP (see 07); the TCP copy is sent only when some player in the level has no UDP port, or an NPC server exists.

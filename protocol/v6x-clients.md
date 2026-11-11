@@ -100,7 +100,7 @@ All outgoing packets go through one virtual send method `(id, body)`. It writes 
 | 157, 158, 161 | `PLI_UPDATEGANI`, `PLI_UPDATESCRIPT`, `PLI_UPDATECLASS` | script and gani requests |
 | 159 | `PLI_UPDATEPACKAGEREQUESTFILE` | |
 | 160 | `PLI_RC_FOLDERDELETE` | 6.03 only |
-| 162 | `PLI_RC_UNKNOWN162` | The answer to PLO 108 subtype 0: `!` followed by a 2-byte value (2 × 7-bit groups, capped at 0x6FFF) the server sent; the ping answer that 6.11 calls `onSendPingAnswer`. The RCs send the same id empty as a 60 s keepalive (`unknown-ids-2026-11-06.md`) **[bin]** |
+| 162 | `PLI_PONG` (was `PLI_RC_UNKNOWN162`) | The answer to PLO 108 subtype 0: `!` followed by a 2-byte value (2 × 7-bit groups, capped at 0x6FFF) the server sent; the ping answer that 6.11 calls `onSendPingAnswer`. The RCs send the same id empty as a 60 s keepalive (`unknown-ids-2026-11-06.md`) **[bin]** |
 
 The other ids (0–20, 22–24, 26–30, 32–36, 38, 41, 47, 48) have the same meaning as in 2.x–5.x. **[bin][inf]**
 

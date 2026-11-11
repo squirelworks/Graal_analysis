@@ -114,7 +114,7 @@ Graal's wire vocabulary has a few words that are easy to mix up: a message is no
 | logical id | the decimal id used throughout this manual |
 | wire byte | the byte on the wire; for a GCHAR id it is the logical id + `0x20` [srv] (protocol/packet-ids.md) |
 
-Message and prop **names** are the conventional ones the notes use, restated rather than copied from any server source [doc] (protocol/packet-ids.md). Every id appears in App. A (messages) or App. B (props) with a pointer to its canonical section.
+Message and prop **names** are the conventional ones the notes use, restated rather than copied from any server source [doc] (protocol/packet-ids.md). They follow upstream gs2lib's current names; where an id was renamed on 2026-11-11, App. A and the Part II tables give the former name beside the new one [doc] (protocol/packet-ids.md). Every id appears in App. A (messages) or App. B (props) with a pointer to its canonical section.
 
 ## 0.8 Units
 

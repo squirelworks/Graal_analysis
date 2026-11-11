@@ -37,7 +37,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 22 | 0x36 | `PLI_NPCDEL` |  | C→S |  | yes |
 | 23 | 0x37 | `PLI_WANTFILE` | `WANTGIF` | C→S | rest = filename | yes |
 | 24 | 0x38 | `PLI_SHOWIMGPLAYER` |  | C→S | 2.31 also sends it by itself about every 5.1 s, 1 byte (value 9 seen); 2.22 only with another player in the level; relayed unchanged as 32; meaning unknown **[cap]** | yes |
-| 25 | 0x39 | `PLI_UNKNOWN25` |  | C→S |  | — |
+| 25 | 0x39 | `PLI_TOWEAPON` (was `PLI_UNKNOWN25`; proposed `PLI_WEAPONUPLOAD`) |  | C→S |  | — |
 | 26 | 0x3a | `PLI_HURTPLAYER` |  | C→S | `s victim, c dx, c dy, c power, i3 npc` | yes |
 | 27 | 0x3b | `PLI_EXPLOSION` |  | C→S | `c radius, c x×2, c y×2, c power` | yes |
 | 28 | 0x3c | `PLI_PRIVATEMESSAGE` |  | C→S | `s count`, count × `s id`, rest = message | yes |
@@ -137,7 +137,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 159 | 0xbf | `PLI_UPDATEPACKAGEREQUESTFILE` |  | C→S |  | — |
 | 160 | 0xc0 | `PLI_RC_FOLDERDELETE` |  | C→S |  | — |
 | 161 | 0xc1 | `PLI_UPDATECLASS` |  | C→S |  | — |
-| 162 | 0xc2 | `PLI_RC_UNKNOWN162` |  | C→S |  | — |
+| 162 | 0xc2 | `PLI_PONG` (was `PLI_RC_UNKNOWN162`; proposed `PLI_PING`) |  | C→S |  | — |
 | 252 | — | `PLI_SET_ENC_KEY` |  | C→S |  | — |
 | 253 | — | `PLI_BUNDLE` |  | C→S |  | — |
 
@@ -234,15 +234,15 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 101 | 0x85 | `PLO_BOARDPACKET` | `TILES` | S→C | 4096 × u16 LE tiles (behind 100) | via 100 |
 | 102 | 0x86 | `PLO_FILE` | `FILEBLOB` | S→C | file: `str name` [+ `i5 modtime` ≥ 2.1] + bytes (behind 100) | via 100 |
 | 103 | 0x87 | `PLO_RC_MAXUPLOADFILESIZE` |  | S→C |  | — |
-| 104 | 0x88 | `PLO_UNKNOWN104` |  | S→C |  | — |
+| 104 | 0x88 | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) |  | S→C |  | — |
 | 105 | 0x89 | `PLO_UPDATEPACKAGESIZE` |  | S→C |  | — |
 | 106 | 0x8a | `PLO_UPDATEPACKAGEDONE` |  | S→C |  | — |
 | 107 | 0x8b | `PLO_BOARDLAYER` |  | S→C |  | — |
-| 108 | 0x8c | `PLO_UNKNOWN108` |  | S→C |  | — |
-| 109 | 0x8d | `PLO_UNKNOWN109` |  | S→C |  | — |
+| 108 | 0x8c | `PLO_PING` (was `PLO_UNKNOWN108`) |  | S→C |  | — |
+| 109 | 0x8d | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) |  | S→C |  | — |
 | 110 | 0x8e | `PLO_UNKNOWN110` |  | S→C |  | — |
 | 111 | 0x8f | `PLO_SETNETCOOKIE` |  | S→C |  | — |
-| 124 | 0x9c | `PLO_UNKNOWN124` |  | S→C |  | — |
+| 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) |  | S→C |  | — |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` |  | S→C |  | — |
 | 132 | 0xa4 | `PLO_UNKNOWN132` |  | S→C |  | — |
 | 133 | 0xa5 | `PLO_UNKNOWN133` |  | S→C |  | — |
@@ -265,7 +265,7 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 165 | 0xc5 | `PLO_MOVE` |  | S→C | `i3 npc id` (> 0) + move data **[bin]** | yes |
 | 166 | 0xc6 | `PLO_SHOWIMGNPC` |  | S→C | `i3 npc id` + prop list **[bin]** | yes |
 | 167 | 0xc7 | `PLO_NC_WEAPONLISTGET` |  | S→C |  | — |
-| 168 | 0xc8 | `PLO_UNKNOWN168` |  | S→C | payload ignored; local-player reset (2.17–2.31) **[bin]** | yes |
+| 168 | 0xc8 | `PLO_ONLINEMODE` (was `PLO_UNKNOWN168`; proposed `PLO_LOGGEDIN`) |  | S→C | payload ignored; local-player reset (2.17–2.31) **[bin]** | yes |
 | 169 | 0xc9 | `PLO_UPGRADEURL` |  | S→C | rest = URL text **[bin]** | — |
 | 170 | 0xca | `PLO_GHOSTMODE` |  | S→C | `c flag` (> 0 = ghost on) **[bin]** | — |
 | 171 | 0xcb | `PLO_BIGMAP` |  | S→C | comma text `txt,png,x,y` (≥ 4 fields used); x, y parsed as floats **[bin]** | — |
@@ -290,8 +290,8 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 190 | 0xde | `PLO_SERVERLISTCONNECTED` |  | S→C |  | — |
 | 191 | 0xdf | `PLO_SHOOT2` |  | S→C |  | — |
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` |  | S→C |  | — |
-| 193 | 0xe1 | `PLO_UNKNOWN193` |  | S→C |  | — |
-| 194 | 0xe2 | `PLO_CLEARWEAPONS` |  | S→C |  | — |
+| 193 | 0xe1 | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) |  | S→C |  | — |
+| 194 | 0xe2 | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) |  | S→C |  | — |
 | 195 | 0xe3 | `PLO_LOADGANI` |  | S→C |  | — |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` |  | S→C |  | — |
 | 198 | 0xe6 | `PLO_SERVEROPTIONS` |  | S→C |  | — |
