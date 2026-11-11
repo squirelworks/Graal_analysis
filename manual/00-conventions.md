@@ -172,7 +172,7 @@ The manual is checked by scripts in `tools/manual/`, and the same scripts build 
 | check before the final audit | `python tools/manual/check_manual.py --final` (also fails on any `pending` row in `sources.tsv`) |
 | check that cited notes are carried | `python tools/manual/check_carry.py` (a `cited` row with no reason fails when a planned section does not cite the note, or when under 30 % of a Markdown note's distinctive terms appear in the manual; `--report` lists the lowest carries) |
 | run the checker's tests | `python -m pytest tools/manual -q` |
-| build the PDF | `python tools/manual/build_manual.py` (pandoc, then Chromium prints A4; default output `manual/pdf/graal-trm.pdf`; `--version X` labels the edition and names the file `graal-trm-X.pdf`) |
+| build the PDF | `python tools/manual/build_manual.py` (pandoc, then Chromium prints A4; default output `manual/pdf/graal-trm.pdf`; `--version X` labels the edition and names the file `graal-trm-X.pdf`; when a page is A3, it also writes the print set: `graal-trm-X-a3-inserts.pdf` with the A3 pages and `graal-trm-X-print-a4.pdf` with a placeholder page at each insert's place) |
 
 Each manual file begins with a header comment `<!-- manual: kind=K status=S -->`:
 
@@ -185,3 +185,13 @@ Each manual file begins with a header comment `<!-- manual: kind=K status=S -->`
 | status | `draft`, `complete` | the kind rules apply; a `> Status:` line may say what is still missing |
 
 `manual/sources.tsv` lists every note in the repository with one of three states: `pending` (not yet represented), `cited` (with the sections that cite it) or `excluded` (with a reason). App. F is its readable form.
+
+<div class="page-wider">
+
+## 0.12 System map
+
+The map shows the parts of Graal this manual describes and how they connect. Each box names a program, a family of builds or a body of files, and each arrow a link between them, labelled with the section that describes it. In the PDF the map is an A3 landscape page; the print set carries it as a separate A3 insert (→ §0.11).
+
+<img src="figures/system-map.svg" alt="Graal system map: clients by era, the listserver, game, 3D and NPC servers, RemoteControl and NPC Control, files and formats, tools, scripting, and Graal3D, with the manual section for each link">
+
+</div>
