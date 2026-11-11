@@ -91,17 +91,21 @@ runs. `Graal3DEngine.dll` carries Themida/WinLicense packer strings, so the ship
 self-checks its own code and terminates when its exported functions are inline-patched. A
 **read-only memory scan** (no code patch) is tolerated and ran for the full session. **[live]**
 
-**A replayed reply does not verify; the client falls to `StartScript_Fail`.** Serving the
-genuine captured reply back to a fresh client instance on loopback, then scanning process memory,
-found only the client's **built-in** connector skeleton and the fail path: the baked field names
-`scriptip` / `scriptsslcipher` / `scriptsslsubject` / `scriptsslissuer`, the string
-`Problem setting up the networking`, and GUI `onCreated` scripts. None of `connecttogameserver`,
-`setprotocol`, `setoutdatahandlers`, a game host/port or any server-supplied `StartScript_Connector`
-body ever appeared, across six scans over two minutes. So the client **rejected** the replayed
-reply: the RSA signature is bound to the specific request (its per-request `?p=` nonce/time), not
-to the body alone, so a reply captured for one request cannot be replayed to another. This both
-reconfirms the sign-with-server-private-key verdict and means a captured genuine reply is **not**
-a shortcut to the decrypted connector script. **[live][inf]**
+**A genuine reply verifies only against the exact request it was signed for.** The reply used
+here was captured for an *earlier* client launch (one `?p=`) and served to a *fresh* launch (a
+different `?p=`). The fresh client rejected it: a memory scan found only the client's **built-in**
+connector skeleton and the fail path — the baked field names `scriptip` / `scriptsslcipher` /
+`scriptsslsubject` / `scriptsslissuer`, the string `Problem setting up the networking`, and GUI
+`onCreated` scripts — and never `connecttogameserver`, `setprotocol`, `setoutdatahandlers`, a game
+host/port, or any server-supplied `StartScript_Connector` body, across six scans over two minutes.
+The RSA signature is bound to the request's per-launch `?p=` value, so a reply captured for one
+launch cannot be replayed to another.
+
+A reply **can** be replayed back to the same `?p=` request it was signed for: the 6.11 Mac work
+(Lion thread) captured a reply and replayed it within the same request context, and that client
+verified it and decrypted the connector script. The limitation is only cross-launch. So a captured
+genuine reply is a per-launch artefact, not a reusable lab `/conf.gs` that an arbitrary fresh
+client accepts, and the sign-with-server-private-key verdict for a lab responder stands. **[live][inf]**
 
 ---
 
