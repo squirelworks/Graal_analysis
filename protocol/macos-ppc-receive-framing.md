@@ -60,7 +60,8 @@ settle the Windows 5.12 capture disagreement in
 
 No packet-specific PLO/PLI semantics, successful login, rendering or v6 behavior
 is established here. Decompression workspace policies differ between inputs
-and are outside this deliberately shared framing contract.
+and are outside this deliberately shared framing contract; they are in
+[the decompression companion](macos-ppc-receive-decompression.md).
 
 ## Evidence
 

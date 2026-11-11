@@ -449,6 +449,7 @@ The rules below give how the server drives the phases and how the client answers
 | In 3.153 these are script functions; phase 1 acks with the sequence number, and phase 3 lights the scene and acks when lighting is done | [file] (torque/network.md#after-the-connection-is-accepted) |
 | In 4.04r2 they are native; the acks carry only the command tag, no sequence number; every other `commandToClient` name is ignored | [bin] (graal3d/torque-engine-4x.md#mission-start) |
 | 4.04r2 raises `onGraal3DLoginStep` 1 to 5: phases 1, 2 and 3, lighting done (`$missionRunning = 1`), and the first control object (switch to the 3D GUI) | [bin] (graal3d/torque-engine-4x.md#mission-start) |
+| Mac 4.04r2 raises the same 1 to 5. Step 5 looks up `GUIContainer3D` and attaches it if a condition holds. This was read in the Mac executable itself, not carried over from the Windows plug-in. | [bin] (client-internals/mac-ppc-runtime-surface-2026-11-09.md#3d-mission-stages-in-mac-404r2) |
 | 5.12 starts the value at −1 and raises 2 (phase 1), 3 (phase 2), 4 (lighting done), 5 (first control object) and 6 (TCP file downloads finished, the `GraalControl3D` GUI attached) | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 | The 3.153 loading screen is a snowball rolling across `LoadingGui`, with the Christmas 2004 3D images | [file] (torque/scripting.md#what-the-3153-scripts-do) |
 

@@ -27,6 +27,14 @@ MAC-PPC-V3-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
 MAC-PPC-404-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
 MAC-PPC-420-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
 MAC-PPC-V5-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
+MAC-PPC-V3-BROAD-STATIC-20261109-R1	macos	researcher-static-summary
+MAC-PPC-404-BROAD-STATIC-20261109-R1	macos	researcher-static-summary
+MAC-PPC-420-BROAD-STATIC-20261109-R1	macos	researcher-static-summary
+MAC-PPC-V5-BROAD-STATIC-20261109-R1	macos	researcher-static-summary
+MAC-PPC-V3-GMAP-SCRIPT-20261109-R1	macos	researcher-static-summary
+MAC-PPC-404-GMAP-BOARD-20261109-R1	macos	researcher-static-summary
+MAC-PPC-420-GMAP-SCRIPT-20261109-R1	macos	researcher-static-summary
+MAC-PPC-RESOURCES-BROAD-20261109-R1	macos	sanitized-file-survey
 W701750-FOCUSED-NATIVE-20261109	windows	selected-range-static-analysis
 GS1-TRUTH-CONTEXT-205R2-20261109-01	windows	offline-runtime-record
 GRAAL-GS1-FIELD-A-L-20261109-01	windows	researcher-static-summary

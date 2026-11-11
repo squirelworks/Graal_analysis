@@ -319,5 +319,8 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 
 - [Shared Mac v5 animation-group acceptance and cleanup](client-internals/macos-v5-animation-group-lifecycle.md) — exact-input static behavior and runtime limits.
 - [PowerPC receive framing and partial-group advancement](protocol/macos-ppc-receive-framing.md) — exact-input static behavior and runtime limits.
+- [PowerPC receive decompression and workspace policy](protocol/macos-ppc-receive-decompression.md) — per-build output acceptance, the zlib versions the wrappers pass, and the v5 4 MiB retry cutoff, which is not an output limit; static.
+- [Mac PowerPC gmap readers and 4.04r2 board dispatch](formats/gmap-heights-mac-ppc.md) — `HEIGHTMAP` and named `HEIGHTS` storage in four native readers, the `RANDOMSEEDS` boundary, a v3 height writer and header-driven board dispatch; static.
+- [Mac PowerPC graphics setup, transport, events and resources](client-internals/mac-ppc-runtime-surface-2026-11-09.md) — AGL context and fullscreen retry, socket and journal wrappers, machine identity, the 4.04r2 3D mission stages, the v5 event-name bridge, resource routing and the packaged-resource survey; static.
 - [Unpacked Windows 6.03 weapon-cache success](formats/windows-603-weapon-cache.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
 - [Installed Windows 5.00 queue boundaries](client-internals/windows-500-event-queue.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.

@@ -3,6 +3,7 @@
 This note restates the research owner's sanitized `W404-E606-20261109` finding.
 The publication editor did not open recovered code or the archived game asset.
 Windows reader observations and the Mac file fixture are separate evidence scopes.
+The four Mac native readers are covered in [their own note](gmap-heights-mac-ppc.md).
 The indexed Windows digest identifies the researcher's derived core-analysis
 carrier; the fixture digest identifies the archived Mac file. Both are
 researcher-supplied. The fixture check was reported by that researcher, not rerun

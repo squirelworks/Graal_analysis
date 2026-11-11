@@ -56,6 +56,10 @@ macOS CI is paused until the polish stage.
 
 - [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../client-internals/macos-v5-animation-group-lifecycle.md) retains native-runtime limits.
   - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
+- [x] **Publish the rest of the Mac PowerPC broad static pass.** ~~Decompression workspace policy, the four gmap readers with 4.04r2 board dispatch, graphics context setup, transport, machine identity, event names, resource routing and the packaged-resource survey.~~ [Decompression](../protocol/macos-ppc-receive-decompression.md); [gmap readers](../formats/gmap-heights-mac-ppc.md); [runtime surfaces](../client-internals/mac-ppc-runtime-surface-2026-11-09.md).
+  - [ ] Run an unchanged Mac client to the context helpers and record the real arguments. Record success and visible output separately.
+  - [ ] Validate the `RANDOMSEEDS` row bound, and open the board helper that receives 12 or 13.
+  - [ ] Feed valid zlib members to an unchanged receiver near each build's capacity boundary, after a raw-frame positive control.
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../protocol/macos-ppc-receive-framing.md) retains native-runtime limits.
   - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
