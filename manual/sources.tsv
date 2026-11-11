@@ -609,3 +609,5 @@ client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
 client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; E	4.1; E	
+client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
+client-internals/windows-420-render-seams.md	cited	10	10	Render entry points carried in 10.1.5; the reproduction test and the v3-v5 ownership summary stay in the source note
