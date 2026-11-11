@@ -15,7 +15,7 @@ The delimiter helper counts nested matching parentheses using another scanner. I
 - `##` returns one literal hash.
 - `#.` `#4` `#A` `#B` `#X` `#Y` `#d` `#h` `#i` `#l` `#r` `#u` `#x` `#y` `#z` retain their two-byte spellings for downstream display handling. This expander does not render their glyphs.
 - `#b` inserts a linefeed only when expansion mode is nonzero. The ordinary message command passes zero, so it produces an empty replacement there.
-- `#E` inserts one byte from shared runtime state. The producer and user-facing meaning of that byte remain untraced.
+- `#E` inserts one byte from shared runtime state. In the one tested context that byte was a space (see [field identities](#field-identities-a-l-e-and-a-positive-carry-control)); its writer and general meaning remain untraced.
 
 ## Character selectors
 
@@ -28,7 +28,7 @@ The following codes accept an optional numeric character selector immediately af
 - `#P1` through `#P5` fetch the corresponding one-based character image parameter. The helper returns stored text; if that text is empty and a stored numeric fallback is nonnegative, it returns integer text instead. Invalid selector digits yield empty.
 - `#c` returns the character's message text directly, without recursively expanding that returned text.
 - `#n` returns the decoded actor-name field. `#g` obtains that same name, then returns text between its first opening parenthesis and a subsequent closing parenthesis; missing delimiters yield empty. This supports the guild-tag interpretation mechanically, without asserting authentication or membership.
-- `#a` returns a direct character string field. `#m` returns the current animation name from the optional animation object used by the setani/setcharani setter. The precise identity of the direct `#a` field remains unresolved here and should not be guessed from historical documentation.
+- `#a` returns a direct character string field. `#m` returns the current animation name from the optional animation object used by the setani/setcharani setter. The [field-identity follow-up](#field-identities-a-l-e-and-a-positive-carry-control) identifies `#a` as the account name.
 
 ## Expression and string operations
 
@@ -42,7 +42,7 @@ The following codes accept an optional numeric character selector immediately af
 - `#K(number)` evaluates and converts its argument. Integers from zero through 65535 yield a one-byte string containing the low eight bits. Values outside that range yield empty. In particular this is not a Unicode character constructor. Embedded zero can exist in the expanded managed string; downstream display behavior is a separate question.
 - `#k(number)` evaluates and converts its argument, then resolves a configured control binding's display name. The called helper accepts control indices zero through ten; other values produce empty. It uses binding variant zero. Keyboard layout and localization details remain downstream gaps.
 - `#w` returns the currently selected weapon's decoded name; `#W` returns that weapon's image name. With an explicit parenthesized numeric index they use that zero-based weapon-list entry instead. Explicit out-of-range indices produce empty; the omitted-index path checks only that the selected index is nonnegative before calling the list accessor. Their argument is recursively expanded in mode zero before numeric evaluation. Weapon image output is obtained directly, without the lowercasing/path stripping used for character equipment above.
-- `#f` returns the running NPC's image name, normalized by removing directory prefixes and lowercasing ASCII. `#L` applies the same normalization to a local-player-owned string field; the exact field identity is not newly established here.
+- `#f` returns the running NPC's image name, normalized by removing directory prefixes and lowercasing ASCII. `#L` applies the same normalization to a local-player-owned string field, identified in the [field-identity follow-up](#field-identities-a-l-e-and-a-positive-carry-control) as the recorded level name.
 - `#p(index)` and `#t(index)` recursively expand and numerically evaluate their arguments, convert to integers, bounds-check against separate shared string lists, then return that zero-based entry or empty. The `#t` list is directly linked to tokenize/tokenize2: those commands clear and fill the exact list read here. The [event-parameter follow-up](gs1-event-parameters-205r2.md#producer-and-consumer-linkage) establishes that dispatch clears and fills the `#p`/`paramscount` list from actor pending text, separately from tokenize; queue overwrite and lifetime limits remain explicit.
 
 ## Limits and independent tests
@@ -100,3 +100,21 @@ Evidence retrieval: the static, catalog and runtime identifiers above are indexe
 The received ownership-assignment fragment is not used to claim a receiver contract: its earlier helper label was incorrect, and the enclosing function/full protocol-property case remain unresolved. Do not reuse that label or infer complete receive/error-path validation. No runtime success, renderer, animation-label or cross-build conclusion follows from these static checks. Server/commit: none; no client, VM or imported script was launched for this corroboration/publication.
 
 Evidence `W2052-FIELD6-INDEPENDENT-20261109` and `W2052-FIELD6-SEMANTIC-20261109` resolve to the actual sanitized corroboration receipt, SHA-256 `0a74e6b93a6a7646a151551526172a3aa703383e4b126c9921a22bd15d329e2b`. The publisher matched that document; exact original input matching and native observations are researcher-supplied. Raw instructions, addresses, code, carrier retrieval paths and original assets remain private. Appendix E#203 remains partial for other field identities, scanners, formatting, selectors and rendering.
+
+## Field identities: #a, #L, #E and a positive carry control
+
+Static records GRAAL-GS1-FIELD-A-L-20261109-01, GS1-FIELD-A-L-VERIFY-205R2-20261109-02 and GS1-FIELD-E-205R2-20261109-01, with runtime records GS1-FIELD-RUNTIME-205R2-20261109-02 and -03 and GS1-CARRY-CONTROL-205R2-20261109-01, all for the same 2.05r2 executable. Writer chains are static; each runtime control is a single case.
+
+[2.05][bin] `#a` returns the selected character's **account name**, case preserved. It is distinct from the nickname (`#n`). Two writers fill that field: the local player's value is copied from the account typed into the server-list login screen, and the received character-property path writes an account string into it for other characters. No filename normalization is applied. The ordinary optional character selector applies; an empty account field gives an empty replacement, and there is no invented account for NPCs.
+
+[2.05][bin] `#L` returns the **recorded level name** of the player in the message-evaluation context, with directories stripped through the last slash or backslash and ASCII A–Z lowercased. It takes no character selector and is not re-derived from the current level object. A committed warp copies the pending target name into this field and then resolves or creates the level from it; setting a pending destination alone does not change it. A received self-player level-name property replaces it directly after the same normalization.
+
+[2.05][bin] `#E` copies one byte from a global field. A bounded search found only the getter referring to that field directly; indirect writers are unresolved.
+
+[2.05][lab] On a loopback lab server, an account `LabCase` with nickname `labnick` gave `A:[LabCase]` for `#a` (an unobscured repeat in the third run) and `N:[labnick]` for `#n`. In steady state `#L` gave `L:[onlinestartlocal.nw]`. `A#EB` rendered `A B`; `strequals(A#EB, A#K(32)B)` was 1, `strequals(A#EB, A#K(0)B)` was 0 and `strlen(A#EB)` was 3. So `#E` was a space in this context, which does not make it a constant.
+
+[2.05][lab] Positive carry control for `#6`. An owned 32-pixel GIF NPC `LabCarry03.gif` at (32,29) ran `if(created){canbecarried;}`. The player stood at (32,30) facing up, and an observer NPC refreshed `message CARRY:[#6];` every 0.05 s. Before input the text was `CARRY:[]` with the NPC on the level. After a 0.15 s press of A it was `CARRY:[labcarry03.gif]` with the NPC held overhead: lowercased, directory-free, extension kept. After a second A it was `CARRY:[]` again and the overhead object was gone. A horse-image control (`#5`) stayed empty throughout; no `carryobject` was used and nothing was injected. Two earlier attempts were diagnostic only (an RGBA image did not render, or post-input frames were black); focus, image format and distance changed together, so no single cause is assigned. No throw trajectory, NPC removal, `takeplayercarry` or path-prefix case was run.
+
+[lab] Run conditions: the unchanged 2.05r2 executable under Wine, loopback only, a private lab server with an emptied server message, and 2.31 donor assets, so this is not an authentic 2.05 distribution. The native focus helper failed and window focus was set through X11 instead. All oracles are rendered NPC message text, which is weak evidence for whitespace and zero bytes.
+
+These results close the `#a` and `#L` identities and add a runtime success case for `#6`. Appendix E#203 stays partial for the `#E` writer, quoted argument scanners, numeric formatting, rendering, other builds and pending-warp cases.

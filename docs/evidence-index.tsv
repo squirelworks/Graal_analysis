@@ -28,3 +28,13 @@ MAC-PPC-404-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
 MAC-PPC-420-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
 MAC-PPC-V5-FRAME-STATIC-20261109-R1	macos	researcher-static-summary
 W701750-FOCUSED-NATIVE-20261109	windows	selected-range-static-analysis
+GS1-TRUTH-CONTEXT-205R2-20261109-01	windows	offline-runtime-record
+GRAAL-GS1-FIELD-A-L-20261109-01	windows	researcher-static-summary
+GS1-FIELD-A-L-VERIFY-205R2-20261109-02	windows	researcher-static-summary
+GS1-FIELD-E-205R2-20261109-01	windows	researcher-static-summary
+GS1-FIELD-RUNTIME-205R2-20261109-02	windows	offline-runtime-record
+GS1-FIELD-RUNTIME-205R2-20261109-03	windows	offline-runtime-record
+GS1-CARRY-CONTROL-205R2-20261109-01	windows	offline-runtime-record
+GS1-EFFECTS-205R2-20261109-03	windows	researcher-static-summary
+GRAAL-205-PAYLOAD-SEMANTICS-20261109-01	windows	researcher-static-summary
+SCRIPT-PACKET-BRIDGE-205R2-20261109-01	windows	researcher-static-summary

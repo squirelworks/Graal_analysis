@@ -104,7 +104,7 @@ The client sends its own action. The server re-emits it to the rest of the level
 - **HURTPLAYER (40)**: `dx`, `dy` decode as `(v − 0x60) / 16` (knockback, −4..4) and `power` as `(v − 32) / 2` hearts, capped at 1.0. With 6 or more bytes after the player id, the hit came from an NPC (`i3`), and distance is measured from that NPC. The hit is applied only if the attacker (player or NPC) is within 10 tiles and the local player can be hurt at that moment.
 - **HITOBJECTS (46)**: `power` is `(v − 32) / 2`, capped at 1.0, then `x`, `y` in half-tiles, and an optional `i3 npc`. It hurts the local player only when the player's centre is within 2 tiles of `(x, y)` in each axis.
 - Both share one handler and one flag that picks the layout. The same handler also takes UDP id 21 (GS1 `hitplayer`).
-- **TRIGGERACTION (48)** fires the `action` event on the local player's scripts only when the source (the NPC if `npc > 0`, else the sending player) is within 10 tiles. The split is at the first comma.
+- **TRIGGERACTION (48)** fires the `action` event on the local player's scripts only when the source (the NPC if `npc > 0`, else the sending player) is within 10 tiles. The split is at the first comma. For the player's own weapon scripts, exact 2.05r2 adds a second gate: the target must be strictly within 2 tiles of the player's (1.5, 2) anchor on each axis and the source must not be the local player (`payload-and-trigger-205r2.md`).
 
 ## Level navigation (client → server)
 
@@ -177,7 +177,7 @@ Read from the receive handlers of the three clients (decompile pass of 2026-10-2
 | 154 | FREEZEPLAYER2 | all three | none |
 | 155 | UNFREEZEPLAYER | all three | none |
 | 156 | SETACTIVELEVEL | all three | raw level or .gmap name |
-| 165 | MOVE | all three | GINT3 npc id, rest = move data |
+| 165 | MOVE | all three | GINT3 npc id, rest = move data; in 2.05r2 complete 7-byte records (`payload-and-trigger-205r2.md#npc-movement-plo-165`) |
 | 166 | SHOWIMGNPC | all three | GINT3 npc id, rest = props |
 | 168 | UNKNOWN168 | all three | none read |
 | 169 | UPGRADEURL | all three | raw text |

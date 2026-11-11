@@ -38,7 +38,7 @@ The four literal signatures for `toinventory`, `puthorse`, `showimg` and `replac
   nesting at **10,000** deep. A `return` (or the end of a function body) with an empty call stack ends the script.
 - Several commands **end the current script run** after they execute: `setlevel`, `setlevel2`, `destroy`, `sleep` (non-zero),
   `toinventory` (offline), `hide` on an NPC that is following the player, and `break` / `continue` outside a loop.
-- String arguments are trimmed and message codes (`#c`, `#v(...)`, ...) are expanded before use, for almost every command. The [exact 2.05r2 expander follow-up](gs1-message-codes-205r2.md) separates explicit argument recursion from inserted-text rescanning and downstream display handling. Ordinary message mode zero removes `#b`; message reads do not establish property-setter grammar or additional wire color bytes.
+- String arguments are trimmed and message codes (`#c`, `#v(...)`, ...) are expanded before use, for almost every command (`setgender` and `setchargender` are exceptions in 2.05r2). The [exact 2.05r2 expander follow-up](gs1-message-codes-205r2.md) separates explicit argument recursion from inserted-text rescanning and downstream display handling. Ordinary message mode zero removes `#b`; message reads do not establish property-setter grammar or additional wire color bytes.
 - **Weapon NPCs act as the player.** When the running NPC is one of the player's weapons, commands that spawn things (bombs,
   explosions, horses, projectiles, `showimg` layers, `hitobjects`, `triggeraction`, `reflectarrow`) use the player's level and count
   the player as the source, not the NPC.
@@ -118,7 +118,7 @@ otherwise over both (see udp-p2p.md).
 | 604 | `set` | M | Sets a flag (doc: `server.` prefix makes it server-wide). |
 | 607 | `unset` | M | Clears a flag. |
 | 677 | `setstring` | S,S | Sets string variable *name* = *value* (stored as the flag `name=value`). Empty value deletes it. |
-| 666 | `setarray` | R,R | Resizes the array variable named by the first argument to *n* elements. Ignored unless the first argument is a plain or `this.` variable. |
+| 666 | `setarray` | R,R | Resizes the array variable named by the first argument to *n* elements. Ignored unless the first argument is a plain or `this.` variable. Exact 2.05r2: sizes outside 0–10000 are ignored; growth zero-fills, a resize keeps the existing prefix, and size 0 frees the storage. Turning a scalar into an array is a separate path not fully traced (GS1-EFFECTS-205R2-20261109-03, static). |
 | 742 | `tokenize` | S | Splits the expanded string into the global token list on spaces and commas (quotes group). |
 | 743 | `tokenize2` | S,S | Same, with extra delimiter characters added to the space/comma set. |
 
@@ -177,7 +177,7 @@ otherwise over both (see udp-p2p.md).
 | 673 | `showcharacter` | – | Draws the NPC as a player character (once; later calls do nothing). |
 | 675 | `setcharprop` | M,M | Sets a character property from a message code: `#1` sword image, `#2` shield image, `#3` head image, `#5` horse image (creates the horse if needed), `#8` body image, `#C0`..`#C5` colours (name or number), `#P1`..`#P5` attributes, `#c` chat text (not in preview mode), `#n` nickname. Other codes are ignored. The first word is the property code (not expanded as a message). Codes inside the **value** are expanded first; on script-running servers `#n` in that value is the triggering player's nickname, while property code `#n` writes the NPC's nickname — see `server-notes/setcharprop-hash-n.md`. |
 | 709 | `setcharani` | S,S | Sets the character's gani and its parameter string. |
-| 733 | `setchargender` | S | `male` sets male; anything else sets female. |
+| 733 | `setchargender` | S | `male` sets male; anything else sets female. Exact 2.05r2 trims and lowercases the raw argument and compares it with `male` without expanding message codes, an exception to the rule below (GS1-EFFECTS-205R2-20261109-03, static). |
 | 684 | `carryobject` | L | Character carries the object (0..10; `none` = 10). Only for `showcharacter` NPCs; switches to the carry gani. |
 | 685 | `throwcarry` | – | Throws the carried object if the character is in a carry sprite; bombs become live bombs. |
 | 701 | `takehorse` | R | Character mounts horse *index* (removes it from the level). Only for `showcharacter` NPCs. |
@@ -199,7 +199,7 @@ otherwise over both (see udp-p2p.md).
 | 674 | `setplayerprop` | M,M | Same codes as `setcharprop` but on the player: `#1 #2 #3 #5 #8 #C0..#C5 #P1..#P5 #c`. `#c` sets the chat text with a 60-tick timeout and sends it online. `#7` is **not** handled (doc lists it). |
 | 708 | `setani` | S,S | Player gani and parameter string. |
 | 749 | `replaceani` | MM | Replaces one of the 31 default gani names (walk, idle, sword, ...) with another gani file. Online gate applies. |
-| 732 | `setgender` | S | `male` sets male; anything else sets female. |
+| 732 | `setgender` | S | `male` sets male; anything else sets female. Exact 2.05r2 trims and lowercases the raw argument and compares it with `male` without expanding message codes, an exception to the rule below (GS1-EFFECTS-205R2-20261109-03, static). |
 | 603 | `hurt` | R | Hurts the player by half-hearts and knocks them away from the NPC's centre. Skipped when the player cannot be hurt right now (dead, in a protected state, or flagged unhittable on an NPC-server). 0 or negative heals (doc). |
 | 654 | `freezeplayer` | R | Freezes the player for 0..30 seconds (clamped) and drops what they carry. |
 | 669 | `hideplayer` | R | Hides the player for 0..30 seconds. |
