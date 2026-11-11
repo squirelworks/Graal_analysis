@@ -40,6 +40,10 @@ That order explains the boundary. The 0xfc/0xfd packet goes out before `setEncry
 - **One key per session.** The same key decrypts none of eight other recorded sessions **[lab]**.
 - The 6.113 capture agrees without a key. Its later client segments include 7-byte writes, and 6.11's `AES` pads to 16-byte blocks (`v6x-clients.md`, "What the script controls"). A 7-byte write cannot be one **[cap][bin][inf]**.
 
+## The ids 0xfc and 0xfd have gs2lib names **[srv][inf]**
+
+The `T` byte of an `EILLLT` header is the raw id, with no +32. gs2lib's client-to-server enum has the same two ids: 252 = `PLI_SET_ENC_KEY` ("Set AES / RC4 encryption key and init vector") and 253 = `PLI_BUNDLE` ("Bundled packets contain multiple packets"). Neither has a handler in GServer-v2 `master` or `beta4` (also noted in the Reborn protocol docs, `versions-encryption.md`). They match what this note sees: 0xfc carries the 256-byte wrapped RC4 session key, and every outer packet is 0xfd wrapping inner packets. So the enum names look like the 6.11 handshake as the original server knew it. That is an inference from the names and the shapes. No original server code has been seen.
+
 ## The 256-byte body
 
 The script makes the RC4 key with `generate16ByteKey`, and calls `rsa_encrypt` with a 2048-bit public key (exponent 65537) that the script carries. The 0xfc body is 256 bytes, the size of one RSA-2048 block, and is not the raw RSA of the key, so a padding scheme is used. The reading that fits is that the 0xfc body carries the session key encrypted to the operator's public key. That could not be proved without the matching private key **[lab][inf]**.
