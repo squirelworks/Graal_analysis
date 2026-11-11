@@ -609,3 +609,4 @@ client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
 client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; E	4.1; E	
+protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
