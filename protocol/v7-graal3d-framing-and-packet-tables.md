@@ -73,9 +73,20 @@ Template receive:
 - Reads length / type / counter / extra from the configured offsets.
 - Mode byte `2` skips leading `0xFF` padding before the header.
 - Extra field low nibble selects payload treatment: `0` raw copy, `1` inflate-style, `2` alternate inflate.
-- Counter must be previous+1 (masked to the counter width); failure logs an invalid-data diagnostic and kills the socket.
+- Counter must be previous+1 (masked to the counter width); failure logs an invalid-data diagnostic and kills the socket. A later static check narrows this; see [Counter check by build](#counter-check-by-build-bin).
 - Dispatch: vtable call with `(packet_id & 0xff, payload)`.
 - Special packet-id equal to a configured “nested” id re-enters the same parser (framed-in-framed).
+
+### Counter check by build **[bin]**
+
+Evidence `V7-COUNTER-CROSS-BUILD-20261109`. A static decode of the counter helper in seven supplied unpacked Windows amd64 native engine DLLs, labelled builds 548, 610, 612, 613, 614, 71243 and 701750 (the last is an embedded application string, not authenticated release provenance). The older five builds were matched slice by slice; the newest two were decoded separately with 16 selected byte assertions, where an exact signature miss is not a contradiction.
+
+- The previous+1 comparison is made only when the stored previous counter is **non-negative** as a signed 32-bit value. A negative stored value skips the comparison: the new counter is stored and the check returns true.
+- The width mask selects 8, 16, 24 or 32 bits.
+- A mismatch marks an error and returns false. In build 614 the caller's cleanup on that path was verified.
+- That the socket is closed at once is a statement about code outside this helper and remains unvalidated.
+
+Not established: which negative states occur in production, any runtime behaviour, whole-function identity across builds, or equivalence with v6. The DLL SHA-256 values are 548 `9e34ec36e51ecaf020d2ced37942191e4e1e48411168cee51622d0fa0edba267`, 610 `102febb41c3dec27b2ca7b21ee635600c43f36224634a66fb01fcbaaa9c5882d`, 612 `d23f1097d590f5db61bc601c6d7c332c1fe1ed47b271a32c2f24aee7677afb16`, 613 `de517a8a346717006835946e7b9111e44d71f16344ee388cdf5d1938439c9dfa`, 614 `daa141bbd306cc6c588ebe6d8823fd04497ca4150837a59b49e8097f27b776c3`, 71243 `6bda53aef2795d9500d5fe6ee79fb493f71d8e365963fd2f6c8eb93a31cd18e5` and 701750 `a9638a50797fe978746a6ec27caced9effaf540d723609466d29a659ebc1a3e0`.
 
 ### Directional stream ciphers **[bin]**
 

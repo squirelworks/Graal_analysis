@@ -22,7 +22,7 @@ This static result covers the Windows 2.05 rev 2 executable with researcher-supp
 | --- | --- |
 | 16 | Face the dominant displacement axis; ties choose vertical. Probes use the resulting facing. |
 | 4 | Invoke broad blocking, temporarily making the moving NPC nonblocking to exclude itself. The query includes remote players, NPCs, bombs, an unidentified object collection, tiles and a conditional local-player body test. Eligibility remains partial. |
-| 32 | Use the terrain-category predicate also reached by the `onwater` expression, corroborated by its name record and evaluator instructions. Classic-board tile IDs are strictly above 64 and below 288; another board path uses a membership table. This is not a generic wall query. |
+| 32 | Use the terrain-category predicate also reached by the `onwater` expression, corroborated by its name record and evaluator instructions. Classic-board tile IDs from 64 up to but not including 288 (64 ≤ id < 288) qualify; another board path uses a membership table. This is not a generic wall query. |
 | 8 | Queue `movementfinished` on normal completion or collision cancellation, without directly running its body. |
 | 64 | Select automatic character animation as described below. |
 

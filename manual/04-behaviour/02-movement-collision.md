@@ -135,7 +135,7 @@ Consequences on the default tileset:
 | shallow water | a tile only in the passable list is walked on, not swum in | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset) |
 | several lists | a tile can be in several lists; in the 2.22 file 6 of the 133 throw-through tiles are passable, and the 9 lava tiles that are not liquid are all passable, so they are walked on and still burn | [file][2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset) |
 | thrown objects | a thrown object stops on a tile that is not type 20 and that the wall test calls a wall | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#the-default-tileset) |
-| scripts | `onwall(x, y)` is this wall test; `onwater(x, y)` is the type 11 test, true on lava; `tiletype(x, y)` returns -1 on the default tileset, 1 on type 5, and the fixed rule on types 1 and 2 (an NPC shape's type wins when above 1); 2.00 to 2.04 carry the same three names, their code not compared | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#script-functions) |
+| scripts | `onwall(x, y)` is this wall test; `onwater(x, y)` is the type 11 test, true on lava; on the classic board that test is the id range 64 ≤ id < 288, matching the type 11 step of the rule above [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision); `tiletype(x, y)` returns -1 on the default tileset, 1 on type 5, and the fixed rule on types 1 and 2 (an NPC shape's type wins when above 1); 2.00 to 2.04 carry the same three names, their code not compared | [2.05] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md#script-functions) |
 
 ## 4.2.4 Refused steps, nudges and snaps
 

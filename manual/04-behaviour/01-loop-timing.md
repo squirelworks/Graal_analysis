@@ -3,7 +3,7 @@
 
 This chapter fixes the tick that every count in Part IV uses, how each build drives it, and the periodic work that runs off it. Durations of individual actions are in the chapter for each action (→ §4.1.5).
 
-> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration evidence only; the 3.x and 4.x Torque-era loops are not in the notes (→ App. E#301).
+> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration and a callback-execution count, not a measured cadence; the 3.x and 4.x Torque-era loops are not in the notes (→ App. E#301).
 
 ## 4.1.1 The tick
 
@@ -20,11 +20,12 @@ This chapter fixes the tick that every count in Part IV uses, how each build dri
 | Builds | Driver | Source |
 | --- | --- | --- |
 | 1st Graal to 4th Graal | a DelphiX timer on the main form, interval 50 ms | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
-| 4th Graal alpha, 5th Graal, 5th Graal alpha | main adventure form declares an enabled DelphiX timer, interval 50 ms, active-only disabled, maximum lag ten, with a statically bound callback; callback execution, actual cadence and runtime idle installation remain unmeasured → App. E#300 | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
+| 4th Graal alpha, 5th Graal, 5th Graal alpha | main adventure form declares an enabled DelphiX timer, interval 50 ms, active-only disabled, maximum lag ten, with a statically bound callback. A debugger count shows the callback runs (61, 61 and 60 hits in 3 s); actual cadence and runtime idle installation remain unmeasured → App. E#300 | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
 | 6th Graal (beta5) to 1.41 rev1, and Graal3D | a DelphiX timer on the main form, interval 50 ms | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
 | NewMain 1.42 to 2.31 (every 2.0x, NewWorld betas 1 and 2, the 2.1 tests, 2.17.1, 2.22, 2.31) | no form timer; the frame runs from the application's idle handler behind a 50 ms gate | [bin] (version-profiles/matrix/builds-static-survey.tsv); [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | 2.31 | in addition, the main form carries a 50 ms timer that runs the 64-tick integrity cycle (→ §4.1.3) | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md) |
 | 3.x, 4.x | unmeasured | [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
+| Windows 4.04r2 | still unmeasured, but the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events → App. E#301 | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 
 ### 4.1.2.1 The frame function (idle-driven builds)
 

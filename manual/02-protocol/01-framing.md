@@ -92,3 +92,7 @@ Four independently inspected Mac receivers (shared v3, labels 4.04r2 and 4.20r6,
 ### 2.1.4.4 Exact build-614 outgoing special-length correction
 
 [bin] In the supplied Windows amd64 WorldsSetup64-614 unpacked plugin, the special internal-ID 93/163 sender path adds two to body length, applies a signed upper-cap comparison at 3,670,015, emits the inspected biased seven-bit-group operations and recursively invokes the sender with internal ID 50. This corrects body-length-only prose for that exact input. Static checks do not establish original packed provenance, production wire IDs, helper completeness or runtime/extreme-size behavior. [bin] (protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin)
+
+### 2.1.4.5 v7 template counter check
+
+[bin] In seven supplied unpacked Windows amd64 v7 native engines (labelled 548 to 701750), the template receiver compares the counter with previous+1, masked to 8, 16, 24 or 32 bits, only when the stored previous value is non-negative as a signed 32-bit number; a negative stored value is accepted without comparison. A mismatch marks an error and returns false. Immediate socket close, reachable negative states and runtime behaviour are not established. [bin] (protocol/v7-graal3d-framing-and-packet-tables.md#counter-check-by-build-bin)

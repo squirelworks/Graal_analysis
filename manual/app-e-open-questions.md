@@ -44,6 +44,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | the 5.00r7 profile lists 4–19, which includes 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
 | Open | which list is right for 5.00r7; both are floors, since sends through a variable are not captured | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
 | Settles it | a 5.00r7 capture of a throw, or a re-read of the send wrappers for id 11 | [inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
+| Static resolution | the 5.00r7 backup engine's carried-object throw path sends id 11 with an empty body; the earlier wrapper list missed it. Claim B holds for that engine; a capture is still missing | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 
 ### E#5 Meaning of id 162 from the client (settled)
 
@@ -143,16 +144,17 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`: eight side-by-side blocks of 512 ids, each 16 columns by 32 rows; Claim A is called wrong in a correction dated 2026-10-25 | [file] (client-internals/client-assets.md#tile-sheets) |
 | Open | the manual follows Claim B, the later correction; Claim A's note has not been updated | [inf] (client-internals/client-assets.md#tile-sheets) |
 | Settles it | correcting `formats/tiletypes.txt`, or rendering a known board with both rules against a client screenshot | [inf] (client-internals/client-assets.md#tile-sheets) |
+| Windows 4.04r2 code | the tile draw path and its invalidation path both compute Claim B's formula before optional tiledef remapping | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
 
 ### E#200 When a GS1 condition counts as true
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Exact-build resolution | checked original Windows 2.05 revision 2 IF uses zero/nonzero for ordinary finite computed results; computed positive and negative halves are true, computed zero false | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
-| Parsing qualification | bare `0.5` is false despite numeric display 0.5; `created` is true despite numeric display zero. Condition-name resolution and numeric message expansion are separate | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
+| Parsing qualification | bare `0.5` and bare `1` are false despite numeric displays 0.5 and 1 (computed `(1+0)` is true); `created` is true despite numeric display zero. Condition-name resolution and numeric message expansion are separate | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
 | Separate defect | constant numeric comparisons fold to zero in this build, while dynamic comparison controls work; mechanism and observations carried in §8.1.10 | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#constant-comparison-folding) |
 | Open | other builds, nonfinite/malformed values, complete aliases/precedence and named-flag collisions | [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
-| Linux positive follow-up | An independently authored source weapon on original Linux3.04 produces created/playerenters flag messages and fresh-account persistence. Numeric readbacks and explicit positive comparisons work while tested bare predicates do not activate. This is a separate build scope from the Windows2.05r2 resolution; no universal numeric threshold or complete predicate/name-lookup rule is established. | [lab][cap] (npc-library/linux-304-gs1-runtime.md) |
+| Linux positive follow-up | An independently authored source weapon on original Linux 3.04 produces created/playerenters flag messages and fresh-account persistence. Numeric readbacks and explicit positive comparisons work while tested bare predicates do not activate. This is a separate build scope from the Windows 2.05r2 resolution; no universal numeric threshold or complete predicate/name-lookup rule is established. | [lab][cap] (npc-library/linux-304-gs1-runtime.md) |
 
 
 ### E#201 Four GS1 argument signatures in 2.05
@@ -175,7 +177,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a capture of a 4.x or 5.x client receiving an NPC with a GS2 script from a lab server | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Linux 4.04r2 partial result | A static message-131 path strips a three-byte identifier and reaches the compiled-segment reader. No network fixture was delivered; lookup roles, the indirect initialization callback, messages 140/197 and cache validation remain unresolved. The 97-case switch count is not a complete handled-ID count (→ §2.5.13) | [bin] (protocol/linux-404r2-receive-scope.md) |
 | Linux cross-version follow-up | Preserve tag normalization and exact-build case behavior without publishing an unproved delivery grammar. The broader question remains partial (→ §2.5.14) | [bin] (protocol/linux-cross-version-receive.md) |
-| Linux positive follow-up | Three exact Linux6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
+| Linux positive follow-up | Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
 
 
 ### E#203 The 2.05 `#` message-code set
@@ -184,7 +186,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | --- | --- | --- |
 | Partial resolution | exact original 2.05r2 outer dispatch has 44 selector bytes / 53 family-expanded spellings, including preserved display codes and empty-output #7; supported contract carried in §8.1.11 | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage) |
 | Runtime controls | thirty qualified outputs from three usable offline scenes support bounded expansion behavior; fourth scene diagnostic only | [lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
-| Open | #a/#E/#L identities, quoted scanners, exact numeric formatting and downstream renderer semantics; other builds and live remote selectors unqualified | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| Field identities | `#a` is the account name and `#L` the recorded level name; `#E` was a space in one context, writer unresolved; a positive pickup/drop control showed `#6` as the carried NPC's lowercased image name, then empty | [2.05][bin][lab] (npc-library/gs1-message-codes-205r2.md#field-identities-a-l-e-and-a-positive-carry-control) |
+| Open | the #E writer, quoted scanners, exact numeric formatting and downstream renderer semantics; other builds and live remote selectors unqualified | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | Boundary | accepted C5 storage read does not prove a sixth clothing color or alter the five-byte wire color property; property setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
 | Exact 2.05r2 #6 follow-up | carried-NPC image association independently linked to selected pickup/throw/clear paths; runtime, complete selectors/eligibility/lifetime and receiver identity remain unvalidated; other field identities remain open | [bin] (npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) |
 | Exact 2.05r2 #p follow-up | shared parameter list is produced by dispatch splitting actor pending text, distinct from tokenize; callnpc/callweapon use empty-parameter queue wrappers. Only producer linkage is resolved; other E#203 fields remain open | [bin][lab] (npc-library/gs1-event-parameters-205r2.md#producer-and-consumer-linkage; npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls) |
@@ -232,7 +235,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Linux cross-version follow-up | Document static state saving and first-match pending-record replacement without inventing wait/timeout API results. The broader question remains partial (→ §8.3.11) | [bin] (client-internals/linux-420r6-selector11.md) |
 | Linux cross-version follow-up | Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences. The broader question remains partial (→ §8.4.10) | [bin] (client-internals/linux-420r6-reader-fusion.md) |
 | Windows 5.00 installed-input boundary | Named/enum delivery queues separately from service; limit-before-dedup and named lifecycle priority are statically bounded for a used/patched backup input. Gates, conversions, reentrancy and runtime timing remain open (→ §8.3.12) | [bin][inf] (client-internals/windows-500-event-queue.md) |
-| Linux positive follow-up | Three exact Linux6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
+| Linux positive follow-up | Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
 | Linux 6.01 x86 static increment | Distinguishes reader/postpass/executor preparation and mixed saved-state handling without claiming full handler recovery, runtime restore or cross-architecture layout equivalence | [bin] (client-internals/linux-601-x86-program-state.md) |
 
 
@@ -252,7 +255,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | --- | --- | --- |
 | Superseded observation | the survey formerly reported no form timer for these three builds; the exact-input follow-up finds a configured timer in every one | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
 | Static resolution | the configured timer and its static binding are described in → §4.1.2; the three survey interval cells are corrected | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
-| Open | actual callback execution, elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Callback execution | a debugger breakpoint counted 61, 61 and 60 callback hits in 3 s for the three builds; this proves execution, not cadence | [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
+| Open | elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | Settles it | runtime observation of those exact builds, preserving the distinction between declared interval and elapsed time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 
 ### E#301 Frame loop of the 3.x and 4.x clients
@@ -261,6 +265,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | --- | --- | --- |
 | Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | Settles it | a timed walk of a 3.x and a 4.x client on the lab server | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+| Windows 4.04r2 clocks | three time notions are traced statically (elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, legacy `timeout` pass counts); no update rate is measured | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D. The broader question remains partial (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
@@ -580,6 +585,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | `Z3-V1.03` link numbers are floating point and include halves such as `43.5`; GLEVNW01 allows fractional NPC positions; of 18,710 arrival fields in an archive, 12,035 were plain numbers, halves included | [srv] (formats/level-binary.md#z3-v1-differences); [GE] (formats/glevnw01.txt); [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
 | Open | which fields the whole-tile sentence covers | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
 | Settles it | a field list for link box, link arrival, baddy, NPC, chest and sign, each with its stated type and one real file of each magic | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
+| Windows 4.04r2 reader | link boxes are floating point; arrivals stay text; baddy positions are raw bytes and NPC, chest and sign positions bytes minus 32, all whole numbers without half-tile scaling; cross-magic examples still missing | [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 
 ### E#604 Where a binary sign list ends
 
@@ -589,6 +595,7 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Claim B | the sign section runs until an empty line or the end of the file | [srv] (formats/level-binary.md#layout) |
 | Open | both client behaviours fit Claim B but not each other on a file with signs, a blank line and a `HEIGHTS` block; the server layout does not say which bytes are signs there | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
 | Settles it | one such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
+| Windows 4.04r2 reader | the sign reader stops after a line shorter than two bytes or at end of file and does not recognize `HEIGHTS`; only the web-level cache reader reads heights after it | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 
 ### E#605 Client listserver frames in two vocabularies
 
