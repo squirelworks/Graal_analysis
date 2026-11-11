@@ -47,6 +47,16 @@ GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4 each con
 | Stack | tags 0..5. The value stack grows by 100 and the cap is 10000, not 256. Opcode 10 stores that height on the frame and does not jump. Other jumps are the truncated operand plus the current list's base | [bin] (client-internals/gs2-vm-from-engines.md#opcodes); [bin] (protocol/gs2-client-vm.md#names-the-client-gives-the-opcodes) |
 | 5.0 and 6.00 | 5.0 adds opcodes 48, 49, 54 and 121 and the same 0.05 clock. 6.00r2 and 6.00r4 add 54, 121 and 234..242; the 0.05 step was not found there | [bin] (client-internals/gs2-vm-from-engines.md#differences-between-the-three-engines) |
 
+#### Android Classic 1.8
+
+The Android Classic 1.8 x86 engine reads the same four-segment container, decoded into 20-byte records with 165 dispatcher cases. Its rules were read statically for this one build and are not assumed for the Windows engines. [bin] (protocol/gs2-android-classic-18.md#the-container)
+
+[bin] The machine advances the index before dispatch, and an opcode without a handler continues without a pop. Two conditional branches always pop; the short-circuit pair keeps the value when it jumps. The loop budget is 10,000 per generation, and the call stack refuses a frame at 10,000, but the value stack has no 10,000 cap here. [bin] (protocol/gs2-android-classic-18.md#control-flow-and-the-stack)
+
+[bin] Division and remainder by zero give 0, and remainder uses floor. Numbers compare equal within 0.0001. Inside the machine any non-zero number is true, but a boolean passed to a native call uses `floor(v + 0.0001)`, so 0.5 is true in the machine and false for a native call. Strings compare without case; substring and search count bytes. Arrays read 0 out of bounds, do not grow on write, and clamp to 0 to 10,000. [bin] (protocol/gs2-android-classic-18.md#numbers-and-truth); [bin] (protocol/gs2-android-classic-18.md#strings); [bin] (protocol/gs2-android-classic-18.md#arrays)
+
+[bin] The event queue refuses at 1,000 and drops `onAllRCChat` silently at the limit; `istimeout`, `created` and `initialized` go to the front. Scheduled events refuse negative delays and lowercase the name. Joining a class appends it once, raises its count and installs its event catchers. 173 native bindings are registered, 172 with recovered names. [bin] (protocol/gs2-android-classic-18.md#events-time-and-classes); [bin] (protocol/gs2-android-classic-18.md#native-bindings)
+
 ## 8.3.4 Events, waits and the event queue
 
 The runner in §8.3.3 treats events as functions. How a queued event, a `sleep` and a pending wait are scheduled has been observed or read build by build; each reading below holds for its own build and input, and none is an all-version rule (→ App. E#207). [bin] (client-internals/gs2-vm-from-engines.md#events)

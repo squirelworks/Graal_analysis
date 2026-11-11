@@ -334,6 +334,8 @@ These builds sit around the Delphi client line. The uploads hold 9 distinct item
 | 2001-03 | GraalX | a 2.01 pre-release that keeps the `.nw` reader and writer (→ §1.1.1) | [bin] (client-internals/precursors-and-fan-builds.md#graalx) |
 | 2014-04 | 39ster client 1.00 | an offline fan remake on an SDL engine with GameMonkey script; reads `.nw` and `GR-V1.00` to `1.03`; NPC scripts are not run | [bin] (client-internals/precursors-and-fan-builds.md#39sters-graal-client-100-2014) |
 
+The later Android Classic and Era packages, 1.6 to 2.2, are a separate line and are not counted above. Ten supplied files reduce to seven packages (builds 6108 to 6201), each with a Java host and native engines for four architectures, read statically only (→ §4.11.11). [file][bin] (client-internals/android-classic.md#what-was-read)
+
 The rules below say what the precursors contributed to Graal, and what they share with it: dialogs, the sign alphabet, data files and level reading. Each row is one inheritance or difference [bin] (client-internals/precursors-and-fan-builds.md#zeldaeditor-july-1998).
 
 | Rule | Source |
@@ -568,6 +570,12 @@ The one Mac 4.x client was run in an emulator. The rule records what its login a
 | Rule | Source |
 | --- | --- |
 | Mac 4.20r6 in qemu: the login line is `mac,"",<md5>,""` (the MAC hash came out empty under qemu); it sends 34 and 46, which the static list missed; no flag 18 for the lab's movement weapon; chat is white with a blue shadow; Apple's software renderer needed a shim dropping two AGL attributes | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#420r6) |
+
+#### Mac PowerPC start-up and input
+
+[bin] The Mac 4.04r2, 4.20r6 and v5 PowerPC clients share one start-up design: a Carbon event-loop timer calls the engine entry once, which runs initialization, then an update method until it returns zero, then shutdown, and quits the loop. On v5 the derived initialization opens a 640×480 window titled `Graal` and builds `DefaultCursor` from `defaultCursor.png`. Each registers 12 window and 15 application Carbon events. [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#start-up-one-timer-that-runs-the-whole-engine)
+
+[bin] One translator turns Carbon input into engine records. Key down, repeat and up become values 1, 1 and 0 through a byte lookup table; characters are converted one byte at a time, so there is no Unicode path; a modifier emits a press or a release only when its bit changes; mouse movement is either window-local absolute or relative, with the wheel on its own code. On v5 the keyboard fallback builds a command string starting `e:`. Nothing was run, so live delivery, rendering and script execution are not established. [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#turning-input-into-engine-records); [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#where-input-goes-on-v5)
 
 ### 1.8.6 Graal 5.x: Windows 5.00r7 to 5.31r4
 

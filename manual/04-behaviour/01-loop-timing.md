@@ -30,6 +30,7 @@ The tick is the same everywhere, but what drives it changes. Each row gives a gr
 | 2.31 | in addition, the main form carries a 50 ms timer that runs the 64-tick integrity cycle (→ §4.1.3) | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md) |
 | 3.x, 4.x | unmeasured | [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | Windows 4.04r2 | still unmeasured, but the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events → App. E#301 | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
+| Mac PowerPC 4.04r2, 4.20r6 and v5 | a Carbon event-loop timer calls the engine entry once; it runs an initialize method, then an update method repeatedly while it returns non-zero, then shutdown, and quits the event loop. The pump sleeps 1 ms when idle. The update rate is not measured | [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#start-up-one-timer-that-runs-the-whole-engine) |
 
 ### 4.1.2.1 The frame function (idle-driven builds)
 

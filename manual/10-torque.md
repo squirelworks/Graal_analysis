@@ -123,6 +123,8 @@ The unpacked 4.2.0.8 launcher, `GraalEngine.dll` and `Graal3DEngine.dll` are thr
 
 `GameObject` is a `SceneObject` with script properties for shape, motion, mounting and interiors. `onGraal3DLoginStep` is raised for ghost objects (step 2), then mission lighting (step 3), and again when `GUIContainer3D` is installed (step 6). A terrain chunk is a compressed square; the byte layout is not in the decompile. `Interior::read` rejects a non-zero first value. `ShapeBase` and Torque's `Player` are absent. [bin] (torque/4208-g3d.md#what-gameobject-is); [bin] (torque/4208-g3d.md#the-login-steps); [bin] (torque/4208-g3d.md#what-a-terrain-chunk-is); [bin] (torque/4208-g3d.md#what-an-interior-read-rejects)
 
+A loose 4.20 engine core, recovered from an archive labelled 4.20r8 and kept apart from the 4.2.0.8 export, has two render entry points that each check their target first: the adventure entry returns without drawing when there is no adventure, the canvas entry returns without drawing when there is no canvas and otherwise asks for one frame, and setting the drawing callback only stores it. These rules do not show what paint draws or when start-up is ready to draw. [bin] (client-internals/windows-420-render-seams.md#the-two-render-entry-points)
+
 ### 10.1.6 Era B: Windows 5.0.0.7 and the later v5 exports
 
 File version `5.0.0.7` is a Delphi launcher, `GraalEngine.dll`, and `Graal3DEngine.dll`. The launcher resolves 95 `graal_set*` names and loads the engine before it registers them. A zero return from `graal_engineInitialize` shows `The execution file is corrupted.` [bin] (torque/5007-launcher.md#startup); [bin] (torque/5007-launcher.md#what-it-resolves)

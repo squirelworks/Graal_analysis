@@ -16,6 +16,8 @@ Mac 6.11 does not know how to log in on its own. It first fetches a connector fr
 | The query is `?p=` + a comma-joined list `g=<client id>,p=mac,v=<version>,b=<build date and time>`, DES-ECB encrypted under a compiled-in key (whole 8-byte blocks only), base64-encoded with the client's own alphabet, then URL-encoded | 6.11 Mac | [bin] (protocol/v6x-clients.md#connector-request) |
 | The HTTPS connection checks the server against a certificate bundle compiled into the client, and sends `User-Agent: Graal/<version>` | 6.11 Mac | [bin] (protocol/v6x-clients.md#connector-request) |
 
+[cap] A lab run of the unmodified Mac 6.11r1 client in a Lion guest with no internet confirmed the order. It looked up the connector host and then the `con2` host, never the 4.x login or list hosts. It sent a TLS 1.2 ClientHello on 443 with no SNI, only the `signature_algorithms` extension and RSA-only suites including NULL and RC4. When that failed it sent `GET /conf.gs?p=…` over HTTP/1.0 on port 80 with `User-Agent: Graal/6.111`, and with no reply it showed "Couldn't connect to the server". A lab 6.11 client therefore needs a `conf.gs` responder that returns a connector script; it cannot connect to a gserver directly. [cap] (protocol/v6x-clients.md#the-connector-request-in-a-lab-run)
+
 ## 2.10.2 The connector script
 
 The connector is a script, and it takes over the connection. The rules below say how it is loaded, what it is given, and what that leaves to the server [bin] (protocol/v6x-clients.md#connector-reply).

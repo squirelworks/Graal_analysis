@@ -142,6 +142,17 @@ This is the big change in 6.x. In 6.11 the client no longer has a fixed protocol
 - The query is `?p=` + a comma-joined list `g=<client id>,p=mac,v=<version>,b=<build date and time>`, encrypted with DES-ECB under a compiled-in 8-character key (whole 8-byte blocks only), base64-encoded with the client's own alphabet, then URL-encoded. **[bin]**
 - The HTTPS connection checks the server against a certificate bundle compiled into the client (base64, itself DES-encrypted with a second key). The request sends `User-Agent: Graal/<version>`. **[bin]**
 
+### The connector request in a lab run
+
+A lab run on 11 November 2026 checked the static reading above against the real client. The guest was Mac OS X Lion 10.7.5 (11G63) in QEMU/KVM with no internet; it could reach only the lab's loopback ports. The client was `Graal v6.11r1[Mac OS X]`, main executable SHA-256 `95c5353c848130a748ace773000b6170f3a033bd4dcaa794b18d4943a7aa043a`, unmodified. The guest's hosts file pointed the connector names at the lab address. **[cap]**
+
+- **DNS.** The client looks up `<connector-host>` and then `<connector-host-2>`, the `con` to `con2` retry. It never looks up the 4.x login-server or listserver names. **[cap]**
+- **HTTPS first.** It opens TCP 443 and sends a TLS 1.2 ClientHello with no SNI. The only extension is `signature_algorithms` (rsa_pkcs1_sha256, rsa_pkcs1_sha1). The cipher suites, in order, are `003d`, `003c`, `0035`, `002f`, `0002`, `003b`, `0005`, `0004`: RSA key exchange only, including NULL and RC4 suites. **[cap]**
+- **Then plain HTTP.** When 443 fails, it sends `GET /conf.gs?p=<urlencoded base64> HTTP/1.0` on port 80 with `Host: <connector-host>`, `User-Agent: Graal/6.111` and `Connection: Keep-Alive`. The `p=` value was byte-identical on two tries in the same session. **[cap]**
+- **No reply.** The client shows "Couldn't connect to the server / Connecting to the login server...". The OpenGL view works under the VM's software renderer. **[cap]**
+
+This confirms the order in the static reading (HTTPS first, then `conf.gs` over plain HTTP) and the version string `6.111`. One try against a self-signed TLS server was inconclusive; the static reading says the client checks a compiled-in certificate bundle, so a lab certificate is expected to fail. For a lab, a 6.11 client cannot connect to a gserver directly: it needs a `conf.gs` responder that returns a connector script (`StartScript_Connector`, below). **[cap][inf]**
+
 ### Connector reply
 
 The reply is loaded as a script object, `StartScript_Connector`, and its `onCreated` runs. Before that the client sets `scriptip`, `scriptsslcipher`, `scriptsslsubject` and `scriptsslissuer` on it, so the script can check where it came from. If no connector script loads, a built-in `StartScript_Fail` is used. **[bin]**
