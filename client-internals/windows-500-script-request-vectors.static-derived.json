@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "evidenceId": "W500-SCRIPT-INTERFACE-20261109",
+  "inputSha256": "dde0fc851e8aaba165a83578745cf10372eca3786219e917966ab3230c7c6bf1",
+  "inputProvenance": "Backup engine from a used, updated and patched installed archive labelled Windows 5.00r7; not authenticated vendor-original provenance",
+  "oracleKind": "static-derived",
+  "originalClientExecuted": false,
+  "scope": "Independently authored vectors derived from the static reading in windows-404r2-500r7-static-2026-11-09.md. Messages are shown before outer framing, compression, encryption and any login or sequence byte, in the ordinary classic connection mode. No vector was captured or sent to a client.",
+  "cases": [
+    {
+      "id": "weapon-cache-miss-request",
+      "logicalId": 158,
+      "name": "fixture",
+      "expectedHex": "be666978747572650a",
+      "reading": "id + 32, then the weapon name, then LF"
+    },
+    {
+      "id": "class-cache-miss-request",
+      "logicalId": 161,
+      "storedBodyCrc32Hex": "01020304",
+      "name": "fixture",
+      "expectedHex": "c12028282624666978747572650a",
+      "reading": "id + 32, the stored-body CRC as five offset-integer bytes (7 bits each, + 32, most significant first), the class name, LF. Tests byte order only, not whether a server accepts the request"
+    },
+    {
+      "id": "gs2-event-mask-only-container",
+      "expectedHex": "000000010000000400000001",
+      "reading": "One segment: big-endian type 1 (event mask), big-endian length 4, mask 1. No function table, strings or instructions, so nothing can run. Not a compiler file header and not a whole packet"
+    },
+    {
+      "id": "gs1-client-flag-404r2",
+      "buildScope": "Windows 4.04r2, derived from the published 4.04 weapon probe; this spelling has not been run",
+      "script": "if (playerenters) { setstring client.fixture,2; }",
+      "logicalId": 18,
+      "expectedPayload": "client.fixture=2",
+      "expectedHex": "32636c69656e742e666978747572653d320a"
+    }
+  ]
+}

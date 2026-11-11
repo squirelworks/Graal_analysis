@@ -45,6 +45,9 @@ jobs:
           TITLE="Graal Analysis $VERSION"
           if [ -f "manual/pdf/graal-trm-$VERSION.pdf" ]; then
             cp "manual/pdf/graal-trm-$VERSION.pdf" dist/
+            for extra in a3-inserts print-a4; do
+              if [ -f "manual/pdf/graal-trm-$VERSION-$extra.pdf" ]; then cp "manual/pdf/graal-trm-$VERSION-$extra.pdf" dist/; fi
+            done
             TITLE="Graal Technical Reference Manual $VERSION"
           else
             if [ -d "release/$VERSION" ]; then DIR="release/$VERSION"; else DIR="book/$VERSION"; fi

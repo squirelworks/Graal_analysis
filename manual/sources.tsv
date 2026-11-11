@@ -152,6 +152,7 @@ client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superse
 client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
 client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
+client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
@@ -596,6 +597,7 @@ formats/windows-603-weapon-cache.md	cited	3.8	3.8	Bounded behavior and exclusion
 client-internals/windows-500-event-queue.md	cited	8; 8.3; E	8.3; E	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
+protocol/login-tokens-3x-7x.md	pending		2.3; 10	synthesis of the 3.x to 7.x login identity (tokens, type byte, machine identity, Login server, Torque 3D range); to be folded into the login and 3D sections
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 
@@ -608,5 +610,12 @@ formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognit
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
-client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; E	4.1; E	
+client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; 8.4; E	4.1; 8.4; E	
+formats/linux-6x-class-cache.md	cited	3.8; E	3.8; E	Class-path writer/reader order, packet 197 zero-CRC path, the 161 request and the 6.01 x86 delivery split carried in 3.8.9; identities stay in the source note
+client-internals/mac-611r1-gs2-runner.md	cited	8.4; E	8.4; E	Read handlers, loop check, snapshot sleep/waitfor, calls and status carried in 8.4.4; table-window detail and limits stay in the source note
+client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
+client-internals/windows-420-render-seams.md	cited	10	10	Render entry points carried in 10.1.5; the reproduction test and the v3-v5 ownership summary stay in the source note
+client-internals/android-classic.md	cited	1; 4.11	1; 4.11	Packages, host, frame gate, collision, board, render, chat and resources carried in 1.7 and 4.11.11; proposed tests stay in the source note
+protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
+version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections

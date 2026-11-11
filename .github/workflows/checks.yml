@@ -200,4 +200,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: graal-trm-pdf
-          path: ${{ runner.temp }}/graal-trm.pdf
+          path: |
+            ${{ runner.temp }}/graal-trm.pdf
+            ${{ runner.temp }}/graal-trm-a3-inserts.pdf
+            ${{ runner.temp }}/graal-trm-print-a4.pdf
