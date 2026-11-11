@@ -25,7 +25,24 @@ The editor matched the supplied MD5 and size pairs against the existing [build c
 `[bin]` The researcher extracted owner-supplied archives, hashed the executable inputs, decoded complete binary forms with no trailing bytes, read settings from component trees, and matched callbacks against validated published-method metadata. No client or installer was executed.
 
 - [x] ~~Determine whether the three disputed forms contain a configured timer.~~ All three declare the configuration above.
-- [ ] Measure callback execution and actual elapsed tick duration.
+- [x] ~~Measure callback execution.~~ The callbacks run; see [callback execution](#callback-execution).
+- [ ] Measure actual elapsed tick duration (cadence).
 - [ ] Check runtime changes to timer settings and programmatic idle-handler installation.
 
-A configured interval is not an observed runtime cadence. Appendix E#300 remains open for those execution and timing questions.
+A configured interval is not an observed runtime cadence. Appendix E#300 remains open for the timing questions.
+
+## Callback execution
+
+`[lab]` Evidence ID `GRAAL-E300-RUNTIME-20261109-01`. A debugger breakpoint on the bound timer callback counted hits over a requested 3000 ms capture of each client:
+
+| Build | Hits in 3 s |
+| --- | ---: |
+| 4th Graal alpha | 61 |
+| 5th Graal | 61 |
+| 5th Graal alpha | 60 |
+
+The 5th Graal alpha run used the 5th Graal assets and level as donors, so it did not show an original alpha world. Every run restored the original byte and memory protection, had no trap-flag cleanup failures, detached cleanly and left the client running.
+
+`[lab]` This proves that the configured callbacks execute. About 20 hits per second is consistent with the serialized 50 ms timer, but it is not a cadence measurement: a breakpoint adds overhead, and three seconds is a short window. It is not a general 50 ms or 20 Hz claim. Runtime changes to timer settings and idle callbacks were not tested.
+
+`[lab]` The same campaign recorded 60 timer hits in 3 s for the 1st Graal, with the player starting at (24.5, 30); a held Right reached (29.5, 30) and Left returned to the start, over 700 valid player-state snapshots. That run is reported in the same source summary and was not repackaged separately.

@@ -113,7 +113,7 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
-| 8 | `PLO_OTHERPLPROPS` | `s id` + PLPROP stream (→ §2.6); at least 2 bytes | an unknown id creates the player | [srv][2.05] (protocol/packet-layouts.md#player-state-server--client) |
+| 8 | `PLO_OTHERPLPROPS` | `s id` + PLPROP stream (→ §2.6); at least 2 bytes; original 1.21–1.35 read a one-byte `c id` instead | an unknown id creates the player | [srv][2.05] (protocol/packet-layouts.md#player-state-server--client) [bin] (protocol/player-props.md#player-npc-and-baddy-properties) |
 | 9 | `PLO_PLAYERPROPS` | PLPROP stream for the local player, no id (→ §2.6) | applies the props | [srv][2.05] (protocol/packet-layouts.md#player-state-server--client) |
 | 14 | `PLO_PLAYERWARP` | `c x×2, c y×2`, `rest` = level | the warp stays pending until the level data arrives | [srv][2.05] (protocol/packet-layouts.md#player-state-server--client) |
 | 15 | `PLO_WARPFAILED` | `rest` = level | 2.05 ignores the text and shows a short failed-warp state | [srv][2.05] (protocol/packet-layouts.md#player-state-server--client) |

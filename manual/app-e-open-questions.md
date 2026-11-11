@@ -253,7 +253,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | --- | --- | --- |
 | Superseded observation | the survey formerly reported no form timer for these three builds; the exact-input follow-up finds a configured timer in every one | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
 | Static resolution | the configured timer and its static binding are described in → §4.1.2; the three survey interval cells are corrected | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
-| Open | actual callback execution, elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Callback execution | a debugger breakpoint counted 61, 61 and 60 callback hits in 3 s for the three builds; this proves execution, not cadence | [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
+| Open | elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | Settles it | runtime observation of those exact builds, preserving the distinction between declared interval and elapsed time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 
 ### E#301 Frame loop of the 3.x and 4.x clients

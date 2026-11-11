@@ -38,3 +38,9 @@ GS1-CARRY-CONTROL-205R2-20261109-01	windows	offline-runtime-record
 GS1-EFFECTS-205R2-20261109-03	windows	researcher-static-summary
 GRAAL-205-PAYLOAD-SEMANTICS-20261109-01	windows	researcher-static-summary
 SCRIPT-PACKET-BRIDGE-205R2-20261109-01	windows	researcher-static-summary
+GRAAL-E300-RUNTIME-20261109-01	windows	debugger-hit-count
+GRAAL-PACKET-INTERFACE-20261109-01	windows	researcher-static-summary
+VX-JAVA1-INPUT-20261109-01	java	bytecode-static
+GRAAL39STER-ENGINE-20261109-01	windows	script-static
+VX-GRAALX-NW-SAVE-20261109-01	windows	single-run
+V7-COUNTER-CROSS-BUILD-20261109	windows	researcher-static-summary

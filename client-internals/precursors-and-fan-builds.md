@@ -46,6 +46,8 @@ There are 14 uploads but only 9 distinct items. They were compared by content ha
 
 ### Zelda Online 1 (May 1998)
 
+Input handling, collision and pushing are in [precursor-mechanics-2026-11-09.md](precursor-mechanics-2026-11-09.md#zelda-online-1-input-java1).
+
 - A Java 1.0 applet (`Zelda` class, class file version 45). The page runs it at scale 2 in a 512×448 box. The class files are dated 16 May 1998.
 - **Single player only.** There is no socket code, and levels, `arrays.dat`, images and sound are all fetched relative to the applet's codebase.
 - The start level is `level1.zelda`. The rar ships 36 levels, all `Z3-V1.03`. The loader also accepts `Z3-V1.02`.
@@ -53,6 +55,8 @@ There are 14 uploads but only 9 distinct items. They were compared by content ha
 - The class already holds the text alphabet that later Graal uses for sign text (the 97-entry string documented in `formats/sign-text.md`), together with the glyph-code list `A B X Y u d l r h x y z 1 2 3 4 .`. So the Graal sign alphabet goes back to the first Java applet.
 
 ### Zelda Online 2 "local version" (July 1998)
+
+Its game rules, read from the author's source, are in [precursor-mechanics-2026-11-09.md](precursor-mechanics-2026-11-09.md#zelda-online-2-rules-java2-from-source).
 
 - A Java 1.1 *application*, not an applet. It opens a start window with "One-Player mode" and "Multiplayer mode" and a server address field that defaults to the loopback address. It refuses to run on Java 1.0.
 - Files are read from the working directory, not over HTTP.
@@ -97,7 +101,7 @@ None of this is from 1998.
 - Built with Delphi 3 (Borland RTL, "Copyright (c) 1983,97"). Linked around 25 July 1998.
 - Main window `TZeldaFrame`, titled "Zelda Editor". It has a toolbar with New, Open, Save, Save As, Undo, Cut, Copy, Paste, Delete, "Turn Selection Into A Warp Field", Edit Links, Edit Baddies and Edit Signs. A stamp ("object") palette sits on the right with add, save and delete buttons.
 - Dialogs: `TLinkList`, `TLinkOptions`, `TNewOpponent`, `TEditSigns`, `TObjectName` and `TShowCodes` (the sign glyph codes).
-- It saves only `Z3-V1.03`. Window positions are kept in `ZeldaEditor.ini`, one `Name:left,top,width,height` line per window.
+- It saves only `Z3-V1.03`. One run saved an empty board as a 206-byte file with every tile 1023 ([precursor-mechanics](precursor-mechanics-2026-11-09.md#the-zelda-editor-writes-an-empty-board)). Window positions are kept in `ZeldaEditor.ini`, one `Name:left,top,width,height` line per window.
 
 **1st Graal grew out of this editor.** The 1st Graal client (Sept 1998) carries `TEditSigns`, `TLinkList`, `TLinkOptions`, `TObjectName` and `TShowCodes` under the same names. `TEditSigns` differs only by a few pixels plus `KeyPreview` and a key handler. `TNewOpponent` became `TEditBaddy`, and the main form became `TAdventure`.
 So the Delphi Graal client started as the level editor with a game added, not the other way round. This fits Graal shipping with an editor built in.
@@ -221,11 +225,12 @@ The full disassembly is written up in `gameboy-demo.md`. In short:
 - It reads `GLEVNW01` `.nw` levels and `GR-V1.00`–`1.03` levels with the same 12- and 13-bit rule, plus `.gani` animations. It converts tile ids into the 2.x `pics1.png` layout and starts on `level13.nw`.
 - **Offline only.** It has no socket code, and NPC scripts are not run: the NPC object has an execute hook with the call commented out, so NPCs only show their images.
 - It bundles 1,733 `.nw` levels and 1,321 GIFs collected from community worlds.
+- Its movement, tile, animation and link rules are in [precursor-mechanics-2026-11-09.md](precursor-mechanics-2026-11-09.md#39sters-client-mechanics).
 
 ## GraalX
 
 GraalX is already in `build-catalogue.md`: a pre-release of 2.01, linked 17 hours before it, with 2.01's token, list port and DES-hidden list host, which keeps the `GLEVNW01` reader and writer.
-A form-by-form comparison adds one more check. GraalX has the same 28 forms as 2.0 rev3 and 2.01, and differs from 2.01 only in two control positions on the main form.
+A form-by-form comparison adds one more check. GraalX has the same 28 forms as 2.0 rev3 and 2.01, and differs from 2.01 only in two control positions on the main form. Saving an unchanged level leaves it byte-identical ([precursor-mechanics](precursor-mechanics-2026-11-09.md#graalx-keeps-an-unchanged-level-byte-identical)).
 
 ## Open
 

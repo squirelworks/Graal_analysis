@@ -331,7 +331,7 @@ protocol/packet-id-diff.md	excluded		2.4; 2.5; A	method note: the 2.05 file it c
 protocol/packet-ids.md	cited	0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
 protocol/packet-layouts.md	cited	0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
-protocol/player-props.md	cited	2.6; 2.8; B	2.6; B	
+protocol/player-props.md	cited	2.5; 2.6; 2.8; B	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
@@ -542,7 +542,7 @@ version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning re
 version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
 protocol/v7-graal3d-identity-and-builds.md	cited	1; E		v7 Worlds identity and build catalogue
-protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; other source coverage unchanged
+protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; counter check carried in 2.1.4.5; other source coverage unchanged
 protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5; E		v7 PLI slots and PLO handlers
 protocol/v7-graal3d-player-properties.md	cited	2.6; E	2.6	Exact build-614 encoder correction carried in 2.6.8; other historical source scope unchanged
 protocol/v7-graal3d-property-streams.md	cited	2.6; E		v7 property stream wire model
@@ -606,3 +606,4 @@ client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build 
 formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
+client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	

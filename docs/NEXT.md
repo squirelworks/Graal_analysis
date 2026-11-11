@@ -124,6 +124,8 @@ macOS CI is paused until the polish stage.
 - [x] **Correct E#201 stored signatures.** ~~Reconcile four literal GS1 letter sequences.~~ [Exact-input note](../npc-library/gs1-signatures-205-followup.md) corrects the table; runtime argument semantics remain open.
 
 - [x] **Correct E#300 static timer presence.** ~~Reconcile the three missing survey timer cells.~~ [Exact-build note](../client-internals/early-form-timers-2026-11-09.md) records stored configuration; runtime timing remains open.
+  - [x] ~~Show the callbacks execute.~~ [Callback execution](../client-internals/early-form-timers-2026-11-09.md#callback-execution): 61, 61 and 60 hits in 3 s.
+  - [ ] Measure elapsed cadence without debugger overhead, and runtime timer/idle changes.
 
 - [x] **Resolve E#7 receive-revision discrepancy.** ~~Check the disputed 47/168 revision boundaries.~~ [Exact-input note](../client-internals/receive-dispatch-revision-boundaries-2026-11-09.md) settles static route presence only.
 

@@ -6,6 +6,10 @@ Sources: GServer-v2 `TAccount.h`, `TPlayerProps.cpp`, `TNPC.h`/`TNPC.cpp`, `TLev
 
 A prop stream is `(GCHAR id, value)*` running to the end of the message. It appears in `PLI_PLAYERPROPS` (2), `PLO_PLAYERPROPS` (9, self), `PLO_OTHERPLPROPS` (8, `GSHORT player id` + stream), `PLO_NPCPROPS` (3, `GINT3 npc id` + stream), and `PLO_BADDYPROPS` (2, `GCHAR baddy id` + stream). There is no length per prop, so a reader must know every id's encoding up to the highest id it expects. **[srv]**
 
+**Exact-input exception: original 1.35 reads a one-byte player id in `PLO_OTHERPLPROPS`.** The original 1.35 client (SHA-256 `1ffceab194c1f7d890334de77a2efa2300bfb775d62fd163b5b1fba2be4a2a87`) reads **one GCHAR** player id before the prop stream. Original 1.36 (SHA-256 `f29c39baa03dd6d96a564abca976d57a09f8d5c369a2d5283fde65ad15095a1e`) reads two 7-bit characters and removes two bytes before the stream, and that width continues through the later reviewed profiles. So a reimplementation must not use a two-byte prefix for original 1.21–1.35. This is a static read of each client's receiver (evidence `GRAAL-PACKET-INTERFACE-20261109-01`); no network test was run. The GSHORT statement above stays correct for the server source and for 1.36 and later. **[bin]**
+
+For example, a 1.35 message with id 8 and payload `27 2f 48 30 4a` is player 7, X 20, Y 21 (PLPROP 15 and 16, half-tiles). A reader that takes a GSHORT id decodes 7 × 128 + 15 = 911 and misaligns the rest. The 1.36 form of the same update is `20 27 2f 48 30 4a`. **[bin][inf]**
+
 Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRING.
 
 ## PLPROP (player)
