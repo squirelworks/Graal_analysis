@@ -23,6 +23,8 @@ OBJECTEND
 
 ## 3.4.2 Shipped sets
 
+The client ships five object sets. The table gives what they hold and decodes the first stamp as a worked example. The last row points to where Bush collision is discussed [file] (formats/gobjset01.md).
+
 | Item | Detail | Source |
 | --- | --- | --- |
 | sets in the client tree | `objectsStandard`, `objectsHouse Inside`, `objectsCastle`, `objectsSnow`, `objectsVolcano` | [file] (formats/gobjset01.md) |

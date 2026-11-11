@@ -7,11 +7,15 @@ A GANI file is the text animation format that GraalShop reads and writes and tha
 
 ## 3.3.1 File
 
+A gani is a text file of keyword lines. The rules below give the general form and the samples it was checked against [bin] (formats/gani.txt).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | form | line-oriented text; the first line is the discriminator | [bin] (formats/gani.txt) |
 | case | the parser lowercases each line before comparing keywords; the writer emits uppercase keywords and space-padded columns | [bin] (formats/gani.txt) |
 | samples | client samples under `levels/ganis/` and `levels/bomys/` match the sprite dialect, including files that omit the signature | [file] (formats/gani.txt) |
+
+The first line tells sprite mode from movie mode. Each row gives one signature, the mode value it sets and the body that follows [bin] (formats/gani.txt).
 
 | First line | Mode value | Body | Source |
 | --- | --- | --- | --- |
@@ -50,6 +54,8 @@ script      := "SCRIPT" rawlines "SCRIPTEND"
 
 ## 3.3.3 Sprite rows
 
+Sprite rows cut images out of sheets. The rules below give their fields, the column widths the writer uses, and how attached sprites work [bin] (formats/gani.txt).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | `SPRITE` | id, sheet, x, y, w, h, description | [bin] (formats/gani.txt) |
@@ -66,6 +72,8 @@ SPRITE   20           SWORD   62    0   28   28 sword
 
 ## 3.3.4 Header
 
+The header keywords set how an animation plays. Each row gives a keyword and its meaning; some are written in only one mode [bin] (formats/gani.txt).
+
 | Keyword | Meaning | Source |
 | --- | --- | --- |
 | `LOOP`, `CONTINUOUS` | playback flags | [bin] (formats/gani.txt) |
@@ -80,6 +88,8 @@ SPRITE   20           SWORD   62    0   28   28 sword
 
 ## 3.3.5 Sprite mode body
 
+In sprite mode the body is a list of steps. The rules below say what a step can hold and how directions are laid out [bin] (formats/gani.txt).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | bounds | `ANI` opens the step list and `ANIEND` closes it | [bin] (formats/gani.txt) |
@@ -89,6 +99,8 @@ SPRITE   20           SWORD   62    0   28   28 sword
 | wait | the wait counter starts at 1; each `WAIT` adds to it | [bin] (formats/gani.txt) |
 
 ## 3.3.6 Movie mode body
+
+In movie mode the body is a list of actors, each with its own frames. The rules below give that structure [bin] (formats/gani.txt).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

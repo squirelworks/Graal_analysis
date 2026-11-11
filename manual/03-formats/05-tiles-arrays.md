@@ -7,6 +7,8 @@ A board stores tile ids; what a tile does is looked up in separate tables. This 
 
 ## 3.5.1 Tile sheet geometry
 
+A tile id is a position on a sheet and nothing more. The rules below give the sheet's size and the formula from id to picture. The sheet is laid out in blocks, so the formula is not a plain row and column [src] (formats/tiletypes.txt).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | id | a board stores a tile id 0 to 4095; the client does not inspect the tileset image for collision | [src] (formats/tiletypes.txt) |
@@ -53,6 +55,8 @@ A 4096-byte table copied from the standard tileset, one type byte per id, is kep
 | 21 | 18 | jumping stone | [src] (formats/tiletypes.txt) |
 | 22 | 2914 | blocking | [src] (formats/tiletypes.txt) |
 
+The rules below add what the counts leave out: the types missing from the table, how its first row reads, and how that outside client tests a tile. It is not the official client's method, which follows in §3.5.2.2 [src] (formats/tiletypes.txt).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | absent types | types 2 and 9 are in the official list but do not appear in this table | [src] (formats/tiletypes.txt) |
@@ -60,6 +64,8 @@ A 4096-byte table copied from the standard tileset, one type byte per id, is kep
 | that client's tests | wall if the type byte is ≥ 20 or the foot is outside the 64×64 board; water if it is 11; walkable otherwise | [src] (formats/tiletypes.txt) |
 
 ### 3.5.2.2 Sheet types and the type-0 allow lists (official client)
+
+The official client decides walkability differently for each kind of sheet. The rules below come from live tests: how sheets are listed and chosen, and the two allow lists that decide a type-0 tile [live] (formats/tile-walk.md#sheet-loading).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -78,6 +84,8 @@ The Bush-value membership correction is recorded in → §3.5.3.1; runtime colli
 
 ## 3.5.3 arrays.dat
 
+`arrays.dat` is a tree of integer arrays with a small header on each. The rules below give the encoding needed to walk it [2.05] (formats/arrays-and-signatures.md#arraysdat).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | integers | big-endian 32-bit | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
@@ -88,6 +96,8 @@ The Bush-value membership correction is recorded in → §3.5.3.1; runtime colli
 | missing file | the client quits with "File not found"; the file is not signed or checked | [2.05] (formats/arrays-and-signatures.md#summary) |
 | 2.22 file | 11500 bytes; parses to exactly 25 arrays with nothing left over | [test] (formats/arrays-and-signatures.md#arraysdat) |
 | tile ids | all tile ids in the tables index the 4096-tile `pics1` sheet | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
+
+The table lists the top-level arrays of the 2.05 file in order, with each one's size and what it is known to hold. Rows that say "use not traced" are arrays whose reader has not been found [2.05] (formats/arrays-and-signatures.md#arraysdat).
 
 | # | Shape | Content | Source |
 | --- | --- | --- | --- |
@@ -126,6 +136,8 @@ A loader that reads only the first four arrays as flat lists is right for 0 to 3
 
 ### 3.5.3.1 Bounded packaged-file membership
 
+One packaged `arrays.dat` was read exactly to settle which tile ids are in its first two lists. Each rule records part of that reading and how far it reaches [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | identity | 11,500-byte input, researcher-supplied SHA-256 b65905ad1e1d1e48d2b7841525c749272426e5160d187f05e8d6b37946296927; appears in 2.22-labelled and 2.3-labelled packages and a loose copy; release identity and runtime loading are unverified | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
@@ -151,6 +163,8 @@ A loader that reads only the first four arrays as flat lists is right for 0 to 3
 A fan-server copy of the file points line 0 at its own `<listserver-host>` with port 14922 and lists two other list hosts as fallbacks [test] (formats/arrays-and-signatures.md#arrays2dat). The 2.05 list host is hidden in the executable instead (→ §6).
 
 ## 3.5.5 graal.sig and arrays2.sig
+
+Two 128-byte signature files guard the executable and `arrays2.dat`. The rules below give what is known of the key, the order of checks and the algorithm, and which parts are judged from names alone [test] (formats/arrays-and-signatures.md#the-signatures).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

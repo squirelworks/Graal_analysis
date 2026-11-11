@@ -5,6 +5,8 @@ The web-level cache is a local copy of a server level, keyed by the level's modi
 
 ## 3.8.1 When it is used
 
+The web-level cache keeps copies of server levels on disk. Each row gives one event in its use and what the client does [2.05] (formats/gwebl001-cache.md#what-it-is).
+
 | Event | Behaviour | Source |
 | --- | --- | --- |
 | write | when the server sends the level's 5-byte modification time (`PLO_LEVELMODTIME`, id 39), the client saves the level it holds with that time | [2.05] (formats/gwebl001-cache.md#what-it-is) |
@@ -75,6 +77,8 @@ The body is an ordinary GR-V level (→ §3.1.2), but the writer fills only some
 | heights | 2.31 only: a `HEIGHTS` block when the level has a height map, which also switches the magic to `GR-V1.04` (→ §3.1.2.7) | [2.31] (formats/gwebl001-cache.md#level-body-as-cached) |
 
 ## 3.8.6 Tool
+
+The repository has a tool for these cache files. The table lists its commands and what each produces [src] (formats/gwebl001-cache.md#tool).
 
 | Command | Effect | Source |
 | --- | --- | --- |
