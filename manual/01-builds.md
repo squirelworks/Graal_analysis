@@ -584,12 +584,12 @@ Lab measurements kept as tables beside them:
 
 | Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
 | --- | --- | --- | --- | --- |
-| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest and matching regular-file contents/names across two extracted copies of 718 files each; historical 3.153 attribution remains unlinked to these exact inputs (→ App. E#609) | [bin] (workingpapers/macos/client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (workingpapers/macos/resource-identity.md) |
-| v4.04r2; v4.20r6 | PowerPC | unmeasured | Distinct main executables | [bin] (workingpapers/macos/client-compatibility.md) |
-| v5.12; four unknown-v5 copies | PowerPC | unmeasured | Five main-executable digests match; regular-file contents/names match across all five extracted copies of 73 files each; original containers and filesystem metadata unmeasured | [bin] (workingpapers/macos/client-compatibility.md); [test] (workingpapers/macos/resource-identity.md) |
-| v6.11r1 | Intel 64-bit | 10.7.0 | Metadata requirement; virtual graphics and runtime compatibility remain unmeasured by this inventory | [bin] (workingpapers/macos/client-compatibility.md) |
+| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest and matching regular-file contents/names across two extracted copies of 718 files each; historical 3.153 attribution remains unlinked to these exact inputs (→ App. E#609) | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
+| v4.04r2; v4.20r6 | PowerPC | unmeasured | Distinct main executables | [bin] (version-profiles/macos-client-compatibility.md) |
+| v5.12; four unknown-v5 copies | PowerPC | unmeasured | Five main-executable digests match; regular-file contents/names match across all five extracted copies of 73 files each; original containers and filesystem metadata unmeasured | [bin] (version-profiles/macos-client-compatibility.md); [test] (version-profiles/macos-resource-identity.md) |
+| v6.11r1 | Intel 64-bit | 10.7.0 | Metadata requirement; virtual graphics and runtime compatibility remain unmeasured by this inventory | [bin] (version-profiles/macos-client-compatibility.md) |
 
-The PowerPC headers declare legacy graphics and application-framework dependencies but no exact minimum OS version. Neither these dependencies nor the Intel build's declared minimum establishes successful rendering, input or gameplay. The separately captured Tiger runs retain their own scope (→ §1.8.4, → §1.8.5). [bin] (workingpapers/macos/client-compatibility.md)
+The PowerPC headers declare legacy graphics and application-framework dependencies but no exact minimum OS version. Neither these dependencies nor the Intel build's declared minimum establishes successful rendering, input or gameplay. The separately captured Tiger runs retain their own scope (→ §1.8.4, → §1.8.5). [bin] (version-profiles/macos-client-compatibility.md)
 
 Unresolved archive-label and resource identity: → App. E#609.
 
@@ -601,4 +601,4 @@ The later 6.03 cohort separately records class parsing, registered-weapon execut
 
 ## 1.11 Imported Windows v4 alias and retained carrier identity
 
-The imported report’s supplied `4.20r8` alias and the retained collection’s `4.04r2` label refer to a carrier with SHA-256 `71378394469bcf16038ee3b335da786afcdf357fe4e8dd6329a05ba926a5e4bf`. A separate retained-resource checkpoint reports FileVersion `4.0.4.2`, ProductVersion `4`, OriginalFilename `Graal.exe` and ProductName `Graal`. This corroborates byte identity and metadata, not official release provenance. Keep the packed/stub carrier separate from subsequently recovered engine/shell/3D components; no behavior transfers from an alias. No target execution or original package authentication occurred. [file][doc] (workingpapers/windows/v4-import-provenance.md)
+The imported report’s supplied `4.20r8` alias and the retained collection’s `4.04r2` label refer to a carrier with SHA-256 `71378394469bcf16038ee3b335da786afcdf357fe4e8dd6329a05ba926a5e4bf`. A separate retained-resource checkpoint reports FileVersion `4.0.4.2`, ProductVersion `4`, OriginalFilename `Graal.exe` and ProductName `Graal`. This corroborates byte identity and metadata, not official release provenance. Keep the packed/stub carrier separate from subsequently recovered engine/shell/3D components; no behavior transfers from an alias. No target execution or original package authentication occurred. [file][doc] (version-profiles/windows-v4-import-provenance.md)

@@ -227,7 +227,7 @@ AREAS = (
         'id': 'labs',
         'name': 'Labs',
         'blurb': 'Lab runs and research handoffs',
-        'folders': ('live-runs', 'workingpapers'),
+        'folders': ('live-runs',),
     },
     {
         'id': 'archives',

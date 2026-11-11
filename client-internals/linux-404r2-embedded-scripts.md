@@ -7,7 +7,7 @@ a Windows component or another release bearing a similar label.
 The publication editor reviewed the sanitized 2026-11-09 research handoff and
 recorded its digest. Underlying evidence digests and observations are supplied by
 the researcher; raw code, captures and client assets were not opened to fill gaps.
-Source IDs resolve through [the evidence index](../workingpapers/sources.tsv).
+Source IDs resolve through [the evidence index](../docs/evidence-index.tsv).
 
 ## Recovered corpus and structural checks
 

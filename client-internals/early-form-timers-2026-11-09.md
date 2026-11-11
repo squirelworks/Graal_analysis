@@ -2,7 +2,7 @@
 
 ## Scope and evidence
 
-This static correction covers three Windows x86 clients identified below. Build identities, observations and the private evidence digest are researcher-supplied. The publication editor reviewed only the sanitized handoff; underlying executables and evidence were not independently inspected. Evidence ID: `GRAAL-E300-20261109-01`, registered in [the evidence index](../workingpapers/sources.tsv).
+This static correction covers three Windows x86 clients identified below. Build identities, observations and the private evidence digest are researcher-supplied. The publication editor reviewed only the sanitized handoff; underlying executables and evidence were not independently inspected. Evidence ID: `GRAAL-E300-20261109-01`, registered in [the evidence index](../docs/evidence-index.tsv).
 
 | Build | Bytes | MD5 | SHA-256 |
 | --- | --- | --- | --- |

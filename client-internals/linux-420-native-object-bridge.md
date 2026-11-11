@@ -35,4 +35,4 @@ This note does not demonstrate an active TorqueScript interpreter, a working 3D 
 
 ## Evidence lineage
 
-`LNX420-BRIDGE-INCREMENTAL-HANDOFF` identifies the owner-held sanitized incremental handoff; `LNX420-BRIDGE-IDENTITIES` identifies its sanitized exact-input record. Document hashes are registered in [the source index](../workingpapers/sources.tsv). Neither key is a newly invented raw-capture alias. Raw native code, addresses, assets and private retrieval locations are excluded.
+`LNX420-BRIDGE-INCREMENTAL-HANDOFF` identifies the owner-held sanitized incremental handoff; `LNX420-BRIDGE-IDENTITIES` identifies its sanitized exact-input record. Document hashes are registered in [the source index](../docs/evidence-index.tsv). Neither key is a newly invented raw-capture alias. Raw native code, addresses, assets and private retrieval locations are excluded.

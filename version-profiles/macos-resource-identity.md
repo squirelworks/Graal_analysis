@@ -26,6 +26,6 @@ cross-collection linkage remains unverified.
 - [ ] Obtain authenticated historical input identities before resolving the
   earlier 3.153 attribution across collections.
 
-See the [compatibility note](client-compatibility.md) for architecture and label
-scope, and [the public evidence index](../sources.tsv) for the record's source category.
+See the [compatibility note](macos-client-compatibility.md) for architecture and label
+scope, and [the public evidence index](../docs/evidence-index.tsv) for the record's source category.
 Original containers, exact digests, per-file manifests and private retrieval paths remain private.

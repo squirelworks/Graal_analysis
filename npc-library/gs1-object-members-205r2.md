@@ -52,4 +52,4 @@ Assignment/write dispatch is not traced in this record: successful getter bindin
 
 Appendix E#204's name-to-ID question is answered for these seven families in this exact build. Keep assignment semantics, complete unknown-member fallback behavior, scanner case/quoting, all enum meanings, explosion direction mapping, specialized integrity-check consequences and other builds separate and open. In particular, do not silently add dy or reorder the arrow bindings to match later documentation.
 
-Evidence retrieval: [workingpapers/sources.tsv](../workingpapers/sources.tsv) indexes the static and runtime records. Digests and observations are researcher supplied; the editor matched five sanitized handoff digests, without inspecting the original binary or private evidence.
+Evidence retrieval: [docs/evidence-index.tsv](../docs/evidence-index.tsv) indexes the static and runtime records. Digests and observations are researcher supplied; the editor matched five sanitized handoff digests, without inspecting the original binary or private evidence.

@@ -20,7 +20,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Linux 3.04 native-call evidence boundary.** ~~Review retained callback evidence without redoing native work.~~ [Qualification](../torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) separates static dispatch from unknown argument/results and registry policies.
 
-- [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../workingpapers/windows/v4-import-provenance.md); official package/release provenance remains unresolved.
+- [x] **Qualify the imported Windows v4 alias.** ~~Corroborate retained carrier hash and PE resource fields.~~ [Source](../version-profiles/windows-v4-import-provenance.md); official package/release provenance remains unresolved.
 
 - [x] **Correct exact build-614 encoder dispatch counts and selected arithmetic observations.** ~~Separate selector/target/default counts from emitted-property and name claims.~~ [Source](../protocol/v7-graal3d-player-properties.md#3-wire-codec-classic-plprop-still-in-v7-bin); exact IDs 15/16 conversion order/range and runtime remain unvalidated.
 
@@ -34,12 +34,12 @@ macOS CI is paused until the polish stage.
 
 - [x] **Correct exact build-614 special-length arithmetic.** ~~Carry the retained static erratum.~~ [Note](../protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin); runtime and extreme-size handling remain unvalidated.
 
-- [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ [Note](../workingpapers/linux/imported-provenance-and-gaps.md) registers document hashes and limits.
+- [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ An owner-held note registers document hashes and limits.
 - [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported3.151/5.12 recovery failures into independently verified findings.
 
-- [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/v5-animation-group-lifecycle.md) retains native-runtime limits.
+- [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../client-internals/macos-v5-animation-group-lifecycle.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
-- [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../workingpapers/macos/ppc-receive-framing.md) retains native-runtime limits.
+- [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../protocol/macos-ppc-receive-framing.md) retains native-runtime limits.
 - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
 - [ ] Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session.
@@ -86,7 +86,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Narrow Appendix E#606 height-block placement.** ~~Test the exclusive claim that HEIGHTS belongs only in level files.~~ [Reader and fixture evidence](../formats/gmap-heights-404r2.md) supports named gmap blocks for Windows 4.04r2; rendering, server and packaging claims remain unmeasured.
 
-- [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../workingpapers/macos/resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
+- [x] **Compare macOS extracted resources.** ~~Extend the executable-only comparison with regular-file content and relative-name checks.~~ [Resource identity revision 1](../version-profiles/macos-resource-identity.md) records matching v3/v5 groups; historical attribution and original-container identity remain unverified.
 
 - [x] **Link a recovered Linux 4.04r2 script to live loading.** ~~Carry the completed sanitized finding into reference documentation.~~ [Source note](../client-internals/linux-404r2-embedded-scripts.md) preserves the exact-build scope and remaining questions.
 
@@ -104,17 +104,19 @@ macOS CI is paused until the polish stage.
 
 - [x] **Carry bounded 4.04r2 initialization into the manual.** ~~Distinguish startup and instrumented offline state changes from gameplay.~~ [§4.8.5](../manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) carries the observations; complete-scene validation remains open in App. E#610.
 
-- [x] **Update the macOS preparation handoff.** ~~Record the later bounded PowerPC debugger checks and initial Lion boot test.~~ [Follow-up](../workingpapers/macos/debugger-validation-2026-11-09.md) preserves warnings and pending renderer/gameplay validation; Lion/v6 remains unvalidated.
+- [x] **Update the macOS preparation handoff.** ~~Record the later bounded PowerPC debugger checks and initial Lion boot test.~~ An owner-held follow-up preserves warnings and pending renderer/gameplay validation; Lion/v6 remains unvalidated.
 
-- [x] **Carry macOS executable compatibility into the manual.** ~~Register the reviewed architecture and minimum-OS inventory as reference evidence.~~ [Compatibility note](../workingpapers/macos/client-compatibility.md) feeds §1.9; archive-label and resource equivalence remain open in App. E#609.
+- [x] **Carry macOS executable compatibility into the manual.** ~~Register the reviewed architecture and minimum-OS inventory as reference evidence.~~ [Compatibility note](../version-profiles/macos-client-compatibility.md) feeds §1.9; archive-label and resource equivalence remain open in App. E#609.
 
 - [x] **Reconcile the 4.04r2 artifact-availability gap.** ~~Link the historical packer-stub note to the later recovered components.~~ [Recovery scope](../torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) closes availability only; static claim comparison and a complete 3D session remain open.
 
-- [x] **Completed Linux workingpapers (2026-11-09).** ~~Collect Linux engine recovery in a dedicated retrieval folder.~~ [Linux handoff](../workingpapers/linux/README.md) indexes architecture findings, selected function recovery, complete scripting catalogs and bounded runtime evidence. Raw artifacts remain owner-held.
+- [x] **Completed Linux teardown summary (2026-11-09).** ~~Collect Linux engine recovery in a dedicated retrieval folder.~~ [Linux handoff](../version-profiles/linux-teardown.md) indexes architecture findings, selected function recovery, complete scripting catalogs and bounded runtime evidence. Raw artifacts remain owner-held.
 
-- [x] **Completed Windows workingpapers (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../workingpapers/windows/README.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
+- [x] **Completed Windows teardown summary (2026-11-09).** ~~Refresh the owner-held collection after full component recovery and give Windows its own retrieval folder.~~ [Windows handoff](../version-profiles/windows-404r2-teardown.md) indexes the completed export, editable project, private package and original-carrier 3D provenance; raw material stays outside Git.
 
-- [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Added [workingpapers](../workingpapers/README.md), with a dedicated [macOS folder](../workingpapers/macos/README.md), evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
+- [x] **Retire the public `workingpapers/` folder (2026-11-11).** ~~Move cited findings into topical notes and keep working papers private.~~ Findings moved to `version-profiles/`, `client-internals/` and `protocol/`; the evidence ID list moved to [docs/evidence-index.tsv](evidence-index.tsv); lab-status and handoff notes are owner-held.
+
+- [x] **Platform workingpapers handoff (2026-11-08).** ~~Index the collected platform research and separate macOS teardown material.~~ Its curated findings now live in topical notes (see [Windows](../version-profiles/windows-404r2-teardown.md), [Linux](../version-profiles/linux-teardown.md) and [macOS compatibility](../version-profiles/macos-client-compatibility.md)), with evidence identities and explicit remaining runtime tests. Raw artifacts remain in owner-held project files.
 
 - [x] **Bound arrays.dat membership claims.** ~~Check the disputed list membership and union counts.~~ [Static file note](../formats/arrays-membership-2026-11-09.md) preserves input identity and E#100/E#101/E#608 runtime questions.
 

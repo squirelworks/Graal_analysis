@@ -10,7 +10,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Exact Linux 3.04 show-image wrapper constants](torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) — retained static eight-command mode/flag map and bounded integer-key container distinction; no new rendering result.
 
-- [Windows v4 imported alias and retained identity](workingpapers/windows/v4-import-provenance.md) — exact carrier/resource corroboration with unresolved official release provenance.
+- [Windows v4 imported alias and retained identity](version-profiles/windows-v4-import-provenance.md) — exact carrier/resource corroboration with unresolved official release provenance.
 
 - [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
 
@@ -18,7 +18,6 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
 
-- [Imported Linux provenance and recovery gaps](workingpapers/linux/imported-provenance-and-gaps.md) — checked document identities and duplicate logs, with third-party installer/recovery claims explicitly unverified.
 
 - [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
 - [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle. See the [native-call evidence boundary](torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) for static dispatch and unresolved argument/result contracts.
@@ -48,7 +47,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.
 
-- [macOS extracted-resource identity](workingpapers/macos/resource-identity.md) — regular-file comparison within the v3/v5 archive groups, with historical-label and container limits retained.
+- [macOS extracted-resource identity](version-profiles/macos-resource-identity.md) — regular-file comparison within the v3/v5 archive groups, with historical-label and container limits retained.
 
 - [Link a recovered Linux 4.04r2 script to live loading](client-internals/linux-404r2-embedded-scripts.md) — Structural checks cover fourteen recovered streams; a corrected hash read links exactly one profile payload to a live loader/executor path, without publishing script bodies or assets.
 
@@ -66,13 +65,12 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Windows 4.04r2 offline evidence](manual/04-behaviour/08-offline.md#485-windows-404r2-bounded-initialization-evidence) — captured startup and instrumented state transition, with scene and gameplay limits.
 
-- [macOS debugger validation](workingpapers/macos/debugger-validation-2026-11-09.md) — bounded PowerPC entry checks and the separate, still-uninstalled Lion/v6 state.
 
-- [Archived macOS compatibility](workingpapers/macos/client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.
+- [Archived macOS compatibility](version-profiles/macos-client-compatibility.md) — PowerPC v3–v5 and Intel v6 metadata, duplicate main-executable identities, and unresolved archive labels; carried into manual §1.9.
 
 - [Windows 4.04r2 recovery scope](torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) — distinguishes the historical packer-stub export from later recovered components and load-only 3D evidence.
 
-- `workingpapers/` — platform research handoff and evidence-source index, with Windows, macOS and Linux teardown material in their own folders; Linux includes completed engine-recovery coverage and bounded startup observations, and Windows includes the completed code-recovery inventory and original-carrier 3D provenance. Raw artifacts remain in owner-held project files.
+- Platform teardown summaries: [Windows 4.04r2](version-profiles/windows-404r2-teardown.md), [Linux](version-profiles/linux-teardown.md) and the macOS notes above. Public evidence IDs cited across the notes are listed in [docs/evidence-index.tsv](docs/evidence-index.tsv). Working papers and raw artifacts remain owner-held.
 
 - `manual/` — the Graal Technical Reference Manual (1.0, in progress; spec: issue #191). One Markdown file per chapter, `manual/sources.tsv` maps every note to the sections that cite it. Check it with `python tools/manual/check_manual.py`.
 - `release/0.0.1/` — document PDFs for version 0.0.1, grouped along this contents list, with appendices. Chiaki tags `v0.0.1`. The notes viewer is part of the source tree at `tools/navigator/`.
@@ -304,7 +302,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 - `protocol/gs2-client-vm.md`: the bytecode container and opcode checklist a graal-client-repro client and a Seihai script VM can cite. The compiler half is the MPL-2.0 Preagonal trees (already studied in `npc-library/preagonal-gs2.md`). The client half is the 4.2.0.8, 5.0.0.7 and unpacked 6.00 dispatchers.
 - `protocol/gs2-client-only-opcodes.md`: the effect of the opcodes those clients dispatch and the Preagonal compiler does not emit, including the folds.
 
-- [Shared Mac v5 animation-group acceptance and cleanup](workingpapers/macos/v5-animation-group-lifecycle.md) — exact-input static behavior and runtime limits.
-- [PowerPC receive framing and partial-group advancement](workingpapers/macos/ppc-receive-framing.md) — exact-input static behavior and runtime limits.
+- [Shared Mac v5 animation-group acceptance and cleanup](client-internals/macos-v5-animation-group-lifecycle.md) — exact-input static behavior and runtime limits.
+- [PowerPC receive framing and partial-group advancement](protocol/macos-ppc-receive-framing.md) — exact-input static behavior and runtime limits.
 - [Unpacked Windows 6.03 weapon-cache success](formats/windows-603-weapon-cache.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
 - [Installed Windows 5.00 queue boundaries](client-internals/windows-500-event-queue.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.

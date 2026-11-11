@@ -551,15 +551,10 @@ protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package trans
 protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9; E		v7 chat, world, UDP status
 protocol/v7-graal3d-discovery-extras.md	cited	E		v7 open-item status and extras
 client-internals/v7-graal3d-unity-bridge.md	cited	E		v7 Unity/Quattro bridge surface
-workingpapers/README.md	excluded			platform research handoff index; not cited as manual evidence
-workingpapers/handling.md	excluded			research handling and agent handoff rules; not client behaviour
-workingpapers/linux/README.md	excluded			tooling verification and preflight handoff; client results need individual review
-workingpapers/macos/README.md	excluded			macOS workingpaper index; each underlying note has its own source-map row
-workingpapers/macos/client-compatibility.md	cited	1; E	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
-workingpapers/macos/lab-status.md	excluded			installation and debugger preparation status with pending client tests; not manual evidence
-workingpapers/sources.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
-workingpapers/windows/README.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
-workingpapers/macos/debugger-validation-2026-11-09.md	excluded			bounded debugger and installer research status; no new established gameplay behavior
+version-profiles/linux-teardown.md	excluded			tooling verification and preflight handoff; client results need individual review
+version-profiles/macos-client-compatibility.md	cited	1; E	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
+docs/evidence-index.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
+version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 client-internals/404r2-carry-state.md	cited	4.5; E	4.5; E	static interaction relationships carried; private retrieval and research process are outside manual scope
 client-internals/linux-404r2-api-ownership.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 protocol/linux-404r2-receive-scope.md	cited	2.5; E	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
@@ -569,7 +564,7 @@ npc-library/gs1-signatures-205-followup.md	cited	8.2; E	8.2; E	Input identity an
 client-internals/early-form-timers-2026-11-09.md	cited	4.1; E	4.1; E	Input identity and validation metadata retained in source note; configuration and remaining timing limits carried in 4.1 and E#300.
 client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-embedded-scripts.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
-workingpapers/macos/resource-identity.md	cited	1; E	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
+version-profiles/macos-resource-identity.md	cited	1; E	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
 formats/arrays-membership-2026-11-09.md	cited	3.4; 3.5; E	3.4; 3.5; E	Private identity and validation metadata retained in source note; bounded membership, counts and runtime limitations carried in 3.4, 3.5 and Appendix E.
 formats/gmap-heights-404r2.md	cited	3.2; E	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
 torque/404r2-resource-filter.md	cited	10; E	10; E	filter and mission-path bounds carried; private retained-code mappings remain in source note
@@ -590,8 +585,8 @@ npc-library/gs1-message-codes-205r2.md	cited	8.1; E	8.1; E	Selector contract and
 npc-library/gs1-condition-truth-205r2.md	cited	8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
 npc-library/gs1-move-205r2.md	cited	8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
-workingpapers/macos/v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
-workingpapers/macos/ppc-receive-framing.md	cited	2.1; 2.2; E		exact-input receiver contract carried; runtime and outgoing behavior remain open
+client-internals/macos-v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
+protocol/macos-ppc-receive-framing.md	cited	2.1; 2.2; E		exact-input receiver contract carried; runtime and outgoing behavior remain open
 client-internals/linux-420-native-object-bridge.md	cited	10	10	exact identities and evidence lineage remain in source note; bridge relation and limits carried
 torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
 version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
@@ -603,11 +598,10 @@ protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenan
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 
-workingpapers/windows/v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
+version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
 
 client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build stage and saved-state distinctions carried; identity, selected-recovery counts and provenance stay in source note
 
 
 formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
-workingpapers/linux/imported-provenance-and-gaps.md	excluded			Imported-document provenance, unverified recovery leads and evidence limits; adds no established client behavior or manual question resolution
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.

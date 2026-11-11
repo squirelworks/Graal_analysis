@@ -2,7 +2,7 @@
 
 ## Input and evidence
 
-The original Windows 2.05 rev 2 executable is researcher-identified by SHA-256 `b0e39a04ca0891d0f02282a113a1cd80ddf7a1880a786c5831f26a452e8cbb08`. Evidence IDs `GRAAL-RAW-FILE-LF-20261109-01`, `SEIHAI-ORIGINAL-NETWORK-20261109-01` and `SEIHAI-ORIGINAL-VALID-GIF-20261109-01` resolve in [the evidence index](../workingpapers/sources.tsv). The editor verified the sanitized publication digest against its supplied manifest. Executable/evidence digests, static checks and lab outcomes remain researcher-supplied; raw code, captures and assets were not inspected.
+The original Windows 2.05 rev 2 executable is researcher-identified by SHA-256 `b0e39a04ca0891d0f02282a113a1cd80ddf7a1880a786c5831f26a452e8cbb08`. Evidence IDs `GRAAL-RAW-FILE-LF-20261109-01`, `SEIHAI-ORIGINAL-NETWORK-20261109-01` and `SEIHAI-ORIGINAL-VALID-GIF-20261109-01` resolve in [the evidence index](../docs/evidence-index.tsv). The editor verified the sanitized publication digest against its supplied manifest. Executable/evidence digests, static checks and lab outcomes remain researcher-supplied; raw code, captures and assets were not inspected.
 
 ## Exact receiver boundary
 

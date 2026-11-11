@@ -4,7 +4,7 @@
 
 `[bin]` The exact Windows x86 executable is identified by researcher-supplied MD5 `f3fdf54d943fa91c89acba5bb695db99` and SHA-256 `b0e39a04ca0891d0f02282a113a1cd80ddf7a1880a786c5831f26a452e8cbb08`. These findings apply to this 2.05 rev 2 input only.
 
-The editor reviewed the sanitized handoff for evidence ID `GRAAL-E201-20261109-01`, registered in [the evidence index](../workingpapers/sources.tsv). Artifact and private-record hashes and static observations are researcher-supplied; the editor did not inspect the executable or underlying raw proof.
+The editor reviewed the sanitized handoff for evidence ID `GRAAL-E201-20261109-01`, registered in [the evidence index](../docs/evidence-index.tsv). Artifact and private-record hashes and static observations are researcher-supplied; the editor did not inspect the executable or underlying raw proof.
 
 ## Stored letters
 

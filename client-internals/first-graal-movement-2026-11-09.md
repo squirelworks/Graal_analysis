@@ -2,7 +2,7 @@
 
 ## Input and evidence boundary
 
-The Windows x86 input is 654,336 bytes, with researcher-supplied SHA-256 `03d8121711f41ac7b5a6e3fe549145d8fdfd44d22040f6706329ae83c6a1a37b` and MD5 `07452f8941fdfcdce878b035156e701c`. Evidence ID `GRAAL-FIRST-MOVEMENT-20261109-01` is registered in [the evidence index](../workingpapers/sources.tsv). Its retained-record digest and all binary observations are researcher-supplied. The editor reviewed only the sanitized prose handoff; original instructions, executable and tables were not inspected.
+The Windows x86 input is 654,336 bytes, with researcher-supplied SHA-256 `03d8121711f41ac7b5a6e3fe549145d8fdfd44d22040f6706329ae83c6a1a37b` and MD5 `07452f8941fdfcdce878b035156e701c`. Evidence ID `GRAAL-FIRST-MOVEMENT-20261109-01` is registered in [the evidence index](../docs/evidence-index.tsv). Its retained-record digest and all binary observations are researcher-supplied. The editor reviewed only the sanitized prose handoff; original instructions, executable and tables were not inspected.
 
 ## Coordinates and candidate step
 

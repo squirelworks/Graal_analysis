@@ -32,8 +32,8 @@ from its sole supplied carrier. Its Python prototype explicitly omits actual
 GS1/GS2, Torque APIs and other engine behavior. Those prototype results are not
 an original-client execution oracle.
 
-The [earlier packed-carrier export](../../torque/v4-404r2-exe.md) and the
-[later Windows recovery collection](README.md) retain different artifact and
+The [earlier packed-carrier export](../torque/v4-404r2-exe.md) and the
+[later Windows recovery collection](windows-404r2-teardown.md) retain different artifact and
 measurement scopes. A label on the original carrier does not relabel a later
 reconstructed component, turn a packer export into an engine export, or transfer
 another build's runtime behavior.

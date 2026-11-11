@@ -42,11 +42,11 @@
 
 [bin] Exact case handling, namespace inheritance/package precedence, duplicate registration, argument coercions, arity-failure behavior and cached-call invalidation remain unqualified by these selected paths. No retained behavioral contract for the builtin echo is established here. Implementations may choose explicit API policies for those unknowns, but passing policy tests is not evidence of original-client fidelity. Later Graal-variable or event-name rules must not be transferred into this older console registry.
 
-The added source key `LNX304-NATIVE-CALL-REVIEW-DOC` identifies the actual retained review document in [the source index](../workingpapers/sources.tsv). Its document digest is checked during publication preparation; the underlying native findings remain researcher-supplied. No decompiled function or assembly was newly inspected, and no client, debugger, provider or build was started for this document review. The earlier first-handler observation is not a native-call argument/result oracle.
+The added source key `LNX304-NATIVE-CALL-REVIEW-DOC` identifies the actual retained review document in [the source index](../docs/evidence-index.tsv). Its document digest is checked during publication preparation; the underlying native findings remain researcher-supplied. No decompiled function or assembly was newly inspected, and no client, debugger, provider or build was started for this document review. The earlier first-handler observation is not a native-call argument/result oracle.
 
 - [x] ~~Separate the selected static native-call paths from complete argument/result fidelity.~~
 - [ ] Obtain a separately qualified retained contract before asserting callback representation/results, registry policy or builtin behavior.
 
 ## Evidence lineage
 
-The exact sanitized handoff digest and vector-document digest are registered in `workingpapers/sources.tsv` under `LNX304-SEVEN-OP-HANDOFF` and `LNX304-SEVEN-OP-VECTORS`. They identify owner-held editorial inputs, not invented raw evidence carriers. Exact executable identities are supplied by the sanitized input identity record under `LNX304-SEVEN-OP-IDENTITIES`.
+The exact sanitized handoff digest and vector-document digest are registered in `docs/evidence-index.tsv` under `LNX304-SEVEN-OP-HANDOFF` and `LNX304-SEVEN-OP-VECTORS`. They identify owner-held editorial inputs, not invented raw evidence carriers. Exact executable identities are supplied by the sanitized input identity record under `LNX304-SEVEN-OP-IDENTITIES`.

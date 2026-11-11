@@ -4,7 +4,7 @@
 
 `[bin]` The six inputs below are Windows PE32 GUI executables for 32-bit x86 (IA-32), as verified by the researcher. Exact input identities and observations are researcher-supplied. The editor reviewed the sanitized prose handoff only; executables, raw routing records and private capsule contents were not independently inspected.
 
-Evidence ID `GRAAL-E7-STATIC-ROUTING-20261109-5c65913ec464` resolves through [the evidence index](../workingpapers/sources.tsv). Its researcher-supplied capsule digest binds the input identities, platform and static routing observations. Private code and locations remain outside the repository.
+Evidence ID `GRAAL-E7-STATIC-ROUTING-20261109-5c65913ec464` resolves through [the evidence index](../docs/evidence-index.tsv). Its researcher-supplied capsule digest binds the input identities, platform and static routing observations. Private code and locations remain outside the repository.
 
 ## Distinct receive routes
 
