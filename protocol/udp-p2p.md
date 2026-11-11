@@ -40,6 +40,8 @@ A level-local action goes **UDP only** when every other player in the level has 
 | 24 | "entered level": X, Y, level name; sent to players in the 3×3 gmap neighbourhood | send/recv |
 | 25 | hit objects | send/recv |
 | 26 | trigger action | send/recv |
+| 28 | 5.0.0.7: shot, the PLI_SHOOT body (`shoot-5007.md`) | send/recv |
+| 30 | 5.0.0.7: shot, the PLO_SHOOT2 body (`shoot-5007.md`); no 5.0.0.7 sender seen | recv |
 
 The ids 10–20 and 25–26 line up with the matching TCP PLI meanings (`PLI_BOMBADD` 4 …), but the numbers differ. The movement fields reuse PLPROP encodings [inf: field order not documented here].
 

@@ -81,7 +81,7 @@ Compared with Mac 3.153 (`v3x-clients.md`), 5.00r7 drops 100 and adds the follow
 | 182 | **Process list request**: the client answers with C→S 44 and the comma list of its running processes |
 | 183 | **"Is process running?"**: the client checks one process name against the same list and reports back |
 | 190 | `onServerListerConnect` (the Login server's server-list screen) |
-| 191 | GSHORT id + data, routed to an object by id |
+| 191 | PLO_SHOOT2: GSHORT player id + a SHOOT2 projectile (layout and 2-byte gravity in `shoot-5007.md`) |
 | 193 | GINT5 + name, routed to an NPC (raises the script level to at least 3) |
 | 194 | Clears every loaded level and the level caches |
 | 195 | Gani name + gani text, loaded into the named gani (server-sent gani script) |
