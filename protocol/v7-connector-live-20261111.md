@@ -4,7 +4,7 @@ Date: 2026-11-11
 
 Target: `WorldsSetup64-614` (`Worlds.exe` + `Graal3DEngine.dll`), run in a Windows lab VM
 with every DNS answer forced to loopback and lab HTTP/TLS listeners in front of it. Tags:
-**[live]** this run · **[bin]** the unpacked `Graal3DEngine.dll` export/string inventory ·
+**[lab]** this run · **[bin]** the unpacked `Graal3DEngine.dll` export/string inventory ·
 **[doc]** prior 6.11 connector reading (`protocol/v6x-clients.md`, `protocol/v6113-hello.md`).
 
 The real connector host names, the `?p=` request blob and the captured reply bodies are **not**
@@ -16,7 +16,7 @@ No addresses in this file.
 
 ---
 
-## 1. Self-identification **[live][bin]**
+## 1. Self-identification **[lab][bin]**
 
 The v7 Worlds clients do **not** send a baked eight-character `G3D…`/`GNP…` login token of the
 kind 2.x–6.03 use. On the wire to the connector they identify only by an HTTP `User-Agent`:
@@ -29,7 +29,7 @@ kind 2.x–6.03 use. On the wire to the connector they identify only by an HTTP 
 The `User-Agent` version is a double formatted after the literal `User-Agent: Graal/`; the six
 builds split 6.76 / 6.77 at build 613. Build 614 was confirmed `Graal/6.77` live. The VERSIONINFO
 `6.114` is a separate product-version string and is the same across all six. **[bin]** for the
-split, **[live]** for 614.
+split, **[lab]** for 614.
 
 Because the client carries no token, there is nothing to add to `allowedversions.txt` for a v7
 *client*: the login identity is built by the connector script at run time (`setloginaccount` /
@@ -39,7 +39,7 @@ builds send that exact token is **not** established. **[bin][doc]**
 
 ---
 
-## 2. Connector request order **[live]**
+## 2. Connector request order **[lab]**
 
 On start-up build 614 did, in order:
 
@@ -51,7 +51,7 @@ On start-up build 614 did, in order:
 4. the same `GET` to a **second host** whose first label differs (the `…ios` → `…ios2` fallback).
 
 This is the 6.11 connector design exactly: HTTPS first, plain-HTTP `/conf.gs` fallback, a second
-host on failure, `User-Agent: Graal/<version>`. **[live]**, matching **[doc]**
+host on failure, `User-Agent: Graal/<version>`. **[lab]**, matching **[doc]**
 `protocol/v6x-clients.md#connector-request`.
 
 The `?p=` query is the 6.11 shape: a DES-ECB-then-client-base64-then-URL-encoded blob of
@@ -59,7 +59,7 @@ The `?p=` query is the 6.11 shape: a DES-ECB-then-client-base64-then-URL-encoded
 
 ---
 
-## 3. The real reply container **[live]**
+## 3. The real reply container **[lab]**
 
 A single user-authorised host-side replay of the captured request returned, from
 `Server: Graal-HTTP-Server 20130907`, `Content-Type: application/octet-stream`:
@@ -74,7 +74,7 @@ A single user-authorised host-side replay of the captured request returned, from
 `conf.gs` and `con.gs`/`con.png` returned the same container with different payload lengths.
 This is byte-for-byte the container the 6.11 Mac client's connector reply uses (same `Server`
 banner, same `00 00 01 00` marker, same per-response randomisation). **So one connector design
-covers 6.11 and v7.** **[live]**, cross-referenced to the 6.11 capture.
+covers 6.11 and v7.** **[lab]**, cross-referenced to the 6.11 capture.
 
 The 256-byte block is an RSA-2048 **signature** the client verifies against a public key baked
 into the client (the client exports `RsaSSL_Verify` and holds the key; the recovered private key
@@ -89,7 +89,7 @@ agent placed inline hooks on the **engine's own** exports (`RsaSSL_Verify`, `Aes
 `Arc4SetKey`), the process exited ~15 s into start-up, before any networking, on three separate
 runs. `Graal3DEngine.dll` carries Themida/WinLicense packer strings, so the shipped engine
 self-checks its own code and terminates when its exported functions are inline-patched. A
-**read-only memory scan** (no code patch) is tolerated and ran for the full session. **[live]**
+**read-only memory scan** (no code patch) is tolerated and ran for the full session. **[lab]**
 
 **A genuine reply verifies only against the exact request it was signed for.** The reply used
 here was captured for an *earlier* client launch (one `?p=`) and served to a *fresh* launch (a
@@ -104,11 +104,11 @@ launch cannot be replayed to another.
 A reply **can** be replayed back to the same `?p=` request it was signed for: the parallel 6.11 Mac work captured a reply and replayed it within the same request context, and that client
 verified it and decrypted the connector script. The limitation is only cross-launch. So a captured
 genuine reply is a per-launch artefact, not a reusable lab `/conf.gs` that an arbitrary fresh
-client accepts, and the sign-with-server-private-key verdict for a lab responder stands. **[live][inf]**
+client accepts, and the sign-with-server-private-key verdict for a lab responder stands. **[lab][inf]**
 
 ---
 
-## 4. Online-play reach **[live][inf]**
+## 4. Online-play reach **[lab][inf]**
 
 A **stock, unmodified v7 Worlds client cannot be brought online against a lab server.** The
 client verifies the connector reply's RSA signature against GraalOnline's public key; producing a
@@ -124,8 +124,10 @@ a working client are:
 Route 2 is the realistic v7 target. The post-connector game protocol itself (framing, remapper,
 PLO/PLI, GS2/GRESCR, ciphers) is already mapped from the binary in the sibling v7 notes; what the
 reproduction client additionally needs is the decrypted connector script's own output — the game
-host/port and the login the script builds — which a client-side decrypt trace of the genuine
-reply can supply without any patch and without network access.
+host/port and the login the script builds. A client-side decrypt trace can supply that, but not
+against an unpatched stock client in a lab: the client rejects any reply a lab can serve (§3), and
+its Themida self-check forbids inline hooks on the decrypt path (below), so the trace needs the
+patched-client route (route 1) — the same prerequisite stated in §5.1.
 
 ---
 
