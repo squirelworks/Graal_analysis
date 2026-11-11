@@ -8,6 +8,9 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Mac PowerPC 4.04r2, 4.20r6 and v5 start-up and input](client-internals/mac-ppc-startup-input-2026-11-09.md) — the one-shot Carbon timer that runs the engine, registered events, and how keys, characters, modifiers and the mouse become engine records; static.
 - [Windows 4.20 render entry points](client-internals/windows-420-render-seams.md) — adventure and canvas render entries that check their target first, a fake-renderer test, and who owns scripts in Windows v3 to v5.
 - [Windows 4.04r2 tutorial run R01](version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01) — 539 shell ticks at about 50 ms with no periodic core update or render hook.
+- [Android Classic and Era 1.6 to 2.2](client-internals/android-classic.md) — seven packages; the Java host, the 50 ms frame gate, layered collision, the 64×64 board, 1/16 animation offsets and the 220-byte chat builder; static.
+- [GS2 on Android Classic 1.8](protocol/gs2-android-classic-18.md) — the container, branches, loop and stack limits, number, string and array rules, the event queue and 173 native bindings; static.
+- [What the early Windows clients show when started](version-profiles/early-windows-screen-review-2026-11.md) — screenshot review of the v0, v1 and v2 builds in an offline Wine lab.
 
 - [Supplied 701750 managed/native bridge and clock checkpoint](client-internals/v7-701750-bridge-clock.md) — selected static edges, clock/store and guarded dispatch; no cadence, lifecycle or cross-build equivalence claim.
 
