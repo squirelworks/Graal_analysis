@@ -1,7 +1,5 @@
 # Next work (ordered)
 
-- [x] **Qualify the supplied 701750 bridge and clock checkpoint.** [Note](../client-internals/v7-701750-bridge-clock.md) and manual §4.1.7 record the bounded static result. The ten retained function-validation records include the short getter; two managed-edge records are counted separately. Cadence, wrap/catch-up, collection/lifecycle semantics and older-build equivalence remain unresolved.
-
 One change per branch and PR. Verify `origin/main` and the open PR list before
 starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" or
 that need missing Squirrel-only files; take the next task. Binding rules live in
@@ -13,6 +11,8 @@ open-point closed.
 macOS CI is paused until the polish stage.
 
 ## Tasks
+
+- [x] **Qualify the supplied 701750 bridge and clock checkpoint.** [Note](../client-internals/v7-701750-bridge-clock.md) and manual §4.1.7 record the bounded static result. The ten retained function-validation records include the short getter; two managed-edge records are counted separately. Cadence, wrap/catch-up, collection/lifecycle semantics and older-build equivalence remain unresolved.
 
 - [x] **Linux 3.04 local value-helper branches.** ~~Publish supported retained local conversion/assignment distinctions after overlap review.~~ [Source](../torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) keeps type-specific behavior and general coercion unresolved.
 
@@ -35,36 +35,36 @@ macOS CI is paused until the polish stage.
 - [x] **Correct exact build-614 special-length arithmetic.** ~~Carry the retained static erratum.~~ [Note](../protocol/v7-graal3d-framing-and-packet-tables.md#classic-path-mode-0-bin); runtime and extreme-size handling remain unvalidated.
 
 - [x] **Imported Linux provenance.** ~~Review imported documents and separate recovery leads from established behavior.~~ An owner-held note registers document hashes and limits.
-- [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported3.151/5.12 recovery failures into independently verified findings.
+  - [ ] Obtain full imported installer/executable identities and intact replacement archives before promoting reported 3.151/5.12 recovery failures into independently verified findings.
 
 - [x] **Document shared Mac v5 animation-group lifecycle.** ~~Publish the bounded static result.~~ [Source](../client-internals/macos-v5-animation-group-lifecycle.md) retains native-runtime limits.
-- [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
+  - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../protocol/macos-ppc-receive-framing.md) retains native-runtime limits.
-- [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
+  - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Linux 4.20 native-object bridge.** ~~Identify the selected concrete object-to-script registration boundary.~~ [Note](../client-internals/linux-420-native-object-bridge.md).
-- [ ] Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session.
+  - [ ] Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session.
 - [x] **Linux 3.04 selected Torque contract.** ~~Document the seven-operation static subset.~~ [Contract](../torque/linux-304-seven-operation-contract.md) preserves identity and runtime limits.
-- [ ] Validate independently authored Torque vectors on the exact original input; this note supplies no native execution results.
+  - [ ] Validate independently authored Torque vectors on the exact original input; this note supplies no native execution results.
 - [x] **Publish the Linux network/bootstrap evidence ledger.** ~~Convert the sanitized cohort summaries into a versioned coverage reference.~~ [Gate guide and data](../version-profiles/linux-network-bootstrap-evidence.md) preserve exact inputs, source lineage and distinct unknowns.
-- [ ] Extend measured gate coverage only with a qualified positive control and pinned new evidence; do not equate login, header recognition, parsing, execution and gameplay.
+  - [ ] Extend measured gate coverage only with a qualified positive control and pinned new evidence; do not equate login, header recognition, parsing, execution and gameplay.
 - [x] **Bound unpacked Windows 6.03 weapon-cache success.** ~~Publish the retained static increment.~~ [Source](../formats/windows-603-weapon-cache.md) preserves exact-input provenance and static-derived fixture status.
-- [ ] Validate a positive weapon-cache case and other callers in an identified runnable build; header recognition alone is insufficient.
+  - [ ] Validate a positive weapon-cache case and other callers in an identified runnable build; header recognition alone is insufficient.
 - [x] **Bound installed Windows 5.00 event queue delivery.** ~~Publish the retained static increment.~~ [Source](../client-internals/windows-500-event-queue.md) preserves exact-input provenance and static-derived fixture status.
-- [ ] Validate named/enum gates, non-null argument stringification and runtime queue/service behavior in a positively controlled matching build.
+  - [ ] Validate named/enum gates, non-null argument stringification and runtime queue/service behavior in a positively controlled matching build.
 - [x] **Bound Linux 3.04 GS1 source-weapon events and predicates.** ~~Carry the completed bounded research.~~ [Note](../npc-library/linux-304-gs1-runtime.md); remaining gates retain their own open scope.
 - [x] **Record seven exact Linux client local-login baselines.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-local-login-matrix.md); remaining gates retain their own open scope.
 - [x] **Observe Linux 6.03 network GS2 execution and continuation.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-603-network-gs2.md); remaining gates retain their own open scope.
 - [x] **Plan further use of the retained platform research.** ~~Audit the publication baseline and assign next directions.~~ [Publication and experiment plan](research-data-publication-plan.md) separates completed intake, proposed derived references and assigned experiments.
-- [ ] Publish the nominated completed platform scopes, then build a claim-to-evidence index and a small independently authored fixture set with reviewed acceptance criteria; keep unknown build/lifecycle cells explicit.
+  - [ ] Publish the nominated completed platform scopes, then build a claim-to-evidence index and a small independently authored fixture set with reviewed acceptance criteria; keep unknown build/lifecycle cells explicit.
 
 - [x] **Link the exact 2.05r2 #p producer.** ~~Trace dispatch to its shared parameter list.~~ [Source](../npc-library/gs1-event-parameters-205r2.md) corrects callnpc delivery and retains queue/lifetime limits.
-- [ ] Extend event-parameter checks to nested contexts, scheduling, case/escaping, other event/source categories and builds; other E#203 field/format/render gaps remain.
+  - [ ] Extend event-parameter checks to nested contexts, scheduling, case/escaping, other event/source categories and builds; other E#203 field/format/render gaps remain.
 - [x] **Resolve E#204 checked-build name-to-ID mapping.** ~~Replace documentation-order inference.~~ [Source](../npc-library/gs1-object-members-205r2.md) preserves first-match duplicate arrow dx and bounded getter semantics.
-- [ ] Extend object-member research to writes, fallback/scanner behavior, enum meanings, specialized getters and other builds.
+  - [ ] Extend object-member research to writes, fallback/scanner behavior, enum meanings, specialized getters and other builds.
 - [x] **Catalog the exact 2.05r2 outer message selectors.** ~~Extract outer membership and bounded effects.~~ [Source](../npc-library/gs1-message-codes-205r2.md) separates catalog coverage from runtime/helper semantics.
-- [ ] Complete E#203 field identities (#6/#a/#E/#L), quoted scanners, numeric formatting and downstream rendering.
+  - [ ] Complete E#203 field identities (#6/#a/#E/#L), quoted scanners, numeric formatting and downstream rendering.
 - [x] **Settle E#200 for the checked original 2.05 revision 2.** ~~Resolve the conflicting truth threshold.~~ [Source](../npc-library/gs1-condition-truth-205r2.md) separates zero/nonzero execution, name parsing and constant-comparison folding.
-- [ ] Extend condition checks to other builds, nonfinite/malformed values, aliases/precedence and named-flag collisions.
+  - [ ] Extend condition checks to other builds, nonfinite/malformed values, aliases/precedence and named-flag collisions.
 
 - [x] **Bound Linux 4.20r6 clock updates and advertised 3D-state predicate.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-clock-property.md) retains exact-build limits and remaining measurements.
 
@@ -244,7 +244,7 @@ macOS CI is paused until the polish stage.
     `protocol/v6113-udp.md`. The parent item stays open.
 - [x] **14. Graal Technical Reference Manual: the 15-PR work plan.** Spec: issue #191.
   All fifteen PRs merged; `manual/` is on main with the checker, the carry check and
-  the three-OS PDF build. TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.
+  the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
   1.0.0"): 0.0.5 coverage proof (`tools/manual/coverage.py` and one prose PR per
@@ -301,9 +301,11 @@ macOS CI is paused until the polish stage.
     beside `GUIContainer`. Five `new t2d` constructors are file text.
     `client-internals/unpacked-6113.md`. The hold stands.
 
-- [ ] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
-  is the June 2011 Windows exports and two packed exes. A readable engine for
-  the packed 6.037 and 6.113 executables is still open.
+- [x] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
+  is the June 2011 Windows exports and two packed exes. The packed shells stay
+  unreadable, but unpacked images of both builds were read later on 2026-11-07
+  (`client-internals/unpacked-6037.md`, `client-internals/unpacked-6113.md`), so
+  a readable engine exists for both. Closed by those two notes.
   - [x] Unpacked 6.00r2 and 6.00r4 are `quattro_lib`: OpenGL drawing, a GS2
     shell, `TServer*` world objects and `TSocket`. Packed 6.037 and 6.113
     decompile as packer stubs. `client-internals/engine-600r2.md`,
@@ -364,9 +366,9 @@ macOS CI is paused until the polish stage.
     decompile, file version 4.0.4.2. The hold on writing the module stands.
     Manual §10.1.13.
 
-## Handoff
+## Handoff (2026-11-07, historical)
 
-The project moves to Cursor on 2026-11-07. Graal_analysis work there continues
+The project moved to Cursor on 2026-11-07. Graal_analysis work there continues
 from this list and #191 (TRM 0.0.5 is next). Start with graal-delphi's
 `HANDOFF-CURSOR.md` (state of both repos, rules, on-hold work, open decisions),
 then this file and `AGENTS.md`.
