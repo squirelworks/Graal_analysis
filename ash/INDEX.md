@@ -10,10 +10,10 @@ This folder is a reverse-engineered blueprint of that 2006 tree: modules, wire f
 |---|---|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System view, process model, class graph, data stores |
 | [BLUEPRINT.md](BLUEPRINT.md) | File-by-file ownership, runtime layout, wire frames, known holes |
-| [FLOWCHARTS.md](FLOWCHARTS.md) | Mermaid flowcharts: boot, tick, login, warp, animate, files |
+| `FLOWCHARTS.md` (not carried) | Mermaid flowcharts: boot, tick, login, warp, animate, files |
 | [ALGORITHMS.md](ALGORITHMS.md) | Pseudocode for scramble, zlib frames, GCHAR, GR-V1 tiles, IDs |
 | [OPCODE-MAP.md](OPCODE-MAP.md) | Client / server / prop / baddy / NPC tables (already present in repo) |
-| [diagrams.html](diagrams.html) | Same mermaid diagrams in a browser-renderable page |
+| `diagrams.html` (not carried) | Same mermaid diagrams in a browser-renderable page |
 
 Phoenix rebuild notes lived separately. Ash describes the **2006 server as written**, not the rewrite.
 

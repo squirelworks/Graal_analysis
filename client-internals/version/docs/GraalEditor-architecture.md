@@ -16,7 +16,7 @@ GraalEditor.exe  (unpacked image, base 0x400000)
 └── UI                  TAdventure + modal frames (see ui.md)
 ```
 
-See [diagrams/architecture.svg](diagrams/architecture.svg) and [diagrams/classes.svg](diagrams/classes.svg).
+The original set had two diagrams here, `diagrams/architecture.svg` and `diagrams/classes.svg`; they were not carried into this repository.
 
 ## Layers
 
