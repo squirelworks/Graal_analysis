@@ -145,3 +145,13 @@ def test_a_source_column_of_names_is_kept():
     out = build_manual.move_sources(md, bib).split('\n')
     assert out[0] == '| Source | Hearts |'
     assert out[2].startswith('| lava | 1<sup class="fn">')
+
+
+def test_wide_tables_get_named_landscape_pages():
+    import build_manual as bm
+    assert '@page wide{size:A4 landscape' in bm.CSS
+    assert '@page wider{size:A3 landscape' in bm.CSS
+    assert '.page-wide{page:wide}' in bm.CSS
+    # pandoc's template clips a too-wide table (display:block; overflow-x:auto)
+    assert 'table{display:table;overflow:visible' in bm.CSS
+    assert [name for name, _ in bm.PAGE_WIDTHS] == ['', 'page-wide', 'page-wider']
