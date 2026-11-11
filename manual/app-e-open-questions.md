@@ -7,6 +7,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 
 ### E#1 Compiler of the early Delphi builds
 
+Two clues about the compiler of the earliest builds point to different Delphi versions. The question stays open until their runtime library is matched against candidates [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | 1st Graal, 3rd Graal to 1.1.9 and 1.21 use the Delphi 2 class-metadata layout (self pointer 64, class name 32 bytes before the VMT) | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
@@ -15,6 +17,8 @@ Each entry quotes the claims, names their sources, and says what would settle it
 | Settles it | matching the RTL of these builds against C++Builder 1 and Delphi 2 runtime libraries | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 
 ### E#2 Generation-5 step count of 5.12
+
+Two reads disagree on how many iterator steps 5.12 takes for a short compressed frame. Only a capture that holds such a frame can tell them apart [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -27,6 +31,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#3 Public `Login` server session (5.x, 6.x)
 
+Nobody has recorded what a public 5.x or 6.x `Login` server sends. Each row is one thing still unobserved; settling them needs the owner's permission [doc] (protocol/login-session-known.md#still-unobserved).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Unobserved | the bytes a public 5.x or 6.x `Login` server sends, including the payload of S→C 190 | [doc] (protocol/login-session-known.md#still-unobserved) |
@@ -38,6 +44,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#4 Whether 5.00r7 sends id 11
 
+Two lists of the ids 5.00r7 sends disagree on id 11. A later static read sides with the list that includes it, and a capture is still missing [bin] (protocol/v5x-clients.md#client--server-ids-500r7).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 5.00r7 send wrappers send 1, 2, 4–10, 12–19, …: no 11 (`PLI_THROWCARRIED`) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
@@ -47,6 +55,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Static resolution | the 5.00r7 backup engine's carried-object throw path sends id 11 with an empty body; the earlier wrapper list missed it. Claim B holds for that engine; a capture is still missing | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 
 ### E#5 Meaning of id 162 from the client (settled)
+
+Three readings of client id 162 turned out to be one message, a ping answer. The entry is kept to show how it was settled [srv] (protocol/packet-ids.md#client--server-pli_).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -59,6 +69,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#6 Client-to-server constants of 1.21 and 1.32
 
+Two reads of the 1.21 and 1.32 send sites disagree on ids 14 and 22 [bin] (protocol/gserv-1999.md#message-ids).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32 | [bin] (protocol/gserv-1999.md#message-ids) |
@@ -67,6 +79,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a re-read of the 1.21 and 1.32 send sites for ids 14 and 22 | [inf] (protocol/gserv-1999.md#open-questions) |
 
 ### E#7 Receive-branch revision discrepancy (settled for the checked inputs)
+
+Two tables placed ids 47 and 168 in different revisions. A static check settled it for the revisions that were read; the scope row says how far that goes [bin] (client-internals/cross-version-timeline.md#server--client-packets).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -77,6 +91,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#8 Prop parser ranges of 2.00
 
+Two sources disagree on whether 2.00 parses player prop 36 and NPC prop 36 [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the cross-version timeline has the player-prop parser gain 35 and 36 in 1.41, and the NPC-prop parser gain 36 to 40 only in 2.02 rev2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
@@ -85,6 +101,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a re-read of the 2.00 prop switches at ids 36 | [inf] (version-profiles/plo-playerprops-layouts.tsv) |
 
 ### E#9 Uploads from game clients
+
+One source says game clients never upload, while the late clients send the upload ids. Which feature sends them, and whether a server accepts them, is open [srv] (protocol/file-transfer.md#upload-rc-only).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -95,12 +113,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#10 When the `maps` download folder arrived
 
+No surviving build shows when downloads began going to a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | the 2.1 test builds save downloads with no `maps` rule and 2.17.1 has one; no client between them has been found, so the build that added it is unknown | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | Settles it | the save routine of any client from 2.1 to 2.16, if one turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 
 ### E#11 Client-to-server ids the NewWorld betas lack
+
+Two reads of the NewWorld betas disagree on whether they send ids 8 and 20 [bin] (client-internals/version-profiles/141-217.toml).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -111,6 +133,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#12 Whether the token digits are a build date
 
+Reading the `GNW` digits as a build date fits well, but nothing in the binaries states it [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the `GNW` digits are DDMMY, on or a few days before the link date | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
@@ -119,6 +143,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a vendor note or server source that decodes the token | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
 
 ### E#100 Collision of the Bush stamp tiles
+
+Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -129,6 +155,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#101 Size of the type-0 allow lists
 
+An earlier mask count of walkable tiles cannot yet be linked to the lists read from the exact file [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Established file result | the exact-input lengths, overlap and union are in → §3.5.3.1; they do not reproduce the earlier mask count | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
@@ -137,6 +165,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | link the original mask and exact file to the producing client path and sheet before interpreting or comparing runtime categories | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#102 Tile id to pixel position on pics1
+
+Two formulas map a tile id to its place on `pics1.png`. The manual follows the later one, and a 4.04r2 code read agrees with it [file] (formats/tiletypes.txt).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -147,6 +177,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Windows 4.04r2 code | the tile draw path and its invalidation path both compute Claim B's formula before optional tiledef remapping | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
 
 ### E#200 When a GS1 condition counts as true
+
+When a GS1 condition counts as true is now settled for one exact build. Each row gives that result, its exceptions and what stays open in other builds [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -159,6 +191,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#201 Four GS1 argument signatures in 2.05
 
+The stored argument letters of four GS1 commands were re-read. What they mean at run time is still open [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Static resolution | exact-input stored letters are recorded in → §8.2; the follow-up agrees with the earlier reference and corrects the command reference's alternatives | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
@@ -167,6 +201,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | targeted parser/executor observations or controlled runtime tests of argument conversion in that exact build | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
 
 ### E#202 Which message carries GS2 bytecode
+
+Three sources name different messages as the carrier of GS2 bytecode. The Linux rows add partial results without closing the question [srv] (protocol/packet-ids.md; protocol/graphics-movement-bytecode.md#on-wire).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -182,6 +218,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#203 The 2.05 `#` message-code set
 
+The full set of `#` message codes in 2.05 is partly recovered. Each row gives a part that is settled and the fields that remain open [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Partial resolution | exact original 2.05r2 outer dispatch has 44 selector bytes / 53 family-expanded spellings, including preserved display codes and empty-output #7; supported contract carried in §8.1.11 | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage) |
@@ -194,6 +232,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#204 Member names of the GS1 object arrays
 
+The member names of the GS1 object arrays are settled for one build. What writing to them does, and how they change across builds, is still open [bin] (npc-library/gs1-object-members-205r2.md#parser-binding).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Checked-build resolution | explicit suffix records and first-success parser establish the seven families' name-to-ID mappings: 36 records, 35 distinct spellings; carried in §8.2 | [bin] (npc-library/gs1-object-members-205r2.md#parser-binding) |
@@ -201,6 +241,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Open | writes/setter side effects, unknown-member fallback, scanner details, enum meanings, specialized getters/integrity consequences and cross-version changes | [bin] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
 
 ### E#205 Index of the hare baddy (settled)
+
+The hare baddy's type index is settled: it is type 5, shared with the frog [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -211,6 +253,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#206 `move` option bits in 2.05
 
+The `move` command's queued consumer is read for one build. The caller side and some edge cases are still open [2.05][bin] (npc-library/gs1-move-205r2.md).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Established | the exact Windows 2.05r2 queued consumer now supplies static replacement, progression, collision and option behavior → §8.2.9 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
@@ -218,6 +262,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | targeted exact-input caller/state tracing and controlled runtime observations for these residuals | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ### E#207 GS2 language and bytecode format
+
+GS2 syntax, its library and its event model are the largest open question in the manual. Each row adds a result from one build without closing it [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -241,6 +287,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#208 What the OpenGS1 opcode set describes
 
+Two notes disagree on whether the OpenGS1 opcode set describes official bytecode [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the graphics-and-bytecode note calls the OpenGS1 VM "GS1 bytecode" and lists the full GS1 opcode set and constant-table layout as known | [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode) |
@@ -250,6 +298,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | comparing a captured official bytecode message (→ App. E#207) with the OpenGS1 layout | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
+
+These three early builds were first said to have no frame timer. An exact read found one in each, and their real tick timing is still unmeasured [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -261,6 +311,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#301 Frame loop of the 3.x and 4.x clients
 
+No one has timed the frame loop of the 3.x and 4.x clients. The rows give what static reads found so far [wire] (protocol/v5v6-lab-play.md).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
@@ -270,6 +322,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
 
+Two walking speed factors, 0.4 and 0.8, exist in the code, but the states that use them are unknown [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Known | the walking code multiplies the half-tile step by a speed factor: 1.0 on foot, 1.2 in a high speed state; hiding gives 0.1 tile per tick | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step); [live] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
@@ -278,12 +332,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#303 Two unidentified lists in the blocked-point test
 
+Two object lists in the blocked-point test have not been identified [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | the blocked-point test reads a list of objects with two flags and a player-sized body box (only with a client option on), and a list of 1.5 × 2 boxes with an enabled flag; neither is identified (signs, baddies, dropped objects and other players are candidates) | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | Settles it | tracing what fills each list, or a lab test of walking into each kind of level object | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 
 ### E#304 Stopping positions and the wire rounding of nudged positions
+
+The stopping positions after a blocked step are read from code but not confirmed live, and the wire rounding of a nudged position is not captured [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -292,6 +350,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a lab walk towards a rock from both half-tile alignments on 2.22, with the props messages captured | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 
 ### E#305 The 2.22 push frame field
+
+A memory trace of 2.22 does not match the push timing expected from 2.05 [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -302,12 +362,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#306 The flag that picks `lift2.wav` for a pull
 
+The flag that chooses between the two pull sounds was not traced [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | a successful pull plays `lift.wav`, or `lift2.wav` by a player flag that was not traced | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
 | Settles it | tracing the flag in 2.05's pull routine | [inf] (client-internals/ledges-push-pull.md#open) |
 
 ### E#307 Probe, nudge and step tables of 1st Graal and 1.39
+
+1st Graal's movement tables are now read. The 1.39 tables are still missing [bin] (client-internals/first-graal-movement-2026-11-09.md).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -318,12 +382,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#308 Link probe offsets and the neighbour-table flag
 
+The offsets used to probe for links, and the flag that skips the neighbour table, are unread [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | the per-facing probe offsets for link following; the flag that skips the 3 × 3 neighbour table; which big map 2.05 uses offline and whether 2.22 does the same with `PLO_BIGMAP` (171); how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 | Settles it | reading the probe table and the flag in 2.05, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 
 ### E#309 Knockback distance of 1.39
+
+The 1.39 binary gives five tiles of knockback, while a live run measured four [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -334,6 +402,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#310 Where the once-per-second hit stamp sits
 
+Two reads disagree on which hit paths share the once-per-second stamp [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the per-attacker second-of-day stamp is shared by the sword and both hit messages, and is stored before the guild test | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
@@ -341,6 +411,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a lab test of two sword hits from one attacker inside one second on 2.05 | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
 
 ### E#311 Blast hit zone and the occasional full-heart hit
+
+The blast hit zone read from code does not match the pattern of hits measured in the 2.22 lab [2.05] (client-internals/damage-sources.md#bombs-and-explosions).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -350,6 +422,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#312 The last byte of a shot
 
+Lab tests suggest the last byte of a shot does more than name its type [2.05] (client-internals/damage-sources.md#shot-19).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the last byte of `PLO_ARROWADD` (19) is the shot type, `byte - 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
@@ -358,12 +432,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#313 Do arrows and fireballs pass walls
 
+The code suggests arrows and fireballs fly through walls, but this has not been tested [2.05] (client-internals/damage-sources.md#open).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | in the 2.05 shot flow types 0 and 1 skip the blocking test that stops types 2 and 3, which would let arrows and fireballs fly through walls; the test's arguments were not recovered | [2.05] (client-internals/damage-sources.md#open) |
 | Settles it | a lab shot at a wall on 2.05 | [inf] (client-internals/damage-sources.md#open) |
 
 ### E#314 Gmap list order and the level-entry save
+
+Whether entering a gmap from outside saves the respawn point depends on an order that has not been read [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -372,12 +450,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#315 The level-entry save in the 2.1 test builds
 
+The level-entry save in the 2.1 test builds is expected to differ from 2.05's, but it was not read [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | Settles it | reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 
 ### E#316 Glove power steps
+
+Two readings disagree on which objects each glove power can lift [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -387,12 +469,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#317 The 1.x pickup box and item draw order
 
+The 1.x pickup box and whether items draw under or over players are unknown [bin] (client-internals/item-drops.md#open).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | only 1.3's pixel overlap for picking up a floor item was read; the 1.x box in tiles, and whether items are drawn under or over players, are not known | [bin] (client-internals/item-drops.md#open) |
 | Settles it | reading the pickup test of 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
 
 ### E#318 Level reload on re-entry offline
+
+Whether offline 2.05 reloads a level on re-entry, which would bring a cut bush back, is untested [bin] (client-internals/board-respawn.md#open).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -401,12 +487,16 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#319 The single-player start levels
 
+Three level names trigger an extra setup step in 2.05 that was not traced [2.05] (client-internals/offline-tutorial-205.md#special-level-names).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | loading `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` runs an extra setup step in 2.05; what the step does was not traced | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
 | Settles it | loading each name offline on 2.05 in the lab and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 
 ### E#320 Does any server check the tamper check
+
+No server is known to check the tamper-check value [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -415,6 +505,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#321 The 2.31 window blacklist
 
+The 2.31 window blacklist and the client's reaction to a match are not decoded [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | 2.31 compares top-level window titles and classes with an obfuscated list every 3.2 s; the list and the client's reaction to a match are not decoded | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
@@ -422,11 +514,15 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#322 How others see a key emote
 
+A key emote is drawn locally and not sent, yet captures show an image being re-sent. The source of those frames is unknown [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | the 2.05 Ctrl+letter path draws the emote locally and sends nothing, yet captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s; they may come from a server script calling `showimg` or from an untraced path | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | Settles it | a lab capture of a real 2.05 client pressing Ctrl+A next to a second client | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
 ### E#323 Level-object routines not read (2.22)
+
+Several 2.22 level-object routines were not read. The row lists them [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -434,6 +530,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | reading those routines in the 2.22 client, or a lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 
 ### E#400 Two projects called Ash
+
+Two different things are called Ash in the notes. The manual keeps them apart until their archives are compared [src] (server-notes/01-lineage.md#what-is-binary--world-only).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -444,6 +542,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#401 Listserver reply ids 1 and 2
 
+Listserver ids 1 and 2 are read differently by RC 1.41 and by later clients [srv] (protocol/listserver.md#listserver--client).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | id 1 is NULL (empty) and id 2 is STATUS text with `\r` as a line break; 2.17, 2.22 and the public service send status text as id 2 | [srv] (protocol/listserver.md#listserver--client); [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
@@ -452,6 +552,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a 2002-era listserver binary or capture, or a re-read of the 2.05 handler for id 1 | [inf] (protocol/listserver.md#205-specifics-205) |
 
 ### E#402 The 2000-era listserver reply
+
+Whether today's legacy listserver reply matches the service of 2000 to 2002 is unknown [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -462,6 +564,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#403 Classic logins on port 14922
 
+A real 2.17.1 sends a classic login to a port that does not answer it today [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | a real 2.17.1 sends a classic login (shape B) to port 14922, the port in its signed `arrays2.dat` | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
@@ -470,6 +574,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a list-only capture of a pristine 2.17.1 against the public service; this touches a public server and needs the owner's written permission | [doc] (AGENTS.md#labs) |
 
 ### E#404 A public server refusing 2.05 inside its own range
+
+A public server refused 2.05 although its printed range seems to include it [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -480,6 +586,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#405 RC token `GSERV025`
 
+The server knows an RC token that no RC build read so far sends [srv] (protocol/chat-pm-rc.md#admin-and-staff).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the server knows the RC tokens `GSERV023` to `GSERV025` | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
@@ -489,6 +597,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#420 Flag and chest counts in the RC props tail
 
+The RC props tail holds two counts, and it is not known which counts flags and which counts chests [cap] (protocol/rc-capture-2026-11-04.md#player-props).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the tail after the props block in 72 and 76 holds two `s` counts, then the weapons; one counts flags and one opened chests | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
@@ -497,6 +607,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#421 The last byte of RC_PLAYERPROPSSET2
 
+The 2004 RC adds one byte the server's message lacks, and its meaning is unknown [cap] (protocol/rc-capture-2026-11-04.md#player-props).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 2004 RC's 76 ends with one byte after the weapons, 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
@@ -504,6 +616,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a static read of the RC's 76 builder, or a capture after changing other dialog fields | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 
 ### E#422 Quoting of folder rights
+
+The 2004 RC and a server fork quote folder rights differently [cap] (protocol/rc-capture-2026-11-04.md#rights).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -514,6 +628,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#500 Back clipping plane of the Graal3D client
 
+Which back clipping plane the Graal3D client uses is unknown [doc] (graal3d/camera.md#field-of-view).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets no field of its own | [doc] (graal3d/camera.md#field-of-view) |
@@ -523,6 +639,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#501 Class CRC of the 4.04r2 3D plug-in
 
+Two reads disagree on whether 4.04r2 sends a real class CRC [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 4.04r2 connect request carries the stock Torque class CRC, so a server needs exactly the same list of networked classes or the client is rejected with `CHR_INVALID` | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
@@ -531,6 +649,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a capture of a 4.04r2 connect request | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#502 Whether 4.04r2 loads `.mis` mission files
+
+Whether 4.04r2 can load a local `.mis` file is open. The network path is confirmed, but a local reader is neither found nor ruled out [bin] (torque/engine-and-formats.md#3d-resource-formats).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -542,6 +662,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
 
+Whether 4.04r2 still reads compiled TorqueScript is open. The corrected evidence row narrows what the strings show [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
@@ -552,6 +674,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#600 Tile layer as GraalEditor writes it
 
+Which board form GraalEditor writes has never been checked against a file it saved [GE] (tools/graaleditor.md#document-model).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices, which the client GLEVNW01 loader does not accept until rewritten as base64 runs | [GE] (tools/graaleditor.md#document-model); [GE] (formats/glevnw01.txt) |
@@ -560,6 +684,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | saving a level from GraalEditor 2.3.1.1 and reading its `BOARD` rows | [inf] (tools/level-editor/version-deltas.md#3-formats-per-build) |
 
 ### E#601 Whether link arrival offsets are evaluated
+
+Whether the client evaluates an offset in a link's arrival field is untested [2.22] (tools/level-editor/222-reference.md#8-links).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -570,6 +696,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#602 Code width of `Z3-V1` boards
 
+Two sources give different board code widths for `Z3-V1.02` [srv] (formats/level-binary.md#z3-v1-differences).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | `Z3-V1.02` uses 11-bit codes and `Z3-V1.03`/`.04` use 12; only the 1998 Java Zelda Online games read `.02` | [srv] (formats/level-binary.md#z3-v1-differences) |
@@ -578,6 +706,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a `Z3-V1.02` file decoded both ways, and a trace of whether 2.05 reads that magic | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
 
 ### E#603 Whole tiles and fractions in level records
+
+Which level-record fields are whole tiles and which take fractions is not fully listed. A 4.04r2 read covers one reader [srv] (formats/level-binary.md#records).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -589,6 +719,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#604 Where a binary sign list ends
 
+Where a binary sign list ends differs between readers [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | 2.05 reads signs to the end of the file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
@@ -599,6 +731,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#605 Client listserver frames in two vocabularies
 
+Two descriptions of the client's listserver frames use different words and have not been set beside a capture [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | 2.00 and 2.05 send id 0 and `newmain` in one plain zlib frame; 2.17 adds id 1 with account and password; 2.22 and 2.31 send id 7, a key byte, `GNW30123` and `newmain`, then a generation-5 frame with id 1 | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
@@ -607,6 +741,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | loopback captures of 2.05, 2.17 and 2.22 written out frame by frame beside both descriptions | [doc] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
 
 ### E#606 Whether a gmap carries `HEIGHTS` blocks
+
+Whether a gmap holds per-level `HEIGHTS` blocks is settled for one reader. The remaining limit says what is still unknown [doc] (protocol/format-notes-from-salvage.md).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -617,6 +753,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#607 Leftover lines in the protocol cheat sheet
 
+An old protocol cheat sheet still carries lines that later notes withdrew [doc] (protocol/PROTOCOL-CHEATSHEET.md).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the cheat sheet still shows a raw byte after the version, says RC clients do not scramble, names 100, 101 and 102 as file length, tiles and file blob, and cuts frames into 1,024-byte slices; the recovery note shows guessed ids 1 (login), 16 (level request) and 32 (player update) | [doc] (protocol/PROTOCOL-CHEATSHEET.md); [doc] (protocol/login-recovery-start.md) |
@@ -625,6 +763,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | a 2.05 login, a generation-3 RC session, a generation-5 flush and four labelled facings, each set beside the line it tests | [doc] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
 
 ### E#608 How many `arrays.dat` lists make a tile passable
+
+Two summaries disagree on how many `arrays.dat` lists decide walkability, and no runtime consumer has been traced [doc] (CONSOLIDATED.md#tiles).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -635,6 +775,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | trace the exact consumer or test distinguishing list-1-only values in a controlled client scene | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#609 macOS archive labels and application identity
+
+The macOS archive labels cannot yet be tied to the historical 3.153 build [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim).
 
 | Item | Content | Source |
 | --- | --- | --- |
@@ -647,6 +789,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 
 ### E#610 Windows 4.04r2 offline initialization versus gameplay
 
+A 4.04r2 offline transition was observed under a harness, but no gameplay was. The rows say what was seen and what is open [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition).
+
 | Item | Content | Source |
 | --- | --- | --- |
 | Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
@@ -654,6 +798,8 @@ Separately, four exact Mac PowerPC receivers use whole-group compressed advancem
 | Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 
 ### E#611 Windows 4.04r2 pickup semantics and input qualification
+
+4.04r2's pickup state is recovered statically, but no interaction was captured [bin][cap] (client-internals/404r2-carry-state.md).
 
 | Item | Content | Source |
 | --- | --- | --- |

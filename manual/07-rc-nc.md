@@ -9,6 +9,8 @@ RemoteControl (RC) is the staff client for a game server; NPC Control (NC) is it
 
 ### 7.1.1 Builds
 
+RemoteControl went through many builds. Each row gives one archive, its date, its login token, its number of forms and what it added [bin] (tools/remotecontrol-lineage.md#builds).
+
 | Archive | Title date | Login token | Forms | Adds | Source |
 | --- | --- | --- | ---: | --- | --- |
 | rc133 | none | `GSERV014` | 7 | accounts, players, send, update levels | [bin] (tools/remotecontrol-lineage.md#builds) |
@@ -24,10 +26,14 @@ The archive names do not sort by date: rc141 is the newest of the 2000–2002 se
 
 ### 7.1.2 Login
 
+The RC login changed in 2004. Each row gives a group of builds, the first message and the framing during and after login [bin] (tools/remotecontrol-lineage.md#what-stays-the-same-bin).
+
 | Builds | First message | Mode during login | Mode after | Source |
 | --- | --- | --- | --- | --- |
 | 1999 to rc141 (2002) | type 1, token, `str account`, `str password`; no key byte | `u16be` length + zlib, no cipher, no type byte | unchanged | [bin] (tools/remotecontrol-lineage.md#what-stays-the-same-bin); [bin] (tools/npc-control.md#logins-bin) |
 | 2004 | type 6, `c key` (`rand & 0x7F`), `GSERV024`, `str account`, `str password` | `u16be` length + zlib, no cipher, no type byte | generation 5 (type byte + partial XOR) | [bin] (tools/remotecontrol.md#logins-bin) |
+
+The rules below explain the RC2 name, how the tokens are stored and the defaults in the connect dialog [bin][srv] (tools/remotecontrol.md#logins-bin).
 
 | Rule | Source |
 | --- | --- |
@@ -47,6 +53,8 @@ Right after login the RC sends one `PLI_PLAYERPROPS` (2):
 | 2004 | a short message whose prop list is not traced | [bin] (tools/remotecontrol.md#logins-bin) |
 
 ### 7.1.3 Framing
+
+RC framing is the game framing without the cipher. Each row gives a group of builds and its rule [bin] (tools/remotecontrol.md#codec).
 
 | Builds | Rule | Source |
 | --- | --- | --- |
@@ -104,9 +112,13 @@ From 2000/8/19 accounts move to 70 to 78, and 51 to 54 are unused until 2002/05/
 
 ### 7.1.6 Server → RC ids
 
+The 2004 RC handles a fixed set of ids from the server. The row lists them [bin] (tools/remotecontrol.md#ids).
+
 | Builds | Ids handled on the RC socket | Source |
 | --- | --- | --- |
 | 2004 | 13, 16, 30, 35, 37, 55–59, 61–70, 72–74, 76, 77, 79, 100, 103, 180 | [bin] (tools/remotecontrol.md#ids) |
+
+The table gives each server-to-RC id with its name and layout [srv][2.05] (protocol/chat-pm-rc.md#toall).
 
 | Id | Name | Layout | Source |
 | ---: | --- | --- | --- |
@@ -123,12 +135,16 @@ Players in jail can PM only RCs [srv] (protocol/chat-pm-rc.md#private-messages).
 
 ### 7.1.7 Features and local settings
 
+RC features were added build by build. Each row gives a build and what it added [bin] (tools/remotecontrol-lineage.md#feature-timeline-from-forms-bin).
+
 | Build | Feature | Source |
 | --- | --- | --- |
 | rc133 | player list (nickname, account, level, head, id), disconnect, edit player, message, message to all, account list (add, delete, edit), update levels; the account form already carries rights (Load only, Graalian Police, Trusted Admin, Administrator, No rights, Blocked), look, position, items, weapons, opened chests, NPC flags, MP, AP, spin attack | [bin] (tools/remotecontrol-lineage.md#feature-timeline-from-forms-bin) |
 | 2000/8/19 | chat window (RTF), server flags, toalls, SQL account list with a filter, message editor, options (ignore mass messages, no HTML in PMs, no images in PMs, away on close), warp player | [bin] (tools/remotecontrol-lineage.md#feature-timeline-from-forms-bin) |
 | 2001/08/20 | edit rights, edit comments, local ban | [bin] (tools/remotecontrol-lineage.md#feature-timeline-from-forms-bin) |
 | 2002/05/02 | NPC Control (NPC list, add NPC, local NPCs, classes, weapons, level list), listserver login and server list, file browser with drag and drop, short message popup | [bin] (tools/remotecontrol-lineage.md#feature-timeline-from-forms-bin) |
+
+RC keeps its settings in two places. Each row gives a setting and where it is stored [bin] (tools/npc-control.md#local-settings-bin).
 
 | Setting | Where | Source |
 | --- | --- | --- |
@@ -145,6 +161,8 @@ One session of the 2004 RC against a GServer-v2 fork, with one 2.22 player onlin
 | --- | --- | --- |
 | after login | server → RC in this order: 25, 194, 74 three times, 190 (empty), 47, 180, 103, one 55 per player online, then 74 `Currently online: ...` | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
 | after login | the RC then sends 2 PLAYERPROPS twice and the server answers with 9 | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
+
+Player administration was captured on the wire from a 2004 RC. Each row gives a direction, an id and its layout [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login).
 
 | Dir | Id | Layout | Source |
 | --- | ---: | --- | --- |
@@ -164,6 +182,8 @@ One session of the 2004 RC against a GServer-v2 fork, with one 2.22 player onlin
 | S→RC | 64 RC_PLAYERBANGET | `str account`, `c banned`, reason (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 | RC→S | 88 RC_PLAYERBANSET | `str account`, `c banned`, reason as CSV (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 
+The rules below record what the capture showed: which props the RC sends back, how rights map to bits, and what the ban menu offers [cap] (protocol/rc-capture-2026-11-04.md#player-props).
+
 | Observation | Rule | Source |
 | --- | --- | --- |
 | props sent back | the RC's 76 leaves out props 0, 30, 34 and 36, adds 21, 22 and 23 as one zero byte each, and sends 29 as 0 | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
@@ -173,6 +193,8 @@ One session of the 2004 RC against a GServer-v2 fork, with one 2.22 player onlin
 ## 7.2 NC login
 
 ### 7.2.1 Login and framing
+
+NPC Control logs in on its own socket. The rules below give its first message and framing [bin] (tools/npc-control.md#logins-bin).
 
 | Rule | Source |
 | --- | --- |
@@ -193,6 +215,8 @@ The RC never asks for an NC address [bin] (tools/npc-control.md#finding-the-npc-
 | 3 | the server answers id 79 (`PLO_NPCSERVERADDR`): `s player id`, then `ip,port` | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 | 4 | the RC opens the NC socket only if it is not already open and that player's nickname still contains `(Server)`, then sends the NC login | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 
+The rules below give how NPC Control finds the NPC server and what the 2001 texts say about it [bin][inf] (tools/npc-control.md#finding-the-npc-server-bin).
+
 | Rule | Source |
 | --- | --- |
 | The binary's default NC fields (the loopback address and 14804) are leftovers of the old start dialog and unused once discovery works | [bin][inf] (tools/npc-control.md#finding-the-npc-server-bin); [bin] (protocol/npc-control.md#finding-the-npc-server-bin) |
@@ -204,6 +228,8 @@ The RC never asks for an NC address [bin] (tools/npc-control.md#finding-the-npc-
 On the NC socket, received ids 33, 80, 157 to 164 and 167 go to the NC handler; everything else, 16 included, goes to the RC handler [bin] (tools/npc-control.md#routing-on-the-nc-socket-bin).
 
 ### 7.3.1 NC → client
+
+These are the ids NPC Control receives. Each row gives the id, its name, its layout and what it opens [bin] (tools/npc-control.md#nc--client-ids-handled).
 
 | Id | Name | Layout | Effect | Source |
 | ---: | --- | --- | --- | --- |
@@ -222,6 +248,8 @@ On the NC socket, received ids 33, 80, 157 to 164 and 167 go to the NC handler; 
 | 188 | NC_CLASSDELETE | class name, form unmeasured | handled from 2004, not in 2002 | [bin][inf] (protocol/npc-control.md#nc--client-server-ids) |
 
 ### 7.3.2 Client → NC
+
+These are the ids NPC Control sends. Each row gives the id, the action that sends it and its payload [bin] (tools/npc-control.md#client--nc-ids-sent).
 
 | Id | Name | From | Payload | Source |
 | ---: | --- | --- | --- | --- |
@@ -246,6 +274,8 @@ On the NC socket, received ids 33, 80, 157 to 164 and 167 go to the NC handler; 
 | 119 | NC_CLASSDELETE | class delete; sent from 2004, no button in 2002 | class name | [bin] (protocol/npc-control.md#client--nc-client-ids) |
 | 150 | NC_LEVELLISTGET | console button | empty | [bin] (tools/npc-control.md#client--nc-ids-sent) |
 | 151 | NC_LEVELLISTSET | level list editor: Save | level list | [bin] (tools/npc-control.md#client--nc-ids-sent) |
+
+The rules below give how NC saves its texts and which reply layouts are still unmeasured [bin] (tools/npc-control.md#client--nc-ids-sent).
 
 | Rule | Source |
 | --- | --- |

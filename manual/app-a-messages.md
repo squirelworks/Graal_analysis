@@ -5,6 +5,8 @@ Every client-to-server (PLI) and server-to-client (PLO) id with its wire byte an
 
 ## A.1 Client to server
 
+This is the index of every client-to-server id. Each row gives the logical id, its wire byte, its name, whether 2.05 sends it, and the section that describes it [srv][2.05] (protocol/packet-ids.md#client--server-pli_).
+
 | Id | Wire | Name | 2.05 | Section | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 0 | `0x20` | `PLI_LEVELWARP` | sent | → §2.4.3 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
@@ -137,6 +139,8 @@ Every client-to-server (PLI) and server-to-client (PLO) id with its wire byte an
 | 253 | n/a (above 223) | `PLI_BUNDLE` | no | → §2.4.9 | [srv][2.05] (protocol/packet-ids.md#client--server-pli_) |
 
 ## A.2 Server to client
+
+This is the index of every server-to-client id. The 2.05 column says whether 2.05 handles the id [srv][2.05] (protocol/packet-ids.md#server--client-plo_).
 
 | Id | Wire | Name | 2.05 | Section | Source |
 | ---: | --- | --- | --- | --- | --- |
@@ -308,6 +312,8 @@ An older gs2lib copy (the GServer-v2 submodule of 2025-01) uses these names for 
 | `PLO_UNKNOWN185` | 185 | `PLO_BOARDHEIGHTS` | [srv] (protocol/packet-ids.md#renames-between-gs2lib-versions) |
 | `PLO_UNKNOWN186` | 186 | `PLO_BOARDMODIFY2` | [srv] (protocol/packet-ids.md#renames-between-gs2lib-versions) |
 | `PLO_UNKNOWN190` | 190 | `PLO_SERVERLISTCONNECTED` | [srv] (protocol/packet-ids.md#renames-between-gs2lib-versions) |
+
+Some ids have had more than one name. The rules below record the name changes between copies of the server library [srv] (protocol/packet-ids.md#renames-between-gs2lib-versions).
 
 | Rule | Source |
 | --- | --- |

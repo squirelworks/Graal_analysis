@@ -23,6 +23,8 @@ The Torque years are best understood as three different programs that share the 
 
 ### 10.1.1 Builds
 
+The Torque era spans several builds and platforms. Each row gives one build with its date, its shape, how much of Torque it carries, its 3D world, its game string and its menu scripts [bin] (torque/wire-by-build.md#which-builds-are-torque).
+
 | Build | Date | Shape | Torque part | 3D world | Game string / protocol | Menu scripts | Source |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1998 to 2.31 | — | Delphi | none | none | n/a | n/a | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
@@ -36,6 +38,8 @@ The Torque years are best understood as three different programs that share the 
 | 6.x | 2010–2014 | native C++ per platform | no Torque 3D; GS2 keeps Torque control names (→ §10.1.8) | none | n/a | GS2 | [bin] (torque/README.md#lineage-at-a-glance); [bin] (client-internals/engine-600r2.md#what-torque-names-remain) |
 
 ### 10.1.2 Engine version and changes
+
+The facts below give the Torque version each build reports and what Graal changed or added to the engine [bin] (torque/engine-and-formats.md#which-torque).
 
 | Fact | Source |
 | --- | --- |
@@ -62,6 +66,8 @@ The Graal changes a compatible peer adds to open TGE [bin] (graal3d/torque-engin
 | GS2 in place of TorqueScript, from 4.x on | [bin] (graal3d/torque-engine-4x.md#overview) |
 
 ### 10.1.3 Rendering
+
+The facts below give the display devices every build has and how each platform draws [bin] (torque/engine-and-formats.md#rendering).
 
 | Fact | Source |
 | --- | --- |
@@ -265,6 +271,8 @@ The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the 
 
 ## 10.2 Join sequence
 
+Joining a 3D server runs the same routine in several builds. The steps below are in order [bin] (protocol/v3x-clients.md#listserver).
+
 | Step | What happens | Source |
 | ---: | --- | --- |
 | 1 | The server list marks a 3D server with the name prefix `3 ` (the "Graal 3D" tab) | [bin] (protocol/v3x-clients.md#listserver) |
@@ -273,6 +281,8 @@ The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the 
 | 3b | 4.04r2 and 5.12 first ask the launcher (a non-zero answer cancels), then have it connect to host, port + 1, with the UDP option; 4.04r2 loads `Graal3DEngine.dll` on demand at this point | [bin] (torque/network.md#how-a-client-gets-to-a-3d-server) |
 | 4 | In both 2D and 3D the client opens the normal Graal TCP connection to the listed port and logs in as usual (→ §2.3) | [bin] (torque/network.md#how-a-client-gets-to-a-3d-server) |
 | 5 | The Torque handshake runs on UDP (→ §10.3), then the mission download (→ §10.3.6) | [bin][run] (torque/network.md#the-full-handshake-live) |
+
+The rules below give how a 3D server is split across two ports and how the client picks its own UDP port [bin][run] (torque/network.md#how-a-client-gets-to-a-3d-server).
 
 | Rule | Source |
 | --- | --- |
@@ -313,6 +323,8 @@ The first bit of a datagram picks the kind: 1 is a data packet of an established
 | 36 (0x24) | ConnectAccept | S→C | U32 sequence, the class table (from 3.153), U32 protocol (→ §10.3.3) | [bin][run] (torque/network.md#torque-packet-framing) |
 | 38 (0x26) | Disconnect | both | U32 sequence, string reason | [bin][run] (torque/network.md#torque-packet-framing) |
 
+Torque info packets come before the connection. The rules below say how they are routed and how strings in them are encoded [bin] (torque/network.md#torque-packet-framing).
+
 | Rule | Source |
 | --- | --- |
 | Types below 23 go to the master-server and LAN query handler | [bin] (torque/network.md#torque-packet-framing) |
@@ -333,6 +345,8 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 | argc (at most 16), then strings | script args | engine-set, not traced | 2: account, nickname | not traced | 2: account, nickname | [bin] (torque/network.md#the-connect-request-by-version) |
 | server side of the request | stock script `onConnectRequest` | stock script `onConnectRequest` | native | native | native | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
 
+The connect request differs by build. The rules below record a live 5.12 request decoded in full and how a 5.12 server rejects a wrong game string [run] (torque/network.md#the-full-handshake-live).
+
 | Rule | Source |
 | --- | --- |
 | The live 5.12 request was 71 bytes and decoded completely: group 0, CRC `0xFFFFFFFF`, `Graal3D`, 24/24, the built-in guest password as join password, argc 2 (`guest`, empty nickname), no bits left over | [run] (torque/network.md#the-full-handshake-live) |
@@ -342,6 +356,8 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 
 ### 10.3.3 Connect accept and class table
 
+The connect accept carries a class table. Each row gives one field of a table entry, its width and its meaning [bin][run] (torque/network.md#the-connect-request-by-version).
+
 | Field | Width | Meaning | Source |
 | --- | --- | --- | --- |
 | flag | 1 bit | 1 = another entry follows, 0 = end of table | [bin][run] (torque/network.md#the-connect-request-by-version) |
@@ -349,6 +365,8 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 | server class id | 12 bits | 0 to 255 | [bin] (torque/network.md#the-connect-request-by-version) |
 | class name | string | Huffman string, such as `NetStringEvent` | [bin] (torque/network.md#the-connect-request-by-version) |
 | protocol | U32 | after the end flag; must equal the build's protocol | [bin][run] (torque/network.md#the-connect-request-by-version) |
+
+The rules below give how the client matches those entries to its own classes [bin] (torque/network.md#the-connect-request-by-version).
 
 | Rule | Source |
 | --- | --- |
@@ -361,6 +379,8 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 | Each build accepts exactly its own protocol (9, 19, 19, 21, 24); anything else gives `CHR_PROTOCOL` | [bin] (torque/network.md#the-connect-request-by-version) |
 
 ### 10.3.4 Live handshake (5.12)
+
+A live 5.12 handshake was captured. Each row is one packet, with its time from the first and its direction [run] (torque/network.md#the-full-handshake-live).
 
 | Time | Direction | Packet | Source |
 | --- | --- | --- | --- |
@@ -375,6 +395,8 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 The client's console logged the same steps: "Sending Connect challenge Request", "Got Connect challenge Response", "Sending Connect Request", "Connection established", and at the end "Issuing Disconnect packet." [run] (torque/network.md#the-full-handshake-live).
 
 ### 10.3.5 Data packets
+
+The rules below give the header of a Torque data packet as stock TGE writes it [bin][run] (torque/network.md#after-the-connection-is-accepted).
 
 | Rule | Source |
 | --- | --- |
@@ -397,6 +419,8 @@ Game-packet bodies after the header [bin] (graal3d/torque-engine-4x.md#server--c
 | C→S field of view | flag → int8 | flag → int8, clamped to 1–179 | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 | Both, then | events, then ghosts | events, then ghosts | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 
+Graal adds to the stock data packet. The rules below give those additions and what 5.12 reports in them [bin] (graal3d/torque-engine-4x.md#server--client-data-packet).
+
 | Rule | Source |
 | --- | --- |
 | The u32 server time is a Graal addition; the client keeps it as its synchronised clock | [bin] (graal3d/torque-engine-4x.md#server--client-data-packet) |
@@ -408,10 +432,14 @@ Game-packet bodies after the header [bin] (graal3d/torque-engine-4x.md#server--c
 
 ### 10.3.6 Mission download
 
+Mission download runs in phases, and 5.12 drops one. Each row gives a group of builds and its phases [bin][file] (torque/network.md#after-the-connection-is-accepted).
+
 | Build | Phases | Source |
 | --- | --- | --- |
 | 3.153, 4.04r2 (stock TGE) | 1 "Download Datablocks & Targets", 2 "Download Ghost Objects", 3 "Mission Lighting" | [bin][file] (torque/network.md#after-the-connection-is-accepted) |
 | 5.12 | 1 "Download Ghost Objects", 2 "Mission Lighting" | [bin] (torque/network.md#after-the-connection-is-accepted) |
+
+The rules below give how the server drives the phases and how the client answers [bin] (torque/network.md#after-the-connection-is-accepted).
 
 | Rule | Source |
 | --- | --- |
@@ -429,6 +457,8 @@ The retained Windows 4.04r2 review traces native datablock/ghost/lighting phase 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
 
 ### 10.4.1 Shipped scripts
+
+Each build ships its own set of compiled scripts. The table gives a build and what its scripts cover [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
 
 | Build | Scripts | Source |
 | --- | --- | --- |
@@ -451,6 +481,8 @@ All integers little-endian [file] (torque/scripting.md#file-format-version-33).
 | code | `codeLength` words; each one byte, or `0xFF` then a U32 | [file] (torque/scripting.md#file-format-version-33) |
 | lineBreakPairCount × 2 × U32 | line and ip pairs | [file] (torque/scripting.md#file-format-version-33) |
 | U32 identCount, then per ident U32 string offset, U32 count, count × U32 ip | patches identifier words in the code with global-string entries | [file] (torque/scripting.md#file-format-version-33) |
+
+Compiled TorqueScript files have tables for strings and numbers. The rules below give how they are used and one byte-order difference on the Mac [file] (torque/scripting.md#file-format-version-33).
 
 | Rule | Source |
 | --- | --- |
@@ -494,6 +526,8 @@ The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJE
 | 26 | ONESCOMPLEMENT | 54 | SAVEFIELD_FLT | 82 | BREAK | [file] (torque/scripting.md#graals-opcode-table) |
 | 27 | SHR | 55 | SAVEFIELD_STR | — | — | [file] (torque/scripting.md#graals-opcode-table) |
 
+The rules below give the operands of the opcodes that take them [file] (torque/scripting.md#graals-opcode-table).
+
 | Rule | Source |
 | --- | --- |
 | Operands: `FUNC_DECL` name, namespace, package, hasBody, end ip, argc, then argc arg idents; `CREATE_OBJECT` parent ident, isDatablock, fail ip; `ADD_OBJECT` and `END_OBJECT` one flag; jumps one target | [file] (torque/scripting.md#graals-opcode-table) |
@@ -502,6 +536,8 @@ The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJE
 | The repo has a disassembler and a decompiler for this format under `torque/tools/` | [doc] (torque/scripting.md#the-decoder) |
 
 ### 10.4.4 What the 3.153 scripts do
+
+The 3.153 scripts run the menus and settings. Each row gives one script area and what it does [file] (torque/scripting.md#what-the-3153-scripts-do).
 
 | Script area | Behaviour | Source |
 | --- | --- | --- |
@@ -517,6 +553,8 @@ The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJE
 ## 10.5 Object model
 
 ### 10.5.1 Networked classes
+
+Each build registers its own set of networked classes. The table gives each build's set [bin] (torque/wire-by-build.md#the-handshake-per-build).
 
 | Build | Networked classes | Source |
 | --- | --- | --- |
@@ -540,6 +578,8 @@ The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJE
 | Graal replicators | `DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator` | [bin] (graal3d/torque-engine-4x.md#ghosts-graal-changes) |
 | datablocks | the stock `…Data` classes for shapes, images, items, players, cameras, vehicles, projectiles, effects, particles, audio, markers, interiors and triggers | [bin] (graal3d/torque-engine-4x.md#ghosts-graal-changes) |
 
+The rules below give details of those classes in 4.04r2 that a string search would miss [bin] (torque/wire-by-build.md#the-networked-class-sets).
+
 | Rule | Source |
 | --- | --- |
 | In 4.04r2 `Item`, `Sky`, `Sun` and `Path` register by string address, so a plain string search misses them | [bin] (torque/wire-by-build.md#the-networked-class-sets) |
@@ -562,6 +602,8 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | `Camera` | the view | modes `free` and `lookat`, follow an attached object, look position and vector, Euler rotation | [bin] (torque/engine-and-formats.md#the-512-3d-object-model) |
 | `DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator` | ground cover | terrain alignment, slope limits, allowed surfaces, per-grid counts | [bin] (torque/engine-and-formats.md#the-512-3d-object-model) |
 | `Sky`, `Sun`, `WaterBlock`, `fxSunLight`, `TerrainBlock` | stock Torque | three cloud layers, fog volumes, fog storms with server-synchronised time | [bin] (torque/engine-and-formats.md#the-512-3d-object-model) |
+
+5.12 adds a `GameObject` class that bridges 3D and 2D Graal. The rules below give its model and its GS2 properties [bin] (torque/engine-and-formats.md#the-512-3d-object-model).
 
 | Rule | Source |
 | --- | --- |
@@ -588,6 +630,8 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 ### 10.5.3 Graal events over Torque
 
+Graal sends its own events over the Torque connection. Each row gives an event, its direction and its layout [bin] (graal3d/torque-engine-4x.md#graal-events-and-text-big-data-channel).
+
 | Event | Direction | Layout | Source |
 | --- | --- | --- | --- |
 | `BigDataStartEvent` | both | int16 transfer id, three strings (`s1`, `s2`, `s3`, each up to 255 characters), int24 total length, int3 coding (0 none, 1 zlib, 2 bzip2) | [bin] (graal3d/torque-engine-4x.md#graal-events-and-text-big-data-channel) |
@@ -598,6 +642,8 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | `SimDataBlockEvent` (4.04r2) | S→C | int12 (id − 3), int12 class id, int12 index, int13 total, sized datablock data | [bin] (graal3d/torque-engine-4x.md#events) |
 | `RemoteCommandEvent` | both | int5 argc, tagged-string arguments; the 4.04r2 client acts only on the mission phases | [bin] (graal3d/torque-engine-4x.md#events) |
 | others | — | `GhostAlwaysObjectEvent`, `NetStringEvent`, `ConnectionMessageEvent`, `PathManagerEvent`, `SimpleMessageEvent`, the audio and lightning events, stock TGE | [bin] (graal3d/torque-engine-4x.md#events) |
+
+The rules below give how a BigData message is shaped and how the sender compresses and splits it [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
 
 | Rule | Source |
 | --- | --- |
@@ -613,6 +659,8 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 
 ## 10.6 3D formats
 
+The Torque clients read Torque's 3D formats. Each row gives an extension, its format and the builds that read it [bin] (torque/engine-and-formats.md#3d-resource-formats).
+
 | Ext | Format | Builds | Source |
 | --- | --- | --- | --- |
 | `.dts`, `.dsq` | Torque shape and sequence; 4.04r2 reads up to version 24; 5.12 rejects shapes that are too old | 3.x, 4.04r2, 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats); [bin] (graal3d/torque-engine-4x.md#files) |
@@ -627,6 +675,8 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | `.dso` | compiled TorqueScript (→ §10.4) | 3.x; 4.04r2 disputed → App. E#503 | [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts); [bin] (graal3d/torque-engine-4x.md#files) |
 | images | `.png`, `.jpg`, `.jp2`, `.jng`, `.mng`, `.gif`, `.bmp`, `.bm8`, `.tga`, `.dds` | 4.04r2 | [bin] (graal3d/torque-engine-4x.md#files) |
 | `.zip`, `.gpake` | archives the resource manager opens | 4.04r2 | [bin] (graal3d/torque-engine-4x.md#files) |
+
+The rules below give where 3D content came from and how terrain textures are mapped [file] (torque/engine-and-formats.md#3d-resource-formats).
 
 | Rule | Source |
 | --- | --- |

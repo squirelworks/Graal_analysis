@@ -25,6 +25,8 @@ GServer 1.28 beta 2 (`GServerv.exe`) has the same four timer keys [bin] (client-
 
 ### 5.1.2 Accounts
 
+GServer13 creates every new account from the same template. Each row gives one field of a new account and its default, read from a live run [live] (client-internals/live-gserver13.md#server-settings-and-the-default-account-live).
+
 | Field of a new account (Edit accounts) | Default | Source |
 | --- | --- | --- |
 | level and position | `onlinestartlocal.graal` at x 30.5, y 30 | [live] (client-internals/live-gserver13.md#server-settings-and-the-default-account-live) |
@@ -40,6 +42,8 @@ The rights levels are no rights, Graalian Police, Trusted Admin and Administrato
 
 ### 5.1.3 Login and play
 
+The rules below follow a client through a GServer13 session: the first frame, a refused login, and what arrives after a good one [cap] (client-internals/live-gserver13.md#login-cap).
+
 | Rule | Source |
 | --- | --- |
 | The client's first frame is a `u16be` length and zlib of the id-0 login line with `GSERV014`, account and password (→ §2.3.2) | [cap] (client-internals/live-gserver13.md#login-cap) |
@@ -54,6 +58,8 @@ The rights levels are no rights, Graalian Police, Trusted Admin and Administrato
 
 ### 5.1.4 Board changes and respawn
 
+A board change goes through a fixed set of steps on GServer13. The steps below are in order. Step 3 is the one a client author must know, because the sender gets no echo [bin] (client-internals/board-respawn.md#pli_boardmodify-1-handling-bin).
+
 | Step of `PLI_BOARDMODIFY` (1) | Rule | Source |
 | ---: | --- | --- |
 | 1 | needs at least 4 bytes, a current level, and `len ≥ 4 + 2·w·h` | [bin] (client-internals/board-respawn.md#pli_boardmodify-1-handling-bin) |
@@ -62,6 +68,8 @@ The rights levels are no rights, Graalian Police, Trusted Admin and Administrato
 | 4 | a change of exactly 2 × 2 gets a countdown `Trunc(Random · R/2 + 3R/4)` with R = `respawntime`; any other size never respawns (1 × 1, 2 × 1, 3 × 3, the 4 × 4 push/pull block) | [bin][live] (client-internals/board-respawn.md#pli_boardmodify-1-handling-bin) |
 | 5 | there is no tile check: any 2 × 2 change respawns, whatever the tiles | [bin] (client-internals/board-respawn.md#pli_boardmodify-1-handling-bin) |
 | 6 | the record joins the "changed since you left" list of every player who left the level since loading it; an earlier record with the same `x, y, w, h` is replaced | [bin] (client-internals/board-respawn.md#pli_boardmodify-1-handling-bin) |
+
+Respawn runs from a one-second timer. The rules below give the timer, what a restore sends and when it lands [bin] (client-internals/board-respawn.md#respawn-tick-bin).
 
 | Respawn tick | Rule | Source |
 | --- | --- | --- |
@@ -84,6 +92,8 @@ An open remake of the 1.39 server from December 2006, targeting 2.x clients; one
 
 ### 5.2.1 Process and data
 
+The 39ster server is a small threaded program. Each row gives one part of its process or data, with the rule that governs it [src] (ash/INDEX.md).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | listen port | 14822 by default | [src] (ash/INDEX.md) |
@@ -96,6 +106,8 @@ An open remake of the 1.39 server from December 2006, targeting 2.x clients; one
 
 ### 5.2.2 Connections and login
 
+Each row gives how the 39ster server frames and reads one kind of connection. The RC row shows how much of the RC side is only a stub [src] (ash/BLUEPRINT.md#wire-frame-blueprint).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | frame | `u16be` length (raw, not a G-integer) + zlib; the inflated body is `\n`-separated messages | [src] (ash/BLUEPRINT.md#wire-frame-blueprint) |
@@ -105,6 +117,8 @@ An open remake of the 1.39 server from December 2006, targeting 2.x clients; one
 | descramble | iterator starts at `0x04A80B38`; per line `iterator = iterator · 0x8088405 + key`, then the byte at `(iterator & 0xFFFF) mod count` is dropped | [src] (ash/ALGORITHMS.md#a4--player-descramble-drop-one-lcg) |
 | G-integers | 1 to 5 bytes, 7-bit groups high first, each + 32 (→ §2.1.1); widths used: 2 for player id and script length, 3 for rupees, kills, deaths and NPC id, 5 for file time | [src] (ash/ALGORITHMS.md#a1--gchar-numeric-codec) |
 | head image | `c (100 + n)` then n bytes; an inbound length below 100 is a classic head index, `head{n}.gif` | [src] (ash/ALGORITHMS.md#a1--gchar-numeric-codec) |
+
+Besides the named messages, the server sends three special ids. Each row gives one, its role and its payload [src] (ash/BLUEPRINT.md#server--client-special-ops-not-in-the-named-enum).
 
 | Server id | Role | Payload | Source |
 | ---: | --- | --- | --- |
@@ -120,6 +134,8 @@ GServer-v2 is an open reimplementation, not an original server [src] (client-int
 
 ### 5.3.1 Server source lineage
 
+Several server source trees survive. Each row gives one tree, the era it belongs to and how its code is laid out [src] (server-notes/01-lineage.md#what-is-actually-source).
+
 | Tree | Era | Shape | Source |
 | --- | --- | --- | --- |
 | `linuxgserver131` | 1.31 | one `gserver.cpp` monolith, about 9k lines with zlib headers | [src] (server-notes/01-lineage.md#what-is-actually-source) |
@@ -128,6 +144,8 @@ GServer-v2 is an open reimplementation, not an original server [src] (client-int
 | `gservernwsrc` | NW, about 1.4 | objects and Pascal strings | [src] (server-notes/01-lineage.md#what-is-actually-source) |
 | gs2emu (`d3ecab4`) | Reborn 2.x | typed classes, about 18k lines | [src] (server-notes/01-lineage.md#what-is-actually-source) |
 | Reborn binaries 2.1.0 to 2.4.0, GServer revisions 29, 31, 51 | 2.x, 2.17 line | binaries and default worlds only | [src] (server-notes/01-lineage.md#what-is-binary--world-only) |
+
+The trees group into three eras. Each row gives what an era changed in how a server is built [src] (server-notes/01-lineage.md#what-changed-between-eras).
 
 | Era | What changed | Source |
 | --- | --- | --- |
@@ -138,6 +156,8 @@ GServer-v2 is an open reimplementation, not an original server [src] (client-int
 Two different projects carry the name Ash (→ App. E#400).
 
 ### 5.3.2 Login and receive path
+
+The rules below give how GServer-v2 reads a frame and a login, and how the login type picks the generation [src] (server-notes/03-protocol.md#protocol).
 
 | Rule | Source |
 | --- | --- |
@@ -170,6 +190,8 @@ Real 2.05 rev 2, 2.17.1 and 2.22 reach the game and walk on a GServer-v2 build w
 
 ### 5.3.4 Version-dependent paths
 
+GServer-v2 serves clients differently by version. Each row gives a path that depends on the version id and the rule behind it [src] (tools/lab-servers/README.md#524-in-gs2libs-version-table-2026-10-31).
+
 | Path | Rule | Source |
 | --- | --- | --- |
 | version id | the token is looked up in a table; the position in the table is the version id, and comparisons are by id | [src] (tools/lab-servers/README.md#524-in-gs2libs-version-table-2026-10-31) |
@@ -182,6 +204,8 @@ Real 2.05 rev 2, 2.17.1 and 2.22 reach the game and walk on a GServer-v2 build w
 
 ### 5.3.5 Wire encodings the server writes
 
+Each row gives one encoding the server writes and its limits. A client author can check a decoder against these [src] (server-notes/03-protocol.md#g-integers-cstring-writeg).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | G-integers | `c` up to 223, `s` up to 12255, `i3` up to 1 568 735, `i4`, and `i5` for file size and time (→ §2.1.1) | [src] (server-notes/03-protocol.md#g-integers-cstring-writeg) |
@@ -191,6 +215,8 @@ Real 2.05 rev 2, 2.17.1 and 2.22 reach the game and walk on a GServer-v2 build w
 | props | the prop encodings are in → §2.6 | [src] (server-notes/03-protocol.md#player-props) |
 
 ### 5.3.6 Word filter
+
+`rules.txt` is a word filter. The table gives its file, its header and the fields of a rule [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver).
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -202,6 +228,8 @@ Real 2.05 rev 2, 2.17.1 and 2.22 reach the game and walk on a GServer-v2 build w
 | chat echo | when a chat line was changed, the server sends the new CURCHAT back to the sender so its own bubble shows the filtered text | [srv] (client-internals/feature-specs/12-motd-rules.md#rules-in-gserver) |
 
 ### 5.3.7 Board respawn
+
+GServer-v2 respawns board changes on its own terms. The rules below give which changes respawn, after how long, and how a new change clears old ones [src] (client-internals/board-respawn.md#gserver-v2-lab-server-src).
 
 | Rule | Source |
 | --- | --- |
@@ -220,6 +248,8 @@ The 1.42 release moved bush and pot drops to the server [doc][bin] (client-inter
 
 ### 5.4.1 Account stores
 
+Servers keep accounts in different files. Each row gives a server, a file or field, and its layout [src] (tools/classic-tools/gserverstat.md#what-it-reads).
+
 | Server | Store | Layout | Source |
 | --- | --- | --- | --- |
 | 1999 gserver tree | `accountslist.txt`, one account per line | `str` name, `str` password, a flag byte, a 3-byte file number | [src] (tools/classic-tools/gserverstat.md#what-it-reads) |
@@ -228,6 +258,8 @@ The 1.42 release moved bush and pot drops to the server [doc][bin] (client-inter
 | 1999 gserver tree | `accounts.txt` | read if present, imported, then removed | [src][bin] (tools/classic-tools/gserverstat.md#what-it-reads) |
 | GServer 1.39 with MySQL | `accounts` table | `accname`, `encrpass` (traditional DES `crypt`), `email`, `blocked`, `onlyload`, `adminlevel`, `adminworlds`, `lastused` | [src][bin] (tools/server-tools-2001.md#gserver-139-web-scripts-2001) |
 | gs2emu / GServer-v2 | `GRACC001` files | text account files | [src] (server-notes/01-lineage.md#what-changed-between-eras) |
+
+The rules below record what the 1999 and 1.39 servers did with account data: stat pages, count files and the chat commands players could use [src][bin] (tools/classic-tools/gserverstat.md#what-it-reads).
 
 | Account rule | Source |
 | --- | --- |
@@ -250,6 +282,8 @@ The 1999 servers accept a fixed list of `GSERV` tokens with a minimum per connec
 | The newer branch groups ranges by `generation`: `classic` = 1.41r1 only, `newmain` = 2.22 to 2.31, `modern` = 5.12 to 6.037; stock, it refuses 2.05 and 2.17 | [src] (server-notes/lab-servers-2026-10-30.md#beta4-built-and-run-against-real-clients-lab); [src] (tools/lab-servers/README.md#524-in-gs2libs-version-table-2026-10-31) |
 | The listserver does not check the version; whether a build gets in is up to each game server's list | [cap] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 
+A server lets a client in only if its token is on the allowed list. The table maps each late token to its build and the name the version table gives it [src] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x).
+
 | Token | Build | Name in the version table | Source |
 | --- | --- | --- | --- |
 | `G3D22067` | 5.00r7 | 5.07 | [src] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
@@ -262,6 +296,8 @@ The 1999 servers accept a fixed list of `GSERV` tokens with a minimum per connec
 | `G3D03048` | 6.00 beta1 | not in the table | [src] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | `GNW03081` | 2.05 rev 2 | 2.05r2 (newer branch only) | [src] (server-notes/lab-servers-2026-10-30.md#2-gserver-v2-beta4-against-our-build) |
 
+Public servers print their allowed list when they refuse a client. Each row gives one refusal, the token that was sent and the list printed back [cap] (server-notes/public-allowed-versions.md#the-refusals-on-record).
+
 | Refusal seen from a public server | Client token sent | Allowed list printed | Source |
 | --- | --- | --- | --- |
 | a GServer-v2 server reporting 4.0.0 | `GNW14015` (2.3) | 2.22, 5.07 | [cap] (server-notes/public-allowed-versions.md#the-refusals-on-record) |
@@ -272,6 +308,8 @@ The second server refused 2.05 although `GNW03081` lies inside its printed range
 ## 5.5 NPC server
 
 ### 5.5.1 The 2001 NPC server
+
+The 2001 NPC server runs NPC scripts away from the game server. The rules below give how it connects, how its main loop runs and how it starts [doc] (tools/npcserver-2001.md#1-what-the-npc-server-is).
 
 | Rule | Source |
 | --- | --- |
@@ -285,6 +323,8 @@ The second server refused 2.05 although `GNW03081` lies inside its printed range
 | Server-only events: `created`, `initialized`, `playerenters`, `playerleaves` (not on disconnect), `playertouchsme` (needs `setshape`), `playerchats`, `npcwarped`, `exploded` | [doc] (tools/npcserver-2001.md#2-server-side-scripting-model) |
 | The server never loads images, so `setshape 1,w,h` gives an NPC its touch rectangle | [doc] (tools/npcserver-2001.md#3-commands) |
 
+Variable names carry their scope in a prefix. Each row gives one prefix, what it is scoped to and whether it is saved [doc] (tools/npcserver-2001.md#4-variables-and-flags).
+
 | Variable | Scope | Persisted | Source |
 | --- | --- | --- | --- |
 | `name` | current script or class | no | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
@@ -296,6 +336,8 @@ The second server refused 2.05 although `GNW03081` lies inside its printed range
 | `this.` flags | current NPC | yes, for database NPCs | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | `server.` flags | world-wide, shared with other NPC servers of the world, never sent to players | yes | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 
+The NPC server's commands fall into groups. Each row gives a group and its commands [doc] (tools/npcserver-2001.md#3-commands).
+
 | Command group | Commands | Source |
 | --- | --- | --- |
 | flow and core | `destroy`, `if`, `while`, `for`, `break`, `continue`, `sleep`, `set`, `unset`, `setstring`, `message` | [doc] (tools/npcserver-2001.md#3-commands) |
@@ -303,6 +345,8 @@ The second server refused 2.05 although `GNW03081` lies inside its printed range
 | server-side additions | `canwarp`, `canwarp2`, `cannotwarp`, `callnpc`, `with (players[i])`, `with (getplayer(acct))`, `with (npcs[i])`, `with (getnpcs(name))`, `join`, `warpto`, `tokenize`, `tokenize2` | [doc] (tools/npcserver-2001.md#3-commands) |
 | acting on the current player | `setplayerprop`, `setani`, `setgender`, `say`, `enableweapons`, `disableweapons`, `toweapons`, `addweapon`, `removeweapon`, `setlevel2`, `freezeplayer2`, `unfreezeplayer` | [doc] (tools/npcserver-2001.md#3-commands) |
 | string helpers | `strlen`, `startswith(part,str)`, `indexof(part,str)` (−1 if absent), `#e(start,len,str)`, `#T(str)` (trim), `tokenscount`, `#t(i)` | [doc] (tools/npcserver-2001.md#3-commands) |
+
+Some commands exist only on the NPC server. Each row gives one and its rule [doc] (tools/npcserver-2001.md#3-commands).
 
 | Command | Rule | Source |
 | --- | --- | --- |
@@ -319,6 +363,8 @@ Client support for these commands per build is in → §8.1 and → §8.2; the P
 
 ### 5.5.2 Message codes on a script-running server
 
+On a server that runs scripts, message codes are expanded before use. The rules below give how `#n` is expanded in `setcharprop` and what it changes [srv] (server-notes/setcharprop-hash-n.md#answer).
+
 | Rule | Source |
 | --- | --- |
 | In a `setcharprop` value, `#n` expands to the nickname of the player who triggered the script; `#n(id)` picks another player by id | [srv] (server-notes/setcharprop-hash-n.md#answer) |
@@ -328,6 +374,8 @@ Client support for these commands per build is in → §8.1 and → §8.2; the P
 | A capture that proves the server-side `#n` expansion on a script-running server is still open | [inf] (server-notes/setcharprop-hash-n.md#still-open) |
 
 ### 5.5.3 Later NPC servers
+
+Later servers handle NPCs in their own ways. Each row gives one server and how it runs NPC scripts [src] (server-notes/lab-servers-2026-10-30.md#2-gserver-v2-beta4-against-our-build).
 
 | Server | Rule | Source |
 | --- | --- | --- |

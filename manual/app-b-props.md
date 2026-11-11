@@ -5,6 +5,8 @@ Every player (PLPROP), NPC (NPCPROP) and baddy (BDPROP) prop id with its name an
 
 ## B.1 Player, NPC and baddy props
 
+This is the index of every prop id for players, NPCs and baddies. Each row gives the kind of stream, the id, its name and the section that describes its encoding [srv] (protocol/player-props.md#plprop-player).
+
 | Kind | Id | Name | Section | Source |
 | --- | ---: | --- | --- | --- |
 | PLPROP | 0 | NICKNAME | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |

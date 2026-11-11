@@ -7,6 +7,8 @@ This chapter covers compiled scripts on the wire. 2.05 and earlier clients recei
 
 ## 8.4.1 Transport
 
+GS2 reaches the client as compiled bytecode. The rules below give the message that carries it, the version gate and the framing [srv] (protocol/packet-ids.md).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | message | `PLO_NPCBYTECODE` (131, wire byte `0xa3`): `i3 code`, then the bytecode | [srv] (protocol/packet-ids.md) |
@@ -91,6 +93,8 @@ Each build guards its opcode dispatch over its own range, and the range grows wi
 
 #### Linux 4.04r2
 
+The Linux 4.04r2 bytecode dispatch table was read exactly. Each row gives one observation and its limit [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary).
+
 | Item | Exact-build observation | Limit | Source |
 | --- | --- | --- | --- |
 | Dispatch table | Range ends at 190; 191 indexed slots, of which 119 select a non-skip path; slot 11 selects the common skip path | Later fused-opcode range is outside this table; helper semantics not all recovered | [bin] (client-internals/linux-404r2-vm-dispatch.md#earlier-dispatch-boundary) |
@@ -141,6 +145,8 @@ Of the names Preagonal's compiler turns into opcodes, these images contain `abs`
 ## 8.4.7 Scripts embedded in the Linux clients
 
 #### Linux 4.04r2: embedded scripts and live linkage
+
+Linux 4.04r2 carries scripts inside its executable. Each row gives one piece of evidence about them, what it showed and the limit of that reading [bin] (client-internals/linux-404r2-embedded-scripts.md#recovered-corpus-and-structural-checks).
 
 | Evidence | Observation | Limit | Source |
 | --- | --- | --- | --- |

@@ -27,6 +27,8 @@ The four corrected entries give stored letters only; argument conversion and equ
 
 ## 8.2.2 Name tables
 
+Several commands take a number that stands for a name. The table gives each name table with its index-to-name list [2.05][doc][srv] (npc-library/gs1-command-reference-205.md#name-tables; npc-library/gs1-reference-205.md#constants-doc).
+
 | Table | Index: name | Source |
 | --- | --- | --- |
 | items (`I`) | 0 greenrupee, 1 bluerupee, 2 redrupee, 3 bombs, 4 darts, 5 heart, 6 glove1, 7 bow, 8 bomb, 9 shield, 10 sword, 11 fullheart, 12 superbomb, 13 battleaxe, 14 goldensword, 15 mirrorshield, 16 glove2, 17 lizardshield, 18 lizardsword, 19 goldrupee, 20 fireball, 21 fireblast, 22 nukeshot, 23 joltbomb, 24 spinattack | [2.05][doc][srv] (npc-library/gs1-command-reference-205.md#name-tables; npc-library/gs1-reference-205.md#constants-doc) |
@@ -72,6 +74,8 @@ How to read the tables below:
 
 ### 8.2.4.1 Messages, signs, sound, files
 
+From here the command tables share one layout. Each row gives the opcode, the command, its argument types, the first build whose table has it, and what 2.05 does. This first group covers messages, signs, sound and files [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#messages-signs-sound-files).
+
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 600 | `say` | `R` | 1.33 | Shows sign *n* of the current level (index into the level's sign list). Skipped if the index is out of range or the player is already in the sign-reading state. Puts the player into the reading state. | [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#messages-signs-sound-files) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -90,6 +94,8 @@ How to read the tables below:
 
 ### 8.2.4.2 Flags and variables
 
+This group sets and clears flags and variables [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#flags-and-variables).
+
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 604 | `set` | `M` | 1.33 | Sets a flag (doc: `server.` prefix makes it server-wide). | [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#flags-and-variables) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -100,6 +106,8 @@ How to read the tables below:
 | 743 | `tokenize2` | `SS` | 2.02 rev2 | Same, with extra delimiter characters added to the space/comma set. | [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#flags-and-variables) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 
 ### 8.2.4.3 Control flow
+
+This group covers control flow. Note the loop cap on `for` and `while` [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#control-flow).
 
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
@@ -117,6 +125,8 @@ How to read the tables below:
 | 744 | `triggeraction` | `RRSS` | 2.03 | Fires *action* with *params* at the object on (x, y) locally, and sends it online. From a weapon, the sender is the player. | [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#control-flow) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 
 ### 8.2.4.4 NPC appearance and behaviour
+
+This group sets how an NPC looks and behaves. Rows marked † are in 2.05 but not in the 2.22 documentation [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#npc-appearance-and-behaviour).
 
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
@@ -154,6 +164,8 @@ How to read the tables below:
 
 ### 8.2.4.5 Character NPCs (`showcharacter`)
 
+This group drives NPCs drawn as player characters [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#character-npcs-showcharacter).
+
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 633 | `followplayer` | — | 1.33 | Offline only: NPC follows the player and stops blocking. Ignored online (matches the doc). | [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#character-npcs-showcharacter) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -166,6 +178,8 @@ How to read the tables below:
 | 733 | `setchargender` | `S` | 2.0 | `male` sets male; anything else sets female. 2.05r2 trims and lowercases the raw argument without message expansion. | [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#character-npcs-showcharacter) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 
 ### 8.2.4.6 The player
+
+This group acts on the player. Several of these end the script run [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#the-player).
 
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
@@ -206,6 +220,8 @@ How to read the tables below:
 
 ### 8.2.4.7 Combat, items, level objects
 
+This group handles combat, items and level objects [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#combat-items-level-objects).
+
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 601 | `lay` | `I` | 1.33; takes arguments from 1.36 | Drops the item next to the NPC, to the right or below depending on where the player stands (doc). | [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#combat-items-level-objects) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -241,6 +257,8 @@ How to read the tables below:
 
 ### 8.2.4.8 Board, map, images
 
+This group changes the board, the map and shown images [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#board-map-images).
+
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
 | 657 | `showimg` | `RMRR` | 1.33 | Image *index* at (x, y), on the NPC's layer +1 (player's for weapons). Re-using an index replaces it; the same file only moves. A name starting with `@` is a text image. | [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#board-map-images) [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -259,6 +277,8 @@ How to read the tables below:
 | 758 | `loadmap` | `F` | 2.05 rev1 | Loads a gmap file; if the current level belongs to it (and the editor is closed), rebuilds the level view. | [2.05] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#board-map-images) [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 
 ### 8.2.4.9 Parsed but ignored by the 2.05 client
+
+These commands parse but do nothing in 2.05, because its executor has no case for them. The last column says what they do elsewhere, where that is known [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205; npc-library/gs1-command-reference-205.md#parsed-but-ignored-by-the-205-client).
 
 | Op | Command | Args | In the table from | What 2.05 does | Source |
 | ---: | --- | --- | --- | --- | --- |
@@ -312,6 +332,8 @@ The NewWorld betas add eight time variables after the direction list. They are v
 
 ## 8.2.6 Constants
 
+Several GS1 values are small numbers with fixed meanings. Each row gives one set of constants and its values [doc] (npc-library/gs1-reference-205.md#constants-doc).
+
 | Constant set | Values | Source |
 | --- | --- | --- |
 | baddy modes | 0 walking, 1 looking, 2 hunting, 3 hurt, 4 bumped, 5 dying, 6 shooting (swamp), 7 jumping (frog), 8 shooting (spider), 9 dead | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
@@ -354,6 +376,8 @@ Being in the table does not mean a command does anything. Executor cases were re
 
 ### 8.2.7.1 NewWorld betas
 
+The NewWorld betas add commands of their own. The rules below give the string-list commands, how lists are stored, and the commands that work in the betas but are ignored in 2.05 [bin] (client-internals/newworld-betas.md#gs1-changes).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | string lists (beta 2 only) | `addstring list,text` (S,S), `insertstring list,index,text` (S,R,S), `removestring list,text` (S,S), `deletestring list,index` (S,R), with `sarraylen(list)`, `lindexof(list,text)` and `#I(list,i)` | [bin] (client-internals/newworld-betas.md#gs1-changes) |
@@ -386,6 +410,8 @@ From the release notes; the binaries have not been read for the command tables o
 
 ### 8.2.7.3 2.05 against the 2.22 documentation
 
+2.05 and the 2.22 documentation do not list the same commands. Each row gives one direction of the difference [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205).
+
 | Item | Names | Source |
 | --- | --- | --- |
 | documented for 2.22, absent in 2.05 | `addstring`, `insertstring`, `replacestring`, `removestring`, `deletestring`, `putnpc2`, `showtext`, `showtext2`, `showpoly`, `showani`, `play2`, `setshootparams`, `shoot`, `enablefeatures`, `seteffectmode`, `changeimgmode`, and the mouse and `keypressed` family | [2.05][doc] (npc-library/gs1-reference-205.md#commands-161-205) |
@@ -406,6 +432,8 @@ An earlier catalogue of GS1 commands, built from public tables and the scrape be
 | 2.05 runs OpenGS1-style bytecode | 2.05 interprets a parse tree built from script text (→ §8.1.2) | [2.05] (npc-library/gs1-commands.md#update-2026-10-21) |
 
 ## 8.2.9 Queued move consumer (exact 2.05 rev 2)
+
+The `move` command queues motion that a consumer applies tick by tick. The rules below give that consumer as read exactly in 2.05 rev 2. The scope row says how far the reading goes [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
