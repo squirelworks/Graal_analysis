@@ -9,6 +9,8 @@ This chapter covers what the client draws over the game view: the status display
 
 ### 4.6.1.1 Sheet
 
+The status display is drawn from one sheet. The rules below give its size and how it changed between builds [file] (client-internals/status-display.md#sheets).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | sheet | every build from 1.41 on ships a 224 × 145 `state.png` | [file] (client-internals/status-display.md#sheets) |
@@ -34,6 +36,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 | alignment bar | 0x40 | frame (0, 97, 130, 22); fill (0, 119, AP, 10) | (15, 65); fill at +22, +6 | [2.05] (client-internals/status-display.md#layout) |
 | magic bar | 0x80 | frame (0, 49, 130, 22); fill (0, 71, MP, 10) | (15, 90); only with weapons on and MP above 0 | [2.05] (client-internals/status-display.md#layout) |
 
+The table above gives the layout. These rules add the parts drawn by the same routine, the sprite rectangles it uses and the weapons flag [2.05] (client-internals/status-display.md#layout).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | other bits | 0x100 and 0x200 belong to the player icons and the stacked weapon image list, drawn by the same routine but not part of the status display | [2.05] (client-internals/status-display.md#layout) |
@@ -42,6 +46,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 
 ### 4.6.1.3 Hearts
 
+Hearts are drawn big or small depending on how many the player has. The rules below give which hearts are shown and where each row goes [2.05] (client-internals/status-display.md#hearts).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | which | one heart per container while power remains; empty containers are not drawn; heart *i* is full when power − 1 ≥ *i* and half when *i* < power | [2.05] (client-internals/status-display.md#hearts) |
@@ -49,6 +55,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 | small hearts | above 4 hearts, 35 px apart; new rows start at hearts 5, 11, 16, 22 and 27; row *k* + 1 is 20(*k* + 1) px lower and shifted round(17.5(*k* + 1)) − 35 px sideways; the block moves 10 px down while power is below 6 | [2.05] (client-internals/status-display.md#hearts) |
 
 ### 4.6.1.4 The selected weapon
+
+One list holds every weapon. The rules below give how entries are added, selected and deleted [2.05] (client-internals/status-display.md#the-selected-weapon-205-rev-2).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -61,6 +69,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 
 ### 4.6.1.5 Not measured
 
+Some of the status display has not been read. The table lists what is still unmeasured, so a reader does not take the 2.05 layout as proven for other builds [cap] (client-internals/status-display.md#not-read).
+
 | Item | State | Source |
 | --- | --- | --- |
 | 2.22 and 2.31 status routines | unmeasured; their sheets and a 2.22 screenshot match 2.05 | [cap] (client-internals/status-display.md#not-read) |
@@ -70,6 +80,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 ## 4.6.2 The sign panel (2.05)
 
 ### 4.6.2.1 Drawing
+
+Sign text is drawn from a bitmap font. The rules below give the sheet, the glyph advances and the glyphs that draw frames and buttons [2.05] (client-internals/sign-panel.md#the-sheet).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -88,6 +100,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 
 ### 4.6.2.2 Keys while reading
 
+While a sign is open the keys do different things. The rules below give each key's effect [2.05] (client-internals/sign-panel.md#keys-while-reading).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | own state | reading is its own input state: the player does not walk, swing, lift or use an item; switch-to-chat still works, and while the chat bar has focus the sign keys are skipped | [2.05] (client-internals/sign-panel.md#keys-while-reading) |
@@ -98,6 +112,8 @@ Positions are from the top-left of the game view; the routine's base point is (1
 | side effects | `nextpage.wav` on each page turn (→ §4.7.3); `playerendsreading` runs when reading ends | [2.05][live] (client-internals/sign-panel.md#keys-while-reading); [live] (client-internals/live-checks-editor-offline-sound.md#sound-205) |
 
 ### 4.6.2.3 NPCs with no image
+
+An NPC with no image draws nothing in play. The rules below say what is drawn instead in each case [2.05] (client-internals/sign-panel.md#npcs-with-no-image).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -111,12 +127,16 @@ The chat line is player prop 12 (→ §2.6.2); the chat and PM messages are in �
 
 ### 4.6.3.1 Font
 
+The chat font changed three times. Each row gives a group of builds, the face, the cell height and the shadow rule [bin] (client-internals/chat-text.md#font-per-build).
+
 | Builds | Face | Height (px, cell) | Shadow | Source |
 | --- | --- | --- | --- | --- |
 | 1st Graal, 4th, 9th, 15th, 1.1.9, 1.21 | `Dialog` | 28 | always blue | [bin] (client-internals/chat-text.md#font-per-build) |
 | 1.31, 1.38 | `Dialog` | 28 | contrast rule | [bin] (client-internals/chat-text.md#font-per-build) |
 | 1.39, 1.41 | `Helvetica` | 24 | contrast rule | [bin] (client-internals/chat-text.md#font-per-build) |
 | NewMain 1.42, 2.00 to 2.05 rev 2, 2.17, 2.22, 2.31 | `Tempus Sans ITC`, installed from the client folder | 24 | contrast rule | [bin] (client-internals/chat-text.md#font-per-build) |
+
+The rules below say how the chat text is drawn, how the config overrides the font, what the height value means and what replaces a missing face [bin][live][2.05] (client-internals/chat-text.md).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -127,6 +147,8 @@ The chat line is player prop 12 (→ §2.6.2); the chat and PM messages are in �
 | bold | Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider | [inf] (client-internals/chat-text.md#font-per-build) |
 
 ### 4.6.3.2 Colour and position
+
+Chat is white with a shadow. The rules below give the two drawing passes and how the shadow colour changed at 1.31 [bin] (client-internals/chat-text.md#colour-and-shadow).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -140,6 +162,8 @@ The chat line is player prop 12 (→ §2.6.2); the chat and PM messages are in �
 
 ### 4.6.3.3 Wrapping
 
+Long chat lines wrap from 1.31 on. Each row gives a group of builds and its wrapping rule [bin] (client-internals/chat-text.md#wrapping-131-and-later).
+
 | Builds | Rule | Source |
 | --- | --- | --- |
 | 1.21 and earlier | one centred line, clipped, no wrapping | [bin] (client-internals/chat-text.md#wrapping-131-and-later) |
@@ -148,6 +172,8 @@ The chat line is player prop 12 (→ §2.6.2); the chat and PM messages are in �
 | 6.x | wraps only text of 11 or more characters, breaking after any of ` .,;+-?!` | [doc] (client-internals/chat-text.md#wrapping-131-and-later) |
 
 ### 4.6.3.4 How long chat stays (2.05 rev 2)
+
+The rules below give how long a chat line stays on screen in 2.05 rev 2, the length limit, and the special texts that show something else [live][2.05] (client-internals/chat-text.md#how-long-it-stays-live-205-rev-2-2026-10-30).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -158,6 +184,8 @@ The chat line is player prop 12 (→ §2.6.2); the chat and PM messages are in �
 | other uses of the slot | while a per-player counter runs it shows two numbers joined by `/`; in some sprite states it shows an item image or a carried number; the chat is then not drawn; these branches were read but not named | [2.05] (client-internals/chat-text.md#special-texts-205) |
 
 ### 4.6.3.5 Nicknames (1.31 to 2.31)
+
+Nicknames are drawn by the chat routine. The rules below give where, when the player's own name shows, and how it is cut [bin][live][2.05] (client-internals/chat-text.md#nickname-131-to-231).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -182,6 +210,8 @@ The AP colour ramp, each step `floor(n × k / d)` with a 0.0001 bias:
 | live check | AP 0, 20, 40, 58, 65, 85 and 100 drew exactly (64,0,0), (224,16,16), (255,148,148), (179,255,179), (77,255,178), (0,124,255) and (224,196,0); AP 50, the value before any AP is sent, was white | [live][2.05] (client-internals/chat-text.md#nickname-131-to-231) |
 
 ## 4.6.4 The item list (2.05)
+
+The item list is a window of weapon cells. The rules below give the key that opens it, what it holds and how the cells are laid out [2.05] (client-internals/decomp-findings-2026-10-28/02-item-list.md).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

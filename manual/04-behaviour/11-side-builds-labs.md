@@ -5,6 +5,8 @@ This chapter covers how the builds outside the 2.x Delphi line behave: the Java 
 
 ## 4.11.1 Zelda Online and Java Graal
 
+The Java precursors were run in the lab. Each rule records what one of them does when played [bin] (client-internals/precursors-and-fan-builds.md#zelda-online-1-may-1998).
+
 | Rule | Source |
 | --- | --- |
 | Zelda Online 1 (class files dated 16 May 1998) runs at scale 2 in a 512×448 box and fetches levels, `arrays.dat`, images and sound relative to its codebase. The rar ships 36 `Z3-V1.03` levels | [bin] (client-internals/precursors-and-fan-builds.md#zelda-online-1-may-1998) |
@@ -51,6 +53,8 @@ Java Graal (2000) and the Delphi betas talk to the same GServ lobby but join dif
 | Java Graal + 4th Graal alpha | stock GServ | yes | both drawn, nicknames, chat both ways | [live] (client-internals/relay-room-bridge.md#run-2-java-graal-and-4th-graal-alpha-no-rename) |
 | Java Graal + 5th Graal | stock GServ | no | different rooms (`G2<level>` and `G3<level>`) | [bin][live] (client-internals/relay-room-bridge.md#result) |
 | Java Graal + 5th Graal | GServ behind a bridge that renames `G2` to `G3` | yes | both drawn, nicknames, walking and chat both ways, a level change and back | [live] (client-internals/relay-room-bridge.md#run-1-java-graal-and-5th-graal-through-the-bridge) |
+
+A relay bridge let builds of different months meet. The rules below record how it works and what got in the way [live][bin] (client-internals/relay-room-bridge.md#rooms-each-build-joins).
 
 | Rule | Source |
 | --- | --- |
@@ -101,6 +105,8 @@ Seen in an emulator (PyBoy, CGB mode, 60 Hz frames) [live] (client-internals/gam
 | the captive | after its first text it walks two tiles left, lifts and throws the bush, and the second text opens; the player also starts as Fung Si Yun, so the text reads as if the player was meant to start as someone else | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator) |
 
 ## 4.11.4 The 39ster client and GraalX
+
+Two side builds were read for comparison. The rules below describe the 39ster fan client and GraalX [bin] (client-internals/precursors-and-fan-builds.md#39sters-graal-client-100-2014).
 
 | Rule | Source |
 | --- | --- |
@@ -154,6 +160,8 @@ The three builds closest to 2.05 rev 2 were matched function by function on addr
 | 2.05 rev1 → rev2 | 6522 / 6529 | 6345 | 94 | 83 | 90 | [bin] (client-internals/build-diff-204-205.md#how-the-matching-works) |
 | 2.04 → 2.05 rev2 | 6471 / 6529 | 5799 | 558 | 114 | 172 | [bin] (client-internals/build-diff-204-205.md#how-the-matching-works) |
 
+2.04, 2.05 rev 1 and 2.05 rev 2 were compared function by function. Each rule is one difference in code or classes [bin][doc] (client-internals/build-diff-204-205.md#205-rev1--rev2).
+
 | Rule | Source |
 | --- | --- |
 | 2.05 rev1 to rev2 moves about 20 game functions with identical class layouts and GS1 table: player counting reads both tests through one object (the "playerscount is fixed" note), the tutorial no longer creates a map object at start-up, one level-reset path drops a game-mode-5 flag and takes a loop bound from the main form instead of 632, and one of three `§`-to-CR/LF helpers is dropped | [bin][doc] (client-internals/build-diff-204-205.md#205-rev1--rev2) |
@@ -178,6 +186,8 @@ The three builds closest to 2.05 rev 2 were matched function by function on addr
 | script engine | `TAdventureCommand`, `TAdventureOperation` and `TAdventureVariable` parse-tree nodes with `TArray`, `TInteger`, `TDouble` and `TStringPosList` values, run by a recursive tree walk (→ §8.1) | [2.05] (client-internals/client-architecture-205.md#script-engine) |
 | forms | connect, reconnect, server list, load level, server message, short message, player list and its options, profile, options, more options, links, sign codes, `TPersonAction` (the NPC "Set Npc's Action" editor, not a player menu), chest editor, debugger; editor and client are one executable until 2.3 (→ §4.9) | [2.05] (client-internals/client-architecture-205.md#ui-forms) |
 | other code | a Delphi DES class (`UDesCipher`) for saved passwords, the hidden listserver host and the web cache, not the wire; GIF, MNG and JPEG decoders | [2.05] (client-internals/client-architecture-205.md#other-formats-seen-in-205) |
+
+2.05 and 2.22 hide strings and passwords in several ways. The rules below give each scheme and why none of them protects anything [2.05][cap] (client-internals/des-and-hidden-strings.md#hidden-strings).
 
 | Rule | Source |
 | --- | --- |
@@ -256,6 +266,8 @@ A static survey lists, per build in link order, what each executable adds (+) or
 | 2.31 | + `cachefilenames` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
 | Graal3D | `bodytex`, `bodyx`, `fixedport`, `fixedudpport`, `headx`, `noudp`, `serveraddr`, `serverport` | [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys) |
 
+Each build names its windows in the executable. The table follows the Delphi forms that each build adds, from 1st Graal to 2.31 [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows).
+
 | Build | Delphi forms (windows) | Source |
 | --- | --- | --- |
 | 1st Graal | + `TADVENTURE`, `TCONNECTFRAME`, `TEDITBADDY`, `TEDITSIGNS`, `TLINKLIST`, `TLINKOPTIONS`, `TLOADLEVEL`, `TOBJECTNAME`, `TOPTIONS`, `TSHOWCODES` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
@@ -276,6 +288,8 @@ A static survey lists, per build in link order, what each executable adds (+) or
 | 2.17.1 | + `TABOUTDLG`, `TLOGFRAME`, `TRPGFRAME`, `TTILESARRAYFRAME`; − `TWAABOUT` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
 | 2.31 | − `TCHESTEDIT`, `TDEBUGGERFRAME`, `TEDITBADDY`, `TEDITCHARACTER`, `TEDITFLAGS`, `TEDITNPC`, `TEDITSIGNS`, `TLINKLIST`, `TLINKOPTIONS`, `TOBJECTNAME`, `TTILESARRAYFRAME` (the editor leaves the client) | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
 | Graal3D | `TADVENTURE`, `TCONNECTFRAME`, `TEDITLOOK`, `TMOREOPTIONS` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+
+The rules below follow the other names an executable carries: sounds, images and fonts, build by build [bin] (version-profiles/matrix/builds-deltas.md#sound-effect-names-wav).
 
 | Rule | Source |
 | --- | --- |

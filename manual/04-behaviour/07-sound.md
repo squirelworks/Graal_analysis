@@ -69,6 +69,8 @@ Matched by the client's lookup of each file under `sounds\` while the action ran
 
 ## 4.7.4 lift.wav and lift2.wav
 
+Two lift sounds exist, and one byte picks between them. The rules below give the byte, its default, the command that clears it, and an earlier note they correct [2.05] (client-internals/live-checks-editor-offline-sound.md#sound-205).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | choice | one byte on the player object picks the lift and hurt sound: set gives `lift.wav`, clear gives `lift2.wav` | [2.05] (client-internals/live-checks-editor-offline-sound.md#sound-205) |

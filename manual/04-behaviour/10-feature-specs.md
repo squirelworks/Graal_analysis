@@ -9,6 +9,8 @@ This chapter collects the client features that sit outside the core game loop: t
 
 ### 4.10.1.1 The tamper check (2.17 to 2.31)
 
+From 2.17 the client proves to the server that its code is unchanged. The rules below give the message, how its bytes are laid out and what the CRC words cover [bin][cap] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | builds | new in 2.17; absent from 2.05 and 1.x | [bin][cap] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap) |
@@ -23,6 +25,8 @@ This chapter collects the client features that sit outside the core game loop: t
 | servers | the open-source server reads and discards it; four public servers accepted a 2.22 login without it for at least 20 s, which shows only that they do not enforce it at login (→ App. E#320) | [srv] (client-internals/feature-specs/08-tampercheck.md#exact-server-behaviour-srv); [cap] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 
 ### 4.10.1.2 Process list and window scan
+
+The server can also ask for a process list, and 2.31 scans windows on its own. The rules below give both checks and when they run [srv][inf] (client-internals/feature-specs/08-tampercheck.md#exact-server-behaviour-srv).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -60,6 +64,8 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 | AFK Scroll Bot | one phrase scrolled across chat, first character moved to the end each tick | 100 ms tick | none | [bin] (recovered-hacks/behaviour-models.md#afk-scroll-bot-bin) |
 | Graal Text Sender 1.3.5 | operator text in six modes (word scroller, middle in-out letters, word stay, two words repeat, letter-by-letter to-alls and shout-outs) | 100 ms timer, per-mode waits set by the operator | looks up the client window; declares `GetAsyncKeyState` but never calls it, so it is not a key logger | [bin] (recovered-hacks/behaviour-models.md#graal-text-sender-bin) |
 
+The trainers recovered from the period were read one by one. Each rule is one tool or archive and what it turned out to be [bin] (recovered-hacks/THREAT_TAXONOMY.md#group-2--rpgwarrior--selzar-autoit-input-macros-gameplay-automation).
+
 | Rule | Source |
 | --- | --- |
 | The AutoIt tools are compiled AutoIt 2.60 to 2.64 scripts packed with UPX, using only input and window-message calls (`keybd_event`, `mouse_event`, `SendMessageA`, `PostMessageA`, `FindWindowA`, `BlockInput`); the VB6 tools import only the VB runtime | [bin] (recovered-hacks/THREAT_TAXONOMY.md#group-2--rpgwarrior--selzar-autoit-input-macros-gameplay-automation); [bin] (recovered-hacks/TRAINER_RE_NOTES.md) |
@@ -70,6 +76,8 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 ## 4.10.2 Animation state as others see it
 
 ### 4.10.2.1 2.05: the sprite prop
+
+In 2.05 the sprite prop carries a step number as well as the direction. The rules below give its form, when the step changes and the table from step to value [2.05] (client-internals/feature-specs/11-emotes-ganis.md#205-sprite-prop-205dec).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -85,12 +93,16 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 
 ### 4.10.2.2 2.1 and later
 
+From 2.1 the gani travels as a name. The rules below give that prop and where its cadence is measured [srv][cap] (client-internals/feature-specs/11-emotes-ganis.md#a-animation-state).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | gani prop | prop 10 is the gani name as a string; a receiver that lacks `<name>.gani` asks the server for it | [srv][cap] (client-internals/feature-specs/11-emotes-ganis.md#a-animation-state) |
 | 2.22 cadence | → §4.1.4 | [cap] (live-runs/2gta-222-2026-10-30/README.md) |
 
 ## 4.10.3 Key emotes (2.05 rev 2, same routine in 1.39)
+
+Ctrl and a letter shows an emote. The rules below give the keys, how the image is found, where it is drawn and that nothing is sent [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -103,6 +115,8 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 
 ## 4.10.4 Picking up and dropping items online
 
+Items are picked up and dropped through four messages. The rules below give each one and what the server does with it [cap][srv] (client-internals/feature-specs/03-inventory.md#item-pickup-and-chests-srvcap).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | 2.05 pickup | sends `PLI_ITEMDEL` (13) with the item's half-tile position and changes its own props itself; the server only removes the item and tells the others | [cap][srv] (client-internals/feature-specs/03-inventory.md#item-pickup-and-chests-srvcap) |
@@ -113,6 +127,8 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 ## 4.10.5 The player list and social lists
 
 ### 4.10.5.1 2.05 (F7)
+
+The 2.05 player list is opened with F7. The rules below describe its window, its popup and what each action does [2.05] (client-internals/decomp-findings-2026-10-24/03-player-list-popup.md#player-list-window).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -129,6 +145,8 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 
 ### 4.10.5.2 By build
 
+The player list grew one feature at a time. Each row gives the build where a feature arrived [bin] (client-internals/feature-specs/10-right-click-menu.md#what-is-known-205inf).
+
 | Builds | Change | Source |
 | --- | --- | --- |
 | 1.33 | popup Message, Ignore, History; sections GPs, Guild, Normal, Ignore | [bin] (client-internals/feature-specs/10-right-click-menu.md#what-is-known-205inf) |
@@ -141,6 +159,8 @@ The trainers fall into four groups: AFK chat bots, AutoIt input macros, chat and
 | 2.22 Mute | sends `PLI_MUTEPLAYER` (43) with the player id and 1 or 0, one message per click; the entry does not move | [cap] (client-internals/feature-specs/14-friends-ignore.md#lab-findings-from-a-real-222-client-2026-10-24-cap) |
 
 ## 4.10.6 Start message and disconnects
+
+The rules below cover the messages a server sends around login and logout: the start message, the RPG window, their order, and how a disconnect is explained [srv] (client-internals/feature-specs/12-motd-rules.md#packets-server-to-client-at-the-end-of-login-srv).
 
 | Rule | Detail | Source |
 | --- | --- | --- |

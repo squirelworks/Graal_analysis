@@ -7,6 +7,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 
 ## 4.8.1 What offline means
 
+Offline is not a separate mode in the code. The rules below say what defines it and what stays the same as online [2.05] (client-internals/offline-tutorial-205.md#how-the-client-goes-offline).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | condition | offline means the client has no game connection object; every check that refuses the editor, enables the tutorial resources or sends file requests tests that one condition | [2.05] (client-internals/offline-tutorial-205.md#how-the-client-goes-offline) |
@@ -14,6 +16,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 | same rules | entering an offline level stores the level name and arrival point on the player; collision, signs, links and scripts run the same paths as for a disk level online | [live] (client-internals/offline-training.md#enter-path) |
 
 ## 4.8.2 Ways in (2.05)
+
+A 2.05 player can get offline in four ways. Each row gives one way in and what it does [live][2.05] (client-internals/live-checks-editor-offline-sound.md#the-training-button).
 
 | Way | Detail | Source |
 | --- | --- | --- |
@@ -23,6 +27,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 | F5 Load level | while online the client warns that loading a level disconnects from the server, then loads the file locally | [2.05] (client-internals/offline-tutorial-205.md#how-the-client-goes-offline) |
 
 ### 4.8.2.1 The reconnect dialog
+
+The reconnect dialog is the usual way into offline play. The rules below give when it appears and what Play offline does in each case [2.05] (client-internals/offline-tutorial-205.md#how-the-client-goes-offline).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -34,6 +40,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 
 ### 4.8.2.2 Where the player lands on Play offline
 
+Where Play offline puts the player depends on what is on disk. Each row gives one case and its result [2.05][live] (client-internals/offline-tutorial-205.md#where-the-player-lands).
+
 | Case | Result | Source |
 | --- | --- | --- |
 | the current level exists in the local folder | the player stays on it at the same coordinates | [2.05][live] (client-internals/offline-tutorial-205.md#where-the-player-lands) |
@@ -42,6 +50,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 | dropped on a level not on disk | not repeated live; the code falls back to the tutorial | [2.05] (client-internals/live-checks-editor-offline-sound.md#the-reconnect-dialog-and-play-offline) |
 
 ## 4.8.3 Where offline levels come from
+
+Offline levels come from the executable or the game folder. The rules below give the lookup order, show that the embedded tutorial wins, and say what changes online [2.05] (client-internals/offline-tutorial-205.md#where-offline-levels-come-from).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -55,6 +65,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 ## 4.8.4 The tutorial world
 
 ### 4.8.4.1 2.05
+
+The 2.05 tutorial is a small world of linked levels. The rules below describe its grid and what each level holds [test] (client-internals/offline-tutorial-205.md#the-tutorial-world).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -70,6 +82,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 
 ### 4.8.4.2 Later builds
 
+Later builds replace the tutorial and the start screen. Each row gives a group of builds and what changed [2.17][2.22][2.31] (client-internals/offline-tutorial-205.md#later-clients).
+
 | Builds | Detail | Source |
 | --- | --- | --- |
 | 2.17, 2.22, 2.31 | 9 embedded `GR-V1.03` levels, `offlinetutorial_a-1.graal` to `offlinetutorial_c-3.graal` | [2.17][2.22][2.31] (client-internals/offline-tutorial-205.md#later-clients) |
@@ -78,6 +92,8 @@ This chapter gives how the client plays without a game server: the ways in, wher
 | GraalEditor 2.3.1.1 | carries the same 9 names and `tiledefsOffline.txt` | [inf] (client-internals/offline-tutorial-205.md#later-clients) |
 
 ## 4.8.5 Windows 4.04r2: startup and an offline transition
+
+Windows 4.04r2 was started under a test harness. Each row gives a condition, the state before, what was observed, and the limit on what it proves [cap] (version-profiles/windows-404r2-teardown.md#startup-capture).
 
 | Condition | Before | After or observed result | Limit | Source |
 | --- | --- | --- | --- | --- |

@@ -7,6 +7,8 @@ This chapter gives the client's side of lifting, carrying, hiding and throwing, 
 
 ## 4.5.1 Matching a 2 × 2 object
 
+Cutting and lifting both work by matching a 2 × 2 object in the board. The rules below give the match, the probe, a change made in 2.04 and how the result is written [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#matching-a-2-x-2-object).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | match | take the tile under the probe point; for each table entry in order, for each of its four tiles equal to that tile, the object's top-left is the point minus that tile's column and row; the four board tiles there must equal the entry's four, all on the board; the first full match wins | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#matching-a-2-x-2-object) |
@@ -28,6 +30,8 @@ The objects (`arrays.dat`; the same in 1.21, 1.3 test and the 2.22 install, one 
 | lift | 4 | black stone | 990 991 / 1006 1007 | 1834 1835 / 1850 1851 | 239 | [bin] (client-internals/board-respawn.md#the-objects); [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
 
 ## 4.5.2 Lift, carry, hide and throw
+
+The A key lifts, carries and throws. The rules below give the key order, the glove rule, NPCs that can be carried, and the timing of a lift [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -59,6 +63,8 @@ By build:
 
 ### 4.5.2.1 Windows 4.04r2 static transition limits
 
+Windows 4.04r2 was read statically for the same actions. Each row gives one relationship, what was seen and the limit on what that proves [bin] (client-internals/404r2-carry-state.md#pickup-carrying-and-hiding).
+
 | Relationship | Static observation | Limit | Source |
 | --- | --- | --- | --- |
 | Pickup | Transitional action and countdown initialization precede a later update setting the carrying flag; the carried category and boolean carrying property read different state | Countdown initial value five does not establish total frames or elapsed duration; glove-bound semantics remain unmeasured | [bin] (client-internals/404r2-carry-state.md#pickup-carrying-and-hiding); [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
@@ -69,6 +75,8 @@ These are static findings, not gameplay confirmation; older and later lab timing
 
 ## 4.5.3 Sword cut
 
+A sword swing cuts what is at its tip. The rules below give when that happens, what is left behind and how bombs differ [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#sword-cut).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | when | at the start of a swing, at the probe point, against the whole cut table with no glove | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#sword-cut) |
@@ -77,6 +85,8 @@ These are static findings, not gameplay confirmation; older and later lab timing
 | bomb blast, 1.x | the blast's four test points cut cut-entry 0 and destroy lift entries 1 to 3 (sign, pot, stone) | [bin] (client-internals/item-drops.md#the-1x-roll-bin) |
 
 ## 4.5.4 Chests
+
+Chests are records in the level, not tiles. The rules below give how they look, how they block and how they are opened [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#chests).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -92,11 +102,15 @@ These are static findings, not gameplay confirmation; older and later lab timing
 
 ## 4.5.5 Item drops: who rolls
 
+Who rolls a dropped item moved from the client to the server at 1.42. Each row gives a group of builds, who drops, and what the client sends [bin] (client-internals/item-drops.md#summary).
+
 | Builds | Who drops | What the client sends | Source |
 | --- | --- | --- | --- |
 | 4th Graal alpha to 1.37 | the client rolls | the roll as UDP 19 to the other players only; a pickup is applied locally, with UDP 20 and `PLI_ITEMDEL` (13); a timeout sends nothing | [bin] (client-internals/item-drops.md#summary) |
 | 1.38 to 1.41 | the client rolls | the roll as UDP 19 and `PLI_ITEMADD` (12); online a pickup sends `PLI_ITEMTAKE` (32) and the server gives the item with props; a timeout sends `PLI_ITEMDEL` (13) (1.39 read and captured; 1.41 read for the roll only) | [bin][cap] (client-internals/item-drops.md#summary) |
 | NewMain 1.42 to 2.31 | the server (`PLO_ITEMADD`, 22); offline nothing drops | pickup `PLI_ITEMTAKE` (32); timeout `PLI_ITEMDEL` (13) | [bin][doc] (client-internals/item-drops.md#summary) |
+
+The rules below give the evidence for that change and what follows from it, offline and online [doc][bin] (client-internals/item-drops.md#summary).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -117,6 +131,8 @@ One `Random(100)` per drop, with the Delphi generator `seed = seed × 134775813 
 | 32 to 36 | bombs (5 %) | [bin] (client-internals/item-drops.md#the-1x-roll-bin) |
 | 37 to 99 | nothing (63 %) | [bin] (client-internals/item-drops.md#the-1x-roll-bin) |
 
+Before 1.42 the client rolled the drop itself. The rules below give the table it used, what rolls, when and where [bin] (client-internals/item-drops.md#the-1x-roll-bin).
+
 | Rule | Detail | Source |
 | --- | --- | --- |
 | same table | in every build from 4th Graal alpha to 1.41; from 1.38 the item is picked by its number in the item table (0, 1, 5, 3) instead of by name | [bin] (client-internals/item-drops.md#the-1x-roll-bin) |
@@ -127,6 +143,8 @@ One `Random(100)` per drop, with the Delphi generator `seed = seed × 134775813 
 | 1.3 to peers | UDP id 19, `chr(x·2+32) chr(y·2+32) chr(item+32)`, sent straight to each peer, only for item kinds marked in a per-item table; the board change still goes to the server over TCP | [bin] (client-internals/board-respawn.md#item-drops-in-13-client-side) |
 
 ## 4.5.6 Items on the floor (2.05 rev 2)
+
+An item on the floor has a life that counts down. The rules below give that life, when it can be picked up, the event it fires and how it blinks [bin][cap] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
@@ -144,6 +162,8 @@ One `Random(100)` per drop, with the Delphi generator `seed = seed × 134775813 
 | 1.x pickup box in tiles, draw order against players | unmeasured (→ App. E#317) | [bin] (client-internals/item-drops.md#open) |
 
 ## 4.5.7 Board respawn on the client
+
+Cut and lifted objects come back only when the server says so. The rules below give how the client handles a restore and what it sends after a push [bin][live] (client-internals/board-respawn.md#no-client-side-respawn).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
