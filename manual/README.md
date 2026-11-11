@@ -42,7 +42,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 14 | Part XI + App. D, E | done |
 | 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm-0.0.3.pdf` built with `build_manual.py` from commit b8643ec, 347 pages A4 |
 | 16 | coverage audit and 0.0.4 | done: every flagged note carried or given a reason, `check_carry.py` in CI; `manual/pdf/graal-trm-0.0.4.pdf` built with `build_manual.py --version 0.0.4` from commit 3a700ad, 377 pages A4 |
-| 17 | research publication and 0.0.5 | done: the 0.0.5 research merged (#372), reading syntheses for Parts I, II, IV, VIII and X, `coverage.py` as a report; `manual/pdf/graal-trm-0.0.5.pdf` built with `build_manual.py --version 0.0.5` from commit 13c1892, 419 pages A4, with bookmarks |
+| 17 | research publication and 0.0.5 | done: the 0.0.5 research merged (#372), reading syntheses for Parts I, II, IV, VIII and X, `coverage.py` as a report; `manual/pdf/graal-trm-0.0.5.pdf` built with `build_manual.py --version 0.0.5` from commit e1a54b0, 290 pages A4, with bookmarks and footnoted sources |
 
 ## Checks
 
