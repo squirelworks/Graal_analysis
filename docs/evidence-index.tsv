@@ -51,3 +51,6 @@ W404-E102-20261109	windows	researcher-static-summary
 W404-E603-E604-20261109	windows	researcher-static-summary
 W500-E4-THROW-20261109	windows	researcher-static-summary
 W500-SCRIPT-INTERFACE-20261109	windows	researcher-static-summary
+LNX603-CLASS-CACHE-20261109	linux	researcher-static-summary
+LNX601-X86-DELIVERY-20261109	linux	researcher-static-summary
+MAC-V6-OPCODE-20261109	macos	researcher-static-summary
