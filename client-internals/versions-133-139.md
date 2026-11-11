@@ -34,7 +34,7 @@ The builds are the ones in `build-catalogue.md`, identified by MD5 there, and ev
 - **UDP.** There is a peer UDP channel for "data packages", with `noudp=` and `fixedudpport=` (default 14899).
 - **Game modes.** One Player, One Player Online, and Two, Three or Four Players on one machine. Local multiplayer goes away in 2.0.
 - **Window.** The window is 640×480 (648×508 outer). Alt+Enter switches to fullscreen.
-- **Keys.** F1 opens options, F2/F3 load and save, F4 opens the editor, F5 loads a level, F6 opens the debugger, F7 opens the player list, and Alt+1 to Alt+7 take screenshots, show the minimap, show the bytes counter, take a snapshot and record.
+- **Keys.** F1 opens options, F2/F3 load and save, F4 opens the editor, F5 loads a level, F6 opens the debugger (from 1.32 only offline or with a loopback server), F7 opens the player list, and Alt+1 to Alt+7 take screenshots, show the minimap, show the bytes counter, take a snapshot and record. The full per-build table is in [gui-windows-fkeys.md](gui-windows-fkeys.md).
 - **Prop encodings.** These are not traced per build. Live, the server-sent forms of props 1–9, 11 and 13 parsed in 1.33 and 1.39 as the pre-2.1 forms in `protocol/player-props.md`. The rest are assumed (*inferred*). The forms are: sword `c(power+30)+str`, shield `c(power+10)+str`, bow `c(10+len)+image` or `c(power)`, head `c(len+100)+image`, and X/Y in half-tiles. No build in this range has X2/Y2. Prop 10 must be the bow form; a server that sends a gani string there (GServer-v2 beta4 does) is misread, and the rest of that prop stream is lost.
 
 ## Protocol changes
@@ -122,7 +122,7 @@ Two of the 1.34 additions, `carryobject` and `throwcarry`, are only announced in
 - **Login props.** After the level loads, the first id 2 carries props 0 (nick), 11 (head), 13 (colours), 18 (status), 31 (UDP port) and 33 (additional flags), the same in both builds. The head goes as `chr(head number)` when it is a numbered default head. 1.34 to 1.38 are assumed to match.
 - **Steady traffic.** Id 31 `PACKETCOUNT` goes about every 10 s. Id 3 NPC props go for each level NPC after the load, and level scripts cause id 18 and 7.
 - **Board and files.** As described under "What is the same in all seven". For a name sent without an extension the server adds `.gif`. Downloaded images were not written to disk in this setup, and the level was cached under `weblevels/<server>/`.
-- **Server message.** 1.33 shows the server message (41) as raw HTML text.
+- **Server message.** 1.33 shows the server message (41) as raw HTML text. 1.39 stores it in `servermessage.rtf` and shows it only when it changes; RTF messages are drawn as rich text (→ [gui-windows-fkeys.md](gui-windows-fkeys.md#132-to-139-trtfmessage)).
 
 ### Server compatibility (GServer-v2 beta4)
 

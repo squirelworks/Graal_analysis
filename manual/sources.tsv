@@ -152,6 +152,7 @@ client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superse
 client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
 client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
+client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	

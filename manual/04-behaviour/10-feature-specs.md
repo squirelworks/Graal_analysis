@@ -164,7 +164,8 @@ The rules below cover the messages a server sends around login and logout: the s
 
 | Rule | Detail | Source |
 | --- | --- | --- |
-| start message | `PLO_STARTMESSAGE` (41) carries the server message as one line of HTML; 2.05 has a form for it; whether it shows at once or on request is unmeasured | [srv] (client-internals/feature-specs/12-motd-rules.md#packets-server-to-client-at-the-end-of-login-srv) |
+| start message | `PLO_STARTMESSAGE` (41) carries the server message as one line of HTML | [srv] (client-internals/feature-specs/12-motd-rules.md#packets-server-to-client-at-the-end-of-login-srv) |
+| start message window | from 1.41 rev1 the client shows it at once, in an embedded web browser for HTML, but only when it differs from the copy stored in the game folder; there is no way to reopen it (→ §4.6.7) | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
 | RPG window | `PLO_RPGWINDOW` (179), 2.1 and later: quoted, comma-separated lines naming the server and its software | [srv] (client-internals/feature-specs/12-motd-rules.md#packets-server-to-client-at-the-end-of-login-srv) |
 | login order | level data, big map, minimap, RPG window, start message, an empty `PLO_SERVERTEXT` (82) | [srv] (client-internals/feature-specs/12-motd-rules.md#packets-server-to-client-at-the-end-of-login-srv) |
 | disconnects | every refusal, kick and ban reaches the client as `PLO_DISCMESSAGE` (16) with the text, `\r` for a line break, then the socket closes; the client then shows the reconnect dialog (→ §4.8.2.1) | [srv] (client-internals/feature-specs/13-ban-kick.md#what-it-is) |

@@ -10,7 +10,7 @@
 | Item | Behaviour |
 |---|---|
 | Message | Builds the recipient list from all selected rows and reuses an existing PM window for the same set. Recipient encoding: a count as two bytes, then two bytes per player id, at most 50 (0x32) recipients. |
-| History | Opens the message history window (not traced further). |
+| History | Opens the stored conversation with that player in the server message form, own lines in purple and the other player's in red (→ [gui-windows-fkeys.md](../gui-windows-fkeys.md#the-same-form-as-the-pm-history-window-205-21-tests)). |
 | Ignore | Toggles each selected account in the ignore list and saves `ignoredaccounts.txt` and the buddy list. |
 | Buddy | Toggles the buddy list (`buddyaccounts.txt`). Ignore and Buddy are mutually exclusive. |
 | Profile | Uses only the first selected player. If online, sends PLI_PROFILEGET (80). |
