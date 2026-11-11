@@ -20,6 +20,7 @@ The wiki's 1.3, 1.4 and 2.x release notes are the same text as the `newfeatures*
 | AP recharge defaults | `aptime0`–`aptime4` default to 30, 90, 300, 600, 1200 s **[doc]** | the same in GServer-v2 **[srv]** (§4.4) |
 | NPC server tick | 0.1 s main loop (`Creation/Dev/NPC-Server`, the official NPC server text) **[doc]** | 0.1 s **[doc]** (`tools/npcserver-2001.md`) |
 | `carryobject` and `throwcarry` | announced in the 1.37 notes **[doc]** | in the command table from 1.34 **[bin]**; `versions-133-139.md` already says a table entry does not prove the command worked |
+| 5.1 projectiles | 5.1: "projectiles are sent with higher precision and can use different gravity" (17 Sep 2007) **[doc]** | 5.0.0.7 never sends `PLI_SHOOT2` (48) and its `PLI_SHOOT` (40) has no gravity; 5.12 and later send 48 with two-byte X2-style positions and a two-byte gravity in 1/256 steps **[bin]** (`protocol/shoot-5007.md`). The sender arriving between 5.007 and 5.12 is the 5.1 change. |
 | Delphi and DelphiX | "originally written in Delphi … a modified DelphiX" **[doc]** | DelphiX `TDXDraw`/`TDXTimer` in the clients **[bin]** (`graal3d/README.md`) |
 
 ## Release dates against the login-token date stamps
@@ -58,7 +59,6 @@ The tokens are `G3D` plus a `DDMMY` stamp (`protocol/login-tokens-3x-7x.md`). Th
 
 ## Leads not yet researched here
 
-- [ ] **5.1 projectiles.** "Projectiles are sent with higher precision and can use different gravity" (5.1) **[doc]**. Our 4.20r8 read of id 191 (`SHOOT2`) lists x, y, z, angles and speed but no gravity (`protocol/v4x-clients.md`); GServer-v2 reads a gravity byte after power in `PLI_SHOOT2` **[srv]**. Check 5.12's 191 for the gravity byte.
 - [ ] **Confirm GS1 is gone in 5.12** with the `tools/gs1-table-scan` scanner on the 5.12 engine.
 - [ ] **`-listscriptfunctions`.** The 4.03 and 6.036 notes say the client prints its script-function documentation with this switch; our launcher reads list the switch (`torque/4208-launcher.md`, `torque/5007-launcher.md`). Run once in a sandbox to get each build's GS2 function list. The wiki's `Creation/Dev/Script/Client` and `Script Functions: NPC Server` pages are such dumps (2006–2010): 70 of the 90 client functions and 52 of the 222 NPC-server functions appear somewhere in this repo.
 - [ ] **Server options.** The wiki lists 99 `serveroptions` keys; 71 are not mentioned in this repo and 36 are not read by GServer-v2 (for example `weaponorder`, `ghostmodeenabled`, `spawnrate*`, `newtilesets`/`newtilesetlevels`, `syncdistancex`/`y`, `speedhacktolerance`, `sendtoallattr`, `serverlanguage`/`defaultlanguage`/`translatedlanguages`). A reference table would help GServer-v2 and Seihai.
