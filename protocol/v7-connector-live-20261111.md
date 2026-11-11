@@ -2,7 +2,7 @@
 
 Date: 2026-11-11
 
-Target: `WorldsSetup64-614` (`Worlds.exe` + `Graal3DEngine.dll`), run in the Windows 10 RE Lab VM
+Target: `WorldsSetup64-614` (`Worlds.exe` + `Graal3DEngine.dll`), run in a Windows lab VM
 with every DNS answer forced to loopback and lab HTTP/TLS listeners in front of it. Tags:
 **[live]** this run · **[bin]** the unpacked `Graal3DEngine.dll` export/string inventory ·
 **[doc]** prior 6.11 connector reading (`protocol/v6x-clients.md`, `protocol/v6113-hello.md`).
@@ -101,8 +101,7 @@ host/port, or any server-supplied `StartScript_Connector` body, across six scans
 The RSA signature is bound to the request's per-launch `?p=` value, so a reply captured for one
 launch cannot be replayed to another.
 
-A reply **can** be replayed back to the same `?p=` request it was signed for: the 6.11 Mac work
-(Lion thread) captured a reply and replayed it within the same request context, and that client
+A reply **can** be replayed back to the same `?p=` request it was signed for: the parallel 6.11 Mac work captured a reply and replayed it within the same request context, and that client
 verified it and decrypted the connector script. The limitation is only cross-launch. So a captured
 genuine reply is a per-launch artefact, not a reusable lab `/conf.gs` that an arbitrary fresh
 client accepts, and the sign-with-server-private-key verdict for a lab responder stands. **[live][inf]**
