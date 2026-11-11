@@ -169,10 +169,8 @@ jobs:
       fail-fast: false
       matrix:
         # macOS disabled 2026-11-08; re-enable at polish stage.
-        # A pull request builds the PDF on Windows only: the Linux build
-        # installs Chromium's system libraries and fonts with apt, which
-        # fails whenever the runners lose the Ubuntu mirrors. A push to main
-        # builds both and keeps the Linux PDF.
+        # A pull request builds the PDF on Windows only, to keep PR runs
+        # short. A push builds both and keeps the Linux PDF.
         os: ${{ github.event_name == 'pull_request' && fromJSON('["windows-latest"]') || fromJSON('["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -185,11 +183,14 @@ jobs:
       - name: Install pandoc and Playwright
         run: python -m pip install pypandoc_binary playwright pypdf
 
-      - name: Install Chromium (Linux, with system libraries)
+      # ubuntu-latest already ships Google Chrome and its libraries, so the
+      # Linux PDF uses it and needs no apt step (Graal_analysis#400).
+      - name: Use the runner's Chrome (Linux)
         if: runner.os == 'Linux'
         run: |
-          echo 'Acquire::Retries "5";' | sudo tee /etc/apt/apt.conf.d/80-retries
-          python -m playwright install --with-deps chromium
+          CHROME=$(command -v google-chrome || command -v google-chrome-stable)
+          "$CHROME" --version
+          echo "PLAYWRIGHT_CHROMIUM_EXECUTABLE=$CHROME" >> "$GITHUB_ENV"
 
       - name: Install Chromium
         if: runner.os != 'Linux'
