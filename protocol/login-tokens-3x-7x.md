@@ -33,9 +33,9 @@ The 2.x Delphi clients do the same in `TAdventureClient_Create`. They call `_LSt
 | 5.12 Windows (`Graal3DEngine.dll`) | Eight one-character globals. Two of them are shared with other code | decompile **[bin]** |
 | 6.01r1 Linux | `"G"` plus seven one-character strings | v6 notes **[bin]** |
 | 6.03r7 Linux and Windows | One scrambled eight-byte string. The routine runs it through the per-byte decoder (`g3d0511c` or `g3d0311c`) and upper-cases the result | decompile, `v6037-hello-diff.md` **[bin]** |
-| 6.11, 7.x | No token. The connector script builds the login and sends it with `senddata` | v6 and v7 notes **[bin]** |
+| 6.11, 6.113, 7.x | No token is stored in the image. Yet a running 6.113 sends `GNP1905C` as its first eight bytes, before it reads any server byte. The only native path that can write them is `sendraw`, so the bytes most likely come from the connector script the server sends. That is not proven: no debugger trace or connector script has been captured yet | `v6113-hello.md`, `v6113-list-capture.md` **[bin][cap][inf]** |
 
-So the token is a build-time constant all the way through 6.03. Only how it is stored changes, to keep it out of a plain `strings` search. The key byte is drawn as `rand & 0x7F` and placed in front of the first message. The account and password then follow with GCHAR lengths, and from 4.x the identity list follows them[^v4]. Lab captures of 3.04, 3.153, 4.04r2, the Linux 4.x builds, 5.x and 6.x show the same bytes as these readings[^lnx][^tiger][^play]. A debugger trace is not needed for any build up to 6.03.
+So the token is a build-time constant all the way through 6.03. From 6.11 the client still sends one (`GNP1905C` on 6.113), but where it comes from is an open point. Only how it is stored changes, to keep it out of a plain `strings` search. The key byte is drawn as `rand & 0x7F` and placed in front of the first message. The account and password then follow with GCHAR lengths, and from 4.x the identity list follows them[^v4]. Lab captures of 3.04, 3.153, 4.04r2, the Linux 4.x builds, 5.x and 6.x show the same bytes as these readings[^lnx][^tiger][^play]. A debugger trace is not needed for any build up to 6.03.
 
 ## Where the token sits in the login
 
@@ -86,6 +86,7 @@ The Graal3D of February 2000 is a different program. It is a DirectX client with
 - [ ] Try the 3.x `G3D30123` listserver login against a public listserver on 14922, then 14923, to settle the "assumed" port status. Owner approval is needed for a public login (see `AGENTS.md`).
 - [ ] Read the join password and arguments that 3.153 and 4.20r6 put in their Torque connect request. Both are still "not traced"[^net].
 - [ ] Find a 3.0 or 3.01 binary. Their tokens (`G3D16053`, `G3D27063`) and the type-4, gen-4 login are known only from gs2lib's table[^gs2].
+- [ ] Trace where 6.113's `GNP1905C` comes from: a debugger on `sendraw` and the socket send, plus the connector script in memory or in the client's cache. The 256 varying bytes in its hello may be an RSA-2048 key exchange **[inf]**.
 - [ ] Confirm, with build dates, that the 2010+ year character is a hex digit.
 - [ ] The Torque game layer after the accept: the `GameObject` property map, the rotation packing, and the movement and shape payloads[^wire].
 
