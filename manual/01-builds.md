@@ -90,6 +90,8 @@ Notes on the catalogue:
 
 ### 1.1.2 Compilers
 
+Three facts settle which compiler built a client: the PE header and runtime strings, the layout of Delphi's class metadata, and which runtime classes are linked. The table reads them per group of builds. The last row is the one place the clues disagree, which is why the early builds' Delphi version stays open [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
+
 | Builds | Compiler | Evidence | Source |
 | --- | --- | --- | --- |
 | all Delphi builds | Borland Delphi, linker 2.25, DelphiX for DirectDraw, RTL copyright "1983,97 Borland" | PE header and RTL strings | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
@@ -97,6 +99,8 @@ Notes on the catalogue:
 | 1st Graal; 3rd Graal to 1.1.9; 1.21 | disputed → App. E#1 | Delphi 2 class-metadata layout (64 and 32 bytes) but a 1997 RTL string | [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 
 ### 1.1.3 Companion executables in the 1998 to 2001 archives
+
+The 1998 to 2001 archives ship more than the client. The table lists the servers and remote-control programs found beside it, one row per file, with its link date and MD5 so a copy can be matched. The Token and Port columns show what each program expects on the wire. A server that accepts a range of tokens can serve every client in that range [bin] (client-internals/build-catalogue.md#other-executables-in-the-archives).
 
 | Archive | File | Compiled | MD5 | Token | Port | Source |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -150,6 +154,8 @@ The version token is the eight-character string a client sends in its login (→
 
 ### 1.2.1 Token schemes
 
+Graal has used five token schemes. Each row gives the form of the eight characters, the builds that use it, and how to read the digits. The date schemes are the useful ones in practice, because the token alone then dates a build to within a few days [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
+
 | Scheme | Form | Builds | Rule | Source |
 | --- | --- | --- | --- | --- |
 | none | — | 1998 betas to 1.1.9 | no token is sent | [bin] (client-internals/build-catalogue.md#catalogue) |
@@ -163,6 +169,8 @@ A revision that does not change the protocol keeps the previous token: 2.0 rev1 
 A server accepts a range of tokens rather than one: GServer 1.28 accepts GSERV007 to GSERV013 and GServer13 accepts GSERV007 to GSERV014 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). A lab GServer-v2 admits a client when its token is in the allowed-versions list, which for 2.00 is a configuration entry, not a code change [lab] (client-internals/version-tokens.md). Server-side token handling is in → §5.4.
 
 ### 1.2.2 Token table
+
+This is the lookup table behind the schemes: every token the notes have seen, in release order, with the build that sends it. A token that maps to several builds means those builds share a protocol revision. Rows marked from server source are tokens a server accepts but no surviving binary has been read for [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md).
 
 | Token | Build | Source |
 | --- | --- | --- |
@@ -243,6 +251,8 @@ The notes give version ids only for the builds above; ids for other builds are u
 
 ## 1.4 Encryption generation by build
 
+The encryption generation decides how a client scrambles and compresses its frames, so it is the first thing a server must know about a build. Each row gives a generation, the builds that use it and how that was established. For generations 1 to 3 the evidence is in the binaries. For 4 to 6 it comes from server source [bin] (client-internals/build-catalogue.md#patterns-worth-knowing); [srv] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering).
+
 | Gen | Builds | How it was determined | Source |
 | --- | --- | --- | --- |
 | 1 | 1st Graal to 1.1.9 | no zlib linked, no decompression-error option | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
@@ -256,6 +266,8 @@ The notes give version ids only for the builds above; ids for other builds are u
 The schemes themselves are defined in → §2.2. Generations of the 3.x to 6.x clients beyond these rows are in → §2.3.
 
 ## 1.5 Level-format generation by build
+
+Each client reads a fixed set of level and map file magics and writes one save-file magic. The table follows both through the builds. A new save magic marks a change in the saved state, and a level magic that a row lacks is a format that build cannot open [bin] (client-internals/build-catalogue.md#catalogue).
 
 | Builds | Level and map magics read | Save magic | Source |
 | --- | --- | --- | --- |
@@ -298,6 +310,8 @@ The manual groups builds into thirteen eras. Inside an era the clients share the
 | J | 5.00r7, 5.12; then 5.24 to 5.31 | 2007 to 2011 | 5.00 and 5.12 as I; from 5.24 one MSVC executable | [bin][doc] (version-profiles/matrix/README.md#eras) |
 | K | 6.00 betas to 6.03r7, 6.11 Mac | 2010 to 2014 | one native C++ program per platform, no Torque layer | [bin][doc] (version-profiles/matrix/README.md#eras) |
 
+The era table above groups builds. This second table records the three code changes that cut across those eras, found by matching functions between builds against 2.05 rev 2 [bin] (client-internals/cross-version-timeline.md#function-maps-onto-205-rev2).
+
 | Change | Between | Source |
 | --- | --- | --- |
 | largest single code step: about 800 more functions, partly new DirectDraw 7 and grid library code | 1.41 rev1 and NewMain 1.42 | [bin] (client-internals/cross-version-timeline.md#function-maps-onto-205-rev2) |
@@ -319,6 +333,8 @@ These builds sit around the Delphi client line. The uploads hold 9 distinct item
 | 2000-07 | Java Graal | Zelda Online 2's game and client with Graal art, reading `GR-V1` levels; relay on 14802 (→ §2.3.1.3) | [bin][src] (client-internals/precursors-and-fan-builds.md#java-graal-july-2000) |
 | 2001-03 | GraalX | a 2.01 pre-release that keeps the `.nw` reader and writer (→ §1.1.1) | [bin] (client-internals/precursors-and-fan-builds.md#graalx) |
 | 2014-04 | 39ster client 1.00 | an offline fan remake on an SDL engine with GameMonkey script; reads `.nw` and `GR-V1.00` to `1.03`; NPC scripts are not run | [bin] (client-internals/precursors-and-fan-builds.md#39sters-graal-client-100-2014) |
+
+The rules below say what the precursors contributed to Graal, and what they share with it: dialogs, the sign alphabet, data files and level reading. Each row is one inheritance or difference [bin] (client-internals/precursors-and-fan-builds.md#zeldaeditor-july-1998).
 
 | Rule | Source |
 | --- | --- |
@@ -347,6 +363,8 @@ Zelda Online 2 and Java Graal share one engine, and every number below is the sa
 | chat | bold serif black text with a one-pixel white offset, above the head, with no bubble; the nickname is drawn the same way under the feet | [src][live] (client-internals/precursor-runs-2026-10-30.md#chat) |
 
 ### 1.7.2 The Game Boy Color demo
+
+The Game Boy Color demo is a separate homebrew program, not a port of the PC client. The rules record what was seen when it ran in an emulator and what the ROM holds [live] (client-internals/gameboy-demo.md#seen-in-an-emulator); [bin] (client-internals/gameboy-demo.md#room-format).
 
 | Rule | Source |
 | --- | --- |
@@ -398,6 +416,8 @@ What the player sees change [bin][doc] (client-internals/versions-133-139.md#wha
 | 1.38 | button letters removed from the art (the client draws A/S/D itself); digits move into `state.png` (224×97; `sprites.png` 128×452); 81 tiles change in `pics1.png`; editor gains "Show blocking tiles"; external chat removed; Swedish added; gif2mng ships | up to three keys per action in `graalconfig.txt` (`up`, `down`, `left`, `right`, `item`, `attack`, `action`, `map`, `switchtochat`, `itemlist`, `pause`); Alt+8/Alt+9 zoom; Ctrl+letter emotion icons from `levels/emotions` (AFK, BRB and Zzz stay until the player moves); a nickname equal to the account shows as `*nick`; server-checked pickup; `npcs[]`, `hitnpc`, `setlevel2`, `changeimgpart`, `test*()`; explosions capped at 1024; PMs saved to `pms/` | [bin][doc] (client-internals/versions-133-139.md#what-the-player-sees-change) |
 | 1.39 | 7 tiles change; Profile and Options buttons in the player list; a Player List Options window; a Profile window (real name, age, sex, country, ICQ, e-mail, homepage, favourite hangout, quote); "Don't connect levels", "Ignore toalls", "Don't load heads"; Français added | Ctrl+C, K and Y; 100 lines of chat history on Up and Down; weapon list clickable; dead players don't block; editor paints by dragging and turns a dropped image into an NPC | [bin][doc] (client-internals/versions-133-139.md#what-the-player-sees-change) |
 
+These rules are what changes across the seven GNW builds of 2000 and what a server must do to admit them. The last two rows come from live captures, not from the binaries [bin][doc] (client-internals/versions-133-139.md#script-commands); [cap] (client-internals/versions-133-139.md#live-check-2026-10-30).
+
 | Rule | Source |
 | --- | --- |
 | The GS1 command table grows 88, 93, 93, 104, 106, 109, 111 over 1.33 to 1.39; `carryobject` and `throwcarry` are in the 1.34 table but announced only in the 1.37 notes, so being in the table does not prove a command works (→ §8.2) | [bin][doc] (client-internals/versions-133-139.md#script-commands) |
@@ -418,6 +438,8 @@ What each 2.0x step adds, matched against the binary [bin][doc] (client-internal
 | 2.05 | `setmap` applied at once; window title with server name; the `.nw` text level (`GLEVNW01`) | PLO 168; one class added, `TADP`, the anti-debug component (→ §4.11.6) | [bin][doc] (client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md#what-each-step-adds-vendor-text--binary-evidence) |
 | 2.1 test | new tile art, start window and server list (F8), an image engine without GDI, `ascii()`, `tiles[x,y]`, predefined NPCs with `#COMMENTS`/`#EDIT`, smilies in PMs, a tabbed editor | PLO 49, 169 | [bin][doc] (client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md#what-each-step-adds-vendor-text--binary-evidence) |
 
+The 2001 builds branch more than their version numbers suggest. Each rule places one branch, either the 2.1 tests, NewWorld or NewMain, against 2.05 by its token, the ids it handles and its classes [bin][doc] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#21-test2-and-test3).
+
 | Rule | Source |
 | --- | --- |
 | 2.1 test2 and test3 keep the 2.05 token `GNW03081`, login and C→S set (39 ids); they add S→C 49 `PLAYERWARP2` and 169 `UPGRADEURL` (61 ids handled). test3 adds skip-reload checks in LEVELBOARD, LEVELNAME and PLAYERWARP; smilies come from `levels/smilies/smiliesdef.txt` (`code,filename`) | [bin][doc] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#21-test2-and-test3) |
@@ -427,6 +449,8 @@ What each 2.0x step adds, matched against the binary [bin][doc] (client-internal
 | 2.00 to 2.03 have 186 classes; 2.04 and 2.05 add one each; the 2.1 test swaps four editor classes for four tabbed ones (188); NewMain has 193 | [bin] (client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md#classes) |
 
 ### 1.8.3 2.17, 2.22, 2.3 and 2.31
+
+The four Graal Reborn executables can be compared side by side. The rules below cover the socket classes, the cipher generation, the login and what each build adds [bin] (protocol/client-versions.md#client-versions-side-by-side-205-217-222-231).
 
 | Rule | Source |
 | --- | --- |
@@ -454,6 +478,8 @@ What the player sees [bin][cap][doc] (version-profiles/2.22-2.31.md#what-the-pla
 | Positions | half-tile X/Y | X2/Y2/Z2 for players and NPCs | [bin][cap][doc] (version-profiles/2.22-2.31.md#what-the-player-sees) |
 | Fixes in the notes | | NPCs crossing gmap borders; float-to-string (`#v` prints integers of more than 6 digits); a new timer replaces the busy loop at 99 % CPU; a B-tree object lookup | [bin][cap][doc] (version-profiles/2.22-2.31.md#what-the-player-sees) |
 
+The comparison above is of what the player sees. The rules below cover the start window, the HUD files and the GS1 words that each step adds [bin][cap] (version-profiles/2.22-2.31.md#start-window-and-server-list).
+
 | Rule | Source |
 | --- | --- |
 | 2.17's tabs are Graal Gold · Classic · Hosted. Only tabs that hold a server are drawn: the same lab server appears under Bronze in 2.22 and Hosted in 2.31 | [bin][cap] (version-profiles/2.22-2.31.md#start-window-and-server-list) |
@@ -461,6 +487,8 @@ What the player sees [bin][cap][doc] (version-profiles/2.22-2.31.md#what-the-pla
 | GS1 from 2.17 to 2.22 adds `gravity`, `textwidth`, `textheight`, `isthisflagset`, `isplayerflagset` (replacing `isflagset`) and a `#R` message code; 2.22 to 2.31 adds `timevar2`, `downloadsize`, `onwall2`, `onwater2`. `downloadsize` is in the 2.22 notes but only in 2.31's table, so a 2.22 profile treats it as 0 | [bin][doc][inf] (version-profiles/2.22-2.31.md#gs1-script-differences-from-the-clients-symbol-table-bin) |
 
 ### 1.8.4 Graal 3.x: Linux 3.04 and Mac OS X 3.153
+
+The 3.x clients look like a new engine but speak the 2.x protocol. The rules say what the program is built from, where its names come from, which tokens it sends and how its licence files point it at a listserver [bin][file] (protocol/v3x-clients.md#what-these-clients-are).
 
 | Rule | Source |
 | --- | --- |
@@ -501,6 +529,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 #### Program, packaging and licence
 
+From 4.x, Windows Graal is two programs: a Delphi launcher and a C++ engine DLL. The rules describe that split, the libraries the engine links, its start-up quirks and how it finds the login server [bin] (protocol/v4x-clients.md#what-these-clients-are).
+
 | Rule | Source |
 | --- | --- |
 | On Windows 4.x is a Delphi launcher `Graal4.exe` (window, DirectDraw, input, web panel, external windows, URL handlers, `graal4config.txt`, `graal4console.log`) over an MSVC C++ `GraalEngine.dll` with about 2,000 exports, handed its callbacks through about 115 `graal_set…` calls. The Mac client is one PowerPC binary from the same source | [bin] (protocol/v4x-clients.md#what-these-clients-are) |
@@ -515,11 +545,15 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 #### Third-party engines
 
+Some surviving 4.x engines are not original builds. The rule below identifies one modified engine, so its traces are not taken as Graal's own behaviour [bin][src] (protocol/v4x-clients.md#packet-logger-third-party-build).
+
 | Rule | Source |
 | --- | --- |
 | The "Packet Logger" 4.20r8 engine is a third-party modification: a one-byte patch skips the signature check, and a hook in zlib's `inflate` calls `g4_PackLog.dll`, which logs only incoming zlib frames, truncated to the compressed length, as `[id]rest`; it works only on Windows XP SP2 addresses | [bin][src] (protocol/v4x-clients.md#packet-logger-third-party-build) |
 
 #### 4.04r2 against 4.20, and the 3D plug-in
+
+These rules set 4.04r2 against 4.20r8 and say how the 3D plug-in shares work with the 2D engine. The last row records how far the recovered 4.04r2 collection goes [bin] (protocol/v4x-clients.md#protocol-and-engine-differences-from-420r8).
 
 | Rule | Source |
 | --- | --- |
@@ -529,6 +563,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 #### Mac 4.20r6 in the lab
 
+The one Mac 4.x client was run in an emulator. The rule records what its login and traffic showed that the static read had missed [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#420r6).
+
 | Rule | Source |
 | --- | --- |
 | Mac 4.20r6 in qemu: the login line is `mac,"",<md5>,""` (the MAC hash came out empty under qemu); it sends 34 and 46, which the static list missed; no flag 18 for the lab's movement weapon; chat is white with a blue shadow; Apple's software renderer needed a shim dropping two AGL attributes | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#420r6) |
@@ -536,6 +572,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 ### 1.8.6 Graal 5.x: Windows 5.00r7 to 5.31r4
 
 #### Program, packers and licence files
+
+The 5.x builds change how they are packaged more than how they play. The rules follow the launcher and engine split, the packers and the licence files from 5.00r7 to 5.31r4, and flag one third-party patch [bin] (protocol/v5x-clients.md#architecture).
 
 | Rule | Source |
 | --- | --- |
@@ -547,6 +585,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 #### Login, tokens and wire
 
+These rules cover what every 5.x build sends at login and where their framing differs. The 5.12 rows matter to a server, which has to match that build's compression and iterator step [cap] (protocol/v5v6-windows-unpacked.md#login-message).
+
 | Rule | Source |
 | --- | --- |
 | Every build logs in by itself as guest at the login screen, with a fixed guest password shared by all the Windows builds; the machine list gains a fifth field, the quoted Windows version (`"6.2 9200 "` under Windows 8 and later) | [cap] (protocol/v5v6-windows-unpacked.md#login-message) |
@@ -556,6 +596,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 | Stock gs2lib does not know `G3D15010` (5.24, 6.00 beta2) or `G3D03048` (6.00 beta1); it then sends the old file layout and 5.24 saves PNG data as a file name | [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it) |
 
 #### The login lobby, chat and HUD
+
+A 5.x client starts in a lobby on the login server and draws little until it is warped to a game server. The rules say what is drawn and when, and how chat appears [cap] (version-profiles/lab-v5-2026-10-30.md#login-mode-why-nothing-is-drawn-at-first).
 
 | Rule | Source |
 | --- | --- |
@@ -567,6 +609,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 #### Play
 
+Play in 5.x and 6.x was measured in the lab against 2.05. The rules give the timings that held, the few new actions seen on the wire, and one freeze traced to Wine [cap] (version-profiles/lab-v5-2026-10-30.md#timings).
+
 | Rule | Source |
 | --- | --- |
 | Movement timings in 5.00r7, 5.12, 5.24r4, 5.30r3 and 6.03r7 equal 2.05's: walk 0.5 tile per 50 ms tick, push after 18 blocked ticks (0.9 s), sword 5 ticks, lift 6 ticks, hidden walk 0.1 tile per tick (→ §4.2) | [cap] (version-profiles/lab-v5-2026-10-30.md#timings); [wire] (protocol/v5v6-lab-play.md#play-what-the-client-does) |
@@ -577,6 +621,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 ### 1.8.7 Graal 6.x: 6.00 to 6.03, Mac 6.11
 
 #### What 6.x is
+
+6.x drops both the Delphi launcher and the Torque layer. The rules describe the program on each platform, how it finds the login hosts and what it sends to identify the machine [bin] (protocol/v6x-clients.md#architecture).
 
 | Rule | Source |
 | --- | --- |
@@ -590,6 +636,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 | 6.11 (Mac, 2014) fetches a connector script over HTTPS and lets the server set framing, ciphers and id tables (→ §2.10) | [bin] (protocol/v6x-clients.md#611-mac-the-connector-and-a-server-defined-protocol) |
 
 #### The packed 6.037 and 6.113 uploads
+
+Two later Windows uploads are still wrapped by their packer. The rules say which builds they are, what the packed listings show, and what an unpacked listing of the 6.1.1.3 image later recovered [bin] (client-internals/packed-6037.md#what-this-file-is).
 
 | Rule | Source |
 | --- | --- |
@@ -606,6 +654,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 | A full 6.113 capture the same day has TCP 14900 (three completed sessions, each starting `GNP1905C`, and one unanswered SYN) and no UDP to those remotes. UDP 14900, 14901 and 14899 have no datagrams. The UDP in the file is other traffic on the same interface, including a short-header flow on UDP 443 to a separate remote | [cap] (protocol/v6113-udp.md#what-this-capture-shows) |
 
 #### Serving a 6.x client in the lab
+
+These two rules are what a lab server needs to admit a 5.x or 6.x client, and the one known server crash it must avoid [wire] (protocol/v5v6-lab-play.md#for-seihai-profiles).
 
 | Rule | Source |
 | --- | --- |
@@ -644,6 +694,8 @@ Lab measurements kept as tables beside them:
 These records say what an archived file is, and where that identity stops. None of them is a behaviour reading; each keeps the scope its source gives it. [bin] (version-profiles/macos-client-compatibility.md)
 
 ### 1.9.1 Archived macOS executables
+
+Each row is one archived macOS client, named by its archive label. It gives the processor the main executable targets, the minimum OS X version it declares, and how far its identity is proven. The Identity limit column is the one to read before using a row as evidence for a particular release [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim).
 
 | Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
 | --- | --- | --- | --- | --- |

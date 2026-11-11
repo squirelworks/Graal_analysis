@@ -17,6 +17,8 @@ An implementer should be able to build a compatible client or server from the ma
 
 ## 0.2 Structure and numbering
 
+The manual is numbered the way a standard is: Parts, chapters inside a Part, and sections inside a chapter. The number tells you where a fact lives, and every cross-reference in the text uses it. The table gives each level, how its number is formed, and the file that holds it.
+
 | Unit | Form | Example | File |
 | --- | --- | --- | --- |
 | Part | one number | §2 Wire protocol | `manual/02-protocol/00-part.md` |
@@ -66,6 +68,8 @@ A value is never interpolated from builds on either side.
 
 ## 0.5 Numbers, byte order and bits
 
+Numbers in this manual are written the way the source notes write them, so a value can be compared with a capture or a disassembly by eye. The table fixes how hexadecimal, byte strings, bits and byte order are shown.
+
 | Item | Convention |
 | --- | --- |
 | Hexadecimal | `0x` prefix, lower or upper case as in the source note: `0x20`, `0x04A80B38` |
@@ -98,6 +102,8 @@ These short names follow the notation of the protocol notes [doc] (protocol/pack
 
 ## 0.7 Messages and their ids
 
+Graal's wire vocabulary has a few words that are easy to mix up: a message is not a frame, and an id is not the byte on the wire. The table defines the terms that Part II and the appendices use.
+
 | Term | Meaning |
 | --- | --- |
 | message | one logical unit: an id, a payload and, in most generations, a `\n` terminator (→ §2.1.2) |
@@ -111,6 +117,8 @@ These short names follow the notation of the protocol notes [doc] (protocol/pack
 Message and prop **names** are the conventional ones the notes use, restated rather than copied from any server source [doc] (protocol/packet-ids.md). Every id appears in App. A (messages) or App. B (props) with a pointer to its canonical section.
 
 ## 0.8 Units
+
+Sizes and times are given in the client's own units, so a value can be checked against the client without conversion. The table defines each unit and how it relates to the others.
 
 | Unit | Definition |
 | --- | --- |
@@ -141,6 +149,8 @@ The encryption generation numbering is that of GServer-v2, as the notes use it [
 
 ## 0.10 Servers, hosts and redaction
 
+The repository is public, and the manual follows its redaction rules. No real server, account or address appears. The table says how hosts, ports, accounts and binary locations are written instead.
+
 | Item | Convention |
 | --- | --- |
 | Public hosts | never named; written `<listserver-host>`, `<login-host>`, `<public-host>`, `<lan-host>`, or described ("the 1999 list host") |
@@ -153,6 +163,8 @@ The encryption generation numbering is that of GServer-v2, as the notes use it [
 These rules come from the repository's agent rules [doc] (AGENTS.md#no-real-servers-no-binary-addresses) and are enforced by the checker (→ §0.11).
 
 ## 0.11 Checking and building
+
+The manual is checked by scripts in `tools/manual/`, and the same scripts build the PDF. The table lists what each command does, so a contributor can run the checks CI runs.
 
 | Task | Command |
 | --- | --- |
