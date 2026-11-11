@@ -66,7 +66,7 @@ These are the client's own `GameConnection::readPacket` and `writePacket`. They 
 
 **Client → server:**
 
-1. flag: set when a float in the connection (`+0x45c`) is 0.0. What it holds was not traced. **[inf]**
+1. flag: first person. Set when the connection's camera-position value is 0, as in stock `GameConnection`; the same value drives `GameObject::isFirstPerson` ([open-source-lineage.md](open-source-lineage.md#what-matches)). **[bin][doc]**
 2. 3 × F32: the control object's position (the translation column of its transform, or zeros without one), then flag → int12 ghost index of the control object, or of the object it is mounted on.
 3. flag (the client controls that object) → the object's packet data (vtable `+0xf8`). There is no "else moves" branch any more.
 4. flag → int8 field of view, clamped to 1–179.
@@ -88,7 +88,7 @@ So in 5.12 the client always reports its own position, and no Torque `Move` stru
 | 2 | `0x2` or `0x200` | 3 × 32 bits (velocity **[inf]**) |
 | 3 | `0x8` | string (a setting of the movement object) |
 | 4 | `0x10` | string (also passed to the movement object) |
-| 5 | `0x20` | transform: position, rotation, then 32 bits (the packing of the first two was not traced) |
+| 5 | `0x20` | transform: position (3 × F32), then the rotation as axis (3 × F32) and angle in radians (F32), Torque's `mathWrite` of an `AngAxisF`; no scale ([open-source-lineage.md](open-source-lineage.md#what-this-closes)) |
 | 6 | `0x80` | string that creates or replaces the shape object (`shape` **[inf]**) |
 | 7 | `0x40`, and a shape object exists | the shape object's own data |
 | 8 | any of `0xF00`, and a movement object exists | int14 bit length, then the movement object's data |
@@ -102,4 +102,4 @@ The GS2 properties on `GameObject` are `alpha`, `attachedtoobject`, `attr`, `att
 
 ## For a Seihai Torque side
 
-Pick the profile by protocol: 9 (3.04, stock TGE 1.x, no class table), 19 (3.153 and 4.04r2: class table with datablocks, TGE game classes, moves), 21 (4.20r6) and 24 (5.12): `GameObject` model, two-type class table, client-reported position. 21 and 24 share the packet shapes read above; the class sets differ by three names. The open items for a server are the `GameObject` property map, the rotation packing in section 5, and the movement and shape sub-object payloads.
+Pick the profile by protocol: 9 (3.04, stock TGE 1.x, no class table), 19 (3.153 and 4.04r2: class table with datablocks, TGE game classes, moves), 21 (4.20r6) and 24 (5.12): `GameObject` model, two-type class table, client-reported position. 21 and 24 share the packet shapes read above; the class sets differ by three names. The open items for a server are the `GameObject` property map and the movement and shape sub-object payloads. (The section 5 rotation packing is closed in [open-source-lineage.md](open-source-lineage.md#what-this-closes).)

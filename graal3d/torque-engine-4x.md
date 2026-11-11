@@ -294,11 +294,11 @@ The DLL matches open TGE 1.x in:
 
 It has none of TGE 1.4's new lighting system. So it comes from the same TGE 1.2/1.3 line as the 3.x client. **[bin][inf]**
 
-Open TGE source (1.3 to 1.5) is a good base for the formats and the low-level net layer. A compatible client or server must add the Graal changes:
+Open TGE-line source (Torque2D's net layer, Torque3D for the rest; see `torque/open-source-lineage.md`) is a good base for the formats and the low-level net layer. A compatible client or server must add the Graal changes:
 
 - the class table in connect accept, with 12-bit class ids;
 - 14-bit length prefixes on events, ghosts and datablocks;
-- a class id on every ghost update, and the raw index width;
+- a class id on every ghost update (the 4-bit index width is TGE-line behaviour, Torque2D's `GhostIndexBitSize`; see `torque/open-source-lineage.md`);
 - 12-bit datablock ids;
 - the server time and client state in the game packets;
 - the acks without a sequence number;

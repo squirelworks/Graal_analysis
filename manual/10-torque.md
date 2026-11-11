@@ -496,7 +496,7 @@ Compiled TorqueScript files have tables for strings and numbers. The rules below
 
 ### 10.4.3 Opcodes
 
-The numbering differs from stock TGE 1.x: two unused opcodes follow `CREATE_OBJECT` and one follows `CALLFUNC` [file] (torque/scripting.md#graals-opcode-table).
+The numbering is stock TGE 1.0–1.3 (DSO version 33): two unused opcodes follow `CREATE_OBJECT` and one follows `CALLFUNC`; TGE 1.4 dropped those slots [file] (torque/scripting.md#graals-opcode-table); [doc] (torque/open-source-lineage.md#what-matches).
 
 | # | Opcode | # | Opcode | # | Opcode | Source |
 | ---: | --- | ---: | --- | ---: | --- | --- |
