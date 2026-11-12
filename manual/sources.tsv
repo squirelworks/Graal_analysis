@@ -503,6 +503,7 @@ torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered 
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
+torque/lab-2026-11-12-udp-trace.md	pending		10	lab trace of the 5.12 Torque UDP session; to be folded into §10 with udp-session.md
 torque/udp-session.md	pending		10	client-side walk-through of the Torque UDP session with the 2026-11 lab results and test vectors; to be folded into §10 with the pending real-client trace
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both

@@ -16,8 +16,8 @@ Protocol 24 (5.00r7, 5.12) is the line that has been run end to end with a real 
 mission start, ghosts, control object, camera, sun, sky, login step 6 and a drawn 3D view
 **[lab]**. Protocol 21 (4.20r6) shares its packet shapes **[bin]**. Protocol 19 (3.153, 4.04r2)
 has been read but never run past the handshake; it is the stock TGE game layer and is covered
-at the end. A full packet trace of a real client is being taken; its lab note will be linked
-here when it is in.
+at the end. A real 5.12 client's whole UDP session is decoded in
+[lab-2026-11-12-udp-trace.md](lab-2026-11-12-udp-trace.md); every datagram fits this note.
 
 ## 1. Two connections, one session
 
@@ -254,8 +254,13 @@ Torque **[doc]**, matched by **[lab]**):
   acks.
 - A **ping** (type 1) asks for an immediate **ack** (type 2). The 5.12 client sends a 4-byte
   ping when it has had nothing acknowledged for about 4.6 s. **[run]**
-- With nothing to say, the 5.12 client still sends one data packet a second (17 bytes when it
-  has no events). **[run]** The Seihai server times a link out after 30 s of silence. **[lab]**
+- With nothing to say, the 5.12 client still sends a data packet every second or two (17 bytes
+  before it has a control object; 21 bytes after). **[run][lab]** The Seihai server times a link
+  out after 30 s of silence. **[lab]**
+- The 5.12 client answers **every** data packet from the server at once with a 5-byte ack packet
+  (type 2), and sends no pings while the server's packets keep coming. **[lab]**
+- Padding bits after the last field are not always zero (the client's first data packet in lab
+  12 ends in `a0`). Stop reading at the last field. **[lab]**
 
 The two captured client data packets, decoded **[run]**:
 
@@ -284,8 +289,9 @@ guaranteed:     { flag 1, flag "next in order" (else int7 sequence), int12 class
 - An event is done when the packet that carried it is notified delivered; a lost packet's
   events go out again, in order, in a later packet. Keep at most 126 events past the oldest
   unacknowledged one. **[doc][lab]**
-- The Seihai server sends only guaranteed events, and the 5.12 client took them. **[lab]** Which
-  list the client puts its own commands in is not recorded yet; a reader should accept both.
+- The Seihai server sends only guaranteed events, and the 5.12 client took them. The client
+  also sends every event of its own as guaranteed-ordered; no unguaranteed event was seen either
+  way in the lab 12 trace. **[lab]** A reader should still accept both lists.
 
 Event payloads, with `pstring` strings (§2):
 
@@ -299,8 +305,8 @@ Event payloads, with `pstring` strings (§2):
 
 **Tagged command names.** `commandToClient` sends the command name as a tag: first a
 `NetStringEvent` that defines the string, then the `RemoteCommandEvent` whose argument 0 is
-code 2 with that id. **[lab]** Whether the 5.12 client answers with a tag or a plain string (code 1)
-is not recorded yet; a reader should accept either, as the Seihai server does.
+code 2 with that id. **[lab]** The 5.12 client answers with the name as a **plain string** (code
+1), not a tag ([lab 12](lab-2026-11-12-udp-trace.md)); a reader should accept either.
 
 ## 6. Game sections (protocols 21 and 24)
 
@@ -344,7 +350,10 @@ flag     field of view → int8 (1–179)
 There are **no moves** in protocols 21 and 24: the client reports its own position in every
 packet, and its own object's changes (transform, chat, shape) as an update. **[bin][lab]**
 Before step 5 the captured packets carry first person = 1, a zero position and no object.
-**[run]**
+**[run]** In the first packet after it takes the control object, the 5.12 client sends the
+object's shape, transform and flags back. It returns a zero rotation as axis (1, 0, 0), angle 0.
+After that it sends the position, the ghost index and an empty 13-bit update while nothing
+changes. **[lab]**
 
 ## 7. Mission start and the login steps (protocol 24)
 
@@ -587,8 +596,10 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
 
 ## Open
 
-- [ ] A full real-client trace (UDP and TCP, through login step 6, walking and chat), decoded
-  packet by packet. Lab requested 2026-11-12.
+- [x] ~~A full real-client trace through login step 6, decoded packet by packet.~~ Idle session
+  done: [lab-2026-11-12-udp-trace.md](lab-2026-11-12-udp-trace.md). All 319 datagrams decode
+  with this note.
+- [ ] The same with walking and chat (rerun queued).
 - [ ] Protocol 19 past the handshake: the per-packet string buffer, the move layout and the
   datablock phase against a real 3.153 or 4.04r2 client.
 - [ ] What the 5.12 client sends in sections 5, 9 and 3 of its own update while walking and
