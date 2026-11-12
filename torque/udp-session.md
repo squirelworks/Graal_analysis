@@ -417,23 +417,122 @@ supersedes the order in `wire-by-build.md`, which had sections 3, 6, 7 and 8 shi
 | 12 | nickname | `pstring`, then 4 × `int8` colour (R, G, B, A) |
 | 13 | flags | `int16`: 0x04 editor object, 0x08 solid, 0x10 shadow, 0x20 show terrain, 0x40 collision (0x01 also used) |
 
-Each section is one `flag` followed, when set, by its payload. An update with all thirteen
-flags 0 is valid (the control object's packet data, §6).
+Each section is one `flag` followed, when set, by its payload. **All thirteen flags are always
+on the wire**, section 7's included: the reader always reads section 7's flag, and reads the
+movement data only when that flag is 1 **and** the object has a movement object (a movetype of
+`interpolate`, `list` or `rigid`, from this update's section 6 or an earlier one). A server that
+never sends a movetype always writes section 7's flag as 0. An update with all thirteen flags 0
+(13 bits) is valid: it is the control object's packet data in §6. **[bin][lab]**
 
 **Camera** = a GameObject update, then `flag` → `int1` camera mode, then `flag` → `flag` →
 `int12` followed-object ghost. The Seihai server sends both flags 0; the client's scripts set
 the mode and position. **[bin][lab]**
 
-**Sun** = `flag` 1, `pstring` name, direction 3 × `f32`, colour 4 × `f32`, ambient 4 × `f32`.
-**[bin][lab]** (The real client shaded the world with it.)
+**Sun** = `flag` init, then only if it is 1: `pstring` name, direction 3 × `f32`, colour
+4 × `f32`, ambient 4 × `f32`. An update with the flag 0 carries nothing more. The Seihai server
+only ever sends the whole Sun (flag 1), on create and on change. **[bin][lab]** (The real client
+shaded the world with it.)
 
-**Sky** (init + material list) = `flag` 1, `pstring` name, `flag` 1, `f32` visible distance,
-`pstring` comma-separated texture list (front, right, back, left, top, bottom), fog colour
-3 × `f32`, `u32` 0 (fog volumes), two `int8` bools, solid colour 3 × `f32`, one `int8` bool,
-`flag` 0, 3 × { `pstring` cloud texture, `f32` height, `f32` speed }, wind 3 × `f32`, `u32` 0,
-`flag` 0, then seven trailing section flags (0, 0, 1, 0, 0, 0, 0). The client asks for each
-texture over TCP **without** an extension and loads them only when it unpacks the Sky, so a
-server resends the Sky after the downloads. **[bin][lab]** (The real 5.12 drew the sky box.)
+**Sky.** The reader's full shape; every part after the name is guarded **[bin][srv]**:
+
+```
+flag init            → pstring name
+flag material list   → f32 visible distance, pstring comma-separated texture list
+                       (front, right, back, left, top, bottom)
+if init:
+  f32 × 3            fog colour
+  u32 N              fog volumes
+  int8, int8         two bools (whole 8-bit fields, 0 or 1)
+  f32 × 3            solid colour
+  int8               a third bool (8 bits)
+  flag               (read and ignored)
+  N × { f32 × 6, int8 }   the fog volumes
+  3 × { pstring cloud texture, f32 height, f32 speed }
+  f32 × 3            wind velocity
+  u32                (unnamed)
+  flag storm fog     → 5 × u32
+flag → int8          (mask 0x20)
+flag → int8          (mask 0x40)
+flag                 (bare flag; the writer repeats the init state here)
+flag → 2 × u32       (mask 0x2)
+flag → 3 × u32       (mask 0x4)
+flag → 4 × u32       (mask 0x8)
+flag → 3 × u32       (mask 0x10)
+```
+
+So a later Sky update is the same reader with init 0: only the guarded parts that are set
+follow. The Seihai server always sends the Sky whole (init 1, material list 1, N = 0, no storm,
+trailing flags 0, 0, 1, 0, 0, 0, 0). The client asks for each texture over TCP **without** an
+extension and loads them only when it unpacks the Sky, so a server sends the Sky again after the
+downloads. **[bin][lab]** (The real 5.12 drew the sky box.) A Sky ghost update, like every ghost
+update, also has its `int14` length, so a reader that does not decode Sky can skip it.
+
+### Test vectors for §6 and §8
+
+Written by the Seihai gserver's own encoder (`seihai-gserver-v2` PR #54 head, the build the real
+5.12 client drew its world from in labs 7 to 10), so the bytes are the server's, not a real
+server's. Strings carry the `pstring` prefix flag (0). **[srv][lab]**
+
+Payloads (the bits after a ghost entry's `int14` length; the byte strings are padded with zero
+bits at the end):
+
+`GameObject` create, 471 bits: name `G3DPlayer_lab`, shape `labcube.3ds`, position (0, 0, 1), axis (0, 0, 1), angle 0, nickname `lab` with colour (255, 255, 255, 255), flags 0x48 (solid, collision):
+
+```
+6d887574de1b5979938ddce9c2c81df6bb2f1d431300000000000000000000f00700000000000000000000f00700000000e8c0c8ddffffff7f2400
+```
+
+Empty `GameObject` update (the control object's packet data), 13 bits: `0000`
+
+`Sun`, 379 bits: name `Sun`, direction (0.57735, 0.57735, −0.57735), colour (0.8, 0.8, 0.8, 1), ambient (0.3, 0.3, 0.35, 1):
+
+```
+1d987ab2699ef8b1699ef8b1699ef86d6666fa696666fa696666fa010000fcd1ccccf4d1ccccf4999999f5010000fc01
+```
+
+`Sky`, 956 bits: name `Sky`, distance 500, textures `sky_fr,sky_rt,sky_bk,sky_lf,sky_up,sky_dn`, fog (0.5, 0.6, 0.8), bools 1 0, solid colour (0.4, 0.6, 0.9), bool 0, no clouds, no wind:
+
+```
+1d984e2a0100f4874c69938a6cb368b749456610ed36a9c8769368b7494536b668b74945e6eb68b7494516080000e0473333e3a79999e90700000020
+00a09999d9473333e3c7ccccec0700000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000
+```
+
+A whole server session, as the server sends it, against a client that answers each mission phase
+and acks every packet (the client's first packet is the real one from §3; the later client
+packets are synthetic). Ghost 0 is the Sun, ghost 1 the player's `GameObject` (the create above),
+which becomes the control object:
+
+- seq 1: acks client seq 1; events `NetStringEvent` (tag 0 = `MissionStartPhase1`) and `RemoteCommandEvent` (tag 0); ghost section, width 1: creates ghost 0 (`Sun`) and ghost 1 (`GameObject`) (142 bytes):
+
+  ```
+  05084002080108000d004ab8b835569a421aeccdd95ebc001880203062007b4107a69e6c9a277e6c9a277e6c9a277e9b99997e9a99997e9a99997e00
+  00007f3433337d3433337d6666667d0000007f4600d7411b621d9df74656de642377ba307287fdee4bc7d00400000000000000000000fc0100000000
+  000000000000fc01000000003a3072f7ffffff1f0900
+  ```
+
+- seq 2: after the client's `MissionStartPhase1Ack`; events: tag 1 = `MissionStartPhase2`, then the command (28 bytes):
+
+  ```
+  09104006080908400d084ab8b835569a421aeccdd97eff0260008201
+  ```
+
+- seq 3: after `MissionStartPhase2Ack`: the control object section (flag 1, flag 1, `u32` server time, `int12` ghost 1, the 13-bit empty update); no events, no ghosts (13 bytes):
+
+  ```
+  0d18400e989300002000000000
+  ```
+
+- seq 4: keep-alive data packet (acks only) (6 bytes):
+
+  ```
+  1120401e0800
+  ```
+
+- seq 5: keep-alive data packet (acks only) (6 bytes):
+
+  ```
+  1528403e0800
+  ```
 
 ## 9. A minimal protocol-24 client, step by step
 
