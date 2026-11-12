@@ -93,6 +93,7 @@ client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4
 client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	cited	2.7	2.7; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.7 (coverage audit 2026-11-04)
+protocol/plo-24-29-30-45-205r2.md	cited	2.5	2.5; 2.7	2.05r2 layouts and client actions for PLO 24, 29, 30 and 45; §2.5.6 and §2.5.7 rows cite it
 client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	cited	2.7	2.7; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.7 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-e/03-open-points.md	cited	E	4; E	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in App. E (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	cited	2.7; 4.3	2.7; 4	
