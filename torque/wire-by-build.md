@@ -80,6 +80,8 @@ So in 5.12 the client always reports its own position, and no Torque `Move` stru
 
 ## The 5.12 `GameObject` update
 
+> **Superseded 2026-11-12.** The section order below has sections 3, 6, 7 and 8 shifted. The order a real 5.12 client took in the lab is in [udp-session.md](udp-session.md#8-ghosts-and-the-gameobject-update-protocols-21-and-24): 3 shape, 6 movetype, 7 movement data, 8 shape data. Strings inside data packets also carry the per-packet prefix flag ([udp-session.md](udp-session.md#2-bit-stream-conventions)).
+
 `GameObject::packUpdate` and `unpackUpdate` agree on thirteen flag-guarded sections. The mask bits are the server's dirty bits; on the wire each section is just a flag. Field names are only given where the code makes them clear; the rest are marked. **[bin]**
 
 | # | Dirty bits | Payload after the flag |
