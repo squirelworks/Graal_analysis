@@ -4,6 +4,8 @@ Date: 2026-10-14
 
 Internal version strings recovered from the public version list. No decompile material.
 
+The per-build table with evidence grades (wire, binary, list only) and the repro-folder cross-check is `version-token-catalogue.md`.
+
 | Token | Build notes |
 |-------|-------------|
 | GNW07080 | 1.39 |
