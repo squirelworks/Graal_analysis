@@ -620,6 +620,7 @@ protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, number
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
 protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
+protocol/connector-script.md	pending		1; 2.10	#397 hub: connector fetch, container, script steps and id-table mechanism gathered from the 6.11/7.x notes; fold into §2.10 with them
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
 formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
