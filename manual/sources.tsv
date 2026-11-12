@@ -335,7 +335,7 @@ protocol/packet-id-diff.md	excluded		2.4; 2.5; A	method note: the 2.05 file it c
 protocol/packet-ids.md	cited	2; 0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
 protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
-protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B	2.6; B	
+protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B; E	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
