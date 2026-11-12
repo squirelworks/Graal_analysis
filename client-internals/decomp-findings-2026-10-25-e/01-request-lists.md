@@ -22,7 +22,7 @@ A reply (file, up to date, send failed, or the end of a large file) removes the 
 - A gmap file: checked like an image when present (lab, 2.22 gmap runs); asked for when missing (lab).
 
 ## Failed names
-A name answered with "send failed" is not asked for again on the same connection (lab: a missing step sound is asked for once however often the player walks). What the client stores for it beyond that is not known.
+A name answered with "send failed" is not asked for again on the same connection (lab: a missing step sound is asked for once however often the player walks). What the client stores for it beyond that is not known. *2026-11-12: 2.05r2 also hands an empty, zero-length file of that name to the file-received routine (`../../protocol/plo-24-29-30-45-205r2.md`).*
 
 ## Cross-build
 The list code is the same in 2.00, 2.05 rev 2, 2.17.1, 2.22 and 2.31. In 2.05 rev 2 and 2.22 the request-side function bodies were hard to read in the export; the request rules for those two come from the matching reply-side code and the lab, and are marked inferred in the tsv.
