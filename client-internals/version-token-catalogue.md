@@ -56,12 +56,12 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | NewMain 24, 26 | `GNW08011` | W | lab capture; immediates in both exes | ✔ | tested |
 | 2.00 | `GNW24011` | **W** | `decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md`: the 2.00 exe logged in to a lab gserver with type 0, the key byte and `GNW24011` | ✔ | **token only (understated)** |
 | 2.00 rev1, rev2, rev3 | `GNW24011` | B | immediates. Same token as 2.00, which was seen on the wire | ✔ | token only |
-| GraalX (2.01 pre-release) | `GNW23021` | B | immediates, re-read today | ✔ | token only |
-| 2.01, 2.01 rev1 | `GNW23021` | B | immediates | ✔ | token only |
-| 2.02, 2.02 rev1 | `GNW15041` | B | immediates | ✔ | token only |
-| 2.02 rev2 | `GNW20041` | B | immediates | ✔ | token only |
-| 2.03 | `GNW06051` | B | immediates | ✔ | token only |
-| 2.04 | `GNW24061` | B | immediates | ✔ | token only |
+| GraalX (2.01 pre-release) | `GNW23021` | **W** | immediates; the original's login was logged by a lab gserver on 2026-11-12 [lab] | ✔ | **token only (understated)** |
+| 2.01, 2.01 rev1 | `GNW23021` | **W** (2.01) | immediates; the original 2.01's login was logged by a lab gserver on 2026-11-12 [lab] | ✔ | **token only (understated)** |
+| 2.02, 2.02 rev1 | `GNW15041` | **W** (2.02) | immediates; the original 2.02's first frame was captured on loopback on 2026-11-12 [lab] | ✔ | **token only (understated)** |
+| 2.02 rev2 | `GNW20041` | **W** | immediates; first frame captured on loopback on 2026-11-12 [lab] | ✔ | **token only (understated)** |
+| 2.03 | `GNW06051` | **W** | immediates; original's login logged by a lab gserver on 2026-11-12 [lab] | ✔ | **token only (understated)** |
+| 2.04 | `GNW24061` | **W** | immediates; original's login logged by a lab gserver on 2026-11-12 [lab] | ✔ | **token only (understated)** |
 | 2.05, 2.05 rev1 | `GNW03081` | B (token W via rev2) | immediates. The same token was seen on the wire from 2.05 rev2 | ✔ | token only |
 | 2.05 rev2 | `GNW03081` | W | lab captures | ✔ | tested |
 | NewWorld beta 1 (pre-update and final), beta 2 | `G2N15041` | W | lab captures; immediates in all three exes | ✔ | tested |
@@ -126,7 +126,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 
 ## Gaps and how far each can be closed
 
-- **B only, still runnable:** 2.01 to 2.04 (five token values, as 2.02 rev2 has its own), GraalX (same token as 2.01), 2.00 rev1 to rev3, 2.05 and 2.05 rev1. All are Delphi Windows exes that start under Wine. A lab run against a lab gserver behind a logging proxy would move them to W. For 2.00 rev1 to rev3, 2.05 and 2.05 rev1 the token value is already W through a sibling build, so only `GNW23021`, `GNW15041`, `GNW20041`, `GNW06051` and `GNW24061` have never been seen on the wire. 1.34 to 1.38 (B+) need only their already-working lab login decoded.
+- **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
 - **L only, no binary in any collection:** 1.25, 1.27, 1.391, all 2.1.x releases from 2.1.0 to 2.21 except 2.17, 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
@@ -149,6 +149,8 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 
 ## Open points
 
-- [ ] Wire-capture the five B-only token values (2.01–2.04; GraalX shares 2.01's) and decode the 1.34–1.38 login frames in a Wine lab, as `live-trace-early.md` did for 1.31 and 1.32.
+- [x] ~~Wire-capture 2.01, 2.03, 2.04 and GraalX.~~ Captured on loopback and logged by a lab gserver on 2026-11-12. Each first frame is type 0, the gen-3 key byte, the token, then the account and password as GCHAR strings. 2.02 rev2, 2.03 and 2.04 add PLI 37 (language) in the same frame.
+- [x] ~~Wire-capture 2.02 and 2.02 rev2.~~ Captured 2026-11-12 with a cdecl zlib 1.2.3 beside the unchanged exe.
+- [ ] Decode the 1.34–1.38 login frames (they reach their connect window; the dialog still has to be driven).
 - [ ] Read a genuine 2.3 binary, if one turns up, and record its token and PLI 39 words.
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
