@@ -54,19 +54,19 @@ The ids are their own space, not PLI or PLO numbers; the wire byte is again the 
 | Id | Meaning | Payload | TCP twin | Source |
 | ---: | --- | --- | --- | --- |
 | 0 | movement | six GCHARs: X × 2, Y × 2, SPRITE, STATUS, CARRYSPRITE (−1 none), and a letter that follows the animation | props 15–19 | [2.05][cap] (protocol/udp-p2p.md#observed-on-the-wire-cap) |
-| 10, 11 | bomb add, bomb delete | unmeasured beyond the TCP twins | PLI 4, 5 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
+| 10, 11 | bomb add, bomb delete | the PLI 4 / PLI 5 bodies; 10 drops an exact repeat from the same peer; only from a peer in the local player's level | PLI 4, 5 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
 | 12 | arrow add | the 5 bytes of relay `A` in 1.28 beta 2 | PLI 9 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [cap] (protocol/gserv-1999.md#udp-128-beta-2-on) |
-| 13 | fire spy | unmeasured | PLI 10 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
-| 14 | explosion | unmeasured | PLI 27 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
+| 13 | fire spy | the PLI 10 byte; the receiver uses the value ÷ 8 | PLI 10 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
+| 14 | explosion | `c radius, c x×2, c y×2, c power (+8 = sender's)`, power clamped 1–3 | PLI 27 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
 | 15 | showimg | four GCHARs (index, x, y, name length), the image name, then a few trailing bytes; 3.04 sends one byte 9 about every 5.1 s per peer | PLI 24 | [cap] (protocol/udp-p2p.md#observed-on-the-wire-cap); [cap] (protocol/udp-p2p.md#304-linux-lab-2026-10-30-cap) |
-| 16, 17 | horse add, horse delete | unmeasured | PLI 7, 8 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
-| 18 | throw carried | unmeasured | PLI 11 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
-| 19, 20 | item add, item delete | unmeasured | PLI 12, 13 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
+| 16, 17 | horse add, horse delete | the PLI 7 / PLI 8 bodies; 16 drops an exact repeat from the same peer | PLI 7, 8 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
+| 18 | throw carried | empty; the sender's carried object is thrown | PLI 11 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
+| 19, 20 | item add, item delete | the PLI 12 / PLI 13 bodies; a dropped `sword` or `shield` copies the sender's image | PLI 12, 13 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
 | 21 | remote hit from GS1 `hitplayer`, sent only to the victim | `c (dx + 4) × 16, c (dy + 4) × 16, c halfhearts`, optional attacker-object bytes | PLO 40 shape | [2.05] (protocol/udp-p2p.md#payloads-of-ids-21-23-24) |
 | 22 | chat | text, at most 253 bytes | CURCHAT prop | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
 | 23 | level name | raw level name, no length byte; applied as CURLEVEL (20); no 2.05 sender | prop 20 | [2.05][inf] (protocol/udp-p2p.md#payloads-of-ids-21-23-24) |
 | 24 | entered level | `c x × 2, c y × 2`, raw level name; sent to peers in the 3 × 3 gmap neighbourhood | props 15, 16, 20 | [2.05] (protocol/udp-p2p.md#payloads-of-ids-21-23-24) |
-| 25 | hit objects | unmeasured | PLI 36 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
+| 25 | hit objects | `c power×2, c x×2, c y×2` [+ `i3 npc`]; hurts the local player within 10 tiles of the source when (x, y) is within 2 tiles of the player's body centre on both axes | PLI 36 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering); [bin] (protocol/udp-p2p.md#receive-cases-1020-and-25-in-205r2-bin) |
 | 26 | trigger action | for example NPC id 0, x × 2, y × 2, `leftmouse` | PLI 38 | [cap] (protocol/udp-p2p.md#304-linux-lab-2026-10-30-cap) |
 
 The id table above lists the UDP messages. The rules below are what captures showed about their timing and fields [cap] (protocol/udp-p2p.md#observed-on-the-wire-cap).

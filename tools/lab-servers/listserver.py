@@ -17,6 +17,9 @@ Client side (what each login shape gets back):
       id 5 upgrade URL. This is the shape the public listserver sends on 14922
       (Graal_analysis protocol/public-listserver-2026-10-25.md).
   A refused login gets id 4 (error text) and the link is closed.
+  Nothing within --greet-delay seconds of the connect (1.41 rev1, which never
+      speaks first): one plain zlib frame with id 0, the untagged list. 1.41
+      handles only ids 0 and 1 from the listserver and closes after id 0.
 
 Gserver side: SVO_REGISTERV3 (one uncompressed line), then zlib frames.
   NEWSERVER, SERVERHQLEVEL, SETPLYR/PLYRADD/PLYRREM (player count), VERIACC2
@@ -24,8 +27,10 @@ Gserver side: SVO_REGISTERV3 (one uncompressed line), then zlib frames.
   GServer-v2 beta4), PING (a pong: logged, never answered). A gserver's entry
   is dropped from the list when its link closes.
 
-Usage: python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT]
+Usage: python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT] [--greet-delay S]
   --accounts FILE   lines of "account password"; only these may log in.
+  --greet-delay S   seconds of client silence before the server-first list
+                    (default 1.5; 0 turns it off).
 """
 import argparse, asyncio, bz2, struct, time, zlib
 
@@ -134,8 +139,20 @@ async def client(reader, writer, port):
         return {2: lambda b: b, 4: zlib.decompress, 6: bz2.decompress}[ctype](rest)
 
     closing = False
+    first = True
     while not closing:
-        d = await reader.read(65536)
+        if first and ARGS.greet_delay > 0:
+            first = False
+            try:
+                d = await asyncio.wait_for(reader.read(65536), ARGS.greet_delay)
+            except asyncio.TimeoutError:
+                # 1.41 rev1 connects and waits for the list without sending anything.
+                log('client', port, 'silent for', ARGS.greet_delay, 's: server-first list')
+                send([server_list(False)])
+                await writer.drain()
+                continue
+        else:
+            d = await reader.read(65536)
         if not d:
             break
         buf += d
@@ -274,6 +291,7 @@ async def main():
     ap.add_argument('--accounts')
     ap.add_argument('--name', default='Lab listserver')
     ap.add_argument('--host', default=LOOPBACK)
+    ap.add_argument('--greet-delay', type=float, default=1.5)
     ARGS = ap.parse_args()
     LOG = open(ARGS.logfile, 'a', buffering=1)
     if ARGS.accounts:

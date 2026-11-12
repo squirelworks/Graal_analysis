@@ -56,7 +56,7 @@ run in parallel on separate lab VMs.
 | #246 | A 1.32 client export |
 | #370 avenue 8 | Archive copies of the missing builds (1.32; a build between the 2.1 tests and 2.22) |
 | #243 | Read as lifted for research by #370; the 3.04 stage 0 captures still need a lab slot |
-| #244 | Now from the public pyReborn repository; needs an owner to take it |
+| ~~#244~~ | ~~Now from the public pyReborn repository~~ Done: [study](../client-internals/pyreborn-study/README.md) |
 
 ## How to use this page
 

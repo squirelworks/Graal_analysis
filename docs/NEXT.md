@@ -174,10 +174,10 @@ macOS CI is paused until the polish stage.
   `cursor/ci-leak-checks-fail-demo-b5fd` proved the IP step red.
   *Done in #159.*
 
-- [ ] **4. pyReborn study into the repo.** Needs Squirrel's `pyreborn-vs-seihai.md` and
-  `parser-probe-main.rs` (project files). Add as `client-internals/pyreborn-study/`
-  with the MIT note; keep `file:line` citations; drop pasted pyReborn code.
-  *Blocked until Squirrel provides the files.* Tracked in #244 (on hold).
+- [x] **4. pyReborn study into the repo.** ~~Add as `client-internals/pyreborn-study/`
+  with the MIT note; keep `file:line` citations; drop pasted pyReborn code.~~
+  [Study](../client-internals/pyreborn-study/README.md), from the public MIT
+  `hosler/pyreborn` and its siblings (#244).
 
 - [x] **5. Graal3D collision as plain behaviour (unblocks `seihai-g3d` G3D-1).**
   Per-face step test in `graal3d/collision.md` with tags: radius 5, step height 30,

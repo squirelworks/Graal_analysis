@@ -183,9 +183,9 @@ These messages move, script and remove NPCs and hand out weapons. Rows marked un
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
-| 24 | `PLO_NPCMOVED` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 24 | `PLO_NPCMOVED` | `i3 npc id`, `c x·2`, `c y·2`, `rest` = image name | 2.05r2: an unknown id is ignored; removes the NPC from every loaded level's NPC list, then sets its image (none if the name is under 3 characters) and its X/Y in half tiles | [bin] (protocol/plo-24-29-30-45-205r2.md) |
 | 26 | `PLO_NPCACTION` | `i3 npc id`, `rest` = script text to the end of the message (no length prefix, `§` line breaks) | handled by 1.28 beta 2 to 2.03; replaces the script of a known server-wide NPC (id ≥ 1000; level NPCs and unknown ids are ignored), clears its compiled script, then fires `playerenters` if the NPC is in the active level and the player is there; the SCRIPT prop cannot do this because it is ignored once an NPC has a script | [bin][lab] (client-internals/npcaction.md); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
-| 29 | `PLO_NPCDEL` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 29 | `PLO_NPCDEL` | `i3 npc id` | 2.05r2: an unknown id is ignored; the NPC is removed from the global and level lists, the carry slot and the NPC chooser list, then freed | [bin] (protocol/plo-24-29-30-45-205r2.md) |
 | 33 | `PLO_NPCWEAPONADD` | `str name` + NPCPROP stream (normally `c 0` IMAGE + `str image`, `c 1` SCRIPT + `s len` + GS1 text) | a name the player already has is ignored; the weapon gets the `playerenters` event; a script line break is `§`, byte `A7` from a latin-1 server and `C2 A7` from a UTF-8 server | [srv][2.05] (protocol/packet-layouts.md#weapons); [cap] (client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md#weapon-scripts-and-line-breaks) |
 | 34 | `PLO_NPCWEAPONDEL` | `rest` = weapon name | removes the weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 43 | `PLO_DEFAULTWEAPON` | `c item index` (0–24: a built-in weapon such as bow, bomb, sword) | adds the built-in weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
@@ -215,8 +215,8 @@ The download sequence, sizes and failure handling are in → §2.7.
 
 | Id | Name | Layout | Client action | Source |
 | ---: | --- | --- | --- | --- |
-| 30 | `PLO_FILESENDFAILED` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
-| 45 | `PLO_FILEUPTODATE` | unmeasured | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 30 | `PLO_FILESENDFAILED` | `rest` = file name | 2.05r2: releases the name from the request lists (→ §2.7) and hands an empty, zero-length file of that name to the file-received routine (a failed `.gani` becomes an empty animation) | [bin] (protocol/plo-24-29-30-45-205r2.md) |
+| 45 | `PLO_FILEUPTODATE` | `rest` = file name | 2.05r2: only releases the name from the request lists (→ §2.7); no file is created | [bin] (protocol/plo-24-29-30-45-205r2.md) |
 | 68 | `PLO_LARGEFILESTART` | `rest` = file name | stores the name; 2.31 also clears the stored size | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 69 | `PLO_LARGEFILEEND` | `rest` = file name | if it equals the stored name, the accumulated stream is processed as one received file | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 84 | `PLO_LARGEFILESIZE` | `i5 size` | stored | [bin] (version-profiles/plo-layouts-217-231.tsv) |
@@ -254,7 +254,7 @@ Chat display and the private-message rules are in → §2.8.
 | 182 | `PLO_LISTPROCESSES` | empty | the client answers with `PLI_PROCESSLIST` (44); 4.20r8 lists the titles of all open windows | [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 183 | `PLO_HASPROCESSRUNNING` | `rest` = names | the client answers with `PLI_PROCESSRUNNING` (45): 1 if the string occurs in its own list, else 0 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 184 | `PLO_TAKESCREENSHOT` | `rest` = file name | accepted only with a `.png` extension; saves a screenshot under the screenshots folder; sends nothing back | [bin] (version-profiles/plo-layouts-217-231.tsv) |
-| 190 | `PLO_SERVERLISTCONNECTED` | unmeasured | fires `onServerListerConnect`: the `Login` server has accepted the session (→ §2.3) | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 190 | `PLO_SERVERLISTCONNECTED` | no body is read | fires `onServerListerConnect`: the `Login` server has accepted the session (→ §2.3); 4.04r2 and 4.20r8 then send `PLI_SENDTEXT` `GraalEngine,lister,verifybuddies,<loadbuddiesfromserver 0/1>,<CRC-32 of the buddy list, 0 if empty>` unless the scripted player list is on | [bin] (protocol/v4x-clients.md#190-and-the-buddy-check); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 108 | `PLO_PING` (was `PLO_UNKNOWN108`) | `c sub`, `s value` | ping: subtype 0 makes the client answer with id 162 echoing the value (→ App. E#5); subtype 1 stores the value on the connection; 4.20r6, 4.20r8, 6.01r1, 6.03r7, taken before the main switch; not 5.x | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 104 | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) | `str file`, `c a`, `i5 lo`, `i5 hi`; lo and hi joined little-endian | stores an 8-byte DES key for that lower-cased file name; a `.gpake` package or `.enc` file decrypts with it once 45, 69 or 102 arrives for the file; 3.153 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][lab] (formats/gpak.md) |
 

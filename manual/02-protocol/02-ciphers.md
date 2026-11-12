@@ -90,7 +90,7 @@ Builds agree on the cap but not always on rounding. The table gives the number o
 | --- | --- | --- |
 | 2.22, 2.31 | `ceil(len / 4)`, capped at 4 | [2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | 3.04, 3.153 | `ceil(len / 4)`, capped at 4 | [bin] (protocol/v3x-clients.md#game-server-login-and-cipher) |
-| 4.04r2, 4.20r6, 4.20r8 | cap 4; rounding unmeasured | [bin] (protocol/v4x-clients.md#cipher-and-framing) |
+| 4.04r2, 4.20r6, 4.20r8 | `floor(len / 4)`, capped at 4; an incomplete tail takes no step. Raw bodies use `ceil(len / 4)`, capped at 12 | [bin] (protocol/v4x-clients.md#cipher-and-framing) |
 | 5.12 | disputed → App. E#2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [cap] (protocol/v5v6-windows-unpacked.md) |
 | 5.24r3 and later 5.x, 6.00 to 6.03r7 | `ceil(len / 4)`, capped at 4 | [cap] (protocol/v5v6-windows-unpacked.md); [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 
