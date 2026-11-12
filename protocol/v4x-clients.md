@@ -73,6 +73,15 @@ Then id **37** with the language name. So 4.x sends a stable PC id at every logi
 
 **Gen 5, the same as 2.22, 2.31 and 3.x.** Both directions are seeded with `0x04A80B38`, the generator is `it = it * 0x08088405 + key`, and the key is a random 0–127 sent in the login. Frames are `u16be length`, a type byte, then the body: under 0x30 bytes type 2 (raw), under 0x1000 type 4 (zlib), otherwise type 6 (bzip2). Type 2 XORs at most 12 dwords and types 4 and 6 at most 4. Packets are `id + 32`, the body and `\n`. **[bin]**
 
+**Step count.** All three readable engines (4.04r2 Windows, 4.20r8 Windows, 4.20r6 Mac) use the same rule in both directions. For a body of `n` bytes after the type byte:
+
+| Frame type | Iterator steps | Tail |
+| --- | --- | --- |
+| 2 (raw) | `min((n + 3) >> 2, 12)`, that is `ceil(n / 4)` capped at 12 | the last group may be partial and is XORed |
+| 4 (zlib), 6 (bzip2) | `min(n >> 2, 4)`, that is `floor(n / 4)` capped at 4 | an incomplete last group is left as is and takes no step |
+
+Each step is `it = it * 0x08088405 + key`, then up to four body bytes are XORed with the iterator's bytes, low byte first. So 4.x rounds compressed bodies **down**, which matches the Mac PowerPC receive note (`macos-ppc-receive-framing.md`) and differs from the `ceil` rule that 2.22 captures need (`codec-and-framing.md#gen-45-partial-xor`). A server that talks to both needs a per-version rule. **[bin]** Not yet checked on the wire with a 4.x client. **[inf]**
+
 Large packets: before a payload sent as id 93, the client sends id 50 with a 3-byte GINT length (capped at 0x37FFFF). Incoming id 100 sets the length of the next raw (newline-free) packet. **[bin]**
 
 ## Server → client ids
@@ -90,7 +99,7 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 170 | Ghost mode on or off (`GHOSTMODE`). |
 | 182 | The client answers with id **44**: a comma list of the titles of all open windows (`EnumWindows`). |
 | 183 | The client checks whether a given string is in that window list and answers. |
-| 190 | Fires `onServerListerConnect` (the `Login` server has accepted the session). |
+| 190 | Fires `onServerListerConnect` (the `Login` server has accepted the session). See [190 and the buddy check](#190-and-the-buddy-check). |
 | 191 | A projectile (`SHOOT2`): x, y, z, three angle and speed values, a gani name with optional parameters, then a script string. |
 | 193 | A GINT5 **CRC32** and a weapon name: if `weblevels/weapons/<name>.code` exists and its zlib CRC32 matches, the client loads the cached script; otherwise it asks with id 158. (Corrected 2026-11-06: the GINT5 is a CRC32, not a mod time; `unknown-ids-2026-11-06.md`.) |
 | 194 | Clears the client's lists of weapon and class scripts and their name index. |
@@ -98,6 +107,35 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 196 | Same layout as 193; the 4.20r8 handler reads it and does nothing else. |
 
 Mac 4.20r6 handles 99 of these: the same set without 41 and 196. Its packet switch has 97 cases (0 to 195, without 41), and, as in 4.20r8, 100 and 108 are taken before the switch; its 108 handler answers subtype 0 with id 162. (Re-read 2026-10-31; this line said 97 before, which was the switch alone.) 44 is still missing in both, as in 3.153. **[bin]**
+
+### 190 and the buddy check
+
+Read in 4.04r2 and 4.20r8, which agree. **[bin]**
+
+- The handler reads nothing from the body, so any body (or none) works.
+- It runs an optional engine hook, then raises `onServerListerConnect` on the script universe.
+- Then, unless a script has turned on the scripted player list (`enableScriptedPlayerlist`), and only while a game-server connection exists, it sends `PLI_SENDTEXT` (154) with the tokens `GraalEngine,lister,verifybuddies,<flag>,<crc>`:
+  - `<flag>` is `1` or `0`, from the `loadbuddiesfromserver` config key.
+  - `<crc>` is the CRC-32 (the zlib routine) of the buddy list joined with commas, written in decimal. It is `0` when the list is empty.
+
+The live 4.04 login matches this: the client sent `GraalEngine,lister,verifybuddies,1,0` with an empty buddy list (`client-internals/live-behaviour-404.md`). **[live]** What a server should answer is not settled. The 2.17+ reply is `PLO_SERVERTEXT` with `weapon,lister,buddylist,…` (`client-internals/feature-specs/14-friends-ignore.md`). Whether 4.x needs that reply when the CRC already matches is **[inf]**.
+
+## Prop parsers
+
+Read in 4.04r2 and 4.20r8. The two builds have the same case sets. **[bin]**
+
+| Stream | Ids with a case | No case | What happens at an id with no case |
+| --- | --- | --- | --- |
+| self (`PLO_PLAYERPROPS`, 9) | 0–32, 34–49, 52, 54–74, 78–81 | 33, 50, 51, 53, 75–77, and 82 and up | The id is taken as a one-byte prop and skipped (id byte plus one value byte), and parsing **goes on** |
+| other players (`PLO_OTHERPLPROPS`, 8) | 0, 2, 8–13, 15–21, 23, 24, 30–76, 78–81 | 1, 3–7, 14, 22, 25–29, 77, and 82 and up | The rest of the message is dropped, as in 2.x |
+| NPC (`PLO_NPCPROPS`, 3) | 0–47, 53–77 | 48–52, and 78 and up | The rest of the message is dropped, as in 2.31 |
+| baddy (`PLO_BADDYPROPS`, 2) | 0–10 | 11 and up | The rest of the message is dropped, as in 2.05 |
+
+- **The self parser differs from 2.x.** An unknown id no longer ends the stream. But the skip assumes a one-byte value, so an unknown id that carries a longer value desyncs the rest of the message. **[bin][inf]**
+- **Some self ids go through the shared parser.** In the self parser, GANI (10), 17, 19, 35, 37–41, 45–49, 54–74 and 81 have no handler of their own. They are passed on to the parser that `PLO_OTHERPLPROPS` uses. **[bin]**
+- **81 is parsed.** It is one byte in both streams. Bits 0 to 3 set four separate flags on the player, and bit 0 also clears one more field. The parser then raises `onPlayerChanges`. What the flags mean is not traced. The server header calls 81 a player-list tab flag. **[bin][inf]**
+- **77 is still not parsed.** In other-player props it ends the stream, and in self props it is skipped as one byte.
+- **Other-player 51 (`PCONNECTED`)** is the one id the other-player parser accepts with no value byte.
 
 ## Client → server ids
 

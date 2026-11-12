@@ -93,6 +93,7 @@ client-internals/decomp-findings-2026-10-24/player-modes.tsv	cited	4.2; 4.3	4
 client-internals/decomp-findings-2026-10-24/sprite-step-table.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/status-bits-prop18.tsv	cited	4.10	4	
 client-internals/decomp-findings-2026-10-25-e/01-request-lists.md	cited	2.7	2.7; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.7 (coverage audit 2026-11-04)
+protocol/plo-24-29-30-45-205r2.md	cited	2.5	2.5; 2.7	2.05r2 layouts and client actions for PLO 24, 29, 30 and 45; §2.5.6 and §2.5.7 rows cite it
 client-internals/decomp-findings-2026-10-25-e/02-save-rules.md	cited	2.7	2.7; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.7 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-e/03-open-points.md	cited	E	4; E	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in App. E (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md	cited	2.7; 4.3	2.7; 4	
@@ -346,7 +347,7 @@ protocol/udp-p2p.md	cited	2; 2.8; 2.9	2.9
 protocol/unknown-ids-2026-11-06.md	cited	2.4; 2.5; E	2.4; 2.5	
 protocol/unpacked-6113-wire.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.6 carry the generation-5 LCG, the missing token, and the 0xFE send slots; the file-magic table stays in the note
 protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10; 3.1; 1	1; 2.3; 10	
-protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 8.3; 10; E; 3.1; 1	1; 2.3; 10	
+protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.6; 2.8; 8.3; 10; E; 3.1; 1	1; 2.3; 10	
 protocol/v5v6-lab-play.md	cited	4; 0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
@@ -626,6 +627,8 @@ protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output accep
 formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
+protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
 protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
+protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private

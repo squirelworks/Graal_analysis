@@ -206,6 +206,16 @@ The on-wire header around that body is already recorded: id 140 is a GSHORT leng
 
 Unpacked 6.00r2 and 6.00r4 compare the same `GRESCR01` magic on a `.code` file of at least eight bytes. The class and weapon paths and the DES step are the cache note's, not a second format. **[bin]** (`formats/gwebl001-cache.md`)
 
+## Checked against official server output
+
+19 decrypted 6.113-era `GRESCR01` bodies, from one game server and the login server, all walk cleanly with the reader above:
+- segments 1 to 4 in order, with segment 1 a zero word;
+- no trailing `0x0A` and no `0xAC` wrapper;
+- string and jump operands all in range;
+- no opcode of 200 or above.
+
+The official compiler does emit 190 (`loadparams`). See `gs2-official-bytecode-6113.md`. **[cap]**
+
 ## What differs
 
 Tags: **[bin]** the clients above. **[doc]** the Preagonal compiler at `7878bc5` (`npc-library/preagonal-gs2.md`).

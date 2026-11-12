@@ -160,7 +160,7 @@ Highest ids parsed by later clients (from their switch tables): **[2.22][2.31]**
 | 2.22 | 74 (stops at 50, 51, 53) | 76 (stops at 1, 3–7, 14, 22, 25–29) | 73 (stops at 48–52) |
 | 2.31 | 80 (stops at 50, 51, 53, 75–77) | 80 (stops at 1, 3–7, 14, 22, 25–29, 77) | 77 (stops at 48–52) |
 
-No client checked knows PLPROP 77 or 81, or NPCPROP 48.
+No client checked knows PLPROP 77 or 81, or NPCPROP 48. (4.04r2 and 4.20r8 do parse 81, as one byte of flag bits: `v4x-clients.md#prop-parsers`.)
 
 ### Parsers in 2.00 to 2.05 (re-read 2026-11-12) **[bin]**
 
