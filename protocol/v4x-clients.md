@@ -90,7 +90,7 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 170 | Ghost mode on or off (`GHOSTMODE`). |
 | 182 | The client answers with id **44**: a comma list of the titles of all open windows (`EnumWindows`). |
 | 183 | The client checks whether a given string is in that window list and answers. |
-| 190 | Fires `onServerListerConnect` (the `Login` server has accepted the session). |
+| 190 | Fires `onServerListerConnect` (the `Login` server has accepted the session). See [190 and the buddy check](#190-and-the-buddy-check). |
 | 191 | A projectile (`SHOOT2`): x, y, z, three angle and speed values, a gani name with optional parameters, then a script string. |
 | 193 | A GINT5 **CRC32** and a weapon name: if `weblevels/weapons/<name>.code` exists and its zlib CRC32 matches, the client loads the cached script; otherwise it asks with id 158. (Corrected 2026-11-06: the GINT5 is a CRC32, not a mod time; `unknown-ids-2026-11-06.md`.) |
 | 194 | Clears the client's lists of weapon and class scripts and their name index. |
@@ -98,6 +98,18 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 196 | Same layout as 193; the 4.20r8 handler reads it and does nothing else. |
 
 Mac 4.20r6 handles 99 of these: the same set without 41 and 196. Its packet switch has 97 cases (0 to 195, without 41), and, as in 4.20r8, 100 and 108 are taken before the switch; its 108 handler answers subtype 0 with id 162. (Re-read 2026-10-31; this line said 97 before, which was the switch alone.) 44 is still missing in both, as in 3.153. **[bin]**
+
+### 190 and the buddy check
+
+Read in 4.04r2 and 4.20r8, which agree. **[bin]**
+
+- The handler reads nothing from the body, so any body (or none) works.
+- It runs an optional engine hook, then raises `onServerListerConnect` on the script universe.
+- Then, unless a script has turned on the scripted player list (`enableScriptedPlayerlist`), and only while a game-server connection exists, it sends `PLI_SENDTEXT` (154) with the tokens `GraalEngine,lister,verifybuddies,<flag>,<crc>`:
+  - `<flag>` is `1` or `0`, from the `loadbuddiesfromserver` config key.
+  - `<crc>` is the CRC-32 (the zlib routine) of the buddy list joined with commas, written in decimal. It is `0` when the list is empty.
+
+The live 4.04 login matches this: the client sent `GraalEngine,lister,verifybuddies,1,0` with an empty buddy list (`client-internals/live-behaviour-404.md`). **[live]** What a server should answer is not settled. The 2.17+ reply is `PLO_SERVERTEXT` with `weapon,lister,buddylist,…` (`client-internals/feature-specs/14-friends-ignore.md`). Whether 4.x needs that reply when the CRC already matches is **[inf]**.
 
 ## Client → server ids
 
