@@ -117,6 +117,6 @@ By 5.x `weblevels` holds more than levels. Every file in it is a download cache,
 
 ### Still open
 
-- Decrypt a real `GRESCR01` file with a key from a capture, to confirm the body is GS2 source.
+- ~~Decrypt a real `GRESCR01` file with a key from a capture, to confirm the body is GS2 source.~~ Done for 6.113 (2026-11-12): the body is compiled GS2, not source. The 197 CRC covers the stored, encrypted body, and the last `len % 8` bytes are stored in clear (`../protocol/gs2-official-bytecode-6113.md`). **[cap]**
 - Trace the gani cache format.
 - Check the class cache path in builds before 6.03r7.
