@@ -629,3 +629,4 @@ protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher 
 protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
 protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
+protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private

@@ -39,6 +39,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Bound Linux 3.04 GS1 source-weapon events and predicates](npc-library/linux-304-gs1-runtime.md) — exact-build observations with delivery and execution limits.
 - [Record seven exact Linux client local-login baselines](protocol/linux-local-login-matrix.md) — exact-build observations with delivery and execution limits.
 - [Observe Linux 6.03 network GS2 execution and continuation](protocol/linux-603-network-gs2.md) — exact-build observations with delivery and execution limits.
+- [Official GS2 bytecode from 6.113 caches](protocol/gs2-official-bytecode-6113.md) — 19 decrypted server-compiled bodies checked against the container reading; 197 as descriptor, CRC over the stored body; structure and counts only.
 - [Research plan, November 2026](docs/research-plan.md) — the open research issues in order, what each unblocks, and what waits on the owner.
 - [Research-data publication plan](docs/research-data-publication-plan.md) — completed-intake triage, versioned evidence comparisons, authored fixtures and focused follow-up experiments.
 
