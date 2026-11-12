@@ -162,5 +162,20 @@ Highest ids parsed by later clients (from their switch tables): **[2.22][2.31]**
 
 No client checked knows PLPROP 77 or 81, or NPCPROP 48.
 
+### Parsers in 2.00 to 2.05 (re-read 2026-11-12) **[bin]**
+
+The prop switches of the Windows 2.00, 2.01, 2.02 rev2, 2.03, 2.04 and 2.05 rev2 executables were read straight from their jump tables. A case that falls to the switch's default is an id the parser stops at. The 2.05 rev2 tables give exactly the 2.05 sets above, which is the check that the right switches were picked. **[bin][2.05]**
+
+| Client | Self (9) | Other players (8) | NPC (3, 33) |
+|--------|---------:|-------------------|------------:|
+| 2.00, 2.01 | 0–36 | no separate switch found (see below) | 0–35 |
+| 2.02 rev2, 2.03 | 0–41 | 0, 2, 8–13, 15–21, 24, 30–41, 50, 51 | 0–40 |
+| 2.04, 2.05 rev2 | 0–42 | 0, 2, 8–13, 15–21, 24, 30–42, 50, 51 | 0–40 |
+
+- **Self:** 2.00 parses PLPROP 36. 37–41 arrive in 2.02 rev2 and 42 in 2.04, as the cross-version timeline has it (`../client-internals/cross-version-timeline.md#prop-parsers`). **[bin]**
+- **NPC:** 2.00 and 2.01 stop at NPCPROP 36; 36–40 arrive in 2.02 rev2. **[bin]**
+- **Other players:** the sparse switch, with its stops at 1, 3–7, 14, 22, 23 and 25–29, first appears in 2.02 rev2; 42 joins it in 2.04. 2.00 and 2.01 have no switch of that shape, and no prop switch other than the self, NPC and send-side ones. Which switch their other-player stream uses was not traced. **[bin]**
+- **Send side:** each build also has a prop-writer switch whose gaps are the receive-only ids. In 2.00 and 2.01 it covers 0–35 without 25 and 27–30, 34; from 2.02 rev2 it covers the self range without 25, 27–30, 34 and 36. So no 2.0x client sends PLPROP 36. **[bin]**
+
 **NPCPROP 52 on a `beta4` server [srv][inf]:** GServer-v2 `beta4` filters NPC props by server generation only. It never sends 49–51, and on a CLASSIC server it sends nothing above 35. On a newmain or modern server it sends 52 (CURLEVEL) to every game client, with no client-version check. 2.22 and 2.31 stop at 52, so on such a server they lose every NPC prop after it: GATTRIB10–30, CLASS and X2/Y2/Z2. A server for 2.x clients should leave 52 out, or put it last, as with the OTHERPLPROPS ids above. NPCPROP 43 is Z (`c(z + 50)`, range −50..170) from 2.22 on, and NPCPROP 77 is Z2 in 2.31.
 
