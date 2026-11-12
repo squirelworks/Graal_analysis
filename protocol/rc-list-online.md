@@ -1,6 +1,6 @@
 # Listing the RCs that are online (and why id 65 is not the way)
 
-Date: 2026-11-12
+Date: 2026-11-12 (updated the same day with the 2010 Linux RC and RC3)
 
 Question: how does a Remote Control learn which other RCs (admins) are online? gs2lib names
 client → server id 65 `PLI_RC_LISTRCS`, and `seihai-rc` left "List RCs" open because the
@@ -16,7 +16,7 @@ groups + 32), `str` = a `c` length and then that many bytes.
 
 ## Answer
 
-- **Id 65 was never implemented.** No RC build in the materials sends it, and no GServer
+- **Id 65 was never implemented.** No RC build in the materials (1999 to RC3, 2015) sends it, and no GServer
   source answers it. There is no server → client reply id for it either. **[bin][src][srv]**
 - **The online-RC list is the player list.** Since 1999 the server has put every RC into the
   RC player list with `PLO_ADDPLAYER` (55) and taken it out with `PLO_DELPLAYER` (56). An RC
@@ -39,18 +39,24 @@ none of them.
 | GServer2 RC 2000/8/19 | `GSERV019` | 1, 2, 6, 28, 55–58, 61–64, 67–79, 82 | no | no | **yes** |
 | GServer2 RC 2001/01/27 | `GSERV021` | 1, 2, 6, 28, 55–58, 61–64, 68–74, 76–79, 82 | no | no | no |
 | 2000/10/25, 2001/08/20, 2002/01/04, 2002/05/02 | `GSERV020`–`GSERV023` | see `tools/remotecontrol-lineage.md` | no | no | 2000/10/25 only |
-| Graal Remote Control 2004/01/17 (Delphi) | `GSERV024` | 2, 6, 28, 51–54, 61–64, 68–76, 78, 79, 82, 84, 86, 88–92, 94, 96–98 | no | no | no |
+| Graal Remote Control 2004/01/17 (Delphi), and its community mods (three rebuilds and the UPX-packed "Agret" RC) | `GSERV024` | 2, 6, 28, 51–54, 61–64, 68–76, 78, 79, 82, 84, 86, 88–92, 94, 96–98 (the same in every variant) | no | no | no |
 | Remote Control 2006/12/20 (RC2 2.05, MSVC + GTK) | `GSERV025` | 1, 2, 3, 6, 7, 28, 50–54, 61–64, 68–86, 88–90, 92–94, 96–98, 103–119, 150–152, 154–156, 160 | no | no | no |
+| Remote Control 2010/03/29, Linux x86-64 (GCC, stripped) | `GSERV025` | 2, 3, 7, 28, 51–54, 62, 63, 68–71, 75, 76, 78, 79, 81, 82, 84, 88–90, 92, 93, 97, 103, 105–108, 115, 117–119, 150–152, 154–156 (partial, see below) | no | no | no |
+| RC3 (MinGW, file date 2015, symbols kept) | `GSERV025` | 2, 3, 6, 50, 61–64, 69–72, 74–85, 88, 90, 92–94, 96–98, 103, 107, 110–112, 114, 116–119, 151, 152, 154–156, 160 | no | no | no |
 
 The 2001/01/27 row was read again for this note and includes 69, which
 `remotecontrol-lineage.md` leaves out. The RC2 row mixes the RC and NC sockets (one virtual send); 103–119 and 150/151 are the NC
 ids. 87 (`PLI_RC_PLAYERBANGET`) has no constant site in RC2 and may be sent with a computed
 id; it was not traced.
 
-**Not checked:** the Linux RC of 2010/03/29 and RC3 (`RemoteControl3.exe`, 2015), the two
-builds newer than RC2 2.05. Their receive switches are in `unknown-ids-2026-11-06.md`; their
-send paths were never read. Given that RC2 builds its Admins folder from the player list (below)
-and that no server answers 65, a send of 65 there would be a surprise. **[inf]**
+The 2010 Linux build is stripped, so its row lists the constant ids found at the two send
+shapes the compiler used; ids built at run time are missing from it. RC3 keeps its C++ symbols,
+so every `sendData` call site was read by name; there too some ids (51–54, 68, 73, 86, 87, 89,
+91, 95) are not constants at a call site. In both builds the only 65 constants near a
+send are the player prop 33 inside a `PLI_PLAYERPROPS` (2), as in RC2.
+
+**Not checked:** a Linux i386 RC from January 2005, packed with UPX 1.90 with a damaged header
+(`upx -d` refuses it). It sits between the 2004 Delphi RC and RC2 2.05 in time. **[inf]**
 
 ## What the 2001 servers do **[src]**
 
@@ -109,6 +115,8 @@ server or channel) keeps an entry out of Admins; bits 1 and 2 move it to separat
 
 So RC2 needs nothing beyond 55, 56 and 47 to show who is staff and who is an RC.
 
+RC3 uses the same rule, with the same untrimmed length test, unchanged from RC2. **[bin]**
+
 The level test is on the length, with no trim. Against GServer-v2, whose RCs have a level of
 one space, RC2 2.05 would most likely list the other RCs under Players, not Admins. **[inf]**
 A server that wants RC2's Admins folder should send RCs an empty level.
@@ -122,6 +130,7 @@ handles: 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 10
 
 ## Open
 
-- [ ] Read the send paths of the 2010 Linux RC and RC3 to close the last two builds.
+- [x] Read the send paths of the 2010 Linux RC and RC3 (neither sends 65 or 66).
+- [ ] Unpack the 2005 Linux i386 RC (damaged UPX header) and read its send path.
 - [ ] A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the
       Admins folder on the wire and whether the one-space level puts RCs under Players.
