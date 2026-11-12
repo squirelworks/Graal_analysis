@@ -132,7 +132,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 
 ## 2.3
 
-No real 2.3 binary has been read. The only copy known is a cracked and unpacked rebuild, and an AV scanner flags it. The token `GNW14015` is supported by three things:
+No real 2.3.0.0 binary has been read. The only package labelled 2.3 in the owner-held collections is a modified third-party repack. Its game client is byte-identical to the 2.31 client this repo already reads [bin], so it is a 2.31 install with a 2.3 label and sends `GNW28015`, not `GNW14015`. It does not close the 2.3 gap. The token `GNW14015` is supported by three things:
 
 1. It is on the public version list as 2.3.0.0.
 2. Its DDMMY stamp reads 14 Jan 2005, two weeks before 2.31's `GNW28015` (28 Jan 2005).
