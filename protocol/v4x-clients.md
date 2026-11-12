@@ -120,6 +120,23 @@ Read in 4.04r2 and 4.20r8, which agree. **[bin]**
 
 The live 4.04 login matches this: the client sent `GraalEngine,lister,verifybuddies,1,0` with an empty buddy list (`client-internals/live-behaviour-404.md`). **[live]** What a server should answer is not settled. The 2.17+ reply is `PLO_SERVERTEXT` with `weapon,lister,buddylist,…` (`client-internals/feature-specs/14-friends-ignore.md`). Whether 4.x needs that reply when the CRC already matches is **[inf]**.
 
+## Prop parsers
+
+Read in 4.04r2 and 4.20r8. The two builds have the same case sets. **[bin]**
+
+| Stream | Ids with a case | No case | What happens at an id with no case |
+| --- | --- | --- | --- |
+| self (`PLO_PLAYERPROPS`, 9) | 0–32, 34–49, 52, 54–74, 78–81 | 33, 50, 51, 53, 75–77, and 82 and up | The id is taken as a one-byte prop and skipped (id byte plus one value byte), and parsing **goes on** |
+| other players (`PLO_OTHERPLPROPS`, 8) | 0, 2, 8–13, 15–21, 23, 24, 30–76, 78–81 | 1, 3–7, 14, 22, 25–29, 77, and 82 and up | The rest of the message is dropped, as in 2.x |
+| NPC (`PLO_NPCPROPS`, 3) | 0–47, 53–77 | 48–52, and 78 and up | The rest of the message is dropped, as in 2.31 |
+| baddy (`PLO_BADDYPROPS`, 2) | 0–10 | 11 and up | The rest of the message is dropped, as in 2.05 |
+
+- **The self parser differs from 2.x.** An unknown id no longer ends the stream. But the skip assumes a one-byte value, so an unknown id that carries a longer value desyncs the rest of the message. **[bin][inf]**
+- **Some self ids go through the shared parser.** In the self parser, GANI (10), 17, 19, 35, 37–41, 45–49, 54–74 and 81 have no handler of their own. They are passed on to the parser that `PLO_OTHERPLPROPS` uses. **[bin]**
+- **81 is parsed.** It is one byte in both streams. Bits 0 to 3 set four separate flags on the player, and bit 0 also clears one more field. The parser then raises `onPlayerChanges`. What the flags mean is not traced. The server header calls 81 a player-list tab flag. **[bin][inf]**
+- **77 is still not parsed.** In other-player props it ends the stream, and in self props it is skipped as one byte.
+- **Other-player 51 (`PCONNECTED`)** is the one id the other-player parser accepts with no value byte.
+
 ## Client → server ids
 
 Sent from the connection code (provisional, as in 3.x: some sends pass the id in a register): **[bin]**
