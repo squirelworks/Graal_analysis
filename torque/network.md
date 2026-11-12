@@ -110,7 +110,7 @@ The 5.12 client accepts **exactly 24**, 4.20r6 exactly 21, 4.04r2 and 3.153 exac
 
 ## After the connection is accepted
 
-Data packets use stock Torque `ConnectionProtocol` headers: flag 1, connect-sequence bit, 9-bit sequence, 9-bit highest ack, 2-bit type (0 data, 1 ping, 2 ack), 3-bit ack byte count, then the ack mask. The live client's first data packet (sequence 1) carries the "max rate" flag with two 12-bit values, which read as 2080 and 368 with the stock field order. Every data packet after that is 17 bytes with no events. A ping follows whenever nothing has been acknowledged for about 4.6 s. **[run]**
+Data packets use stock Torque `ConnectionProtocol` headers: flag 1, connect-sequence bit, 9-bit sequence, 9-bit highest ack, 2-bit type (0 data, 1 ping, 2 ack), 3-bit ack byte count, then the ack mask. The live client's first data packet (sequence 1) carries the "max rate" flag with two **10-bit** values, 32 ms and 450 bytes (32 packets a second at the 450-byte cap). ~~An earlier reading took them as two 12-bit values, 2080 and 368~~; with 10-bit fields the rest of the packet parses exactly (corrected 2026-11-12, see [udp-session.md](udp-session.md#4-data-packets-header-numbering-acks)). Every data packet after that is 17 bytes with no events. A ping follows whenever nothing has been acknowledged for about 4.6 s. **[run]**
 
 
 Mission download follows Torque's `MissionStartPhaseN` / `MissionStartPhaseNAck` remote commands (`commandToServer` / `clientCmd…`): **[bin][file]**
