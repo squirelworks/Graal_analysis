@@ -91,9 +91,26 @@ Times are seconds from the challenge request.
 - **Disconnect.** When the client is killed, nothing is sent on UDP. The server notices the TCP
   close and drops the 3D link with it.
 
+## Lab 12b: walking, chat and closing (rerun)
+
+The same setup against `seihai-gserver-v2` `ef83990`, 583 datagrams, with the keyboard focus on
+the 3D view. **[lab]**
+
+- **Walking sends nothing new.** The arrow keys reached the client's GS2 walking script, but all
+  183 of the client's 53-byte data packets were identical apart from the counters. The position,
+  the ghost index and the empty 13-bit update never changed. The 5.12 client puts no movement on
+  UDP while its control object has no movement from the server. Its script cannot move its own
+  control object by itself, and there are no moves in protocol 24. A server that wants a 5.12
+  player to move has to drive it (movetype and movement data, §8 of
+  [udp-session.md](udp-session.md)), or take the position some other way. That route is still
+  to be tested.
+- **Chat:** Enter opened no chat bar in the 3D view, and no chat went out on either link.
+- **Closing:** closing the client's windows gave "disconnected from the game server" and then
+  two login retries. The raw hex and timeline of this run stay on the lab machine.
+
 ## Not covered
 
-- Walking and chat (the queued rerun): what sections 5 and 9 of the client's own update look
-  like while it moves and talks.
+- What sections 5 and 9 of the client's own update look like once a server gives the player
+  movement, and how a 5.12 player chats in 3D mode.
 - The 4.04r2 and 3.x clients (protocol 19 and 9): skipped this run.
 - TCP payload bytes.
