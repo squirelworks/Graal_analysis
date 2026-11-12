@@ -160,7 +160,7 @@ Highest ids parsed by later clients (from their switch tables): **[2.22][2.31]**
 | 2.22 | 74 (stops at 50, 51, 53) | 76 (stops at 1, 3–7, 14, 22, 25–29) | 73 (stops at 48–52) |
 | 2.31 | 80 (stops at 50, 51, 53, 75–77) | 80 (stops at 1, 3–7, 14, 22, 25–29, 77) | 77 (stops at 48–52) |
 
-No client checked knows PLPROP 77 or 81, or NPCPROP 48.
+No client checked knows PLPROP 77 or 81, or NPCPROP 48. (4.04r2 and 4.20r8 do parse 81, as one byte of flag bits: `v4x-clients.md#player-prop-parsers`.)
 
 **NPCPROP 52 on a `beta4` server [srv][inf]:** GServer-v2 `beta4` filters NPC props by server generation only. It never sends 49–51, and on a CLASSIC server it sends nothing above 35. On a newmain or modern server it sends 52 (CURLEVEL) to every game client, with no client-version check. 2.22 and 2.31 stop at 52, so on such a server they lose every NPC prop after it: GATTRIB10–30, CLASS and X2/Y2/Z2. A server for 2.x clients should leave 52 out, or put it last, as with the OTHERPLPROPS ids above. NPCPROP 43 is Z (`c(z + 50)`, range −50..170) from 2.22 on, and NPCPROP 77 is Z2 in 2.31.
 
