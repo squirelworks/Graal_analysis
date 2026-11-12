@@ -175,6 +175,7 @@ client-internals/foot-test.md	excluded		4	superseded single-point wall test meas
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries the object, the lookup, the events, the clock and the bytecode segments. The opcode table, the fusion numbers and the per-version case list stay in the note
+client-internals/showimg-particles-and-gs2-format.md	pending		8.3	show-image control, particle emitter and modifiers, and GS2 opcodes 82 (indexof) and 84 (format); to be folded into the GS2 machine section (§8.3) beside gs2-vm-from-engines.md
 client-internals/gs2-6113.md	cited	8.4	8.4	
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
