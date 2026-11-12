@@ -225,6 +225,7 @@ client-internals/version-profiles/list-ports.md	excluded		1; C	dialling advice f
 client-internals/version-profiles/v121-v132.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/v133-v139.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/v1998-v11.toml	cited	C; 1	1; C	
+client-internals/version-token-catalogue.md	pending		1; 2.3	per-build token table with evidence grades and the repro cross-check; to be folded into the build list (§1.8) and the login section
 client-internals/version-tokens.md	cited	1; 2.3	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version/README.md	excluded		1; C	packaging index for the version-id method notes
 client-internals/version/VERSION.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
