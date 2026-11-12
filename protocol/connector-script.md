@@ -1,6 +1,6 @@
 # The 6.11 / 7.x connector script: what is known, in one place
 
-Date: 2026-11-12. This note covers #397. It adds no new reading: it puts the facts already spread across the protocol notes into the order that a reproduction client, or a lab `conf.gs` responder, needs them. Every line keeps the tag and the source of the note it comes from. No host names, key bytes, reply bodies or request blobs are given.
+Date: 2026-11-12. This note covers #397. Most of it adds no new reading: it puts the facts already spread across the protocol notes into the order that a reproduction client, or a lab `conf.gs` responder, needs them. Every line keeps the tag and the source of the note it comes from. No host names, key bytes, reply bodies or request blobs are given.
 
 From 6.11 on, the desktop clients and the 7.x Worlds clients do not hold their own login. They fetch a signed connector reply, and the script inside it sets the framing, the cipher and the id tables, connects, and sends the login.
 
@@ -44,6 +44,26 @@ From the decrypted 6.111 script, replayed in a lab Mac VM. The order comes from 
 
 Steps the script must also take, from the method surface, but whose order and arguments were not read: `connecttogameserver`, `setoutdatahandlers` / `setindatahandlers`, `setloginaccount`, `getpassword`, and the login `senddata`. **[bin][inf]** (`v6x-clients.md#what-the-script-controls`)
 
+## 4a. The 6.113 Windows script, from a live run **[lab]**
+
+An owner-authorised live 6.113 session on a Windows PC was read with read-only process-memory reads (no debugger, nothing injected), and its port-14900 traffic was captured. The connector script `StartScript_Connector` was resident in memory, so its string table could be read. The numeric arguments (the id lists) are bytecode operands, not strings, and were not recovered.
+
+- **Same framing and hello as 6.111.** The script holds `setProtocol` with `EILLLT`, `sendRaw` with `GNP1905C`, `setEncryptionParseKey`, `setEncryptionOut`, `rsa_encrypt` and `generate16ByteKey`. That matches the 6.111 replay above, so the 6.11 Mac and 6.113 Windows scripts share the handshake.
+- **Two protocols in one script.** It has `setDataHandlersOldProtocol` and `setDataHandlersNewProtocol`, a `usenewprotocol` setting, and `sendLoginNewProtocol` next to `sendPasswordAndIDs`. So the script can log in to a server either way, and it picks per server. The legacy `G3D2204D`, `G3D2304D`, `G3D2404D` and `G3D2504D` tokens are also in the table, which fits the old path.
+- **Login settings the script reads:** `loginservers`, `logintype`, `usenewprotocol`, `ciphertype` / `ciphertypeint`, `cipherkey`, `initvector`, `keydata`, `passcode`, `reconnections`, `clientversion` and `idlist`. It also uses `des_decrypt` and `base64decode`.
+- **Account calls:** `getLoginAccountName`, `setLoginAccount`, `getPassword`, `getplatform`.
+- **Events:** `onCreated`, `onServerLogin`, `onCannotConnect`, `onServerListerConnect`. The game-server join is not run from `onCreated`. `connectToGameServer` is reached from the server-list script's Start path (`doLogin`), after the login dialog. A `graal://` launch link still stops at that dialog.
+- **No incoming-cipher name.** As on 6.111, the table has no `setEncryptionIn` or `tclient_setencryptionin` name, yet the server stream is encrypted too (section 4b). How the client keys its incoming direction is not shown by the script's strings.
+
+## 4b. Both directions on the wire (6.113) **[cap]**
+
+| Direction | Clear part | Then |
+| --- | --- | --- |
+| Client → server | `GNP1905C` (8 bytes), then one `0xfd` frame of 279 bytes: zlib, wrapping the 262-byte inner `0xfc` packet. That ends at offset 287. | Encrypted from 287 |
+| Server → client | One `0xfd` frame (`E` 1, `I` 2), 290 bytes in this session. That ends at offset 290. | Encrypted from 290 |
+
+The server side answers the incoming-direction question in #396 halfway: **the server also sends exactly one clear `0xfd` frame and then switches to ciphertext.** Its frame length varies by session (an earlier 6.113 capture had a length field of 289). Whether the server's stream uses the client's RC4 session key or a key of its own is still open. The session key was not recovered in this run, because it is held in a script variable and no debugger was used.
+
 ## 5. The id tables (mechanism only)
 
 - **Outgoing:** `setoutdatahandlers` loads a 256-entry table from internal message number to wire id. `0xFE` routes a message to a script event instead of the wire. **[bin]** (`v6x-clients.md`, `v6113-pli.md`)
@@ -70,15 +90,17 @@ The actual pair lists that the production script passes are **not** in any note.
 | | 6.11 Mac (6.111) | 6.113 Windows | 7.x Worlds (6.76 / 6.77) |
 | --- | --- | --- | --- |
 | Request order and container | HTTPS → `conf.gs`; same container **[cap][lab]** | same design **[bin][cap]** | same design and container **[lab]** |
-| Script read | yes, decrypted in a lab replay **[lab]** | no; same clear prefix to 287 **[cap]** | no; anti-tamper ends inline-hook traces **[lab]** |
-| Token | `GNP1905C` from the script | `GNP1905C` on the wire **[cap]** | not established |
+| Script read | yes, decrypted in a lab replay **[lab]** | string table read from memory in a live run; id lists not recovered **[lab]** | no; anti-tamper ends inline-hook traces **[lab]** |
+| Token | `GNP1905C` from the script | `GNP1905C` from the script and on the wire **[lab][cap]** | not established |
 
 None of this exists in 6.01 or 6.03 (no connector, no RC4/AES, no script-set id tables). **[bin]** (`v6x-clients.md`)
 
 ## Open
 
 - [ ] The pair lists that `setoutdatahandlers` and `setindatahandlers` receive. This needs the decrypted script's bytecode (owner-held lab record) or a lab memory read. It blocks the id table for #378.
-- [ ] The arguments and order of the login steps (`connecttogameserver`, `setloginaccount`, `getpassword`, login `senddata`).
+- [ ] The arguments and order of the login steps (`connectToGameServer`, `setLoginAccount`, `getPassword`, `sendLoginNewProtocol` / `sendPasswordAndIDs`). The names are confirmed for 6.113 (section 4a); their arguments are not.
 - [ ] What the per-launch `?p=` value binds in the signature.
 - [ ] Whether the 7.x script differs from the 6.11 one (token, template, cipher). This needs a 7.x reply decrypted for its own launch.
-- [ ] The incoming cipher (also open in #396).
+- [x] ~~Does the server's stream follow the same clear-then-cipher pattern?~~ Yes: one clear `0xfd` frame, then ciphertext (section 4b).
+- [ ] Which key the server's stream uses, and how the client sets it with no `setEncryptionIn` in the script (also open in #396).
+- [ ] Old versus new protocol: what the `OldProtocol` handler set is, and which servers set `usenewprotocol`.
