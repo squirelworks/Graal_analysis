@@ -56,6 +56,18 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 - To point a stock 2.05 at another listserver, redirect `<list-host-classic>` in the hosts file and listen on 14921. Patching the encrypted string in memory also works.
 - The captures show later listservers on ports 14922/14923 (`GNW30123` login, `GNW07080` guest). **[cap]** On the public service the reply depends on the login type (matrix of 2026-10-25, `listserver-login-type-matrix-2026-10-25.md`): a classic login gets a list on 14923 and no reply on 14922; a gen-5 login gets a list on both. **[cap]**
 
+### 1.41 rev1: no login, the server speaks first **[bin][lab]**
+
+Read from the only surviving 1.41 rev1 copy (`graal_gr1411`, patched to `<list-host-reborn>`:14923; see `client-internals/build-catalogue.md`). Added 2026-11-12. **[bin]**
+
+- The list connection is a plain socket connect. Nothing is sent on connect, and nothing is sent afterwards either: there is no list name, no account and no key. The server-list window sets "Getting server list ..." and then only reads.
+- Incoming frames are `u16be length` plus a zlib body, split on `\n`, the same framing as shape A. The handler knows two ids:
+  - id 0: `c count`, then per server `c field count` and that many `str` fields. The window shows fields 0 to 5 (name, language, description, URL, version, players), and the connect button uses the address and port that follow. After id 0 the client closes the link itself.
+  - id 1: one more server entry, in the same field layout.
+- Every other id is ignored. In particular, ids 2 (status), 3 and 4 do nothing here.
+
+So a listserver has to send the id 0 list without being asked. The lab listserver does this when a client stays silent for 1.5 s (`tools/lab-servers/listserver.py`, `--greet-delay`). That way the clients that do send a login first (2.00 to 2.17) still get their normal reply. **[lab]** In the lab of 2026-11-12, the real 1.41 rev1 first hung on "Getting server list ..." against the old listserver. With the server-first list it filled its list after the 1.5 s wait. Connect then logged it in to the lab game server as `GNW13110`, generation 3, and the game drew. **[lab]**
+
 ### 2.22 specifics **[2.22][cap]**
 - The host list is not built in. It comes from `arrays2.dat` in the game folder, in clear text, checked against `arrays2.sig`: line 0 `<list-host-reborn>`, line 1 port `14922`, lines 5 and 6 the fallbacks `<list-host-graalcc>` and `<list-host-graalbiz>`. They are tried in that order until one connects. Once loaded, the client keeps them in memory under the one-byte transform described in `client-internals/des-and-hidden-strings.md`, which is why a plain memory search misses them. The same file layout applies from 2.17 on (see `client-versions.md` and the 2.17+ section below).
 - First packet: id 7 `V2ENCRYPTKEYCL` = `GCHAR key` + `GNW30123` + `newmain`. This frame is plain zlib. Every later frame in both directions is post-2.2 framing (compression byte + partial XOR) keyed with that key.

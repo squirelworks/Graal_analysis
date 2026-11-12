@@ -82,7 +82,7 @@ Not covered: 6.00 beta2 (same token, so it gets the 5.24 slot; not run) and 6.00
 ## Our listserver (version 2)
 
 ```sh
-python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT] [--host <loopback>]
+python3 listserver.py [LOGFILE] [--accounts FILE] [--name TEXT] [--host <loopback>] [--greet-delay S]
 ```
 
 Ports: 14900 for gservers, 14921, 14922 and 14923 for clients. Every client port accepts every login shape; the shape is read from the first message, not from the port.
@@ -95,6 +95,7 @@ Ports: 14900 for gservers, 14921, 14922 and 14923 for clients. Every client port
 | id 7 key + token + list name, then gen-5 frames (shape C) | 2.22, 2.31 | two zlib (ctype 4) frames: id 0 list, then id 2 status + id 3 site URL + id 5 upgrade URL |
 | id 5 key + token (RC list) | RC | as shape C, every server |
 | a refused account (with `--accounts`) | any | id 4 with the error text, then the link closes |
+| nothing for `--greet-delay` seconds (default 1.5; 0 turns it off) | 1.41 rev1, which never speaks first | one plain zlib frame with id 0, the untagged list; the client closes after it (`../../protocol/listserver.md#141-rev1-no-login-the-server-speaks-first-binlab`) |
 
 The gen-5 reply follows the public listserver's 14922 reply (`../../protocol/public-listserver-2026-10-25.md`), except that we do not add the two trailing NUL bytes the public server leaves after the last line.
 
