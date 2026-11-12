@@ -624,3 +624,4 @@ formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, 
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
 protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
+client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them

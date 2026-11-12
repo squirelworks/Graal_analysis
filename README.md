@@ -213,6 +213,7 @@ Static read of the 2.05, 2.17, 2.22, and 2.31 clients and `RemoteControl.exe` fr
 
 - `protocol/client-versions.md`: login type, token, cipher, and framing per client; client-side gen-5 send rules; server→client id sets per version; listserver logins (`GNW30123` mapped) and the `arrays2.dat` list config.
 - `client-internals/feature-timeline.md`: release-note timeline 2.00–2.31, tied to the protocol changes.
+- `client-internals/pyreborn-study/README.md`: hosler's MIT pyReborn, reborn-protocol and pygserver read against this repo: where their facts come from (mostly the beta4 gserver), its names for our unknown ids, cipher and token coverage, script-behaviour hints and test ideas.
 - `client-internals/graal-wiki-crosscheck-2026-11-11.md`: the community Graal wiki ("Graal Bible") read against this repo: what agrees, gani and token-date corrections, v3–v6 release-note facts, and open leads.
 - `tools/remotecontrol.md`: RC (type 6, `GSERV024`, gen 5) and NC (type 3, `NCL11012`) logins and id sets.
 
