@@ -143,7 +143,7 @@ These messages describe the players: the local player and everyone else on the l
 | 173 | `PLO_GHOSTTEXT` | `rest` = text | stored as the ghost-mode text | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 174 | `PLO_GHOSTICON` | `c flag` | shows the ghost icon when the flag is above 0 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 181 | `PLO_UNKNOWN181` (beta4 gserver: `PLO_PLAYERNOUDP`) | `s player id, c toggle`; at least 3 bytes | sets a flag on that player; while set, the client leaves the player out of its peer-to-peer UDP sends | [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/unknown-ids-2026-11-06.md) |
-| 55, 56 | `PLO_ADDPLAYER`, `PLO_DELPLAYER` | unmeasured | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 55, 56 | `PLO_ADDPLAYER`, `PLO_DELPLAYER` | GServer-v2 `master` writes 55 as `s id`, `str account`, then prop pairs (nickname, `PLPROP_UNKNOWN81` + type byte), and 56 as `s id`; sent to RCs | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_); [srv] (protocol/gserver-v2-master-handlers.md) |
 
 ## 2.5.5 Combat and level objects
 
@@ -222,10 +222,10 @@ The download sequence, sizes and failure handling are in → §2.7.
 | 84 | `PLO_LARGEFILESIZE` | `i5 size` | stored | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 102 | `PLO_FILE` | behind 100; exact 2.05r2 counted layout → §2.7.9 | a received file; persistence limits are build/fixture-specific | [srv] (protocol/codec-and-framing.md#raw-data-escape); [2.05][bin] (protocol/file-205r2-prefix-lf.md) |
 | 105 | `PLO_UPDATEPACKAGESIZE` | package name and an `i5` size | sets a size or modification time on a cached object | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
-| 106 | `PLO_UPDATEPACKAGEDONE` | unmeasured | fires `onUpdatePackageDownloaded`, and `onPackagesDownloadComplete` after the last one; 4.20r8 restarts itself when its own executable was in a package | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 106 | `PLO_UPDATEPACKAGEDONE` | `rest` = package name (GServer-v2 `master`) | fires `onUpdatePackageDownloaded`, and `onPackagesDownloadComplete` after the last one; 4.20r8 restarts itself when its own executable was in a package | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7); [srv] (protocol/gserver-v2-master-handlers.md) |
 | 109 | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | `i5` time, then a `c`-length string A (local name) and a `c`-length string B (URL) | fetches B over HTTP and stores it as A with that mod time; a file redirect; 5.24r4 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | 111 | `PLO_SETNETCOOKIE` | `rest`, no fields | written byte for byte to `creationtime.dat` in the client's folder, replacing it; nothing is sent back | [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |
-| 187 | `PLO_UPDATEPACKAGEISUPDATED` | unmeasured | a package-update message | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 187 | `PLO_UPDATEPACKAGEISUPDATED` | `rest` = file name + `\n` (GServer-v2 `master`) | a package-update message; GServer-v2 `master` sends it when an RC uploads a new version of an existing game file | [srv] (protocol/packet-ids.md#server--client-plo_); [srv] (protocol/gserver-v2-master-handlers.md) |
 | 198 | `PLO_SERVEROPTIONS` | `i5` value | stored on the connection; nothing else in 6.03 reads it | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 
 ## 2.5.8 Messages, windows and modes
@@ -241,7 +241,7 @@ Chat display and the private-message rules are in → §2.8.
 | 41 | `PLO_STARTMESSAGE` | `rest` = RTF or HTML text | trimmed and stored as `servermessage.rtf` or `servermessage.html`; if it differs from the stored copy it is rewritten and shown in the start-message viewer | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 47 | `PLO_STAFFGUILDS` | comma text, `"guild",` repeated | stored as the staff-guild list; sent at login | [srv][2.05] (protocol/chat-pm-rc.md#admin-and-staff); [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 75 | `PLO_PROFILE` | repeated `c n` + n bytes (trimmed); field 0 = account | delivered to the open profile window of that player, or the best match in the player list; 2.05 needs at least 10 fields (→ §2.8) | [bin] (version-profiles/plo-layouts-217-231.tsv); [2.05] (protocol/chat-pm-rc.md#profiles) |
-| 82 | `PLO_SERVERTEXT` | unmeasured | the reply to `PLI_REQUESTTEXT` and `PLI_SENDTEXT`; 3.153 raises it to script as `receivetext`; 5.00r7 also feeds the buddy list with it | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled); [bin][inf] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 82 | `PLO_SERVERTEXT` | `rest` = gtokenized list starting with the request's weapon, type and option (GServer-v2 `master`) | the reply to `PLI_REQUESTTEXT` and `PLI_SENDTEXT`; 3.153 raises it to script as `receivetext`; 5.00r7 also feeds the buddy list with it | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled); [bin][inf] (protocol/v5x-clients.md#server--client-ids-500r7); [srv] (protocol/gserver-v2-master-handlers.md) |
 | 153 | `PLO_SAY2` | `rest` = text; `0xA7` = newline | shown as an NPC sign message; signs use it too | [srv][2.05] (protocol/packet-layouts.md#player-state-server--client); [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 169 | `PLO_UPGRADEURL` | `rest` = URL | stored; with a disconnect, the reconnect button becomes "Upgrade" and opens it | [bin] (protocol/packet-ids.md#server--client-plo_) |
 | 171 | `PLO_BIGMAP` | comma text `txt,png,x,y`; at least 4 fields are used; x and y as floats | the big map | [bin] (version-profiles/plo-layouts-217-231.tsv) |
