@@ -238,9 +238,9 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 62 | 0x5e | `PLI_RC_UPDATELEVELS` | · |   |
 | 63 | 0x5f | `PLI_RC_ADMINMESSAGE` | · |   |
 | 64 | 0x60 | `PLI_RC_PRIVADMINMESSAGE` | · |   |
-| 65 | 0x61 | `PLI_RC_LISTRCS` | · |   |
-| 66 | 0x62 | `PLI_RC_DISCONNECTRC` | · |   |
-| 67 | 0x63 | `PLI_RC_APPLYREASON` | · |   |
+| 65 | 0x61 | `PLI_RC_LISTRCS` | · | never sent by any RC up to RC2 2.05 and never answered; online RCs come from the 55/56 player list (`rc-list-online.md`) **[bin][src]** |
+| 66 | 0x62 | `PLI_RC_DISCONNECTRC` | · | no RC sends it; the 2001 servers have no case for it **[bin][src]** |
+| 67 | 0x63 | `PLI_RC_APPLYREASON` | · | rest = reason text, written to the server log (admin level 3+); sent only by the 2000 RCs **[bin][src]** |
 | 68 | 0x64 | `PLI_RC_SERVERFLAGSGET` | · |   |
 | 69 | 0x65 | `PLI_RC_SERVERFLAGSSET` | · |   |
 | 70 | 0x66 | `PLI_RC_ACCOUNTADD` | · |   |

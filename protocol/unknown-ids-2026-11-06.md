@@ -80,13 +80,13 @@ On 2026-11-11 the project moved to upstream gs2lib's packet names. The code repo
 | GServer2 RC 2002/05/02 ("rc141") | `GSERV023`, `NCL11012` | 8 13 16 30 35 37 55–59 61–70 72–74 76 77 79 180 | not traced | no | no | no |
 | Graal Remote Control 2004/01/17 (Delphi; three copies, one a 2005 community mod) | `GSERV024`, `NCL11012` | 8 13 16 30 35 37 55–59 61–70 72–74 76 77 79 103 180 | 16 33 80 157–164 167 188 | no | no | no |
 | NPC Control (standalone, Delphi) | `NCL15031` | — | 16 33 61 74 157–164 167 | no | no | no |
-| Remote Control 2006/12/20, `RC2_2.05.exe` (MSVC) | `GSERV025`, `NCL21075` | not located | 16 33 74 80 100 157–164 167 188 192 | NC: no | NC: no | NC: no |
+| Remote Control 2006/12/20, `RC2_2.05.exe` (MSVC) | `GSERV025`, `NCL21075` | as 2010 (`rc-list-online.md`) | 16 33 74 80 100 157–164 167 188 192 | NC: no | NC: no | NC: no |
 | Remote Control 2010/03/29, Linux x86-64 (GCC 4.4.1) | `GSERV025`, `NCL21075` | 8 13 16 30 35 37 47 55 56 58 59 61–70 72–77 79 82 100 102 103 180 190 | 16 33 74 80 100 157–164 167 188 192 | no | no | no |
 | RC3 `RemoteControl3.exe` (MinGW, file date 2015) | `GSERV025` | the 2010 set **plus 124** | as 2010 | no | **yes** (log line only) | no |
 
 Not checked: a Linux i386 RC from January 2005. It is packed with UPX 1.90 and its header is
-damaged, so the stock `upx -d` refuses it. The RC-side switch of `RC2_2.05.exe` was not
-located either. So 124 first appears in RC3, after the 2010 build. Both the 2010 build and
+damaged, so the stock `upx -d` refuses it. The RC-side switch of `RC2_2.05.exe` was located later and
+matches the 2010 set (`rc-list-online.md`). So 124 first appears in RC3, after the 2010 build. Both the 2010 build and
 RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remotecontrol-lineage.md`,
 `tools/npc-control.md`.
 
