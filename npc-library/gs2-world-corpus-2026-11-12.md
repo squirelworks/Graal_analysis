@@ -61,12 +61,14 @@ Set C, scripts and occurrences. **[lab]**
 
 Same harness and sets for each build; no build panicked. Percent is scripts that compiled. **[lab]**
 
-| Set | seihai-core main (d76d2bb) | PR #9 (6c80e51) | PR #10 |
+| Set | seihai-core main (d76d2bb) | PR #9 (6c80e51) | PR #10 (c173e82) |
 | --- | --- | --- | --- |
-| A (GS2) | 93.0% | 93.0% | _pending_ |
-| B (GS2) | 15.0% | 15.0% | _pending_ |
-| C (GS1 lowered) | 71.6% | 77.7% | _pending_ |
-| D (GS1 lowered) | 37.5% | 38.3% | _pending_ |
+| A (GS2) | 93.0% | 93.0% | 95.1% |
+| B (GS2) | 15.0% | 15.0% | 61.9% |
+| C (GS1 lowered) | 71.6% | 77.7% | 93.1% |
+| D (GS1 lowered) | 37.5% | 38.3% | 51.9% |
+
+After PR #10 the largest refusals are: in set C, `seteffectmode` (396), a call or command inside a GS1 `with` body (372), a top-level statement after an event test that is not a command (267), complex event tests (130), `setcharprop` colour codes it does not map (128), an event test with `else` (60), event flags read as values (104), `#I` (47) and `hasweapon` (35); in set B, `;` and name errors from constructs still unparsed (267), `return`/`sleep`/`break` leaving a `with` (69) and `new T(name) { … }` blocks (68).
 
 PR #9 lowers `join` inside event tests and merges repeated event blocks. PR #10 adds the GS2 constructs above, code outside functions in both front ends, guard chains, message codes, and the GS1 string and character-property commands.
 
@@ -81,5 +83,5 @@ PR #9 lowers `join` inside event tests and merges repeated event blocks. PR #10 
 ## Still to survey
 
 - [ ] The 2017 and 2019 backups of the GS1-era world (owner-held, Drive only): whether they are GS2, and the same counts.
-- [ ] `new Gui…(name) { … }` blocks, `enum`, `obj.(expr)` and `with` bodies in GS1: the largest constructs the compiler still refuses.
+- [ ] `seteffectmode`, GS1 `with` bodies, `new Gui…(name) { … }` blocks, `enum` and `obj.(expr)`: the largest constructs the compiler still refuses.
 - [ ] Compare Seihai's no-fixture encodings with the official 6.113 bodies.
