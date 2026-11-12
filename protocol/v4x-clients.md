@@ -108,6 +108,7 @@ Read in 4.04r2 and 4.20r8. The two builds have the same case sets. **[bin]**
 | self (`PLO_PLAYERPROPS`, 9) | 0–32, 34–49, 52, 54–74, 78–81 | 33, 50, 51, 53, 75–77, and 82 and up | The id is taken as a one-byte prop and skipped (id byte plus one value byte), and parsing **goes on** |
 | other players (`PLO_OTHERPLPROPS`, 8) | 0, 2, 8–13, 15–21, 23, 24, 30–76, 78–81 | 1, 3–7, 14, 22, 25–29, 77, and 82 and up | The rest of the message is dropped, as in 2.x |
 | NPC (`PLO_NPCPROPS`, 3) | 0–47, 53–77 | 48–52, and 78 and up | The rest of the message is dropped, as in 2.31 |
+| baddy (`PLO_BADDYPROPS`, 2) | 0–10 | 11 and up | The rest of the message is dropped, as in 2.05 |
 
 - **The self parser differs from 2.x.** An unknown id no longer ends the stream. But the skip assumes a one-byte value, so an unknown id that carries a longer value desyncs the rest of the message. **[bin][inf]**
 - **Some self ids go through the shared parser.** In the self parser, GANI (10), 17, 19, 35, 37–41, 45–49, 54–74 and 81 have no handler of their own. They are passed on to the parser that `PLO_OTHERPLPROPS` uses. **[bin]**

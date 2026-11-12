@@ -261,6 +261,7 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1). 
 | NPC (3) | 2.31 | highest 77 | 48–52 | [2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | NPC (3) | 4.04r2, 4.20r8 | 0–47, 53–77 | 48–52, 78 and up | [bin] (protocol/v4x-clients.md#prop-parsers) |
 | baddy (2) | 2.05 | 0–10 | 11 and up | [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
+| baddy (2) | 4.04r2, 4.20r8 | 0–10 | 11 and up | [bin] (protocol/v4x-clients.md#prop-parsers) |
 
 Because an unknown id ends a stream, a server has to know which ids each client parses. The rules below give that set for 2.05 and what was checked in 2.22 and 2.31 [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231).
 
