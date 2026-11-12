@@ -48,6 +48,21 @@ All rows are **[bin]**, except the 3.153 script column (**[file]**). The 3.153 a
 
 The 2026-11-07 v5 export agrees with the 5.00 split (Delphi launcher, `GraalEngine.dll`, `Graal3DEngine.dll`) and with 5.12's shape only as far as the packed exe: that zip has no engine DLL, file version `5.1.2.0`, and the decompile is a stub. The 5.00 3D DLL in the export is already the `GameObject` era (two mission phases, terrain chunks, a protocol check that passes only 24) and it does contain interior read strings. `ShapeBase` and a datablock phase are absent. The unpacked 5.30r3 and 5.31r4 exes are one binary each (`quattro_lib`, file versions `5.303` and `5.314`) with the GUI names left and no `graal_set`, `SimObject` or `GameConnection`. **[bin]** ([g3d-5007.md](g3d-5007.md), [engine-531r4.md](engine-531r4.md))
 
+## Licences: which Torque source may be read
+
+Checked 2026-11-12 for #243, before anyone reads Torque source for behaviour.
+
+- **TGE 1.x (1.0 to 1.5) is proprietary.** GarageGames sold it under a commercial licence, with the source going to licensees. No open-licence release of TGE 1.x was found. The exact EULA text was not found either; if it turns up, record it here. Graal's 3.x to 5.12 clients are built on this line. Do not read, cite or copy TGE 1.x source, including copies in public repositories that carry no licence. [`open-source-lineage.md`](open-source-lineage.md) already keeps them out.
+- **Torque3D 1.2 and later is MIT.** It was released as open source on 2012-09-20. GarageGames' announcement says the other engines were not part of that release. [Wikipedia](https://en.wikipedia.org/wiki/Torque_(game_engine)) gives 1.2 and later as MIT and the versions before 1.2 as proprietary.
+- **Torque2D is MIT.** It was released on 2013-02-05. Its net layer is the closest open code to Graal's (see `open-source-lineage.md`).
+- **dso-sharp** (BSD-3-Clause) and the **Marble Blast web port** (MIT) are third-party code under their own licences.
+
+What follows for this project:
+
+- Behaviour may be read from the MIT and BSD code bases above. Code from them may be reused only with its copyright notice kept.
+- Where TGE 1.x behaviour matters, it is taken from Graal's own files and binaries (our notes) and from lab runs, never from TGE 1.x source.
+- None of this lifts the decompile rule in `AGENTS.md`.
+
 ## What a Seihai suite would need, in order
 
 1. **A launcher** that offers both clients. Graal itself did this from 4.x: the launcher shows the server list, and a server whose listed name starts with `"3 "` is a 3D server.

@@ -24,7 +24,7 @@ graal-delphi's rule is "in the language they were written in". 3.x was C++ on To
 1. **Object Pascal in graal-delphi** (recommended): a shared `common/torque/` layer (script VM, sim objects, GUI, fonts, textures, input) written from public TGE 1.x behaviour and our own notes. It reuses the 2D game already written in Pascal for 2.22 (3.04 speaks 2.22's protocol), and era B's launchers are Delphi anyway. The README rule gets one line: era A's shell is a Pascal re-implementation of a C++ engine, judged by running the client's own files.
 2. **C++** in a separate tree, written to TGE 1.x's structure. Closest in language, but it cannot reuse the Pascal 2D game, so the Graal side is written twice.
 
-Either way the yardstick is the same: the original client's own script, GUI and font files run unmodified and the result matches the lab captures. Torque source may be read for behaviour only under its own licence (Torque3D is MIT; check TGE 1.x's terms before reading it), and no Graal decompile goes into the rebuild, as now.
+Either way the yardstick is the same: the original client's own script, GUI and font files run unmodified and the result matches the lab captures. Torque source may be read for behaviour only under its own licence (Torque3D 1.2+ and Torque2D are MIT; TGE 1.x is proprietary and is not read, see `README.md` § Licences), and no Graal decompile goes into the rebuild, as now.
 
 ## Checklist
 
