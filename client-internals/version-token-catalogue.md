@@ -11,6 +11,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | **L** list only | No executable has been read. The token comes only from the public version list (GServer-v2 `versions.txt` / `allowedversions.txt`, gs2lib's token table) **[srv]**. |
 | **S** server-defined | The client stores no token. The server's connector script supplies the token at login **[lab][bin]**. |
 | **—** none | The build has no login token at all (no network login, or a pre-token protocol). |
+| **B+** | Binary read, and the original logged in to a lab server whose allow-list names each token, but its login frame was not decoded. Strong, though not a byte-level wire record. |
 
 **Re-read 2026-11-12 [bin].** The 54 Delphi client executables in the archive set (1.21's InstallShield package was not unpacked) and GraalX were scanned again with a fresh, independent scanner. The scanner matches token-shaped string literals and runs of one-byte character immediates. Every token in `build-catalogue.md` was reproduced, and no build produced a second candidate. The NewWorld beta 2 immediates needed a stride check: the token is the eight evenly spaced `mov bl` immediates, and one unrelated `mov al` byte in between gives a false ninth character. The 1998 betas, 1.1.9 and 1.1 have no token literal and no token-shaped immediates.
 
@@ -43,13 +44,13 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
-| 1.33 | `GNW20020` | B | literal, re-read today | ✔ | token only |
-| 1.34 | `GNW22030` | B | literal | ✔ | token only |
-| 1.35 | `GNW13040` | B | literal | ✔ | token only |
-| 1.36 | `GNW10050` | B | literal | ✔ | token only |
-| 1.37 | `GNW21050` | B | literal | ✔ | token only |
-| 1.38 | `GNW22060` | B | immediates (first char-built token) | ✔ | token only |
-| 1.39 | `GNW07080` | B | immediates; also on the public list | ✔ | token only |
+| 1.33 | `GNW20020` | **W** | literal; traffic captured and decoded under Wine (`versions-133-139.md`, "Live check") | ✔ | **token only (understated)** |
+| 1.34 | `GNW22030` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
+| 1.35 | `GNW13040` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
+| 1.36 | `GNW10050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
+| 1.37 | `GNW21050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
+| 1.38 | `GNW22060` | B+ | immediates (first char-built token); logged in to the lab classic server, frame not decoded | ✔ | token only |
+| 1.39 | `GNW07080` | **W** | immediates; traffic captured and decoded (`versions-133-139.md`); also on the public list | ✔ | **token only (understated)** |
 | 1.391 | `GNW12080` | L | gs2lib table only | (no folder) | |
 | 1.41 rev1 | `GNW13110` | W | lab capture | ✔ | tested |
 | NewMain 24, 26 | `GNW08011` | W | lab capture; immediates in both exes | ✔ | tested |
@@ -125,7 +126,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 
 ## Gaps and how far each can be closed
 
-- **B only, still runnable:** the 1.33 to 1.39 tokens, 2.00 rev1 to rev3, GraalX, 2.01 to 2.04, 2.05 and 2.05 rev1. All are Delphi Windows exes that start under Wine. A lab run against a lab gserver behind a logging proxy would move them to W. For 2.00 rev1 to rev3, 2.05 and 2.05 rev1, the token value is already W through a sibling build. That leaves twelve token values to see on the wire, from 1.33 to 2.04 and GraalX.
+- **B only, still runnable:** 2.01 to 2.04 (five token values, as 2.02 rev2 has its own), GraalX (same token as 2.01), 2.00 rev1 to rev3, 2.05 and 2.05 rev1. All are Delphi Windows exes that start under Wine. A lab run against a lab gserver behind a logging proxy would move them to W. For 2.00 rev1 to rev3, 2.05 and 2.05 rev1 the token value is already W through a sibling build, so only `GNW23021`, `GNW15041`, `GNW20041`, `GNW06051` and `GNW24061` have never been seen on the wire. 1.34 to 1.38 (B+) need only their already-working lab login decoded.
 - **L only, no binary in any collection:** 1.25, 1.27, 1.391, all 2.1.x releases from 2.1.0 to 2.21 except 2.17, 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
@@ -148,6 +149,6 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 
 ## Open points
 
-- [ ] Wire-capture the twelve B-only token values (1.33–1.39, 2.01–2.04, GraalX) in a Wine lab, as `live-trace-early.md` did for 1.31 and 1.32.
+- [ ] Wire-capture the five B-only token values (2.01–2.04; GraalX shares 2.01's) and decode the 1.34–1.38 login frames in a Wine lab, as `live-trace-early.md` did for 1.31 and 1.32.
 - [ ] Read a genuine 2.3 binary, if one turns up, and record its token and PLI 39 words.
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
