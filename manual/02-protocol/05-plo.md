@@ -142,7 +142,7 @@ These messages describe the players: the local player and everyone else on the l
 | 170 | `PLO_GHOSTMODE` | `c flag` | 2.17 to 2.31: ghost mode on when the flag is above 0; 5.00r7: stored as the connection mode, and a change resets a player field | [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 173 | `PLO_GHOSTTEXT` | `rest` = text | stored as the ghost-mode text | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 174 | `PLO_GHOSTICON` | `c flag` | shows the ghost icon when the flag is above 0 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
-| 181 | `PLO_UNKNOWN181` | `s player id, c toggle`; at least 3 bytes | sets a boolean on that player | [bin] (version-profiles/plo-layouts-217-231.tsv) |
+| 181 | `PLO_UNKNOWN181` (beta4 gserver: `PLO_PLAYERNOUDP`) | `s player id, c toggle`; at least 3 bytes | sets a flag on that player; while set, the client leaves the player out of its peer-to-peer UDP sends | [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 55, 56 | `PLO_ADDPLAYER`, `PLO_DELPLAYER` | unmeasured | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
 ## 2.5.5 Combat and level objects
@@ -191,7 +191,7 @@ These messages move, script and remove NPCs and hand out weapons. Rows marked un
 | 43 | `PLO_DEFAULTWEAPON` | `c item index` (0–24: a built-in weapon such as bow, bomb, sword) | adds the built-in weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 44 | `PLO_HASNPCSERVER` | empty | the client stops applying NPC props itself | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 131 | `PLO_NPCBYTECODE` | `i3 code`, bytecode | script and class registration: 3.153 registers classes (`joinedclasses`) and `public.` variables from it, with 132 and 133 (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
-| 133 | `PLO_UNKNOWN133` | `rest` = text | maybe registers a class script | [srv] (protocol/packet-ids.md#server--client-plo_) |
+| 133 | `PLO_UNKNOWN133` (beta4 gserver: `PLO_CLASSBYTECODE`) | `str name`, rest = compiled class script | creates or updates the named class; `public.` functions become callable from outside; 3.153 to 5.12 | [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 134 | `PLO_GANISCRIPT` | gani text | 3.153 parses the gani text in place | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 140 | `PLO_NPCWEAPONSCRIPT` | `s info_length`, script | class and weapon script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 165 | `PLO_MOVE` | `i3 npc id` (> 0), then complete 7-byte records: `c x×2, c y×2, c (dx+50)×2, c (dy+50)×2, s duration×20, c options` | passed to the NPC movement routine; an unknown NPC is not created and an incomplete trailing record is ignored | [bin] (version-profiles/plo-layouts-217-231.tsv) [2.05][bin] (protocol/payload-and-trigger-205r2.md#npc-movement-plo-165) |
@@ -293,7 +293,7 @@ Some ids are defined by the server but handled by no client the notes have read.
 | 83 | `PLO_UNKNOWN83` | unmeasured | no game or staff client handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 110 | `PLO_UNKNOWN110` | unmeasured | no game or staff client handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 124 | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | unmeasured; RC3 reads nothing from the body | RC3 only: prints `received player flags`; no game client and no older RC handles it | [bin] (protocol/unknown-ids-2026-11-06.md) |
-| 132 | `PLO_UNKNOWN132` | unmeasured | 5.07 only; 6.037 ignores it; 3.153 uses it for script and class registration | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
+| 132 | `PLO_UNKNOWN132` (beta4 gserver: `PLO_WEAPONBYTECODE`) | `str name`, rest = compiled weapon script | installs the script on a weapon the player already holds (otherwise ignored) and caches it; 3.153 to 5.12, gone in 5.24r4 | [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
