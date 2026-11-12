@@ -113,8 +113,8 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 111 | 0x8f | `PLO_SETNETCOOKIE` | · | `rest cookie` |
 | 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` | · | `i3 code`, `bytecode` |
-| 132 | 0xa4 | `PLO_UNKNOWN132` | · | 5.07 only; client 6.037 ignores it |
-| 133 | 0xa5 | `PLO_UNKNOWN133` | · | rest = text; maybe registers a class script |
+| 132 | 0xa4 | `PLO_UNKNOWN132` (beta4 gserver: `PLO_WEAPONBYTECODE`) | · | `str name`, rest = compiled weapon script; installs it on a weapon the player already holds and (4.04r2) caches it as `weblevels/weapons/<name>.code`; 3.153 to 5.12, gone in 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 133 | 0xa5 | `PLO_UNKNOWN133` (beta4 gserver: `PLO_CLASSBYTECODE`) | · | `str name`, rest = compiled class script; creates or updates the named class, `public.` functions callable from outside; 3.153 to 5.12, gone in 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 134 | 0xa6 | `PLO_GANISCRIPT` | · | gani scripts, maybe for package downloads |
 | 140 | 0xac | `PLO_NPCWEAPONSCRIPT` | · | `s info_length`, `script` |
 | 150 | 0xb6 | `PLO_NPCDEL2` | ✔ | `c n`, n-char level name, `i3 npc id` **[bin]** |
@@ -147,7 +147,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 178 | 0xd2 | `PLO_SERVERWARP` | · | comma text, ≥ 4 fields: field 0 unused, 1 = server name, 2 = host, 3 = port; the client closes the connection and reconnects with a fresh login, no listserver step (2.31 lab; the lab text came from the open-source listserver reimplementation) **[bin][cap]** |
 | 179 | 0xd3 | `PLO_RPGWINDOW` | · | rest = text **[bin]** |
 | 180 | 0xd4 | `PLO_STATUSLIST` | · | rest = text **[bin]** |
-| 181 | 0xd5 | `PLO_UNKNOWN181` | · | `s player id`, `c toggle` (length ≥ 3); sets a boolean on that player, meaning unknown; 2.17 to 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 181 | 0xd5 | `PLO_UNKNOWN181` (beta4 gserver: `PLO_PLAYERNOUDP`) | · | `s player id`, `c toggle` (length ≥ 3); while set, the client sends that player no peer-to-peer UDP; 2.17 to 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 182 | 0xd6 | `PLO_LISTPROCESSES` | · | no payload; client answers `PLI_PROCESSLIST` (44) **[bin]** |
 | 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** |
 | 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** |

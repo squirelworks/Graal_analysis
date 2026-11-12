@@ -3,8 +3,8 @@
 Date: 2026-11-06
 
 Covers the ids that the open-source gserver and gs2lib leave as `UNKNOWN`: client → server
-(PLI) 25 and 162, and server → client (PLO) 60, 81, 83, 104, 108, 109, 110, 124, 168, 181,
-193 and 194. Every game client in the version chain (1.21 to 6.03r7) was checked, and so
+(PLI) 25 and 162, and server → client (PLO) 60, 81, 83, 104, 108, 109, 110, 124, 132, 133,
+168, 181, 193 and 194. (132 and 133 were added on 2026-11-12, issue #254.) Every game client in the version chain (1.21 to 6.03r7) was checked, and so
 was every staff client in the materials, from the 1999 GServer2 RCs to RC3 and the
 standalone NPC Control.
 
@@ -31,12 +31,14 @@ The disassembly excerpts behind this note stay in the project's handoff files, n
 | PLO 81 | — | — | no client, staff clients included | none |
 | PLO 83 | — | — | no client, staff clients included | none |
 | PLO 104 | `PLO_FILEKEY` (or `PLO_PACKAGEKEY`) | `str file`, `c a`, `i5 lo`, `i5 hi` | 3.153 to 6.03r7 | high (DES key); `a` partly known |
-| PLO 108 | `PLO_PING` | `c sub`, `s value` | 4.20r6, 4.20r8, 6.01r1, 6.03r7 (before the main switch); not 5.00r7 to 5.31r4 | high |
+| PLO 108 | `PLO_PING` | `c sub`, `s value` | 4.20r6, 4.20r8, 6.01r1, 6.03r7 (before the main switch); not 5.00r7 to 5.31r4 | high (sub 0); none (what reads the sub 1 value) |
 | PLO 109 | `PLO_DOWNLOADURL` (file redirect) | `i5 time`, `str localname`, `str url` | 5.24r4 to 6.03r7 | high (layout); medium (role of the first string) |
 | PLO 110 | — | — | no client, staff clients included | none |
 | PLO 124 | `PLO_RC_PLAYERFLAGS` (from RC3's own log text) | not read | RC3 only: logs "received player flags" | medium (name); none (payload) |
+| PLO 132 | `PLO_WEAPONBYTECODE` (GServer-v2 beta4 name) | `str name`, rest = compiled weapon script | 3.153 to 5.12; not 5.24r4 or later | high |
+| PLO 133 | `PLO_CLASSBYTECODE` (GServer-v2 beta4 name) | `str name`, rest = compiled class script | 3.153 to 5.12; not 5.24r4 or later | high |
 | PLO 168 | `PLO_LOGGEDIN` | empty | 2.05 to 6.03r7 | high (what it does); medium (what the flag means) |
-| PLO 181 | a per-player boolean | `s player id`, `c toggle` | 2.17 to 5.24r4 | high (layout); low (which boolean) |
+| PLO 181 | "no peer UDP to this player" (GServer-v2 beta4 name `PLO_PLAYERNOUDP`) | `s player id`, `c toggle` | 2.17 to 5.24r4 | high (layout); medium (meaning) |
 | PLO 193 | `PLO_WEAPONCRC` | `i5 crc32`, rest = weapon name | 4.04r2 to 5.12 | high |
 | PLO 194 | `PLO_CLEARWEAPONS` (already named) | empty | 4.04r2 to 6.03r7 | high |
 
@@ -52,6 +54,9 @@ On 2026-11-11 the project moved to upstream gs2lib's packet names. The code repo
 | PLO 108 | `PLO_PING` | `PLO_PING` |
 | PLO 109 | `PLO_DOWNLOADURL` | `PLO_HTTPDOWNLOAD` |
 | PLO 124 | `PLO_RC_PLAYERFLAGS` | `PLO_RC_UNKNOWN124` |
+| PLO 132 | — | `PLO_UNKNOWN132` (GServer-v2 beta4 and pyReborn: `PLO_WEAPONBYTECODE`) |
+| PLO 133 | — | `PLO_UNKNOWN133` (GServer-v2 beta4 and pyReborn: `PLO_CLASSBYTECODE`) |
+| PLO 181 | — | `PLO_UNKNOWN181` (GServer-v2 beta4 and pyReborn: `PLO_PLAYERNOUDP`) |
 | PLO 168 | `PLO_LOGGEDIN` | `PLO_ONLINEMODE` |
 | PLO 193 | `PLO_WEAPONCRC` | `PLO_WEAPONHASH` |
 | PLO 194 | `PLO_CLEARWEAPONS` | `PLO_RESETCLIENT` |
@@ -111,6 +116,13 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
   - `sub` 0: the client answers PLI 162 with `!` + `s min(value, 0x6FFF)`.
   - `sub` 1: the client stores `value` on the connection object. Nothing that reads it back
     was traced. It may be a ping interval or a timeout.
+  - **2026-11-12 re-check (Windows 6.03r7) [bin]:** the pre-switch test sends 100 and 108 to
+    their own handlers there too. Sub 0 answers 162 with the value as above; sub 1 only
+    stores it in one field of the connection object. In the connection's own code the field
+    is written three times (cleared when the object is set up and on reset, and by this
+    handler) and never read. A reader elsewhere that goes through a pointer to the
+    connection cannot be ruled out from a static scan, so this stays open. The beta4
+    gserver's comment ("type 1 is stored") says no more. **[bin][srv]**
 - **Game clients [bin]:** 4.20r6 (Mac), 4.20r8 (Windows), 6.01r1 and 6.03r7 (Linux) send 162
   **only** from their 108 handler. The handler is the same in 4.20r8 and 6.03r7. 5.00r7 to
   5.31r4 neither handle 108 nor send 162; it came back in 6.x. 6.11's named send slots
@@ -176,14 +188,66 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
   came from the lab server, so they show the gserver's habit, not a real server's.
 - **Confidence:** high (empty, sets a one-shot flag); medium (that the flag means "login done").
 
-### PLO 181: a per-player boolean
+### PLO 181: no peer-to-peer UDP to this player
 
 - **Layout [bin]:** at least 3 bytes: `s player id`, `c toggle`. The client looks up the
   player and sets a bool to `toggle > 0` (4.20r8 and Mac 4.20r6 alike).
 - **Handled by:** 2.17 to 5.24r4. Dropped in 5.30r3.
-- **Open:** what the bool does; no reader of it was traced. It arrived in 2.17 together with
-  `PLO_KINGDOMSMODE`, `PLO_NEWWORLDMODE` and `PLO_RPGWINDOW`, so a display or PK flag is a guess.
-- **Confidence:** high (layout); low (meaning).
+- **Reader [bin] (Windows 4.04r2, read 2026-11-12):** the flag has exactly one reader. It sits
+  in the routine that collects the players near the local player (within 16 units on each
+  axis, the level's players or, on a gmap, the players of the neighbouring boards). A
+  player with the 181 flag set is left out of that list, as are players with either of two
+  neighbouring flags whose writers were not traced. The only user of the list is the
+  peer-to-peer UDP send: it runs only when the client's own UDP socket is open, and it sends
+  the message to each listed player directly (`udp-p2p.md`). So a set flag means "do not
+  send peer-to-peer UDP to this player"; the server's copy still goes over TCP.
+- **[srv]** This matches the name GServer-v2's beta4 branch gives the id, `PLO_PLAYERNOUDP`
+  (as quoted by pyReborn, `client-internals/pyreborn-study/`). A server would send it for a
+  player whose UDP port is unusable (behind NAT, or `noudp` set), so that peers stop
+  sending datagrams that never arrive.
+- **Open:** which of the three neighbouring flags the server sets for which reason; no
+  capture of a real server sending 181.
+- **Confidence:** high (layout, and that it removes the player from peer UDP sends);
+  medium (why a server sends it).
+
+### PLO 132 and 133: compiled weapon and class scripts (3.153 to 5.12)
+
+Read 2026-11-12 (issue #254). The handlers were found through the receive switch's jump
+table in Windows 4.04r2 and 5.12 and compared with the 3.153 Mac handlers.
+
+- **Layout [bin]:** both are `str name` (a `c` length and that many bytes), then the rest of
+  the packet is the compiled script. The body must be at least the name length + 1 bytes or
+  the packet is dropped. This is the `{GCHAR name_len}{name}{bytecode}` that GServer-v2's
+  beta4 branch sends (`Weapon.cpp` and `ScriptClass.cpp` there, as cited by pyReborn).
+- **132, weapon [bin]:**
+  - Raises the client's script level to at least 3, as 193 does.
+  - Looks the weapon up by exact name in the local player's weapon list. If the player does
+    not hold that weapon, the packet does nothing. So the server must send the weapon
+    itself first (`PLO_NPCWEAPONADD`, 33).
+  - In 4.04r2 it writes the bytes to the weapon cache, `<user folder>weblevels/weapons/<name>.code`
+    (the file 193 checks by CRC later), then installs them as the weapon's script and
+    restarts it.
+  - It marks the weapon when the current server's name starts with `login` (the `Login`
+    server of 4.x), the same test the client uses to keep Login-server update packages
+    apart. **[bin][inf: that the tested name is the server name]**
+  - It is skipped while a client state flag is set (not identified).
+- **133, class [bin]:**
+  - No script-level change.
+  - Adds the name to the client's list of class names if it is new, finds or creates the
+    class object of that name, and loads the bytecode into it. The loader reads the
+    class's function table and marks functions whose names start with `public.` as callable
+    from outside. The class object holds a `joinedclasses` variable, which is what
+    `v3x-clients.md` saw.
+  - A body that is only the name gives an empty class. The beta4 gserver sends exactly
+    that for a class it doesn't have.
+- **Handled by:** 3.153 (Mac), 4.04r2, 4.20r6, 4.20r8, 5.00r7 and 5.12. **Not** 5.24r4 or
+  later: 5.24r4's switch has no case for either, together with 193. From 5.24 on, compiled
+  scripts arrive through 197 `PLO_LOADSCRIPT` and the `GRESCR01` cache
+  (`formats/gwebl001-cache.md`). The earlier line "6.x drops both" is right but late: the
+  drop is at 5.24.
+- **Not read:** the 5.00r7 handlers themselves (its switch lists both ids; the 4.04r2 and
+  5.12 handlers on either side agree), and whether 3.153 also writes the `.code` file.
+- **Confidence:** high (layout, what each does, and the build range).
 
 ### PLO 193: weapon script by CRC from the local cache
 
