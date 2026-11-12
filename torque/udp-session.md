@@ -599,7 +599,8 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
 - [x] ~~A full real-client trace through login step 6, decoded packet by packet.~~ Idle session
   done: [lab-2026-11-12-udp-trace.md](lab-2026-11-12-udp-trace.md). All 319 datagrams decode
   with this note.
-- [ ] The same with walking and chat (rerun queued).
+- [x] ~~The same with walking and chat.~~ Lab 12b: walking puts nothing new on UDP and chat sent nothing ([lab note](lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun)).
+- [ ] How a server makes a 5.12 player move (movetype and movement data) and what the client then echoes.
 - [ ] Protocol 19 past the handshake: the per-packet string buffer, the move layout and the
   datablock phase against a real 3.153 or 4.04r2 client.
 - [ ] What the 5.12 client sends in sections 5, 9 and 3 of its own update while walking and
