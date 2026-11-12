@@ -91,14 +91,14 @@ Two tables placed ids 47 and 168 in different revisions. A static check settled 
 
 ### E#8 Prop parser ranges of 2.00
 
-Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36. A re-read of the 2.0x jump tables settles both: Claim A holds [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin).
+Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36. A re-read of the 2.0x jump tables settles it: Claim A holds [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin).
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the cross-version timeline has the player-prop parser gain 35 and 36 in 1.41, and the NPC-prop parser gain 36 to 40 only in 2.02 rev2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
 | Claim B | the 2.00 layout tables have the self and other-player streams accept 0–35 (no 36) and the NPC stream accept 0–36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
 | Resolution | the 2.00 and 2.01 self switch covers 0–36 and the NPC switch 0–35; NPC 36–40 arrive in 2.02 rev2. Claim A is right for both | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
-| Still open | 2.00 and 2.01 have no separate other-player switch; which switch their other-player stream uses, and so whether it parses 36, was not traced | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
+| Other players | the 2.00 and 2.01 other-player switch also accepts 36 (and 50, 51), with the same sparse stops as 2.05 | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 
 ### E#9 Uploads from game clients
 

@@ -249,7 +249,7 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1).
 | self (9) | 2.05 | 0–42 | 43 and up, including 50 and 51 | [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | self (9) | 2.17.1, 2.22 | through 74 | 50, 51, 53 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [2.22] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | self (9) | 2.31 | through 80, with X2, Y2, Z2 at 78–80 | 50, 51, 53, 75–77 | [2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
-| other players (8) | 2.00 | 0–35; no separate switch found → App. E#8 | 36 and up | [bin] (version-profiles/plo-otherplprops-layouts.tsv) |
+| other players (8) | 2.00, 2.01 | 0, 2, 8–13, 15–21, 24, 30–36, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 37–49, 52 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | other players (8) | 2.02 rev2, 2.03 | 0, 2, 8–13, 15–21, 24, 30–41, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 42–49, 52 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | other players (8) | 2.04 | 0, 2, 8–13, 15–21, 24, 30–42, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 43–49, 52 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | other players (8) | 2.05 | 0, 2, 8–13, 15–21, 24, 30–42, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 43–49, 52 and up | [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
@@ -274,7 +274,7 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 | The 2.22 send-side prop builder also knows 75 and 76 | 2.22 | [bin] (version-profiles/plo-playerprops-layouts.tsv) |
 | From 2.3 GServer-v2 puts X2 and Y2 before X and Y in other-player props | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 
-Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. Which switch the 2.00 other-player stream uses is open → App. E#8.
+Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → App. E#8.
 
 ## 2.6.7 Property ids in unpacked 6.1.1.3 and 6.0.3.7
 

@@ -1,6 +1,6 @@
 build	field_index	field_name	type	behaviour	tag
 2.00	0	player_id	GINT2	First two payload bytes: (b0-0x20)*0x80 + (b1-0x20). Unknown id creates the other-player record.	[bin]
-2.00	1	props	PLPROP_stream	Rest after the player id. The prop stream parser found for this family accepts ids 0-35 (same denseness as self in 2.00). A 2026-11-12 re-read found no separate other-player switch in 2.00 or 2.01 (the sparse one first appears in 2.02 rev2), so this row is unconfirmed; see protocol/player-props.md.	[bin]
+2.00	1	props	PLPROP_stream	Rest after the player id. Other-player switch (jump-table re-read 2026-11-12) accepts 0, 2, 8-13, 15-21, 24, 30-36, 50, 51; stops at 1, 3-7, 14, 22, 23, 25-29, 37-49, 52+. The earlier 0-35 reading was wrong. Same in 2.01.	[bin]
 2.04	0	player_id	GINT2	Same as 2.00/2.05. Signature table: GINT2@0 rest@2, no layout change 2.00-2.05. 2.04 decompile not on Drive.	[bin]
 2.04	1	props	PLPROP_stream	Same envelope as 2.00. Accept set as 2.05r2 (0, 2, 8-13, 15-21, 24, 30-42, 50, 51; jump-table re-read 2026-11-12).	[bin]
 2.05r2	0	player_id	GINT2	Same GINT2 prefix; needs at least 2 bytes.	[bin]
