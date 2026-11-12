@@ -244,8 +244,8 @@ Encoding: wire byte = id + 0x20. Each message is GCHAR id + payload + `\n`. Fiel
 | 111 | 0x8f | `PLO_SETNETCOOKIE` |  | S→C |  | — |
 | 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) |  | S→C |  | — |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` |  | S→C |  | — |
-| 132 | 0xa4 | `PLO_UNKNOWN132` |  | S→C |  | — |
-| 133 | 0xa5 | `PLO_UNKNOWN133` |  | S→C |  | — |
+| 132 | 0xa4 | `PLO_UNKNOWN132` |  | S→C | `str name`, rest = weapon bytecode **[bin]** | — |
+| 133 | 0xa5 | `PLO_UNKNOWN133` |  | S→C | `str name`, rest = class bytecode **[bin]** | — |
 | 134 | 0xa6 | `PLO_GANISCRIPT` |  | S→C |  | — |
 | 140 | 0xac | `PLO_NPCWEAPONSCRIPT` |  | S→C |  | — |
 | 150 | 0xb6 | `PLO_NPCDEL2` |  | S→C | `c n`, n-char level name, `i3 npc id` **[bin]** | yes |

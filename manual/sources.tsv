@@ -532,6 +532,7 @@ version-profiles/matrix/builds-static-survey.tsv	cited	4; 4.1; E	C; 4	Appendix C
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	Appendix C not needed: the live-run results are carried in §4.2; App. C points to §4.1 to §4.4 for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1.39 rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1st Graal rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
+version-profiles/matrix/rules-132.md	pending	4.2; 4.3; 4.4	C; 4	1.32 rules (static read 2026-11-12); fold into §4.2 to §4.4 next to 1.39 and 1st Graal
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
@@ -625,3 +626,4 @@ client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphic
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
 protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
+protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section

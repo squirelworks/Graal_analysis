@@ -136,6 +136,52 @@ Read from the 39 decompiled 3.04 scripts (`dec304/`). This is the native surface
 
 That list is small enough to build and test against the shipped files one by one: every 3.04 script must load, every `.gui` must build its control tree, and the main menu must come up from `Canvas.setContent(mainMenuGui)` with the shipped theme and fonts.
 
+### 5.1 Cross-check against the 39 scripts and the 3.04 engine (2026-11-12)
+
+Every call in the 39 decompiled 3.04 scripts was listed, including the calls inside
+`command`, `altCommand` and key-bind strings, which run later through `eval`. Each name
+that the scripts do not define themselves was then looked up in the unpacked 3.04
+engine's string table (a registered console function or method leaves its name and usage
+string there) and each `new` class in its C++ type names. Torque names are
+case-insensitive, so the lookup was too. **[file][bin]**
+
+| Kind | Names called | Registered in the 3.04 engine | Not registered |
+|---|---|---|---|
+| Global functions | 45 | 44 | `activateKeyboard` |
+| Methods | 88 | 88 | — |
+| Classes created with `new` | 31 | 31 (including `GuiGraalCtrl`) | — |
+
+`parseArgs`, `onStart` and `onExit` also appear, as `Parent::` calls in packages. They
+are defined in the plain root `main.cs`, not in the engine, so they are left out of the
+counts.
+
+- **The one gap.** The console dialog (F2) calls `activateKeyboard` when it opens and
+  `deactivateKeyboard` when it closes. The Linux 3.04 engine registers only
+  `deactivateKeyboard`. The Mac 3.153 engine registers neither, while its console dialog
+  calls both. In Torque an unregistered call prints an "Unknown command" line to the
+  console and returns an empty string, so opening the F2 console on Linux 3.04 should
+  log one such line, and on Mac 3.153 two. Nothing else depends on it. **[bin][inf: the
+  log line, which no lab run has opened the console to see]**
+- **Corrections to the lists above.**
+  - `deactivatePackage` is not called by any of the 39 scripts. Only `activatePackage` is.
+  - `eval` is called (the load-file dialog's `altCommand` runs `$loadFileCommand`
+    through it), and many of the menu actions only run through `command` strings.
+  - All 19 of the Graal methods named above are registered, so none of the shipped menus
+    calls a missing Graal method.
+- **The rest of the stock methods** the scripts call, beyond the examples above: `add`,
+  `addNewCtrl`, `apply`, `bringToFront`, `delete`, `deleteSelection`, `findText`,
+  `findTextIndex`, `getCommand`, `getContent`, `getCount`, `getDeadZone`, `getId`,
+  `getName`, `getObject`, `getPosition`, `getRowNumById`, `getRowTextById`, `getScale`,
+  `getSelected`, `getSelectedId`, `getText`, `getTextById`, `isAwake`, `isCursorOn`,
+  `isInverted`, `justify`, `onAction`, `open`, `popDialog`, `pushToBack`, `removeRowById`,
+  `repaint`, `rowCount`, `select`, `setAllGroupState`, `setCurrentAddSet`, `setCursor`,
+  `setRoot`, `setSelected`, `size`, `toggleDynamicGroupExpand`, `toggleGroupExpand` and
+  `unbind`. Most belong to the GUI editor and inspector dialogs, which a player never
+  opens.
+- **For a rebuild:** the native surface is closed. A VM that registers these 44 functions,
+  88 methods and 31 classes can load every shipped 3.04 script, and it can leave
+  `activateKeyboard` unregistered to match the original.
+
 ## 6. What the 2D Delphi engine lacks, per era
 
 | Needed | Era A (3.04, 3.153) | Era B (4.04r2–5.12 Windows) | Era C (5.24r3+, 6.x) |
