@@ -232,14 +232,14 @@ macOS CI is paused until the polish stage.
   *Done in #162.* (2.04 / 2.01–2.03 `.c` not on Drive; those rows are endpoint +
   batch-c bracketed.)
 
-- [ ] **11. 1998 to 1.41 rules (matrix unknown #1).** Death, hurt and knockback, sword
+- [x] **11. 1998 to 1.41 rules (matrix unknown #1).** Death, hurt and knockback, sword
   reach and the wall test for 1.39 first, then 1.32 and ~~1st Graal~~. Decompiles plus Wine
   runs against GServer13 or the 1998 relay on loopback.
   *1.39 done in #161 / `version-profiles/matrix/rules-139.md`. 1st Graal done in
   `version-profiles/matrix/rules-1st-graal.md` (static read of the VCL-lossy export;
-  the death-counter increment is not tagged). 1.32 remains: the Decompile folder
-  was listed again on 2026-11-01 (client exports and Accessories) and still has
-  no 1.32 export, so no death, hurt or wall number was added.* Tracked in #246 (on hold).
+  the death-counter increment is not tagged). 1.32 done in
+  `version-profiles/matrix/rules-132.md` (static read of a 1.32 export; respawn
+  heart value not tagged).* Closes #246.
 
 - [ ] **12. Keep Seihai's fixture reader working.** Any PR that edits
   `version-profiles/*.toml` or `client-internals/version-profiles/*.toml` runs Seihai's
