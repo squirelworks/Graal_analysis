@@ -91,3 +91,7 @@ From the repo root:
 - Smoke `client-internals/version-profiles/resolve.py` on a profile TOML, and `formats/grv1-decoder/grv1.py` on a level, the same way the workflow does. Both use the standard library only.
 
 Do not start archived Graal clients or Wine here. Those clients phone home, and the client archives are not in this checkout. Lab servers stay on the loopback address.
+
+## macOS builds
+
+macOS is built and tested on the lab's Sequoia (macOS 15) VM with the same build and test commands the Linux job runs; GitHub CI covers Linux and Windows.

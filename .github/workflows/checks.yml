@@ -11,10 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS disabled 2026-11-08; re-enable at polish stage
+        # macOS is checked on the lab Sequoia VM, not on GitHub runners (AGENTS.md)
         os:
           - ubuntu-latest
-          # - macos-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
     defaults:
@@ -129,10 +128,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS disabled 2026-11-08; re-enable at polish stage
+        # macOS is checked on the lab Sequoia VM, not on GitHub runners (AGENTS.md)
         os:
           - ubuntu-latest
-          # - macos-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
@@ -168,7 +166,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS disabled 2026-11-08; re-enable at polish stage.
+        # macOS is checked on the lab Sequoia VM, not on GitHub runners (AGENTS.md).
         # A pull request builds the PDF on Windows only, to keep PR runs
         # short. A push builds both and keeps the Linux PDF.
         os: ${{ github.event_name == 'pull_request' && fromJSON('["windows-latest"]') || fromJSON('["ubuntu-latest", "windows-latest"]') }}
