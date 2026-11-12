@@ -21,6 +21,7 @@ Tags: **[bin]** read from a client binary · **[file]** read from shipped data �
 - [study-torque-clients.md](study-torque-clients.md): what each Torque-era client really is (Torque monolith 3.x, Delphi shell + C++ engine 4.x–5.12, Graal's own engine from 5.24r3), a marker scan of 17 binaries from 3.04 to 6.11, the 3.04 shipped files and formats, the native surface the 3.04 scripts need, the 4.x/5.00 draw-callback bridge that puts 2D content into the Torque world, and what the 2D rebuild lacks per era.
 - [304-adventure.md](304-adventure.md): the Linux 3.04 2D session (`adventure.cpp`, `GuiGraalCtrl`, levels, the local player): license files, HUD sheets, mouse and chat, which level magics log a local enter.
 - [304-draw.md](304-draw.md): tiles, graphics, ganis, show-images and the `TDrawableObject` family in that binary.
+- [304-tile-types.md](304-tile-types.md): where 3.04 gets its tile types (compiled-in lists equal to 2.22 `arrays.dat`, minus two water ids), the walk test per sheet type, and how `tiledefs` picks the sheet.
 - [304-npcs.md](304-npcs.md): NPC triggers, bow baddies, weapon rectangles, `shapetiletypes` and the polygon verb.
 - [304-net.md](304-net.md): Graal TCP (`TGraalConnection`, server list, player list) beside an untouched Torque `GameConnection`.
 - [304-audio-ui.md](304-audio-ui.md): fmod startup, wav / mid / stream file types, and the audio prefs on `GuiGraalCtrl`.

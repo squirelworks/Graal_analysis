@@ -21,6 +21,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 - [Linux 3.04 local value-helper branches](torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) — retained static numeric/string fallback and assignment distinctions, not complete coercion or callback results.
 
+- [Where the 3.04 client gets its tile types](torque/304-tile-types.md) — no `arrays.dat`: the walk and type lists are compiled into the executable and equal 2.22's (water list minus ids 1824 and 1825); type-0 sheets walk only on list ids, type 1/2 sheets use id ranges; `tiledefs` picks the sheet. Static.
+
 - [Exact Linux 3.04 show-image wrapper constants](torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) — retained static eight-command mode/flag map and bounded integer-key container distinction; no new rendering result.
 
 - [Windows v4 imported alias and retained identity](version-profiles/windows-v4-import-provenance.md) — exact carrier/resource corroboration with unresolved official release provenance.
