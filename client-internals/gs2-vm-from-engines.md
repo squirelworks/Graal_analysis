@@ -205,7 +205,7 @@ Jumps add the operand, truncated toward zero, to the base of the current instruc
 | 180 | this | push the current `this` object, tag 3 |
 | 200..233 | (not in the enum) | the fusions in the bytecode section |
 
-These numbers are also cases in the 4.2.0.8 switch. Their helpers were not opened one by one, so this note does not restate each effect: 21, 22, 23, 24, 25, 26, 27, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 60, 61, 62, 63, 64, 65, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 99, 100, 101, 102, 103, 104, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 181, 182, 183, 184, 189, 190. **[bin]**
+These numbers are also cases in the 4.2.0.8 switch. Their helpers were not opened one by one, so this note does not restate each effect: 21, 22, 23, 24, 25, 26, 27, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 60, 61, 62, 63, 64, 65, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 99, 100, 101, 102, 103, 104, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 181, 182, 183, 184, 189, 190. Opcodes 82 (`indexof`) and 84 (`format`) are now read in [showimg-particles-and-gs2-format.md](showimg-particles-and-gs2-format.md). **[bin]**
 
 Fused divide (opcode 211, the assign form) yields 0 when the divisor is 0. That agrees with the 3.153 note for division. The plain divide case (63) was not opened. The floor-toward-negative conversion agrees with the 3.153 note's `int(-1.5)` rule for the sites that use it (opcodes 97 and 98, and the fused remainder). **[bin]**
 
