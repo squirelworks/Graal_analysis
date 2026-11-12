@@ -47,6 +47,7 @@ Buddy lists and the cross-server tabs are text requests that the game server pas
 | Rule | Builds | Source |
 | --- | --- | --- |
 | Buddy requests go in `PLI_SENDTEXT` as the tokens `GraalEngine`, `lister`, then `verifybuddies`, `addbuddy` or `deletebuddy`, then the account list | 2.17+; server | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
+| 4.x sends `verifybuddies` when `PLO_SERVERLISTCONNECTED` (190) arrives, with two values: the `loadbuddiesfromserver` flag (0/1) and the CRC-32 of the comma-joined buddy list (0 when empty) | 4.04r2, 4.20r8 | [bin] (protocol/v4x-clients.md#190-and-the-buddy-check) |
 | The server forwards those three options to the listserver, never for guest accounts, and stores nothing itself | server | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
 | The listserver answers with `PLO_SERVERTEXT` (82) carrying `weapon`, `lister`, `buddylist`, then a comma list of accounts | listserver | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
 | `PLI_REQUESTTEXT` types `pmservers`, `pmserverplayers <server>`, `pmunmapserver` and `pmguilds` go to the listserver for the cross-server and guild tabs | server | [srv] (client-internals/feature-specs/14-friends-ignore.md#server-behaviour-srv) |
