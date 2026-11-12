@@ -32,7 +32,7 @@ Each line is tokenized on whitespace after stripping `\r`. Lines inside the `LEV
 
 ## On the wire
 
-A player on a gmap has `PLPROP_CURLEVEL` = the gmap name and `PLPROP_GMAPLEVELX`/`Y` = the grid cell. `PLO_PLAYERWARP2` (49) carries x, y, z, then the gmap cell x and y. `PLI_ADJACENTLEVEL` (35) preloads neighbors. **[srv]** A real 2.22 client crosses an edge with normal props only: it keeps the global position in the flags `gr.x` / `gr.y` (local + 64 * cell) and sends the wrapped local X or Y together with the changed cell prop (43 or 44), plus a fresh `PLI_TAMPERCHECK` (39). Details in `client-internals/feature-specs/06-gmap-overworld.md`. **[cap]**
+A player on a gmap has `PLPROP_CURLEVEL` = the gmap name and `PLPROP_GMAPLEVELX`/`Y` = the grid cell. `PLO_PLAYERWARP2` (49) carries x, y, z, then the gmap cell x and y. `PLI_ADJACENTLEVEL` (35) preloads neighbors. **[srv]** A real 2.22 client crosses an edge with normal props only: it keeps the global position in the flags `gr.x` / `gr.y` (local + 64 * cell) and sends the wrapped local X or Y together with the changed cell prop (43 or 44), plus a fresh `PLI_TAMPERCHECK` (39). Details in `client-internals/feature-specs/06-gmap-overworld.md`. **[cap]** A reply to 35 must start with `PLO_LEVELNAME` naming the neighbour; the client puts board data on the last named level, not on a gmap position (`protocol/gmap-adjacent-level-target.md`). **[bin]**
 
 ## 2.05
 
