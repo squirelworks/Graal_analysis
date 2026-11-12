@@ -288,6 +288,7 @@ GS2 syntax, its library and its event model are the largest open question in the
 | Official bytecode, 6.113 caches | 19 real server-compiled bodies walk with the 4.2–6.00 container reader: segments 1–4 in order, segment 1 zero, `F0`–`F6` operands in range, no trailing newline, no opcode ≥ 200; the official compiler emits 190 `loadparams`, which the third-party compiler does not | [cap] (protocol/gs2-official-bytecode-6113.md#container-what-all-19-bodies-show) |
 | Mac OS X 6.11r1 runner | Decoded 40-byte records with cached handlers, an appended end marker 164, a per-record loop check with default limit 10000, snapshot-based sleep and waitfor, and calls that can suspend on `classesdownloaded`. Table extent, opcode 7, arithmetic handlers and runtime behaviour stay open (→ §8.4.4) | [bin] (client-internals/mac-611r1-gs2-runner.md) |
 
+| Playerworld corpus survey | Three owner-held script sets rank the GS2 constructs real 2007–2008 scripts use (joins, methods, for-each, `switch`, GUI `new`, code outside functions) and the GS1 commands a port must replace; no message code sits inside a GS2 string literal. Language use only, not official compiler output | [lab] (npc-library/gs2-world-corpus-2026-11-12.md) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
