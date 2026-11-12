@@ -164,9 +164,49 @@ From the 2026-10-30 run (sequence `0x400`, the test server's digest `00 01 … 0
 C->S 1a 00 04 00 00                                       challenge request, seq 0x400
 S->C 1e 00 04 00 00  00 01 02 03 … 0e 0f                  challenge response
 C->S 20 00 04 00 00  00 01 02 03 … 0e 0f  …(71 bytes)     connect request
-S->C 24 00 04 00 00  00 30 00 00 00                       accept: empty table, protocol 24
+S->C 24 00 04 00 00  30 00 00 00 00                       accept: empty table, protocol 24
 C->S 05 00 00 04 41 b8 00 …(19 bytes)                     first data packet, seq 1
 ```
+
+How the 10-byte accept reads: the type byte, the `u32` sequence (bits 8–39), the table's end
+flag 0 at bit 40, then the `u32` protocol 24 at bits 41–72. 24 shifted up one bit is 48 = `0x30`,
+so byte 5 is `30`, and the protocol's top bit spills into a tenth byte, which is 0. (Earlier
+copies of this capture in `network.md` grouped the bytes as `00 30 00 00 00`; that grouping was
+a transcription slip. `24 00 04 00 00 30 00 00 00 00` is the accept the real client took, and the
+one the Seihai gserver's handshake test checks.) **[run]**
+
+### Test vectors (hex, one line each)
+
+Connect request from the real 5.12 client, 71 bytes, sequence `0x400`, the test server's digest
+`00 01 … 0f`, the built-in guest password, account `guest`, empty nickname; it decodes with no
+bits left over **[run]**:
+
+```
+2000040000000102030405060708090a0b0c0d0e0f1d6213fd6a4af4185809000000e0ffffffff41ac650e47670c0000000c00008008d1e976dc8548169b000000c082de7f0300
+```
+
+Connect accept with an empty table **[run]**:
+
+```
+24000400003000000000
+```
+
+Connect accept with the full protocol-24 table in the order listed above (objects as type 0 with
+ids 0–9, events as type 1 with ids 0–8), sequence `0x400`, 276 bytes. Built with
+`tools/tbits.py`, which encodes strings the same way the Seihai gserver does (Huffman whenever
+it is shorter than the raw bytes); it decodes back to 19 entries and protocol 24 with 5 padding
+bits **[srv]**:
+
+```
+24000400000100001aac96e82d0340006470ae5022c6b196ad05000168e15ca1448c632d5bebfa7a304e500b0003d0c2b94289184fe7acbfebebc138
+412d00104085d844bfe26ef1180240011c984e2a01c0000e4c3d058003c8b07eb3648a188a270100012a3838e12d62289e048004a8b039997a92e77e
+860100002322b8774ec8d5664f93b8f404032000464470ef9c90534883b8f4040340005aaca6448f81955cdf5af61f979e60000c408bd8591b748e22
+2b6dc5dde231c4a527180004d0c1ed610ac6d4c7a52718000550a2eb91c2afa6082585b8f40403c0004a747d64f3dfa0eb8766884b4f30000e60c4fa
+cd9269b5d9d3242e3dc10040801aeb374ba6ae8f6cfe1bc8b10e09dfe2d213c000000000
+```
+
+The two first client data packets **[run]**: `0500000441b800000000000000000000000000` (seq 1, 19
+bytes) and `0900000800000000000000000000000000` (seq 2, 17 bytes).
 
 ## 4. Data packets: header, numbering, acks
 
