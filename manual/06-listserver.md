@@ -14,7 +14,7 @@ Each build finds its server list in its own way. The table gives the host and po
 | Builds | Host and port | List name | Source |
 | --- | --- | --- | --- |
 | 1.33 to 1.39 | no listserver; the player types a game-server address | n/a | [bin] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5); [lab] (tools/lab-servers/README.md#133-to-139-on-beta4-2026-10-30) |
-| 1.41 | unmeasured: only a patched copy survives | unmeasured | [bin] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
+| 1.41 | only a patched copy survives (`<list-host-reborn>`:14923) | none sent: the client connects and waits for the list | [bin] (protocol/listserver.md#141-rev1-no-login-the-server-speaks-first-binlab); [bin] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
 | 1.42 | `<listserver-host>` built in, port 14921 | `newmain` | [bin] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
 | 2.00 to 2.05 | built in as a DES-hidden string assembled one character at a time, port 14921; `arrays2.dat` is not read | `newmain` | [2.05] (protocol/listserver.md#205-specifics-205); [bin] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
 | 2.1 test builds | port 14922 built in | unmeasured | [bin] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
@@ -47,6 +47,7 @@ The listserver login differs by client generation, not by build; inside a genera
 | C: id 7, then generation 5 | 2.22, 2.31 (port 14922) | frame 1, plain zlib, 18 bytes decoded: id 7, one key byte, `GNW30123`, `newmain`, `\n`; frame 2, generation 5 with compression byte `0x02`: id 1, XORed with the key | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
 | D: 6.113 on port 14900 | Windows 6.113, one owner-supplied capture | not a list frame: token `GNP1905C`, then ciphertext; no id 0, 1 or 7 and no `newmain` | [cap] (protocol/v6113-list-capture.md#against-the-listserver-note) |
 | E: 6.113 full capture | Windows 6.113, the full capture the same day | the same hello on TCP 14900 and on TCP 14882; still no clear list id. The hosts that answer send no UDP | [cap] (protocol/v6113-udp.md#graal-tcp) |
+| none: the server speaks first | 1.41 rev1 | the client sends nothing; it reads plain zlib frames, takes id 0 (the list, then it closes) and id 1 (one more entry), and ignores the rest | [bin] (protocol/listserver.md#141-rev1-no-login-the-server-speaks-first-binlab) |
 | generation 4 | 2.19 to 2.21 | id 4 `c key` + token, then bz2 frames with partial XOR (limit 4) | [srv] (protocol/listserver.md#client--listserver); [lab] (tools/lab-servers/README.md#our-listserver-version-2) |
 | RC 1.41 | RC 1.41 (2002) | id 0 `rc`, then id 1 `str account`, `str password` | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 
@@ -61,7 +62,7 @@ The rules below say which tokens go to the listserver and which go to a game ser
 | The 2.05 list connection derives from the game connection's base class and keeps its base send path, which has no generation-3 insertion | [2.05] (protocol/listserver.md#205-specifics-205) |
 | A real 2.00 sends one frame (id 0 + `newmain`), makes no second listserver connection, and accepts a 2.17-style two-frame reply from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205); [cap] (client-internals/decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md#200-listserver-handshake-client-side-observed-list-reply-synthetic); [cap] (version-profiles/lab-200-listserver-handshake.tsv) |
 | After the list, 2.17 logs in to the game server as type 0 with a key, `GNW22122`, account and password, in generation 3 | [cap] (protocol/listserver.md#217-list-host-bin) |
-| What 1.41, 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured; 1.42 and 2.01 to 2.04 share 2.00's built-in list data and are expected to send shape A | [inf] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5) |
+| What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured (1.41 rev1 sends nothing, see above); 1.42 and 2.01 to 2.04 share 2.00's built-in list data and are expected to send shape A | [inf] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5) |
 
 ## 6.2 Replies
 

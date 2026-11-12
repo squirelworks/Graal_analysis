@@ -53,7 +53,7 @@ What follows for a server **[inf]**: a server that answers a stock 6.11 client m
 ## Open points
 
 - [ ] Decrypt the Windows 6.113 capture itself. That needs the session key of that exact session, read from the running client.
-- [ ] The incoming direction. The script table holds no `setencryptionin` or `tclient_setencryptionin` name, and the lab server never answered in the 6.11 framing. The server's first packet in the 6.113 capture has the same clear shape (`01 02 00 01 21 fd`), but whether the server's stream after it is RC4 with the same key, or another key, is not known.
+- [ ] The incoming direction. *2026-11-12: a live 6.113 run shows the server also sends one clear `0xfd` frame (290 bytes in that session) and then ciphertext; the key is still open (`connector-script.md` §4b).* The script table holds no `setencryptionin` or `tclient_setencryptionin` name, and the lab server never answered in the 6.11 framing. The server's first packet in the 6.113 capture has the same clear shape (`01 02 00 01 21 fd`), but whether the server's stream after it is RC4 with the same key, or another key, is not known.
 - [ ] The padding scheme inside the 0xfc body.
 
 ## Method notes

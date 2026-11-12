@@ -97,6 +97,17 @@ def shape_plain(port, with_account, name):
     s.close()
 
 
+def shape_silent(port):
+    """1.41 rev1: connects and sends nothing; the listserver must speak first."""
+    s = socket.create_connection((HOST, port))
+    got = [l for f in read_frames(s, wait=3.0) for l in lines(zlib.decompress(f))]
+    ids = [l[0] - 32 for l in got]
+    rows = parse_list(got[0]) if got and ids[0] == 0 else []
+    check('silent client (1.41) gets a server-first id 0 list', ids == [0], str(ids))
+    check('silent client row untagged', bool(rows) and rows[0][0] == b'TestWorld', repr(rows[:1]))
+    s.close()
+
+
 def shape_gen5(port, pid, name, account=b'acct', password=b'pw', expect_error=False):
     key = 0x45
     s = socket.create_connection((HOST, port))
@@ -137,6 +148,7 @@ if __name__ == '__main__':
     time.sleep(0.2)
     shape_plain(14921, False, 'shape A (2.00/2.05)')
     shape_plain(14923, True, 'shape B (2.17)')
+    shape_silent(14923)
     shape_gen4(14922)
     shape_gen5(14922, 7, 'gen 5 (2.22/2.31)')
     shape_gen5(14922, 5, 'RC list (id 5)')
