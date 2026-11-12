@@ -73,6 +73,15 @@ Then id **37** with the language name. So 4.x sends a stable PC id at every logi
 
 **Gen 5, the same as 2.22, 2.31 and 3.x.** Both directions are seeded with `0x04A80B38`, the generator is `it = it * 0x08088405 + key`, and the key is a random 0–127 sent in the login. Frames are `u16be length`, a type byte, then the body: under 0x30 bytes type 2 (raw), under 0x1000 type 4 (zlib), otherwise type 6 (bzip2). Type 2 XORs at most 12 dwords and types 4 and 6 at most 4. Packets are `id + 32`, the body and `\n`. **[bin]**
 
+**Step count.** All three readable engines (4.04r2 Windows, 4.20r8 Windows, 4.20r6 Mac) use the same rule in both directions. For a body of `n` bytes after the type byte:
+
+| Frame type | Iterator steps | Tail |
+| --- | --- | --- |
+| 2 (raw) | `min((n + 3) >> 2, 12)`, that is `ceil(n / 4)` capped at 12 | the last group may be partial and is XORed |
+| 4 (zlib), 6 (bzip2) | `min(n >> 2, 4)`, that is `floor(n / 4)` capped at 4 | an incomplete last group is left as is and takes no step |
+
+Each step is `it = it * 0x08088405 + key`, then up to four body bytes are XORed with the iterator's bytes, low byte first. So 4.x rounds compressed bodies **down**, which matches the Mac PowerPC receive note (`macos-ppc-receive-framing.md`) and differs from the `ceil` rule that 2.22 captures need (`codec-and-framing.md#gen-45-partial-xor`). A server that talks to both needs a per-version rule. **[bin]** Not yet checked on the wire with a 4.x client. **[inf]**
+
 Large packets: before a payload sent as id 93, the client sends id 50 with a 3-byte GINT length (capped at 0x37FFFF). Incoming id 100 sets the length of the next raw (newline-free) packet. **[bin]**
 
 ## Server → client ids
