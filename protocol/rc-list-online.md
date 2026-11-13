@@ -55,8 +55,10 @@ so every `sendData` call site was read by name; there too some ids (51–54, 68,
 91, 95) are not constants at a call site. In both builds the only 65 constants near a
 send are the player prop 33 inside a `PLI_PLAYERPROPS` (2), as in RC2.
 
-**Not checked:** a Linux i386 RC from January 2005, packed with UPX 1.90 with a damaged header
-(`upx -d` refuses it). It sits between the 2004 Delphi RC and RC2 2.05 in time. **[inf]**
+**Unpacked, send path not read:** a Linux i386 RC from January 2005 (build string "Remote Control
+Linux 2005/01/24"), packed with UPX 1.90. It sits between the 2004 Delphi RC and RC2 2.05 in time.
+Its UPX checksums all verify, so the header was not damaged. It was unpacked byte-exact on
+2026-11-13, and its receive-side ids are in `unknown-ids-2026-11-06.md`. **[bin]**
 
 ## What the 2001 servers do **[src]**
 
@@ -131,6 +133,6 @@ handles: 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 10
 ## Open
 
 - [x] Read the send paths of the 2010 Linux RC and RC3 (neither sends 65 or 66).
-- [ ] Unpack the 2005 Linux i386 RC (damaged UPX header) and read its send path.
+- [ ] Read the send path of the 2005 Linux i386 RC. (Unpacked 2026-11-13; its receive ids are in `unknown-ids-2026-11-06.md`.)
 - [ ] A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the
       Admins folder on the wire and whether the one-space level puts RCs under Players.
