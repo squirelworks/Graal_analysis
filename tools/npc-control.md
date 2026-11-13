@@ -4,7 +4,7 @@ Date: 2026-10-21
 
 Source: static read of the Delphi `rc141.exe` ("GServer2 Remote Control 2002/05/02"), the first RemoteControl build that contains NPC Control. Also `NPCControl1.3` (a 2001 docs bundle with no binary). Tags: **[bin]** read from the binary · **[doc]** from the 2001 text files · **[inf]** inferred.
 
-The later 2004 RemoteControl is in `remotecontrol.md`. This note covers the 2002 build, which is where NPC Control first appears. **Protocol layouts for `seihai-rc`:** `../protocol/npc-control.md`.
+Standalone NPC Control programs are older: builds titled 2001/03/19, 2001/05/21 and 2001/07/13 log in with `NCL15031` (10 forms; the two older ones have a server flag list where 2001/07/13 has the weapons list), and an RC dated 2002/01/11 already carries NC with `NCL11012` (`../server-notes/original-server-builds-1999-2007.md#npc-control-and-remotecontrol-20012002-bin`) **[bin]**. The later 2004 RemoteControl is in `remotecontrol.md`. This note covers the 2002 build, which is where NPC Control first appears. **Protocol layouts for `seihai-rc`:** `../protocol/npc-control.md`.
 
 ## What the NPCControl 1.3 bundle is **[doc]**
 

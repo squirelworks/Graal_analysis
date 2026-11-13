@@ -46,13 +46,16 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
 | 1.33 | `GNW20020` | **W** | literal; traffic captured and decoded under Wine (`versions-133-139.md`, "Live check") | ✔ | **token only (understated)** |
+| 1.33 rev? | `GNW28020` | L | no client exe; in the 1.34 rev 1 server port's table between 1.33 and 1.34 (28 Feb 2000) [bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | 1.34 | `GNW22030` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
+| 1.34 rev 1 | `GNW27030` | L | no client exe; the only player token the 1.34 rev 1 server port lets in ("You need Graal version 1.34 rev1") [bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | 1.35 | `GNW13040` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.36 | `GNW10050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.37 | `GNW21050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.38 | `GNW22060` | B+ | immediates (first char-built token); logged in to the lab classic server, frame not decoded | ✔ | token only |
+| 1.38 rev 1 | `GNW02070` | L | no client exe; the 1.39 server's table and refusal text ("1.38 rev1 - 1.39 rev 1") [src][bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | 1.39 | `GNW07080` | **W** | immediates; traffic captured and decoded (`versions-133-139.md`); also on the public list | ✔ | **token only (understated)** |
-| 1.391 | `GNW12080` | L | gs2lib table only. The two FileVersion 1.3.9.1 executables read on 2026-11-13 send `GNW07080` and `GNW23090` instead ([note](graal2002-and-140-builds.md)) | (no folder) | |
+| 1.391 (1.39 rev 1) | `GNW12080` | L | gs2lib table; the 1.39 server's table names it 1.39 rev 1 [src][bin] (`server-notes/original-server-builds-1999-2007.md`). The two FileVersion 1.3.9.1 executables read on 2026-11-13 send `GNW07080` and `GNW23090` instead ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 1.40, 1.40 rev1 | `GNW23090` | B | immediates in two executables (FileVersion 1.3.9.1 and 1.4.0.1), 2026-11-13; on no public list ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 1.41 rev1 | `GNW13110` | W | lab capture | ✔ | tested |
 | NewMain 24, 26 | `GNW08011` | W | lab capture; immediates in both exes | ✔ | tested |
@@ -66,6 +69,7 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 | 2.04 | `GNW24061` | **W** | immediates; original's login logged by a lab gserver on 2026-11-12 [lab] | ✔ | **token only (understated)** |
 | 2.05, 2.05 rev1 | `GNW03081` | B (token W via rev2) | immediates. The same token was seen on the wire from 2.05 rev2 | ✔ | token only |
 | 2.05 rev2 | `GNW03081` | W | lab captures | ✔ | tested |
+| NewWorld 1.39 | `G2N29070` | L | no client exe; the 1.39 server tree's NewWorld option ("Graal-Newworld version 1.39") [src] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | NewWorld beta 1 (pre-update and final), beta 2 | `G2N15041` | W | lab captures; immediates in all three exes | ✔ | tested |
 | 2.1 test 2, test 3 | `GNW03081` | W | still 2.05's token | ✔ | tested |
 
