@@ -33,8 +33,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
 | 1.21 | `GSERV007` | W | `gserv-1999.md`, `live-trace-early.md` | ✔ | tested |
-| 1.25 | `GSERV009` | L | public list only; no exe known | (no folder) | |
-| 1.27 | `GSERV011` | L | public list only. RemoteControl 1.28 and 1.3 also send `GSERV011` [bin] | (no folder) | |
+| 1.25 | `GSERV009` | B | string literal in the exe unpacked from the 1.25 installer, 2026-11-13; its RemoteControl sends `GSERV010` ([note](gserv-125-127-builds.md)) | (no folder) | |
+| 1.27 | `GSERV011` | B | string literal in the exe unpacked from the 1.27 installer, 2026-11-13. The RemoteControl in the same package is the one later shipped as RC 1.28; RC 1.3 also sends `GSERV011` [bin] ([note](gserv-125-127-builds.md)) | (no folder) | |
 | 1.28 beta 2 | `GSERV013` | W | `live-trace-early.md` | ✔ | tested |
 | 1.3 test | `GSERV014` | W | `live-trace-early.md` (first frame decoded) | ✔ | tested |
 | 1.31 | `GSERV016` | **W** | `live-trace-early.md`: both 1.31 and 1.32 sent their login frame to GServer13 and were refused as too new | ✔ | **token only (understated)** |
@@ -127,7 +127,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 ## Gaps and how far each can be closed
 
 - **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
-- **L only, no binary in any collection:** 1.25, 1.27, 1.391, all 2.1.x releases from 2.1.0 to 2.21 except 2.17, 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
+- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.1.0 to 2.21 except 2.17, 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
 

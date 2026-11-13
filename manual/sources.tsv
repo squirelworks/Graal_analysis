@@ -639,3 +639,5 @@ client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT p
 protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
+client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
+tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
