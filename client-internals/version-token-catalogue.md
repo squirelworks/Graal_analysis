@@ -75,7 +75,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 |---|---|---|---|---|---|
 | Graal 2002 ver7–ver9 (FileVersion 2.1.0.0, Oct 2001) | `GNW03081` | B | immediates, 2026-11-13; still 2.05's token, like the 2.1 tests ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 2.1.0.0–2.1.0.4 (Graal 2002 ver10, ver13, v22) | `GNW31101` | B | immediates in three executables (FileVersion 2.1.0.2 and 2.1.0.4), 2026-11-13; public list gives 2.1.0.0–2.1.0.3 ([note](graal2002-and-140-builds.md)) | (no folder) | |
-| 2.1.0.0 public release (FileVersion 2.1.0.0, built 2001-11-13) | `GNW31101` | B | immediates, 2026-11-13, in the exe from the 2001 auto-updater pack (Wayback copy of the official download); confirms the public 2.1.0.0 sends the Graal 2002 ver10 token, not 2.05's. Its listserver request is `newmain`, where the Graal 2002 leaks ask for `graal2002` ([method](../protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file)) | (no folder) | |
+| 2.1.0.0 public release (FileVersion 2.1.0.0, built 2001-11-13) | `GNW31101` | B | immediates, 2026-11-13, in the exe from the 2001 auto-updater pack (a copy of the official download); confirms the public 2.1.0.0 sends the Graal 2002 ver10 token, not 2.05's. Its listserver request is `newmain`, where the Graal 2002 leaks ask for `graal2002` ([method](../protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file)) | (no folder) | |
 | 2.12 | `GNW01012` | L | public list | (no folder) | |
 | 2.13 | `GNW23012` | L | public list | (no folder) | |
 | 2.14 | `GNW30042` | L | public list | (no folder) | |
@@ -137,7 +137,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 ## Gaps and how far each can be closed
 
 - **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
-- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3, 4.02.11 and 6.0.3.4. Only a new binary can close these. On 2026-11-13 Wayback copies of the official downloads closed 3.0, 3.01, 4.03.4 (as 4.03r3), 4.11 and 6.0.0.7 / 6.0.1.5. A 6.0.3.4 download was found too, but it has not given a token yet.
+- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3, 4.02.11 and 6.0.3.4. Only a new binary can close these. On 2026-11-13 copies of the official downloads closed 3.0, 3.01, 4.03.4 (as 4.03r3), 4.11 and 6.0.0.7 / 6.0.1.5. A 6.0.3.4 download was found too, but it has not given a token yet.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
 

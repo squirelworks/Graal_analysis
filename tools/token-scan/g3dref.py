@@ -7,11 +7,12 @@
 # code that point at them, group into runs, and spell G3D + DDMMY.
 import sys,re,struct
 TOK=re.compile(rb'G3D[0-9]{4}[0-9A-F]')
+SCN_MEM_EXECUTE=1<<29  # PE section flag: the section holds code
 def sections(p,b):
     if b[:2]==b'MZ':
         import pefile
         pe=pefile.PE(data=b); base=pe.OPTIONAL_HEADER.ImageBase
-        return [(base+s.VirtualAddress,s.get_data(),bool(s.Characteristics&(1<<29))) for s in pe.sections]  # IMAGE_SCN_MEM_EXECUTE
+        return [(base+s.VirtualAddress,s.get_data(),bool(s.Characteristics&SCN_MEM_EXECUTE)) for s in pe.sections]
     if b[:4]==b'\x7fELF' and b[4]==1:
         shoff,=struct.unpack_from('<I',b,0x20); shentsize,shnum=struct.unpack_from('<HH',b,0x2e)
         out=[]
