@@ -33,7 +33,7 @@ macOS CI is paused until the polish stage.
 - [ ] **Builds with no binary (#439).** Catalogue the client hunt and keep the no-binary profiles honest.
   - [x] ~~Catalogue the hunt's finds by token, grade and source.~~ [Token catalogue](../client-internals/version-token-catalogue.md) (#440, #446, #448, #450): 2.1.0.x, 1.40, 1.25, 1.27, 3.0, 3.01, 4.03.4, 4.11, 6.0.0.7 and 6.0.1.5 now have executables.
   - [x] ~~Mark the no-binary profiles as inferred in data, with a CI check.~~ `inferred = true` on 2.1 and 2.12 to 2.16 in [141-217.toml](../client-internals/version-profiles/141-217.toml) (2.3 already had it); [test_inferred.py](../client-internals/version-profiles/test_inferred.py) fails when a list-only (L) token's profile lacks the flag. seihai-core's `Basis::Inferred` rows match.
-  - [ ] Still with no executable: 1.391, 2.12 to 2.16, 2.18 to 2.21, 2.3 and 4.02.11. Record the web hunt (Wayback snapshots of the 2001–2005 download pages, fan-site, forum and CD mirrors), including searches that found nothing.
+  - [ ] Still with no executable: 1.391, 2.12 to 2.16, 2.18 to 2.21, 2.3 and 4.02.11. Record the search for copies of the official downloads, including searches that found nothing.
   - [ ] Date each 2.1x feature to a token from `newfeatures200x.txt` and the GServer-v2 version branches.
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
