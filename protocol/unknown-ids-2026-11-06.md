@@ -138,6 +138,7 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
   nothing is correct for RCs. A server can measure a game client's round trip by sending
   `{108}{c 0}{s seq}` and timing the matching 162.
 - **[cap]** none: the lab gserver never sends 108, so no client was seen sending 162.
+- **6.11 [lab] (2026-11-13):** the live 6.111 connector script maps wire 108 to an ordinary native slot (94) and sends ping answers on wire 162 from send slot 55. 6.11 takes 108 through the script-loaded table, not ahead of the main switch (`v611-id-tables.md`). What sub 1 does there was not traced.
 - **Confidence:** high (layout and reply, for game clients and RC3); medium that it is a ping
   (supported by the 6.11 slot name). This settles manual App. E#5.
 
@@ -285,7 +286,8 @@ table in Windows 4.04r2 and 5.12 and compared with the 3.153 Mac handlers.
 ### PLO 60, 81, 83, 110: not resolved
 
 - **Game clients [bin]:** none of the 26 builds in the version chain (1.21 to 6.03r7) has a
-  case for any of the four. Checked directly in the dispatchers of 4.20r8, Mac 4.20r6 and
+  case for any of the four. The live 6.11 connector script maps 110 to the one empty native slot, so 6.11 ignores it
+  too, and it clears 60, 81 and 83 (`v611-id-tables.md`) **[lab]**. Checked directly in the dispatchers of 4.20r8, Mac 4.20r6 and
   Linux 6.03r7, and in the handled-id sets of every other build
   (`client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv`,
   `client-internals/version-profiles/`).
