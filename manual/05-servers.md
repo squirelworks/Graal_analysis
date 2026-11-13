@@ -3,7 +3,7 @@
 
 This part describes the game servers that Graal clients talk to: the original 1999 GServer13, the 2006 39ster 2.1 remake, and GServer-v2 as the reference for later behaviour. Login frames are in → §2.3, ciphers in → §2.2, and the reply sequence after a good login in → §2.3.6. The listserver is in → §6, RC and NC in → §7.
 
-> Status: draft. No official 2000–2002 GServer binary is in the archive, so the 2.x-era server rules here come from GServer-v2 and the 39ster remake, not from an original server.
+> Status: draft. The newest server of the original line in the archive is the 1.39 family (a 2002 Windows build and 2003–2005 rebuilds of the 1.39 tree, `server-notes/original-server-builds-1999-2007.md`). No official 2.x GServer binary is in the archive, so the 2.x-era server rules here come from GServer-v2 and the 39ster remake, not from an original server.
 
 ## 5.1 GServer13 (1999)
 
@@ -21,7 +21,7 @@ GServer13 opens a start dialog before it listens, and saves the values to `serve
 | `apincrementtime` | Alignment increment time in sec | 1200 | [bin][live] (client-internals/board-respawn.md#options) |
 | `baddyrespawntime` | Baddies respawn time in sec | 60 | [bin][live] (client-internals/board-respawn.md#options) |
 
-GServer 1.28 beta 2 (`GServerv.exe`) has the same four timer keys [bin] (client-internals/board-respawn.md#options). An RC of 2000 can set the same four timers over the wire (→ §7.1.4).
+GServer 1.28 beta 2 (`GServerv.exe`) and the October 1999 GServer have `respawntime`, `horselifetime` and `baddyrespawntime`, but `pktimeout` ("Playerkiller flag timeout in sec") in place of `apincrementtime`: player-killer flags came before alignment points [bin] (server-notes/original-server-builds-1999-2007.md#the-timer-options-bin). An RC of 2000 can set the same four timers over the wire (→ §7.1.4).
 
 ### 5.1.2 Accounts
 
@@ -85,6 +85,18 @@ Item drops from cut bushes and pots are rolled by the 1.3 client, not by GServer
 ### 5.1.5 Scripts
 
 GServer13 has player and NPC props, including an NPC nickname field, but no GS1 command table and no `setcharprop` or `showcharacter` strings; NPC scripts of this era are carried to clients and run there [bin] (server-notes/setcharprop-hash-n.md#1-gserver13-1999-cannot-settle-the-value-question-by-lab). GServer 1.34's Windows binary lists `showcharacter` but not `setcharprop` [bin] (server-notes/setcharprop-hash-n.md#2-server-side-gs1-gserversource-archive). Server-side scripting is in → §5.5.
+
+### 5.1.6 Other servers of the original line
+
+Besides GServer13 and GServer 1.28 beta 2, the archive holds an October 1999 GServer, a December 1999 Linux GServer with its source tree, a 2003 Windows port of GServer 1.34 rev 1, and the 1.39 family. Each row gives one rule that differs from GServer13 [bin][src] (server-notes/original-server-builds-1999-2007.md).
+
+| Server | Rule | Source |
+| --- | --- | --- |
+| October 1999 | lets in 1.27 (`GSERV011`) and later; relays bombs, arrows, fire, thrown carry, items, NPC weapon images and explosions to the level, which 1.28 beta 2 and GServer13 drop | [bin] (server-notes/original-server-builds-1999-2007.md#bombs-arrows-and-items-relayed-dropped-relayed-again-binsrc) |
+| December 1999 (Linux) | lets in `GSERV015` and later; relays the same effects again, but only to a peer that cannot get them over UDP; PMs over 1,024 bytes are refused | [src] (server-notes/original-server-builds-1999-2007.md#the-december-1999-linux-server-src) |
+| 1.34 rev 1 port | lets in `GNW27030` (1.34 rev 1) only | [bin] (server-notes/original-server-builds-1999-2007.md#what-the-server-token-tables-settle-binsrc) |
+| 1.39 | lets in 1.38 rev 1, 1.39 and 1.39 rev 1 (`GNW02070`, `GNW07080`, `GNW12080`); accepts only 2 × 2 board changes from a fixed list of tile replacements; checks a client message count (31) and drops a client whose count is wrong | [src][bin] (server-notes/original-server-builds-1999-2007.md#the-139-server-family-srcbin) |
+| 1.39 builds | none runs NPC scripts on the server: the NPC engine in the 1.39 tree is a build option that no surviving binary has on | [src][bin] (server-notes/original-server-builds-1999-2007.md#the-139-server-family-srcbin) |
 
 ## 5.2 39ster 2.1 GServer
 

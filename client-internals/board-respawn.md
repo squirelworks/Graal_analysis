@@ -104,7 +104,7 @@ Drops are rolled by the client that cut or lifted the object **[bin]**:
 | `apincrementtime` | Alignment increment time in sec | 1200 |
 | `baddyrespawntime` | Baddies respawn time in sec | 60 |
 
-GServer 1.28 beta 2 (`GServerv.exe`) has the same four keys.
+GServer 1.28 beta 2 (`GServerv.exe`) has `respawntime`, `horselifetime` and `baddyrespawntime`, but in place of the alignment increment it has `pktimeout` ("Playerkiller flag timeout in sec"); so does the October 1999 GServer (`server-notes/original-server-builds-1999-2007.md#the-timer-options-bin`).
 
 ### `PLI_BOARDMODIFY` (1) handling **[bin]**
 

@@ -434,6 +434,7 @@ server-notes/ash-overview.md	cited	5; E	5
 server-notes/baddies-serverside.md	cited	5	5	
 server-notes/lab-servers-2026-10-30.md	cited	5; 6; E	5	
 server-notes/public-allowed-versions.md	cited	5; E	5	
+server-notes/original-server-builds-1999-2007.md	cited	5; 7	5; 7	
 server-notes/setcharprop-hash-n.md	cited	5	5	
 tools/README.md	excluded		11	index of the tools folder; the notes it lists are cited or excluded one by one
 tools/baddy-222/README.md	excluded		11	usage notes for the baddy gani generator and capture checker; the findings are in client-internals/baddies-222.md
