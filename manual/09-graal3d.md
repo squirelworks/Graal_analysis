@@ -293,7 +293,7 @@ The camera follows the player at fixed offsets. Each row gives one quantity or r
 | Field | the Direct3D RM initial field 0.5, a square window; the exe sets no field | [doc][bin] (graal3d/camera.md#field-of-view) |
 | Opening | `2 × atan(0.5)` ≈ 53.13° on either axis of that window | [inf] (graal3d/camera.md#field-of-view) |
 | Front plane | 1 (library initial value) | [doc] (graal3d/camera.md#field-of-view) |
-| Back plane | disputed → App. E#500 | [doc] (graal3d/camera.md#still-needed) |
+| Back plane | 5000, set right after the viewport is created; the front plane stays at the library's 1 (settled → App. E#500) | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
 | Lab | none of these figures is lab-confirmed; Wine's retained-mode stubs break camera frames | [lab] (graal3d/camera.md#still-needed) |
 
 ## 9.5 Collision
