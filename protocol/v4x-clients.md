@@ -32,7 +32,7 @@ So the line is: 2.x is Delphi only, 3.x is a Torque C++ monolith, and 4.x is a D
 - Signatures use the **same RSA-1024 key as 3.x** (PKCS#1 v1.5 over SHA-1, e = 17, the key embedded as hex DER). The Mac `sig.license` verifies against `license.graal` and `sig.graal` against the Mac executable. **[bin][file]**
 - Windows adds a fourth file, **`license/sig.graallib`**, the signature of `GraalEngine.dll`. The check runs in order: exe, then DLL (Windows only), then license. Any missing file stops the client with "The license file(s) have not been found", and any bad signature stops it before the license is read. The Mac client checks exe and license the same way. **[bin]**
 - The stock 4.04r2 engine confirms this: when any of the three signatures fails it shows "The license file is invalid!" and stops. All three of its shipped signatures verify against its own files.
-- The packet-logger copy of the 4.20r8 engine has this check disabled by a one-byte patch. A conditional jump after the result test has become an unconditional jump, so the "bad signature" branch is never taken. This is a third-party change, not 4.20r8 behaviour. **[bin][inf]**
+- The packet-logger copy of the 4.20r8 engine has this check disabled by a one-byte patch. A conditional jump after the result test has become an unconditional jump, so the "bad signature" branch is never taken. This is a third-party change, not 4.20r8 behaviour. **[bin]** A byte compare with the stock 4.20r8 engine (2026-11-13) confirms it: this jump, the hook and the added block are the only changes ([launcher note](../client-internals/launchers-420r8-500r7-512.md#the-420r8-launchers-and-the-packet-logger-engine)).
 
 ## Version tokens
 
@@ -165,7 +165,7 @@ New compared with what 3.x showed: 44 (the window list for 182), 50 (large-packe
   - Nothing outgoing is logged. The outgoing and info stubs are in the added block, but nothing jumps to them.
   - Each record is cut to the compressed length, so long packets come out truncated.
   - Any other zlib use (resources decompressed at start-up) fires the hook too.
-- The signature-check bypass above is part of the same modification.
+- The signature-check bypass above is part of the same modification. Nothing else in the engine differs from stock 4.20r8, so every other read of this engine in this note is stock behaviour. **[bin]**
 
 ## Windows 4.04r2
 

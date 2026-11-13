@@ -187,6 +187,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates (the 2.05 client's real wall test is a box: see `client-internals/decomp-findings-2026-10-25-l/`).
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
+- `client-internals/launchers-420r8-500r7-512.md` — the newly found 4.20r8, 5.00r7 and "5.12 untouched" copies are launchers only; the "5.12" set is a re-versioned, patched 5.00r7; the Packet Logger 4.20r8 engine diffed against stock; static.
 - `client-internals/version-token-catalogue.md` — every known client build with its login token, the evidence grade (wire, binary, public list only, server-defined, none), and whether the graal-client-repro folder matches.
 - `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.
 - `client-internals/build-diff-204-205.md` — function-level diff of 2.04, 2.05 rev1 and 2.05 rev2 (NewWorld merge, VMT shift, ADP anti-debug).
