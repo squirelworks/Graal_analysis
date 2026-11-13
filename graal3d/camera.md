@@ -13,6 +13,7 @@ Related: walking controls and the short camera summary in [client-behaviour.md](
 | Follow distance | **220** behind the player | [bin] |
 | Camera height / look height | follow target **80** above the player on Y | [bin] |
 | Field of view | library field **0.5**; opening **2×atan(0.5)** ≈ **53.13°** on either axis of that square window | [doc] for 0.5; [inf] for the degrees; [bin] that the exe does not set it |
+| Back clipping plane | **5000**, set once right after the viewport is created | [bin] (re-read 2026-11-13, below) |
 | Follow rule | see below | [bin] |
 
 ## Follow rule (Numpad 0 toggles follow on/off)
@@ -51,10 +52,14 @@ Immediately after Direct3DRM creates a viewport, and before any `SetField`, the 
 
 Two public texts agree on the field value. The DirectX SDK retained-mode viewport reference says the initial field is 0.5 (`SetField` remarks) and the initial front plane is 1 (`SetFront` remarks). `SetPlane` is an arbitrary window on that front plane, and `SetField` is the centered form of the same window. Wine’s `d3drm` conformance test (`dlls/d3drm/tests/d3drm.c`, `test_Viewport`) expects the same state right after init: field 0.5, plane ±0.5 on all four sides, front 1, back 100, projection perspective. That test builds the viewport from a 640×480 window and still records the square plane. The test is written to match Microsoft’s `d3drm`. This note did not re-run it.
 
-The back clipping plane of this client stays open. The library default back plane is 100. **[doc]** A later public DelphiX (unDelphiX `Source/DXDraws.pas`, retained-mode init) calls `CreateViewport` and `SetBack(5000)` and does not call `SetField` or `SetPlane`. That fork starts after 2004, so it is not the unit linked in February 2000, and this client’s far plane was not re-read. The same init leaves the field alone. A field override compiled into `Graal3D.exe` would have been a float constant; the PE read found none.
+## Back clipping plane (re-read 2026-11-13)
+
+The exe sets the back plane to **5000** once, right after it creates the viewport. **[bin]** A static re-read of the same `Graal3D.exe` (resource stamp 2000-02-05) found the retained-mode `CreateViewport` call (device, camera, origin 0,0, width, height) followed directly by a `SetBack` call on the new viewport. The argument is the single-precision constant 5000.0. That is the only `SetBack`-shaped call with a constant argument in the exe, and there is no `SetFront`, `SetField` or `SetPlane` call with a constant. So the front plane stays at the library's 1 **[doc]** and the field at 0.5 (above).
+
+The pattern is the DelphiX `TDXDraw` retained-mode start-up: create the viewport, set back 5000, leave the field alone. The later public fork (unDelphiX `Source/DXDraws.pas`) does the same, so that fork kept the February 2000 behaviour. This client does not leave the back plane at the library default of 100. **[doc]** A later call that sets the back plane from a computed value cannot be ruled out statically. Only a live run with native `d3drm.dll` would show the value at draw time.
 
 ## Still needed
 
 - ~~FOV from a library default or a lab measurement.~~ **Closed** above: field **0.5**, opening ≈ 53.13°.
-- **Far plane stays open.** The library's initial back plane is 100. **[doc]** A later public DelphiX (unDelphiX `Source/DXDraws.pas`) calls `SetBack(5000)` during retained-mode init and leaves the field alone. That fork starts after 2004. The static PE read that found no field constant and no `SetPerspective` did not re-read `SetBack`. The binary is not in the repo, and no other note gives a back-plane number for the February 2000 exe. 100 and 5000 are both sourced. Neither is tagged as this client's far plane.
-- Live confirmation of the 220 / 80 / 5° / −0.15 rad figures, and of this field, under Wine with native `d3drm.dll` (Wine’s RM stubs break camera frames; see [lab-2026-10-30.md](lab-2026-10-30.md)).
+- ~~Far plane.~~ **Closed** above: back plane **5000**, set right after `CreateViewport`. **[bin]**
+- Live confirmation of the 220 / 80 / 5° / −0.15 rad figures, and of this field and back plane, under Wine with native `d3drm.dll` (Wine’s RM stubs break camera frames; see [lab-2026-10-30.md](lab-2026-10-30.md)).

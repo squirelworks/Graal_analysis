@@ -12,6 +12,10 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
+  - [ ] Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.
+  - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
+
 - [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).
   - [ ] Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.
 
@@ -194,9 +198,9 @@ macOS CI is paused until the polish stage.
   default **[doc]** (SDK `SetField` / `SetFront` remarks, and Wine's native-matching
   `d3drm` viewport test). The degree figure is arithmetic on that plane **[inf]**.
   Live confirmation of the follow numbers still needs native `d3drm.dll`.
-  The far plane stays open (`graal3d/camera.md`): library initial back plane 100
-  **[doc]**, a later DelphiX fork calls `SetBack(5000)`, and the February 2000
-  exe was not re-read for `SetBack`.
+  ~~The far plane stays open.~~ Settled 2026-11-13: the February 2000 exe calls
+  `SetBack(5000)` right after `CreateViewport` **[bin]** (`graal3d/camera.md`,
+  App. E#500).
   *FOV pinned in `graal3d/camera.md`.*
 
 - [x] **7. NPC-Control protocol note (unblocks `seihai-rc` stage 5).** Write

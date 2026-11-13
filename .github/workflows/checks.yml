@@ -152,6 +152,9 @@ jobs:
       - name: Coverage report (0.0.5, not yet a gate)
         run: python tools/manual/coverage.py
 
+      - name: Inference ledger is up to date
+        run: python tools/manual/inference_ledger.py --check
+
       - name: pytest tools/manual
         run: python -m pytest tools/manual -q
 

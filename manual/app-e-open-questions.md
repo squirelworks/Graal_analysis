@@ -632,16 +632,16 @@ The 2004 RC and a server fork quote folder rights differently [cap] (protocol/rc
 | Open | whether the original server stored and returned the CSV form, which would make the fork's reply a fork bug | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | Settles it | a capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 
-### E#500 Back clipping plane of the Graal3D client
+### E#500 Back clipping plane of the Graal3D client (settled)
 
-Which back clipping plane the Graal3D client uses is unknown [doc] (graal3d/camera.md#field-of-view).
+Which back clipping plane the Graal3D client uses was open. A static re-read settled it: 5000 [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13).
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | the Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets no field of its own | [doc] (graal3d/camera.md#field-of-view) |
-| Claim B | a later public DelphiX fork calls `SetBack(5000)` during retained-mode init; that fork starts after 2004, so it is not the unit linked in 2000 | [doc] (graal3d/camera.md#still-needed) |
-| Open | which back plane the February 2000 exe uses; the static read that found no field constant did not look for `SetBack` | [inf] (graal3d/camera.md#still-needed) |
-| Settles it | a static read of the exe for a `SetBack` call, or a lab run with the native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
+| Claim B | a later public DelphiX fork calls `SetBack(5000)` during retained-mode init | [doc] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Settled | the February 2000 exe calls `SetBack(5000)` right after `CreateViewport`, the only constant `SetBack` in the exe; Claim B's value holds for this client, and Claim A's 100 is overridden | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Still open | the value at draw time in a live run with native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
 
 ### E#501 Class CRC of the 4.04r2 3D plug-in
 
