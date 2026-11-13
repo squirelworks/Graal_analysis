@@ -1,5 +1,7 @@
 # Version ID map
 
+> **Superseded (2026-11-13).** Do not add tokens here. The table of every known token, with evidence grades, is [`version-token-catalogue.md`](version-token-catalogue.md); the generated code copy is seihai-core [`documentation/version-tokens.tsv`](https://github.com/squirelworks/seihai-core/blob/main/documentation/version-tokens.tsv). This map (50 tokens) predates the 2026-11-13 binary reads, and its gs2lib table is the 2026-10 one. The filename and construction notes below are still current. This page is kept for its notes and for the links that point here.
+
 Date: 2026-10-14
 
 ## Protocol token → version
