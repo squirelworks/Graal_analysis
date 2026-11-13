@@ -33,8 +33,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
 | 1.21 | `GSERV007` | W | `gserv-1999.md`, `live-trace-early.md` | ✔ | tested |
-| 1.25 | `GSERV009` | L | public list; also in the October 1999 GServer's token table [bin] (`server-notes/original-server-builds-1999-2007.md`); no client exe known | (no folder) | |
-| 1.27 | `GSERV011` | L | public list. RemoteControl 1.28 and 1.3 also send `GSERV011` [bin]. The October 1999 GServer lets in `GSERV011` and later ("at least Graal version 1.27") [bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
+| 1.25 | `GSERV009` | L | public list only; no exe known | (no folder) | |
+| 1.27 | `GSERV011` | L | public list only. RemoteControl 1.28 and 1.3 also send `GSERV011` [bin] | (no folder) | |
 | 1.28 beta 2 | `GSERV013` | W | `live-trace-early.md` | ✔ | tested |
 | 1.3 test | `GSERV014` | W | `live-trace-early.md` (first frame decoded) | ✔ | tested |
 | 1.31 | `GSERV016` | **W** | `live-trace-early.md`: both 1.31 and 1.32 sent their login frame to GServer13 and were refused as too new | ✔ | **token only (understated)** |
