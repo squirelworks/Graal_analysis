@@ -44,7 +44,7 @@ So the line is: 2.x is Delphi only, 3.x is a Torque C++ monolith, and 4.x is a D
 
 The tokens follow the 3.x pattern: `G3D`, then a `DDMMY` date. The dates fit the builds (March 2006 4.04r2 engine, September 2006 Mac build, January 2007 4.20r8 engine), as they do for `G3D16053` (3.0), `G3D03014` (3.04) and `G3D28015` (3.153). Each token is still assembled one character at a time, so there is no string literal. **[bin][inf]**
 
-The Mac build this note reads as "4.20r6" is the archive's label. The token catalogue settles it (2026-11-13): the binary is dated 2006-09-19 and the Mac 4.10r2 download sends the same `G3D27076`, so it is a 4.10r2/4.11-era build. The real Mac 4.20r6 (binary 2006-12-21) sends `G3D21126`; see [`version-token-catalogue.md`](../client-internals/version-token-catalogue.md). The rest of this note keeps the "Mac 4.20r6" label for the 2006-09-19 build, as seihai-core does. **[bin]**
+The Mac build this note reads as "4.20r6" only carried that label. The token catalogue settles it (2026-11-13): the binary is dated 2006-09-19 and the Mac 4.10r2 download sends the same `G3D27076`, so it is a 4.10r2/4.11-era build. The real Mac 4.20r6 (binary 2006-12-21) sends `G3D21126`; see [`version-token-catalogue.md`](../client-internals/version-token-catalogue.md). The rest of this note keeps the "Mac 4.20r6" label for the 2006-09-19 build, as seihai-core does. **[bin]**
 
 The community wiki's release notes date 4.04 to 17 February 2006, 4.1 to 27 July 2006 and 4.206 (Mac, Linux and Windows) to 21 December 2006. So the Windows stamps match a release day, while the Mac 4.20r6 stamp is the 4.1 release day rather than a 4.20 one (`client-internals/graal-wiki-crosscheck-2026-11-11.md`). **[doc][bin]**
 
