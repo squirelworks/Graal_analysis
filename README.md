@@ -4,6 +4,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [PCID: where the "PC id" comes from](protocol/pcid.md) — how each MD5 machine field is computed per platform and what changes it; the game server forwards them unchanged in `VERIACC2`; the listserver answers `SVI_ASSIGNPCID` (30) with a decimal 64-bit id used by the RC ban window; the official rule is not held; matching advice for a Seihai listserver; static and source.
 - [The GS2 VM by client version, 3.153 to 6.03r7](client-internals/gs2-vm-by-version.md) — opcodes each of six VMs handles, the unnamed opcodes, the 4.20r8+ load-time optimiser, stack and loop limits, and the maths and number-to-text rules that change between builds; static.
 - [What GS2 compilers tolerate](npc-library/gs2-strict-probes-2026-11-13.md) — 34 one-quirk probes with clean twins through the two public compilers: seven loose spellings both accept with the clean bytes, and what both reject.
 - [GS1 per client build](npc-library/gs1-per-build-2026-11-13.md) — 25 command tables from 1.21 to 5.00r7, the 2.17.1 argument letters, statement words by build, bare numbers in conditions, constant comparisons and message codes before and after 2.17; static and lab.
