@@ -283,10 +283,10 @@ Each client reads a fixed set of level and map file magics and writes one save-f
 | 14th, 15th Graal | GR-V1.00 to GR-V1.03 | Graalsav7 | [bin] (client-internals/build-catalogue.md#catalogue) |
 | 1.1.9, 1.1 | GR-V1.00 to GR-V1.03 | Graalsav7/8 | [bin] (client-internals/build-catalogue.md#catalogue) |
 | 1.21 to 1.39 | GR-V1.00 to GR-V1.03 | reads Graalsav9, Graalsv10, Graalsv11; writes Graalsv11 | [bin] (client-internals/build-catalogue.md#catalogue) |
-| 1.41 rev1, NewMain 1.42 | GR-V1.00 to GR-V1.03, GLEVNW01 | as 1.21 (1.41 rev1); unmeasured (NewMain) | [bin] (client-internals/build-catalogue.md#catalogue) |
-| 2.00 to 2.04 | GR-V1.00 to GR-V1.03 (no GLEVNW01, no GRMAP001) | unmeasured | [bin] (client-internals/build-catalogue.md#catalogue) |
+| 1.41 rev1, NewMain 1.42 | GR-V1.00 to GR-V1.03, GLEVNW01 | as 1.21 (1.41 rev1); none (NewMain 24 and 26: no save magic and no load-game menu) | [bin] (client-internals/build-catalogue.md#catalogue) ; [bin] (version-profiles/save-games-142-2171.md#result) |
+| 2.00 to 2.04 | GR-V1.00 to GR-V1.03 (no GLEVNW01, no GRMAP001) | none: no save magic in any revision | [bin] (client-internals/build-catalogue.md#catalogue) ; [bin] (version-profiles/save-games-142-2171.md#result) |
 | GraalX | GR-V1.00 to GR-V1.03, GLEVNW01 | unmeasured | [bin] (client-internals/build-catalogue.md#catalogue) |
-| 2.05 and later 2001 builds | GR-V1.00 to GR-V1.03, GLEVNW01, GRMAP001 | unmeasured | [bin] (client-internals/build-catalogue.md#catalogue) |
+| 2.05 and later 2001 builds | GR-V1.00 to GR-V1.03, GLEVNW01, GRMAP001 | none (2.05 rev0–rev2, 2.1 tests, NewWorld betas, 2.17.1) | [bin] (client-internals/build-catalogue.md#catalogue) ; [bin] (version-profiles/save-games-142-2171.md#result) |
 
 GR-V1.03 is the last `.graal` revision any catalogued build reads [bin] (client-internals/build-catalogue.md#catalogue). `.nw` support is not monotonic: 1.41 rev1 and NewMain 1.42 read GLEVNW01, 2.00 to 2.04 contain neither GLEVNW01 nor GRMAP001, and both return in 2.05 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). That 2.0 branched from a pre-NewMain tree is an inference from strings [inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The 2.05 string table holds exactly Z3-V1.03, Z3-V1.04, GR-V1.00 to GR-V1.03 and GLEVNW01 as level magics [2.05] (formats/level-binary.md). The save writer was traced only in 1.21 and 1.32; for 1.33 to 1.41 rev1 the save magics are inferred from the same string arrangement [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The formats themselves are in → §3.1, → §3.2 and → §3.7.
 

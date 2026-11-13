@@ -187,6 +187,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates (the 2.05 client's real wall test is a box: see `client-internals/decomp-findings-2026-10-25-l/`).
+- `version-profiles/save-games-142-2171.md` — no client after 1.41 rev1 reads or writes offline save games (no save magic, no load-game menu); static.
 - `version-profiles/pli-send-sites-141-217.md` — every client-to-server send site in 21 builds from 1.41r1 to 2.17.1: all pass a constant id, so the §2.4.2 lists are complete; settles App. E#11 (NewWorld betas send neither 8 nor 20); static.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
 - `client-internals/version-token-catalogue.md` — every known client build with its login token, the evidence grade (wire, binary, public list only, server-defined, none), and whether the graal-client-repro folder matches.
