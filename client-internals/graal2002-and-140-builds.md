@@ -86,7 +86,7 @@ list and dispatcher match it. They are not separate releases.
 
 ## Other builds in the same batch
 
-- **Graal3D, later beta.** It sends `GR3DV003`, the next protocol revision after the Feb 2000 build's `GR3DV002` (on the wire).
+- **Graal3D, later beta.** It sends `GR3DV003`, the next protocol revision after the Feb 2000 build's `GR3DV002` (on the wire). The full comparison is in [graal3d/beta3-genesis.md](../graal3d/beta3-genesis.md): the beta moves to Genesis3D and keeps the protocol.
   New strings show DirectInput with force feedback, camera distance and player-centre settings, and a deathmatch start. It needs
   its own lab run against the Graal3D server, to see whether that server accepts `V003`.
 - **2.22, two more copies (FileVersion 2.2.2.0).** Both have 2.22's token `GNW03014` (and the listserver `GNW30123`), its 198

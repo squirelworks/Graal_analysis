@@ -28,6 +28,7 @@ See the individual files for the measured contracts. `graaleditor-vs-205.md` com
 - `navigator/` — local browser for the markdown notes in this repo. It listens on the loopback address (port 8765) and does not phone home. See `navigator/README.md`.
 - `ghidra/` — headless salvage scripts for recovered binaries (`analyze_tool.sh`, `ghidra_scripts/ExportSalvageArtifacts.java`). Counts and decompiler text stay in gitignored `local-out/`. The prose summaries of those tools are in seihai-servertools (`recovered-drive-tools/`, `recovered-hacks/`).
 - `gs1-lint/` — `gs1lint.py`, a static checker for GS1 NPC scripts against the 2.05 command table in manual §8.2 (unknown, ignored and later-only commands, argument counts, name tables). Lints the original NPC library in CI.
+- `token-scan/` — `conntok.py` and `g3dref.py` read the 3.x to 6.01 login token from a Linux client or a Windows engine DLL without running it. See `protocol/login-tokens-3x-7x.md`.
 - `gs1-table-scan/` — `gs1scan.py` reads the GS1 command list out of a client binary (Delphi tables and start-up registration, the C++ engine on x86 and PowerPC); `matrix.py` builds the command-by-build matrix. See `npc-library/gs1-commands-by-version.md`.
 - `leak-check/` — `check_addresses.py`, the repo-wide check (run in CI on all three OSes through `tools/manual/test_repo_addresses.py`) for 0x and bare `00…` hex addresses and disassembler names, with an allowlist of known constants (LCG seed and multiplier, image base, masks, sizes, magic numbers). Pure Python, runs on Linux, macOS and Windows.
 

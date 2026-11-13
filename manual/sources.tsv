@@ -272,6 +272,7 @@ formats/sign-text.md	cited	3.6	3.6
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
+graal3d/beta3-genesis.md	pending		9	later Graal3D beta (GR3DV003): Genesis3D renderer, same protocol; to be folded into the Graal3D section
 graal3d/camera.md	cited	9; E	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	
@@ -457,6 +458,7 @@ tools/graaleditor.md	cited	11; E	11
 tools/graalshop.md	cited	11	11	
 tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
 tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the scanner behind gs1-commands-by-version.md), not Graal
+tools/token-scan/README.md	excluded			repository tooling for the notes (the static token readers behind login-tokens-3x-7x.md), not Graal
 tools/gs1-table-scan/builds.tsv	excluded			build list and binary MD5s for the scanner; the facts are in gs1-commands-by-version.md
 tools/lab-servers/README.md	cited	5; 6	6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
