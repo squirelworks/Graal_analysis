@@ -503,8 +503,9 @@ Whether offline 2.05 reloads a level on re-entry, which would bring a cut bush b
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Open | whether 2.05 offline reloads a level from disk when the player re-enters it, which would bring a cut bush back | [bin] (client-internals/board-respawn.md#open) |
+| Open | ~~whether 2.05 offline reloads a level from disk when the player re-enters it, which would bring a cut bush back~~ settled below | [bin] (client-internals/board-respawn.md#open) |
 | Settles it | a lab run on 2.05 offline: cut a bush, leave the level, come back and read the board | [inf] (client-internals/board-respawn.md#open) |
+| Settled | no reload: 2.05 rev2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3/3) and after loading the level again (2/2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
 
 ### E#319 The single-player start levels
 

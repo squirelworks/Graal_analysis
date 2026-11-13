@@ -44,7 +44,7 @@ Walking speed was timed in live runs across the builds. Each row gives the step 
 | 1.32 | 0.5 | 10 tiles/s | [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
 | 1.39 | 0.5 | 10 tiles/s | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 1.41 rev1 | 0.5; a second copy of y moves in 0.25 steps (the view or the drawn position) | 10 tiles/s | [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
-| 2.00 | unmeasured | unmeasured | [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
+| 2.00 | 0.5 | 10 tiles/s (9.3–10.0 measured, steps about 50 ms apart) | [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) ; [lab] (client-internals/lab-cells-200-205-2026-11-13.md#200-walking-speed) |
 | 2.05 rev2 | 0.5 | 10 tiles/s | [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
 | 2.17.1, 2.31 | 0.5 (read from the walking routine) | 10 tiles/s | [2.17.1][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md) |
 | 2.22 | 0.5 (live and from the walking routine) | 10 tiles/s | [live][2.22] (live-runs/2gta-222-2026-10-30/README.md) |

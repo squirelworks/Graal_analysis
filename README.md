@@ -195,6 +195,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/carry-hide-and-glove.md` — hiding under a carried bush or stone with D (mode 14, poses, sprites, STATUS 0x02), the glove scale (players start at 1, so pots lift) and lifting `canbecarried` NPCs (2.05).
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
+- `client-internals/lab-cells-200-205-2026-11-13.md` — lab: 2.00 walks 0.5 tile per 50 ms like 2.05; 2.05 rev2 opens a chest only from below; 2.05 offline keeps cut bushes gone on re-entry (App. E#318).
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates (the 2.05 client's real wall test is a box: see `client-internals/decomp-findings-2026-10-25-l/`).
 - `version-profiles/save-games-142-2171.md` — no client after 1.41 rev1 reads or writes offline save games (no save magic, no load-game menu); static.

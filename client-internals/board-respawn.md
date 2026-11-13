@@ -182,7 +182,7 @@ This is the open reimplementation used for the 2.05 and 2.22 captures. It is not
 ## Open
 
 - The real 2.x GServer's timer, tile whitelist and drop rates. No binary of a 2000–2002 official server has been found.
-- Whether 2.05 offline reloads a level from disk on re-entry, which would make a cut bush come back.
+- ~~Whether 2.05 offline reloads a level from disk on re-entry, which would make a cut bush come back.~~ It does not: the bush stays gone ([lab note](lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level)).
 - Drop tables in 1.21: same routine shape expected, not read. 1.33 to 1.41 were read in `item-drops.md`: the same table.
 - Later clients (2.2+ `updateboard2` / `PLO_BOARDMODIFY2` on gmaps, v4+). Not covered here.
 
