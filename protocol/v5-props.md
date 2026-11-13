@@ -6,12 +6,14 @@ Builds read:
 
 | Build | Image | How it was obtained |
 | --- | --- | --- |
-| 5.00r7 (`G3D22067`) | `GraalEngine.dll` from the unpacked 5.0.0.7 archive (the unpatched `.bak` copy; the CRC patch changes 8 bytes elsewhere) | as archived |
+| 5.00r7 (`G3D22067`) | `GraalEngine.dll` from the unpacked 5.0.0.7 archive (the unpatched `.bak` copy; the "CRC patch" changes 8 bytes elsewhere, a license-file check bypass, see [launcher note](../client-internals/launchers-420r8-500r7-512.md#its-engine-is-the-500r7-engine-patched)) | as archived |
 | 5.12 (`G3D14097`) | the engine DLL that the packed `Graal 5.12.exe` maps at run time (PE date 2007-10-19) | the exe was started under Wine in a network namespace with no outside link, and the mapped image was copied out of the process. The packer leaves only a 2 KB header stub on disk. **[lab]** |
 | 5.30r3, 5.31r4 | the unpacked single exes | as archived |
 | 6.0.3.7, 6.1.1.3 | the unpacked exes | as archived |
 
 Method: every jump-table switch in the image whose bound is 10, 77, 82 or 83 and whose index is a received id byte minus 32, with the case list split into ids that reach a handler and ids that fall to the switch's default. As a control, the same script on the unpacked 4.20r8 `GraalEngine.dll` gives exactly the four rows already in [v4x-clients.md](v4x-clients.md#prop-parsers).
+
+A "5.12 untouched" copy found in 2026-11 is not a second 5.12 source: its launcher and engine are 5.00r7's, re-versioned and patched ([launcher note](../client-internals/launchers-420r8-500r7-512.md)). The 5.12 row above still rests on the Wine dump alone.
 
 ## 5.x: one parser set for the whole era
 
