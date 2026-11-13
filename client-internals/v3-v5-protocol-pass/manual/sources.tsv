@@ -1,0 +1,5 @@
+date	note	source	tag	claim
+2026-11-08	client-internals/older-v3-v5-inventory.md	older/ PE/ELF + VERSIONINFO remeasure	bin	v3–v5 inventory confirmed
+2026-11-08	protocol/v5-late-identity.md	unpacked 5.303/5.314 VERSIONINFO + login host/port strings	bin	5.303/5.314 identity; <login-host>:14900; no G3D/GNW/GNP
+2026-11-08	protocol/v5-late-framing.md	5.303/5.314 framing/reject strings vs 6.x matrix	bin	Classic family; illegal(1|2); no connector/AES/onSend
+2026-11-08	protocol/v5-late-framing.md	Ghidra Graal_v5_5314 send/recv decomp	ghidra	id+0x20; 0x5D/0xA3 wrap; 2-byte BE length; 0xFFFF escape
