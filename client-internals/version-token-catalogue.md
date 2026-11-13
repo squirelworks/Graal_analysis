@@ -119,7 +119,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 5.12 Windows | `G3D14097` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 5.12 Mac | `G3D15097` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 5.24r3, 5.24r4, 6.00 beta2 Windows | `G3D15010` | W | `v5v6-windows-unpacked.md` | (no folder) | |
-| 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md` | ✔ (5.31r4) | tested |
+| 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md`. Static check 2026-11-13: the connect routine of the unpacked 5.30r3, 6.00r2 and 6.00r4 images builds `G3D26090` from eight one-character globals; no 6.03-style scrambled string in any of the three. The token date (26 Sep 2010) is three weeks before 5.30r3's compile date and was kept unchanged into 6.00r4 (June 2011) | ✔ (5.31r4) | tested |
 | 6.00 beta1 Windows | `G3D03048` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 6.x beta Linux (x86, x64; June 2011 beta download, probably 6.00r4) | `G3D28090` | B | connect-routine read of both, 2026-11-13. The binaries carry no version string. "6.00r4" is inferred: the Mac (6.004) and Windows (FileVersion 6.0.0.4) betas captured from the same folder on the same day share the file date. The token date is two days after Windows 6.00r4's `G3D26090` | (no folder) | |
 | 6.004 Mac (June 2011 beta) | `G3D27090` | B | connect-routine read of the x86_64 slice, 2026-11-13. One day before the Linux beta's `G3D28090` | (no folder) | |

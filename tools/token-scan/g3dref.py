@@ -22,15 +22,18 @@ def sections(p,b):
             out.append((addr,b[off:off+size],bool(flags&4)))
         return out
     raise SystemExit('not PE or ELF32: '+p)
-for p in sys.argv[1:]:
+ALL='--all-sections' in sys.argv
+for p in [a for a in sys.argv[1:] if not a.startswith('--')]:
     b=open(p,'rb').read(); secs=sections(p,b); ch={}
     for va,d,x in secs:
-        if x: continue
+        if x and not ALL: continue
         for i in range(len(d)-1):
             if 0x30<=d[i]<=0x5A and d[i+1]==0 and (i==0 or d[i-1]==0): ch[va+i]=d[i]
     found=set()
+    # Unpacked Themida dumps (5.30r3, 6.00r2/r4) flag their real code section as data:
+    # pass --all-sections to map strings and search code references in every section.
     for va,d,x in secs:
-        if not x: continue
+        if not x and not ALL: continue
         refs=[(i,ch[v]) for i in range(len(d)-3) for v in [struct.unpack_from('<I',d,i)[0]] if v in ch]
         for gap in (24,64,200):
             run=[];last=-10**9
