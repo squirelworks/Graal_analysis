@@ -31,7 +31,7 @@ The disassembly excerpts behind this note stay in the project's handoff files, n
 | PLO 81 | — | — | no client, staff clients included | none |
 | PLO 83 | — | — | no client, staff clients included | none |
 | PLO 104 | `PLO_FILEKEY` (or `PLO_PACKAGEKEY`) | `str file`, `c a`, `i5 lo`, `i5 hi` | 3.153 to 6.03r7 | high (DES key); `a` partly known |
-| PLO 108 | `PLO_PING` | `c sub`, `s value` | 4.20r6, 4.20r8, 6.01r1, 6.03r7 (before the main switch); not 5.00r7 to 5.31r4 | high (sub 0); none (what reads the sub 1 value) |
+| PLO 108 | `PLO_PING` | `c sub`, `s value` | 4.20r6, 4.20r8, 6.01r1, 6.03r7 (before the main switch); not 5.00r7 to 5.31r4 | high (sub 0, seen on the wire with 6.03r7); none (what reads the sub 1 value) |
 | PLO 109 | `PLO_DOWNLOADURL` (file redirect) | `i5 time`, `str localname`, `str url` | 5.24r4 to 6.03r7 | high (layout); medium (role of the first string) |
 | PLO 110 | — | — | no client, staff clients included | none |
 | PLO 124 | `PLO_RC_PLAYERFLAGS` (from RC3's own log text) | not read | RC3 only: logs "received player flags" | medium (name); none (payload) |
@@ -137,7 +137,7 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
   server's value; RCs send it blank on a timer. The gserver stub that accepts it and does
   nothing is correct for RCs. A server can measure a game client's round trip by sending
   `{108}{c 0}{s seq}` and timing the matching 162.
-- **[cap]** none: the lab gserver never sends 108, so no client was seen sending 162.
+- **[cap] (2026-11-13):** the unmodified Linux 6.03r7 client, against seihai-gserver `main` (commit `9063b53`) on loopback in a sealed network namespace, answered all 30 of 30 `{108}{c 0}{s seq}` with 162 `!` + `s seq`, echoing each value. Median round trip 3 ms. Capture `t1-sub0` (owner-held). This is the first wire evidence of the 108 → 162 exchange. A sub-1 probe was started but produced no valid run (the lab server sent sub 0), so the sub-1 value's use is still open.
 - **6.11 [lab] (2026-11-13):** the live 6.111 connector script maps wire 108 to an ordinary native slot (94) and sends ping answers on wire 162 from send slot 55. 6.11 takes 108 through the script-loaded table, not ahead of the main switch (`v611-id-tables.md`). What sub 1 does there was not traced.
 - **Confidence:** high (layout and reply, for game clients and RC3); medium that it is a ping
   (supported by the 6.11 slot name). This settles manual App. E#5.
