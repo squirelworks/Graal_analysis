@@ -104,6 +104,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Exact 2.05r2 message-code catalog](npc-library/gs1-message-codes-205r2.md): bounded selector contract and runtime controls; E#203 remains partial.
 - [Original 2.05r2 condition truth and constant-comparison folding](npc-library/gs1-condition-truth-205r2.md): bounded static and offline runtime resolution of E#200.
 - [2.05r2 queued GS1 movement](npc-library/gs1-move-205r2.md) — static options and consumer; cadence/event timing remain open.
+- `npc-library/gs1-event-counts.md` — how many scraped level scripts use each GS1 event flag (fills the zero and rare events of manual §8.1.5).
 - `npc-library/` — 3,172 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables. Archival notes on a prior larger documented extract are in `npc-library/archival-scripting-notes.md`. `npc-library/preagonal-gs2.md` is a study of Preagonal's MPL-2.0 GS2 compiler and VM (a lead only; not a reading of the clients).
 - [Bounded arrays.dat membership](formats/arrays-membership-2026-11-09.md) — exact-file counts and Bush membership correction; runtime collision remains open.
 - `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.

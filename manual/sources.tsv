@@ -289,6 +289,7 @@ npc-library/behaviours.md	cited	8.1	8
 npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
 npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
+npc-library/gs1-event-counts.md	cited	8.1	8.1	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8; 8.1; 8.2; 8.4; E	8	
 npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
