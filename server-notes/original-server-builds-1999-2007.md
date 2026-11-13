@@ -2,7 +2,7 @@
 
 Date: 2026-11-13
 
-This note covers nine server folders from the November 2026 disk hunt. They hold
+This note covers nine server folders (and, at the end, six community server builds) from the November 2026 disk hunt. They hold
 the October 1999 Delphi GServer, the December 1999 Linux GServer and its C++ source tree, a
 Windows port of GServer 1.34 rev 1, the 1.39 server family (Windows, Linux,
 Matriark's rebuild and JustBurn's 1.39p1), the 39ster win32 GServer, and the
@@ -203,6 +203,31 @@ in it changes those notes.
 So NPC Control was a separate program from March 2001. `tools/npc-control.md` names RC 1.41
 (2002/05/02) as the first build with NC inside it. The 2002/01/11 RC already has NC, `GSERV023`
 and the 1.41 forms, four months earlier.
+
+## Community servers of 2007–2010 **[bin]**
+
+Six more builds were read statically on a lab host. None of them is an original server. They are listed because their version tables are binary evidence for client tokens.
+
+| Build | Date | Toolchain | Version handling |
+|---|---|---|---|
+| GServer revision 29 ("GServer 2 by 39ster", a port of the 1.39 server to 2.x) | 2007-08 | MinGW, SQLite accounts | no token table: logs the client's version string and gates on nothing; "This server doesnt support UDP" |
+| GServer revision 31 | 2007-09 | same | same |
+| GServer revision 51 | 2007-11 | MinGW, flat-file `GRACC001` accounts | same; prints "Server version: Revision %s" and checks for a newer revision; listserver port 14900 and game port 14802 in its defaults [inf] |
+| Graal Reborn GServer 2.1.0, 2.2.0 (the "fix" build still says 2.2.0) and 2.3.1 (gs2emu) | 2010-02, 2010-04, 2010-08 | Visual C++ 2010 | a token-to-name table (43 entries; 45 in 2.3.1), checked against `allowedversions.txt`; refusal "Your client version is not allowed on this server." then "Allowed: " and the list; "** Generations 1 and 2 are not supported!" |
+
+The gs2emu table pairs each token with a name through two parallel arrays, and the pairs were checked slot by slot. It confirms the public-list names for every 2.x token. The 2.1 to 2.21 rows of `client-internals/version-token-catalogue.md` still have no client binary, but their names now have binary evidence:
+
+| Tokens | Names in the table |
+|---|---|
+| `GNW31101`, `GNW01012`, `GNW23012`, `GNW30042`, `GNW19052`, `GNW20052`, `GNW12102`, `GNW22122` | 2.1, 2.12, 2.13, 2.14, 2.15, 2.151, 2.16, 2.17 |
+| `GNW21033`, `GNW15053`, `GNW28063`, `GNW01113`, `GNW03014`, `GNW14015`, `GNW28015` | 2.18, 2.19, 2.2, 2.21, 2.22, 2.3, 2.31 |
+| `GNW13110` | 1.41r1 |
+| `G3D16053`, `G3D27063`, `G3D03014`, `G3D28095`, `G3D09125`, `G3D17026`, `G3D26076`, `G3D20126`, `G3D22067`, `G3D14097` | 3.0, 3.01, 3.041, 4.0211, 4.034, 4.042, 4.110, 4.208, 5.07, 5.12 |
+| `G3D04048`, `G3D18010` (2.3.1 only) | iPhone 1.1, iPhone 1.5 |
+| `GSERV023`, `GSERV024`, `GSERV025` | RC 1.010, 1.1, 2.0 |
+| `GRNS0000`, `LNX00001` | "Generic", "lnxmad" |
+
+The 1.25 to 1.39 tokens are stored without their first letter (`SERV009`, `NW07080`, …). The table has no 1.34 rev 1, 1.38 rev 1 or 1.39 rev 1 entry, and no `G2N` or `NCL` token. The client-type labels are "New Client (2.19 - 2.21, 3 - 3.01)", "New Client (2.22+)" and "New RC (2.22+)".
 
 ## Open
 
