@@ -1,0 +1,14 @@
+GLEVNW01
+BOARD 1 0 2 0 0203
+BOARD 1 1 2 0 0I0J
+BOARD 4 2 2 0 RuRv
+BOARD 4 3 2 0 S8S9
+LINK nowhere 0 0 1 1 0 0
+CHEST 6 2 heart -1
+SIGN 8 2
+The path is open.
+Turn the page.
+SIGNEND
+NPC - 12.0 12.0
+// stub
+NPCEND
