@@ -108,12 +108,12 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 | 3.x listserver hello | `G3D30123` + `newmain` | W | Tiger and 3.04 lab listserver logs | ✔ | |
 | 4.02.11 | `G3D28095` | L | public list | (no folder) | |
 | 4.03r1 Linux | `G3D11125` | B | connect-routine read, 2026-11-13 | (no folder) | |
-| 4.03r3 Windows (4.0.3.3; public list: 4.03.4) | `G3D09125` | B | connect-routine read of the unpacked engine image taken from memory under Wine (the `Graal4Setup.exe` is the client behind a custom packer), 2026-11-13; matches the public list's 4.03.4 | (no folder) | |
+| 4.03r3 Windows (4.0.3.3; public list: 4.03.4) | `G3D09125` | B | connect-routine read of the unpacked engine image taken from memory under Wine, 2026-11-13; read again from the `GraalEngine.dll` unpacked statically from the Thinstall package, same token ([note](../protocol/v4x-windows-403r3-411.md)); matches the public list's 4.03.4 | (no folder) | |
 | 4.04r2 Windows | `G3D17026` | W | lab capture | ✔ | tested |
 | 4.04r2 Mac | `G3D18026` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 4.04r2 Linux | `G3D19026` | W | `linux-local-login-matrix.md` | (no folder) | |
 | 4.10r2 Linux, 4.11 Linux | `G3D28076` | B | connect-routine read of both, 2026-11-13. Not the public list's 4.11 token: that one is the Windows build's | (no folder) | |
-| 4.11 Windows (4.1.1.0) | `G3D26076` | B | connect-routine read of the unpacked engine image from memory under Wine, 2026-11-13; matches the public list | (no folder) | |
+| 4.11 Windows (4.1.1.0) | `G3D26076` | B | connect-routine read of the unpacked engine image from memory under Wine, 2026-11-13; read again from the `GraalEngine.dll` unpacked statically from the Thinstall package, same token ([note](../protocol/v4x-windows-403r3-411.md)); matches the public list | (no folder) | |
 | Mac PPC build of 2006-09-19 (archive label "4.20r6") | `G3D27076` | W | Tiger lab. The label looks wrong: the binary is dated 2006-09-19, and the Mac 4.10r2 download (2006-08-22) sends the same token, so this is a 4.10r2/4.11-era build | ✔ | tested |
 | 4.10r2 Mac (PPC) | `G3D27076` | B | connect-routine read of the Mach-O (PPC register tracking), 2026-11-13; same token as the 2006-09-19 build | (no folder) | |
 | 4.20r6 Mac (PPC, binary 2006-12-21) | `G3D21126` | B | connect-routine read, 2026-11-13. This is the real Mac 4.20r6, from the official download of early 2007 | (no folder) | |

@@ -663,6 +663,9 @@ version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
 client-internals/iphone-version-tokens.md	pending		1; 2.3	iPhone login tokens from server version tables only (grade L); to be folded into the build list and login section with the catalogue
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
+protocol/v4x-windows-403r3-411.md	pending		2.4; 2.5; 9	Windows 4.03r3/4.04r2/4.11 Thinstall packages unpacked statically: handled-id changes (107, 108, 196), engine callback and feature deltas, the 3D library split, public 2.1.0.0 dispatch; to be folded into the message and Graal3D sections
+tools/thinstall-unpack/README.md	excluded			repository tooling for the notes (the static Thinstall unpacker behind v4x-windows-403r3-411.md), not Graal
+tools/switch-scan/README.md	excluded			repository tooling for the notes (the jump-table case scanner behind the 4.x handled-id rows), not Graal
 client-internals/unpacked-images-coverage.md	excluded			index from each owner-held unpacked client image to the note that covers it; no findings of its own
 client-internals/v7-gameassembly-il2cpp.md	pending		E	v7 managed side (IL2CPP): binding layer, per-build C# callback table, launch inputs, build diff; to be folded beside the v7 bridge entry
 protocol/client-string-fingerprints-3x-6x.md	pending		1; 2.3	string fingerprints of the 3.x to 6.x client binaries from our own scans; to be folded into the build list (§1.8) and the login section

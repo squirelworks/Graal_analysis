@@ -1,1 +1,4 @@
 __pycache__/
+
+# thinstall-unpack: generated from Wine DLLs
+tools/thinstall-unpack/argtab.json

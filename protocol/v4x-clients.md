@@ -108,6 +108,8 @@ Compared with 3.153 (`v3x-clients.md`), nothing is dropped and 13 ids are new. T
 | 195 | A gani name and gani text: the client loads it as a gani (server-pushed gani scripts). |
 | 196 | Same layout as 193; the 4.20r8 handler reads it and does nothing else. |
 
+Windows 4.03r3 and 4.04r2 handle 98 of these: no 107, 108 or 196. 4.11 adds 107 and 108 (100 ids). See [v4x-windows-403r3-411.md](v4x-windows-403r3-411.md#server-messages-the-client-handles). **[bin]**
+
 Mac 4.20r6 handles 99 of these: the same set without 41 and 196. Its packet switch has 97 cases (0 to 195, without 41), and, as in 4.20r8, 100 and 108 are taken before the switch; its 108 handler answers subtype 0 with id 162. (Re-read 2026-10-31; this line said 97 before, which was the switch alone.) 44 is still missing in both, as in 3.153. **[bin]**
 
 ### 190 and the buddy check
