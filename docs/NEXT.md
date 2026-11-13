@@ -25,6 +25,8 @@ macOS CI is paused until the polish stage.
   - [ ] Table events, flags, variables and functions per 1.x build.
   - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
+  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`.
+  - [ ] Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).
   - [ ] Settle E#209 (opcode 54, `waitfor` timeout), E#324 (1.x packet hits, mode 7, the 2.17.1+ victim test) and E#423 (1999 server open points).
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
@@ -243,8 +245,10 @@ macOS CI is paused until the polish stage.
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
   (a horse does not change it). **Still open:** full vs empty login default checks
-  (the set, and whether they share a frame); maps folder in 2.1–2.16 (the client
-  archive still has no build between the 2.1 test builds and 2.22). Tracked in #245.
+  (the set, and whether they share a frame; the full-folder side is done for 2.22 in
+  `live-runs/client-harness-2026-11-13`, the near-empty side is still to run); maps folder
+  in 2.1–2.16 (the client archive still has no build between the 2.1 test builds and 2.22).
+  Tracked in #245.
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
   NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,

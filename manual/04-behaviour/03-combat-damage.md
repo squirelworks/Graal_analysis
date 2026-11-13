@@ -58,7 +58,8 @@ A second press during a swing turns it into a spin. The rules below give the tim
 | mode | mode 13; a press during the spin is ignored and queues nothing | [live][2.05] (client-internals/player-mannerisms-live.md#spin-attack-live-online); [2.05] (client-internals/decomp-findings-2026-10-24/player-modes.tsv) |
 | wire | the client sends `GANI=spin` once at the start and `GANI=idle` at the end, and asks for `spin.gani` the first time | [live][2.05] (client-internals/player-mannerisms-live.md#spin-attack-live-online) |
 | 2.22 | the same: a second press on frame 3 cut the swing off, `spin` ran 13 × 1 tick, a third press was ignored | [live][2.22] (client-internals/player-mannerisms-live.md#spin-attack-live-online) |
-| 1.39, 1.41 | unmeasured (offline neither build could be given the has-spin status) | [live] (client-internals/player-mannerisms-live.md#open) |
+| 1.39, 1.41 | no spin: 1.39 given STATUS bit 0x20 never spun from a second S press (0/6); 1.41r1 given bits 0x20 and 0x40 never spun from a second press or a hold (0/9) | [lab][1.39][1.41r1] (live-runs/client-harness-2026-11-13/README.md#findings) |
+| 2.22, 2.31 input | double-tap S spins (3/3 each) and so does tap-then-hold S (3/3 each); holding S alone does not (0/3 on 2.22, 1/3 on 2.31) | [lab][2.22][2.31] (live-runs/client-harness-2026-11-13/README.md#findings) |
 | what it hits | which bushes the spin cuts and whether it hits players or NPCs: unmeasured | [live] (client-internals/player-mannerisms-live.md#spin-attack-live-online) |
 
 ## 4.3.3 The sword hit test (victim's side)

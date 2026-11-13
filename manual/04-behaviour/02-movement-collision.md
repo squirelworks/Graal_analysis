@@ -282,7 +282,7 @@ Pose timing by build:
 
 | Build | Pull frames | Arrow released during a pull | A released after a pull | Source |
 | --- | --- | --- | --- | --- |
-| 1.41 | unmeasured | back to `grab` | `grab` stays until the next action | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| 1.41 | `grab` 1 frame (step 14), then `pull` 3 frames (steps 15–17, repeating); ticks per frame unmeasured | back to `grab` | `grab` stays until the next action | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table); [lab][1.41r1] (live-runs/client-harness-2026-11-13/README.md#findings) |
 | 2.05 rev 2 | 3 frames × 2 ticks | counter to 1; the pose stays `pull`, animating | `pull` loops until the next key moves the player | [live][2.05] (client-internals/player-mannerisms-live.md#grab-and-pull-live) |
 | 2.22 | 3 × 2 (`pull.gani`) | stays `pull`, looping | as 2.05 | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 5.x, 6.x | unmeasured | unmeasured | unmeasured; `grab` and `pull` start in the next tick, the stone stays put, dust is drawn at the feet | [wire][shot] (protocol/v5v6-lab-play.md) |
@@ -318,7 +318,7 @@ Swimming by build:
 | Build | Standing still in water | Swim frames | Source |
 | --- | --- | --- | --- |
 | 1.39 | only the head and a water ring are drawn; the ring keeps alternating, the head stays still | n/a (no ganis) | [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
-| 1.41 | `swim` frame resets to 0 and freezes | unmeasured | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| 1.41 | `swim` frame resets to 0 and freezes | not on the wire: the client sends the idle sprite while swimming | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table); [lab][1.41r1] (live-runs/client-harness-2026-11-13/README.md#findings) |
 | 2.05 rev 2 | keeps animating; does not reset when the player turns | 8 frames × 2 ticks (16-tick stroke) | [live][2.05] (client-internals/player-mannerisms-live.md#swimming-live) |
 | 2.22 | keeps animating; the frame resets to 0 at the stop, then runs on | 8 × 2 | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 5.x, 6.x | unmeasured; `swim` from the first water step, only the head with a ripple, sideways strokes throw splashes | unmeasured | [wire][shot] (protocol/v5v6-lab-play.md) |
