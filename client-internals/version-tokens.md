@@ -1,5 +1,7 @@
 # Version tokens
 
+> **Superseded (2026-11-13).** Do not add tokens here. The table of every known token, with evidence grades, is [`version-token-catalogue.md`](version-token-catalogue.md); the generated code copy is seihai-core [`documentation/version-tokens.tsv`](https://github.com/squirelworks/seihai-core/blob/main/documentation/version-tokens.tsv). This partial list (34 tokens) lists Windows 4.20r8 twice. This page is kept for its notes and for the links that point here.
+
 Date: 2026-10-14
 
 Internal version strings recovered from the public version list. No decompile material.

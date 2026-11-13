@@ -1,6 +1,6 @@
 # Version-token catalogue, every known client build
 
-Date: 2026-11-12. This note puts every known client build in one table: its login token, how strongly that token is evidenced, and whether the matching `graal-client-repro` folder sends the same value. It brings together `version-tokens.md`, `version-id-map.md`, `build-catalogue.md`, `protocol/login-tokens-3x-7x.md`, `protocol/gserv-1999.md`, `live-trace-early.md`, `protocol/linux-local-login-matrix.md` and the lab profiles. It adds one new static pass (below). No decompile material is used.
+Date: 2026-11-12. This is the source of truth for login tokens; the older partial lists (`version-tokens.md`, `version-id-map.md`, `archival/version-tokens-early.md`) are marked superseded. seihai-core carries every token below in code (`protocol::KNOWN_TOKENS`, generated as [`documentation/version-tokens.tsv`](https://github.com/squirelworks/seihai-core/blob/main/documentation/version-tokens.tsv)), and with seihai-gs2lib #19 its `clientVersions[]` has every game token below except the Graal3D and 6.11+ server-defined ones. This note puts every known client build in one table: its login token, how strongly that token is evidenced, and whether the matching `graal-client-repro` folder sends the same value. It brings together `version-tokens.md`, `version-id-map.md`, `build-catalogue.md`, `protocol/login-tokens-3x-7x.md`, `protocol/gserv-1999.md`, `live-trace-early.md`, `protocol/linux-local-login-matrix.md` and the lab profiles. It adds one new static pass (below). No decompile material is used.
 
 ## Evidence grades
 
@@ -158,7 +158,7 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 ## Other observations
 
 - `version-tokens.md` lists the Windows 4.20r8 row twice. Its "lab capture" tags for 5.12 to 6.03r7 Windows agree with `v5v6-windows-unpacked.md`.
-- Mac 4.20r6 sends `G3D27076`, but the public list gives 4.11 as `G3D26076`, one day apart. The wire capture stands; why the Mac build carries a 4.1-era stamp is still open (`protocol/login-tokens-3x-7x.md`).
+- The Mac build labelled "4.20r6" sends `G3D27076`, one day after the public list's Windows 4.11 `G3D26076`. Settled 2026-11-13: that build is dated 2006-09-19 and the Mac 4.10r2 download sends the same token, so it is a 4.10r2/4.11-era build with a wrong archive label. The real Mac 4.20r6 (2006-12-21) sends `G3D21126` (rows above). seihai-gs2lib now calls `G3D27076` `CLVER_4_102_MAC` and gives `G3D21126` `CLVER_4_206_MAC`.
 - The public list's `G3D3007A` (6.0.0.7 / 6.0.1.5 Windows) and the Linux 6.01r1 `G3D0108A` are different builds, not a conflict. As with 4.04r2 and 6.03r7, each platform build has its own stamp.
 
 ## Open points
