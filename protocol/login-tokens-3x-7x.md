@@ -16,6 +16,35 @@ Each platform build has its own stamp. Windows 4.04r2 sends `G3D17026` and Linux
 
 How the token is stored is the one real change, and it only affects static reading. Up to 6.01 the client builds the token one character at a time from immediates or one-character globals, so no string literal exists. That holds for the Delphi 2.x clients and for the C++ 3.x to 6.01 engines alike[^v3][^v5][^v6]. 6.03 stores it as one scrambled lower-case string (`g3d0511c`), decoded and upper-cased at run time[^v6][^hello]. Neither form changes the bytes on the wire.
 
+## Reading the token from a file
+
+The token can be read from the binary without running the client. This section records the method, the scripts and the builds it has been checked on. It was first worked out on 2026-11-11 from decompiles. That write-up stayed on an unmerged branch, and this section replaces it.
+
+**Where the token is made.** Every build makes the login in one place, the game connection's connect routine. That routine logs "Connecting to the game server...", opens the socket, and logs "Done." if the connect worked. Straight after that it builds the token, then the login, sends them as id 5, and sends id 37 (language). Nothing else touches the token. **[bin]**
+
+| Build | How the routine builds the token |
+|---|---|
+| 2.x Delphi | `_LStrFromChar` eight times with character immediates (`mov bl, imm8`, then `lea eax,[ebp-..]`, `mov edx,ebx`, call) |
+| 3.04 Linux, 3.153 Mac | Eight appends of one-character C strings (`"G"`, `"3"`, `"D"`, …) to an empty `JString` |
+| 4.04r2 and 4.20r8 Windows (`GraalEngine.dll`), 4.20r6 Mac | Eight `JString::operator<<` calls, each with a one-character global string. The linker can merge equal strings, so one global may be appended twice (4.20r8 has two `"2"`s) |
+| 5.00r7, 5.12 Windows (`Graal3DEngine.dll`) | Eight one-character globals |
+| 6.01r1 Linux | `"G"` plus seven one-character strings |
+| 6.03r7 Linux and Windows | One scrambled eight-byte lower-case string, decoded and upper-cased (below) |
+| 6.11 and later | No stored token; see "6.11 and 7.x" |
+
+**The 6.03 scramble.** It is a per-byte transform that depends on the string length *n* and the byte position *i*. To decode byte *b*: take its bitwise NOT, add −10 − *n*, rotate the low byte right by two bits, then subtract *i*, all modulo 256. To encode, run the steps backwards: add *i*, rotate left by two, add 10 + *n*, then take the NOT. The stored bytes `50 1d 54 21 09 15 11 44` decode to `g3d0511c` (Linux 6.03r7), and `50 1d 54 21 11 15 11 44` in the unpacked Windows 6.03r7 decode to `g3d0311c`. A live gdb run of Linux 6.03r7 showed the routine decode this string, upper-case it and send it **[lab]**. To test a build for a token you expect, encode the token and search for the bytes.
+
+**Scripts** (in [tools/token-scan/](../tools/token-scan/)):
+
+- `conntok.py` reads Linux ELF clients from 3.x to 6.01, 32-bit and 64-bit, non-PIE. It finds the code references to "Connecting to the game server", then lists in order the one-character strings that the next 3000 bytes point at. It follows absolute 32-bit operands and, on x64, RIP-relative `lea`. The first eight characters are the token. UPX-packed 3.x files need `upx -d` first.
+- `g3dref.py` reads the Windows engine DLLs, `GraalEngine.dll` in 4.x and `Graal3DEngine.dll` in 5.x, and also reads 32-bit ELF files. It maps every one-character string in the data sections, collects the code operands that point at them, groups those operands into runs, and matches `G3D` + `DDMMY`. Run it on the engine DLL. The Delphi launcher (`Graal.exe` / `Graal4.exe` in 4.20r8 to 5.12) holds no token.
+- For the 2.x Delphi clients, the character-immediate scan in [graal2002-and-140-builds.md](../client-internals/graal2002-and-140-builds.md) applies.
+- Packed Windows 4.x clients: the 4.03r3 and 4.11 `Graal4Setup.exe` downloads are the whole client behind a custom packer. Under Wine they unpack the engine into memory at `0x10000000` and then stop on a DirectDraw error before connecting. A memory image taken at that point reads with the same connect-routine method.
+
+**Checked against tokens seen on the wire** (2026-11-13): Linux 4.04r2 `G3D19026`, Linux 4.20r6 and 4.20r8 (2007-01-17) `G3D22126`, Linux 6.01r1 x86 and x64 `G3D0108A`, Windows 4.04r2 `G3D17026`, Windows 4.20r8 `G3D20126`, Windows 5.12 `G3D14097`. All match. Linux 3.0beta and 3.01 also give the listed `G3D16053` and `G3D27063`.
+
+**New reads** (2026-11-13, from Wayback copies of the official downloads; all in the [catalogue](../client-internals/version-token-catalogue.md)): Linux 3.151 `G3D27015`, Linux 4.03r1 `G3D11125`, Linux 4.10r2 and 4.11 `G3D28076`, Linux 4.20r8 (2007-01-15) `G3D22126`, the June 2011 Linux beta (x86 and x64, probably 6.00r4) `G3D28090`, Windows 4.03r3 `G3D09125` and Windows 4.11 `G3D26076` (both from the memory image), and the public Windows 2.1.0.0 `GNW31101`. Linux 4.11 and Windows 4.11 send different tokens, as other platform pairs do.
+
 ## Where the token sits in the login
 
 The first byte of the login is a client-type number, and the server uses it to pick the cipher. GServer-v2 reads it as a bit index: type 0 is the classic client (gen 2, or gen 3 when a key follows), type 4 is the 2.19 to 2.21 and 3.0 to 3.01 clients (gen 4), and type 5 is 2.22 and later (gen 5)[^gs2]. In the 2.05 era the login starts with type 0, then the gen-3 key byte, then the token[^walk]. Every 3.04 to 6.03 client starts with type 5, then a key byte (`rand & 0x7F`), then the token. The whole login goes in one frame in fixed mode 3: zlib, no cipher and no type byte. After it the socket switches to the gen-5 cipher, seeded `0x04A80B38` in both directions[^v3][^v4][^v6]. Earlier notes call this byte "login id 5". It is the same byte.

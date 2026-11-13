@@ -75,6 +75,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 |---|---|---|---|---|---|
 | Graal 2002 ver7–ver9 (FileVersion 2.1.0.0, Oct 2001) | `GNW03081` | B | immediates, 2026-11-13; still 2.05's token, like the 2.1 tests ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 2.1.0.0–2.1.0.4 (Graal 2002 ver10, ver13, v22) | `GNW31101` | B | immediates in three executables (FileVersion 2.1.0.2 and 2.1.0.4), 2026-11-13; public list gives 2.1.0.0–2.1.0.3 ([note](graal2002-and-140-builds.md)) | (no folder) | |
+| 2.1.0.0 public release (FileVersion 2.1.0.0, built 2001-11-13) | `GNW31101` | B | immediates, 2026-11-13, in the exe from the 2001 auto-updater pack (Wayback copy of the official download); confirms the public 2.1.0.0 sends the Graal 2002 ver10 token, not 2.05's. Its listserver request is `newmain`, where the Graal 2002 leaks ask for `graal2002` ([method](../protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file)) | (no folder) | |
 | 2.12 | `GNW01012` | L | public list | (no folder) | |
 | 2.13 | `GNW23012` | L | public list | (no folder) | |
 | 2.14 | `GNW30042` | L | public list | (no folder) | |
@@ -95,19 +96,22 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
-| 3.0 | `G3D16053` | L | gs2lib / public list; no binary known | (no folder) | |
-| 3.01 | `G3D27063` | L | as above | (no folder) | |
+| 3.0 (Linux 3.0beta) | `G3D16053` | B | connect-routine read of the Linux 3.0beta `graalexe` (after `upx -d`), 2026-11-13; matches gs2lib and the public list | (no folder) | |
+| 3.01 Linux | `G3D27063` | B | connect-routine read of the Linux 3.01 `graalexe`, 2026-11-13; matches the public list | (no folder) | |
 | 3.04 rev1 Linux | `G3D03014` | W | `lab-304-linux-2026-10-30.md`; `linux-local-login-matrix.md` | ✔ | tested |
+| 3.151 Linux | `G3D27015` | B | connect-routine read of the Linux 3.151 `graalexe`, 2026-11-13 | (no folder) | |
 | 3.153 Mac (PPC) | `G3D28015` | **W** | `version-profiles/lab-mac-tiger-2026-10-31.md`, "Game login (captured)" | ✔ | **token only (understated)** |
 | 3.x listserver hello | `G3D30123` + `newmain` | W | Tiger and 3.04 lab listserver logs | ✔ | |
 | 4.02.11 | `G3D28095` | L | public list | (no folder) | |
-| 4.03.4 | `G3D09125` | L | public list | (no folder) | |
+| 4.03r1 Linux | `G3D11125` | B | connect-routine read, 2026-11-13 | (no folder) | |
+| 4.03r3 Windows (4.0.3.3; public list: 4.03.4) | `G3D09125` | B | connect-routine read of the unpacked engine image taken from memory under Wine (the `Graal4Setup.exe` is the client behind a custom packer), 2026-11-13; matches the public list's 4.03.4 | (no folder) | |
 | 4.04r2 Windows | `G3D17026` | W | lab capture | ✔ | tested |
 | 4.04r2 Mac | `G3D18026` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 4.04r2 Linux | `G3D19026` | W | `linux-local-login-matrix.md` | (no folder) | |
-| 4.11 | `G3D26076` | L | public list | (no folder) | |
+| 4.10r2 Linux, 4.11 Linux | `G3D28076` | B | connect-routine read of both, 2026-11-13. Not the public list's 4.11 token: that one is the Windows build's | (no folder) | |
+| 4.11 Windows (4.1.1.0) | `G3D26076` | B | connect-routine read of the unpacked engine image from memory under Wine, 2026-11-13; matches the public list | (no folder) | |
 | 4.20r6 Mac | `G3D27076` | W | Tiger lab | ✔ | tested |
-| 4.20r6 / r8 Linux | `G3D22126` | W | `linux-local-login-matrix.md` | (no folder) | |
+| 4.20r6 / r8 Linux | `G3D22126` | W | `linux-local-login-matrix.md`. The 2007-01-15 Linux 4.20r8 build reads the same (connect-routine read, 2026-11-13) | (no folder) | |
 | 4.20r8 Windows | `G3D20126` | W | lab capture | ✔ | tested |
 | 5.00r7 Windows | `G3D22067` | W | `lab-v5-2026-10-30.md` | ✔ | tested |
 | 5.12 Windows | `G3D14097` | W | `v5v6-windows-unpacked.md` | (no folder) | |
@@ -115,7 +119,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 5.24r3, 5.24r4, 6.00 beta2 Windows | `G3D15010` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md` | ✔ (5.31r4) | tested |
 | 6.00 beta1 Windows | `G3D03048` | W | `v5v6-windows-unpacked.md` | (no folder) | |
-| 6.0.0.7, 6.0.1.5 Windows | `G3D3007A` | L | public list | (no folder) | |
+| 6.x beta Linux (x86, x64; June 2011 beta download, probably 6.00r4) | `G3D28090` | B | connect-routine read of both, 2026-11-13. The binaries carry no version string. "6.00r4" is inferred: the Mac (6.004) and Windows (FileVersion 6.0.0.4) betas captured from the same folder on the same day share the file date. The token date is two days after Windows 6.00r4's `G3D26090` | (no folder) | |
+| 6.0.0.7, 6.0.1.5 Windows | `G3D3007A` | **W** | first login frame captured in a Windows 10 lab VM, 2026-11-13 (FileVersion 6.007 and 6.015); matches the public list | (no folder) | |
 | 6.01r1 Linux (x86, x64) | `G3D0108A` | **W** | `linux-local-login-matrix.md` (first-frame observation) | ✔ | **token only (understated)** |
 | 6.0.3.4 Windows | `G3D2505C` | L | public list | (no folder) | |
 | 6.03r7 Windows | `G3D0311C` | W | `v5v6-windows-unpacked.md`; scrambled string in the exe | (no folder) | |
@@ -132,7 +137,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 ## Gaps and how far each can be closed
 
 - **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
-- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
+- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3, 4.02.11 and 6.0.3.4. Only a new binary can close these. On 2026-11-13 Wayback copies of the official downloads closed 3.0, 3.01, 4.03.4 (as 4.03r3), 4.11 and 6.0.0.7 / 6.0.1.5. A 6.0.3.4 download was found too, but it has not given a token yet.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
 

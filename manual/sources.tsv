@@ -458,6 +458,7 @@ tools/graaleditor.md	cited	11; E	11
 tools/graalshop.md	cited	11	11	
 tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
 tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the scanner behind gs1-commands-by-version.md), not Graal
+tools/token-scan/README.md	excluded			repository tooling for the notes (the static token readers behind login-tokens-3x-7x.md), not Graal
 tools/gs1-table-scan/builds.tsv	excluded			build list and binary MD5s for the scanner; the facts are in gs1-commands-by-version.md
 tools/lab-servers/README.md	cited	5; 6	6	
 tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
