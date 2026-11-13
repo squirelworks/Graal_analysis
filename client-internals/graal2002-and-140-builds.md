@@ -84,6 +84,17 @@ list and dispatcher match it. They are not separate releases.
    dated these to "1.39 → 1.41r1". They now date to 1.40, Sept 2000. 1.41r1 adds only `showstats` on top.
 4. The receive dispatcher is unchanged from 1.39 to 1.41r1: 45 ids, 0–41, 43, 75 and 100.
 
+## Other builds in the same batch
+
+- **Graal3D, later beta.** It sends `GR3DV003`, the next protocol revision after the Feb 2000 build's `GR3DV002` (on the wire).
+  New strings show DirectInput with force feedback, camera distance and player-centre settings, and a deathmatch start. It needs
+  its own lab run against the Graal3D server, to see whether that server accepts `V003`.
+- **2.22, two more copies (FileVersion 2.2.2.0).** Both have 2.22's token `GNW03014` (and the listserver `GNW30123`), its 198
+  commands and its 80-id receive table. They are the same build line as the catalogued 2.22. One is a modified copy that differs
+  from the other in 4 bytes (a patched self-check). Neither is a new release.
+- **Already covered, despite new copies:** the 3.04 Linux client (same executable as the one the 3.04 notes read) and GraalX
+  2.0.0.3 (same archive as the one catalogued).
+
 ## Open points
 
 - [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
