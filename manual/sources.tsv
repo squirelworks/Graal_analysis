@@ -668,3 +668,4 @@ client-internals/linux-304-executable-build.md	pending		1; 10	Linux 3.04 packing
 client-internals/windows-404r2-components.md	pending		1; 10	4.04r2 module map (carrier, Delphi shell, GraalEngine, Graal3DEngine, FMOD), engine exports and built-in HawkVoice; to be folded into the build list and the Torque clients section
 client-internals/mac-611r1-send-slots.md	pending		1; 2	Mac 6.11r1 named send-slot table, matching the Windows 6.11 slot numbers; to be folded into the build list and the protocol section
 client-internals/v7-unity6000-unpack.md	pending		1	current Unity 6000 v7 client unpack and IL2CPP v31 metadata; to be folded into the build list beside the v7 IL2CPP name notes
+protocol/pcid.md	pending		2.3; 6	PCID: listserver-assigned PC id from the login machine fields (VERIACC2 identity, SVI_ASSIGNPCID); to be folded into the login and listserver sections
