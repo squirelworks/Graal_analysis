@@ -128,8 +128,9 @@ Two reads of the NewWorld betas disagree on whether they send ids 8 and 20 [bin]
 | --- | --- | --- |
 | Claim A | the betas send the 2.1 test set without 7, 8, 11, 15, 16, 17 and 20 | [bin] (client-internals/version-profiles/141-217.toml) |
 | Claim B | the betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
-| Open | the two reads disagree on 8 (`HORSEDEL`) and 20 (`OPENCHEST`); Claim B's count of 34 is 39 less five | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
+| Open | ~~the two reads disagree on 8 (`HORSEDEL`) and 20 (`OPENCHEST`); Claim B's count of 34 is 39 less five~~ settled below | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
 | Settles it | a re-read of the beta send sites for constants 8 and 20 | [inf] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+| Settled | Claim A: a re-read of every send site in both betas finds no send of 8 or 20 (nor of 7, 11, 15, 16, 17), and no send that passes the id in a register; the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
 
 ### E#12 Whether the token digits are a build date
 
