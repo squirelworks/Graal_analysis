@@ -98,7 +98,7 @@ Chests are records in the level, not tiles. The rules below give how they look, 
 | sound | `chest.wav`, also when the chest has a sign; no item sound follows | [live][2.05] (client-internals/live-checks-editor-offline-sound.md#sound-205) |
 | record bytes | each + 32: opened flag, x, y, and only if not opened the item index and the sign index (→ §3.1) | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#chests) |
 | the reward | what the server sends back for a known chest is unmeasured | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#part-1-fresh-runs-2026-10-25-22502310-jst-a-chests-real-222-client-labm-lab-plo_levelchest-id-4-injected) |
-| 2.05 opening sides | unmeasured | [lab] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#part-1-fresh-runs-2026-10-25-22502310-jst-a-chests-real-222-client-labm-lab-plo_levelchest-id-4-injected) |
+| 2.05 opening sides | as 2.22: only from below, facing up (6/6; 0/6 from each other side); the chest opens as the player walks into it, without the action key | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-which-sides-open-a-chest) |
 
 ## 4.5.5 Item drops: who rolls
 
@@ -171,4 +171,4 @@ Cut and lifted objects come back only when the server says so. The rules below g
 | restore | a restore arrives as `PLO_BOARDMODIFY` (7) and is handled as any board modify; the timers and the echo rules are the server's (→ §5) | [bin] (client-internals/board-respawn.md#summary) |
 | where | the restore puts the object back where it was lifted, since the board changed only at the lift | [bin] (client-internals/board-respawn.md#the-objects) |
 | push and pull blocks | the 2.05 client sends the 4 × 4 area round the old spot (→ §4.2.7) | [2.05] (client-internals/ledges-push-pull.md#pushing) |
-| re-entry offline | whether 2.05 reloads a level from disk on re-entry, which would bring a cut bush back, is unmeasured (→ App. E#318) | [bin] (client-internals/board-respawn.md#open) |
+| re-entry offline | 2.05 rev2 does not reload a level from disk on re-entry: a cut or thrown bush stays gone for the session (3/3; also after loading the level again with F5, 2/2); settled → App. E#318 | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
