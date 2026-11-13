@@ -56,7 +56,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 5.24r4 | the 5.12 set plus 158 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.30r3 | 1, 11, 37, 38 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.31r4 | 2, 37 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
-| 6.00r2, 6.015 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from the 6.01 and 6.03 reads | [inf] (version-profiles/5.00-6.03.toml) |
+| 6.00r2, 6.00r4, 6.015 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from the 6.01 and 6.03 reads | [inf] (version-profiles/5.00-6.03.toml) |
 | 6.01r1 | the 6.03r7 set without 160 | unmeasured | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | 6.034 | as 6.03r7 | inferred | [inf] (version-profiles/5.00-6.03.toml) |
 | 6.03r7 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–162 | yes | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/5.00-6.03.toml) |
