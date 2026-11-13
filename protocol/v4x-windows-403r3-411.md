@@ -74,9 +74,20 @@ The public Windows 2.1.0.0 (FileVersion 2.1.0.0, built 2001-11-13, token `GNW311
 - **66 server ids, bound 174**: 0–25, 27–49, 75, 100, 150–151, 153–156, 165–166, 168–174. This is the Graal 2002 ver10 set plus the six ids (2, 4, 17, 18, 154, 155) that ver7 to ver13 send to the default branch ([Graal 2002 note](../client-internals/graal2002-and-140-builds.md)). So the main-world release has the baddy, chest and horse handlers that the Graal 2002 world builds of the same weeks leave out.
 - **168 GS1 commands.** That is one fewer than ver10. It has `play2`, `shoot` and `replacestring` but not `savelog`, which ver10 (shipped two days later) adds. None of the v22 additions are in it.
 
+## Cross-check against Batch-1
+
+Batch-1 is the owner's set of client builds found on 2026-11-13: web finds plus archive items not yet researched. All 3,605 of its file checksums verify on the analysis machine. [file]
+
+- Its `4.03r3-win` and `4.11-win` installers are byte-identical to the copies read above. So is the `Graal.exe` in its `2.1.0.0-win` install, built from the five auto-updater packs. [file]
+- Its 4.03r3 and 4.11 uploads hold only an engine memory image, taken under Wine, not the unpacked tree. In both builds the image's code section is byte-identical to the code section of the statically unpacked `GraalEngine.dll`. The image's read-only data differs only in the import table the loader fills, and its data section holds start-up state. [bin]
+- Its "5.12 untouched" `GraalEngine.dll` (from an archive labelled `potentially_cracked_5120`) is **not a 5.12 engine**. It sends 5.00r7's token `G3D22067`, and it differs from the 5.00r7 engine in exactly two bytes. Both turn a conditional jump into an unconditional one in the update-package code: [bin][inf]
+  - The first skips the self-restart through `ExeReplacer` that 4.x and 5.x run after `onPackagesDownloadComplete` when the client's own executable came in a package.
+  - The second skips the step that follows, next to the `updatepackages` / `.gupd` handling.
+  
+  Read together, the edits stop a server-pushed update from replacing or restarting a modified client. The launcher beside it is the version-edited 5.00r7 `Graal.exe` that Batch-1's list already names. So nothing in this set stands in for the 5.12 engine dump.
+
 ## Open points
 
-- [ ] Compare the Batch-1 `2.1.0.0-win`, `4.03r3-win` and `4.11-win` uploads with the files read here, once they are on the analysis machine. Only the copies of the official downloads were read.
 - [ ] Trace the 108 probe and the value that 4.11 answers in 162.
 - [ ] Find which game values the 4.11 value holder protects.
 - [ ] Find what the 4.11 engine does with the SWF action-name table.
