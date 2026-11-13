@@ -87,6 +87,9 @@ jobs:
             > "$RUNNER_TEMP/resolve-out.json"
           python -c 'import json, os; d=json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "resolve-out.json"))); assert isinstance(d, list) and d'
 
+      - name: pytest version profiles (inferred flags)
+        run: python -m pytest client-internals/version-profiles -q
+
       - name: Smoke grv1-decoder on a synthetic level
         run: |
           python <<'PY'
