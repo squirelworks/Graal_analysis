@@ -287,3 +287,15 @@ In the HTML case the window has five browser buttons. Links load inside the wind
 | Close, Esc | hide the window; the caption and Close text come from the language file keys `RTFMessage` and `RTFMessage-CloseButton` | [bin] (client-internals/gui-windows-fkeys.md#141-rev1-to-231-tservermessage) |
 
 The same form doubles as the private-message History window, opened from the player list (→ §4.10.5). It lists the conversation with that player, with the player's own lines in purple and the other player's in red [bin] (client-internals/gui-windows-fkeys.md#the-same-form-as-the-pm-history-window-205-21-tests).
+
+## 4.6.8 The no-PK indicator and GS1 ammunition on 5.x
+
+On 5.12 and 5.24r4, a level whose GS1 script turns on no-player-killing mode makes the HUD draw a small red crossed icon to the right of the HP/AP bar; a GS1 event guard that sets arrows and bombs shows 99/99. Both appear only when the level's GS1 is compiled with its GS1 meaning kept; 4.20r8 shows neither [lab][shot] (client-internals/gs1-on-5x-hud-and-flags.md#the-hud-difference-on-5x).
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| red "x" | the no-PK indicator, turned on by a bare zero-argument GS1 command in the `created` guard | [lab] (client-internals/gs1-on-5x-hud-and-flags.md#the-hud-difference-on-5x) |
+| 99/99 | a GS1 `if (<event>)` guard that sets `player` ammunition on entry | [lab] (client-internals/gs1-on-5x-hud-and-flags.md#the-hud-difference-on-5x) |
+| flags on 5.x | sent unprefixed in `PLO_FLAGSET` before NPC bytecode; `player.<flag>` and the bare name read them; `player.flags` does not list them | [cap][lab] (client-internals/gs1-on-5x-hud-and-flags.md#flags-and-built-ins-on-512-and-524r4) |
+| built-ins on 5.x | `player.hearts`, `player.fullhearts`, `player.weapons.size()` and bare `selectedweapon` work; `player.weaponscount`, `player.selectedweapon`, bare `weaponscount` and bare `playerhp` are empty | [lab] (client-internals/gs1-on-5x-hud-and-flags.md#flags-and-built-ins-on-512-and-524r4) |
+| 5.12 black level | a stale `FILENAMECACHE.txt` with `cachefilenames=true` hides the client's own tileset; deleting it fixes the view | [lab][shot] (client-internals/gs1-on-5x-hud-and-flags.md#512-draws-a-black-level-a-stale-file-name-cache) |

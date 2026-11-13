@@ -153,6 +153,8 @@ client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superse
 client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
 client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
+client-internals/launchers-420r8-500r7-512.md	pending		1; 2.3	4.20r8, 5.00r7 and "5.12 untouched" launcher copies and the Packet Logger engine diff; to be folded into the build list
+client-internals/graal2002-and-140-builds.md	pending		1; 2.3; 2.4; 2.5	Graal 2002 (2.1.0.x) and 1.40 builds: tokens, GS1 dating and receive-dispatch rows; to be folded into the build list, login and message sections
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
@@ -631,14 +633,25 @@ protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, number
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
 protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
-protocol/connector-script.md	pending		1; 2.10	#397 hub: connector fetch, container, script steps and id-table mechanism gathered from the 6.11/7.x notes; fold into §2.10 with them
+protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
 formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
+protocol/v611-id-tables.md	cited	2.10	2.10	the 6.111 connector script's live outgoing and incoming id tables joined to gs2lib names (#397); §2.10 cites it
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
 protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
+client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	
+client-internals/gs1-on-5x-hud-and-flags.md	cited	4.6; 8.3; C	4.6; 8.3; C	
+client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E	
+client-internals/update-cadence-3x-6x.md	cited	4; 4.1; C; E	4.1; C; E	
+npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C	
+npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
+server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
+version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	
+client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
+tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal

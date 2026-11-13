@@ -188,3 +188,19 @@ The wrong-representation hash attempt remains superseded; only the corrected rea
 ## 8.4.8 Network GS2 on Linux 6.03
 
 [lab][cap] Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. [lab][cap] (protocol/linux-603-network-gs2.md).
+
+## 8.4.9 The VM by client version, 3.153 to 6.03r7
+
+Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r7 (Windows), 6.01r1 and 6.03r7 (Linux). Unread builds borrow the nearest read VM [bin][inf] (client-internals/gs2-vm-by-version.md). The per-build matrix is App. C.8.
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| opcodes added | 104 object compare (4.20r6); 11 `waitfor` and the optimiser's 200–233 (4.20r8); 48, 49, 54, 121 (5.00r7); 0, 164 and 234–242, without 48 and 49 (6.x) | [bin] (client-internals/gs2-vm-by-version.md#opcodes-each-vm-handles) |
+| unnamed opcodes | 45/46 store and load a local slot; 47 resolves a variable reference; 66/67 `&&`/`\|\|` as 1 or 0 with both sides evaluated; 121 adds or joins | [bin] (client-internals/gs2-vm-by-version.md#opcodes-the-open-compilers-do-not-name) |
+| load-time optimiser | from 4.20r8, common sequences are fused into internal opcodes above 200 when a script loads; never in a file | [bin] (client-internals/gs2-vm-by-version.md#the-load-time-optimiser-420r8-on) |
+| limits | value stack 256 (3.153), 10000 (4.x, 5.x), none (6.x); 10000 loop passes and call depth; `maxlooplimit` from 5.00r7 | [bin] (client-internals/gs2-vm-by-version.md#limits) |
+| integer conversion | `floor(x + 0.0001)` in every VM | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
+| `%`, `^`, shifts | the tolerance in `%` only in 4.20r6/4.20r8; `^ 0.5` is a square root in 4.x/5.x, `^ 2` is `a*a` in 6.x; shift counts modulo 64 on PowerPC, 32 on x86 | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
+| number to text | `"0"` under 0.0001; up to 9 truncated decimals, trailing zeros dropped, a trailing 999 carried up | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
+
+Open: → App. E#209.

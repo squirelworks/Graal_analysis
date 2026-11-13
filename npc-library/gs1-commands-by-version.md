@@ -66,7 +66,9 @@ not a removal in time. 3.04 and 2.22 carry the same build date.
 | 1.1.9 | delphi | 1999-02-11 | 51 | same as previous |  |
 | 1.1 | delphi | 1999-02-14 | 51 | same as previous |  |
 | 1.21 | delphi | 1999-05-10 | 71 | `setsword`, `setshield`, `putnewcomp`, `seteffect`, `unseteffect`, `putnpc`, `destroy`, `freezeplayer`, `sethead`, `toweapons`, `showimg`, `hideimg`, `hidesword`, `for`, `hitcompu`, `hitplayer`, `setbow`, `updateboard`, `putobject`, `setarray` | — |
-| 1.28b2 | delphi | 1999-11-23 | 84 | `sleep`, `while`, `hideplayer`, `timereverywhere`, `setminimap`, `setmap`, `showcharacter`, `setplayerprop`, `setcharprop`, `showfile`, `setstring`, `setbackpal`, `setletters` | — |
+| 1.25 | delphi | 1999-08-07 | 80 | `sleep`, `while`, `hideplayer`, `timereverywhere`, `setminimap`, `setmap`, `showcharacter`, `setplayerprop`, `setcharprop` | — |
+| 1.27 | delphi | 1999-10-23 | 84 | `showfile`, `setstring`, `setbackpal`, `setletters` | — |
+| 1.28b2 | delphi | 1999-11-23 | 84 | same as previous |  |
 | 1.3 test | delphi | 1999-11-29 | 85 | `setgifpart` | — |
 | 1.31 | delphi | 1999-12-07 | 85 | same as previous |  |
 | 1.32 | delphi | 2000-01-12 | 85 | same as previous |  |
@@ -115,16 +117,19 @@ What stands out:
   once and adds the first combat and object commands (`putbomb`, `shootarrow`, `putexplosion`, …) and `else`. None of the seven
   comes back.
 - **The 1.0 release (10th Graal, Dec 1998) has 46 commands**, 1.1 has 51. The big steps are 1.21 (+20: `putnpc`, `showimg`, `for`,
-  `destroy`, `setarray`, …), 1.28 beta 2 (+13: `sleep`, `while`, `setstring`, `showcharacter`, …), 1.41 rev1 (+15: `function`,
-  `return`, `break`, `continue`, `callnpc`, `say2`, …) and 2.17.1 (+33).
+  `destroy`, `setarray`, …), 1.25 and 1.27 (+9 and +4: `sleep`, `while`, `showcharacter`, … then `setstring`, `showfile`, …; once credited to 1.28 beta 2, see [`gserv-125-127-builds.md`](../client-internals/gserv-125-127-builds.md)), 1.41 rev1 (+15: `function`,
+  `return`, `break`, `continue`, `callnpc`, `say2`, …) and 2.17.1 (+33). The 1.40 builds (Sept 2000, read 2026-11-13) already
+  have 14 of 1.41 rev1's 15; only `showstats` is new in 1.41 rev1 ([1.40 note](../client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle)).
 - **`seteffect` and `unseteffect`** are in 1.21 to 1.33 and gone in 1.34 to 1.41 rev1. `seteffect` alone returns in NewMain 1.42;
   `unseteffect` never returns.
 - **2.17.1 adds 33**: `putnpc2`, `showimg2`, `hideimgs`, `showpoly`, `showpoly2`, `showani`, `showani2`, `showtext`, `showtext2`,
   `changeimgmode`, `seteffectmode`, `play2`, `shoot`, `setshootparams`, `replacestring`, `savelog`, `savelog2`, `setcursor`,
   `setcursor2`, `wraptext`, `wraptext2`, `serverwarp`, `enablepause`, `disablepause`, `enablemap`, `disablemap`, `sendtonc`,
   `sendtorc`, `setpm`, `sendpm`, `sendrpgmessage`, `enablefeatures`, `with`. No client between the 2.1 tests (Sept 2001) and
-  2.17.1 (Dec 2002) is in the set, so these can only be dated to "after 2.1 test 3, by 2.17.1". The 2.1x release notes are the
-  only finer source.
+  2.17.1 (Dec 2002) is in the matrix. The Graal 2002 world builds (Oct–Dec 2001, read 2026-11-13) date nine of them:
+  `play2` and `shoot` by Oct 2001, `replacestring` and `savelog` by Nov 2001, and `setcursor`, `setcursor2`, `setshootparams`,
+  `wraptext` and `wraptext2` by Dec 2001. The other 24 are still "after Dec 2001, by 2.17.1"
+  ([Graal 2002 note](../client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle)).
 - **2.17.1, 2.22 and 2.31 have the same 198 commands.** The Windows 2.x command list did not change from Dec 2002 to Jan 2005.
 - **The C++ engine (3.04, Jan 2004) does not have** `putobject`, `setbackpal`, `setbody`, `setbacktile`, `setbacktile2` or
   `drawovertrees`. None of them appears in any engine build up to 5.00r7, not even as a string.
@@ -197,7 +202,7 @@ the engine is a separate code base.
 | `hideimg` | from 1.21 | all |
 | `hideimgs` | from 2.17.1 | all |
 | `hidelocal` | from 1.34 | all |
-| `hideplayer` | from 1.28b2 | all |
+| `hideplayer` | from 1.25 | all |
 | `hidesword` | from 1.21 | all |
 | `hitcompu` | from 1.21 | all |
 | `hitnpc` | from 1.38 | all |
@@ -256,7 +261,7 @@ the engine is a separate code base.
 | `set` | all | all |
 | `setani` | from 1.39 | all |
 | `setarray` | from 1.21 | all |
-| `setbackpal` | from 1.28b2 | — |
+| `setbackpal` | from 1.27 | — |
 | `setbacktile` | from 1.34 | — |
 | `setbacktile2` | from 2.05 | — |
 | `setbeltcolor` | from 3rd Graal | all |
@@ -264,7 +269,7 @@ the engine is a separate code base.
 | `setbow` | from 1.21 | all |
 | `setcharani` | from 1.39 | all |
 | `setchargender` | from 2.0 | all |
-| `setcharprop` | from 1.28b2 | all |
+| `setcharprop` | from 1.25 | all |
 | `setcoatcolor` | from 3rd Graal | all |
 | `setcoloreffect` | from NM24 | all |
 | `setcursor` | from 2.17.1 | all |
@@ -278,14 +283,14 @@ the engine is a separate code base.
 | `sethead` | from 1.21 | all |
 | `setimg` | from 1.41r1 | all |
 | `setimgpart` | from 1.41r1 | all |
-| `setletters` | from 1.28b2 | all |
+| `setletters` | from 1.27 | all |
 | `setlevel` | from 3rd Graal | all |
 | `setlevel2` | from 1.38 | all |
-| `setmap` | from 1.28b2 | all |
-| `setminimap` | from 1.28b2 | all |
+| `setmap` | from 1.25 | all |
+| `setminimap` | from 1.25 | all |
 | `setmusicvolume` | from 2.0 | all |
 | `setplayerdir` | from 3rd Graal | all |
-| `setplayerprop` | from 1.28b2 | all |
+| `setplayerprop` | from 1.25 | all |
 | `setplayerx` | 3rd Graal to 5th Graal | — |
 | `setplayery` | 3rd Graal to 5th Graal | — |
 | `setpm` | from 2.17.1 | all |
@@ -298,7 +303,7 @@ the engine is a separate code base.
 | `setsleevecolor` | from 3rd Graal | all |
 | `setspritesimage` | — | from 5.00r7 Win |
 | `setstatusimage` | — | from 5.00r7 Win |
-| `setstring` | from 1.28b2 | all |
+| `setstring` | from 1.27 | all |
 | `setsword` | from 1.21 | all |
 | `seturllevel` | from 6th Graal | all |
 | `setx` | 2nd Graal to 5th Graal | — |
@@ -314,8 +319,8 @@ the engine is a separate code base.
 | `show` | all | all |
 | `showani` | from 2.17.1 | all |
 | `showani2` | from 2.17.1 | all |
-| `showcharacter` | from 1.28b2 | all |
-| `showfile` | from 1.28b2 | all |
+| `showcharacter` | from 1.25 | all |
+| `showfile` | from 1.27 | all |
 | `showimg` | from 1.21 | all |
 | `showimg2` | from 2.17.1 | all |
 | `showlocal` | from 1.34 | all |
@@ -324,7 +329,7 @@ the engine is a separate code base.
 | `showstats` | from 1.41r1 | all |
 | `showtext` | from 2.17.1 | all |
 | `showtext2` | from 2.17.1 | all |
-| `sleep` | from 1.28b2 | all |
+| `sleep` | from 1.25 | all |
 | `spyfire` | from 1.41r1 | all |
 | `stopmidi` | from 6th Graal | all |
 | `stopsound` | from 1.37 | all |
@@ -334,7 +339,7 @@ the engine is a separate code base.
 | `takeplayercarry` | from 4th Graal alpha | all |
 | `takeplayerhorse` | from 1.36 | all |
 | `throwcarry` | from 1.34 | all |
-| `timereverywhere` | from 1.28b2 | all |
+| `timereverywhere` | from 1.25 | all |
 | `timershow` | from 5th Graal alpha | all |
 | `toinventory` | from 5th Graal alpha | all |
 | `tokenize` | from 2.02 | all |
@@ -346,7 +351,7 @@ the engine is a separate code base.
 | `unseteffect` | 1.21 to 1.33 | — |
 | `updateboard` | from 1.21 | all |
 | `updateterrain` | from 2.05 | all |
-| `while` | from 1.28b2 | all |
+| `while` | from 1.25 | all |
 | `with` | from 2.17.1 | 3.04 Linux only |
 | `wraptext` | from 2.17.1 | all |
 | `wraptext2` | from 2.17.1 | all |

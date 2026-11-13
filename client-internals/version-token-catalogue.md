@@ -26,6 +26,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | Zelda Online 1 / 2 (Java) | none | — | `Z3-V1.02` / `Z3-V1.03` are level-format magics, not login tokens. ZO2 talks text lines to its GServ lobby | ✔ none | (n/a) |
 | 1st beta to 15th (b1–b15), 1.1.9, 1.1 | none | — | Peer relay protocol: no token and no compression (`protocol/relay-1998.md`). Re-read today: no literal and no immediates. The 1.1.9 bundled Gserver takes no token either | ✔ none | none |
 | Graal3D (Feb 2000) | `GR3DV002` | W | Separate program with its own server on its own port. String literal in the exe | ✔ | tested |
+| Graal3D, later beta ("New Graal 3D Beta Version") | `GR3DV003` | B | string literal, 2026-11-13. A bigger exe (630,272 bytes, against 605,184) that adds DirectInput and force feedback, camera distance settings and a deathmatch start ([note](graal2002-and-140-builds.md#other-builds-in-the-same-batch)) | (no folder) | |
 | Graal GBC 1.10, Java Graal (2000), 39ster 1.00 | none | — | Offline only, or no Graal-protocol login | ✔ none | none |
 
 ### GSERV era (1.21–1.32): protocol-revision tokens, not dates
@@ -33,8 +34,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
 | 1.21 | `GSERV007` | W | `gserv-1999.md`, `live-trace-early.md` | ✔ | tested |
-| 1.25 | `GSERV009` | L | public list only; no exe known | (no folder) | |
-| 1.27 | `GSERV011` | L | public list only. RemoteControl 1.28 and 1.3 also send `GSERV011` [bin] | (no folder) | |
+| 1.25 | `GSERV009` | B | string literal in the exe unpacked from the 1.25 installer, 2026-11-13; its RemoteControl sends `GSERV010` ([note](gserv-125-127-builds.md)) | (no folder) | |
+| 1.27 | `GSERV011` | B | string literal in the exe unpacked from the 1.27 installer, 2026-11-13. The RemoteControl in the same package is the one later shipped as RC 1.28; RC 1.3 also sends `GSERV011` [bin] ([note](gserv-125-127-builds.md)) | (no folder) | |
 | 1.28 beta 2 | `GSERV013` | W | `live-trace-early.md` | ✔ | tested |
 | 1.3 test | `GSERV014` | W | `live-trace-early.md` (first frame decoded) | ✔ | tested |
 | 1.31 | `GSERV016` | **W** | `live-trace-early.md`: both 1.31 and 1.32 sent their login frame to GServer13 and were refused as too new | ✔ | **token only (understated)** |
@@ -51,7 +52,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 1.37 | `GNW21050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.38 | `GNW22060` | B+ | immediates (first char-built token); logged in to the lab classic server, frame not decoded | ✔ | token only |
 | 1.39 | `GNW07080` | **W** | immediates; traffic captured and decoded (`versions-133-139.md`); also on the public list | ✔ | **token only (understated)** |
-| 1.391 | `GNW12080` | L | gs2lib table only | (no folder) | |
+| 1.391 | `GNW12080` | L | gs2lib table only. The two FileVersion 1.3.9.1 executables read on 2026-11-13 send `GNW07080` and `GNW23090` instead ([note](graal2002-and-140-builds.md)) | (no folder) | |
+| 1.40, 1.40 rev1 | `GNW23090` | B | immediates in two executables (FileVersion 1.3.9.1 and 1.4.0.1), 2026-11-13; on no public list ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 1.41 rev1 | `GNW13110` | W | lab capture | ✔ | tested |
 | NewMain 24, 26 | `GNW08011` | W | lab capture; immediates in both exes | ✔ | tested |
 | 2.00 | `GNW24011` | **W** | `decomp-findings-2026-10-24-b/07-lab-findings-46-186-200.md`: the 2.00 exe logged in to a lab gserver with type 0, the key byte and `GNW24011` | ✔ | **token only (understated)** |
@@ -71,7 +73,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
-| 2.1.0.0–2.1.0.3 (also the "2002ver10/13" leaks) | `GNW31101` | L | public list | (no folder) | |
+| Graal 2002 ver7–ver9 (FileVersion 2.1.0.0, Oct 2001) | `GNW03081` | B | immediates, 2026-11-13; still 2.05's token, like the 2.1 tests ([note](graal2002-and-140-builds.md)) | (no folder) | |
+| 2.1.0.0–2.1.0.4 (Graal 2002 ver10, ver13, v22) | `GNW31101` | B | immediates in three executables (FileVersion 2.1.0.2 and 2.1.0.4), 2026-11-13; public list gives 2.1.0.0–2.1.0.3 ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 2.12 | `GNW01012` | L | public list | (no folder) | |
 | 2.13 | `GNW23012` | L | public list | (no folder) | |
 | 2.14 | `GNW30042` | L | public list | (no folder) | |
@@ -100,6 +103,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 4.02.11 | `G3D28095` | L | public list | (no folder) | |
 | 4.03.4 | `G3D09125` | L | public list | (no folder) | |
 | 4.04r2 Windows | `G3D17026` | W | lab capture | ✔ | tested |
+| 4.04r2 Mac | `G3D18026` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 4.04r2 Linux | `G3D19026` | W | `linux-local-login-matrix.md` | (no folder) | |
 | 4.11 | `G3D26076` | L | public list | (no folder) | |
 | 4.20r6 Mac | `G3D27076` | W | Tiger lab | ✔ | tested |
@@ -107,6 +111,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 4.20r8 Windows | `G3D20126` | W | lab capture | ✔ | tested |
 | 5.00r7 Windows | `G3D22067` | W | `lab-v5-2026-10-30.md` | ✔ | tested |
 | 5.12 Windows | `G3D14097` | W | `v5v6-windows-unpacked.md` | (no folder) | |
+| 5.12 Mac | `G3D15097` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 5.24r3, 5.24r4, 6.00 beta2 Windows | `G3D15010` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md` | ✔ (5.31r4) | tested |
 | 6.00 beta1 Windows | `G3D03048` | W | `v5v6-windows-unpacked.md` | (no folder) | |
@@ -127,7 +132,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 ## Gaps and how far each can be closed
 
 - **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
-- **L only, no binary in any collection:** 1.25, 1.27, 1.391, all 2.1.x releases from 2.1.0 to 2.21 except 2.17, 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
+- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3, 3.0, 3.01, 4.02.11, 4.03.4, 4.11, 6.0.0.7 / 6.0.1.5 and 6.0.3.4. Only a new binary can close these.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
 
