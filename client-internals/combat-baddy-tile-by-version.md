@@ -8,6 +8,12 @@ check ran a real 1.39 offline under Wine **[live][shot]**. The rules are impleme
 squirelworks/seihai-core PRs #28 and #34 (releases 0.0.19 and 0.0.20) **[doc]**. No addresses or
 decompiled code are reproduced.
 
+**Follow-up, 2026-11-13 (Graal_analysis#444).** A second static pass read the 1.39 (FileVersion
+1.3.9.1, token `GNW07080`), 1.41 rev 1 (FileVersion 1.4.1.1), 2.05 rev 2, 2.17.1, 2.22 and 2.31
+executables again to settle the four open items. It identifies player mode 7, finds the 1.x id 40
+handler, names the two 2.17.1+ judge tests and places the respawn AP bands at 1.41 **[bin]**. The
+results agree with the seihai-core "U7" reads (`documentation/version-chain.md`). Nothing was run.
+
 Before this pass the notes took baddy AI from 2.05, combat from 1.42 to 2.04, and tile rules
 from 2.05 or 2.22, and applied them to every build. This note says where that holds.
 
@@ -58,7 +64,7 @@ appeared where some died: two hearts, and darts where an archer (type 3) stood *
 | forward reach | 0 to 4 tiles inclusive | every build [bin] |
 | hurt | mode 3 for 40 ticks | every build [bin] |
 | swing gate | sprite 6 to 10 directly in 1.21 to 1.33 (1.33 polls the judge every tick); animation step 9 to 13 from 1.34, which is equivalent | [bin] |
-| player mode 7 | 1.34 to 1.41 pass over a victim in player mode 7; what mode 7 is was not identified | [bin] |
+| player mode 7 | 1.34 to 1.41 pass over a victim in player mode 7. Mode 7 means the player is attached to another local player in same-PC 2/3/4-player play: lifted and carried by them, or riding as the passenger on their horse. The client sets it when the attachment starts and puts the player back in mode 0 when it ends. Arrows and thrown objects pass over mode 7 too. Online there is one player per client, so the test never applies there | [bin] (1.39, 1.41) |
 
 The earlier reading in → [combat-200-204.md](combat-200-204.md) and manual §4.3.3 treated exactly
 2 tiles to the side as a miss; that was wrong for every build.
@@ -70,7 +76,9 @@ The earlier reading in → [combat-200-204.md](combat-200-204.md) and manual §4
 | no AP immunity | 1.21 to 1.33 | [bin] |
 | AP 100 immunity | from 1.34 | [bin] |
 | attacker check | one hidden-flag byte in 1.34; the status bits 2 and 32 from 1.39 | [bin] |
-| one more victim test | 2.17.1, 2.22, 2.31; not identified | [bin] |
+| no sword judging at all while the client is in Kingdoms mode (`PLO_KINGDOMSMODE` 176) or New World mode (`PLO_NEWWORLDMODE` 177) | 2.17.1, 2.22, 2.31; not in 2.05 | [bin] |
+| the victim is not in ghost mode (`PLO_GHOSTMODE` 170: a body byte above 0 turns it on) | 2.17.1, 2.22, 2.31; not in 2.05 (ghost mode is a 2.1 feature) | [bin] (traced to id 170 in 2.17.1; the same getter at the same place in the 2.22 and 2.31 judges) |
+| the victim is not between levels (the flag set when it asks the server for a level and cleared when the level is in place) | 2.05 to 2.31 (2.05 keeps it as a plain byte, 2.17.1 on in obfuscated storage) | [bin] |
 
 ## Sword power
 
@@ -81,13 +89,32 @@ and present from 2.03. So 1.x stores the power as the raw 6 bits it receives **[
 
 The handler is the same in 2.03, 2.05, the 2.1 test 3, 2.17.1, 2.22 and 2.31: 10-tile range, a
 cap of 1 heart, and the AP 100 check **[bin]**. 2.00 was read earlier (→ [damage-sources.md](damage-sources.md)).
-No handler for id 40 was found in any 1.x build, so a 1.x client is taken not to apply hits by
-packet **[bin][inf]**.
+
+**1.x does handle id 40.** The first pass found no handler. The follow-up read the receive
+switch of 1.39 and 1.41 rev 1, and both send wire byte `H` (id 40) to a hurt handler **[bin]**:
+
+| Field | Layout | Tag |
+| --- | --- | --- |
+| attacker | two bytes, a 14-bit player id (`(b0 - 32) * 128 + (b1 - 32)`) | [bin] |
+| knockback | two bytes, `(b - 96) / 16` tiles in x and y | [bin] |
+| power | one byte, `(b - 32) / 2` hearts, limited to 1 heart | [bin] |
+
+The 1.39 handler acts only while the local player is on the connection's current level and the
+attacker is known. The victim must be in the normal play state (not paused or dead), not hurt
+(mode 3), not swimming (mode 10), with hearts above 0. The guild-tag test must pass. It then calls
+the shared hurt routine, and when the hearts reach 0 it claims the kill, as the sword path does. It
+has **no range test and no AP test** **[bin]**. 1.41 rev 1 decodes the same fields and reads more
+when the body is 6 bytes or longer. That extra part was not traced **[bin]**. seihai-core's U7
+reads put the first id 40 handler at 1.31 (no cap), the one-heart cap at 1.35 to 1.39, and the 2.00
+handler (range and cap) at 1.41 rev 1. 1.31 to 1.38 were not re-read here.
 
 ## Death
 
-The dead-bit threshold of 28 and the death timer cap of 30 hold in every build **[bin]**. The
-respawn AP bands were found only in 2.x; 1.39 respawns to full hearts with no AP bands **[bin]**.
+The dead-bit threshold of 28 and the death timer cap of 30 hold in every build **[bin]**. 1.39's
+revive reads no AP **[bin]**. The respawn AP bands start in **1.41 rev 1**, and its revive is the
+2.05 one **[bin]**. Under 20 AP the player respawns with 3 hearts. From 20 to 39 AP it respawns with
+min(5, max hearts), and from 40 AP with max hearts. Both builds compare against the same base of 32
+(`base - 12` and `base + 8`).
 
 ## The sword-clash spark
 
@@ -102,16 +129,17 @@ watched in the running game.
 | --- | --- | --- | --- |
 | 1.21 | 1.21 | no AP immunity, raw sword power, no packet hits | no lava burn; swamp sword from counter 17 |
 | 1.28b2–1.33 | 1.28 beta 2 to 1.33 | as 1.21 | lava burns; swamp sword from 17 |
-| 1.34–1.41 | 1.34 to 1.41 rev 1 | AP 100 immunity, raw power, no packet hits, mode 7 skipped | as above |
+| 1.34–1.41 | 1.34 to 1.41 rev 1 | AP 100 immunity, raw power, mode 7 (carried or horse passenger) skipped; packet hits with no range or AP test in 1.39 | as above; AP respawn bands from 1.41 |
 | 1.42 | NewMain 1.42 | the 2.00 judge; no packet hits traced | as above; no client item roll |
 | 2.00 | 2.00 to 2.00 r3 | the 2.00 judge | as above |
-| 2.01 on | 2.01 to 2.31 | ±20 power limit from 2.03; packet hits | swamp sword 22 to 36 |
+| 2.01 on | 2.01 to 2.31 | ±20 power limit from 2.03; packet hits; from 2.17.1 no sword hits in ghost mode or in Kingdoms/New World mode | swamp sword 22 to 36 |
 
 ## Not known
 
-- The 1.x handler for hit packet 40, if any.
-- Player mode 7 in 1.34 to 1.41.
-- The extra victim test in 2.17.1, 2.22 and 2.31.
-- The respawn AP bands before 2.x.
+- [x] ~~The 1.x handler for hit packet 40, if any.~~ 1.39 and 1.41 rev 1 handle it (→ [Hits by packet](#hits-by-packet-ids-40-and-46)).
+- [x] ~~Player mode 7 in 1.34 to 1.41.~~ Attached to another local player: carried, or a horse passenger (→ [The sword box](#the-sword-box-the-victim-judging-another-players-swing)).
+- [x] ~~The extra victim test in 2.17.1, 2.22 and 2.31.~~ Ghost mode (170), plus the Kingdoms/New World mode gate (176/177) (→ [Sword judge gates](#sword-judge-gates)).
+- [x] ~~The respawn AP bands before 2.x.~~ From 1.41 rev 1 (→ [Death](#death)).
+- [ ] The extra fields of the 1.41 rev 1 id 40 handler (body of 6 bytes or more).
 - Not run live: the 2-tile sideways edge (needs two players), a 2.05 control (expected: no
   client item drops), anything on 1.21, and the sword spark.

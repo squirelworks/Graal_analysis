@@ -61,7 +61,7 @@ Counts of string hits per binary (both 8-bit and UTF-16 strings). 0 means the ma
 | | |
 |---|---|
 | Engine | TGE 1.1–1.2 code base: `getVersionNumber` 1100, compile time "Jan 3 2004 at 22:32:08", game string `Torque Game Engine Demo`, protocol 9, home `~/.garagegames/`. **[bin]** (`engine-and-formats.md`) |
-| Platform layer | SDL 1.2 (window, input, `SDL_WM_ToggleFullScreen`), OpenGL 1.3, fmod 3.70 for sound and MIDI, hvdi voice packaging with GSM and LPC codecs for the microphone. `lib/librariesinfo.txt` lists zlib 1.1.3, libmng 1.0.5, hvdi 0.9, SDL 1.2, OpenGL 1.3, fmod. **[file][bin]** |
+| Platform layer | SDL 1.2 (window, input, `SDL_WM_ToggleFullScreen`), OpenGL 1.3, fmod 3.70 for sound and MIDI, hvdi voice packaging for the microphone (the GSM and LPC codecs are not visible in the stripped 3.04 binary, so they are unverified for this client: [open question](../client-internals/linux-304-executable-build.md#still-open)). `lib/librariesinfo.txt` lists zlib 1.1.3, libmng 1.0.5, hvdi 0.9, SDL 1.2, OpenGL 1.3, fmod. **[file][bin]** |
 | Torque subsystems used | Console and TorqueScript VM (`.dso` v33), resource manager with mod paths, GUI canvas and ~30 stock GUI control classes, GUI profiles and themes, `GFont` + `.gft` cache, texture manager, `ActionMap` input, prefs export, console window (F2), help system (`.hfl`), OpenGL device. The 3D classes are compiled in but no 3D script ships. **[bin][file]** |
 | Not Torque | The 2D game (`graal/adventure.cpp`, `levels.cpp`, `npcs.cpp`, `ganis.cpp`, `tiles.cpp`, `graphics.cpp`, `showimgs.cpp`, …), GS1, the Graal TCP protocol (gen 5, same as 2.22), the 2.05-style UDP channel between players, the listserver client. **[bin]** (`../client-internals/` and `v3x/FINDINGS.md` in the project folder) |
 | Boot | `graalexe` runs the plain-text root `main.cs`: `setLogMode(6)`, `setModPaths("common;graaldata")`, `exec("common/main.cs")`, `exec("graaldata/main.cs")`, `onStart()`. `graaldata/main.cs` loads defaults and prefs and activates package `graal`; `initClient()` calls `initBaseClient()`, `initCanvas("Graal")`, execs `customProfiles.cs`, nine `.gui` files, four scripts and `config.cs`, then `Canvas.setContent(mainMenuGui)`. **[file]** |
@@ -204,6 +204,6 @@ counts.
 
 - How `GuiGraalCtrl::onRender` in 3.04 draws tiles (batched textured quads from `pics1.png`, or per-tile bitmap blits) is not read yet. It matters for pixel-exact output; a first rebuild can use the documented 2D result as the reference picture and compare against lab screenshots.
 - Whether 3.04 uses the gmap `HEIGHTS` data in 2D (see §4).
-- 3.04's UDP between players is the 2.05 channel (`protocol/udp-p2p.md`), not Torque netcode; the two-player lab capture already shows it. The voice (`doMicro`, GSM/LPC) payload is not decoded.
+- 3.04's UDP between players is the 2.05 channel (`protocol/udp-p2p.md`), not Torque netcode; the two-player lab capture already shows it. The voice (`doMicro`) payload is not decoded, and its codec is unverified for 3.04.
 - No 3D server data (missions, `.ter`, `.dts`, `.dif`) ships with any client; the 3D world has to be authored or found before any 3D stage can be checked against a real server.
 - 4.20r6's own binary is not in the project folder (only its decompile), so it was not in the marker scan.

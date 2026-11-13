@@ -39,7 +39,7 @@ Related notes elsewhere: `protocol/v3x-clients.md` (3.04 / 3.153 Graal TCP side)
 
 | Build | Date | Shape | Torque part | 3D world | Game string / protocol | Script language for menus |
 |---|---|---|---|---|---|---|
-| 3.04 Linux | Jan 2004 | one C++ binary (SDL, OpenAL) | full TGE, `getVersionNumber` = 1100 ("1.100"), built "Jan 3 2004 22:32:08" | TGE classes present, no 3D scripts shipped | `Torque Game Engine Demo`, 9 / 9 | TorqueScript `.dso` |
+| 3.04 Linux | Jan 2004 | one C++ binary (SDL 1.2, FMOD 3.70; [build and linkage](../client-internals/linux-304-executable-build.md)) | full TGE, `getVersionNumber` = 1100 ("1.100"), built "Jan 3 2004 22:32:08" | TGE classes present, no 3D scripts shipped | `Torque Game Engine Demo`, 9 / 9 | TorqueScript `.dso` |
 | 3.153 Mac | Feb 2005 | one C++ binary (Carbon, PPC) | full TGE, with Graal's net-layer changes (class table, 12-bit class ids, 14-bit lengths, BigData and terrain events) | stock TGE world + `main3D.cs` client scripts | `Graal3D`, 19 / 19 | TorqueScript `.dso` |
 | 4.04r2 Win | Mar 2006 | Delphi launcher + `GraalEngine.dll` (2D) + `Graal3DEngine.dll` (3D plug-in) | 2D engine keeps Torque base classes only; the 3D DLL is near-stock TGE (Player, vehicles, datablocks, fxFoliage) | stock TGE with datablocks | `Graal3D`, 19 (from the v4 thread) | GS2 / native |
 | 4.20r6 Mac | Sep 2006 | one C++ binary (PPC) | Torque core + netcode, Graal game layer | `GameObject` model as in 5.12, no datablocks | `Graal3D`, 21 / 21 | GS2 / native |

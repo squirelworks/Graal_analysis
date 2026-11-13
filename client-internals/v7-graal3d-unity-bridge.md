@@ -17,6 +17,8 @@ No addresses in this file.
 
 GameAssembly does **not** reimplement PLI/PLO. It calls into the native plugin through exported C entry points and Quattro frame hooks.
 
+The managed side of this contract (the C# callback table per build, the generated binding layer and the launch inputs) is read in [v7-gameassembly-il2cpp.md](v7-gameassembly-il2cpp.md).
+
 ---
 
 ## 2. Exports GameAssembly-facing (native) **[bin]**

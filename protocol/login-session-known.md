@@ -28,11 +28,11 @@ The 5.x and 6.01/6.03 clients open an ordinary game connection and name the serv
 
 ## Still unobserved
 
-A public Login session was not captured. That capture is deferred: GitHub issue #247 and `docs/NEXT.md` task 13. Do not connect. Public servers stay off until the owner comments yes on #247.
+**Update 2026-11-13:** one read-only session with the Windows 6.03r7 against a community Login server was captured with the owner's written OK (#247). See `login-session-observed.md`. Ticked items below refer to that server only; the official Login server is still unobserved.
 
-- The bytes a public 5.x or 6.x Login server sends, including the payload of S→C 190.
-- The GUI script text for the server list, the account screens and the `ChatBar` control.
-- The `FILE` list inside that server's `basepackage.gupd`, and any later update package.
-- The backdrop level that server chooses (name, tiles, chests, image NPCs).
+- [x] The bytes a live Login server sends, including the payload of S→C 190 (empty there). Official server: still unobserved.
+- [x] The server-list and login-screen GUI, as behaviour (the verbatim script stays owner-held). Still open: the account screens past the login form, and the `ChatBar` control.
+- [x] The package list behind `basepackage.gupd` (no `FILE` lines; one subpackage chain).
+- [x] The backdrop level that server chooses (`black.nw`, one tile, no chests, no NPCs).
 - The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client actually uses. (Partly known now: the token, the `EILLLT` framing and the outgoing RC4 switch at offset 287, `v611-outgoing-cipher.md`. The incoming cipher is still unknown.)
 - The resulting look (matrix unknown #3). The lab screens are the lab world's ganis and a server named by the injected 178.

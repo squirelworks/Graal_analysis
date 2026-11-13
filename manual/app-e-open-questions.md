@@ -553,14 +553,14 @@ Several 2.22 level-object routines were not read. The row lists them [bin] (clie
 
 ### E#324 Combat rules the 1.21 to 2.31 pass left open
 
-The static pass over 35 builds left these gates unidentified [bin] (client-internals/combat-baddy-tile-by-version.md#not-known).
+The static pass over 35 builds left four gates unidentified. A follow-up read settled them [bin] (client-internals/combat-baddy-tile-by-version.md#not-known). What stays open is listed below.
 
 | Item | Content | Source |
 | --- | --- | --- |
-| 1.x packet hits | no handler for hit packet 40 found in any 1.x build | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
-| Player mode 7 | passed over by the 1.34 to 1.41 sword judge; unidentified | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
-| Extra victim test | 2.17.1, 2.22 and 2.31; unidentified | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
-| Respawn AP bands | not found before 2.x | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
+| 1.x packet hits | settled: 1.39 and 1.41 rev 1 handle id 40; open: the extra fields 1.41 rev 1 reads from a body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
+| Player mode 7 | settled: attached to another local player in same-PC play (carried, or a horse passenger) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
+| Extra victim test | settled: ghost mode (170); the 2.17.1+ judge also stops in Kingdoms or New World mode (176, 177) | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
+| Respawn AP bands | settled: from 1.41 rev 1, the same bands as 2.05 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
 | Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21, the sword spark | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
 
 ### E#400 Two projects called Ash

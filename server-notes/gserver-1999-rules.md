@@ -20,7 +20,7 @@ same for builds before 1.28 beta 2 **[bin]**.
 
 The start dialog (also `serverconfig.txt`) has five settings: the port (14804), the bush
 respawn time (10 s), the horse lifetime (10 s), the alignment increment time (1200 s) and the
-baddy respawn time (60 s). A one-second timer runs the game clock; each socket is read on a
+baddy respawn time (60 s). That is GServer13's set; 1.28 beta 2 has a player-killer flag timeout (`pktimeout`) in place of the alignment increment (`original-server-builds-1999-2007.md#the-timer-options-bin`). A one-second timer runs the game clock; each socket is read on a
 second, faster timer **[bin]**.
 
 ## Client messages

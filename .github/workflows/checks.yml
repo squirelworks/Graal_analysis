@@ -11,10 +11,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS is checked on the lab Sequoia VM, not on GitHub runners (AGENTS.md)
+        # macOS 15 back on hosted runners (squirelworks/seihai#401)
         os:
           - ubuntu-latest
           - windows-latest
+          - macos-15
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -87,6 +88,9 @@ jobs:
             > "$RUNNER_TEMP/resolve-out.json"
           python -c 'import json, os; d=json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "resolve-out.json"))); assert isinstance(d, list) and d'
 
+      - name: pytest version profiles (inferred flags)
+        run: python -m pytest client-internals/version-profiles -q
+
       - name: Smoke grv1-decoder on a synthetic level
         run: |
           python <<'PY'
@@ -131,10 +135,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS is checked on the lab Sequoia VM, not on GitHub runners (AGENTS.md)
+        # macOS 15 back on hosted runners (squirelworks/seihai#401)
         os:
           - ubuntu-latest
           - windows-latest
+          - macos-15
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -172,7 +177,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macOS is checked on the lab Sequoia VM, not on GitHub runners (AGENTS.md).
+        # The PDF is not built on macOS: the checks above cover macOS (AGENTS.md).
         # A pull request builds the PDF on Windows only, to keep PR runs
         # short. A push builds both and keeps the Linux PDF.
         os: ${{ github.event_name == 'pull_request' && fromJSON('["windows-latest"]') || fromJSON('["ubuntu-latest", "windows-latest"]') }}

@@ -50,7 +50,7 @@ u16be length | body
 | 1 | `ENCRYPT_GEN_1` | web client | none, uncompressed | [srv] |
 | 2 | `ENCRYPT_GEN_2` | client type 0 with a known token in the first 8 bytes | zlib, no cipher | [srv] |
 | 3 | `ENCRYPT_GEN_3` | **2.05**, any type-0 client whose first 8 bytes are not a known token; in GServer `master`/efb5b90 (`TPlayer`) also legacy RC (type 1), NC (type 3) and the NPC-server | zlib frame; one junk byte inserted into each message | [srv][2.05] |
-| 4 | `ENCRYPT_GEN_4` | client type 4 (2.19–2.21, 3.0–3.01) | bz2, then XOR of the first *limit* dwords | [srv] |
+| 4 | `ENCRYPT_GEN_4` | client type 4 (2.19–2.21, 3.0–3.01) | bz2, then XOR of the first *limit* dwords. **Unverified:** no type-4 client has been captured (see below) | [srv] |
 | 5 | `ENCRYPT_GEN_5` | client type 5 (2.22+), RC2 (type 6) | compression byte, then the same partial XOR | [srv] |
 | 6 | `ENCRYPT_GEN_6` | v6 | unknown, not implemented | [srv] |
 
@@ -75,6 +75,10 @@ The server mirrors this: same LCG step, deletes the byte at 0-based `(it & 0xFFF
 Wire check (lab, three 2.05 sessions): every client→server message after the login line had the expected byte `((it >> 16) & 0x7F) + 0x20` at the predicted index. Several messages had it at index 0, before the id. There were no mismatches. **[cap]** The server's own gen-3 encoder always inserts `)` instead of an iterator-derived byte. That is harmless because the receiver throws the byte away. **[srv]** Gen 3 runs per message *after* decompression, not over the whole frame. **[srv]**
 
 Gen 3 is client→server only. Server→client traffic for a gen-3 client is plain zlib. **[srv][cap]** The 14842/14912 captures stay clear zlib, which matches this.
+
+### Gen 4 is unverified **[srv] only**
+
+No gen-4 (client type 4) login or frame has been captured, and no 2.19 to 2.21 binary is held. Everything above about gen 4 comes from the server source. On 2026-11-13 graal-client-repro (inferred 2.19, 2.2 and 2.21 clients) and seihai-gserver (type-4 logins) got a working gen-4 link that is **invented, not observed**: the login line is type 4, key byte, token, account and password in a plain zlib frame, and every later frame both ways is a bzip2 body with the gen-5 XOR at the bz2 limit (4 groups) and no compression byte. The login frame and the missing compression byte are guesses. The held 3.0beta and 3.01 Linux clients are listed as type 4; a capture of one would confirm or replace all of this.
 
 ### Gen 4/5 partial XOR
 

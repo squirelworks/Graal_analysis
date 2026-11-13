@@ -16,7 +16,10 @@ The archive names do not sort by date. "rc141" is the newest of the set, not "rc
 | rc62101 | 2001/01/27 | `GSERV021` | 15 | same forms |
 | rc8212001 | 2001/08/20 | `GSERV022` | 18 | adds rights, comments, local ban; server-option fields leave the start dialog |
 | rc201 | 2002/01/04 | `GSERV022` | 18 | same forms, new main window layout |
+| (2002 RC) | 2002/01/11 | `GSERV023` (NC socket `NCL11012`) | 27 | already has NPC Control, server list, file browser and short message (see `../server-notes/original-server-builds-1999-2007.md`) |
 | rc141 | 2002/05/02 | `GSERV023` | 26 | adds NPC Control, server list, file browser (see `npc-control.md`) |
+
+NewWorld RemoteControl builds 2001/05/21 (15 forms) and 2001/08/20 (18 forms) log in with `G2NRC006`; the 1.39 server tree's NewWorld option expects `G2NRC004` for the NewWorld RC 2000/8/19 [bin][src].
 
 The 2004 build in the Graal Reborn folder (`GSERV024`, type 6) is covered in `remotecontrol.md`.
 

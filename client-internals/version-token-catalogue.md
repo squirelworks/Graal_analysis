@@ -1,6 +1,6 @@
 # Version-token catalogue, every known client build
 
-Date: 2026-11-12. This note puts every known client build in one table: its login token, how strongly that token is evidenced, and whether the matching `graal-client-repro` folder sends the same value. It brings together `version-tokens.md`, `version-id-map.md`, `build-catalogue.md`, `protocol/login-tokens-3x-7x.md`, `protocol/gserv-1999.md`, `live-trace-early.md`, `protocol/linux-local-login-matrix.md` and the lab profiles. It adds one new static pass (below). No decompile material is used.
+Date: 2026-11-12. This is the source of truth for login tokens; the older partial lists (`version-tokens.md`, `version-id-map.md`, `archival/version-tokens-early.md`) are marked superseded. seihai-core carries every token below in code (`protocol::KNOWN_TOKENS`, generated as [`documentation/version-tokens.tsv`](https://github.com/squirelworks/seihai-core/blob/main/documentation/version-tokens.tsv)), and with seihai-gs2lib #19 its `clientVersions[]` has every game token below except the Graal3D and 6.11+ server-defined ones. This note puts every known client build in one table: its login token, how strongly that token is evidenced, and whether the matching `graal-client-repro` folder sends the same value. It brings together `version-tokens.md`, `version-id-map.md`, `build-catalogue.md`, `protocol/login-tokens-3x-7x.md`, `protocol/gserv-1999.md`, `live-trace-early.md`, `protocol/linux-local-login-matrix.md` and the lab profiles. It adds one new static pass (below). No decompile material is used.
 
 ## Evidence grades
 
@@ -46,13 +46,16 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
 | 1.33 | `GNW20020` | **W** | literal; traffic captured and decoded under Wine (`versions-133-139.md`, "Live check") | ✔ | **token only (understated)** |
+| 1.33 rev? | `GNW28020` | L | no client exe; in the 1.34 rev 1 server port's table between 1.33 and 1.34 (28 Feb 2000) [bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | 1.34 | `GNW22030` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
+| 1.34 rev 1 | `GNW27030` | L | no client exe; the only player token the 1.34 rev 1 server port lets in ("You need Graal version 1.34 rev1") [bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | 1.35 | `GNW13040` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.36 | `GNW10050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.37 | `GNW21050` | B+ | literal; logged in to the lab classic server (`tools/lab-servers/README.md`), frame not decoded | ✔ | token only |
 | 1.38 | `GNW22060` | B+ | immediates (first char-built token); logged in to the lab classic server, frame not decoded | ✔ | token only |
+| 1.38 rev 1 | `GNW02070` | L | no client exe; the 1.39 server's table and refusal text ("1.38 rev1 - 1.39 rev 1") [src][bin] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | 1.39 | `GNW07080` | **W** | immediates; traffic captured and decoded (`versions-133-139.md`); also on the public list | ✔ | **token only (understated)** |
-| 1.391 | `GNW12080` | L | gs2lib table only. The two FileVersion 1.3.9.1 executables read on 2026-11-13 send `GNW07080` and `GNW23090` instead ([note](graal2002-and-140-builds.md)) | (no folder) | |
+| 1.391 (1.39 rev 1) | `GNW12080` | L | gs2lib table; the 1.39 server's table names it 1.39 rev 1 [src][bin] (`server-notes/original-server-builds-1999-2007.md`). The two FileVersion 1.3.9.1 executables read on 2026-11-13 send `GNW07080` and `GNW23090` instead ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 1.40, 1.40 rev1 | `GNW23090` | B | immediates in two executables (FileVersion 1.3.9.1 and 1.4.0.1), 2026-11-13; on no public list ([note](graal2002-and-140-builds.md)) | (no folder) | |
 | 1.41 rev1 | `GNW13110` | W | lab capture | ✔ | tested |
 | NewMain 24, 26 | `GNW08011` | W | lab capture; immediates in both exes | ✔ | tested |
@@ -66,6 +69,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 2.04 | `GNW24061` | **W** | immediates; original's login logged by a lab gserver on 2026-11-12 [lab] | ✔ | **token only (understated)** |
 | 2.05, 2.05 rev1 | `GNW03081` | B (token W via rev2) | immediates. The same token was seen on the wire from 2.05 rev2 | ✔ | token only |
 | 2.05 rev2 | `GNW03081` | W | lab captures | ✔ | tested |
+| NewWorld 1.39 | `G2N29070` | L | no client exe; the 1.39 server tree's NewWorld option ("Graal-Newworld version 1.39") [src] (`server-notes/original-server-builds-1999-2007.md`) | (no folder) | |
 | NewWorld beta 1 (pre-update and final), beta 2 | `G2N15041` | W | lab captures; immediates in all three exes | ✔ | tested |
 | 2.1 test 2, test 3 | `GNW03081` | W | still 2.05's token | ✔ | tested |
 
@@ -119,7 +123,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 5.12 Windows | `G3D14097` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 5.12 Mac | `G3D15097` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 5.24r3, 5.24r4, 6.00 beta2 Windows | `G3D15010` | W | `v5v6-windows-unpacked.md` | (no folder) | |
-| 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md` | ✔ (5.31r4) | tested |
+| 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md`. Static check 2026-11-13: the connect routine of the unpacked 5.30r3, 6.00r2 and 6.00r4 images builds `G3D26090` from eight one-character globals; no 6.03-style scrambled string in any of the three. The token date (26 Sep 2010) is three weeks before 5.30r3's compile date and was kept unchanged into 6.00r4 (June 2011) | ✔ (5.31r4) | tested |
 | 6.00 beta1 Windows | `G3D03048` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 6.x beta Linux (x86, x64; June 2011 beta download, probably 6.00r4) | `G3D28090` | B | connect-routine read of both, 2026-11-13. The binaries carry no version string. "6.00r4" is inferred: the Mac (6.004) and Windows (FileVersion 6.0.0.4) betas captured from the same folder on the same day share the file date. The token date is two days after Windows 6.00r4's `G3D26090` | (no folder) | |
 | 6.004 Mac (June 2011 beta) | `G3D27090` | B | connect-routine read of the x86_64 slice, 2026-11-13. One day before the Linux beta's `G3D28090` | (no folder) | |
@@ -137,6 +141,17 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 6.1.1.3 Windows | `GNP1905C` in the one captured connector script | S, W | `protocol/v6113-list-capture.md`; `protocol/v6-login-token-explained.md` | ✔ | tested |
 | 6.11r1 Mac | same connector script, `GNP1905C` when replayed | S | Lion replay (`v6-login-token-explained.md`) | none sent (scaffold) | none |
 | Worlds 548–614, 71243, 7.0.1.7.5.0 | not stored in the client | S (assumed) | `v7x-protocol.md`; the v7 connector login path has not been traced | 614 stand-in sends `GNP1905C`; the others send none | none |
+
+### iPhone (not carried by seihai-core)
+
+These come only from server version tables (gs2lib, and the 2010 gs2emu tables). No iPhone client has been read, so they are **L**, and seihai-core does not carry them. Details and how to close them: [iphone-version-tokens.md](iphone-version-tokens.md).
+
+| Build | Token | Grade | Source | Repro | Repro label |
+|---|---|---|---|---|---|
+| iPhone 1.1 | `G3D04048` | L | gs2lib `CLVER_IPHONE_1_1`; gs2emu 2010 table | (no folder) | |
+| iPhone 1.5 | `G3D18010` | L | gs2lib `CLVER_IPHONE_1_5`; gs2emu 2.3.1 table | (no folder) | |
+| iPhone 1.11 | `G3D29090` | L | gs2lib `CLVER_IPHONE_1_11` | (no folder) | |
+| iPhone Belote 1.5 | `G3D2504D` | L | gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022) | (no folder) | |
 
 ## Gaps and how far each can be closed
 
@@ -158,7 +173,7 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 ## Other observations
 
 - `version-tokens.md` lists the Windows 4.20r8 row twice. Its "lab capture" tags for 5.12 to 6.03r7 Windows agree with `v5v6-windows-unpacked.md`.
-- Mac 4.20r6 sends `G3D27076`, but the public list gives 4.11 as `G3D26076`, one day apart. The wire capture stands; why the Mac build carries a 4.1-era stamp is still open (`protocol/login-tokens-3x-7x.md`).
+- The Mac build labelled "4.20r6" sends `G3D27076`, one day after the public list's Windows 4.11 `G3D26076`. Settled 2026-11-13: that build is dated 2006-09-19 and the Mac 4.10r2 download sends the same token, so it is a 4.10r2/4.11-era build with a wrong archive label. The real Mac 4.20r6 (2006-12-21) sends `G3D21126` (rows above). seihai-gs2lib now calls `G3D27076` `CLVER_4_102_MAC` and gives `G3D21126` `CLVER_4_206_MAC`.
 - The public list's `G3D3007A` (6.0.0.7 / 6.0.1.5 Windows) and the Linux 6.01r1 `G3D0108A` are different builds, not a conflict. As with 4.04r2 and 6.03r7, each platform build has its own stamp.
 
 ## Open points
@@ -168,3 +183,4 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 - [ ] Decode the 1.34–1.38 login frames (they reach their connect window; the dialog still has to be driven).
 - [ ] Read a genuine 2.3 binary, if one turns up, and record its token and PLI 39 words.
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
+- [ ] Read an iPhone client (a period IPA) or capture one device login in the lab, to grade the iPhone rows above ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).

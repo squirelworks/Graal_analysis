@@ -25,7 +25,16 @@ macOS CI is paused until the polish stage.
   - [ ] Table events, flags, variables and functions per 1.x build.
   - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
-  - [ ] Settle E#209 (opcode 54, `waitfor` timeout), E#324 (1.x packet hits, mode 7, the 2.17.1+ victim test) and E#423 (1999 server open points).
+  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`.
+  - [ ] Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).
+  - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
+  - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
+
+- [ ] **Builds with no binary (#439).** Catalogue the client hunt and keep the no-binary profiles honest.
+  - [x] ~~Catalogue the hunt's finds by token, grade and source.~~ [Token catalogue](../client-internals/version-token-catalogue.md) (#440, #446, #448, #450): 2.1.0.x, 1.40, 1.25, 1.27, 3.0, 3.01, 4.03.4, 4.11, 6.0.0.7 and 6.0.1.5 now have executables.
+  - [x] ~~Mark the no-binary profiles as inferred in data, with a CI check.~~ `inferred = true` on 2.1 and 2.12 to 2.16 in [141-217.toml](../client-internals/version-profiles/141-217.toml) (2.3 already had it); [test_inferred.py](../client-internals/version-profiles/test_inferred.py) fails when a list-only (L) token's profile lacks the flag. seihai-core's `Basis::Inferred` rows match.
+  - [ ] Still with no executable: 1.391, 2.12 to 2.16, 2.18 to 2.21, 2.3 and 4.02.11. Record the search for copies of the official downloads, including searches that found nothing.
+  - [ ] Date each 2.1x feature to a token from `newfeatures200x.txt` and the GServer-v2 version branches.
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
   - [x] ~~Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.~~ [v5-props](../protocol/v5-props.md): 5.00r7, 5.12, 5.30r3 and 5.31r4 share 4.x's parsers plus 82; 6.x still parses natively (6.0.3.7 from the packet switch, 6.1.1.3 through `tclient_set*props`).
@@ -243,8 +252,10 @@ macOS CI is paused until the polish stage.
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
   (a horse does not change it). **Still open:** full vs empty login default checks
-  (the set, and whether they share a frame); maps folder in 2.1–2.16 (the client
-  archive still has no build between the 2.1 test builds and 2.22). Tracked in #245.
+  (the set, and whether they share a frame; the full-folder side is done for 2.22 in
+  `live-runs/client-harness-2026-11-13`, the near-empty side is still to run); maps folder
+  in 2.1–2.16 (the client archive still has no build between the 2.1 test builds and 2.22).
+  Tracked in #245.
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
   NPCPROPS (3) and LEVELLINK (1) for 2.00, 2.04, 2.05 rev 2, 2.17.1, 2.22 and 2.31,
@@ -268,7 +279,9 @@ macOS CI is paused until the polish stage.
   `tools/gen_profile_fixture.py` against the edited file. Do not commit the generated
   fixture to `seihai` from here.
 
-- [ ] **13. Deferred: a capture of a real 5.x/6.x `Login` session** (matrix unknown #3).
+- [x] **13. A capture of a real 5.x/6.x `Login` session** (matrix unknown #3). Done 2026-11-13
+  against a community Login server with the Windows 6.03r7: `protocol/login-session-observed.md`.
+  The official server's look (matrix unknown #3) is still open. History of this task:
   On hold. Do not connect. Tracked by GitHub issue #247. The decision stays open.
   `protocol/login-session-known.md` records what a Login server is already known to
   send and which steps are still unobserved. Resume only in this order, the same
@@ -297,46 +310,43 @@ macOS CI is paused until the polish stage.
   0.0.6 coverage, 0.0.7 implementability, 0.0.8 triage of the unknowns, 0.0.9
   release quality, 1.0.0 sign-off (Squirrel's call). Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
-- [ ] **16. Torque study and the 3.04 plan. On hold, no target release** (Squirrel,
-  2026-11-05). The study and plan are merged (#242, stage checklist #250):
+- [ ] **16. Torque study and the 3.04 plan. Live work, top priority** (Squirrel,
+  2026-11-13: there is no Torque hold; the 2026-11-05 "on hold" note was an agent error).
+  The study and plan are merged (#242, stage checklist #250):
   `torque/study-torque-clients.md`, `torque/rebuild-plan-3.04.md`. Follow-ups wait in
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
-  The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
-  parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
+  The rebuild is graal-client-repro's (squirelworks/graal-client-repro#303).
   - [x] v5 export, static read only (2026-11-07): `torque/launcher-5007.md`,
     `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
-    unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`. The rebuild
-    stays on hold.
+    unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`.
   - [x] Component pass of the Linux 3.04 game units (the 2D session, drawing, NPCs and
     script, Graal TCP beside stock Torque, fmod): `torque/304-adventure.md`,
     `torque/304-draw.md`, `torque/304-npcs.md`, `torque/304-net.md`,
-    `torque/304-audio-ui.md`. The rebuild stays on hold.
-  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
+    `torque/304-audio-ui.md`.
+  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`).
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
-    Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
-    on writing the module stands.
+    Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`.
   - [x] Unpacked Windows 6.00r2 and 6.00r4 (static read): no Torque 3D subsystem.
     `GuiGraal3DCtrl` is a GUI type beside `GuiGraalCtrl`. Torque field names and
     `GuiTilesCtrl` are absent from these two images.
     `client-internals/engine-600r2.md`, `client-internals/engine-600r4.md`.
-    The rebuild stays on hold.
+   
   - [x] Read the skipped packed listings (2026-11-07). The two v4 exe
     listings are one Thinstall loader. Packed 5.12 still names its Delphi
     forms. `fmod.dll` is the UPX export list. Packed 6.037 and 6.113 export
     a `QPlay.exe` TLS surface and not Torque.
     `torque/skipped-v4-read.md`, `torque/skipped-v5-read.md`,
-    `client-internals/skipped-v6-read.md`. The hold stands.
+    `client-internals/skipped-v6-read.md`.
   - [x] Unpacked Windows 4.2.0.8, static read (2026-11-07). The launcher
     draws by host slots until a 3D start replaces them. `GraalEngine.dll`
     runs the session and has no `SimObject` console. `GameObject` in
     `Graal3DEngine.dll` is a `SceneObject`. `torque/4208-launcher.md`,
-    `torque/4208-engine.md`, `torque/4208-g3d.md`. The hold stands.
+    `torque/4208-engine.md`, `torque/4208-g3d.md`.
   - [x] GS2 script machine in GraalEngine 4.2.0.8 and GraalEngine 5.0.0.7
-    (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`.
-    The Torque rebuild stays on hold. No Seihai crate was started.
+    (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`. No Seihai crate was started.
   - [x] Cross-version Torque surface (2026-11-07): which modules are
     present, only a name, or absent from 3.04 through unpacked 6.00.
-    `client-internals/torque-surface-by-era.md`. The hold stands.
+    `client-internals/torque-surface-by-era.md`.
   - [x] Read 5.0.0.7 for behaviour (2026-11-07): the launcher session,
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
@@ -345,7 +355,7 @@ macOS CI is paused until the polish stage.
     No `SimObject` console. `GuiTilesCtrl` is registered.
     `GuiGraal3DCtrl` is not a string; `GraalControl3D` is looked up
     beside `GUIContainer`. Five `new t2d` constructors are file text.
-    `client-internals/unpacked-6113.md`. The hold stands.
+    `client-internals/unpacked-6113.md`.
 
 - [x] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. The packed shells stay

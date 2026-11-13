@@ -19,6 +19,7 @@ RemoteControl went through many builds. Each row gives one archive, its date, it
 | rc62101 | 2001/01/27 | `GSERV021` | 15 | same forms | [bin] (tools/remotecontrol-lineage.md#builds) |
 | rc8212001 | 2001/08/20 | `GSERV022` | 18 | rights, comments, local ban; server options leave the start dialog | [bin] (tools/remotecontrol-lineage.md#builds) |
 | rc201 | 2002/01/04 | `GSERV022` | 18 | new main window layout | [bin] (tools/remotecontrol-lineage.md#builds) |
+| (2002 RC) | 2002/01/11 | `GSERV023` | 27 | NPC Control, server list, file browser and short message already present | [bin] (server-notes/original-server-builds-1999-2007.md#npc-control-and-remotecontrol-20012002-bin) |
 | rc141 | 2002/05/02 | `GSERV023` | 26 | NPC Control, server list, file browser, short message popup | [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/npc-control.md#program-shape-bin) |
 | RemoteControl in the Graal Reborn folder (2004) | n/a | `GSERV024` | 25 | RC and NC in one program, file browser, server list | [bin] (tools/remotecontrol.md) |
 
