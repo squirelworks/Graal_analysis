@@ -34,7 +34,7 @@ The first line from the client:
 c(0)  "GR3DV002"  str(account)  str(password)
 ```
 
-The server reads the version at bytes 2 to 9. `GR3DV001` gets packet 5 "You need at least Graal3D beta2…". If an account is missing, in use or disabled, the server sends 5 with the matching text. A line with id 1 and the same layout is an admin login. It needs an account with admin level ≥ 1, puts the session on the admin list, and gets the account list (50) and player list (55).
+A later beta sends `GR3DV003` with the same layout; see [beta3-genesis.md](beta3-genesis.md). The server reads the version at bytes 2 to 9. `GR3DV001` gets packet 5 "You need at least Graal3D beta2…". If an account is missing, in use or disabled, the server sends 5 with the matching text. A line with id 1 and the same layout is an admin login. It needs an account with admin level ≥ 1, puts the session on the admin list, and gets the account list (50) and player list (55).
 
 On TCP accept, before login, the server sends `6` with `c(0)` (the bytes `& ` after inflating, frame length 11). **[cap]**
 

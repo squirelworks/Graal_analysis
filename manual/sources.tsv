@@ -272,6 +272,7 @@ formats/sign-text.md	cited	3.6	3.6
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
+graal3d/beta3-genesis.md	pending		9	later Graal3D beta (GR3DV003): Genesis3D renderer, same protocol; to be folded into the Graal3D section
 graal3d/camera.md	cited	9; E	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	

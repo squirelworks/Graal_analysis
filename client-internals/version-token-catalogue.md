@@ -26,7 +26,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | Zelda Online 1 / 2 (Java) | none | — | `Z3-V1.02` / `Z3-V1.03` are level-format magics, not login tokens. ZO2 talks text lines to its GServ lobby | ✔ none | (n/a) |
 | 1st beta to 15th (b1–b15), 1.1.9, 1.1 | none | — | Peer relay protocol: no token and no compression (`protocol/relay-1998.md`). Re-read today: no literal and no immediates. The 1.1.9 bundled Gserver takes no token either | ✔ none | none |
 | Graal3D (Feb 2000) | `GR3DV002` | W | Separate program with its own server on its own port. String literal in the exe | ✔ | tested |
-| Graal3D, later beta ("New Graal 3D Beta Version") | `GR3DV003` | B | string literal, 2026-11-13. A bigger exe (630,272 bytes, against 605,184) that adds DirectInput and force feedback, camera distance settings and a deathmatch start ([note](graal2002-and-140-builds.md#other-builds-in-the-same-batch)) | (no folder) | |
+| Graal3D, later beta ("New Graal 3D Beta Version") | `GR3DV003` | B | string literal, 2026-11-13. A bigger exe (630,272 bytes, against 605,184) that switches the renderer from Direct3D RM to Genesis3D (needs `genesis.dll`) and loads a local BSP world; login layout, packet ids and props are unchanged ([note](../graal3d/beta3-genesis.md)) | (no folder) | |
 | Graal GBC 1.10, Java Graal (2000), 39ster 1.00 | none | — | Offline only, or no Graal-protocol login | ✔ none | none |
 
 ### GSERV era (1.21–1.32): protocol-revision tokens, not dates
