@@ -4,7 +4,7 @@ Date: 2026-11-13. Evidence ID `BATCH1-THINSTALL-20261113` ([evidence index](../d
 
 ## The packages
 
-The Windows 4.03r3 and 4.11 downloads are single `Graal4Setup.exe` files (copies of the official downloads, the same bytes as the 2006-01-12 and 2006-11-03 copies of the auto-updater). The 4.04r2 installer already in the archive is the same kind of file. All three are **Thinstall 2.x** packages: a small stub, then one archive that holds the Thinstall runtime and a virtual file system with the whole client. [bin]
+The Windows 4.03r3 and 4.11 downloads are single `Graal4Setup.exe` files (copies of the official downloads). The 4.04r2 installer we already hold is the same kind of file. All three are **Thinstall 2.x** packages: a small stub, then one archive that holds the Thinstall runtime and a virtual file system with the whole client. [bin]
 
 Until now the only way into them was to start the package under Wine and copy the engine out of memory. They can now be unpacked without running anything, with [tools/thinstall-unpack](../tools/thinstall-unpack/):
 
@@ -26,7 +26,7 @@ The unpacked files are exact: [bin]
 
 All three ship the same `license.graal`, `sig.license`, `fmod.dll` 3.7 and `ExeReplacer_temp.exe`. 4.11 adds `freetype6.dll` 2.1.10, `zlib1.dll` 1.2.3 and a TrueType font, `tempsitc.ttf`. Its install list (`graalv4_installfiles.txt`) also adds three GUI images and the tutorial gani `tutorial_touch.gani`. [file]
 
-None of the other Windows installers in the archive (5.x, 6.x, the 2.x setups) starts with this packer's archive header. Graal 2.31 was also shipped as a Thinstall package, but the archive already holds it unpacked.
+None of the other Windows installers we hold (5.x, 6.x, the 2.x setups) starts with this packer's archive header. Graal 2.31 was also shipped as a Thinstall package, but we already hold it unpacked.
 
 ## Server messages the client handles
 
@@ -76,11 +76,11 @@ The public Windows 2.1.0.0 (FileVersion 2.1.0.0, built 2001-11-13, token `GNW311
 
 ## Cross-check against Batch-1
 
-Batch-1 is the owner's set of client builds found on 2026-11-13: web finds plus archive items not yet researched. All 3,605 of its file checksums verify on the analysis machine. [file]
+Batch-1 is the owner's set of client builds found on 2026-11-13: web finds plus held items not yet researched. All 3,605 of its file checksums verify on the analysis machine. [file]
 
 - Its `4.03r3-win` and `4.11-win` installers are byte-identical to the copies read above. So is the `Graal.exe` in its `2.1.0.0-win` install, built from the five auto-updater packs. [file]
 - Its 4.03r3 and 4.11 uploads hold only an engine memory image, taken under Wine, not the unpacked tree. In both builds the image's code section is byte-identical to the code section of the statically unpacked `GraalEngine.dll`. The image's read-only data differs only in the import table the loader fills, and its data section holds start-up state. [bin]
-- Its "5.12 untouched" `GraalEngine.dll` (from an archive labelled `potentially_cracked_5120`) is **not a 5.12 engine**. It sends 5.00r7's token `G3D22067`, and it differs from the 5.00r7 engine in exactly two bytes. Both turn a conditional jump into an unconditional one in the update-package code: [bin][inf]
+- Its "5.12 untouched" `GraalEngine.dll` (labelled `potentially_cracked_5120`) is **not a 5.12 engine**. It sends 5.00r7's token `G3D22067`, and it differs from the 5.00r7 engine in exactly two bytes. Both turn a conditional jump into an unconditional one in the update-package code: [bin][inf]
   - The first skips the self-restart through `ExeReplacer` that 4.x and 5.x run after `onPackagesDownloadComplete` when the client's own executable came in a package.
   - The second skips the step that follows, next to the `updatepackages` / `.gupd` handling.
   
