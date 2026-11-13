@@ -661,3 +661,4 @@ client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
 client-internals/unpacked-images-coverage.md	excluded			index from each owner-held unpacked client image to the note that covers it; no findings of its own
 client-internals/v7-gameassembly-il2cpp.md	pending		E	v7 managed side (IL2CPP): binding layer, per-build C# callback table, launch inputs, build diff; to be folded beside the v7 bridge entry
+protocol/client-string-fingerprints-3x-6x.md	pending		1; 2.3	string fingerprints of the 3.x to 6.x client binaries from our own scans; to be folded into the build list (§1.8) and the login section
