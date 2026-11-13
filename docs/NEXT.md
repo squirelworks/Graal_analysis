@@ -272,7 +272,9 @@ macOS CI is paused until the polish stage.
   `tools/gen_profile_fixture.py` against the edited file. Do not commit the generated
   fixture to `seihai` from here.
 
-- [ ] **13. Deferred: a capture of a real 5.x/6.x `Login` session** (matrix unknown #3).
+- [x] **13. A capture of a real 5.x/6.x `Login` session** (matrix unknown #3). Done 2026-11-13
+  against a community Login server with the Windows 6.03r7: `protocol/login-session-observed.md`.
+  The official server's look (matrix unknown #3) is still open. History of this task:
   On hold. Do not connect. Tracked by GitHub issue #247. The decision stays open.
   `protocol/login-session-known.md` records what a Login server is already known to
   send and which steps are still unobserved. Resume only in this order, the same
