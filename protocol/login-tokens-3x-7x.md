@@ -28,6 +28,7 @@ The token can be read from the binary without running the client. This section r
 | 3.04 Linux, 3.153 Mac | Eight appends of one-character C strings (`"G"`, `"3"`, `"D"`, …) to an empty `JString` |
 | 4.04r2 and 4.20r8 Windows (`GraalEngine.dll`), 4.20r6 Mac | Eight `JString::operator<<` calls, each with a one-character global string. The linker can merge equal strings, so one global may be appended twice (4.20r8 has two `"2"`s) |
 | 5.00r7, 5.12 Windows (`Graal3DEngine.dll`) | Eight one-character globals |
+| 5.30r3, 6.00r2, 6.00r4 Windows (unpacked single exe) | Eight one-character globals in the connect routine (`G3D26090` in all three); no scrambled string **[bin]** |
 | 6.01r1 Linux | `"G"` plus seven one-character strings |
 | 6.03r7 Linux and Windows | One scrambled eight-byte lower-case string, decoded and upper-cased (below) |
 | 6.11 and later | No stored token; see "6.11 and 7.x" |
@@ -38,7 +39,7 @@ The token can be read from the binary without running the client. This section r
 
 - `conntok.py` reads Linux ELF clients from 3.x to 6.01, 32-bit and 64-bit, non-PIE. It finds the code references to "Connecting to the game server", then lists in order the one-character strings that the next 3000 bytes point at. It follows absolute 32-bit operands and, on x64, RIP-relative `lea`. The first eight characters are the token. UPX-packed 3.x files need `upx -d` first.
 - `machotok.py` reads Mac OS X clients (Mach-O, thin or universal) with the same connect-routine method. On PowerPC it tracks `lis`/`addis`/`addi`/`ori`, the `bcl`+`mflr` base and loads through globals to resolve each one-character string. On x86_64 it follows RIP-relative `lea`. It falls back to the 6.03 decoder.
-- `g3dref.py` reads the Windows engine DLLs, `GraalEngine.dll` in 4.x and `Graal3DEngine.dll` in 5.x, and also reads 32-bit ELF files. It maps every one-character string in the data sections, collects the code operands that point at them, groups those operands into runs, and matches `G3D` + `DDMMY`. Run it on the engine DLL. The Delphi launcher (`Graal.exe` / `Graal4.exe` in 4.20r8 to 5.12) holds no token.
+- `g3dref.py` reads the Windows engine DLLs, `GraalEngine.dll` in 4.x and `Graal3DEngine.dll` in 5.x, and also reads 32-bit ELF files. It maps every one-character string in the data sections, collects the code operands that point at them, groups those operands into runs, and matches `G3D` + `DDMMY`. Run it on the engine DLL; for the unpacked single-exe 5.30r3 to 6.00r4 Windows images add `--all-sections`. The Delphi launcher (`Graal.exe` / `Graal4.exe` in 4.20r8 to 5.12) holds no token.
 - For the 2.x Delphi clients, the character-immediate scan in [graal2002-and-140-builds.md](../client-internals/graal2002-and-140-builds.md) applies.
 - Packed Windows 4.x clients: the 4.03r3 and 4.11 `Graal4Setup.exe` downloads are the whole client behind a custom packer. Under Wine they unpack the engine into memory and then stop on a DirectDraw error before connecting. A memory image taken at that point reads with the same connect-routine method.
 
