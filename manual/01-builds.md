@@ -135,10 +135,12 @@ Builds after 2001 are known from their tokens, lab runs and static reads; there 
 | Linux 3.04 (Torque rewrite, 2.22 protocol) | G3D03014 | [bin][cap] (client-internals/version-tokens.md) |
 | Mac OS X 3.153 (2.31 protocol) | G3D28015 | [bin][cap] (client-internals/version-tokens.md) |
 | Windows 4.04r2 (`GraalEngine.dll`, March 2006) | G3D17026 | [bin][cap] (client-internals/version-tokens.md) |
+| Mac OS X 4.04r2 | G3D18026 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
 | Mac OS X 4.20r6 | G3D27076 | [bin][cap] (client-internals/version-tokens.md) |
 | Windows 4.20r8 (`GraalEngine.dll`) | G3D20126 | [bin][cap] (client-internals/version-tokens.md) |
 | Windows 5.00r7 (engine DLL, Jul 2007) | G3D22067 | [bin][cap] (client-internals/version-tokens.md) |
 | Windows 5.12 | G3D14097 | [bin][cap] (client-internals/version-tokens.md) |
+| Mac OS X 5.12 | G3D15097 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
 | Windows 6.00 beta1 | G3D03048 | [bin][cap] (client-internals/version-tokens.md) |
 | Windows 6.00 beta2, 5.24r3, 5.24r4 | G3D15010 | [bin][cap] (client-internals/version-tokens.md) |
 | Windows 5.30r3, 5.31r4, 6.00r2, 6.00r4 | G3D26090 | [bin][cap] (client-internals/version-tokens.md) |
@@ -175,8 +177,9 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | Token | Build | Source |
 | --- | --- | --- |
 | `GSERV007` | 1.21 | [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md) |
-| `GSERV009` | 1.25 | [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10) |
-| `GSERV011` | 1.27; RemoteControl 1.28 and 1.3 | [srv] (client-internals/version-id-map.md); [bin] (client-internals/build-catalogue.md) |
+| `GSERV009` | 1.25 | [bin] (client-internals/gserv-125-127-builds.md); [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10) |
+| `GSERV010` | RemoteControl shipped with 1.25 | [bin] (client-internals/gserv-125-127-builds.md) |
+| `GSERV011` | 1.27 and its RemoteControl (shipped again as RC 1.28); RemoteControl 1.3 | [bin] (client-internals/gserv-125-127-builds.md); [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md) |
 | `GSERV013` | 1.28 beta 2 | [bin] (client-internals/build-catalogue.md) |
 | `GSERV014` | 1.3 test (1.30) | [bin] (client-internals/build-catalogue.md) |
 | `GSERV016` | 1.31 | [bin] (client-internals/build-catalogue.md) |
@@ -222,10 +225,12 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | `G3D28015` | Mac OS X 3.153 | [bin] (client-internals/version-id-map.md) |
 | `G3D30123` | 3.x listserver login | [bin] (client-internals/version-id-map.md) |
 | `G3D17026` | Windows 4.04r2 | [bin] (client-internals/version-id-map.md) |
+| `G3D18026` | Mac OS X 4.04r2 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
 | `G3D27076` | Mac OS X 4.20r6 | [bin] (client-internals/version-id-map.md) |
 | `G3D20126` | Windows 4.20r8 | [bin] (client-internals/version-id-map.md) |
 | `G3D22067` | Windows 5.00r7 | [bin] (client-internals/version-tokens.md) |
 | `G3D14097` | Windows 5.12 | [cap] (client-internals/version-tokens.md) |
+| `G3D15097` | Mac OS X 5.12 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
 | `G3D03048` | Windows 6.00 beta1 | [cap] (client-internals/version-tokens.md) |
 | `G3D15010` | Windows 6.00 beta2, 5.24r3, 5.24r4 | [cap] (client-internals/version-tokens.md) |
 | `G3D26090` | Windows 5.30r3, 5.31r4, 6.00r2, 6.00r4 | [cap] (client-internals/version-tokens.md) |
@@ -283,10 +288,10 @@ Each client reads a fixed set of level and map file magics and writes one save-f
 | 14th, 15th Graal | GR-V1.00 to GR-V1.03 | Graalsav7 | [bin] (client-internals/build-catalogue.md#catalogue) |
 | 1.1.9, 1.1 | GR-V1.00 to GR-V1.03 | Graalsav7/8 | [bin] (client-internals/build-catalogue.md#catalogue) |
 | 1.21 to 1.39 | GR-V1.00 to GR-V1.03 | reads Graalsav9, Graalsv10, Graalsv11; writes Graalsv11 | [bin] (client-internals/build-catalogue.md#catalogue) |
-| 1.41 rev1, NewMain 1.42 | GR-V1.00 to GR-V1.03, GLEVNW01 | as 1.21 (1.41 rev1); unmeasured (NewMain) | [bin] (client-internals/build-catalogue.md#catalogue) |
-| 2.00 to 2.04 | GR-V1.00 to GR-V1.03 (no GLEVNW01, no GRMAP001) | unmeasured | [bin] (client-internals/build-catalogue.md#catalogue) |
+| 1.41 rev1, NewMain 1.42 | GR-V1.00 to GR-V1.03, GLEVNW01 | as 1.21 (1.41 rev1); none (NewMain 24 and 26: no save magic and no load-game menu) | [bin] (client-internals/build-catalogue.md#catalogue) ; [bin] (version-profiles/save-games-142-2171.md#result) |
+| 2.00 to 2.04 | GR-V1.00 to GR-V1.03 (no GLEVNW01, no GRMAP001) | none: no save magic in any revision | [bin] (client-internals/build-catalogue.md#catalogue) ; [bin] (version-profiles/save-games-142-2171.md#result) |
 | GraalX | GR-V1.00 to GR-V1.03, GLEVNW01 | unmeasured | [bin] (client-internals/build-catalogue.md#catalogue) |
-| 2.05 and later 2001 builds | GR-V1.00 to GR-V1.03, GLEVNW01, GRMAP001 | unmeasured | [bin] (client-internals/build-catalogue.md#catalogue) |
+| 2.05 and later 2001 builds | GR-V1.00 to GR-V1.03, GLEVNW01, GRMAP001 | none (2.05 rev0–rev2, 2.1 tests, NewWorld betas, 2.17.1) | [bin] (client-internals/build-catalogue.md#catalogue) ; [bin] (version-profiles/save-games-142-2171.md#result) |
 
 GR-V1.03 is the last `.graal` revision any catalogued build reads [bin] (client-internals/build-catalogue.md#catalogue). `.nw` support is not monotonic: 1.41 rev1 and NewMain 1.42 read GLEVNW01, 2.00 to 2.04 contain neither GLEVNW01 nor GRMAP001, and both return in 2.05 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). That 2.0 branched from a pre-NewMain tree is an inference from strings [inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The 2.05 string table holds exactly Z3-V1.03, Z3-V1.04, GR-V1.00 to GR-V1.03 and GLEVNW01 as level magics [2.05] (formats/level-binary.md). The save writer was traced only in 1.21 and 1.32; for 1.33 to 1.41 rev1 the save magics are inferred from the same string arrangement [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The formats themselves are in → §3.1, → §3.2 and → §3.7.
 
@@ -570,6 +575,16 @@ The one Mac 4.x client was run in an emulator. The rule records what its login a
 | Rule | Source |
 | --- | --- |
 | Mac 4.20r6 in qemu: the login line is `mac,"",<md5>,""` (the MAC hash came out empty under qemu); it sends 34 and 46, which the static list missed; no flag 18 for the lab's movement weapon; chat is white with a blue shadow; Apple's software renderer needed a shim dropping two AGL attributes | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#420r6) |
+
+#### Mac 4.04r2 and 5.12 in the lab
+
+Both Mac PowerPC builds ran unchanged on Mac OS X 10.4 in an emulated machine, logged in, warped and walked [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md).
+
+| Rule | Source |
+| --- | --- |
+| tokens `G3D18026` (4.04r2) and `G3D15097` (5.12); the login comma list is `mac` plus two machine hashes, and 5.12 adds the quoted Darwin kernel string as a fifth field; own props `OSTYPE` `mac` and `TEXTCODEPAGE` 0 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
+| both use the round-down gen-5 cipher step; only the Windows 5.12 compresses every frame | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#framing) |
+| GS1 weapon text needs `\xa7` line breaks; the Mac 4.20r6 needs `PLO_PING`; no helper process starts (the AGL pixel-format path fails without hardware GL) | [cap][lab] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#what-the-server-needed) |
 
 #### Mac PowerPC start-up and input
 

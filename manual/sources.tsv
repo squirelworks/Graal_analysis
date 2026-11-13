@@ -153,6 +153,7 @@ client-internals/early-clients.md	excluded		4	early extract (2026-10-14) superse
 client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the split and which Torque names remain; the per-control table, draw-pass names and file magics stay in the note
 client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
+client-internals/launchers-420r8-500r7-512.md	pending		1; 2.3	4.20r8, 5.00r7 and "5.12 untouched" launcher copies and the Packet Logger engine diff; to be folded into the build list
 client-internals/graal2002-and-140-builds.md	pending		1; 2.3; 2.4; 2.5	Graal 2002 (2.1.0.x) and 1.40 builds: tokens, GS1 dating and receive-dispatch rows; to be folded into the build list, login and message sections
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
@@ -290,6 +291,7 @@ npc-library/behaviours.md	cited	8.1	8
 npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
 npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
+npc-library/gs1-event-counts.md	cited	8.1	8.1	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8; 8.1; 8.2; 8.4; E	8	
 npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
@@ -544,6 +546,8 @@ version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix 
 version-profiles/matrix/rules-132.md	pending	4.2; 4.3; 4.4	C; 4	1.32 rules (static read 2026-11-12); fold into §4.2 to §4.4 next to 1.39 and 1st Graal
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
+version-profiles/pli-send-sites-141-217.md	cited	2.4; E	2.4	
+version-profiles/save-games-142-2171.md	cited	1	1	
 version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-layouts-217-231.tsv	cited	2.5; 2.7	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-levellink-layouts.tsv	cited	2.5	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
@@ -640,3 +644,13 @@ client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT p
 protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
+client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	
+client-internals/gs1-on-5x-hud-and-flags.md	cited	4.6; 8.3; C	4.6; 8.3; C	
+client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E	
+client-internals/update-cadence-3x-6x.md	cited	4; 4.1; C; E	4.1; C; E	
+npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C	
+npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
+server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
+version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	
+client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
+tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal

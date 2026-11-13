@@ -128,8 +128,9 @@ Two reads of the NewWorld betas disagree on whether they send ids 8 and 20 [bin]
 | --- | --- | --- |
 | Claim A | the betas send the 2.1 test set without 7, 8, 11, 15, 16, 17 and 20 | [bin] (client-internals/version-profiles/141-217.toml) |
 | Claim B | the betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
-| Open | the two reads disagree on 8 (`HORSEDEL`) and 20 (`OPENCHEST`); Claim B's count of 34 is 39 less five | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
+| Open | ~~the two reads disagree on 8 (`HORSEDEL`) and 20 (`OPENCHEST`); Claim B's count of 34 is 39 less five~~ settled below | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
 | Settles it | a re-read of the beta send sites for constants 8 and 20 | [inf] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+| Settled | Claim A: a re-read of every send site in both betas finds no send of 8 or 20 (nor of 7, 11, 15, 16, 17), and no send that passes the id in a register; the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
 
 ### E#12 Whether the token digits are a build date
 
@@ -303,6 +304,18 @@ Two notes disagree on whether the OpenGS1 opcode set describes official bytecode
 | Open | whether 3.153's bytecode matches OpenGS1, or only OpenGS1 itself | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Settles it | comparing a captured official bytecode message (→ App. E#207) with the OpenGS1 layout | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
+### E#209 GS2 VM: what the per-build reading left open
+
+The six-VM reading of 3.153 to 6.03r7 leaves these items open [bin] (client-internals/gs2-vm-by-version.md#not-known).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Opcode 54 | a three-operand member store from 5.00r7; what it stores is unknown | [bin] (client-internals/gs2-vm-by-version.md#opcodes-the-open-compilers-do-not-name) |
+| Opcodes 48, 49 | operand order unread | [bin] (client-internals/gs2-vm-by-version.md#not-known) |
+| `waitfor` timeout | the value given when the timeout runs out; 0 is assumed | [inf] (client-internals/gs2-vm-by-version.md#named-opcodes-with-version-notes) |
+| 6.x loop limit | the scrambled property name | [bin] (client-internals/gs2-vm-by-version.md#limits) |
+| Unread builds | 4.04r2, 5.12 to 5.31r4, 6.00r2, 6.00r4 and 7.x borrow or lack a VM reading | [inf] (client-internals/gs2-vm-by-version.md#what-was-read) |
+
 ### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
 
 These three early builds were first said to have no frame timer. An exact read found one in each, and their real tick timing is still unmeasured [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration).
@@ -315,16 +328,18 @@ These three early builds were first said to have no frame timer. An exact read f
 | Open | elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | Settles it | runtime observation of those exact builds, preserving the distinction between declared interval and elapsed time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 
-### E#301 Frame loop of the 3.x and 4.x clients
+### E#301 Frame loop of the 3.x and 4.x clients (settled)
 
-No one has timed the frame loop of the 3.x and 4.x clients. The rows give what static reads found so far [wire] (protocol/v5v6-lab-play.md).
+The frame loop of the 3.x and 4.x clients was untimed. A 2026-11 lab settled it: every 3.04, 4.04r2, 4.20r6 and 6.03r7 client steps every 50 ms [lab] (client-internals/update-cadence-3x-6x.md).
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | Settles it | a timed walk of a 3.x and a 4.x client on the lab server | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
 | Windows 4.04r2 clocks | three time notions are traced statically (elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, legacy `timeout` pass counts); no update rate is measured | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
-| Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D. The broader question remains partial (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
+| Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
+| Settled | 50 ms steps, one render per step, 8 px per walk step; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
+| Still open | 6.03r7's script timer; the `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; walk GANI timing at run time | [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
 
@@ -535,6 +550,18 @@ Several 2.22 level-object routines were not read. The row lists them [bin] (clie
 | Open | the throw of a lifted object, what a cut or lift drops, the carrying pose, the chest and sign probe points, the glove property value the server sends, snapping after a step, and the swim and carry speed factors were not read | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Settles it | reading those routines in the 2.22 client, or a lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 
+### E#324 Combat rules the 1.21 to 2.31 pass left open
+
+The static pass over 35 builds left these gates unidentified [bin] (client-internals/combat-baddy-tile-by-version.md#not-known).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| 1.x packet hits | no handler for hit packet 40 found in any 1.x build | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
+| Player mode 7 | passed over by the 1.34 to 1.41 sword judge; unidentified | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
+| Extra victim test | 2.17.1, 2.22 and 2.31; unidentified | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
+| Respawn AP bands | not found before 2.x | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
+| Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21, the sword spark | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
+
 ### E#400 Two projects called Ash
 
 Two different things are called Ash in the notes. The manual keeps them apart until their archives are compared [src] (server-notes/01-lineage.md#what-is-binary--world-only).
@@ -631,6 +658,17 @@ The 2004 RC and a server fork quote folder rights differently [cap] (protocol/rc
 | Claim B | a GServer-v2 fork returned the line unquoted, and the RC showed it as two lines | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | Open | whether the original server stored and returned the CSV form, which would make the fork's reply a fork bug | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | Settles it | a capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
+
+### E#423 The 1999 servers: what the static read left open
+
+The read of GServer 1.28 beta 2 and 1.3 leaves these open [bin] (server-notes/gserver-1999-rules.md#not-known).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| PM reply | which older builds get the "cannot answer" reply | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
+| Other levels | how the nickname and head of players in other levels are sent | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| Prop limits | server-side limits beyond the counted props | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| Real-client check | the 1.3 test client against a server running these rules | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 
 ### E#500 Back clipping plane of the Graal3D client (settled)
 

@@ -47,6 +47,8 @@ Sorted by compile date. "Archive" is the archive file name without `.7z`.
 | graal1.1.9 | V1.1.9 Gold Edition | 1999-02-11 23:50 | – | 0a6eef88acb4c0fce6e84eee3e76c04a | 882176 | none | 1 | as above | GR-V1.00–1.03; Graalsav7/8 | Ships `Gserver.exe` (1999-01-22, port 14802, no token); home moves to <graalonline-site> |
 | graal1.1 | V1.1 (readme) | 1999-02-14 23:03 | – | 1a9580655cce686c602c01daa251c453 | 882176 | none | 1 | as above | GR-V1.00–1.03; Graalsav7/8 | Same size as 1.1.9 but linked 3 days later |
 | graal121 | V1.2.1 | 1999-05-10 18:29 | – | 8da2e8284dd8b315a28e2d4fccae79ac | 973824 | `GSERV007` | 2 | <list-host-classic>:14804 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | InstallShield 3 package (the exe is inside `_SETUP.1`); "packet compression" (zlib 1.0.4); NPC weapons; GServer and RC on the same token |
+| graal125 (installer) | V1.2.5 | 1999-08-07 (disk set) | – | owner-held | 999936 | `GSERV009` | 2 | <list-host-classic>:14804 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | InstallShield 3 package, unpacked with `tools/is3-extract`; `showcharacter` NPCs, guild suffixes; ships GServer (list 007–010) and RC (`GSERV010`). See [gserv-125-127-builds.md](gserv-125-127-builds.md) |
+| graal127 (installer) | V1.2.7 | 1999-10-23 | – | owner-held | 1065472 | `GSERV011` | 2 | <list-host-classic>:14804 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | InstallShield 3 package; English/German language files; `nodecompressionerror`; same GS1 table as 1.28 beta 2; ships GServer (list 007–011) and the RC later shipped as "RC 1.28" (`GSERV011`). See [gserv-125-127-builds.md](gserv-125-127-builds.md) |
 | graal128b2 | v1.28 beta2 | 1999-11-23 01:09 | – | 8e3c1a7233864da994a0db26f1811212 | 1196544 | `GSERV013` | 2 | <list-host-classic>:14804 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | "Direct data packages" (positions sent straight to room players); ships GServer (accepts GSERV007–013) and RC 1.28 (GSERV011) |
 | graal13b | v1.3 test | 1999-11-29 02:03 | – | b62aaa4d606a519e7f4689b33983429b | 1311744 | `GSERV014` | 2 | <list-host-classic>:14804 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | Alignment system; levels cached on disk (web-level cache seed first appears); ships GServer13 (accepts 007–014) |
 | graal131 | V1.31 | 1999-12-07 02:56 | – | bff87a95a34399b2d35b243f281169a7 | 1318400 | `GSERV016` | 2 | <list-host-classic>:14900 | GR-V1.00–1.03; reads Graalsav9/Graalsv10/Graalsv11, writes Graalsv11 | Default port moves to 14900; UDP options (`noudp`, fixed port 14899) |
@@ -130,7 +132,7 @@ That conclusion is an inference from strings only. A live check (loading a `.nw`
 Two compilers are in use, and the class metadata tells them apart. In the older layout the VMT self pointer sits 64 bytes before the VMT and the class name 32 bytes before it, which is the Delphi 2 layout. In the newer layout those offsets are 76 and 44, which is the layout from Delphi 3 on.
 Only 2nd Graal and 1.28 beta 2 onwards use the newer layout. They also link `TMultiReadExclusiveWriteSynchronizer`, which arrived in SysUtils with Delphi 4, so they are Delphi 4 builds.
 1st Graal, 3rd Graal to 1.1.9, and 1.21 use the older layout and lack that class. Their exact compiler is unresolved: the layout says Delphi 2, but the RTL string "1983,97" is a year late for Delphi 2. A Delphi-2-level compiler shipped in 1997, such as C++Builder 1's, would fit both, but that hasn't been checked.
-Either way the switch to Delphi 4 happened between 1.21 (May 1999) and 1.28 beta 2 (Nov 1999), and 2nd Graal is an outlier built with the newer compiler.
+Either way the switch to Delphi 4 happened between 1.27 (Oct 1999; 1.25 and 1.27 still use the older layout, see [gserv-125-127-builds.md](gserv-125-127-builds.md)) and 1.28 beta 2 (Nov 1999), and 2nd Graal is an outlier built with the newer compiler.
 (An earlier version of this note said every build from 2nd Graal on has the class. A per-build check shows otherwise.)
 
 **Archive naming vs build order.** The "Nth graal" archive names are not strictly chronological. 4thgraalalpha and 5thgraalalpha were linked after their non-alpha namesakes, and 9thgraalalpha before 9thgraal.
@@ -143,8 +145,12 @@ Either way the switch to Delphi 4 happened between 1.21 (May 1999) and 1.28 beta
 | graal1.1.9 | Gserver.exe | 1999-01-22 | 7882dba6ebb2ab1026de260c3043fa47 | none | 14802 |
 | graal121 | GServer.exe | 1999-05-09 | bfcdaae0217d953124a9b21ff7858967 | GSERV007 | 14804 |
 | graal121 | remotecontrol.exe | 1999-05-10 | 5932d6baa08289a65515342dfc4b9f5a | GSERV007 | 14804 |
+| graal125 (installer) | GServer.exe | 1999-08 (package) | owner-held | accepts GSERV007–010 | 14804 |
+| graal125 (installer) | remotecontrol.exe | 1999-08 (package) | owner-held | GSERV010 | 14804 |
+| graal127 (installer) | GServer.exe | 1999-10-20 | owner-held | accepts GSERV007–011 | 14804 |
+| graal127 (installer) | remotecontrol.exe | 1999-10-20 | same file as graal128b2's RemoteControl1.28.exe | GSERV011 | 14804 |
 | graal128b2 | GServerv.exe | 1999-11-22 | 8d6bff85bda6e6c9558503afa6b7259d | accepts GSERV007–013 | 14804 |
-| graal128b2 | RemoteControl1.28.exe | 1999-10-20 | d7150d1385ea11b812d10d30212f9757 | GSERV011 | 14804 |
+| graal128b2 | RemoteControl1.28.exe | 1999-10-20 | d7150d1385ea11b812d10d30212f9757 | GSERV011 (the 1.27 RC, byte-identical) | 14804 |
 | graal13b | GServer13.exe | 1999-11-29 | d1d0470e53a60b8f000b9ea5da9d37b6 | accepts GSERV007–014 | 14804 |
 | graal13b | RemoteControl13.exe | 1999-11-29 | 1f2c19ab385c8b8af6236197f98ad735 | GSERV011 | 14804 |
 | graal3d | GServer.exe | 2000-02-05 | aab1a34a1f196d4f4fddf12112ccbf52 | none | 14901 |

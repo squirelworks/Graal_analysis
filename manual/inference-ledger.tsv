@@ -43,7 +43,6 @@ manual/06-listserver.md	What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasur
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
-manual/08-scripting/01-gs1-language.md	`main`	npc-library/gs1-reference-205.md#built-in-flags-and-events-205	unmeasured; sits in the same string cluster, probably a weapon's main event or entry
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	

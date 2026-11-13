@@ -2,7 +2,7 @@
 
 Date: 2026-10-21
 
-This covers the clients from 1.21 to 1.32 and the GServer and RemoteControl builds shipped with 1.21, 1.28 beta 2 and 1.3 test.
+This covers the clients from 1.21 to 1.32 (1.25 and 1.27 from [`client-internals/gserv-125-127-builds.md`](../client-internals/gserv-125-127-builds.md)) and the GServer and RemoteControl builds shipped with 1.21, 1.28 beta 2 and 1.3 test.
 It is the first central-server protocol: accounts, a login token, and zlib on every frame.
 In the GServer-v2 numbering this is encryption generation 2, the same one 1.33 to 1.39 use with GNW tokens.
 The notes come from static analysis of the shipped executables. No decompiler output is reproduced.
@@ -33,7 +33,7 @@ There is no size threshold. Every flush is compressed.
 
 Receiving: frames are read the same way, inflated, and split on `\n`.
 Server id 100 (`chr(132)`) puts the reader into a raw mode that takes a given byte count instead of a line, for file data.
-`nodecompressionerror=` in `graalconfig.txt` (from 1.28 beta 2) hides the inflate error message.
+`nodecompressionerror=` in `graalconfig.txt` (from 1.27) hides the inflate error message.
 
 ## Login
 
@@ -52,7 +52,10 @@ This is the same shape the later gen-3 login uses, minus the key byte and with G
 | Client | Token |
 |---|---|
 | 1.21, RemoteControl 1.21 | `GSERV007` |
-| RemoteControl 1.28, RemoteControl 1.3 | `GSERV011` |
+| 1.25 | `GSERV009` |
+| RemoteControl shipped with 1.25 | `GSERV010` |
+| 1.27 | `GSERV011` |
+| RemoteControl 1.27 (shipped again as RC 1.28), RemoteControl 1.3 | `GSERV011` |
 | 1.28 beta 2 | `GSERV013` |
 | 1.3 test | `GSERV014` |
 | 1.31 | `GSERV016` |
@@ -68,6 +71,8 @@ Then it checks the minimum for the connection type.
 | GServer | Accepts | Player minimum and refusal text |
 |---|---|---|
 | 1.21 (May 1999) | `GSERV007` | "You need Graal version 1.2 rev1 to play on this server." |
+| 1.25 (Aug 1999) | `GSERV007` to `GSERV010` | same text as 1.21 (minimum not read) |
+| 1.27 (Oct 1999) | `GSERV007` to `GSERV011` | "You need at least Graal version 1.27 to play on this server." (minimum not read; most likely 11) |
 | 1.28 (Nov 1999) | `GSERV007` to `GSERV013` | 13: "You need at least Graal version 1.28beta2 to play on this server." |
 | 1.3 (Nov 1999) | `GSERV007` to `GSERV014` | 14: "You need at least Graal version 1.3 to play on this server." |
 
@@ -84,6 +89,7 @@ The 1.21 handlers line up with the later names: 1 links (`TEditorLink`), 2 baddy
 | Client | Server-to-client ids handled |
 |---|---|
 | 1.21 | 0 to 34 except 30, plus 100 |
+| 1.25, 1.27 | 0 to 38, plus 100 |
 | 1.28 beta 2 | 0 to 38, plus 100 |
 | 1.3 test | 0 to 39, plus 100 |
 | 1.31 | 0 to 40, plus 100 |
