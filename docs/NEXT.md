@@ -27,7 +27,8 @@ macOS CI is paused until the polish stage.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
   - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`.
   - [ ] Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).
-  - [ ] Settle E#209 (opcode 54, `waitfor` timeout), E#324 (1.x packet hits, mode 7, the 2.17.1+ victim test) and E#423 (1999 server open points).
+  - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
+  - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
 
 - [ ] **Builds with no binary (#439).** Catalogue the client hunt and keep the no-binary profiles honest.
   - [x] ~~Catalogue the hunt's finds by token, grade and source.~~ [Token catalogue](../client-internals/version-token-catalogue.md) (#440, #446, #448, #450): 2.1.0.x, 1.40, 1.25, 1.27, 3.0, 3.01, 4.03.4, 4.11, 6.0.0.7 and 6.0.1.5 now have executables.
