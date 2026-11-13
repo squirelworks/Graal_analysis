@@ -284,6 +284,7 @@ graal3d/reference-server/README.md	excluded		9	a server reimplementation written
 graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
 live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	excluded		4	raw decoded log excerpt; its findings are in live-runs/2gta-222-2026-10-30/README.md, which the manual cites
+live-runs/client-harness-2026-11-13/README.md	cited	4.2; 4.3	4	
 live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
 live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
 live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
