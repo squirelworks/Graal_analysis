@@ -1,0 +1,5 @@
+GLEVNW01
+BOARD 0 0 4 0 00010203
+BOARD 1 0 2 0 aabb
+LINK nowhere
+NPC 10 10 dummy

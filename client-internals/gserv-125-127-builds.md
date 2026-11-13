@@ -78,6 +78,11 @@ reproduce the 1.21 and 1.28 beta 2 rows exactly, so the two new rows are compara
    - UDP "direct data packages" are still absent in 1.27, so 1.28 beta 2 stays the first UDP build.
 7. **The compiler change narrows to Oct–Nov 1999.** 1.25 and 1.27 use the older Delphi RTL layout, like 1.21, so the
    switch to Delphi 4 happened between 1.27 (1999-10-23) and 1.28 beta 2 (1999-11-23).
+8. **Graal Clock is an offline launcher, not a network tool.** The 1.27 package's Graal Clock (version 1.0, Delphi, by the
+   Graal Character Designer's author) imports no socket library. It shows the time, keeps its settings in `GraalClock.ini`,
+   finds the client in a few common install folders (or asks for it), and has buttons to start `Graal.exe`, open the
+   readme and the Character Designer, and load or save `.chr`/`.chi` character files to the client's character list. Its
+   only outside link is a browser opened over DDE **[bin]**.
 
 ## The bundled GServers
 
@@ -88,8 +93,15 @@ reproduce the 1.21 and 1.28 beta 2 rows exactly, so the two new rows are compara
 | 1.27 | `GSERV007`–`GSERV011` | "You need at least Graal version 1.27 to play on this server." |
 | 1.28 beta 2 (known) | `GSERV007`–`GSERV013` | "You need at least Graal version 1.28beta2 to play on this server." |
 
-The 1.25 server keeps 1.21's refusal text, so it most likely still let 1.21 clients in, and the 1.27 server most likely
-asks for `GSERV011` from players **[inf]** (the minimum compare itself was not read). Both carry the "GServer2 (C) Stefan
+The login checks were read from both servers' code **[bin]**:
+
+- **1.25** has no version number on the connection yet. A player is let in only if its token is exactly `GSERV007`,
+  `GSERV008` or `GSERV009`, so 1.21 clients still get in and anything else gets the 1.21 refusal text as message 16. A
+  RemoteControl must send `GSERV009` or `GSERV010`. Any other token closes the RemoteControl login without a message.
+- **1.27** turns `GSERV007`–`GSERV011` into the numbers 7–11 and stores it on the connection, as 1.28 beta 2 does.
+  Players need 11 (`GSERV011`, the 1.27 client), and anything lower gets the 1.27 refusal text. RemoteControl needs 9 or
+  more, so the 1.25 RemoteControl (`GSERV010`) can still log in to the 1.27 server. The RemoteControl path also tests two
+  account fields before letting it in. One is most likely the 1.26 "blocked" account option **[inf]**. Both carry the "GServer2 (C) Stefan
 Knorr" banner and the "execution file is corrupted" self-check that the 1.28 server has.
 
 ## Release notes in the packages **[doc]**
@@ -116,5 +128,5 @@ or protocol:
 - [ ] Player, NPC and baddy prop ranges for 1.25 and 1.27 (the [`gserv-1999.md`](../protocol/gserv-1999.md#props-by-build)
   table has 1.21 and 1.28 beta 2 only). 1.27's `save[0]`–`save[9]` NPC variables should show up as new NPC props.
 - [ ] Names for server messages 35–38.
-- [ ] The minimum token the 1.25 and 1.27 servers accept for players.
+- [x] The minimum token the 1.25 and 1.27 servers accept for players (see [The bundled GServers](#the-bundled-gservers)).
 - [ ] A lab login of both clients on a loopback GServer.
