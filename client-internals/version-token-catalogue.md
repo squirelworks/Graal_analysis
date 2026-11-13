@@ -142,6 +142,17 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 | 6.11r1 Mac | same connector script, `GNP1905C` when replayed | S | Lion replay (`v6-login-token-explained.md`) | none sent (scaffold) | none |
 | Worlds 548–614, 71243, 7.0.1.7.5.0 | not stored in the client | S (assumed) | `v7x-protocol.md`; the v7 connector login path has not been traced | 614 stand-in sends `GNP1905C`; the others send none | none |
 
+### iPhone (not carried by seihai-core)
+
+These come only from server version tables (gs2lib, and the 2010 gs2emu tables). No iPhone client has been read, so they are **L**, and seihai-core does not carry them. Details and how to close them: [iphone-version-tokens.md](iphone-version-tokens.md).
+
+| Build | Token | Grade | Source | Repro | Repro label |
+|---|---|---|---|---|---|
+| iPhone 1.1 | `G3D04048` | L | gs2lib `CLVER_IPHONE_1_1`; gs2emu 2010 table | (no folder) | |
+| iPhone 1.5 | `G3D18010` | L | gs2lib `CLVER_IPHONE_1_5`; gs2emu 2.3.1 table | (no folder) | |
+| iPhone 1.11 | `G3D29090` | L | gs2lib `CLVER_IPHONE_1_11` | (no folder) | |
+| iPhone Belote 1.5 | `G3D2504D` | L | gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022) | (no folder) | |
+
 ## Gaps and how far each can be closed
 
 - **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
@@ -172,3 +183,4 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 - [ ] Decode the 1.34–1.38 login frames (they reach their connect window; the dialog still has to be driven).
 - [ ] Read a genuine 2.3 binary, if one turns up, and record its token and PLI 39 words.
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
+- [ ] Read an iPhone client (a period IPA) or capture one device login in the lab, to grade the iPhone rows above ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).
