@@ -81,6 +81,9 @@ The GS1 command table grew build by build. Each row gives a build, the size of i
 
 | Build | Commands | Added | Source |
 | --- | ---: | --- | --- |
+| 1.21 | 71 | first gen-2 table; `unseteffect` only in 1.21 to 1.33 | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
+| 1.28 beta 2 | 84 | `while`, `sleep`, `setcharprop`, `setplayerprop`, `setstring`, `showcharacter`, `showfile`, `hideplayer`, `setbackpal`, `setletters`, `setmap`, `setminimap`, `timereverywhere` | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
+| 1.3 test to 1.32 | 85 | `setgifpart` | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
 | 1.33 | 88 | — | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | 1.34 | 93 | `dontblocklocal`, `blockagainlocal`, `showlocal`, `hidelocal`, `carryobject`, `throwcarry`, `setbacktile`; `seteffect` and `unseteffect` leave the table | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | 1.35 | 93 | same table as 1.34 | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -99,6 +102,11 @@ The GS1 command table grew build by build. Each row gives a build, the size of i
 | 2.1 tests | 161 | same table as 2.05 | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | NewWorld beta 1 | 161 | same table as 2.05 | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | NewWorld beta 2 | 165 | `addstring`, `insertstring`, `removestring`, `deletestring` | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
+| 2.1 (no binary) | 166 | NewWorld beta 2 plus `play2`, from the release notes | [doc][inf] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
+| 2.17.1, 2.22, 2.31 | 198 | 33 commands, among them `putnpc2`, `showimg2`, `showtext`, `showtext2`, `showani`, `showpoly`, `shoot`, `serverwarp`, `sendpm`, `wraptext`, `setcursor`, `with` | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
+| 3.04 Linux | 191 | drops `drawovertrees`, `putobject`, `savelog`, `setbackpal`, `setbacktile`, `setbacktile2`, `setbody` | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
+| 3.153 Mac to 4.20r8 | 191 | `savelog` back, `with` gone | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
+| 5.00r7 | 193 | `setspritesimage`, `setstatusimage` | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
 
 A command in the table may have no executor case and be parsed and ignored; new commands are inserted mid-table, so command indexes differ between builds [bin] (client-internals/cross-version-timeline.md#gs1-commands). The commands themselves: → §8.2.
 
@@ -127,5 +135,33 @@ Each run used an unmodified client against a GServer-v2 lab on a loopback-only n
 | 3.04 (Linux) | the original packed executable on Xvfb with software GL | the listserver login is one plain frame holding ids 7 and 1, answered in gen 5; the game login frame is plain zlib with 5, 37 and two 34 requests, and every later frame is gen 5, including a bz2 reply | [cap] (version-profiles/lab-304-linux-2026-10-30.md#startup-and-listserver); [cap] (version-profiles/lab-304-linux-2026-10-30.md#game-login) |
 | 4.20r6, 3.153 (Mac) | Mac OS X 10.4 in an emulated PowerPC machine | 4.20r6 sends the login with a four-field comma list `mac`, an empty MAC hash, a 32-hex hash, and an empty field; 3.153 walks with X2 and Y2 | [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#login-line-captured-run2pcap-proxylog); [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#walking-x2y2-confirmed) |
 | 5.00r7, 5.12, 5.24r4 | Wine on Xvfb behind a gen-5 logging proxy | the server reached through the license file is treated as the Login server, where no characters and no HUD are drawn; stock gs2lib does not know the 5.24 token and serves it the pre-2.1 file layout | [cap] (version-profiles/lab-v5-2026-10-30.md#login-mode-why-nothing-is-drawn-at-first); [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it) |
+| 3.04, 4.04r2, 4.20r6, 6.03r7 (Linux, native); 4.04r2 (Windows, Wine) | Xvfb with a timing shim and a decrypting proxy | every build steps every 50 ms, one render per step, 8 px per walk step; the C++ engine's GS1 `timeout` counts whole steps, rounded down | [lab][cap] (client-internals/update-cadence-3x-6x.md) |
+| 4.04r2, 5.12 (Mac) | Mac OS X 10.4 in an emulated PowerPC machine, unchanged clients | tokens `G3D18026` and `G3D15097`; login comma list `mac` plus two machine hashes, 5.12 adding the Darwin kernel string; both use the round-down gen-5 step; neither compresses every frame | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md) |
+| 4.20r8, 5.12, 5.24r4 | Wine, a GS2 world compiled two ways | GS1 kept as GS1 draws a no-PK icon and 99/99 ammunition on 5.x only; 5.x flag and built-in reads; the 5.12 black view is a stale file-name cache | [lab][shot] (client-internals/gs1-on-5x-hud-and-flags.md) |
+, with the build range each covers, are listed in → §1.8.8; the full build list is in → §1.8.
 
-The per-build profile files and lab tables behind these cells, with the build range each covers, are listed in → §1.8.8; the full build list is in → §1.8.
+## C.8 GS2 VM by build
+
+Each row is one read VM and the builds that borrow it. Builds marked [inf] were not read [bin][inf] (client-internals/gs2-vm-by-version.md).
+
+| VM | Builds | Opcodes added | Value stack | `%` tolerance | Shift count | Source |
+| --- | --- | --- | --- | --- | --- | --- |
+| 3.153 | everything before 4.04r2 [inf] | base set | 256 | no | modulo 64 (PowerPC) | [bin] (client-internals/gs2-vm-by-version.md#opcodes-each-vm-handles) |
+| 4.20r6 | 4.04r2 (Windows and Mac) [inf], 4.20r6 | 104 | 10000 | yes | modulo 64 (PowerPC) | [bin] (client-internals/gs2-vm-by-version.md#opcodes-each-vm-handles) |
+| 4.20r8 | 4.20r8 | 11 (`waitfor`), 200–233 (optimiser) | 10000 | yes | modulo 32 | [bin] (client-internals/gs2-vm-by-version.md#opcodes-each-vm-handles) |
+| 5.00r7 | 5.00r7; 5.12, 5.24r4, 5.30r3, 5.31r4 [inf]; 5.12 Mac with the PowerPC shift [inf] | 48, 49, 54, 121; `maxlooplimit` | 10000 | no | modulo 32 | [bin] (client-internals/gs2-vm-by-version.md#limits) |
+| 6.03r7 | 6.01r1, 6.03r7; 6.00r2, 6.00r4, 6.015, 6.034 [inf] | 0, 164, 234–242; drops 48, 49 | none | no | modulo 32 | [bin] (client-internals/gs2-vm-by-version.md#limits) |
+
+## C.9 Combat and world rule groups, 1.21 to 2.31
+
+Each row is a group of builds whose combat, baddy and lava rules are the same [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups).
+
+| Group | AP 100 immunity | Sword power | Hits by packet | Lava | Swamp-soldier sword window | Client item roll on a baddy's death | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1.21 | no | raw | not traced | no burn | from counter 17 | yes | [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups) |
+| 1.28 beta 2 to 1.33 | no | raw | not traced | burns | from 17 | yes | [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups) |
+| 1.34 to 1.41 rev 1 | yes | raw | not traced | burns | from 17 | yes | [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups) |
+| NewMain 1.42 | yes | raw | not traced | burns | from 17 | no | [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups) |
+| 2.00 to 2.02 | yes | raw | 2.00 handler | burns | from 17 (2.00); 22 to 36 (2.01 on) | no | [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups) |
+| 2.03 to 2.31 | yes | ±20 limit | 10 tiles, 1-heart cap | burns | 22 to 36 | no | [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups) |
+

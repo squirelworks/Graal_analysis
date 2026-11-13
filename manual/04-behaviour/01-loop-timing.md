@@ -3,7 +3,7 @@
 
 This chapter fixes the tick that every count in Part IV uses, how each build drives it, and the periodic work that runs off it. Durations of individual actions are in the chapter for each action (→ §4.1.5).
 
-> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration and a callback-execution count, not a measured cadence; the 3.x and 4.x Torque-era loops are not in the notes (→ App. E#301).
+> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration and a callback-execution count, not a measured cadence; the 3.x, 4.x and 6.03r7 loops were measured in a 2026-11 lab and step every 50 ms (→ §4.1.7; App. E#301 settled).
 
 ## 4.1.1 The tick
 
@@ -28,8 +28,9 @@ The tick is the same everywhere, but what drives it changes. Each row gives a gr
 | 6th Graal (beta5) to 1.41 rev1, and Graal3D | a DelphiX timer on the main form, interval 50 ms | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
 | NewMain 1.42 to 2.31 (every 2.0x, NewWorld betas 1 and 2, the 2.1 tests, 2.17.1, 2.22, 2.31) | no form timer; the frame runs from the application's idle handler behind a 50 ms gate | [bin] (version-profiles/matrix/builds-static-survey.tsv); [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | 2.31 | in addition, the main form carries a 50 ms timer that runs the 64-tick integrity cycle (→ §4.1.3) | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md) |
-| 3.x, 4.x | unmeasured | [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
-| Windows 4.04r2 | still unmeasured, but the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events → App. E#301 | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
+| 3.04, 4.04r2, 4.20r6 (Linux), 4.04r2 (Windows) | Torque's time manager: a step when 50 ms have passed since the last, then the last step time is reset to now, so a slow machine slows the game (→ §4.1.7) | [bin][lab] (client-internals/update-cadence-3x-6x.md#the-loop) |
+| 6.03r7 | its own fixed-step loop: a step each 50 ms of schedule, at most one catch-up step, dropping the rest when more than two steps behind (→ §4.1.7) | [bin][lab] (client-internals/update-cadence-3x-6x.md#the-loop) |
+| Windows 4.04r2 | measured under Wine at 19.8 fps in game (→ §4.1.7); statically, the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Mac PowerPC 4.04r2, 4.20r6 and v5 | a Carbon event-loop timer calls the engine entry once; it runs an initialize method, then an update method repeatedly while it returns non-zero, then shutdown, and quits the event loop. The pump sleeps 1 ms when idle. The update rate is not measured | [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#start-up-one-timer-that-runs-the-whole-engine) |
 
 ### 4.1.2.1 The frame function (idle-driven builds)
@@ -84,7 +85,7 @@ The canonical place of each tick count:
 
 ## 4.1.6 Clocks in the later engines
 
-These are exact-build static and debugger readings of how a later engine advances its clock. None of them is a measured frame cadence (→ App. E#301). [cap] (client-internals/linux-420r6-clock-property.md)
+These are exact-build static and debugger readings of how a later engine advances its clock. None of them is a measured frame cadence; the measured cadence is in → §4.1.7. [cap] (client-internals/linux-420r6-clock-property.md)
 
 #### Linux 4.20r6: clock updates and the `isgraal3d` predicate
 
@@ -96,3 +97,17 @@ These are exact-build static and debugger readings of how a later engine advance
 #### Windows x64 v7, input 701750: managed and native update
 
 The separately identified Windows x64 recovered inputs show managed Update calling native QuattroUpdate and conditional FixedUpdate forwarding. QuattroUpdate increments a counter, calls a wrapper bound to GetTickCount and stores the return as 32 bits; an inferred void pseudocode type does not override caller dataflow. Guarded QuattroFixedUpdate iterates a registered collection and dispatches onFixedUpdate with an empty argument string. Update3D wraps a one-byte state getter rather than establishing scene simulation. These are selected-range static observations: no measured cadence, wrap/catch-up policy, complete collection/lifecycle/indirect-call semantics, build-614/v6 equivalence, authenticated release provenance or independent original-to-recovered derivation. Exact image identities remain owner-held. E#301’s older-client driver question remains open. [bin] (client-internals/v7-701750-bridge-clock.md)
+
+## 4.1.7 Measured cadence of 3.x, 4.x and 6.x
+
+A 2026-11 lab timed the Linux 3.04, 4.04r2, 4.20r6 and 6.03r7 clients natively and the Windows 4.04r2 under Wine, logging timing calls and reading walking at a decrypting proxy. Every build steps the game in fixed 50 ms steps, one render per step, 8 px per walk step [lab][cap] (client-internals/update-cadence-3x-6x.md).
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| step | 50 ms in game for every build measured (means 50.00 to 50.07 ms); 3.04's login screen runs a 5 ms interval (about 197 fps) until the game control sets 50 ms | [lab] (client-internals/update-cadence-3x-6x.md#measurements) |
+| idle | between steps every client polls with a 1 ms sleep | [lab] (client-internals/update-cadence-3x-6x.md) |
+| walking | 3.04 sends X every 100 ms (one tile, two steps); 4.04r2, 4.20r6 and 6.03r7 send X2 every 50 ms (8 px); about 10 tiles a second | [cap] (client-internals/update-cadence-3x-6x.md#measurements) |
+| behind schedule | 3.x and 4.x slow down (no catch-up); 6.03r7 makes up one missed step and drops the rest | [lab] (client-internals/update-cadence-3x-6x.md#the-loop) |
+| 6.03r7 | also runs a once-a-second dispatch every 20th step | [bin] (client-internals/update-cadence-3x-6x.md#the-loop) |
+| GS1 `timeout` (3.04, 4.04r2, 4.20r6) | counts whole 50 ms steps, rounded down; a value under 0.05 never fires (0.07 fires every 50 ms, 0.12 every 100 ms, 0.15 every 150 ms) | [lab] (client-internals/update-cadence-3x-6x.md#gs1-timeout-counts-whole-steps-rounded-down) |
+| not measured | 6.03r7's script timer; the `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; walk GANI timing at run time | [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
