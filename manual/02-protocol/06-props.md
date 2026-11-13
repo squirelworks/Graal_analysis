@@ -239,7 +239,7 @@ The whole 2.22 baddy (types, AI steps, damage, who owns which prop online) is in
 
 ## 2.6.6 Ids each parser accepts
 
-An id outside a parser's accepted set ends that message's stream (→ §2.6.1). The 4.x self parser is the exception: it skips such an id as a one-byte prop and goes on [bin] (protocol/v4x-clients.md#prop-parsers).
+An id outside a parser's accepted set ends that message's stream (→ §2.6.1). The self parser from 4.x on is the exception: it skips such an id as a one-byte prop and goes on [bin] (protocol/v4x-clients.md#prop-parsers); [bin] (protocol/v5-props.md#5x-one-parser-set-for-the-whole-era).
 
 | Stream | Build | Accepted ids | Stops at | Source |
 | --- | --- | --- | --- | --- |
@@ -250,6 +250,8 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1). 
 | self (9) | 2.17.1, 2.22 | through 74 | 50, 51, 53 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [2.22] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | self (9) | 2.31 | through 80, with X2, Y2, Z2 at 78–80 | 50, 51, 53, 75–77 | [2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | self (9) | 4.04r2, 4.20r8 | 0–32, 34–49, 52, 54–74, 78–81 | none: 33, 50, 51, 53, 75–77 and 82 and up are skipped as one-byte props | [bin] (protocol/v4x-clients.md#prop-parsers) |
+| self (9) | 5.00r7, 5.12, 5.30r3, 5.31r4 | 0–32, 34–49, 52, 54–74, 78–82 | none: 33, 50, 51, 53, 75–77 and 83 and up are skipped as one-byte props | [bin] (protocol/v5-props.md#5x-one-parser-set-for-the-whole-era) |
+| self (9) | 6.0.3.7; 6.1.1.3 | 0–32, 34–49, 52, 54–74, 77–83 (6.1.1.3: no 7) | none: 33, 50, 51, 53, 75, 76 (and 7 in 6.1.1.3) and 84 and up are skipped as one-byte props; 77 is skipped as five bytes | [bin] (protocol/v5-props.md#6x-the-parsers-are-still-native) |
 | other players (8) | 2.00, 2.01 | 0, 2, 8–13, 15–21, 24, 30–36, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 37–49, 52 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | other players (8) | 2.02 rev2, 2.03 | 0, 2, 8–13, 15–21, 24, 30–41, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 42–49, 52 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | other players (8) | 2.04 | 0, 2, 8–13, 15–21, 24, 30–42, 50, 51 | 1, 3–7, 14, 22, 23, 25–29, 43–49, 52 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
@@ -257,6 +259,7 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1). 
 | other players (8) | 2.22 | highest 76 | 1, 3–7, 14, 22, 25–29 | [2.22] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | other players (8) | 2.31 | 0, 2, 8–13, 15–21, 23, 24, 30–76, 78–80 | 1, 3–7, 14, 22, 25–29, 77 | [bin] (version-profiles/plo-otherplprops-layouts.tsv) |
 | other players (8) | 4.04r2, 4.20r8 | 0, 2, 8–13, 15–21, 23, 24, 30–76, 78–81 | 1, 3–7, 14, 22, 25–29, 77, 82 and up | [bin] (protocol/v4x-clients.md#prop-parsers) |
+| other players (8) | 5.00r7 to 5.31r4; 6.0.3.7, 6.1.1.3 | 0, 2, 8–13, 15–21, 23, 24, 30–76, 78–82 | 1, 3–7, 14, 22, 25–29, 77, 83 and up | [bin] (protocol/v5-props.md#5x-one-parser-set-for-the-whole-era) |
 | NPC (3, 33) | 2.00, 2.01 | 0–35 | 36 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | NPC (3, 33) | 2.02 rev2 to 2.04 | 0–40 | 41 and up | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 | NPC (3, 33) | 2.05 | 0–40 | 41 and up | [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
@@ -264,8 +267,10 @@ An id outside a parser's accepted set ends that message's stream (→ §2.6.1). 
 | NPC (3) | 2.22 | highest 73, including 43 | 48–52 | [bin] (version-profiles/plo-npcprops-layouts.tsv); [2.22] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | NPC (3) | 2.31 | highest 77 | 48–52 | [2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | NPC (3) | 4.04r2, 4.20r8 | 0–47, 53–77 | 48–52, 78 and up | [bin] (protocol/v4x-clients.md#prop-parsers) |
+| NPC (3) | 5.00r7 to 5.31r4; 6.0.3.7, 6.1.1.3 | 0–47, 53–77 | 48–52, 78 and up | [bin] (protocol/v5-props.md#5x-one-parser-set-for-the-whole-era) |
 | baddy (2) | 2.05 | 0–10 | 11 and up | [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | baddy (2) | 4.04r2, 4.20r8 | 0–10 | 11 and up | [bin] (protocol/v4x-clients.md#prop-parsers) |
+| baddy (2) | 5.00r7 to 5.31r4; 6.0.3.7, 6.1.1.3 | 0–10 | 11 and up | [bin] (protocol/v5-props.md#5x-one-parser-set-for-the-whole-era) |
 
 Because an unknown id ends a stream, a server has to know which ids each client parses. The rules below give that set for 2.05 and what was checked in 2.22 and 2.31 [2.05] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231).
 
@@ -276,6 +281,7 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 | 2.05 sends props 0, 11, 13, 18, 31 and 33 together at session start, and 42, 15, 16 together on attach or a move | 2.05 | [2.05] (protocol/player-props.md#plprop-player) |
 | No client checked parses PLPROP 77 or 81, or NPCPROP 48 | 2.05, 2.22, 2.31 | [2.05][2.22][2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | 4.x parses PLPROP 81 as one byte of four flag bits in both player streams, and still not 77 | 4.04r2, 4.20r8 | [bin] (protocol/v4x-clients.md#prop-parsers) |
+| 5.x adds PLPROP 82 (a length-prefixed string) to both player streams; 6.x self props also skip 77 as five bytes and read 83 as a five-byte number | 5.00r7 to 5.31r4; 6.0.3.7, 6.1.1.3 | [bin] (protocol/v5-props.md) |
 | The 2.22 send-side prop builder also knows 75 and 76 | 2.22 | [bin] (version-profiles/plo-playerprops-layouts.tsv) |
 | From 2.3 GServer-v2 puts X2 and Y2 before X and Y in other-player props | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 
@@ -285,7 +291,7 @@ Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth f
 
 The outgoing player encoder in both unpacked images walks ids 0 through 83. Twelve of those ids have no case: 3, 25, 27, 28, 29, 30, 34, 36, 50, 51, 77 and 83. The baddy encoder walks 0 through 10, with a case for each. The two builds use the same id lists. [bin] (protocol/v6-props.md)
 
-`tclient_setplayerprops`, `tclient_setnpcprops`, `tclient_setbaddyprops` and `tclient_setotherplayerprops` in 6.1.1.3 each store one string. No numbered NPC id table is in either image. [bin] (protocol/v6-props.md)
+`tclient_setplayerprops`, `tclient_setnpcprops`, `tclient_setbaddyprops` and `tclient_setotherplayerprops` in 6.1.1.3 each take one prop string and pass it to a native parser of the 4.x and 5.x shape; 6.0.3.7 has no such methods, and its native packet switch calls the same parsers for ids 9, 8, 3 and 2. Their case lists are in → §2.6.6. [bin] (protocol/v5-props.md#6x-the-parsers-are-still-native)
 
 ## 2.6.8 Build-614 player encoder dispatch
 

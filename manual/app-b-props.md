@@ -92,6 +92,7 @@ This is the index of every prop id for players, NPCs and baddies. Each row gives
 | PLPROP | 80 | Z2 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
 | PLPROP | 81 | UNKNOWN81 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
 | PLPROP | 82 | COMMUNITYNAME | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
+| PLPROP | 83 | (unnamed; 6.x own props) | → §2.6.6 | [bin] (protocol/v5-props.md#6x-the-parsers-are-still-native) |
 | NPCPROP | 0 | IMAGE | → §2.6.4 | [srv] (protocol/player-props.md#npcprop) |
 | NPCPROP | 1 | SCRIPT | → §2.6.4 | [srv] (protocol/player-props.md#npcprop) |
 | NPCPROP | 2 | X | → §2.6.4 | [srv] (protocol/player-props.md#npcprop) |

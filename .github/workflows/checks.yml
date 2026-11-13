@@ -68,6 +68,9 @@ jobs:
       - name: pytest classic tool references
         run: python -m pytest tools/classic-tools -q
 
+      - name: pytest file-format decoders
+        run: python -m pytest tools/file-formats -q
+
       - name: pytest level conversion chain
         run: python -m pytest tools/level-convert -q
 

@@ -13,7 +13,8 @@ macOS CI is paused until the polish stage.
 ## Tasks
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
-  - [ ] Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.
+  - [x] ~~Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.~~ [v5-props](../protocol/v5-props.md): 5.00r7, 5.12, 5.30r3 and 5.31r4 share 4.x's parsers plus 82; 6.x still parses natively (6.0.3.7 from the packet switch, 6.1.1.3 through `tclient_set*props`).
+  - [ ] What 6.x own-prop 83 sets, and a wire check of the one-byte skip on a 5.x or 6.x client.
   - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
 
 - [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).
@@ -22,7 +23,8 @@ macOS CI is paused until the polish stage.
 - [x] **Windows 4.20 render entry points and the 4.04r2 R01 run.** ~~Publish the render-seam check and the instrumented tutorial run.~~ [Render](../client-internals/windows-420-render-seams.md); [R01](../version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01); the core update rate and a rendered scene remain open (App. E#301, E#610).
 
 - [x] **Publish the Android Classic static reading.** ~~Host, frame gate, collision, board, render, chat and the Classic 1.8 GS2 machine.~~ [Host and engine](../client-internals/android-classic.md); [GS2](../protocol/gs2-android-classic-18.md).
-  - [ ] Decode the opaque Classic 1.8+ GANIs with a known-plaintext round trip; run the GS2 loop-budget and event-queue boundaries in an Android runtime.
+  - [x] ~~Decode the opaque Classic 1.8+ GANIs with a known-plaintext round trip.~~ [Resources](../client-internals/android-classic.md#resources): per-file DES, 47/47 round trip; decoder `tools/file-formats/classicgani.py`.
+  - [ ] Run the GS2 loop-budget and event-queue boundaries in an Android runtime; read how 2.2 loads its six double-encrypted GANIs.
 
 - [x] **Record what the early Windows clients show when started.** ~~v0, v1 and v2 screenshot review.~~ [Source](../version-profiles/early-windows-screen-review-2026-11.md); scene and mechanic validation remain open (App. E#610).
 

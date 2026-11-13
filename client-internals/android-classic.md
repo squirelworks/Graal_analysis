@@ -52,10 +52,22 @@ The later Android clients are a separate line from the Windows, Linux and Mac cl
 
 ## Resources
 
-**[file]** Classic 1.6 and 1.7 each ship 48 plain-text GANIs, and Era 1.7 ships 96. Classic 1.8 ships 48 GANIs that are not plain text, Era 2.0 ships 95, and Classic 2.0 and 2.2 ship 593 each. Native resource and DES helpers were found. Decode trials did not reproduce any known plain text **[lab]**, so no decoder is claimed. The opaque files are kept as they are, and the assets stay out of the reproduction repo.
+**[file]** Classic 1.6 and 1.7 each ship 48 plain-text GANIs, and Era 1.7 ships 96. Classic 1.8 ships 48 GANIs that are not plain text, Era 2.0 ships 95, and Classic 2.0 and 2.2 ship 593 each. The assets stay out of the reproduction repo.
+
+**[bin]** The 1.8 GANIs are DES-encrypted per file. When the engine loads a resource whose extension is `.gani`, it builds an 8-byte key from the file's lower-case base name and decrypts with DES-ECB:
+
+- The key starts as the fixed bytes `45 CE 4A 0C 24 89 1B 07`. For each step `i` from 0 to the name's length minus 1, key byte `i mod 8` is XORed with `(c − 97·i) mod 256`, where `c` is name character `i − 1`. The engine's string type counts from 1, so step 0 reads its out-of-range placeholder (zero) and the last character of the name is never used.
+- The DES is the one the 2.05 client uses: standard DES-ECB with each key byte bit-reversed (`client-internals/saved-passwords.md`).
+- Only whole 8-byte blocks are decrypted. A tail shorter than eight bytes stays plain, so the file keeps its length.
+
+A resource that carries a server-sent file key is first decrypted with that key, and the `.gani` step still runs after it.
+
+**[file]** Known-plaintext round trip: the 1.7 and 1.8 packages share 47 GANI names, every pair has the same length, and their ciphertexts repeat 8-byte blocks exactly where the plain text does. With the rule above all 47 decrypt to the 1.7 bytes, and the 1.7 bytes encrypt back to the 1.8 bytes. The 48th, `emoticon.gani`, has no 1.7 copy and decrypts to a `GANI0001` file. The decoder is `tools/file-formats/classicgani.py`.
+
+**[file]** Classic 2.2's 593 GANIs use the same rule: 587 decrypt in one pass. The other six (`idle`, `hiddenobj`, `gralats`, `defexplo_dir2`, `tutorial_touch`, `ghostani`) are the 1.8 ciphertext encrypted a second time and need two passes. Whether 2.2 decrypts them twice, through a server-sent key, or not at all is not read.
 
 ## Tests that follow
 
-**[inf]** These are proposed acceptance tests, none run against the original Android client: a host profile with a touch sequence and a texture reload; a fake-clock frame gate; a 64×64 board with layered collision; the animation model with 16 offset units per world unit; the chat builder at lengths 0, 219, 220 and 221; and a GANI decoder accepted only after a known-plaintext round trip.
+**[inf]** These are proposed acceptance tests, none run against the original Android client: a host profile with a touch sequence and a texture reload; a fake-clock frame gate; a 64×64 board with layered collision; the animation model with 16 offset units per world unit; the chat builder at lengths 0, 219, 220 and 221; and a GANI decoder accepted only after a known-plaintext round trip (the 1.8 one has now passed it, see Resources).
 
 The Classic 1.8 GS2 machine is in [protocol/gs2-android-classic-18.md](../protocol/gs2-android-classic-18.md).

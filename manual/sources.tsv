@@ -357,6 +357,7 @@ protocol/v6037-hello-diff.md	cited	2.3	2.3
 protocol/v6113-chat.md	cited	2.8	2.8	
 protocol/v6113-files.md	cited	2.7	2.7	
 protocol/v6-props.md	cited	2.6; C	2.6	§2.6.7 carries the player range 0–83, the twelve ids with no case, and the baddy range 0–10; the per-id field widths stay in the note
+protocol/v5-props.md	cited	2.6; B; C	2.6	§2.6.6 carries the 5.x and 6.x case sets; the 6.x name decoding and open items stay in the note
 protocol/v6-repro-facts.md	pending		2.10	setprotocol field order, the id-50 prefix, onToall arguments and the bind events, from the unpacked 6.0.3.7 and 6.1.1.3 listings; for the server-defined protocol section
 protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.11 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
 protocol/v6113-hello.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.5 carry the token and the six-byte header. The cipher after the zlib member is in protocol/v611-outgoing-cipher.md

@@ -39,4 +39,5 @@ Pure-Python helpers written for the notes in `formats/` and `client-internals/`.
 |--------|------|
 | `graaldes.py` | The client's DES variant (bit-reversed key bytes) and its 48-character string cipher. Decrypts saved passwords. See `client-internals/saved-passwords.md`. |
 | `gwebl.py` | Decrypts and parses `weblevels/*.code` (GWEBL001). Also a GR-V board reader and writer and a GR-V level parser. See `formats/gwebl001-cache.md`. |
+| `classicgani.py` | Decodes and encodes the per-file DES GANIs of Android Graal Classic 1.8 and later (key from the lower-case base name). See `client-internals/android-classic.md#resources`. |
 | `extract_tutorials.py` | Pulls the 13 embedded tutorial levels out of a 2.0x exe (needs `pefile`). See `formats/level-binary-client.md`. |

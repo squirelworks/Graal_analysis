@@ -6,8 +6,13 @@ Static read of both listings. Nothing was run. [bin]
 
 In 6.1.1.3, `tclient_setplayerprops`, `tclient_setnpcprops`,
 `tclient_setbaddyprops` and `tclient_setotherplayerprops` each take one
-string and store it. None of those four functions switches on a property
-id.
+string. None of those four functions switches on a property id itself, but
+each one calls a native parser that does: the same self, NPC, baddy and
+other-player parsers that 4.x and 5.x have. In 6.0.3.7 the native packet
+switch calls those parsers directly. The case lists and the route are in
+[v5-props.md](v5-props.md#6x-the-parsers-are-still-native). (Corrected
+2026-11-13: this note first read the four methods as only storing the
+string.)
 
 The id tables that are in the image are the outgoing encoders. Each walks
 a fixed id range, and for an id whose flag is set it appends that id stored
@@ -45,7 +50,7 @@ The per-id field widths beyond that were not recovered.
 
 ## NPC
 
-No third loop of this shape is in either image. `tclient_setnpcprops` in
-6.1.1.3 stores one string on the NPC. A numbered NPC property-id table was
-not found. The search was the same id-plus-32 append loops and the
-`tclient_setnpcprops` body.
+No third encoder loop of this shape is in either image: the client does
+not send NPC props this way. On receipt, `tclient_setnpcprops` in 6.1.1.3
+calls the native NPC parser, which takes ids 0–47 and 53–77 as 4.x and 5.x
+do ([v5-props.md](v5-props.md#6x-the-parsers-are-still-native)).
