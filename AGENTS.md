@@ -94,4 +94,4 @@ Do not start archived Graal clients or Wine here. Those clients phone home, and 
 
 ## macOS builds
 
-macOS is built and tested on the lab's Sequoia (macOS 15) VM with the same build and test commands the Linux job runs; GitHub CI covers Linux and Windows.
+GitHub CI runs the `leak-and-smoke` and `manual` checks on Linux, Windows and macOS 15 (hosted `macos-15` runners). The manual PDF is built on Linux and Windows only. The lab's Sequoia VM is for reproducing a macOS failure by hand.
