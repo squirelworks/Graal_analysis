@@ -2,7 +2,7 @@
 
 Date: 2026-11-08
 
-Targets: WorldsSetup64-**548, 610, 612, 613, 614, 71243** `unpacked_Graal3DEngine.dll` (+ GameAssembly inventory). Tags: **[bin]** PE/string inventory · **[inf]** where token construction is absent.
+Targets: WorldsSetup64-**548, 610, 612, 613, 614, 71243** `unpacked_Graal3DEngine.dll` (+ GameAssembly inventory; the GameAssembly read is [v7-gameassembly-il2cpp.md](../client-internals/v7-gameassembly-il2cpp.md)). Tags: **[bin]** PE/string inventory · **[inf]** where token construction is absent.
 
 No addresses in this file.
 
