@@ -260,15 +260,15 @@ A 2026-11 static pass compared the baddy, combat and tile code of 35 Windows bui
 | sideways reach of the sword box includes the 2-tile edge | every build, 1.21 to 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
 | swing gate | sprite 6 to 10 in 1.21 to 1.33; animation step 9 to 13 from 1.34 (equivalent) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
 | AP 100 immunity | from 1.34; none in 1.21 to 1.33 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
-| a victim in player mode 7 is passed over | 1.34 to 1.41 (mode 7 unidentified) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
-| one more, unidentified victim test | 2.17.1, 2.22, 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
+| a victim in player mode 7 (attached to another local player in same-PC play: carried, or a horse passenger) is passed over | 1.34 to 1.41; never applies online | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
+| no sword hit on a victim in ghost mode (170), and no sword judging in Kingdoms or New World mode (176, 177) | 2.17.1, 2.22, 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
 | sword power stored raw (6 bits), no ±20 limit | 1.39 to 2.02; the limit from 2.03 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-power) |
-| hits by packet (40, 46): 10-tile range, 1-heart cap, AP 100 check | same handler 2.03 to 2.31; no 1.x handler found | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
+| hits by packet (40, 46): 10-tile range, 1-heart cap, AP 100 check | same handler 2.03 to 2.31; 1.39 has an id 40 handler with the 1-heart cap but no range or AP test | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
 | baddy AI tables | byte-identical in all 33 builds with the baddy class; NewWorld betas have none | [bin] (client-internals/combat-baddy-tile-by-version.md#baddy-ai) |
 | swamp soldier: the sword's window | counter 17 or more, no upper bound, 1.21 to 2.00; 22 to 36 from 2.01 | [bin] (client-internals/combat-baddy-tile-by-version.md#baddy-ai) |
 | a dying baddy drops an item on the client (green rupee under 10, blue under 15, heart under 30, darts under 75 for types 3, 4, 9, out of 100) | 1.21 to 1.41; gone from NewMain 1.42 | [bin][live] (client-internals/combat-baddy-tile-by-version.md#1x-clients-roll-an-item-when-a-baddy-dies) |
 | lava burn | none in 1.21; from 1.28 beta 2, half a heart per 101-tick cycle at (x + 1.5, y + 2) | [bin] (client-internals/combat-baddy-tile-by-version.md#lava-and-tile-rules) |
-| death | dead-bit threshold 28 and timer cap 30 in every build; respawn AP bands found only in 2.x | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
+| death | dead-bit threshold 28 and timer cap 30 in every build; respawn AP bands (3 / 5 / max hearts at under 20 / under 40 / 40+ AP) from 1.41 rev 1 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
 | sword-clash spark: five ticks of `arrays.dat` array 21 | 1.28 beta 2 to 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-clash-spark) |
 
 Open: → App. E#324.

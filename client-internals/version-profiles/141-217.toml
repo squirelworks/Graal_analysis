@@ -12,6 +12,10 @@
 #   inf = inferred from neighbours; not checked in a binary of this version
 #   lab = seen on the wire from the real client under Wine against a lab server
 #
+# `inferred = true` marks a profile with no binary of that release behind its values
+# (Graal_analysis#439). It is not inherited. test_inferred.py checks it against the
+# token catalogue's L (list-only) grade.
+#
 # Ids are protocol ids (wire byte - 32). Names follow gs2lib (see protocol/packet-ids.md).
 # Nothing here comes from decompiler output; builds are identified by MD5 in
 # client-internals/build-catalogue.md.
@@ -420,6 +424,7 @@ sword_key = "S does nothing unless the server gives a sword weapon"
 
 # ---------------------------------------------------------------- 2.1 to 2.16 (no binaries in the archive)
 [v21]
+inferred = true                   # no binary of this release read; every value is doc, srv or inf
 base = "v21test"
 label = "2.1 (rev1-rev3)"
 token = "GNW31101"
@@ -451,6 +456,7 @@ hud_sheet = "21"                  # + ghost icon (2.1 rev1)
 graalversion_var = true
 
 [v212]
+inferred = true                   # no binary of this release read; every value is doc, srv or inf
 base = "v21"
 label = "2.12"
 token = "GNW01012"
@@ -460,6 +466,7 @@ graal2002_compat = true
 multi_level_editor = true
 
 [v213]
+inferred = true                   # no binary of this release read; every value is doc, srv or inf
 base = "v212"
 label = "2.13"
 token = "GNW23012"
@@ -470,6 +477,7 @@ pm_translate_button = true
 editor_control_npcs = true
 
 [v214]
+inferred = true                   # no binary of this release read; every value is doc, srv or inf
 base = "v213"
 label = "2.14"
 token = "GNW30042"
@@ -487,6 +495,7 @@ playerlist_status = true          # self-set status icon
 serverwarp = true
 
 [v215]
+inferred = true                   # no binary of this release read; every value is doc, srv or inf
 base = "v214"
 label = "2.15 / 2.151"
 token = "GNW19052"
@@ -496,6 +505,7 @@ src_default = "doc+srv"
 showimg2 = true
 
 [v216]
+inferred = true                   # no binary of this release read; every value is doc, srv or inf
 base = "v215"
 label = "2.16 (rev1-rev7)"
 token = "GNW12102"

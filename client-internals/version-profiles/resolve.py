@@ -5,7 +5,7 @@ usage: python3 resolve.py 141-217.toml [--json | --md]
 Each profile copies its `base`, then applies its own keys. `x_add` / `x_remove`
 edit the inherited list `x`; any other key replaces the inherited value. The
 `features` sub-table merges key by key. Identity keys (md5, builds, revs, linked,
-notes) are not inherited.
+notes, inferred) are not inherited.
 
 Every resolved key carries a source tag in `src`: the profile's own `src` entry, else
 its `src_default` (`src_features` for features). When a profile with no binary
@@ -19,7 +19,7 @@ Output is the flattened profiles as JSON (default) or one markdown block per ver
 import copy, json, sys, tomllib
 
 MERGED = ('features',)
-IDENTITY = ('md5', 'builds', 'revs', 'linked', 'token_alt', 'notes', 'src_default')
+IDENTITY = ('md5', 'builds', 'revs', 'linked', 'token_alt', 'notes', 'src_default', 'inferred')
 
 
 def resolve(doc):
