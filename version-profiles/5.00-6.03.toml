@@ -112,6 +112,27 @@ login_fields = 5
 chat = "Tempus Sans ITC 24"
 expires = "runs only with the clock set back"
 
+[[version]]
+label = "6.00r4"                       # Windows, product version 6.004, built two weeks after 6.00r2
+token = "G3D26090"                     # cap: same token as 6.00r2 (protocol/v5v6-windows-unpacked.md)
+token_src = "bin cap"
+# Same 93 ids as 6.00r2 (client-internals/engine-600r4.md, v5v6/6x-findings).
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 93
+plo_known_src = "bin"
+# Not read (Themida). Taken from 6.00r2, which takes Linux 6.01r1's.
+pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-159, 161, 162"
+pli_sent_src = "inf"
+pli_sent_complete = false
+login_fields = 5
+chat = "Tempus Sans ITC 24"
+expires = "runs only with the clock set back"
+# What 6.00r4 adds over 6.00r2 (client-internals/engine-600r4.md): the script builtin
+# resolveHost (a DNS lookup of a host name), and the HTTP header Connection: Keep-Alive.
+# 6.037 has the header and not resolveHost (client-internals/unpacked-6037.md).
+resolve_host = true
+http_keep_alive = true
+
 # 6.015 and 6.034 have no binary in the project. Their tokens are in GServer-v2's default
 # allowedversions.txt (G3D3007A "6.0.0.7" and "6.0.1.5", G3D2505C "6.0.3.4") and stock gs2lib
 # knows both (CLVER_6_015, CLVER_6_034). The id sets are the Linux reads of the same release
