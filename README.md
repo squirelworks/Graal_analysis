@@ -370,3 +370,18 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 - [Mac PowerPC graphics setup, transport, events and resources](client-internals/mac-ppc-runtime-surface-2026-11-09.md) — AGL context and fullscreen retry, socket and journal wrappers, machine identity, the 4.04r2 3D mission stages, the v5 event-name bridge, resource routing and the packaged-resource survey; static.
 - [Unpacked Windows 6.03 weapon-cache success](formats/windows-603-weapon-cache.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
 - [Installed Windows 5.00 queue boundaries](client-internals/windows-500-event-queue.md) — exact-input static behavior with independently authored static-derived fixture contracts; no new original-client run.
+
+## Licence
+
+- **Notes, tables, figures and books** (the Markdown, TSV, SVG and PDF files):
+  [Creative Commons Attribution 4.0 International](LICENSE) (CC BY 4.0). Share
+  and adapt them freely; credit "Graal_analysis by squirelworks" with a link
+  back here.
+- **Scripts and tools** (Python, shell and other source files): [Apache License
+  2.0](LICENSE-CODE), the same as the Seihai server stack.
+- **Patches against GPL servers** in `tools/lab-servers/` are GPL-3.0, like the
+  code they patch.
+
+This is an independent fan project. It is not affiliated with, endorsed by, or
+connected to GraalOnline. "Graal" is used only to identify the software these
+notes describe.
