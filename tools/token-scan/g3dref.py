@@ -11,7 +11,7 @@ def sections(p,b):
     if b[:2]==b'MZ':
         import pefile
         pe=pefile.PE(data=b); base=pe.OPTIONAL_HEADER.ImageBase
-        return [(base+s.VirtualAddress,s.get_data(),bool(s.Characteristics&0x20000000)) for s in pe.sections]
+        return [(base+s.VirtualAddress,s.get_data(),bool(s.Characteristics&(1<<29))) for s in pe.sections]  # IMAGE_SCN_MEM_EXECUTE
     if b[:4]==b'\x7fELF' and b[4]==1:
         shoff,=struct.unpack_from('<I',b,0x20); shentsize,shnum=struct.unpack_from('<HH',b,0x2e)
         out=[]
