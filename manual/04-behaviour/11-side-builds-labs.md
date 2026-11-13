@@ -310,7 +310,7 @@ The later Android packages are their own line and were only read statically, so 
 
 [bin] The wall test checks NPCs, then bombs, then chests, and only then tiles; an option adds other players. The board is 64 by 64 tiles of two bytes, and the neighbour accessor wraps coordinates to their low six bits. Animation part offsets are divided by 16 in the world modes read. Outgoing global chat is cut to 220 bytes and prefixed with one byte equal to the length plus 32; incoming messages go through a 256-entry handler table. [bin] (client-internals/android-classic.md#collision); [bin] (client-internals/android-classic.md#the-board); [bin] (client-internals/android-classic.md#animation-and-drawing); [bin] (client-internals/android-classic.md#global-chat)
 
-[file][lab] Classic 1.8 and later ship GANIs that are not plain text, and decode trials did not reproduce known plain text, so no decoder is claimed. [file][lab] (client-internals/android-classic.md#resources)
+Classic 1.8 and later ship their GANIs DES-encrypted per file. The key is built from the lower-case base name, the DES is 2.05's (key bytes bit-reversed), and only whole 8-byte blocks are encrypted. All 47 GANIs that 1.7 and 1.8 share round-trip byte for byte, and 587 of Classic 2.2's 593 decrypt in one pass. [bin][file] (client-internals/android-classic.md#resources)
 
 ## 4.11.12 What the early Windows clients show when started
 
