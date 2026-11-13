@@ -110,7 +110,9 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 4.04r2 Linux | `G3D19026` | W | `linux-local-login-matrix.md` | (no folder) | |
 | 4.10r2 Linux, 4.11 Linux | `G3D28076` | B | connect-routine read of both, 2026-11-13. Not the public list's 4.11 token: that one is the Windows build's | (no folder) | |
 | 4.11 Windows (4.1.1.0) | `G3D26076` | B | connect-routine read of the unpacked engine image from memory under Wine, 2026-11-13; matches the public list | (no folder) | |
-| 4.20r6 Mac | `G3D27076` | W | Tiger lab | ✔ | tested |
+| Mac PPC build of 2006-09-19 (archive label "4.20r6") | `G3D27076` | W | Tiger lab. The label looks wrong: the binary is dated 2006-09-19, and the Mac 4.10r2 download (2006-08-22) sends the same token, so this is a 4.10r2/4.11-era build | ✔ | tested |
+| 4.10r2 Mac (PPC) | `G3D27076` | B | connect-routine read of the Mach-O (PPC register tracking), 2026-11-13; same token as the 2006-09-19 build | (no folder) | |
+| 4.20r6 Mac (PPC, binary 2006-12-21) | `G3D21126` | B | connect-routine read, 2026-11-13. This is the real Mac 4.20r6, from the official download of early 2007 | (no folder) | |
 | 4.20r6 / r8 Linux | `G3D22126` | W | `linux-local-login-matrix.md`. The 2007-01-15 Linux 4.20r8 build reads the same (connect-routine read, 2026-11-13) | (no folder) | |
 | 4.20r8 Windows | `G3D20126` | W | lab capture | ✔ | tested |
 | 5.00r7 Windows | `G3D22067` | W | `lab-v5-2026-10-30.md` | ✔ | tested |
@@ -120,6 +122,8 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md` | ✔ (5.31r4) | tested |
 | 6.00 beta1 Windows | `G3D03048` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 6.x beta Linux (x86, x64; June 2011 beta download, probably 6.00r4) | `G3D28090` | B | connect-routine read of both, 2026-11-13. The binaries carry no version string. "6.00r4" is inferred: the Mac (6.004) and Windows (FileVersion 6.0.0.4) betas captured from the same folder on the same day share the file date. The token date is two days after Windows 6.00r4's `G3D26090` | (no folder) | |
+| 6.004 Mac (June 2011 beta) | `G3D27090` | B | connect-routine read of the x86_64 slice, 2026-11-13. One day before the Linux beta's `G3D28090` | (no folder) | |
+| 6.015 Mac | `G3D3107A` | B | connect-routine read of the x86_64 slice, 2026-11-13. One day after Windows 6.0.1.5's `G3D3007A` | (no folder) | |
 | 6.0.0.7, 6.0.1.5 Windows | `G3D3007A` | **W** | first login frame captured in a Windows 10 lab VM, 2026-11-13 (FileVersion 6.007 and 6.015); matches the public list | (no folder) | |
 | 6.01r1 Linux (x86, x64) | `G3D0108A` | **W** | `linux-local-login-matrix.md` (first-frame observation) | ✔ | **token only (understated)** |
 | 6.0.3.4 Windows | `G3D2505C` | L | public list | (no folder) | |
