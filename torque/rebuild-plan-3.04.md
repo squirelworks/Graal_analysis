@@ -29,7 +29,7 @@ Either way the yardstick is the same: the original client's own script, GUI and 
 ## Checklist
 
 Tick a stage when its test passes. The rebuild work is tracked in
-squirelworks/graal-delphi#109 (on hold), the research follow-ups here in #243.
+squirelworks/graal-client-repro#303, the research follow-ups here in #243.
 
 - [ ] Decision: the Torque layer's language (squirelworks/graal-delphi#110)
 - [ ] Stage 0: reference captures of the real 3.04
@@ -97,4 +97,4 @@ Each stage ends in a test that can fail. "Real" means the original `graalexe` 3.
 
 ## What happens to graal-delphi #95
 
-It stays on hold. When stages 1–4 land, the 3.04 folder is rebuilt on the Torque layer and #95's wire work (already correct for 0.0.1) moves under it unchanged.
+When stages 1–4 land, the 3.04 folder is rebuilt on the Torque layer and #95's wire work (already correct for 0.0.1) moves under it unchanged.
