@@ -76,13 +76,13 @@ A swing hits the local player only when every gate passes. In 2.05 rev 2 order:
 | 7 | guild: the first bracketed text in the attacker's nickname (a `(`, then the first `)` after it with at least one character between) does not occur anywhere in the victim's nickname, case-sensitive | [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
 | 8 | the attacker's STATUS has neither 0x02 (hidden) nor 0x20 (sword hidden) | [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
 | 9 | the attacker is not kicking: 2.05 by the animation name `kick`, 2.17.1 and later by an object id of 3 | [2.05][2.17.1] (client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv) |
-| 10 | reach box: the victim's centre 0 to 4 tiles ahead of the attacker's centre along its facing (both ends count) and strictly under 2 tiles to the side; centres are (x + 1.5, y + 2); skipped while the victim is in hurt mode | [2.05] (client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md#who-decides-a-hit); [2.00] (client-internals/combat-200-204.md#the-same-in-every-build-200-to-205-rev-2) |
+| 10 | reach box: the victim's centre 0 to 4 tiles ahead of the attacker's centre along its facing (both ends count) and at most 2 tiles to the side, the 2-tile edge included (every build 1.21 to 2.31; earlier readings said strictly under 2) [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing); centres are (x + 1.5, y + 2); skipped while the victim is in hurt mode | [2.05] (client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md#who-decides-a-hit); [2.00] (client-internals/combat-200-204.md#the-same-in-every-build-200-to-205-rev-2) |
 
 By build:
 
 | Rule | 1st Graal | 1.39 | 2.00 | 2.01 | 2.02 | 2.03 | 2.04 = 2.05 rev 2; 2.17.1, 2.22, 2.31 | Source |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| reach box | up to 4 ahead, sideways under 2; the 0 and 4 edges unread | 0 to 4 ahead, sideways under 2 | 0 to 4, both ends; under 2 | = | = | = | = | [bin] (version-profiles/matrix/rules-1st-graal.md#sword-reach-bin); [1.39] (version-profiles/matrix/rules-139.md#sword-reach-bin-lab); [2.00] (client-internals/combat-200-204.md#the-same-in-every-build-200-to-205-rev-2) |
+| reach box | up to 4 ahead, sideways under 2; the 0 and 4 edges unread | 0 to 4 ahead, sideways up to 2 inclusive | 0 to 4, both ends; sideways up to 2 inclusive | = | = | = | = | [bin] (version-profiles/matrix/rules-1st-graal.md#sword-reach-bin); [1.39] (version-profiles/matrix/rules-139.md#sword-reach-bin-lab); [2.00] (client-internals/combat-200-204.md#the-same-in-every-build-200-to-205-rev-2) |
 | tested only in | the normal life-state | unmeasured | play state exactly 0 (its own victim test; no paused/editor test) | the shared can-be-hurt test | shared | shared | shared | [bin] (version-profiles/matrix/rules-1st-graal.md#sword-reach-bin); [2.00][2.01] (client-internals/combat-200-204.md#what-changes-by-build) |
 | kick test | unmeasured | unmeasured | absent | by animation name | = | = | by name (2.05); object id 3 (2.17.1 on) | [2.00][2.01] (client-internals/combat-200-204.md#what-changes-by-build); [2.17.1] (client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv) |
 | no-kill flag | unmeasured | unmeasured | on the player, cleared on level load | on the player | on the player | on the player | on the level, read through a tamper-checked byte | [2.00][2.03][2.04] (client-internals/combat-200-204.md#what-changes-by-build) |
@@ -249,3 +249,25 @@ Hurt mode was measured across builds. Each row gives one build's lock-out, knock
 | 2.05 rev 2 | 40 | 5 steps | `hurt` 31 ticks (`hurt.gani` 1 frame, WAIT 30), keeping the facing; 12 ticks when an arrow is held | the body drawn on alternate ticks, only the shadow on the off ticks, for all 40 ticks, after `hurt` has given way | [live][2.05] (client-internals/player-mannerisms-live.md#hurt-knockback-and-blinking-live) |
 | 2.22 | 40 | 4.9 tiles on the same test | 12 ticks with an arrow held | unmeasured | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 5.24r4, 5.30r3, 6.03r7 | unmeasured | 5 tiles in 5 ticks | `idle` 1.54 to 1.55 s after the hit | blinks | [wire] (protocol/v5v6-lab-play.md) |
+
+## 4.3.8 Combat, baddy and lava rules by build, 1.21 to 2.31
+
+A 2026-11 static pass compared the baddy, combat and tile code of 35 Windows builds from 1.21 to 2.31, with one live 1.39 check [bin][live] (client-internals/combat-baddy-tile-by-version.md). The rows give what changes; anything not listed is the same as 2.05 rev 2.
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| sideways reach of the sword box includes the 2-tile edge | every build, 1.21 to 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
+| swing gate | sprite 6 to 10 in 1.21 to 1.33; animation step 9 to 13 from 1.34 (equivalent) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
+| AP 100 immunity | from 1.34; none in 1.21 to 1.33 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
+| a victim in player mode 7 is passed over | 1.34 to 1.41 (mode 7 unidentified) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
+| one more, unidentified victim test | 2.17.1, 2.22, 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
+| sword power stored raw (6 bits), no ±20 limit | 1.39 to 2.02; the limit from 2.03 | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-power) |
+| hits by packet (40, 46): 10-tile range, 1-heart cap, AP 100 check | same handler 2.03 to 2.31; no 1.x handler found | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
+| baddy AI tables | byte-identical in all 33 builds with the baddy class; NewWorld betas have none | [bin] (client-internals/combat-baddy-tile-by-version.md#baddy-ai) |
+| swamp soldier: the sword's window | counter 17 or more, no upper bound, 1.21 to 2.00; 22 to 36 from 2.01 | [bin] (client-internals/combat-baddy-tile-by-version.md#baddy-ai) |
+| a dying baddy drops an item on the client (green rupee under 10, blue under 15, heart under 30, darts under 75 for types 3, 4, 9, out of 100) | 1.21 to 1.41; gone from NewMain 1.42 | [bin][live] (client-internals/combat-baddy-tile-by-version.md#1x-clients-roll-an-item-when-a-baddy-dies) |
+| lava burn | none in 1.21; from 1.28 beta 2, half a heart per 101-tick cycle at (x + 1.5, y + 2) | [bin] (client-internals/combat-baddy-tile-by-version.md#lava-and-tile-rules) |
+| death | dead-bit threshold 28 and timer cap 30 in every build; respawn AP bands found only in 2.x | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
+| sword-clash spark: five ticks of `arrays.dat` array 21 | 1.28 beta 2 to 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-clash-spark) |
+
+Open: → App. E#324.

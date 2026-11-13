@@ -154,6 +154,7 @@ client-internals/engine-600r2.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry th
 client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the shared engine and the Torque names; the two-week delta (resolveHost, keep-alive, crypto source paths) stays in the note
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
 client-internals/launchers-420r8-500r7-512.md	pending		1; 2.3	4.20r8, 5.00r7 and "5.12 untouched" launcher copies and the Packet Logger engine diff; to be folded into the build list
+client-internals/graal2002-and-140-builds.md	pending		1; 2.3; 2.4; 2.5	Graal 2002 (2.1.0.x) and 1.40 builds: tokens, GS1 dating and receive-dispatch rows; to be folded into the build list, login and message sections
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
@@ -640,3 +641,11 @@ client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT p
 protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
+client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	
+client-internals/gs1-on-5x-hud-and-flags.md	cited	4.6; 8.3; C	4.6; 8.3; C	
+client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E	
+client-internals/update-cadence-3x-6x.md	cited	4; 4.1; C; E	4.1; C; E	
+npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C	
+npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
+server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
+version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	

@@ -460,3 +460,19 @@ Item type decodes an identity, searches 25 entries and returns the matching inde
 Two original-client offline runs contribute twelve displayed controls. Signs at (14,24)/(39,37) read correctly, negative/end indices yield zero, and 0.9998/0.99995 choose first/second sign. Up/right arrows show direction 0/dx0 and direction 3/dx1. A separate up-arrow snapshot after requested sleep 0.2 has count1, direction 0, dx0 and unassigned dy0 while y decreased4; zero dy does not prove no vertical motion or a general fallback rule. A requested power1 bomb at (20,35) reads count1/x20/y35/power1/time3. No writes, live AST or timing cadence were measured [lab] (npc-library/gs1-object-members-205r2.md#original-client-corroboration).
 
 The exact unchanged original Windows 2.05r2 ran under Wine/private display in isolated namespaces without a server, using explicit 2.31 donor assets and owned fixtures. Both supervisors exited zero and cleanup completed; the count2 result is unobscured despite a nearby minimap. Identity/static/visual observations are researcher supplied. Fresh parser/table/bounds instructions and recovered matching getter/helper text support the mapping; this is not full instruction validation of every helper. Writes, setter clamps/notifications, unknown-member fallback, scanner case/quoting, enum meanings, explosion mapping, horse decoder/integrity consequences and other builds remain open [bin][lab] (npc-library/gs1-object-members-205r2.md#coverage-and-limits; npc-library/gs1-object-members-205r2.md#original-client-corroboration).
+
+## 8.2.11 Per-build GS1 rules, 1.21 to 5.00r7
+
+The 61 builds of the command matrix fall into 25 distinct command tables from 1.21 to 5.00r7; offline lab scenes on the real 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31 clients extend the 2.05r2 condition and message-code readings [bin][lab] (npc-library/gs1-per-build-2026-11-13.md). The table sizes are in App. C.5.
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| statement words | `while` from 1.28 beta 2; `function`, `return`, `break`, `continue` from 1.41r1; `with` in 2.17.1 to 3.04 only | [bin] (npc-library/gs1-per-build-2026-11-13.md#statement-words-by-build) |
+| bare numbers in conditions | `if (1)` and `if (0.5)` are false in every build tested: a bare number is a flag name | [lab] (npc-library/gs1-per-build-2026-11-13.md#conditions-bare-numbers-are-flag-names) |
+| constant comparisons | 0 before 2.17 (`1==1` false in 1.41r1 and 2.05r2); normal from 2.17.1 | [lab] (npc-library/gs1-per-build-2026-11-13.md#constant-comparisons-before-217) |
+| message codes before 2.17 | `##` becomes `#`; `#b` and an argument-less `#v`/`#s` are empty; an unknown code loses its `#` | [lab] (npc-library/gs1-per-build-2026-11-13.md#message-codes-before-and-after-217) |
+| message codes from 2.17 | unknown codes stay as written; `#F` from 2.17, `#K(n)` from 2.00 | [lab][bin] (npc-library/gs1-per-build-2026-11-13.md#message-codes-before-and-after-217) |
+| 2.17.1 argument letters | `showtext` RRRSSS, `showtext2` RRRRSSS, `shoot` RRRRRRSS, `putnpc2` RRS, `showimg2` RFRRR, `wraptext` RSS, `setcursor2` F and the rest as the note lists; the same as 3.04's | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions) |
+| server-only commands | `putnpc2`, `savelog2`, `sendpm`, `sendtonc`, `sendtorc`, `setpm` have no client executor in 2.17.1 to 3.04 | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions) |
+| corrected first builds | `showtext`, `hideimgs` 2.17.1; `openurl2` 2.01; `move` 2.03; `setz` 2.05; `addstring` NewWorld beta 2 | [bin] (npc-library/gs1-per-build-2026-11-13.md#corrected-first-builds) |
+| not measured | `while (1)`; `##` in the 2.17 engine; the new 2.17 codes in a populated context; events, flags, variables and functions per 1.x build | [lab] (npc-library/gs1-per-build-2026-11-13.md#not-measured) |
