@@ -6,7 +6,7 @@ Builds read:
 
 | Build | Image | How it was obtained |
 | --- | --- | --- |
-| 5.00r7 (`G3D22067`) | `GraalEngine.dll` from the unpacked 5.0.0.7 archive (the unpatched `.bak` copy; the CRC patch changes 8 bytes elsewhere) | as archived |
+| 5.00r7 (`G3D22067`) | `GraalEngine.dll` from the unpacked 5.0.0.7 archive (the unpatched `.bak` copy; the "CRC patch" changes 8 bytes elsewhere, a license-file check bypass, see [launcher note](../client-internals/launchers-420r8-500r7-512.md#its-engine-is-the-500r7-engine-patched)) | as archived |
 | 5.12 (`G3D14097`) | the engine DLL that the packed `Graal 5.12.exe` maps at run time (PE date 2007-10-19) | the exe was started under Wine in a network namespace with no outside link, and the mapped image was copied out of the process. The packer leaves only a 2 KB header stub on disk. **[lab]** |
 | 5.30r3, 5.31r4 | the unpacked single exes | as archived |
 | 6.0.3.7, 6.1.1.3 | the unpacked exes | as archived |
