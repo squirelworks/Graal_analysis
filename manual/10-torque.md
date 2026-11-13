@@ -28,7 +28,7 @@ The Torque era spans several builds and platforms. Each row gives one build with
 | Build | Date | Shape | Torque part | 3D world | Game string / protocol | Menu scripts | Source |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1998 to 2.31 | — | Delphi | none | none | n/a | n/a | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
-| 3.04 Linux | Jan 2004 | one C++ binary (SDL, OpenAL) | full TGE, version number 1100 | TGE classes, no 3D scripts shipped | `Torque Game Engine Demo` / 9 | TorqueScript `.dso` | [bin] (torque/README.md#lineage-at-a-glance) |
+| 3.04 Linux | Jan 2004 | one C++ binary (SDL 1.2, FMOD 3.70; [build and linkage](../client-internals/linux-304-executable-build.md)) | full TGE, version number 1100 | TGE classes, no 3D scripts shipped | `Torque Game Engine Demo` / 9 | TorqueScript `.dso` | [bin] (torque/README.md#lineage-at-a-glance) |
 | 3.153 Mac | Feb 2005 | one C++ binary (Carbon, PPC) | full TGE with Graal's net-layer changes | stock TGE world and `main3D.cs` client scripts | `Graal3D` / 19 | TorqueScript `.dso` | [bin][file] (torque/README.md#lineage-at-a-glance) |
 | 4.04r2 Win | Mar 2006 | Delphi launcher, `GraalEngine.dll` (2D) and `Graal3DEngine.dll` (3D plug-in) | 2D engine on Torque base classes; the 3D DLL near-stock TGE | stock TGE with datablocks | `Graal3D` / 19 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
 | 4.20r6 Mac | Sep 2006 | one C++ binary (PPC) | Torque core and netcode, Graal game layer | `GameObject` model, no datablocks | `Graal3D` / 21 | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
