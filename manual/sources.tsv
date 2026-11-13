@@ -291,6 +291,7 @@ npc-library/behaviours.md	cited	8.1	8
 npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
 npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
+npc-library/gs1-event-counts.md	cited	8.1	8.1	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
 npc-library/gs1-reference-205.md	cited	8; 8.1; 8.2; 8.4; E	8	
 npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
@@ -545,6 +546,8 @@ version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix 
 version-profiles/matrix/rules-132.md	pending	4.2; 4.3; 4.4	C; 4	1.32 rules (static read 2026-11-12); fold into §4.2 to §4.4 next to 1.39 and 1st Graal
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
+version-profiles/pli-send-sites-141-217.md	cited	2.4; E	2.4	
+version-profiles/save-games-142-2171.md	cited	1	1	
 version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-layouts-217-231.tsv	cited	2.5; 2.7	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-levellink-layouts.tsv	cited	2.5	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)

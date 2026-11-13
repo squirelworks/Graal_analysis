@@ -112,6 +112,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Exact 2.05r2 message-code catalog](npc-library/gs1-message-codes-205r2.md): bounded selector contract and runtime controls; E#203 remains partial.
 - [Original 2.05r2 condition truth and constant-comparison folding](npc-library/gs1-condition-truth-205r2.md): bounded static and offline runtime resolution of E#200.
 - [2.05r2 queued GS1 movement](npc-library/gs1-move-205r2.md) — static options and consumer; cadence/event timing remain open.
+- `npc-library/gs1-event-counts.md` — how many scraped level scripts use each GS1 event flag (fills the zero and rare events of manual §8.1.5).
 - `npc-library/` — 3,172 unique NPC scripts scraped from GR-V1 `.graal` levels, plus tile-neighbor patterns. See also `gs1-commands.md` for the cleaned command catalog and `gs1-reference-205.md` for the 2.05 command, function, and constant tables. Archival notes on a prior larger documented extract are in `npc-library/archival-scripting-notes.md`. `npc-library/preagonal-gs2.md` is a study of Preagonal's MPL-2.0 GS2 compiler and VM (a lead only; not a reading of the clients).
 - [Bounded arrays.dat membership](formats/arrays-membership-2026-11-09.md) — exact-file counts and Bush membership correction; runtime collision remains open.
 - `formats/` — GLEVNW01, GANI, GRMAP001, tiletypes, board and system notes, and save games (`graalsav.md`). See also `tile-walk.md`, `sign-text.md`, `gobjset01.md`, `level-binary.md` (GR-V1/Z3-V1), and `gmap.md`.
@@ -195,6 +196,8 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates (the 2.05 client's real wall test is a box: see `client-internals/decomp-findings-2026-10-25-l/`).
+- `version-profiles/save-games-142-2171.md` — no client after 1.41 rev1 reads or writes offline save games (no save magic, no load-game menu); static.
+- `version-profiles/pli-send-sites-141-217.md` — every client-to-server send site in 21 builds from 1.41r1 to 2.17.1: all pass a constant id, so the §2.4.2 lists are complete; settles App. E#11 (NewWorld betas send neither 8 nor 20); static.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
 - `client-internals/launchers-420r8-500r7-512.md` — the newly found 4.20r8, 5.00r7 and "5.12 untouched" copies are launchers only; the "5.12" set is a re-versioned, patched 5.00r7; the Packet Logger 4.20r8 engine diffed against stock; static.
 - `client-internals/graal2002-and-140-builds.md` — the Graal 2002 world builds (2.1.0.0–2.1.0.4, Oct–Dec 2001) and the 1.40 builds: tokens `GNW31101` and `GNW23090` read from binaries, GS1 command dating, and receive-dispatch ids 170–177; static.

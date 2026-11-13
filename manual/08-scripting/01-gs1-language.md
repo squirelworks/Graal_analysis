@@ -86,28 +86,28 @@ Scripts that wait use a timer. The rules below give how `timeout` and `sleep` wo
 
 ## 8.1.5 Events
 
-The engine sets one of these flags and runs the script [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205). The scrape count is the number of the 3,172 scraped level scripts that test the event, where the notes counted it.
+The engine sets one of these flags and runs the script [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205). The scrape count is the number of scraped level scripts that name the event; a zero means no level in the scrape uses it, which fits events that only weapons or server-side scripts see [file] (npc-library/gs1-event-counts.md#method).
 
 | Event | Scrape count | Source |
 | --- | ---: | --- |
-| `created` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
+| `created` | 0 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
 | `playerenters` | 2,268 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
 | `timeout` | 1,456 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
 | `playertouchsme` | 1,986 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
 | `playertouchsother` | 1,074 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
 | `playerendsreading` | 1,123 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
-| `playerchats` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `playersays(…)`, `playersays2(…)` | unmeasured; these are functions, not flags | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
+| `playerchats` | 13 (12 outside commented-out code) | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `playersays(…)`, `playersays2(…)` | 36 and 7; these are functions, not flags, and some scripts pass a first argument `0` before the text | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
 | `wasshot` | 728 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
-| `wasshooted`, `washit`, `wasthrown`, `waspelt`, `peltwith…` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `exploded` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
+| `wasshooted`, `washit`, `wasthrown`, `waspelt`, `peltwith…` | 215, 1,048, 136, 903 and 5 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `exploded` | 1,144 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
 | `compusdied` | 1,122 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205); [file] (npc-library/gs1-commands.md#event-frequency-reminder) |
-| `compsdead` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `playerdies`, `playerhurt`, `playerhurted` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `playerlaysitem`, `weaponfired` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `action…` | unmeasured; any action name sent by `triggeraction` | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `shotbyplayer`, `shotbybaddy` | unmeasured | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
-| `main` | unmeasured; sits in the same string cluster, probably a weapon's main event or entry | [inf] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) |
+| `compsdead` | 2 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `playerdies`, `playerhurt`, `playerhurted` | 0 each | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `playerlaysitem`, `weaponfired` | 1,134 and 41 | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `action…` | 0; any action name sent by `triggeraction` | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `shotbyplayer`, `shotbybaddy` | 0 each | [2.05] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
+| `main` | 0; sits in the same string cluster, probably a weapon's main event or entry | [inf] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205) ; [file] (npc-library/gs1-event-counts.md#counts) |
 
 Events documented for 2.22 but absent in 2.05: `actionleftmouse`, `actionrightmouse`, `actiondoublemouse`, `actionprojectile`, `keypressed`, `mousedown`, `playeronline`, `playerpaused` [2.05][doc] (npc-library/gs1-reference-205.md#built-in-flags-and-events-205).
 
