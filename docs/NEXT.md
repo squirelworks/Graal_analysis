@@ -303,46 +303,43 @@ macOS CI is paused until the polish stage.
   0.0.6 coverage, 0.0.7 implementability, 0.0.8 triage of the unknowns, 0.0.9
   release quality, 1.0.0 sign-off (Squirrel's call). Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
-- [ ] **16. Torque study and the 3.04 plan. On hold, no target release** (Squirrel,
-  2026-11-05). The study and plan are merged (#242, stage checklist #250):
+- [ ] **16. Torque study and the 3.04 plan. Live work, top priority** (Squirrel,
+  2026-11-13: there is no Torque hold; the 2026-11-05 "on hold" note was an agent error).
+  The study and plan are merged (#242, stage checklist #250):
   `torque/study-torque-clients.md`, `torque/rebuild-plan-3.04.md`. Follow-ups wait in
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
-  The rebuild is graal-delphi's (squirelworks/graal-delphi#109); its stage 1 script VM is
-  parked there in `common/torque/`. Do not start on it unless Squirrel lifts the hold.
+  The rebuild is graal-client-repro's (squirelworks/graal-client-repro#303).
   - [x] v5 export, static read only (2026-11-07): `torque/launcher-5007.md`,
     `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
-    unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`. The rebuild
-    stays on hold.
+    unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`.
   - [x] Component pass of the Linux 3.04 game units (the 2D session, drawing, NPCs and
     script, Graal TCP beside stock Torque, fmod): `torque/304-adventure.md`,
     `torque/304-draw.md`, `torque/304-npcs.md`, `torque/304-net.md`,
-    `torque/304-audio-ui.md`. The rebuild stays on hold.
-  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`). The 3.04 rebuild stays on hold.
+    `torque/304-audio-ui.md`.
+  - [x] The two exe exports are one packer stub, and a later file-version 4.2.0.8 export includes the launcher, `GraalEngine.dll` and `Graal3DEngine.dll` (`torque/v4-404r2-exe.md`, `torque/v4-420r8-exe.md`, `torque/engine-4208.md`).
   - [x] Read the 3.04 Linux engine (2026-11-07): `torque/engine-304.md`.
-    Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`. The hold
-    on writing the module stands.
+    Stock TGE stays in the binary; Graal's game is `GuiGraalCtrl`.
   - [x] Unpacked Windows 6.00r2 and 6.00r4 (static read): no Torque 3D subsystem.
     `GuiGraal3DCtrl` is a GUI type beside `GuiGraalCtrl`. Torque field names and
     `GuiTilesCtrl` are absent from these two images.
     `client-internals/engine-600r2.md`, `client-internals/engine-600r4.md`.
-    The rebuild stays on hold.
+   
   - [x] Read the skipped packed listings (2026-11-07). The two v4 exe
     listings are one Thinstall loader. Packed 5.12 still names its Delphi
     forms. `fmod.dll` is the UPX export list. Packed 6.037 and 6.113 export
     a `QPlay.exe` TLS surface and not Torque.
     `torque/skipped-v4-read.md`, `torque/skipped-v5-read.md`,
-    `client-internals/skipped-v6-read.md`. The hold stands.
+    `client-internals/skipped-v6-read.md`.
   - [x] Unpacked Windows 4.2.0.8, static read (2026-11-07). The launcher
     draws by host slots until a 3D start replaces them. `GraalEngine.dll`
     runs the session and has no `SimObject` console. `GameObject` in
     `Graal3DEngine.dll` is a `SceneObject`. `torque/4208-launcher.md`,
-    `torque/4208-engine.md`, `torque/4208-g3d.md`. The hold stands.
+    `torque/4208-engine.md`, `torque/4208-g3d.md`.
   - [x] GS2 script machine in GraalEngine 4.2.0.8 and GraalEngine 5.0.0.7
-    (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`.
-    The Torque rebuild stays on hold. No Seihai crate was started.
+    (2026-11-07), static read. `client-internals/gs2-vm-from-engines.md`. No Seihai crate was started.
   - [x] Cross-version Torque surface (2026-11-07): which modules are
     present, only a name, or absent from 3.04 through unpacked 6.00.
-    `client-internals/torque-surface-by-era.md`. The hold stands.
+    `client-internals/torque-surface-by-era.md`.
   - [x] Read 5.0.0.7 for behaviour (2026-11-07): the launcher session,
     `TAdventure` and the script space, and the 3D mission, terrain and
     protocol-24 check. `torque/5007-launcher.md`, `torque/5007-engine.md`,
@@ -351,7 +348,7 @@ macOS CI is paused until the polish stage.
     No `SimObject` console. `GuiTilesCtrl` is registered.
     `GuiGraal3DCtrl` is not a string; `GraalControl3D` is looked up
     beside `GUIContainer`. Five `new t2d` constructors are file text.
-    `client-internals/unpacked-6113.md`. The hold stands.
+    `client-internals/unpacked-6113.md`.
 
 - [x] **17. v6 own-engine reading.** The 6.x clients are Graal's engine. This pass
   is the June 2011 Windows exports and two packed exes. The packed shells stay
