@@ -158,7 +158,7 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 ## Other observations
 
 - `version-tokens.md` lists the Windows 4.20r8 row twice. Its "lab capture" tags for 5.12 to 6.03r7 Windows agree with `v5v6-windows-unpacked.md`.
-- The Mac build archived as "4.20r6" sends `G3D27076`, one day after the public list's Windows 4.11 `G3D26076`. Settled 2026-11-13: that build is dated 2006-09-19 and the Mac 4.10r2 download sends the same token, so it is a 4.10r2/4.11-era build with a wrong archive label. The real Mac 4.20r6 (2006-12-21) sends `G3D21126` (rows above). seihai-gs2lib now calls `G3D27076` `CLVER_4_102_MAC` and gives `G3D21126` `CLVER_4_206_MAC`.
+- The Mac build labelled "4.20r6" sends `G3D27076`, one day after the public list's Windows 4.11 `G3D26076`. Settled 2026-11-13: that build is dated 2006-09-19 and the Mac 4.10r2 download sends the same token, so it is a 4.10r2/4.11-era build with a wrong archive label. The real Mac 4.20r6 (2006-12-21) sends `G3D21126` (rows above). seihai-gs2lib now calls `G3D27076` `CLVER_4_102_MAC` and gives `G3D21126` `CLVER_4_206_MAC`.
 - The public list's `G3D3007A` (6.0.0.7 / 6.0.1.5 Windows) and the Linux 6.01r1 `G3D0108A` are different builds, not a conflict. As with 4.04r2 and 6.03r7, each platform build has its own stamp.
 
 ## Open points
