@@ -1,6 +1,6 @@
 # PCID: where the "PC id" comes from
 
-Date: 2026-11-13. Static reads of held clients, the existing login captures, the GServer-v2 source and the gs2lib enum table. No lab run for this note, and no contact with public servers.
+Date: 2026-11-13, extended the same day with how each hash is computed. Static reads of held clients, the existing login captures, the GServer-v2 source and the gs2lib enum table. No lab run for this note, and no contact with public servers.
 
 **Short answer.** A PCID is a number the **listserver** hands to a game server for each login. The game server does not compute it. The client does not compute it either: the client sends a comma list of machine fields after its password, the game server forwards that list unchanged to the listserver, and the listserver answers with a decimal PCID. How the official listserver turns the fields into that number is not in any binary or source we hold. **[src][bin][inf]**
 
@@ -8,25 +8,79 @@ Tags: **[bin]** static read of a held binary, **[cap]** a held capture, **[lab]*
 
 ## What the client sends
 
-The machine fields arrive after the password in the first login message. Field layouts per build are in [`v4x-clients.md`](v4x-clients.md#login-packet), [`v5x-clients.md`](v5x-clients.md#login), [`v5v6-windows-unpacked.md`](v5v6-windows-unpacked.md#login-message), [`v6x-clients.md`](v6x-clients.md#login-message-601-and-603) and manual §2.3.5. In summary:
+The machine fields arrive after the password in the first login message, as one comma list. Earlier summaries are in [`v4x-clients.md`](v4x-clients.md#login-packet), [`v5x-clients.md`](v5x-clients.md#login), [`v5v6-windows-unpacked.md`](v5v6-windows-unpacked.md#login-message), [`v6x-clients.md`](v6x-clients.md#login-message-601-and-603) and manual §2.3.5. This section goes one level down: what each hash is computed over, and what makes it change. Builds read for it: the Windows 4.20 engine (with the 4.04r2 engine checked by strings), the unpacked Windows 6.03r7 (with 5.24r3 to 6.00r4 checked by strings), Mac 4.20r6 and Linux 6.03r7 x64. **[bin]**
 
-| Builds | Fields after the password | Source |
+### How every field is encoded
+
+- **The hash.** Each hardware field is plain MD5 over the raw bytes listed below, written as 32 lowercase hex digits. There is no salt, no key and no mixing between fields. The same helper does this in every build read. **[bin]**
+- **Missing values.** When the client cannot read a value it sends an empty field. It does not send the MD5 of nothing. **[bin]**
+- **Quoting.** The list is joined with commas. A field is wrapped in double quotes when it is empty or holds a space, comma, quote or backslash. That is why an empty field shows as `""` and the OS-version field is always quoted. **[bin][cap]**
+- **Field order.** Platform word, then fields 0 to 3 in that order. The 6.03r7 builder loops over four field numbers; field 3 is text, not a hash. **[bin]**
+
+### Windows
+
+| Field | 4.04r2 and 4.20 engine | 5.24r3 to 6.03r7 | Source |
+| --- | --- | --- | --- |
+| platform | `win` | `win` | [bin] |
+| product id | MD5 of the binary `DigitalProductId` registry value (up to 512 bytes), read from `HKLM\Software\Microsoft\Windows\CurrentVersion` and, if that is empty, from `HKLM\Software\Microsoft\Windows NT\CurrentVersion` | the same two keys, each tried for `DigitalProductId` and then `DigitalProductId4`; the first non-empty value wins | [bin] |
+| network | MD5 of the 6-byte node of a `UuidCreateSequential` UUID (`UuidCreate` if the sequential call is missing). On Windows 2000 and later this node is a network card's MAC | MD5 of the 6-byte hardware address of the **first adapter in `GetAdaptersInfo` order that has an IPv4 address** (an adapter whose address is all zeros is skipped). No UUID fallback on this path: with no such adapter the field is empty | [bin] |
+| disk | MD5 of the 4-byte volume serial of `C:\` (little-endian, from `GetVolumeInformationA`) | the same | [bin] |
+| OS version | none | `"<major>.<minor> <build> <service pack>"` from `GetVersionExA`; not hashed | [bin][cap] |
+
+Notes on the Windows fields:
+
+- **The product-id slot is often empty on 64-bit Windows.** The client opens the registry with plain read access and no 64-bit-view flag. A 32-bit program on 64-bit Windows therefore reads the redirected 32-bit view of `Windows NT\CurrentVersion`, where the product-id values are normally absent. This explains the `""` in the 6.03r7 capture on Windows 10. **[bin]** for the flag, **[cap]** for the empty field, **[inf]** for the cause. On a modern 64-bit PC, only two hardware fields carry anything.
+- **The earlier claim that 5.24 and later hash a different product id from 5.12 needs a recheck.** In 6.03r7, `DigitalProductId` is tried before `DigitalProductId4` in each key. On any system where the first key is empty, the value hashed is the same `DigitalProductId` the 4.x engine hashes. **[bin]**
+- **The network field follows whichever adapter has an address.** If the user switches between cable and Wi-Fi, or a VPN or virtual-machine adapter is listed first with an address, a 5.24+ client sends a different hash. If no adapter has an address, the field is empty. Windows can also give Wi-Fi a random hardware address per network. 4.x used the RPC UUID node instead, which does not depend on which link is up. **[bin][inf]**
+- **The disk field changes when `C:` is formatted** (a Windows reinstall). It is the same on every PC restored from one disk image, and Wine reports its own made-up serial. **[inf]**
+- **The OS-version field changes with Windows feature updates and service packs.** **[inf]**
+
+### Mac (4.20r6)
+
+| Field | Input | Source |
 | --- | --- | --- |
-| 1.x, 2.x, 3.x | nothing; no machine fields | [bin] |
-| Windows 4.20r8, 5.00r7 | `win`, MD5 of the product id, MD5 of the adapter MAC, MD5 of the `C:\` volume serial | [bin] |
-| Windows 5.12 to 6.03r7 | as above, plus a fifth field, the quoted Windows version | [bin][cap] |
-| Windows 6.03r7 on Windows 10 | `win`, an **empty quoted string** in the product-id slot, two MD5 hex values, `"6.2 9200 "` | [cap] (`login-session-observed.md`) |
-| Mac 4.20r6 | `mac`, MD5 of the 6 raw hardware-address bytes (not their hex text), a hash of 4 bytes of `stat("/etc")`, empty | [bin][lab] (client-harness 2026-11-13) |
-| Linux 6.01r1, 6.03r7 | `linux`, MD5 of the `eth0` MAC, MD5 of the `/etc` inode number, empty, kernel release and version | [bin] |
-| 6.11 and later | built by the server's connector script, not by the client; unmeasured | [bin] (`connector-script.md`) |
+| platform | `mac` | [bin] |
+| network | MD5 of the 6 raw bytes of `IOMACAddress` on the Ethernet interface marked `IOPrimaryInterface` (the built-in port). Empty if there is none; an emulated card counted only once it was marked built-in | [bin][lab] |
+| second | MD5 of 4 bytes taken from `stat("/etc")`, probably the inode number as on Linux | [bin][inf] |
+| third | empty | [bin] |
 
-Points that matter for PCID:
+### Linux (6.01r1, 6.03r7)
 
-- Every hardware value is an MD5 digest sent as 32 hex digits. The raw MAC, serial or product id never leaves the client. Nothing on the server side can turn the digests back into the raw values. **[bin]**
-- The fields are plain text inside the login message. A client, a proxy or a modified build can send any values it likes. They identify a machine only as far as the client is honest. **[bin][inf]**
-- The OS-version field changes when Windows is updated, so it is a poor key for a stable id. **[inf]**
-- Why 6.03r7 on Windows 10 leaves the product-id slot as `""` is not settled. A likely cause is a 32-bit program not finding the `DigitalProductId` value in its registry view, but this was not traced. **[inf]**
-- Whether the Windows MAC hash is over the raw 6 bytes, as on the Mac, or over hex text is not pinned.
+| Field | Input | Source |
+| --- | --- | --- |
+| platform | `linux` | [bin] |
+| network | MD5 of the 6-byte hardware address the `SIOCGIFHWADDR` ioctl returns for the interface named **`eth0`** | [bin] |
+| second | MD5 of the low 4 bytes of the `/etc` inode number | [bin] |
+| third | empty | [bin] |
+| OS version | `uname` release and version text; not hashed | [bin] |
+
+- **The `eth0` result is not checked.** On systems that name their interfaces differently (most distributions since about 2015 use `enp…`, `wlp…`), the call fails, the buffer stays zeroed, and the client sends the MD5 of six zero bytes, `7319468847d7b1aee40dbf5dd963c999`. Every such machine sends that same value. **[bin][inf]**
+- **The `/etc` inode changes on a reinstall** and is the same on machines installed from one image. **[inf]**
+
+### What the hashes do and do not hide
+
+- No server needs to decode them, and nothing does. **[src]**
+- They are not secret, though. Each is an unsalted MD5 of a short input. A 4-byte volume serial or `/etc` inode can be recovered by trying all 2³² values, and a MAC by trying the 2²⁴ device numbers under each known vendor prefix. Store them as you would the raw values. **[inf]**
+- Anyone can send any values. Clients and proxies that fake them (as our own lab tools do) are indistinguishable from real ones. **[bin][inf]**
+
+### What this means for matching
+
+| Field | Changes when | Shared by unrelated machines when | Weight |
+| --- | --- | --- | --- |
+| product id | Windows reinstalled or re-licensed | volume-licensed or cloned installs | medium; often empty on 64-bit Windows |
+| network (4.x) | network card replaced | rarely | high |
+| network (5.24+) | the active adapter changes, MAC randomisation, offline | rarely | medium: real but jumpy |
+| network (Linux) | — | the interface is not named `eth0` (the six-zero-byte hash) | none when it is the six-zero-byte hash |
+| disk / `/etc` inode | reinstall or format | restored from one image | high on one install |
+| OS version | updates | almost always | none; do not match on it |
+
+For a 2-of-3 rule this means:
+
+1. **Count only fields that carry a value.** Treat an empty field, `""` and the six-zero-byte Linux hash as missing. They are not evidence.
+2. **On modern 64-bit Windows, "3" is really 2.** With the product-id slot empty, 2-of-3 becomes "network and disk both match". The first adapter switch then breaks the match. Remember **every** network hash a machine has sent, not only the last one, so a disk match plus any earlier network hash still counts.
+3. **Do not use the disk field alone to merge machines.** Imaged PCs share it. A disk-only match is a weak hint, not the same PCID.
+4. **Keep platforms apart.** A `win` row never matches a `mac` or `linux` row.
+5. **Key the table by platform plus field.** Field positions mean different things per platform.
 
 ## Game server to listserver: `VERIACC2` and `ASSIGNPCID`
 
@@ -68,7 +122,7 @@ These are recommendations for the clean-room servers, written from the behaviour
 
 1. **Keep the game server dumb.** It forwards the identity string in `VERIACC2` and stores whatever `ASSIGNPCID` returns. That keeps GServer-v2 and Seihai game servers interchangeable behind one listserver.
 2. **Assign the PCID at the listserver**, and send `SVI_ASSIGNPCID` (30) before the `SVI_VERIACC2` reply. Send a decimal string that fits a signed 64-bit integer.
-3. **Use a machines table, not a hash.** Split the identity on commas (quotes allowed), keep the platform and the hardware digests, and drop the OS-version text. Look up an existing machine that shares any hardware digest on the same platform; create one if none does. Use the row number as the PCID. Treat `""`, empty fields and the MD5 of an empty string as "missing", not as a match.
+3. **Use a machines table, not a hash.** Split the identity on commas (quotes allowed), keep the platform and the hardware digests, and drop the OS-version text. Match as in [What this means for matching](#what-this-means-for-matching); create a row when nothing matches. Use the row number as the PCID.
 4. **Clients with no fields (1.x to 3.x, and any 6.11+ connector that sends none) get no PCID.** Send nothing, or send 0. Do not invent one from the IP address.
 5. **Treat a PCID as a hint.** Clients can send any values, so a PCID ban stops casual repeat offenders only. Keep account and IP bans alongside it.
 6. **Store digests only.** They are all the client sends; do not log the full identity string at normal log levels.
@@ -78,7 +132,8 @@ The lab listserver in `tools/lab-servers/listserver.py` logs the identity it rec
 ## Open
 
 - [ ] The official listserver's PCID rule (hash or lookup, which fields).
-- [ ] Whether the Windows MAC digest is over raw bytes or hex text.
-- [ ] Why the product-id slot is empty on 6.03r7 under Windows 10.
+- [x] ~~Whether the Windows MAC digest is over raw bytes or hex text.~~ Raw bytes, in every build read.
+- [ ] Why the product-id slot is empty on 6.03r7 under Windows 10: the 32-bit registry view is the likely cause (above); not yet confirmed in a lab.
+- [ ] Whether 5.12 reads the product id the same way (its unpacked image did not show the strings).
 - [ ] What `getlockcomputer` compares.
 - [ ] What 6.11+ connector scripts send as machine fields.
