@@ -12,6 +12,21 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Fold in the 2026-11-13 research.** ~~Publish the findings that shipped in the Seihai repos as behaviour notes, with manual and App. C/E carries.~~
+  - [x] ~~GS2 VM semantics by client version, 3.153 to 6.03r7.~~ [Note](../client-internals/gs2-vm-by-version.md); manual §8.4.9, App. C.8, E#209.
+  - [x] ~~Strict GS2 quirk probes.~~ [Note](../npc-library/gs2-strict-probes-2026-11-13.md); manual §8.3.7.
+  - [x] ~~GS1 per build: tables, statements, conditions, message codes.~~ [Note](../npc-library/gs1-per-build-2026-11-13.md); manual §8.2.11, App. C.5.
+  - [x] ~~Combat, baddy and lava rules, 1.21 to 2.31.~~ [Note](../client-internals/combat-baddy-tile-by-version.md); manual §4.3.3, §4.3.8, App. C.9, E#324.
+  - [x] ~~Game rules of the 1999 servers.~~ [Note](../server-notes/gserver-1999-rules.md); manual §5.1.6, E#423.
+  - [x] ~~Settle E#301: the 3.x, 4.x and 6.x cadence and GS1 `timeout` rounding.~~ [Note](../client-internals/update-cadence-3x-6x.md); manual §4.1.7, App. C.7.
+  - [x] ~~Mac PowerPC 4.04r2 and 5.12 live logins (#399 item 3).~~ [Note](../version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md); manual §1.2.2, §1.8.5, App. C.7.
+  - [x] ~~The 5.x HUD no-PK icon and 99/99, and 5.x flag and built-in probes.~~ [Note](../client-internals/gs1-on-5x-hud-and-flags.md); manual §4.6.8.
+  - [ ] Run `while (1)`, `##` in the 2.17 engine, and the 2.17 message codes in a populated context on real clients.
+  - [ ] Table events, flags, variables and functions per 1.x build.
+  - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer.
+  - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
+  - [ ] Settle E#209 (opcode 54, `waitfor` timeout), E#324 (1.x packet hits, mode 7, the 2.17.1+ victim test) and E#423 (1999 server open points).
+
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
   - [x] ~~Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.~~ [v5-props](../protocol/v5-props.md): 5.00r7, 5.12, 5.30r3 and 5.31r4 share 4.x's parsers plus 82; 6.x still parses natively (6.0.3.7 from the packet switch, 6.1.1.3 through `tclient_set*props`).
   - [ ] What 6.x own-prop 83 sets, and a wire check of the one-byte skip on a 5.x or 6.x client.
@@ -92,7 +107,8 @@ macOS CI is paused until the polish stage.
   - [x] ~~Complete E#203 field identities (#6/#a/#L).~~ [Field identities](../npc-library/gs1-message-codes-205r2.md#field-identities-a-l-e-and-a-positive-carry-control): #a account name, #L recorded level name, positive #6 carry control.
   - [ ] Trace the #E writer; quoted scanners, numeric formatting and downstream rendering remain.
 - [x] **Settle E#200 for the checked original 2.05 revision 2.** ~~Resolve the conflicting truth threshold.~~ [Source](../npc-library/gs1-condition-truth-205r2.md) separates zero/nonzero execution, name parsing and constant-comparison folding.
-  - [ ] Extend condition checks to other builds, nonfinite/malformed values, aliases/precedence and named-flag collisions.
+  - [x] ~~Extend condition checks to other builds.~~ [Per-build note](../npc-library/gs1-per-build-2026-11-13.md#conditions-bare-numbers-are-flag-names): bare numbers are false in 1.41r1 to 2.31; constant comparisons are 0 before 2.17.
+  - [ ] Nonfinite/malformed values, aliases/precedence and named-flag collisions.
 
 - [x] **Bound Linux 4.20r6 clock updates and advertised 3D-state predicate.** ~~Publish the completed sanitized scope.~~ [Source note](../client-internals/linux-420r6-clock-property.md) retains exact-build limits and remaining measurements.
 

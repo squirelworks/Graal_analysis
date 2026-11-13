@@ -3,7 +3,7 @@
 
 This part describes the game servers that Graal clients talk to: the original 1999 GServer13, the 2006 39ster 2.1 remake, and GServer-v2 as the reference for later behaviour. Login frames are in → §2.3, ciphers in → §2.2, and the reply sequence after a good login in → §2.3.6. The listserver is in → §6, RC and NC in → §7.
 
-> Status: draft. No official 2000–2002 GServer binary is in the archive, so the 2.x-era server rules here come from GServer-v2 and the 39ster remake, not from an original server.
+> Status: draft. No official 2000–2002 GServer binary is in the archive, so the 2.x-era server rules here come from GServer-v2 and the 39ster remake, not from an original server. The two 1999 servers were read in full in 2026-11 (→ §5.1.6).
 
 ## 5.1 GServer13 (1999)
 
@@ -85,6 +85,27 @@ Item drops from cut bushes and pots are rolled by the 1.3 client, not by GServer
 ### 5.1.5 Scripts
 
 GServer13 has player and NPC props, including an NPC nickname field, but no GS1 command table and no `setcharprop` or `showcharacter` strings; NPC scripts of this era are carried to clients and run there [bin] (server-notes/setcharprop-hash-n.md#1-gserver13-1999-cannot-settle-the-value-question-by-lab). GServer 1.34's Windows binary lists `showcharacter` but not `setcharprop` [bin] (server-notes/setcharprop-hash-n.md#2-server-side-gs1-gserversource-archive). Server-side scripting is in → §5.5.
+
+### 5.1.6 Game rules of GServer 1.28 beta 2 and 1.3
+
+A 2026-11 static read of both 1999 servers gives their handling of each client message, their timers and their baddy and kill rules [bin] (server-notes/gserver-1999-rules.md). Where GServer-v2 differs, the 1999 rule is the original.
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| version gate | 1.3 knows `GSERV007` to `GSERV014` but refuses every build before 1.3; 1.28 beta 2 refuses builds before itself | [bin] (server-notes/gserver-1999-rules.md#the-two-builds) |
+| board changes | only a 2×2 change grows back, after a random whole number of seconds from 0.75 to 1.25 × the respawn time (7.5 to 12.5 s by default); larger changes stay | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
+| horses | `PLI_HORSEADD` is kept for the horse lifetime and sent only to arrivals; then `PLO_HORSEDEL` to the level (9.5 to 9.8 s in a lab run) | [bin][lab] (server-notes/gserver-1999-rules.md#timers-once-a-second) |
+| `PLI_TOALL` | to every other player online as `PLO_TOALL`, sender id first | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
+| baddy props | accepted only from the level's leader; a dead leader hands leadership to the next player | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| not handled | bombs, arrows, thrown objects and floor items (4, 5, 9, 11, 12, 13), 24, 27 | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
+| prop limits | max hearts 20, gralats 9,999,999, arrows and bombs 99, alignment 0 to 100; sword 1–4 and shield 1–3 become stock images | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| deaths | counted when status prop 18 gets the dead bit 8 | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| alignment | +1 every 20 minutes online, up to 100 | [bin] (server-notes/gserver-1999-rules.md#timers-once-a-second) |
+| baddy start modes | swamp soldier (4) mode 6, hare (5) mode 7; powers 2, 3, 4, 3, 2, 1, 1, 6, 12, 8 for types 0–9 | [bin] (server-notes/gserver-1999-rules.md#baddies) |
+| kills (1.3) | count only when the victim has 10 AP or more; the killer loses (victim AP + 10) / 20, rounded half to even | [bin] (server-notes/gserver-1999-rules.md#kills-13) |
+| private messages | a build too old to answer gets the sender "The player cannot answer because he/she has an older version." | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
+
+Open: → App. E#423.
 
 ## 5.2 39ster 2.1 GServer
 

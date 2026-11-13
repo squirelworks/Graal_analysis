@@ -103,6 +103,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 4.02.11 | `G3D28095` | L | public list | (no folder) | |
 | 4.03.4 | `G3D09125` | L | public list | (no folder) | |
 | 4.04r2 Windows | `G3D17026` | W | lab capture | ✔ | tested |
+| 4.04r2 Mac | `G3D18026` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 4.04r2 Linux | `G3D19026` | W | `linux-local-login-matrix.md` | (no folder) | |
 | 4.11 | `G3D26076` | L | public list | (no folder) | |
 | 4.20r6 Mac | `G3D27076` | W | Tiger lab | ✔ | tested |
@@ -110,6 +111,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 4.20r8 Windows | `G3D20126` | W | lab capture | ✔ | tested |
 | 5.00r7 Windows | `G3D22067` | W | `lab-v5-2026-10-30.md` | ✔ | tested |
 | 5.12 Windows | `G3D14097` | W | `v5v6-windows-unpacked.md` | (no folder) | |
+| 5.12 Mac | `G3D15097` | W | `lab-mac-ppc-404r2-512-2026-11-13.md` | (no folder) | |
 | 5.24r3, 5.24r4, 6.00 beta2 Windows | `G3D15010` | W | `v5v6-windows-unpacked.md` | (no folder) | |
 | 5.30r3, 5.31r4, 6.00r2, 6.00r4 Windows | `G3D26090` | W | `v5v6-windows-unpacked.md` | ✔ (5.31r4) | tested |
 | 6.00 beta1 Windows | `G3D03048` | W | `v5v6-windows-unpacked.md` | (no folder) | |

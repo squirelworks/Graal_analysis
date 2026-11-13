@@ -149,3 +149,15 @@ A modern third-party compiler and VM exist for GS2. The rules below say what the
 | What it is | a public C# compiler and a public C# VM, both MPL-2.0; a lead for a later clean-room machine | [doc] (npc-library/preagonal-gs2.md#licence) |
 | What runs | the compiler takes GS2 source; the engine loads bytecode, and its tests pass the compiler's bytes in | [doc] (npc-library/preagonal-gs2.md#pipeline) |
 | Open | → App. E#207 stays open for syntax, the standard library, and the event model. The note records a third-party tree, which is not a reading of the clients | [doc] (npc-library/preagonal-gs2.md#what-this-does-not-settle) [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+
+## 8.3.7 Loose spellings the compilers accept
+
+34 authored one-quirk probes, each with a clean twin, were compiled as black boxes by the two public GS2 compilers. A quirk is tolerated when both accept it with the clean twin's bytes [test] (npc-library/gs2-strict-probes-2026-11-13.md).
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| tolerated, same bytes | a brace-less function body, a call of a call's result, `elseif`, a stray `;` or empty statement, a function with no body, `<>`/`=<`/`=>`/`:=`, an unterminated `/*` at the end of the file | [test] (npc-library/gs2-strict-probes-2026-11-13.md#tolerated-both-accept-same-bytes-as-the-clean-spelling) |
+| accepted, other bytes | assignment in a condition, a bare expression, a declaration before the body, a duplicate function, a bare GS1 command, a run-time name assignment, a string parameter name | [test] (npc-library/gs2-strict-probes-2026-11-13.md#accepted-with-different-bytes) |
+| rejected by both | comma statements, text enums, `global enum`, GS1 commands with comma arguments, nested comments, a function inside a block, missing semicolons, a bare `/word`, an unclosed block | [test] (npc-library/gs2-strict-probes-2026-11-13.md#rejected-by-both) |
+| split | a GS1 message code and a GS1 range: Preagonal rejects, gs2-parser accepts | [test] (npc-library/gs2-strict-probes-2026-11-13.md#split) |
+| GS1 inside a GS2 file | compiled as GS2 it loses its GS1 meaning; on 5.x that changes the HUD (→ §4.6.8) | [lab] (client-internals/gs1-on-5x-hud-and-flags.md#the-hud-difference-on-5x) |
