@@ -31,7 +31,7 @@ The disassembly excerpts behind this note stay in the project's handoff files, n
 | PLO 81 | — | — | no client, staff clients included | none |
 | PLO 83 | — | — | no client, staff clients included | none |
 | PLO 104 | `PLO_FILEKEY` (or `PLO_PACKAGEKEY`) | `str file`, `c a`, `i5 lo`, `i5 hi` | 3.153 to 6.03r7 | high (DES key); `a` partly known |
-| PLO 108 | `PLO_PING` | `c sub`, `s value` | 4.20r6, 4.20r8, 6.01r1, 6.03r7 (before the main switch); not 5.00r7 to 5.31r4 | high (sub 0); none (what reads the sub 1 value) |
+| PLO 108 | `PLO_PING` | `c sub`, `s value` | 4.20r6, 4.20r8, 6.01r1, 6.03r7 (before the main switch); not 5.00r7 to 5.31r4 | high (sub 0, seen on the wire with 6.03r7); none (what reads the sub 1 value) |
 | PLO 109 | `PLO_DOWNLOADURL` (file redirect) | `i5 time`, `str localname`, `str url` | 5.24r4 to 6.03r7 | high (layout); medium (role of the first string) |
 | PLO 110 | — | — | no client, staff clients included | none |
 | PLO 124 | `PLO_RC_PLAYERFLAGS` (from RC3's own log text) | not read | RC3 only: logs "received player flags" | medium (name); none (payload) |
@@ -85,12 +85,12 @@ On 2026-11-11 the project moved to upstream gs2lib's packet names. The code repo
 | GServer2 RC 2002/05/02 ("rc141") | `GSERV023`, `NCL11012` | 8 13 16 30 35 37 55–59 61–70 72–74 76 77 79 180 | not traced | no | no | no |
 | Graal Remote Control 2004/01/17 (Delphi; three copies, one a 2005 community mod) | `GSERV024`, `NCL11012` | 8 13 16 30 35 37 55–59 61–70 72–74 76 77 79 103 180 | 16 33 80 157–164 167 188 | no | no | no |
 | NPC Control (standalone, Delphi) | `NCL15031` | — | 16 33 61 74 157–164 167 | no | no | no |
+| Remote Control Linux 2005/01/24 (i386, GCC 2.96, GTK2; UPX 1.90, unpacked 2026-11-13) | `GSERV024`, `NCL11012` | 8 13 16 30 35 37 47 55 56 58 59 61–70 72–74 76 77 79 100 102 103 180 | 16 33 74 80 100 157–164 167 188 | no | no | no |
 | Remote Control 2006/12/20, `RC2_2.05.exe` (MSVC) | `GSERV025`, `NCL21075` | as 2010 (`rc-list-online.md`) | 16 33 74 80 100 157–164 167 188 192 | NC: no | NC: no | NC: no |
 | Remote Control 2010/03/29, Linux x86-64 (GCC 4.4.1) | `GSERV025`, `NCL21075` | 8 13 16 30 35 37 47 55 56 58 59 61–70 72–77 79 82 100 102 103 180 190 | 16 33 74 80 100 157–164 167 188 192 | no | no | no |
 | RC3 `RemoteControl3.exe` (MinGW, file date 2015) | `GSERV025` | the 2010 set **plus 124** | as 2010 | no | **yes** (log line only) | no |
 
-Not checked: a Linux i386 RC from January 2005. It is packed with UPX 1.90 and its header is
-damaged, so the stock `upx -d` refuses it. The RC-side switch of `RC2_2.05.exe` was located later and
+The Linux i386 RC from January 2005 (build string "Remote Control Linux 2005/01/24") was unpacked on 2026-11-13 and read statically. **[bin]** Its UPX 1.90 checksums all verify, and a byte-exact unpack (NRV2E blocks plus UPX filter 0x49) succeeds. The earlier "damaged header" reading was wrong: the stock unpacker probably refused it over a version mismatch, which was not checked. It handles none of 60, 81, 83, 110 or 124, and has no "received player flags" text. Next to the 2010 build it lacks RC ids 57, 75, 82 and 190. Limit: its two parsers were identified by their switch ranges and where they sit, not by tracing the call that subtracts 32. A later 2005 build and a 2006 build were not read. The RC-side switch of `RC2_2.05.exe` was located later and
 matches the 2010 set (`rc-list-online.md`). So 124 first appears in RC3, after the 2010 build. Both the 2010 build and
 RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remotecontrol-lineage.md`,
 `tools/npc-control.md`.
@@ -137,7 +137,8 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
   server's value; RCs send it blank on a timer. The gserver stub that accepts it and does
   nothing is correct for RCs. A server can measure a game client's round trip by sending
   `{108}{c 0}{s seq}` and timing the matching 162.
-- **[cap]** none: the lab gserver never sends 108, so no client was seen sending 162.
+- **[cap] (2026-11-13):** the unmodified Linux 6.03r7 client, against seihai-gserver `main` (commit `9063b53`) on loopback in a sealed network namespace, answered all 30 of 30 `{108}{c 0}{s seq}` with 162 `!` + `s seq`, echoing each value. Median round trip 3 ms. Capture `t1-sub0` (owner-held). This is the first wire evidence of the 108 → 162 exchange. A sub-1 probe was started but produced no valid run (the lab server sent sub 0), so the sub-1 value's use is still open.
+- **6.11 [lab] (2026-11-13):** the live 6.111 connector script maps wire 108 to an ordinary native slot (94) and sends ping answers on wire 162 from send slot 55. 6.11 takes 108 through the script-loaded table, not ahead of the main switch (`v611-id-tables.md`). What sub 1 does there was not traced.
 - **Confidence:** high (layout and reply, for game clients and RC3); medium that it is a ping
   (supported by the 6.11 slot name). This settles manual App. E#5.
 
@@ -285,7 +286,8 @@ table in Windows 4.04r2 and 5.12 and compared with the 3.153 Mac handlers.
 ### PLO 60, 81, 83, 110: not resolved
 
 - **Game clients [bin]:** none of the 26 builds in the version chain (1.21 to 6.03r7) has a
-  case for any of the four. Checked directly in the dispatchers of 4.20r8, Mac 4.20r6 and
+  case for any of the four. The live 6.11 connector script maps 110 to the one empty native slot, so 6.11 ignores it
+  too, and it clears 60, 81 and 83 (`v611-id-tables.md`) **[lab]**. Checked directly in the dispatchers of 4.20r8, Mac 4.20r6 and
   Linux 6.03r7, and in the handled-id sets of every other build
   (`client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv`,
   `client-internals/version-profiles/`).
