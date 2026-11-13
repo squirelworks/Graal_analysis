@@ -126,7 +126,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 | 6.015 Mac | `G3D3107A` | B | connect-routine read of the x86_64 slice, 2026-11-13. One day after Windows 6.0.1.5's `G3D3007A` | (no folder) | |
 | 6.0.0.7, 6.0.1.5 Windows | `G3D3007A` | **W** | first login frame captured in a Windows 10 lab VM, 2026-11-13 (FileVersion 6.007 and 6.015); matches the public list | (no folder) | |
 | 6.01r1 Linux (x86, x64) | `G3D0108A` | **W** | `linux-local-login-matrix.md` (first-frame observation) | ✔ | **token only (understated)** |
-| 6.0.3.4 Windows | `G3D2505C` | L | public list | (no folder) | |
+| 6.0.3.4 Windows (FileVersion 6.034) | `G3D2505C` | B | read from a memory dump of the running client in a Windows 10 lab VM, 2026-11-13 (guest clock set to Oct 2012). Once the protector had decrypted the data section, the token sat as plain upper-case text next to "Connecting to the game server...". Matches the public list | (no folder) | |
 | 6.03r7 Windows | `G3D0311C` | W | `v5v6-windows-unpacked.md`; scrambled string in the exe | (no folder) | |
 | 6.03r7 Linux x64 | `G3D0511C` | **W** | `linux-local-login-matrix.md` | ✔ | **token only (understated)** |
 
@@ -141,7 +141,7 @@ Date: 2026-11-12. This note puts every known client build in one table: its logi
 ## Gaps and how far each can be closed
 
 - **B only:** no token value is left at B. Every token from 1.31 to 2.05 has now been seen on the wire from at least one original build. Sibling builds that share a token (2.00 rev1 to rev3, 2.01 rev1, 2.02 rev1, 2.05, 2.05 rev1) are B per build. 1.34 to 1.38 (B+) logged in to a lab server, but their frames were not decoded. The 2.02 family imports a cdecl `zlib.dll` (zlib 1.2.3) and fails to start beside a stdcall zlib build.
-- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3, 4.02.11 and 6.0.3.4. Only a new binary can close these. On 2026-11-13 copies of the official downloads closed 3.0, 3.01, 4.03.4 (as 4.03r3), 4.11 and 6.0.0.7 / 6.0.1.5. A 6.0.3.4 download was found too, but it has not given a token yet.
+- **L only, no binary in any collection:** 1.391, all 2.1.x releases from 2.12 to 2.21 except 2.17 (2.1.0.x now has three executables, see above), 2.3 and 4.02.11. Only a new binary can close these. On 2026-11-13 copies of the official downloads closed 3.0, 3.01, 4.03.4 (as 4.03r3), 4.11 and 6.0.0.7 / 6.0.1.5. A 6.0.3.4 download was found too, and its token was read from a memory dump.
 - **None:** the pre-1.21 relay builds really have no token. This is a protocol fact, not a missing record.
 - **Server-defined:** a 6.11+ client sends whatever its connector script says. One captured script says `GNP1905C`. Any other server or day could say something else, so no per-client token exists to catalogue.
 
