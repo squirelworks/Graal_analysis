@@ -118,15 +118,18 @@ What stands out:
   comes back.
 - **The 1.0 release (10th Graal, Dec 1998) has 46 commands**, 1.1 has 51. The big steps are 1.21 (+20: `putnpc`, `showimg`, `for`,
   `destroy`, `setarray`, …), 1.25 and 1.27 (+9 and +4: `sleep`, `while`, `showcharacter`, … then `setstring`, `showfile`, …; once credited to 1.28 beta 2, see [`gserv-125-127-builds.md`](../client-internals/gserv-125-127-builds.md)), 1.41 rev1 (+15: `function`,
-  `return`, `break`, `continue`, `callnpc`, `say2`, …) and 2.17.1 (+33).
+  `return`, `break`, `continue`, `callnpc`, `say2`, …) and 2.17.1 (+33). The 1.40 builds (Sept 2000, read 2026-11-13) already
+  have 14 of 1.41 rev1's 15; only `showstats` is new in 1.41 rev1 ([1.40 note](../client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle)).
 - **`seteffect` and `unseteffect`** are in 1.21 to 1.33 and gone in 1.34 to 1.41 rev1. `seteffect` alone returns in NewMain 1.42;
   `unseteffect` never returns.
 - **2.17.1 adds 33**: `putnpc2`, `showimg2`, `hideimgs`, `showpoly`, `showpoly2`, `showani`, `showani2`, `showtext`, `showtext2`,
   `changeimgmode`, `seteffectmode`, `play2`, `shoot`, `setshootparams`, `replacestring`, `savelog`, `savelog2`, `setcursor`,
   `setcursor2`, `wraptext`, `wraptext2`, `serverwarp`, `enablepause`, `disablepause`, `enablemap`, `disablemap`, `sendtonc`,
   `sendtorc`, `setpm`, `sendpm`, `sendrpgmessage`, `enablefeatures`, `with`. No client between the 2.1 tests (Sept 2001) and
-  2.17.1 (Dec 2002) is in the set, so these can only be dated to "after 2.1 test 3, by 2.17.1". The 2.1x release notes are the
-  only finer source.
+  2.17.1 (Dec 2002) is in the matrix. The Graal 2002 world builds (Oct–Dec 2001, read 2026-11-13) date nine of them:
+  `play2` and `shoot` by Oct 2001, `replacestring` and `savelog` by Nov 2001, and `setcursor`, `setcursor2`, `setshootparams`,
+  `wraptext` and `wraptext2` by Dec 2001. The other 24 are still "after Dec 2001, by 2.17.1"
+  ([Graal 2002 note](../client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle)).
 - **2.17.1, 2.22 and 2.31 have the same 198 commands.** The Windows 2.x command list did not change from Dec 2002 to Jan 2005.
 - **The C++ engine (3.04, Jan 2004) does not have** `putobject`, `setbackpal`, `setbody`, `setbacktile`, `setbacktile2` or
   `drawovertrees`. None of them appears in any engine build up to 5.00r7, not even as a string.
