@@ -13,7 +13,7 @@ Builds read:
 
 Method: every jump-table switch in the image whose bound is 10, 77, 82 or 83 and whose index is a received id byte minus 32, with the case list split into ids that reach a handler and ids that fall to the switch's default. As a control, the same script on the unpacked 4.20r8 `GraalEngine.dll` gives exactly the four rows already in [v4x-clients.md](v4x-clients.md#prop-parsers).
 
-A "5.12 untouched" copy found in 2026-11 is not a second 5.12 source: its launcher and engine are 5.00r7's, re-versioned and patched ([launcher note](../client-internals/launchers-420r8-500r7-512.md)). The 5.12 row above still rests on the Wine dump alone.
+A "5.12 untouched" copy found in 2026-11 is not a second 5.12 source: its launcher and engine are 5.00r7's, re-versioned and patched ([launcher note](../client-internals/launchers-420r8-500r7-512.md)). The genuine 5.12 engine is `Graal3DEngine.dll` (5.12 ships no `GraalEngine.dll`). Its on-disk file, taken from the MoleBox bundle, gives the same four case sets as the run-time image read here ([launcher note](../client-internals/launchers-420r8-500r7-512.md#the-genuine-512-engine)). **[bin]**
 
 ## 5.x: one parser set for the whole era
 
