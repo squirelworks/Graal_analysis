@@ -177,8 +177,9 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | Token | Build | Source |
 | --- | --- | --- |
 | `GSERV007` | 1.21 | [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md) |
-| `GSERV009` | 1.25 | [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10) |
-| `GSERV011` | 1.27; RemoteControl 1.28 and 1.3 | [srv] (client-internals/version-id-map.md); [bin] (client-internals/build-catalogue.md) |
+| `GSERV009` | 1.25 | [bin] (client-internals/gserv-125-127-builds.md); [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10) |
+| `GSERV010` | RemoteControl shipped with 1.25 | [bin] (client-internals/gserv-125-127-builds.md) |
+| `GSERV011` | 1.27 and its RemoteControl (shipped again as RC 1.28); RemoteControl 1.3 | [bin] (client-internals/gserv-125-127-builds.md); [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md) |
 | `GSERV013` | 1.28 beta 2 | [bin] (client-internals/build-catalogue.md) |
 | `GSERV014` | 1.3 test (1.30) | [bin] (client-internals/build-catalogue.md) |
 | `GSERV016` | 1.31 | [bin] (client-internals/build-catalogue.md) |

@@ -16,7 +16,9 @@ rejects a command it does not have **[bin]**.
 | Build | Commands | Change from the row before | Tag |
 | --- | ---: | --- | --- |
 | 1.21 | 71 | first gen-2 table; `unseteffect` exists only in 1.21 to 1.33 | [bin] |
-| 1.28 beta 2 | 84 | `while`, `sleep`, `setcharprop`, `setplayerprop`, `setstring`, `showcharacter`, `showfile`, `hideplayer`, `setbackpal`, `setletters`, `setmap`, `setminimap`, `timereverywhere` | [bin] |
+| 1.25 | 80 | `while`, `sleep`, `setcharprop`, `setplayerprop`, `showcharacter`, `hideplayer`, `setmap`, `setminimap`, `timereverywhere` ([1.25/1.27 note](../client-internals/gserv-125-127-builds.md)) | [bin] |
+| 1.27 | 84 | `setstring`, `showfile`, `setbackpal`, `setletters` | [bin] |
+| 1.28 beta 2 | 84 | none (same table as 1.27) | [bin] |
 | 1.3 test to 1.32 | 85 | `setgifpart` | [bin] |
 | 1.33 to NewWorld beta 2 | 88 to 165 | as App. C.5 | [bin] |
 | 2.1 (no binary) | 166 (inferred) | NewWorld beta 2's table plus `play2`, from the release notes | [doc][inf] |
@@ -61,7 +63,7 @@ no source). `seteffect` is absent from 1.34 to 1.41r1 and returns in NewMain 1.4
 
 | Word | Builds | Tag |
 | --- | --- | --- |
-| `while` | from 1.28 beta 2 | [bin] |
+| `while` | from 1.25 | [bin] |
 | `function`, `return`, `break`, `continue` | from 1.41r1 | [bin] |
 | `with` | 2.17.1 to 3.04 only | [bin] |
 
