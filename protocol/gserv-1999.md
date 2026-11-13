@@ -65,14 +65,14 @@ The tokens are a protocol revision and not a date. GNW tokens, which are dates, 
 
 ### What the GServers accept
 
-The server compares the token against a fixed list and stores the matching number (7 to 14) on the connection.
+From 1.27 the server compares the token against a fixed list and stores the matching number (7 to 14) on the connection. 1.25 has no stored number yet: it tests the token against a short list for each connection type.
 Then it checks the minimum for the connection type.
 
 | GServer | Accepts | Player minimum and refusal text |
 |---|---|---|
 | 1.21 (May 1999) | `GSERV007` | "You need Graal version 1.2 rev1 to play on this server." |
-| 1.25 (Aug 1999) | `GSERV007` to `GSERV010` | same text as 1.21 (minimum not read) |
-| 1.27 (Oct 1999) | `GSERV007` to `GSERV011` | "You need at least Graal version 1.27 to play on this server." (minimum not read; most likely 11) |
+| 1.25 (Aug 1999) | `GSERV007` to `GSERV010` | no numeric minimum: a player must send exactly `GSERV007`, `GSERV008` or `GSERV009`, anything else gets the 1.21 text. RemoteControl must send `GSERV009` or `GSERV010` and is dropped without a message otherwise **[bin]** |
+| 1.27 (Oct 1999) | `GSERV007` to `GSERV011` | 11: "You need at least Graal version 1.27 to play on this server." RemoteControl needs 9 or more **[bin]** |
 | 1.28 (Nov 1999) | `GSERV007` to `GSERV013` | 13: "You need at least Graal version 1.28beta2 to play on this server." |
 | 1.3 (Nov 1999) | `GSERV007` to `GSERV014` | 14: "You need at least Graal version 1.3 to play on this server." |
 
