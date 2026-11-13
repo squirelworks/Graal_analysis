@@ -634,11 +634,12 @@ protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, number
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
 protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
-protocol/connector-script.md	pending		1; 2.10	#397 hub: connector fetch, container, script steps and id-table mechanism gathered from the 6.11/7.x notes; fold into §2.10 with them
+protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
 formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
+protocol/v611-id-tables.md	cited	2.10	2.10	the 6.111 connector script's live outgoing and incoming id tables joined to gs2lib names (#397); §2.10 cites it
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
