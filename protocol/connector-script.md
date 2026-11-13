@@ -53,7 +53,7 @@ An owner-authorised live 6.113 session on a Windows PC was read with read-only p
 - **Login settings the script reads:** `loginservers`, `logintype`, `usenewprotocol`, `ciphertype` / `ciphertypeint`, `cipherkey`, `initvector`, `keydata`, `passcode`, `reconnections`, `clientversion` and `idlist`. It also uses `des_decrypt` and `base64decode`.
 - **Account calls:** `getLoginAccountName`, `setLoginAccount`, `getPassword`, `getplatform`.
 - **Events:** `onCreated`, `onServerLogin`, `onCannotConnect`, `onServerListerConnect`. The game-server join is not run from `onCreated`. `connectToGameServer` is reached from the server-list script's Start path (`doLogin`), after the login dialog. A `graal://` launch link still stops at that dialog.
-- **No incoming-cipher name.** As on 6.111, the table has no `setEncryptionIn` or `tclient_setencryptionin` name, yet the server stream is encrypted too (section 4b). How the client keys its incoming direction is not shown by the script's strings.
+- **No incoming-cipher name.** As on 6.111, the table has no `setEncryptionIn` or `tclient_setencryptionin` name, yet the server stream is encrypted too (section 4b). None is needed: `setEncryptionParseKey` keys the incoming side (section 4c).
 
 ## 4b. Both directions on the wire (6.113) **[cap]**
 
@@ -63,6 +63,22 @@ An owner-authorised live 6.113 session on a Windows PC was read with read-only p
 | Server → client | One `0xfd` frame (`E` 1, `I` 2), 290 bytes in this session. That ends at offset 290. | Encrypted from 290 |
 
 The server side answers the incoming-direction question in #396 halfway: **the server also sends exactly one clear `0xfd` frame and then switches to ciphertext.** Its frame length varies by session (an earlier 6.113 capture had a length field of 289). Whether the server's stream uses the client's RC4 session key or a key of its own is still open. The session key was not recovered in this run, because it is held in a script variable and no debugger was used.
+
+## 4c. The server's clear frame, and which key the incoming direction uses (2026-11-13)
+
+**The server's clear frame has the same shape as the client's [cap].** In all three recorded 6.113 sessions, the server's one clear `0xfd` frame (zlib) inflates to a single inner `0xfc` packet whose body is a 256-byte opaque block, high-entropy and different every session. It holds no cipher-type string and no visible fields, so no key can be read from it. The client side is the same: a clear `0xfd` wrapping `0xfc` plus 256 bytes. So both ends send one RSA-2048-sized blob in the clear and then switch to a stream cipher. After the clear frames the server's stream comes in byte-granular lengths that are almost never multiples of 16, which fits RC4 and not the 16-byte-padded AES. XOR of the first ciphertext bytes across sessions shows no reused keystream, so the key changes per connection **[cap][inf]**.
+
+**The client keys both directions from its own session key [bin], medium-high confidence.** A static read of the 6.11 Mac engine finds the following:
+
+- The connection's crypto object holds separate outgoing and incoming cipher states, separate key and IV fields for each, a cipher-type byte (RC4 or AES) and a swap flag.
+- One routine creates and keys both directions together, from one key record that the script supplies. `setEncryptionParseKey` puts the cipher type and the key (from `generate16ByteKey()`) in that record and arms the incoming ("parse") side. `setEncryptionOut` then switches on the outgoing side with the same key.
+- No receive path decrypts the server's `0xfc` blob and re-keys the incoming state. No RSA private-key operation feeds a live game-link cipher. The engine's other RC4 and AES key-set sites belong to TLS (the HTTPS connector fetch) and to a package-cache decrypt, not to the game link.
+
+What follows **[inf]**: the session key that the client RSA-wraps in its own `0xfc` is also the key it decrypts the server's stream with. A server that unwraps the client's `0xfc` already has everything it needs for both directions. The server's own 256-byte `0xfc` is not used to key the client's incoming cipher. What it carries (a signature, an echo, or something the script reads) is still open.
+
+Limit: in the offline replay the sink sent nothing, so no server-to-client ciphertext has yet been decrypted under the client's key. The static receive-path read is solid. The "same key" conclusion is inferred from it and from the symmetric clear-then-cipher pattern.
+
+The method list in `v6x-clients.md` names `tclient_setencryptionin(type, key, iv)`. This read found no path where the game link's incoming key is set from the network, so that name does not key the 6.11 login stream. 7.x lists `setencryptionin` among its native incoming handlers (`v7-graal3d-pli-plo-tables.md`). Whether 7.x re-keys from the server is not known.
 
 ## 5. The id tables (mechanism only)
 
@@ -102,5 +118,6 @@ None of this exists in 6.01 or 6.03 (no connector, no RC4/AES, no script-set id 
 - [ ] What the per-launch `?p=` value binds in the signature.
 - [ ] Whether the 7.x script differs from the 6.11 one (token, template, cipher). This needs a 7.x reply decrypted for its own launch.
 - [x] ~~Does the server's stream follow the same clear-then-cipher pattern?~~ Yes: one clear `0xfd` frame, then ciphertext (section 4b).
-- [ ] Which key the server's stream uses, and how the client sets it with no `setEncryptionIn` in the script (also open in #396).
+- [x] ~~Which key the server's stream uses, and how the client sets it with no `setEncryptionIn` in the script (also open in #396).~~ The client keys both directions from its own session key: `setEncryptionParseKey` arms the incoming side and `setEncryptionOut` the outgoing side (section 4c, **[bin]**; a decrypted server stream would confirm it).
+- [ ] What the server's own 256-byte `0xfc` body carries, since the client does not key its incoming cipher from it (section 4c).
 - [ ] Old versus new protocol: what the `OldProtocol` handler set is, and which servers set `usenewprotocol`.
