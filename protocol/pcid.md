@@ -127,6 +127,8 @@ These are recommendations for the clean-room servers, written from the behaviour
 5. **Treat a PCID as a hint.** Clients can send any values, so a PCID ban stops casual repeat offenders only. Keep account and IP bans alongside it.
 6. **Store digests only.** They are all the client sends; do not log the full identity string at normal log levels.
 
+seihai-listserver implements these rules (its `docs/pcid.md`, PR #46), with a loopback check against GServer-v2 where RC `/openaccess` showed the assigned ids. **[lab]**
+
 The lab listserver in `tools/lab-servers/listserver.py` logs the identity it receives and does not send `ASSIGNPCID` yet. Adding it there would let a lab GServer-v2 show PCIDs in the RC ban window.
 
 ## Open
