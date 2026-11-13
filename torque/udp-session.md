@@ -568,6 +568,11 @@ gserver (and like the real 5.12 expects):
 
 ## 10. Protocol 19 (3.153, 4.04r2): what differs
 
+For a server, the layouts past the handshake (moves, connection-message numbering, the
+`SimDataBlockEvent`, `CameraData`, the `Camera` update and packet data, the mission start
+order) are in [protocol19-server.md](protocol19-server.md). Note there: the 4.04r2 client
+numbers `DataBlocksDone` 5 and `DataBlocksDownloadDone` 6 (TGE 1.x), not 6 and 7.
+
 Static reads only; the handshake is the one above with 19 and three class types. Nothing past
 the handshake has been run. **[bin]**
 
@@ -602,7 +607,8 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
 - [x] ~~The same with walking and chat.~~ Lab 12b: walking puts nothing new on UDP and chat sent nothing ([lab note](lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun)).
 - [ ] How a server makes a 5.12 player move (movetype and movement data) and what the client then echoes.
 - [ ] Protocol 19 past the handshake: the per-packet string buffer, the move layout and the
-  datablock phase against a real 3.153 or 4.04r2 client.
+  datablock phase against a real 3.153 or 4.04r2 client. (Static read done:
+  [protocol19-server.md](protocol19-server.md); the real-client run is still open.)
 - [ ] What the 5.12 client sends in sections 5, 9 and 3 of its own update while walking and
   chatting (the 5.x client only moves when a GS2 script moves it; lab 11 is testing that).
 - [ ] `TerrainBlock`, `WaterBlock` and the replicators are not sent by any server we have;
