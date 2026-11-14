@@ -2,9 +2,9 @@
 
 Date: 2026-10-21
 
-Source: static read of the Delphi `rc141.exe` ("GServer2 Remote Control 2002/05/02"), the first RemoteControl build that contains NPC Control. Also `NPCControl1.3` (a 2001 docs bundle with no binary). Tags: **[bin]** read from the binary · **[doc]** from the 2001 text files · **[inf]** inferred.
+Source: the existing static read of the Delphi RC 1.41 build titled "GServer2 Remote Control 2002/05/02", plus the NPC Control 1.3 documentation bundle (2001, no binary). This note describes the examined May 2002 build, not the first appearance of NPC Control. Tags: **[bin]** read from the binary · **[doc]** from the 2001 text files · **[inf]** inferred.
 
-Standalone NPC Control programs are older: builds titled 2001/03/19, 2001/05/21 and 2001/07/13 log in with `NCL15031` (10 forms; the two older ones have a server flag list where 2001/07/13 has the weapons list), and an RC dated 2002/01/11 already carries NC with `NCL11012` (`../server-notes/original-server-builds-1999-2007.md#npc-control-and-remotecontrol-20012002-bin`) **[bin]**. The later 2004 RemoteControl is in `remotecontrol.md`. This note covers the 2002 build, which is where NPC Control first appears. **Protocol layouts for `seihai-rc`:** `../protocol/npc-control.md`.
+Standalone NPC Control programs are older: builds titled 2001/03/19, 2001/05/21 and 2001/07/13 log in with `NCL15031` (10 forms; the two older ones have a server flag list where 2001/07/13 has the weapons list), and an RC dated 2002/01/11 already carries NC with `NCL11012`. See the existing [2001–2002 chronology](../server-notes/original-server-builds-1999-2007.md#npc-control-and-remotecontrol-20012002-bin) **[bin]**. The later 2004 RemoteControl is in `remotecontrol.md`. The May 2002 wire layouts below remain scoped to the examined build; the earlier dates and login tokens alone do not establish matching layouts. This chronology reconciliation adds no new binary analysis. **Protocol layouts for `seihai-rc`:** `../protocol/npc-control.md`.
 
 ## What the NPCControl 1.3 bundle is **[doc]**
 
@@ -19,7 +19,7 @@ The bundle says "Adding/Viewing/Changing classes doesn't work yet", so at 1.3 cl
 
 ## Program shape **[bin]**
 
-RC 1.41 is RC and NC in one window. NPC Control adds these forms to the older RC: `NPCList`, `AddNPCFrame`, `LocalNPCs`, `ClassesList`, `AddClass`, `WeaponsList`. The same release also adds `ServerList` (listserver login), `FileBrowser`, and `ShortMessage`.
+The examined RC 1.41 combines RC and NC in one window. Its NPC Control forms are `NPCList`, `AddNPCFrame`, `LocalNPCs`, `ClassesList`, `AddClass`, and `WeaponsList`. It also contains `ServerList` (listserver login), `FileBrowser`, and `ShortMessage`; these are present in the already documented January 2002 integrated build, so this list does not date their introduction to May.
 
 Two `TGraalClient` sockets: one to the game server (RC) and one to the NPC server (NC). A third subclass, `TServerListClient`, talks to the listserver.
 
