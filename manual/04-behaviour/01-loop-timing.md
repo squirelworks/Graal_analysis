@@ -134,7 +134,8 @@ Counts are ratios between timers in one scene, not a wall-clock rate. Under Wine
 | 2.22 walking right | 68 frame changes in 3.98 s; median frame 52.6 ms; mean 8-frame cycle 459 ms | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
 | 2.31 walking right | 63 frame changes in 3.91 s; median frame 56.5 ms; mean cycle 540 ms | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
 | 2.31 walking left | 50 frame changes in 3.96 s; median frame 65.5 ms; mean cycle 710 ms, with skipped shapes | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
-| native rate | the Wine step here was about 17 to 18 a second, so one frame lasted about 55 ms. At 20 steps a second that is 50 ms a frame and 0.4 s a cycle | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| Wine step | the Wine step here was about 17 to 18 a second, so one frame lasted about 55 ms | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| inferred, if 20 steps/s | inferred from the Wine observations in this section if the step rate is 20 steps a second: 50 ms a frame and 0.4 s a cycle | [inf] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
 | long gaps | the 931 ms and 1199 ms cycles, and the skipped 2.31 left shapes, were Wine render stalls, not `WAIT`s in the file | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
 
 The same session's combat checks stayed partial: the sword-clash spark was not identified, the 2.05 no-drop control and the two-player sword edge were not run, and a 1.21 baddy scene did not show the item roll (→ App. E#324). [lab] (live-runs/open-issues-2026-11-14/README.md#2c-combat-live-checks-partial)
