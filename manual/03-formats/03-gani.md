@@ -45,7 +45,8 @@ header      := "LOOP" | "CONTINUOUS" | "SINGLEDIRECTION"
 body        := ani | movie
 ani         := "ANI" step* "ANIEND"
 movie       := "MOVIE" actor* "MOVIEEND"
-actor       := "ACTOR" name frame* "ACTOREND"
+actor       := "ACTOR" kind name frame* "ACTOREND"
+kind        := "CHAR" | "SPRITE" | "SOUND" | "TEXT"
 frame       := "FRAME" index token ("," token)*
 step        := placement ("," placement)* | "WAIT" n | "PLAYSOUND" name x y
 placement   := spriteId x y | "PARAM"n x y | "ATTR"n x y
@@ -108,9 +109,13 @@ In movie mode the body is a list of actors, each with its own frames. The rules 
 | Rule | Detail | Source |
 | --- | --- | --- |
 | bounds | `MOVIE` opens the actor list and `MOVIEEND` closes it | [bin] (formats/gani.txt) |
-| actor | `ACTOR name`, a run of `FRAME` lines, `ACTOREND` | [bin] (formats/gani.txt) |
-| actor kind | not a keyword in the frame line but an integer on the actor: 0 CHAR, 1 SPRITE, 2 SOUND, 3 TEXT | [bin] (formats/gani.txt) |
+| actor | `ACTOR kind name`, a run of `FRAME` lines, `ACTOREND`; the serialized kind words are `CHAR`, `SPRITE`, `SOUND` and `TEXT` | [bin] (formats/gani.txt); [doc] (tools/graalshop.md#movie-mode-file-grammar) |
+| internal actor kind | the published static description maps internal values 0 CHAR, 1 SPRITE, 2 SOUND, 3 TEXT; these internal values do not replace the kind words in the file grammar | [bin] (formats/gani.txt) |
 | frame | an index and a comma-separated token list; the tokens become `key=value` strings on the actor's frame record | [bin] (formats/gani.txt) |
+
+The packaged tutorial movie inspected in Classic+ 1.13 and Era+ 1.0 has identical text in the two copies. Its SPRITE actor uses lowercase `true` for `visible`; its TEXT actor uses lowercase `true` for `centered`, `shaded`, `visible` and `wordwrap`, and lowercase `false` for `bold`, `italic`, `rightaligned`, `strikeout` and `underline`. These are literal declarations in one sample, not a parser acceptance or playback test. Saved movie existence had already been reported; this is mobile attribution and spelling corroboration. [file][doc] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits)
+
+The sample supplies no CHAR indexed-key spelling, coordinate units, frame duration, native interpolation or editor identity. The conflicting editor attributions remain open in App. E#612. [file][doc] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits)
 
 ## 3.3.7 Shared Mac v5 loader boundary
 
