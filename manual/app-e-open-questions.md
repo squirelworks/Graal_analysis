@@ -199,6 +199,17 @@ Two formulas map a tile id to its place on `pics1.png`. The manual follows the l
 | Settles it | correcting `formats/tiletypes.txt`, or rendering a known board with both rules against a client screenshot | [inf] (client-internals/client-assets.md#tile-sheets) |
 | Windows 4.04r2 code | the tile draw path and its invalidation path both compute Claim B's formula before optional tiledef remapping | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
 
+### E#103 Verifier variant reachability and signature interpretation
+
+The bounded four-guard result in → §3.5.5.1 compares distinct retained inputs; it does not resolve the earlier key-encoding question or measure startup acceptance [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Static result | four conditional guards in one RSA-verification routine are unconditional in the compared variant; only A was deep-imported, with B compared by full byte difference | [bin] (formats/windows-222-verifier-variants.md#evidence-and-method) |
+| Separate prior claim | the earlier three-branch community-control patch is a different comparison; the control is not authenticated as pristine official code | [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note) |
+| Open | broader lineage differences, startup caller reachability, helper algorithm, signature format and accepted inputs | [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+| Settles it | trace the callers and helper against identified inputs before interpreting runtime acceptance; no PM or GS1 conclusion follows from the verifier | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+
 ### E#200 When a GS1 condition counts as true
 
 When a GS1 condition counts as true is now settled for one exact build. Each row gives that result, its exceptions and what stays open in other builds [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing).
@@ -726,6 +737,17 @@ RC2 2.05 tests an entry's level by length with no trim, and GServer-v2 sends RCs
 | Claim B | GServer-v2 sends one space, so RC2 2.05 would most likely list other RCs under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
 | Also open | the send path of the 2005 Linux i386 RC (unpacked, not read) | [bin] (protocol/rc-list-online.md#open) |
 | Settles it | a lab run with RC2 2.05 and two RC logins against the GServer-v2 fork | [inf] (protocol/rc-list-online.md#open) |
+
+### E#425 Standalone NC flag-action recipient and ranges
+
+The selected action in → §7.3.4 constructs a payload and enters an outgoing buffer, but this is not measured end-to-end behavior [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Static result | count low component uses seven bits; high component is shifted and byte-narrowed without an established seven-bit mask; biased item lengths and contents follow | [bin] (protocol/nc-standalone-flag-action.md#bounded-observations) |
+| Recovery limit | analyst-seeded bodies, not default procedure recognition; exception tails, type/register meanings and indirect calls remain uncertain | [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits) |
+| Open | collection type, count overflow and length ranges, further buffer routine, terminator, ultimate peer and receive interpretation | [bin][inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+| Settles it | trace the unresolved buffer/recipient and receive paths, then compare the nearest weapons-list baseline and other flag-list artifact; matching forms alone are insufficient | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
 
 ### E#500 Back clipping plane of the Graal3D client (settled)
 
