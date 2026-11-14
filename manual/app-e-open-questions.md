@@ -165,6 +165,16 @@ Four protected builds exit on today's date; where their cutoff lies was not read
 | Open | whether the Themida builds' timer check uses 5.24r4's thresholds | [bin] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | Settles it | a binary search on the guest clock for each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 
+### E#16 Classic+ 1.13 caller contract versus mobile wire layout
+
+The selected analyst-seeded constructor and forwarding helper provide static caller observations, not a captured mobile login. Threshold/helper arguments cannot be promoted to emitted bytes, and selector 5 cannot be assigned a wire category from this pass. [bin] (client-internals/classic-113-login-construction.md)
+
+| Unknown | Discriminator | Source |
+| --- | --- | --- |
+| Prefix/copy behavior | independently validate helper bodies and byte/copy contracts before claiming encoding, limits or truncation | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| String identities and vector format | bind the getters and serializer to their actual consumers before naming fields or a complete trailer | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| Framing, trigger and native acceptance | trace the selected lower sender and constructor trigger; establish a separately qualified exact-input native control and receive-property mapping | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
