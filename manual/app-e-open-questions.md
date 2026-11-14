@@ -640,6 +640,10 @@ The 4.x–6.x file survey reports 255 distinct WAVs, but its format counts (202 
 
 Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behavior. Reconcile the census against the surveyed inputs and test each format on the exact client/backend before treating the compatibility targets as native acceptance. The survey itself ran no client. [file][bin] (client-internals/sound-files-6x.md); see §3.10.5 and §4.7.5.
 
+### E#327 Missing chest art and menu skin in the 6.03r7 item run
+
+The script-free Linux run in → §4.5.8 observed chest collision/opening without chest art, and an orange rectangle after D/Q/Tab/Esc toggled the menu status. The missing art's source and the proposed GUI-skin explanation are unresolved. Identify the board/file or script dependency with controlled input changes before attributing either rendering path to the client. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests); (client-internals/items-603r7-black-box.md#open)
+
 ### E#400 Two projects called Ash
 
 Two different things are called Ash in the notes. The manual keeps them apart until their archives are compared [src] (server-notes/01-lineage.md#what-is-binary--world-only).

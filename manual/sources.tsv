@@ -188,7 +188,7 @@ client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one han
 client-internals/id24-205.md	cited	2.4	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 client-internals/issho-cut.md	cited	10	10	
 client-internals/item-drops.md	cited	4; 4.5; E	4.5	
-client-internals/items-603r7-black-box.md	pending		4.5	6.03r7 sword, lift, throw, chest and sign from the wire and screen; to be folded into the items section
+client-internals/items-603r7-black-box.md	cited	4.5; E	4.5	Wire/screen behavior and corrected idle-VM timing in §4.5.8; art/menu unknowns in E#327. Detailed effect rectangles and flips remain in the source.
 client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5; E	4.2; 4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
 client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
