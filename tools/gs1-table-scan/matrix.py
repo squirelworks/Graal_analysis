@@ -53,4 +53,4 @@ if '--changes' in sys.argv:
 fd, fe = first_last('delphi'), first_last('engine')
 print('\t'.join(['command', 'first_delphi', 'last_delphi', 'first_engine', 'last_engine'] + [b[1] for b in builds]))
 for c in sorted(order):
-    print('\t'.join([c, *fd[c], *fe[c]] + ['1' if c in b[4] else '' for b in builds]))
+    print('\t'.join([c, *fd[c], *fe[c]] + ['1' if c in b[4] else '' for b in builds]).rstrip('\t'))

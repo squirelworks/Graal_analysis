@@ -12,11 +12,13 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Add the six exact Graal 2002 inputs to the GS1 matrix.** ~~Rescan their registered command names and preserve the existing columns.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md); runtime executors and full PLI sets remain separate questions.
+
 - [x] **Trace exact ver10 initial property construction and its receive-side gate.** [Static trace](../client-internals/graal2002-and-140-builds.md#ver10-initial-player-properties-update-2026-11-15); manual §2.4/§2.6. This does not establish a native first packet.
   - [ ] Validate the first emitted update on the normal interactive Windows client with the discriminators in App. E#15.
 
 - [x] **Carry the existing Graal 2002 and 1.40 static study into the manual.** ~~Separate exact input identity, token evidence, command dating and receive routes.~~ [Study](../client-internals/graal2002-and-140-builds.md); §1.1.5, §2.3.3.1, §2.5.2.1, §8.2.7.2 and App. C/E. This is manual carry, not completion of exact-build login or client teardown.
-  - [ ] Resolve the exact-input login, default-route effects, outgoing ids and scanner-matrix follow-ups in App. E#15; token/command-table matches alone do not settle them.
+  - [ ] Resolve the exact-input login, default-route effects and outgoing-id follow-ups in App. E#15; token/command-table matches alone do not settle them.
 
 - [x] **Publish the bounded Classic+ 1.13 construction study.** ~~Corroborate the known token and carry the selected caller/helper observations.~~ [Note](../client-internals/classic-113-login-construction.md); manual §2.3.9 and App. E#16. This does not complete mobile login or an iOS version profile.
   - [ ] Resolve prefix/copy helpers, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
