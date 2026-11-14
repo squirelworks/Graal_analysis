@@ -192,7 +192,7 @@ client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cite
 client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
-client-internals/live-behaviour-404.md	cited	8; 8.1; 8.3; 4.11	4	
+client-internals/live-behaviour-404.md	cited	2.4; 8; 8.1; 8.3; 4.11	4	
 client-internals/live-checks-editor-offline-sound.md	cited	4.5; 4.6; 4.7; 4.8; 4.9	4	
 client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1	
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
@@ -667,6 +667,7 @@ npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C
 npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
 version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	
+version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md	cited	2.4	2.4	lab run record; §2.4 carries the flag-send rule, and the build identities and setup stay in the note
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
 client-internals/iphone-version-tokens.md	cited	1	1	
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
