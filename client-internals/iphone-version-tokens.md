@@ -56,8 +56,8 @@ string), and all but Era+ are unencrypted.
 | Adrenaline Poker Online | 1.60 | 2008-12-13 | `G3D04048` |
 | Adrenaline Pool Online | 1.5 | 2008-12-24 | `G3D04048` |
 | Ace Tennis Online | 1.3 | 2009-02-22 | `G3D04048` |
-| Alien Abuse | 1.0 | 2009-03-17 | none: no connect routine (offline build) |
-| Alien Abuse | 1.1 | 2009-03-29 | none: no connect routine (offline build) |
+| Alien Abuse | 1.0 | 2009-03-17 | no token recovered; offline status not established |
+| Alien Abuse | 1.1 | 2009-03-29 | no token recovered; offline status not established |
 | Alien Abuse | 1.3 | 2009-06-24 | `G3D04048` |
 | Dino Smash | 1.2 | 2009-09-26 | `G3D04048` |
 | Cocoto Kart Online | 1.0 | 2009-10-02 | `G3D04048` |
@@ -112,6 +112,17 @@ not settle the year character.
 
 gs2lib's "iPhone 1.11" (`G3D29090`) would then be engine 1.11, stamped in Sep 2010, and is
 the likeliest token for Era+ 1.0 (built Dec 2010). That is unread.
+
+## Scanner boundary
+
+The retained ARM scanner searches for the connection-log string, follows a bounded
+instruction window after its first recovered reference, then selects one-character
+arguments to the most frequent direct-call target after "Done.". Its output is a
+static token candidate, not a captured login. Missing strings, unsupported instruction
+patterns or an exhausted window do not establish absence of a connection routine or
+network support. The Alien Abuse 1.0 and 1.1 rows therefore remain token-unresolved;
+the earlier offline-build label is withdrawn. This source audit adds no client run.
+See `tools/token-scan/iostok.py`, `read_token`, including its explicit failure results.
 
 ## What is not known
 
