@@ -38,11 +38,13 @@ name alone or with one number.
 | 3.04 Linux | the 2.22 set without `C5`, `C6` and `C7` (`C0`–`C4` only) | [bin] |
 
 Against the 2.05r2 set, the new registry adds `I(S,R)`, `F`, `S`, `D`, `P6`–`P9`,
-a bare `P` with one or two numbers, and `C6` and `C7` **[bin]**. `R(S)` is 2.22
-and 2.31 only **[bin]**. It does not register `##`, `#b`, `#7`, or the display
-codes `#.` `#4` `#A` `#B` `#X` `#Y` `#d` `#h` `#i` `#l` `#r` `#u` `#x` `#y` `#z`
-**[bin]**. `##` still becomes `#` in the scenes, so that escape is outside this
-registry **[lab]**.
+a bare `P` with one or two numbers, and `C6` and `C7` **[bin]**. Among the
+compared Windows builds, `R(S)` is 2.22 and 2.31 only. Linux 3.04's registry
+names `R(S)` with the 2.22 set, without `C5`, `C6` and `C7` **[bin]**. The new
+registry does not register `##`, `#b`, `#7`, or the display codes `#.` `#4`
+`#A` `#B` `#X` `#Y` `#d` `#h` `#i` `#l` `#r` `#u` `#x` `#y` `#z` **[bin]**.
+`##` still becomes `#` in the scenes, so that escape is outside this registry
+**[lab]**.
 
 `#K`, `#L` and `#E` stay registered **[bin]**. `#b` is not, and `A#bB` stays
 `A#bB` from 2.17.1 **[lab]**. On 2.05r2 the same text shows `AB` **[lab]**.
