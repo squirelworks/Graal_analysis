@@ -1,8 +1,8 @@
 # Graal 2002 world builds (2.1.0.x, Oct–Dec 2001) and the 1.40 builds
 
 Date: 2026-11-13. Static read of owner-held client builds that no earlier note covers. Evidence ID `CLIENT-HUNT-20261113`
-([evidence index](../docs/evidence-index.tsv)). No build was run, and no lab login has been done yet. Every finding here is
-**[bin]**: read from the executable files, never seen on the wire.
+([evidence index](../docs/evidence-index.tsv)). The original batch and the separately dated ver10 addition below are
+**[bin]**: behavior read from the executable files, not established by a traffic capture.
 
 ## The builds
 
@@ -76,6 +76,37 @@ helper effects or modification history. **[bin]**
    needs a lab run.
 5. **The Graal 2002 world files.** Each build ships the world's gmaps (main, forest, dustari, pirates, samurai and zormite;
    v22 adds caverns, start and mines), plus a `loadgmaps.txt`. They are the earliest gmap-based world clients in the set.
+
+## Ver10 initial player-properties update (2026-11-15)
+
+This addition is an exact-build static trace of the Graal 2002 ver10 client, FileVersion 2.1.0.2. Evidence ID `WIN-VER10-INITIAL-PROPS-20261115` ([evidence index](../docs/evidence-index.tsv)). It does not transfer to the public 2.1.0.0 build, ver13 or v22 merely because they share `GNW31101`. **[bin]**
+
+### Ordered first-update construction
+
+The guarded first-update path, when its cached player state is absent, walks a six-entry property table in order. For each entry it appends the property id followed by the selected serializer output, then passes the resulting stream to the player-properties message sender (id 2). This establishes a construction order, not an observed first packet on the wire. **[bin]**
+
+| Order | Property | Selected encoding observed in ver10 |
+|---:|---|---|
+| 1 | 0 NICKNAME | counted text, limited to 200 bytes by this serializer |
+| 2 | 11 HEADGIF | a recognised numbered head below 100 uses one `c` index; the custom-name branch limits its prepared name to 100 bytes and emits `c(100 + length)` followed by those bytes |
+| 3 | 13 COLORS | five `c` values |
+| 4 | 18 STATUS | one `c` value |
+| 5 | 31 UDPPORT | three encoded 7-bit groups from the connection’s saved socket-bound port |
+| 6 | 33 ADDITFLAGS | one `c` value |
+
+The encoding notation is defined in [player properties](../protocol/player-props.md). The order and selected branches above were read in ver10 itself; they are not inferred from the older six-property list. The UDP initializer is the direct helper called after login/language setup: it is not the player-properties serializer. **[bin]**
+
+### Necessary receive-side gate
+
+The connection constructor sets a gate that the outgoing update path tests. The receive dispatcher’s self player-properties message (id 9) calls the self-property parser and clears this gate after the parser returns normally. The parser’s ordinary loop runs only while more than one payload byte remains; an empty or one-byte body skips that loop and reaches its normal return path. This is bounded control-flow evidence, not a claim about arbitrary malformed input. **[bin]**
+
+The outgoing path also tests the network object and separate player/update state, including its cached-state branch. The id-9 gate is therefore necessary on this traced path, not proof that any id-9 reply immediately produces an update or that a complete login/world entry succeeds. Which complete startup conditions reach the first emitted update remains unmeasured. **[bin]**
+
+### Method and remaining limits
+
+The trace joins the mapped receive tables and gate write to the update guard, ordered data table, selected serializer branches and message wrapper. Some valid Delphi virtual entries were not defined as procedures by default analysis; mapped-byte observations and independent bounded instruction decoding were used rather than attributing them to a guessed neighbouring function. Decompiler types and exception-handler coverage remain limited. **[bin]**
+
+No native traffic capture establishes this first update. These findings do not complete the outgoing message-id inventory, the whole player-property codec, helper semantics for other properties, or any whole-build teardown. A discriminating capture must start before the first server reply and compare no reply, an unrelated well-formed reply, and self-properties replies in fresh sessions, preserving other startup conditions and no-emission results. **[bin]**
 
 ## What the 1.40 builds settle
 
