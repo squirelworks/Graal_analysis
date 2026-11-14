@@ -25,9 +25,9 @@ material, not tools, and are left out.
 
 ## Answer
 
-Not yet, and this note starts that work. Of 54 tools: 41 are researched, 31 have a teardown
-or a measured behaviour note (or ship with source), and 17 have a Rust
-equivalent for the job. The servers, RC/NC, the gani and level editors,
+Not yet, and this note starts that work. Of 54 tools: 42 are researched, 32 have a teardown
+or a measured behaviour note (or ship with source), and 18 have a Rust
+equivalent for the job (before the pull requests below). The servers, RC/NC, the gani and level editors,
 GS2 compilation and the asset formats are done in Rust. The offline
 **LAT tool chain** is the big gap: level conversion, level and gmap
 rendering, the three generators and gif2mng all have Python references
@@ -41,15 +41,15 @@ line).
 
 | Rank | Gap | Tools it covers | Evidence ready | Rust home | State |
 |---|---|---|---|---|---|
-| 1 | Level conversion across generations (`.zelda`, `.graal` to `.nw`), and a gmap from a folder of levels | TextConvert / GRAALtoNWconverter, nw-converter, Graal Map Maker, MapGenerator | `formats/level-binary.md`, `classic-tools/text-convert.md`, `level-convert/README.md`; `seihai-core` already reads all three level formats and `GRMAP001` | `seihai-servertools level convert`, `gmap make` (lat-core) | started 2026-11-14 |
-| 2 | Render a level or a whole gmap to PNG | NW2PNG 1.3 to 2.1, graalmapview, Graal-Level-Viewer, PHP level viewer, Bruges' levelviewer, GraalMap Live View (static part) | `seihai-draw` paints tiles; `lat-core::preview` paints one level | `seihai-servertools level render`, `gmap render` | started 2026-11-14 |
-| 3 | Terrain, dungeon and image-to-level generators | TerrainGenerator (2001, 2002), NW Dungeon Generator (2003), GraalLevelGen / GraalLevelGenNW, Emera's and the Python gmap generators | `generators-222/README.md` (gmap keys, level layout, Delphi LCG, 12-colour table, 8 by 11 dungeon blocks); `classic-tools/graal-level-gen.md` | `seihai-servertools gen terrain\|dungeon\|image` | next |
-| 4 | gif2mng and GIF/PNG batch conversion | gif2mng, Assimilator GIF2PNG | `gif2mng.md` (one frame PNG, more MNG, `-b`), Assimilator SUMMARY; `seihai-core` reads GIF, PNG and MNG | lat-core (`check --make-gif` already writes GIF copies) | open |
+| 1 | Level conversion across generations (`.zelda`, `.graal` to `.nw`), and a gmap from a folder of levels | TextConvert / GRAALtoNWconverter, nw-converter, Graal Map Maker, MapGenerator | `formats/level-binary.md`, `classic-tools/text-convert.md`, `level-convert/README.md`; `seihai-core` already reads all three level formats and `GRMAP001` | `seihai-servertools level convert`, `gmap make` (lat-core) | in review: servertools #73; `.graal`/`.zelda` output needs seihai-core #58 |
+| 2 | Render a level or a whole gmap to PNG | NW2PNG 1.3 to 2.1, graalmapview, Graal-Level-Viewer, PHP level viewer, Bruges' levelviewer, GraalMap Live View (static part) | `seihai-draw` paints tiles; `lat-core::preview` paints one level | `seihai-servertools level render`, `gmap render` | in review: servertools #73 |
+| 3 | Terrain, dungeon and image-to-level generators | TerrainGenerator (2001, 2002), NW Dungeon Generator (2003), GraalLevelGen / GraalLevelGenNW, Emera's and the Python gmap generators | `generators-222/README.md` (gmap keys, level layout, Delphi LCG, 12-colour table, 8 by 11 dungeon blocks); `classic-tools/graal-level-gen.md` | `seihai-servertools gen terrain\|dungeon\|image` | in review: servertools #73 (maze and layout dungeons; other styles open) |
+| 4 | gif2mng and GIF/PNG batch conversion | gif2mng, Assimilator GIF2PNG | `gif2mng.md` (one frame PNG, more MNG, `-b`), Assimilator SUMMARY; `seihai-core` reads GIF, PNG and MNG | lat-core (`check --make-gif` already writes GIF copies) | MNG/PNG writer in review: seihai-core #58; the command follows its tag |
 | 5 | LevelFiller (theme fill of a level from tile groups) | LevelFiller + LFThemeMaker (2001), levelfiller.7z | catalogue line only | lat-core, after a teardown | needs a teardown |
 | 6 | GraalShop movie mode and shop pages | GraalShop 2002 builds, Graal Shop Preview | `graalshop.md`, `graaleditor-vs-205.md` | lat-core gani editor (sprite frames already edit) | open |
 | 7 | Server stat pages | gserverstat, gserverstat2, GServer Stats (2004), player-count PHP | `classic-tools/gserverstat.md`, two SUMMARYs, `account13.py` | servertools, from seihai-gserver's account store | open, low |
 | 8 | Character files (`CHR:1.00`) | Graal Character Designer 1.2.7, Character Generator 1.0, BinaryCrash Character / Head Viewer | `classic-tools/character-designer.md`, GCD and GChar SUMMARYs | `seihai` client (looks), not servertools | open, low |
-| 9 | Unresearched small utilities | Graal Clock 1.2.7 (one line only), Graal Messenger, Graal Sound Fix, the two 1999 icon DLLs, apcalc, Guild Manager, guildcode, START-HUB | none, or a catalogue line | probably none | needs a look |
+| 9 | Unresearched small utilities | Graal Messenger, Graal Sound Fix, the two 1999 icon DLLs, apcalc, Guild Manager, guildcode, START-HUB | none, or a catalogue line | probably none | needs a look |
 | 10 | DClient | DClientSetup 1198 (VB6) | DClient_setup SUMMARY: bootstrapper only; the CAB in this copy is a stub | none | blocked on a full copy |
 
 ## Every tool
@@ -73,7 +73,7 @@ or `manual/11-tools.md` and nothing more.
 | GraalShop (gani / shop editor, 2002) | yes | `graalshop.md`, `graaleditor-vs-205.md` | partial: servertools gani editor (gap 6) |
 | Graal Character Designer 1.2.7 | yes | GCD SUMMARY, `classic-tools/character-designer.md` | no (gap 8) |
 | Graal Character Generator 1.0 | yes | GChar SUMMARY, same note | no (gap 8) |
-| Graal Clock 1.2.7 | one line (`client-internals/gserv-125-127-builds.md`) | no | not needed |
+| Graal Clock 1.2.7 | yes | `client-internals/gserv-125-127-builds.md` item 8 (an offline launcher: clock, `.chr` load/save, starts `Graal.exe`; no socket) | yes for the job: `seihai-launcher` |
 | Default characters and theme icon DLLs (1999) | no | no | not needed |
 | DClient | yes | DClient_setup SUMMARY | blocked (gap 10) |
 | Script function list, client 6.0.0.7 | yes | reference text | used by `seihai-core` GS2 work |
@@ -141,8 +141,10 @@ or `manual/11-tools.md` and nothing more.
 
 ## What is being built
 
-The first two gaps go into `seihai-servertools` (`lat-core` plus the
-command line) as one pull request, written from the format notes and
-`seihai-core`'s readers, not from the Python here. Gap 3 follows as its
-own pull request. Progress is tracked in seihai-servertools issue #50
+Gaps 1 to 3 are in seihai-servertools #73 (`level convert|render`,
+`gmap make|render`, `gen terrain|image|dungeon`), written from the format
+and behaviour notes and `seihai-core`'s readers, not from the Python
+here. The writers they and gap 4 need (`.graal`/`.zelda` levels, MNG) are
+in seihai-core #58. Gap 5 (LevelFiller) and gap 9 need a static look at
+the binaries first. Progress is tracked in seihai-servertools issue #50
 ("Later") and its `docs/NEXT.md`.
