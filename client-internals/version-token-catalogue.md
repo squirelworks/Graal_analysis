@@ -144,13 +144,13 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 
 ### iPhone
 
-Belote 1.2, Belote 1.50 and GraalOnline Classic+ 1.13 were read statically from copies of the official downloads we hold. The other three rows come only from gs2lib's table. gs2lib's names are kept as labels, but its "iPhone 1.1" is the Belote token, and Classic+ 1.13's token is not in gs2lib at all. Details: [iphone-version-tokens.md](iphone-version-tokens.md).
+Twenty builds from the same publisher were read statically from copies of the official downloads we hold (2026-11-14): every one ships the Graal engine, and the token names the engine generation, not the app. The other two rows come only from gs2lib's table. gs2lib's names are kept as labels, but its "iPhone 1.1" is the Belote token, and Classic+ 1.13's token is not in gs2lib at all. Details: [iphone-version-tokens.md](iphone-version-tokens.md).
 
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
-| Belote 1.2, Belote 1.50 (Quattroplay Belote Expert Online, 2008; gs2lib "iPhone 1.1") | `G3D04048` | B | connect routine of both decrypted IPAs: eight one-character appends; also gs2lib `CLVER_IPHONE_1_1` and the gs2emu 2010 table | (no folder) | |
+| 2008 iPhone engine (gs2lib "iPhone 1.1"): Belote 1.2/1.50, Adrenaline Poker, Adrenaline Pool, AlloWin Pool, AlloWin Pumpkins, Ace Tennis, Alien Abuse 1.3, Dino Smash 1.2, Bomber Online 1.20 (2008–2010) | `G3D04048` | B | connect routine of 14 decrypted builds: eight one-character appends; also gs2lib `CLVER_IPHONE_1_1` and the gs2emu 2010 table | (no folder) | |
 | GraalOnline Classic+ 1.13 (iPhone, 2012) | `G3D0208A` | B | connect routine of the decrypted IPA; one day after Linux 6.01r1's `G3D0108A`; not in gs2lib | (no folder) | |
-| "iPhone 1.5" (app not identified) | `G3D18010` | L | gs2lib `CLVER_IPHONE_1_5`; gs2emu 2.3.1 table | (no folder) | |
+| 2010 iPhone engine (gs2lib "iPhone 1.5"): Cocoto Kart HD 1.1, Ace Tennis HD 1.0, Bomber Online 1.40, Dino Smash 1.4 (2010–2013) | `G3D18010` | B | connect routine of 4 decrypted IPAs; also gs2lib `CLVER_IPHONE_1_5` and the gs2emu 2.3.1 table | (no folder) | |
 | "iPhone 1.11" (app not identified) | `G3D29090` | L | gs2lib `CLVER_IPHONE_1_11` | (no folder) | |
 | "iPhone Belote 1.5" (not what Belote 1.50 sends) | `G3D2504D` | L | gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022) | (no folder) | |
 | Graal Era+ 1.0 (iPhone) | unread | — | the only copy found is App Store encrypted | (no folder) | |
@@ -186,4 +186,5 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 - [ ] Read a genuine 2.3 binary, if one turns up, and record its token and PLI 39 words.
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
 - [x] ~~Read an iPhone client (a period IPA).~~ Belote 1.2/1.50 and Classic+ 1.13 read 2026-11-14 ([iphone-version-tokens.md](iphone-version-tokens.md)).
-- [ ] Place `G3D18010`, `G3D29090` and `G3D2504D` with another decrypted IPA, or capture one iPhone login in the lab ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).
+- [x] ~~Place `G3D18010`.~~ Read in four 2010–2013 builds ([iphone-version-tokens.md](iphone-version-tokens.md)).
+- [ ] Place `G3D29090` and `G3D2504D` with another decrypted IPA, or capture one iPhone login in the lab ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).
