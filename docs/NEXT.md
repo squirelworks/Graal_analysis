@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the 2.3-labelled package identity comparison into the manual.** ~~Separate the matching 2.31 client from the mixed companion tools.~~ [Existing study](../client-internals/graal-2.3-unpacked-package.md); manual §1.8.3. File identity does not supply a distinct original 2.3 client or validate its inferred profile.
+  - [ ] Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input.
+
 - [x] **Trace exact ver10 initial property construction and its receive-side gate.** [Static trace](../client-internals/graal2002-and-140-builds.md#ver10-initial-player-properties-update-2026-11-15); manual §2.4/§2.6. This does not establish a native first packet.
   - [ ] Validate the first emitted update on the normal interactive Windows client with the discriminators in App. E#15.
 
