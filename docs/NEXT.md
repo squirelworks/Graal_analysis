@@ -23,9 +23,9 @@ macOS CI is paused until the polish stage.
   - [x] ~~The 5.x HUD no-PK icon and 99/99, and 5.x flag and built-in probes.~~ [Note](../client-internals/gs1-on-5x-hud-and-flags.md); manual §4.6.8.
   - [ ] Run `while (1)`, `##` in the 2.17 engine, and the 2.17 message codes in a populated context on real clients.
   - [ ] Table events, flags, variables and functions per 1.x build.
-  - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer.
+  - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer. 1.33 to 2.31 and 5.00r7 done ([run](../live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines): all round down); 6.x needs a server that compiles GS2.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
-  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`.
+  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk, sword) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only).
   - [x] ~~Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).~~ [Note](../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md): tileset sent, level draws; 3.153 and 5.12 send id 18 only for `client.` flags.
   - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
   - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
