@@ -22,7 +22,8 @@ macOS CI is paused until the polish stage.
   - [ ] Resolve the exact-input login, default-route effects, outgoing ids and scanner-matrix follow-ups in App. E#15; token/command-table matches alone do not settle them.
 
 - [x] **Publish the bounded Classic+ 1.13 construction study.** ~~Corroborate the known token and carry the selected caller/helper observations.~~ [Note](../client-internals/classic-113-login-construction.md); manual §2.3.9 and App. E#16. This does not complete mobile login or an iOS version profile.
-  - [ ] Resolve prefix/copy helpers, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
+  - [x] ~~Inspect the selected prefix and direct copy helpers.~~ [Static follow-up](../client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) establishes low-byte prefix construction and the selected long-path byte-copy count; manual §2.3.9/App. E#16 preserve remaining limits.
+  - [ ] Resolve the short-path object append/full codec, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
 
 - [x] **Qualify the shipped mobile GANI movie sample and actor-kind carry.** ~~Correct the blanket no-saved-movie claim and carry the observed boolean spellings and serialized actor form.~~ [Source](../tools/graalshop.md#shipped-movie-sample-and-remaining-limits); manual §3.3.2/§3.3.6. Saved movie existence was already reported; this does not establish playback or a producing editor.
   - [ ] Reconcile the exact editor inputs behind the conflicting 2002/2006 movie-support attributions (App. E#612); establish indexed CHAR-key spelling, coordinate units and native timing separately.
