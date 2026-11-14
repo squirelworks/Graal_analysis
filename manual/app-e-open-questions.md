@@ -154,6 +154,17 @@ A static read predicts that GServer-v2's classic path makes 2.17 and older clien
 | Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
 | Settles it | a loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
 
+### E#14 Expiry dates of the Themida 5.x/6.00 builds
+
+Four protected builds exit on today's date; where their cutoff lies was not read [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#open).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (known to run with the clock at 2011-06-14 and 2011-06-28 for 6.00r2 and 6.00r4) | [lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| Open | whether the check is WinLicense's own expiration feature or a check inside its VM macros | [inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| Open | whether the Themida builds' timer check uses 5.24r4's thresholds | [bin] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settles it | a binary search on the guest clock for each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
