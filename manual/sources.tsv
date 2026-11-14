@@ -159,7 +159,7 @@ client-internals/graal2002-and-140-builds.md	cited	1; 2.3; 2.4; 2.5; 2.6; 8.2; C
 client-internals/early-windows-callback-variants.md	pending		1; E	Same-version early Windows program-check error bindings and bounded analyst-seeded recovery; not yet cited in the manual. Event trigger, helper effects and modification history remain unresolved.
 client-internals/graal-2.3-unpacked-package.md	cited	1	1	Client and companion-component identity comparisons carried in 1.8.3; no official-release, whole-executable integrity or original 2.3 runtime claim follows from the repack label.
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
-client-internals/hud-603r7-black-box.md	pending		4.6	6.03r7 HUD layout measured on Linux and Windows; to be folded into the HUD chapter
+client-internals/hud-603r7-black-box.md	cited	4.6; E	4.6	Measured HUD in §4.6.9; unresolved sword crop, Windows text positions and clock in E#326. Complete request names and renderer diagnostics remain in the source.
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
