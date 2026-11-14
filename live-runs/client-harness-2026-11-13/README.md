@@ -74,14 +74,16 @@ for the whole session.
 - **Flag sends.** Mac 4.04r2 and 4.20r6 send id 18 (`PLI_FLAGSET`) only for `client.` flags.
   A plain flag and a non-`client.` string flag set by a probe weapon on `created` and on a
   timer are never sent. 5.12 runs no clientside GS1 on this server (it wants GS2 bytecode),
-  so it has no answer here. 3.153 was not installed in the guest and was not run.
+  so it has no answer here. 3.153 was not installed in the guest and was not run. Both were
+  run on 2026-11-14 with the same rule as the result: [3.153 and 5.12 flag note](../../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md).
 - **5.12 black level.** The Mac 5.12 bundle has no `pics1.png`, so the client asks for it.
   The server refuses with "file send failed" and logs "File too large for client version":
   the Mac tokens are not in seihai-gs2lib's version table, an unknown token is ranked oldest,
   and files over 64 KB are refused to the oldest clients. A tileset under 64 KB is sent and
   the HUD starts drawing, though the world stayed black with the cropped test tileset. The
-  fix is to add the Mac tokens to the table and serve the stock tileset; a rebuilt server
-  has not been run on the guest yet.
+  fix is to add the Mac tokens to the table and serve the stock tileset. Confirmed on
+  2026-11-14 with a server build that has them: the stock 210 511-byte tileset is sent and the
+  level draws ([3.153 and 5.12 flag note](../../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md#the-512-tileset)).
 - **Saved password and level caches.** The saved password uses the same DES cipher and string
   format as Windows, with a per-machine key built from the 6 hardware-address bytes and a
   `:pass` key name. The `.code` level caches are `GWEBL001`, with a big-endian unpadded length
@@ -100,7 +102,7 @@ for the whole session.
 ## Next
 
 - Run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop.
-- Rerun 5.12 Mac against a server with the Mac tokens in its version table.
+- ~~Rerun 5.12 Mac against a server with the Mac tokens in its version table.~~ Done 2026-11-14.
 - Find what changed in seihai-gserver-v2 between the 2026-11-11 build and `a1859bab` for
   serverside chat events.
 - The #245 near-empty folder run, and the manual cells listed above as not measured.

@@ -181,13 +181,14 @@ These messages change flags, put or remove NPCs and manage weapons. Each row giv
 | 29 | `PLI_NPCWEAPONDEL` | `rest` = weapon name | 1.28 beta 2 | removes the weapon | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 | 33 | `PLI_WEAPONADD` | `c type`; type 0 → `c item index`; type 1 → `i3 npc id` (copy an NPC's script as a weapon) | 1.38 | adds the weapon and answers with `PLO_NPCWEAPONADD` (33) | [srv][2.05] (protocol/packet-layouts.md#weapons) |
 
-Three rules limit when those messages are sent at all [2.05] (protocol/packet-layouts.md#other-client--server-senders-205).
+Four rules limit when those messages are sent at all [2.05] (protocol/packet-layouts.md#other-client--server-senders-205); [lab] (version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md#results).
 
 | Rule | Builds | Source |
 | --- | --- | --- |
 | Flags whose name starts with `local.` are never sent | 2.05 | [2.05] (protocol/packet-layouts.md#other-client--server-senders-205) |
 | When the deleted NPC is one of the player's weapons, 2.05 sends `PLI_NPCWEAPONDEL` (29) with the weapon name instead of `PLI_NPCDEL` | 2.05 | [2.05] (protocol/packet-layouts.md#other-client--server-senders-205) |
 | 2.05 only sends weapon type 0 | 2.05 | [2.05] (protocol/packet-layouts.md#weapons) |
+| Only `client.` flags are sent, on `created` and whenever a script changes the value; plain flags (`set name`) and other string flags (`setstring a.b,…`) stay in the client. 5.12's GS2 has no `set` or `setstring` | Mac 3.153, 4.04r2, 4.20r6, 5.12; Windows 4.04 | [lab][cap] (version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md#results); [lab] (client-internals/live-behaviour-404.md) |
 
 ## 2.4.7 Files, scripts and server values
 
