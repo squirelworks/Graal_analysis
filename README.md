@@ -122,6 +122,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Exact 2.05r2 event parameters](npc-library/gs1-event-parameters-205r2.md): #p producer, actor-shared pending text and empty-parameter calls.
 - [Exact 2.05r2 object-member bindings](npc-library/gs1-object-members-205r2.md): explicit suffixes, duplicate arrow dx and bounded getter controls.
 - [GS2 and GS1 in three playerworld script sets](npc-library/gs2-world-corpus-2026-11-12.md): which GS2 constructs and GS1-only commands real scripts use, and how far Seihai's compiler gets on them; aggregates only, E#207 remains open.
+- [What GS2 weapon scripts ask of a 4.x to 6.x client](npc-library/gs2-weapon-corpus-2026-11-14.md): events, commands, opcodes and `player` members in 1,302 compiled weapon client parts from a 2007 and a 2018 world, what `onWeaponFired` does, what graal-client-repro (#359) still lacks, and a seven-step implementation order; aggregates only.
 - [Exact 2.05r2 message-code catalog](npc-library/gs1-message-codes-205r2.md): bounded selector contract and runtime controls; E#203 remains partial.
 - [Original 2.05r2 condition truth and constant-comparison folding](npc-library/gs1-condition-truth-205r2.md): bounded static and offline runtime resolution of E#200.
 - [2.05r2 queued GS1 movement](npc-library/gs1-move-205r2.md) — static options and consumer; cadence/event timing remain open.
