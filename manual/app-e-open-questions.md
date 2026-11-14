@@ -634,6 +634,12 @@ The static pass over 35 builds left four gates unidentified. A follow-up read se
 | Respawn AP bands | settled: from 1.41 rev 1, the same bands as 2.05 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
 | Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21's item roll, and the sword spark stay open. A 2026-11-14 run did not identify the spark on 2.22, did not run the 2.05 control or the two-player edge, and loaded a 1.21 baddy scene without seeing the item roll | [lab] (live-runs/open-issues-2026-11-14/README.md#2c-combat-live-checks-partial); [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
 
+### E#325 Later sound census and playback limits
+
+The 4.x–6.x file survey reports 255 distinct WAVs, but its format counts (202 + 43 + 6 + 3) and channel counts (193 + 61) each total 254. The missing or miscounted entry has not been identified; retain the reported figures without choosing a corrected total. [file][doc] (client-internals/sound-files-6x.md#what-the-files-are)
+
+Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behavior. Reconcile the census against the surveyed inputs and test each format on the exact client/backend before treating the compatibility targets as native acceptance. The survey itself ran no client. [file][bin] (client-internals/sound-files-6x.md); see §3.10.5 and §4.7.5.
+
 ### E#400 Two projects called Ash
 
 Two different things are called Ash in the notes. The manual keeps them apart until their archives are compared [src] (server-notes/01-lineage.md#what-is-binary--world-only).
