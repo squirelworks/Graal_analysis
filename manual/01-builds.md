@@ -486,6 +486,20 @@ The 2001 builds branch more than their version numbers suggest. Each rule places
 
 ### 1.8.3 2.17, 2.22, 2.3 and 2.31
 
+The inspected package labelled 2.3 does not supply a distinct 2.3 client: its client executable is byte-identical to the compared 2.31 copies. This is file-comparison evidence, not execution or authentication of an official release; the package label must not promote the inferred 2.3 profile to a measured one. [file] (client-internals/graal-2.3-unpacked-package.md); [srv][inf] (version-profiles/2.22-2.31.md#builds-in-this-range)
+
+| Component comparison in the 2.3-labelled package | Established relationship | Limit | Source |
+| --- | --- | --- | --- |
+| Client executable | matches the compared unpacked 2.31 package and the 2.31 copies in held installs | removing a wrapper or a package's CRC-fix label does not independently locate an integrity patch; no differing client copy was available in this comparison | [file] (client-internals/graal-2.3-unpacked-package.md) |
+| Audio library | matches the other unpacked 2.31 package's BASS library, with rebuilt import sections; its timestamp matches packed BASS shipped with 2.22 | the packed 2.22 library is a different file; timestamp equality is not byte identity | [file] (client-internals/graal-2.3-unpacked-package.md) |
+| Level editor | matches the compared 2.22/community editor copies and remains packed | this does not identify a new editor release | [file] (client-internals/graal-2.3-unpacked-package.md) |
+| Remote Control | four differing bytes in the compared list-host construction path select the original host rather than the community replacement | this is a scoped host-path comparison, not proof that the entire executable is unmodified | [file] (client-internals/graal-2.3-unpacked-package.md) |
+| GraalShop | version 1.0.0.0, older than the compared 2.22 package's 1.1.1.0 | the version difference is not itself evidence of a patch | [file] (client-internals/graal-2.3-unpacked-package.md) |
+| Level generator | a different build from the compared NewMain copy | no second matching copy held in this study | [file] (client-internals/graal-2.3-unpacked-package.md) |
+| Image converter, terrain and dungeon generators, voice library | match the compared 2.22 copies | component equality does not make the mixed package a new client version | [file] (client-internals/graal-2.3-unpacked-package.md) |
+
+The two archive containers in the study have the same members. This establishes a repackaged collection within the checked corpus, not an original 2.3 token, packet layout or native behavior. No executable was run for the comparison. [file] (client-internals/graal-2.3-unpacked-package.md)
+
 The four Graal Reborn executables can be compared side by side. The rules below cover the socket classes, the cipher generation, the login and what each build adds [bin] (protocol/client-versions.md#client-versions-side-by-side-205-217-222-231).
 
 | Rule | Source |
