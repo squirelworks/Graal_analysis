@@ -147,3 +147,18 @@ The 2.05 rev 2 file receiver was read exactly. Each row names one property of it
 | fixture | isolated Wine/display namespaces, loopback only/no routes, unchanged executable and completed cleanup; labeled 2.31 donor resources, not authentic full 2.05 distribution | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
 | startup qualification | only copied world greeting emptied to bypass HTML/Wine stall; milestone 6 and equal level objects; default greeting unchanged; native Windows/cause unproved | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
 | limits | other clients, large-file continuation and malformed inputs remain unqualified; no server patches published in this increment | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
+
+## 2.7.10 What 2.22 sends before any file answer (partial)
+
+Windows 2.22 (`GNW03014`) on a loopback lab, listserver port 14922 and the decrypting proxy on 14803. The near-empty folder that reaches the server list is the executable, `bass.dll`, `basswma.dll`, `hvdi.dll`, `arrays.dat`, `arrays2.dat`, `arrays2.sig`, `graal.sig` and `pics1.png`. The login screen itself appears once `graal.sig` is present; its images are inside the executable. Start Online then asks for `arrays.dat` and `pics1.png`. The client writes `graalconfig.txt`, `servermessage.html` and `weblevels` itself. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
+
+Both the near-empty folder and a full folder sent their file checks in the second client-to-server frame, together with the first player-props line (id 2), one zlib frame, 0.3 s after login. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
+
+| Folder | In that frame, besides the props line | Source |
+| --- | --- | --- |
+| near-empty | id 23 for `idle.gani` and for the online, away and do-not-disturb player-list icons | [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder) |
+| full | id 34 for four other player-list icons (eating, hiding, no private messages, role-playing), each with a 5-byte modification time first, then id 23 for `steps.wav` and one gani | [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder) |
+
+Id 23 asks for a file the client does not have. Id 34 is the update check and carries the local file's modification time. Which player-list icons are named follows the status list in S→C 180. With a full folder the online, away and do-not-disturb icons were not asked for; with a near-empty folder only those three were. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
+
+This server answered none of those requests: no S→C 102 and no 30. Neither client sent another file check afterwards, so sword, shield, body, bomb, bow and head images were not in this capture even though S→C 9 named some of them. The set above is only what leaves before any answer. An earlier run whose server did answer saw two further frames. A rerun against a server that answers id 23 and id 34 is still needed for the rest of the default set. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)

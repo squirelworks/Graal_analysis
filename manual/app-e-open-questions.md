@@ -221,6 +221,7 @@ When a GS1 condition counts as true is now settled for one exact build. Each row
 | Separate defect | constant numeric comparisons fold to zero in this build, while dynamic comparison controls work; mechanism and observations carried in §8.1.3 | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#constant-comparison-folding) |
 | Open | other builds, nonfinite/malformed values, complete aliases/precedence and named-flag collisions | [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
 | Linux positive follow-up | An independently authored source weapon on original Linux 3.04 produces created/playerenters flag messages and fresh-account persistence. Numeric readbacks and explicit positive comparisons work while tested bare predicates do not activate. This is a separate build scope from the Windows 2.05r2 resolution; no universal numeric threshold or complete predicate/name-lookup rule is established. | [lab][cap] (npc-library/linux-304-gs1-runtime.md) |
+| Loop conditions, 1.33 to 2.31 | a bare number in `while` or `for` is false on 1.33, 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31, so `while(1)` runs 0 times. `while(1==1)` is false on 1.41r1 and 2.05r2 and true from 2.17.1. On 1.33 `true` is an unset flag and `while((1+0))` does not run (→ §8.2.12) | [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition) |
 
 
 ### E#201 Four GS1 argument signatures in 2.05
@@ -265,6 +266,7 @@ The full set of `#` message codes in 2.05 is partly recovered. Each row gives a 
 | Boundary | accepted C5 storage read does not prove a sixth clothing color or alter the five-byte wire color property; property setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
 | Exact 2.05r2 #6 follow-up | carried-NPC image association independently linked to selected pickup/throw/clear paths; runtime, complete selectors/eligibility/lifetime and receiver identity remain unvalidated; other field identities remain open | [bin] (npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) |
 | Exact 2.05r2 #p follow-up | shared parameter list is produced by dispatch splitting actor pending text, distinct from tokenize; callnpc/callweapon use empty-parameter queue wrappers. Only producer linkage is resolved; other E#203 fields remain open | [bin][lab] (npc-library/gs1-event-parameters-205r2.md#producer-and-consumer-linkage; npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls) |
+| Other builds, populated | `#F`, `#S`, `#D`, `#I` and `#P6` to `#P9` hold values from 2.17.1; `#R` from 2.22; `#C6` and `#C7` stay empty in every build tested. `##` is a one-pass `#` escape on 2.05r2 and 2.17.1 and an empty code on 1.33 (→ §8.2.12). The 2.05 field questions in the rows above stay open | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
 
 ### E#204 Member names of the GS1 object arrays
 
@@ -384,7 +386,7 @@ The frame loop of the 3.x and 4.x clients was untimed. A 2026-11 lab settled it:
 | Windows 4.04r2 clocks | three time notions are traced statically (elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, legacy `timeout` pass counts); no update rate is measured | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
 | Settled | 50 ms steps, one render per step, 8 px per walk step; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
-| Still open | 6.03r7's script timer; the `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; walk GANI timing at run time | [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
+| Still open | 6.03r7's script timer. 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down, and 2.22 and 2.31 play one walk frame per step (→ §4.1.8) | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
 
@@ -606,7 +608,7 @@ The static pass over 35 builds left four gates unidentified. A follow-up read se
 | Player mode 7 | settled: attached to another local player in same-PC play (carried, or a horse passenger) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
 | Extra victim test | settled: ghost mode (170); the 2.17.1+ judge also stops in Kingdoms or New World mode (176, 177) | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
 | Respawn AP bands | settled: from 1.41 rev 1, the same bands as 2.05 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
-| Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21, the sword spark | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
+| Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21's item roll, and the sword spark stay open. A 2026-11-14 run did not identify the spark on 2.22, did not run the 2.05 control or the two-player edge, and loaded a 1.21 baddy scene without seeing the item roll | [lab] (live-runs/open-issues-2026-11-14/README.md#2c-combat-live-checks-partial); [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
 
 ### E#400 Two projects called Ash
 
