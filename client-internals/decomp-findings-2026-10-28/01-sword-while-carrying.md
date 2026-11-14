@@ -8,15 +8,17 @@ The game keys reach the player by index: weapon (default D), sword
 * **Sword key with an object carried:** no swing. The carried object is
   thrown, the same throw the action key does: it leaves from above the head,
   the carry sprite goes back to none (-1) and the idle gani is set. If the
-  player's mode was walking, or the lay-down mode below, the mode goes back
+  player's mode was walking, or hiding (below), the mode goes back
   to idle. No swing precondition (sword power, swimming) is checked on this
   path.
 * **Sword key with empty hands:** the normal swing.
 * **Action key with an object carried:** throws, except in the lay-down
   mode, which has its own action.
 * **Weapon key with an object carried:** does not throw. It only matters when
-  the carried sprite is 239, 261 or 263; then the player enters a lay-down
-  mode with its own gani. What that mode does was not read.
+  the carried sprite is 239, 261 or 263 (or an NPC is carried); then the
+  player hides under it (mode 14, `hiddenstill`). This is not item laying:
+  see `../laying-items-and-hiding.md` (2026-11-14), which also covers laying
+  items (S held + A, mode 9).
 
 Online, a throw also triggers the client's player-props send (the carry
 sprite change); the exact bytes were not captured.

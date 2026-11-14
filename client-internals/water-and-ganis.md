@@ -28,7 +28,7 @@ Uses that were seen in the code:
 * The sword swing plays `sword`; on a horse, `ridesword`.
 * The spin (a second S press during a swing, with the has-spin status) plays `spin`.
 * The A key's grab plays `grab`, and its lift plays `lift`.
-* The item key's "lay item" mode plays `hiddenstill`.
+* Hiding under a carried object (D) plays `hiddenstill`; laying an item (S held + A) plays `idle` (`laying-items-and-hiding.md`).
 * Firing a weapon on a horse plays `ridefire`.
 * A throw sets the player back to `idle`.
 * Swimming plays `swim`, or `lava` on a lava tile (type 12).
