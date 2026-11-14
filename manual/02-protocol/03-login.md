@@ -357,3 +357,15 @@ The unpacked 6.037 and 6.1.1.3 images were compared for how they log in. Each ru
 ## 2.3.8 Linux local-login baselines
 
 [lab][cap] Seven unique original Linux executable identities reach accepted local logins on one pinned patched lab server. Exact tokens preserve shared 4.20 revision and 6.01 architecture pairs without collapsing their executable identities. Visual results range from a tiled surface to black windows; acceptance is not gameplay, official authentication or a proven cipher-step discriminator. [lab][cap] (protocol/linux-local-login-matrix.md).
+
+## 2.3.9 Classic+ 1.13 static construction boundary
+
+One selected iOS Classic+ 1.13 input corroborates the previously published `G3D0208A` append sequence. The constructor boundary was analyst-seeded, and one direct forwarding helper was inspected statically; no native login or complete mobile frame was measured. [bin] (client-internals/classic-113-login-construction.md#scope-and-prior-work)
+
+| Stage | Bounded observation | Unknown | Source |
+| --- | --- | --- | --- |
+| Two string-related values after the token | each selected branch compares with 223; short path derives a prefix-helper argument from length plus 32; longer path supplies an all-bits-set prefix argument and a copy-helper argument of 223; separate empty/null cases exist | getter identities, actual emitted bytes, accepted limits, copy/truncation and multibyte behavior | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| Vector construction | helper calls with index arguments 0–3; serializer result appended after the two values | element meanings, delimiters, encoding and complete identity-trailer layout | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| Forwarding | caller supplies selector 5; selected path bypasses two special cases and uses a global flag to choose between two lower send paths | selector category, constructor trigger, lower framing/cipher, receiver PLAYERPROPS mapping and native acceptance | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+
+The selector is not established as a wire type, opcode or cipher generation. These observations identify next discriminators, not a mobile profile that can be implemented without guessing (→ App. E#16). A desktop capture or synthetic fixture does not resolve the exact-input native questions. [bin][doc] (client-internals/classic-113-login-construction.md#use-and-remaining-questions)

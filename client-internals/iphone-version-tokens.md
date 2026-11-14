@@ -124,6 +124,8 @@ the likeliest token for Era+ 1.0 (built Dec 2010). That is unread.
 - Anything else about the iPhone login: type byte, identity trailer, props. gs2lib has one
   iPhone packet comment, PLI 161 ("{INT5 modtime}{name} iPhone client") **[srv]**.
 
+The [Classic+ 1.13 construction follow-up](classic-113-login-construction.md) corroborates its existing token and bounds two string-related caller branches, vector serialization and forwarding selection. Getter identities, exact emitted bytes, framing, receiver props and native acceptance remain unknown. **[bin]**
+
 ## How to close it
 
 1. **More decrypted IPAs.** An unencrypted Era+, Zone+ or later Classic+ or Belote build would
