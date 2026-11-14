@@ -30,6 +30,24 @@ Decrypt reverses this. Input shorter than 48 characters gives an empty string. T
 
 Because the padding is random, the same password encrypts to a different string each time.
 
+## Mac 4.20r6: same format, per-machine key (2026-11-12)
+
+The Mac PowerPC 4.20r6 client keeps its settings in `~/.graal/.registry`, a plain-text
+`key=value` file that stands in for the Windows registry key. It holds `accountname`,
+`password` and one `<account>:pass` line per saved account (a colon, as on Windows). Each value
+is `1` followed by the same 48-character string as above: length byte, password, random padding,
+DES-ECB with bit-reversed key bytes. **[bin][lab]**
+
+The key is not the fixed `~2%$zsd^`. The client starts from the 8 bytes `73 e4 7e b3 34 a7 4a 2b`
+and, when it finds a primary Ethernet interface, XORs key bytes 2 to 7 with the six bytes of that
+interface's hardware address and with `5d c4 2a 3f 60 dc`. With no primary interface the base key
+is used as it is. So a saved password decrypts only with the same machine's hardware address, and
+a copied `.registry` file moved to another Mac loses its passwords. A lab value decrypted to the
+typed password with this key and `graaldes.GraalDES`; the 2.05 fixed key and normal key byte order
+both gave garbage. **[bin][lab]** The same per-machine idea applies to Windows v4 (there with part
+of the address and of the product id); see `protocol/pcid.md` for which interface counts as
+primary on the Mac.
+
 ## Other uses of the same cipher
 
 - The hidden listserver host: the server list frame builds a different 8-byte key and a 48-character ciphertext one character at a time. It decrypts to `<list-host-classic>`, port `14921`. **[2.05]** **[test]**

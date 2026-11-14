@@ -85,6 +85,26 @@ python3 gwebl.py FILE.code --raw plain.bin                             # decrypt
 
 The module also has `encrypt_stream` (re-creates files byte for byte), `read_board` / `write_board`, and `parse_grv` for plain `.graal` data.
 
+## The Mac 4.x and 5.x cache (2026-11-12)
+
+The Mac PowerPC 4.04r2, 4.20r6 and 5.12 clients share one folder, `~/.graal/graal4/weblevels/<host>/<level>-<port>.code`,
+and write it only after a move to a named game server (the Login session writes none). The same
+level from 4.04r2/4.20r6 and from 5.12 gave byte-identical files. **[lab]**
+
+The plaintext is exactly GWEBL001 as above (header, host, signature, mod time, level name, then
+`GR-V1.03`, or `GR-V1.04` with heights), with the same seed rule, DES and 8-byte checksum.
+Two wrapper details differ, which is why a 2.05 reader rejects Mac files with a bad length header:
+**[bin][test]**
+
+1. The leading int32 is **big-endian** and holds the **unpadded** plaintext length + 8 (2.05
+   stores little-endian, padded length + 8). Padding with `0x0A` still follows.
+2. Each block key byte is the **low byte** of `seed = seed × 0x08088405 + 1`; 2.05's Delphi
+   `Random(256)` takes the high byte.
+
+A reader built on `tools/file-formats/gwebl.py` with those two changes decodes the Mac files with a
+good checksum.
+The Mac and Windows caches are therefore not interchangeable. **[test]**
+
 ## The 5.x and 6.x `.code` cache
 
 Added 2026-11-06, read from the unpacked 5.24r4, 6.00b1, 6.00r2 and 6.03r7 Windows clients. Tags as above, plus **[bin]** read from those builds.

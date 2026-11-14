@@ -338,6 +338,18 @@ The six-VM reading of 3.153 to 6.03r7 leaves these items open [bin] (client-inte
 | 6.x loop limit | the scrambled property name | [bin] (client-internals/gs2-vm-by-version.md#limits) |
 | Unread builds | 4.04r2, 5.12 to 5.31r4, 6.00r2, 6.00r4 and 7.x borrow or lack a VM reading | [inf] (client-internals/gs2-vm-by-version.md#what-was-read) |
 
+### E#210 Particle emitter and `format` details
+
+The static read of the emitter and opcodes 82/84 left these open [bin] (client-internals/showimg-particles-and-gs2-format.md#not-settled).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | whether `removemodifiers()` clears the emit list as well as the local and global lists | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | when a global modifier's clock starts (the read suggests time zero, so a global `once` fires on the first frame) | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | the exact particle kinds; "store its own data (good for text emitters)" shows a text kind exists | [doc] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | case handling in `indexof` string search, and whether `%d` truncates or floors | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Settles it | a runtime probe on a 4.x or 6.x client in the lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+
 ### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
 
 These three early builds were first said to have no frame timer. An exact read found one in each, and their real tick timing is still unmeasured [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration).
