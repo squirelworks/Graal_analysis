@@ -14,6 +14,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Carry the measured Linux 6.03r7 item behavior into the manual.** ~~Separate input packets, corrected idle-VM timing and screen effects from server replies.~~ [Study](../client-internals/items-603r7-black-box.md); manual §4.5.8, App. E#327.
   - [ ] Identify the missing chest art and test the proposed menu-skin dependency (App. E#327).
+- [x] **Carry the measured Linux/Windows 6.03r7 HUD into the manual.** ~~Separate fixed art/layout, font availability and captured transitions.~~ [Study](../client-internals/hud-603r7-black-box.md); manual §4.6.9, App. E#326.
+  - [ ] Resolve the sword crop, other-size Windows text positions and Windows current-clock check (App. E#326); this carry adds no new lab run.
 - [x] **Add exact 1.40 registered words to the machine-readable matrix.** ~~Carry its 125-name scan and fourteen earlier first-observed bounds.~~ [68-build matrix](../npc-library/gs1-commands-by-version.md); executor behavior remains separate.
 
 - [x] **Carry the later sound-file survey into the manual.** ~~Separate backend names, file contents and script-help observations from playback acceptance.~~ [Study](../client-internals/sound-files-6x.md); manual §3.10.5, §4.7.5 and App. E#325.

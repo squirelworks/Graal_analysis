@@ -640,6 +640,12 @@ The 4.x–6.x file survey reports 255 distinct WAVs, but its format counts (202 
 
 Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behavior. Reconcile the census against the surveyed inputs and test each format on the exact client/backend before treating the compatibility targets as native acceptance. The survey itself ran no client. [file][bin] (client-internals/sound-files-6x.md); see §3.10.5 and §4.7.5.
 
+### E#326 Remaining 6.03r7 HUD measurements
+
+The source also calls the full-size row's right margin 68 pixels, but its formula x = W − 198 + 45k with a 40-pixel-wide full-heart sprite gives 23 pixels for four hearts (k = 0–3); 68 corresponds to three. The reported formula and fixed-margin assertion are not reconciled. Check identified-state captures before selecting a margin rule; the arithmetic alone does not establish which observation needs correction. [shot][doc] (client-internals/hud-603r7-black-box.md#hearts)
+
+The Linux/Windows black-box study in → §4.6.9 leaves the sword source rectangle's right edge unresolved (width 28–34 pixels), Windows text positions at other window sizes unmeasured, and Windows operation with a current clock unchecked; its Windows run used a 2012 clock. Resolve these with exact-build, identified-state captures before choosing a definitive crop, text layout or clock-compatibility claim. [shot][lab] (client-internals/hud-603r7-black-box.md#open)
+
 ### E#327 Missing chest art and menu skin in the 6.03r7 item run
 
 The script-free Linux run in → §4.5.8 observed chest collision/opening without chest art, and an orange rectangle after D/Q/Tab/Esc toggled the menu status. The missing art's source and the proposed GUI-skin explanation are unresolved. Identify the board/file or script dependency with controlled input changes before attributing either rendering path to the client. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests); (client-internals/items-603r7-black-box.md#open)
