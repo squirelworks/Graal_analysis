@@ -43,11 +43,11 @@ line).
 | 2 | Render a level or a whole gmap to PNG | NW2PNG 1.3 to 2.1, graalmapview, Graal-Level-Viewer, PHP level viewer, Bruges' levelviewer, GraalMap Live View (static part) | `seihai-draw` paints tiles; `lat-core::preview` paints one level | `seihai-servertools level render`, `gmap render` | in review: servertools #73 |
 | 3 | Terrain, dungeon and image-to-level generators | TerrainGenerator (2001, 2002), NW Dungeon Generator (2003), GraalLevelGen / GraalLevelGenNW, Emera's and the Python gmap generators | `generators-222/README.md` (gmap keys, level layout, Delphi LCG, 12-colour table, 8 by 11 dungeon blocks); `classic-tools/graal-level-gen.md` | `seihai-servertools gen terrain\|dungeon\|image` | in review: servertools #73 (maze and layout dungeons; other styles open) |
 | 4 | gif2mng and GIF/PNG batch conversion | gif2mng, Assimilator GIF2PNG | `gif2mng.md` (one frame PNG, more MNG, `-b`), Assimilator SUMMARY; `seihai-core` reads GIF, PNG and MNG | lat-core (`check --make-gif` already writes GIF copies) | MNG/PNG writer in review: seihai-core #58; the command follows its tag |
-| 5 | LevelFiller (theme fill of a level from tile groups) | LevelFiller + LFThemeMaker (2001), levelfiller.7z | catalogue line only | lat-core, after a teardown | needs a teardown |
-| 6 | GraalShop movie mode and shop pages | GraalShop 2002 builds, Graal Shop Preview | `graalshop.md`, `graaleditor-vs-205.md` | lat-core gani editor (sprite frames already edit) | open |
+| 5 | LevelFiller (theme fill of a level from tile groups) | LevelFiller + LFThemeMaker (2001), two copies | `levelfiller.md` (themes, quantities, placement, object language, `.tm` corner masks) | lat-core `level fill`, `theme make` | open: servertools #77 |
+| 6 | GraalShop movie mode and shop pages | GraalShop 2002 builds, Graal Shop Preview | `graalshop.md` (movie grammar and keys), `graaleditor-vs-205.md` | lat-core gani editor (sprite frames already edit) | open: servertools #78 |
 | 7 | Server stat pages | gserverstat, gserverstat2, GServer Stats (2004), player-count PHP | `classic-tools/gserverstat.md`, two SUMMARYs, `account13.py` | servertools, from seihai-gserver's account store | open, low |
 | 8 | Character files (`CHR:1.00`) | Graal Character Designer 1.2.7, Character Generator 1.0, BinaryCrash Character / Head Viewer | `classic-tools/character-designer.md`, GCD and GChar SUMMARYs | `seihai` client (looks), not servertools | open, low |
-| 9 | Unresearched small utilities | Graal Messenger, Graal Sound Fix, the two 1999 icon DLLs, apcalc, Guild Manager, guildcode, START-HUB | none, or a catalogue line | probably none | needs a look |
+| 9 | Small utilities | Graal Messenger, Graal Sound Fix, the two 1999 icon DLLs, apcalc, Guild Manager, guildcode, START-HUB | `small-utilities-2026-11-14.md` | none, except `.code` files (seihai-core #63) | done |
 | 10 | DClient | DClientSetup 1198 (VB6) | DClient_setup SUMMARY: bootstrapper only; the CAB in this copy is a stub | none | blocked on a full copy |
 
 ## Every tool
@@ -65,14 +65,14 @@ or `manual/11-tools.md` and nothing more.
 | Terrain Generator (2001, 2002) | yes | `generators-222/` | no (gap 3) |
 | NW Dungeon Generator (2003-05) | yes | `generators-222/` (static read of the Linux build) | no (gap 3) |
 | TextConvert / GRAALtoNWconverter | yes | TextConvert SUMMARY, `classic-tools/text-convert.md` | partial: lat-core reads `.graal` and writes `.nw`; no command (gap 1) |
-| LevelFiller + levelviewer + LFThemeMaker | cat. | no | no (gap 5) |
+| LevelFiller + levelviewer + LFThemeMaker | yes | `levelfiller.md` (v0.6 exe; the v0.7 exe is zero-filled) | no (gap 5, servertools #77) |
 | PNGView | yes | PNGView SUMMARY | not needed (an image viewer) |
 | Greaditor (NW level editor) | yes | `level-editor/version-deltas.md` (UPX, not unpacked) | yes: `seihai` level editor, servertools LAT level editor |
-| GraalShop (gani / shop editor, 2002) | yes | `graalshop.md`, `graaleditor-vs-205.md` | partial: servertools gani editor (gap 6) |
+| GraalShop (gani / shop editor, 2002) | yes | `graalshop.md`, `graaleditor-vs-205.md` | partial: servertools gani editor (gap 6, #78) |
 | Graal Character Designer 1.2.7 | yes | GCD SUMMARY, `classic-tools/character-designer.md` | no (gap 8) |
 | Graal Character Generator 1.0 | yes | GChar SUMMARY, same note | no (gap 8) |
 | Graal Clock 1.2.7 | yes | `client-internals/gserv-125-127-builds.md` item 8 (an offline launcher: clock, `.chr` load/save, starts `Graal.exe`; no socket) | yes for the job: `seihai-launcher` |
-| Default characters and theme icon DLLs (1999) | no | no | not needed |
+| Default characters and theme icon DLLs (1999) | yes | `small-utilities-2026-11-14.md` (16-bit NE icon libraries) | not needed |
 | DClient | yes | DClient_setup SUMMARY | blocked (gap 10) |
 | Script function list, client 6.0.0.7 | yes | reference text | used by `seihai-core` GS2 work |
 
@@ -87,7 +87,7 @@ or `manual/11-tools.md` and nothing more.
 | Account creator (web, PHP) | cat. | source | partial: listserver accounts (`setup host-listserver`) |
 | Secure login sample (GraalReborn) | cat. | source | yes: `seihai-core` secure login |
 | GServer Stats, gserverstat, gserverstat2 | yes | two SUMMARYs, `classic-tools/gserverstat.md` | no (gap 7) |
-| Guild Maker, guildcode, Guild Manager | Guild Maker yes (`server-tools-2001.md`) | no | no; guilds are a gserver feature |
+| Guild Maker, guildcode, Guild Manager | yes | `server-tools-2001.md` (`.code` format), `small-utilities-2026-11-14.md` | `.code` files: seihai-core #63; guilds are a gserver feature |
 
 ### LAT (levels and maps)
 
@@ -104,7 +104,7 @@ or `manual/11-tools.md` and nothing more.
 | TilesetEditor (BinaryCrash) | cat. | no | partial: `seihai-core` tiledefs |
 | TileDef scripts | yes | many notes on tile types | yes: `seihai-core` `TileTypes` |
 | Emera's map generators (2013 to 2024), Python and PHP gmap generators | cat. | source | no (gap 3) |
-| START-HUB launcher | no | no | not needed |
+| START-HUB (a GS1 level, not a launcher) | yes | `small-utilities-2026-11-14.md` | not needed |
 
 ### NAT (scripts)
 
@@ -133,9 +133,9 @@ or `manual/11-tools.md` and nothing more.
 |---|---|---|---|
 | WebRc (RC chat to a page) | no | source | no; would sit on `seihai-rc` |
 | Server player count PHP + NPC | cat. | source | no (gap 7) |
-| Graal Messenger | cat. | no | not needed |
-| Graal Sound Fix | no | no | not needed |
-| apcalc | cat. (no copy held) | no | not needed |
+| Graal Messenger | yes | `small-utilities-2026-11-14.md` (two logins, buddy `lister` commands) | optional, low: a `seihai-rc` mode |
+| Graal Sound Fix | yes | source; `small-utilities-2026-11-14.md` | not needed |
+| apcalc | yes | `small-utilities-2026-11-14.md` (AP bands, unpacked in a lab VM) | not needed |
 
 ## What is being built
 
@@ -143,6 +143,6 @@ Gaps 1 to 3 are in seihai-servertools #73 (`level convert|render`,
 `gmap make|render`, `gen terrain|image|dungeon`), written from the format
 and behaviour notes and `seihai-core`'s readers, not from the Python
 here. The writers they and gap 4 need (`.graal`/`.zelda` levels, MNG) are
-in seihai-core #58. Gap 5 (LevelFiller) and gap 9 need a static look at
-the binaries first. Progress is tracked in seihai-servertools issue #50
+in seihai-core #58. Gap 5 (LevelFiller) and gap 6 (movie mode) now have teardowns and port
+issues (servertools #77, #78); gap 9 is closed by `small-utilities-2026-11-14.md`. Progress is tracked in seihai-servertools issue #50
 ("Later") and its `docs/NEXT.md`.

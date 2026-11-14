@@ -48,8 +48,8 @@ header      := "LOOP"
 body        := ani | movie
 ani         := "ANI" step* "ANIEND"
 movie       := "MOVIE" actor* "MOVIEEND"
-actor       := "ACTOR" name  frame* "ACTOREND"
-frame       := "FRAME" index  token ("," token)*
+actor       := "ACTOR" kind name  frame* "ACTOREND"   (kind: CHAR SPRITE SOUND TEXT)
+frame       := "FRAME" index  key"="value ("," key"="value)*
 step        := placement ("," placement)*
              | "WAIT" n
              | "PLAYSOUND" name x y

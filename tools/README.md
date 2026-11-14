@@ -7,6 +7,8 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | GraalEditor | Level editor (2.3.1.1) | Separate exe from 2.3 onward. Writes decimal BOARD 0 grids plus LINK/SIGN/CHEST/NPC/BADDY. |
 | Built-in level editor | Editor inside each client (2.22 is the reference) | `level-editor/`: 2.22 reference, per-version deltas, format cross-reference, Seihai tracking checklist. |
 | GraalShop | GANI editor | Sprite mode (GANI0001) and movie mode (GANI0002). |
+| LevelFiller | NW theme filler (2001) | Themes, quantities, placement, object language and LFThemeMaker patches. See `levelfiller.md`. |
+| Small utilities | Messenger, Sound Fix, icon DLLs, apcalc, Guild Manager, START-HUB | See `small-utilities-2026-11-14.md`. |
 | TerrainGenerator | Height-field world | Plasma midpoint displacement → GRMAP001 + GLEVNW01 with HEIGHTS. The 2.22 reference is `generators-222/terrain.py`. |
 | DungeonGenerator | Stamp dungeon | 8×11 layout → GLEVNW01 boards and GRMAP001. The 2.22 reference is `generators-222/dungeon.py`. |
 | GraalLevelGen | Image-to-levels | December 2000 contract in `classic-tools/graal-level-gen.md`. The 2.22 nw-gmap reference is `generators-222/levelgen.py`. graal-txt and nw-txt names and `bigmap.txt` are in `level-tools-gaps/`. |
