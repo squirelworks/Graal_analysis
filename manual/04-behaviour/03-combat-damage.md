@@ -281,7 +281,7 @@ A loopback capture of the real 2.05 rev 2 and 2.22 clients. The spin window, the
 
 | What was sent | 2.05 rev 2 | 2.22 | Source |
 | --- | --- | --- | --- |
-| Second S during the swing | `GANI` `spin` when the second key-down is about 0.1–0.3 s after the first; earlier stays `sword`, and +321 ms starts a new `sword` | `spin` at +131, +200 and +271 ms (3/3) | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
+| Second S during the swing | `GANI` `spin` on 18 of 20 tries from +111 ms to +290 ms (about 0.1–0.3 s). Inside that span, +271 ms sent a second `sword` and +131 ms sent nothing. +91 ms and +93 ms stay `sword`. +321 ms and later, on earlier tries, starts a new `sword` | `spin` at +131, +200 and +271 ms (3/3) | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
 | `GANI` on the wire | prop 10 is a length byte equal to the name, then `sword`, `spin` or `idle` | the same names | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
 | End of the swing or spin | no `idle`. `idle` goes out on a walk, or on A with S held | `idle` about 262 ms after `sword`, and 630–680 ms after `spin` | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
 | S held, then A | `idle`, then a held rupee that cycles green, blue, red with no further send; A alone sends `PLI_ITEMADD` then `RUPEESCOUNT` in one frame | the same item frame; the pick asks for `item2.wav` and does not ask for `item.wav` | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
