@@ -14,6 +14,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Carry the measured Linux 6.03r7 item behavior into the manual.** ~~Separate input packets, corrected idle-VM timing and screen effects from server replies.~~ [Study](../client-internals/items-603r7-black-box.md); manual §4.5.8, App. E#327.
   - [ ] Identify the missing chest art and test the proposed menu-skin dependency (App. E#327).
+- [x] **Add exact 1.40 registered words to the machine-readable matrix.** ~~Carry its 125-name scan and fourteen earlier first-observed bounds.~~ [68-build matrix](../npc-library/gs1-commands-by-version.md); executor behavior remains separate.
 
 - [x] **Carry the later sound-file survey into the manual.** ~~Separate backend names, file contents and script-help observations from playback acceptance.~~ [Study](../client-internals/sound-files-6x.md); manual §3.10.5, §4.7.5 and App. E#325.
   - [ ] Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325).
