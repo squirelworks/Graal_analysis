@@ -76,6 +76,8 @@ The id table above says which ids a build can send. The rules below add the exce
 
 The summary lists for 1.21 and 1.32 in the 1999 protocol note disagree with the per-build profile by one id each → App. E#6.
 
+The six Graal 2002 inputs in §1.1.5 have static receive and command-table findings, but this study did not establish their client-to-server send sets. Do not assign the 2.1 test or 2.17.1 row to them from a shared token; the per-input PLI audit remains open in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#open-points)
+
 ## 2.4.3 Level navigation
 
 These are the messages a client sends to move between levels and servers. Each row gives the id and name, the payload layout, the first build that sends it, and what the server does in reply [srv][2.05] (protocol/packet-layouts.md#level-navigation-client--server).
@@ -122,6 +124,7 @@ Movement has no message of its own. The rules below show how walking rides on pl
 | Example bodies: `1-` is SPRITE 13; `/[` is X 59 (29.5 tiles); `0f` is Y 70 (35.0 tiles); `*$walk/I` is GANI `walk` then X 41 | capture of 2026-10-04; the `walk` frame from 2.17 | [cap][inf] (protocol/login-and-walk.md#walk-frames-are-pli_playerprops) |
 | `sprite % 4` is the direction: 0 up, 1 left, 2 down, 3 right | 2.22, server | [srv][doc] (protocol/login-and-walk.md#walk-frames-are-pli_playerprops) |
 | 2.05 sends prop groups {0, 11, 13, 18, 31, 33} at session start, {42, 15, 16} on attach or a position change, and a per-tick diff of changed props | 2.05 | [2.05] (protocol/login-and-walk.md#walk-frames-are-pli_playerprops) |
+| The guarded first-update construction orders props 0, 11, 13, 18, 31, 33; incoming self-properties id 9 clears one necessary gate, while other startup/update conditions remain and native emission is unmeasured | Graal 2002 ver10 (2.1.0.2), static only | [bin] (client-internals/graal2002-and-140-builds.md#ver10-initial-player-properties-update-2026-11-15) |
 | Local chat is not a message id: it is the CURCHAT prop (12) inside `PLI_PLAYERPROPS`, and server commands typed in chat are parsed from it | server | [srv] (protocol/chat-pm-rc.md#chat-bubble) |
 | The login props go out as one `PLI_PLAYERPROPS` right after the first server message, with the head (11) as an index below 100 | 1.41 rev1 | [cap] (client-internals/version-profiles/141-217.toml) |
 | Player props stay on TCP while the UDP channel is active | 2.05 | [cap] (protocol/packet-layouts.md#combat-and-objects-both-directions) |

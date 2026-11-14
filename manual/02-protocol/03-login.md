@@ -212,6 +212,12 @@ The rules below cover what surrounds the login message: how it is sent and built
 | 2.00 sends the same type 0 shape with the token `GNW24011`; the account and password are neither hidden nor hashed | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#login-string-gserver) |
 | A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) ; [lab] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#token-allow-list) |
 
+### 2.3.3.1 Graal 2002 token identity boundary
+
+The static token read gives `GNW03081` for ver7–ver9 and `GNW31101` for ver10, ver13 and v22. The latter includes FileVersion 2.1.0.4, beyond the older version list's 2.1.0.0–2.1.0.3 range. It is binary-read evidence (grade B), not a captured login (grade W). No login field layout, initial PLAYERPROPS order or payload widths for these exact inputs follows from the shared token. [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle)
+
+The two 1.40 inputs carry `GNW23090`; the token's date digits read 23 September 2000, between the listed 1.39 and 1.41 rev 1 tokens. Neither of the checked FileVersion 1.3.9.1 inputs carries the listed `GNW12080`: one carries `GNW07080`, the other `GNW23090`. Thus the listed 1.391 token remains list-only, not disproved by a version-resource match. Exact-input login captures remain open in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle)
+
 ## 2.3.4 2.22, 2.31 and 3.x login (generation 5, type 5)
 
 The fields are those of → §2.3.3 with client type 5. The message travels in the fixed mode-3 login frame (→ §2.2.4) [bin] (protocol/client-versions.md#game-server-login); [bin] (protocol/v3x-clients.md#game-server-login-and-cipher).

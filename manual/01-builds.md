@@ -124,7 +124,7 @@ Builds after 2001 are known from their tokens, lab runs and static reads; there 
 
 | Build | Token | Source |
 | --- | --- | --- |
-| 2.1.0.0 to 2.1.0.3 | GNW31101 | [doc] (client-internals/version-tokens.md) |
+| Graal 2002 ver10 (2.1.0.2), ver13/v22 (2.1.0.4) | GNW31101 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds); older list range [doc] (client-internals/version-tokens.md) |
 | 2.1.4.0 (first with server-list tabs) | GNW30042 | [doc] (client-internals/version-tokens.md) |
 | 2.1.7.0, 2.1.7.1 (2.171, `Graal_2171.exe`) | GNW22122 | [bin][cap] (client-internals/version-tokens.md) |
 | 2.1.9.0 (bz2 and new encryption) | GNW15053 | [doc] (client-internals/version-tokens.md) |
@@ -149,6 +149,28 @@ Builds after 2001 are known from their tokens, lab runs and static reads; there 
 | Linux 6.03r7 | G3D0511C | [bin][cap] (client-internals/version-tokens.md) |
 
 From 2.3 the editor and the online client are separate executables [doc] (client-internals/version-tokens.md). Graal3D (2000) is a separate client with its own server and no Graal level loaders [bin] (client-internals/build-catalogue.md#catalogue); it is described in → §9.
+
+### 1.1.5 Graal 2002 and the 1.40 line
+
+The following Windows Delphi inputs were read statically; no login frame or gameplay was measured in this study. Dates below are shipped-file modification dates, not authenticated release dates; the fixed Delphi link stamp does not date the build. Token equality does not identify an executable or prove equal behavior. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
+
+| Input label | FileVersion | Shipped-file date | Bytes | Token | GS1 table size | Source |
+| --- | --- | --- | ---: | --- | ---: | --- |
+| Graal 2002 ver7 | 2.1.0.0 | 2001-10-09 | 1665536 | `GNW03081` | 167 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| Graal 2002 ver8 | 2.1.0.0 | 2001-10-19 | 1670656 | `GNW03081` | 167 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| Graal 2002 ver9 | 2.1.0.0 | 2001-10-30 | 1673216 | `GNW03081` | 168 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| Graal 2002 ver10 | 2.1.0.2 | 2001-11-15 | 1676288 | `GNW31101` | 169 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| Graal 2002 ver13 | 2.1.0.4 | 2001-11-27 | 1676800 | `GNW31101` | 169 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| Graal 2002 v22 | 2.1.0.4 | 2001-12-31 | 1805824 | `GNW31101` | 174 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| 1.39 duplicate | 1.3.9.1 | unmeasured | 1450496 | `GNW07080` | 111 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| 1.40 | 1.3.9.1 | unmeasured | 1488384 | `GNW23090` | 125 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+| 1.40 rev 1 | 1.4.0.1 | unmeasured | 1488384 | `GNW23090` | 125 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
+
+The two additional 1.41 rev 1 copies are 1506816 bytes with FileVersion 1.4.1.1, token `GNW13110`, 126 command entries and the catalogued receive set; their bytes differ, so these matches do not establish identical execution. The later focused callback study distinguishes one handler-body binding from a final-return binding without settling triggers, helper effects or modification history. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
+
+The Graal 2002 distributions contain gmaps for main, forest, dustari, pirates, samurai and zormite plus `loadgmaps.txt`; v22 adds caverns, start and mines. They are the earliest gmap-based world clients in this checked set, not proof of the format's first historical use. [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle)
+
+The same batch's later Graal3D beta is covered in §9 and App. E#504; the two 2.22 copies retain `GNW03014`, list token `GNW30123`, 198 commands and 80 receive routes, and are not new releases. The earlier four-byte self-check comparison does not establish the complete modification history of those inputs. The additional 3.04 Linux and GraalX copies duplicate already catalogued inputs. [bin] (client-internals/graal2002-and-140-builds.md#other-builds-in-the-same-batch)
 
 ## 1.2 Version tokens
 
@@ -203,7 +225,7 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | `GNW24061` | 2.04 | [bin] (client-internals/version-tokens.md) |
 | `GNW03081` | 2.05, rev1, rev2; 2.1 test 2 and 3 | [bin] (client-internals/version-tokens.md) |
 | `G2N15041` | NewWorld betas 1 and 2 | [bin] (client-internals/build-catalogue.md) |
-| `GNW31101` | 2.1 (2.1.0.0 to 2.1.0.3) | [srv] (client-internals/version-id-map.md); [doc] (client-internals/version-tokens.md) |
+| `GNW31101` | statically read in Graal 2002 ver10 (2.1.0.2), ver13 and v22 (2.1.0.4); the older list range is not exhaustive | [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle); [srv][doc] (client-internals/version-tokens.md) |
 | `GNW01012` | 2.12 | [srv] (client-internals/version-id-map.md) |
 | `GNW23012` | 2.13 | [srv] (client-internals/version-id-map.md) |
 | `GNW30042` | 2.14 (2.1.4.0) | [srv] (client-internals/version-id-map.md); [doc] (client-internals/version-tokens.md) |
@@ -315,7 +337,7 @@ The manual groups builds into thirteen eras. Inside an era the clients share the
 | C | 1.33 to 1.39 | Feb to Aug 2000 | Delphi 4, DelphiX | [bin][doc] (version-profiles/matrix/README.md#eras) |
 | D | 1.41 rev1 | Nov 2000 | as C | [bin][doc] (version-profiles/matrix/README.md#eras) |
 | E | NewMain 1.42, 2.00 to 2.05 rev2, 2.1 tests, NewWorld betas | Jan to Oct 2001 | as C, plus DirectDraw 7 | [bin][doc] (version-profiles/matrix/README.md#eras) |
-| F | 2.1 to 2.17 (only 2.17.1 survives as a binary) | Oct 2001 to 2002 | as E, BASS audio from 2.17 at the latest | [bin][doc] (version-profiles/matrix/README.md#eras) |
+| F | 2.1 to 2.17 (Graal 2002 inputs in §1.1.5; 2.17.1) | Oct 2001 to 2002 | as E, BASS audio from 2.17 at the latest | [bin][doc] (version-profiles/matrix/README.md#eras) |
 | G | 2.22, 2.3 (no binary), 2.31 | 2004 to 2005 | as F | [bin][doc] (version-profiles/matrix/README.md#eras) |
 | H | 3.04 Linux, 3.153 Mac | 2004 to 2005 | C++ on the Torque Game Engine | [bin][doc] (version-profiles/matrix/README.md#eras) |
 | I | 4.04r2, 4.20r6, 4.20r8 | 2006 to 2007 | Delphi launcher + C++ `GraalEngine.dll` (+ `Graal3DEngine.dll`) | [bin][doc] (version-profiles/matrix/README.md#eras) |
