@@ -33,6 +33,7 @@ manual/03-formats/09-config.md	key names	client-internals/config-and-input.md#up
 manual/03-formats/10-assets.md	effects	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	DirectSound wave list | BASS samples
 manual/03-formats/10-assets.md	music files	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	MCI (MIDI) or Winamp | BASS streams and tracker modules; MIDI still through MCI
 manual/03-formats/10-assets.md	internet radio	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	n/a | BASS URL streams, `radio` and `radiovolume`, judged from names
+manual/04-behaviour/01-loop-timing.md	inferred, if 20 steps/s	live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231	inferred from the Wine observations in this section if the step rate is 20 steps a second: 50 ms a frame and 0.4 s a cycle
 manual/04-behaviour/04-death-respawn.md	Open: the respawn heart value, the probe numbers, the one-heart baddy type, and 	version-profiles/matrix/rules-132.md#still-open	
 manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows

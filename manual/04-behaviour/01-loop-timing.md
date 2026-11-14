@@ -3,7 +3,7 @@
 
 This chapter fixes the tick that every count in Part IV uses, how each build drives it, and the periodic work that runs off it. Durations of individual actions are in the chapter for each action (→ §4.1.5).
 
-> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration and a callback-execution count, not a measured cadence; the 3.x, 4.x and 6.03r7 loops were measured in a 2026-11 lab and step every 50 ms (→ §4.1.7; App. E#301 settled).
+> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration and a callback-execution count, not a measured cadence; the 3.x, 4.x and 6.03r7 loops were measured in a 2026-11 lab and step every 50 ms (→ §4.1.7; App. E#301 settled). GS1 `timeout` rounding on 1.33 to 5.00r7, and the 2.22 and 2.31 walk frame, are in → §4.1.8. The 6.x script timer stays open.
 
 ## 4.1.1 The tick
 
@@ -111,4 +111,31 @@ A 2026-11 lab timed the Linux 3.04, 4.04r2, 4.20r6 and 6.03r7 clients natively a
 | behind schedule | 3.x and 4.x slow down (no catch-up); 6.03r7 makes up one missed step and drops the rest | [lab] (client-internals/update-cadence-3x-6x.md#the-loop) |
 | 6.03r7 | also runs a once-a-second dispatch every 20th step | [bin] (client-internals/update-cadence-3x-6x.md#the-loop) |
 | GS1 `timeout` (3.04, 4.04r2, 4.20r6) | counts whole 50 ms steps, rounded down; a value under 0.05 never fires (0.07 fires every 50 ms, 0.12 every 100 ms, 0.15 every 150 ms) | [lab] (client-internals/update-cadence-3x-6x.md#gs1-timeout-counts-whole-steps-rounded-down) |
-| not measured | 6.03r7's script timer; the `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; walk GANI timing at run time | [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
+| later sweep | 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down, and 2.22 and 2.31 play one walk frame per step (→ §4.1.8). 6.03r7's script timer is still unmeasured | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
+
+## 4.1.8 GS1 timeout rounding and the walk frame, 1.33 to 5.00r7
+
+A 2026-11-14 lab repeated the GS1 `timeout` sweep on the 1.x and 2.x engines and on Windows 5.00r7, and timed `walk.gani` on 2.22 and 2.31. The C++ engines in → §4.1.7 already round down. 1.39 to 2.31 and 5.00r7 use that same whole-step rule. 1.33 also rounds down, and its 0.15 case is one step shorter, as the table says. 6.03r7 was not tested: that lab server sends 6.x clients GS2 bytecode and has no GS2 compiler, and a GS1 weapon on a 6.x account crashes it. [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines)
+
+Counts are ratios between timers in one scene, not a wall-clock rate. Under Wine the 1.x and 2.x step was about 15 to 18 a second. 5.00r7, online on the loopback lab, held 20 steps a second. [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines)
+
+| Builds | Rule | Source |
+| --- | --- | --- |
+| 1.39, 1.41r1, 2.05r2, 2.17.1, 2.22, 2.31 | `floor(T / 0.05)` game steps. Under 0.05 never fires. 0.05, 0.07 and 0.08 are one step; 0.1, 0.12 and 0.13 are two; 0.15 is three; 0.5 is ten; 1 is twenty | [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines) |
+| 2.05r2 | same round-down. A full eleven-timer level sometimes never left the load dialog, so the timers were measured in small levels beside a 0.1 reference. 0.07's level hung on load; 0.08 already shows one step | [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines) |
+| 1.33 | also rounds down, and does the division in floating point, so 0.15 comes out just under 3 and floors to 2 steps. 0.05, 0.07 and 0.08 are one step. 0.02 never fires. `#v()` cannot read `this.` variables there, so the counters were the built-in rupees, darts and bombs | [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines) |
+| 5.00r7 (`G3D22067`) | same steps: about 20 fires a second at 0.05, 0.07 and 0.08, 10 at 0.1, 0.12 and 0.13, and 6.67 at 0.15. Under 0.05 never fires | [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines) |
+| 6.03r7 | not measured on this server | [lab] (live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines) |
+
+`walk.gani` in the 2.22 folder has 8 frames, no `WAIT`, and `LOOP` with `CONTINUOUS`. On 2.22 and 2.31, offline, the shapes cycle in file order, one new shape per game step, and while the camera is not following the sprite box moves 8 px per frame change. The frame and the 8 px step move together. [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231)
+
+| Item | What the grabs showed | Source |
+| --- | --- | --- |
+| 2.22 walking right | 68 frame changes in 3.98 s; median frame 52.6 ms; mean 8-frame cycle 459 ms | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| 2.31 walking right | 63 frame changes in 3.91 s; median frame 56.5 ms; mean cycle 540 ms | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| 2.31 walking left | 50 frame changes in 3.96 s; median frame 65.5 ms; mean cycle 710 ms, with skipped shapes | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| Wine step | the Wine step here was about 17 to 18 a second, so one frame lasted about 55 ms | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| inferred, if 20 steps/s | inferred from the Wine observations in this section if the step rate is 20 steps a second: 50 ms a frame and 0.4 s a cycle | [inf] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+| long gaps | the 931 ms and 1199 ms cycles, and the skipped 2.31 left shapes, were Wine render stalls, not `WAIT`s in the file | [lab] (live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231) |
+
+The same session's combat checks stayed partial: the sword-clash spark was not identified, the 2.05 no-drop control and the two-player sword edge were not run, and a 1.21 baddy scene did not show the item roll (→ App. E#324). [lab] (live-runs/open-issues-2026-11-14/README.md#2c-combat-live-checks-partial)

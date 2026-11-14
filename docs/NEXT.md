@@ -28,11 +28,11 @@ macOS CI is paused until the polish stage.
   - [x] ~~Settle E#301: the 3.x, 4.x and 6.x cadence and GS1 `timeout` rounding.~~ [Note](../client-internals/update-cadence-3x-6x.md); manual §4.1.7, App. C.7.
   - [x] ~~Mac PowerPC 4.04r2 and 5.12 live logins (#399 item 3).~~ [Note](../version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md); manual §1.2.2, §1.8.5, App. C.7.
   - [x] ~~The 5.x HUD no-PK icon and 99/99, and 5.x flag and built-in probes.~~ [Note](../client-internals/gs1-on-5x-hud-and-flags.md); manual §4.6.8.
-  - [ ] Run `while (1)`, `##` in the 2.17 engine, and the 2.17 message codes in a populated context on real clients.
+  - [x] ~~Run `while (1)`, `##` in the 2.17 engine, and the 2.17 message codes in a populated context on real clients.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#1-442-gs1-per-version); manual §8.2.12. A bare number is false in `while` and `for` on 1.33 to 2.31; `##` and the populated codes are recorded there.
   - [ ] Table events, flags, variables and functions per 1.x build.
-  - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer. 1.33 to 2.31 and 5.00r7 done ([run](../live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines): all round down); 6.x needs a server that compiles GS2.
+  - [ ] Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer. 1.33 to 2.31 and 5.00r7 done ([run](../live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines); manual §4.1.8: all round down, and 1.33's 0.15 is 2 steps); 6.x needs a server that compiles GS2.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
-  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk, sword) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only).
+  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) and manual §4.11.13.
   - [x] ~~Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).~~ [Note](../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md): tileset sent, level draws; 3.153 and 5.12 send id 18 only for `client.` flags.
   - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
   - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
@@ -258,9 +258,9 @@ macOS CI is paused until the polish stage.
   pre-2.1 settled-name no re-check (batch e `01-request-lists`). Static read of 2.05 rev 2
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
-  (a horse does not change it). **Still open:** full vs empty login default checks
-  (the set, and whether they share a frame; the full-folder side is done for 2.22 in
-  `live-runs/client-harness-2026-11-13`, the near-empty side is still to run); maps folder
+  (a horse does not change it). **Still open:** the rest of the 2.22 default file-check
+  set. The near-empty start files and the first unanswered frame are recorded
+  ([run](../live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder); manual §2.7.10); that server answered none, so sword, shield, body and the later icons still need a server that answers id 23 and id 34. Maps folder
   in 2.1–2.16 (the client archive still has no build between the 2.1 test builds and 2.22).
   Tracked in #245.
 
@@ -323,6 +323,7 @@ macOS CI is paused until the polish stage.
   `torque/study-torque-clients.md`, `torque/rebuild-plan-3.04.md`. Follow-ups wait in
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-client-repro's (squirelworks/graal-client-repro#303).
+  - [x] ~~Linux 3.04 stage-0 menu walk.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture); manual §10.13. Log mode 6, one server-list tab, no in-game screen. The TGE 1.x licence check, the four-tab list and in-game screens stay open.
   - [x] v5 export, static read only (2026-11-07): `torque/launcher-5007.md`,
     `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
     unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`.

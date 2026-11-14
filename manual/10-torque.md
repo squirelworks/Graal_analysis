@@ -735,3 +735,14 @@ The rules below give where 3D content came from and how terrain textures are map
 [bin] Retained exact-input static review records a numeric accessor returning zero for null input, reading a stored double on its reviewed type/slot-absent branch and otherwise dispatching through a type-specific slot. A string-result accessor dispatches through its type-specific slot or a fallback initializer. A separate assignment helper includes scalar/numeric-array paths, element conversion and selected index-guarded writes. [bin] (torque/304-npcs.md#retained-local-numeric-and-string-helper-branches)
 
 [inf] These are local branch observations, not a complete coercion, array/index or formatting specification. They do not establish universal variable defaults, an empty-string result, every runtime type, rounding/exceptional-value policy, parser grammar or storage lifetime. They are separate from the published Torque integer-to-string operation and do not establish a native callback result adapter or ABI. Underlying static findings remain researcher-supplied; only retained documents were reviewed for publication and no original-client conversion result is claimed. [inf] (torque/304-npcs.md#evidence-and-remaining-conversion-gaps)
+
+## 10.13 Linux 3.04 stage-0 menu walk
+
+The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` already sets log mode 6 when no log switch is given, so the executable was not changed. The first session had no network. The second could reach only a lab listserver on port 14922. The display was 1024 by 768 and the client opened its default 800 by 600 window. Logs and screenshots stay owner-held; nothing in them names a host. [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture)
+
+| Item | What the run showed | Source |
+| --- | --- | --- |
+| console | engine init, then eight missing `glVertexBuffer` functions, then the OpenGL extension lists. The driver reported was Mesa llvmpipe | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
+| server list | `onDNSResolved` and `onConnected` are logged as having no namespace when the list connects. The list showed one tab, because the lab list had one server in one category | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
+| leaving | `quit` typed in the console without parentheses is a syntax error. The client then exits and writes its prefs and key map. The password is not saved | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
+| not covered | a four-tab server list, and any in-game screen. Tutorial was not opened | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |

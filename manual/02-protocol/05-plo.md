@@ -356,3 +356,18 @@ Each row below is one finding about the Linux 4.04r2 receive switch, with its ex
 
 
 [bin] In 4.20r6, case 131 checks length before/after an unreviewed helper, derives a positive three-getter identifier, removes three bytes, chooses lookup sources around 1000 and forwards the remainder through a context/program loader to compiled-segment reading. A nonempty remainder also reaches an indirect callback. Gameplay types, callback name/signature, canonical seven-bit validation, helper decryption/decompression, complete field grammars and cache behavior remain unproved. Offline review observes no wire/session/script completion; E#202 remains partial. [bin] (protocol/linux-cross-version-receive.md)
+
+## 2.5.13 Subtype 1 of id 108 on Linux 6.03r7
+
+Linux 6.03r7 (`G3D0511C`), the original executable, on a loopback lab: lobby port 14900, a decrypting proxy on 14803, and the lab gserver on 14802. The proxy inserted S→C 108 (`c sub`, `s value`) and dropped C→S 162, because that lab server counts 162 as an unknown packet and drops the client after the third. A static read says subtype 1 stores its value on the connection (→ §2.5.8). This run asks whether that value changes pinging, keepalive or the connection. [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7)
+
+Subtype 1 was set to 0, then 1, 5, 30 and 300. Each value was followed by 60 s with nothing else, then three subtype-0 pings 5 s apart. A baseline of four subtype-0 pings came first, and 100 s of silence came last. [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7)
+
+| Observation | Result | Source |
+| --- | --- | --- |
+| subtype-0 ping | answered in 0 to 5 ms with the same value echoed, 19 of 19, before and after every subtype-1 value | [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7) |
+| client-originated 162 | the client never sent 162 on its own, whatever subtype 1 said | [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7) |
+| other client traffic | id 24 every 5.10 s (5.09 to 5.11 over 120 sends). That gap did not change | [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7) |
+| connection | no timeout and no disconnect in 10 minutes, including 60 s without a ping at subtype 1 equal to 1 or to 5 | [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7) |
+
+On this build, in these windows, the subtype-1 value had no visible effect on ping answers, on that 5.1 s traffic, or on staying connected. The run does not show the client enforcing the value as a timeout inside 60 s, at 1 or at 5, whether those numbers are seconds or units of 5 s. The value may be unused, as the static read found, or longer than this test, or read on a path the lab did not trigger. [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7)

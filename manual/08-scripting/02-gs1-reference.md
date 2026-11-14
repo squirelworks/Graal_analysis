@@ -475,4 +475,46 @@ The 61 builds of the command matrix fall into 25 distinct command tables from 1.
 | 2.17.1 argument letters | `showtext` RRRSSS, `showtext2` RRRRSSS, `shoot` RRRRRRSS, `putnpc2` RRS, `showimg2` RFRRR, `wraptext` RSS, `setcursor2` F and the rest as the note lists; the same as 3.04's | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions) |
 | server-only commands | `putnpc2`, `savelog2`, `sendpm`, `sendtonc`, `sendtorc`, `setpm` have no client executor in 2.17.1 to 3.04 | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions) |
 | corrected first builds | `showtext`, `hideimgs` 2.17.1; `openurl2` 2.01; `move` 2.03; `setz` 2.05; `addstring` NewWorld beta 2 | [bin] (npc-library/gs1-per-build-2026-11-13.md#corrected-first-builds) |
-| not measured | `while (1)`; `##` in the 2.17 engine; the new 2.17 codes in a populated context; events, flags, variables and functions per 1.x build | [lab] (npc-library/gs1-per-build-2026-11-13.md#not-measured) |
+| loops and later codes | bare numbers in `while` and `for`, `##` by build, and the populated `#F` `#S` `#D` `#I` `#R` `#P6`–`#P9` `#C6` `#C7` readings are in → §8.2.12. Events, flags, variables and functions per 1.x build are still unmeasured | [lab] (live-runs/open-issues-2026-11-14/README.md#1-442-gs1-per-version); [lab] (npc-library/gs1-per-build-2026-11-13.md#not-measured) |
+
+## 8.2.12 Loop truth and message codes, 1.33 to 2.31
+
+Offline scenes on the real 1.33, 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31 clients. A bare number in a `while` or `for` condition is false in every one of them, the same flag-name path as `if` (→ §8.2.11). `while(1)`, `while(0.5)` and `for(;1;)` run 0 times. Wrapping the number, `while((1+0))`, or writing `while(true)`, lets the body run from 1.41r1 on. [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition)
+
+| Condition | 1.33 | 1.41r1 and 2.05r2 | 2.17.1, 2.22 and 2.31 | Source |
+| --- | --- | --- | --- | --- |
+| `while(1)`, `while(0.5)`, `for` with a bare `1` | body never runs, and the client does not hang | 0 passes | 0 passes | [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition); [lab] (live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene) |
+| `while((1+0))` | body never runs | runs (stopped at 3 by a break, or by the condition) | runs | [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition); [lab] (live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene) |
+| `while(true)` | does not run: `true` is an unset flag, and `if(true)` is false | runs | runs | [lab] (live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene); [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition) |
+| `while(1==1)` | not run as a loop head. `if(1==1)` is true. A loop `while(this.n<3&&1)` never enters | 0 passes (the constant-comparison fold, → §8.1.3) | runs | [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition); [lab] (live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene) |
+| `while(this.n<3)` and a counted `for` | both reach 3 when read back with `if`, not with `#v` | run | run | [lab] (live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene) |
+
+In 1.33, `#v()` cannot read a `this.` variable (`this.n=5` still shows `0`), so a loop count has to come back through `if` or a built-in such as `playerrupees`. Assignment itself works. [lab] (live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene)
+
+On 2.05r2 a level that holds the whole loop set never leaves the load dialog. Each head in its own level, with one companion NPC, loads and shows the values above, including `while(1)`. The hang is the level as a whole, not one loop head. [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition)
+
+`##` is not the same code in 1.33 as it is from 2.05r2. [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133)
+
+| Text | 1.33 | 2.05r2 and 2.17.1 | Source |
+| --- | --- | --- | --- |
+| `A##B`, `##` | `AB`, and `##` alone is empty. `##` is a code that gives nothing, not an escape | `A#B`, and `##` alone is `#`. One left-to-right pass escapes one `#` | [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133) |
+| `A####B` | not in this run | `A##B`. The `#` the escape produces does not start another code, so `##v(1)` stays `#v(1)` and `###v(1)` is `#` plus `#v(1)`, which shows `#1` | [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133) |
+| `setstring` of `A##B`, then `#s` | not in this run | stores `A#B`. The pass runs before the string is stored | [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133) |
+| unknown letter, `A#bB` | `AbB`. An unknown code drops only the `#` | 2.17.1 keeps the `#` (`A###B` shows `A##B`, because `##` became `#` and `#B` is unknown). 2.05r2 matches 2.17.1 on the probes that loaded | [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133) |
+
+1.33 also has no `#e` and no `#K`: `#e(1,2,ABCD)` shows `e(1,2,ABCD)` and `#K(65)` shows `K(65)`. `#v(0.5)` shows `0.5` and `#v(2+3)` shows `5`. `#L` is the level file name, `#c` is the player's chat (empty here), and `#1` is the sword image. [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133)
+
+The populated-code scene set `#P1` and `#P6` to `#P9`, `#C6` and `#C7`, a three-item string list, and a selected weapon, then showed the codes from a running script. [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context)
+
+| Code | 1.33, 1.41r1, 2.05r2 | From 2.17.1 | Source |
+| --- | --- | --- | --- |
+| `#F` | the letter F | the level file name | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#S` | the letter S | the selected weapon's name, the same value as `#w` | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#D` | the letter D | the code exists and was empty in this scene | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#I(list,index)` | not a code. 1.33, 1.41r1 and 2.05r2 drop the `#` and keep the rest | a zero-based pick from 2.17.1. A `this.` list returns the item in 2.17.1 and nothing in 2.22 and 2.31 | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#R` | not a code (the `#` is dropped) | not in 2.17.1: the text stays as written, `#` included. From 2.22 one sample picked its only argument, and the first of three | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#P6` to `#P9` | 1.33 and 1.41r1 drop the `#`. 2.05r2 has the slots and they stay empty after `setplayerprop`, while `#P1` holds its value. 2.05r2 also treats `#P(` as a code | hold the values that were set, and `#P6(0)` reads the same value | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#C6` and `#C7` | empty, including after `setplayerprop` | empty in 2.17.1, 2.22 and 2.31 as well | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#C5` | `black` in 1.33, 1.41r1 and 2.05r2 | empty from 2.17.1. `#C0` stays `orange` | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#n` after `setplayerprop` | empty offline in every build in the run | empty | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| `#a` | `guest` in 1.33 and 1.41r1 | empty from 2.05r2 | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
