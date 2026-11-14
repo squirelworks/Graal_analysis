@@ -74,8 +74,13 @@ top-left. **[shot]**
 | 5 and up | small, staggered rows, horizontal pitch 35, row pitch 20; row 1: 5 slots at x = W − 198 + 35k, y 24; row 2: 6 slots half a pitch further left, y 44; row 3: 5 slots, y 64; row 4: 4 slots, y 84. Filled row by row, so 20 hearts make a hexagon (5 + 6 + 5 + 4) |
 | 5 and 5.5 only | the whole small block sits 10 px lower (rows at y 34 and 54); from 6 it is back at 24 |
 
-The right margin is 68 px for the full-size row at every window width, and the rightmost small
+The reported right margin is 68 px for the full-size row at every window width, and the rightmost small
 heart (row 2, slot 6) ends 10 px from the edge. **[shot]**
+
+The full-size margin claim needs reconciliation: the formula above and a 40-pixel-wide full heart
+give a 23-pixel margin for four hearts, while 68 corresponds to three. The retained identified-state
+captures have not been rechecked here; do not treat both statements as a reconciled layout rule
+(manual App. E#326). **[doc]**
 
 ## Windows against Linux
 
