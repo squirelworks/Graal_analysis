@@ -126,6 +126,8 @@ Prop numbers grow at the end, so a decoder can use the later tables and stop at 
 
 Client-to-server ids sent by these builds are in → §2.4.2.
 
+1.32's hurt, knockback, sword reach, death, respawn and push rules were read statically; they match 1.39 except for the push wrap to 28 and the sword knockback, and are tabulated in §4.2.2.2, §4.2.5, §4.3.7.2 and §4.4.3.2 [bin] (version-profiles/matrix/rules-132.md#summary).
+
 ## C.7 Lab runs of later real clients
 
 Each run used an unmodified client against a GServer-v2 lab on a loopback-only network, with hosts redirected by name [cap] (version-profiles/lab-304-linux-2026-10-30.md#setup-for-repeating-it); [cap] (version-profiles/lab-v5-2026-10-30.md#setup-for-repeating-it).

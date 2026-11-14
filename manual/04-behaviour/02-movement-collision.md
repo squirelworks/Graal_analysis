@@ -81,6 +81,7 @@ Earlier builds were checked against the 2.05 test. Each row gives one build and 
 | --- | --- | --- |
 | 1st Graal | exact-input static step/probe/nudge and stepped-axis snapping rules are in → §4.2.2.3; cadence and exceptional gates remain unmeasured | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
 | 1.1 (15th) | after bumping furniture x carried a 0.025 offset (26.925) while walking, which fits a nudge rule of the 2.05 kind; not read | [live][inf] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
+| 1.32 | six probe offsets per facing step from a per-facing table, separate probe routines on a horse; the numbers are unread; speed factors 1.0 normal, 0.2 hidden, 0.4 one carry pose, 1.2 a high item level, 0.8 and up on a horse; the measured 0.5 tile per tick makes the base step half a tile | [bin] (version-profiles/matrix/rules-132.md#wall-and-walk-test-bin); [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
 | 1.39 | six probe offsets per facing step; the numeric tables are unread (→ App. E#307) | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | 1.39 | walking into a character NPC's side nudged the player along it at 0.125 tile per tick, and `playertouchsme` did not fire on that contact | [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
 | 2.05, 2.17.1, 2.22, 2.31 | as §4.2.2.1 to §4.2.4; the four agree on every table and constant | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md) |
@@ -197,6 +198,7 @@ By build:
 | Build | Push at | Wrap | Push frame length | Source |
 | --- | --- | --- | --- | --- |
 | 1st Graal | count 18 (the ledge test); push frames while the count is above 17 and not carrying | above 37 back to 18 | unmeasured | [bin] (version-profiles/matrix/rules-1st-graal.md#wall-and-walk-test-bin) |
+| 1.32 | 18 (hop: hop mode, counter 8, `jump.wav`) | above 37 back to **28**, so a long push cycles the last three push frames; pose 14 + (counter − 18) / 4 | unmeasured | [bin] (version-profiles/matrix/rules-132.md#wall-and-walk-test-bin) |
 | 1.39 | 18 | 38 to 18 | about 2 ticks (video) | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | 1.41 | 18 | 38 to 18 | 4 ticks (`push.gani`) | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 2.05 rev 2 | 18 | 38 to 18 | 4 ticks | [live][2.05] (client-internals/player-mannerisms-live.md#cross-version-table) |
