@@ -33,6 +33,7 @@ manual/03-formats/09-config.md	key names	client-internals/config-and-input.md#up
 manual/03-formats/10-assets.md	effects	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	DirectSound wave list | BASS samples
 manual/03-formats/10-assets.md	music files	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	MCI (MIDI) or Winamp | BASS streams and tracker modules; MIDI still through MCI
 manual/03-formats/10-assets.md	internet radio	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	n/a | BASS URL streams, `radio` and `radiovolume`, judged from names
+manual/04-behaviour/04-death-respawn.md	Open: the respawn heart value, the probe numbers, the one-heart baddy type, and 	version-profiles/matrix/rules-132.md#still-open	
 manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows
 manual/04-behaviour/06-hud-ui.md	bold	client-internals/chat-text.md#font-per-build	Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider
@@ -46,6 +47,7 @@ manual/07-rc-nc.md	Against GServer-v2's one-space level, RC2 2.05 would most lik
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
+manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	
