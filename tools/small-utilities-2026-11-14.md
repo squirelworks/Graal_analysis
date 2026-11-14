@@ -105,7 +105,7 @@ of the time rather than a server. Nothing to port; the gserver owns AP.
 ## Guild Manager
 
 `Guild Manager.exe` 1.4.0.4 (32,256 bytes; 548,864 unpacked with UPX in the lab
-VM), native-code VB6, 2003, by Tyler Findleton. It edits a guild member list
+VM), native-code VB6, 2003, by its author. It edits a guild member list
 offline: add (account name and nickname), remove, remove doubles, a member
 count ("There are currently N member(s) in your guild."), open and save the
 list as a `.txt` file, a default guild loaded on start, text colour, skins and
