@@ -124,6 +124,24 @@ Some props have encodings the server source does not spell out. The table gives 
 | 51 PCONNECTED | no payload, but 2.05 skips one byte after it; harmless because the player is removed at once, but a server should put no props behind it | [2.05] (protocol/player-props.md#205-coverage-update-2026-10-21-205) |
 | 7, 23 | sent as constants: bomb power `*` (10) and effect colours 0 | [2.05] (protocol/player-props.md#205-coverage-update-2026-10-21-205) |
 
+### 2.6.2.4 One-byte X/Y and X2/Y2 across builds
+
+Every client read decodes the one-byte X/Y (15, 16) unsigned, and encodes X2/Y2 (78, 79) as pixels with a sign bit. The rows give the exact rules [bin] (protocol/player-x-half-tile.md#one-byte-xy-plprop-15--16).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Receive: `v = (uint8)byte − 32` in signed int, `x = v / 2.0` tiles, plus the gmap segment offset when on a gmap; no client sign-extends, so 0xD8–0xFF are +92 to +111.5 tiles | 1.21, 2.05r2, 2.17.1, 2.22, 2.31, 3.04 Linux, 4.04r2, 5.30r3, 6.03r7 | [bin] (protocol/player-x-half-tile.md#receive-all-clients) |
+| Byte 0x00 is dropped and the old x kept; byte 0x0A cannot be sent because it is the message terminator, so that prop and every later prop in the packet are lost | 2.05, 2.22, 2.31 | [lab] (protocol/player-x-half-tile.md#receive-all-clients) |
+| Baddy X/Y bytes decode the same way, then clamp to 0–63; 1.21 has no gmap offset | all read | [bin] (protocol/player-x-half-tile.md#receive-all-clients) |
+| Send: `byte = (round(2x) + 32) & 0xFF`; round-half-up (`floor(2x + 0.5 + 0.0001)`) in 2.05, 4.04 and 6.03, round-to-nearest in 2.22 and 2.31, Delphi `Round` in 1.21 | as listed | [bin] (protocol/player-x-half-tile.md#send) |
+| The client never clamps its own X/Y: stepping off the west edge sends −0.5 as 0x1F; on a gmap it sends the x inside the segment (0–64) | all read | [bin][cap] (protocol/player-x-half-tile.md#send) |
+| The 2.05 NPC prop writer clamps an NPC's x/y to 0–63 | 2.05 | [bin] (protocol/player-x-half-tile.md#send) |
+| Another player's x is stored as a double with no clamp: usable range −15.5 to +111.5, and a sender x below −16 wraps through the low 8 bits (−20 → +108) | all read | [bin] (protocol/player-x-half-tile.md#range-and-overflow) |
+| The local player is stored as 24-bit fixed point `(x + 10) × 65536` in four obfuscated 6-bit fields, so a PLAYERPROPS X below −10 for your own player wraps (−10.5 reads back as +245.5); 2.31 then sends the wrapped value as X2 | 2.22, 2.31 | [bin][lab] (protocol/player-x-half-tile.md#range-and-overflow) |
+| X2/Y2/Z2: `p = floor(16x)`, `v = 2|p| + (p < 0)`, clamped to 0x6FFF from 4.x (no clamp in 2.31), sent as `chr((v >> 7) + 32) chr((v & 0x7F) + 32)`; the receiver takes `(b0 − 32) × 128 + (b1 − 32)`, `x = (v >> 1) / 16`, negated when bit 0 is set | 2.31, 4.x to 6.x | [bin] (protocol/player-x-half-tile.md#x2--y2--z2-plprop-78--79--80-230-and-later) |
+| While walking, 2.31 and every 4.x–6.x client send only X2/Y2; 2.22 and earlier never parse X2, so a server must send them 15/16 | 2.31, 4.x–6.x; 2.22 and earlier | [cap][bin] (protocol/player-x-half-tile.md#x2--y2--z2-plprop-78--79--80-230-and-later) |
+| GServer-v2's older props code reads `byte / 2` like the clients but writes `(char)(x × 2) + 32`, which truncates toward zero where clients round | server | [srv] (protocol/player-x-half-tile.md#server-note) |
+
 ## 2.6.3 Body colours and attributes
 
 Prop 13 colours a player's body by recolouring a palette image. The rules below say which palette entries take which colour, and what a new player gets [2.05] (client-internals/body-colours-and-attributes.md#body-colours).

@@ -143,6 +143,17 @@ Reading the `GNW` digits as a build date fits well, but nothing in the binaries 
 | Open | the reading is a strong fit, not a stated format | [inf] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#reading-the-digits-inferred) |
 | Settles it | a vendor note or server source that decodes the token | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
 
+### E#13 Gmap neighbour overwrite on classic-login 2.x clients
+
+A static read predicts that GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level [bin][srv] (protocol/gmap-adjacent-level-target.md#short-answer).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Prediction | with stock `PlayerClientOriginal`, a 2.17.1 client on a 2x2 gmap shows neighbour boards and links on its own level | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Prediction | ending a neighbour reply with the player's cell level name, not the gmap name, keeps `BOARDMODIFY` and chest updates working on 2.17.1 and 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
+| Settles it | a loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
