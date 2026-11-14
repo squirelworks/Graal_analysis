@@ -728,3 +728,4 @@ torque/v3-python-engines/tge-rewrite/used.md	pending		1	Python v3 client reprodu
 npc-library/gs2-weapon-corpus-2026-11-14.md	pending		8.4; E	GS2 weapon corpus survey (aggregates only): events, commands, opcodes and player members weapons use, and the repro gap; to be folded into the GS2 scripting section and App. E
 tools/levelfiller.md	pending		11	LevelFiller theme filler teardown (static); to be folded into Part 11 with the classic tools
 tools/small-utilities-2026-11-14.md	pending		11	small utilities read statically (Guild Manager, guildcode, apcalc and others); to be folded into Part 11
+protocol/named-login-5x-6x.md	pending		2.3; 8	named (non-guest) lab logins on real 5.24r4 and 6.03r7 via adventure_setaccountname, and the 6.03r7 script-function name table; to be folded into the login and scripting sections
