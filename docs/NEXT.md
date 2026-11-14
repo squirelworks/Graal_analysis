@@ -12,6 +12,7 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the Windows 2.22-labelled verifier variant difference.** ~~Locate the four changed code sites and distinguish them from the earlier control patch.~~ [Static comparison](../formats/windows-222-verifier-variants.md); broader control differences and startup effects remain open there.
 - [x] **Fold in the 2026-11-13 research.** ~~Publish the findings that shipped in the Seihai repos as behaviour notes, with manual and App. C/E carries.~~
   - [x] ~~GS2 VM semantics by client version, 3.153 to 6.03r7.~~ [Note](../client-internals/gs2-vm-by-version.md); manual §8.4.9, App. C.8, E#209.
   - [x] ~~Strict GS2 quirk probes.~~ [Note](../npc-library/gs2-strict-probes-2026-11-13.md); manual §8.3.7.
