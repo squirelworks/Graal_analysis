@@ -41,6 +41,11 @@ How each column was read:
 The two extra 1.41r1 copies have the same size and version as the catalogued 1.41r1, but different bytes. Their token, command
 list and dispatcher match it. They are not separate releases.
 
+A later [focused callback comparison](early-windows-callback-variants.md) identifies a
+program-check error binding that enters a handler in one copy and the same handler's
+final return in another and the baseline. It does not establish the event trigger,
+helper effects or modification history. **[bin]**
+
 ## What the Graal 2002 builds settle
 
 1. **`GNW31101` is now [bin].** The token-catalogue row "2.1.0.0–2.1.0.3, `GNW31101`, L" now has three executables

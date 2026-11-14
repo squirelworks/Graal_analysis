@@ -84,3 +84,4 @@ CLIENT-HUNT-20261113	windows	researcher-static-summary
 BATCH1-THINSTALL-20261113	windows	static
 LOGIN-CAPTURE-247-20261113	windows	lab
 GS2-WEAPON-CORPUS-20261114	server-scripts	corpus-survey-aggregate
+WIN-CLASSIC-CALLBACK-20261114	windows	static-method-binding-comparison
