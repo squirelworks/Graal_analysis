@@ -268,6 +268,8 @@ The full set of `#` message codes in 2.05 is partly recovered. Each row gives a 
 | Exact 2.05r2 #p follow-up | shared parameter list is produced by dispatch splitting actor pending text, distinct from tokenize; callnpc/callweapon use empty-parameter queue wrappers. Only producer linkage is resolved; other E#203 fields remain open | [bin][lab] (npc-library/gs1-event-parameters-205r2.md#producer-and-consumer-linkage; npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls) |
 | Other builds, populated | `#F`, `#S`, `#I` and `#P6` to `#P9` hold values from 2.17.1; `#R` from 2.22; `#C6` and `#C7` stay empty in every build tested. `##` is a one-pass `#` escape on 2.05r2 and 2.17.1 and an empty code on 1.33 (→ §8.2.12). The 2.05 field questions in the rows above stay open | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
 | Other builds, `#D` | `#D` exists from 2.17.1 and is empty in the 2.17.1 context the lab reports | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| Other builds, registry | 2.17.1 names 46 codes; 2.22 and 2.31 add `R(S)`; Linux 3.04 drops `C5`, `C6` and `C7`. 1.41r1's scene set has no `#e` or `#K` (→ §8.2.12) | [bin][lab] (npc-library/gs1-message-codes-by-build.md#registered-names) |
+| Other builds, bare `#5` and `#6` | on 2.17.1, 2.22 and 2.31 a bare `#5` or `#6` was replaced by the label text in front of it. 2.05r2 shows empty. The cause was not traced | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
 
 ### E#204 Member names of the GS1 object arrays
 

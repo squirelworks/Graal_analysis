@@ -43,14 +43,18 @@ dated by the release notes only **[doc]**.
 | `changeimgmode` | RR | `shoot` | RRRRRRSS |
 | `setshootparams` | S | `serverwarp` | S |
 | `sendpm`, `setpm` | S | `sendtonc`, `sendtorc` | S |
-| `savelog` | S | `savelog2` | SS |
+| `savelog` | S | `savelog2` | MS |
 | `setcursor` | R | `setcursor2` | F |
 | `wraptext` | RSS | `wraptext2` | RRSS |
-| `showimg2` | RFRRR | `enablemap`, `disablemap`, `enablepause`, `disablepause` | none |
+| `showimg2` | RMRRR | `enablemap`, `disablemap`, `enablepause`, `disablepause` | none |
 | `setspritesimage`, `setstatusimage` (5.00r7) | F | | |
 
 `putnpc2`, `savelog2`, `sendpm`, `sendtonc`, `sendtorc` and `setpm` have no client-side executor
 in 2.17.1 to 3.04: they act on a server **[bin]**.
+
+`showimg2` is `RMRRR` and `savelog2` is `MS` on 2.17.1, 2.22, 2.31 and 3.04. An earlier
+draft of this table said `RFRRR` and `SS` **[bin]**
+([gs1-message-codes-by-build.md](gs1-message-codes-by-build.md#letters-the-summary-had-wrong)).
 
 ### Corrected first builds
 
@@ -72,9 +76,10 @@ A build without the word does not run the statement.
 ## Conditions: bare numbers are flag names
 
 `if (1)` and `if (0.5)` are false in every build tested: 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31
-**[lab]**. A bare number in a condition is read as a flag name, so it is true only if a flag of
-that name is set. This extends the 2.05r2 reading in
-[gs1-condition-truth-205r2.md](gs1-condition-truth-205r2.md) to the other builds.
+**[lab]**. A bare number in a condition is read as a flag name. On those five builds,
+`set 1;` then `while(1)` runs, and `while(1)` without that flag does not **[lab]**
+([gs1-message-codes-by-build.md](gs1-message-codes-by-build.md#a-flag-named-1)). This extends
+the 2.05r2 reading in [gs1-condition-truth-205r2.md](gs1-condition-truth-205r2.md).
 
 ## Constant comparisons before 2.17
 
@@ -86,8 +91,8 @@ normally **[lab]**.
 
 | Rule | Before 2.17 (1.41r1, 2.05r2) | 2.17.1 on | Tag |
 | --- | --- | --- | --- |
-| `##` | becomes `#` | not checked in the 2.17 engine | [lab] |
-| `#b` | empty | — | [lab] |
+| `##` | becomes `#`. `#v(##)` shows `0` | one-pass escape for one `#`; `#v(##)` shows `0` | [lab] |
+| `#b` | empty | not a code: `A#bB` stays `A#bB` | [lab] |
 | `#v`, `#s` with no argument | empty | — | [lab] |
 | an unknown code | its `#` is dropped: `A#?B` is `A?B`; 1.41's `#e(1,2,x)` is `e(1,2,x)` | stays as written | [lab] |
 | `#K(n)` | from 2.00 | yes | [bin] |
@@ -99,11 +104,14 @@ These are not yet tabled per 1.x build; only the 2.00-on string tables have been
 ([../client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv](../client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv)).
 Two fixes from those tables: `onmapx`/`onmapy` from 2.03, `getnpc`/`getplayer` from 2.17 **[bin]**.
 
+The code list, the 1.41r1 set, bare `#5` and `#6` on 2.17.1 to 2.31, and `#v(##)`, are in
+[gs1-message-codes-by-build.md](gs1-message-codes-by-build.md).
+
 ## Not measured
 
-- `while (1)` on a real client.
-- `##` in the 2.17 engine.
-- What `#F`, `#S`, `#D`, `#I`, `#R`, `#P6`–`#P9`, `#C6` and `#C7` return in a populated context.
-- A static trace of the 2.17 engine's condition and flag path.
-- 1.33 cannot load `.nw` levels, so its scenes need a `.graal` level.
-- Events, flags, variables and functions per 1.x build.
+- [x] ~~`while (1)` on a real client.~~ A bare number is false on 1.33 to 2.31 ([run](../live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition)); a flag named `1` makes `while(1)` run on 1.41r1 to 2.31 ([note](gs1-message-codes-by-build.md#a-flag-named-1)).
+- [x] ~~`##` in the 2.17 engine.~~ One-pass escape on 2.05r2 and 2.17.1; empty on 1.33 ([run](../live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133)). `#v(##)` is `0` on 1.41r1 to 2.31 ([note](gs1-message-codes-by-build.md#v-of-a-doubled-hash)).
+- [x] ~~What `#F`, `#S`, `#D`, `#I`, `#R`, `#P6`–`#P9`, `#C6` and `#C7` return in a populated context.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context).
+- [ ] A static trace of the 2.17 engine's condition and flag path.
+- [x] ~~1.33 needs a `.graal` scene, because it cannot load `.nw` levels.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene).
+- [ ] Events, flags, variables and functions per 1.x build.
