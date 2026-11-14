@@ -20,9 +20,12 @@ from collections import Counter
 import capstone as cs
 from capstone import arm
 
+FAT_MAGIC = bytes.fromhex('cafe' 'babe')  # universal header, big-endian
+MH_MAGIC_LE = bytes.fromhex('cefa' 'edfe')  # 32-bit Mach-O, little-endian
+
 
 def parse(raw):
-    if struct.unpack('>I', raw[:4])[0] == 0xcafebabe:
+    if raw[:4] == FAT_MAGIC:
         n = struct.unpack('>I', raw[4:8])[0]
         for k in range(n):
             ct, _, off, size, _ = struct.unpack('>5I', raw[8 + 20 * k:28 + 20 * k])
@@ -33,8 +36,8 @@ def parse(raw):
 
 
 def parse_thin(raw, base):
-    magic, ct, _, _, ncmds, _, _ = struct.unpack('<7I', raw[base:base + 28])
-    if magic != 0xfeedface or ct != 12:
+    ct, _, _, ncmds, _, _ = struct.unpack('<6I', raw[base + 4:base + 28])
+    if raw[base:base + 4] != MH_MAGIC_LE or ct != 12:
         raise SystemExit('not a 32-bit ARM Mach-O')
     p = base + 28
     sects, cryptid = {}, None
