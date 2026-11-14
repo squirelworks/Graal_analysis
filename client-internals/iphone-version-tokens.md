@@ -121,8 +121,8 @@ the likeliest token for Era+ 1.0 (built Dec 2010). That is unread.
 ## How to close it
 
 1. **More decrypted IPAs.** An unencrypted Era+, Zone+ or later Classic+ or Belote build would
-   let the same read place `G3D29090` and `G3D2504D` (grade **B**). The public iOS preservation
-   collections were searched on 2026-11-14 and hold no other build from this publisher.
+   let the same read place `G3D29090` and `G3D2504D` (grade **B**). A search for copies of the
+   official downloads found no other build from this publisher.
 2. **Lab capture.** An old iPhone or iPod running Belote or Classic+ 1.13, pointed at a lab
    GServer-v2 with a lab DNS override, would put the first login frame in the lab server's
    log. That would make these rows **W**. Use only a lab server, never a public one.
