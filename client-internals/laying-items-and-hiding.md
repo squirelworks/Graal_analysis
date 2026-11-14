@@ -86,6 +86,6 @@ With S held and empty hands, D selects the next weapon (the one after the select
 
 ## Open
 
-- [ ] A lab run on 2.05 rev 2 and 2.22 (hold S, press A, A) to capture the `PLI_ITEMADD` bytes and see which props follow.
+- [x] ~~A lab run on 2.05 rev 2 and 2.22 (hold S, press A, A) to capture the `PLI_ITEMADD` bytes and see which props follow.~~ [Captured](spin-lay-205-2026-11-14.md): `PLI_ITEMADD` then `RUPEESCOUNT` in one frame, and the four facing landings.
 - [ ] Whether 2.22's lay and S+D paths check `enablefeatures` (2.22 has the command; the check was read in 3.04 only).
 - [ ] 3.04's cost table was not read line by line; its pick, lay and send paths match 2.05's, and its tables match 2.22 and 3.153.
