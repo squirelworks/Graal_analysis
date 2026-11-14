@@ -82,8 +82,8 @@ The name suggests an alignment-point calculator. Reading it needs an unpack
 
 ## Guild Manager
 
-`Guild Manager.exe` 1.4.0.4 (32,256 bytes, UPX-packed VB6, 2003, by Tyler
-Findleton) with `COMDLG32.OCX`, `tray.ocx` and four skin JPEGs. The readme
+`Guild Manager.exe` 1.4.0.4 (32,256 bytes, UPX-packed VB6, 2003, by its
+author) with `COMDLG32.OCX`, `tray.ocx` and four skin JPEGs. The readme
 lists: add and remove members, remove doubles, member count, skins, auto-load
 on start, font colour, a "LiveUpdate" button and a tray icon. It edits a local
 member list for the owner to paste into a server; it does not talk to a
