@@ -12,7 +12,12 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+<<<<<<< HEAD
 - [x] **Add the six exact Graal 2002 inputs to the GS1 matrix.** ~~Rescan their registered command names and preserve the existing columns.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md); runtime executors and full PLI sets remain separate questions.
+=======
+- [x] **Carry the 2.3-labelled package identity comparison into the manual.** ~~Separate the matching 2.31 client from the mixed companion tools.~~ [Existing study](../client-internals/graal-2.3-unpacked-package.md); manual §1.8.3. File identity does not supply a distinct original 2.3 client or validate its inferred profile.
+  - [ ] Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input.
+>>>>>>> origin/main
 
 - [x] **Trace exact ver10 initial property construction and its receive-side gate.** [Static trace](../client-internals/graal2002-and-140-builds.md#ver10-initial-player-properties-update-2026-11-15); manual §2.4/§2.6. This does not establish a native first packet.
   - [ ] Validate the first emitted update on the normal interactive Windows client with the discriminators in App. E#15.
@@ -21,7 +26,8 @@ macOS CI is paused until the polish stage.
   - [ ] Resolve the exact-input login, default-route effects and outgoing-id follow-ups in App. E#15; token/command-table matches alone do not settle them.
 
 - [x] **Publish the bounded Classic+ 1.13 construction study.** ~~Corroborate the known token and carry the selected caller/helper observations.~~ [Note](../client-internals/classic-113-login-construction.md); manual §2.3.9 and App. E#16. This does not complete mobile login or an iOS version profile.
-  - [ ] Resolve prefix/copy helpers, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
+  - [x] ~~Inspect the selected prefix and direct copy helpers.~~ [Static follow-up](../client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) establishes low-byte prefix construction and the selected long-path byte-copy count; manual §2.3.9/App. E#16 preserve remaining limits.
+  - [ ] Resolve the short-path object append/full codec, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
 
 - [x] **Qualify the shipped mobile GANI movie sample and actor-kind carry.** ~~Correct the blanket no-saved-movie claim and carry the observed boolean spellings and serialized actor form.~~ [Source](../tools/graalshop.md#shipped-movie-sample-and-remaining-limits); manual §3.3.2/§3.3.6. Saved movie existence was already reported; this does not establish playback or a producing editor.
   - [ ] Reconcile the exact editor inputs behind the conflicting 2002/2006 movie-support attributions (App. E#612); establish indexed CHAR-key spelling, coordinate units and native timing separately.

@@ -178,11 +178,11 @@ The static inputs in §1.1.5 establish tokens, command names and receive-route d
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout
 
-The selected analyst-seeded constructor and forwarding helper provide static caller observations, not a captured mobile login. Threshold/helper arguments cannot be promoted to emitted bytes, and selector 5 cannot be assigned a wire category from this pass. [bin] (client-internals/classic-113-login-construction.md)
+The selected prefix/copy follow-up establishes one-byte prefix construction and the selected positive byte-copy count, not a captured mobile login. The short-path object append, full codec and native acceptance remain unresolved, and selector 5 still has no established wire category. [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up); [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary)
 
 | Unknown | Discriminator | Source |
 | --- | --- | --- |
-| Prefix/copy behavior | independently validate helper bodies and byte/copy contracts before claiming encoding, limits or truncation | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| Remaining append/field codec | inspect the short-path object append and remaining field cases before claiming a complete codec, character semantics or server-accepted size limits; allocation failure and runtime behavior remain unvalidated | [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) |
 | String identities and vector format | bind the getters and serializer to their actual consumers before naming fields or a complete trailer | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
 | Framing, trigger and native acceptance | trace the selected lower sender and constructor trigger; establish a separately qualified exact-input native control and receive-property mapping | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 

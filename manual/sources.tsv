@@ -157,7 +157,7 @@ client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry tha
 client-internals/launchers-420r8-500r7-512.md	pending		1; 2.3	4.20r8, 5.00r7 and "5.12 untouched" launcher copies and the Packet Logger engine diff; to be folded into the build list
 client-internals/graal2002-and-140-builds.md	cited	1; 2.3; 2.4; 2.5; 2.6; 8.2; C; E	1; 2.3; 2.4; 2.5	Static identity, tokens, command dating and receive routes carried; repeated comparison baselines remain in their existing catalogue rows; Graal3D details stay in the dedicated beta note/Part IX; exact-input runtime and matrix follow-ups retained in E#15.
 client-internals/early-windows-callback-variants.md	pending		1; E	Same-version early Windows program-check error bindings and bounded analyst-seeded recovery; not yet cited in the manual. Event trigger, helper effects and modification history remain unresolved.
-client-internals/graal-2.3-unpacked-package.md	pending		1	identity of the 2.3 [Unpacked][Cracked] package (2.31 unwrapped); to be folded into the build list
+client-internals/graal-2.3-unpacked-package.md	cited	1	1	Client and companion-component identity comparisons carried in 1.8.3; no official-release, whole-executable integrity or original 2.3 runtime claim follows from the repack label.
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/hud-603r7-black-box.md	pending		4.6	6.03r7 HUD layout measured on Linux and Windows; to be folded into the HUD chapter
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
@@ -736,4 +736,4 @@ npc-library/gs2-weapon-corpus-2026-11-14.md	pending		8.4; E	GS2 weapon corpus su
 tools/levelfiller.md	pending		11	LevelFiller theme filler teardown (static); to be folded into Part 11 with the classic tools
 tools/small-utilities-2026-11-14.md	pending		11	small utilities read statically (Guild Manager, guildcode, apcalc and others); to be folded into Part 11
 protocol/named-login-5x-6x.md	pending		2.3; 8	named (non-guest) lab logins on real 5.24r4 and 6.03r7 via adventure_setaccountname, and the 6.03r7 script-function name table; to be folded into the login and scripting sections
-client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding observations and all remaining helper, identity, wire and runtime gates carried; no mobile profile or native acceptance inferred.
+client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding and prefix/copy observations carried; short-path object append, field identity, vector/wire and runtime gates remain open; no mobile profile or native acceptance inferred.
