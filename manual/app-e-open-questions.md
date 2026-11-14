@@ -175,7 +175,6 @@ The static inputs in §1.1.5 establish tokens, command names and receive-route d
 | ver7–ver13 default routes 2, 4, 17, 18, 154, 155 | a correctly identified baddy/chest/horse fixture and observable result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Exact ver10 first emitted properties update | observe the normal interactive client before the first server reply; compare fresh sessions with no reply, an unrelated reply and self-properties id 9. Static gate clearing and six-property construction do not settle the other startup guards or actual emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
 | Six Graal 2002 PLI sets | read their own send sites; do not borrow neighboring build or shared-token rows | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
-| Machine-readable command matrix | add the six exact inputs to the scanner build inventory and regenerate, preserving input provenance | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout
 

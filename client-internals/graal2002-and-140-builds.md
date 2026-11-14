@@ -136,4 +136,4 @@ No native traffic capture establishes this first update. These findings do not c
 - [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
-- [ ] Add the six builds to `tools/gs1-table-scan/builds.tsv` and regenerate the matrix TSV.
+- [x] ~~Add the six builds to the scanner inventory and regenerate the matrix.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md): six exact-input scans added; existing membership cells preserved.
