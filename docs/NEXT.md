@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Establish direct symbolic GANI placement context.** ~~Separate ANI PARAM1 references from SPRITE sheet tokens in the inspected mobile resources.~~ [File evidence](../formats/ios-gani-param1-placements.md); manual §3.3.8. Two shared forms, not a native playback test.
+  - [ ] Verify parser/serializer preservation in each consumer and establish native resolution separately; retain the coordinate/slot/case limits in the note.
+
 - [x] **Carry the measured Linux/Windows 6.03r7 HUD into the manual.** ~~Separate fixed art/layout, font availability and captured transitions.~~ [Study](../client-internals/hud-603r7-black-box.md); manual §4.6.9, App. E#326.
   - [ ] Resolve the sword crop, other-size Windows text positions and Windows current-clock check (App. E#326); this carry adds no new lab run.
 - [x] **Add exact 1.40 registered words to the machine-readable matrix.** ~~Carry its 125-name scan and fourteen earlier first-observed bounds.~~ [68-build matrix](../npc-library/gs1-commands-by-version.md); executor behavior remains separate.
