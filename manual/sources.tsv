@@ -719,3 +719,4 @@ torque/v3-python-engines/python-repro/teardown/script.md	pending		1	Python v3 cl
 torque/v3-python-engines/python-repro/teardown/token.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
 torque/v3-python-engines/tge-rewrite/STATUS.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
 torque/v3-python-engines/tge-rewrite/used.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
+npc-library/gs2-weapon-corpus-2026-11-14.md	pending		8.4; E	GS2 weapon corpus survey (aggregates only): events, commands, opcodes and player members weapons use, and the repro gap; to be folded into the GS2 scripting section and App. E
