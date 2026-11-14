@@ -318,3 +318,13 @@ Before the NC socket, admins controlled the 2001 NPC server by PMs to its player
 | `reload level list` | rereads the text file of levels this server handles | [doc] (tools/npcserver-2001.md#5-admin-interface-pm-based) |
 
 The NC Add NPC dialog has the same seven fields as `add npc`, so id 111 is most likely that command moved onto its own message [inf][doc] (protocol/npc-control.md#client--nc-client-ids). The RC finds the NPC server by `(Server)` in the nickname rather than `(NPC Admin)` [bin] (tools/npcserver-2001.md#open-questions).
+
+### 7.3.4 One standalone flag-list action
+
+One retained standalone Windows NC artifact has a flag-list action whose statically recovered path builds a collection payload and passes it to an outgoing-buffer builder. This artifact-specific observation is not a protocol definition for every early NC and must not inherit the later layouts above by analogy [bin] (protocol/nc-standalone-flag-action.md#what-this-adds).
+
+The count construction biases both components by 32. Its low component uses the low seven bits; its high component is shifted right by seven and narrowed to a byte, without an established seven-bit mask or range guard. Each item contributes a biased byte length and its contents. Count overflow, out-of-range lengths and the precise collection type remain unresolved [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
+
+The caller supplies command argument 69, which is not an independently captured wire id. Its direct callee biases that command by 32, concatenates the message, appends it to a shared buffer and invokes a further routine when the combined or buffered length reaches 4096. That routine and the terminator were not examined. The ultimate peer, delivery and receive interpretation remain unknown → App. E#425 [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
+
+These bodies were recovered with analyst-seeded entry boundaries after default analysis did not recognize the selected entry. Exception-handling tails, register/type interpretations and indirect calls remain uncertain. No runtime or matching-baseline behavior is established [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits).
