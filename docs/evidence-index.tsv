@@ -1,4 +1,5 @@
 source_id	platform	evidence_kind
+NC-FLAG-ACTION-STATIC	windows	static-analyst-seeded
 WIN222-VERIFIER-A	windows	static-verifier-context
 WIN222-VERIFIER-B	windows	static-byte-comparison
 WIN222-VERIFIER-CONTROL	windows	static-lineage-comparison

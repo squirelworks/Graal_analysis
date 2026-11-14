@@ -4,6 +4,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [One standalone NPC Control flag-list action](protocol/nc-standalone-flag-action.md) — artifact-specific, analyst-seeded static path to a collection payload and outgoing buffer; recipient, receive behavior and baseline equivalence remain open.
 - [Windows 2.22-labelled verifier variants](formats/windows-222-verifier-variants.md) — four changed branch conditions in one RSA-verification routine; static comparison, distinct from the earlier community-control patch finding; no runtime acceptance claim.
 - [Windows 4.03r3 and 4.11 unpacked](protocol/v4x-windows-403r3-411.md) — the Thinstall packages unpacked without running them (signatures verify, tokens match); 107 and 108 arrive in 4.11 and 196 after it; the 4.11 Flash panel, 2D matrix and 3D-library callbacks; an obfuscated value holder; the public 2.1.0.0's 66 ids; static.
 - [Named (non-guest) logins for real 5.24r4 and 6.03r7](protocol/named-login-5x-6x.md) — a clientside GS2 weapon on the Login gserver calls `adventure_setaccountname` / `adventure_setpassword` before the serverwarp, so the world gets a named account and saves its flags; how 6.03r7 obfuscates its script-function names, and the decoded `adventure_*` list; lab and static.
