@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Qualify the shipped mobile GANI movie sample and actor-kind carry.** ~~Correct the blanket no-saved-movie claim and carry the observed boolean spellings and serialized actor form.~~ [Source](../tools/graalshop.md#shipped-movie-sample-and-remaining-limits); manual §3.3.2/§3.3.6. Saved movie existence was already reported; this does not establish playback or a producing editor.
+  - [ ] Reconcile the exact editor inputs behind the conflicting 2002/2006 movie-support attributions (App. E#612); establish indexed CHAR-key spelling, coordinate units and native timing separately.
+
 - [x] **Bound the 1.41 rev 1 program-check error binding difference.** ~~Compare the form event and method-table targets in the same-version copies.~~ [Static result](../client-internals/early-windows-callback-variants.md): handler-body entry versus the same body's final return; this does not complete the five-client comparison.
   - [ ] Establish the event trigger, handler helper effects and variant lineage; retain the per-client next questions in the note until independently answered.
 - [x] **Carry the bounded verifier and standalone NC studies into the manual.** ~~Reconcile the reviewed static findings and their limits.~~ Verifier comparison in §3.5.5.1 and E#103; NC action in §7.3.4 and E#425. This does not complete whole-build teardown or resolve native acceptance.

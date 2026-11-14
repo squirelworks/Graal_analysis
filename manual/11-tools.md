@@ -85,6 +85,8 @@ GraalShop is the period gani editor. The facts below say what it is and where it
 | 2.05 plays only the sprite-mode subset (`SPRITE`, `ANI` … `ANIEND`, `WAIT`, `PLAYSOUND`, `LOOP`, `CONTINUOUS`, `SETBACKTO`, `SINGLEDIRECTION`, `COLOREFFECT`, `ZOOMEFFECT`), so movie-mode ganis and attachments from the 2006 GraalShop do not play there | [2.05] (tools/graaleditor-vs-205.md#how-this-compares-with-what-205-can-play) |
 | The offline tile definition in the client tree is `picso.png,offlinetutorial,1,0,0` | [file] (tools/graalshop.md#contract) |
 
+The movie-grammar note attributes its static read to a 2002-05-01 editor, while the comparison above describes the old 2002 editor as sprite-only and associates movie support with the 2006 editor. The exact inputs behind those attributions have not been reconciled (App. E#612). A shipped mobile movie does not identify its producing editor. [doc] (tools/graalshop.md#movie-mode-file-grammar); [doc] (tools/graaleditor-vs-205.md#workflow)
+
 ## 11.3 Generators
 
 Three writers emit `GLEVNW01` and `GRMAP001`, each with a different key set; one writer's output is not a valid input for another's loader (the key sets are → §3.2.3) [bin] (tools/generators.md#generators).

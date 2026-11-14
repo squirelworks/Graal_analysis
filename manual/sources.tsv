@@ -468,9 +468,9 @@ tools/generators.md	cited	11	11
 tools/ghidra/README.md	excluded		11	repository analysis tooling, not Graal
 tools/ghidra/VERSION.txt	excluded		11	repository analysis tooling, not Graal
 tools/gif2mng.md	cited	11	11	
-tools/graaleditor-vs-205.md	cited	11	11	
+tools/graaleditor-vs-205.md	cited	11; E	11	Editor attribution disagreement retained in E#612.
 tools/graaleditor.md	cited	11; E	11	
-tools/graalshop.md	cited	11	11	
+tools/graalshop.md	cited	3.3; 11; E	3.3; 11	Movie grammar and scoped file observations carried in 3.3; editor attribution conflict retained in E#612.
 tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
 tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the scanner behind gs1-commands-by-version.md), not Graal
 tools/token-scan/README.md	excluded			repository tooling for the notes (the static token readers behind login-tokens-3x-7x.md), not Graal

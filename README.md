@@ -259,6 +259,7 @@ Sources: GServer-v2 and gs2-parser (GPLv3), gs2lib, graal-serverlist, OpenGS1 (M
 - `client-internals/offline-tutorial-205.md`: how 2.05 goes offline, where offline levels come from, and the 13 embedded tutorial levels.
 - `client-internals/sound-and-music.md`: 2.05 effects, MIDI over MCI, and the Winamp hook, compared with BASS and voice chat in 2.17/2.22/2.31.
 - `tools/graaleditor-vs-205.md`: GraalEditor 2.3.1.1 and GraalShop compared with the built-in editor.
+- [GraalShop movie grammar and shipped mobile sample](tools/graalshop.md#shipped-movie-sample-and-remaining-limits): Classic+ 1.13 and Era+ 1.0 boolean spellings corroborate existing grammar; actor-kind carry is corrected in manual §3.3, while editor identity and runtime units remain open.
 - `formats/grv1-decoder/`: a small GR-V1 / Z3-V1 level decoder.
 
 ## Cross-version pass (2026-10-21)
