@@ -144,7 +144,7 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 
 ### iPhone
 
-Belote 1.2, Belote 1.50 and GraalOnline Classic+ 1.13 were read statically from public archive copies on 2026-11-14. The other three rows come only from gs2lib's table. gs2lib's names are kept as labels, but its "iPhone 1.1" is the Belote token, and Classic+ 1.13's token is not in gs2lib at all. Details: [iphone-version-tokens.md](iphone-version-tokens.md).
+Belote 1.2, Belote 1.50 and GraalOnline Classic+ 1.13 were read statically from copies of the official downloads we hold. The other three rows come only from gs2lib's table. gs2lib's names are kept as labels, but its "iPhone 1.1" is the Belote token, and Classic+ 1.13's token is not in gs2lib at all. Details: [iphone-version-tokens.md](iphone-version-tokens.md).
 
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|

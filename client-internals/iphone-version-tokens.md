@@ -31,9 +31,8 @@ Two results correct the table names:
 
 ## The binaries **[bin]**
 
-All four are public Internet Archive items (the iOS app preservation collection, and one
-uploader's collection of the publisher's old apps). Each file's MD5 matched the archive's
-listing. They were read statically only, in a cloud container, and never run.
+All four are copies of the official downloads that we hold. They were read statically
+only, in a cloud container, and never run.
 
 | App | Bundle id | Bundle version | Executable date (zip entry) | Min. iOS / SDK | Encrypted | Token |
 |---|---|---|---|---|---|---|
@@ -105,8 +104,8 @@ probably an early Classic+ version. Neither has been read.
 
 ## Sources
 
-- Internet Archive items, read 2026-11-14: Belote 1.2 and 1.50 and GraalOnline Classic+ 1.13
-  (iOS app preservation collection); Graal Era+ 1.0 (a collection of the publisher's old apps).
+- Copies of the official downloads we hold: Belote 1.2 and 1.50, GraalOnline Classic+ 1.13
+  and Graal Era+ 1.0.
 - gs2lib `src/IUtil.cpp` / `include/IUtil.h` (`clientVersions[]`, `CLVER_IPHONE_*`). The
   three "iPhone 1.x" entries are present at the 2019-05-21 split from GServer-v2. Belote 1.5
   was added 2022-08-30 and Worlds 2026-01-05.
