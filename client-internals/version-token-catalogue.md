@@ -142,16 +142,18 @@ Date: 2026-11-12. This is the source of truth for login tokens; the older partia
 | 6.11r1 Mac | same connector script, `GNP1905C` when replayed | S | Lion replay (`v6-login-token-explained.md`) | none sent (scaffold) | none |
 | Worlds 548–614, 71243, 7.0.1.7.5.0 | not stored in the client | S (assumed) | `v7x-protocol.md`; the v7 connector login path has not been traced | 614 stand-in sends `GNP1905C`; the others send none | none |
 
-### iPhone (not carried by seihai-core)
+### iPhone
 
-These come only from server version tables (gs2lib, and the 2010 gs2emu tables). No iPhone client has been read, so they are **L**, and seihai-core does not carry them. Details and how to close them: [iphone-version-tokens.md](iphone-version-tokens.md).
+Belote 1.2, Belote 1.50 and GraalOnline Classic+ 1.13 were read statically from copies of the official downloads we hold. The other three rows come only from gs2lib's table. gs2lib's names are kept as labels, but its "iPhone 1.1" is the Belote token, and Classic+ 1.13's token is not in gs2lib at all. Details: [iphone-version-tokens.md](iphone-version-tokens.md).
 
 | Build | Token | Grade | Source | Repro | Repro label |
 |---|---|---|---|---|---|
-| iPhone 1.1 | `G3D04048` | L | gs2lib `CLVER_IPHONE_1_1`; gs2emu 2010 table | (no folder) | |
-| iPhone 1.5 | `G3D18010` | L | gs2lib `CLVER_IPHONE_1_5`; gs2emu 2.3.1 table | (no folder) | |
-| iPhone 1.11 | `G3D29090` | L | gs2lib `CLVER_IPHONE_1_11` | (no folder) | |
-| iPhone Belote 1.5 | `G3D2504D` | L | gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022) | (no folder) | |
+| Belote 1.2, Belote 1.50 (Quattroplay Belote Expert Online, 2008; gs2lib "iPhone 1.1") | `G3D04048` | B | connect routine of both decrypted IPAs: eight one-character appends; also gs2lib `CLVER_IPHONE_1_1` and the gs2emu 2010 table | (no folder) | |
+| GraalOnline Classic+ 1.13 (iPhone, 2012) | `G3D0208A` | B | connect routine of the decrypted IPA; one day after Linux 6.01r1's `G3D0108A`; not in gs2lib | (no folder) | |
+| "iPhone 1.5" (app not identified) | `G3D18010` | L | gs2lib `CLVER_IPHONE_1_5`; gs2emu 2.3.1 table | (no folder) | |
+| "iPhone 1.11" (app not identified) | `G3D29090` | L | gs2lib `CLVER_IPHONE_1_11` | (no folder) | |
+| "iPhone Belote 1.5" (not what Belote 1.50 sends) | `G3D2504D` | L | gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022) | (no folder) | |
+| Graal Era+ 1.0 (iPhone) | unread | — | the only copy found is App Store encrypted | (no folder) | |
 
 ## Gaps and how far each can be closed
 
@@ -183,4 +185,5 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 - [ ] Decode the 1.34–1.38 login frames (they reach their connect window; the dialog still has to be driven).
 - [ ] Read a genuine 2.3 binary, if one turns up, and record its token and PLI 39 words.
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
-- [ ] Read an iPhone client (a period IPA) or capture one device login in the lab, to grade the iPhone rows above ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).
+- [x] ~~Read an iPhone client (a period IPA).~~ Belote 1.2/1.50 and Classic+ 1.13 read 2026-11-14 ([iphone-version-tokens.md](iphone-version-tokens.md)).
+- [ ] Place `G3D18010`, `G3D29090` and `G3D2504D` with another decrypted IPA, or capture one iPhone login in the lab ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).

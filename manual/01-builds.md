@@ -237,14 +237,15 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | `G3D0108A` | Linux 6.01r1 | [cap] (client-internals/version-tokens.md) |
 | `G3D0311C` | Windows 6.03r7 | [cap] (client-internals/version-tokens.md) |
 | `G3D0511C` | Linux 6.03r7 | [cap] (client-internals/version-tokens.md) |
-| `G3D04048` | iPhone 1.1 (server tables only, grade L; no client read) | [srv] (client-internals/iphone-version-tokens.md#answer) |
-| `G3D18010` | iPhone 1.5 (server tables only, grade L; no client read) | [srv] (client-internals/iphone-version-tokens.md#answer) |
-| `G3D29090` | iPhone 1.11 (server tables only, grade L; no client read) | [srv] (client-internals/iphone-version-tokens.md#answer) |
-| `G3D2504D` | iPhone Belote 1.5 (server tables only, grade L; no client read) | [srv] (client-internals/iphone-version-tokens.md#answer) |
+| `G3D04048` | iPhone Belote 1.2 and 1.50 (gs2lib's "iPhone 1.1") | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
+| `G3D0208A` | iPhone GraalOnline Classic+ 1.13 (not in gs2lib) | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
+| `G3D18010` | "iPhone 1.5" (server tables only, grade L; app not identified) | [srv] (client-internals/iphone-version-tokens.md#answer) |
+| `G3D29090` | "iPhone 1.11" (server tables only, grade L; app not identified) | [srv] (client-internals/iphone-version-tokens.md#answer) |
+| `G3D2504D` | "iPhone Belote 1.5" (server tables only, grade L; not what Belote 1.50 sends) | [srv] (client-internals/iphone-version-tokens.md#answer) |
 
 The older GServer-v2 version table writes the 1.33 to 1.38 tokens without the leading `G` (`NW20020` and so on) [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10). The gs2lib table lists `G3D28095` and later for 4.x and up without per-build rows [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10).
 
-The four iPhone tokens follow the `G3D` + DDMMY shape, each stamped a day to a few days after a desktop engine stamp (`G3D03048`, `G3D15010`, `G3D26090`, Worlds `G3D2204D`), so the iPhone clients are most likely builds of the same engine [inf] (client-internals/iphone-version-tokens.md#what-the-stamps-say-inf). gs2lib lists them after 6.03r7 and before Worlds; no iPhone binary or login has been read, and gs2lib's only iPhone-specific packet note is on PLI 161 [srv] (client-internals/iphone-version-tokens.md#what-is-not-known).
+The iPhone tokens follow the `G3D` + DDMMY shape, each stamped a day to a few days after a desktop engine stamp (`G3D03048`, `G3D15010`, `G3D26090`, `G3D0108A`, Worlds `G3D2204D`), so the iPhone clients are builds of the same engine [inf] (client-internals/iphone-version-tokens.md#what-the-stamps-say-inf). Belote 1.2/1.50 and Classic+ 1.13 build the token in the desktop connect routine, eight one-character appends after "Done." [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin). gs2lib's only iPhone-specific packet note is on PLI 161 [srv] (client-internals/iphone-version-tokens.md#what-is-not-known).
 
 ## 1.3 Version ids
 
