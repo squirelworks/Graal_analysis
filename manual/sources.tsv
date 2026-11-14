@@ -186,6 +186,7 @@ client-internals/issho-cut.md	cited	10	10
 client-internals/item-drops.md	cited	4; 4.5; E	4.5	
 client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5; E	4.2; 4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
+client-internals/laying-items-and-hiding.md	pending		4.5	hiding under a carried object and laying items (S held + A) for 2.05 to 3.153; to be folded into the items section
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
 client-internals/live-behaviour-404.md	cited	8; 8.1; 8.3; 4.11	4	
