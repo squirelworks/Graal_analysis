@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the measured Linux/Windows 6.03r7 HUD into the manual.** ~~Separate fixed art/layout, font availability and captured transitions.~~ [Study](../client-internals/hud-603r7-black-box.md); manual §4.6.9, App. E#326.
+  - [ ] Resolve the sword crop, other-size Windows text positions and Windows current-clock check (App. E#326); this carry adds no new lab run.
+
 - [x] **Carry the later sound-file survey into the manual.** ~~Separate backend names, file contents and script-help observations from playback acceptance.~~ [Study](../client-internals/sound-files-6x.md); manual §3.10.5, §4.7.5 and App. E#325.
   - [ ] Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325).
 

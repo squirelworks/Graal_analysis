@@ -299,3 +299,41 @@ On 5.12 and 5.24r4, a level whose GS1 script turns on no-player-killing mode mak
 | flags on 5.x | sent unprefixed in `PLO_FLAGSET` before NPC bytecode; `player.<flag>` and the bare name read them; `player.flags` does not list them | [cap][lab] (client-internals/gs1-on-5x-hud-and-flags.md#flags-and-built-ins-on-512-and-524r4) |
 | built-ins on 5.x | `player.hearts`, `player.fullhearts`, `player.weapons.size()` and bare `selectedweapon` work; `player.weaponscount`, `player.selectedweapon`, bare `weaponscount` and bare `playerhp` are empty | [lab] (client-internals/gs1-on-5x-hud-and-flags.md#flags-and-built-ins-on-512-and-524r4) |
 | 5.12 black level | a stale `FILENAMECACHE.txt` with `cachefilenames=true` hides the client's own tileset; deleting it fixes the view | [lab][shot] (client-internals/gs1-on-5x-hud-and-flags.md#512-draws-a-black-level-a-stale-file-name-cache) |
+
+## 4.6.9 Built-in HUD measured on Linux and Windows 6.03r7
+
+The published black-box study used Linux x64 (`G3D0511C`) and the packed Windows build (`G3D0311C`), a plain world without NPCs or server GUI/weapon scripts, and login-to-world warps through the lab servers. Windows ran with a 2012 clock. These are reported screen/capture measurements, not a new execution or a static implementation read. Coordinates below are client-area pixels, with the origin at the top left; boxes are x, y, width, height. [lab][shot][cap] (client-internals/hud-603r7-black-box.md)
+
+### Window and fixed layout
+
+The first client area was 1024 × 768 (`game_config` option `windowmode=1024x768` on Windows); the login level had no HUD, which appeared after the world warp. The Windows outer frame was 1040 × 807, with 8-pixel sides/bottom and a 31-pixel title area. Tested sizes were 640 × 480, 800 × 600, 1024 × 768 and 1280 × 1024, the last clamped to desktop height on Windows. Resizing did not scale the 16-pixel tiles or HUD: more level became visible, the camera stayed player-centred subject to level bounds, and a view larger than the level centred it with black around it. [shot] (client-internals/hud-603r7-black-box.md#window)
+
+At 1024 × 768, the art comes from `state.png` except the glove (`sprites.png`) and sword (`swordN.png`). Changing the state sheet changes the art, not these measured positions. [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768)
+
+| Element | Source box | Screen position/rule | Source |
+| --- | --- | --- | --- |
+| A/S/D tabs | (202, 0, 22, 30), same sprite without mirroring | (15, 30), (80, 30), (145, 30), pitch 65 | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| Glove | red power 2: (28, 212, 28, 32); yellow power 3: (0, 212, 28, 32) | (40, 29); power 1 draws nothing | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| Sword | begins (94, 36), height 28, width unresolved at 28–34 | source translated by (11, −5), giving (105, 31), for swords 1–4 | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| D slot and shield | D around (170, 30) | D empty with no selected weapon; shield not drawn | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| AP frame/fill | (0, 97, 130, 22); (0, 119, AP, 10) | frame (15, 65), fill (37, 71); fixed 100-pixel gradient clipped to AP, one pixel per point, transparent empty interior | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| MP frame/fill | (0, 49, 130, 22); (0, 71, MP, 10) | frame (15, 90), fill (37, 96), one pixel per point; frame drawn only when MP > 0 | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| Gralat/bomb/arrow icons | icon strip | (274, 30), (330, 31), (379, 30) | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+| Counter digits | (14·d, 81, 14, 16), d = 0–9 | y 48, advance 12; gralats begin x = 280 − 6·n for n digits without padding; bombs x 326/338 and arrows x 374/386 use two zero-padded digits, so 100 arrows shows as 10 | [shot] (client-internals/hud-603r7-black-box.md#layout-at-1024--768) |
+
+Tabs, bars and counters retain their top-left positions across window sizes. Hearts alone anchor to the top right. Only current hearts are drawn; maximum hearts changes neither block size nor position. The captured property uses half-heart units, without a quarter-heart value. [shot][cap] (client-internals/hud-603r7-black-box.md#hearts)
+
+| Heart detail | Measured rule | Source |
+| --- | --- | --- |
+| Sheet boxes | full (0, 0, 40, 44), half (40, 0, 30, 44), small full (80, 0, 31, 33), small half (111, 0, 24, 33); small sprites are drawn 1:1, and half hearts begin at the slot's top left | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
+| Up to four hearts | one full-size row, x = W − 198 + 45k, y 24; right margin 68 | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
+| Five and above | small rows of 5, 6, 5, 4 slots, pitch 35 horizontally and 20 vertically; first row x = W − 198 + 35k, y 24, second row half a pitch left; 20 hearts fill the four-row hexagon, whose rightmost small heart ends 10 pixels from the edge | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
+| Five or 5.5 hearts | whole small block 10 pixels lower; from six hearts it returns to y 24 | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
+
+### Platform text, files and observed transitions
+
+At matched sizes 640 × 480, 800 × 600 and 1024 × 768, the measured Linux/Windows tiles, player and HUD art aligned. The systematic difference was text: Windows drew A/S/D letters, a glyph above D and the sword-power number; the fontless Linux run omitted them. With the four requested font files unavailable, chat, NPC text and tab letters disappeared, while sheet-based counter digits remained. The study identifies Tempus Sans ITC size 24 as the default and reports the same missing-font behavior on 5.24r4. This is scoped to those runs, not an unconditional platform rule. [shot][cap] (client-internals/hud-603r7-black-box.md#windows-against-linux); (client-internals/hud-603r7-black-box.md#files-and-packets)
+
+At world login, PLO 9 supplied maximum/current hearts, gralats, ammunition, glove/sword/shield and AP/MP fields; PLO 42 arrived every five seconds in this server setup. At about 66–68 seconds the server raised AP 50 to 51, visibly adding one fill column. That is a captured server change, not a client regeneration timer. WANTFILE 23 requests included the base package, tileset and animation on login, then body/equipment/state art and fonts on the world server; the source retains the complete request list. [cap][shot] (client-internals/hud-603r7-black-box.md#files-and-packets)
+
+If PLO 178 interrupted the `pics1.png` download, both clients dropped it, showed a black world and did not request it again; pre-seeding the cache avoided the failure in these runs. Tab, Q, M and F2 opened nothing with this script-free server. The Windows software GDI renderer ran the packed original; a neighbouring Mesa library was not loaded, and a separately dumped executable failed at startup. These observations do not establish behavior with arbitrary renderers, clocks or server GUI scripts. Sword width, other-size Windows text positions and a current-clock Windows check remain open (→ App. E#326). [lab][shot][cap] (client-internals/hud-603r7-black-box.md#windows-against-linux); (client-internals/hud-603r7-black-box.md#files-and-packets); (client-internals/hud-603r7-black-box.md#open)
