@@ -12,6 +12,7 @@ The rules are described in `manual/00-conventions.md` (section 0.11).
 from __future__ import annotations
 
 import argparse
+import csv
 import re
 import sys
 from dataclasses import dataclass, field
@@ -388,6 +389,37 @@ def check_indexes(root: Path, files: list[ManualFile], report: Report) -> None:
         for name in sorted(required_message_names(root)):
             if not re.search(r'\b' + re.escape(name) + r'\b', text):
                 report.add(app_a.rel, f'{name} from {PACKET_IDS_NOTE} is missing')
+        present = {'PLI': set(), 'PLO': set()}
+        direction = None
+        for line in app_a.lines:
+            heading = HEADING_RE.match(line.strip())
+            if heading:
+                number = NUM_HEADING_RE.match(heading.group(2))
+                section = number.group(1) if number else ''
+                direction = {'A.1': 'PLI', 'A.2': 'PLO'}.get(section)
+            if direction:
+                for cells in _table_rows(line):
+                    if cells[0].isdigit():
+                        present[direction].add(int(cells[0]))
+        for direction, path, column in (
+            ('PLI', 'version-profiles/pli-sent-ids-by-build-20x.tsv',
+             'client_to_server_ids_the_binary_can_send'),
+            ('PLO', 'version-profiles/plo-handled-ids-by-build.tsv',
+             'handled_server_to_client_ids'),
+        ):
+            source = root / path
+            if not source.is_file():
+                continue
+            with source.open(encoding='utf-8', newline='') as fh:
+                rows = csv.DictReader(fh, delimiter='\t')
+                required = set()
+                for row in rows:
+                    for span in row[column].split(','):
+                        ends = [int(n) for n in span.strip().split('-')]
+                        required.update(range(ends[0], ends[-1] + 1))
+            for mid in sorted(required - present[direction]):
+                report.add(app_a.rel, f'{direction} id {mid} from {path} is missing '
+                           'a dedicated row in its direction section')
     app_b = by_number.get('B')
     if app_b and app_b.status != 'stub':
         present = set()

@@ -321,7 +321,7 @@ protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementa
 protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	Part 2 not needed: an early summary superseded by the notes §2.1 to §2.3 cite; its leftover lines are listed in App. E#607 (coverage audit 2026-11-04)
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
-protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E	2.1; 2.2	
+protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
 protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/file-transfer.md	cited	2; 2.7; E	2.7	
@@ -348,7 +348,7 @@ protocol/npc-control.md	cited	7; E	7
 protocol/offline-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/packet-id-diff.md	excluded		2.4; 2.5; A	method note: the 2.05 file it compared was the GS1 interpreter, not the packet dispatcher; no packet facts of its own
 protocol/packet-ids.md	cited	2; 0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
-protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E	2.4; 2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
+protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E; A	2.4; 2.5; A	Appendix A links the board-packet description; layouts remain in section 2.5
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
 protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B; E	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
@@ -362,7 +362,7 @@ protocol/udp-p2p.md	cited	2; 2.8; 2.9	2.9
 protocol/unknown-ids-2026-11-06.md	cited	2.4; 2.5; E	2.4; 2.5	
 protocol/unpacked-6113-wire.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.6 carry the generation-5 LCG, the missing token, and the 0xFE send slots; the file-magic table stays in the note
 protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10; 3.1; 1	1; 2.3; 10	
-protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.6; 2.8; 8.3; 10; E; 3.1; 1; C	1; 2.3; 10	
+protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.6; 2.8; 8.3; 10; E; 3.1; 1; C; A	1; 2.3; 10	
 protocol/v5v6-lab-play.md	cited	4; 0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
 protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
@@ -562,7 +562,7 @@ version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Sei
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/pli-send-sites-141-217.md	cited	2.4; E	2.4	
 version-profiles/save-games-142-2171.md	cited	1	1	
-version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
+version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E; A	2.5; A	Appendix A indexes numeric ids and points to the canonical sections; the per-build handled sets remain in section 2.5
 version-profiles/plo-layouts-217-231.tsv	cited	2.5; 2.7	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-levellink-layouts.tsv	cited	2.5	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-npcprops-layouts.tsv	cited	2.6; E	2.5; A	Appendix A and §2.5 not needed: a prop layout table carried in §2.6, which §2.5 and App. A point to (coverage audit 2026-11-04)

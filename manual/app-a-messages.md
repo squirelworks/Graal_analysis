@@ -230,6 +230,8 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 83 | `0x73` | `PLO_UNKNOWN83` | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 84 | `0x74` | `PLO_LARGEFILESIZE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 100 | `0x84` | `PLO_RAWDATA` | handled | → §2.5.3 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 101 | `0x85` | `PLO_BOARDPACKET` | no | → §2.5.3 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [srv] (protocol/packet-layouts.md#level-data-server--client) |
+| 102 | `0x86` | `PLO_FILE` | no | → §2.5.7 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [srv] (protocol/codec-and-framing.md#raw-data-escape) |
 | 103 | `0x87` | `PLO_RC_MAXUPLOADFILESIZE` | no | → §7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 104 | `0x88` | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 105 | `0x89` | `PLO_UPDATEPACKAGESIZE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
@@ -290,6 +292,7 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 193 | `0xe1` | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 194 | `0xe2` | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 195 | `0xe3` | `PLO_LOADGANI` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 196 | `0xe4` | (no gs2lib name) | no | → §2.5.6 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 197 | `0xe5` | `PLO_LOADSCRIPT` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 198 | `0xe6` | `PLO_SERVEROPTIONS` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 252 | n/a (above 223) | `PLO_SET_ENC_KEY` | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
