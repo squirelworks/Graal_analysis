@@ -186,7 +186,7 @@ client-internals/issho-cut.md	cited	10	10
 client-internals/item-drops.md	cited	4; 4.5; E	4.5	
 client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5; E	4.2; 4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
-client-internals/laying-items-and-hiding.md	pending		4.5	hiding under a carried object and laying items (S held + A) for 2.05 to 3.153; to be folded into the items section
+client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
 client-internals/live-behaviour-404.md	cited	8; 8.1; 8.3; 4.11	4	
@@ -223,7 +223,7 @@ client-internals/themida-pack.md	cited	1	1	§1.8.7 carries that 6.037 and 6.113 
 client-internals/torque-surface-by-era.md	cited	10	10	§10.1.7 carries the era rows and the stock, patched, or Graal-only marks; per-class method counts and the graal-client-repro comments stay in the note
 client-internals/unpacked-6037.md	cited	10	10	§10.1.8 carries the version, that the C++ core is visible, the GS2 case set and the GUI-name changes; the cipher fields, the inflate version split and the printmap text stay in the note
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
-client-internals/v5v6-expiry-and-black-screen.md	pending		1; 4.1	which 5.x/6.x builds expire, the timer check, and what the lab server must send for these builds to draw
+client-internals/v5v6-expiry-and-black-screen.md	cited	1; 4.1; E	1; 4.1	
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/141-217.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/README.md	excluded		1; C	usage notes for the profile files and their resolver script; the manual cites the profile files directly
@@ -275,7 +275,7 @@ formats/sign-text.md	cited	3.6	3.6
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
-graal3d/beta3-genesis.md	pending		9	later Graal3D beta (GR3DV003): Genesis3D renderer, same protocol; to be folded into the Graal3D section
+graal3d/beta3-genesis.md	cited	9; E	9	
 graal3d/camera.md	cited	9; E	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	
@@ -337,7 +337,7 @@ protocol/login-and-walk.md	cited	2.3; 2.4; 7; E	2.3
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
 protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
-protocol/login-session-observed.md	pending		2.3	one observed 6.03r7 Login session on a community Login server (#247); to be folded into the login section beside login-session-known.md
+protocol/login-session-observed.md	cited	2.3	2.3	
 protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/medium-term-slice.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/npc-control.md	cited	7; E	7	
@@ -350,7 +350,7 @@ protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B; E	2.6; B
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
-protocol/rc-list-online.md	pending		6	id 65 is never sent; RCs come from the player list with an empty level; for the RC section
+protocol/rc-list-online.md	cited	7; E	7	
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/shoot-5007.md	cited	2.4; 2.5	2.5	
@@ -649,9 +649,9 @@ client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphic
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
 protocol/v611-id-tables.md	cited	2.10	2.10	the 6.111 connector script's live outgoing and incoming id tables joined to gs2lib names (#397); §2.10 cites it
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
-protocol/player-x-half-tile.md	pending		2.6	one-byte X/Y decode, send and wraparound, and the X2 encoding; to be folded into the player-properties section
+protocol/player-x-half-tile.md	cited	2.6	2.6	
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
-protocol/gmap-adjacent-level-target.md	pending		2.5	which level a 2.x client puts board data on (the last PLO_LEVELNAME), the reply to PLI_ADJACENTLEVEL, and the GServer-v2 classic-login gap; to be folded into the level-data section
+protocol/gmap-adjacent-level-target.md	cited	2.5; E	2.5	
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
 client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	
@@ -675,7 +675,7 @@ client-internals/linux-304-executable-build.md	pending		1; 10	Linux 3.04 packing
 client-internals/windows-404r2-components.md	pending		1; 10	4.04r2 module map (carrier, Delphi shell, GraalEngine, Graal3DEngine, FMOD), engine exports and built-in HawkVoice; to be folded into the build list and the Torque clients section
 client-internals/mac-611r1-send-slots.md	pending		1; 2	Mac 6.11r1 named send-slot table, matching the Windows 6.11 slot numbers; to be folded into the build list and the protocol section
 client-internals/v7-unity6000-unpack.md	pending		1	current Unity 6000 v7 client unpack and IL2CPP v31 metadata; to be folded into the build list beside the v7 IL2CPP name notes
-protocol/pcid.md	pending		2.3; 6	PCID: listserver-assigned PC id from the login machine fields (VERIACC2 identity, SVI_ASSIGNPCID); to be folded into the login and listserver sections
+protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
 client-internals/mac-ppc-404-512/SUMMARY.md	pending		2.3; 4.1	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule and PLO sets; to be folded into the framing and build sections
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
 client-internals/v3-v5-protocol-pass/README.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections

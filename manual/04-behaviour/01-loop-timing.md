@@ -54,6 +54,7 @@ Some work runs every tick and some on a longer cycle. Each row gives the period,
 | every tick | the probe point for links is taken and each link of the level is tested (→ §4.2.11) | 2.05 | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
 | 64 ticks (3.2 s) | a counter modulo 64 runs the integrity cycle: tick 1 a debugger probe and a 5000 ms timer armed, tick 10 the first tamper-check word, tick 20 a scan of top-level window titles and classes against a blacklist, tick 30 the second word, tick 31 `PLI_TAMPERCHECK` sent (→ §2.4, §4.10) | 2.31 only; 2.17.1 and 2.22 have no such timer | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md#pli-39-re-send-every-32-s) |
 | about 5.1 s | a one-byte id 24 message (→ §2.4); tying it to the 5000 ms timer above is an inference | 2.31; 2.22 only while another player is in the level | [2.31][inf] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md#pli-24-about-every-51-s-1-byte-lab-value-9) |
+| about 1 s | the wall clock (`GetSystemTime` ms) is compared with `GetTickCount`; a drift over 100 ms is a strike, and 3 strikes open the "wrong system timer" Warning box (→ §1.8.7) | 5.24r3 to 6.03r7 (read in 5.24r4) | [bin] (client-internals/v5v6-expiry-and-black-screen.md#the-wrong-system-timer-warning-524r3-onwards) |
 | 5.0 s | the server's `PLO_NEWWORLDTIME`, seen alongside the client's id 24 | 2.22 against a public server | [cap] (live-runs/2gta-222-2026-10-30/README.md) |
 
 ## 4.1.4 Movement updates on the wire

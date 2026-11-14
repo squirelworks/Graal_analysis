@@ -143,6 +143,28 @@ Reading the `GNW` digits as a build date fits well, but nothing in the binaries 
 | Open | the reading is a strong fit, not a stated format | [inf] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#reading-the-digits-inferred) |
 | Settles it | a vendor note or server source that decodes the token | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
 
+### E#13 Gmap neighbour overwrite on classic-login 2.x clients
+
+A static read predicts that GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level [bin][srv] (protocol/gmap-adjacent-level-target.md#short-answer).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Prediction | with stock `PlayerClientOriginal`, a 2.17.1 client on a 2x2 gmap shows neighbour boards and links on its own level | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Prediction | ending a neighbour reply with the player's cell level name, not the gmap name, keeps `BOARDMODIFY` and chest updates working on 2.17.1 and 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
+| Settles it | a loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
+
+### E#14 Expiry dates of the Themida 5.x/6.00 builds
+
+Four protected builds exit on today's date; where their cutoff lies was not read [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#open).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | the cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (known to run with the clock at 2011-06-14 and 2011-06-28 for 6.00r2 and 6.00r4) | [lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| Open | whether the check is WinLicense's own expiration feature or a check inside its VM macros | [inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| Open | whether the Themida builds' timer check uses 5.24r4's thresholds | [bin] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settles it | a binary search on the guest clock for each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
@@ -629,6 +651,17 @@ The server knows an RC token that no RC build read so far sends [srv] (protocol/
 | Open | which RC build sends `GSERV025`, and with which login type | [inf] (tools/remotecontrol-lineage.md) |
 | Settles it | a static read of the later RC builds in the Drive RC folder (rc2, the custom RemoteControl, the RC3 beta) | [inf] (protocol/npc-control.md#drive-material-inventory-only-not-in-git) |
 
+### E#406 How the official listserver assigns PC ids
+
+The game server forwards the client's machine fields and stores the PC id the listserver returns; the rule in between is not held [src] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | the id is a signed 64-bit decimal from `SVI_ASSIGNPCID`; its inputs available to the listserver are the identity string, account, password and the game server | [src] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+| Guess | a row number in a listserver table of machines matched on the hardware hashes; a truncated hash of the fields would fit too | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+| Also open | whether 5.12 reads the product id as 5.24+ does; what `getlockcomputer` compares; what 6.11+ connector scripts send as machine fields; a lab confirmation of the empty product id under 64-bit Windows | [inf] (protocol/pcid.md#open) |
+| Settles it | the official listserver, or captures of its `ASSIGNPCID` replies for known inputs (public servers need the owner's written OK) | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+
 ### E#420 Flag and chest counts in the RC props tail
 
 The RC props tail holds two counts, and it is not known which counts flags and which counts chests [cap] (protocol/rc-capture-2026-11-04.md#player-props).
@@ -670,6 +703,17 @@ The read of GServer 1.28 beta 2 and 1.3 leaves these open [bin] (server-notes/gs
 | Other levels | how the nickname and head of players in other levels are sent | [bin] (server-notes/gserver-1999-rules.md#own-props) |
 | Prop limits | server-side limits beyond the counted props | [bin] (server-notes/gserver-1999-rules.md#own-props) |
 | Real-client check | the 1.3 test client against a server running these rules | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+
+### E#424 RC2's Admins folder against a one-space level
+
+RC2 2.05 tests an entry's level by length with no trim, and GServer-v2 sends RCs a level of one space [bin][srv] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | the 2001 servers send RCs an empty level, which puts them in RC2's Admins folder | [src][bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Claim B | GServer-v2 sends one space, so RC2 2.05 would most likely list other RCs under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Also open | the send path of the 2005 Linux i386 RC (unpacked, not read) | [bin] (protocol/rc-list-online.md#open) |
+| Settles it | a lab run with RC2 2.05 and two RC logins against the GServer-v2 fork | [inf] (protocol/rc-list-online.md#open) |
 
 ### E#500 Back clipping plane of the Graal3D client (settled)
 
@@ -716,6 +760,17 @@ Whether 4.04r2 still reads compiled TorqueScript is open. The corrected evidence
 | Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
 | Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
 | Corrected evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and participate with `.ter` in a resource-miss download exclusion filter. The earlier defined-string export omitted them; the no-`.dso`-strings claim is withdrawn for this image. Later 5.00r7/5.12 scans are not re-evaluated | [bin] (torque/404r2-resource-filter.md#download-filter) |
+
+### E#504 The `GR3DV003` beta at run time
+
+The later Graal3D beta is known only from static reads [bin] (graal3d/beta3-genesis.md#open-points).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Open | whether the public Genesis3D 1.x SDK `genesis.dll` and demo art load in the beta | [inf] (graal3d/beta3-genesis.md#open-points) |
+| Open | the built-in defaults of the new physics and camera keys | [bin] (graal3d/beta3-genesis.md#open-points) |
+| Open | whether the beta's UDP datagrams match `GR3DV002` byte for byte | [bin] (graal3d/beta3-genesis.md#open-points) |
+| Settles it | a lab run with the SDK engine DLL and art against a server patched to accept `GR3DV003` | [inf] (graal3d/beta3-genesis.md#open-points) |
 
 ### E#600 Tile layer as GraalEditor writes it
 

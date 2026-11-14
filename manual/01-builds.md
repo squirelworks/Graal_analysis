@@ -699,6 +699,21 @@ These two rules are what a lab server needs to admit a 5.x or 6.x client, and th
 | A server for 5.x/6.x needs a game server name that does not start with "login" (or a 178 warp), the tokens `G3D15010` and `G3D03048`, and must serve `basepackage.gupd` (a minimal `GRPKG001` with `NAME`, `VERSION`, `PLATFORM`, `MODE` will do) and `tiledefs<server>.txt`; the Themida builds fetch every image, gani and sound | [wire] (protocol/v5v6-lab-play.md#for-seihai-profiles); [wire] (protocol/v5v6-lab-play.md#the-session-on-the-wire) |
 | GServer-v2 beta4 crashes on every 6.00 login while registering the GS1 weapon `-gr_movement`, taking the GS2 bytecode branch for a weapon with no bytecode | [srv] (protocol/v5v6-lab-play.md#600r2-and-600r4-on-real-windows) |
 
+#### Expiry, the timer check and the black screen
+
+Which 5.x/6.x builds are time-bombed, and why lab runs drew black. 5.24r4 and 6.03r7 are not time-bombed; the black screen had two server-side causes [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#5x-and-6x-clients-expiry-dates-the-clock-check-and-the-black-screen).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| No expiry found | 5.12, 5.24r3, 5.24r4, 6.00 beta1/beta2 (MoleBox), 6.03r7 Windows (Themida), 6.03r7 Linux | [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#which-builds-expire) |
+| Expire: log "This is a beta release of Graal. If it's not working on your computer then please download a new version…" and exit within about 1 s, before any window; the clock must stay set back for the whole session (a forward jump disconnects with "You have been disconnected due to inactivity") | 5.30r3, 5.31r4, 6.00r2, 6.00r4 (Themida/WinLicense) | [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| The expiry text exists only outside the program image in the dumps and no image code points at it, so the check runs inside the protection layer; the cutoff dates are unread → App. E#14 | 5.30r3 to 6.00r4 | [bin][inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| 5.24r4's 13 callers of `time()` are random seeds, log stamps, the GS2 elapsed-time helper and the login key (`time & 0x7F`); none compares the date with a cutoff, and the 5.12 licence file holds no date | 5.24r4, 5.12 | [bin] (client-internals/v5v6-expiry-and-black-screen.md#524r4-in-detail-no-expiry) |
+| "The game detected a wrong system timer…" check: about once a second the client compares `GetSystemTime` milliseconds with `GetTickCount`; a drift over 100 ms is a strike, and 3 strikes open a "Warning" box; a steady set-back clock does not trigger it | 5.24r3 to 6.03r7 (read in 5.24r4; not in 5.12) | [bin][inf] (client-internals/v5v6-expiry-and-black-screen.md#the-wrong-system-timer-warning-524r3-onwards) |
+| Black screen cause 1: the lab worlds held no client art, and 5.x/6.x bundle none (Themida builds nothing, MoleBox only GUI files), so every request got 30 | 5.24r4, 6.03r7 | [lab] (client-internals/v5v6-expiry-and-black-screen.md#why-the-lab-drew-black-2026-11-13) |
+| Black screen cause 2: both clients ask for `pics1.png` once, early, on the Login server; a 178 warp right after level entry cut the 210,232-byte transfer, and neither asks the target world again; answering file requests before the warp made both draw the whole level | 5.24r4, 6.03r7 | [lab] (client-internals/v5v6-expiry-and-black-screen.md#why-the-lab-drew-black-2026-11-13) |
+| 5.24r4 trusts its `FILENAMECACHE.txt`: a file deleted from its cache folder is never downloaded again | 5.24r4 | [lab] (client-internals/v5v6-expiry-and-black-screen.md#lab-gotchas) |
+
 ### 1.8.8 Profile tables
 
 The profiles above also exist as machine-readable tables, one per range, that a client can load to behave as one exact build. Each `[[version]]` holds a build's full values, `[version.features]` its switches and `[version.assets]` its HUD and tileset revision [file] (client-internals/versions-133-139.md#using-the-table).

@@ -237,3 +237,19 @@ The Reborn listserver keeps its data in tables. The rows below give what it stor
 | --- | --- |
 | Tables for users (account, password, salt, activation, ban, profile fields), servers (name, address, port, players, description, URL, language, a two-character type, version, uptime), per-server HQ password and level, IP bans, guilds and guild members | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
 | Account passwords are `md5(md5(password) + salt)` with a three-character salt | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
+
+### 6.5.1 PC ids (`VERIACC2` and `ASSIGNPCID`)
+
+A PC id is a number the listserver hands to a game server for each login. Neither the game server nor the client computes it [src][bin][inf] (protocol/pcid.md#pcid-where-the-pc-id-comes-from).
+
+| Rule | Source |
+| --- | --- |
+| GServer-v2 added PC-id support on 2022-09-04; its login parser keeps everything after the password as one identity string, logs it, and takes only the first token (`win`, `mac`, `linux`) as the player's OS | [src] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
+| The game server forwards the identity unchanged at the end of `SVO_VERIACC2` (17): account, password, player id, player type, then a two-byte length and the string | [src] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
+| The listserver answers `SVI_ASSIGNPCID` (30): `s player id`, `c player type`, then a `c`-length string holding the PC id in decimal, parsed with `std::stoll` into a signed 64-bit id; a non-numeric string would throw | [src][inf] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
+| GServer-v2 drops 30 for a player who is already loaded, so the listserver must send it before the `VERIACC2` reply | [src][inf] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
+| The PC id lives in memory only, and is 0 for a player the listserver gave none | [src] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
+| RC `/openaccess <account>` makes GServer-v2 send `PLO_SERVERTEXT` `GraalEngine,lister,ban,<account>,<pcid>`, which opens the scripted ban window; `lister getbanhistory` and `lister getbanbyid` are answered by the listserver | [src] (protocol/pcid.md#where-the-pcid-is-used) |
+| The 6.03r7 Login session's server-list weapon asks `getlockcomputer`; what it compares was not seen | [cap][inf] (protocol/pcid.md#where-the-pcid-is-used) |
+| The 1.25 and 1.27 GServers and RemoteControl 1.33 to 2.01 have no machine id; their ban window bans an account | [bin] (protocol/pcid.md#where-the-pcid-is-used) |
+| How the official listserver derives the number (lookup table or hash, which fields) is not in any binary or source held; an MD5 is 128 bits and the id is 64-bit decimal, so it is not one of the sent digests → App. E#406 | [src][inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |

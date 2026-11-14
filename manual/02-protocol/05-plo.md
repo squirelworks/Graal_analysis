@@ -119,6 +119,24 @@ When a pre-2.1 client enters a level, the server sends the messages above in a f
 | 2 | otherwise: `RAWDATA` + `BOARDPACKET`, then `LEVELNAME` (first level only), `LEVELLINK` × n, `LEVELSIGN` × n, `LEVELMODTIME` | [srv] (protocol/packet-layouts.md#pre-21-level-sequence-sendlevel141-used-for-205-srv) |
 | 3 | then board changes, `LEVELCHEST` × n, `HORSEADD` × n, `BADDYPROPS` × n, `ISLEADER` (if leader), `NEWWORLDTIME`, `NPCPROPS` × n, and `OTHERPLPROPS` for each player in the level | [srv] (protocol/packet-layouts.md#pre-21-level-sequence-sendlevel141-used-for-205-srv) |
 
+### 2.5.3.2 Which level level data lands on (2.x gmaps)
+
+Level data carries no level name or gmap position: a 2.x client applies it to the level named by the last `PLO_LEVELNAME` (6), and finds the gmap cell from its own 3x3 grid [bin] (protocol/gmap-adjacent-level-target.md#short-answer). The rows below give the target rule; the `LEVELNAME` rule was read in 2.17.1, 2.22 and 2.31, the rest in 2.22.
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| 6 sets the named level by looking the name up in the client's level list, dropping any path before the last `/` or `\` and ignoring ASCII case; it never creates a level, and data after an unknown name is dropped | 2.17.1, 2.22, 2.31 | [bin] (protocol/gmap-adjacent-level-target.md#how-the-client-picks-the-target-level-bin) |
+| 6 with a `.gmap` name: nothing changes if the named level is already the player's own; otherwise the lookup fails and the named level is cleared | 2.17.1, 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#how-the-client-picks-the-target-level-bin) |
+| 6 with the player's current gmap name sets the named level to the player's own level; any other `.gmap` name is ignored | 2.31 | [bin] (protocol/gmap-adjacent-level-target.md#how-the-client-picks-the-target-level-bin) |
+| `BOARDPACKET` empties the named level's links and signs, copies the 64x64 tiles into it and redraws its grid cell; with no named level the board is dropped, except that it finishes a waiting warp when the named level is the player's or the last 6 text equals the warp's level name | 2.22 | [bin] (protocol/gmap-adjacent-level-target.md#how-the-client-picks-the-target-level-bin) |
+| `LEVELBOARD` (0), `LEVELLINK` (1), `LEVELCHEST` (4), `LEVELSIGN` (5), `BOARDMODIFY` (7) and `LEVELMODTIME` (39) act on the named level and do nothing without one (0 also finishes a waiting warp) | 2.22 | [bin] (protocol/gmap-adjacent-level-target.md#how-the-client-picks-the-target-level-bin) |
+| Before it sends 35 for a neighbour it has no object for, the client creates an empty level under the `LEVELNAMES` name and adds it to the list 6 searches; 35 carries the cached modtime and the name in lower case with no path | 2.22 | [bin] (protocol/gmap-adjacent-level-target.md#what-the-client-does-before-it-sends-35-bin) |
+| 49 with a `.gmap` name and `LEVELNAMES` loaded: the cell bytes are clamped, the cell's level becomes the player's level at once without waiting for a board, the named level is cleared and the last 6 text becomes the gmap name | 2.22 | [bin] (protocol/gmap-adjacent-level-target.md#the-warp-and-the-gmap-file-bin) |
+| 49 with a `.gmap` that is not on disk loads no `LEVELNAMES` and leaves the warp waiting under the gmap name: the loading-screen hang | 2.22 | [bin] (protocol/gmap-adjacent-level-target.md#the-warp-and-the-gmap-file-bin) |
+| 14 with a `.gmap` name always lands in the first `LEVELNAMES` entry (top-left cell); 2.17.1, 2.22, 2.31 and the 2.1 test builds handle 49, so a server should use 49 for gmaps | 2.1 test to 2.31 | [bin] (protocol/gmap-adjacent-level-target.md#the-warp-and-the-gmap-file-bin) |
+| A working reply to 35: `LEVELNAME <neighbour as sent>`, then the board, links and signs (or an empty `LEVELBOARD` when the copy is current), chests, `LEVELMODTIME`, then `LEVELNAME <the player's cell level>` | 2.17.1, 2.22, 2.31 | [bin][inf] (protocol/gmap-adjacent-level-target.md#the-sequence-that-works-on-2171-222-and-231) |
+| GServer-v2's classic type-0 path (2.17 and older) writes 6 only for the first level of a session and always warps with 14, so neighbour boards and links land on the player's own level; its gen-5 path frames each reply with the name but ends with the gmap name, which leaves no named level on 2.17.1 and 2.22 → App. E#13 | server | [srv][bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+
 ## 2.5.4 Players and the local player
 
 These messages describe the players: the local player and everyone else on the level. Each row gives the layout and the client's action. Note the change in the width of the player id after 1.35 [srv][2.05] (protocol/packet-layouts.md#player-state-server--client).
