@@ -91,7 +91,8 @@ The GS1 command table grew build by build. Each row gives a build, the size of i
 | 1.37 | 106 | `playlooped`, `stopsound` | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | 1.38 | 109 | `setlevel2`, `changeimgpart`, `hitnpc`; `setlevel` takes arguments | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | 1.39 | 111 | `setani`, `setcharani` | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
-| 1.41 rev1 | 126 | `canwarp`, `callnpc`, `say2`, `break`, `continue`, `callweapon`, `spyfire`, `function`, `return`, `changeimgvis`, `setimg`, `setimgpart`, `drawovertrees`, `putexplosion2`, `showstats`; `putexplosion` takes arguments | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
+| 1.40, 1.40 rev 1 | 125 | `function`, `return`, `break`, `continue`, `callnpc`, `callweapon`, `say2`, `canwarp`, `changeimgvis`, `drawovertrees`, `putexplosion2`, `setimg`, `setimgpart`, `spyfire`; `putexplosion` gains an argument marker | [bin] (client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle) |
+| 1.41 rev 1 | 126 | adds `showstats` to the checked 1.40 table | [bin] (client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle) |
 | NewMain 1.42 | 134 | `canwarp2`, `setshape`, `seteffect`, `setcoloreffect`, `setzoomeffect`, `drawaslight`, `changeimgcolors`, `changeimgzoom` | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | 2.0 | 142 | `setgender`, `setchargender`, `join`, `freezeplayer2`, `unfreezeplayer`, `enabledefmovement`, `disabledefmovement`, `setmusicvolume` | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
 | 2.01 | 144 | `openurl2`, `hitobjects`; `openurl` takes arguments | [bin] (client-internals/cross-version-timeline.md#gs1-commands) |
@@ -109,6 +110,8 @@ The GS1 command table grew build by build. Each row gives a build, the size of i
 | 5.00r7 | 193 | `setspritesimage`, `setstatusimage` | [bin] (npc-library/gs1-per-build-2026-11-13.md#distinct-command-tables) |
 
 A command in the table may have no executor case and be parsed and ignored; new commands are inserted mid-table, so command indexes differ between builds [bin] (client-internals/cross-version-timeline.md#gs1-commands). The commands themselves: → §8.2.
+
+The additional static inputs refine the command-table counts: 1.40/1.40 rev 1 have 125 entries; ver7/ver8 have 167, ver9 168, ver10/ver13 169 and v22 174. Their first-seen names are in §8.2.7.2 and their exact identities in §1.1.5; these counts do not replace the separately labelled release-note-only 2.1 row or prove runtime command support. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
 
 ## C.6 Generation 2 builds, 1.21 to 1.32
 
