@@ -161,3 +161,41 @@ A modern third-party compiler and VM exist for GS2. The rules below say what the
 | rejected by both | comma statements, text enums, `global enum`, GS1 commands with comma arguments, nested comments, a function inside a block, missing semicolons, a bare `/word`, an unclosed block | [test] (npc-library/gs2-strict-probes-2026-11-13.md#rejected-by-both) |
 | split | a GS1 message code and a GS1 range: Preagonal rejects, gs2-parser accepts | [test] (npc-library/gs2-strict-probes-2026-11-13.md#split) |
 | GS1 inside a GS2 file | compiled as GS2 it loses its GS1 meaning; on 5.x that changes the HUD (→ §4.6.8) | [lab] (client-internals/gs1-on-5x-hud-and-flags.md#the-hud-difference-on-5x) |
+
+## 8.3.8 Show-images, the particle emitter, `indexof` and `format`
+
+Static reads of the Windows 4.20r8 GraalEngine.dll (4.2.0.8) and the Linux 6.03 x64 client; nothing was executed. Most rows come from 6.03, the clearer read [bin] (client-internals/showimg-particles-and-gs2-format.md#show-images-the-particle-emitter-and-gs2-indexof-and-format).
+
+#### `GuiShowImgCtrl`
+
+| Rule | Source |
+| --- | --- |
+| A `GuiShowImgCtrl` owns one `TShowImg` and has no picture code of its own; it places it at the control's screen position plus (`offsetx`, `offsety`), moving it (and an attached emitter) only when that position changes, and draws it before its child controls | [bin] (client-internals/showimg-particles-and-gs2-format.md#guishowimgctrl-and-tshowimg) |
+| The 6.03 control adds `red`, `green`, `blue`, `alpha`, `mode`, `style` and `rotation` to the show-image's properties; for one show-image kind a mouse hit counts only where the picture is hit | [bin][inf] (client-internals/showimg-particles-and-gs2-format.md#guishowimgctrl-and-tshowimg) |
+| An ani show-image takes head, body, sword, shield and `attr[]` from the owner while `playerlook` is true (the default); false takes them from `showimg.actor.*` | [doc] (client-internals/showimg-particles-and-gs2-format.md#guishowimgctrl-and-tshowimg) |
+| `mode` blends 0 add, 1 transparent, 2 subtract, 3 day-night; a particle with default colour and mode 0 or 1 leaves the blend state alone | [doc][bin] (client-internals/showimg-particles-and-gs2-format.md#guishowimgctrl-and-tshowimg) |
+
+#### The particle emitter (`TParticleEmitter`)
+
+| Rule | Source |
+| --- | --- |
+| Properties (same names in 4.2.0.8 and 6.03): `attachposition`, `autorotation`, `checkbelowterrain`, `clippingbox`, `cliptoscreen`, `continueafterdestroy`, `currentparticlecount`, `delaymin`, `delaymax`, `dropemitter`, `dropwateremitter`, `emissionoffset`, `emitatterrainheight`, `emitautomatically`, `emittedparticles`, `firstinfront`, `isfrozen`, `maxparticles`, `movementfactor`, `nrofparticles`, `particle`, `particletypes`, `wraptoclippingbox`; methods `addglobalmodifier`, `addlocalmodifier`, `addemitmodifier`, `advancetime`, `emitat`, `removemodifiers`, `removeparticles` | [bin] (client-internals/showimg-particles-and-gs2-format.md#properties) |
+| With `emitautomatically`, bursts come every delay drawn uniformly from [`delaymin`, `delaymax`] seconds; the first tick only starts the timer; a burst emits `min(nrofparticles, maxparticles − currentparticlecount)`, each particle copying a random template from `particletypes` | [bin][inf] (client-internals/showimg-particles-and-gs2-format.md#properties) |
+| `emissionoffset` is added to each new particle's position, scaled by the emitter's movement scale and rotated by its turn angle; the same scale multiplies `movex`/`movey`/`movez` and the `add` modifier on `x`, `y`, `z`; that scale is probably `movementfactor` | [bin][inf] (client-internals/showimg-particles-and-gs2-format.md#properties) |
+| A particle leaving the clipping box (or the screen) is removed, or with wrap moved back by whole box widths; `checkbelowterrain` lifts or removes particles under the terrain; `isfrozen` stops movement and emission | [bin][doc] (client-internals/showimg-particles-and-gs2-format.md#properties) |
+| Modifier fields, index 0 to 17: `x, y, z, movex, movey, movez, angle, zangle, speed, rotation, spin, stretchx, stretchy, red, green, blue, alpha, zoom`; `lifetime` is in seconds, angles in radians, rotation += spin × dt, colours 0 to 1; `sound` plays at emission, one picked at random | [bin][doc][inf] (client-internals/showimg-particles-and-gs2-format.md#particle-fields) |
+| `addXmodifier(type, time1, time2, field, operation, min, max)` has signature `sffssff`; type `once`, `impulse` or `range`; operation `replace`, `add` or `multiply`; unknown types are refused and a list caps at 1000 | [bin] (client-internals/showimg-particles-and-gs2-format.md#modifiers) |
+| `once` fires once at a time drawn from [`time1`, `time2`]; `impulse` fires at such a time and again after each new draw; `range` applies every frame while the age is in [`time1`, `time2`], `replace` interpolating min→max (then max), `add` as a per-second rate, `multiply` doing nothing, and only its first non-multiply entry applying | [bin] (client-internals/showimg-particles-and-gs2-format.md#modifiers) |
+| `addlocalmodifier` runs a clock per particle from its emission; `addglobalmodifier` one emitter clock that changes every live particle when it fires; `addemitmodifier` the emitter clock, changing the templates and so later particles | [bin] (client-internals/showimg-particles-and-gs2-format.md#modifiers) |
+| New particles go to the front of the list; with `firstinfront` false (default) the newest draw on top, with true the oldest; sub-emitters draw before the emitter's own particles | [bin] (client-internals/showimg-particles-and-gs2-format.md#draw-order) |
+
+#### Opcodes 82 (`indexof`) and 84 (`format`)
+
+| Rule | Source |
+| --- | --- |
+| 82: stack `…, list, value` → `…, index`; `list` is used as an object as is; an empty or non-object list gives −1; a number matches by float equality, a string by string equality, an object by identity, any other type gives −1; at least two slots are required | [bin] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-82-indexof) |
+| 84: stack `…, marker, argN, …, arg1, fmt` → `…, result` in the marker's slot; no marker empties the stack; a marker on top gives the empty string | [bin] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-84-format) |
+| The formatter is Graal's own: flags `+`, `-`, `#`; width and `.precision` each capped at 120; positional `n$`, after which arguments continue from that point; one `l` accepted and ignored | [bin] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-84-format) |
+| Conversions `%%`, `%d`/`%i` (precision zero-pads, width space-pads), `%u`, `%x`/`%X`, `%c`, `%f`, `%s` (precision truncates); any other letter prints nothing | [bin] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-84-format) |
+| Missing arguments: `%s` prints empty (still padded), `%d`/`%i`/`%u` print `0`, `%f` likely 0; a positional past the end counts as missing; extra arguments are ignored | [bin][inf] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-84-format) |
+| Open: whether `removemodifiers` clears the emit list, when a global clock starts, the particle kinds (image, ani, text), `indexof` case handling and `%d` rounding → App. E#210 | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
