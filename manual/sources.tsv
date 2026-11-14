@@ -737,3 +737,4 @@ tools/levelfiller.md	pending		11	LevelFiller theme filler teardown (static); to 
 tools/small-utilities-2026-11-14.md	pending		11	small utilities read statically (Guild Manager, guildcode, apcalc and others); to be folded into Part 11
 protocol/named-login-5x-6x.md	pending		2.3; 8	named (non-guest) lab logins on real 5.24r4 and 6.03r7 via adventure_setaccountname, and the 6.03r7 script-function name table; to be folded into the login and scripting sections
 client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding observations and all remaining helper, identity, wire and runtime gates carried; no mobile profile or native acceptance inferred.
+formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement field context and preservation boundary carried in3.3.8; native resolution remains open.
