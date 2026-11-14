@@ -1,4 +1,5 @@
 path	status	sections	planned	reason
+protocol/nc-standalone-flag-action.md	pending		7	artifact-specific analyst-seeded standalone NC action and outgoing buffer; recipient and receive semantics unresolved
 AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventions
 ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
