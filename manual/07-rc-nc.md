@@ -191,6 +191,24 @@ The rules below record what the capture showed: which props the RC sends back, h
 | rights bits | the dialog's check boxes map to bits from bit 0; "Warpto x y" and "Admin message" gave 513 (bits 0 and 9) | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | ban menu | the player menu has Edit Ban only: the account ban, with no IP or computer id ban | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 
+### 7.1.9 Which RCs are online
+
+There is no RC-list message on the wire: an RC learns who else is staff from the player list. The rows below give the rule per server and per RC [src][bin] (protocol/rc-list-online.md#answer).
+
+| Fact | Source |
+| --- | --- |
+| Id 65 (`PLI_RC_LISTRCS`) is never sent by any RC from 1999 to RC3 (2015), and no GServer source answers it; there is no server → client reply id for it | [bin][src][srv] (protocol/rc-list-online.md#answer) |
+| The 2001 GServer 1.39 and New World sources name 65 `LISTRCS`, 66 `DISCONNECTRC` and 67 `APPLYREASON`; 65 and 66 have no case and are dropped | [src] (protocol/rc-list-online.md#what-the-2001-servers-do) |
+| 67 is handled for an RC with admin level 3 or more: the server writes `Reason for the follwing account modification:` and the text to its log, and replies nothing; only the 2000/8/19 RC (`GSERV019`) and the 2000/10/25 RC send 67 | [src][bin] (protocol/rc-list-online.md#who-sends-65-bin) |
+| GServer-v2 handles 65, 66 and 67 as no-ops marked deprecated | [srv] (protocol/rc-list-online.md#what-the-2001-servers-do) |
+| On RC login a 2001 server sets the RC's own fields (nickname `<account> - away`, head `head25.gif`, level empty), drops any other RC from the same IP with "Another RC logged in from the same IP.", sends the new RC one 55 per player and RC (`s id`, `str account`, then `c 20` + level, `c 0` + nickname, `c 11` + head), and sends 74 `New RC: <account>` both ways for each RC already online | [src] (protocol/rc-list-online.md#2001-servers-src) |
+| When anyone leaves, every RC gets 56 `s id`; if the leaver was an RC, also 74 `RC disconnected: <account>` | [src] (protocol/rc-list-online.md#2001-servers-src) |
+| The online RCs are therefore the 55/56 entries whose level is empty | [src] (protocol/rc-list-online.md#2001-servers-src) |
+| GServer-v2 sends an RC's level as one space, adds player-list status and community name to 55, and sends one 74 `Currently online: <a>, <b>, …` after login | [srv] (protocol/rc-list-online.md#gserver-v2-srv) |
+| RC2 2.05 and RC3 put an entry in the **Admins** folder when its nickname's guild tag is in the 47 staff-guild list, or when its id is above 0, its level has length 0 (no trim) and bit 0 of prop 81 is clear; everything else goes to **Players**; prop 81 bits 1 and 2 move an entry to separate lists | [bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs under Players → App. E#424 | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| The RC2 2.05 RC socket handles server → RC ids 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 100, 102, 103, 180 and 190, the same set as the 2010 Linux RC; 65 on this socket is `PLO_RC_FILEBROWSER_DIRLIST` | [bin] (protocol/rc-list-online.md#rc2-205-server-client-ids-bin) |
+
 ## 7.2 NC login
 
 ### 7.2.1 Login and framing

@@ -275,7 +275,7 @@ formats/sign-text.md	cited	3.6	3.6
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
-graal3d/beta3-genesis.md	pending		9	later Graal3D beta (GR3DV003): Genesis3D renderer, same protocol; to be folded into the Graal3D section
+graal3d/beta3-genesis.md	cited	9; E	9	
 graal3d/camera.md	cited	9; E	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	
@@ -350,7 +350,7 @@ protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B; E	2.6; B
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
-protocol/rc-list-online.md	pending		6	id 65 is never sent; RCs come from the player list with an empty level; for the RC section
+protocol/rc-list-online.md	cited	7; E	6	
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/shoot-5007.md	cited	2.4; 2.5	2.5	
@@ -675,7 +675,7 @@ client-internals/linux-304-executable-build.md	pending		1; 10	Linux 3.04 packing
 client-internals/windows-404r2-components.md	pending		1; 10	4.04r2 module map (carrier, Delphi shell, GraalEngine, Graal3DEngine, FMOD), engine exports and built-in HawkVoice; to be folded into the build list and the Torque clients section
 client-internals/mac-611r1-send-slots.md	pending		1; 2	Mac 6.11r1 named send-slot table, matching the Windows 6.11 slot numbers; to be folded into the build list and the protocol section
 client-internals/v7-unity6000-unpack.md	pending		1	current Unity 6000 v7 client unpack and IL2CPP v31 metadata; to be folded into the build list beside the v7 IL2CPP name notes
-protocol/pcid.md	pending		2.3; 6	PCID: listserver-assigned PC id from the login machine fields (VERIACC2 identity, SVI_ASSIGNPCID); to be folded into the login and listserver sections
+protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
 client-internals/mac-ppc-404-512/SUMMARY.md	pending		2.3; 4.1	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule and PLO sets; to be folded into the framing and build sections
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
 client-internals/v3-v5-protocol-pass/README.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections

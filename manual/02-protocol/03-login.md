@@ -242,7 +242,7 @@ The machine fields differ by platform. Each row gives the five fields one family
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows 4.20r8, 5.00r7 | `win` | MD5 hex of the Windows `DigitalProductId` | MD5 hex of the network adapter MAC (fallback: node part of `UuidCreateSequential`, or `UuidCreate`) | MD5 hex of the `C:\` volume serial | none | [bin] (protocol/v4x-clients.md#login-packet); [bin] (protocol/v5x-clients.md#login) |
 | Mac 4.20r6 | `mac` | hash of the primary Ethernet MAC | hash of 4 bytes of `stat("/etc")` | empty | none | [bin] (protocol/v4x-clients.md#login-packet) |
-| Windows 5.12, 5.24r3 to 6.03r7 | `win` | MD5 hex of the product id (5.24 and later also read `DigitalProductId4`, so the hash differs from 5.12) | MD5 hex of the adapter MAC | MD5 hex of the `C:\` serial | quoted Windows version `"<major>.<minor> <build> <service pack>"` | [cap][bin] (protocol/v5v6-windows-unpacked.md#login-message) |
+| Windows 5.12, 5.24r3 to 6.03r7 | `win` | MD5 hex of the product id (5.24 and later try `DigitalProductId` before `DigitalProductId4` in each key, so the hash usually matches 4.x; → §2.3.5.1) | MD5 hex of the adapter MAC | MD5 hex of the `C:\` serial | quoted Windows version `"<major>.<minor> <build> <service pack>"` | [cap][bin] (protocol/v5v6-windows-unpacked.md#login-message) |
 | Linux 6.01r1, 6.03r7 | `linux` | MD5 hex of the `eth0` MAC | MD5 hex of the inode number of `/etc` | empty | kernel release and version string | [bin] (protocol/v6x-clients.md#login-message-601-and-603) |
 
 The rules below say what the machine fields are for and what a late client sends right after logging in [bin][inf] (protocol/v5x-clients.md#login).
@@ -255,6 +255,28 @@ The rules below say what the machine fields are for and what a late client sends
 | Each build logs in by itself as the built-in guest once it reaches the login screen; the guest password is fixed per build family and is decrypted at run time on Linux 6.x | 5.12 to 6.03r7 | [cap][inf] (protocol/v5v6-windows-unpacked.md#login-message); [bin][inf] (protocol/v6x-clients.md#login-message-601-and-603) |
 | The first connection goes to a game server named `Login`, not to a separate listserver; the client reaches a game only after S→C 178 (`PLO_SERVERWARP`) and logs in again to that host (→ §6) | 4.x to 6.03 | [bin] (protocol/v4x-clients.md#login-server-and-licensegraal); [bin][cap] (protocol/v5x-clients.md#login); [bin] (protocol/v6x-clients.md#login-server) |
 | 6.11 asks for a connector script before the game socket; the script builds the login itself, so its token and layout are unmeasured (→ §2.10) | 6.11 Mac | [bin] (protocol/login-session-known.md) |
+
+### 2.3.5.1 How the machine fields are computed
+
+Each hardware field is computed the same way in every build read: the Windows 4.20 engine, the unpacked Windows 6.03r7, Mac 4.20r6 and Linux 6.03r7 x64 [bin] (protocol/pcid.md#what-the-client-sends).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| A hardware field is plain MD5 over the raw bytes below, as 32 lowercase hex digits; no salt, key or mixing between fields | all read | [bin] (protocol/pcid.md#how-every-field-is-encoded) |
+| A value the client cannot read goes out as an empty field, not as the MD5 of nothing | all read | [bin] (protocol/pcid.md#how-every-field-is-encoded) |
+| Fields are joined with commas; a field is wrapped in double quotes when it is empty or holds a space, comma, quote or backslash, so an empty field is `""` and the OS-version field is always quoted | all read | [bin][cap] (protocol/pcid.md#how-every-field-is-encoded) |
+| Product id: MD5 of the binary `DigitalProductId` (up to 512 bytes) from `HKLM\Software\Microsoft\Windows\CurrentVersion`, else from `...\Windows NT\CurrentVersion` | Windows 4.04r2, 4.20 | [bin] (protocol/pcid.md#windows) |
+| Product id: the same two keys, each tried for `DigitalProductId` then `DigitalProductId4`; the first non-empty value wins | Windows 5.24r3 to 6.03r7 | [bin] (protocol/pcid.md#windows) |
+| The registry is opened with no 64-bit-view flag, so a 32-bit client on 64-bit Windows reads the redirected view, where the values are normally absent; the 6.03r7 capture on Windows 10 has `""` there | Windows 5.24r3 to 6.03r7 | [bin][cap][inf] (protocol/pcid.md#windows) |
+| Network: MD5 of the 6-byte node of a `UuidCreateSequential` UUID (`UuidCreate` if missing), which is a network card's MAC on Windows 2000 and later | Windows 4.04r2, 4.20 | [bin] (protocol/pcid.md#windows) |
+| Network: MD5 of the 6-byte address of the first `GetAdaptersInfo` adapter that has a non-zero IPv4 address; no UUID fallback, empty when none | Windows 5.24r3 to 6.03r7 | [bin] (protocol/pcid.md#windows) |
+| Disk: MD5 of the 4-byte little-endian volume serial of `C:\` from `GetVolumeInformationA` | Windows 4.x to 6.03r7 | [bin] (protocol/pcid.md#windows) |
+| Network: MD5 of the 6 raw `IOMACAddress` bytes of the Ethernet interface marked `IOPrimaryInterface`; empty if none (an emulated card counts once marked built-in) | Mac 4.20r6 | [bin][lab] (protocol/pcid.md#mac-420r6) |
+| Second field: MD5 of 4 bytes from `stat("/etc")`, probably the inode as on Linux | Mac 4.20r6 | [bin][inf] (protocol/pcid.md#mac-420r6) |
+| Network: MD5 of the `SIOCGIFHWADDR` address of the interface named `eth0`; the result is not checked, so a machine without `eth0` sends the MD5 of six zero bytes, `7319468847d7b1aee40dbf5dd963c999` | Linux 6.01r1, 6.03r7 | [bin][inf] (protocol/pcid.md#linux-601r1-603r7) |
+| Second field: MD5 of the low 4 bytes of the `/etc` inode number | Linux 6.01r1, 6.03r7 | [bin] (protocol/pcid.md#linux-601r1-603r7) |
+| The hashes are unsalted MD5 of short inputs, so a 4-byte serial or inode, or a MAC under a known vendor prefix, can be recovered by search; clients can send any values | all | [inf] (protocol/pcid.md#what-the-hashes-do-and-do-not-hide) |
+| The PC id a server sees is not computed from these fields by the game server: the listserver assigns it (→ §6.5.1) | 4.x and later | [src] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
 
 ## 2.3.6 Server parse and reply sequence
 

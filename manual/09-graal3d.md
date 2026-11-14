@@ -398,3 +398,42 @@ Not every part of Graal3D was confirmed in the lab. The facts below say what was
 | Lab-confirmed on 2026-10-30: the accept and reject flow, the login order, the full props exchange, level name, text and leader, prop 50, the UDP relay rule, the guild-tag echo, prop 14 not moving the player, saved props, load-only logins, the disconnect messages, the admin login replies and `accounts.txt` | [lab] (graal3d/lab-2026-10-30.md#what-was-confirmed) |
 | Not confirmed: UDP between two real clients, admin commands 51–54, 59, 60 and 62, and the two kick buttons | [lab] (graal3d/lab-2026-10-30.md#not-confirmed) |
 | Ids 4 and 6 set client values that nothing reads | [bin][cap] (graal3d/README.md#open-points) |
+
+## 9.7 The later beta (`GR3DV003`)
+
+A second standalone client, "New Graal 3D Beta Version", logs in with `GR3DV003`. It keeps the February 2000 network side and swaps the renderer for Genesis3D. Only static reads exist; the beta was not run [bin] (graal3d/beta3-genesis.md#summary).
+
+### 9.7.1 What stays the same
+
+| Fact | Source |
+| --- | --- |
+| The beta ships as a RAR with one `Graal3D.exe` of 630,272 bytes; the February 2000 `GR3DV002` exe is 605,184 bytes | [file] (graal3d/beta3-genesis.md#graal3d-later-beta-gr3dv003-the-genesis3d-rebuild) |
+| The login line is built by the same code as `GR3DV002` (`c(0)` + version + `str(account)` + `str(password)`, → §9.1.2); only the version string differs | [bin] (graal3d/beta3-genesis.md#what-stays-the-same) |
+| TCP 14901, the same frame and text codec, and the same `noudp` / `fixedudpport` options | [bin] (graal3d/beta3-genesis.md#what-stays-the-same) |
+| The server → client switch acts on the same ids, 0 to 6, 8 and 100; every other id goes to the default branch | [bin] (graal3d/beta3-genesis.md#what-stays-the-same) |
+| The props parser is a jump table over 0 to 51 in both builds, and the same ids reach a handler: 0 to 17, 50 and 51 | [bin] (graal3d/beta3-genesis.md#what-stays-the-same) |
+| Both exes carry the same Delphi linker stamp, so the PE header does not date the beta | [bin] (graal3d/beta3-genesis.md#what-stays-the-same) |
+
+### 9.7.2 What changes
+
+| Area | `GR3DV002` (February 2000) | `GR3DV003` (later beta) | Source |
+| --- | --- | --- | --- |
+| Renderer | Direct3D RM, DirectDraw, DelphiX `TDXDraw` | Genesis3D (`genesis.dll`, made with `geEngine_CreateWithVersion`), with a driver and mode picker form | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| World | Packet 0 carries the level as `.x` text (→ §9.3) | Packet 0 only clears the leader flag and ignores the text; the world is a local BSP, `genvs.bsp`, loaded at start | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| Players | `.x` meshes | A Genesis3D actor `dema.act` with `shadow.bmp` / `shadowalpha.bmp` blob shadows; `body.x` and `head.x` stay only as config defaults | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| Level entities | none | The BSP's entity set; class names `MovingPlat` and `DeathMatchStart` | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| Collision | per-face test on the RM mesh (→ §9.5) | Genesis3D world collision (`geWorld_Collision`, `geWorld_TestModelMove`) | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| Input | DelphiX keyboard | DelphiX `TDXInput`: DirectInput keyboard and joystick, force feedback, `joyGetPosEx` | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| HUD art | `logo.bmp` | `font.bmp`, `chatbar.bmp`, `corona.bmp`, `corona_a.bmp` | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| `graal3dconfig.txt` | the keys of §9.2.4 | the same keys plus `RUN_SPEED`, `WALK_SPEED`, `PLAYER_GROUND_FRICTION`, `PLAYER_AIR_FRICTION`, `PLAYER_GRAVITY`, `PLAYER_JUMP_THRUST`, `CAMERA_DISTANCE`, `CAMERA_PLAYERCENTERY`, `CAMERA_DISTANCEY` and `playerscale`; defaults unmeasured | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| Default server | none built in | a built-in default host name | [bin] (graal3d/beta3-genesis.md#what-changes) |
+| Origin of the world and actor | n/a | `genvs.bsp`, `dema.act`, `MovingPlat` and `DeathMatchStart` match the public Genesis3D SDK demo | [inf] (graal3d/beta3-genesis.md#what-changes) |
+
+### 9.7.3 Server acceptance
+
+| Fact | Source |
+| --- | --- |
+| The archived Graal3D server sets version level 0, then 1 for `GR3DV001` and 2 for `GR3DV002`; a login below 2 gets packet 5 "You need at least Graal3D beta2 to play on this server." and is closed, so `GR3DV003` is refused | [bin] (graal3d/beta3-genesis.md#does-the-archived-server-accept-it) |
+| No archived server knows `GR3DV003` | [file] (graal3d/beta3-genesis.md#does-the-archived-server-accept-it) |
+| A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log the beta in, and need not send level text | [inf] (graal3d/beta3-genesis.md#does-the-archived-server-accept-it) |
+| Open: a lab run needs `genesis.dll` and the beta's art, none of which ship in the RAR; the new physics keys' built-in defaults and the beta's UDP datagram layout were not read → App. E#504 | [bin] (graal3d/beta3-genesis.md#open-points) |
