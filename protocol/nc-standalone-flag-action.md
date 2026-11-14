@@ -20,8 +20,11 @@ builder. It is therefore more than local presentation **[bin]**.
 
 ## Bounded observations
 
-- The action obtains a collection count, represents it as two seven-bit groups
-  biased by 32, and iterates that collection **[bin]**.
+- The action obtains a collection count and constructs low and high components,
+  each biased by 32. The low component uses the low seven bits; the high
+  component is shifted right by seven and narrowed to a byte, without an
+  established seven-bit mask or range guard **[bin]**. It then iterates the
+  collection. Count range and overflow behavior remain unresolved.
 - It adds each item's length in a biased byte representation and the item's
   contents to the constructed payload **[bin]**. The collection's precise UI
   type and treatment of out-of-range lengths remain unresolved.
