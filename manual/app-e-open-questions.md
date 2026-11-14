@@ -165,6 +165,18 @@ Four protected builds exit on today's date; where their cutoff lies was not read
 | Open | whether the Themida builds' timer check uses 5.24r4's thresholds | [bin] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | Settles it | a binary search on the guest clock for each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 
+### E#15 Graal 2002 and 1.40 exact-input validation
+
+The static inputs in §1.1.5 establish tokens, command names and receive-route differences, not the exact-input login or gameplay behavior. These remaining questions retain the source study's boundaries. [bin] (client-internals/graal2002-and-140-builds.md#open-points)
+
+| Open item | Discriminator | Source |
+| --- | --- | --- |
+| `GNW31101` and `GNW23090` login evidence | capture a login from exact ver10 or v22, and a checked 1.40 input, on an isolated loopback lab; keep grade B until captured | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| ver7–ver13 default routes 2, 4, 17, 18, 154, 155 | a correctly identified baddy/chest/horse fixture and observable result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Exact ver10 first emitted properties update | observe the normal interactive client before the first server reply; compare fresh sessions with no reply, an unrelated reply and self-properties id 9. Static gate clearing and six-property construction do not settle the other startup guards or actual emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
+| Six Graal 2002 PLI sets | read their own send sites; do not borrow neighboring build or shared-token rows | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Machine-readable command matrix | add the six exact inputs to the scanner build inventory and regenerate, preserving input provenance | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+
 ### E#100 Collision of the Bush stamp tiles
 
 Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).

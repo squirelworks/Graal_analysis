@@ -66,6 +66,20 @@ The id table above shows which ids each build handles. The rules below explain i
 | Against 5.00r7, 6.x drops 41, 75, 132, 133, 165, 169, 171, 175, 181, 184 and 193 and adds 109, 111 and 198 | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | A later client (5.07 and up, or 6.037, as the source note marks each id) ignores 26, 41, 44, 55, 56, 60, 78, 80, 81, 83, 132, 157, 159–164, 165, 167, 171, 175, 188 and 192 | 5.07, 6.037 | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
+### 2.5.2.1 Graal 2002 static receive routes
+
+These counts enumerate logical ids whose destination differs from the dispatcher's default, not accepted payloads or visible effects. The same counting method reproduces the previously published 2.05, 2.1 test 3, 2.17.1, 1.39 and 1.41 rev 1 rows. The bound is the highest logical id tested. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
+
+| Input | Nondefault ids | Bound | Difference established by this study | Source |
+| --- | ---: | ---: | --- | --- |
+| ver7 | 55 | 169 | 2.1 test 3 set without 2, 4, 17, 18, 154, 155 | [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle) |
+| ver8, ver9 | 56 | 170 | ver7 plus 170 | [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle) |
+| ver10, ver13 | 60 | 174 | ver8/ver9 plus 171–174 | [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle) |
+| v22 | 69 | 177 | restores 2, 4, 17, 18, 154, 155 and adds 175–177 | [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle) |
+| 1.40, 1.40 rev 1, extra 1.41 rev 1 copies | 45 | 100 | 0–41, 43, 75, 100, as in 1.39 | [bin] (client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle) |
+
+The six default-routed ids in ver7–ver13 correspond in classic numbering to baddy props, chests, horses and related handlers. Their default destinations do not independently prove runtime absence of those features; send/receive effects need the separate lab discriminator in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle)
+
 ## 2.5.3 Level data
 
 These messages carry a level to the client: its board, links, signs, chests, baddies and NPCs. Each row gives the id and name, the payload layout and what the client does with it [srv][2.05] (protocol/packet-layouts.md#level-data-server--client).

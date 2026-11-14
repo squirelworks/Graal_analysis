@@ -12,6 +12,12 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Trace exact ver10 initial property construction and its receive-side gate.** [Static trace](../client-internals/graal2002-and-140-builds.md#ver10-initial-player-properties-update-2026-11-15); manual §2.4/§2.6. This does not establish a native first packet.
+  - [ ] Validate the first emitted update on the normal interactive Windows client with the discriminators in App. E#15.
+
+- [x] **Carry the existing Graal 2002 and 1.40 static study into the manual.** ~~Separate exact input identity, token evidence, command dating and receive routes.~~ [Study](../client-internals/graal2002-and-140-builds.md); §1.1.5, §2.3.3.1, §2.5.2.1, §8.2.7.2 and App. C/E. This is manual carry, not completion of exact-build login or client teardown.
+  - [ ] Resolve the exact-input login, default-route effects, outgoing ids and scanner-matrix follow-ups in App. E#15; token/command-table matches alone do not settle them.
+
 - [x] **Qualify the shipped mobile GANI movie sample and actor-kind carry.** ~~Correct the blanket no-saved-movie claim and carry the observed boolean spellings and serialized actor form.~~ [Source](../tools/graalshop.md#shipped-movie-sample-and-remaining-limits); manual §3.3.2/§3.3.6. Saved movie existence was already reported; this does not establish playback or a producing editor.
   - [ ] Reconcile the exact editor inputs behind the conflicting 2002/2006 movie-support attributions (App. E#612); establish indexed CHAR-key spelling, coordinate units and native timing separately.
 
