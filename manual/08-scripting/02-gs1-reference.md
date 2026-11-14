@@ -484,10 +484,10 @@ The 61 builds of the command matrix fall into 25 distinct command tables from 1.
 | constant comparisons | 0 before 2.17 (`1==1` false in 1.41r1 and 2.05r2); normal from 2.17.1 | [lab] (npc-library/gs1-per-build-2026-11-13.md#constant-comparisons-before-217) |
 | message codes before 2.17 | `##` becomes `#`; `#b` and an argument-less `#v`/`#s` are empty; an unknown code loses its `#` | [lab] (npc-library/gs1-per-build-2026-11-13.md#message-codes-before-and-after-217) |
 | message codes from 2.17 | unknown codes stay as written; `#F` from 2.17, `#K(n)` from 2.00 | [lab][bin] (npc-library/gs1-per-build-2026-11-13.md#message-codes-before-and-after-217) |
-| 2.17.1 argument letters | `showtext` RRRSSS, `showtext2` RRRRSSS, `shoot` RRRRRRSS, `putnpc2` RRS, `showimg2` RFRRR, `wraptext` RSS, `setcursor2` F and the rest as the note lists; the same as 3.04's | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions) |
+| 2.17.1 argument letters | `showtext` RRRSSS, `showtext2` RRRRSSS, `shoot` RRRRRRSS, `putnpc2` RRS, `showimg2` RMRRR, `savelog2` MS, `wraptext` RSS, `setcursor2` F and the rest as the note lists; the same as 3.04's. An earlier summary wrote `showimg2` as `RFRRR` and `savelog2` as `SS` | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions); [bin] (npc-library/gs1-message-codes-by-build.md#letters-the-summary-had-wrong) |
 | server-only commands | `putnpc2`, `savelog2`, `sendpm`, `sendtonc`, `sendtorc`, `setpm` have no client executor in 2.17.1 to 3.04 | [bin] (npc-library/gs1-per-build-2026-11-13.md#argument-letters-of-the-2171-additions) |
 | corrected first builds | `showtext`, `hideimgs` 2.17.1; `openurl2` 2.01; `move` 2.03; `setz` 2.05; `addstring` NewWorld beta 2 | [bin] (npc-library/gs1-per-build-2026-11-13.md#corrected-first-builds) |
-| loops and later codes | bare numbers in `while` and `for`, `##` by build, and the populated `#F` `#S` `#D` `#I` `#R` `#P6`–`#P9` `#C6` `#C7` readings are in → §8.2.12. Events, flags, variables and functions per 1.x build are still unmeasured | [lab] (live-runs/open-issues-2026-11-14/README.md#1-442-gs1-per-version); [lab] (npc-library/gs1-per-build-2026-11-13.md#not-measured) |
+| loops and later codes | bare numbers in `while` and `for`, `##` by build, and the populated `#F` `#S` `#D` `#I` `#R` `#P6`–`#P9` `#C6` `#C7` readings are in → §8.2.12. The registered names, the 1.41r1 set, bare `#5` and `#6`, and `#v(##)` are in the same section. Events, flags, variables and functions per 1.x build are still unmeasured | [lab] (live-runs/open-issues-2026-11-14/README.md#1-442-gs1-per-version); [bin][lab] (npc-library/gs1-message-codes-by-build.md); [lab] (npc-library/gs1-per-build-2026-11-13.md#not-measured) |
 
 ## 8.2.12 Loop truth and message codes, 1.33 to 2.31
 
@@ -506,6 +506,18 @@ In 1.33, `#v()` cannot read a `this.` variable (`this.n=5` still shows `0`), so 
 On 2.05r2 a level that holds the whole loop set never leaves the load dialog. Each head in its own level, with one companion NPC, loads and shows the values above, including `while(1)`. The hang is the level as a whole, not one loop head. [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition)
 
 `##` is not the same code in 1.33 as it is from 2.05r2. [lab] (live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133)
+
+On 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31, `#v(##)` shows `0`. The escaped hash is not a number inside `#v`. `set 1;` then `while(1)` runs on those five builds, and `while(1)` without that flag does not. [lab] (npc-library/gs1-message-codes-by-build.md#v-of-a-doubled-hash); [lab] (npc-library/gs1-message-codes-by-build.md#a-flag-named-1)
+
+2.17.1 registers each code by name. 2.22 and 2.31 add `R(S)`. Linux 3.04 keeps that set without `C5`, `C6` and `C7`. The registry does not name `##`, `#b` or `#7`. [bin] (npc-library/gs1-message-codes-by-build.md#registered-names)
+
+| Item | Rule | Source |
+| --- | --- | --- |
+| 1.41r1 set | `#`, `1`, `2`, `3`, `5`, `6`, `7`, `8`, `C`, `L`, `a`, `b`, `c`, `f`, `g`, `m`, `n`, `s`, `v`, `w`. No `#e`, `#K`, `#P` or display codes. `#e(1,2,ABCD)` shows `e(1,2,ABCD)` and `#K(65)` shows `K(65)` | [lab] (npc-library/gs1-message-codes-by-build.md#what-the-empty-scenes-showed) |
+| `#b` from 2.17.1 | `A#bB` stays `A#bB`. On 1.41r1 and 2.05r2 it shows `AB` | [lab] (npc-library/gs1-message-codes-by-build.md#what-the-empty-scenes-showed) |
+| unknown code | `A#?B` stays `A#?B` from 2.17.1 and loses the `#` before that | [lab] (npc-library/gs1-message-codes-by-build.md#two-engines) |
+| bare `#5` and `#6` | empty on 2.05r2. On 2.17.1, 2.22 and 2.31 each was replaced by the label text in front of it. The cause was not traced (→ App. E#203) | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| `showimg2`, `savelog2` | `RMRRR` and `MS` on 2.17.1, 2.22, 2.31 and 3.04 | [bin] (npc-library/gs1-message-codes-by-build.md#letters-the-summary-had-wrong) |
 
 | Text | 1.33 | 2.05r2 and 2.17.1 | Source |
 | --- | --- | --- | --- |

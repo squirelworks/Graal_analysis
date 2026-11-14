@@ -29,6 +29,7 @@ macOS CI is paused until the polish stage.
   - [x] ~~GS2 VM semantics by client version, 3.153 to 6.03r7.~~ [Note](../client-internals/gs2-vm-by-version.md); manual §8.4.9, App. C.8, E#209.
   - [x] ~~Strict GS2 quirk probes.~~ [Note](../npc-library/gs2-strict-probes-2026-11-13.md); manual §8.3.7.
   - [x] ~~GS1 per build: tables, statements, conditions, message codes.~~ [Note](../npc-library/gs1-per-build-2026-11-13.md); manual §8.2.11, App. C.5.
+    - [x] ~~Message-code registry, the 1.41r1 set, bare `#5`/`#6`, `#v(##)`, and the flag named `1`.~~ [Note](../npc-library/gs1-message-codes-by-build.md); manual §8.2.12, E#203. `showimg2` is `RMRRR` and `savelog2` is `MS`.
   - [x] ~~Combat, baddy and lava rules, 1.21 to 2.31.~~ [Note](../client-internals/combat-baddy-tile-by-version.md); manual §4.3.3, §4.3.8, App. C.9, E#324.
   - [x] ~~Game rules of the 1999 servers.~~ [Note](../server-notes/gserver-1999-rules.md); manual §5.1.6, E#423.
   - [x] ~~Settle E#301: the 3.x, 4.x and 6.x cadence and GS1 `timeout` rounding.~~ [Note](../client-internals/update-cadence-3x-6x.md); manual §4.1.7, App. C.7.
