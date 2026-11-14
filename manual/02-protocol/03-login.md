@@ -233,6 +233,8 @@ The fields are those of → §2.3.3 with client type 5. The message travels in t
 
 From 4.x the login message keeps the 2.x opening and adds machine identity. The table lists its fields in order [bin] (protocol/v4x-clients.md#login-packet).
 
+Attribute a login to the inspected engine, not the launcher's FileVersion. The compared 5.12-labelled launcher/engine pair contains modified 5.00r7 code; its edited resource does not establish a 5.12 token or wire layout. The separate genuine 5.12 engine retains its own evidence (→ §1.8.9). This static comparison ran no login and adds no newly observed token. [bin] (client-internals/launchers-420r8-500r7-512.md)
+
 | Order | Field | Type | Source |
 | ---: | --- | --- | --- |
 | 1 | client type 5 | `c` | [bin] (protocol/v4x-clients.md#login-packet); [bin] (protocol/v5x-clients.md#login) |

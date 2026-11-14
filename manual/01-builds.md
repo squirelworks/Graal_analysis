@@ -784,6 +784,18 @@ Lab measurements kept as tables beside them:
 | `lab-serverwarp178.tsv` | how 2.31 reacts to variants of the S→C 178 fields | [lab] (version-profiles/lab-serverwarp178.tsv) |
 | `lab-showimg24-relay.tsv` | C→S 24 payloads and how the server relays them to other players | [lab] (version-profiles/lab-showimg24-relay.tsv) |
 
+### 1.8.9 Later launcher identity and the 5.12 label
+
+The static comparison of four Windows launcher copies adds component identity, not a new protocol profile. Launchers carry version resources and load engine modules; the game, packet/property parsers, script machinery and login token belong to the engine. Negative scanner results on a launcher are not evidence that the corresponding engine lacks those features. No client was executed for this comparison. [bin] (client-internals/launchers-420r8-500r7-512.md#the-short-answer)
+
+| Checked comparison | Identity result | Limit | Source |
+| --- | --- | --- | --- |
+| Two 4.20r8 launchers | matching build, with the observed difference confined to an added padding string | launcher identity alone does not authenticate every companion component | [bin] (client-internals/launchers-420r8-500r7-512.md) |
+| 5.00r7 launcher and a 5.12-labelled copy | the latter is the 5.00r7 launcher with edited version metadata and a code change; its companion engine is a modified 5.00r7 engine | the 5.12 label supplies no 5.12 protocol or script-VM evidence | [bin] (client-internals/launchers-420r8-500r7-512.md) |
+| Separately identified genuine 5.12 engine | the study reads the engine file, rather than only the earlier process image; its self/other-player, NPC and baddy case sets agree with the prior 5.x row | case-set equality does not establish equal per-id value widths or whole-program equivalence | [bin] (client-internals/launchers-420r8-500r7-512.md#the-genuine-512-engine) |
+
+The genuine 5.12 component set in this comparison uses the combined 3D-named engine module, rather than the separate game-engine module found in the relabelled pair. This is a distinction between these inspected inputs, not a rule that authenticates arbitrary files by name. Exact 5.12-versus-5.00r7 property value widths remain open; continue to use the established case sets in App. C.1 row J without upgrading them to width equivalence. Operational modification details remain in the source and supply no reproduction-side policy. [bin] (client-internals/launchers-420r8-500r7-512.md#the-genuine-512-engine); (client-internals/launchers-420r8-500r7-512.md#open-points)
+
 ## 1.9 Identity and platform evidence
 
 These records say what an archived file is, and where that identity stops. None of them is a behaviour reading; each keeps the scope its source gives it. [bin] (version-profiles/macos-client-compatibility.md)
