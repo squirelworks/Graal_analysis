@@ -1,6 +1,6 @@
 # Small Graal utilities (gap 9 of the tool coverage)
 
-Date: 2026-11-14. Static reads of the copies we hold; nothing was run. This
+Date: 2026-11-14. Static reads of the copies we hold. apcalc and Guild Manager were packed; they were unpacked in an offline Windows lab VM (UPX for Guild Manager, a memory copy of the running process for apcalc). This
 closes gap 9 of `tools-coverage-2026-11-14.md`. Only Graal Messenger has
 anything a Seihai tool needs; the rest are recorded so they need no second look.
 
@@ -9,8 +9,8 @@ anything a Seihai tool needs; the rest are recorded so they need no second look.
 | Graal Messenger (2012) | Stand-alone buddy list, PM and server browser for the 6.x login | Optional, low: a `seihai-rc` mode |
 | Graal Sound Fix (2010) | Java one-button toggle of one client option | Not needed; one line in the launcher |
 | Default characters and theme icon DLLs (1999) | Icon libraries | Not needed |
-| apcalc | Packed VB6 program, behaviour unread | Not needed unless its purpose turns out useful |
-| Guild Manager 1.4 (2003) | Packed VB6 member-list editor | Not needed |
+| apcalc | VB6 AP calculator (minutes to 100 AP and to healing) | Not needed |
+| Guild Manager 1.4 (2003) | VB6 offline guild member-list editor | Not needed |
 | guildcode / Guild Maker | The 1999 `.code` writer, already in `server-tools-2001.md` | Small: a `.code` reader and writer in seihai-core |
 | START-HUB | A GS1 level, not a program | Not needed; a GS1 test fixture |
 
@@ -75,20 +75,47 @@ in a string table, plus the Graal icon) and 5 theme icons (signs, chests, the
 
 ## apcalc
 
-`apcalc.exe` (17,408 bytes). A VB6 program ("Project1", internal name
-`apcalc`, company "Home") packed with PECompact; the strings are compressed.
-The name suggests an alignment-point calculator. Reading it needs an unpack
-(PECompact) or a run under Wine; neither was done.
+`apcalc.exe` (17,408 bytes): a native-code VB6 program ("Project1", internal
+name `apcalc`), packed with PECompact. It was unpacked by running it in an
+offline lab VM and copying its image out of memory. It is an AP (alignment
+point) calculator: type the current AP, press Enter, and it shows the minutes
+until 100 AP and until the player may heal.
+
+The rates it assumes, in seconds per AP point, by band:
+
+| AP | Seconds per point | Range it prints |
+|---|---|---|
+| 0–19 | 30 | +/- 30 seconds |
+| 20–39 | 90 | +/- 90 seconds |
+| 40–59 | 300 | +/- 5 minutes |
+| 60–79 | 600 | +/- 10 minutes |
+| 80–99 | 1200 | +/- 20 minutes |
+
+Time to 100 is `(band top − AP) × rate` plus the full bands above, so the
+whole climb from 0 is 43,800 s. Healing needs 40 AP: below 40 it prints the
+minutes to reach 40, from 40 up "Able to heal". It also has the messages
+"Getting closer to saint status" and "Saint Status" for the top band and
+"Please enter correct AP" for input it rejects (it compares against 0 and
+100).
+
+These are the same `aptime0..4` defaults (30/90/300/600/1200 s) as
+`client-internals/feature-specs/04-death-respawn.md`, here from a player tool
+of the time rather than a server. Nothing to port; the gserver owns AP.
 
 ## Guild Manager
 
-`Guild Manager.exe` 1.4.0.4 (32,256 bytes, UPX-packed VB6, 2003, by its
-author) with `COMDLG32.OCX`, `tray.ocx` and four skin JPEGs. The readme
-lists: add and remove members, remove doubles, member count, skins, auto-load
-on start, font colour, a "LiveUpdate" button and a tray icon. It edits a local
-member list for the owner to paste into a server; it does not talk to a
-server. Unpacking it (UPX) would show the list format; not needed for Seihai,
-where guilds live in the gserver.
+`Guild Manager.exe` 1.4.0.4 (32,256 bytes; 548,864 unpacked with UPX in the lab
+VM), native-code VB6, 2003, by Tyler Findleton. It edits a guild member list
+offline: add (account name and nickname), remove, remove doubles, a member
+count ("There are currently N member(s) in your guild."), open and save the
+list as a `.txt` file, a default guild loaded on start, text colour, skins and
+a tray icon. Settings go to `settings.ini` with `[Guild Settings]`
+`GuildLoc`, `[Skin Settings]` `SkinLoc` and `[Color Settings]` `LabelColor`.
+"LiveUpdate" downloads `guildmanager.zip` from the author's old GeoCities page
+as `Update.zip` and asks the user to unzip it. The only separator constant is
+`:`, used where account and nickname are joined, which fits the
+`account:nickname` lines of a GServer guild file; that join was not traced
+instruction by instruction. It does not talk to a server. Nothing to port.
 
 ## guildcode and Guild Maker
 

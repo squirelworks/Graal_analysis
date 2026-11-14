@@ -47,7 +47,7 @@ line).
 | 6 | GraalShop movie mode and shop pages | GraalShop 2002 builds, Graal Shop Preview | `graalshop.md` (movie grammar and keys), `graaleditor-vs-205.md` | lat-core gani editor (sprite frames already edit) | open: servertools #78 |
 | 7 | Server stat pages | gserverstat, gserverstat2, GServer Stats (2004), player-count PHP | `classic-tools/gserverstat.md`, two SUMMARYs, `account13.py` | servertools, from seihai-gserver's account store | open, low |
 | 8 | Character files (`CHR:1.00`) | Graal Character Designer 1.2.7, Character Generator 1.0, BinaryCrash Character / Head Viewer | `classic-tools/character-designer.md`, GCD and GChar SUMMARYs | `seihai` client (looks), not servertools | open, low |
-| 9 | Small utilities | Graal Messenger, Graal Sound Fix, the two 1999 icon DLLs, apcalc, Guild Manager, guildcode, START-HUB | `small-utilities-2026-11-14.md` | none, except `.code` files (seihai-core #63) | done; apcalc and Guild Manager stay packed |
+| 9 | Small utilities | Graal Messenger, Graal Sound Fix, the two 1999 icon DLLs, apcalc, Guild Manager, guildcode, START-HUB | `small-utilities-2026-11-14.md` | none, except `.code` files (seihai-core #63) | done |
 | 10 | DClient | DClientSetup 1198 (VB6) | DClient_setup SUMMARY: bootstrapper only; the CAB in this copy is a stub | none | blocked on a full copy |
 
 ## Every tool
@@ -135,7 +135,7 @@ or `manual/11-tools.md` and nothing more.
 | Server player count PHP + NPC | cat. | source | no (gap 7) |
 | Graal Messenger | yes | `small-utilities-2026-11-14.md` (two logins, buddy `lister` commands) | optional, low: a `seihai-rc` mode |
 | Graal Sound Fix | yes | source; `small-utilities-2026-11-14.md` | not needed |
-| apcalc | yes (copy held, PECompact-packed VB6) | no | not needed |
+| apcalc | yes | `small-utilities-2026-11-14.md` (AP bands, unpacked in a lab VM) | not needed |
 
 ## What is being built
 
