@@ -213,6 +213,10 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/offline-training.md` — embedded tutorial levels vs session levels.
 - `client-internals/client-assets.md` — pics1/picso sizes, tiledef line, levels/ counts.
 - `client-internals/lab-cells-200-205-2026-11-13.md` — lab: 2.00 walks 0.5 tile per 50 ms like 2.05; 2.05 rev2 opens a chest only from below; 2.05 offline keeps cut bushes gone on re-entry (App. E#318).
+- `client-internals/hud-603r7-black-box.md` — lab: the 6.03r7 built-in HUD measured on Linux and Windows: window and resize, tab, glove, sword, bar and counter positions from `state.png`, the heart rows (only current hearts, small staggered rows from 5), text only when fonts are served, and the `pics1.png`-before-warp black screen.
+- `client-internals/items-603r7-black-box.md` — lab: 6.03r7 sword, lift, throw, grab, chest and sign from the wire and the screen: packets and timings, carried-item offsets, 8-tick 128-px flight, break pieces, chest opens on contact, no built-in sign reader.
+- `client-internals/sound-files-6x.md` — the 4.x–6.x sound back ends (FMOD 3 on Windows, SDL_mixer on Linux) and what the files really are: PCM, IMA ADPCM, MPEG-in-WAV, A-law, an MP3 named `.wav`, Ogg in update packages.
+- `client-internals/graal-2.3-unpacked-package.md` — the "Graal v2.3 [Unpacked][Cracked]" package is 2.31 with its wrapper removed, an unpacked BASS, and the original unpatched RemoteControl.
 - `client-internals/lab-captures-2026-10-25/` — real 2.22 lab captures: chests (open facing up only), packet 40 gates, CURPOWER units, respawn target, default weapon image ids.
 - `client-internals/foot-test.md` — single-point movement test and wall/water predicates (the 2.05 client's real wall test is a box: see `client-internals/decomp-findings-2026-10-25-l/`).
 - `version-profiles/save-games-142-2171.md` — no client after 1.41 rev1 reads or writes offline save games (no save magic, no load-game menu); static.
