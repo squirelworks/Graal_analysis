@@ -200,9 +200,10 @@ in it changes those notes.
 | RemoteControl (NewWorld) | 2001/08/20 | `G2NRC006` | 18 | rights, comments, local ban, as in the main-server 2001/08/20 RC |
 | RemoteControl | 2002/01/11 | `GSERV023`, NC `NCL11012` | 27 | NPC Control, server list, file browser and short-message popup already built in |
 
-So NPC Control was a separate program from March 2001. `tools/npc-control.md` names RC 1.41
-(2002/05/02) as the first build with NC inside it. The 2002/01/11 RC already has NC, `GSERV023`
-and the 1.41 forms, four months earlier.
+So NPC Control was a separate program from March 2001. An earlier claim that RC 1.41
+(2002/05/02) was the first build with NC inside it is superseded by the 2002/01/11 RC:
+it already has NC, `GSERV023` and the forms examined in 1.41, four months earlier.
+The [RC 1.41 note](../tools/npc-control.md) scopes its wire layouts to the examined May build.
 
 ## Community servers of 2007–2010 **[bin]**
 
