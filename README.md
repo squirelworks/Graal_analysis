@@ -4,6 +4,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Windows 2.22-labelled verifier variants](formats/windows-222-verifier-variants.md) — four changed branch conditions in one RSA-verification routine; static comparison, distinct from the earlier community-control patch finding; no runtime acceptance claim.
 - [Windows 4.03r3 and 4.11 unpacked](protocol/v4x-windows-403r3-411.md) — the Thinstall packages unpacked without running them (signatures verify, tokens match); 107 and 108 arrive in 4.11 and 196 after it; the 4.11 Flash panel, 2D matrix and 3D-library callbacks; an obfuscated value holder; the public 2.1.0.0's 66 ids; static.
 - [Named (non-guest) logins for real 5.24r4 and 6.03r7](protocol/named-login-5x-6x.md) — a clientside GS2 weapon on the Login gserver calls `adventure_setaccountname` / `adventure_setpassword` before the serverwarp, so the world gets a named account and saves its flags; how 6.03r7 obfuscates its script-function names, and the decoded `adventure_*` list; lab and static.
 - [PCID: where the "PC id" comes from](protocol/pcid.md) — how each MD5 machine field is computed per platform and what changes it; the game server forwards them unchanged in `VERIACC2`; the listserver answers `SVI_ASSIGNPCID` (30) with a decimal 64-bit id used by the RC ban window; the official rule is not held; matching advice for a Seihai listserver; static and source.
