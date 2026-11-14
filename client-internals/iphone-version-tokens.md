@@ -1,6 +1,6 @@
 # iPhone client login tokens
 
-Date: 2026-11-13, updated 2026-11-14 with 21 iPhone binaries from the same publisher read statically. What is
+Date: 2026-11-13, updated 2026-11-14 with 26 iPhone binaries from the same publisher read statically. What is
 known about the eight-character login token the iPhone (iOS) Graal clients send. No device
 was used and no public server was contacted.
 
@@ -11,8 +11,8 @@ source, or a server binary) · **[inf]** inferred.
 
 | Token | Read from an iPhone binary | Name in gs2lib | Grade |
 |---|---|---|---|
-| `G3D04048` | **14 builds of 2008–2010**: Belote 1.2/1.50, Adrenaline Poker 1.2/1.60, Adrenaline Pool 1.1/1.5, AlloWin Pool 1.0/1.1, AlloWin Pumpkins 1.0, Ace Tennis 1.1/1.2, Alien Abuse 1.3, Dino Smash 1.2, Bomber Online 1.20 **[bin]** | iPhone 1.1 | **B** |
-| `G3D18010` | **4 builds of 2010–2013**: Cocoto Kart HD 1.1, Ace Tennis HD 1.0, Bomber Online 1.40, Dino Smash 1.4 **[bin]** | iPhone 1.5 | **B** |
+| `G3D04048` | **16 builds of 2008–2010**: Belote 1.2/1.50, Adrenaline Poker 1.2/1.60, Adrenaline Pool 1.1/1.5, AlloWin Pool 1.0/1.1, AlloWin Pumpkins 1.0, Ace Tennis 1.1/1.2/1.3, Alien Abuse 1.3, Dino Smash 1.2, Cocoto Kart Online 1.0, Bomber Online 1.20 **[bin]** | iPhone 1.1 | **B** |
+| `G3D18010` | **6 builds of 2010–2013**: Cocoto Magic Circus 1.0, Cocoto Kart HD 1.1, Ace Tennis HD 1.0, Cocoto Kart Online 1.3, Bomber Online 1.40, Dino Smash 1.4 **[bin]** | iPhone 1.5 | **B** |
 | `G3D0208A` | **GraalOnline Classic+ 1.13** (2012) **[bin]** | not in the table | **B** |
 | `G3D29090` | none read | iPhone 1.11 | L |
 | `G3D2504D` | none read | iPhone Belote 1.5 | L |
@@ -26,7 +26,8 @@ dozen iPhone games on the Graal C++ engine (card, pool, tennis, kart, arcade), a
 of them logs in with the engine's token. `G3D04048` is the 2008 engine and `G3D18010` the
 2010 one. An app keeps its engine's token across updates, and a later build can still be
 on the old engine: AlloWin Pool 1.1 (Sep 2010) sends `G3D04048`, while Dino Smash 1.4 (May
-2013) sends `G3D18010`. So gs2lib's "iPhone 1.1" and "iPhone 1.5" are best read as engine
+2013) sends `G3D18010`. Cocoto Kart Online crosses over: 1.0 (Oct 2009) sends `G3D04048` and
+1.3 (Jun 2010) sends `G3D18010`. So gs2lib's "iPhone 1.1" and "iPhone 1.5" are best read as engine
 1.1 and 1.5. Classic+ 1.13 (`G3D0208A`) is on a later, 6.01-era engine.
 
 Two results correct the table names:
@@ -54,12 +55,17 @@ string), and all but Era+ are unencrypted.
 | Ace Tennis Online | 1.2 | 2008-12-01 | `G3D04048` |
 | Adrenaline Poker Online | 1.60 | 2008-12-13 | `G3D04048` |
 | Adrenaline Pool Online | 1.5 | 2008-12-24 | `G3D04048` |
+| Ace Tennis Online | 1.3 | 2009-02-22 | `G3D04048` |
 | Alien Abuse | 1.0 | 2009-03-17 | none: no connect routine (offline build) |
+| Alien Abuse | 1.1 | 2009-03-29 | none: no connect routine (offline build) |
 | Alien Abuse | 1.3 | 2009-06-24 | `G3D04048` |
 | Dino Smash | 1.2 | 2009-09-26 | `G3D04048` |
+| Cocoto Kart Online | 1.0 | 2009-10-02 | `G3D04048` |
 | Bomber Online | 1.20 | 2009-12-22 | `G3D04048` |
+| Cocoto Magic Circus | 1.0 | 2010-03-03 | `G3D18010` |
 | Cocoto Kart HD Online | 1.1 | 2010-05-03 | `G3D18010` |
 | Ace Tennis HD Online | 1.0 | 2010-05-26 | `G3D18010` |
+| Cocoto Kart Online | 1.3 | 2010-06-23 | `G3D18010` |
 | Bomber Online | 1.40 | 2010-09-17 | `G3D18010` |
 | AlloWin Pool | 1.1 | 2010-09-20 | `G3D04048` |
 | AlloWin Pumpkins | 1.0 | 2010-09-20 | `G3D04048` |
@@ -93,7 +99,7 @@ per-platform pattern the Mac and Linux builds show:
 | iPhone token | Nearest desktop stamps |
 |---|---|
 | `G3D04048` (2008 engine) | 6.00 beta 1 Windows `G3D03048`, one day earlier. The first builds are dated Aug 2008, so the stamp is the engine's date, not the app's |
-| `G3D18010` (2010 engine) | 5.24r3/5.24r4/6.00 beta 2 Windows `G3D15010`, three days earlier. The first builds read are dated May 2010 |
+| `G3D18010` (2010 engine) | 5.24r3/5.24r4/6.00 beta 2 Windows `G3D15010`, three days earlier. The first build read is dated Mar 2010 |
 | `G3D29090` ("iPhone 1.11") | 5.30r3–6.00r4 Windows `G3D26090`, 6.004 Mac `G3D27090`, 6.x Linux beta `G3D28090`, one stamp a day from 26 to 29 Sep |
 | `G3D0208A` (Classic+ 1.13) | 6.01r1 Linux `G3D0108A`, one day earlier |
 | `G3D2504D` ("iPhone Belote 1.5") | Graal Worlds `G3D2204D`, three days earlier, same year character |
@@ -121,8 +127,9 @@ the likeliest token for Era+ 1.0 (built Dec 2010). That is unread.
 ## How to close it
 
 1. **More decrypted IPAs.** An unencrypted Era+, Zone+ or later Classic+ or Belote build would
-   let the same read place `G3D29090` and `G3D2504D` (grade **B**). A search for copies of the
-   official downloads found no other build from this publisher.
+   let the same read place `G3D29090` and `G3D2504D` (grade **B**). Two searches for copies of the
+   official downloads found no other build from this publisher: no Checkers Online, Adrenaline
+   Golf, Poker Online, Scorched 3D, Zone, Zone+, or later Classic+ or Belote.
 2. **Lab capture.** An old iPhone or iPod running Belote or Classic+ 1.13, pointed at a lab
    GServer-v2 with a lab DNS override, would put the first login frame in the lab server's
    log. That would make these rows **W**. Use only a lab server, never a public one.
@@ -132,7 +139,7 @@ the likeliest token for Era+ 1.0 (built Dec 2010). That is unread.
 
 ## Sources
 
-- Copies of the official downloads we hold: the 21 builds in the table above.
+- Copies of the official downloads we hold: the 26 builds in the table above.
 - gs2lib `src/IUtil.cpp` / `include/IUtil.h` (`clientVersions[]`, `CLVER_IPHONE_*`). The
   three "iPhone 1.x" entries are present at the 2019-05-21 split from GServer-v2. Belote 1.5
   was added 2022-08-30 and Worlds 2026-01-05.
