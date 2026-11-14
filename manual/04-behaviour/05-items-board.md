@@ -73,6 +73,24 @@ Windows 4.04r2 was read statically for the same actions. Each row gives one rela
 
 These are static findings, not gameplay confirmation; older and later lab timings remain version-specific. Open questions: → App. E#611. [bin][cap] (client-internals/404r2-carry-state.md#timing-and-input-limits)
 
+### 4.5.2.2 Laying items (S held + A) and S held + D
+
+"Laying an item" is a separate mode 9 entered with S held + A, distinct from hiding (D while carrying, mode 14); the 1.21 readme names it. The rules are the same in 2.05, 2.22, 3.04 Linux and 3.153 Mac [2.05][3.04][doc] (client-internals/laying-items-and-hiding.md#laying-items-and-hiding-under-a-carried-object-205-222-304-3153).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Hiding: D while carrying a bush (261), light stone (263), black stone (239) or any NPC enters mode 14 (STATUS 0x02); a pot (265) or sign (267) does nothing; D again or A comes out, and a bush starts break effect 0 at `(x + 0.5, y + 1)`; S throws | 2.05, 3.04 (tables in 2.22, 3.153) | [2.05][3.04] (client-internals/laying-items-and-hiding.md#hiding-d-while-carrying) |
+| Picking: A with S held, when A has nothing else to do and the point in front is neither blocking nor water; test point `(x + 1.5, y)` north, `(x − 0.5, y + 2)` west, `(x + 1.5, y + 4)` south, `(x + 3.5, y + 2)` east | 2.05, 2.22, 3.153 | [2.05][2.22][3.153] (client-internals/laying-items-and-hiding.md#picking) |
+| 3.x also needs `enablefeatures` bit 0x10 (default 0xFFFF); 2.05 has no such flag; whether 2.22 checks it is unread | 3.04 | [3.04][inf] (client-internals/laying-items-and-hiding.md#picking) |
+| The first item the player has in the lay order 0, 1, 2, 19, 3, 4, 5, 6, 16, 8, 12, 23, 7, 20, 21, 22, 9, 15, 17, 10, 13, 18, 14, 24 is picked (no heart container 11); the player enters mode 9 with `idle` and `item2.wav` plays at `(x + 1.5, y + 2)` | 2.05, 2.22, 3.153, 3.04 | [2.05][2.22][3.153][3.04] (client-internals/laying-items-and-hiding.md#picking) |
+| In mode 9, A with S held picks the next item the player has (wrapping) and plays `item2.wav`; A alone lays it; any other game key leaves mode 9 without laying; the item is drawn above the head at `(x + 1.5, y)`, a tile higher on a horse (3.x: only with bit 0x10, hiding the AP line) | 2.05; 3.04 | [2.05][3.04] (client-internals/laying-items-and-hiding.md#in-mode-9) |
+| Cost: rupees 0/1/2/19 need 1/5/30/100 and take that many; bombs 3 and darts 4 need 5 and take 5; heart 5 needs 1.5 hearts and takes one; glove1 6 / glove2 16 need power 2 / 3 and drop it by one; swords 10/13/18/14 need power 1–4 with the stock image, shields 9/15/17 power 1–3, each dropping by one; spinattack 24 takes the spin; 7, 8, 11, 12 and 20–23 never | 2.05 | [2.05] (client-internals/laying-items-and-hiding.md#what-can-be-laid-and-what-it-costs-205) |
+| A custom sword or shield image lays as item 10 or 9 at any power and the floor item carries the picture | 2.05, 3.04 | [2.05][3.04] (client-internals/laying-items-and-hiding.md#what-can-be-laid-and-what-it-costs-205) |
+| Laying re-checks the cost, then adds the item at `(x + 0.5 + dx, y + 1 + dy)` with `(dx, dy)` north (0, −3), west (−2, 0), south (0, 2), east (2, 0), life 164 and the announce flag, takes the cost and plays `item.wav`; from there it is an ordinary floor item (→ §4.5.6) | 2.05, 2.22, 3.153 | [2.05][2.22][3.153] (client-internals/laying-items-and-hiding.md#laying) |
+| Online the client sends `PLI_ITEMADD` (12) `c round(2x)`, `c round(2y)`, `c item` (UDP 19 to peers where UDP exists), only for floor items 0–5, 7, 8, 19 and 24; a laid glove, sword, shield or spin stays local, but its timeout still sends `PLI_ITEMDEL` (13) | 2.05, 3.04 | [2.05][3.04] (client-internals/laying-items-and-hiding.md#wire) |
+| S held + D with empty hands selects the next weapon instead of firing; 3.x needs `enablefeatures` bit 0x20 | 3.04 | [3.04] (client-internals/laying-items-and-hiding.md#s-held--d-next-weapon) |
+| Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.22 `enablefeatures` check, and 3.04's cost table line by line | — | [inf] (client-internals/laying-items-and-hiding.md#open) |
+
 ## 4.5.3 Sword cut
 
 A sword swing cuts what is at its tip. The rules below give when that happens, what is left behind and how bombs differ [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#sword-cut).

@@ -320,6 +320,24 @@ After a good login the server sends a fixed burst before play starts. Each row g
 
 The bytes a public 5.x or 6.x `Login` server sends are unobserved (→ App. E#3).
 
+### 2.3.6.3 A community `Login` session (6.03r7 Windows)
+
+One read-only run of the unmodified packed Windows 6.03r7 against a community GS2Emu server named `Login`, approved by the owner in writing; it does not show what the official Login server sends (→ App. E#3) [cap] (protocol/login-session-observed.md#a-live-login-session-observed-603r7-windows-community-login-server).
+
+| Step | Observation | Source |
+| ---: | --- | --- |
+| — | the Windows 6.03r7 token is `G3D0311C`, not the Linux 6.03r7 `G3D0511C`; the first login packet goes out at start with a placeholder account, before the login screen exists | [cap] (protocol/login-session-observed.md#login-packet-cs-before-any-frame) |
+| — | after the password: `win`, an empty quoted string, two 32-hex machine hashes and the quoted OS version (`"6.2 9200 "` on Windows 10 under compatibility reporting) | [cap] (protocol/login-session-observed.md#login-packet-cs-before-any-frame) |
+| 1 | first session: C→S 23 `basepackage.gupd` twice and 37 `en`; the server answers 28 (`serverr.server=login`), weapon adds (33/197), 179 with two welcome lines, package and file traffic (100/102, 105/106, 30 for missing files), 19 script weapons as 140 bytecode, and the level | [cap] (protocol/login-session-observed.md#order-of-the-session) |
+| 2 | the login screen is a scripted GUI: nickname (prefilled `unknown`), account drop-down, password with "save password", language; buttons Options, Guest, Start, "Become a Member"; the backdrop is a full-window image, not a level | [cap] (protocol/login-session-observed.md#order-of-the-session) |
+| 3 | Start closes the connection and logs in again with the typed account; cached Login packages are checked with C→S 47 (not 23), answered 45 when current | [cap] (protocol/login-session-observed.md#order-of-the-session) |
+| 4 | the server-list weapon queries by script messages (C→S 152/154, answered by S→C 82): `subscriptions`, `getlockcomputer`, `simplelist`, `serverinfo`, `upgradeinfo`, `packageinfo login.gupd`; the list is one comma line of name, quoted type-prefixed display name and player count; one `login_icon_<name>.png` per server (spaces as underscores) and `login_servermap_.png` are requested | [cap] (protocol/login-session-observed.md#order-of-the-session) |
+| 5 | picking a server sends three script queries, then C→S 41 with the name; the server answers 178 `"<name>","<type-prefixed name>",<host>,<port>` and the client logs in there | [cap] (protocol/login-session-observed.md#order-of-the-session) |
+| — | S→C 190 arrives once per session with an empty body; the NPC-server player is announced with 8; 41 carries an HTML welcome page, 47 the staff ranks, 180 the status list `Online, Away, DND, Eating, Hiding, No PMs, RPing, Sparring, PKing` | [cap] (protocol/login-session-observed.md#what-the-login-server-sends-besides-the-gui) |
+| — | the backdrop level `black.nw` is one repeated tile with no chests or NPCs, sent as 14, 6, 101 (8192-byte board), 39, 0, 10, 156, 3 | [cap] (protocol/login-session-observed.md#what-the-login-server-sends-besides-the-gui) |
+| — | `basepackage.gupd` is `GRPKG001`, `VERSION 3.00`, `PLATFORM any`, one `SUBPACKAGE login.gupd`, `USECHECKSUM false`, `PROTECTOVERWRITE true`, `FLAG popupforoptionalpackages=true`, no `FILE` lines; `login.gupd` (3.01) has subpackages `levels`, `sounds`, `videocompression` (`PLATFORM win`, the FFmpeg DLLs), `fonts` (`MODE required`, `USECHECKSUM true`) and `images` | [cap] (protocol/login-session-observed.md#packages) |
+| — | the first run downloads about 300 files before the login screen is usable, under a "Download Progress" window | [cap] (protocol/login-session-observed.md#packages) |
+
 ## 2.3.7 Unpacked 6.037 against unpacked 6.1.1.3
 
 The unpacked 6.037 and 6.1.1.3 images were compared for how they log in. Each rule is one difference found by reading strings and code, not by a capture [bin] (protocol/v6037-hello-diff.md#login-token).

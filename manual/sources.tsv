@@ -186,7 +186,7 @@ client-internals/issho-cut.md	cited	10	10
 client-internals/item-drops.md	cited	4; 4.5; E	4.5	
 client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5; E	4.2; 4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
-client-internals/laying-items-and-hiding.md	pending		4.5	hiding under a carried object and laying items (S held + A) for 2.05 to 3.153; to be folded into the items section
+client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
 client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
 client-internals/live-behaviour-404.md	cited	8; 8.1; 8.3; 4.11	4	
@@ -337,7 +337,7 @@ protocol/login-and-walk.md	cited	2.3; 2.4; 7; E	2.3
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
 protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
-protocol/login-session-observed.md	pending		2.3	one observed 6.03r7 Login session on a community Login server (#247); to be folded into the login section beside login-session-known.md
+protocol/login-session-observed.md	cited	2.3	2.3	
 protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/medium-term-slice.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/npc-control.md	cited	7; E	7	
