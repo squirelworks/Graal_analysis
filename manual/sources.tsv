@@ -179,7 +179,7 @@ client-internals/foot-test.md	excluded		4	superseded single-point wall test meas
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries the object, the lookup, the events, the clock and the bytecode segments. The opcode table, the fusion numbers and the per-version case list stay in the note
-client-internals/showimg-particles-and-gs2-format.md	pending		8.3	show-image control, particle emitter and modifiers, and GS2 opcodes 82 (indexof) and 84 (format); to be folded into the GS2 machine section (§8.3) beside gs2-vm-from-engines.md
+client-internals/showimg-particles-and-gs2-format.md	cited	8.3; E	8.3	
 client-internals/gs2-6113.md	cited	8.4	8.4	
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
@@ -371,7 +371,7 @@ protocol/v6113-chat.md	cited	2.8	2.8
 protocol/v6113-files.md	cited	2.7	2.7	
 protocol/v6-props.md	cited	2.6; C	2.6	§2.6.7 carries the player range 0–83, the twelve ids with no case, and the baddy range 0–10; the per-id field widths stay in the note
 protocol/v5-props.md	cited	2.6; B; C	2.6	§2.6.6 carries the 5.x and 6.x case sets; the 6.x name decoding and open items stay in the note
-protocol/v6-repro-facts.md	pending		2.10	setprotocol field order, the id-50 prefix, onToall arguments and the bind events, from the unpacked 6.0.3.7 and 6.1.1.3 listings; for the server-defined protocol section
+protocol/v6-repro-facts.md	cited	2.10	2.10	
 protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.11 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
 protocol/v6113-hello.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.5 carry the token and the six-byte header. The cipher after the zlib member is in protocol/v611-outgoing-cipher.md
 protocol/v6113-list-capture.md	cited	1; 6	1; 6	
@@ -556,7 +556,7 @@ version-profiles/matrix/builds-static-survey.tsv	cited	4; 4.1; E	C; 4	Appendix C
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	Appendix C not needed: the live-run results are carried in §4.2; App. C points to §4.1 to §4.4 for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1.39 rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1st Graal rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
-version-profiles/matrix/rules-132.md	pending	4.2; 4.3; 4.4	C; 4	1.32 rules (static read 2026-11-12); fold into §4.2 to §4.4 next to 1.39 and 1st Graal
+version-profiles/matrix/rules-132.md	cited	4.2; 4.3; 4.4; C	C; 4	
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/pli-send-sites-141-217.md	cited	2.4; E	2.4	
@@ -667,7 +667,7 @@ npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
 version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
-client-internals/iphone-version-tokens.md	pending		1; 2.3	iPhone login tokens from server version tables only (grade L); to be folded into the build list and login section with the catalogue
+client-internals/iphone-version-tokens.md	cited	1	1	
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
 protocol/v4x-windows-403r3-411.md	pending		2.4; 2.5; 9	Windows 4.03r3/4.04r2/4.11 Thinstall packages unpacked statically: handled-id changes (107, 108, 196), engine callback and feature deltas, the 3D library split, public 2.1.0.0 dispatch; to be folded into the message and Graal3D sections
 tools/thinstall-unpack/README.md	excluded			repository tooling for the notes (the static Thinstall unpacker behind v4x-windows-403r3-411.md), not Graal

@@ -80,6 +80,18 @@ Death was read in four builds. Each row is one part of the sequence, with how ea
 | destination | the new-game setup: `house1.graal` at (24.5, 30), facing 2; a second local player 12 tiles to the east | the saved entry, else (30.5, 30.0) online, else the built-in start-level table offline | → §4.4.3 | the level's entry point | [bin] (version-profiles/matrix/rules-1st-graal.md#death-and-the-restart-bin); [1.39] (version-profiles/matrix/rules-139.md#death-and-respawn-bin); [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#d-end-of-respawn-save-settled-for-222-same-level-respawn) |
 | hearts | 3, and the heart cap set to 3 | max hearts, no AP bands (1.39 has no AP display; the bands arrive with 1.41) | by AP | by AP | [bin] (version-profiles/matrix/rules-1st-graal.md#death-and-the-restart-bin); [1.39] (version-profiles/matrix/rules-139.md#summary-table) |
 
+1.32 was read on its own (era B); it follows 1.39 except where the rows below say otherwise [bin] (version-profiles/matrix/rules-132.md#summary).
+
+| Rule (1.32) | Source |
+| --- | --- |
+| On death: `dead.wav`, counter and mode cleared, life-state 2; up to 1000 rupees dropped in bands of 100, 30, 5 and 1; darts and bombs each capped at 95 and dropped in fives, leaving 5 darts and 10 bombs | [bin] (version-profiles/matrix/rules-132.md#hearts-damage-and-death-bin) |
+| The counter rises while under 30; the facing spins between counters 4 and 27; the dead bit 0x08 only while dead and the counter is above 27; a movement or action key respawns above 27, and life-state 4 respawns with no test | [bin] (version-profiles/matrix/rules-132.md#hearts-damage-and-death-bin) |
+| Damage is refused in life-state 1 and in mode 13 unless forced; healing plays no sound; a non-fatal hit plays the character's hurt sound from `sounds\` | [bin] (version-profiles/matrix/rules-132.md#hearts-damage-and-death-bin) |
+| Respawn resets hearts through the shared setter (value unreadable in the export; max hearts by analogy with 1.39), clears counter, carry and action modes and the ten-slot flag array, and warps to the saved entry; with none, (30.5, 30.0) online, or offline the built-in start-level table by game mode (facing 3, 1 or 2), falling back to the options' start level | [bin][inf] (version-profiles/matrix/rules-132.md#respawn-bin) |
+| Online or in game mode 0 the name shows for 60 ticks after respawn; 1.32 has no AP bar | [bin] (version-profiles/matrix/rules-132.md#respawn-bin) |
+| Sword reach: tested only outside mode 3, on swing frames 6 to 10; up to 4 tiles ahead, sideways strictly under 2, ends inclusive on two facings and exclusive on the other two; power passed with the swing | [bin] (version-profiles/matrix/rules-132.md#sword-reach-bin) |
+| Open: the respawn heart value, the probe numbers, the one-heart baddy type, and eras A–B outside 1.32 | [inf] (version-profiles/matrix/rules-132.md#still-open) |
+
 ## 4.4.4 The level-entry save
 
 Run after every level entry, and at login; saving stores the new level's name, the player's x and y, and the direction as it is [2.05] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#the-decision-run-after-every-level-entry).

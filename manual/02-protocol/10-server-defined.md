@@ -95,3 +95,18 @@ Unpacked Windows 6.1.1.3 has the same script methods. The port 14900 capture's f
 ## 2.10.6 Unpacked Windows 6.1.1.3
 
 The unpacked Windows image still contains the generation-5 LCG: seed `0x04A80B38`, step times `0x08088405` plus 1. It has no compiled-in `G3D` or `GNP` token. Each outgoing sender compares its own slot with `0xFE` and then calls a script event; the Mac slot numbers in the table above are not the order of the names in this image. `onSendNPCProperties` is the one Mac event name this image does not have. `StartScript_Connector`, `StartScript_Fail` and the three `scriptssl*` fields are present. `setprotocol`, `setindatahandlers` and `con.gs` are not plaintext strings. [bin] (protocol/unpacked-6113-wire.md#generation-5-cipher); [bin] (protocol/unpacked-6113-wire.md#script-send-slots); [bin] (protocol/unpacked-6113-wire.md#connector-names)
+
+### 2.10.6.1 Header fill order, the id-50 prefix and the script events
+
+The rows give what the unpacked 6.0.3.7 and 6.1.1.3 listings show beyond §2.10.5. Nothing was run [bin] (protocol/v6-repro-facts.md#field-order-chat-arguments-and-bind-events-in-unpacked-6x).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| `setprotocol` stores the template length as the header length and finds `I`, `L`, `T` and `E`; a field's width is the letter's repeat count capped at 4, big-endian; other template bytes stay zero; a numbered send is refused until both `L` and `T` were found | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#how-a-setprotocol-header-is-filled) |
+| On a numbered send the fields are written as `T` (id), then `I` (a counter from 1, +1 per send) when present, then `E` (zlib above 48 bytes, bzip2 at block size 5 above 4096), then `L` (header plus compressed body); if the compressor returns nothing, `E` is rewritten as 0 and the original body goes out | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#how-a-setprotocol-header-is-filled) |
+| `sendraw` is the send with id −1: no header, id or counter; `senddata` is the numbered send | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#how-a-setprotocol-header-is-filled) |
+| On the generation-5 framer, a send of id 93 or 163 is preceded by id 50 whose body is a three-byte length (original body + 2, capped at 3670015, seven-bit groups + 32); the packet then goes as id + 32, body and newline, skipping the newline refusal | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#ids-93-and-163-on-the-generation-5-path) |
+| Any other generation-5 send holding a newline is refused with "Illegal characters in the outgoing data"; a buffer reaching 4096 bytes is flushed; 6.0.3.7 has the same refusal and exemption but no id-50 prefix that could be found | 6.1.1.3, 6.0.3.7 | [bin] (protocol/v6-repro-facts.md#ids-93-and-163-on-the-generation-5-path) |
+| `onToall` is registered with parameters `o`, `s`; its feeder reads a two-byte player id ((b0 − 32) × 128 + (b1 − 32)), a third byte − 32 as the text length, and the text from the fourth byte; bodies of two bytes or fewer push nothing; no caller and no PLO id were found | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#what-ontoall-is-given) |
+| The port-binding method logs "Binding of port " and opens no socket when its allow check fails; success raises `onBind`, failure `onBindFailed`, both with no parameters; `onReceiveUDPData` takes `s`, `s`, `i` (data, sender ip, …) | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#bind-events) |
+| Before the connector runs, the client looks up `StartScript_Connector`, else `StartScript_Fail`; if `onCreated` exists and the SSL argument is set it writes `scriptip`, `scriptsslcipher`, `scriptsslsubject` and `scriptsslissuer`, then runs the script | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#before-the-connector-script-runs) |
