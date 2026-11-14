@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the 1.41 rev 1 program-check error binding difference.** ~~Compare the form event and method-table targets in the same-version copies.~~ [Static result](../client-internals/early-windows-callback-variants.md): handler-body entry versus the same body's final return; this does not complete the five-client comparison.
+  - [ ] Establish the event trigger, handler helper effects and variant lineage; retain the per-client next questions in the note until independently answered.
 - [x] **Carry the bounded verifier and standalone NC studies into the manual.** ~~Reconcile the reviewed static findings and their limits.~~ Verifier comparison in §3.5.5.1 and E#103; NC action in §7.3.4 and E#425. This does not complete whole-build teardown or resolve native acceptance.
 - [x] **Bound the Windows 2.22-labelled verifier variant difference.** ~~Locate the four changed code sites and distinguish them from the earlier control patch.~~ [Static comparison](../formats/windows-222-verifier-variants.md); broader control differences and startup effects remain open there.
 - [x] **Fold in the 2026-11-13 research.** ~~Publish the findings that shipped in the Seihai repos as behaviour notes, with manual and App. C/E carries.~~

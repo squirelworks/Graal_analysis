@@ -156,6 +156,7 @@ client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry th
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
 client-internals/launchers-420r8-500r7-512.md	pending		1; 2.3	4.20r8, 5.00r7 and "5.12 untouched" launcher copies and the Packet Logger engine diff; to be folded into the build list
 client-internals/graal2002-and-140-builds.md	pending		1; 2.3; 2.4; 2.5	Graal 2002 (2.1.0.x) and 1.40 builds: tokens, GS1 dating and receive-dispatch rows; to be folded into the build list, login and message sections
+client-internals/early-windows-callback-variants.md	pending		1; E	Same-version early Windows program-check error bindings and bounded analyst-seeded recovery; not yet cited in the manual. Event trigger, helper effects and modification history remain unresolved.
 client-internals/graal-2.3-unpacked-package.md	pending		1	identity of the 2.3 [Unpacked][Cracked] package (2.31 unwrapped); to be folded into the build list
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/hud-603r7-black-box.md	pending		4.6	6.03r7 HUD layout measured on Linux and Windows; to be folded into the HUD chapter
