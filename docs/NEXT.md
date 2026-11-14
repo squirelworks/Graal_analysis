@@ -15,6 +15,14 @@ macOS CI is paused until the polish stage.
 - [x] **Establish direct symbolic GANI placement context.** ~~Separate ANI PARAM1 references from SPRITE sheet tokens in the inspected mobile resources.~~ [File evidence](../formats/ios-gani-param1-placements.md); manual §3.3.8. Two shared forms, not a native playback test.
   - [ ] Verify parser/serializer preservation in each consumer and establish native resolution separately; retain the coordinate/slot/case limits in the note.
 
+- [x] **Carry the measured Linux/Windows 6.03r7 HUD into the manual.** ~~Separate fixed art/layout, font availability and captured transitions.~~ [Study](../client-internals/hud-603r7-black-box.md); manual §4.6.9, App. E#326.
+  - [ ] Resolve the sword crop, other-size Windows text positions and Windows current-clock check (App. E#326); this carry adds no new lab run.
+- [x] **Add exact 1.40 registered words to the machine-readable matrix.** ~~Carry its 125-name scan and fourteen earlier first-observed bounds.~~ [68-build matrix](../npc-library/gs1-commands-by-version.md); executor behavior remains separate.
+
+- [x] **Carry the later sound-file survey into the manual.** ~~Separate backend names, file contents and script-help observations from playback acceptance.~~ [Study](../client-internals/sound-files-6x.md); manual §3.10.5, §4.7.5 and App. E#325.
+  - [ ] Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325).
+
+- [x] **Add the six exact Graal 2002 inputs to the GS1 matrix.** ~~Rescan their registered command names and preserve the existing columns.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md); runtime executors and full PLI sets remain separate questions.
 - [x] **Carry the 2.3-labelled package identity comparison into the manual.** ~~Separate the matching 2.31 client from the mixed companion tools.~~ [Existing study](../client-internals/graal-2.3-unpacked-package.md); manual §1.8.3. File identity does not supply a distinct original 2.3 client or validate its inferred profile.
   - [ ] Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input.
 
@@ -22,10 +30,11 @@ macOS CI is paused until the polish stage.
   - [ ] Validate the first emitted update on the normal interactive Windows client with the discriminators in App. E#15.
 
 - [x] **Carry the existing Graal 2002 and 1.40 static study into the manual.** ~~Separate exact input identity, token evidence, command dating and receive routes.~~ [Study](../client-internals/graal2002-and-140-builds.md); §1.1.5, §2.3.3.1, §2.5.2.1, §8.2.7.2 and App. C/E. This is manual carry, not completion of exact-build login or client teardown.
-  - [ ] Resolve the exact-input login, default-route effects, outgoing ids and scanner-matrix follow-ups in App. E#15; token/command-table matches alone do not settle them.
+  - [ ] Resolve the exact-input login, default-route effects and outgoing-id follow-ups in App. E#15; token/command-table matches alone do not settle them.
 
 - [x] **Publish the bounded Classic+ 1.13 construction study.** ~~Corroborate the known token and carry the selected caller/helper observations.~~ [Note](../client-internals/classic-113-login-construction.md); manual §2.3.9 and App. E#16. This does not complete mobile login or an iOS version profile.
-  - [ ] Resolve prefix/copy helpers, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
+  - [x] ~~Inspect the selected prefix and direct copy helpers.~~ [Static follow-up](../client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) establishes low-byte prefix construction and the selected long-path byte-copy count; manual §2.3.9/App. E#16 preserve remaining limits.
+  - [ ] Resolve the short-path object append/full codec, getter identities, vector format, lower sender/trigger and exact-input receive/native acceptance before implementing a mobile wire layout.
 
 - [x] **Qualify the shipped mobile GANI movie sample and actor-kind carry.** ~~Correct the blanket no-saved-movie claim and carry the observed boolean spellings and serialized actor form.~~ [Source](../tools/graalshop.md#shipped-movie-sample-and-remaining-limits); manual §3.3.2/§3.3.6. Saved movie existence was already reported; this does not establish playback or a producing editor.
   - [ ] Reconcile the exact editor inputs behind the conflicting 2002/2006 movie-support attributions (App. E#612); establish indexed CHAR-key spelling, coordinate units and native timing separately.

@@ -175,15 +175,14 @@ The static inputs in §1.1.5 establish tokens, command names and receive-route d
 | ver7–ver13 default routes 2, 4, 17, 18, 154, 155 | a correctly identified baddy/chest/horse fixture and observable result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Exact ver10 first emitted properties update | observe the normal interactive client before the first server reply; compare fresh sessions with no reply, an unrelated reply and self-properties id 9. Static gate clearing and six-property construction do not settle the other startup guards or actual emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
 | Six Graal 2002 PLI sets | read their own send sites; do not borrow neighboring build or shared-token rows | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
-| Machine-readable command matrix | add the six exact inputs to the scanner build inventory and regenerate, preserving input provenance | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout
 
-The selected analyst-seeded constructor and forwarding helper provide static caller observations, not a captured mobile login. Threshold/helper arguments cannot be promoted to emitted bytes, and selector 5 cannot be assigned a wire category from this pass. [bin] (client-internals/classic-113-login-construction.md)
+The selected prefix/copy follow-up establishes one-byte prefix construction and the selected positive byte-copy count, not a captured mobile login. The short-path object append, full codec and native acceptance remain unresolved, and selector 5 still has no established wire category. [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up); [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary)
 
 | Unknown | Discriminator | Source |
 | --- | --- | --- |
-| Prefix/copy behavior | independently validate helper bodies and byte/copy contracts before claiming encoding, limits or truncation | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| Remaining append/field codec | inspect the short-path object append and remaining field cases before claiming a complete codec, character semantics or server-accepted size limits; allocation failure and runtime behavior remain unvalidated | [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) |
 | String identities and vector format | bind the getters and serializer to their actual consumers before naming fields or a complete trailer | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
 | Framing, trigger and native acceptance | trace the selected lower sender and constructor trigger; establish a separately qualified exact-input native control and receive-property mapping | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 
@@ -634,6 +633,18 @@ The static pass over 35 builds left four gates unidentified. A follow-up read se
 | Extra victim test | settled: ghost mode (170); the 2.17.1+ judge also stops in Kingdoms or New World mode (176, 177) | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
 | Respawn AP bands | settled: from 1.41 rev 1, the same bands as 2.05 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
 | Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21's item roll, and the sword spark stay open. A 2026-11-14 run did not identify the spark on 2.22, did not run the 2.05 control or the two-player edge, and loaded a 1.21 baddy scene without seeing the item roll | [lab] (live-runs/open-issues-2026-11-14/README.md#2c-combat-live-checks-partial); [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
+
+### E#325 Later sound census and playback limits
+
+The 4.x–6.x file survey reports 255 distinct WAVs, but its format counts (202 + 43 + 6 + 3) and channel counts (193 + 61) each total 254. The missing or miscounted entry has not been identified; retain the reported figures without choosing a corrected total. [file][doc] (client-internals/sound-files-6x.md#what-the-files-are)
+
+Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behavior. Reconcile the census against the surveyed inputs and test each format on the exact client/backend before treating the compatibility targets as native acceptance. The survey itself ran no client. [file][bin] (client-internals/sound-files-6x.md); see §3.10.5 and §4.7.5.
+
+### E#326 Remaining 6.03r7 HUD measurements
+
+The source also calls the full-size row's right margin 68 pixels, but its formula x = W − 198 + 45k with a 40-pixel-wide full-heart sprite gives 23 pixels for four hearts (k = 0–3); 68 corresponds to three. The reported formula and fixed-margin assertion are not reconciled. Check identified-state captures before selecting a margin rule; the arithmetic alone does not establish which observation needs correction. [shot][doc] (client-internals/hud-603r7-black-box.md#hearts)
+
+The Linux/Windows black-box study in → §4.6.9 leaves the sword source rectangle's right edge unresolved (width 28–34 pixels), Windows text positions at other window sizes unmeasured, and Windows operation with a current clock unchecked; its Windows run used a 2012 clock. Resolve these with exact-build, identified-state captures before choosing a definitive crop, text layout or clock-compatibility claim. [shot][lab] (client-internals/hud-603r7-black-box.md#open)
 
 ### E#400 Two projects called Ash
 

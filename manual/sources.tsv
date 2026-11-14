@@ -159,7 +159,7 @@ client-internals/graal2002-and-140-builds.md	cited	1; 2.3; 2.4; 2.5; 2.6; 8.2; C
 client-internals/early-windows-callback-variants.md	pending		1; E	Same-version early Windows program-check error bindings and bounded analyst-seeded recovery; not yet cited in the manual. Event trigger, helper effects and modification history remain unresolved.
 client-internals/graal-2.3-unpacked-package.md	cited	1	1	Client and companion-component identity comparisons carried in 1.8.3; no official-release, whole-executable integrity or original 2.3 runtime claim follows from the repack label.
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
-client-internals/hud-603r7-black-box.md	pending		4.6	6.03r7 HUD layout measured on Linux and Windows; to be folded into the HUD chapter
+client-internals/hud-603r7-black-box.md	cited	4.6; E	4.6	Measured HUD in §4.6.9; unresolved sword crop, Windows text positions and clock in E#326. Complete request names and renderer diagnostics remain in the source.
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
@@ -221,7 +221,7 @@ client-internals/serveroptions-198.md	cited	2.5	2.5
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/skipped-v6-read.md	cited	10	10	§10.1.9 carries the stub, the QPlay.exe export directory and the TLS names that differ; the full export lists stay in the note
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
-client-internals/sound-files-6x.md	pending		4.7	4.x-6.x sound back ends and file formats; to be folded into the sound chapter
+client-internals/sound-files-6x.md	cited	3.10; 4.7; E	4.7	Backend/file survey in §3.10.5; names, options and call sites in §4.7.5; census discrepancy and native playback limits in E#325. Non-audio manifest counts remain in the source.
 client-internals/spin-lay-205-2026-11-14.md	cited	4.3	4.3	
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
@@ -736,5 +736,5 @@ npc-library/gs2-weapon-corpus-2026-11-14.md	pending		8.4; E	GS2 weapon corpus su
 tools/levelfiller.md	pending		11	LevelFiller theme filler teardown (static); to be folded into Part 11 with the classic tools
 tools/small-utilities-2026-11-14.md	pending		11	small utilities read statically (Guild Manager, guildcode, apcalc and others); to be folded into Part 11
 protocol/named-login-5x-6x.md	pending		2.3; 8	named (non-guest) lab logins on real 5.24r4 and 6.03r7 via adventure_setaccountname, and the 6.03r7 script-function name table; to be folded into the login and scripting sections
-client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding observations and all remaining helper, identity, wire and runtime gates carried; no mobile profile or native acceptance inferred.
+client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding and prefix/copy observations carried; short-path object append, field identity, vector/wire and runtime gates remain open; no mobile profile or native acceptance inferred.
 formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement field context and preservation boundary carried in3.3.8; native resolution remains open.
