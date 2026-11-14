@@ -178,4 +178,12 @@ Two 128-byte signature files guard the executable and `arrays2.dat`. The rules b
 | fan-server 2.22 | that executable has the three branches that raise the verify error rewritten so verification always passes; the 2.17 and 2.31 executables do not | [2.22][2.17][2.31] (formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled) |
 | consequence | an unpatched 2.17, 2.22 or 2.31 client refuses an edited `arrays2.dat` or executable; editing `arrays2.dat` alone fails the signature | [inf] (formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled) |
 
+### 3.5.5.1 A separate four-guard variant comparison
+
+Two retained Windows inputs reporting 2.2.2.0 differ at four branch conditions in one RSA-verification routine. In input A, the conditions guard minimum key size, supplied signature size, a verification helper's result and a final comparison. Input B replaces each condition with an unconditional branch to the same destination, skipping the associated error path. This is a static code comparison, not measured signature acceptance [bin] (formats/windows-222-verifier-variants.md#what-the-four-edits-change).
+
+The earlier community-control three-branch claim above and this A-to-B four-site result compare different inputs. The separately retained control is modified community-distributed code, not an authenticated pristine release. Broader control-to-variant differences remain uninterpreted [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note).
+
+Only A was imported into the deep provider; B was compared by complete byte difference against A's decoded contexts. Caller reachability, startup behavior, helper algorithm, signature format and runtime acceptance remain open → App. E#103. No protocol, PM-list or GS1 behavior follows from this comparison [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
+
 The check as a client integrity behaviour is in → §4.10.

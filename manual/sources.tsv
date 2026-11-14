@@ -1,5 +1,5 @@
 path	status	sections	planned	reason
-protocol/nc-standalone-flag-action.md	pending		7	artifact-specific analyst-seeded standalone NC action and outgoing buffer; recipient and receive semantics unresolved
+protocol/nc-standalone-flag-action.md	cited	7; E	7; E	Bounded action and analyst-seeded recovery carried in 7.3.4; ranges, recipient and receive uncertainties carried in E#425.
 AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventions
 ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
@@ -263,7 +263,7 @@ docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
-formats/windows-222-verifier-variants.md	pending		3.5; E	Bounded static four-guard variant comparison; distinct from the earlier control patch. Manual carry is pending; broader lineage and caller/runtime effects remain unresolved.
+formats/windows-222-verifier-variants.md	cited	3.5; E	3.5; E	Four-guard variant comparison and separate prior control claim carried in 3.5.5.1; broader lineage, caller and runtime uncertainties carried in E#103.
 formats/gani.txt	cited	3.3	3.3	
 formats/glevnw01.txt	cited	3.1; E	3.1	
 formats/gmap.md	cited	3.2; E	3.2	
