@@ -350,7 +350,7 @@ protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B; E	2.6; B
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
-protocol/rc-list-online.md	cited	7; E	6	
+protocol/rc-list-online.md	cited	7; E	7	
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/shoot-5007.md	cited	2.4; 2.5	2.5	

@@ -6,6 +6,7 @@ manual/02-protocol/03-login.md	`X`	protocol/relay-1998.md#d-payloads	target id |
 manual/02-protocol/03-login.md	`Z`	protocol/relay-1998.md#d-payloads	none | state flag
 manual/02-protocol/03-login.md	`1`, `4`	protocol/relay-1998.md#d-payloads	x, y | horse and bush actions
 manual/02-protocol/03-login.md	`5`, `6`, `7`	protocol/relay-1998.md#d-payloads	none | pose flags (sitting, sleeping)
+manual/02-protocol/03-login.md	The hashes are unsalted MD5 of short inputs, so a 4-byte serial or inode, or a M	protocol/pcid.md#what-the-hashes-do-and-do-not-hide	all
 manual/02-protocol/04-pli.md	2.14 to 2.16		the 2.1 set plus 41 | inferred; no binaries of 2.1 to 2.16 in the archive
 manual/02-protocol/04-pli.md	6.00r2, 6.00r4, 6.015		0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from the 6.01 and 6.03 reads
 manual/02-protocol/04-pli.md	6.034		as 6.03r7 | inferred
@@ -32,6 +33,7 @@ manual/03-formats/09-config.md	key names	client-internals/config-and-input.md#up
 manual/03-formats/10-assets.md	effects	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	DirectSound wave list | BASS samples
 manual/03-formats/10-assets.md	music files	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	MCI (MIDI) or Winamp | BASS streams and tracker modules; MIDI still through MCI
 manual/03-formats/10-assets.md	internet radio	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	n/a | BASS URL streams, `radio` and `radiovolume`, judged from names
+manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows
 manual/04-behaviour/06-hud-ui.md	bold	client-internals/chat-text.md#font-per-build	Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider
 manual/04-behaviour/08-offline.md	GraalEditor 2.3.1.1	client-internals/offline-tutorial-205.md#later-clients	carries the same 9 names and `tiledefsOffline.txt`
@@ -40,6 +42,7 @@ manual/04-behaviour/11-side-builds-labs.md	None of these schemes protect anythin
 manual/05-servers.md	A server prints its list only to a client it refuses	server-notes/public-allowed-versions.md#open	
 manual/05-servers.md	A capture that proves the server-side `#n` expansion on a script-running server 	server-notes/setcharprop-hash-n.md#still-open	
 manual/06-listserver.md	What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured (1.41 rev1 sends noth	protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5	
+manual/07-rc-nc.md	Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs 	protocol/rc-list-online.md#how-rc2-205-shows-them-bin	
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
@@ -47,6 +50,8 @@ manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-byt
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	
 manual/09-graal3d.md	Where it advances each tick was not traced; that standing still freezes it is an	graal3d/client-behaviour.md#animation-counter-prop-5	
+manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what-changes	n/a | `genvs.bsp`, `dema.act`, `MovingPlat` and `DeathMatchStart` match the public Genesis3D SDK demo
+manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	
