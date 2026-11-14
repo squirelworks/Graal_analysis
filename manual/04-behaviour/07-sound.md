@@ -3,7 +3,7 @@
 
 This chapter gives how the client places, limits and triggers sounds while playing. The backends, the options and the file types are in → §3.10.3 and §3.10.4.
 
-> Status: draft. Read from 2.05 rev 2 and checked in a running 2.05 rev 2 client with an audio device; the 2.17 to 2.31 BASS clients are read only as far as → §3.10.4 goes.
+> Status: draft. The 2.05 rev 2 rules include an audio-device runtime check. Later BASS and 6.x evidence has its separately scoped static/file limits in → §3.10.4, §3.10.5 and §4.7.5.
 
 ## 4.7.1 Placing a sound (2.05)
 
@@ -77,3 +77,18 @@ Two lift sounds exist, and one byte picks between them. The rules below give the
 | default | new players start with the byte set | [2.05] (client-internals/live-checks-editor-offline-sound.md#sound-205) |
 | `setgender female` | the sound changed to `lift2.wav`; that the command clears the byte is inferred from that | [live][inf] (client-internals/live-checks-editor-offline-sound.md#sound-205) |
 | correction | an earlier note took `lift2.wav` for heavy objects and `fire.wav` for the fireball; both were wrong | [live] (client-internals/live-checks-editor-offline-sound.md#corrections-to-earlier-notes) |
+
+## 4.7.5 Later sound names, controls and call sites
+
+These are static names, file declarations and script-help descriptions from the later survey, not measured timing, audibility or complete runtime API contracts. The corresponding backend and file-content boundaries are in → §3.10.5. [file][bin] (client-internals/sound-files-6x.md)
+
+| Observation | Checked scope and limit | Source |
+| --- | --- | --- |
+| Default effect names | both checked backends name `arrow`, `arrowon`, `axe`, `bomb`, `chest`, `compudead`, `extra`, `fire`, `frog`, `item`, `item2`, `jump`, `lift`, `lift2`, `nextpage`, `put`, `steps`, `stonemove`, `sword`, `swordon`, `thunder`, `water`, with `.wav` extensions | [bin] (client-internals/sound-files-6x.md#back-ends) |
+| Options and startup guard | `sfxvolume`, `midivolume`, `mp3volume`, `radiovolume`, `soundfxon`, `musicon`; the named sound-test guard sets volumes to zero after a sound-startup hang in the static reading | [bin] (client-internals/sound-files-6x.md#back-ends) |
+| GANI cues | `PLAYSOUND` in the 6.1.1.3 files most often names the two walk sounds, then lift, axe, water, sword, jump, put, chest, sign and world-specific effects; 5.00r7 also names death, rain, crush, bomb and arrow-hit effects | [file] (client-internals/sound-files-6x.md#how-worlds-call-them) |
+| GS1 calls | level text uses `play` for birds, arrows and snow/house/grass walking sounds; no plain-text music call was found within the inspected text | [file] (client-internals/sound-files-6x.md#how-worlds-call-them) |
+| Script-help capabilities | names describe player-position playback, looped playback at x/y/volume (0–1), stopping one/all, is-playing, pitch (0.5–1.5 or note name), current music and `onMusicDataReceived` | [bin] (client-internals/sound-files-6x.md#how-worlds-call-them) |
+| 6.03r7 additions | names describe a GANI sound-at-animation-start option and a list of WAVs to suppress; call ordering and actual playback were not measured | [bin] (client-internals/sound-files-6x.md#how-worlds-call-them) |
+
+The survey attributes further music calls to encrypted class/weapon caches; this is a lead, not a recovered callable contract. Package presence and help/function names cannot settle codec acceptance, scheduling or failure behavior (→ App. E#325). [file][doc] (client-internals/sound-files-6x.md#how-worlds-call-them)

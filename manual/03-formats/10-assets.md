@@ -100,3 +100,36 @@ From 2.17 the BASS library replaces most of that. The table compares 2.05 with 2
 | voice options | n/a | `microon`, `microinputdevice`, `microactivatebyvolume`, `microactivationlevel`, `microactivatekey`, `voicecodec`, `voicevolume` | [2.22] (client-internals/sound-and-music.md#voice-chat-222) |
 | WMA | n/a | 2.17.1 loads `basswma.dll` at run time by name and uses its stream functions; 2.22, 2.31 and GraalEditor 2.3.1.1 neither import nor name it, so the shipped DLL is a leftover and WMA music is not supported there | [2.17][2.22] (client-internals/sound-and-music.md#basswmadll) |
 | extension dispatch | → §3.10.3 | unmeasured | [2.22] (client-internals/sound-and-music.md#open) |
+
+## 3.10.5 Later audio backends and surveyed file formats
+
+The later study inspected held 4.x–6.x sound files, RIFF format chunks, update-list entries, GANI/level text and executable strings/imports. No client was run. The rows distinguish backend evidence, actual file content and manifest names; none supplies a native decoder-acceptance test. [file][bin] (client-internals/sound-files-6x.md)
+
+| Checked input | Static backend evidence | Limit | Source |
+| --- | --- | --- | --- |
+| Windows 6.00 betas through 6.03r7 | statically linked FMOD 3, using FSOUND/FMUSIC; beta strings also name the FMOD library, not FMOD Ex 4.x | backend identity does not independently validate each codec or stream | [bin] (client-internals/sound-files-6x.md#back-ends) |
+| Linux 6.03r7 x64 | SDL_mixer 1.2 calls for effects, panning and music over ALSA | decoded formats depend on the particular SDL_mixer build | [bin] (client-internals/sound-files-6x.md#back-ends) |
+| Both checked backends | music/stream filter names `.mp2`, `.mp3`, `.ogg`, `.wma`, `.asf`; FFmpeg is loaded on demand for video | filter names alone do not demonstrate audio playback | [bin] (client-internals/sound-files-6x.md#back-ends) |
+
+The file survey reports the following RIFF formats. Its stated total of 255 distinct WAVs disagrees with the format sum of 254 and the channel sum of 254 (193 mono, 61 stereo). Keep these as reported subtotals until the census is reconciled (→ App. E#325); no missing category or corrected total is inferred. [file][doc] (client-internals/sound-files-6x.md#what-the-files-are)
+
+| RIFF format tag | Reported count | Source |
+| --- | ---: | --- |
+| 1, PCM | 202 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| 85, MPEG Layer 3 in WAV | 43 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| 17, four-bit IMA ADPCM | 6 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| 6, A-law | 3 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| MS ADPCM or mu-law | none reported in this corpus | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+
+Reported rates span 5000–48000 Hz, including 8012, 11000 and 27000. One walk sound with a `.wav` extension instead starts with an ID3 tag and contains MP3 data: extension-only assumptions do not describe every surveyed file. This is content evidence, not proof of the original client's sniffing or decode path. [file] (client-internals/sound-files-6x.md#what-the-files-are)
+
+| Surveyed set | Content found | Source |
+| --- | --- | --- |
+| 4.04r2, 4.20r6, 4.20r8 | WAV files: IMA ADPCM at 8000 Hz; eight-bit PCM at 5000/22050 and sixteen-bit PCM at 8000 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| 5.00r7 | mixed-rate PCM, 43 stereo 24000-Hz MPEG-in-WAV, three stereo 22050-Hz A-law, one IMA ADPCM and six MP3 music files | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| 6.00r2 as served to the lab | eight-/sixteen-bit mono PCM at 8000–22050 Hz | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| 6.1.1.3 install | 68 WAVs: eight-/sixteen-bit mono/stereo PCM at 5000–48000 Hz and 8000-Hz IMA ADPCM; eight MP3 music files | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+
+MIDI was found on disk only in the pre-4.x installs of this survey, but later manifests include MIDI; one music package lists 48 MIDI entries. Ogg appears in later manifests, with no corresponding Ogg file available on disk in this study. The collected update lists contain 4760 WAV, 98 MIDI, 67 MP3 and four Ogg entries; list entries are not a count of distinct decoded or playable files. WMA/ASF appeared in the filter strings but not the surveyed world data. [file][bin] (client-internals/sound-files-6x.md#what-the-files-are); [bin] (client-internals/sound-files-6x.md#back-ends)
+
+These formats are corpus-backed compatibility-test targets, not a measured statement that every 6.x client decodes each one. Verify exact backend/build playback separately; static call-site and option evidence is in → §4.7.5. [file][doc] (client-internals/sound-files-6x.md#so-a-6x-compatible-client-needs)

@@ -23,7 +23,7 @@ volume to 0 after a hang during sound start-up. **[bin]**
 
 ## What the files are
 
-255 distinct WAVs across all eras: **[file]**
+The survey reports 255 distinct WAVs across all eras. Its format subtotals below and its channel subtotals each add to 254; the discrepancy remains unresolved, so these are reported figures rather than a reconciled census (manual App. E#325). **[file][doc]**
 
 | Format tag | Files |
 | --- | --- |
