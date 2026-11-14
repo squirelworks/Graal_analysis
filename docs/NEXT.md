@@ -15,6 +15,7 @@ macOS CI is paused until the polish stage.
 - [x] **Carry the later sound-file survey into the manual.** ~~Separate backend names, file contents and script-help observations from playback acceptance.~~ [Study](../client-internals/sound-files-6x.md); manual §3.10.5, §4.7.5 and App. E#325.
   - [ ] Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325).
 
+- [x] **Add the six exact Graal 2002 inputs to the GS1 matrix.** ~~Rescan their registered command names and preserve the existing columns.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md); runtime executors and full PLI sets remain separate questions.
 - [x] **Carry the 2.3-labelled package identity comparison into the manual.** ~~Separate the matching 2.31 client from the mixed companion tools.~~ [Existing study](../client-internals/graal-2.3-unpacked-package.md); manual §1.8.3. File identity does not supply a distinct original 2.3 client or validate its inferred profile.
   - [ ] Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input.
 
@@ -22,7 +23,7 @@ macOS CI is paused until the polish stage.
   - [ ] Validate the first emitted update on the normal interactive Windows client with the discriminators in App. E#15.
 
 - [x] **Carry the existing Graal 2002 and 1.40 static study into the manual.** ~~Separate exact input identity, token evidence, command dating and receive routes.~~ [Study](../client-internals/graal2002-and-140-builds.md); §1.1.5, §2.3.3.1, §2.5.2.1, §8.2.7.2 and App. C/E. This is manual carry, not completion of exact-build login or client teardown.
-  - [ ] Resolve the exact-input login, default-route effects, outgoing ids and scanner-matrix follow-ups in App. E#15; token/command-table matches alone do not settle them.
+  - [ ] Resolve the exact-input login, default-route effects and outgoing-id follow-ups in App. E#15; token/command-table matches alone do not settle them.
 
 - [x] **Publish the bounded Classic+ 1.13 construction study.** ~~Corroborate the known token and carry the selected caller/helper observations.~~ [Note](../client-internals/classic-113-login-construction.md); manual §2.3.9 and App. E#16. This does not complete mobile login or an iOS version profile.
   - [x] ~~Inspect the selected prefix and direct copy helpers.~~ [Static follow-up](../client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) establishes low-byte prefix construction and the selected long-path byte-copy count; manual §2.3.9/App. E#16 preserve remaining limits.

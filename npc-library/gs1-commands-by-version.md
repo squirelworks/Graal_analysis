@@ -1,16 +1,18 @@
 # GS1 commands by client version, 1998 to 5.00r7
 
-Date: 2026-11-04
+Date: 2026-11-04; six Graal 2002 inputs added 2026-11-15
 
 Which GS1 script commands each Graal client knows, read from the command list inside every client binary we have, from the
 1998 betas to 5.00r7 (the "5.007" build, July 2007). It answers "when was this command added or removed" from the clients
 themselves rather than from release notes. All rows are **[bin]**: static reads, no client was run.
 
-- The full matrix (208 commands × 61 builds) is [gs1-commands-by-version.tsv](gs1-commands-by-version.tsv).
+- The full matrix (208 commands × 67 builds) is [gs1-commands-by-version.tsv](gs1-commands-by-version.tsv).
 - The scanner and the build list are in [tools/gs1-table-scan/](../tools/gs1-table-scan/README.md). Re-running it on the same
   binaries gives the same lists.
 - What each command does in 2.05 is in [gs1-command-reference-205.md](gs1-command-reference-205.md). The argument-form changes
   for 1.33 to the NewWorld betas are in [cross-version-timeline.md](../client-internals/cross-version-timeline.md#gs1-commands).
+
+The six Graal 2002 columns were added from new read-only scans of the exact inputs in the [build study](../client-internals/graal2002-and-140-builds.md#the-builds), evidence ID `CLIENT-HUNT-20261113`. Their dates are shipped-file modification dates, not authenticated release dates. Existing 61-build membership cells were preserved from the published matrix; those binaries were not rescanned for this update. New inventory rows use the public evidence ID instead of publishing artifact digests. **[bin]**
 
 ## What "has the command" means here
 
@@ -100,7 +102,13 @@ not a removal in time. 3.04 and 2.22 carry the same build date.
 | 2.1t2 | delphi | 2001-09-21 | 161 | same as previous |  |
 | 2.1t3 | delphi | 2001-09-27 | 161 | same as previous |  |
 | NWb2 | delphi | 2001-10-03 | 165 | `addstring`, `insertstring`, `removestring`, `deletestring` | — |
-| 2.17.1 | delphi | 2002-12 (token) | 198 | `putnpc2`, `showimg2`, `hideimgs`, `play2`, `shoot`, `replacestring`, `savelog2`, `setcursor`, `setcursor2`, `wraptext`, `setshootparams`, `wraptext2`, `serverwarp`, `disablepause`, `enablepause`, `disablemap`, `enablemap`, `seteffectmode`, `changeimgmode`, `with`, `showpoly2`, `showani2`, `showtext2`, `sendtonc`, `sendtorc`, `setpm`, `sendpm`, `sendrpgmessage`, `savelog`, `showpoly`, `showani`, `showtext`, `enablefeatures` | — |
+| Graal 2002 ver7 | delphi | 2001-10-09 | 167 | `play2`, `shoot` | — |
+| Graal 2002 ver8 | delphi | 2001-10-19 | 167 | same as previous |  |
+| Graal 2002 ver9 | delphi | 2001-10-30 | 168 | `replacestring` | — |
+| Graal 2002 ver10 | delphi | 2001-11-15 | 169 | `savelog` | — |
+| Graal 2002 ver13 | delphi | 2001-11-27 | 169 | same as previous |  |
+| Graal 2002 v22 | delphi | 2001-12-31 | 174 | `setcursor`, `setcursor2`, `wraptext`, `setshootparams`, `wraptext2` | — |
+| 2.17.1 | delphi | 2002-12 (token) | 198 | `changeimgmode`, `disablemap`, `disablepause`, `enablefeatures`, `enablemap`, `enablepause`, `hideimgs`, `putnpc2`, `savelog2`, `sendpm`, `sendrpgmessage`, `sendtonc`, `sendtorc`, `serverwarp`, `seteffectmode`, `setpm`, `showani`, `showani2`, `showimg2`, `showpoly`, `showpoly2`, `showtext`, `showtext2`, `with` | — |
 | 2.22 | delphi | 2004-01 (token) | 198 | same as previous |  |
 | 2.31 | delphi | 2005-01 (token) | 198 | same as previous |  |
 | 3.04 Linux | engine | 2004-01 | 191 | — | `putobject`, `setbackpal`, `setbody`, `setbacktile`, `drawovertrees`, `setbacktile2`, `savelog` |
