@@ -274,3 +274,16 @@ A 2026-11 static pass compared the baddy, combat and tile code of 35 Windows bui
 | sword-clash spark: five ticks of `arrays.dat` array 21 | 1.28 beta 2 to 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-clash-spark) |
 
 Open: → App. E#324.
+
+## 4.3.9 Spin and lay on the wire (2.05 rev 2, 2.22)
+
+A loopback capture of the real 2.05 rev 2 and 2.22 clients. The spin window, the `GANI` bytes, and a laid rupee are below. Laying rules already in → §4.5.2.2 stay; this section is what those two clients sent [lab][cap] (client-internals/spin-lay-205-2026-11-14.md).
+
+| What was sent | 2.05 rev 2 | 2.22 | Source |
+| --- | --- | --- | --- |
+| Second S during the swing | `GANI` `spin` when the second key-down is about 0.1–0.3 s after the first; earlier stays `sword`, and +321 ms starts a new `sword` | `spin` at +131, +200 and +271 ms (3/3) | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
+| `GANI` on the wire | prop 10 is a length byte equal to the name, then `sword`, `spin` or `idle` | the same names | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
+| End of the swing or spin | no `idle`. `idle` goes out on a walk, or on A with S held | `idle` about 262 ms after `sword`, and 630–680 ms after `spin` | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#spin-a-second-s-during-the-swing) |
+| S held, then A | `idle`, then a held rupee that cycles green, blue, red with no further send; A alone sends `PLI_ITEMADD` then `RUPEESCOUNT` in one frame | the same item frame; the pick asks for `item2.wav` and does not ask for `item.wav` | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
+| Landing | `(x + 0.5 + dx, y + 1 + dy)`, north `(0, −3)`, west `(−2, 0)`, south `(0, +2)`, east `(+2, 0)` | the south case matches | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
+| After the lay | `PLI_ITEMDEL` 8.2–8.6 s later; an arrow while the rupee is held sends nothing and leaves the count unchanged | `PLI_ITEMDEL` at 8.45 s | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
