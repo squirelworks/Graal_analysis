@@ -6,13 +6,15 @@ Which GS1 script commands each Graal client knows, read from the command list in
 1998 betas to 5.00r7 (the "5.007" build, July 2007). It answers "when was this command added or removed" from the clients
 themselves rather than from release notes. All rows are **[bin]**: static reads, no client was run.
 
-- The full matrix (208 commands × 67 builds) is [gs1-commands-by-version.tsv](gs1-commands-by-version.tsv).
+- The full matrix (208 commands × 68 builds) is [gs1-commands-by-version.tsv](gs1-commands-by-version.tsv).
 - The scanner and the build list are in [tools/gs1-table-scan/](../tools/gs1-table-scan/README.md). Re-running it on the same
   binaries gives the same lists.
 - What each command does in 2.05 is in [gs1-command-reference-205.md](gs1-command-reference-205.md). The argument-form changes
   for 1.33 to the NewWorld betas are in [cross-version-timeline.md](../client-internals/cross-version-timeline.md#gs1-commands).
 
 The six Graal 2002 columns were added from new read-only scans of the exact inputs in the [build study](../client-internals/graal2002-and-140-builds.md#the-builds), evidence ID `CLIENT-HUNT-20261113`. Their dates are shipped-file modification dates, not authenticated release dates. Existing 61-build membership cells were preserved from the published matrix; those binaries were not rescanned for this update. New inventory rows use the public evidence ID instead of publishing artifact digests. **[bin]**
+
+The 1.40 column was added on 2026-11-15 from a separate exact-input read-only scan, also identified by `CLIENT-HUNT-20261113`. Its token-derived date is not an authenticated release date. All 67 earlier membership columns were preserved; the fourteen earlier first-observed bounds agree with the [1.40 study](../client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle). **[bin]**
 
 ## What "has the command" means here
 
@@ -81,7 +83,8 @@ not a removal in time. 3.04 and 2.22 carry the same build date.
 | 1.37 | delphi | 2000-05-23 | 106 | `playlooped`, `stopsound` | — |
 | 1.38 | delphi | 2000-06-23 | 109 | `changeimgpart`, `setlevel2`, `hitnpc` | — |
 | 1.39 | delphi | 2000-08-07 | 111 | `setani`, `setcharani` | — |
-| 1.41r1 | delphi | 2000-11 (token) | 126 | `canwarp`, `callnpc`, `say2`, `break`, `continue`, `callweapon`, `spyfire`, `function`, `return`, `changeimgvis`, `setimg`, `setimgpart`, `drawovertrees`, `putexplosion2`, `showstats` | — |
+| 1.40 | delphi | 2000-09 (token) | 125 | `canwarp`, `callnpc`, `say2`, `break`, `continue`, `callweapon`, `spyfire`, `function`, `return`, `changeimgvis`, `setimg`, `setimgpart`, `drawovertrees`, `putexplosion2` | — |
+| 1.41r1 | delphi | 2000-11 (token) | 126 | `showstats` | — |
 | NM24 | delphi | 2001-01-10 | 134 | `canwarp2`, `setshape`, `seteffect`, `setcoloreffect`, `setzoomeffect`, `drawaslight`, `changeimgcolors`, `changeimgzoom` | — |
 | NM26 | delphi | 2001-01-12 | 134 | same as previous |  |
 | 2.0 | delphi | 2001-02-01 | 142 | `setgender`, `setchargender`, `join`, `freezeplayer2`, `unfreezeplayer`, `enabledefmovement`, `disabledefmovement`, `setmusicvolume` | — |
