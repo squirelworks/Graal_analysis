@@ -21,7 +21,7 @@ Cleaned notes on the classic Graal tool chain. Derived from observed behavior an
 | TextConvert | Graal to New World levels | `classic-tools/text-convert.md`. The full chain (zelda, graal, nw, gmap, future package) is `level-convert/`. |
 | NPC server (2001) | Server-side NPC host | Logs into GServer as a player, 0.1 s tick, PM admin commands, `join` classes. See `npcserver-2001.md`. |
 
-See the individual files for the measured contracts. `tools-coverage-2026-11-14.md` checks every tool in the Apps/Tools archive for research, teardown and a Rust equivalent, and ranks the gaps. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.
+See the individual files for the measured contracts. `tools-coverage-2026-11-14.md` checks every tool we hold for research, teardown and a Rust equivalent, and ranks the gaps. `graaleditor-vs-205.md` compares GraalEditor and GraalShop with the editor built into the 2.05 client.
 - `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.
 - `relay-bridge/` — `room_bridge.py` (logging proxy for the 1998 GServ relay that can rename join rooms), `AppletRun.java` (runs the Java Graal / Zelda Online applets in a frame), `pcap_lines.py` (prints the relay lines in a capture). See `../client-internals/relay-room-bridge.md`.
 - `lab-servers/` — our lab listserver (version 2, with tests), `run-lab.sh` and the gs2lib patch our GServer build carries. See `../server-notes/lab-servers-2026-10-30.md` for what our servers are and how they compare with GServer-v2 beta4.

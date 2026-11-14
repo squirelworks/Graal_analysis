@@ -1,8 +1,7 @@
 # Tool coverage: research, teardown, Rust (2026-11-14)
 
-Date: 2026-11-14. Scope: every tool in the owner's deduplicated Apps/Tools
-archive (the same tree catalogued from Drive in
-`../recovered-drive-tools/INVENTORY.md`), checked against three questions:
+Date: 2026-11-14. Scope: every tool we hold, deduplicated (the same tree
+catalogued in `../recovered-drive-tools/INVENTORY.md`), checked against three questions:
 
 1. **Researched**: is the tool described anywhere in this repo (purpose,
    era, what it reads and writes)?
@@ -16,9 +15,8 @@ archive (the same tree catalogued from Drive in
    `seihai-listserver`, `seihai-npcserver`)? Python references in this
    repo do not count; AGENTS.md keeps them out of the Rust repos.
 
-Static reads only. No tool was run for this note. Client builds in the
-same archive (the "Main Client Application Archive", 1.x to 6.x, Java,
-GameBoy, Zelda Online) are clients, not tools, and are covered by the
+Static reads only. No tool was run for this note. Client builds held
+alongside them (1.x to 6.x, Java, GameBoy, Zelda Online) are clients, not tools, and are covered by the
 client notes (`../client-internals/build-catalogue.md`). Tutorials,
 PSP/PSD art, gani and NPC sample packs and the GS2 syntax files are
 material, not tools, and are left out.
@@ -137,7 +135,7 @@ or `manual/11-tools.md` and nothing more.
 | Server player count PHP + NPC | cat. | source | no (gap 7) |
 | Graal Messenger | cat. | no | not needed |
 | Graal Sound Fix | no | no | not needed |
-| apcalc | cat. (Drive copy blocked as abusive) | no | not needed |
+| apcalc | cat. (no copy held) | no | not needed |
 
 ## What is being built
 
