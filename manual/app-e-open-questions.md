@@ -646,6 +646,10 @@ The source also calls the full-size row's right margin 68 pixels, but its formul
 
 The Linux/Windows black-box study in → §4.6.9 leaves the sword source rectangle's right edge unresolved (width 28–34 pixels), Windows text positions at other window sizes unmeasured, and Windows operation with a current clock unchecked; its Windows run used a 2012 clock. Resolve these with exact-build, identified-state captures before choosing a definitive crop, text layout or clock-compatibility claim. [shot][lab] (client-internals/hud-603r7-black-box.md#open)
 
+### E#327 Missing chest art and menu skin in the 6.03r7 item run
+
+The script-free Linux run in → §4.5.8 observed chest collision/opening without chest art, and an orange rectangle after D/Q/Tab/Esc toggled the menu status. The missing art's source and the proposed GUI-skin explanation are unresolved. Identify the board/file or script dependency with controlled input changes before attributing either rendering path to the client. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests); (client-internals/items-603r7-black-box.md#open)
+
 ### E#400 Two projects called Ash
 
 Two different things are called Ash in the notes. The manual keeps them apart until their archives are compared [src] (server-notes/01-lineage.md#what-is-binary--world-only).
