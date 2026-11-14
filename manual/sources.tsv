@@ -155,7 +155,9 @@ client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry th
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
 client-internals/launchers-420r8-500r7-512.md	pending		1; 2.3	4.20r8, 5.00r7 and "5.12 untouched" launcher copies and the Packet Logger engine diff; to be folded into the build list
 client-internals/graal2002-and-140-builds.md	pending		1; 2.3; 2.4; 2.5	Graal 2002 (2.1.0.x) and 1.40 builds: tokens, GS1 dating and receive-dispatch rows; to be folded into the build list, login and message sections
+client-internals/graal-2.3-unpacked-package.md	pending		1	identity of the 2.3 [Unpacked][Cracked] package (2.31 unwrapped); to be folded into the build list
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
+client-internals/hud-603r7-black-box.md	pending		4.6	6.03r7 HUD layout measured on Linux and Windows; to be folded into the HUD chapter
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
@@ -184,6 +186,7 @@ client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one han
 client-internals/id24-205.md	cited	2.4	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 client-internals/issho-cut.md	cited	10	10	
 client-internals/item-drops.md	cited	4; 4.5; E	4.5	
+client-internals/items-603r7-black-box.md	pending		4.5	6.03r7 sword, lift, throw, chest and sign from the wire and screen; to be folded into the items section
 client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5; E	4.2; 4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
 client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
@@ -216,6 +219,7 @@ client-internals/serveroptions-198.md	cited	2.5	2.5
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/skipped-v6-read.md	cited	10	10	§10.1.9 carries the stub, the QPlay.exe export directory and the TLS names that differ; the full export lists stay in the note
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
+client-internals/sound-files-6x.md	pending		4.7	4.x-6.x sound back ends and file formats; to be folded into the sound chapter
 client-internals/spyfire-by-version.md	cited	8.2		
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
