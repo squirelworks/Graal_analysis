@@ -60,7 +60,7 @@ Every key-up clears the sword latch, the swamp frame, the wall-push count and gr
 
 ## Zelda Online 2 rules (Java2), from source
 
-Read from the author's Java2 source (`ZeldaMain.java`, `Computer.java`, `ZeldaClient.java`) and the relay's `Player.java`. **Nothing in this section was run**; multiplayer was never exercised. Where bytecode was checked it is said so. **[src]**
+Read from the author's Java2 source and the relay source. This section's selected mechanics were not run in that pass; it does not negate the earlier [qualified original-program multiplayer sessions](precursor-runs-2026-10-30.md). Where bytecode was checked it is said so. The [canonical capability map](../protocol/relay-1998.md#earliest-networking-capability-map) separates those observations from source-only board replay. **[src]**
 
 ### Start and input
 

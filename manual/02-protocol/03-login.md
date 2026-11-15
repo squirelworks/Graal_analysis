@@ -3,7 +3,7 @@
 
 For exact values, shared aliases, roles and per-association evidence, use the [version token map](../../VERSION-TOKENS.md) and its [canonical catalogue](../../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support. [doc] (client-internals/version-token-catalogue.md)
 
-Tokens are listed in → §1.2.2, frames in → §2.1.4 and ciphers in → §2.2. The listserver exchange that comes before a game login is in → §6; RC and NC logins are in → §7.
+Tokens are listed in → §1.2.2, frames in → §2.1.4 and ciphers in → §2.2. Where a build uses listserver discovery, that exchange is in → §6; early direct connections below do not require it. RC and NC logins are in → §7. [bin][src] (protocol/relay-1998.md#earliest-networking-capability-map)
 
 ## 2.3.1 1998 relay (generation 1)
 
@@ -93,7 +93,7 @@ The rules below come from live runs that put different builds on one relay. They
 | A renaming bridge must keep the level part; mapping a level room onto a game-wide room would put players on different levels together | [inf] (client-internals/relay-room-bridge.md#what-this-means) |
 | When two clients each answer the other's `+` with `P`, GServ links the pair twice and delivers every later `D` line twice; Zelda Online 2 and Java Graal both did this | [live] (client-internals/precursor-runs-2026-10-30.md#what-the-wire-showed) |
 | `D` types: Zelda Online 2 uses `P C N S M H B T D E O W A`; Java Graal drops `S` (colours) and adds `L` (level name), so Java players show default colours | [src] (client-internals/precursors-and-fan-builds.md#java-graal-client) |
-| The level-leader rule (earliest login time, ties to the lower id) comes from Zelda Online 2 | [src] (client-internals/precursors-and-fan-builds.md#zelda-online-2-client) |
+| The Zelda Online 2 leader routine compares peer times with the local login time rather than a running minimum; identity ties and peer order affect the result | [src] (client-internals/precursors-and-fan-builds.md#zelda-online-2-client) |
 
 ### 2.3.1.4 `D` payloads
 
@@ -104,7 +104,7 @@ D <sid:2> <type:1> <payload>
 | Field | Encoding | Source |
 | --- | --- | --- |
 | `sid` | sender id as two base-128 characters, `(c0 - 32) * 128 + (c1 - 32)`; the receiver writes it back as `0000` plus 4 zero-padded digits; the server does not stamp the sender | [bin] (protocol/relay-1998.md#d-payloads) |
-| coordinates | half tiles, `(c - 32) / 2` | [bin] (protocol/relay-1998.md#d-payloads) |
+| coordinates | captured Delphi player positions are half tiles, `(c - 32) / 2`; board rectangles use whole-tile indices; Java position scale is dialect-specific | [bin][cap] (protocol/relay-1998.md#d-payloads) |
 | knock-back and fine offsets | `(c - 96) / 16` | [bin] (protocol/relay-1998.md#d-payloads) |
 
 Game traffic between two players goes inside `D` lines, one letter per kind of event. The table shows how the set of letters each build sends grew, build by build [bin] (protocol/relay-1998.md#d-payloads).
@@ -141,7 +141,7 @@ This is the dictionary for those letters. Each row gives the payload fields and 
 | `Q` | NPC id | `playertouchsme` for an NPC on the receiver's side | [bin] (protocol/relay-1998.md#d-payloads) |
 | `R` | x, y | object at x, y removed | [inf] (protocol/relay-1998.md#d-payloads) |
 | `S` | count, then that many colour indices (4 in 1st Graal, 5 from 4th alpha) | sprite colours | [bin] (protocol/relay-1998.md#d-payloads) |
-| `T` | 10 characters, base 128, little end first | login time; the peer with the earliest time is level leader and runs baddies and NPCs | [bin] (protocol/relay-1998.md#d-payloads) |
+| `T` | 10 characters, base 128, little end first | login time; Java shared-state leadership/replay uses it, with local-timestamp comparisons rather than a global running minimum; it does not establish exclusive NPC execution in every Delphi relay build | [src][cap] (protocol/relay-1998.md#d-payloads) |
 | `U` | x, y, kind, id | baddy spawned | [bin] (protocol/relay-1998.md#d-payloads) |
 | `W` | sprite | throws the carried object | [bin] (protocol/relay-1998.md#d-payloads) |
 | `X` | target id | hit or kill aimed at one player; only the named player applies it | [inf] (protocol/relay-1998.md#d-payloads) |
@@ -155,6 +155,16 @@ This is the dictionary for those letters. Each row gives the payload fields and 
 | `8` | registration-key string | duplicate key check; a peer with the same key disconnects the client with a message | [bin] (protocol/relay-1998.md#d-payloads) |
 
 Several `D` types live on in 1.21 as numbered messages with the same meaning and similar payloads: board modify, bomb, item, horse and throw [bin] (protocol/relay-1998.md#what-changed-in-121).
+
+### 2.3.1.5 Earliest capability and evidence boundaries
+
+The canonical build-by-build capability map distinguishes Zelda Online 1 (no multiplayer socket), Zelda Online 2's single relay channel, Java Graal's selected single `G2` channel, dual-channel Delphi relay clients, and central GSERV accounts/zlib from 1.21. NOTOKEN is the documented absence of a version-token field, never bytes sent as a token or a failed scan. There is no modern listserver-discovery step before these early direct connections. Local/codebase/HTTP level loading is distinct from game transport; relay board deltas are not whole-level transfer. [bin][src][cap] (protocol/relay-1998.md#earliest-networking-capability-map)
+
+Java Graal and 4th Graal alpha shared `G2<level>` directly on stock GServ; the observed Java Graal/5th-Graal shared play required a `G2` to `G3` room-prefix proxy. Other prefix bridges are proposals, not tested pairs. 5th Graal's movement used Wine's keyboard fallback without a memory patch; the 1.21/1.1.9 walking runs used in-memory keyboard-format patches, while 1.28 additionally required its documented joystick setting and UDP address-length patch. These qualified original-program observations are neither an unpatched native baseline nor synthetic rebuild tests. [live][cap] (protocol/relay-1998.md#evidence-and-implementation-boundaries)
+
+The 1.28 capture establishes direct peer UDP movement and arrow traffic, with leader changes selected by server id 10; it leaves endpoint carriage unresolved. 1.31/1.32 token refusals by GServer13 are not successful gameplay. Matching retained file bytes do not authenticate archive origin, stockness or a historical client/server pair. Reproduction progress is tracked separately from original capabilities. [bin][cap][doc] (protocol/relay-1998.md#earliest-networking-capability-map)
+
+For Zelda Online 2, selected source review `ZELDA2-BOARD-SOURCE-REVIEW` describes `B` as whole-tile x/y plus packed width/height and high-first two-base-128-character tiles traversed x-major. A known-peer receive mutates the board and visit history without echo; local cut/lift paths also send. A peer's `T` triggers leadership recalculation and the current leader's party-wide board-history/dead-baddy replay, not a newcomer-only reply. Level entry renews the timestamp; successful loading clears visit history. Existing captures did not observe board mutation/re-entry. The source compares peers with the local login timestamp rather than the best timestamp so far; equal-local-time identity comparisons and conditional negative-time handling can make retained candidate identity depend on peer order. The exposed result is whether that candidate is local, not a generic globally earliest-peer result. The top-left comparison quirk, malformed-rectangle handling and native behavior remain unconfirmed; defensive bounds checks are implementation policy. [src][live] (client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state)
 
 ## 2.3.2 1999 GSERV login (generation 2)
 

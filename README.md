@@ -6,6 +6,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Earliest networking capability map](protocol/relay-1998.md#earliest-networking-capability-map) — Zelda 1's absent multiplayer, Zelda 2/Java/Delphi relay rooms and dual TCP channels, GSERV accounts/UDP, actual cross-build runs and their patches/proxies; source-only board replay and archive-provenance limits remain explicit.
+
 - [Windows 2.22 control PM paths](protocol/windows-222-pm-static.md) — selected composer/send intent, receive defaults and sender lookup; modified control only, remote-roster trigger and visible result still open.
 
 - [The 2001 Windows developer component](tools/classic-tools/developer-component-2001.md) — component and executable versions, red-tree help and static classifier path, selected serializer branch, and MNG interface declaration; no native output claim.
@@ -71,6 +73,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 
 - [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
+- [Linux 4.20 rev 8 string floor](client-internals/linux-420r8-string-floor.md) — the 2007-01-15 and 2007-01-17 images both contain the level and gmap literals, with conventional meanings; the earlier image's receive switch was not read.
 - [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle. See the [native-call evidence boundary](torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) for static dispatch and unresolved argument/result contracts.
 - [Linux network/bootstrap evidence gates](version-profiles/linux-network-bootstrap-evidence.md) — seven exact inputs, independent measured gates and explicit source-scoped unknowns.
 - [Bound Linux 3.04 GS1 source-weapon events and predicates](npc-library/linux-304-gs1-runtime.md) — exact-build observations with delivery and execution limits.
@@ -244,8 +247,10 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame` — exact ver10 native loopback login and first-frame identity; mixed supporting data, bounded negative reply observations and unobserved first properties update remain explicit.
 - `client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards` — exact public 171 main-map/172 minimap state, fixed field order and text-resource commit/preserve guards; runtime display and rounding remain open.
 - `client-internals/graal2002-and-140-builds.md` — the Graal 2002 world builds (2.1.0.0–2.1.0.4, Oct–Dec 2001) and the 1.40 builds: tokens `GNW31101` and `GNW23090` read from binaries, GS1 command dating, and receive-dispatch ids 170–177; ver10 initial-property order, encoding branches and a necessary self-properties-reply gate; the log form from ver10 and the chest and baddy forms on the public 2.1.0.0 and v22; exact ver10 fixed list entry, selected-row endpoint fields and bounded cache coverage; two qualified local-entry negatives leave the first-update experiment open. The public 2.1.0.0 image's receive layouts for ids 170–174 and v22's layouts for 175–177 are read there, as are ver10's `controlnpc.txt` install and v22's `loadgmaps.txt` preload.
+- `client-internals/graal2002-level-open.md` — the public 2.1.0.0 level-open gate (`Unsupported file type!` versus `Level loaded`), the local-enter constant 40, ver7's file body beside the public baddy and chest records, and v22's empty `GLEVNW01` stream when a mode field equals 2.
 - `client-internals/v21-level-record-gate.md` — public 2.1.0.0 stores baddy and chest records with no flag test; v22 stores them only when two flag bytes are both clear, names still unknown; ver7 consumes the lines and does not construct the records. File reader. Static.
 - `client-internals/early-windows-callback-variants.md` — same-version 1.41 callback bindings: handler-body entry versus its final return, with analyst-seeded static coverage and a next question for each early-Windows comparison input.
+- `tools/token-map/beta4-comparison.md` — pinned beta4 documentary-list comparison, raw-prefix discrepancies, exact-association ambiguity and consumer-format limits.
 - `client-internals/version-token-catalogue.md` — every known client build with its login token, the evidence grade (wire, binary, public list only, server-defined, none), and whether the graal-client-repro folder matches.
 - `client-internals/iphone-version-tokens.md` — iPhone token study of 27 packages / 26 unique executables of one publisher: engine 2008 `G3D04048`, engine 2010 `G3D18010`, Classic+ 1.13 `G3D0208A` (not in gs2lib); two more from gs2lib only.
 - `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.

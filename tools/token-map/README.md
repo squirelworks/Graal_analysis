@@ -21,10 +21,32 @@ No binaries, private intake, external packages or network are used to generate.
 
 TSV columns: `token` is the exact ASCII identifier (empty for unresolved/no-token
 rows); `state` distinguishes those cases. `build`, `platform`, `role` and
-`family` retain associations. `evidence` preserves grade qualifiers and
-`confidence` explains the leading grade. `source` and Markdown links in
+`family` retain associations. `evidence` is the complete supporting signature
+in W, B, L, S, U, C order; `B+` is one qualified B and `-` is documented
+no-token. `confidence` explains every included category. `source` and Markdown links in
 `source_details` are repository-root-relative public references. No inferred
 date or filename is converted into token bytes.
+
+Canonical Source cells contain named records, for example
+`[W@capture] citation<br>[B@static] citation`. The Grade cell must exactly match
+their aggregated signature. `[B@mirror~static]` records a dependent citation;
+it cannot create a new category or depend on a missing/cyclic/conflicting
+source. `[L@legacy!conflict]` retains a disagreement without counting it as
+support. IDs are association-local. Multiple sources are not a confidence
+score, and the generator never guesses categories from citation prose.
+
+The appended TSV `source_records` column contains JSON objects with `id`,
+`category`, `citation`, `depends_on` and `status`. Existing token/build/role
+columns retain their meaning; consumers that require an exact column list
+must accommodate this added column. U may coexist with positive categories
+only when its citation explicitly names `scope:`; `-` cannot mix with them.
+Neither a missing capture nor a failed scanner establishes token absence.
+
+The [pinned beta4 comparison](beta4-comparison.md) distinguishes exact values,
+raw prefix discrepancies and ambiguous associations. To compare a supplied
+copy: `python tools/token-map/compare_beta4.py <versions-text-file>`.
+Suggestions do not silently normalize source tokens, and the research TSV is
+not a drop-in server allow-list.
 
 The tests preserve consequential shared-token/grade boundaries, all currently
 audited mobile associations and role distinctions, and validate public source

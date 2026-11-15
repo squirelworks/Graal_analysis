@@ -20,6 +20,10 @@ Graal has three level formats, and the same file can carry the wrong extension. 
 | 2.05 writer | always writes `GR-V1.03` for a level that is not saved as `.nw` | [2.05] (formats/level-binary.md#open) |
 | 2.31 writer | writes `GR-V1.04` only when the level has a height map, `GR-V1.03` otherwise | [2.31] (formats/level-binary-client.md#gr-v104-231) |
 | Mac 4.04r2 board dispatch | the routine reads 8 header bytes and compares them: `GLEVNW01` has its own handler; every other header, including an unknown one, takes a common path that passes 12, or 13 for `GR-V1.02` and `GR-V1.03`; it has no `GR-V1.04` comparison. This is not a whitelist, and 12/13 is not proven to be a tile width | [bin][inf] (formats/gmap-heights-mac-ppc.md#404r2-board-header-dispatch) |
+| public 2.1.0.0 open | eight-byte whitelist: `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00` to `GR-V1.03`, `GLEVNW01`. Any other header shows `Warning` / `Unsupported file type!` and does not load. A match clears 64 by 64, rewinds, parses, and sets `Level loaded` | [bin] (client-internals/graal2002-level-open.md#open-gate) |
+| public 2.1.0.0 local enter | logs `Player enters local level ` plus the name, then applies the same seven magics. A mismatch stores a flag and the constant 40 and does not swap the level | [bin] (client-internals/graal2002-level-open.md#local-enter) |
+| ver7 file body | same 12/13 board split. The traced body stores link and sign records and does not construct baddy objects or four-field chest records | [bin] (client-internals/graal2002-level-open.md#what-the-parser-stores) |
+| v22 missing file | when the name lookup and the opener are both empty and a mode field equals 2, the client writes eight bytes `GLEVNW01` and loads that stream. Another mode value does not load | [bin] (client-internals/graal2002-level-open.md#v22-when-the-file-is-missing) |
 
 A level name with no extension is a separate question. The rules below say what clients do with such a name, what the editor adds, and which builds were read to establish it [bin] (client-internals/bare-level-names.md#findings).
 
