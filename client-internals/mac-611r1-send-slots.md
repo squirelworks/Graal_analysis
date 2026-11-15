@@ -2,7 +2,7 @@
 
 Date: 2026-11-14. Static read of the Mac OS X 6.11r1 client executable (Mach-O, x86_64; the same input as [mac-611r1-gs2-runner.md](mac-611r1-gs2-runner.md)). Nothing was run. Tags: **[bin]** read from the executable · **[inf]** inferred.
 
-[`protocol/v6x-clients.md`](../protocol/v6x-clients.md#the-611-named-send-slots) describes the Windows 6.11 mechanism. Each outgoing message has a slot in a script-loaded table, and a slot holding 0xFE makes the client call an `onSend…` script event instead of sending. The Mac build uses the same mechanism and the same slot numbers.
+[`protocol/v6x-clients.md`](../protocol/v6x-clients.md#the-611-named-send-slots) describes the Windows 6.11 mechanism. Each outgoing message has a slot in a script-loaded table, and a slot holding 0xFE makes the client call an `onSend…` script event instead of sending. The Mac study finds 52 matching slot numbers and directly inspects the entry tests for slots 44 and 45; four mappings and Mac table population remain unresolved below. Do not read the shared-numbering inference as confirmation of every slot or the ordinary send path.
 
 ## The table and the test
 

@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the Mac 6.11r1 named-send scope into the manual.** ~~Separate 52 matched slots and two inspected entry tests from unconfirmed writer/table-population paths.~~ [Study](../client-internals/mac-611r1-send-slots.md); manual §1.8.7 and §2.4.13.
+  - [ ] Resolve the four unmatched mappings, ordinary-send payload path and Mac script-side table population before treating this as a complete outgoing contract.
+
 - [x] **Carry the later Windows launcher identity boundary into the manual.** ~~Keep the relabelled 5.00r7 pair separate from genuine 5.12 engine evidence.~~ [Study](../client-internals/launchers-420r8-500r7-512.md); manual §1.8.9 and §2.3.5.
   - [ ] Compare genuine 5.12 and 5.00r7 per-property value widths; matching case sets do not settle them.
 
