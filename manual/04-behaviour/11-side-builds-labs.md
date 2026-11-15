@@ -285,6 +285,9 @@ Each build names its windows in the executable. The table follows the Delphi for
 | 2.04 | + `TOBJECTSET` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
 | NewWorld betas | − `TCHESTEDIT`, `TEDITBADDY` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
 | 2.1 test 2 | + `TEDITNPC`; − `TEDITPERSON`, `TOBJECTSET`, `TPERSONACTION`, `TSHOWCODES` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
+| Graal 2002 ver7–ver9 | no `TCHESTEDIT`, `TEDITBADDY` or `TLOGFRAME` | [bin] (client-internals/graal2002-and-140-builds.md#form-resources) |
+| public 2.1.0.0 and the larger 2.1.0.4 | + `TLOGFRAME`, `TCHESTEDIT`, `TEDITBADDY` | [bin] (client-internals/graal2002-and-140-builds.md#form-resources) |
+| Graal 2002 ver10 and ver13 | + `TLOGFRAME` | [bin] (client-internals/graal2002-and-140-builds.md#form-resources) |
 | 2.17.1 | + `TABOUTDLG`, `TLOGFRAME`, `TRPGFRAME`, `TTILESARRAYFRAME`; − `TWAABOUT` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
 | 2.31 | − `TCHESTEDIT`, `TDEBUGGERFRAME`, `TEDITBADDY`, `TEDITCHARACTER`, `TEDITFLAGS`, `TEDITNPC`, `TEDITSIGNS`, `TLINKLIST`, `TLINKOPTIONS`, `TOBJECTNAME`, `TTILESARRAYFRAME` (the editor leaves the client) | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |
 | Graal3D | `TADVENTURE`, `TCONNECTFRAME`, `TEDITLOOK`, `TMOREOPTIONS` | [bin] (version-profiles/matrix/builds-deltas.md#delphi-forms-windows) |

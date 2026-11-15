@@ -108,6 +108,22 @@ The trace joins the mapped receive tables and gate write to the update guard, or
 
 No native traffic capture establishes this first update. These findings do not complete the outgoing message-id inventory, the whole player-property codec, helper semantics for other properties, or any whole-build teardown. A discriminating capture must start before the first server reply and compare no reply, an unrelated well-formed reply, and self-properties replies in fresh sessions, preserving other startup conditions and no-emission results. **[bin]**
 
+## Form resources
+
+The resource directory names the Delphi forms compiled into each image. A name here is a window the executable carries. It does not say which of those windows the player can open. **[bin]**
+
+ver7, ver8 and ver9 share one name set. It includes `TEDITNPC` and the 1.41 server-list forms (`TSERVERLISTFRAME`, `TSERVERMESSAGE`, `TSHORTMESSAGE`, `TWAABOUT`). It does not include `TCHESTEDIT`, `TEDITBADDY` or `TLOGFRAME`. ver8 and ver9 add no form name to ver7. ver13 matches ver10. The public 2.1.0.0 image and v22 match each other.
+
+| Image | FileVersion | Size (bytes) | Form names added to the ver7 set |
+|---|---|---|---|
+| ver7, ver8, ver9 | 2.1.0.0 | 1,665,536 / 1,670,656 / 1,673,216 | none |
+| public 2.1.0.0 | 2.1.0.0 | 1,771,008 | `TLOGFRAME`, `TCHESTEDIT`, `TEDITBADDY` |
+| ver10 | 2.1.0.2 | 1,676,288 | `TLOGFRAME` |
+| ver13 | 2.1.0.4 | 1,676,800 | `TLOGFRAME` |
+| v22 | 2.1.0.4 | 1,805,824 | `TLOGFRAME`, `TCHESTEDIT`, `TEDITBADDY` |
+
+The chest and baddy editor forms follow the dispatch split in the section above: absent on ver7–ver13, present on v22 and on the public 2.1.0.0, which is the image whose receive table keeps ids 2, 4, 17, 18, 154 and 155. `TLOGFRAME` is already in ver10 (15 Nov 2001), ver13, the public image and v22. The form matrix still lists `TABOUTDLG`, `TRPGFRAME` and `TTILESARRAYFRAME` as 2.17.1 additions; none of those three names is in this set. **[bin]**
+
 ## What the 1.40 builds settle
 
 1. **New token `GNW23090`** (DDMMY 23 Sep 2000) in two executables labelled 1.40 (FileVersion 1.3.9.1 and 1.4.0.1). It sits
@@ -136,4 +152,5 @@ No native traffic capture establishes this first update. These findings do not c
 - [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
+- [x] ~~Form-resource names for the seven 2.1.0.x images.~~ [Form resources](#form-resources): the log form is in ver10 and later in this set; the chest and baddy forms return on the public 2.1.0.0 and on v22.
 - [x] ~~Add the six builds to the scanner inventory and regenerate the matrix.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md): six exact-input scans added; existing membership cells preserved.
