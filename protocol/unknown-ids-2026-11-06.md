@@ -169,6 +169,10 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
 
 ### PLO 109: download a file from a URL (5.24 and later)
 
+Canonical status note (2026-11-16): `plo-109-httpdownload.md`
+(preferred name `PLO_HTTPDOWNLOAD`; Others Work “v6 only” softened to
+5.24r4–6.03r7; first-string scheme-check still open).
+
 - **Layout [bin] (6.03r7):** `i5 time`, `str A`, `str B`.
 - **[bin]** B is parsed as a URL (`http://` or `https://`, then host and path). The client
   finds or creates an HTTP connection object named `HTTP_<host>_<port>_<path>` and starts
