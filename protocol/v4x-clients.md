@@ -10,9 +10,9 @@ Sources: five uploads, read statically. Nothing was run. Tags: **[bin]** read fr
 | Windows 4.20r8 "Packet Logger v1 Only" | The Code::Blocks / MinGW project and C++ source of `g4_PackLog.dll` (June 2007). Same DLL as in v2. |
 | Mac OS X 4.20r6 | HFS+ disk image: `Graal.app` (PowerPC, September 2006, "© 2006 Linux Cyberjoueurs"), `ExeReplacer`, `license/`, `languages3D/`, `levels/`, `levels3d/gui`, `sounds/`. |
 | Windows 4.04r2 installer | `Graal4Setup.exe`, a **Thinstall** (2003) virtualised bundle. Unpacked: `Graal4.exe`, `GraalEngine.dll` (March 2006), **`Graal3DEngine.dll`**, `fmod.dll`, `ExeReplacer_temp.exe`, `license/` and the data tree (see "Windows 4.04r2"). Stock, unmodified. |
-| Windows 4.20r8 "Unpacked" | Password-protected 7z with encrypted headers. No password is known, so it was skipped. |
+| Windows 4.20r8 "Unpacked" | Stock `Graal4.exe` + `GraalEngine.dll` (and the rest of the install tree). The archive that held them was opened in a private extract (2026-11-16); see [stock-420r8-profile-recheck-2026-11-16.md](../client-internals/stock-420r8-profile-recheck-2026-11-16.md). |
 
-So the readable game code is the **4.04r2 Windows engine** (stock), the **4.20r8 Windows engine** (third-party modified) and the **4.20r6 Mac client** (stock).
+So the readable game code is the **4.04r2 Windows engine** (stock), the **stock 4.20r8 Windows engine**, the **Packet Logger 4.20r8 engine** (third-party modified; identical for every surface except the logger patch), and the **4.20r6 Mac client** (stock).
 
 ## What these clients are
 
@@ -243,4 +243,4 @@ The plug-in also has the server-side reader for this request. Each connection ou
 - The ids sent through a register, for a complete client → server list.
 - Whether the Mac 4.20r6 build handles id 41 anywhere outside its switch (it has no case there).
 - The Mac 4.20r6 send ids: a scan of `li r4, <id>` before a virtual call at vtable slot 12 (the slot the 162 answer uses) finds 0-10, 12, 13, 16-21, 25, 27-29, 32, 33, 35, 36, 38, 40, 41, 43, 45, 46, 50, 81, 93, 96, 98, 130, 152, 154-159, 161 and 162, but slot 12 is not proven to be the send call on every object, so this is a lead only.
-- A clean, unmodified 4.20r8 `GraalEngine.dll` (the "Unpacked" archive, if its password turns up) to confirm the patch points by diff.
+- ~~A clean, unmodified 4.20r8 `GraalEngine.dll` to confirm the Packet Logger patch points by diff.~~ Done 2026-11-16: stock vs Packet Logger differs only in those edits ([stock re-check](../client-internals/stock-420r8-profile-recheck-2026-11-16.md)).
