@@ -89,6 +89,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Record seven exact Linux client local-login baselines](protocol/linux-local-login-matrix.md) — exact-build observations with delivery and execution limits.
 - [Observe Linux 6.03 network GS2 execution and continuation](protocol/linux-603-network-gs2.md) — exact-build observations with delivery and execution limits.
 - [Official GS2 bytecode from 6.113 caches](protocol/gs2-official-bytecode-6113.md) — 19 decrypted server-compiled bodies checked against the container reading; 197 as descriptor, CRC over the stored body; structure and counts only.
+- [Official GS2 variable-cache opcodes and function-table order (partial)](protocol/gs2-official-varcache-functable-partial-2026-11-16.md) — offline walk of 7 of those bodies: 45/46/47 common with 47→45 pairs, 190 rare; segment-2 not a CI name-hash sort; counts only.
 - [Research plan, November 2026](docs/research-plan.md) — the open research issues in order, what each unblocks, and what waits on the owner.
 - [Research-data publication plan](docs/research-data-publication-plan.md) — completed-intake triage, versioned evidence comparisons, authored fixtures and focused follow-up experiments.
 

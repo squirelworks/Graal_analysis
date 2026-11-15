@@ -676,6 +676,7 @@ client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT p
 protocol/gmap-adjacent-level-target.md	cited	2.5; E	2.5	
 protocol/gmap-file-on-warp.md	cited	2.5	2.5	pre-3.0 clients need `.gmap` on disk before each PLAYERWARP2; once-per-session push fails when saveimages is off; §2.5.3
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
+protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	E; 8.4	E; 8.4	partial offline counts for opcodes 45/46/47/190 and segment-2 order on 7 official bodies; full 19 and the five-use rule stay open; bodies and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
 client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	
 client-internals/gs1-on-5x-hud-and-flags.md	cited	4.6; 8.3; C	4.6; 8.3; C	
