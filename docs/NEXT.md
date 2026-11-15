@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the later Windows launcher identity boundary into the manual.** ~~Keep the relabelled 5.00r7 pair separate from genuine 5.12 engine evidence.~~ [Study](../client-internals/launchers-420r8-500r7-512.md); manual §1.8.9 and §2.3.5.
+  - [ ] Compare genuine 5.12 and 5.00r7 per-property value widths; matching case sets do not settle them.
+
 - [x] **Carry the measured Linux 6.03r7 item behavior into the manual.** ~~Separate input packets, corrected idle-VM timing and screen effects from server replies.~~ [Study](../client-internals/items-603r7-black-box.md); manual §4.5.8, App. E#327.
   - [ ] Identify the missing chest art and test the proposed menu-skin dependency (App. E#327).
 - [x] **Establish direct symbolic GANI placement context.** ~~Separate ANI PARAM1 references from SPRITE sheet tokens in the inspected mobile resources.~~ [File evidence](../formats/ios-gani-param1-placements.md); manual §3.3.8. Two shared forms, not a native playback test.
