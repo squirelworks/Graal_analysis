@@ -1,0 +1,46 @@
+folder_tag	era	kind	file_or_bundle_version	string_hits	other_literals	open_binary	status	notes
+1.25-installer	1.2x-installers	unknown	n/a	GNW|GSERV009|VERGRAAL	Graal v1.2.5|public web-host literal	1	done	inner Graal.exe via unshieldv3; wrapper was InstallShield ZIP stub
+1.27-installer	1.2x-installers	unknown	n/a	Gnw|GSERV011|VERGRAAL	public web-host literal	1	done	inner Graal.exe via unshieldv3; wrapper was InstallShield ZIP stub
+1.3.9.1-from-v1.39-Dup	1.3x-1.4x-delphi	pe	1.3.9.1	VERGRAAL	Graal v1.3|Graalsav9|Graalsv10|Graalsv11|public web-host literal	1	done	
+1.3.9.1-from-v1.40rar	1.3x-1.4x-delphi	pe	1.3.9.1	VERGRAAL	Graal v1.3|Graalsav9|Graalsv10|Graalsv11|public web-host literal	1	done	
+1.4.0.1	1.3x-1.4x-delphi	pe	1.4.0.1	VERGRAAL	Graal v1.3|Graalsav9|Graalsv10|Graalsv11|public web-host literal	1	done	
+1.4.1.1-variant-folder	1.3x-1.4x-delphi	pe	1.4.1.1	NW01|VERGRAAL	Graal v1.3|Graalsav9|Graalsv10|Graalsv11|public web-host literal	1	done	
+1.4.1.1-variant-rar	1.3x-1.4x-delphi	pe	1.4.1.1	NW01|VERGRAAL	Graal v1.3|Graalsav9|Graalsv10|Graalsv11|public web-host literal	1	done	
+2.1.0.0-graal2002ver7	2.1x	pe	2.1.0.0	NW01	Graal 2001|board-link graal strings	1	done	
+2.1.0.0-graal2002ver8	2.1x	pe	2.1.0.0	NW01	Graal 2001|board-link graal strings	1	done	
+2.1.0.0-graal2002ver9	2.1x	pe	2.1.0.0	NW01	Graal 2001|board-link graal strings	1	done	
+2.1.0.0-public-graal2001-20011113	2.1x	pe	2.1.0.0	NW01	Graal 2001|board-link graal strings	1	done	
+2.1.0.2-graal2002ver10	2.1x	pe	2.1.0.2	NW01	Graal 2001|board-link graal strings	1	done	
+2.1.0.4-graal2002v22	2.1x	pe	2.1.0.4	NW01	Graal 2001|board-link graal strings	1	done	analyze OK after raised budget
+2.1.0.4-graal2002ver13	2.1x	pe	2.1.0.4	NW01	Graal 2001|board-link graal strings	1	done	
+2.22-CRC_CRACKED	2.22	pe	2.2.2.0	NW01	Graal 2001|board-link graal strings	1	done	
+2.22-Graal2220	2.22	pe	2.2.2.0	NW01	Graal 2001|board-link graal strings	1	done	
+3.01-linux-20030629	3.x-linux	elf	n/a	NW51|GSERVL01|GLEVNW01	g3d	1	done	UPX unpacked GSERV/GLEV confirmed
+3.04-linux	3.x-linux	elf	n/a	GSERVL01|GLEVNW01		1	done	UPX unpacked; GSERV/GLEV in unpacked; overview hit the analyzer client deadline; CLI analyze retry
+3.0beta-linux-20030518	3.x-linux	elf	n/a	NW51|GSERVL01|GLEVNW01		1	done	UPX unpacked GSERV/GLEV confirmed
+3.151-linux-20050129	3.x-linux	elf	n/a	GSERVL01|GLEVNW01		1	done	UPX unpacked GSERV/GLEV confirmed
+4.03r1-linux-20051222	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.03r3-windows-installer	4.x	pe	4.0.3.3		GnW	1	done	
+4.04r2-linux-20060304	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.10r2-linux-20060819	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.11-linux-20060916	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.11-windows-installer	4.x	pe	4.1.1.0			1	done	
+4.20r6-linux-20061221	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.20r8b-linux-20070117	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.20r8-linux-20070115	4.x	elf	n/a	GSERVL01|NW01	Graal 4	1	done	analyze OK after raised budget (prior 180s coverage timeout)
+4.20r8-packetlogger-v2	4.x	pe	4.2.0.8	GSERVL01|NW01	Graal 4	1	done	
+4.20r8-unpacked	4.x	pe	4.2.0.8			1	done	
+5.00r7-unpacked	5.x	pe	5.0.0.7	GSERVL01|NW01		1	done	
+5.12-untouched-unpacked	5.x	pe	5.1.2.0	GSERVL01|NW01		1	done	
+6.0.0.7-windows	6.x	pe	6.007	G3d		1	done	
+6.0.1.5-windows	6.x	pe	6.015		g3D	1	done	
+6.0.3.4-windows	6.x	pe	6.034			1	done	
+6.x-beta-2011-06-27-linux-x86-x64	6.x	elf	n/a	GSERVL01|NW01		1	done	
+graal3d-beta	side-3d	pe	n/a		Graal 3	1	done	
+graalx-2.0.0.3	2.1x	pe	2.0.0.3	NW01	Graal 2001|board-link graal strings	1	done	
+mac-6.004-20110627	6.x	macho	6.004	GSERVL01|NW01|gServices		0	done-partial	done-partial: guest lipo/file/codesign only; otool and Mach-O inspector not run; PowerPC decompile still open
+mac-6.015-20111106	6.x	macho	6.015	gServices		0	done-partial	done-partial: guest lipo/file/codesign only; otool and Mach-O inspector not run; PowerPC decompile still open
+mac-ppc-3.x-20050210	mac-ppc-3-4	macho	0.6.1d1	GSERVL01|NW01|gServices		0	done-partial	done-partial: guest lipo/file/codesign only; otool and Mach-O inspector not run; PowerPC decompile still open
+mac-ppc-4.10r2-20060822	mac-ppc-3-4	macho	0.6.1d1	GSERVL01|NW01|gServices	Graal 4	0	done-partial	done-partial: guest lipo/file/codesign only; otool and Mach-O inspector not run; PowerPC decompile still open
+mac-ppc-4.11-20060919	mac-ppc-3-4	macho	0.6.1d1	GSERVL01|NW01|gServices	Graal 4	0	done-partial	done-partial: guest lipo/file/codesign only; otool and Mach-O inspector not run; PowerPC decompile still open
+mac-ppc-4.20r6-20061221	mac-ppc-3-4	macho	0.6.1d1	GSERVL01|NW01|gServices	Graal 4	0	done-partial	done-partial: guest lipo/file/codesign only; otool and Mach-O inspector not run; PowerPC decompile still open
