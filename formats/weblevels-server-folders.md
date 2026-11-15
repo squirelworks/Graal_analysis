@@ -26,11 +26,15 @@ Real clients keep a per-server folder under `weblevels/`. On legacy clients, ser
 | 2.22 | connect host (IP or hostname); sampled tree was IP-shaped | `<level>.nw-<port>.code` | **No** — port is only in the file name |
 | Mixed v4 install | connect host (IP or hostname) | `<level>.nw-<port>.code` | **No** |
 | v5 install | connect host (IP or hostname), plus typed dirs below | `<level>.nw-<port>.code` under the host folder | **No** |
-| 6.1.1.3 dump | `weblevels/<md5-hex32>/` | `<level>.nw-<port>.code` | **No** in the folder name |
+| 6.1.1.3 | `weblevels/<md5-hex32>/` (`MD5(host∥decimal_port)` lowercase) **[bin]** | `<level>.nw-<port>.code` | **No** in the folder name |
 
 **[test]** On 2.22, sampled level `.code` files decrypt as GWEBL001 with `tools/file-formats/gwebl.py`, and the plaintext host field **equals** the folder name (connect host). Port is not part of the folder name.
 
-**[test]** On the 6.1.1.3 dump, level files sit only under `<md5-hex32>` folders. A lead from offline hashing is that the folder name may be an MD5 of connect host concatenated with port (UTF-8, no separator). That lead is **not** published here as a worked example against real hosts; confirm on a 6.1.1.3 binary path. Residual hash trials, era path table, and level `.code` vs `GRESCR01` layout: `formats/weblevels-code-residuals.md`.
+**[bin]** On stock Windows 6.1.1.3, the level-folder name is lowercase hex of
+`MD5(host_bytes ∥ decimal_port_ascii)` (no separator). **[test]** On the 6.1.1.3 dump,
+level files sit only under those `<md5-hex32>` folders (port still only in the file name).
+No worked hashes over live hosts. Era path table, offline hash lead, and level `.code` vs
+`GRESCR01`: `formats/weblevels-code-residuals.md`.
 
 ### Weapon / class / gani folders (5.x / 6.x dumps)
 
@@ -88,7 +92,7 @@ So: same **cipher family** as `.gpake` for script caches; **not** the ZIP/gpak c
 |---|---|
 | Level folder (2.x–5.x) | connect host (IP or hostname); **no** port in the folder name |
 | Level file | `<level>.nw-<port>.code` |
-| Level folder (6.1.1.3 dump) | `weblevels/<md5-hex32>/` |
+| Level folder (6.1.1.3) | `weblevels/<md5-hex32>/` = `MD5(host∥decimal_port)` lowercase **[bin]** |
 | Weapon/class folder (5.x/6.x dumps) | `weblevels/weapons/<escaped-server-name>/` and `weblevels/classes/<escaped-server-name>/` (`%0NN` decimal escapes) |
 | 4.20r8 weapon file | `weblevels/weapons/<name>.code` only **[bin]** |
 
