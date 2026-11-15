@@ -45,6 +45,6 @@ none of those crosscalls for Windows. **[inf]**
   [Report observations](#what-the-reports-establish).
 - [ ] Trace one selected slice from entry through application/window
   initialization to the game loop, retaining the exact-build evidence.
-- [ ] Observe compatible-guest initialization and a first frame separately
-  from the static trace; a first frame alone does not establish playable
-  login, level drawing or input handling.
+- [x] ~~Observe compatible-guest process start and window creation for Mac
+  6.015 on Lion.~~ The window content stayed white; a first rendered frame is
+  still open. [Lab](../version-profiles/lab-mac-v6-6015-lion-2026-11-16.md).

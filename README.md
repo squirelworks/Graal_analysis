@@ -6,6 +6,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.
+- [Mac 6.015 on Lion](version-profiles/lab-mac-v6-6015-lion-2026-11-16.md) — Batch Mac v6 inventory; guest launch needs `chmod +x`; white OpenGL window; no Mac 6.037 in the owner share; lab + static.
 - [Batch Linux 3.0beta / 3.01 / clean 3.151](version-profiles/batch-linux-3x-clean-installers-2026-11-16.md) — Makeself+UPX unpack; damaged 3.151 upload superseded; gen-4 wire still open; static.
 - [Batch-2 Linux RC 2005–2006](protocol/batch2-rc-linux-2005-2006.md) — GSERV024 Jan/Dec and GSERV025 ladder vs existing RC notes; static.
 - [Windows 4.20r8 class/weapon export surface](client-internals/v4-420r8-class-surface.md) — joinClass / addClassScript names feeding the PLO 133 PARITY hole; static, no addresses.
@@ -168,7 +170,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - `client-internals/` — version-id map, offline-play notes, Zelda Online 1998 precursor analysis. See also `config-and-input.md`, `rendering-observations.md`, `offline-training.md`, `client-assets.md`, `foot-test.md`, `version-tokens.md`, `client-architecture-205.md`, `des-and-hidden-strings.md` (hidden hosts, 2.22 saved passwords), `newworld-betas.md` (the two NewWorld beta clients), and `live-trace-early.md` (1.1.9 to 1.32 run under Wine against their bundled servers).
 - `client-internals/handoff-argon-grok-2026-11-07.md` — critique of the 2026-11-07 Argon/Grok handoff. The archive restates notes already on main and regresses several of them. Claim ids there are for a later merge.
 - `torque/engine-530r3.md#native-window-and-object-message-boundary` — decoded native window creation and handle-to-object message dispatch in the inspected reconstruction; original startup, mixed API bindings and dynamic-module behavior remain open.
-- `client-internals/mac-6004-6015-slices.md` — three architecture slices and per-slice declared framework dependencies; selected-slice startup, runtime initialization and Windows module boundaries remain separate evidence questions.
+- `client-internals/mac-6004-6015-slices.md` — three architecture slices and per-slice declared framework dependencies; Lion 6.015 guest window observed (white content); selected-slice entry→game-loop and first rendered frame remain open.
 - `client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary` — argument flow, initialization/tick/teardown and a shared quit-flag pump in the inspected reconstruction; original entry, protected setup and API bindings remain open.
 - `client-internals/engine-600r2.md` and `engine-600r4.md` — unpacked Windows 6.00r2 and 6.00r4 are Graal's `quattro_lib` engine (OpenGL, GS2, `TSocket`), not Torque 3D. `engine-600r4.md` is the same engine two weeks later.
 - `client-internals/gs2-vm-from-engines.md` — the GS2 script machine in GraalEngine 4.2.0.8, GraalEngine 5.0.0.7 and unpacked 6.00r2 and 6.00r4: objects, calls, events, the clock and the bytecode. The 3.04 Linux client is not this machine. No Seihai crate is started from it.
