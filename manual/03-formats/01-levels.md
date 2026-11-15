@@ -232,6 +232,18 @@ The 2.05 executable carries the offline tutorial as 13 `RCDATA` resources, all p
 
 `formats/grv1-decoder/grv1.py` decodes `GR-V1.00` to `GR-V1.04` and `Z3-V1.02` to `Z3-V1.04` with the rules above; NPC scripts have `0xA7` turned into newlines, and `#K(13)` is dropped from sign text [src] (formats/grv1-decoder/README.md).
 
+### 3.1.2.10 Who stores the records in three 2.1 images
+
+The shapes above stay. This row is only which image stores a baddy or a chest [bin] (client-internals/v21-level-record-gate.md).
+
+| Image | Baddy | Chest | Source |
+| --- | --- | --- | --- |
+| public 2.1.0.0 | stored, no flag test | stored for `GR-V1.01`, `GR-V1.02` and `GR-V1.03`, no flag test | [bin] (client-internals/v21-level-record-gate.md) |
+| v22 | stored only when two flag bytes are both clear | the same two flags | [bin] (client-internals/v21-level-record-gate.md) |
+| ver7 | lines consumed, no record constructed | lines consumed, no record constructed | [bin] (client-internals/v21-level-record-gate.md) |
+
+The two v22 flags are unidentified. Whether `GR-V1.00` skips chests was not separated from the previous section's flag [bin] (client-internals/v21-level-record-gate.md).
+
 ## 3.1.3 GLEVNW01 (.nw)
 
 ### 3.1.3.1 File
