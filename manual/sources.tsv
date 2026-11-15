@@ -767,6 +767,7 @@ protocol/gen5-cipher-step-5x.md	cited	2.2; E	2.2; E	5.12 gen-5 short-compressed 
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
 protocol/v4-login-account-contract.md	pending		2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
 formats/weblevels-code-residuals.md	cited	3.8	3.8	Md5 folder-input lead, 4.20r8 vs later path table, LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
+protocol/v4-gui-survive-serverwarp.md	pending		2; E	v4 Login GUI after 178 (C5 lead); loopback stock 4.20r8 confirm open; adjacent C4
 client-internals/141r1-nw-gmap-status.md	pending		1; C	1.41r1: GLEVNW01 string present, no GRMAP001; live .nw/gmap load unobserved; research-list #11 static status
 protocol/large-file-thresholds-focus.md	pending		2.5	Focus-build large-file / FILE reply ladder (1.39–6.037); token-table trap; consolidates file-transfer.md + labs; ~300 KB push still open
 protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: client sends nothing; id1 extra row id2 ignored; silent_list_after_ms is lab/seihai accommodation; E#401 Claim C

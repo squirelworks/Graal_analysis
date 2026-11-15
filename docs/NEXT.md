@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **v4 GUI after server-warp (#56 / C5).** ~~Status: Others Work lead that Login GUI survives 178 unless hidden.~~ [Note](../protocol/v4-gui-survive-serverwarp.md). Loopback stock 4.20r8 confirm still open.
+
 - [x] **1.41r1 `.nw` / gmap load (static).** ~~String scan only?~~ `GLEVNW01` present, no `GRMAP001`; live load still open. [Note](../client-internals/141r1-nw-gmap-status.md).
 
 - [x] **Large-file thresholds on focus builds (#10).** ~~Consolidate 64000 / 32000 / LARGEFILE\* ladder and per-focus token-table behaviour.~~ [Note](../protocol/large-file-thresholds-focus.md). Discriminating ~300 KB push per focus still open.
