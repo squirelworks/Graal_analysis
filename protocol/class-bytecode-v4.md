@@ -32,9 +32,11 @@ file modification time. **[bin]**
   (`client-internals/windows-404r2-500r7-static-2026-11-09.md`). **[bin]**
 - Linux 6.x: the same 161 shape on a class cache miss
   (`formats/linux-6x-class-cache.md`). **[bin]**
-- An authored vector with CRC `0x01020304` and name `fixture` is
-  `c1 20 28 28 26 24 66 69 78 74 75 72 65 0a` (id+32, five GINT5 digits,
-  name, newline). **[inf]** from that reading.
+- An authored vector with a non-zero stored-body CRC and name `fixture`
+  packs the CRC as five GINT5 digits after the id byte, then the name and
+  a newline (exact bytes in
+  `client-internals/windows-404r2-500r7-static-2026-11-09.md`). **[inf]**
+  from that reading.
 
 When the client has **no** stored body for the name (cold join, first
 `this.join`, or a cleared list after 194), the CRC field is **0**, so the
