@@ -990,3 +990,13 @@ A 4.04r2 offline transition was observed under a harness, but no gameplay was. T
 The published movie-grammar note attributes its read to a 2002-05-01 editor, while the comparison describes the old 2002 editor as sprite-only and associates movie support with the 2006 editor. The exact editor inputs have not been reconciled. A packaged mobile movie cannot identify which editor wrote it. [doc] (tools/graalshop.md#movie-mode-file-grammar); [doc] (tools/graaleditor-vs-205.md#workflow)
 
 The Classic+ 1.13 and Era+ 1.0 sample corroborates lowercase boolean spellings for its SPRITE and TEXT declarations only (→ §3.3.6). Indexed CHAR-key spelling, coordinate units, frame duration and native interpolation/playback remain open. Reconcile exact editor identities and their reader/writer evidence separately from a controlled playback test; neither package presence nor a static declaration supplies that test. [file][doc] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits)
+### E#613 Windows 2.22 remote PM roster and visible result
+
+The selected modified control's composer and type-37 sender lookup are bounded
+statically in §2.8.7. Types 55, 56 and 82 select default cleanup in the recovered
+dispatcher. The remote-roster UI trigger, request builder, accepted reply and
+identity-creation route remain open; later `requestlist` / `pmserverplayers`
+behavior is not established here. Resolve the actual request caller and receive
+route before implementation. Virtual type-28 send framing and native visible
+message behavior also remain unverified, as do sibling builds. [bin][inf]
+(protocol/windows-222-pm-static.md#remaining-questions)
