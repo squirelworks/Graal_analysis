@@ -13,6 +13,7 @@ macOS CI is paused until the polish stage.
 ## Tasks
 
 - [x] **1.41 rev 1 list reply / silent-list timer.** ~~Is `silent_list_after_ms` original, and how does 1.41r1 read ids 1 and 2?~~ Client sends nothing; id 1 = extra row, id 2 ignored (≠ RC); timer is a lab/seihai accommodation; 2001 listserver timing still unobserved. [Note](../protocol/listserver-141r1-silent-list.md).
+- [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
 - [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
   - [ ] Validate Zelda Online 2 native board replay/re-entry and the order-dependent local-timestamp leader comparison; source-only `B`/`T` contract in [the existing precursor note](../client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state).
