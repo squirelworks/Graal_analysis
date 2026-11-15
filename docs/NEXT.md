@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **2.22 inferred-from-2.1 inventory (#9).** ~~List settled vs still-open / era-carried profile cells.~~ [Note](../version-profiles/222-inferred-from-21-inventory.md). Static re-tag of unmatched PLI and defaults.gen5 footnotes still open.
+
 - [x] **RC text escaping (status).** ~~Original backslash/empty-field GET/SET?~~ Trailing empties settled; escaped-`\\` deferred to server profiles (seihai-rc#56); original RC2/RC3 S open. [Note](../protocol/rc-text-escaping-status.md); gap #41.
 
 - [x] **Gen-5 cipher step for 5.12 (E#2); 5.00r7 still open.** ~~Prefer Claim A (round-down on short compressed frames) for Windows 5.12.~~ [Note](../protocol/gen5-cipher-step-5x.md). 5.00r7 codec unread — keep round-up until read.
