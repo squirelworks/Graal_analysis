@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Ids sent by 5.12; 2.31 id-44 (#17 status).** ~~2.31 S→C 44 dropped / C→S 44 kept; 5.12 send floor still cap-only; E#4 id 11 settled static on 5.00r7.~~ [Note](../protocol/ids-sent-512-status.md).
+
 - [x] **Update packages after login (status).** ~~159 / 47 / .gupd beyond base?~~ Wire ids and GServer-v2 chain settled; client 159 layout + seihai handlers open. [Note](../protocol/update-packages-focus-status.md); gap #28.
 
 - [x] **Gmap neighbour framing classic 2.x (status).** ~~Does classic path overwrite?~~ Static settled; 2×2 lab open. [Note](../protocol/gmap-neighbour-classic-status.md); E#13; gap #14.
