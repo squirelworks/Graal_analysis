@@ -20,7 +20,7 @@ A local copy of a server level, keyed by the level's modification time, so the c
 
 `<level>` is the level's file name, lowercased, with any path removed. The reader also tries `<level>.code` without the port. **[2.05]** Example shape: `weblevels\<game-server-host>\<level>.nw-<port>.code`. **[test]**
 
-`<server host>` is the connect host (IP or hostname). The **port is not** part of the folder name; it appears only in the file name (`<level>.nw-<port>.code`). **[test]** (2.22 plaintext host equals the folder name; see `formats/weblevels-server-folders.md` for era variants, including `weblevels/<md5-hex32>/` level folders.)
+`<server host>` is the connect host (IP or hostname). The **port is not** part of the folder name; it appears only in the file name (`<level>.nw-<port>.code`). **[test]** (2.22 plaintext host equals the folder name; see `formats/weblevels-server-folders.md` for era variants. On 6.1.1.3 the level folder is `weblevels/<md5-hex32>/` with `MD5(host∥decimal_port)` lowercase — **[bin]** in `formats/weblevels-code-residuals.md`.)
 
 ## File layout (encrypted)
 
@@ -153,4 +153,5 @@ The post-length body is high-entropy and shares one leading block across every l
 - ~~Decrypt a real `GRESCR01` file with a key from a capture, to confirm the body is GS2 source.~~ Done for 6.113 (2026-11-12): the body is compiled GS2, not source. The 197 CRC covers the stored, encrypted body, and the last `len % 8` bytes are stored in clear (`../protocol/gs2-official-bytecode-6113.md`). **[cap]**
 - Trace the gani cache format.
 - Check the class cache path in builds before 6.03r7.
-- Confirm the 6.1.1.3 level-folder MD5 input on a client binary, and decrypt the length-prefixed level body (`weblevels-code-residuals.md`).
+- ~~Confirm the 6.1.1.3 level-folder MD5 input on a client binary~~ — done: `MD5(host∥decimal_port)` lowercase hex (`weblevels-code-residuals.md`). **[bin]**
+- Decrypt the length-prefixed 6.1.1.3 level body (`weblevels-code-residuals.md`).
