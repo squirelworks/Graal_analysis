@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the developer generator's selected static path.** ~~Follow the form handler through colour selection and the serializer branch.~~ [Path](../tools/classic-tools/developer-component-2001.md#selected-static-generation-path), manual §11.3.4. Red-tree tile/stamp mapping, existing-level name preservation, MNG decoding and native output remain open.
+
 - [x] **Record the inspected Mac 6.004 and 6.015 architecture boundary.** ~~Compare their three slices and per-slice declared framework dependencies.~~ [Study](../client-internals/mac-6004-6015-slices.md); manual §1.8.7. Token observations remain selected-slice evidence, with no Windows module-boundary inference.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop, then observe compatible-guest initialization/frame separately.
 
