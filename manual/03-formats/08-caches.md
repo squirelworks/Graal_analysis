@@ -25,7 +25,7 @@ The web-level cache keeps copies of server levels on disk. Each row gives one ev
 | `<level>` | the level's file name, lowercased, with any path removed | [2.05] (formats/gwebl001-cache.md#path) |
 | `<server host>` | connect host (IP or hostname); port is **not** in the folder name | [test] (formats/gwebl001-cache.md#path); [test] (formats/weblevels-server-folders.md) |
 | fallback | the reader also tries `<level>.code` without the port | [2.05] (formats/gwebl001-cache.md#path) |
-| example | `weblevels\<public-host>\bank.nw-14803.code` | [test] (formats/gwebl001-cache.md#path) |
+| example | `weblevels\<public-host>\<level>.nw-<port>.code` | [test] (formats/gwebl001-cache.md#path) |
 | later eras | `weblevels/<md5-hex32>/` level folders; GRESCR dirs as `weblevels/weapons/<escaped-server-name>/` (and classes) | [test] (formats/weblevels-server-folders.md) |
 
 ## 3.8.3 Encrypted file

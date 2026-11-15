@@ -18,7 +18,7 @@ A local copy of a server level, keyed by the level's modification time, so the c
 <exe dir>\weblevels\<server host>\<level>-<server port>.code
 ```
 
-`<level>` is the level's file name, lowercased, with any path removed. The reader also tries `<level>.code` without the port. **[2.05]** Real example: `weblevels\<game-server-host>\bank.nw-14803.code`. **[test]**
+`<level>` is the level's file name, lowercased, with any path removed. The reader also tries `<level>.code` without the port. **[2.05]** Example shape: `weblevels\<game-server-host>\<level>.nw-<port>.code`. **[test]**
 
 `<server host>` is the connect host (IP or hostname). The **port is not** part of the folder name; it appears only in the file name (`<level>.nw-<port>.code`). **[test]** (2.22 plaintext host equals the folder name; see `formats/weblevels-server-folders.md` for era variants, including `weblevels/<md5-hex32>/` level folders.)
 
@@ -80,7 +80,7 @@ The body is an ordinary GR-V level (`level-binary.md`, `level-binary-client.md`)
 `tools/file-formats/gwebl.py`:
 
 ```
-python3 gwebl.py weblevels/<game-server-host>/bank.nw-14803.code       # summary
+python3 gwebl.py weblevels/<game-server-host>/<level>.nw-<port>.code   # summary
 python3 gwebl.py FILE.code --json                                      # full parse
 python3 gwebl.py FILE.code --raw plain.bin                             # decrypted stream
 ```
