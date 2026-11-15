@@ -1,5 +1,7 @@
 # Client versions side by side: 2.05, 2.17, 2.22, 2.31
 
+For exact values, shared aliases, roles and per-association evidence, use the [version token map](../VERSION-TOKENS.md) and its [canonical catalogue](../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support.
+
 Date: 2026-10-21
 
 Sources: the four client executables in the Graal Reborn 2.2.2.0 folder (`Graal.exe` = 2.05 rev 2, `Graal_2171.exe`, `Graal_222.exe`, `Graal_231.exe`), read statically. Server-side names are from gs2lib. Tags: **[bin]** read from the client binaries · **[srv]** server source only · **[doc]** `newfeatures*.txt` · **[inf]** inferred.

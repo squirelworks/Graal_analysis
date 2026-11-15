@@ -1,6 +1,8 @@
 <!-- manual: kind=reference status=draft -->
 # 1 Client generations and builds
 
+For exact values, shared aliases, roles and per-association evidence, use the [version token map](../VERSION-TOKENS.md) and its [canonical catalogue](../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support. [doc] (client-internals/version-token-catalogue.md)
+
 This part names every client build the notes cover. Every other part keys its version columns off the build names in §1.1 and the schemes defined in → §0.9.
 
 ## 1.0 Reading this Part
@@ -11,7 +13,7 @@ A Graal build is named by what it sends, not by the number on its installer. Eve
 
 **The line is not monotonic.** 2.00 to 2.04 drop the `.nw` reader that 1.41 rev1 and NewMain 1.42 already had, and 2.05 brings it back. [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) NewWorld beta 1 was cut from the 2.05 code and beta 2 from the 2.1 test code. [bin] (client-internals/cross-version-timeline.md#classes) The 6.00 betas of January 2010 are older than 5.24r3 and share its token. [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds) A table sorted by version number is therefore not a table sorted by code; when the two disagree, this Part follows the code.
 
-**The evidence changes with the era.** Most clients from 1998 to 2001 sit in one archive of 73 executables, so §1.1.1 can give each a hash, a link date, a FileVersion and the magics it reads. [file] (client-internals/drive-clients-inventory.md#versions-present) Later builds are known from their tokens, lab runs and static reads, and there is no per-build hash catalogue for them. [doc] (client-internals/version-tokens.md) Several gaps are real absences: of 2.1 to 2.17 only 2.17.1 survives as a binary, and 2.3 has no binary at all. [bin][doc] (version-profiles/matrix/README.md#eras) From 5.12 the Windows builds are wrapped by MoleBox or Themida, so what a static read can see depends on whether an unpacked image exists. [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds)
+**The evidence changes with the era.** Most clients from 1998 to 2001 sit in one archive of 73 executables, so §1.1.1 can give each a hash, a link date, a FileVersion and the magics it reads. [file] (client-internals/drive-clients-inventory.md#versions-present) Later builds are known from their tokens, lab runs and static reads, and there is no per-build hash catalogue for them. [doc] (client-internals/version-tokens.md) Several gaps are real absences: the inspected Graal 2002 images cover part of 2.1, while 2.12–2.16 and a genuine 2.3 input remain unverified. [bin][doc] (version-profiles/matrix/README.md#eras) From 5.12 the Windows builds are wrapped by MoleBox or Themida, so what a static read can see depends on whether an unpacked image exists. [bin][cap] (protocol/v5v6-windows-unpacked.md#the-builds)
 
 **How the Part is laid out.** §1.1 lists the builds; §1.2 to §1.5 give the per-build keys a server or a reader needs (token, server version id, encryption generation, level and save magics); §1.6 groups them into eras; §1.7 covers the Java precursors and side builds. §1.8 is the practical half: for each generation, what a client has to do to *be* that build, with the machine-readable tables in §1.8.8. §1.9 gathers the identity and platform records whose job is to say what an archived file is, and how far that identity reaches. [file] (client-internals/versions-133-139.md#using-the-table)
 

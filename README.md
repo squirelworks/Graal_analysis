@@ -2,6 +2,8 @@
 
 Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No raw decompiles, code or binary addresses.
 
+**Looking for a version token? Start with the [Version token map](VERSION-TOKENS.md).** It lists exact values, shared build/platform associations, game/list/RC/NC/service roles, evidence grades and unresolved cases. The [canonical catalogue](client-internals/version-token-catalogue.md) is the sole maintained source; the readable map and [TSV](version-profiles/version-token-map.tsv) are generated from it. A token is not a unique client or feature profile.
+
 ## Contents
 
 - [Classic+ 1.13 login-construction boundary](client-internals/classic-113-login-construction.md) — analyst-seeded static caller/helper observations beyond the known token; field identities, emitted bytes, framing and native acceptance remain unknown.
@@ -235,7 +237,7 @@ These notes expand the existing foundation without adding raw decompile material
 - `client-internals/graal2002-and-140-builds.md` — the Graal 2002 world builds (2.1.0.0–2.1.0.4, Oct–Dec 2001) and the 1.40 builds: tokens `GNW31101` and `GNW23090` read from binaries, GS1 command dating, and receive-dispatch ids 170–177; ver10 initial-property order, encoding branches and a necessary self-properties-reply gate; the log form from ver10 and the chest and baddy forms on the public 2.1.0.0 and v22; exact ver10 fixed list entry, selected-row endpoint fields and bounded cache coverage; two qualified local-entry negatives leave the first-update experiment open.
 - `client-internals/early-windows-callback-variants.md` — same-version 1.41 callback bindings: handler-body entry versus its final return, with analyst-seeded static coverage and a next question for each early-Windows comparison input.
 - `client-internals/version-token-catalogue.md` — every known client build with its login token, the evidence grade (wire, binary, public list only, server-defined, none), and whether the graal-client-repro folder matches.
-- `client-internals/iphone-version-tokens.md` — iPhone login tokens read from 25 IPAs of one publisher: engine 2008 `G3D04048`, engine 2010 `G3D18010`, Classic+ 1.13 `G3D0208A` (not in gs2lib); two more from gs2lib only.
+- `client-internals/iphone-version-tokens.md` — iPhone token study of 27 packages / 26 unique executables of one publisher: engine 2008 `G3D04048`, engine 2010 `G3D18010`, Classic+ 1.13 `G3D0208A` (not in gs2lib); two more from gs2lib only.
 - `client-internals/build-catalogue.md` — every archived client build 1998–2001: hash, link date, token, encryption gen, list host, level formats.
 - `client-internals/gserv-125-127-builds.md` — Graal 1.25 and 1.27 unpacked from their InstallShield 3 installers: tokens `GSERV009`/`GSERV011` (and RC `GSERV010`) read from binaries, the 13 GS1 commands once credited to 1.28 beta 2 dated to 1.25 and 1.27, server messages 35–38 by 1.25, the RC 1.28 = RC 1.27 and 1999-10-20 GServer = 1.27 server identities; static.
 - `client-internals/build-diff-204-205.md` — function-level diff of 2.04, 2.05 rev1 and 2.05 rev2 (NewWorld merge, VMT shift, ADP anti-debug).

@@ -154,6 +154,11 @@ jobs:
       - name: Check the reference manual
         run: python tools/manual/check_manual.py
 
+      - name: Check generated version-token map and association boundaries
+        run: |
+          python tools/token-map/generate.py --check
+          python -m unittest discover -s tools/token-map -q
+
       - name: Check that cited notes are carried
         run: python tools/manual/check_carry.py
 

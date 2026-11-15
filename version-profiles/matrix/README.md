@@ -1,5 +1,7 @@
 # Per-version profile matrix, 1998 to 2014
 
+For exact values, shared aliases, roles and per-association evidence, use the [version token map](../../VERSION-TOKENS.md) and its [canonical catalogue](../../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support.
+
 Date: 2026-10-30
 
 This is the one-page view of how each Graal client **thinks** (protocol, scripting), **acts** (timing, movement, rules, sound) and **looks** (window, start screen, HUD, fonts, menus), from the Java Zelda Online of 1998 to the 6.11 Mac client of 2014, plus the Graal3D side project. Each cell is short and points at the note that has the detail. It is meant as the checklist for a client that wants to *be* a chosen version, such as Seihai's version selector.
