@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Resolve the public 2.1.0.0 map destinations and resource guards.** ~~Follow 171/172 to distinct state, loaders and text-resolution commit/preserve paths.~~ [Study](../client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards); manual §2.5.2.2.
+  - [ ] Establish exact coordinate rounding and original-client display/request completion; keep other builds separate.
+
 - [x] **Bound the inspected reconstructed Windows 6.002 lifecycle/pump path.** ~~Connect argument flow, option parsing, initialization/tick/teardown and the shared quit flag.~~ [Study](../client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary); manual §1.8.7.
   - [ ] Authenticate original startup and API bindings, join the redirected setup edge to window creation/play and observe loaded modules separately.
 

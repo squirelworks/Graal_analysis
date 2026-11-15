@@ -94,15 +94,53 @@ A Graal character (`c`) is the wire byte minus 32. A Graal short (`s`) is two Gr
 | Id | Image | Direction | Width and encoding | When it is applied |
 |---:|---|---|---|---|
 | 170 | public 2.1.0.0 | receive | one `c` flag; ghost mode is on when that value is above 0. A payload shorter than one byte is not applied | when the server sends 170 |
-| 171 | public 2.1.0.0 | receive | comma-separated text. At least two fields are required. Field 0 is the map text name and field 1 is the image name. When at least four fields are present, fields 2 and 3 are decimal floats (a default head position). 171 and 172 enter one shared parser. After that parse, an id-dependent branch calls a distinct callee for each id | when the server sends 171. Which display role that callee implements remains unestablished |
-| 172 | public 2.1.0.0 | receive | the same shared comma parser as 171, then that id-dependent branch to 172's own callee | when the server sends 172. Which display role that callee implements remains unestablished |
+| 171 | public 2.1.0.0 | receive | comma-separated text. At least two fields are required. Field 0 is the map text name and field 1 is the image name. When at least four fields are present, fields 2 and 3 are decimal floats (a default head position). 171 and 172 enter one shared parser. After that parse, an id-dependent branch calls a distinct callee for each id | main-map configuration, subject to the text-resource predicate described below |
+| 172 | public 2.1.0.0 | receive | the same shared comma parser as 171, then that id-dependent branch to 172's own callee | minimap configuration, subject to the same text-resource predicate |
 | 173 | public 2.1.0.0 | receive | the whole payload, with no length prefix, is stored as the ghost-mode text | when the server sends 173 |
 | 174 | public 2.1.0.0 | receive | one `c` flag, the same test as 170; the result is the ghost-icon flag | when the server sends 174 |
 | 175 | v22 | receive | at least two bytes. The player id is an `s`. The bytes after those two are the shot payload and are passed to that player's shoot handler | only when the player's current level is the active level. A shorter payload is not applied |
 | 176 | v22 | receive | no payload bytes are read. The handler stores the constant 1 in the Kingdoms-mode flag and returns | when the server sends 176. A further form change past that store was not traced in v22 |
 | 177 | v22 | receive | no payload bytes are read. The handler stores the constant 1 in the New-World-mode flag and returns | when the server sends 177. A further form change past that store was not traced in v22 |
 
-The 2.17 to 2.31 layouts in [`plo-layouts-217-231.tsv`](../version-profiles/plo-layouts-217-231.tsv) already describe the same widths, and they go further on 171 versus 172 (one routine, split by id, 172 to the minimap) and on 176 and 177 (the main form switches mode). This read shows those widths are already present in the public 2.1.0.0 image and in v22. On the public image it also shows an id-dependent branch to distinct callees after the shared parse of 171 and 172. Which display role each callee implements remains unestablished. It does not re-prove the later images, and it does not prove the mid-ladder bodies. ver8, ver9, ver10 and ver13 handler bodies stay uncompared. **[bin]**
+The 2.17 to 2.31 layouts in [`plo-layouts-217-231.tsv`](../version-profiles/plo-layouts-217-231.tsv) already describe the same widths, and they go further on 171 versus 172 (one routine, split by id, 172 to the minimap) and on 176 and 177 (the main form switches mode). This read shows those widths are already present in the public 2.1.0.0 image and in v22. On the public image it also shows an id-dependent branch to distinct callees after the shared parse of 171 and 172. The destination read below distinguishes main-map and minimap state. It does not re-prove the later images, and it does not prove the mid-ladder bodies. ver8, ver9, ver10 and ver13 handler bodies stay uncompared. **[bin]**
+
+### Public 171/172 destination and resource guards
+
+A further bounded read of the same public 2.1.0.0 input follows both destination
+callees, their common resource predicate and their separate loaders. Evidence
+ID `WIN-PUBLIC210-MAP-STATE-20261115` in the
+[evidence index](../docs/evidence-index.tsv). No client was run. **[bin]**
+
+Id 171 updates main-map state; id 172 updates minimap state. Each keeps separate
+text-name, image-name and coordinate fields and calls a separate loader. The
+loader status literals are `Loaded & set map` and `Loaded minimap`, respectively;
+the literal bytes were independently checked in the exact input. These roles
+are no longer inferred from later packet names alone. **[bin]**
+
+The shared parser supplies field 0 as the text name and field 1 as the image
+name to either destination. It does not swap them by filename extension. Its
+coordinate defaults are zero; fields 2 and 3 are parsed only when at least four
+fields are present. The destination applies numeric conversion, but exact
+rounding is not established by this finding. **[bin]**
+
+Both destinations first test the text-resource resolution predicate, which
+returns whether the resolved string has positive length. On success, they
+commit the new text name, image name and coordinates before calling their
+loader. The minimap path also updates its image object before storing the
+coordinates and calling the loader. A later load or image-resolution failure
+does not gate those earlier configuration writes. Configuration commitment
+therefore does not promise a successfully displayed map. **[bin]**
+
+If text resolution fails, the destination leaves all previously retained
+names and coordinates unchanged. When a current context exists and the new
+text name differs from the retained name, that failure path can call the
+resource-request helper. This is conditional request behavior, not evidence
+of a successful download or a new client-send layout. **[bin]**
+
+This read is confined to the public image. It does not transfer the destination
+or resource guards to ver8, ver9, ver10, ver13, v22 or a later version by token
+or receive binding. Runtime display, request completion and exact coordinate
+rounding remain open. **[inf]**
 
 ## Local gmap preload and controlnpc
 
@@ -213,6 +251,7 @@ The chest and baddy editor forms follow the dispatch split in the section above:
 - [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
+- [x] ~~Distinguish public 171/172 destination state and text-resource guards.~~ [Destination finding](#public-171172-destination-and-resource-guards). Runtime display and numeric rounding remain open.
 - [x] ~~Read the receive bodies of ids 170 to 174 in the public 2.1.0.0 image and of 175 to 177 in v22.~~ [Receive layouts of ids 170 to 177](#receive-layouts-of-ids-170-to-177). ver8 to ver13 bodies were not compared. Client-to-server sends of these ids stay open.
 - [x] ~~Form-resource names for the seven 2.1.0.x images.~~ [Form resources](#form-resources): the log form is in ver10 and later in this set; the chest and baddy forms return on the public 2.1.0.0 and on v22.
 - [x] ~~Add the six builds to the scanner inventory and regenerate the matrix.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md): six exact-input scans added; existing membership cells preserved.

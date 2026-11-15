@@ -98,3 +98,4 @@ NRY-COVERAGE-STRINGS-20261115	windows,linux,macos	strings-scan
 MAC-6004-6015-SLICES-20261115	macos	static-architecture-and-declared-framework-comparison
 WIN-530R3-WINDOW-20261115	windows	bounded-static-window-and-object-dispatch
 client-windows-6002-lifecycle-static	windows	bounded-static-lifecycle-and-message-pump
+WIN-PUBLIC210-MAP-STATE-20261115	windows	bounded-static-map-destination-and-resource-guards
