@@ -151,6 +151,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Bound the Linux 6.x class-cache path.** ~~Carry the 197 metadata list, the zero-CRC path, the 161 request and the 6.01 x86 delivery split.~~ [Source](../formats/linux-6x-class-cache.md); fixtures, malformed files and execution remain untested.
 - [x] **Document the v4 class-bytecode path (PLO 133).** ~~`PLI_UPDATECLASS` → raw 133 for 3.153–5.12 (including 4.20r8); CRC field vs weapons 193/158/132; not 197.~~ [Note](../protocol/class-bytecode-v4.md). A real 4.20r8 161→133 lab against seihai remains open.
+- [x] **Document `NPCPROP_CLASS` vs v4 158 status (#55).** ~~CLASS+197 is GServer habit; 4.20r8 drops 197/140; CLASS/empty-line isolate open.~~ [Note](../npc-library/npcprop-class-v4-158-status.md).
 - [x] **Document pre-3.0 gmap file re-send on every PLAYERWARP2.** ~~2.22 needs `.gmap` on disk when 49 arrives; once-per-session push fails when `saveimages` is off.~~ [Note](../protocol/gmap-file-on-warp.md). Real 2.22 wipe-maps / `saveimages=false` lab against the fixed servers remains open.
 - [x] **Document per-version script packet guards (193/132/133 vs 197/140).** ~~Never classic bytecode ids to 5.24+/v6; never modern cache ids to pure 4.x; gate on profile `plo`.~~ [Note](../protocol/script-packet-guards.md). Transitional 5.00r7/5.12 preference lab remains open.
 

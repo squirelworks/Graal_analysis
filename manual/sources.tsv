@@ -309,6 +309,7 @@ live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	excluded		4	raw run log
 npc-library/README.md	cited	8; 8.1	8	
 npc-library/archival-scripting-notes.md	cited	8; 8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
+npc-library/npcprop-class-v4-158-status.md	cited	2.5; 8; E	2.5; E	NPCPROP_CLASS vs PLI 158 on v4: GServer habit vs client isolate; research #55
 npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
 npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
