@@ -6,6 +6,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [The 2001 Windows developer component](tools/classic-tools/developer-component-2001.md) — component and executable versions, generator help's red-tree row and declared MNG input; static and documentation limits.
+
 - [Classic+ 1.13 login-construction boundary](client-internals/classic-113-login-construction.md) — analyst-seeded static caller/helper observations beyond the known token; field identities, emitted bytes, framing and native acceptance remain unknown.
 
 - [One standalone NPC Control flag-list action](protocol/nc-standalone-flag-action.md) — artifact-specific, analyst-seeded static path to a collection payload and outgoing buffer; recipient, receive behavior and baseline equivalence remain open.
