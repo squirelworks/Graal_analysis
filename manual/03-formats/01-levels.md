@@ -234,7 +234,7 @@ The 2.05 executable carries the offline tutorial as 13 `RCDATA` resources, all p
 
 ### 3.1.2.10 Who stores the records in three 2.1 images
 
-The shapes above stay. This row is only which image stores a baddy or a chest [bin] (client-internals/v21-level-record-gate.md).
+The shapes above stay. This row is only which image stores a baddy or a chest. It is a file reader, and it is not network acceptance [bin] (client-internals/v21-level-record-gate.md).
 
 | Image | Baddy | Chest | Source |
 | --- | --- | --- | --- |

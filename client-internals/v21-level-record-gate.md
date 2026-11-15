@@ -12,6 +12,8 @@ The record shapes are the ones already in the manual: a baddy is three raw bytes
 
 **[bin]**
 
+Receipt. The images read were the public 2.1.0.0 image, Graal 2002 ver7, and Graal 2002 v22. On v22 the two store guards are two flag bytes, both clear, and their names are still unknown. ver7 consumes the lines and does not construct records. This is a file reader. It is not network acceptance. **[bin]**
+
 The chest loop is reached from the `GR-V1.01`, `GR-V1.02` and `GR-V1.03` tests. A condition flag left by the previous section was not separated from those tests, so this note does not say that `GR-V1.00` skips chests. The two v22 flag bytes were not identified. **[bin]**
 
 ## Open
