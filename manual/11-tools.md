@@ -144,6 +144,8 @@ The help revised 6 May 2001 has thirteen colour rows, including dark red (196, 0
 
 The selected Generate World instruction path separately reaches forest and red-tree colour classification. Its classifier has thirteen colour entries, sums absolute differences across three channels, accepts totals strictly below 32, and rejects a negative pixel index. The selected initializer assigns names ending in `.graal`; the later serializer branches on `.nw`, otherwise writing `GR-V1.03` to its stream. This establishes the generated-name serializer branch subject to name preservation, not native output. Existing-level name preservation, complete red-tree neighbor/stamp/tile mapping, dynamic stream helpers and successful MNG decoding remain open. The older twelve-colour contract below is unchanged. [bin] (tools/classic-tools/developer-component-2001.md#selected-static-generation-path)
 
+Caller-seeded analysis separately corroborates the generation routine's dimension scaling and staged call order, including the two colour-mask calls. The supplied boundary is an analyst assertion supported by independent instructions, not an automatically discovered original symbol. This function analysis excludes an exception-handler region and leaves one indirect call unresolved; it does not analyze the internal classifier/serializer bodies or establish native output. [bin] (tools/classic-tools/developer-component-2001.md#selected-static-generation-path)
+
 GraalLevelGen builds levels from a picture. The rules below give how the picture is read [doc] (tools/classic-tools/graal-level-gen.md#what-the-operator-does).
 
 | Rule | Source |

@@ -1,5 +1,5 @@
 path	status	sections	planned	reason
-tools/classic-tools/developer-component-2001.md	cited	11	11	Component identity, help/interface limits, selected colour-classifier and serializer paths carried in 11.3.4; full stamp mapping and native output remain open.
+tools/classic-tools/developer-component-2001.md	cited	11	11	Component identity, selected classifier/serializer paths and caller-seeded root corroboration with exception/indirect-call limits carried in 11.3.4; full stamp mapping and native output remain open.
 protocol/nc-standalone-flag-action.md	cited	7; E	7; E	Bounded action and analyst-seeded recovery carried in 7.3.4; ranges, recipient and receive uncertainties carried in E#425.
 AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventions
 ARCHIVAL.md	excluded			project decommission note, not Graal

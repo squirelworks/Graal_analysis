@@ -80,6 +80,20 @@ flow proof. Dynamic stream dispatch and unresolved helpers limit the reading.
 Successful MNG loading remains unverified. The older twelve-colour build contract
 is unchanged by this evidence about the developer component's generator.
 
+A separate caller-seeded analysis of the generation routine corroborates its
+dimension scaling and staged call order, including the two colour-mask calls.
+The routine boundary was supplied from the independently validated direct call
+and instruction body; it was not automatically discovered or recovered as an
+original symbol. This analysis covers the generation routine, not the internal
+classifier or serializer bodies read above. **[bin]** Evidence:
+`DEV-GENERATOR-SEEDED-ROOT`.
+
+That function body excludes an exception-handler region and contains one
+unresolved indirect call. Its recovered call relationships are therefore partial.
+Untruncated value-flow within the selected body does not establish cross-function
+effects, exception behavior, successful image loading or native generation.
+**[bin]** Evidence: `DEV-GENERATOR-SEEDED-ROOT`.
+
 ## Limits and implementation use
 
 - [x] Trace the selected Generate World action to the colour classifier and
