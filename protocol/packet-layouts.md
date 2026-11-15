@@ -192,7 +192,7 @@ Read from the receive handlers of the three clients (decompile pass of 2026-10-2
 | 178 | SERVERWARP | all three | comma text, at least 4 fields: field 0 unused, 1 = name (not needed to connect), 2 = host, 3 = port; fewer than 4 fields is ignored (2.31 lab) |
 | 179 | RPGWINDOW | all three | raw text |
 | 180 | STATUSLIST | all three | raw text |
-| 181 | UNKNOWN181 | all three | GSHORT player id, GCHAR toggle |
+| 181 | PLAYERNOUDP (was UNKNOWN181) | all three | GSHORT player id, GCHAR toggle |
 | 182 | LISTPROCESSES | all three | none |
 | 183 | HASPROCESSRUNNING | all three | raw list of names |
 | 184 | TAKESCREENSHOT | all three | raw file name |
