@@ -14,6 +14,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **RC text escaping (status).** ~~Original backslash/empty-field GET/SET?~~ Trailing empties settled; escaped-`\\` deferred to server profiles (seihai-rc#56); original RC2/RC3 S open. [Note](../protocol/rc-text-escaping-status.md); gap #41.
 
+- [x] **Gen-5 cipher step for 5.12 (E#2); 5.00r7 still open.** ~~Prefer Claim A (round-down on short compressed frames) for Windows 5.12.~~ [Note](../protocol/gen5-cipher-step-5x.md). 5.00r7 codec unread — keep round-up until read.
 - [x] **Pre-gmap clients in a gmap world.** ~~How did original servers present gmaps to builds without gmaps?~~ Client limits settled for 1.39 (no `.nw`/gmap); period server behaviour unobserved; seihai linked-level output still open. [Note](../protocol/pre-gmap-in-gmap-world.md).
 - [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
