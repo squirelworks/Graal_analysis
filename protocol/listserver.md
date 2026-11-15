@@ -58,15 +58,15 @@ The `type` prefix on a server name comes from the server's HQ level: `3 ` 3D, `P
 
 ### 1.41 rev1: no login, the server speaks first **[bin][lab]**
 
-Read from the only surviving 1.41 rev1 copy (`graal_gr1411`, patched to `<list-host-reborn>`:14923; see `client-internals/build-catalogue.md`). Added 2026-11-12. **[bin]**
+Read from the only surviving 1.41 rev1 copy (`graal_gr1411`, patched to `<list-host-reborn>`:14923; see `client-internals/build-catalogue.md`). Added 2026-11-12. **[bin]** Gap close-out for research-list **#13**: `listserver-141r1-silent-list.md`.
 
 - The list connection is a plain socket connect. Nothing is sent on connect, and nothing is sent afterwards either: there is no list name, no account and no key. The server-list window sets "Getting server list ..." and then only reads.
 - Incoming frames are `u16be length` plus a zlib body, split on `\n`, the same framing as shape A. The handler knows two ids:
   - id 0: `c count`, then per server `c field count` and that many `str` fields. The window shows fields 0 to 5 (name, language, description, URL, version, players), and the connect button uses the address and port that follow. After id 0 the client closes the link itself.
   - id 1: one more server entry, in the same field layout.
-- Every other id is ignored. In particular, ids 2 (status), 3 and 4 do nothing here.
+- Every other id is ignored. In particular, ids 2 (status), 3 and 4 do nothing here. (RC 1.41 is different: it sends a list login and treats id 2 as end-of-list; see `tools/npc-control.md` and E#401.)
 
-So a listserver has to send the id 0 list without being asked. The lab listserver does this when a client stays silent for 1.5 s (`tools/lab-servers/listserver.py`, `--greet-delay`). That way the clients that do send a login first (2.00 to 2.17) still get their normal reply. **[lab]** In the lab of 2026-11-12, the real 1.41 rev1 first hung on "Getting server list ..." against the old listserver. With the server-first list it filled its list after the 1.5 s wait. Connect then logged it in to the lab game server as `GNW13110`, generation 3, and the game drew. **[lab]**
+So a listserver has to send the id 0 list without being asked. The lab listserver does this when a client stays silent for 1.5 s (`tools/lab-servers/listserver.py`, `--greet-delay`). That way the clients that do send a login first (2.00 to 2.17) still get their normal reply. **[lab]** In the lab of 2026-11-12, the real 1.41 rev1 first hung on "Getting server list ..." against the old listserver. With the server-first list it filled its list after the 1.5 s wait. Connect then logged it in to the lab game server as `GNW13110`, generation 3, and the game drew. **[lab]** seihai-listserver’s `silent_list_after_ms` is the same accommodation (client-required; original 2001 listserver timing still unobserved).
 
 ### 2.22 specifics **[2.22][cap]**
 - The host list is not built in. It comes from `arrays2.dat` in the game folder, in clear text, checked against `arrays2.sig`: line 0 `<list-host-reborn>`, line 1 port `14922`, lines 5 and 6 the fallbacks `<list-host-graalcc>` and `<list-host-graalbiz>`. They are tried in that order until one connects. Once loaded, the client keeps them in memory under the one-byte transform described in `client-internals/des-and-hidden-strings.md`, which is why a plain memory search misses them. The same file layout applies from 2.17 on (see `client-versions.md` and the 2.17+ section below).
