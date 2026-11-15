@@ -153,6 +153,7 @@ macOS CI is paused until the polish stage.
 - [x] **Document the v4 class-bytecode path (PLO 133).** ~~`PLI_UPDATECLASS` → raw 133 for 3.153–5.12 (including 4.20r8); CRC field vs weapons 193/158/132; not 197.~~ [Note](../protocol/class-bytecode-v4.md). A real 4.20r8 161→133 lab against seihai remains open.
 - [x] **Document pre-3.0 gmap file re-send on every PLAYERWARP2.** ~~2.22 needs `.gmap` on disk when 49 arrives; once-per-session push fails when `saveimages` is off.~~ [Note](../protocol/gmap-file-on-warp.md). Real 2.22 wipe-maps / `saveimages=false` lab against the fixed servers remains open.
 - [x] **Document per-version script packet guards (193/132/133 vs 197/140).** ~~Never classic bytecode ids to 5.24+/v6; never modern cache ids to pure 4.x; gate on profile `plo`.~~ [Note](../protocol/script-packet-guards.md). Transitional 5.00r7/5.12 preference lab remains open.
+- [x] **Document PLO 109 HTTP(S) download status.** ~~Layout `i5` + local name + URL; handled 5.24r4–6.03r7 (not 4.x / 5.12); Others Work “v6 only” softened; first-string scheme-check open.~~ [Note](../protocol/plo-109-httpdownload.md). Loopback store-as-A lab remains open.
 
 - [x] **Publish the Windows 5.00r7 request and segment vectors.** ~~Carry the four authored vectors for the 158/161 requests, the mask-only container and the 4.04r2 `client.` flag.~~ [Source](../client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries); none was captured or sent.
 

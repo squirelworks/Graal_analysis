@@ -238,7 +238,7 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 106 | `0x8a` | `PLO_UPDATEPACKAGEDONE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 107 | `0x8b` | `PLO_BOARDLAYER` | no | → §2.5.3 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 108 | `0x8c` | `PLO_PING` (was `PLO_UNKNOWN108`) | no | → §2.5.8 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 109 | `0x8d` | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 109 | `0x8d` | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | no | → §2.5.7 | [bin] (protocol/plo-109-httpdownload.md); [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 110 | `0x8e` | `PLO_UNKNOWN110` | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 111 | `0x8f` | `PLO_SETNETCOOKIE` | no | → §2.5.7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 124 | `0x9c` | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | no | → §2.5.10 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
