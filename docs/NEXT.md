@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **NC write ops (status).** ~~Attribute/class/weapon write layouts?~~ Id inventory settled; write-path details open. [Note](../protocol/nc-write-ops-status.md); gap #40.
+
 - [x] **Carry/throw / shoot (status).** ~~Layouts?~~ SHOOT path settled for 5.x/6.x; throw and HITOBJECTS need capture. [Note](../protocol/carry-shoot-hit-status.md); gap #26.
 
 - [x] **Non-local level warp (status).** ~~Wire when link targets absent level?~~ Gmap hang known; plain `.nw` lab open. [Note](../protocol/nonlocal-level-warp-status.md); gap #15.
