@@ -25,6 +25,7 @@ ash/INDEX.md	cited	5; E	5.2
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
+client-internals/6037-guest-login-loop.md	cited	2.3; E	2.3; E	6.037 guest-first Login loop status; C7–C9 form/script gotchas unconfirmed; §2.3 / E
 client-internals/baddies-222.md	cited	2.6; 4.3; 5; 8.2; E	4.3	
 client-internals/bare-level-names.md	cited	3.1	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
 client-internals/beta-hud-layouts.tsv	pending		4.6	per-build HUD layouts of the 1998 betas to 1.28b2, measured from captures; for the HUD section's early-builds table

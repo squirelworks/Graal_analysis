@@ -37,6 +37,7 @@ macOS CI is paused until the polish stage.
 - [x] **Record the inspected Mac 6.004 and 6.015 architecture boundary.** ~~Compare their three slices and per-slice declared framework dependencies.~~ [Study](../client-internals/mac-6004-6015-slices.md); manual §1.8.7. Token observations remain selected-slice evidence, with no Windows module-boundary inference.
   - [x] ~~Observe Mac 6.015 Lion guest process/window (white content area).~~ [Lab](../version-profiles/lab-mac-v6-6015-lion-2026-11-16.md). Selected-slice entry→game-loop and a first rendered frame remain open; Mac 6.037 artifact absent from Share.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop; re-test with OpenGL-capable guest display for a first frame.
+- [x] **Document 6.037 guest login loop status (C7–C9).** ~~Guest-first, compiled Login hosts, named-login lab settled; form/script gotchas unconfirmed.~~ [Note](../client-internals/6037-guest-login-loop.md). Win 6.03r7 loopback checklist remains open.
 
 - [x] **Identify the 2001 developer component.** ~~Separate package and executable versions and carry its bounded help/interface findings.~~ [Note](../tools/classic-tools/developer-component-2001.md), manual §11.3.4. Generator action, red-tree implementation, writer choice and exact editor grammar remain open in the note.
 
