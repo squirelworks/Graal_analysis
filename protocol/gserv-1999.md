@@ -5,7 +5,7 @@ Date: 2026-10-21
 This covers the clients from 1.21 to 1.32 (1.25 and 1.27 from [`client-internals/gserv-125-127-builds.md`](../client-internals/gserv-125-127-builds.md)) and the GServer and RemoteControl builds shipped with 1.21, 1.28 beta 2 and 1.3 test.
 It is the first central-server protocol: accounts, a login token, and zlib on every frame.
 In the GServer-v2 numbering this is encryption generation 2, the same one 1.33 to 1.39 use with GNW tokens.
-The notes come from static analysis of the shipped executables. No decompiler output is reproduced.
+The base contracts come from static analysis; linked original-program captures add the qualified login, bootstrap and UDP observations. No decompiler output is reproduced. The [canonical earliest-network capability map](relay-1998.md#earliest-networking-capability-map) separates relay and central-server builds, run interventions and reproduction status.
 
 ## Gen 1 to gen 2 in one table
 

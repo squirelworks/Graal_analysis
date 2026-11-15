@@ -5,7 +5,7 @@ This chapter covers how the builds outside the 2.x Delphi line behave: the Java 
 
 ## 4.11.1 Zelda Online and Java Graal
 
-The Java precursors were run in the lab. Each rule records what one of them does when played [bin] (client-internals/precursors-and-fan-builds.md#zelda-online-1-may-1998).
+Qualified original-program runs exist, but the rows below separately tag source/class analysis and observed play; a run does not turn every source-derived rule into a measurement. [bin][src][live] (client-internals/precursors-and-fan-builds.md#zelda-online-1-may-1998); [live] (client-internals/precursor-runs-2026-10-30.md)
 
 | Rule | Source |
 | --- | --- |
@@ -41,7 +41,7 @@ Constants of the shared Java engine, beyond those in → §1.7.1 [src] (client-i
 | baddy moves | sent by the level leader every 2 ticks (100 ms) | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
 | push frames | advance every 4 ticks; letting go or turning resets the counter to 0 | [src] (client-internals/precursor-runs-2026-10-30.md#walking-into-a-wall) |
 | liftable kinds | four; kinds 0 to 2 always liftable, kind 3 (heavy stone) needs the stronger glove; kind 2 always leaves a heart | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
-| board changes | each relayed as a `B` line; the level leader sends all current changes to every newcomer | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| board changes | source-only `B` rectangles are visit-local; known-peer `T` triggers the leader's party-wide history replay, not a newcomer-only packet; no board mutation/re-entry was captured, and leadership compares with local time and can depend on peer order (→ §2.3.1.5) | [src][live] (client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state); [live] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
 | chat font | TimesRoman bold 20 pt, black over a white copy one pixel right and down, centred at the player's x + 12 pixels times the zoom; the nickname is drawn the same way three tiles lower | [src] (client-internals/precursor-runs-2026-10-30.md#chat) |
 
 ## 4.11.2 The relay room bridge

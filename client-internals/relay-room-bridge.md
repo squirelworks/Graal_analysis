@@ -10,6 +10,9 @@ binaries' strings. No decompiler output is reproduced.
 
 ## Result
 
+Build coverage, file transport and original-versus-reproduction limits are
+collected in the [canonical earliest-network capability map](../protocol/relay-1998.md#earliest-networking-capability-map).
+
 | Pair | Relay | Meet? | What went across |
 |---|---|---|---|
 | Java Graal + 4th Graal alpha | stock GServ | **yes** [live] | both drawn, nicknames, chat both ways |
@@ -19,8 +22,10 @@ binaries' strings. No decompiler output is reproduced.
 So the "Java Graal speaks 4th alpha's dialect" reading in
 `precursors-and-fan-builds.md` holds on the wire, and its last open point is
 closed: 4th alpha joins `G2` + the bare level file name (`G2level13.graal`), the
-same string the applet builds. For every later beta a one-line rename in the
-join is enough to put them together; the `D` payloads already line up.
+same string the applet builds. The 5th-Graal run establishes the tested
+room-prefix rename. Other beta-prefix bridges remain proposals; neither
+shared rooms nor the observed action subset establishes full gameplay
+equivalence for every later beta.
 
 ## Rooms each build joins
 
@@ -139,9 +144,10 @@ Only the joins were needed: 3rd Graal sent `NGhouse1.graal#def` and
 
 ## What this means
 
-- A relay that serves these builds together needs only the join rename. The
-  `D` lines are already the same dialect from Zelda Online 2 through 1.1.9,
-  and each side ignores the types it does not know.
+- The tested Java Graal/5th-Graal combination needed the room rename for
+  its observed movement/chat subset; Java Graal/4th alpha needed none.
+  Related `D` layouts and ignored types support further comparison, not a
+  claim that every action from Zelda Online 2 through 1.1.9 is equivalent.
 - The rename must keep the level part: mapping a level room onto a game-wide
   room (for example `G2<level>` onto `Graal3`) would put players on different
   levels in one room.

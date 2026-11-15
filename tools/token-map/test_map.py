@@ -65,10 +65,84 @@ class TokenMapDataTests(unittest.TestCase):
 
     def test_same_build_name_can_keep_distinct_platform_associations(self):
         table = "### Family\n| " + " | ".join(GEN.HEADER) + " |\n"
-        row = "| Shared build | `GNW03081` | B | public source | {} | game-login | | |\n"
+        row = "| Shared build | `GNW03081` | B | [B@static] public source | {} | game-login | | |\n"
         assert len(GEN.parse(table + row.format("Windows") + row.format("Linux"))) == 2
         with self.assertRaisesRegex(ValueError, "duplicate association"):
             GEN.parse(table + row.format("Windows") * 2)
+
+    def test_all_applicable_categories_and_qualified_binary_are_deterministic(self):
+        sources = GEN.evidence_sources("[L@list] report<br>[B+@static] accepted lab, undecoded<br>[W@wire] decoded capture")
+        self.assertEqual(GEN.signature(sources), "WB+L")
+        self.assertEqual(GEN.signature(list(reversed(sources))), "WB+L")
+        self.assertEqual(GEN.primary_grade(sources), "W")
+        self.assertEqual(GEN.signature(GEN.evidence_sources("[B+@static] accepted, undecoded")), "B+")
+        self.assertEqual(GEN.signature(GEN.evidence_sources("[S@server] supplied<br>[W@wire] captured<br>[C@script] literal")), "WSC")
+        all_sources = GEN.evidence_sources("[C@script] literal<br>[U@production] scope: production login unknown<br>[S@server] supplied<br>[L@table] reported<br>[B+@binary] accepted, undecoded<br>[W@wire] separate captured context")
+        self.assertEqual(GEN.signature(all_sources), "WB+LSUC")
+
+    def test_dependencies_and_conflicts_do_not_manufacture_confirmation(self):
+        sources = GEN.evidence_sources("[B@static] original read<br>[B@mirror~static] copied report<br>[L@old!conflict] wrong raw spelling")
+        self.assertEqual(GEN.signature(sources), "B")
+        self.assertEqual(sources[1]["depends_on"], "static")
+        self.assertEqual(sources[2]["status"], "conflict")
+        for text in ("[B@copy~missing] no original", "[B@one~two] cycle<br>[B@two~one] cycle",
+                     "[B@original] static<br>[W@copy~original] cannot invent a capture",
+                     "[B@same] one<br>[B@same] duplicate"):
+            with self.assertRaises(ValueError):
+                GEN.evidence_sources(text)
+
+    def test_unresolved_scope_and_documented_absence_stay_distinct(self):
+        self.assertEqual(GEN.signature(GEN.evidence_sources("[-@protocol] no-token protocol")), "-")
+        self.assertEqual(GEN.signature(GEN.evidence_sources("[U@unknown] no recovery")), "U")
+        self.assertEqual(GEN.signature(GEN.evidence_sources("[S@mechanism] supplied<br>[U@production] scope: production value unknown")), "SU")
+        for text in ("[-@none] absent<br>[U@unknown] unknown", "[S@mechanism] supplied<br>[U@unknown] no scope"):
+            with self.assertRaises(ValueError):
+                GEN.signature(GEN.evidence_sources(text))
+
+    def test_structured_provenance_survives_tsv_rendering(self):
+        import csv
+        import io
+        import json
+        _, data = GEN.render(ROWS)
+        records = list(csv.DictReader(io.StringIO(data), delimiter="\t"))
+        for row, exported in zip(ROWS, records):
+            sources = json.loads(exported["source_records"])
+            self.assertEqual(GEN.signature(sources), row["evidence"])
+            self.assertEqual(len(sources), len(json.loads(row["source_records"])))
+        self.assertTrue(any(r["evidence"] == "WB" for r in records))
+        self.assertTrue(any(r["evidence"] == "BL" for r in records))
+
+    def test_real_corroboration_and_partial_alias_scope(self):
+        self.assertEqual([r["evidence"] for r in matching("GSERV013", "game-login")], ["WB"])
+        self.assertEqual([r["evidence"] for r in matching("GSERV009", "game-login")], ["B"])
+        self.assertEqual([r["evidence"] for r in matching("GNW22030", "game-login")], ["B+"])
+        late = {r["build"]: r["evidence"] for r in matching("G3D26090", "game-login")}
+        self.assertEqual(late, {"5.30r3 Windows": "WB", "5.31r4 Windows": "W",
+                                "6.00r2 Windows": "WB", "6.00r4 Windows": "WB"})
+        connector = {r["platform"]: r["evidence"] for r in matching("GNP1905C")}
+        self.assertEqual(connector, {"Windows": "WSC", "macOS": "SC"})
+
+    def test_canonical_signature_and_unknown_state_are_validated(self):
+        table = "### Family\n| " + " | ".join(GEN.HEADER) + " |\n"
+        template = "| Build | {} | {} | {} | Windows | game-login | | |\n"
+        for token, sig, sources in (("TOKEN", "WB", "[B@static] only static"),
+                                    ("none", "U", "[U@unknown] unresolved"),
+                                    ("unknown", "B", "[B@static] unrelated bytes"),
+                                    ("TOKEN", "-", "[-@protocol] no token")):
+            with self.assertRaises(ValueError):
+                GEN.parse(table + template.format(token, sig, sources))
+
+    def test_beta4_comparison_never_repairs_raw_values_or_collapses_roles(self):
+        spec = importlib.util.spec_from_file_location("beta4_compare", Path(__file__).with_name("compare_beta4.py"))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        rows = [dict(token="GSERV009", state="known", build="one", platform="Windows", role="game-login"),
+                dict(token="GSERV009", state="known", build="tool", platform="Windows", role="rc-login")]
+        report = module.compare("one - SERV009\ntwo - GSERV009\nbad - corrupt package\n", rows)
+        self.assertEqual(report["documentary_values"], 2)
+        self.assertEqual(report["exact_matches"], ["GSERV009"])
+        self.assertEqual(report["raw_prefix_discrepancies"], {"SERV009": "GSERV009"})
+        self.assertEqual(len(report["ambiguous_matches"]["GSERV009"]), 2)
 
 
     def test_all_public_markdown_source_links_resolve_including_fragments(self):

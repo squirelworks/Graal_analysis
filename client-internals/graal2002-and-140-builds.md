@@ -84,6 +84,10 @@ endpoint does not by itself show that the copy reaches it. **[bin]**
    v22 adds caverns, start and mines), plus a `loadgmaps.txt`. They are the earliest gmap-based world clients in the set.
    Shipping that file is not the same as the executable opening it. The preload loop was traced only in v22
    ([Local gmap preload and controlnpc](#local-gmap-preload-and-controlnpc)).
+6. **The public image opens a level by an eight-byte magic.** It accepts `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00` through
+   `GR-V1.03` and `GLEVNW01`, and it shows `Unsupported file type!` for any other header. ver7's traced file body does not
+   construct baddy or four-field chest records. v22 writes an eight-byte `GLEVNW01` stream when the file is missing and a
+   mode field equals 2. The widths are in [`graal2002-level-open.md`](graal2002-level-open.md). **[bin]**
 
 ## Receive layouts of ids 170 to 177
 
@@ -293,6 +297,7 @@ The chest and baddy editor forms follow the dispatch split in the section above:
 - [ ] Capture v22 and checked 1.40 login frames independently; no shared-token grade inheritance.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
+- [x] ~~Read how the public 2.1.0.0 image accepts a level file, and what ver7 and v22 store.~~ [Level open](graal2002-level-open.md). ver8 to ver13 bodies, the marker character, and any send from these paths stay open.
 - [x] ~~Distinguish public 171/172 destination state and text-resource guards.~~ [Destination finding](#public-171172-destination-and-resource-guards). Runtime display and numeric rounding remain open.
 - [x] ~~Read the receive bodies of ids 170 to 174 in the public 2.1.0.0 image and of 175 to 177 in v22.~~ [Receive layouts of ids 170 to 177](#receive-layouts-of-ids-170-to-177). ver8 to ver13 bodies were not compared. Client-to-server sends of these ids stay open.
 - [x] ~~Form-resource names for the seven 2.1.0.x images.~~ [Form resources](#form-resources): the log form is in ver10 and later in this set; the chest and baddy forms return on the public 2.1.0.0 and on v22.

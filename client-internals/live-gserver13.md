@@ -33,6 +33,10 @@ The rights levels are no rights, Graalian Police, Trusted Admin and Administrato
 
 ## Login **[cap]**
 
+For this run's position in the relay-to-central-server transition, and
+for its Wine-input versus unpatched-execution limits, use the
+[canonical capability map](../protocol/relay-1998.md#earliest-networking-capability-map).
+
 * **Client's first frame.** u16 big-endian length + zlib of id 0 + `GSERV014` + length-prefixed account + length-prefixed password + `\n`. Lengths are chr(n + 32).
 * **Wrong account.** The server sends id 16 with the text "An account with the name and password you typed in doesn't exist.", and the client offers Reconnect or Play offline.
 * **Good login, server order.**

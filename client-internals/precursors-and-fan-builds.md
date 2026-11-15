@@ -11,7 +11,7 @@ This note covers a set of uploads that sit around the Delphi client line:
 - 39ster's Graal client 1.00 (2014)
 - GraalX (2001)
 
-The sources were read where they exist and the class files and binaries were read statically where they don't. Nothing was run.
+The original 2026-10-29 pass read source where available and classes/binaries otherwise. Later [precursor runs](precursor-runs-2026-10-30.md) and [relay bridge runs](relay-room-bridge.md) add qualified original-program observations; this is no longer a blanket no-run claim. The [canonical earliest-network capability map](../protocol/relay-1998.md#earliest-networking-capability-map) separates the builds and evidence grades.
 No code is reproduced here. Two of the "source" archives turned out to be decompiler output and are treated that way (see below).
 
 ## What the uploads are
@@ -187,7 +187,7 @@ It listens on **14801**, gives out ids `0000` plus a 4-digit counter that wraps 
 - Connects to the typed address on 14801.
 - Room name: `Z` + level file name without extension + `1.6`, for example `Zlevel11.6`. Every level is its own room. On a level change the client sends `C` and `-`, then joins the new room with the name `def`. The real nickname is sent in `D` later.
 - When the first `+` arrives it sends `P` for that player straight away. On `P` it pushes its state: login time, position, chat, nickname, colours and carried object.
-- `D` payload types: `P C N S M H B T D E O W A`. Their layouts are the ones in `relay-1998.md`, and the 1st Graal kept them. The level-leader rule (earliest login time, ties broken by the lower id) also comes from here.
+- `D` payload types: `P C N S M H B T D E O W A`. Their layouts are described in `relay-1998.md`, with coordinates checked per message/dialect. The selected leader routine compares peers with the local login timestamp, not a running minimum; iteration order and its identity tie branch matter. See [the selected board/replay source review](zelda-online-1998.md#board-changes-and-a-joining-players-state) and [existing source/bytecode mechanics](precursor-mechanics-2026-11-09.md#relay). [src]
 - The client clamps baddy knock-back to ±4 before encoding. One of the four clamps writes the wrong axis, so a large positive vertical knock-back overwrites the horizontal value.
 
 ### Java Graal client
@@ -195,7 +195,7 @@ It listens on **14801**, gives out ids `0000` plus a 4-digit counter that wraps 
 - Connects to **its own codebase host on 14802**, the Cyberjoueur relay port that the Delphi betas also used.
 - Room name: `G2` + level file name. A second "fixed room `Graal2`" mode exists in the class but the applet never selects it.
 - `D` types: the Zelda Online 2 set without `S` (colours) and with `L` (level name) added.
-- Without `S`, Java players appear with default colours. Delphi clients of the same period send types the applet ignores (`F`, `G`, `I`, `Q`, `R`, `U`, `X` to `Z`, `0` to `8`). So mixed sessions would only share movement, chat, board changes, baddies, items and arrows. This is *inferred*, not observed.
+- Without `S`, Java players appear with default colours. Delphi clients of the same period send types the applet ignores (`F`, `G`, `I`, `Q`, `R`, `U`, `X` to `Z`, `0` to `8`). The larger possible shared action set remains *inferred*. Later runs observed nicknames/chat directly with 4th alpha and movement/chat with 5th through a room-renaming proxy; they did not validate every board, baddy or item action. [src][live][inf]
 - **The `G2` prefix and the `Graal2` fallback are exactly what 4th Graal alpha (October 1998) uses.** The room prefixes and fallback names were read from the string tables of all 18 betas. 1st and 2nd use `Zelda2`, 3rd and 4th use `Graal` with a bare `G` prefix, and 4th alpha alone uses `G2` / `Graal2`. From 5th Graal on (`G3` / `Graal3` up to `G8` / `Graal8`) the rooms no longer match.
 - So Java Graal speaks the relay dialect of 4th Graal alpha. Its `D` types are all ones that 4th alpha also sends or handles, and 4th alpha's extra types (`I`, `U`, `X`, `Y`, `Z`, `Q`, `F`, `G`, `R`) are ones the applet ignores. A Java player and a 4th alpha player on the same level file were in the same room. Later betas were not. This is read from the binaries and the Java source, not from a capture. The only open point is whether 4th alpha appends the bare file name for a local level, as the applet does. **Run live on 2026-10-31:** it does (`G2level13.graal`), and a Java Graal and a 4th alpha player met and chatted on Knorr's GServ. Java Graal and 5th Graal met through a room-renaming proxy (`relay-room-bridge.md`).
 - The applet was built in July 2000, 20 months after 4th alpha, so its dialect was already long out of date. It only made sense on a relay that still had 4th alpha clients, or Java players alone.
