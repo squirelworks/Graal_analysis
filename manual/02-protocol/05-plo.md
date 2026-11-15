@@ -82,7 +82,7 @@ The six default-routed ids in ver7–ver13 correspond in classic numbering to ba
 
 ### 2.5.2.2 Widths read in the public image and in v22
 
-The binding table does not give widths. Handler bodies were read in the public 2.1.0.0 image for ids 170 to 174 and in v22 for ids 175 to 177. They are server-to-client only. No client send of those ids was traced, and ver8 to ver13 bodies were not compared, so these widths are not claimed for the mid-ladder images. [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177)
+The binding table does not give widths. The rows below are the body-read receipt: handler bodies in the public 2.1.0.0 image for ids 170 to 174, and in v22 for ids 175 to 177. Each row is the payload width read in that body and when the handler applies it. They are server-to-client receives. No client send of those ids was read, and the ver8, ver9, ver10 and ver13 handler bodies were not compared, so these widths are not claimed for the mid-ladder images. [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177)
 
 | Id | Image | Layout read there | When | Source |
 | ---: | --- | --- | --- | --- |
