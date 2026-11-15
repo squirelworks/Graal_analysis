@@ -290,7 +290,7 @@ This is the index of every server-to-client id. The 2.05 column says whether 2.0
 | 191 | `0xdf` | `PLO_SHOOT2` | no | → §2.5.5 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 192 | `0xe0` | `PLO_NC_WEAPONGET` | no | → §7 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 193 | `0xe1` | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
-| 194 | `0xe2` | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
+| 194 | `0xe2` | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | no | → §2.5.6 | [bin] (protocol/plo-194-resetclient.md); [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 195 | `0xe3` | `PLO_LOADGANI` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |
 | 196 | `0xe4` | (no gs2lib name) | no | → §2.5.6 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 197 | `0xe5` | `PLO_LOADSCRIPT` | no | → §2.5.6 | [srv][2.05] (protocol/packet-ids.md#server--client-plo_) |

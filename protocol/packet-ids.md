@@ -160,7 +160,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 191 | 0xdf | `PLO_SHOOT2` | · | 5.07 / 6.037 |
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` | · | `str name`, `str image`, `script`; client 5.07+ ignores it |
 | 193 | 0xe1 | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | · | `i5 crc32`, rest = weapon name: load the cached `weblevels/weapons/<name>.code` if its CRC32 matches, else request it with PLI 158; 4.04r2 to 5.12 **[bin]** (`unknown-ids-2026-11-06.md`) |
-| 194 | 0xe2 | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | · | empty; precedes the weapon list; clears weapon and class scripts (how much differs by version); 4.04r2 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 194 | 0xe2 | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | · | empty; precedes the weapon list; clear amount differs by generation (4.x weapons+classes; 5.00r7 levels+caches; 6.03r7 broader); 4.04r2 to 6.03r7 **[bin]** (`plo-194-resetclient.md`, `unknown-ids-2026-11-06.md`) |
 | 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others) |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` | · | `list type,name,saveToDisk,desKey,crc32` (type weapon/npc/class/gani; key = two i5) |
 | 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions`; stored and never read up to 6.03 (`client-internals/serveroptions-198.md`) |

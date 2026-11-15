@@ -267,6 +267,9 @@ table in Windows 4.04r2 and 5.12 and compared with the 3.153 Mac handlers.
 
 ### PLO 194: clear weapons
 
+Canonical status note (2026-11-16): `plo-194-resetclient.md`
+(preferred name `PLO_RESETCLIENT`; Others Work `login*`-keep still open).
+
 - **[bin]** 4.20r8 clears its weapon and class script lists and their name index. 5.00r7
   clears every loaded level and the level caches. 6.03r7 resets state on its main game
   object, deletes the objects in two global lists (probably weapons and classes), and
