@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **2.x link probe / BIGMAP (status).** ~~Probe offsets / 171 / entry save?~~ 2.05 edge rules known; 2.22 S+L open. [Note](../protocol/link-probe-bigmap-status.md); gap #34; E#308/E#314.
+
+
 - [x] **Pre-gmap clients in a gmap world.** ~~How did original servers present gmaps to builds without gmaps?~~ Client limits settled for 1.39 (no `.nw`/gmap); period server behaviour unobserved; seihai linked-level output still open. [Note](../protocol/pre-gmap-in-gmap-world.md).
 - [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
