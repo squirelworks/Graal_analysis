@@ -31,6 +31,7 @@ Weapons / login hooks (same module):
 - v4 wants the **193 / 132 / 133** weapon/class path, not the v6 **197 / 140** cache path (already recorded in prior REA leads and seihai notes).
 - Closing “Classes… | no” still means implementing **133** on the server for `UPDATECLASS`, not discovering a second client API here.
 - Do not send 132/133/193 to v6 profiles; do not send 197/140 to v4 profiles.
+  Canonical server assert: [`protocol/script-packet-guards.md`](../protocol/script-packet-guards.md).
 
 ## Limits
 
