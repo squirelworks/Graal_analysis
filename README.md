@@ -6,6 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Large-file thresholds on focus builds](protocol/large-file-thresholds-focus.md) — 64000 / 32000 / LARGEFILE\* ladder for 1.39–6.037; token-table trap; consolidates file-transfer + labs; static + prior lab.
 - [v4 Login account contract (4.20r8)](protocol/v4-login-account-contract.md) — typed account on first Login vs 5.x/6.x guest-first; open stock-UI / script-API rows; consolidates C4 status; static + prior lab.
 - [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); widths and pyreborn P4–P6 open; research #6; static status.
 - [Ids sent by 5.12 / 2.31 id 44](protocol/ids-sent-512-status.md) — S→C vs C→S 44 on 2.31 settled; 5.12 send floor still cap-only; research #17; static status.

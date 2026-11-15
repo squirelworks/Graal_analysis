@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Large-file thresholds on focus builds (#10).** ~~Consolidate 64000 / 32000 / LARGEFILE\* ladder and per-focus token-table behaviour.~~ [Note](../protocol/large-file-thresholds-focus.md). Discriminating ~300 KB push per focus still open.
+
 - [x] **v4 Login account contract (C4 status).** ~~Consolidate 4.x typed-account Login vs 5.x/6.x guest-first.~~ [Note](../protocol/v4-login-account-contract.md). Stock 4.20r8 UI dialog / script-API rows still open (Others Work leads).
 
 - [x] **1.41 rev 1 list reply / silent-list timer.** ~~Is `silent_list_after_ms` original, and how does 1.41r1 read ids 1 and 2?~~ Client sends nothing; id 1 = extra row, id 2 ignored (≠ RC); timer is a lab/seihai accommodation; 2001 listserver timing still unobserved. [Note](../protocol/listserver-141r1-silent-list.md).
