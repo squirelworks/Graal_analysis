@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **`PLI_ENTERLEVEL` on focus 5.x / 6.037 (status).** ~~Which builds send 46?~~ 6.03r7 yes (as 2.31); 5.00r7/5.12 unread; no dedicated reply known. [Note](../protocol/enterlevel-focus-builds.md).
+
+
 - [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
 - [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
