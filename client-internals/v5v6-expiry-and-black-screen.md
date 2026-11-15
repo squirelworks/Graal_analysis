@@ -74,8 +74,21 @@ Server: GServer-v2 fork `fbd30767` (merge of #73), the `login` and `milestone` l
 - Do not warp a 5.x/6.x client off the login server until its first file requests have been answered, or have the target world send the tileset after the warp.
 - No fake clock is needed for 5.24r3/r4, the 6.00 betas or 6.03r7. 5.30r3, 5.31r4, 6.00r2 and 6.00r4 need the clock set back for the whole session. Keep that clock steady, without jumps or a changed rate, so the timer warning is not set off.
 
+## Wine fidelity policy (2026-11-16)
+
+Owner confirmation (2026-11-16): later Wine runs that called **Windows 6.03r7 black / no input** and **5.24r4 no tiles or players** were installs that lacked the **base asset set from a Graal 2.22 client folder** (`pics1.png` and the other starter files). Those symptoms are **not** a client or gserver protocol gap once the asset tree is complete. **[doc]** (owner); same cause family as the 2026-11-13 lab above **[lab]**.
+
+**Policy for 4.x–6.x loopback labs:**
+
+1. **Wine is acceptable** for wire and draw checks on focus builds **4.208 / 5.007 / 5.120 / 6.037** (and neighbours) **when** the install holds the 2.22-era base assets before the client starts, and the login/world servers can serve them (and finish `pics1.png` before an early 178, as above).
+2. Treat remaining Wine-only **black / no-draw** reports as **asset or warp-timing bugs** until a run with staged assets still fails.
+3. Prefer a real Windows guest for **input and OpenGL edge cases** (for example 5.24r4 keys landing as game keys instead of chat under Wine in the five-client grid). Wine may still miss those even with art present. **[lab]**
+
+Lab notes that scored 5.24r4 / 6.03r7 as “wire only” under Wine without staging that art set should be read with this cause: the messages arrived; the draw path never had a tileset. Re-run with assets before treating those cells as a Seihai or client defect.
+
 ## Open
 
 - [ ] The cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (inside the protection layer; binary search on the clock would find them).
 - [ ] Whether the Themida builds' timer check matches 5.24r4's thresholds.
 - [ ] The lab NPC `message` text not drawing on 5.24r4/6.03r7.
+- [ ] Re-score the five-client Wine “wire” cells for 5.24r4 / 6.03r7 with the 2.22 base asset set staged (draw and input may still differ from real Windows).

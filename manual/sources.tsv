@@ -237,7 +237,7 @@ client-internals/unpacked-6037.md	cited	10	10	§10.1.8 carries the version, that
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/v21-level-record-gate.md	cited	3.1	3.1	Baddy and chest store/skip carried in §3.1.2.10. The two v22 flags stay unnamed.
 client-internals/v2100-gani-reader.md	cited	3.3	3.3	Public 2.1.0.0 reads carried in §3.3.9. The post-keyword field counts are an inference there. Prefix spellings and the block opener stay in the note.
-client-internals/v5v6-expiry-and-black-screen.md	cited	1; 4.1; E	1; 4.1	
+client-internals/v5v6-expiry-and-black-screen.md	cited	1; 4.1; E	1; 4.1	Wine fidelity policy (2.22 base assets) added 2026-11-16; still the cited black-screen / expiry source.
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/141-217.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/README.md	excluded		1; C	usage notes for the profile files and their resolver script; the manual cites the profile files directly
