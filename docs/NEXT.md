@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the Linux 3.04 static build/dependency evidence into the manual.** ~~Separate explicit FMOD/SDL linkage, runtime graphics loading and compiler metadata from runtime compatibility.~~ [Study](../client-internals/linux-304-executable-build.md); manual §1.8.4 and §10.1.10.
+  - [ ] Establish the voice-codec consumer and OpenAL-layer reachability; missing identifying strings do not establish absent codecs.
+
 - [x] **Carry the Mac 6.11r1 named-send scope into the manual.** ~~Separate 52 matched slots and two inspected entry tests from unconfirmed writer/table-population paths.~~ [Study](../client-internals/mac-611r1-send-slots.md); manual §1.8.7 and §2.4.13.
   - [ ] Resolve the four unmatched mappings, ordinary-send payload path and Mac script-side table population before treating this as a complete outgoing contract.
 

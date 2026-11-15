@@ -271,6 +271,22 @@ The 2026-11-07 gap archive did not contain an unpacked 6.113 image. The Windows 
 
 The 6.1.1.3 decompile is 106 functions in a 227,199-byte listing. Three are the entry, which clears a breakpoint byte, mixes four kilobytes and then breakpoints. The other 103 are export names for a `CyaInt` TLS client, AES-CBC, HMAC, SHA-256 and RSA; those bodies do not implement the named calls, several names share one body, and the zlib names are not functions in the listing. The file has no GS2 switch, GUI class or socket import. [bin] (client-internals/decompile-6113.md#how-the-bytes-split)
 
+### 10.1.10 Linux 3.04 build and dependency evidence
+
+The revision-1 executable and shipped installer were inspected statically; nothing was run for this study. UPX restoration agrees with the pack-header size/checksum, and object comments identify predominantly GCC 2.96 with five NASM entries. The stripped executable retains a pre-GCC-3 C++ ABI, so a modern symbol/demangler assumption is inappropriate. These checks concern the retained input and unpacking, not authenticated release provenance. [bin] (client-internals/linux-304-executable-build.md#packing); (client-internals/linux-304-executable-build.md#toolchain)
+
+| Component | Static evidence and limit | Source |
+| --- | --- | --- |
+| Audio/windowing | bundled FMOD 3.70 and SDL 1.2 are explicit dynamic dependencies; FMOD has 24 effect and six music imports, SDL 48 imports | [bin] (client-internals/linux-304-executable-build.md#linkage) |
+| Graphics | X11 is an explicit dependency; no GL imports, but SDL's GL loader and library names support runtime GL loading | [bin] (client-internals/linux-304-executable-build.md#linkage) |
+| OpenAL | compiled driver-layer console names exist, but no OpenAL library name or audio import was found; reachability of that layer remains unestablished | [bin] (client-internals/linux-304-executable-build.md#linkage) |
+| C++ runtime | no dynamic C++/libgcc runtime dependency; runtime definitions are present in the executable. Its 396 named dynamic symbols comprise 310 imports and 86 runtime/stdio definitions, with no exported game function identified | [bin] (client-internals/linux-304-executable-build.md#linkage) |
+| Symbol-version floor | required libc/pthread/math versions top out at 2.2 / 2.1.1 / 2.1 respectively; satisfying these version labels alone does not demonstrate loader, graphics or gameplay compatibility | [bin] (client-internals/linux-304-executable-build.md#linkage) |
+| Embedded libraries | banners identify zlib 1.1.3, libmng 1.0.5, GIFLIB 4.0 and the IJG JPEG decoder | [bin] (client-internals/linux-304-executable-build.md#linkage) |
+| Installation | Loki Setup metadata and the post-install launcher arrange the bundled library search path through `LD_LIBRARY_PATH`; GL/X11 receive no separate launcher override. These are file observations, not a new installation recipe or runtime test | [file] (client-internals/linux-304-executable-build.md#installer-and-launcher) |
+
+The installer library list mentions voice packaging and the executable has microphone/voice controls, but the stripped image supplies no identifying GSM/LPC strings. This establishes neither the presence nor absence of those codecs. Follow the selected-codec consumer to resolve that question; separately establish whether the OpenAL layer is reachable before treating a console name or an earlier lab's installed package as a required backend. [file][bin][inf] (client-internals/linux-304-executable-build.md#still-open)
+
 ## 10.2 Join sequence
 
 Joining a 3D server runs the same routine in several builds. The steps below are in order [bin] (protocol/v3x-clients.md#listserver).
