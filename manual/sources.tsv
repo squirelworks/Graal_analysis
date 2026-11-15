@@ -764,4 +764,5 @@ version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest lau
 protocol/gen5-cipher-step-5x.md	cited	2.2; E	2.2; E	5.12 gen-5 short-compressed step round-down settled; 5.00r7 unread; consolidates E#2 + v5v6-lab-play + Seihai stress
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
 formats/weblevels-code-residuals.md	cited	3.8	3.8	Md5 folder-input lead, 4.20r8 vs later path table, LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
+protocol/rc-text-escaping-status.md	pending		7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
