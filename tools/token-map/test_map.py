@@ -19,7 +19,9 @@ class TokenMapDataTests(unittest.TestCase):
         older = [r for r in matching("GNW03081") if "Graal 2002 ver" in r["build"]]
         assert len(older) == 3 and {r["grade"] for r in older} == {"B"}
         newer = matching("GNW31101", "game-login")
-        assert len(newer) == 4 and {r["grade"] for r in newer} == {"B"}
+        assert len(newer) == 4
+        assert [r["grade"] for r in newer if "ver10" in r["build"]] == ["W"]
+        assert {r["grade"] for r in newer if "ver10" not in r["build"]} == {"B"}
         assert any("public release" in r["build"] for r in newer)
         assert any(r["grade"] == "W" and "2.05 rev2" in r["build"] for r in matching("GNW03081"))
 
