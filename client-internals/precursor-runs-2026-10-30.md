@@ -49,7 +49,7 @@ Compare `ledges-push-pull.md` for the Delphi clients.
 - **Lifting.** There are four liftable object kinds. Kinds 0 to 2 can always be lifted. Kind 3 (the heavy stone) needs the stronger glove. A lifted bush (kind 0) rolls the same drop as a cut one. Kind 2 always leaves a heart. **[src]**
 - **While carrying**, the player is drawn with a separate set of four carry sprites, one per direction, with the object drawn above the head. The player is not hidden under the object in these games. Hiding under a carried bush came later; see `carry-hide-and-glove.md`. **[src]**
 - **Respawn: there is no timer.** Cut bushes, lifted stones and broken pots stay gone only for the visit. Every board change is cleared when a level loads, so everything is back when the player leaves and comes back. Nothing grows back while the player stays on the level. **[src]** Re-entry was not tested live.
-- **Sharing board changes.** Each change is relayed as a `B` line. The level leader (earliest login time) sends all of the current changes to every newcomer, so a player who joins sees the bushes already cut. **[src]** The captured sessions had no board changes on the wire, because nothing was cut while both clients were in the same room. **[live]**
+- **Sharing board changes.** Source-selected leadership controls party-wide `B` history replay when a peer's `T` timestamp arrives; it is not a newcomer-only message. The routine compares peer times against the local timestamp, not a running minimum, so the simple "earliest login time" shorthand omits an order-dependent qualification. [Selected source review](zelda-online-1998.md#board-changes-and-a-joining-players-state). **[src]** The captured sessions had no board changes on the wire, because nothing was cut while both clients were in the same room. Native replay/re-entry remains unobserved. **[live]**
 
 ### Chat
 
@@ -61,6 +61,11 @@ Compare `ledges-push-pull.md` for the Delphi clients.
 - There is no box, no background and no tail. The bubble seen in later Graal belongs to the Delphi clients, not to these.
 
 ## What the wire showed
+
+The [canonical earliest-network capability map](../protocol/relay-1998.md#earliest-networking-capability-map)
+keeps the original-program run, source-only board history and rebuild tests
+separate. The [selected board/replay source review](zelda-online-1998.md#board-changes-and-a-joining-players-state)
+does not add a native board-mutation or re-entry observation to this capture.
 
 - **Room names.** Zelda Online 2 joined as `NZlevel11.6#def`, and Java Graal joined as `NG2level13.graal#def`. These match what the sources say. **[live]**
 - **Join order.** The server answers `I<id8>`, then sends `+<id8><name>` for each available player. The client answers the first `+` with `P<id8>` and then pushes its whole state: login time, position, chat, nickname, colours and carried object. **[live]**

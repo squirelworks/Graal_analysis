@@ -6,6 +6,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Earliest networking capability map](protocol/relay-1998.md#earliest-networking-capability-map) — Zelda 1's absent multiplayer, Zelda 2/Java/Delphi relay rooms and dual TCP channels, GSERV accounts/UDP, actual cross-build runs and their patches/proxies; source-only board replay and archive-provenance limits remain explicit.
+
 - [Windows 2.22 control PM paths](protocol/windows-222-pm-static.md) — selected composer/send intent, receive defaults and sender lookup; modified control only, remote-roster trigger and visible result still open.
 
 - [The 2001 Windows developer component](tools/classic-tools/developer-component-2001.md) — component and executable versions, red-tree help and static classifier path, selected serializer branch, and MNG interface declaration; no native output claim.
