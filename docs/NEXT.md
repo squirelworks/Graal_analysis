@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **1.41r1 `.nw` / gmap load (static).** ~~String scan only?~~ `GLEVNW01` present, no `GRMAP001`; live load still open. [Note](../client-internals/141r1-nw-gmap-status.md).
+
 - [x] **Large-file thresholds on focus builds (#10).** ~~Consolidate 64000 / 32000 / LARGEFILE\* ladder and per-focus token-table behaviour.~~ [Note](../protocol/large-file-thresholds-focus.md). Discriminating ~300 KB push per focus still open.
 
 - [x] **v4 Login account contract (C4 status).** ~~Consolidate 4.x typed-account Login vs 5.x/6.x guest-first.~~ [Note](../protocol/v4-login-account-contract.md). Stock 4.20r8 UI dialog / script-API rows still open (Others Work leads).
