@@ -108,6 +108,24 @@ The trace joins the mapped receive tables and gate write to the update guard, or
 
 No native traffic capture establishes this first update. These findings do not complete the outgoing message-id inventory, the whole player-property codec, helper semantics for other properties, or any whole-build teardown. A discriminating capture must start before the first server reply and compare no reply, an unrelated well-formed reply, and self-properties replies in fresh sessions, preserving other startup conditions and no-emission results. **[bin]**
 
+## Ver10 list entry and connection boundary
+
+This exact-build static follow-up uses evidence ID `WIN-VER10-LIST-ENTRY-STATIC-20261115` ([evidence index](../docs/evidence-index.tsv)). Retained analysis observations were checked with bounded independent instruction decoding, selected data-table reads and import-thunk mapping. It does not establish a complete login or first player-properties emission. **[bin]**
+
+The reviewed list-loading path constructs an encoded fixed host, appends a suffix and supplies a fixed list port. Its generic connection initializer checks a host cache, tries numeric-address parsing and then hostname resolution, creates a TCP socket, parses the supplied port and connects before switching to nonblocking mode. The loader sends its list token and subsequent login strings after that initializer returns. Host identity is intentionally omitted; no arbitrary endpoint configuration follows from this trace. **[bin]**
+
+The list-reply reader decodes biased row counts, per-row field counts and per-field lengths, then copies the stated bytes. The selected-row join requires at least eight fields and takes the game host and port from zero-based fields 6 and 7. These are selected list-row fields, not the list connection's fixed endpoint and not player-property ids. This observation does not establish complete validation of malformed lists. **[bin]**
+
+The inspected cache starts empty. Its sole direct writer call found in executable bytes follows address resolution. No ordinary file-input route was found in the inspected loader or cache routines. Direct-call/immediate-reference searches do not exclude aliases, indirect calls or other unreviewed entry paths; this is not a whole-program proof that local entry is unavailable. **[bin]**
+
+### Two bounded local-entry attempts
+
+On 2026-11-15, the unchanged exact ver10 executable was used in a Windows lab guest with virtual NICs disabled and guest-only input. Supporting data was mixed: an adjacent 2.1 data table and ten root resources from 2.22; no executable, DLL or configuration was overwritten. The peer was a self-authored Node list fixture, not a GServer checkout, so no server commit or full server-protocol coverage is claimed. Evidence ID `WIN-VER10-LIST-ENTRY-LAB-20261115` binds the owner-held run report, event logs and screenshots; no original art or raw artifact identity is reproduced. **[lab][cap]**
+
+Each attempt began at a clean visible welcome without resource errors, with its listener already active. Online immediately showed connection failure: one attempt tested a local-file list candidate, the other the unchanged existing guest mapping at the statically identified list port. Neither listener recorded an accept or client bytes during its 30-second window. Independent review checked that the reported Online action fell inside each logged listening window and that both screenshots showed the failure. The existing mapping differed from the independently decoded fixed host, so the second attempt is not a test of that exact host mapping. **[lab][cap]**
+
+Separate synthetic clients connected to both listener configurations and received the expected eight-field row. Those controls validate the fixture/loopback transport only; they do not show original-client protocol acceptance. After the original attempts no local row had been obtained, and owned client/fixture processes were cleaned up. Two negative entry hypotheses do not establish that all local routes are unsupported. None of the four original-client reply arms was reached, and no first player-properties emission was observed. **[lab][cap]**
+
 ## Form resources
 
 The resource directory names the Delphi forms compiled into each image. A name here is a window the executable carries. It does not say which of those windows the player can open. **[bin]**
