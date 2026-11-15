@@ -786,3 +786,4 @@ protocol/enterlevel-focus-builds.md	pending		2.4; C	PLI_ENTERLEVEL on 5.x/6.037:
 version-profiles/222-inferred-from-21-inventory.md	pending		1; C	2.22 profile inventory: settled vs era-carried / unmatched PLI; research #9; no new binary session
 protocol/rc-text-escaping-status.md	pending		7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
+protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
