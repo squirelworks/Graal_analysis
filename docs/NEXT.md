@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **How 1.39 gets online (list vs direct).** ~~Does 1.39 have a listserver path?~~ No: connect dialog only; list support starts at 1.41r1. [Note](../client-internals/how-139-gets-online.md).
+
 - [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
   - [ ] Validate Zelda Online 2 native board replay/re-entry and the order-dependent local-timestamp leader comparison; source-only `B`/`T` contract in [the existing precursor note](../client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state).
   - [ ] Resolve exact 1.28 peer UDP endpoint carriage and separately authenticate retained archive provenance; matching bytes alone settle neither.
