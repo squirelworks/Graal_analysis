@@ -579,6 +579,8 @@ Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu 
 
 ### 1.8.5 Graal 4.x: Windows 4.04r2 and 4.20r8, Mac 4.20r6
 
+The separate 4.04r2 component study reads the carrier/updater on disk and four mapped modules from a prior controlled load-only capture, without a server or login. It distinguishes the Delphi shell's version resource from the engine and audio modules (→ §10.1.11). The carrier header says July 2003 while both engine headers say March 2006; these metadata dates do not settle release date or repack lineage. This study supplies no new runtime or gameplay result. [bin][cap][inf] (client-internals/windows-404r2-components.md#how-this-was-checked); (client-internals/windows-404r2-components.md#notes-on-dating)
+
 #### Program, packaging and licence
 
 From 4.x, Windows Graal is two programs: a Delphi launcher and a C++ engine DLL. The rules describe that split, the libraries the engine links, its start-up quirks and how it finds the login server [bin] (protocol/v4x-clients.md#what-these-clients-are).
