@@ -137,8 +137,20 @@ By 5.x `weblevels` holds more than levels. Every file in it is a download cache,
 
 - **[bin]** When 6.03r7 scans the game folder it ignores files ending in `.code` and does not enter the top-level `pms`, `profiles` or `weblevels` folders, the same rule as 2.22 (`client-internals/decomp-findings-2026-10-25-e/04-name-index-case-link.md`). Other lookups also skip `.code`, so a cached copy never stands in for a real file.
 
+### 6.1.1.3 level `.code` wrapper (dump inventory)
+
+**[test]** Level caches in a 6.1.1.3 `weblevels` dump are **not** `GRESCR01` and are not byte-compatible with the classic 2.05/2.22 `gwebl.py` reader. On disk they are:
+
+```
+uint32 LE   L          logical length
+L' bytes    body       L' = L padded up to a multiple of 8
+```
+
+The post-length body is high-entropy and shares one leading block across every level file in that dump (unlike classic per-level-name GWEBL keying). Full residual write-up: `weblevels-code-residuals.md`.
+
 ### Still open
 
 - ~~Decrypt a real `GRESCR01` file with a key from a capture, to confirm the body is GS2 source.~~ Done for 6.113 (2026-11-12): the body is compiled GS2, not source. The 197 CRC covers the stored, encrypted body, and the last `len % 8` bytes are stored in clear (`../protocol/gs2-official-bytecode-6113.md`). **[cap]**
 - Trace the gani cache format.
 - Check the class cache path in builds before 6.03r7.
+- Confirm the 6.1.1.3 level-folder MD5 input on a client binary, and decrypt the length-prefixed level body (`weblevels-code-residuals.md`).
