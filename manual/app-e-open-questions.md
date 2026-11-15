@@ -16,18 +16,19 @@ Two clues about the compiler of the earliest builds point to different Delphi ve
 | Open | which compiler built them; a Delphi-2-level compiler shipped in 1997, such as C++Builder 1's, would fit both, but it has not been checked | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | Settles it | matching the RTL of these builds against C++Builder 1 and Delphi 2 runtime libraries | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 
-### E#2 Generation-5 step count of 5.12
+### E#2 Generation-5 step count of 5.12 (and unread 5.00r7)
 
-Two reads disagree on how many iterator steps 5.12 takes for a short compressed frame. Only a capture that holds such a frame can tell them apart [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count).
+**Status (2026-11-16):** Claim A is the working rule for **Windows 5.12** (lab proxy + Seihai `gen5_round_down` + stress). Claim B is not treated as a competing decoder once short compressed frames are considered. **Windows 5.00r7** is still unread. Canonical write-up: [protocol/gen5-cipher-step-5x.md](../protocol/gen5-cipher-step-5x.md).
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | 5.12's frame decoder steps the iterator `len / 4` times, rounded down, for zlib and bz2 frames (capped at 4), and rounds up for raw frames; it encodes the same way; a proxy that re-encodes with round-down stepping lets 5.12 play against GServer-v2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
+| Claim A (preferred for 5.12) | 5.12's frame decoder steps the iterator `len / 4` times, rounded down, for zlib and bz2 frames (capped at 4), and rounds up for raw frames; it encodes the same way; a proxy that re-encodes with round-down stepping lets 5.12 play against GServer-v2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count; protocol/gen5-cipher-step-5x.md) |
 | Claim B | every later frame of ten 5.x and 6.x Windows captures, 5.12 among them, decodes with one step per group present, rounded up | [cap] (protocol/v5v6-windows-unpacked.md) |
-| Open | whether the 5.12 captures held a compressed frame short enough (under 16 bytes, length not a multiple of 4) to tell the rules apart | [inf] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
-| Settles it | decoding a 5.12 capture that contains such a frame under both rules | [inf] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
+| Open (5.12) | a published short compressed 5.12 frame that proves Claim B cannot decode it | [inf] (protocol/gen5-cipher-step-5x.md) |
+| Open (5.00r7) | static step rule for short compressed frames both ways; do not assume 5.12's round-down | [inf] (protocol/gen5-cipher-step-5x.md) |
+| Settles 5.00r7 | a binary read of the 5.00r7 codec, or a discriminating capture decoded both ways | [inf] (protocol/gen5-cipher-step-5x.md) |
 
-Separately, four exact Mac PowerPC receivers use whole-group compressed advancement and partial-group raw advancement. This static Mac result does not resolve the Windows capture disagreement or prove outgoing symmetry. [bin] (protocol/macos-ppc-receive-framing.md)
+Separately, four exact Mac PowerPC receivers use whole-group compressed advancement and partial-group raw advancement. That agrees with Claim A's compressed rule and does not close Windows 5.00r7. [bin] (protocol/macos-ppc-receive-framing.md)
 
 ### E#3 Public `Login` server session (5.x, 6.x)
 
