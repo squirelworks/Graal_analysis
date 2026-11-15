@@ -301,6 +301,7 @@ graal3d/lab-2026-10-30.md	cited	9	9
 graal3d/protocol.md	cited	9	9	
 graal3d/reference-server/README.md	excluded		9	a server reimplementation written from the notes; its matching message stream is cited through the lab note
 graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
+graal3d/g3d-version-tokens.md	pending		9; 10; E	G3D… mainline tokens vs GR3DV00x; 3D-capable eras; pointers into the token catalogue and torque-engine-4x.md	
 live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
 live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	excluded		4	raw decoded log excerpt; its findings are in live-runs/2gta-222-2026-10-30/README.md, which the manual cites
 live-runs/client-harness-2026-11-13/README.md	cited	4.2; 4.3	4	

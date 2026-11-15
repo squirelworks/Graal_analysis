@@ -18,6 +18,7 @@ No decompiler output is reproduced here.
 - [reference-server/](reference-server/): a small Python server written from these notes. The real client logs into it, and it matches the original server's messages on the lab session.
 - [beta3-genesis.md](beta3-genesis.md): the later beta that sends `GR3DV003`. Same network side, new Genesis3D renderer and local BSP world; the archived server rejects it.
 - [torque-engine-4x.md](torque-engine-4x.md): the **other** Graal 3D, the Torque-based `Graal3DEngine.dll` of the 4.x clients (2006), and how a 4.x client connects to a 3D server.
+- [g3d-version-tokens.md](g3d-version-tokens.md): `G3D…` mainline login tokens vs `GR3DV00x`; when a `G3D…` client is 3D-capable (pointers into the token catalogue and Torque notes).
 - [research-status-2026-11-16.md](research-status-2026-11-16.md): settled vs open for the February 2000 line and the `GR3DV003` beta (resume 2026-11-16); Torque left to Part X.
 
 ## What ships
