@@ -111,3 +111,4 @@ BATCH1-LINUX3-20261116	linux	static-upx-unpack
 BATCH1-LINUX3151-CLEAN-20261116	linux	static-installer-recovery
 BATCH2-RC-LINUX-20261116	linux	static-string-compare
 BATCH1-420R8-ENGINE-20261116	windows	static-export-strings
+MAC-6015-LION-20261116	macos	lab-lion-guest-launch-and-static-inventory
