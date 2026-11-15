@@ -334,6 +334,8 @@ protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	Part 2 not needed: an early summary su
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/class-bytecode-v4.md	cited	2.4	2.4	v4 `PLI_UPDATECLASS` → raw PLO 133 (CRC field, cold-join 0, contrast with weapons 193/158/132 and with 197); carried in §2.4.7
 protocol/script-packet-guards.md	cited	2.5	2.5	hard guards: never 132/133/193 to builds that dropped them (5.24+/v6); never 197/140 to pure 4.x; gate on profile plo; §2.5
+protocol/plo-181-player-noudp.md	cited	2.5; A	2.5; A	PLO 181 PLAYERNOUDP: peer-UDP opt-out by player id+toggle; 2.17–5.24r4; §2.5 / App. A
+protocol/plo-109-httpdownload.md	cited	2.5; A	2.5; A	PLO 109 HTTPDOWNLOAD: i5 + local name + URL; 5.24r4–6.03r7; first-string scheme-check open; §2.5 / App. A
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
@@ -761,7 +763,29 @@ protocol/batch2-rc-linux-2005-2006.md	pending		7	Batch-2 Linux RC GSERV024 (2005
 version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	pending		1; C	Clean Linux 3.0beta / 3.01 / 3.151 Makeself+UPX installers; supersedes the FTP-damaged 3.151 upload; to be folded into the build list
 version-profiles/batch-linux-4x-autopackage-2026-11-16.md	pending		1; C; 2.4	Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELF identity vs Known 4.04r2 and static feature ladder; Win Thinstall twins already in v4x-windows-403r3-411; to be folded into the build list
 version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest launch of Mac 6.015 (chmod+x staging, white window) plus owner-share inventory (no Mac 6.037); complements mac-6004-6015-slices.md
+client-internals/how-139-gets-online.md	pending		1; C	1.39 has no listserver; direct connect dialog only; seihai-listserver starts 1.41r1; consolidates build-catalogue + versions-133-139
+protocol/gen5-cipher-step-5x.md	cited	2.2; E	2.2; E	5.12 gen-5 short-compressed step round-down settled; 5.00r7 unread; consolidates E#2 + v5v6-lab-play + Seihai stress
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
-formats/weblevels-code-residuals.md	cited	3.8	3.8	Md5 folder-input lead, 4.20r8 vs later path table, LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
+protocol/v4-login-account-contract.md	pending		2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
+formats/weblevels-code-residuals.md	cited	3.8	3.8	[bin] MD5(host∥decimal_port) lowercase level folders on 6.1.1.3; 4.20r8 vs later path table; LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
+protocol/filesendfailed-512-status.md	pending		2.5; 2.7	5.12 FILESENDFAILED (30) uniqueness status; gap #37
+protocol/rc-props-flags-status.md	pending		7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
+version-profiles/nry-identity-f01-f03.md	pending		1; C; E	NRY F01–F03 identity index: 5.12-untouched=5.00r7; 2.1.x GLEVNW01/controlnpc; 1.x VERGRAAL vs 1.39 no list
+protocol/plo108-168-focus-status.md	pending		2.5; C; E	PLO 108 sub1 / 168 focus status (#43): 168 flag; sub1 unread outside ping; #254 lab negative on 6.03r7
+protocol/scripted-weapons-5x-status.md	pending		2.4; E	5.00r7/5.12 script delivery: classic+modern ids; stock path choice open; consolidates script-packet-guards
+protocol/v4-gui-survive-serverwarp.md	pending		2; E	v4 Login GUI after 178 (C5 lead); loopback stock 4.20r8 confirm open; adjacent C4
+client-internals/141r1-nw-gmap-status.md	pending		1; C	1.41r1: GLEVNW01 string present, no GRMAP001; live .nw/gmap load unobserved; research-list #11 static status
+protocol/large-file-thresholds-focus.md	pending		2.5	Focus-build large-file / FILE reply ladder (1.39–6.037); token-table trap; consolidates file-transfer.md + labs; ~300 KB push still open
+protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: client sends nothing; id1 extra row id2 ignored; silent_list_after_ms is lab/seihai accommodation; E#401 Claim C
+protocol/player-props-5x-status.md	pending		2.6; E	5.00r7/5.12 prop case sets point at v5-props; widths + P4–P6 open; research #6
+protocol/ids-sent-512-status.md	pending		2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
+protocol/update-packages-focus-status.md	pending		2.4; 2.5; 2.7	Update packages after login: 23/47/159/105/106/187 status; gap #28
+protocol/gmap-neighbour-classic-status.md	pending		2.5; E	Gmap neighbour framing classic 2.x: static settled; 2x2 lab open; gap #14 / E#13
+protocol/222-login-default-files.md	pending		2.7; C	2.22 login default-file checks: near-empty vs full first wave; post-answer set open; #32/#245 status
+protocol/enterlevel-focus-builds.md	pending		2.4; C	PLI_ENTERLEVEL on 5.x/6.037: 6.03r7 sends 46; 5.00r7/5.12 unread; research-list #18 status
+version-profiles/222-inferred-from-21-inventory.md	pending		1; C	2.22 profile inventory: settled vs era-carried / unmatched PLI; research #9; no new binary session
+protocol/rc-text-escaping-status.md	pending		7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
 protocol/carry-shoot-hit-status.md	pending		2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
+protocol/nonlocal-level-warp-status.md	pending		2.5; E	Non-local level warp status; gap #15; seihai-core#7
+protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314

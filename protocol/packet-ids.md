@@ -108,7 +108,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 106 | 0x8a | `PLO_UPDATEPACKAGEDONE` | · | package-update message (5.07, 6.037) |
 | 107 | 0x8b | `PLO_BOARDLAYER` | · | like LEVELBOARD, for extra layers |
 | 108 | 0x8c | `PLO_PING` (was `PLO_UNKNOWN108`) | · | ping: `c sub`, `s value`; sub 0 → the client answers PLI 162, sub 1 stores the value; 4.20 and 6.x, taken before the main switch **[bin]** (`unknown-ids-2026-11-06.md`) |
-| 109 | 0x8d | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP; 5.24r4 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 109 | 0x8d | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP(S); 5.24r4 to 6.03r7 **[bin]** (`plo-109-httpdownload.md`, `unknown-ids-2026-11-06.md`) |
 | 110 | 0x8e | `PLO_UNKNOWN110` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 111 | 0x8f | `PLO_SETNETCOOKIE` | · | `rest cookie` |
 | 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
@@ -147,7 +147,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 178 | 0xd2 | `PLO_SERVERWARP` | · | comma text, ≥ 4 fields: field 0 unused, 1 = server name, 2 = host, 3 = port; the client closes the connection and reconnects with a fresh login, no listserver step (2.31 lab; the lab text came from the open-source listserver reimplementation) **[bin][cap]** |
 | 179 | 0xd3 | `PLO_RPGWINDOW` | · | rest = text **[bin]** |
 | 180 | 0xd4 | `PLO_STATUSLIST` | · | rest = text **[bin]** |
-| 181 | 0xd5 | `PLO_UNKNOWN181` (beta4 gserver: `PLO_PLAYERNOUDP`) | · | `s player id`, `c toggle` (length ≥ 3); while set, the client sends that player no peer-to-peer UDP; 2.17 to 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 181 | 0xd5 | `PLO_PLAYERNOUDP` (was `PLO_UNKNOWN181`) | · | `s player id`, `c toggle` (length ≥ 3); while set, the client omits that player from peer-to-peer UDP sends; 2.17 to 5.24r4 **[bin]** (`plo-181-player-noudp.md`, `unknown-ids-2026-11-06.md`) |
 | 182 | 0xd6 | `PLO_LISTPROCESSES` | · | no payload; client answers `PLI_PROCESSLIST` (44) **[bin]** |
 | 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** |
 | 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** |
