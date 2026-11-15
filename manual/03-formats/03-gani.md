@@ -132,15 +132,19 @@ Preserving the file requires keeping the symbolic reference distinct from numeri
 
 ## 3.3.9 Public 2.1.0.0 field counts
 
-The public 2.1.0.0 image stores these fields. Playback, units and the other 2.1 images were not read [bin] (client-internals/v2100-gani-reader.md).
+The public 2.1.0.0 image stores these fields. Playback, units and the other 2.1 images were not read [bin] (client-internals/v2100-gani-reader.md). The counts of fields remaining after the keyword are an inference from an unidentified call [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
 | `PLAYSOUND` | field 1 is the sound name; the two floating-point slots are `1.5` and `2.0` unless the line has more than three fields, in which case fields 2 and 3 replace them | [bin] (client-internals/v2100-gani-reader.md#playsound) |
 | `WAIT` | field 1 is an integer added to the open frame's counter; the counter's start was not read | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement) |
 | placement | a comma piece is kept only at exactly three fields; the second and third are integers | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement) |
-| `SPRITE` | stored when more than five fields remain after the keyword: an integer, a text name, and four integers | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
-| `COLOREFFECT` | more than four remaining fields, and the integer must find a stored sprite: that integer and four floating-point values | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
-| `ZOOMEFFECT` | more than one remaining field, with the same sprite test: that integer and one floating-point value | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
-| `SETBACKTO` | the remaining field is stored as text | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `SPRITE` | an integer, a text name, and four integers; a further field is not stored | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `SPRITE` count | more than five fields remaining after the keyword is an inference | [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `COLOREFFECT` | an integer and four floating-point values when that integer finds a stored sprite; a miss stores nothing | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `COLOREFFECT` count | more than four fields remaining after the keyword is an inference | [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `ZOOMEFFECT` | an integer and one floating-point value, with the same sprite test | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `ZOOMEFFECT` count | more than one field remaining after the keyword is an inference | [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `SETBACKTO` | one text field | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `SETBACKTO` count | at least one field remaining after the keyword is an inference | [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
 | ignored lines | a line that is not one of these words is not stored; `ATTACHSPRITE` is not tested | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |

@@ -26,14 +26,16 @@ Any other line in the block is split on commas. A piece is kept only when it has
 
 ## `SPRITE`, `COLOREFFECT`, `ZOOMEFFECT`
 
-The first field is the keyword. A call with no arguments sits between taking that field and reading the field count. This note treats the call as removing the keyword, because the next read of the first remaining field is an integer.
+The first field is the keyword. A call with no arguments sits between taking that field and reading the field count. The call was not identified, so it is not a traced removal of the keyword. The counts of fields remaining after the keyword are an inference from the next read being an integer. They are not a measured count. **[inf]**
 
-| Keyword | Kept when | Stored fields |
+| Keyword | Fields remaining after the keyword | Fields this body reads |
 | --- | --- | --- |
-| `SPRITE` | more than five fields remain | an integer, a text name, and four integers. A further field is not stored |
-| `COLOREFFECT` | more than four fields remain, and the first integer finds a sprite already stored | that integer and four floating-point values. A miss stores nothing |
-| `ZOOMEFFECT` | more than one field remains, with the same sprite test | that integer and one floating-point value |
-| `SETBACKTO` | at least one field remains | that field as text |
+| `SPRITE` | more than five, inferred | an integer, a text name, and four integers. A further field is not stored |
+| `COLOREFFECT` | more than four, inferred | that integer and four floating-point values, when the integer finds a sprite already stored. A miss stores nothing |
+| `ZOOMEFFECT` | more than one, inferred | that integer and one floating-point value, with the same sprite test |
+| `SETBACKTO` | at least one, inferred | that field as text |
+
+The last column is what this body reads after the call. **[bin]**
 
 `CONTINUOUS` and `SINGLEDIRECTION` each set a flag byte. One more flag byte, beside those two, is set by a header word this read did not recover. `SCRIPT` collects the following lines until `SCRIPTEND`. The separator between those lines was not recovered, and this body does not run the text. A line that matches none of these words is not stored. This body does not test `ATTACHSPRITE` or the movie-mode words. **[bin]**
 
@@ -43,4 +45,5 @@ The word that opens the block `ANIEND` closes was not recovered as text in this 
 
 - [ ] Recover the five-character and four-character prefix spellings.
 - [ ] Recover the block opener and the third flag word.
+- [ ] Identify the no-argument call between the keyword and the field count. Until that call is a traced removal, the post-keyword counts stay an inference.
 - [ ] Compare this reader with ver7 and with v22.
