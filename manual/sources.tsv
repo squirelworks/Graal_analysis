@@ -758,4 +758,5 @@ tools/token-map/beta4-comparison.md	excluded			Documentary token-reference compa
 client-internals/v4-420r8-class-surface.md	pending		2.4; 1	Windows 4.20r8 GraalEngine class/weapon export names (joinClass, addClassScript, getweapon); to be folded beside protocol/class-bytecode-v4.md and the build list
 protocol/batch2-rc-linux-2005-2006.md	pending		7	Batch-2 Linux RC GSERV024 (2005-01-24 / 2005-12-09) and GSERV025 (2006-01-20) ladder; to be folded into Part 7 with rc-list-online
 version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	pending		1; C	Clean Linux 3.0beta / 3.01 / 3.151 Makeself+UPX installers; supersedes the FTP-damaged 3.151 upload; to be folded into the build list
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest launch of Mac 6.015 (chmod+x staging, white window) plus owner-share inventory (no Mac 6.037); complements mac-6004-6015-slices.md
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
