@@ -6,6 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); widths and pyreborn P4–P6 open; research #6; static status.
 - [Ids sent by 5.12 / 2.31 id 44](protocol/ids-sent-512-status.md) — S→C vs C→S 44 on 2.31 settled; 5.12 send floor still cap-only; research #17; static status.
 - [2.22 inferred-from-2.1 inventory](version-profiles/222-inferred-from-21-inventory.md) — settled binary/cap rows vs unmatched PLI and era-default cells still to re-tag; research #9; static inventory.
 - [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.
