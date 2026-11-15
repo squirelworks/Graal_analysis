@@ -23,7 +23,9 @@ A CRT command-line path reaches a four-argument Windows-entry candidate. That
 candidate passes the command line to an argument wrapper, which reaches a main
 candidate. These names describe the observed argument flow; they are not
 authenticated source-level function names. After option parsing returns false,
-the main candidate obtains a module path and calls a lifecycle wrapper. **[bin]**
+the main candidate fills a module-path-shaped buffer through an indirect call,
+then passes it to a lifecycle wrapper. The original binding of that indirect
+call is not authenticated here. **[bin]**
 
 The wrapper calls initialization and tests its boolean result. Failure returns
 without entering the loop. Success repeatedly calls a boolean tick until it
