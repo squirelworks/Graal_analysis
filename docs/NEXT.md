@@ -12,6 +12,15 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the inspected reconstructed Windows 6.002 lifecycle/pump path.** ~~Connect argument flow, option parsing, initialization/tick/teardown and the shared quit flag.~~ [Study](../client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary); manual §1.8.7.
+  - [ ] Authenticate original startup and API bindings, join the redirected setup edge to window creation/play and observe loaded modules separately.
+
+- [x] **Bound the inspected Windows 5.30r3 native window/object path.** ~~Read class registration, window creation, stored-handle routing and default fallback in the reconstructed input.~~ [Study](../torque/engine-530r3.md#native-window-and-object-message-boundary); manual §10.1.6.
+  - [ ] Authenticate the reconstruction, verify the mixed API bindings and connect callers through engine initialization to play; original runtime module behavior remains separate.
+
+- [x] **Record the inspected Mac 6.004 and 6.015 architecture boundary.** ~~Compare their three slices and per-slice declared framework dependencies.~~ [Study](../client-internals/mac-6004-6015-slices.md); manual §1.8.7. Token observations remain selected-slice evidence, with no Windows module-boundary inference.
+  - [ ] Trace selected-slice entry through application/window initialization to the game loop, then observe compatible-guest initialization/frame separately.
+
 - [x] **Identify the 2001 developer component.** ~~Separate package and executable versions and carry its bounded help/interface findings.~~ [Note](../tools/classic-tools/developer-component-2001.md), manual §11.3.4. Generator action, red-tree implementation, writer choice and exact editor grammar remain open in the note.
 
 - [x] **Make every known version-token association easy to find.** ~~Keep one canonical catalogue and generate a role-qualified token-first map and TSV, with prominent README/manual/protocol/profile links.~~ [Map](../VERSION-TOKENS.md), [canonical source](../client-internals/version-token-catalogue.md), [generation checks](../tools/token-map/README.md). Dated published-source coverage is explicit; unknowns and shared-token evidence remain separate.
