@@ -46,6 +46,12 @@ program-check error binding that enters a handler in one copy and the same handl
 final return in another and the baseline. It does not establish the event trigger,
 helper effects or modification history. **[bin]**
 
+A later read of the same 22 code-section bytes shows what the other 21 are. They are
+character constants that spell the list host and the list port, and the two copies do
+not spell the same endpoint. The login token, the 45-id receive set and the GS1 command
+list do not change. The host and the port are not written out, and spelling a different
+endpoint does not by itself show that the copy reaches it. **[bin]**
+
 ## What the Graal 2002 builds settle
 
 1. **`GNW31101` is now [bin].** The token-catalogue row "2.1.0.0–2.1.0.3, `GNW31101`, L" now has three executables
@@ -76,6 +82,43 @@ helper effects or modification history. **[bin]**
    needs a lab run.
 5. **The Graal 2002 world files.** Each build ships the world's gmaps (main, forest, dustari, pirates, samurai and zormite;
    v22 adds caverns, start and mines), plus a `loadgmaps.txt`. They are the earliest gmap-based world clients in the set.
+   Shipping that file is not the same as the executable opening it. The preload loop was traced only in v22
+   ([Local gmap preload and controlnpc](#local-gmap-preload-and-controlnpc)).
+
+## Receive layouts of ids 170 to 177
+
+The binding counts above say which ids have a non-default receive destination. They do not say what the handler reads. This section is a static read of the handler bodies in two images: the public 2.1.0.0 image for ids 170 to 174, and Graal 2002 v22 for ids 175 to 177. Nothing was run. These are server-to-client receives. No client send of the same ids was traced. ver8, ver9, ver10 and ver13 bind some of these ids, but their handler bodies were not compared with the public image, so the widths below are not claimed for them. **[bin]**
+
+A Graal character (`c`) is the wire byte minus 32. A Graal short (`s`) is two Graal characters, high byte first. **[bin]**
+
+| Id | Image | Direction | Width and encoding | When it is applied |
+|---:|---|---|---|---|
+| 170 | public 2.1.0.0 | receive | one `c` flag; ghost mode is on when that value is above 0. A payload shorter than one byte is not applied | when the server sends 170 |
+| 171 | public 2.1.0.0 | receive | comma-separated text. At least two fields are required. Field 0 is the map text name and field 1 is the image name. When at least four fields are present, fields 2 and 3 are decimal floats (a default head position). 171 and 172 enter one shared parser | when the server sends 171. Which display object is updated after the parse was not traced in this image |
+| 172 | public 2.1.0.0 | receive | the same parser as 171 | when the server sends 172. The split from 171 after the shared parse was not traced in this image |
+| 173 | public 2.1.0.0 | receive | the whole payload, with no length prefix, is stored as the ghost-mode text | when the server sends 173 |
+| 174 | public 2.1.0.0 | receive | one `c` flag, the same test as 170; the result is the ghost-icon flag | when the server sends 174 |
+| 175 | v22 | receive | at least two bytes. The player id is an `s`. The bytes after those two are the shot payload and are passed to that player's shoot handler | only when the player's current level is the active level. A shorter payload is not applied |
+| 176 | v22 | receive | no payload bytes are read. The handler stores the constant 1 in the Kingdoms-mode flag and returns | when the server sends 176. A further form change past that store was not traced in v22 |
+| 177 | v22 | receive | no payload bytes are read. The handler stores the constant 1 in the New-World-mode flag and returns | when the server sends 177. A further form change past that store was not traced in v22 |
+
+The 2.17 to 2.31 layouts in [`plo-layouts-217-231.tsv`](../version-profiles/plo-layouts-217-231.tsv) already describe the same widths, and they go further on 171 versus 172 (one routine, split by id, 172 to the minimap) and on 176 and 177 (the main form switches mode). This read shows those widths are already present in the public 2.1.0.0 image and in v22. It does not re-prove the later images, and it does not prove the mid-ladder bodies. **[bin]**
+
+## Local gmap preload and controlnpc
+
+### GRMAP001 in the public image, and loadgmaps.txt in v22
+
+The public 2.1.0.0 gmap reader accepts `GRMAP001` and the keys `WIDTH`, `HEIGHT`, `GENERATED`, `LEVELNAMES` through `LEVELNAMESEND`, `GENSEED`, `GENBASE`, `GENEVENBORDERS`, `GENHEIGHT`, `GENCHAOS`, `LEVHEIGHT`, `LEVCHAOS`, `MAPIMG`, `HEIGHTMAP` through `HEIGHTMAPEND`, `RANDOMSEEDS` through `RANDOMSEEDSEND` and `HEIGHTS` through `HEIGHTSEND`. After a successful read it records the status text `Loaded gmap`. The 2.05 reader note does not list `LEVELNAMES`. This pass did not find `MINIMAPIMG`, `NOAUTOMAPPING`, `LOADFULLMAP` or `LOADATSTART` in that reader. **[bin]**
+
+The literal `LEVELNAMES` has one code reference from ver9 onward in this set (ver9, the public image, ver10, ver13 and v22) and is absent from ver7 and ver8. The status text `Loaded gmap` has one code reference in the public image, ver10, ver13 and v22, and is absent earlier in the set. Only the public reader's body was walked, so the earlier references are presence, not a second parser trace. **[bin]**
+
+v22 joins its base path with `loadgmaps.txt`. When that file exists, each line is passed to the gmap loader. That is a preload list. The literal `loadgmaps.txt` is in the v22 image and is absent from ver7, ver8, ver9, the public image, ver10 and ver13. A world package can still ship the file beside an earlier executable; this read does not show those executables opening it. **[bin]**
+
+### controlnpc.txt on ver10
+
+On ver10, a load runs only when a global gate byte is clear (zero) and `controlnpc.txt` is non-empty. The client then loads the file, parses the body, creates a weapon named `Control-NPC`, attaches that script text, and appends the weapon to the player's weapon list. The option or config key that writes the gate byte was not identified. Which built-in weapons the script replaces, and whether the script causes any packet, were not established. **[bin]**
+
+The literal `controlnpc.txt` has one code reference in ver7, ver8, ver9, ver10 and ver13, and is absent from the public 2.1.0.0 image and from v22. Only ver10's loader body was walked. The NewWorld beta note that installs `Control-NPC` when the player is created is a different client and is not evidence for this ladder. **[bin]**
 
 ## Ver10 initial player-properties update (2026-11-15)
 
@@ -170,5 +213,6 @@ The chest and baddy editor forms follow the dispatch split in the section above:
 - [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
+- [x] ~~Read the receive bodies of ids 170 to 174 in the public 2.1.0.0 image and of 175 to 177 in v22.~~ [Receive layouts of ids 170 to 177](#receive-layouts-of-ids-170-to-177). ver8 to ver13 bodies were not compared. Client-to-server sends of these ids stay open.
 - [x] ~~Form-resource names for the seven 2.1.0.x images.~~ [Form resources](#form-resources): the log form is in ver10 and later in this set; the chest and baddy forms return on the public 2.1.0.0 and on v22.
 - [x] ~~Add the six builds to the scanner inventory and regenerate the matrix.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md): six exact-input scans added; existing membership cells preserved.
