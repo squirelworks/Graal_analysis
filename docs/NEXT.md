@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the developer generator's selected static path.** ~~Follow the form handler through colour selection and the serializer branch.~~ [Path](../tools/classic-tools/developer-component-2001.md#selected-static-generation-path), manual §11.3.4. Red-tree tile/stamp mapping, existing-level name preservation, MNG decoding and native output remain open.
+
 - [x] **Bound the inspected reconstructed Windows 6.002 lifecycle/pump path.** ~~Connect argument flow, option parsing, initialization/tick/teardown and the shared quit flag.~~ [Study](../client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary); manual §1.8.7.
   - [ ] Authenticate original startup and API bindings, join the redirected setup edge to window creation/play and observe loaded modules separately.
 
