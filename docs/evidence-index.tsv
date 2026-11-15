@@ -96,3 +96,4 @@ WIN-VER10-LIST-ENTRY-STATIC-20261115	windows	static-list-entry-and-connection-ch
 WIN-VER10-LIST-ENTRY-LAB-20261115	windows	bounded-loopback-negative-controls
 NRY-COVERAGE-STRINGS-20261115	windows,linux,macos	strings-scan
 MAC-6004-6015-SLICES-20261115	macos	static-architecture-and-declared-framework-comparison
+WIN-530R3-WINDOW-20261115	windows	bounded-static-window-and-object-dispatch

@@ -513,7 +513,7 @@ torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout s
 torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.6 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
 torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.6 carries the class split and who calls graal_set, and the setter groups stay in the note
-torque/engine-530r3.md	cited	10	10	static read of unpacked 5.30r3; §10.1.6 carries the single-exe shape, and the string diff against 5.31r4 stays in the note
+torque/engine-530r3.md	cited	10	10	Static read of unpacked 5.30r3; §10.1.6 carries the single-exe shape and bounded reconstructed native-window/object dispatch. Original startup, reconstruction lineage and mixed API bindings remain open; string differences stay in the note.
 torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.6 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note
 torque/engine-4208.md	cited	10	10	callback names, class counts, phase-ack names and sub-object keys stay in the note; §10.1.5 carries the launcher / engine / 3D split
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
