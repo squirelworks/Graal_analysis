@@ -554,6 +554,8 @@ macOS CI is paused until the polish stage.
     decompile, file version 4.0.4.2. The hold on writing the module stands.
     Manual §10.1.9.
 
+- [x] **Document PLO 194 reset / CLEARWEAPONS status.** ~~Empty payload; per-generation clear amounts; separate 132 `login*` mark from unconfirmed 194 keep.~~ [Note](../protocol/plo-194-resetclient.md). Stock re-read + loopback for `login*`-keep remain open.
+
 ## Handoff (2026-11-07, historical)
 
 The project moved to Cursor on 2026-11-07. Graal_analysis work there continues
