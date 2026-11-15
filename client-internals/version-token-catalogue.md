@@ -12,7 +12,7 @@ Sources include the older maps, build catalogue, protocol/login studies, lab pro
 
 | Grade | Meaning |
 |---|---|
-| **W** wire | The token was seen in the original client's own first login frame, in a lab run against a lab server **[cap]**. |
+| **W** wire | The identifier was observed in the original client's cited wire context in a lab run **[cap]**. Read the role: a game-login token, list identity or HTTP header observation does not establish either of the other contexts. |
 | **B** binary | The token was read from the original executable (a string literal up to 1.37, and character immediates from 1.38 on), but the original's login has not been captured **[bin]**. |
 | **L** list only | No executable has been read. The token comes only from the public version list (GServer-v2 `versions.txt` / `allowedversions.txt`, gs2lib's token table) **[srv]**. |
 | **S** server-defined | The client stores no token. The server's connector script supplies the token at login **[lab][bin]**. |
@@ -261,6 +261,7 @@ These roles are deliberately separate. A service identifier, HTTP header or scri
 | Worlds 548, 610, 612 | `Graal/6.76` | B | [Static User-Agent split](../protocol/v7-connector-live-20261111.md#1-self-identification-labbin) | Windows | http-user-agent | not audited | |
 | Worlds 613, 71243 | `Graal/6.77` | B | [Static User-Agent split](../protocol/v7-connector-live-20261111.md#1-self-identification-labbin); no wire grade from sibling 614 | Windows | http-user-agent | not audited | |
 | Worlds 614 | `Graal/6.77` | W | [Live connector request](../protocol/v7-connector-live-20261111.md#1-self-identification-labbin); HTTP identification, not game login | Windows | http-user-agent | not audited | |
+| Mac 6.11r1 connector request | `Graal/6.111` | W | [Captured connector User-Agent](../protocol/connector-script.md); [Mac request lab](../protocol/v6x-clients.md#the-connector-request-in-a-lab-run); HTTP identification, not a fixed game-login token | macOS | http-user-agent | not assessed | |
 | Worlds 548, 610, 612, 613, 614, 71243 product metadata | `6.114` | B | [Version resource](../protocol/v7-connector-live-20261111.md#1-self-identification-labbin); distinct from HTTP version | Windows | product-version | not audited | |
 | Inspected PowerPC Mac bundles | `0.6.1d1` | B | [Bundle metadata](mac-ppc-runtime-surface-2026-11-09.md#packaged-resources); shared label, not a release id or login token | macOS PPC | bundle-version | not audited | |
 

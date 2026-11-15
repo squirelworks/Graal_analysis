@@ -50,6 +50,7 @@ class TokenMapDataTests(unittest.TestCase):
         assert {r["role"] for r in matching("GNW30123")} == {"list-login"}
         assert {r["grade"] for r in matching("G3D2304D")} == {"C"}
         assert {r["grade"] for r in matching("Graal/6.77")} == {"B", "W"}
+        assert {(r["grade"], r["role"], r["platform"]) for r in matching("Graal/6.111")} == {("W", "http-user-agent", "macOS")}
         assert not any(r["token"].startswith(("g3d", "gnp")) for r in ROWS)
         assert not matching("NW01") and not matching("GSERVL01")
 
