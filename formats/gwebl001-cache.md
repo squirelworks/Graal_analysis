@@ -18,7 +18,9 @@ A local copy of a server level, keyed by the level's modification time, so the c
 <exe dir>\weblevels\<server host>\<level>-<server port>.code
 ```
 
-`<level>` is the level's file name, lowercased, with any path removed. The reader also tries `<level>.code` without the port. **[2.05]** Real example: `weblevels\<game-server-host>\bank.nw-14803.code`. **[test]**
+`<level>` is the level's file name, lowercased, with any path removed. The reader also tries `<level>.code` without the port. **[2.05]** Example shape: `weblevels\<game-server-host>\<level>.nw-<port>.code`. **[test]**
+
+`<server host>` is the connect host (IP or hostname). The **port is not** part of the folder name; it appears only in the file name (`<level>.nw-<port>.code`). **[test]** (2.22 plaintext host equals the folder name; see `formats/weblevels-server-folders.md` for era variants, including `weblevels/<md5-hex32>/` level folders.)
 
 ## File layout (encrypted)
 
@@ -57,7 +59,7 @@ level body                       GR-V1.03 (2.05) or GR-V1.03 / GR-V1.04 (2.31)
 
 The signature check passes when the stored value equals the value the server sent in packet id 25 (`PLO_SIGNATURE`), or when the stored value is 1 and the server sent 73 (GServer's usual value). **[2.05]** All 144 test files hold 73. **[test]**
 
-Decoding the modification time as a 35-bit integer gives Unix time. The test files decode to dates a little before their file timestamps (for example `bank.nw` decodes to 1247727798, 16 July 2009, and the file is dated 26 July 2009). **[test]**
+Decoding the modification time as a 35-bit integer gives Unix time. The test files decode to dates a little before their file timestamps. **[test]**
 
 ## Level body as cached
 
@@ -78,7 +80,7 @@ The body is an ordinary GR-V level (`level-binary.md`, `level-binary-client.md`)
 `tools/file-formats/gwebl.py`:
 
 ```
-python3 gwebl.py weblevels/<game-server-host>/bank.nw-14803.code       # summary
+python3 gwebl.py weblevels/<game-server-host>/<level>.nw-<port>.code   # summary
 python3 gwebl.py FILE.code --json                                      # full parse
 python3 gwebl.py FILE.code --raw plain.bin                             # decrypted stream
 ```
@@ -109,7 +111,7 @@ The Mac and Windows caches are therefore not interchangeable. **[test]**
 
 Added 2026-11-06, read from the unpacked 5.24r4, 6.00b1, 6.00r2 and 6.03r7 Windows clients. Tags as above, plus **[bin]** read from those builds.
 
-By 5.x `weblevels` holds more than levels. Every file in it is a download cache, named `.code`, so the next visit can skip a download. These files have nothing to do with the 1999 Guildmaker `guildname.code` / `reg.code` files in `graalsav.md`, apart from the extension.
+By 5.x `weblevels` holds more than levels. Every file in it is a download cache, named `.code`, so the next visit can skip a download. These files have nothing to do with the 1999 Guildmaker `guildname.code` / `reg.code` files in `graalsav.md`, apart from the extension. The shared `.code` suffix is **not** the `.gpak` / `.gpake` ZIP package format (`formats/gpak.md`); script caches may share the bit-reversed DES family with `.gpake` but are magic+body files, not ZIP containers. **[test]** (`formats/weblevels-server-folders.md`)
 
 | Kind | Path (6.03r7) | Format |
 |---|---|---|
@@ -129,7 +131,7 @@ By 5.x `weblevels` holds more than levels. Every file in it is a download cache,
 - Historical description, not the corrected Windows 6.03 weapon contract: when the server says "use your cache" with 197 `PLO_LOADSCRIPT`, it sends the key and a CRC32. The client decrypts its copy and checks the CRC32 of the plaintext; on a match it loads the copy, otherwise it asks again with PLI 158 (`PLI_UPDATESCRIPT`). **[bin]**
 - The key is never stored on disk, but it crosses the wire in clear on every connection, so the encryption only stops casual reading.
 - The earlier source-text inference is not established by unencrypted transport alone; the [GS2 container study](../protocol/gs2-client-vm.md) separately identifies binary segment readers. Historical inference: the body is probably GS2 source text, not bytecode, because it arrives as plain text. **[inf]** No real file has been decrypted yet.
-- Before 5.24, 4.04r2 to 5.12 used PLO 193 for the same job: `i5 crc32` + weapon name, checked against `weblevels/weapons/<name>.code` (`protocol/unknown-ids-2026-11-06.md`). **[bin]**
+- Before 5.24, 4.04r2 to 5.12 used PLO 193 for the same job: `i5 crc32` + weapon name, checked against `weblevels/weapons/<name>.code` with **no** host/server-name segment (`protocol/unknown-ids-2026-11-06.md`). **[bin]** On-disk GRESCR-era trees use `weblevels/weapons/<escaped-server-name>/` and `weblevels/classes/<escaped-server-name>/` (`%0NN` decimal escapes); that is a later layout (`formats/weblevels-server-folders.md`). **[test]**
 
 ### File lookup skips them
 
