@@ -18,7 +18,7 @@ Two clues about the compiler of the earliest builds point to different Delphi ve
 
 ### E#2 Generation-5 step count of 5.12 (and unread 5.00r7)
 
-**Status (2026-11-16):** Claim A is the working rule for **Windows 5.12** (lab proxy + Seihai `gen5_round_down` + stress). Claim B is not treated as a competing decoder once short compressed frames are considered. **Windows 5.00r7** is still unread. Canonical write-up: [protocol/gen5-cipher-step-5x.md](../protocol/gen5-cipher-step-5x.md).
+**Status (2026-11-16):** Claim A is the working rule for **Windows 5.12** (lab proxy + Seihai `gen5_round_down` + stress). Claim B is not treated as a competing decoder once short compressed frames are considered. **Windows 5.00r7** is still unread. Canonical write-up: [protocol/gen5-cipher-step-5x.md](../protocol/gen5-cipher-step-5x.md) [bin][wire] (protocol/gen5-cipher-step-5x.md)
 
 | Item | Content | Source |
 | --- | --- | --- |
