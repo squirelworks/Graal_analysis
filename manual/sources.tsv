@@ -672,6 +672,7 @@ protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master
 protocol/player-x-half-tile.md	cited	2.6	2.6	
 client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
 protocol/gmap-adjacent-level-target.md	cited	2.5; E	2.5	
+protocol/gmap-file-on-warp.md	cited	2.5	2.5	pre-3.0 clients need `.gmap` on disk before each PLAYERWARP2; once-per-session push fails when saveimages is off; §2.5.3
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
 client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	

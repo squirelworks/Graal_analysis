@@ -41,7 +41,7 @@ The level object therefore exists before the reply arrives. `PLO_LEVELNAME` with
 ## The warp and the `.gmap` file **[bin]**
 
 - `PLO_PLAYERWARP2` (49) with a `.gmap` name: if the gmap's `LEVELNAMES` is loaded, the client clamps the cell bytes to the grid and swaps the gmap name for that cell's level name. It then **finishes the warp at once, without waiting for a board**: the player's level becomes that level object, created if needed. It also clears the named level and sets the last `LEVELNAME` text to the gmap name.
-- If the `.gmap` is not on the client's disk when 49 arrives, the gmap loads with no `LEVELNAMES`. The handler stops there and leaves the warp waiting under the gmap name. That is the loading-screen hang. Having the file on disk before the warp avoids it.
+- If the `.gmap` is not on the client's disk when 49 arrives, the gmap loads with no `LEVELNAMES`. The handler stops there and leaves the warp waiting under the gmap name. That is the loading-screen hang. Having the file on disk before the warp avoids it. Servers that push the file only once per session still hang a later warp when the client never wrote `maps/<name>` (`saveimages` off, or wiped maps); see [`gmap-file-on-warp.md`](gmap-file-on-warp.md).
 - `PLO_PLAYERWARP` (14) with a `.gmap` name takes the same path in 2.22 but has no cell bytes. The client always picks the **first** entry of `LEVELNAMES`, the top-left cell. 2.17.1, 2.22 and 2.31 all handle 49 (and so do the 2.1 test builds, `../client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md`). A server should send 49, not 14, whenever the target is a gmap.
 
 ## What GServer-v2 sends **[srv]**
