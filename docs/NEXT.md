@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Scripted weapons on 5.00r7 / 5.12 (#5 status).** ~~Classic 193/132/133 vs modern 197/140; both handled on transitional 5.x.~~ [Note](../protocol/scripted-weapons-5x-status.md). Stock path choice / #55 / C6 still open.
+
 - [x] **v4 GUI after server-warp (#56 / C5).** ~~Status: Others Work lead that Login GUI survives 178 unless hidden.~~ [Note](../protocol/v4-gui-survive-serverwarp.md). Loopback stock 4.20r8 confirm still open.
 
 - [x] **1.41r1 `.nw` / gmap load (static).** ~~String scan only?~~ `GLEVNW01` present, no `GRMAP001`; live load still open. [Note](../client-internals/141r1-nw-gmap-status.md).

@@ -6,6 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Scripted weapons on 5.00r7 / 5.12](protocol/scripted-weapons-5x-status.md) — classic vs modern delivery ids; transitional 5.x handles both; stock path / #55 open; research #5; static status.
 - [v4 GUI windows after server-warp](protocol/v4-gui-survive-serverwarp.md) — C5 lead: Login GUI may survive 178 unless hidden; loopback confirm open; research #56; static status.
 - [Large-file thresholds on focus builds](protocol/large-file-thresholds-focus.md) — 64000 / 32000 / LARGEFILE\* ladder for 1.39–6.037; token-table trap; consolidates file-transfer + labs; static + prior lab.
 - [v4 Login account contract (4.20r8)](protocol/v4-login-account-contract.md) — typed account on first Login vs 5.x/6.x guest-first; open stock-UI / script-API rows; consolidates C4 status; static + prior lab.
