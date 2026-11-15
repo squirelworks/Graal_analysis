@@ -23,8 +23,10 @@ The web-level cache keeps copies of server levels on disk. Each row gives one ev
 | Rule | Detail | Source |
 | --- | --- | --- |
 | `<level>` | the level's file name, lowercased, with any path removed | [2.05] (formats/gwebl001-cache.md#path) |
+| `<server host>` | connect host (IP or hostname); port is **not** in the folder name | [test] (formats/gwebl001-cache.md#path); [test] (formats/weblevels-server-folders.md) |
 | fallback | the reader also tries `<level>.code` without the port | [2.05] (formats/gwebl001-cache.md#path) |
-| example | `weblevels\<public-host>\bank.nw-14803.code` | [test] (formats/gwebl001-cache.md#path) |
+| example | `weblevels\<public-host>\<level>.nw-<port>.code` | [test] (formats/gwebl001-cache.md#path) |
+| later eras | `weblevels/<md5-hex32>/` level folders; GRESCR dirs as `weblevels/weapons/<escaped-server-name>/` (and classes) | [test] (formats/weblevels-server-folders.md) |
 
 ## 3.8.3 Encrypted file
 
@@ -60,7 +62,7 @@ level body                       GR-V1.03 (2.05), or GR-V1.03 / GR-V1.04 (2.31)
 | layout | as above | [2.05][2.31] (formats/gwebl001-cache.md#plaintext-layout) |
 | signature check | passes when the stored value equals the value the server sent in `PLO_SIGNATURE` (id 25), or when the stored value is 1 and the server sent 73, GServer's usual value | [2.05] (formats/gwebl001-cache.md#plaintext-layout) |
 | test files | all 144 hold 73 | [test] (formats/gwebl001-cache.md#plaintext-layout) |
-| modification time | decoded as a 35-bit integer it is Unix time; the test files decode to dates a little before their file timestamps (`bank.nw` decodes to 1247727798, 16 July 2009, and the file is dated 26 July 2009) | [test] (formats/gwebl001-cache.md#plaintext-layout) |
+| modification time | decoded as a 35-bit integer it is Unix time; the test files decode to dates a little before their file timestamps | [test] (formats/gwebl001-cache.md#plaintext-layout) |
 
 ## 3.8.5 Level body as cached
 

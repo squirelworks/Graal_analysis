@@ -110,6 +110,7 @@ server code. **[file]**
 
 - `protocol/unknown-ids-2026-11-06.md` — 132/133 receive behaviour
 - `protocol/packet-ids.md` — id table rows
+- `protocol/script-packet-guards.md` — never 133 to 5.24+; never 197/140 to pure 4.x
 - `client-internals/windows-404r2-500r7-static-2026-11-09.md` — 161 CRC field
 - `formats/linux-6x-class-cache.md` — 161 on 6.x; 197 era
 - seihai-gserver `docs/PARITY.md` — "Classes…" row (implementation target)
