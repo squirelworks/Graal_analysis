@@ -11,6 +11,7 @@ Tags: **[bin]** **[cap]** **[doc]** **[lab]** **[inf]** as in the linked notes. 
 | February 2000 client + its `GServer` (`GR3DV002`) | `README.md`, `protocol.md`, `formats.md`, `client-behaviour.md`, `collision.md`, `camera.md`, `lab-2026-10-30.md` | this page §Settled / §Open |
 | Later Genesis3D beta (`GR3DV003`) | `beta3-genesis.md` | App. E#504; this page §Beta |
 | 4.x Torque plug-in (`Graal3DEngine.dll`) | `torque-engine-4x.md` + `torque/` | **Out of this resume** (Part X / avenue #4); listed only to keep the two programs apart |
+| Mainline `G3D…` login tokens (3.x–6.03) | `g3d-version-tokens.md` + token catalogue | Naming split only here; full rows stay in `client-internals/version-token-catalogue.md` |
 
 ## Settled (do not re-open without new evidence)
 
