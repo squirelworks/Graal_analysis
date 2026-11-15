@@ -538,12 +538,14 @@ The comparison above is of what the player sees. The rules below cover the start
 
 ### 1.8.4 Graal 3.x: Linux 3.04 and Mac OS X 3.153
 
+The Linux 3.04 revision-1 executable's separate static build study identifies a 32-bit x86 program, UPX 1.24 packing, predominantly GCC 2.96 object comments with five NASM entries, and a pre-GCC-3 C++ ABI. Restored size and the pack-header checksum agree, which checks unpacking consistency rather than official provenance. Its bundled FMOD/SDL dependencies and dynamic graphics loading are detailed in §10.1.10; library metadata alone does not establish a successful launch or gameplay. [bin] (client-internals/linux-304-executable-build.md#packing); (client-internals/linux-304-executable-build.md#toolchain)
+
 The 3.x clients look like a new engine but speak the 2.x protocol. The rules say what the program is built from, where its names come from, which tokens it sends and how its licence files point it at a listserver [bin][file] (protocol/v3x-clients.md#what-these-clients-are).
 
 | Rule | Source |
 | --- | --- |
 | 3.x is a C++ rewrite on the Torque Game Engine, not Delphi: menus, prefs and key binds are compiled TorqueScript (`.dso`, version 33); levels, NPCs, GS1, ganis and the Graal protocol are native code | [bin][file] (protocol/v3x-clients.md#what-these-clients-are) |
-| Linux 3.04 (Jan 2004) is i386 ELF, UPX-packed and stripped, with SDL 1.2, OpenAL and fmod; Mac 3.153 (Feb 2005) is PowerPC Mach-O on Carbon. Both were built by "Linux Cyberjoueurs". Names come from RTTI and allocation-tracking source file names, not symbols | [bin][file] (protocol/v3x-clients.md#what-these-clients-are) |
+| Linux 3.04 (Jan 2004) is i386 ELF, UPX-packed and stripped, with SDL 1.2 and FMOD 3.70; compiled OpenAL-layer names do not establish an active OpenAL backend (→ §10.1.10). Mac 3.153 (Feb 2005) is PowerPC Mach-O on Carbon. Both were built by "Linux Cyberjoueurs". Names come from RTTI and allocation-tracking source file names, not symbols | [bin][file] (protocol/v3x-clients.md#what-these-clients-are); [bin] (client-internals/linux-304-executable-build.md#linkage) |
 | The tokens `G3D03014` (3.04, listed by servers as 3.041) and `G3D28015` (3.153) carry the 2.22 and 2.31 date stamps, and the clients speak those protocols; earlier 3.x tokens are `G3D16053` (3.0) and `G3D27063` (3.01) (→ §1.2) | [bin] (protocol/v3x-clients.md#version-tokens) |
 | The listserver host is not compiled in: `license/license.graal` names it (`<list-host-3x>`, port 14922, site, signup and translate URLs, two fallbacks) and is RSA-1024 signed (PKCS#1 v1.5 over SHA-1, e = 17) in `license/sig.license`; `sig.graal` signs the packed executable; all three verify against the key embedded in the client | [bin][file] (protocol/v3x-clients.md#listserver) |
 | The server name's prefix picks the tab: `P ` Graal Gold, `3 ` Graal 3D, `H ` Hosted, `U ` not listed, none Classic | [bin] (protocol/v3x-clients.md#listserver) |
