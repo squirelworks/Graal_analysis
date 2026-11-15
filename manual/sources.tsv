@@ -790,6 +790,7 @@ protocol/enterlevel-focus-builds.md	pending		2.4; C	PLI_ENTERLEVEL on 5.x/6.037:
 version-profiles/222-inferred-from-21-inventory.md	pending		1; C	2.22 profile inventory: settled vs era-carried / unmatched PLI; research #9; no new binary session
 protocol/rc-text-escaping-status.md	pending		7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
+graal3d/research-status-2026-11-16.md	pending		9; E	Graal3D resume status: settled GR3DV002 camera/collision/protocol rows; open live d3drm and GR3DV003 lab; E#500 draw-time still open
 protocol/npc-gmap-reentry-status.md	pending		2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
 protocol/nc-write-ops-status.md	pending		7; E	NC write ops status; gap #40; seihai-npcserver#22
 protocol/carry-shoot-hit-status.md	pending		2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
