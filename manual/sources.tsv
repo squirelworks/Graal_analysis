@@ -768,6 +768,7 @@ protocol/gen5-cipher-step-5x.md	cited	2.2; E	2.2; E	5.12 gen-5 short-compressed 
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
 protocol/v4-login-account-contract.md	pending		2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
 formats/weblevels-code-residuals.md	cited	3.8	3.8	Md5 folder-input lead, 4.20r8 vs later path table, LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
+protocol/filesendfailed-512-status.md	pending		2.5; 2.7	5.12 FILESENDFAILED (30) uniqueness status; gap #37
 protocol/rc-props-flags-status.md	pending		7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
 version-profiles/nry-identity-f01-f03.md	pending		1; C; E	NRY F01–F03 identity index: 5.12-untouched=5.00r7; 2.1.x GLEVNW01/controlnpc; 1.x VERGRAAL vs 1.39 no list
 protocol/plo108-168-focus-status.md	pending		2.5; C; E	PLO 108 sub1 / 168 focus status (#43): 168 flag; sub1 unread outside ping; #254 lab negative on 6.03r7

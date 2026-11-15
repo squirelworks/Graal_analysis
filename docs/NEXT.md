@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **5.12 FILESENDFAILED uniqueness (status).** ~~One 30 per missing image?~~ Layout + 2.05 settle settled; 5.12 count lab open. [Note](../protocol/filesendfailed-512-status.md); gap #37.
+
 - [x] **RC props tail / 76 byte / PLO 124 (status).** ~~Which count is flags?~~ Tail shape and 124 discard settled; counts + 76 byte + 124 layout still need lab/S. [Note](../protocol/rc-props-flags-status.md); gap #42; E#420/E#421.
 
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
