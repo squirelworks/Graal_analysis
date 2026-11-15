@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **PLO 108 sub 1 / 168 focus status (#43).** ~~Who reads sub 1; is 168 login done?~~ 168 = one-shot flag (name medium); sub 1 no visible effect on 6.03r7 (#254 lab); reader still open. [Note](../protocol/plo108-168-focus-status.md).
+
 - [x] **Scripted weapons on 5.00r7 / 5.12 (#5 status).** ~~Classic 193/132/133 vs modern 197/140; both handled on transitional 5.x.~~ [Note](../protocol/scripted-weapons-5x-status.md). Stock path choice / #55 / C6 still open.
 
 - [x] **v4 GUI after server-warp (#56 / C5).** ~~Status: Others Work lead that Login GUI survives 178 unless hidden.~~ [Note](../protocol/v4-gui-survive-serverwarp.md). Loopback stock 4.20r8 confirm still open.
