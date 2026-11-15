@@ -763,3 +763,4 @@ version-profiles/batch-linux-4x-autopackage-2026-11-16.md	pending		1; C; 2.4	Bat
 version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest launch of Mac 6.015 (chmod+x staging, white window) plus owner-share inventory (no Mac 6.037); complements mac-6004-6015-slices.md
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
 formats/weblevels-code-residuals.md	cited	3.8	3.8	Md5 folder-input lead, 4.20r8 vs later path table, LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
+protocol/rc-props-flags-status.md	pending		7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
