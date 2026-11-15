@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Gmap neighbour framing classic 2.x (status).** ~~Does classic path overwrite?~~ Static settled; 2×2 lab open. [Note](../protocol/gmap-neighbour-classic-status.md); E#13; gap #14.
+
 - [x] **2.22 login default-file checks (status).** ~~Full vs empty folder?~~ First-wave 23/34 in second C→S frame settled; full set after answers still open. [Note](../protocol/222-login-default-files.md); #245.
 
 - [x] **`PLI_ENTERLEVEL` on focus 5.x / 6.037 (status).** ~~Which builds send 46?~~ 6.03r7 yes (as 2.31); 5.00r7/5.12 unread; no dedicated reply known. [Note](../protocol/enterlevel-focus-builds.md).
