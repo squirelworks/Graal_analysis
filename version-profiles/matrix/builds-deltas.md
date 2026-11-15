@@ -95,6 +95,8 @@ Form class names from the RCDATA resources.
 - **2.1 test 2**: + `TEDITNPC`; − `TEDITPERSON`, `TOBJECTSET`, `TPERSONACTION`, `TSHOWCODES`
 - **NewWorld beta 2**: − `TCHESTEDIT`, `TEDITBADDY`
 - **2.17.1**: + `TABOUTDLG`, `TCHESTEDIT`, `TEDITBADDY`, `TLOGFRAME`, `TRPGFRAME`, `TTILESARRAYFRAME`; − `TWAABOUT`
+
+The Graal 2002 images sit between NewWorld beta 2 and 2.17.1 and are not a row of this chain. Their form names are in `client-internals/graal2002-and-140-builds.md`. `TLOGFRAME` is already in the 2.1.0.2 image, the smaller 2.1.0.4 image, the public 2.1.0.0 (1,771,008 bytes) and the larger 2.1.0.4 (1,805,824 bytes). `TCHESTEDIT` and `TEDITBADDY` are in those last two only. The 2.17.1 plus-list above is the delta from NewWorld beta 2, so it still names `TLOGFRAME` beside resources that are older than 2.17.1. `TABOUTDLG`, `TRPGFRAME` and `TTILESARRAYFRAME` are still first listed here.
 - **2.31**: − `TCHESTEDIT`, `TDEBUGGERFRAME`, `TEDITBADDY`, `TEDITCHARACTER`, `TEDITFLAGS`, `TEDITNPC`, `TEDITSIGNS`, `TLINKLIST`, `TLINKOPTIONS`, `TOBJECTNAME`, `TTILESARRAYFRAME`
 
 ## Font names in the executable
