@@ -320,3 +320,16 @@ Unpacked 6.1.1.3 has two fixed sends. `sendraw` uses id −1 and appends the cal
 Fifty-five named actions each read one slot of a 256-wide outgoing table. A negative slot does not send. Slot 254 raises the matching `onSend` script event. Any other value is the packet id. `setoutdatahandlers` fills the table with the all-ones dword, then copies the script list, and stops at 256. [bin] (protocol/v6113-pli.md)
 
 Unpacked 6.0.3.7 has none of those names. Its login send is packet id 5, the upper-cased token. [bin] (protocol/v6113-pli.md)
+
+## 2.4.13 Mac 6.11r1 named-send evidence limits
+
+The Mac x86-64 static study found all 56 Windows-table `onSend…` names with code references and matched 52 preceding table loads to the published Windows slot numbers. This is partial mapping evidence: a slot index is not an observed wire id. No client was run. The Windows table-fill/ordinary-send conclusions in §2.4.12 do not automatically transfer to this Mac input. [bin] (client-internals/mac-611r1-send-slots.md#the-table-and-the-test)
+
+| Observation | Directly checked scope | Source |
+| --- | --- | --- |
+| Entry storage and suppression | slots 44 and 45 read four-byte entries from the same table; a negative entry returns without sending or raising an event | [bin] (client-internals/mac-611r1-send-slots.md#the-table-and-the-test) |
+| Event entry | for those two senders, value 254 selects the named event path, supplying the provided payload or a shared fallback to a common helper | [bin] (client-internals/mac-611r1-send-slots.md#the-table-and-the-test) |
+| Matched examples | WantWeaponScript 0, ToAllChat 3, TriggerAction 11, PlayerProperties 44, NPCProperties 45, WindowList 56 | [bin] (client-internals/mac-611r1-send-slots.md#the-table-and-the-test) |
+| Four unconfirmed mappings | `onSendShot`, `onSendProjectile`, `onSendPrivateMessage`: no clean load match; `onSendImageUpdate`: unrelated earlier load selected by the scan. These are unresolved, not contrary mappings | [bin] (client-internals/mac-611r1-send-slots.md#the-table-and-the-test) |
+
+Other non-negative values took a path not followed in this Mac study. Ordinary writer reachability and payload preservation, script-side population and a proposed 256-entry capacity therefore remain unconfirmed. The method combined a string/reference/load pattern scan with manual decoding of the two property senders; neither a pattern match nor an event name establishes the full runtime call contract. Resolve those paths and the four mappings before implementing a complete Mac-specific outgoing table from this evidence. [bin][inf] (client-internals/mac-611r1-send-slots.md#how-this-was-checked); (client-internals/mac-611r1-send-slots.md#still-open)

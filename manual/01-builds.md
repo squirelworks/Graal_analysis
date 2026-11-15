@@ -715,6 +715,8 @@ Play in 5.x and 6.x was measured in the lab against 2.05. The rules give the tim
 | Hosts, ports, tokens and URL parts are stored scrambled and decoded at run time by a per-byte decoder that depends on length and position, the same in 6.01, 6.03 and 6.11 | [bin] (protocol/v6x-clients.md#architecture) |
 | 6.11 (Mac, 2014) fetches a connector script over HTTPS and lets the server set framing, ciphers and id tables (→ §2.10) | [bin] (protocol/v6x-clients.md#611-mac-the-connector-and-a-server-defined-protocol) |
 
+The separately inspected Mac 6.11r1 x86-64 executable contains `onSendNPCProperties` in slot 45. Its static study matches 52 Windows slot numbers, leaving four mappings, ordinary-send reachability and script-side table population open (→ §2.4.13). Name presence and partial slot agreement are not a complete Mac wire profile. The declared minimum OS is 10.7.0, with graphics/audio/application-framework dependencies; metadata does not establish runtime compatibility. [bin] (client-internals/mac-611r1-send-slots.md)
+
 #### The packed 6.037 and 6.113 uploads
 
 Two later Windows uploads are still wrapped by their packer. The rules say which builds they are, what the packed listings show, and what an unpacked listing of the 6.1.1.3 image later recovered [bin] (client-internals/packed-6037.md#what-this-file-is).
