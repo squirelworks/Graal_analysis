@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Identify the 2001 developer component.** ~~Separate package and executable versions and carry its bounded help/interface findings.~~ [Note](../tools/classic-tools/developer-component-2001.md), manual §11.3.4. Generator action, red-tree implementation, writer choice and exact editor grammar remain open in the note.
+
 - [x] **Make every known version-token association easy to find.** ~~Keep one canonical catalogue and generate a role-qualified token-first map and TSV, with prominent README/manual/protocol/profile links.~~ [Map](../VERSION-TOKENS.md), [canonical source](../client-internals/version-token-catalogue.md), [generation checks](../tools/token-map/README.md). Dated published-source coverage is explicit; unknowns and shared-token evidence remain separate.
   - [ ] Resolve the catalogue's remaining client identities and connector production tokens from actual evidence; consumer registry omissions do not authorize guessed associations or feature profiles.
 

@@ -138,6 +138,10 @@ The rules below give DungeonGenerator's options file and how it cuts a layout in
 
 ### 11.3.4 GraalLevelGen
 
+The 2001 Windows Developer component declares package version `1.0.0-3`, separate from the installer's Executable `2.0.3-0` component; its level generator declares executable version `1.0.0.0`. Its two container representations have eight identical regular-file payloads: tools and documentation, with no main client, RC or NC executable in either inventory. This component version must not be used as a main-client version. [file][doc][bin] (tools/classic-tools/developer-component-2001.md#contents-and-purpose)
+
+The help revised 6 May 2001 has thirteen colour rows, including dark red (196, 0, 0) for red trees alongside light-green forest (181, 239, 189). This is a documentation difference from the older twelve-colour contract below; the red-tree palette branch, tile mapping and selected output writer remain unverified. Its image chooser advertises PNG, MNG and GIF, while the help specifies GIF and 8-bit PNG. MNG support is an interface declaration only. The exact editor's movie grammar and runtime network behavior are also unverified; absence of socket-library imports does not prove network absence. [doc][bin] (tools/classic-tools/developer-component-2001.md#generator-help-and-interface)
+
 GraalLevelGen builds levels from a picture. The rules below give how the picture is read [doc] (tools/classic-tools/graal-level-gen.md#what-the-operator-does).
 
 | Rule | Source |
