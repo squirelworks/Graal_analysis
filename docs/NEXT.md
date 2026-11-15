@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
+
 - [x] **PLO 108 sub 1 / 168 focus status (#43).** ~~Who reads sub 1; is 168 login done?~~ 168 = one-shot flag (name medium); sub 1 no visible effect on 6.03r7 (#254 lab); reader still open. [Note](../protocol/plo108-168-focus-status.md).
 
 - [x] **Scripted weapons on 5.00r7 / 5.12 (#5 status).** ~~Classic 193/132/133 vs modern 197/140; both handled on transitional 5.x.~~ [Note](../protocol/scripted-weapons-5x-status.md). Stock path choice / #55 / C6 still open.
