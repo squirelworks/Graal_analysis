@@ -333,6 +333,7 @@ protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementa
 protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	Part 2 not needed: an early summary superseded by the notes §2.1 to §2.3 cite; its leftover lines are listed in App. E#607 (coverage audit 2026-11-04)
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
 protocol/class-bytecode-v4.md	cited	2.4	2.4	v4 `PLI_UPDATECLASS` → raw PLO 133 (CRC field, cold-join 0, contrast with weapons 193/158/132 and with 197); carried in §2.4.7
+protocol/script-packet-guards.md	cited	2.5	2.5	hard guards: never 132/133/193 to builds that dropped them (5.24+/v6); never 197/140 to pure 4.x; gate on profile plo; §2.5
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
@@ -760,3 +761,4 @@ protocol/batch2-rc-linux-2005-2006.md	pending		7	Batch-2 Linux RC GSERV024 (2005
 version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	pending		1; C	Clean Linux 3.0beta / 3.01 / 3.151 Makeself+UPX installers; supersedes the FTP-damaged 3.151 upload; to be folded into the build list
 version-profiles/batch-linux-4x-autopackage-2026-11-16.md	pending		1; C; 2.4	Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELF identity vs Known 4.04r2 and static feature ladder; Win Thinstall twins already in v4x-windows-403r3-411; to be folded into the build list
 version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest launch of Mac 6.015 (chmod+x staging, white window) plus owner-share inventory (no Mac 6.037); complements mac-6004-6015-slices.md
+formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
