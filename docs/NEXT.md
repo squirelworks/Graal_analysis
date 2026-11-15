@@ -12,6 +12,14 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Capture exact ver10 native list/game entry and wire identity.** ~~Record the first login frame and qualify the reply observations.~~ [Lab finding](../client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame); canonical catalogue upgrades only ver10.
+  - [ ] Complete the first player-properties discriminator; bounded no-later-chunk observations and a timer-confounded arm do not settle gate sufficiency.
+- [x] **Resolve the public 2.1.0.0 map destinations and resource guards.** ~~Follow 171/172 to distinct state, loaders and text-resolution commit/preserve paths.~~ [Study](../client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards); manual §2.5.2.2.
+  - [ ] Establish exact coordinate rounding and original-client display/request completion; keep other builds separate.
+- [x] **Bound the selected Windows 2.22 control PM paths.** ~~Trace named composer actions and selected receive destinations.~~ [Static finding](../protocol/windows-222-pm-static.md); manual §2.8.7. Remote-roster trigger, accepted identity-creation reply and visible result remain open in App. E#613.
+
+- [x] **Bound the developer generator's selected static path.** ~~Follow the form handler through colour selection and the serializer branch.~~ [Path](../tools/classic-tools/developer-component-2001.md#selected-static-generation-path), manual §11.3.4. Red-tree tile/stamp mapping, existing-level name preservation, MNG decoding and native output remain open.
+
 - [x] **Bound the inspected reconstructed Windows 6.002 lifecycle/pump path.** ~~Connect argument flow, option parsing, initialization/tick/teardown and the shared quit flag.~~ [Study](../client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary); manual §1.8.7.
   - [ ] Authenticate original startup and API bindings, join the redirected setup edge to window creation/play and observe loaded modules separately.
 
@@ -28,7 +36,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Bound exact ver10 list entry and selected-row joining.** ~~Trace the fixed list endpoint, connection initializer and selected game endpoint fields.~~ [Static finding](../client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary); manual §6.1.4/App. E#15. This does not establish runtime entry or whole-program absence of alternative routes.
   - [x] ~~Record the two bounded local-entry attempts.~~ [Qualified negatives](../client-internals/graal2002-and-140-builds.md#two-bounded-local-entry-attempts): neither reached the first-update reply arms; synthetic fixture checks do not supply original-client acceptance.
-  - [ ] Establish an exact supported isolated entry path and complete the original-client reply-arm discriminator in App. E#15.
+  - [ ] Complete the original-client reply-arm discriminator in App. E#15; exact native list/game entry is now observed with qualified mixed supporting DATA.
 
 - [x] **Carry the inspected Windows 4.04r2 component map into the manual.** ~~Separate carrier/shell, mapped engines and audio from release-lineage and runtime claims.~~ [Study](../client-internals/windows-404r2-components.md); manual §1.8.5 and §10.1.11.
   - [ ] Resolve release dating, map the engine RTTI classes and inspect shell forms/event handlers within the study's evidence limits.
