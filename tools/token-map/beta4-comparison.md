@@ -9,7 +9,7 @@ branch name.
 It is a human-readable list of version labels and tokens, with headings and
 comments; it is not itself an executable's identity or a captured login.
 
-The canonical catalogue at this comparison has 175 associations and 115 known
+The canonical catalogue at this comparison has 178 associations and 115 known
 identifier values. The documentary list has 38 distinct raw values: 26 match
 canonical bytes exactly, while 12 use shortened prefixes. No other raw values
 are unmatched. Of the 115 canonical identifiers, 89 are absent from the raw
@@ -76,3 +76,8 @@ remain static B; duplicate packages do not become extra sources or W. Existing
 historical identity qualifications and same-version/different-token conflicts
 remain in their citation text. This is source categorization, not new native
 research, and may be refined when new exact-association evidence is published.
+
+The four formerly grouped Windows 5.30r3/5.31r4/6.00r2/6.00r4 aliases are now
+separate rows: all four have their own cited captures, but the added static
+check explicitly covers only three. Splitting raises the row count by three
+without adding token values or granting 5.31r4 a sibling static category.
