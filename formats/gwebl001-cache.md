@@ -59,7 +59,7 @@ level body                       GR-V1.03 (2.05) or GR-V1.03 / GR-V1.04 (2.31)
 
 The signature check passes when the stored value equals the value the server sent in packet id 25 (`PLO_SIGNATURE`), or when the stored value is 1 and the server sent 73 (GServer's usual value). **[2.05]** All 144 test files hold 73. **[test]**
 
-Decoding the modification time as a 35-bit integer gives Unix time. The test files decode to dates a little before their file timestamps (for example `bank.nw` decodes to 1247727798, 16 July 2009, and the file is dated 26 July 2009). **[test]**
+Decoding the modification time as a 35-bit integer gives Unix time. The test files decode to dates a little before their file timestamps. **[test]**
 
 ## Level body as cached
 

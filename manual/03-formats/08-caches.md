@@ -62,7 +62,7 @@ level body                       GR-V1.03 (2.05), or GR-V1.03 / GR-V1.04 (2.31)
 | layout | as above | [2.05][2.31] (formats/gwebl001-cache.md#plaintext-layout) |
 | signature check | passes when the stored value equals the value the server sent in `PLO_SIGNATURE` (id 25), or when the stored value is 1 and the server sent 73, GServer's usual value | [2.05] (formats/gwebl001-cache.md#plaintext-layout) |
 | test files | all 144 hold 73 | [test] (formats/gwebl001-cache.md#plaintext-layout) |
-| modification time | decoded as a 35-bit integer it is Unix time; the test files decode to dates a little before their file timestamps (`bank.nw` decodes to 1247727798, 16 July 2009, and the file is dated 26 July 2009) | [test] (formats/gwebl001-cache.md#plaintext-layout) |
+| modification time | decoded as a 35-bit integer it is Unix time; the test files decode to dates a little before their file timestamps | [test] (formats/gwebl001-cache.md#plaintext-layout) |
 
 ## 3.8.5 Level body as cached
 
