@@ -267,7 +267,7 @@ Sources: GServer-v2 and gs2-parser (GPLv3), gs2lib, graal-serverlist, OpenGS1 (M
 
 - `client-internals/level-editor-205.md`: the level editor built into the 2.05 client (keys, tile undo, object dialogs, save formats).
 - `client-internals/offline-tutorial-205.md`: how 2.05 goes offline, where offline levels come from, and the 13 embedded tutorial levels.
-- `client-internals/v21-local-enter.md` — public 2.1.0.0 and v22 pass two floating-point 31 values for `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`; v22 shifts a 3 by 3 table by 64 tiles and can enter an eight-byte `GLEVNW01` stream. Static. The 2.05 step stays open.
+- `client-internals/v21-local-enter.md` — public 2.1.0.0 and v22: the call passes the level and two 31s, and what the helper changes stays unknown; v22 shifts a 3 by 3 table by -64, 0 and +64; an integer field equal to 2 is not receive id 177. Static. ver7's missing log literal is not a reading of ver7's enter body. The 2.05 step stays open.
 - `client-internals/sound-and-music.md`: 2.05 effects, MIDI over MCI, and the Winamp hook, compared with BASS and voice chat in 2.17/2.22/2.31.
 - `tools/graaleditor-vs-205.md`: GraalEditor 2.3.1.1 and GraalShop compared with the built-in editor.
 - [GraalShop movie grammar and shipped mobile sample](tools/graalshop.md#shipped-movie-sample-and-remaining-limits): Classic+ 1.13 and Era+ 1.0 boolean spellings corroborate existing grammar; actor-kind carry is corrected in manual §3.3, while editor identity and runtime units remain open.

@@ -586,7 +586,7 @@ Three level names trigger an extra setup step in 2.05 that was not traced [2.05]
 | Item | Content | Source |
 | --- | --- | --- |
 | Open | loading `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` runs an extra setup step in 2.05; what the step does was not traced | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
-| Measured later | on the public 2.1.0.0 image and on v22 the matching call receives two floating-point 31 values; what they change, and whether 2.05 passes the same values, was not read | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
+| Measured later | on the public 2.1.0.0 image and on v22 the call passes the level and two 31s; those two values are the arguments, and what the helper changes stays unknown; whether 2.05 passes the same values was not read | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
 | Settles it | loading each name offline on 2.05 in the lab and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 
 ### E#320 Does any server check the tamper check

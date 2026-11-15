@@ -61,9 +61,10 @@ Offline levels come from the executable or the game folder. The rules below give
 | online | names starting with `tutorial` are not special and go to the server like any level, so a server can host its own | [2.05] (client-internals/offline-tutorial-205.md#where-offline-levels-come-from) |
 | tile definitions | every client tested reads `levels/tiledefs/tiledefsOffline.txt` on Training, since the file is `tiledefs` + server name + `.txt` and the offline server name is `Offline`; the shipped file targets only `offlinetutorial*` levels, so it changes nothing in 2.05's tutorial | [live][2.05][2.22] (client-internals/live-checks-editor-offline-sound.md#tile-definitions-when-offline) |
 | special names | `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`, the old single-player start levels, run an extra setup step on load; what it does is unmeasured (→ App. E#319) | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
-| same three names, public 2.1.0.0 and v22 | the call receives the level and two floating-point values, each 31; what they change was not read, and this does not measure 2.05 | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
-| v22 3 by 3 | when an integer field equals 2, a matching slot adds `(row - 1) * 64` and `(column - 1) * 64`; the public enter body has no such walk | [bin] (client-internals/v21-local-enter.md#v22-shifts-a-3-by-3-table-by-64) |
-| v22 missing file | when that field equals 2 and both lookups are empty, the client writes eight bytes, `GLEVNW01`, and enters with that stream | [bin] (client-internals/v21-local-enter.md#widths-beside-that-call) |
+| same three names, public 2.1.0.0 and v22 | the call passes the level and two 31s; those two values are the arguments, and what the helper changes stays unknown; this does not measure 2.05 | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
+| v22 3 by 3 | when an integer field equals 2, a matching slot adds `(row - 1) * 64` and `(column - 1) * 64`; that comparison is not receive id 177; the public enter body has no such walk | [bin] (client-internals/v21-local-enter.md#v22-shifts-a-3-by-3-table-by-64) |
+| v22 missing file | when that same integer field equals 2 and both lookups are empty, the client writes eight bytes, `GLEVNW01`, and enters with that stream; the field equaling 2 is not receive id 177 | [bin] (client-internals/v21-local-enter.md#widths-beside-that-call) |
+| ver7 log literal | `Player enters local level ` is absent from ver7's string table; that absence is not a reading of ver7's enter body | [bin] (client-internals/v21-local-enter.md) |
 
 ## 4.8.4 The tutorial world
 
