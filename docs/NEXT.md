@@ -14,6 +14,33 @@ macOS CI is paused until the polish stage.
 
 - [x] **v4 GUI after server-warp (#56 / C5).** ~~Status: Others Work lead that Login GUI survives 178 unless hidden.~~ [Note](../protocol/v4-gui-survive-serverwarp.md). Loopback stock 4.20r8 confirm still open.
 
+- [x] **1.41r1 `.nw` / gmap load (static).** ~~String scan only?~~ `GLEVNW01` present, no `GRMAP001`; live load still open. [Note](../client-internals/141r1-nw-gmap-status.md).
+
+- [x] **Large-file thresholds on focus builds (#10).** ~~Consolidate 64000 / 32000 / LARGEFILE\* ladder and per-focus token-table behaviour.~~ [Note](../protocol/large-file-thresholds-focus.md). Discriminating ~300 KB push per focus still open.
+
+- [x] **v4 Login account contract (C4 status).** ~~Consolidate 4.x typed-account Login vs 5.x/6.x guest-first.~~ [Note](../protocol/v4-login-account-contract.md). Stock 4.20r8 UI dialog / script-API rows still open (Others Work leads).
+
+- [x] **1.41 rev 1 list reply / silent-list timer.** ~~Is `silent_list_after_ms` original, and how does 1.41r1 read ids 1 and 2?~~ Client sends nothing; id 1 = extra row, id 2 ignored (≠ RC); timer is a lab/seihai accommodation; 2001 listserver timing still unobserved. [Note](../protocol/listserver-141r1-silent-list.md).
+
+- [x] **How 1.39 gets online (list vs direct).** ~~Does 1.39 have a listserver path?~~ No: connect dialog only; list support starts at 1.41r1. [Note](../client-internals/how-139-gets-online.md).
+
+- [x] **Player-prop parsers 5.00r7 / 5.12 (#6 status).** ~~Case sets settled in v5-props (+82 only vs 4.x); value widths and P4–P6 leads open.~~ [Note](../protocol/player-props-5x-status.md).
+
+- [x] **Ids sent by 5.12; 2.31 id-44 (#17 status).** ~~2.31 S→C 44 dropped / C→S 44 kept; 5.12 send floor still cap-only; E#4 id 11 settled static on 5.00r7.~~ [Note](../protocol/ids-sent-512-status.md).
+
+- [x] **Update packages after login (status).** ~~159 / 47 / .gupd beyond base?~~ Wire ids and GServer-v2 chain settled; client 159 layout + seihai handlers open. [Note](../protocol/update-packages-focus-status.md); gap #28.
+
+- [x] **Gmap neighbour framing classic 2.x (status).** ~~Does classic path overwrite?~~ Static settled; 2×2 lab open. [Note](../protocol/gmap-neighbour-classic-status.md); E#13; gap #14.
+
+- [x] **2.22 login default-file checks (status).** ~~Full vs empty folder?~~ First-wave 23/34 in second C→S frame settled; full set after answers still open. [Note](../protocol/222-login-default-files.md); #245.
+
+- [x] **`PLI_ENTERLEVEL` on focus 5.x / 6.037 (status).** ~~Which builds send 46?~~ 6.03r7 yes (as 2.31); 5.00r7/5.12 unread; no dedicated reply known. [Note](../protocol/enterlevel-focus-builds.md).
+
+- [x] **2.22 inferred-from-2.1 inventory (#9).** ~~List settled vs still-open / era-carried profile cells.~~ [Note](../version-profiles/222-inferred-from-21-inventory.md). Static re-tag of unmatched PLI and defaults.gen5 footnotes still open.
+
+- [x] **RC text escaping (status).** ~~Original backslash/empty-field GET/SET?~~ Trailing empties settled; escaped-`\\` deferred to server profiles (seihai-rc#56); original RC2/RC3 S open. [Note](../protocol/rc-text-escaping-status.md); gap #41.
+
+- [x] **Gen-5 cipher step for 5.12 (E#2); 5.00r7 still open.** ~~Prefer Claim A (round-down on short compressed frames) for Windows 5.12.~~ [Note](../protocol/gen5-cipher-step-5x.md). 5.00r7 codec unread — keep round-up until read.
 - [x] **Pre-gmap clients in a gmap world.** ~~How did original servers present gmaps to builds without gmaps?~~ Client limits settled for 1.39 (no `.nw`/gmap); period server behaviour unobserved; seihai linked-level output still open. [Note](../protocol/pre-gmap-in-gmap-world.md).
 - [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
@@ -155,6 +182,7 @@ macOS CI is paused until the polish stage.
 - [x] **Document the v4 class-bytecode path (PLO 133).** ~~`PLI_UPDATECLASS` → raw 133 for 3.153–5.12 (including 4.20r8); CRC field vs weapons 193/158/132; not 197.~~ [Note](../protocol/class-bytecode-v4.md). A real 4.20r8 161→133 lab against seihai remains open.
 - [x] **Document pre-3.0 gmap file re-send on every PLAYERWARP2.** ~~2.22 needs `.gmap` on disk when 49 arrives; once-per-session push fails when `saveimages` is off.~~ [Note](../protocol/gmap-file-on-warp.md). Real 2.22 wipe-maps / `saveimages=false` lab against the fixed servers remains open.
 - [x] **Document per-version script packet guards (193/132/133 vs 197/140).** ~~Never classic bytecode ids to 5.24+/v6; never modern cache ids to pure 4.x; gate on profile `plo`.~~ [Note](../protocol/script-packet-guards.md). Transitional 5.00r7/5.12 preference lab remains open.
+- [x] **Document PLO 109 HTTP(S) download status.** ~~Layout `i5` + local name + URL; handled 5.24r4–6.03r7 (not 4.x / 5.12); Others Work “v6 only” softened; first-string scheme-check open.~~ [Note](../protocol/plo-109-httpdownload.md). Loopback store-as-A lab remains open.
 
 - [x] **Publish the Windows 5.00r7 request and segment vectors.** ~~Carry the four authored vectors for the 158/161 requests, the mask-only container and the 4.04r2 `client.` flag.~~ [Source](../client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries); none was captured or sent.
 
