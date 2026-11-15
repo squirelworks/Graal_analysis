@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **2.22 inferred-from-2.1 inventory (#9).** ~~List settled vs still-open / era-carried profile cells.~~ [Note](../version-profiles/222-inferred-from-21-inventory.md). Static re-tag of unmatched PLI and defaults.gen5 footnotes still open.
+
 - [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
   - [ ] Validate Zelda Online 2 native board replay/re-entry and the order-dependent local-timestamp leader comparison; source-only `B`/`T` contract in [the existing precursor note](../client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state).
   - [ ] Resolve exact 1.28 peer UDP endpoint carriage and separately authenticate retained archive provenance; matching bytes alone settle neither.
