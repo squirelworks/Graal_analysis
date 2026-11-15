@@ -6,6 +6,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.
+
 - [Batch Linux 3.0beta / 3.01 / clean 3.151](version-profiles/batch-linux-3x-clean-installers-2026-11-16.md) — Makeself+UPX unpack; damaged 3.151 upload superseded; gen-4 wire still open; static.
 - [Batch-2 Linux RC 2005–2006](protocol/batch2-rc-linux-2005-2006.md) — GSERV024 Jan/Dec and GSERV025 ladder vs existing RC notes; static.
 - [Windows 4.20r8 class/weapon export surface](client-internals/v4-420r8-class-surface.md) — joinClass / addClassScript names feeding the PLO 133 PARITY hole; static, no addresses.
