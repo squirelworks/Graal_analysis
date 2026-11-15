@@ -14,6 +14,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Capture exact ver10 native list/game entry and wire identity.** ~~Record the first login frame and qualify the reply observations.~~ [Lab finding](../client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame); canonical catalogue upgrades only ver10.
   - [ ] Complete the first player-properties discriminator; bounded no-later-chunk observations and a timer-confounded arm do not settle gate sufficiency.
+- [x] **Resolve the public 2.1.0.0 map destinations and resource guards.** ~~Follow 171/172 to distinct state, loaders and text-resolution commit/preserve paths.~~ [Study](../client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards); manual §2.5.2.2.
+  - [ ] Establish exact coordinate rounding and original-client display/request completion; keep other builds separate.
 - [x] **Bound the selected Windows 2.22 control PM paths.** ~~Trace named composer actions and selected receive destinations.~~ [Static finding](../protocol/windows-222-pm-static.md); manual §2.8.7. Remote-roster trigger, accepted identity-creation reply and visible result remain open in App. E#613.
 
 - [x] **Bound the developer generator's selected static path.** ~~Follow the form handler through colour selection and the serializer branch.~~ [Path](../tools/classic-tools/developer-component-2001.md#selected-static-generation-path), manual §11.3.4. Red-tree tile/stamp mapping, existing-level name preservation, MNG decoding and native output remain open.
