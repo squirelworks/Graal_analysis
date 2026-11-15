@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Update packages after login (status).** ~~159 / 47 / .gupd beyond base?~~ Wire ids and GServer-v2 chain settled; client 159 layout + seihai handlers open. [Note](../protocol/update-packages-focus-status.md); gap #28.
+
 - [x] **Gmap neighbour framing classic 2.x (status).** ~~Does classic path overwrite?~~ Static settled; 2×2 lab open. [Note](../protocol/gmap-neighbour-classic-status.md); E#13; gap #14.
 
 - [x] **2.22 login default-file checks (status).** ~~Full vs empty folder?~~ First-wave 23/34 in second C→S frame settled; full set after answers still open. [Note](../protocol/222-login-default-files.md); #245.
