@@ -43,6 +43,7 @@ If the server **does not** know the login token, every focus 4.x–6.x build is 
 
 ## Open
 
+- [ ] Exact per-exe `large_files` / `large_file_size` (or equivalent receive constants) on stock **4.208 / 5.007 / 5.12 / 6.037** — profile-audit cells that still say “inferred from 2.14” are **unverified on these binaries**, not false. **[inf]**
 - [ ] Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).
 - [ ] Static 1.41r1 FILE / LARGEFILE receive set (confirm no 68/69).
 - [ ] Whether any focus client enforces a **stricter** on-disk limit than the server's 32000-byte chunks (none claimed today).
