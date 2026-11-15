@@ -243,6 +243,7 @@ The rules below give how the 2.22 editor opens and saves levels [2.22] (tools/le
 | --- | --- |
 | The open filter is `Graal levels (*.graal, *.nw)`; several files open in their own tabs | [2.22] (tools/level-editor/222-reference.md#open) |
 | The loader branches on the first eight bytes: `GLEVNW01` text; `GR-V1.00`–`1.03` binary (13-bit codes for 1.02/1.03, 12-bit for 1.00/1.01); `Z3-V1.03`/`1.04`; anything else is rejected ("Unsupported file type!", no caller found) | [2.22] (tools/level-editor/222-reference.md#open) |
+| The public 2.1.0.0 image raises that dialog: caption `Warning`, text `Unsupported file type!`, and it does not load. A matching header sets `Level loaded`. The 2.22 caller is still unread | [bin] (client-internals/graal2002-level-open.md#open-gate) |
 | `GR-V1.04` is read only by the weblevels cache path, not by the editor | [2.22] (tools/level-editor/222-reference.md#open) |
 | The text reader rules (layer field ignored, row skipping, 12-bit tile ids, `LINK` defaults, `BADDY` clamp, `HEIGHTS` only when an overlay exists) are → §3.1.3 | [2.22] (tools/level-editor/222-reference.md#the-glevnw01-text-reader-222) |
 | Save (Ctrl+S) is save-all: it commits a floating paste, then saves every modified level with a file name plus the current one, deleting the old file and writing in place; a modified map is saved too; the status bar shows "N Level(s) saved" | [2.22] (tools/level-editor/222-reference.md#save-222) |

@@ -76,6 +76,10 @@ helper effects or modification history. **[bin]**
    needs a lab run.
 5. **The Graal 2002 world files.** Each build ships the world's gmaps (main, forest, dustari, pirates, samurai and zormite;
    v22 adds caverns, start and mines), plus a `loadgmaps.txt`. They are the earliest gmap-based world clients in the set.
+6. **The public image opens a level by an eight-byte magic.** It accepts `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00` through
+   `GR-V1.03` and `GLEVNW01`, and it shows `Unsupported file type!` for any other header. ver7's traced file body does not
+   construct baddy or four-field chest records. v22 writes an eight-byte `GLEVNW01` stream when the file is missing and a
+   mode field equals 2. The widths are in [`graal2002-level-open.md`](graal2002-level-open.md). **[bin]**
 
 ## Ver10 initial player-properties update (2026-11-15)
 
@@ -170,5 +174,6 @@ The chest and baddy editor forms follow the dispatch split in the section above:
 - [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
+- [x] ~~Read how the public 2.1.0.0 image accepts a level file, and what ver7 and v22 store.~~ [Level open](graal2002-level-open.md). ver8 to ver13 bodies, the marker character, and any send from these paths stay open.
 - [x] ~~Form-resource names for the seven 2.1.0.x images.~~ [Form resources](#form-resources): the log form is in ver10 and later in this set; the chest and baddy forms return on the public 2.1.0.0 and on v22.
 - [x] ~~Add the six builds to the scanner inventory and regenerate the matrix.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md): six exact-input scans added; existing membership cells preserved.
