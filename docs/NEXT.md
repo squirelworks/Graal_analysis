@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound the inspected reconstructed Windows 6.002 lifecycle/pump path.** ~~Connect argument flow, option parsing, initialization/tick/teardown and the shared quit flag.~~ [Study](../client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary); manual §1.8.7.
+  - [ ] Authenticate original startup and API bindings, join the redirected setup edge to window creation/play and observe loaded modules separately.
+
 - [x] **Bound the inspected Windows 5.30r3 native window/object path.** ~~Read class registration, window creation, stored-handle routing and default fallback in the reconstructed input.~~ [Study](../torque/engine-530r3.md#native-window-and-object-message-boundary); manual §10.1.6.
   - [ ] Authenticate the reconstruction, verify the mixed API bindings and connect callers through engine initialization to play; original runtime module behavior remains separate.
 
