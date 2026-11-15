@@ -18,6 +18,10 @@ manual/02-protocol/08-chat-pm.md	The in-game stats in the same window (online ti
 manual/03-formats/01-levels.md	tile range	formats/level-binary.md#board-bit-stream	a 12-bit file cannot address tiles ≥ 2048, because the flag takes the top bit; that is why 1.02 widened the code to 13 bits for the 4096-tile `pics1`
 manual/03-formats/01-levels.md	meaning	formats/level-binary-client.md#gr-v104-231	a 9×9 grid fits the corners of an 8×8 grid of 8×8-tile cells on a 64×64 level
 manual/03-formats/02-gmap.md	integers	formats/gmap.md#205-big-map-and-minimap-text-files-205	stored as points in the player object; probably image offsets or scale, which fits the defaults, but their use is not traced
+manual/03-formats/03-gani.md	`SPRITE` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than five fields remaining after the keyword is an inference
+manual/03-formats/03-gani.md	`COLOREFFECT` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than four fields remaining after the keyword is an inference
+manual/03-formats/03-gani.md	`ZOOMEFFECT` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than one field remaining after the keyword is an inference
+manual/03-formats/03-gani.md	`SETBACKTO` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	at least one field remaining after the keyword is an inference
 manual/03-formats/05-tiles-arrays.md	2	formats/arrays-and-signatures.md#arrays2dat	web host, joined into a URL template
 manual/03-formats/05-tiles-arrays.md	algorithm	formats/arrays-and-signatures.md#the-signatures	an RSA component configured with a SHA-1 signing digest and a PKCS#1 scheme, judged from the component's class and property names; no signature has been verified
 manual/03-formats/05-tiles-arrays.md	consequence	formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled	an unpatched 2.17, 2.22 or 2.31 client refuses an edited `arrays2.dat` or executable; editing `arrays2.dat` alone fails the signature

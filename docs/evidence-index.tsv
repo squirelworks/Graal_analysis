@@ -104,3 +104,4 @@ client-windows-6002-lifecycle-static	windows	bounded-static-lifecycle-and-messag
 WIN-VER10-GATE03-WIRE-20261115	windows	bounded-native-loopback-login-and-first-frame
 WIN-PUBLIC210-MAP-STATE-20261115	windows	bounded-static-map-destination-and-resource-guards
 WIN222-PM-STATIC-20261115	windows	bounded-static
+WIN-V2100-GANI-FIELDS-20261115	windows	static-gani-field-counts
