@@ -221,7 +221,7 @@ L, S, P and M are ignored while a combo box in the side panel has focus. Ctrl+En
 - The mouse state machine and the exact drag/drop rules.
 - Meaning of the two session-mode flags that gate chests and baddies.
 - Whether the Ctrl+Q batch re-save converts formats or only normalises files (it reads with the magic-based loader and writes by extension, so a `.graal` file in any readable version comes out as `GR-V1.03`).
-- Where "Unsupported file type!" is raised in 2.22. The string is in the 2.22 and 2.31 string tables, but no caller appears in the exported code.
+- Where "Unsupported file type!" is raised in 2.22. The string is in the 2.22 and 2.31 string tables, but no caller appears in the exported code. The public 2.1.0.0 image does raise it, from the level-open gate in `client-internals/graal2002-level-open.md`. That caller is not this executable.
 - Three handlers that the second decompiler pass could not recover (no function found).
 - How the type and offset fields of tile definitions are used.
 - Whether arrival offsets are evaluated at warp time.

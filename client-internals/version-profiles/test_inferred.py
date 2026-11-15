@@ -11,6 +11,8 @@ A profile is a table with a `token` in one of the version-profile TOMLs. Two rul
 `inferred` is an identity key: `resolve.py` does not pass it to a profile that
 names this one as its `base`.
 """
+import importlib.util
+import json
 import pathlib, re, sys, tomllib
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -20,15 +22,23 @@ import resolve  # noqa: E402
 
 TOMLS = sorted(HERE.glob('*.toml')) + sorted((ROOT / 'version-profiles').glob('*.toml'))
 CATALOGUE = ROOT / 'client-internals' / 'version-token-catalogue.md'
-ROW = re.compile(r'^\|[^|]*\|\s*`([A-Z0-9]{8})`[^|]*\|\s*\**([A-Z—+]+)\**')
+SPEC = importlib.util.spec_from_file_location('token_map_for_inferred_profiles',
+                                             ROOT / 'tools' / 'token-map' / 'generate.py')
+TOKEN_MAP = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(TOKEN_MAP)
 
 
-def grades():
+def grades(text=None):
     out = {}
-    for line in CATALOGUE.read_text(encoding='utf-8').splitlines():
-        m = ROW.match(line)
-        if m:
-            out.setdefault(m.group(1), set()).add(m.group(2).rstrip('+'))
+    for row in TOKEN_MAP.parse(CATALOGUE.read_text(encoding='utf-8') if text is None else text):
+        if row['state'] == 'known' and re.fullmatch(r'[A-Z0-9]{8}', row['token']):
+            # This token-level absence guard needs all supporting categories,
+            # not a whole signature or the navigation bucket's primary grade.
+            # B+ remains binary evidence; conflicts cannot establish an input.
+            categories = {source['category'].rstrip('+')
+                          for source in json.loads(row['source_records'])
+                          if source['status'] == 'support'}
+            out.setdefault(row['token'], set()).update(categories)
     return out
 
 
@@ -46,7 +56,7 @@ def profiles():
 
 
 def list_only(g):
-    return g == {'L'}
+    return 'L' in g and not g.intersection({'B', 'W'})
 
 
 def test_catalogue_parses():
@@ -54,6 +64,26 @@ def test_catalogue_parses():
     assert len(g) > 60
     assert g['GNW14015'] == {'L'}          # 2.3
     assert 'W' in g['GNW22122']            # 2.17
+
+
+def test_combined_evidence_preserves_absence_guard_categories():
+    table = '### Family\n| ' + ' | '.join(TOKEN_MAP.HEADER) + ' |\n'
+    rows = [
+        ('GNW00000', 'WBL', '[W@wire] capture<br>[B@static] original<br>[L@report] table'),
+        ('GNW00001', 'B+', '[B+@static] accepted lab, frame undecoded'),
+        ('GNW00002', 'BL', '[B@static] original<br>[L@report] table'),
+        ('GNW00003', 'L', '[L@report] table<br>[B@wrong!conflict] rejected attribution'),
+    ]
+    table += '\n'.join(f'| Build {i} | `{token}` | {signature} | {sources} | Windows | game-login | | |'
+                       for i, (token, signature, sources) in enumerate(rows))
+    result = grades(table)
+    assert result == {'GNW00000': {'W', 'B', 'L'}, 'GNW00001': {'B'},
+                      'GNW00002': {'B', 'L'}, 'GNW00003': {'L'}}
+    assert not list_only(result['GNW00000'])
+    assert not list_only(result['GNW00002'])
+    assert list_only(result['GNW00003'])
+    assert list_only({'L', 'C', 'U'})  # Other facets do not establish a read client.
+    assert not list_only({'L', 'C', 'B'})
 
 
 def test_list_only_tokens_are_inferred():

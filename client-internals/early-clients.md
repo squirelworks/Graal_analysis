@@ -4,6 +4,9 @@ Date: 2026-10-14
 
 Derived from the decompile corpus. Raw exports stay in `/shdecompiling/`. This note is cleaned.
 
+For the reconciled build-by-build networking facts and historical run
+qualifications, use the [canonical capability map](../protocol/relay-1998.md#earliest-networking-capability-map).
+
 ## Lineage
 
 | Era | Binary | Port | Levels | Token |
@@ -21,7 +24,7 @@ Derived from the decompile corpus. Raw exports stay in `/shdecompiling/`. This n
 - Level names hard-coded: `level1.zelda`, `cave2.zelda`, `house1.graal`, `village1.zelda`, and others. Both extensions coexist.
 - Sign text present: `"Sign at ("`.
 - String table includes `NZelda2#def`.
-- **Room name is not always the constant `Zelda2`** (2026-10-24 decompile). One branch of the join routine uses `Zelda2`; the other, chosen by an argument given when the network client object is created, builds the room from the current level file's base name as `Z` + base + `2` (a level `level1.zelda` would give `Zlevel12`) and then runs a follow-up routine (not traced). Which branch normal play uses was not traced; the two-client local mode is a likely user of the per-level form. The statement in `protocol/relay-1998.md` that 1st and 2nd Graal always join `Zelda2` holds for one branch only. The client always sends the name `def` in the join line and the real nickname later in a `D` payload.
+- **Room name is not always the constant `Zelda2`** (2026-10-24 static read). One branch uses `Zelda2`; another builds `Z` + level basename + `2`. The later [original-program join capture](relay-room-bridge.md#rooms-each-build-joins) observed both `NZhouse12#def` and `NZelda2#def`, resolving the earlier blanket normal-play uncertainty about the two connections. The observed level string alone does not distinguish `Z` + `house12` from `Z` + `house1` + `2`; the latter builder has static support. The nickname is sent later in `D`. [bin][live]
 
 ## 1.39
 

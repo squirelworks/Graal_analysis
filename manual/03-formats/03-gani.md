@@ -121,6 +121,8 @@ The sample supplies no CHAR indexed-key spelling, coordinate units, frame durati
 
 The shared PowerPC v5 main executable, including an archive copy labelled 5.12, was inspected statically; matching bytes do not authenticate release labels. ANI collects comma-delimited placement records into a group requiring four records, or one with SINGLEDIRECTION. ANIEND accepts a sufficient group and discards an incomplete one. End of input destroys a still-current group rather than establishing its commitment. [bin] (client-internals/macos-v5-animation-group-lifecycle.md)
 
+The public 2.1.0.0 image uses the same direction count: a step starts at four rows, `SINGLEDIRECTION` changes it to one, and `ANIEND` drops a group that has fewer rows than that count. [bin] (client-internals/graal2002-level-open.md#gani-direction-count)
+
 WAIT adds duration to an existing group. PLAYSOUND stores a resource reference, the current duration and two default fields; both optional numeric arguments must exist to replace those defaults. These storage observations do not prove units, scheduling, audible playback or rendering. SCRIPT collects text through SCRIPTEND or end of input; this loader body does not run an interpreter. Native runtime acceptance, full placement grammar, numeric/tokenizer helpers and GS1/GS2 execution remain untested here. [bin] (client-internals/macos-v5-animation-group-lifecycle.md)
 
 

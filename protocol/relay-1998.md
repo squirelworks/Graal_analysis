@@ -4,7 +4,146 @@ Date: 2026-10-21
 
 This covers every client from the first Delphi beta (Sept 1998) to 1.1 / 1.1.9 (Feb 1999), plus the `Gserver.exe` bundled with 1.1.9.
 These builds have no login token and no compression. In the GServer-v2 numbering this is encryption generation 1.
-The notes come from static analysis of the shipped executables. No decompiler output is reproduced.
+The base layouts come from static analysis of the shipped executables; the linked historical runs add qualified original-program and capture evidence. No decompiler output is reproduced.
+
+## Earliest networking capability map
+
+This is the canonical capability summary from the Java precursors through
+the GSERV transition. It reconciles existing findings, not a new runtime
+survey. **NOTOKEN** below means a documented absence of a version-token
+field; it is not an unresolved scan and is never a literal login string.
+`[bin]` is static executable/class evidence, `[src]` retained author-source
+evidence, `[cap]` captured traffic, `[live]` original-program observation,
+and `[inf]` a stated inference. A captured row does not upgrade its siblings.
+
+Sources: [Java/source scope](../client-internals/precursors-and-fan-builds.md),
+[Java runs](../client-internals/precursor-runs-2026-10-30.md),
+[exact relay rooms and bridge runs](../client-internals/relay-room-bridge.md),
+[early native-program captures](../client-internals/live-trace-early.md),
+[GSERV contracts](gserv-1999.md), and
+[GServer13 run](../client-internals/live-gserver13.md).
+
+### Build-by-build transport and identity
+
+`R` means outgoing TCP to a game-neutral relay: LF lines, pairing and `D`
+data, no account login, version token, compression, listserver discovery or
+direct peer UDP. The Delphi client has a fixed-game connection and a
+level-room connection; observed joins are marked separately from static
+siblings. `C` means a central game-server TCP connection with accounts,
+token and length-prefixed zlib frames. These are different transports,
+even when both use a port called a game-server port. [bin][src][cap]
+
+| Exact build | Transport / token | Level room; fixed game | Evidence boundary |
+|---|---|---|---|
+| Zelda Online 1 | No multiplayer socket; NOTOKEN | None | Applet assets/levels relative to codebase are file loading, not game networking. [bin] |
+| Zelda Online 2 local version | One Java relay TCP; NOTOKEN | `Z` + level basename + `1.6`; no fixed channel | `Zlevel11.6`, pairing, peers and chat observed; board replay remains source-only. [src][live] |
+| Java Graal (July 2000) | One Java relay TCP; NOTOKEN | `G2` + level filename; unused `Graal2` mode | Exact `G2level13.graal` observed; do not infer a second selected connection from an unused mode. [bin][live] |
+| 1st Graal | R; NOTOKEN | Observed `Zhouse12`; `Zelda2` | Two joins observed. That string alone does not distinguish `Z` + `house12` from `Z` + `house1` + `2`; the latter builder has static support. [bin][live] |
+| 2nd Graal | R; NOTOKEN | Per-level form as 1st; `Zelda2` | Static sibling contract; not a separately captured join here. [bin] |
+| 3rd Graal | R; NOTOKEN | `G` + level filename; `Graal` | Both `Ghouse1.graal` and fixed join observed. [bin][live] |
+| 4th Graal | R; NOTOKEN | `G` + level filename; `Graal` | Static room contract. [bin] |
+| 4th Graal alpha | R; NOTOKEN | `G2` + level filename; `Graal2` | Direct shared room with Java Graal observed. [bin][live] |
+| 5th Graal | R; NOTOKEN | `G3` + level filename; `Graal3` | Native joins observed; Java cross-build play required a room-renaming proxy. [bin][live] |
+| 5th Graal alpha | R; NOTOKEN | `G3` + level; `Graal3` | Static room contract. [bin] |
+| 6th Graal | R; NOTOKEN | `G4` + level; `Graal4` | Static room contract. [bin] |
+| 7th Graal | R; NOTOKEN | `G5` + level; `Graal5` | Static room contract. [bin] |
+| 8th Graal | R; NOTOKEN | `G5` + level; `Graal5` | Static room contract. [bin] |
+| 9th Graal alpha | R; NOTOKEN | `G5` + level; `Graal5` | Static room contract; alpha and numbered release stay distinct. [bin] |
+| 9th Graal | R; NOTOKEN | `G5` + level; `Graal5` | Static room contract. [bin] |
+| 10th Graal | R; NOTOKEN | `G6` + level; `Graal6` | Static room contract. [bin] |
+| 11th Graal | R; NOTOKEN | `G6` + level; `Graal6` | Static room contract. [bin] |
+| 12th Graal | R; NOTOKEN | `G6` + level; `Graal6` | Static room contract. [bin] |
+| 13th Graal | R; NOTOKEN | `G7` + level; `Graal7` | Static room contract. [bin] |
+| 14th Graal | R; NOTOKEN | `G8` + level; `Graal8` | Static room contract. [bin] |
+| 15th Graal | R; NOTOKEN | `G8` + level; `Graal8` | Static room/level-selection contract. [bin] |
+| 1.1 | R; NOTOKEN | `G8` + level; `Graal8` | Static contract; do not relabel the 1.1.9 capture as this build. [bin] |
+| 1.1.9 | R; NOTOKEN | `G8` + level; `Graal8` | Two- and three-client captures establish dual connections and full-mesh pairing within each room. [bin][cap] |
+| 1.21 | C; `GSERV007` | No relay rooms or listserver discovery | Captured login, single-frame bootstrap and walking; no peer UDP established. [bin][cap] |
+| 1.25 | C; `GSERV009` | No relay room | Static exact-build token/server contract; not upgraded by 1.21 captures. [bin] |
+| 1.27 | C; `GSERV011` | No relay room | Static exact-build contract; do not transfer 1.28 peer UDP by era. [bin] |
+| 1.28 beta 2 | C plus direct peer UDP; `GSERV013` | No relay room | Captured login, peer movement, arrows and server-selected leader; Wine patches qualify the run. Peer endpoint carriage still unresolved. [bin][cap] |
+| 1.3 test | C plus peer UDP support; `GSERV014` | No relay room | Original GServer13/client login, files/scripts, movement and chat captured; static UDP support is separate. [bin][cap][live] |
+| 1.31 | C plus peer UDP support; `GSERV016` | No relay room | Its login token was captured being refused by GServer13; that is not a successful gameplay session. [bin][cap] |
+| 1.32 | C plus peer UDP support; `GSERV018` | No relay room | Same refusal boundary, separately captured token; no sibling gameplay promotion. [bin][cap] |
+
+### What each network can actually carry
+
+**Java precursors.** Zelda Online 1 has no peers or shared board: codebase
+file reads are not a relay. Zelda Online 2 local version reads game files
+from its working directory and sends position, chat, nickname, colours,
+board mutations, baddy state, items and arrows through GServ parties.
+Java Graal loads codebase assets/levels, uses the `G2` relay dialect, omits
+the colour message and ignores several Delphi-only action types. Actual
+peer movement/chat does not demonstrate every source-listed action.
+[bin][src][live] See the [Zelda board/replay source boundary](../client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state).
+
+**Delphi relay.** Positions and chat are `D` data from clients, not a
+server world simulation. Board modifications are deltas; whole level files
+do not travel through the relay. From 3rd Graal, a separate HTTP client
+can fetch web levels; local files and cached levels are different inputs.
+The 1.1.9 remote-level-option capture opened no HTTP connection, so that
+arm proves `NR` selection, not a successful download. `NR` followed by `NL`
+selected the local start level in the local-level arm. All observed 1.1.9
+clients ran the NPC arrow scripts themselves: do not generalize Zelda's
+timestamp-leader rule into a server-enforced relay NPC scheduler.
+[bin][src][cap]
+
+**Central GSERV.** Accounts and tokens replace relay room names. GServer
+sends level boards, links, signs, NPC properties/scripts and requested files;
+the client still executes its scripts. 1.21's captured bootstrap fits in one
+zlib frame; 1.28 and 1.3 test put the raw board in a separate frame, and
+only the latter adds level-modification-time message 39 in these runs.
+1.28 peer UDP movement carries X/Y, sprite, status and carry sprite; the
+TCP copy of changed properties did not make that captured server forward
+the walk. Arrow generation passed to the next server-selected leader after
+the first left. Peer endpoint fields, other UDP message meanings and
+complete exact-build compatibility remain separate questions. [bin][cap]
+
+### Endpoints, servers and observed compatibility
+
+These early clients do not first query a modern listserver. Zelda Online 2
+uses a typed relay address; Java Graal uses its codebase host; Delphi relay
+clients use their connect-dialog/configured address. 1.21 and 1.28 use a
+direct game-server address and accounts. Historical endpoint defaults and
+modern rebuild defaults must not be substituted for one another. [bin][src]
+
+Knorr's original GServ carried the Java and bridged Delphi runs; the
+bundled 1.1.9 server carried the 1.1.9 relay runs. Central GServers have
+version-dependent token lists **and player minima**: knowing an older token
+does not imply accepting it as a player. GServer13 refused the separately
+captured 1.31/1.32 tokens; its older retained token entries also serve RC.
+[src][bin][cap] See [server acceptance](gserv-1999.md#what-the-gservers-accept).
+
+Java Graal and **4th Graal alpha** shared `G2<level>` on stock GServ and
+exchanged nicknames/chat without a room rename. Java Graal and **5th Graal**
+used different rooms; their observed shared play required the `G2` to `G3`
+room-prefix proxy. The proxy retained the level suffix. Movement in both
+directions was observed only after the documented Wine input workaround.
+Other prefix bridges are proposals, not additional tested pairs, and the
+observed subset is not full action/NPC/file compatibility. [bin][live][inf]
+
+### Evidence and implementation boundaries
+
+The historical runs used original programs under Java/Wine harnesses,
+not a new Windows-native baseline. The 5th-Graal bridge run disabled
+DirectInput loading so the original's keyboard fallback worked, without
+changing executable bytes or patching memory. In contrast, 1.21/1.1.9
+walking used an in-memory keyboard-format patch; 1.28 additionally disabled
+its joystick setting and patched UDP receive address-length initialization
+in memory. Their captured behavior is retained with those interventions,
+not described as unpatched execution. A room-renaming proxy is a protocol
+intervention; a generated rebuild fixture is synthetic. Byte equality of
+two retained files binds those bytes, not archive authenticity, origin,
+stockness or historical client/server pairing. [live][cap][doc]
+
+Reproduction status (2026-11-15) is separate from all original-behavior rows. GCR
+already has relay sockets and two-client relay acceptance tests, Java GServ
+multiplayer tests, and direct gen-2 TCP clients. Its [#382](https://github.com/squirelworks/graal-client-repro/pull/382)
+is merged; [#384](https://github.com/squirelworks/graal-client-repro/pull/384)
+is the open direct-game default correction, not new native evidence.
+Seihai's 1.1.9 first-pair relay integration is in progress; it is not counted
+here as implemented support or the original's captured full mesh. These dated consumer statements do not establish
+original feature equivalence. [doc]
 
 ## Summary
 
@@ -78,7 +217,7 @@ D <sid:2> <type:1> <payload>
 ```
 
 `sid` is the sender id as two base-128 characters (`(c0-32)*128 + (c1-32)`). The receiver turns it back into `0000` plus 4 zero-padded digits.
-Numbers in the payload use the same `+32` single-character encoding as the later GCHAR. Coordinates are half tiles (`(c-32)/2`). Knock-back and fine offsets use `(c-96)/16`.
+Numbers use the same `+32` single-character encoding as the later GCHAR. Captured Delphi position coordinates are half tiles (`(c-32)/2`); board rectangles use whole tile indices. Java position scale must be checked per dialect rather than copied from that Delphi capture. Knock-back and fine offsets use `(c-96)/16`.
 
 Which types each build sends:
 
@@ -114,7 +253,7 @@ What each type means. Layouts come from the receiving side. Types marked *inferr
 | `Q` | NPC id | `playertouchsme` for an NPC on the receiver's side |
 | `R` | x, y | Object at x,y removed (*inferred*) |
 | `S` | count, then that many colour indices | Sprite colours (4 in 1st Graal, 5 from 4th alpha) |
-| `T` | 10 chars, base 128, little end first | Login time. The peer with the earliest time becomes the level leader and runs the baddies and NPCs |
+| `T` | 10 chars, base 128, little end first | Login time; Java source uses local-timestamp comparisons for shared-state leadership/replay, not a global running minimum. This is not proof of exclusive NPC execution on every Delphi relay build: all captured 1.1.9 clients ran the arrow NPCs. |
 | `U` | x, y, kind, id | Baddy spawned (`TComputer`) |
 | `W` | sprite | Throws the carried object (`TAdventureCarry`) |
 | `X` | target id | Hit or kill aimed at one player. Only the named player applies it (*inferred*) |
