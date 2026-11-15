@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **`PLI_ENTERLEVEL` on focus 5.x / 6.037 (status).** ~~Which builds send 46?~~ 6.03r7 yes (as 2.31); 5.00r7/5.12 unread; no dedicated reply known. [Note](../protocol/enterlevel-focus-builds.md).
+
 - [x] **2.22 inferred-from-2.1 inventory (#9).** ~~List settled vs still-open / era-carried profile cells.~~ [Note](../version-profiles/222-inferred-from-21-inventory.md). Static re-tag of unmatched PLI and defaults.gen5 footnotes still open.
 
 - [x] **RC text escaping (status).** ~~Original backslash/empty-field GET/SET?~~ Trailing empties settled; escaped-`\\` deferred to server profiles (seihai-rc#56); original RC2/RC3 S open. [Note](../protocol/rc-text-escaping-status.md); gap #41.
