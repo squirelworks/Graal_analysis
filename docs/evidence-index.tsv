@@ -90,3 +90,5 @@ WIN-VER10-INITIAL-PROPS-20261115	windows	static-player-property-construction-and
 IOS-CLASSIC-LOGIN-STATIC-20261115-02	ios	static-analyst-seeded
 IOS-GANI-PARAM1-20261115-04	ios	static-file-structure
 IOS-CLASSIC-PREFIX-STATIC-20261115-03	ios	static-analyst-seeded
+WIN-VER10-LIST-ENTRY-STATIC-20261115	windows	static-list-entry-and-connection-chain
+WIN-VER10-LIST-ENTRY-LAB-20261115	windows	bounded-loopback-negative-controls
