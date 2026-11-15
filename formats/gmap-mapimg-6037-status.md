@@ -2,7 +2,7 @@
 
 Date: 2026-11-16. Research-list rank **#57** (focus 6.037 Win). Inventory of published reader key lists; **no Win 6.03r7 binary session** this pass (Share not mounted).
 
-Tags: **[bin]** older clients’ key tables; **[srv]/[doc]** format keys; **[inf]** 6.037 claim unconfirmed.
+Tags: **[bin]** older clients' key tables; **[srv][doc]** format keys; **[inf]** 6.037 claim unconfirmed.
 
 ## Question
 
