@@ -764,3 +764,4 @@ version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest lau
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
 formats/weblevels-code-residuals.md	cited	3.8	3.8	Md5 folder-input lead, 4.20r8 vs later path table, LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
 protocol/gmap-neighbour-classic-status.md	pending		2.5; E	Gmap neighbour framing classic 2.x: static settled; 2x2 lab open; gap #14 / E#13
+protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes

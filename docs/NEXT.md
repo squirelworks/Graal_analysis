@@ -15,6 +15,7 @@ macOS CI is paused until the polish stage.
 - [x] **Gmap neighbour framing classic 2.x (status).** ~~Does classic path overwrite?~~ Static settled; 2×2 lab open. [Note](../protocol/gmap-neighbour-classic-status.md); E#13; gap #14.
 
 
+- [x] **Pre-gmap clients in a gmap world.** ~~How did original servers present gmaps to builds without gmaps?~~ Client limits settled for 1.39 (no `.nw`/gmap); period server behaviour unobserved; seihai linked-level output still open. [Note](../protocol/pre-gmap-in-gmap-world.md).
 - [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
 - [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
