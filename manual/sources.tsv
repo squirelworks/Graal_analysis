@@ -331,6 +331,7 @@ npc-library/tile-patterns.md	excluded		8	scan output that read script text as ti
 protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md
 protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	Part 2 not needed: an early summary superseded by the notes §2.1 to §2.3 cite; its leftover lines are listed in App. E#607 (coverage audit 2026-11-04)
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
+protocol/class-bytecode-v4.md	cited	2.4	2.4	v4 `PLI_UPDATECLASS` → raw PLO 133 (CRC field, cold-join 0, contrast with weapons 193/158/132 and with 197); carried in §2.4.7
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only

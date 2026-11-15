@@ -241,6 +241,8 @@ table in Windows 4.04r2 and 5.12 and compared with the 3.153 Mac handlers.
     `v3x-clients.md` saw.
   - A body that is only the name gives an empty class. The beta4 gserver sends exactly
     that for a class it doesn't have.
+  - This is the v4 answer to `PLI_UPDATECLASS` (161). The ask's five-byte field is a stored-body
+    CRC (0 when the client has none), not a file modtime; see `class-bytecode-v4.md`.
 - **Handled by:** 3.153 (Mac), 4.04r2, 4.20r6, 4.20r8, 5.00r7 and 5.12. **Not** 5.24r4 or
   later: 5.24r4's switch has no case for either, together with 193. From 5.24 on, compiled
   scripts arrive through 197 `PLO_LOADSCRIPT` and the `GRESCR01` cache

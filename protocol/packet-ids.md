@@ -114,7 +114,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` | · | `i3 code`, `bytecode` |
 | 132 | 0xa4 | `PLO_UNKNOWN132` (beta4 gserver: `PLO_WEAPONBYTECODE`) | · | `str name`, rest = compiled weapon script; installs it on a weapon the player already holds and (4.04r2) caches it as `weblevels/weapons/<name>.code`; 3.153 to 5.12, gone in 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
-| 133 | 0xa5 | `PLO_UNKNOWN133` (beta4 gserver: `PLO_CLASSBYTECODE`) | · | `str name`, rest = compiled class script; creates or updates the named class, `public.` functions callable from outside; 3.153 to 5.12, gone in 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 133 | 0xa5 | `PLO_UNKNOWN133` (beta4 gserver: `PLO_CLASSBYTECODE`) | · | `str name`, rest = compiled class script; creates or updates the named class, `public.` functions callable from outside; 3.153 to 5.12, gone in 5.24r4; the v4 answer to `PLI_UPDATECLASS` (not 197) **[bin]** (`unknown-ids-2026-11-06.md`, `class-bytecode-v4.md`) |
 | 134 | 0xa6 | `PLO_GANISCRIPT` | · | gani scripts, maybe for package downloads |
 | 140 | 0xac | `PLO_NPCWEAPONSCRIPT` | · | `s info_length`, `script` |
 | 150 | 0xb6 | `PLO_NPCDEL2` | ✔ | `c n`, n-char level name, `i3 npc id` **[bin]** |
@@ -299,7 +299,7 @@ No jump-table entry in 2.05: 26 (`PLO_NPCACTION`), 49–74, 76–99, and everyth
 | 158 | 0xbe | `PLI_UPDATESCRIPT` | · | rest = script name to fetch |
 | 159 | 0xbf | `PLI_UPDATEPACKAGEREQUESTFILE` | · | order?, package file name, modtime |
 | 160 | 0xc0 | `PLI_RC_FOLDERDELETE` | · |   |
-| 161 | 0xc1 | `PLI_UPDATECLASS` | · | `i5 modtime` + rest = class name |
+| 161 | 0xc1 | `PLI_UPDATECLASS` | · | `i5` CRC of the client's stored class body (tables still say "modtime"; 0 when none) + rest = class name; v4 answer is 133 (`class-bytecode-v4.md`) |
 | 162 | 0xc2 | `PLI_PONG` (was `PLI_RC_UNKNOWN162`; proposed `PLI_PING`) | · | ping: game clients (4.20, 6.x) answer PLO 108 with `!` + `s value`; RCs (2010, RC3) send it empty every 60 s **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 252 | — | `PLI_SET_ENC_KEY` | · | sets AES/RC4 key and IV |
 | 253 | — | `PLI_BUNDLE` | · | several packets in one |

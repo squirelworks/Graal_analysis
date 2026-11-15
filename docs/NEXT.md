@@ -146,6 +146,7 @@ macOS CI is paused until the polish stage.
 - [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
 
 - [x] **Bound the Linux 6.x class-cache path.** ~~Carry the 197 metadata list, the zero-CRC path, the 161 request and the 6.01 x86 delivery split.~~ [Source](../formats/linux-6x-class-cache.md); fixtures, malformed files and execution remain untested.
+- [x] **Document the v4 class-bytecode path (PLO 133).** ~~`PLI_UPDATECLASS` → raw 133 for 3.153–5.12 (including 4.20r8); CRC field vs weapons 193/158/132; not 197.~~ [Note](../protocol/class-bytecode-v4.md). A real 4.20r8 161→133 lab against seihai remains open.
 
 - [x] **Publish the Windows 5.00r7 request and segment vectors.** ~~Carry the four authored vectors for the 158/161 requests, the mask-only container and the 4.04r2 `client.` flag.~~ [Source](../client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries); none was captured or sent.
 
