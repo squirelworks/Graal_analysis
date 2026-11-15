@@ -119,8 +119,13 @@ are no longer inferred from later packet names alone. **[bin]**
 
 The shared parser supplies field 0 as the text name and field 1 as the image
 name to either destination. It does not swap them by filename extension. Its
-coordinate defaults are zero; fields 2 and 3 are parsed only when at least four
-fields are present. The destination applies numeric conversion, but exact
+parsed coordinate defaults are zero/zero. Fewer than four fields, including a
+three-field payload, skip both coordinate conversions. With at least four
+fields, each coordinate is parsed under a separate exception path: a caught
+conversion failure leaves that axis at zero while the other axis can still
+parse. This is a parsed-value fallback, not full numeric-parser compatibility.
+The destination's text-resource gate below can retain the prior applied
+coordinates instead. The destination applies numeric conversion, but exact
 rounding is not established by this finding. **[bin]**
 
 Both destinations first test the text-resource resolution predicate, which
