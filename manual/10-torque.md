@@ -287,6 +287,23 @@ The revision-1 executable and shipped installer were inspected statically; nothi
 
 The installer library list mentions voice packaging and the executable has microphone/voice controls, but the stripped image supplies no identifying GSM/LPC strings. This establishes neither the presence nor absence of those codecs. Follow the selected-codec consumer to resolve that question; separately establish whether the OpenAL layer is reachable before treating a console name or an earlier lab's installed package as a required backend. [file][bin][inf] (client-internals/linux-304-executable-build.md#still-open)
 
+### 10.1.11 The inspected Windows 4.04r2 components
+
+This component map concerns a packed carrier on disk and four mapped images retained from a prior controlled load-only capture; no server/login occurred in that capture, and nothing was run for the static component report. Keep it separate from the earlier aliased packer export and the 4.2.0.8 engine in §10.1.5. Headers, exports and class-name inventories establish component surfaces, not complete call behavior. [bin][cap] (client-internals/windows-404r2-components.md#how-this-was-checked)
+
+| Component | Observed role/metadata | Source |
+| --- | --- | --- |
+| Packed carrier | MSVC linker metadata, one section, July 2003 header date; version resource agrees with the shell | [bin] (client-internals/windows-404r2-components.md) |
+| Delphi shell | Delphi/VCL UI, FileVersion 4.0.4.2; its fixed Delphi header stamp is not a release date. Only the version resource was covered, not the forms/event handlers | [cap] (client-internals/windows-404r2-components.md) |
+| Game engine | combined Graal/Torque-derived engine; March 2006 header date; 1651 named exports, split into 980 methods, 443 constructors/destructors/operators and 228 plain names | [cap] (client-internals/windows-404r2-components.md#graalenginedll-exports) |
+| 3D engine | distinct Torque component with load/run/end exports and March 2006 header date; 338 RTTI class names versus 242 in the game engine | [cap] (client-internals/windows-404r2-components.md#source-areas-visible-in-the-engines) |
+| Audio module | FMOD 3.7, itself packed, 222 exports and September 2003 header date | [cap] (client-internals/windows-404r2-components.md) |
+| Separate updater | helper on disk, August 2005 header date, imports from kernel/shell libraries | [bin] (client-internals/windows-404r2-components.md) |
+
+The game engine export inventory includes Torque GUI/math classes, Graal script/world/container classes, an initialization entry and 100 launcher-setter names. Export presence does not show that a particular launcher resolves or calls every name; the separately studied 5.00r7 launcher resolves 95. Voice packaging is compiled into this game engine (17 voice and eight related crypto exports), rather than supplied as the separate voice DLL described for later clients. This surface alone is not a codec-selection or packet-format contract. [cap] (client-internals/windows-404r2-components.md#graalenginedll-exports)
+
+Header-date differences leave repack-versus-later-build lineage open; date the release independently before choosing either account. The RTTI counts still need a stock-Torque-versus-Graal class map, and shell forms/event handlers remain unread in this report. Embedded library/source-area names are leads for that work, not recovered implementations; detailed counts and source-area inventory stay in the source. [cap][inf] (client-internals/windows-404r2-components.md#notes-on-dating); (client-internals/windows-404r2-components.md#still-open)
+
 ## 10.2 Join sequence
 
 Joining a 3D server runs the same routine in several builds. The steps below are in order [bin] (protocol/v3x-clients.md#listserver).

@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the inspected Windows 4.04r2 component map into the manual.** ~~Separate carrier/shell, mapped engines and audio from release-lineage and runtime claims.~~ [Study](../client-internals/windows-404r2-components.md); manual §1.8.5 and §10.1.11.
+  - [ ] Resolve release dating, map the engine RTTI classes and inspect shell forms/event handlers within the study's evidence limits.
+
 - [x] **Carry the Linux 3.04 static build/dependency evidence into the manual.** ~~Separate explicit FMOD/SDL linkage, runtime graphics loading and compiler metadata from runtime compatibility.~~ [Study](../client-internals/linux-304-executable-build.md); manual §1.8.4 and §10.1.10.
   - [ ] Establish the voice-codec consumer and OpenAL-layer reachability; missing identifying strings do not establish absent codecs.
 
