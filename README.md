@@ -406,6 +406,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 - `formats/gpak.md`: the `.gpak` package (a plain ZIP read with minizip), the encrypted `.gpake` / `.enc` scheme (per-entry DES-ECB, key from PLO 104), the send order, and the version quirks (4.20r8 ignores plain `.gpak`). Both a plain `.gpak` and an encrypted `.gpake` are confirmed loading in the real 6.03r7 client. The client's DES is standard DES with each key byte bit-reversed, the same quirk as 2.05 (`client-internals/saved-passwords.md`, now confirmed for 4.04r2 and 6.03r7 too). `tools/file-formats/make_gpak.py`, `make_gpake.py` and `tools/file-formats/samples/` build and hold the samples. In the real 4.20r8, `.zip` and `.gpake` load but plain `.gpak` does not, and 4.04r2 loads no package at all.
 - `formats/gwebl001-cache.md` (new section): the 5.x / 6.x `weblevels` `.code` cache for weapons, classes and ganis, and the `GRESCR01` script cache format.
 - [weblevels per-server folders and `.code` roles](formats/weblevels-server-folders.md) — host vs hostname vs `<md5-hex32>` level folders, `%0NN` weapon/class segments, and why `.code` is not `.gpak`/`.gpake`; inventory + format tests.
+- [weblevels md5 / 4.20r8 path / level `.code` residuals](formats/weblevels-code-residuals.md) — offline md5 input lead, 4.20r8 vs GRESCR-era path table, LE length-prefixed level `.code` vs `GRESCR01`.
 
 ## GS2 client VM (2026-11-07)
 
