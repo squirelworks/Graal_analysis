@@ -620,6 +620,7 @@ protocol/linux-cross-version-receive.md	cited	2.5; E	2.5; E	exact-input identiti
 client-internals/linux-420r6-selector11.md	cited	8.3; E	8.3; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-reader-fusion.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-clock-property.md	cited	4.1; E	4.1; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
+client-internals/linux-420r8-string-floor.md	cited	2.5	2.5	Protocol-keyword string floor of the two Linux 4.20 rev 8 images carried in §2.5.12. The four level and gmap literals are present, with conventional meanings. The 2007-01-15 receive switch stays unread.
 client-internals/first-graal-death-counter-2026-11-09.md	cited	4.4	4.4	Static counter transition and timing limits carried in 4.4; exact-input identity and validation bookkeeping remain in source note.
 client-internals/first-graal-movement-2026-11-09.md	cited	4.2; E	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
 npc-library/gs1-event-parameters-205r2.md	cited	8.1; 8.2; E	8.1; 8.2; E	Producer, queue, splitter, runtime controls and limits carried; exact-input/evidence bookkeeping stays in source.
@@ -747,3 +748,4 @@ VERSION-TOKENS.md	excluded			Generated discovery index of the canonical version-
 version-profiles/version-token-map.tsv	excluded			Generated machine-readable associations from the canonical catalogue.
 tools/token-map/README.md	excluded			Generation and integrity-check instructions; no independent client behavior.
 client-internals/mac-6004-6015-slices.md	cited	1	1	Architecture and per-slice declared dependencies carried in §1.8.7; selected-slice startup, runtime initialization and Windows module boundaries remain open.
+tools/token-map/beta4-comparison.md	excluded			Documentary token-reference comparison and research-format limits; no new client runtime behavior.
