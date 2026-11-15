@@ -192,7 +192,7 @@ passed. None was player-properties id 2. Only decoded structure is published;
 raw login fields and capture contents are excluded. **[cap]**
 
 The listener lifetime was 30 seconds, approximately 29 seconds after accept,
-with replies sent 500 ms after the complete first frame. The world-time and
+with replies scheduled 500 ms after the complete first frame. The world-time and
 empty-self-properties reply sessions recorded no later client chunks within
 that bound. The no-reply session had a wrong-timer warning and is confounded.
 The first player-properties update was not observed, and the remaining
