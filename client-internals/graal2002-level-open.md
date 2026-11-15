@@ -22,7 +22,7 @@ ver7 and v22 both contain the string `Unsupported file type!`. The functions rea
 
 The public function logs `Player enters local level ` plus the level name, then tests a supplied stream against the same seven magics. A mismatch stores a flag byte and the constant 40, and does not swap the level. A match, or a call with no stream, continues into the swap. **[bin]**
 
-The swap compares the level name with three literals. The first is `level1.graal`. In the string inventory the next two literals are `YoshiClanR2.zelda` and `YoshiClanFields.zelda`. A match calls a helper with zero arguments. What that helper changes was not traced. **[bin]**
+The swap compares the level name with three literals: `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`. On the public 2.1.0.0 image and on v22, a match calls a helper with the level and two floating-point values, each 31. What that helper changes was not read. **[bin]**
 
 Linux 3.04 uses the same seven magics and the same constant 40. Its note says the enter line is logged when there is no game connection, and a rejected magic does not log (`torque/304-adventure.md`). In the public function, the log is emitted and the magic test follows it. A connection test around this call was not read. A strings pass over ver7 did not find `Player enters local level `. **[bin]**
 
@@ -69,6 +69,6 @@ A strings pass over the public image found neither literal. ver7's inventory has
 - [ ] Read the one-character marker as text, and compare it with the 2.05 `#` terminator.
 - [ ] Find the `Unsupported file type!` caller in ver7 and in v22. The string is present in both.
 - [ ] Read the level bodies in ver8, ver9, ver10 and ver13.
-- [ ] Follow the helper called when the local level name is `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`.
+- [ ] Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`. The public 2.1.0.0 image and v22 pass the level and two floating-point values of 31. What it changes was not read.
 - [ ] Follow the v22 helper after a `Control-NPC` name match, including any packet it sends.
 - [ ] Find what writes v22's mode field, and whether receive id 177 is that writer.
