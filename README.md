@@ -69,6 +69,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 
 - [Linux 4.20 native-object bridge](client-internals/linux-420-native-object-bridge.md) — selected static registration relationship, separate revision identities and unresolved callback/runtime gates.
+- [Linux 4.20 rev 8 string floor](client-internals/linux-420r8-string-floor.md) — the 2007-01-15 and 2007-01-17 images share level and gmap keywords; the earlier image's receive switch was not read.
 - [Linux 3.04 seven-operation contract](torque/linux-304-seven-operation-contract.md) — static stack, branch and formatting behavior with independently authored acceptance vectors; no native execution oracle. See the [native-call evidence boundary](torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations) for static dispatch and unresolved argument/result contracts.
 - [Linux network/bootstrap evidence gates](version-profiles/linux-network-bootstrap-evidence.md) — seven exact inputs, independent measured gates and explicit source-scoped unknowns.
 - [Bound Linux 3.04 GS1 source-weapon events and predicates](npc-library/linux-304-gs1-runtime.md) — exact-build observations with delivery and execution limits.
