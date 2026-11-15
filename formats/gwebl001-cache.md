@@ -20,7 +20,7 @@ A local copy of a server level, keyed by the level's modification time, so the c
 
 `<level>` is the level's file name, lowercased, with any path removed. The reader also tries `<level>.code` without the port. **[2.05]** Real example: `weblevels\<game-server-host>\bank.nw-14803.code`. **[test]**
 
-`<server host>` is the connect host string the client used: a dotted IPv4 **or** a hostname. The **port is not** part of the folder name; it appears only in the file name. **[test]** (2.22 plaintext host equals the folder name; see `formats/weblevels-server-folders.md` for era variants, including 6.1.1.3 `<md5-hex32>` level folders.)
+`<server host>` is the connect host (IP or hostname). The **port is not** part of the folder name; it appears only in the file name (`<level>.nw-<port>.code`). **[test]** (2.22 plaintext host equals the folder name; see `formats/weblevels-server-folders.md` for era variants, including `weblevels/<md5-hex32>/` level folders.)
 
 ## File layout (encrypted)
 
@@ -131,7 +131,7 @@ By 5.x `weblevels` holds more than levels. Every file in it is a download cache,
 - Historical description, not the corrected Windows 6.03 weapon contract: when the server says "use your cache" with 197 `PLO_LOADSCRIPT`, it sends the key and a CRC32. The client decrypts its copy and checks the CRC32 of the plaintext; on a match it loads the copy, otherwise it asks again with PLI 158 (`PLI_UPDATESCRIPT`). **[bin]**
 - The key is never stored on disk, but it crosses the wire in clear on every connection, so the encryption only stops casual reading.
 - The earlier source-text inference is not established by unencrypted transport alone; the [GS2 container study](../protocol/gs2-client-vm.md) separately identifies binary segment readers. Historical inference: the body is probably GS2 source text, not bytecode, because it arrives as plain text. **[inf]** No real file has been decrypted yet.
-- Before 5.24, 4.04r2 to 5.12 used PLO 193 for the same job: `i5 crc32` + weapon name, checked against `weblevels/weapons/<name>.code` with **no** host/server-name segment (`protocol/unknown-ids-2026-11-06.md`). **[bin]** On-disk GRESCR-era trees add a `%0NN`-escaped server/world (or host-list) segment under `weapons/` and `classes/`; that is a later layout (`formats/weblevels-server-folders.md`). **[test]**
+- Before 5.24, 4.04r2 to 5.12 used PLO 193 for the same job: `i5 crc32` + weapon name, checked against `weblevels/weapons/<name>.code` with **no** host/server-name segment (`protocol/unknown-ids-2026-11-06.md`). **[bin]** On-disk GRESCR-era trees use `weblevels/weapons/<escaped-server-name>/` and `weblevels/classes/<escaped-server-name>/` (`%0NN` decimal escapes); that is a later layout (`formats/weblevels-server-folders.md`). **[test]**
 
 ### File lookup skips them
 
