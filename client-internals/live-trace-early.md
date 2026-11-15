@@ -93,4 +93,9 @@ Server started with "Use local levels". **[cap]**
 
 ## Open
 
-Nothing from these runs is left open.
+The [canonical capability map](../protocol/relay-1998.md#earliest-networking-capability-map)
+retains these captures and their Wine interventions. Peer UDP endpoint
+carriage and remaining UDP meanings are still unresolved; the remote-level
+option arm observed no HTTP connection. Byte-identical retained files do
+not authenticate archive provenance or a historical client/server pairing.
+These limitations do not erase the measured logins, rooms or movement.

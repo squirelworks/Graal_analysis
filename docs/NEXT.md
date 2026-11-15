@@ -12,6 +12,10 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
+  - [ ] Validate Zelda Online 2 native board replay/re-entry and the order-dependent local-timestamp leader comparison; source-only `B`/`T` contract in [the existing precursor note](../client-internals/zelda-online-1998.md#board-changes-and-a-joining-players-state).
+  - [ ] Resolve exact 1.28 peer UDP endpoint carriage and separately authenticate retained archive provenance; matching bytes alone settle neither.
+
 - [x] **Show every applicable token-evidence category (#532).** ~~Keep compact ordered signatures and structured source/dependency/conflict records in the canonical catalogue and generated views.~~ [Generation/schema](../tools/token-map/README.md), [beta4 comparison](../tools/token-map/beta4-comparison.md). No source count, sibling promotion or drop-in allow-list compatibility is inferred.
 - [x] **Capture exact ver10 native list/game entry and wire identity.** ~~Record the first login frame and qualify the reply observations.~~ [Lab finding](../client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame); canonical catalogue upgrades only ver10.
   - [ ] Complete the first player-properties discriminator; bounded no-later-chunk observations and a timer-confounded arm do not settle gate sufficiency.

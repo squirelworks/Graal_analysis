@@ -25,7 +25,7 @@ Most 1998 to 2001 executables come from one shared archive of 73 executables in 
 
 | Archive | Release | Compiled | FileVersion | MD5 | Size | Token | Gen | Levels and saves | Source |
 | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
-| zeldaonline2 | Zelda Online (Java applet) | 1997–98 | – | – | – | none | 1998 relay (→ §2.3.1) | `Z3-V1.02`/`1.03` | [bin][file] (client-internals/build-catalogue.md#catalogue) |
+| zeldaonline2 | Zelda Online 2 (Java application) | 1997–98 | – | – | – | none | 1998 relay (→ §2.3.1) | `Z3-V1.02`/`1.03` | [bin][file] (client-internals/build-catalogue.md#catalogue) |
 | 1stgraal-1 | first Delphi beta | 1998-09-06 23:54 | – | 07452f8941fdfcdce878b035156e701c | 654336 | none | 1 | Z3-V1.03/1.04 only; Graalsav1 | [bin][file] (client-internals/build-catalogue.md#catalogue) |
 | 2ndgraal | beta | 1998-09-16 01:33 | – | f74b35fc7975a4873087f7fd2aa1d79b | 777216 | none | 1 | + GR-V1.00–1.01; Graalsav1 | [bin][file] (client-internals/build-catalogue.md#catalogue) |
 | 3rdgraal | beta | 1998-09-30 01:47 | – | fc78fbc96bdbc6ca22ae56d3ed8635ab | 665600 | none | 1 | GR-V1.00–1.01; Graalsav1 | [bin][file] (client-internals/build-catalogue.md#catalogue) |
