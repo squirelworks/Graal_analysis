@@ -304,6 +304,7 @@ Sources: GServer-v2 and gs2-parser (GPLv3), gs2lib, graal-serverlist, OpenGS1 (M
 
 - `protocol/codec-and-framing.md` — G-types, u16be+zlib frames, RAWDATA, encryption gens 1–6, the 2.05 gen-3 insertion.
 - `protocol/packet-ids.md` — full PLO/PLI tables with 2.05 coverage (59 handled ids).
+- [PLO 194 client reset](protocol/plo-194-resetclient.md) — empty `PLO_RESETCLIENT` (was CLEARWEAPONS); clear amount by generation; `login*`-keep lead unconfirmed.
 - `protocol/player-props.md` — PLPROP, NPCPROP, and BDPROP ids and encodings; 2.05 knows 0–42, 50, 51.
 - `protocol/file-transfer.md`, `protocol/chat-pm-rc.md`, `protocol/listserver.md`, `protocol/udp-p2p.md`.
 - `formats/level-binary.md`, `formats/gmap.md`.
