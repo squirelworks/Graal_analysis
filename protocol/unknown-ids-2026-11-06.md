@@ -56,7 +56,7 @@ On 2026-11-11 the project moved to upstream gs2lib's packet names. The code repo
 | PLO 124 | `PLO_RC_PLAYERFLAGS` | `PLO_RC_UNKNOWN124` |
 | PLO 132 | — | `PLO_UNKNOWN132` (GServer-v2 beta4 and pyReborn: `PLO_WEAPONBYTECODE`) |
 | PLO 133 | — | `PLO_UNKNOWN133` (GServer-v2 beta4 and pyReborn: `PLO_CLASSBYTECODE`) |
-| PLO 181 | — | `PLO_UNKNOWN181` (GServer-v2 beta4 and pyReborn: `PLO_PLAYERNOUDP`) |
+| PLO 181 | `PLO_UNKNOWN181` | `PLO_PLAYERNOUDP` (see `plo-181-player-noudp.md`) |
 | PLO 168 | `PLO_LOGGEDIN` | `PLO_ONLINEMODE` |
 | PLO 193 | `PLO_WEAPONCRC` | `PLO_WEAPONHASH` |
 | PLO 194 | `PLO_CLEARWEAPONS` | `PLO_RESETCLIENT` |
@@ -190,6 +190,9 @@ RC3 send an empty 162 from a timer. Lineage of the older builds: `tools/remoteco
 - **Confidence:** high (empty, sets a one-shot flag); medium (that the flag means "login done").
 
 ### PLO 181: no peer-to-peer UDP to this player
+
+Canonical behaviour note (2026-11-16): `plo-181-player-noudp.md` (preferred
+name `PLO_PLAYERNOUDP`).
 
 - **Layout [bin]:** at least 3 bytes: `s player id`, `c toggle`. The client looks up the
   player and sets a bool to `toggle > 0` (4.20r8 and Mac 4.20r6 alike).

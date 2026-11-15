@@ -194,7 +194,7 @@ These messages describe the players: the local player and everyone else on the l
 | 170 | `PLO_GHOSTMODE` | `c flag` | 2.17 to 2.31: ghost mode on when the flag is above 0; 5.00r7: stored as the connection mode, and a change resets a player field | [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 173 | `PLO_GHOSTTEXT` | `rest` = text | stored as the ghost-mode text | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 174 | `PLO_GHOSTICON` | `c flag` | shows the ghost icon when the flag is above 0 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
-| 181 | `PLO_UNKNOWN181` (beta4 gserver: `PLO_PLAYERNOUDP`) | `s player id, c toggle`; at least 3 bytes | sets a flag on that player; while set, the client leaves the player out of its peer-to-peer UDP sends | [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/unknown-ids-2026-11-06.md) |
+| 181 | `PLO_PLAYERNOUDP` (was `PLO_UNKNOWN181`) | `s player id, c toggle`; at least 3 bytes | sets a flag on that player; while set, the client leaves the player out of its peer-to-peer UDP sends | [bin] (protocol/plo-181-player-noudp.md); [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 55, 56 | `PLO_ADDPLAYER`, `PLO_DELPLAYER` | GServer-v2 `master` writes 55 as `s id`, `str account`, then prop pairs (nickname, `PLPROP_UNKNOWN81` + type byte), and 56 as `s id`; sent to RCs | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_); [srv] (protocol/gserver-v2-master-handlers.md) |
 
 ## 2.5.5 Combat and level objects

@@ -147,7 +147,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 178 | 0xd2 | `PLO_SERVERWARP` | · | comma text, ≥ 4 fields: field 0 unused, 1 = server name, 2 = host, 3 = port; the client closes the connection and reconnects with a fresh login, no listserver step (2.31 lab; the lab text came from the open-source listserver reimplementation) **[bin][cap]** |
 | 179 | 0xd3 | `PLO_RPGWINDOW` | · | rest = text **[bin]** |
 | 180 | 0xd4 | `PLO_STATUSLIST` | · | rest = text **[bin]** |
-| 181 | 0xd5 | `PLO_UNKNOWN181` (beta4 gserver: `PLO_PLAYERNOUDP`) | · | `s player id`, `c toggle` (length ≥ 3); while set, the client sends that player no peer-to-peer UDP; 2.17 to 5.24r4 **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 181 | 0xd5 | `PLO_PLAYERNOUDP` (was `PLO_UNKNOWN181`) | · | `s player id`, `c toggle` (length ≥ 3); while set, the client omits that player from peer-to-peer UDP sends; 2.17 to 5.24r4 **[bin]** (`plo-181-player-noudp.md`, `unknown-ids-2026-11-06.md`) |
 | 182 | 0xd6 | `PLO_LISTPROCESSES` | · | no payload; client answers `PLI_PROCESSLIST` (44) **[bin]** |
 | 183 | 0xd7 | `PLO_HASPROCESSRUNNING` | · | rest = names; client answers `PLI_PROCESSRUNNING` (45) with `c 0/1` **[bin]** |
 | 184 | 0xd8 | `PLO_TAKESCREENSHOT` | · | rest = file name, only `.png` accepted; saved under a screenshots folder **[bin]** |
