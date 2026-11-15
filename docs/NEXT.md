@@ -12,6 +12,7 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Show every applicable token-evidence category (#532).** ~~Keep compact ordered signatures and structured source/dependency/conflict records in the canonical catalogue and generated views.~~ [Generation/schema](../tools/token-map/README.md), [beta4 comparison](../tools/token-map/beta4-comparison.md). No source count, sibling promotion or drop-in allow-list compatibility is inferred.
 - [x] **Capture exact ver10 native list/game entry and wire identity.** ~~Record the first login frame and qualify the reply observations.~~ [Lab finding](../client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame); canonical catalogue upgrades only ver10.
   - [ ] Complete the first player-properties discriminator; bounded no-later-chunk observations and a timer-confounded arm do not settle gate sufficiency.
 - [x] **Resolve the public 2.1.0.0 map destinations and resource guards.** ~~Follow 171/172 to distinct state, loaders and text-resolution commit/preserve paths.~~ [Study](../client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards); manual §2.5.2.2.
