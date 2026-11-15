@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **2.22 login default-file checks (status).** ~~Full vs empty folder?~~ First-wave 23/34 in second C→S frame settled; full set after answers still open. [Note](../protocol/222-login-default-files.md); #245.
+
 - [x] **`PLI_ENTERLEVEL` on focus 5.x / 6.037 (status).** ~~Which builds send 46?~~ 6.03r7 yes (as 2.31); 5.00r7/5.12 unread; no dedicated reply known. [Note](../protocol/enterlevel-focus-builds.md).
 
 - [x] **2.22 inferred-from-2.1 inventory (#9).** ~~List settled vs still-open / era-carried profile cells.~~ [Note](../version-profiles/222-inferred-from-21-inventory.md). Static re-tag of unmatched PLI and defaults.gen5 footnotes still open.
