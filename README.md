@@ -6,7 +6,9 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
-- [The 2001 Windows developer component](tools/classic-tools/developer-component-2001.md) — component and executable versions, generator help's red-tree row and declared MNG input; static and documentation limits.
+- [Windows 2.22 control PM paths](protocol/windows-222-pm-static.md) — selected composer/send intent, receive defaults and sender lookup; modified control only, remote-roster trigger and visible result still open.
+
+- [The 2001 Windows developer component](tools/classic-tools/developer-component-2001.md) — component and executable versions, red-tree help and static classifier path, selected serializer branch, and MNG interface declaration; no native output claim.
 
 - [Classic+ 1.13 login-construction boundary](client-internals/classic-113-login-construction.md) — analyst-seeded static caller/helper observations beyond the known token; field identities, emitted bytes, framing and native acceptance remain unknown.
 
@@ -240,7 +242,9 @@ These notes expand the existing foundation without adding raw decompile material
 - `version-profiles/pli-send-sites-141-217.md` — every client-to-server send site in 21 builds from 1.41r1 to 2.17.1: all pass a constant id, so the §2.4.2 lists are complete; settles App. E#11 (NewWorld betas send neither 8 nor 20); static.
 - `client-internals/version-tokens.md` — public GNW token map and filename builds.
 - `client-internals/launchers-420r8-500r7-512.md` — the newly found 4.20r8, 5.00r7 and "5.12 untouched" copies are launchers only; the "5.12" set is a re-versioned, patched 5.00r7; the Packet Logger 4.20r8 engine diffed against stock; static.
-- `client-internals/graal2002-and-140-builds.md` — the Graal 2002 world builds (2.1.0.0–2.1.0.4, Oct–Dec 2001) and the 1.40 builds: tokens `GNW31101` and `GNW23090` read from binaries, GS1 command dating, and receive-dispatch ids 170–177; ver10 initial-property order, encoding branches and a necessary self-properties-reply gate; the log form from ver10 and the chest and baddy forms on the public 2.1.0.0 and v22; exact ver10 fixed list entry, selected-row endpoint fields and bounded cache coverage; two qualified local-entry negatives leave the first-update experiment open.
+- `client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame` — exact ver10 native loopback login and first-frame identity; mixed supporting data, bounded negative reply observations and unobserved first properties update remain explicit.
+- `client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards` — exact public 171 main-map/172 minimap state, fixed field order and text-resource commit/preserve guards; runtime display and rounding remain open.
+- `client-internals/graal2002-and-140-builds.md` — the Graal 2002 world builds (2.1.0.0–2.1.0.4, Oct–Dec 2001) and the 1.40 builds: tokens `GNW31101` and `GNW23090` read from binaries, GS1 command dating, and receive-dispatch ids 170–177; ver10 initial-property order, encoding branches and a necessary self-properties-reply gate; the log form from ver10 and the chest and baddy forms on the public 2.1.0.0 and v22; exact ver10 fixed list entry, selected-row endpoint fields and bounded cache coverage; two qualified local-entry negatives leave the first-update experiment open. The public 2.1.0.0 image's receive layouts for ids 170–174 and v22's layouts for 175–177 are read there, as are ver10's `controlnpc.txt` install and v22's `loadgmaps.txt` preload.
 - `client-internals/early-windows-callback-variants.md` — same-version 1.41 callback bindings: handler-body entry versus its final return, with analyst-seeded static coverage and a next question for each early-Windows comparison input.
 - `client-internals/version-token-catalogue.md` — every known client build with its login token, the evidence grade (wire, binary, public list only, server-defined, none), and whether the graal-client-repro folder matches.
 - `client-internals/iphone-version-tokens.md` — iPhone token study of 27 packages / 26 unique executables of one publisher: engine 2008 `G3D04048`, engine 2010 `G3D18010`, Classic+ 1.13 `G3D0208A` (not in gs2lib); two more from gs2lib only.

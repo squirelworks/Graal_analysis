@@ -80,6 +80,26 @@ These counts enumerate logical ids whose destination differs from the dispatcher
 
 The six default-routed ids in ver7–ver13 correspond in classic numbering to baddy props, chests, horses and related handlers. Their default destinations do not independently prove runtime absence of those features; send/receive effects need the separate lab discriminator in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle)
 
+### 2.5.2.2 Widths read in the public image and in v22
+
+The binding table does not give widths. The rows below are the body-read receipt: handler bodies in the public 2.1.0.0 image for ids 170 to 174, and in v22 for ids 175 to 177. Each row is the payload width read in that body and when the handler applies it. They are server-to-client receives. No client send of those ids was read, and the ver8, ver9, ver10 and ver13 handler bodies were not compared, so these widths are not claimed for the mid-ladder images. [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177)
+
+| Id | Image | Layout read there | When | Source |
+| ---: | --- | --- | --- | --- |
+| 170 | public 2.1.0.0 | one `c` flag; ghost mode on when the value is above 0; a shorter payload is not applied | server sends 170 | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+| 171, 172 | public 2.1.0.0 | one shared comma parser; at least two fields; fields 0 and 1 are the text name and the image name; fields 2 and 3 are floats only when at least four fields are present. After the shared parse, an id-dependent branch calls a distinct callee for each id. 171 updates main-map configuration and 172 minimap configuration, subject to the text-resource guard below | server sends 171 or 172 | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+| 173 | public 2.1.0.0 | the whole payload, no length prefix, stored as the ghost-mode text | server sends 173 | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+| 174 | public 2.1.0.0 | one `c` flag, the same test as 170; the ghost-icon flag | server sends 174 | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+| 175 | v22 | at least two bytes; player id is an `s`; the rest is shot data for that player | only when the current level is the active level | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+| 176 | v22 | no payload bytes; stores 1 in the Kingdoms-mode flag. A further form change was not traced in v22 | server sends 176 | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+| 177 | v22 | no payload bytes; stores 1 in the New-World-mode flag. A further form change was not traced in v22 | server sends 177 | [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177) |
+
+The 2.17 to 2.31 layouts already describe the same widths and go further on the 171/172 destination split and on the 176/177 form switch. This read shows those widths are already in the public image and in v22. On the public image, after the shared parse, an id-dependent branch calls a distinct callee for each of 171 and 172. 171 updates main-map configuration and 172 minimap configuration, subject to the text-resource guard below. The ver8 to ver13 handler bodies stay uncompared. [bin] (client-internals/graal2002-and-140-builds.md#receive-layouts-of-ids-170-to-177); [bin] (version-profiles/plo-layouts-217-231.tsv)
+
+In the exact public 2.1.0.0 parser, parsed coordinates start at zero/zero. A three-field payload skips both conversions; at least four fields enable separate per-axis conversions with separate exception paths. A caught conversion failure leaves that axis at zero while the other can parse. This does not establish full numeric-parser compatibility, and parsed defaults do not overwrite previously applied state when the destination text-resource gate fails. [bin] (client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards)
+
+For the exact public 2.1.0.0 image, the destination read distinguishes separate main-map (171) and minimap (172) state and loaders. Field order stays text name, image name, then optional coordinates when at least four fields are present; extensions do not swap the names. A successful text-resource resolution predicate commits both names and converted coordinates before loading; minimap also updates its image object before the coordinate writes and loader. Later load failure does not roll back that configuration. Failed text resolution preserves all prior names and coordinates, with a possible resource request only when a current context exists and the new text name differs. Configuration is not successful display: rounding, download completion and runtime drawing remain open, and sibling builds do not inherit this guard. [bin][inf] (client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards)
+
 ## 2.5.3 Level data
 
 These messages carry a level to the client: its board, links, signs, chests, baddies and NPCs. Each row gives the id and name, the payload layout and what the client does with it [srv][2.05] (protocol/packet-layouts.md#level-data-server--client).

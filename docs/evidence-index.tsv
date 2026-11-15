@@ -1,4 +1,6 @@
 source_id	platform	evidence_kind
+DEV-GENERATOR-SEEDED-ROOT	windows	static-caller-seeded-function
+DEV-GENERATOR-PATH-STATIC	windows	selected-instruction-dataflow
 DEV-COMPONENT-DOC	windows	bundled-documentation
 DEV-COMPONENT-STATIC	windows	static-package-import-resource
 NC-FLAG-ACTION-STATIC	windows	static-analyst-seeded
@@ -98,4 +100,7 @@ NRY-COVERAGE-STRINGS-20261115	windows,linux,macos	strings-scan
 MAC-6004-6015-SLICES-20261115	macos	static-architecture-and-declared-framework-comparison
 WIN-530R3-WINDOW-20261115	windows	bounded-static-window-and-object-dispatch
 client-windows-6002-lifecycle-static	windows	bounded-static-lifecycle-and-message-pump
+WIN-VER10-GATE03-WIRE-20261115	windows	bounded-native-loopback-login-and-first-frame
+WIN-PUBLIC210-MAP-STATE-20261115	windows	bounded-static-map-destination-and-resource-guards
+WIN222-PM-STATIC-20261115	windows	bounded-static
 WIN-V2100-GANI-FIELDS-20261115	windows	static-gani-field-counts
