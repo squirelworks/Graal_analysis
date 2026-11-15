@@ -745,3 +745,4 @@ VERSION-TOKENS.md	excluded			Generated discovery index of the canonical version-
 version-profiles/version-token-map.tsv	excluded			Generated machine-readable associations from the canonical catalogue.
 tools/token-map/README.md	excluded			Generation and integrity-check instructions; no independent client behavior.
 client-internals/mac-6004-6015-slices.md	cited	1	1	Architecture and per-slice declared dependencies carried in §1.8.7; selected-slice startup, runtime initialization and Windows module boundaries remain open.
+tools/token-map/beta4-comparison.md	excluded			Documentary token-reference comparison and research-format limits; no new client runtime behavior.
