@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **1.41 rev 1 list reply / silent-list timer.** ~~Is `silent_list_after_ms` original, and how does 1.41r1 read ids 1 and 2?~~ Client sends nothing; id 1 = extra row, id 2 ignored (≠ RC); timer is a lab/seihai accommodation; 2001 listserver timing still unobserved. [Note](../protocol/listserver-141r1-silent-list.md).
+
 - [x] **How 1.39 gets online (list vs direct).** ~~Does 1.39 have a listserver path?~~ No: connect dialog only; list support starts at 1.41r1. [Note](../client-internals/how-139-gets-online.md).
 
 - [x] **Player-prop parsers 5.00r7 / 5.12 (#6 status).** ~~Case sets settled in v5-props (+82 only vs 4.x); value widths and P4–P6 leads open.~~ [Note](../protocol/player-props-5x-status.md).

@@ -666,12 +666,13 @@ Two different things are called Ash in the notes. The manual keeps them apart un
 
 ### E#401 Listserver reply ids 1 and 2
 
-Listserver ids 1 and 2 are read differently by RC 1.41 and by later clients [srv] (protocol/listserver.md#listserver--client).
+Listserver ids 1 and 2 are read differently by the 1.41 **game** client, by RC 1.41, and by later clients [srv] (protocol/listserver.md#listserver--client; protocol/listserver-141r1-silent-list.md).
 
 | Item | Content | Source |
 | --- | --- | --- |
 | Claim A | id 1 is NULL (empty) and id 2 is STATUS text with `\r` as a line break; 2.17, 2.22 and the public service send status text as id 2 | [srv] (protocol/listserver.md#listserver--client); [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
 | Claim B | RC 1.41 (2002) reads id 1 as one more server entry and id 2 as the end of the list, then disconnects | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| Claim C | game client 1.41 rev 1 reads id 1 as one more server entry and **ignores** id 2 (and 3, 4); it never sends a list login | [bin][lab] (protocol/listserver.md#141-rev1-no-login-the-server-speaks-first-binlab; protocol/listserver-141r1-silent-list.md) |
 | Open | whether the 2002 listserver used 1 and 2 differently from the later Reborn listserver, or the RC reads them its own way | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | Settles it | a 2002-era listserver binary or capture, or a re-read of the 2.05 handler for id 1 | [inf] (protocol/listserver.md#205-specifics-205) |
 
