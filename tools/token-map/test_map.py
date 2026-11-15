@@ -110,6 +110,26 @@ class TokenMapDataTests(unittest.TestCase):
         self.assertTrue(any(r["evidence"] == "WB" for r in records))
         self.assertTrue(any(r["evidence"] == "BL" for r in records))
 
+    def test_real_corroboration_and_partial_alias_scope(self):
+        self.assertEqual([r["evidence"] for r in matching("GSERV013", "game-login")], ["WB"])
+        self.assertEqual([r["evidence"] for r in matching("GSERV009", "game-login")], ["B"])
+        self.assertEqual([r["evidence"] for r in matching("GNW22030", "game-login")], ["B+"])
+        late = {r["build"]: r["evidence"] for r in matching("G3D26090", "game-login")}
+        self.assertEqual(late, {"5.30r3 Windows": "WB", "5.31r4 Windows": "W",
+                                "6.00r2 Windows": "WB", "6.00r4 Windows": "WB"})
+        connector = {r["platform"]: r["evidence"] for r in matching("GNP1905C")}
+        self.assertEqual(connector, {"Windows": "WSC", "macOS": "SC"})
+
+    def test_canonical_signature_and_unknown_state_are_validated(self):
+        table = "### Family\n| " + " | ".join(GEN.HEADER) + " |\n"
+        template = "| Build | {} | {} | {} | Windows | game-login | | |\n"
+        for token, sig, sources in (("TOKEN", "WB", "[B@static] only static"),
+                                    ("none", "U", "[U@unknown] unresolved"),
+                                    ("unknown", "B", "[B@static] unrelated bytes"),
+                                    ("TOKEN", "-", "[-@protocol] no token")):
+            with self.assertRaises(ValueError):
+                GEN.parse(table + template.format(token, sig, sources))
+
     def test_beta4_comparison_never_repairs_raw_values_or_collapses_roles(self):
         spec = importlib.util.spec_from_file_location("beta4_compare", Path(__file__).with_name("compare_beta4.py"))
         module = importlib.util.module_from_spec(spec)
