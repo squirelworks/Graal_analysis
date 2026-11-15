@@ -13,10 +13,12 @@ copies differ in bytes. It does not reclassify them as separate releases.
 ## The new 1.41 rev 1 result
 
 Two same-version copies have identical resource payloads, import sequences and
-non-code sections, but differ at 22 bytes in the code section. Twenty-one
-differences are character constants used in string construction. Their eventual
-use was not traced here, so those changes do not establish a different login
-protocol or the reachability of a changed endpoint. **[bin]**
+non-code sections, but differ at 22 bytes in the code section. A later read of
+those same bytes reconstructs 21 of them as character constants that spell the
+list host and the list port. The two copies do not spell the same endpoint.
+The login token, the receive set and the GS1 command list do not change. The
+host and the port are not written out, and this still does not show that every
+connect uses that string. **[bin]**
 
 The remaining difference changes the code pointer in a named Delphi method-table
 record. The form resource binds an active program-check component's error event

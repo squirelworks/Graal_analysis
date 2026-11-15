@@ -14,6 +14,12 @@ macOS CI is paused until the polish stage.
 
 - [x] **Bound the developer generator's selected static path.** ~~Follow the form handler through colour selection and the serializer branch.~~ [Path](../tools/classic-tools/developer-component-2001.md#selected-static-generation-path), manual §11.3.4. Red-tree tile/stamp mapping, existing-level name preservation, MNG decoding and native output remain open.
 
+- [x] **Bound the inspected reconstructed Windows 6.002 lifecycle/pump path.** ~~Connect argument flow, option parsing, initialization/tick/teardown and the shared quit flag.~~ [Study](../client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary); manual §1.8.7.
+  - [ ] Authenticate original startup and API bindings, join the redirected setup edge to window creation/play and observe loaded modules separately.
+
+- [x] **Bound the inspected Windows 5.30r3 native window/object path.** ~~Read class registration, window creation, stored-handle routing and default fallback in the reconstructed input.~~ [Study](../torque/engine-530r3.md#native-window-and-object-message-boundary); manual §10.1.6.
+  - [ ] Authenticate the reconstruction, verify the mixed API bindings and connect callers through engine initialization to play; original runtime module behavior remains separate.
+
 - [x] **Record the inspected Mac 6.004 and 6.015 architecture boundary.** ~~Compare their three slices and per-slice declared framework dependencies.~~ [Study](../client-internals/mac-6004-6015-slices.md); manual §1.8.7. Token observations remain selected-slice evidence, with no Windows module-boundary inference.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop, then observe compatible-guest initialization/frame separately.
 

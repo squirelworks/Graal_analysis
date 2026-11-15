@@ -10,6 +10,52 @@ One native Windows program. Source paths are `quattro_lib` (DES, JPEG 2000). The
 
 The dump still ends in the packer's dword loop. That loop is the stub, not the client. The engine is the `quattro_lib` body. **[bin]**
 
+## Reconstructed lifecycle and message-pump boundary
+
+2026-11-15 addition: bounded decoded instruction reads of a separately bound
+reconstructed 6.002 input, with its import-directory observations. Evidence ID
+`client-windows-6002-lifecycle-static` in the
+[evidence index](../docs/evidence-index.tsv). This is not a trace of the
+protected original starting. The reconstruction's lineage and original loaded
+API bindings remain unauthenticated. Nothing was executed. **[bin]**
+
+A CRT command-line path reaches a four-argument Windows-entry candidate. That
+candidate passes the command line to an argument wrapper, which reaches a main
+candidate. These names describe the observed argument flow; they are not
+authenticated source-level function names. After option parsing returns false,
+the main candidate obtains a module path and calls a lifecycle wrapper. **[bin]**
+
+The wrapper calls initialization and tests its boolean result. Failure returns
+without entering the loop. Success repeatedly calls a boolean tick until it
+returns false, then calls teardown. A tick checks a shared quit flag before
+calling a pump wrapper and checks that flag again afterward. The remaining
+tick path uses an elapsed-time threshold to call an update helper; this read
+does not establish that helper's complete gameplay or rendering behavior.
+**[bin]**
+
+The pump wrapper directly calls a helper that drains message-shaped records.
+A record with the quit-message value sets the same flag tested by the tick.
+Other records pass through two indirect handlers. Their queue, translation and
+dispatch API identities remain inferred because the relevant slots retain
+external loaded pointers rather than independently authenticated bindings.
+After the helper, the wrapper calls a reconstructed import named
+`MsgWaitForMultipleObjects` with zero handles, a short timeout and a wake mask.
+The name is an import observation, not proof of the original process binding.
+**[bin]**
+
+The mapped PE entry in this reconstruction performs security-cookie
+initialization and returns; no application-startup transfer was established
+there. An initialization setup edge reaches redirected/protected code, so
+linear decoding past that edge is not a verified continuation. The separately
+identified window-registration/creation method has not been connected through
+that setup edge to this lifecycle. **[bin]**
+
+This narrows the lifecycle/pump behavior in the inspected reconstruction. It
+does not prove the protected original's entry-to-window-to-play route or the
+absence of dynamically loaded engine modules. The earlier export description
+above must not be used as a runtime module census. These observations do not
+automatically apply to 6.00r4, late 5.x or another platform. **[inf]**
+
 ## No Torque 3D
 
 Absent, as names and as code: `GameConnection`, `TerrainBlock`, `Interior`, DTS, `SimObject`, `SimGroup`, `NetConnection`, Torque console, TorqueScript, datablocks, `.mis`, `.ter`, `.dts`, `.dif`, `.dso`. No SDL. **[bin]**
@@ -81,3 +127,14 @@ The game session is the Graal socket, not Torque. Script events are `onConnectin
 ## What Torque names remain
 
 Live GUI vocabulary, not a Torque subsystem: the `Gui*` control classes and `GuiControlProfile`, each implemented here with a draw routine. Live but not a 3D engine: `GuiGraal3DCtrl` (playfield type), `MissionGroup` (script object name), `onMouseYawPitch` and the 3D-terrain colour builtin (script text), `levels3d` (folder), `graal3://` (option string). **[bin]**
+
+## Open points
+
+- [x] ~~Trace the inspected reconstructed 6.002 lifecycle wrapper, shared quit
+  flag and message-shaped pump boundary.~~ [Bounded finding](#reconstructed-lifecycle-and-message-pump-boundary).
+- [ ] Authenticate reconstruction lineage and original entry, then connect
+  initialization through the redirected setup edge to window creation and play.
+- [ ] Resolve the indirect queue/translation/dispatch bindings and their
+  original loaded targets; verify the named wait import independently.
+- [ ] Observe original isolated startup, loaded modules and usable gameplay
+  separately from this static reconstruction.
