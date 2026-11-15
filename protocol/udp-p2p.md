@@ -87,6 +87,14 @@ Added 2026-11-12, from a static read of the 2.05r2 UDP dispatcher. In each case 
 
 Limits: the position arguments of the delete routines (11, 17, 20) are passed in registers that the export loses, so "removes the one at (x, y)" is **[inf]** from the TCP twins. Which sound 14 and 20 play is not named in the export.
 
+## Server opt-out (PLO 181)
+
+From 2.17 through 5.24r4 the server can send **PLO 181**
+(`PLO_PLAYERNOUDP`): `s` player id + `c` toggle. While the flag is set,
+that player is left out of the nearby list this channel uses, so peers
+send them no UDP (TCP via the server still applies). Dropped on later
+builds. Behaviour note: `plo-181-player-noudp.md`. **[bin]**
+
 ## Open
 - Which client sends id 23 (2.05 only receives it).
 - Whether 2.1 to 2.31 kept this channel on the wire (3.04 did, see above). In 2.22, `noudp=true` is the default, and voice chat also used UDP.

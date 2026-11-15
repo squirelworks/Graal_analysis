@@ -3,9 +3,10 @@
 Date: 2026-11-16
 
 Follow-on to `formats/weblevels-server-folders.md`. Own inventory and format tests on a
-6.1.1.3 `weblevels` cache dump (held off-repo), plus prior in-tree **[bin]** path readings for
-4.20r8. Placeholders only. Tags: **[test]** on-disk · **[bin]** prior static · **[inf]** offline
-hash lead.
+6.1.1.3 `weblevels` cache dump (held off-repo), prior in-tree **[bin]** path readings for
+4.20r8, and a focus **[bin]** path-builder confirm on stock 6.1.1.3 (with 6.03r7 same-era
+tokens). Placeholders only. Tags: **[test]** on-disk · **[bin]** static · **[inf]** offline
+hash lead (superseded for the md5 input).
 
 Allowed shapes in this note:
 
@@ -13,21 +14,48 @@ Allowed shapes in this note:
 - `weblevels/<escaped-server-name>/`
 - `weblevels/weapons/<name>.code`
 - `weblevels/weapons/<escaped-server-name>/<name>.code`
-- `<level>.nw-<port>.code`
+- `<level>-<port>.code`
 - connect host (IP or hostname); lab ports only when a port example is needed
 
 No real sample folder names, no real md5 hex, no worked hashes over live hosts, and no live
-IPs, hostnames, or non-lab ports.
+IPs, hostnames, or non-lab ports. No owner paths, drive letters, or machine names.
 
 ## 1. `<md5-hex32>` level-folder input
 
 ### On disk
 
 **[test]** In the 6.1.1.3 dump, every level `.code` sits under a 32-hex lowercase folder. Each
-such folder has exactly one port value in its `<level>.nw-<port>.code` names (port is still only
-in the file name, not in the folder string).
+such folder has exactly one port value in its `<level>-<port>.code` names (port is still only
+in the file name, not in the folder string). Sampled leaves often look like
+`<level>.nw-<port>.code`.
 
-### Offline hash lead (not a binary proof)
+### Binary confirm (6.1.1.3)
+
+**[bin]** On the stock Windows 6.1.1.3 unpacked client, the level-cache per-server folder name
+is:
+
+```
+<md5-hex32> = lowercase_hex( MD5( host_bytes ∥ decimal_port_ascii ) )
+```
+
+| Piece | Behaviour |
+|---|---|
+| `host_bytes` | Connect-host string as the client already holds it (IP or hostname bytes; no extra encoding step on this path) |
+| Separator | **None** — not `:`, `/`, or NUL |
+| `decimal_port_ascii` | Game-server port as decimal ASCII digits (no extra width / zero-pad beyond the natural decimal) |
+| Hash | MD5 over that concatenation |
+| Hex | **Lowercase** `0123456789abcdef`; 32 characters |
+
+On connect / server-select the client stores that hex string as the level-folder name and joins:
+
+```
+weblevels/<md5-hex32>/<level>-<port>.code
+```
+
+(platform path separator; literal `-` between level leaf and port). Same MD5/hex helpers and
+`weblevels` / `.code` / `GRESCR01` tokens are present on 6.03r7.
+
+### Offline hash lead (supporting)
 
 **[inf][test]** Against escaped `host:port` material already present under that dump’s
 `weapons/` / `classes/` segments (login host-list and world names; real values not published):
@@ -37,27 +65,24 @@ in the file name, not in the folder string).
 | `<host>` digits of `<port>` concatenated, **no** separator | **some** (one folder matched a login-list host∥port pair) |
 | `<host>:<port>`, `<host>\|<port>`, `<host>/<port>`, host only, UTF-16LE forms, host + binary LE/BE port words | **none** |
 
-So the best offline reading remains: folder name = MD5 of connect **host** bytes followed
-immediately by the **decimal ASCII port** (no `:` / `|` / other separator). That is not yet
-a full dump match, because most level folders’ connect hosts are not among the escaped login
-host-list segments (game-server hosts after warp are expected). World-display-name segments
-do **not** hash to any level folder.
-
-### Binary
-
-**[bin]** Not closed in this pass. No 6.1.1.3 / 6.03 client image was available in the cloud
-workspace to trace the path builder. Treat the table above as a lead until a focus binary
-session confirms the sprintf/concat form and character set.
+That table is now supporting **[test]** for the **[bin]** rule above, not a substitute for it.
+Most dump level folders still need game-server hosts (after warp), which are not among the
+escaped login host-list segments. World-display-name segments do **not** hash to any level
+folder.
 
 ## 2. Path layout: 4.20r8 vs later
 
-| Surface | 4.20r8 (and 4.04r2–5.12 weapon CRC path) | GRESCR-era / 6.1.1.3 dump |
+| Surface | 4.20r8 (and 4.04r2–5.12 weapon CRC path) | GRESCR-era / 6.1.1.3 |
 |---|---|---|
-| Level folder | `weblevels/<host>/` (IP or hostname; port **not** in folder) **[test]** on older installs; **[bin]** path shape in `formats/gwebl001-cache.md` | `weblevels/<md5-hex32>/` **[test]** |
-| Level file | `<level>.nw-<port>.code` (fallback `<level>.code`) | same file-name shape **[test]** |
-| Weapon cache | `weblevels/weapons/<name>.code` — **no** server segment **[bin]** (`protocol/unknown-ids-2026-11-06.md`, `protocol/v4x-clients.md`) | `weblevels/weapons/<escaped-server-name>/<name>.code` with `%0NN` decimal escapes **[test]** |
+| Level folder | `weblevels/<host>/` (IP or hostname; port **not** in folder) **[test]** on older installs; **[bin]** path shape in `formats/gwebl001-cache.md` | `weblevels/<md5-hex32>/` **[bin]** (6.1.1.3); **[test]** on dump |
+| Level file | `<level>-<port>.code` (fallback `<level>.code`) | same file-name family **[bin]**/**[test]** |
+| Weapon cache | `weblevels/weapons/<name>.code` — **no** server segment **[bin]** (`protocol/unknown-ids-2026-11-06.md`, `protocol/v4x-clients.md`; stock 4.20r8 has `weblevels`+`.code`, no `GRESCR01`) | `weblevels/weapons/<escaped-server-name>/<name>.code` with `%0NN` decimal escapes **[test]**; path-builder **[bin]** on 6.1.1.3 |
 | Class cache | no weapons-style `.code` on the v4 133 path (see `protocol/class-bytecode-v4.md`) **[bin]** | `weblevels/classes/<escaped-server-name>/…` **[test]** |
 | Gani cache | not the focus of the 4.20r8 193 path | flat `weblevels/ganis/` in the 6.1.1.3 dump **[test]** |
+
+**[bin]** Escape rule for the 6.1.1.3 weapons/classes middle segment: bytes not accepted as-is
+become `%` + **decimal** digits, zero-padded to three (`%0NN`). Same family already seen on
+disk as **[test]**.
 
 **[test]** A mixed v4 *install folder* can also contain later `weapons/<escaped-server-name>/`
 `GRESCR01` files. Those are not evidence that stock 4.20r8 writes the middle segment.
@@ -74,7 +99,7 @@ shapes yet.
 
 ### Level files (6.1.1.3 dump)
 
-**[test]** Every level `.code` in the dump:
+**[test]** Every level `.code` in the dump (117/117):
 
 ```
 uint32 LE   L          logical length
@@ -97,8 +122,8 @@ GWEBL as shipped in `gwebl.py`).
 
 ### Weapon / class files (same dump)
 
-**[test]** Every `weapons/**/*.code` and `classes/**/*.code` file begins with the eight-byte
-magic `GRESCR01`, then an encrypted body. That family is documented in
+**[test]** Every `weapons/**/*.code` (489/489) and `classes/**/*.code` (287/287) file begins
+with the eight-byte magic `GRESCR01`, then an encrypted body. That family is documented in
 `formats/gwebl001-cache.md` and `protocol/gs2-official-bytecode-6113.md` (DES-ECB, session key
 from PLO 197, CRC over the stored body after the magic). Keys stay out of this repository.
 
@@ -107,22 +132,21 @@ caches use `GRESCR01`.
 
 ### Gani files (brief)
 
-**[test]** Flat `ganis/*.code` files in the dump also look length-prefixed (varying LE heads;
-not the shared post-length dword of the level set; not `GRESCR01`). Format not traced further
-here.
+**[test]** Flat `ganis/*.code` files in the dump (47) also look length-prefixed (varying LE
+heads; not the shared post-length dword of the level set; not `GRESCR01`). Format not traced
+further here.
 
 ## Corrections / keep
 
 - Keep 4.20r8 weapon caches as `weblevels/weapons/<name>.code` (**[bin]**).
-- Keep documenting 6.1.1.3 level folders as `weblevels/<md5-hex32>/` with md5 input still
-  **[inf]** pending **[bin]**.
+- Document 6.1.1.3 level folders as `weblevels/<md5-hex32>/` with input
+  `MD5(host∥decimal_port)` lowercase hex (**[bin]**).
 - Do not equate level `.code` with `GRESCR01` or with `.gpak`/`.gpake`.
 
 ## Still open
 
-1. **[bin]** Confirm md5 input string on a 6.1.1.3 (or sibling) client path builder.
-2. Decrypt / identify the 6.1.1.3 level body after the LE length (session vs other seed).
-3. Loopback: whether a real client creates `weblevels/<md5-hex32>/` against Seihai (structure only).
-4. Stock 4.20r8 live check of weapon path vs Others Work’s `weapons/<server>/` lead.
-5. Reconcile 6.03r7 host-keyed `weblevels\<host>\weapons\` static table with dump’s
+1. Decrypt / identify the 6.1.1.3 level body after the LE length (session vs other seed).
+2. Loopback: whether a real client creates `weblevels/<md5-hex32>/` against Seihai (structure only).
+3. Stock 4.20r8 live check of weapon path vs Others Work’s `weapons/<server>/` lead.
+4. Reconcile 6.03r7 host-keyed `weblevels\<host>\weapons\` static table with dump’s
    top-level `weapons/<escaped-server-name>/`.
