@@ -91,3 +91,9 @@ In 6.1.1.3, chat from other players reaches the scripts as an event. The two rul
 | --- | --- | --- |
 | Another player's line arrives as the script event `onToall`, raised by `tclient_settoallmsg` on the TCP incoming path. The UDP callback does not raise it | 6.1.1.3 | [bin] (protocol/v6113-chat.md#the-arrival-path) |
 | No compiled PLO id is assigned to that event. The wire id is the script pair, which is not in the image | 6.1.1.3 | [bin] (protocol/v6113-chat.md#which-plo) |
+
+## 2.8.7 Selected Windows 2.22 control PM paths
+
+The identified modified community control's Message action collects selected recipient identifiers and reuses or constructs a message window. A window button combines recipients with nonempty text and reaches virtual send intent for type 28; the virtual target and transport framing were not recovered. [bin] (protocol/windows-222-pm-static.md#message-action-and-send-intent)
+
+Its selected receive dispatcher sends types 55, 56 and 82 to default cleanup. Type 37 decodes a two-byte sender identifier and searches existing players; an unmatched sender reaches cleanup without player construction in this handler. Matched senders enter message/state and player-list update paths. This is static evidence for one modified control, with no native display result or sibling-build claim. Remote-roster request and identity creation remain open (→ App. E#613). [bin] (protocol/windows-222-pm-static.md#receive-dispatch-and-sender-lookup)
