@@ -3,7 +3,7 @@
 
 A GANI file is the text animation format that GraalShop reads and writes and that clients load from `levels/ganis/`. This chapter gives its grammar as the editor reads it; how a client plays a GANI is in → §4.
 
-> Status: draft. The grammar is from the GraalShop reader and writer and checked against client sample files; the separate exact-input Mac v5 loader result is scoped in §3.3.7.
+> Status: draft. The grammar is from the GraalShop reader and writer and checked against client sample files; the separate exact-input Mac v5 loader result is scoped in §3.3.7, and the public 2.1.0.0 field counts are in §3.3.9.
 
 ## 3.3.1 File
 
@@ -129,3 +129,18 @@ WAIT adds duration to an existing group. PLAYSOUND stores a resource reference, 
 Classic+ 1.13 and Era+ 1.0 share two inspected resource forms with uppercase `PARAM1` as the first field of a three-field ANI placement group, followed by two positive integer coordinate spellings. Each form declares `SINGLEDIRECTION` and has two comma-separated groups in one ANI row; the symbolic group occurs first in one form and second in the other. These are direct placements, distinct from symbolic SPRITE sheet references. [file] (formats/ios-gani-param1-placements.md#field-context)
 
 Preserving the file requires keeping the symbolic reference distinct from numeric sprite zero; this does not establish native resolution or rendering. Other slots/case variants, negative or fractional native-coordinate acceptance, default direction behavior, timing and playback remain unverified. Independently authored parse/serialize and fallback tests establish consumer behavior, not a native oracle. [file][doc] (formats/ios-gani-param1-placements.md#useful-preservation-contract); [file] (formats/ios-gani-param1-placements.md#limits-and-next-questions)
+
+## 3.3.9 Public 2.1.0.0 field counts
+
+The public 2.1.0.0 image stores these fields. Playback, units and the other 2.1 images were not read [bin] (client-internals/v2100-gani-reader.md).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| `PLAYSOUND` | field 1 is the sound name; the two floating-point slots are `1.5` and `2.0` unless the line has more than three fields, in which case fields 2 and 3 replace them | [bin] (client-internals/v2100-gani-reader.md#playsound) |
+| `WAIT` | field 1 is an integer added to the open frame's counter; the counter's start was not read | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement) |
+| placement | a comma piece is kept only at exactly three fields; the second and third are integers | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement) |
+| `SPRITE` | stored when more than five fields remain after the keyword: an integer, a text name, and four integers | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `COLOREFFECT` | more than four remaining fields, and the integer must find a stored sprite: that integer and four floating-point values | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `ZOOMEFFECT` | more than one remaining field, with the same sprite test: that integer and one floating-point value | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| `SETBACKTO` | the remaining field is stored as text | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+| ignored lines | a line that is not one of these words is not stored; `ATTACHSPRITE` is not tested | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
