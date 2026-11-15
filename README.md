@@ -6,6 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [v4 GUI windows after server-warp](protocol/v4-gui-survive-serverwarp.md) — C5 lead: Login GUI may survive 178 unless hidden; loopback confirm open; research #56; static status.
 - [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.
 - [Mac 6.015 on Lion](version-profiles/lab-mac-v6-6015-lion-2026-11-16.md) — Batch Mac v6 inventory; guest launch needs `chmod +x`; white OpenGL window; no Mac 6.037 in the owner share; lab + static.
 - [Batch Linux 3.0beta / 3.01 / clean 3.151](version-profiles/batch-linux-3x-clean-installers-2026-11-16.md) — Makeself+UPX unpack; damaged 3.151 upload superseded; gen-4 wire still open; static.
