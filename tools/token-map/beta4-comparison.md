@@ -4,8 +4,8 @@
 
 Compared 2026-11-15 against GServer-v2 beta4 commit
 [`365bbd2`, documentary version list](https://github.com/squirelworks/seihai-gserver-v2/blob/365bbd29a3e0e57495a02267a4b3f27839ad2ec6/server/src/versions.txt).
-The pinned tree's content agrees with the retained comparison copy. This is
-the actual beta4 reference, not an assumption based on a working branch name.
+This pins the beta4 reference rather than inferring a revision from a working
+branch name.
 It is a human-readable list of version labels and tokens, with headings and
 comments; it is not itself an executable's identity or a captured login.
 
@@ -55,3 +55,24 @@ To repeat the exact-value comparison, supply the pinned public text to
 text only and prints exact matches, prefix discrepancies, unmatched values,
 canonical additions and ambiguous associations. Public source citations and
 the canonical category records remain the authority for evidence. **[doc]**
+
+## Categorization decisions
+
+The audit preserves every existing exact-association W/B/B+/L/S/C/U boundary
+and adds categories only where the cited method supports that association.
+For early catalogued originals, the static token column supplies B alongside
+their own capture W. The connect-routine study supplies selected exact-platform
+B corroboration for its explicitly checked wire values. Beta4 matching version
+reports supply L only for the documented label scope; the twelve raw-prefix
+disagreements remain conflict records, and Linux/Mac siblings do not inherit
+Windows documentary labels. Server-binary recognition remains L for an
+unidentified client, never B for an unread client.
+
+The existing Windows 6.113 `S, W` pair is retained as WS, with the captured
+script constant C recorded separately. A Mac script replay is not given W from
+that Windows capture. Worlds' known connector mechanism S and unknown production
+value U retain explicit separate scopes. The 23 recovered mobile associations
+remain static B; duplicate packages do not become extra sources or W. Existing
+historical identity qualifications and same-version/different-token conflicts
+remain in their citation text. This is source categorization, not new native
+research, and may be refined when new exact-association evidence is published.
