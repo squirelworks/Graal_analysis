@@ -6,6 +6,14 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [NRY identity F01–F03](version-profiles/nry-identity-f01-f03.md) — 5.12-untouched=5.00r7; 2.1.x level magics / controlnpc; 1.x VERGRAAL vs 1.39 no listserver; research #53; index.
+- [Scripted weapons on 5.00r7 / 5.12](protocol/scripted-weapons-5x-status.md) — classic vs modern delivery ids; transitional 5.x handles both; stock path / #55 open; research #5; static status.
+- [v4 GUI windows after server-warp](protocol/v4-gui-survive-serverwarp.md) — C5 lead: Login GUI may survive 178 unless hidden; loopback confirm open; research #56; static status.
+- [Large-file thresholds on focus builds](protocol/large-file-thresholds-focus.md) — 64000 / 32000 / LARGEFILE\* ladder for 1.39–6.037; token-table trap; consolidates file-transfer + labs; static + prior lab.
+- [v4 Login account contract (4.20r8)](protocol/v4-login-account-contract.md) — typed account on first Login vs 5.x/6.x guest-first; open stock-UI / script-API rows; consolidates C4 status; static + prior lab.
+- [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); widths and pyreborn P4–P6 open; research #6; static status.
+- [Ids sent by 5.12 / 2.31 id 44](protocol/ids-sent-512-status.md) — S→C vs C→S 44 on 2.31 settled; 5.12 send floor still cap-only; research #17; static status.
+- [2.22 inferred-from-2.1 inventory](version-profiles/222-inferred-from-21-inventory.md) — settled binary/cap rows vs unmatched PLI and era-default cells still to re-tag; research #9; static inventory.
 - [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.
 - [Mac 6.015 on Lion](version-profiles/lab-mac-v6-6015-lion-2026-11-16.md) — Batch Mac v6 inventory; guest launch needs `chmod +x`; white OpenGL window; no Mac 6.037 in the owner share; lab + static.
 - [Batch Linux 3.0beta / 3.01 / clean 3.151](version-profiles/batch-linux-3x-clean-installers-2026-11-16.md) — Makeself+UPX unpack; damaged 3.151 upload superseded; gen-4 wire still open; static.
@@ -32,11 +40,26 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Game rules of the 1999 servers](server-notes/gserver-1999-rules.md) — GServer 1.28 beta 2 and 1.3: each client message, bush regrowth, horses, leaders, deaths, alignment, baddy start modes and the kill cost, and where GServer-v2 differs; static.
 - [Update cadence of the 3.x, 4.x and 6.x clients](client-internals/update-cadence-3x-6x.md) — every build steps every 50 ms; how each loop handles falling behind; GS1 `timeout` counts whole steps, rounded down; lab.
 - [NC write operations (gap #40)](protocol/nc-write-ops-status.md) — id inventory from npc-control.md; attribute/class/weapon write layouts still open.
+- [Carry/throw, hit and shoot (gap #26)](protocol/carry-shoot-hit-status.md) — SHOOT/SHOOT2 settled for 5.x/6.x; throw/HITOBJECTS/E#311–312 still open.
+- [Non-local level warp (gap #15)](protocol/nonlocal-level-warp-status.md) — gmap hang settled; plain `.nw` missing-level link lab still open.
+- [2.x link probe / BIGMAP / entry save (gap #34)](protocol/link-probe-bigmap-status.md) — 2.05 edge rules settled; probe offsets, skip flag, 171 vs bigmap, E#314 still open.
+- [Missing-file replies on 5.12 (gap #37)](protocol/filesendfailed-512-status.md) — 30 layout and 2.05 empty-file settle settled; one-per-name count on 5.12 still needs lab.
+- [RC props tail / SET2 byte / PLO 124 (gap #42)](protocol/rc-props-flags-status.md) — tail shape settled; flag vs chest counts and 76 last byte open; 124 body discarded by RC3.
+- [PLO 108 sub 1 and PLO 168 focus status](protocol/plo108-168-focus-status.md) — 168 = logged-in flag (medium on the name); 108 sub 1 unread outside ping, no effect on 6.03r7 in the #254 lab; static + prior lab.
+- [Update packages after login (gap #28)](protocol/update-packages-focus-status.md) — 23/47/159/105/106/187 status; seihai-gserver still no 47/159; client 159 layout open.
+- [2.22 login default-file checks](protocol/222-login-default-files.md) — near-empty vs full: first file wants/updates share the second C→S frame with props; post-answer set still open; lab 2026-11-14.
+- [RC text escaping (gap #41)](protocol/rc-text-escaping-status.md) — trailing empty fields settled; backslash needs server profiles (owner); original RC2/RC3 S still open.
 - [Open-issue lab run, 2026-11-14](live-runs/open-issues-2026-11-14/README.md) — bare numbers in GS1 loop conditions are false in 1.33 to 2.31, `##` and the `#F #S #D #I #R #P6–#P9` codes by build, GS1 `timeout` rounds down to whole 50 ms steps in 1.33 to 5.00r7, walk GANI one frame per step, 108 sub 1 on 6.03r7, the 2.22 start-up files and first file checks, the 5.00r7 action list (partial), and the 3.04 Linux stage-0 capture; lab. Carried in manual §4.1.8, §8.2.12, §2.5.13, §2.7.10, §4.11.13 and §10.13.
 - [Client test harness: per-build action results](live-runs/client-harness-2026-11-13/README.md) — the action list on 1.39, 1.41r1, 2.22 and 2.31 seen from a second player; spin input on 2.x, no spin on 1.x, 1.41r1 pull poses; the Mac 4.20r6 machine field, flag sends and saved-password format, and why 5.12 Mac draws a black level; lab.
+- [1.41 rev 1 `.nw` / gmap load status](client-internals/141r1-nw-gmap-status.md) — `GLEVNW01` string present, no `GRMAP001`; live `.nw`/gmap load unobserved; static catalogue.
 - [Mac PowerPC 4.04r2 and 5.12 live logins](version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md) — tokens `G3D18026` and `G3D15097`, the Mac login line, the round-down cipher step, and what the server needed; lab.
+- [1.41 rev 1 silent list](protocol/listserver-141r1-silent-list.md) — game client sends nothing; id 1 is one more row, id 2 ignored; `silent_list_after_ms` is a lab/seihai accommodation (original 2001 timing unobserved); static + prior lab.
+- [How 1.39 gets online](client-internals/how-139-gets-online.md) — no listserver path; connect dialog dials the game server directly; seihai-listserver starts at 1.41r1; static + prior lab.
+- [Gen-5 cipher step count on 5.00r7 and 5.12](protocol/gen5-cipher-step-5x.md) — 5.12 round-down on short compressed frames settled; 5.00r7 still unread (keep round-up); E#2 status; prior [bin][wire] only.
 - [5.x and 6.x clients: expiry dates, the clock check, and the black screen](client-internals/v5v6-expiry-and-black-screen.md) — 5.24r4 and 6.03r7 are not time-bombed; 5.30r3 to 6.00r4 exit on a WinLicense-side date check; the "wrong system timer" speed check from 5.24r3 on; the lab black screen came from missing art and a login warp that cut off `pics1.png`; Wine is fine for 4.x–6.x when the 2.22 base asset set is staged (owner 2026-11-16); static and lab.
 - [GS1 scripts on 5.x: the HUD "x" and 99/99](client-internals/gs1-on-5x-hud-and-flags.md) — the no-PK indicator and ammunition set by GS1 kept as GS1, 5.x flag and built-in reads, and the 5.12 black view caused by a stale file-name cache; lab.
+- [Gmap neighbour framing on classic-login 2.x (gap #14)](protocol/gmap-neighbour-classic-status.md) — static settled; classic overwrite predicted; 2×2 lab still open; E#13.
+- [`PLI_ENTERLEVEL` on focus 5.x / 6.037](protocol/enterlevel-focus-builds.md) — 6.03r7 sends 46 (as 2.31); 5.00r7/5.12 unread; no dedicated reply known; static + prior 2.31 lab.
 - [Pre-gmap clients in a gmap world](protocol/pre-gmap-in-gmap-world.md) — 1.39 has no gmap/`.nw`; original-server presentation to pre-gmap clients still unobserved; seihai linked-level fallback not written; static catalogue.
 - [Gmap neighbours on 2.x: which level a board lands on](protocol/gmap-adjacent-level-target.md) — 2.17.1, 2.22 and 2.31 put every board, link, sign and chest on the level named by the last `PLO_LEVELNAME`; a reply to `PLI_ADJACENTLEVEL` without that name overwrites the player's own level, which is what GServer-v2 sends classic-login (2.17) clients; the sequence that works; static.
 - [Gmap file before every pre-3.0 PLAYERWARP2](protocol/gmap-file-on-warp.md) — 2.22 (and other clients older than 3.0) need the `.gmap` on disk when 49 arrives; `saveimages=false` makes once-per-session file push fail on a later warp; static + prior lab.
@@ -77,6 +100,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Linux 6.x class cache](formats/linux-6x-class-cache.md) — packet 197 as a metadata list with the expected CRC, why a header-only file is never a class hit, the 161 request with the stored-body CRC, and the 6.01 x86 split between 140 and 197.
 - [Class bytecode on the v4 path (PLO 133)](protocol/class-bytecode-v4.md) — `PLI_UPDATECLASS` (161) with stored-body CRC (0 on a cold v4 join) answers as raw 133 behind `PLO_RAWDATA`, not 197; contrasts the weapon 193/158/132 loop; 3.153–5.12 including 4.20r8.
 - [Per-version script packet guards](protocol/script-packet-guards.md) — never send 132/133/193 to builds that dropped them (5.24+ / v6); never send 197/140 to pure 4.x; gate on the profile `plo` set.
+- [PLO 181 peer-UDP opt-out](protocol/plo-181-player-noudp.md) — `PLO_PLAYERNOUDP`: player id + toggle; flagged peers are left out of the nearby UDP send list; 2.17–5.24r4.
+- [PLO 109 HTTP(S) download](protocol/plo-109-httpdownload.md) — `PLO_HTTPDOWNLOAD` layout and 5.24r4–6.03r7 range; Others Work “v6 only” softened; first-string scheme-check still open.
 - [Mac OS X 6.11r1 GS2 runner](client-internals/mac-611r1-gs2-runner.md) — decoded records with cached handlers, the loop check, snapshot-based sleep and waitfor, and calls that wait for class downloads; static, one build.
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
@@ -408,7 +433,7 @@ Raw decompiles stay out of this repository. These notes are derived from public 
 - `formats/gpak.md`: the `.gpak` package (a plain ZIP read with minizip), the encrypted `.gpake` / `.enc` scheme (per-entry DES-ECB, key from PLO 104), the send order, and the version quirks (4.20r8 ignores plain `.gpak`). Both a plain `.gpak` and an encrypted `.gpake` are confirmed loading in the real 6.03r7 client. The client's DES is standard DES with each key byte bit-reversed, the same quirk as 2.05 (`client-internals/saved-passwords.md`, now confirmed for 4.04r2 and 6.03r7 too). `tools/file-formats/make_gpak.py`, `make_gpake.py` and `tools/file-formats/samples/` build and hold the samples. In the real 4.20r8, `.zip` and `.gpake` load but plain `.gpak` does not, and 4.04r2 loads no package at all.
 - `formats/gwebl001-cache.md` (new section): the 5.x / 6.x `weblevels` `.code` cache for weapons, classes and ganis, and the `GRESCR01` script cache format.
 - [weblevels per-server folders and `.code` roles](formats/weblevels-server-folders.md) — host vs hostname vs `<md5-hex32>` level folders, `%0NN` weapon/class segments, and why `.code` is not `.gpak`/`.gpake`; inventory + format tests.
-- [weblevels md5 / 4.20r8 path / level `.code` residuals](formats/weblevels-code-residuals.md) — offline md5 input lead, 4.20r8 vs GRESCR-era path table, LE length-prefixed level `.code` vs `GRESCR01`.
+- [weblevels md5 / 4.20r8 path / level `.code` residuals](formats/weblevels-code-residuals.md) — `[bin]` `MD5(host∥port)` level folders on 6.1.1.3, 4.20r8 vs GRESCR-era path table, LE length-prefixed level `.code` vs `GRESCR01`.
 
 ## GS2 client VM (2026-11-07)
 
