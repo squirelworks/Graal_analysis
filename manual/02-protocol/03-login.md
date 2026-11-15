@@ -1,6 +1,8 @@
 <!-- manual: kind=reference status=draft -->
 # 2.3 Login and handshake by generation
 
+For exact values, shared aliases, roles and per-association evidence, use the [version token map](../../VERSION-TOKENS.md) and its [canonical catalogue](../../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support. [doc] (client-internals/version-token-catalogue.md)
+
 Tokens are listed in → §1.2.2, frames in → §2.1.4 and ciphers in → §2.2. The listserver exchange that comes before a game login is in → §6; RC and NC logins are in → §7.
 
 ## 2.3.1 1998 relay (generation 1)

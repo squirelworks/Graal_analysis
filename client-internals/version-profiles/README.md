@@ -1,5 +1,7 @@
 # Version profiles, 1.41 to 2.17
 
+For exact values, shared aliases, roles and per-association evidence, use the [version token map](../../VERSION-TOKENS.md) and its [canonical catalogue](../../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support.
+
 Date: 2026-10-23
 
 `141-217.toml` describes each client release from 1.41 rev1 to 2.17 well enough for a reimplementation to *be* that version. That covers what it sends and understands on the wire, and also what the player sees and can do.

@@ -1,5 +1,7 @@
 # How the 3.x to 7.x clients identify themselves at login
 
+For exact values, shared aliases, roles and per-association evidence, use the [version token map](../VERSION-TOKENS.md) and its [canonical catalogue](../client-internals/version-token-catalogue.md). A token does not uniquely identify a build or establish feature support.
+
 Date: 2026-11-11. This note pulls together what other notes in this repo already establish. It adds no new lab run. Every claim links to the note that holds the evidence, and the tags there still apply.
 
 ## The question

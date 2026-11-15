@@ -2,6 +2,8 @@
 
 Version 0.0.5. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
 
+Find exact login, staff-tool and service identities in the [version token map](../VERSION-TOKENS.md), generated from the [canonical catalogue](../client-internals/version-token-catalogue.md). Shared values do not identify a unique build; read each association's evidence and role.
+
 This folder is the reference manual for Graal itself: clients, wire protocol, file formats, servers, listserver, RC and NC, NPC scripting, Graal3D, the Torque-era clients and tools. It is organised by subject, not by note. Start with `00-conventions.md`, which fixes scope, numbering, citation and notation.
 
 ## Layout

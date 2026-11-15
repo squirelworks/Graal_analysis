@@ -12,6 +12,9 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Make every known version-token association easy to find.** ~~Keep one canonical catalogue and generate a role-qualified token-first map and TSV, with prominent README/manual/protocol/profile links.~~ [Map](../VERSION-TOKENS.md), [canonical source](../client-internals/version-token-catalogue.md), [generation checks](../tools/token-map/README.md). Dated published-source coverage is explicit; unknowns and shared-token evidence remain separate.
+  - [ ] Resolve the catalogue's remaining client identities and connector production tokens from actual evidence; consumer registry omissions do not authorize guessed associations or feature profiles.
+
 - [x] **Bound exact ver10 list entry and selected-row joining.** ~~Trace the fixed list endpoint, connection initializer and selected game endpoint fields.~~ [Static finding](../client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary); manual §6.1.4/App. E#15. This does not establish runtime entry or whole-program absence of alternative routes.
   - [x] ~~Record the two bounded local-entry attempts.~~ [Qualified negatives](../client-internals/graal2002-and-140-builds.md#two-bounded-local-entry-attempts): neither reached the first-update reply arms; synthetic fixture checks do not supply original-client acceptance.
   - [ ] Establish an exact supported isolated entry path and complete the original-client reply-arm discriminator in App. E#15.
