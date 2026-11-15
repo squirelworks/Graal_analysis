@@ -26,7 +26,9 @@ The web-level cache keeps copies of server levels on disk. Each row gives one ev
 | `<server host>` | connect host (IP or hostname); port is **not** in the folder name | [test] (formats/gwebl001-cache.md#path); [test] (formats/weblevels-server-folders.md) |
 | fallback | the reader also tries `<level>.code` without the port | [2.05] (formats/gwebl001-cache.md#path) |
 | example | `weblevels\<public-host>\<level>.nw-<port>.code` | [test] (formats/gwebl001-cache.md#path) |
-| later eras | `weblevels/<md5-hex32>/` level folders; GRESCR dirs as `weblevels/weapons/<escaped-server-name>/` (and classes) | [test] (formats/weblevels-server-folders.md) |
+| later eras | `weblevels/<md5-hex32>/` level folders; GRESCR dirs as `weblevels/weapons/<escaped-server-name>/` (and classes) | [test] (formats/weblevels-server-folders.md); [test][inf] (formats/weblevels-code-residuals.md) |
+| 4.20r8 weapons | `weblevels/weapons/<name>.code` (no server segment) | [bin] (formats/weblevels-code-residuals.md); [bin] (formats/gwebl001-cache.md) |
+| 6.1.1.3 level `.code` | 4-byte LE length, then body padded to 8; not `GRESCR01`; not classic `gwebl.py` | [test] (formats/weblevels-code-residuals.md); [test] (formats/gwebl001-cache.md) |
 
 ## 3.8.3 Encrypted file
 
