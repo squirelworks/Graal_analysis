@@ -300,7 +300,7 @@ macOS CI is paused until the polish stage.
   (a horse does not change it). **Still open:** the rest of the 2.22 default file-check
   set. The near-empty start files and the first unanswered frame are recorded
   ([run](../live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder); manual §2.7.10); that server answered none, so sword, shield, body and the later icons still need a server that answers id 23 and id 34. Maps folder
-  in 2.1–2.16 (the client archive still has no build between the 2.1 test builds and 2.22).
+  in 2.1–2.16. ~~The client archive still has no build between the 2.1 test builds and 2.22.~~ The Windows 2.1.0.0–2.1.0.4 images are in `client-internals/graal2002-and-140-builds.md`; the maps-folder behaviour is still unread.
   Tracked in #245.
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),
