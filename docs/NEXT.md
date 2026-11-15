@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **NPC GS2 gmap re-entry (status).** ~~Survive or restart?~~ Seihai restarts; real-client lab open. [Note](../protocol/npc-gmap-reentry-status.md); gap #22.
+
 - [x] **NC write ops (status).** ~~Attribute/class/weapon write layouts?~~ Id inventory settled; write-path details open. [Note](../protocol/nc-write-ops-status.md); gap #40.
 
 - [x] **Carry/throw / shoot (status).** ~~Layouts?~~ SHOOT path settled for 5.x/6.x; throw and HITOBJECTS need capture. [Note](../protocol/carry-shoot-hit-status.md); gap #26.
