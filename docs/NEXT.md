@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry/throw / shoot (status).** ~~Layouts?~~ SHOOT path settled for 5.x/6.x; throw and HITOBJECTS need capture. [Note](../protocol/carry-shoot-hit-status.md); gap #26.
+
 - [x] **Non-local level warp (status).** ~~Wire when link targets absent level?~~ Gmap hang known; plain `.nw` lab open. [Note](../protocol/nonlocal-level-warp-status.md); gap #15.
 
 - [x] **2.x link probe / BIGMAP (status).** ~~Probe offsets / 171 / entry save?~~ 2.05 edge rules known; 2.22 S+L open. [Note](../protocol/link-probe-bigmap-status.md); gap #34; E#308/E#314.
