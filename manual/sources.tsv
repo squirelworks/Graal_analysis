@@ -207,6 +207,7 @@ client-internals/npcaction.md	cited	2.5	2.5
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
 client-internals/offline-tutorial-205.md	cited	4.8; E	4.8	
+client-internals/v21-local-enter.md	cited	4.8; E	4.8; E	The two 31 arguments, the v22 64-tile shift, the eight-byte stream and the ver7 log-literal limit are in §4.8. 2.05 stays open in E#319.
 client-internals/packed-6037.md	cited	1	1	§1.8.7 carries the version-resource identity and that the decompile is a packer stub
 client-internals/packed-6113.md	cited	1	1	§1.8.7 carries the 6.113 identity and that the decompile is a packer stub; the Mac 6.11 comparison stays a pointer at the existing 6.11 note
 client-internals/player-mannerisms-live.md	cited	4; 4.1; 4.2; 4.3; 4.5; E	4	
