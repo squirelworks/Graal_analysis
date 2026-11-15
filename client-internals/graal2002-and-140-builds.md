@@ -169,6 +169,42 @@ Each attempt began at a clean visible welcome without resource errors, with its 
 
 Separate synthetic clients connected to both listener configurations and received the expected eight-field row. Those controls validate the fixture/loopback transport only; they do not show original-client protocol acceptance. After the original attempts no local row had been obtained, and owned client/fixture processes were cleaned up. Two negative entry hypotheses do not establish that all local routes are unsupported. None of the four original-client reply arms was reached, and no first player-properties emission was observed. **[lab][cap]**
 
+### Native ver10 list/game entry and first wire frame
+
+A later isolated Windows run on 2026-11-15 reached an owned loopback list and
+then a selected game socket using the unchanged original ver10 executable,
+FileVersion 2.1.0.2, through the normal no-argument client. Supporting DATA was
+mixed, so this is not a pristine-install compatibility claim. The server was
+a bounded synthetic list/game fixture, not a game-server release or commit.
+Before this run, normal local entry had not been established by the two
+attempts above; afterward, three fresh sessions supplied complete first game
+frames. Evidence ID `WIN-VER10-GATE03-WIRE-20261115` in the
+[evidence index](../docs/evidence-index.tsv) binds the reviewed structure-only
+receipt and redacted log aliases `arm-A02.events`, `arm-B.events` and
+`arm-C.events`. **[lab][cap]**
+
+Each captured first frame was 66 wire bytes: a two-byte big-endian length
+field declared 64 compressed bytes, which expanded to 56 bytes. The login
+line identified client type 0 and token `GNW31101`. The three subsequent
+client messages decoded as ids 37, 39 and 23 after generation-3 insertion
+removal; all nine expected insertion-byte checks across the three frames
+passed. None was player-properties id 2. Only decoded structure is published;
+raw login fields and capture contents are excluded. **[cap]**
+
+The listener lifetime was 30 seconds, approximately 29 seconds after accept,
+with replies sent 500 ms after the complete first frame. The world-time and
+empty-self-properties reply sessions recorded no later client chunks within
+that bound. The no-reply session had a wrong-timer warning and is confounded.
+The first player-properties update was not observed, and the remaining
+reply-arm discriminator is unresolved. These observations do not prove that
+clearing the static gate is sufficient, nor that the client never sends an
+update. **[lab][cap]**
+
+The wire observation upgrades only the exact ver10 game-login association.
+The public 2.1.0.0 image, ver13 and v22 retain their own static grades despite
+sharing the token. No complete client-send table, successful level entry or
+whole-program behavior follows from this bounded first frame. **[inf]**
+
 ## Form resources
 
 The resource directory names the Delphi forms compiled into each image. A name here is a window the executable carries. It does not say which of those windows the player can open. **[bin]**
@@ -210,7 +246,8 @@ The chest and baddy editor forms follow the dispatch split in the section above:
 
 ## Open points
 
-- [ ] Capture a login frame from ver10 or v22 on a loopback lab server, to take `GNW31101` from B to W. Do the same for 1.40's `GNW23090`.
+- [x] ~~Capture the exact ver10 login token on an isolated loopback fixture.~~ [Native wire observation](#native-ver10-listgame-entry-and-first-wire-frame); sibling grades stay separate.
+- [ ] Capture v22 and checked 1.40 login frames independently; no shared-token grade inheritance.
 - [ ] Lab check of ids 2, 4, 17, 18, 154 and 155 on ver7–ver13. Send a baddy, a chest and a horse, and see whether the client draws them.
 - [ ] Read the client-to-server ids each 2.1.0.x build can send, for manual §2.4's 2.1x rows.
 - [x] ~~Read the receive bodies of ids 170 to 174 in the public 2.1.0.0 image and of 175 to 177 in v22.~~ [Receive layouts of ids 170 to 177](#receive-layouts-of-ids-170-to-177). ver8 to ver13 bodies were not compared. Client-to-server sends of these ids stay open.
