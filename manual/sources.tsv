@@ -590,6 +590,8 @@ protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9; E		v7 chat, world, UDP sta
 protocol/v7-graal3d-discovery-extras.md	cited	E		v7 open-item status and extras
 client-internals/v7-graal3d-unity-bridge.md	cited	E		v7 Unity/Quattro bridge surface
 version-profiles/linux-teardown.md	excluded			tooling verification and preflight handoff; client results need individual review
+version-profiles/nry-coverage-teardown.md	excluded			strings-only scan; login tokens and packet tables stay in the notes the manual already cites
+version-profiles/nry-tokens-by-build.tsv	excluded			public version labels and string hits from that scan; not a login-token catalogue
 version-profiles/macos-client-compatibility.md	cited	1; E	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
 docs/evidence-index.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
