@@ -30,7 +30,7 @@ Real clients keep a per-server folder under `weblevels/`. On legacy clients, ser
 
 **[test]** On 2.22, sampled level `.code` files decrypt as GWEBL001 with `tools/file-formats/gwebl.py`, and the plaintext host field **equals** the folder name (connect host). Port is not part of the folder name.
 
-**[test]** On the 6.1.1.3 dump, level files sit only under `<md5-hex32>` folders. A lead from offline hashing is that the folder name may be an MD5 of connect host concatenated with port (UTF-8, no separator). That lead is **not** published here as a worked example against real hosts; confirm on a 6.1.1.3 binary path.
+**[test]** On the 6.1.1.3 dump, level files sit only under `<md5-hex32>` folders. A lead from offline hashing is that the folder name may be an MD5 of connect host concatenated with port (UTF-8, no separator). That lead is **not** published here as a worked example against real hosts; confirm on a 6.1.1.3 binary path. Residual hash trials, era path table, and level `.code` vs `GRESCR01` layout: `formats/weblevels-code-residuals.md`.
 
 ### Weapon / class / gani folders (5.x / 6.x dumps)
 
@@ -80,7 +80,7 @@ So: same **cipher family** as `.gpake` for script caches; **not** the ZIP/gpak c
 
 ### 6.1.1.3 level `.code` note
 
-**[test]** Level files in the dump share the same four bytes immediately after the LE length field. Classic name-seeded GWEBL ciphertext does **not** do that across different level names. Combined with `gwebl.py` failure, those level caches are **not** byte-compatible with the 2.05/2.22 reader. Whether they are still GWEBL001 under a shared/session key (first plaintext block identical → identical first ciphertext block) remains open. Do not treat them as `.gpake`.
+**[test]** Level files in the dump begin with a 4-byte little-endian length `L`, then a body whose length is `L` rounded up to a multiple of 8. They share the same first eight body bytes across every level file. Classic name-seeded GWEBL ciphertext does **not** do that across different level names, and the classic Win wrapper (`N = padded_plaintext + 8` with `N` equal to the whole post-header body) does not match this `L`. Combined with `gwebl.py` failure, those level caches are **not** byte-compatible with the 2.05/2.22 reader. Whether they are still GWEBL001 under a shared/session key remains open. Do not treat them as `.gpake` or as `GRESCR01` (script caches keep the `GRESCR01` magic at offset 0). Details: `formats/weblevels-code-residuals.md`.
 
 ## Sanitization summary
 
