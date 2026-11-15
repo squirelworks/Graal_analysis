@@ -64,6 +64,14 @@ The rules below say which tokens go to the listserver and which go to a game ser
 | After the list, 2.17 logs in to the game server as type 0 with a key, `GNW22122`, account and password, in generation 3 | [cap] (protocol/listserver.md#217-list-host-bin) |
 | What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured (1.41 rev1 sends nothing, see above); 1.42 and 2.01 to 2.04 share 2.00's built-in list data and are expected to send shape A | [inf] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5) |
 
+### 6.1.4 Exact Graal 2002 ver10 entry boundary
+
+The inspected FileVersion 2.1.0.2 list loader constructs an encoded fixed host and supplies a fixed list port. Its connection initializer checks a host cache, tries numeric parsing/hostname resolution, creates a TCP socket, parses the port, connects and then enables nonblocking mode; list-token/login strings follow its return. This static path establishes neither a configurable local endpoint nor a successful login. [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary)
+
+The reply reader uses row/field counts and length-prefixed field bytes. Joining a selected row requires at least eight fields and takes the game host/port from zero-based fields 6/7. Keep these row fields separate from the list endpoint. The inspected cache starts empty and its only direct writer found follows resolution; absence of a file-input call in the reviewed routines does not exclude indirect or unreviewed routes. Exact-input runtime entry and first-update gates remain open in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary)
+
+Two isolated Windows attempts with the unchanged executable and qualified mixed supporting data showed connection failure and no listener accept/client bytes: a local-file candidate and an existing mapping that differed from the decoded fixed host. Synthetic clients reached both fixtures, which validates transport rather than original-client protocol acceptance. Neither attempt reached the four first-update reply arms; this does not establish global route absence (→ App. E#15). [lab][cap] (client-internals/graal2002-and-140-builds.md#two-bounded-local-entry-attempts)
+
 ## 6.2 Replies
 
 ### 6.2.1 Listserver → client ids

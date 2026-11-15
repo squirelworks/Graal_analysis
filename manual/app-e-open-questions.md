@@ -174,6 +174,7 @@ The static inputs in §1.1.5 establish tokens, command names and receive-route d
 | `GNW31101` and `GNW23090` login evidence | capture a login from exact ver10 or v22, and a checked 1.40 input, on an isolated loopback lab; keep grade B until captured | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | ver7–ver13 default routes 2, 4, 17, 18, 154, 155 | a correctly identified baddy/chest/horse fixture and observable result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Exact ver10 first emitted properties update | observe the normal interactive client before the first server reply; compare fresh sessions with no reply, an unrelated reply and self-properties id 9. Static gate clearing and six-property construction do not settle the other startup guards or actual emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
+| Exact ver10 local entry | the inspected fixed-host list loader and selected-row fields 6/7 do not supply a proven local entry route; verify an exact supported path before the reply-arm experiment, without treating a narrow cache/file-call search as whole-program absence | [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary) |
 | Six Graal 2002 PLI sets | read their own send sites; do not borrow neighboring build or shared-token rows | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout

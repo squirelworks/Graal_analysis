@@ -12,6 +12,10 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Bound exact ver10 list entry and selected-row joining.** ~~Trace the fixed list endpoint, connection initializer and selected game endpoint fields.~~ [Static finding](../client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary); manual §6.1.4/App. E#15. This does not establish runtime entry or whole-program absence of alternative routes.
+  - [x] ~~Record the two bounded local-entry attempts.~~ [Qualified negatives](../client-internals/graal2002-and-140-builds.md#two-bounded-local-entry-attempts): neither reached the first-update reply arms; synthetic fixture checks do not supply original-client acceptance.
+  - [ ] Establish an exact supported isolated entry path and complete the original-client reply-arm discriminator in App. E#15.
+
 - [x] **Carry the inspected Windows 4.04r2 component map into the manual.** ~~Separate carrier/shell, mapped engines and audio from release-lineage and runtime claims.~~ [Study](../client-internals/windows-404r2-components.md); manual §1.8.5 and §10.1.11.
   - [ ] Resolve release dating, map the engine RTTI classes and inspect shell forms/event handlers within the study's evidence limits.
 
