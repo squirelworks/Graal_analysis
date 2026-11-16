@@ -90,3 +90,7 @@ The grid is `(width + 5) // 6` by `(height + 5) // 6`. Cell `(x, y)` reads the p
 Other matched colours write one fill tile (water 12, mountains 80, flowers 4, sand 5, puddle 6, puddle stone 7, small stones 8, big stone 9, swamp 10, bushes 11). An unknown colour, and grass, write nothing.
 
 Level names are `world_a-01.nw` through `world_z-99.nw` style: a lower-case column, a dash, and a 1-based row of two digits. **[doc]** The gmap is `WIDTH`, `HEIGHT`, and quoted `LEVELNAMES` rows. **[bin]** Edge links use the same 0/61 arrival as the terrain levels. A second run keeps existing `LINK` and `NPC` lines and paints only the new non-grass tiles. **[doc]**
+
+## Stock LCG / height roles (2026-11-16)
+
+Delphi LCG confirmed in stock `TerrainGenerator.exe`; HEIGHTMAP vs RANDOMSEEDS roles and the 65×65 vs 9×9 distinction are in [`gmap-terrain-stock-2026-11-16.md`](gmap-terrain-stock-2026-11-16.md). **[bin]**

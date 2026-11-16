@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Gmap terrain stock LCG / height roles.** ~~Delphi LCG in TerrainGenerator.exe; HEIGHTMAP vs RANDOMSEEDS.~~ [Note](../tools/generators-222/gmap-terrain-stock-2026-11-16.md).
+
 - [x] **GS2 fold 241 checklist.** ~~Stock 6.00 makes it; open repro does not fuse it.~~ [Note](../protocol/gs2-fold-241-2026-11-16.md).
 
 - [x] **Tile types / `pics1` packing.** ~~No client `tiletypes0.dat`; strip packing; picso high-id OOB.~~ [Note](../formats/tile-types-pics1-packing-2026-11-16.md).
