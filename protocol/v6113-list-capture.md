@@ -66,3 +66,12 @@ The static read stands. The 6.113 listing contains no token. The running client 
 `protocol/listserver.md` describes a different socket. The classic client list uses ids 0, 1 and 7, the names `newmain` and `GNW30123`, and ports 14921 to 14923. **[doc]** From 4.x, port 14900 is a game server the client treats as Login, and the server list arrives inside that session. **[bin]**
 
 This capture is that port. Both completed sessions start with the same `GNP1905C` hello. There is no clear id 0 list, no id 2 status and no id 1 account frame. The client opens the second session as it closes the first, so the two sessions are not a list handshake followed by a different clear game protocol. Anything that distinguishes them sits in the ciphertext.
+
+## Live confirm (2026-11-16)
+
+A later official Windows 6.113 run on `HOST:14900` again shows the same clear
+`GNP1905C` + zlib-wrapped outer `EILLLT` (`T=0xfd`, `LLL=279`), RC4 from
+stream offset **287**, three answered sessions and one unanswered SYN, and no
+port jump off 14900 after Login in that file. No keys recovered. See
+[`v6113-live-handshake-2026-11-16.md`](v6113-live-handshake-2026-11-16.md).
+**[cap]**

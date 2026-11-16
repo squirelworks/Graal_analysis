@@ -24,6 +24,7 @@ Third-party REA corpora are leads, not proof, and are not copied here.
 | Prop parse path on 6.113 | Settled **[bin]** | Script methods `tclient_setplayerprops` / `tclient_setotherplayerprops` / `tclient_setnpcprops` / `tclient_setbaddyprops` feed the same native parsers 6.037 calls from its packet switch. Field-byte diffs between the two images were not compared. `v5-props.md`, `v6037-hello-diff.md` |
 | Prop wire → slot join | Settled **[lab][bin]** | Live Mac new-protocol map: wire 9→slot 1 `setplayerprops`; wires 2/3/8→unnamed prop slots. Joined note: `v6113-receive-handlers-props.md` |
 | Live Windows connector still served (2026-11-16) | Settled **[lab]** | Stock 6.113 writes `GRESCR01` `StartScript_Connector` before Login UI; Login chrome then downloads. `v6113-live-connector-2026-11-16.md` |
+| Live Windows `HOST:14900` handshake reconfirm (2026-11-16) | Settled **[cap]** | Official 6.113 again: clear `GNP1905C` + zlib `EILLLT`/`0xfd` (`LLL=279`), RC4 from offset **287**, three answered sessions + one unanswered SYN; stayed on `HOST:14900` after Login; no keys. `v6113-live-handshake-2026-11-16.md` |
 
 A classic Gen5 server that answers only `G3D…` login does not speak this stream after the hello. **[cap][inf]** (`v6113-list-capture.md`)
 
@@ -54,7 +55,9 @@ Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
    `connector-script.md` Open. **[lab]**
 3. **Open: loopback `conf.gs` harness** (partial). Live Windows 6.113 still
    fetches a connector and reaches Login UI
-   (`v6113-live-connector-2026-11-16.md`). A loopback connector responder plus
+   (`v6113-live-connector-2026-11-16.md`). Official post-Login traffic on
+   `HOST:14900` reconfirms the clear hello and RC4-from-287 cut without keys
+   (`v6113-live-handshake-2026-11-16.md`). A loopback connector responder plus
    first encrypted frames against a lab game sink is still missing. Mac 6.111
    offline replay already settles the cipher story; do not wait on the
    harness to keep the settled table above. **[lab]**

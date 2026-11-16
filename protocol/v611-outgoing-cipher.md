@@ -50,6 +50,16 @@ The script makes the RC4 key with `generate16ByteKey`, and calls `rsa_encrypt` w
 
 What follows for a server **[inf]**: a server that answers a stock 6.11 client must recover the session key from the 0xfc body. That needs the private key matching the public key in the signed connector script. A lab server does not have it, so it cannot read a stock client's encrypted stream.
 
+## Live confirm (2026-11-16)
+
+Official Windows 6.113 on `HOST:14900` again matches this clear prefix and the
+offset-**287** RC4 cut: `GNP1905C`, outer `EILLLT`/`0xfd` with `LLL=279`,
+ciphertext tail on the second TCP write, server first reply also clear
+`0xfd`, and early post-hello client writes of length 7. Session keys were not
+recovered. See
+[`v6113-live-handshake-2026-11-16.md`](v6113-live-handshake-2026-11-16.md).
+**[cap]**
+
 ## Open points
 
 - [ ] Decrypt the Windows 6.113 capture itself. That needs the session key of that exact session, read from the running client.
