@@ -284,8 +284,10 @@ formats/graalsav.md	cited	3.7	3.7
 formats/grmap001.txt	cited	3.2; E	3.2	
 formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	cited	3.8	3.8	
+formats/grescr-key-words-2026-11-16.md	pending		3.8; E	GRESCR01/197 key unpack + top digit; 756 keys 0 weak; client no reject; mint open; no keys published
 formats/gr-v105-500r7.md	cited	1; 3.1	1; 3.1	5.00r7 intro of GR-V1.05 (absent 4.20r8), GCHAR layers + N×13-bit boards, writer layers>1 with count clamp 223
 formats/gr-v105-500r7-cache-lab.md	cited	1; 3.1; 3.8	1; 3.1; 3.8	5.00r7 web-level cache lab: GR-V1.05 counts 0x22/0x23, no pad; HEIGHTS inconclusive on that path
+formats/gr-v105-empty-tiles-2026-11-16.md	cited	3.1; E	3.1; E	GR-V1.05 upper-layer empty: RAM all-ones/-1, disk 4095; no JE-skip found; sample hunt limits
 formats/level-binary-client.md	cited	3.1; 3.6; E	3.1	
 formats/level-binary.md	cited	1; 3.1; E	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
@@ -396,6 +398,7 @@ protocol/v5-props.md	cited	2.6; B; C	2.6	§2.6.6 carries the 5.x and 6.x case se
 protocol/v6-repro-facts.md	cited	2.10	2.10	
 protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.11 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
 protocol/v6113-hello.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.5 carry the token and the six-byte header. The cipher after the zlib member is in protocol/v611-outgoing-cipher.md
+protocol/gen6-s2c-pkcs-padding-2026-11-16.md	cited	E	E	gen-6 S→C 0xfc PKCS#1 v1.5 type-2 closed; C2S operator-key open; no keys published
 protocol/v6113-list-capture.md	cited	1; 6	1; 6	
 protocol/v6113-plo.md	cited	2.5	2.5	
 protocol/v6113-pli.md	cited	2.4	2.4	§2.4.12 carries sendraw, senddata, the 254 script slot and the 6.037 id-5 login; the 55 event names stay in the note
@@ -689,6 +692,9 @@ protocol/gmap-file-on-warp.md	cited	2.5	2.5	pre-3.0 clients need `.gmap` on disk
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
 protocol/gs2-official-functable-order-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 segment-2: dotted-last suffix, dense slots; hash-bucket order refuted; bodies/names private
 protocol/gs2-official-trailer-scan-2026-11-16.md	cited	E; 8.4	E; 8.4	enlarged trailer scan: 0/660 trailing 0x0A; stock setScript ignore; bodies private
+protocol/gs2-official-jump-narrow-returns-2026-11-16.md	pending		E; 8.4	offline jump/narrow consistency on 19; 18/660 missing final return; pass existence open; bodies private
+protocol/gs2-official-function-only-shape-2026-11-16.md	pending		E; 8.4	all 19 official bodies jump-past-end; PG1 live fixtures still open; bodies private
+protocol/gs2-official-strings-latin1-2026-11-16.md	pending		8.4; E	one Latin-1 high-byte sample in official seg3; ANSI/ACP client path; live glyph open; bodies private
 protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	E; 8.4	E; 8.4	partial offline counts for opcodes 45/46/47/190 and segment-2 order on 7 official bodies; full 19 and the five-use rule stay open; bodies and names stay private
 protocol/gs2-official-varcache-19-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 offline counts for 45/46/47/190, temp.* slots, dense indices; five-use AST rule open; bodies/names private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
@@ -804,6 +810,7 @@ protocol/rc-text-escaping-status.md	pending		7; E	RC text escaping status: empty
 protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
 graal3d/research-status-2026-11-16.md	pending		9; E	Graal3D resume status: settled GR3DV002 camera/collision/protocol rows; open live d3drm and GR3DV003 lab; E#500 draw-time still open
 protocol/npc-gmap-reentry-status.md	pending		2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
+protocol/nw-layer-ext-500r7-2026-11-16.md	cited	3.1; E	3.1; E	5.00r7 .nw: no TILESET; no trailing object-layer; BOARD layer uses tilelayers[]; 6.03 cleartext residual
 protocol/nc-write-ops-status.md	pending		7; E	NC write ops status; gap #40; seihai-npcserver#22
 protocol/carry-shoot-hit-status.md	pending		2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
 protocol/nonlocal-level-warp-status.md	pending		2.5; E	Non-local level warp status; gap #15; seihai-core#7
