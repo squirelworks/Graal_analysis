@@ -39,6 +39,8 @@ On these seven tables:
 
 So the **serialized** segment-2 list is not a name-hash sort. The shape fits **declaration / encounter order** for the name list, with opcode indices assigned when bodies are laid out (which explains index drops). Whether a client’s **runtime** lookup still hashes names is a separate static read — not shown by this walk. **[cap][inf]**
 
+Full-nineteen follow-up: [gs2-official-functable-order-2026-11-16.md](gs2-official-functable-order-2026-11-16.md) — dotted/qualified names are always a contiguous suffix; slot ids are dense `0..n`; treating a hash-bucket dump as the official serialisation rule is **refuted**. **[cap]**
+
 ## Ranks 3–5 (pointers only)
 
 | Lead | From these bodies | Where to look next |
