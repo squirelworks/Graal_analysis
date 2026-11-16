@@ -50,6 +50,8 @@ The later Android clients are a separate line from the Windows, Linux and Mac cl
 
 **[bin]** Incoming messages are dispatched through a 256-entry handler table indexed by an unsigned command byte. Some handlers run at once and others are queued. The queue policy, the outer framing, compression, encryption and which command maps to which handler were not recovered.
 
+How that chat and dispatch shape compares with desktop 6.x / classic chat is in [protocol/android-classic-protocol-vs-6x.md](../protocol/android-classic-protocol-vs-6x.md). Game-login and version-token construction were out of scope for this reading; the unread boundary is [android-login-token-boundary.md](android-login-token-boundary.md).
+
 ## Resources
 
 **[file]** Classic 1.6 and 1.7 each ship 48 plain-text GANIs, and Era 1.7 ships 96. Classic 1.8 ships 48 GANIs that are not plain text, Era 2.0 ships 95, and Classic 2.0 and 2.2 ship 593 each. The assets stay out of the reproduction repo.

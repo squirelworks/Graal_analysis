@@ -85,6 +85,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Windows 4.20 render entry points](client-internals/windows-420-render-seams.md) — adventure and canvas render entries that check their target first, a fake-renderer test, and who owns scripts in Windows v3 to v5.
 - [Windows 4.04r2 tutorial run R01](version-profiles/windows-404r2-teardown.md#instrumented-tutorial-run-r01) — 539 shell ticks at about 50 ms with no periodic core update or render hook.
 - [Android Classic and Era 1.6 to 2.2](client-internals/android-classic.md) — seven packages; the Java host, the 50 ms frame gate, layered collision, the 64×64 board, 1/16 animation offsets and the 220-byte chat builder; static.
+- [Android login/token boundary](client-internals/android-login-token-boundary.md) — connect unread (engines unencrypted); catalogue stays U; no iOS/desktop transfer.
+- [Android Classic protocol vs 6.x](protocol/android-classic-protocol-vs-6x.md) — chat `len+32`/220 vs desktop CURCHAT/toall; 256-entry inbound table; command map unread.
 - [GS2 on Android Classic 1.8](protocol/gs2-android-classic-18.md) — the container, branches, loop and stack limits, number, string and array rules, the event queue and 173 native bindings; static.
 - [What the early Windows clients show when started](version-profiles/early-windows-screen-review-2026-11.md) — screenshot review of the v0, v1 and v2 builds in an offline Wine lab.
 
