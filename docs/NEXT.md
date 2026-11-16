@@ -13,6 +13,7 @@ macOS CI is paused until the polish stage.
 ## Tasks
 
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
+- [x] **`.nw` layer / tileset extensions (5.00r7).** ~~No TILESET; no trailing object-layer; BOARD layers >1 honoured.~~ [Note](../protocol/nw-layer-ext-500r7-2026-11-16.md).
 
 - [x] **GR-V1.05 upper-layer empty tiles.** ~~Disk 4095 / RAM −1; no equality-skip found; sample hunt limits.~~ [Note](../formats/gr-v105-empty-tiles-2026-11-16.md).
 
