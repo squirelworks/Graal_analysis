@@ -146,3 +146,35 @@ Linux 6.01r1 and Linux 6.03r7 share a handler set, found as one function per opc
 | Maths | settled | No value-stack cap. Loop default remains 10000 and is settable. Call depth 10000. Remainder is the plain floor. A positive square root is single precision, and `b == 2` is `a * a` before that. Shifts stay modulo 32. Integer conversion, equality within 0.0001, and the nine-decimal number-to-text rule match 3.153 **[bin]** **[doc]** |
 | Events | partial | The 6.00 names `timeout` and `istimeout` are present. Linux 6.01r1 saves a deadline as the script clock plus a positive input, and replaces the first matching pending record. Trigger, restore, cancellation order and the public result values were not proved. Case of `onTimeout` against `onTimeOut` was not tested **[bin]** |
 | Names and clock | partial | The clock's cadence on Linux 6.01r1 was not proved. Windows 6.03r7's profile uses the single-precision power rule and does not restate the 0.05 step. The reserved-name list was not re-opened **[bin]** **[doc]** |
+
+## Unpacked Windows 6.1.1.3
+
+The packed listing of this version has no opcode switch. The row is the unpacked image. It adds no case past the 6.00 set **[bin]**.
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse | settled | The walker stops when the segment type is outside 1–4. Segment 1 stores one integer, the event mask. Segment 2 drops a leading `public.` and marks the function public. Segment 3 is the string table. Segment 4 uses the 6.00 marker widths, and a decoded instruction is 24 bytes. A cache file shorter than eight bytes is rejected. The magic must match, the flag must be 1, and the checksum covers the bytes after the magic. `publicsoap.` was not mentioned **[bin]** |
+| Slots | partial | Fold 242 still requires a call frame, stores a register, and skips the next opcode. The 0–1023 range was not re-measured. Official bodies from this era use dense slot indices per function, and the highest index in the seven-body slice is 10; every opcode 47 is immediately followed by 45 **[bin]** **[cap]** |
+| Opcodes | settled | Cases through 242, including 54, 121 and 200–242. No 48, no 49, no case above 242, and the 4.2 names that were never implemented stay unimplemented. An opcode with no case pops one value and continues. 54 on this image rejects a stack shorter than two (the 6.00 guard, not 5.00r7's three-value guard), drops two values, converts what is then on top to an object, and stores as opcode 50 does. 121 joins when either tag is a string, otherwise adds. The pair recogniser that produces 234–242 was not separated; the executor still accepts those results **[bin]** |
+| Maths | open | Arithmetic helpers were not re-read. Do not copy the 6.03r7 single-precision square root onto this image until it is opened |
+| Events | open | Not read on this image |
+| Names and clock | open | Not read on this image |
+
+### What the 6.113-era compiler writes
+
+Nineteen decrypted bodies, six classes and thirteen weapons, all walk as segments 1–4 in that order, segment 1 a zero word, no trailing newline, no file wrapper, markers only `F0`–`F6`, and no opcode at 200 or above. Twelve of the nineteen use a `public.` prefix. Opcode 190 (`loadparams`) occurs. Opcodes 48, 49, 54 and 121 do not occur in this set. A seven-body slice of the same family confirms the container checks and shows segment 2 is not sorted by a case-insensitive name hash, nor by instruction index. That is the compiler's output, not a proof of how the VM looks a name up **[cap]**.
+
+The checksum on those cache files covers the stored bytes after the magic, before decryption. An older sentence that put the checksum on the plaintext does not hold for this capture **[cap]**.
+
+## Mac 6.11r1
+
+A partial handler read. The table was walked through a 256-entry window whose entries 243 and 244 are zero; the true length was not proved. Nothing was run.
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse | partial | The runner executes decoded 40-byte records, not the serialized bytes. The first byte is the opcode, and each record caches its handler. The bytecode-to-record mapping was not recovered, so the segment walk is not shown **[bin]** |
+| Slots | open | Not among the handlers that were read. The value stack is a pool that grows by 100; the upper limit was not read **[bin]** |
+| Opcodes | partial | Handlers read: 0 falls through, 1 jumps, 2 branches and pops, 6 calls, 8 sleeps, 9 checks the loop, 11 waits, 20 pushes a number, 21 pushes a string, 24 pushes 1, 27 pushes pi, 164 is the end marker added at preparation. Opcode 7 was not read. 1, 2 and 6 agree with 4.20r8. The loop check defaults to 10000, can be overridden from the owner's context, and the counter lives on the opcode-9 record and resets when the program is rebuilt **[bin]** |
+| Maths | open | Arithmetic and comparison handlers, and NaN, were not read |
+| Events | partial | Sleep and waitfor snapshot the function, the index, the stack, the frames and the object context, and store the event name. A positive delay is the manager's clock plus the delay. Status 2 means suspended. The unit of the clock and the order of due snapshots were not checked **[bin]** |
+| Names and clock | partial | A call walks the stack down to the tag-0 marker, checks access and the parameter count, and can suspend on `classesdownloaded` and retry the call. The reserved-name walk was not read. The clock unit is open **[bin]** |
