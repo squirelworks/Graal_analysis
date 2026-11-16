@@ -24,3 +24,20 @@ Third-party REA corpora are leads, not proof, and are not copied here.
 | Prop parse path on 6.113 | Settled **[bin]** | Script methods `tclient_setplayerprops` / `tclient_setotherplayerprops` / `tclient_setnpcprops` / `tclient_setbaddyprops` feed the same native parsers 6.037 calls from its packet switch. Field-byte diffs between the two images were not compared. `v5-props.md`, `v6037-hello-diff.md` |
 
 A classic Gen5 server that answers only `G3D…` login does not speak this stream after the hello. **[cap][inf]** (`v6113-list-capture.md`)
+
+## 6.037 is not 6.113
+
+Same late-Windows shell family (Themida / WinLicense packed `OG_Graal`-style
+stubs), different cores. **[bin]** (`packed-6037.md`, `packed-6113.md`,
+`themida-pack.md`, `v6037-hello-diff.md`)
+
+| | Windows 6.037 | Windows 6.113 |
+| --- | --- | --- |
+| Login identity | Compiled-in Gen5 token `G3D0311C` (stored scrambled, sent as id 5) | Connector script supplies `GNP1905C` via `sendRaw` |
+| First hop | Game connect to a compiled-in Login host (`HOST:PORT` lab form; no `conf.gs`) | Signed `conf.gs` connector reply, then script-driven connect |
+| On-disk license file | None (hosts compiled in), same as other late 6.0x | None; connector host path, not `license.graal` |
+| After hello | Classic Gen5 framing / cipher | Clear token + one clear key frame, then RC4 from offset 287 |
+| Prop intake | Native packet switch → parsers | Script `tclient_set*props` → same native parsers |
+
+Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
+**[bin][inf]**
