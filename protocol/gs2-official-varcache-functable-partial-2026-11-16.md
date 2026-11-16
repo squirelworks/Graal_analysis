@@ -45,7 +45,7 @@ Full-nineteen follow-up: [gs2-official-functable-order-2026-11-16.md](gs2-offici
 
 | Lead | From these bodies | Where to look next |
 | --- | --- | --- |
-| Segment-1 GS1 event mask | Always 0 here, as in the nineteen-body note | Event-mask / `needEvent` dispatch in stock **4.20r8**, **5.00r7**, and **6.00** images **[bin]** |
+| Segment-1 GS1 event mask | Always 0 here, as in the nineteen-body note; deepen: [gs2-seg1-event-mask-2026-11-16.md](gs2-seg1-event-mask-2026-11-16.md) | Event-mask / `needEvent` dispatch in stock **4.20r8**, **5.00r7**, and **6.00** images **[bin]** |
 | Top-level code re-run before each event (PG1) | Not visible in static bytecode; all 19 official bodies are jump-past-end ([function-only shape](gs2-official-function-only-shape-2026-11-16.md)) | Bounded live fixture on stock **4.20r8**, **5.12**, **6.03r7**; Linux 4.04r2 already has a bounded event experiment elsewhere **[lab]** |
 | GR-V1.05 multi-layer levels | Not a script-body question | Level reader in **5.00r7** and **6.00** images **[bin]** |
 

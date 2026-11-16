@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **GS2 segment-1 GS1 event mask.** ~~Official zeros; stock needEvent; bit27 absent on 4.x/5.x.~~ [Note](../protocol/gs2-seg1-event-mask-2026-11-16.md).
+
 - [x] **RC2-line session behaviour (stock).** ~~IRC after signature; no 194→prop35+location; GUI≠140; GSERV024/025.~~ [Note](../protocol/rc2-sessions-stock-2026-11-16.md).
 
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
