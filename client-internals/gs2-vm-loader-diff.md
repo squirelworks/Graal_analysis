@@ -236,3 +236,56 @@ The C++ support library under the server: sockets, packet ciphers, packet queues
 ### Client-shaped loader beside the notes
 
 The C++ loader in the client reproduction parses the four segments, strips an exact `public.` prefix, and looks functions up without case, so `ONCREATED` matches `onCreated`. It fuses 200–233 on every profile, and fuses 234–242 only on the 6.00 profile. Its "4.2" opcode set includes both `waitfor` and object compare, so it does not represent 3.153, Windows 4.04r2, or the September 2006 Mac image. Slot stores and loads outside 0–1023 do nothing and read as 0. An action is started by looking up `on` plus the queued name **[src]**.
+
+## Summary
+
+Grades only. The evidence is in the section for that build. "Open" on a whole row means the image was not read; a profile may still lend it a neighbour.
+
+| Build | Parse | Slots | Opcodes and fusion | Maths and limits | Event names | Names and clock |
+| --- | --- | --- | --- | --- | --- | --- |
+| 3.153 | partial | settled | settled | settled | partial | partial |
+| Windows 4.04r2 | partial | open | settled | settled | partial | partial |
+| Linux 4.04r2 | partial | open | settled | open | partial | open |
+| Mac 4.04r2 | open | open | open | open | open | open |
+| Mac, 2006-09-19 (4.20r6 label) | partial | settled | settled | settled | open | open |
+| Linux 4.20r6 | partial | open | partial | partial | partial | open |
+| Windows 4.20r8 | settled | settled | settled | settled | partial | settled |
+| Linux 4.20r8 | open | open | partial | open | open | open |
+| 5.00r7 and Windows 5.12 | settled | settled | partial | settled | partial | partial |
+| Mac 5.12 | open | open | open | open | open | open |
+| 5.24r4 through 6.00r4 | partial | settled | settled | settled | partial | partial |
+| Linux 6.01r1 and 6.03r7 | partial | partial | settled | settled | partial | partial |
+| Windows 6.03r7 | partial | partial | settled | settled | partial | partial |
+| 6.015 and 6.034 | open | open | open | open | open | open |
+| Unpacked Windows 6.1.1.3 | settled | partial | settled | open | open | open |
+| Mac 6.11r1 | partial | open | partial | open | partial | partial |
+| Android Classic 1.8 | settled | partial | partial | settled | partial | partial |
+| Android Era, and Classic other than 1.8 | open | open | open | open | open | open |
+| seihai-core | partial | settled | settled | partial | settled | settled |
+| GServer-v2 | settled | settled | settled | open | settled | settled |
+| gs2lib | settled | settled | settled | settled | settled | settled |
+
+gs2lib's settled cells mean the library has no script machine, not that a client rule was confirmed.
+
+### Loans the 2026-11-13 side-by-side should no longer make
+
+- Windows 4.04r2 was read. It is not an unread copy of the Mac image: the handler set matches, the shift rule is the x86 one, and the clock section above is its own **[doc]** **[bin]**.
+- Windows 5.12's dispatcher matches 5.00r7. It is not an inference **[doc]**.
+- 5.24r4, 5.30r3, 5.31r4, 6.00r2 and 6.00r4 are one VM. They are not 5.00r7 (48 and 49 are gone) and they are not 6.03r7 (the stack cap and the double-precision square root remain) **[doc]**.
+- Linux 4.20r6 is not the September 2006 Mac image. The Linux notes give it opcode 11 and folds 200–233; the Mac image has neither **[bin]**.
+
+### What the script corpora do not settle
+
+The weapon survey and the world survey grade a compiler: which source it accepts, and which event names the weapons spell (`onCreated`, `onTimeout`, `onActionClientSide`, and the server binding `onActionServerSide`). They were compiled in the compiler's legacy mode. A strict mode, a legacy mode and an automatic choice between them change how much source is accepted. They do not change a client's opcode, a slot rule or a clock. Mode-split counts stay out of this page; the working tally names the exports. The published aggregates are [gs2-weapon-corpus-2026-11-14.md](../npc-library/gs2-weapon-corpus-2026-11-14.md) and [gs2-world-corpus-2026-11-12.md](../npc-library/gs2-world-corpus-2026-11-12.md) **[lab]**.
+
+## Still open
+
+- [ ] Function-table case. No client reading shows whether `onTimeout` and `onTimeOut` are one function. seihai-core treats them as different; the C++ loader treats them as the same; GServer-v2's JavaScript bindings are the exact identifiers.
+- [ ] `onActionServerSide` / `onActionClientSide` on a client VM. The server wrapper and the weapon survey use those spellings. No client matcher was read.
+- [ ] Operand order of opcodes 48 and 49, and a single description of how many values opcode 54 pops on 5.00r7.
+- [ ] The 6.x name of the loop-limit property. 6.00r2 and 6.00r4 have the field without the plain name `maxlooplimit`.
+- [ ] Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, and Classic other than 1.8's x86 engine.
+- [ ] Maths on unpacked 6.1.1.3 and on Mac 6.11r1. The 6.03r7 single-precision square root does not transfer.
+- [ ] Whether Linux 4.20r6's fusion and opcode 11, published from a handoff the editor did not re-run, match a fresh read of that ELF.
+- [ ] The 5.00r7 event-queue cap of 1000, read on a backup from a patched install, against a stock image. 4.20r8's cap is 9999.
+- [ ] Unity 7.x, left out of scope.
