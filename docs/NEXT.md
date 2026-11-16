@@ -13,6 +13,7 @@ macOS CI is paused until the polish stage.
 ## Tasks
 
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
+- [x] **GR-V1.05 upper-layer empty tiles.** ~~Disk 4095 / RAM −1; no equality-skip found; sample hunt limits.~~ [Note](../formats/gr-v105-empty-tiles-2026-11-16.md).
 
 - [x] **Official GS2 function-only image shape.** ~~All 19 start with jump-past-end; PG1 live fixtures still open.~~ [Note](../protocol/gs2-official-function-only-shape-2026-11-16.md).
 
