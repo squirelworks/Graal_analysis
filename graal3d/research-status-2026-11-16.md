@@ -48,8 +48,8 @@ Stale index lines that still said the far / back plane was open are corrected in
 | Network side matches `GR3DV002` ids/props/login layout | Settled **[bin]** (`beta3-genesis.md`) |
 | Archived server rejects `GR3DV003` | Settled **[bin]** |
 | Genesis3D DLL + art load | Open (E#504) |
-| Physics / camera config defaults | Open (float constants not read) |
-| UDP bytes vs `GR3DV002` | Open |
+| Physics / camera config defaults | Settled **[bin]** — table in `beta3-genesis.md` (2026-11-16) |
+| UDP bytes vs `GR3DV002` | Settled **[bin]** — same `c(0)`+9-byte props 1–5 / `c(1)` chat (`beta3-genesis.md`) |
 
 A lab needs the public Genesis3D 1.x SDK pieces the RAR omitted, plus a server that accepts `GR3DV003`. No such run is claimed here.
 
