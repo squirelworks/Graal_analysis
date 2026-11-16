@@ -174,3 +174,7 @@ New pages:
 .BR graallevelgen (7),
 .BR rcprotocol (7),
 .BR thinstall (5).
+
+## Client note (5.00r7)
+
+On stock Windows **5.00r7**, the `.nw` `BOARD` layer field indexes `tilelayers[]` and is honoured beyond 0/1. Trailing layer fields on LINK/CHEST/SIGN/NPC/BADDY and `TILESET` / `TILESETIMAGE` lines are **not** stock. See [`../protocol/nw-layer-ext-500r7-2026-11-16.md`](../protocol/nw-layer-ext-500r7-2026-11-16.md). **[bin]**

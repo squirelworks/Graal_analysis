@@ -13,7 +13,26 @@ macOS CI is paused until the polish stage.
 ## Tasks
 
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
+
+- [x] **`.nw` layer / tileset extensions (5.00r7).** ~~No TILESET; no trailing object-layer; BOARD layers >1 honoured.~~ [Note](../protocol/nw-layer-ext-500r7-2026-11-16.md).
+
+- [x] **GR-V1.05 upper-layer empty tiles.** ~~Disk 4095 / RAM −1; no equality-skip found; sample hunt limits.~~ [Note](../formats/gr-v105-empty-tiles-2026-11-16.md).
+
+- [x] **Official GS2 function-only image shape.** ~~All 19 start with jump-past-end; PG1 live fixtures still open.~~ [Note](../protocol/gs2-official-function-only-shape-2026-11-16.md).
+
+- [x] **Official GS2 trailing newline scan.** ~~0/660 trailing `0x0A`; stock readers ignore.~~ [Note](../protocol/gs2-official-trailer-scan-2026-11-16.md).
+
 - [x] **Official GS2 variable-cache deepen (full 19).** ~~45/46/47/190 counts, temp.* slots, dense indices; five-use rule still open.~~ [Note](../protocol/gs2-official-varcache-19-2026-11-16.md).
+
+- [x] **Official GS2 segment-2 order (full 19).** ~~Dotted names last; dense slots; hash-bucket order refuted.~~ [Note](../protocol/gs2-official-functable-order-2026-11-16.md).
+
+- [x] **Official GS2 jump/narrow/return residual.** ~~Consistent with no jump→uncond leftovers; 18/660 lack final return; pass existence open.~~ [Note](../protocol/gs2-official-jump-narrow-returns-2026-11-16.md).
+
+- [x] **Official GS2 strings Latin-1 (one sample).** ~~`0xE7` ç in seg3; ANSI/ACP client path; live glyph open.~~ [Note](../protocol/gs2-official-strings-latin1-2026-11-16.md).
+
+- [x] **GRESCR01 key words / weak-DES sample.** ~~Unpack + top digit closed; 756 distinct, 0 weak; mint reject still open.~~ [Note](../formats/grescr-key-words-2026-11-16.md).
+
+- [x] **Gen-6 S→C `0xfc` PKCS#1 padding.** ~~Type-2 EM closed on stock server→client blocks; C2S still open.~~ [Note](../protocol/gen6-s2c-pkcs-padding-2026-11-16.md).
 
 - [x] **Graal3D research resume (status index).** ~~Re-open Part IX / avenue #5 after the overnight freeze.~~ Settled vs open for `GR3DV002` + `GR3DV003`; stale far-plane index lines corrected; live `d3drm` / beta lab still open. [Note](../graal3d/research-status-2026-11-16.md).
 
@@ -68,6 +87,7 @@ macOS CI is paused until the polish stage.
 - [x] **Gen-5 cipher step for 5.12 (E#2); 5.00r7 still open.** ~~Prefer Claim A (round-down on short compressed frames) for Windows 5.12.~~ [Note](../protocol/gen5-cipher-step-5x.md). 5.00r7 codec unread — keep round-up until read.
 
 - [x] **Pre-gmap clients in a gmap world.** ~~How did original servers present gmaps to builds without gmaps?~~ Client limits settled for 1.39 (no `.nw`/gmap); period server behaviour unobserved; seihai linked-level output still open. [Note](../protocol/pre-gmap-in-gmap-world.md).
+
 - [x] **Codify Wine + base-asset fidelity for 4.x–6.x labs.** ~~Wine black / no-draw on 5.24r4 and 6.03r7 was missing 2.22-folder base assets (`pics1.png`, …), not a client/gserver gap.~~ [Policy](../client-internals/v5v6-expiry-and-black-screen.md#wine-fidelity-policy-2026-11-16); owner 2026-11-16. Prefer real Windows for input/OpenGL edge cases.
 
 - [x] **Reconcile earliest networking build by build.** ~~Separate original relay/GSERV behavior, cross-build runs and reproduction implementation.~~ [Canonical map](../protocol/relay-1998.md#earliest-networking-capability-map); manual §2.3.1.5. Existing native-program evidence is retained with Wine/proxy interventions; no new run is claimed.
@@ -75,6 +95,7 @@ macOS CI is paused until the polish stage.
   - [ ] Resolve exact 1.28 peer UDP endpoint carriage and separately authenticate retained archive provenance; matching bytes alone settle neither.
 
 - [x] **Show every applicable token-evidence category (#532).** ~~Keep compact ordered signatures and structured source/dependency/conflict records in the canonical catalogue and generated views.~~ [Generation/schema](../tools/token-map/README.md), [beta4 comparison](../tools/token-map/beta4-comparison.md). No source count, sibling promotion or drop-in allow-list compatibility is inferred.
+
 - [x] **Capture exact ver10 native list/game entry and wire identity.** ~~Record the first login frame and qualify the reply observations.~~ [Lab finding](../client-internals/graal2002-and-140-builds.md#native-ver10-listgame-entry-and-first-wire-frame); canonical catalogue upgrades only ver10.
   - [ ] Complete the first player-properties discriminator; bounded no-later-chunk observations and a timer-confounded arm do not settle gate sufficiency.
 - [x] **Resolve the public 2.1.0.0 map destinations and resource guards.** ~~Follow 171/172 to distinct state, loaders and text-resolution commit/preserve paths.~~ [Study](../client-internals/graal2002-and-140-builds.md#public-171172-destination-and-resource-guards); manual §2.5.2.2.
@@ -130,6 +151,7 @@ macOS CI is paused until the polish stage.
   - [ ] Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325).
 
 - [x] **Add the six exact Graal 2002 inputs to the GS1 matrix.** ~~Rescan their registered command names and preserve the existing columns.~~ [67-build matrix](../npc-library/gs1-commands-by-version.md); runtime executors and full PLI sets remain separate questions.
+
 - [x] **Carry the 2.3-labelled package identity comparison into the manual.** ~~Separate the matching 2.31 client from the mixed companion tools.~~ [Existing study](../client-internals/graal-2.3-unpacked-package.md); manual §1.8.3. File identity does not supply a distinct original 2.3 client or validate its inferred profile.
   - [ ] Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input.
 
@@ -149,7 +171,9 @@ macOS CI is paused until the polish stage.
 - [x] **Bound the 1.41 rev 1 program-check error binding difference.** ~~Compare the form event and method-table targets in the same-version copies.~~ [Static result](../client-internals/early-windows-callback-variants.md): handler-body entry versus the same body's final return; this does not complete the five-client comparison.
   - [ ] Establish the event trigger, handler helper effects and variant lineage; retain the per-client next questions in the note until independently answered.
 - [x] **Carry the bounded verifier and standalone NC studies into the manual.** ~~Reconcile the reviewed static findings and their limits.~~ Verifier comparison in §3.5.5.1 and E#103; NC action in §7.3.4 and E#425. This does not complete whole-build teardown or resolve native acceptance.
+
 - [x] **Bound the Windows 2.22-labelled verifier variant difference.** ~~Locate the four changed code sites and distinguish them from the earlier control patch.~~ [Static comparison](../formats/windows-222-verifier-variants.md); broader control differences and startup effects remain open there.
+
 - [x] **Fold in the 2026-11-13 research.** ~~Publish the findings that shipped in the Seihai repos as behaviour notes, with manual and App. C/E carries.~~
   - [x] ~~GS2 VM semantics by client version, 3.153 to 6.03r7.~~ [Note](../client-internals/gs2-vm-by-version.md); manual §8.4.9, App. C.8, E#209.
   - [x] ~~GS2 loader / VM quirks by version (compact table + 6.03r7 timer ceil).~~ [Note](../client-internals/gs2-vm-quirks-by-version.md); graded companion [gs2-vm-loader-diff.md](../client-internals/gs2-vm-loader-diff.md).
@@ -211,11 +235,17 @@ macOS CI is paused until the polish stage.
 - [x] **Bound the exact Linux 6.03 local-file cache helper.** ~~Carry retained recognition, key/mode and stored-body/status distinctions.~~ [Source](../formats/linux-603-local-cache-helper.md); static-derived cases are not executed native results.
 
 - [x] **Bound the Linux 6.x class-cache path.** ~~Carry the 197 metadata list, the zero-CRC path, the 161 request and the 6.01 x86 delivery split.~~ [Source](../formats/linux-6x-class-cache.md); fixtures, malformed files and execution remain untested.
+
 - [x] **Document the v4 class-bytecode path (PLO 133).** ~~`PLI_UPDATECLASS` → raw 133 for 3.153–5.12 (including 4.20r8); CRC field vs weapons 193/158/132; not 197.~~ [Note](../protocol/class-bytecode-v4.md). A real 4.20r8 161→133 lab against seihai remains open.
+
 - [x] **Document `NPCPROP_CLASS` vs v4 158 status (#55).** ~~CLASS+197 is GServer habit; 4.20r8 drops 197/140; CLASS/empty-line isolate open.~~ [Note](../npc-library/npcprop-class-v4-158-status.md).
+
 - [x] **Document pre-3.0 gmap file re-send on every PLAYERWARP2.** ~~2.22 needs `.gmap` on disk when 49 arrives; once-per-session push fails when `saveimages` is off.~~ [Note](../protocol/gmap-file-on-warp.md). Real 2.22 wipe-maps / `saveimages=false` lab against the fixed servers remains open.
+
 - [x] **Document per-version script packet guards (193/132/133 vs 197/140).** ~~Never classic bytecode ids to 5.24+/v6; never modern cache ids to pure 4.x; gate on profile `plo`.~~ [Note](../protocol/script-packet-guards.md). Transitional 5.00r7/5.12 preference lab remains open.
+
 - [x] **Document PLO 181 peer-UDP opt-out.** ~~Layout, nearby-list reader, build range 2.17–5.24r4, preferred name `PLO_PLAYERNOUDP`.~~ [Note](../protocol/plo-181-player-noudp.md). Neighbouring-flag writers and non-lab send capture remain open.
+
 - [x] **Document PLO 109 HTTP(S) download status.** ~~Layout `i5` + local name + URL; handled 5.24r4–6.03r7 (not 4.x / 5.12); Others Work “v6 only” softened; first-string scheme-check open.~~ [Note](../protocol/plo-109-httpdownload.md). Loopback store-as-A lab remains open.
 
 - [x] **Publish the Windows 5.00r7 request and segment vectors.** ~~Carry the four authored vectors for the 158/161 requests, the mask-only container and the 4.04r2 `client.` flag.~~ [Source](../client-internals/windows-404r2-500r7-static-2026-11-09.md#four-authored-vectors-for-these-boundaries); none was captured or sent.
@@ -251,8 +281,11 @@ macOS CI is paused until the polish stage.
 - [x] **Bound installed Windows 5.00 event queue delivery.** ~~Publish the retained static increment.~~ [Source](../client-internals/windows-500-event-queue.md) preserves exact-input provenance and static-derived fixture status.
   - [ ] Validate named/enum gates, non-null argument stringification and runtime queue/service behavior in a positively controlled matching build.
 - [x] **Bound Linux 3.04 GS1 source-weapon events and predicates.** ~~Carry the completed bounded research.~~ [Note](../npc-library/linux-304-gs1-runtime.md); remaining gates retain their own open scope.
+
 - [x] **Record seven exact Linux client local-login baselines.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-local-login-matrix.md); remaining gates retain their own open scope.
+
 - [x] **Observe Linux 6.03 network GS2 execution and continuation.** ~~Carry the completed bounded research.~~ [Note](../protocol/linux-603-network-gs2.md); remaining gates retain their own open scope.
+
 - [x] **Plan further use of the retained platform research.** ~~Audit the publication baseline and assign next directions.~~ [Publication and experiment plan](research-data-publication-plan.md) separates completed intake, proposed derived references and assigned experiments.
   - [ ] Publish the nominated completed platform scopes, then build a claim-to-evidence index and a small independently authored fixture set with reviewed acceptance criteria; keep unknown build/lifecycle cells explicit.
 
@@ -334,6 +367,7 @@ macOS CI is paused until the polish stage.
 - [x] **Recover the 1st Graal half of E#307.** ~~Read exact step, probe and nudge tables.~~ [Static geometry](../client-internals/first-graal-movement-2026-11-09.md) preserves 1.39 and runtime-state limits.
 
 - [x] **Correct original 2.05r2 FILE framing.** ~~Separate receiver evidence from historical server branches.~~ [Exact-input note](../protocol/file-205r2-prefix-lf.md) keeps persistence and fixture residuals open; server patches remain deferred.
+
 - [x] **Decode bounded E#206 movement options.** ~~Read the exact queued consumer.~~ [Static follow-up](../npc-library/gs1-move-205r2.md) keeps scheduling and collision residuals open.
 
 - [x] **1. Repo rules and task list.** Add `AGENTS.md`, `.cursor/rules/graal-analysis.mdc`,

@@ -39,12 +39,14 @@ On these seven tables:
 
 So the **serialized** segment-2 list is not a name-hash sort. The shape fits **declaration / encounter order** for the name list, with opcode indices assigned when bodies are laid out (which explains index drops). Whether a client’s **runtime** lookup still hashes names is a separate static read — not shown by this walk. **[cap][inf]**
 
+Full-nineteen follow-up: [gs2-official-functable-order-2026-11-16.md](gs2-official-functable-order-2026-11-16.md) — dotted/qualified names are always a contiguous suffix; slot ids are dense `0..n`; treating a hash-bucket dump as the official serialisation rule is **refuted**. **[cap]**
+
 ## Ranks 3–5 (pointers only)
 
 | Lead | From these bodies | Where to look next |
 | --- | --- | --- |
 | Segment-1 GS1 event mask | Always 0 here, as in the nineteen-body note | Event-mask / `needEvent` dispatch in stock **4.20r8**, **5.00r7**, and **6.00** images **[bin]** |
-| Top-level code re-run before each event (PG1) | Not visible in static bytecode | Bounded live fixture on stock **4.20r8**, **5.12**, **6.03r7**; Linux 4.04r2 already has a bounded event experiment elsewhere **[lab]** |
+| Top-level code re-run before each event (PG1) | Not visible in static bytecode; all 19 official bodies are jump-past-end ([function-only shape](gs2-official-function-only-shape-2026-11-16.md)) | Bounded live fixture on stock **4.20r8**, **5.12**, **6.03r7**; Linux 4.04r2 already has a bounded event experiment elsewhere **[lab]** |
 | GR-V1.05 multi-layer levels | Not a script-body question | Level reader in **5.00r7** and **6.00** images **[bin]** |
 
 ## Against the earlier nineteen-body note
