@@ -16,7 +16,7 @@ The later Android clients are a separate line from the Windows, Linux and Mac cl
 | Classic | 2.0 | 6194 |
 | Classic | 2.2 | 6201 |
 
-**[bin]** Across them there are 15 native engine libraries and three identical store-helper libraries, for ARM32, ARM64, x86 and x86-64. All 16 distinct native files have symbol inventories. Only two were read in depth: Classic 1.7 for ARM32 (3,207 routines) and Classic 1.8 for x86 (1,033 symbols at 965 entry points). The host details below come from Classic 1.7's Java wrapper; every engine detail comes from Classic 1.8 x86. The exact package digests are held by the research owner.
+**[bin]** Across them there are 15 native engine libraries and three identical store-helper libraries, for ARM32, ARM64, x86 and x86-64. All 16 distinct native files have symbol inventories. Only two were read in depth: Classic 1.7 for ARM32 (3,207 routines) and Classic 1.8 for x86 (1,033 symbols at 965 entry points). Classic 2.2's x86 engine was compared to that 1.8 read for the resource-stream decrypt call shape (see Resources); it was not a full depth pass. The host details below come from Classic 1.7's Java wrapper; every other engine detail comes from Classic 1.8 x86 unless the Resources section says otherwise. The exact package digests are held by the research owner.
 
 ## Host and engine
 
@@ -66,7 +66,9 @@ A resource that carries a server-sent file key is first decrypted with that key,
 
 **[file]** Known-plaintext round trip: the 1.7 and 1.8 packages share 47 GANI names, every pair has the same length, and their ciphertexts repeat 8-byte blocks exactly where the plain text does. With the rule above all 47 decrypt to the 1.7 bytes, and the 1.7 bytes encrypt back to the 1.8 bytes. The 48th, `emoticon.gani`, has no 1.7 copy and decrypts to a `GANI0001` file. The decoder is `tools/file-formats/classicgani.py`.
 
-**[file]** Classic 2.2's 593 GANIs use the same rule: 587 decrypt in one pass. The other six (`idle`, `hiddenobj`, `gralats`, `defexplo_dir2`, `tutorial_touch`, `ghostani`) are the 1.8 ciphertext encrypted a second time and need two passes. Whether 2.2 decrypts them twice, through a server-sent key, or not at all is not read.
+**[file]** Classic 2.2's 593 GANIs use the same basename rule: 587 decrypt in one pass. The other six (`idle`, `hiddenobj`, `gralats`, `defexplo_dir2`, `tutorial_touch`, `ghostani`) are the 1.8 ciphertext encrypted a second time under that same rule. After one basename decrypt those six still match Classic 1.8's packaged bodies; a second pass recovers plain GANI text (some plains start with `SPRITE`, as on Classic 1.7).
+
+**[bin][file]** Classic 2.2 keeps the same resource-stream load shape as Classic 1.8: optional outer file-key DES, then the `.gani` basename DES. The resource getter still reaches the in-engine decrypt helper twice in that two-layer order; caller roles match the 1.8 path one-for-one. The six double-wrapped package bodies are an extra basename encrypt on the 1.8 ciphertext — the on-disk form that path produces when the outer key matches the basename key, or when packaging applied that outer pass as if it did. The other 587 need only the basename layer. No separate parse-fail retry and no six-name allowlist showed up in the static read. No per-file key table or sidecar in the package distinguishes the six from an ordinary name such as `walk` (cipher depth only). Decoder: `tools/file-formats/classicgani.py` (two passes for those six). Full control-flow polish of the obfuscated 2.2 getter, and whether Classic 2.0 or Era share the same six, remain open.
 
 ## Tests that follow
 
