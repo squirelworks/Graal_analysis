@@ -38,8 +38,37 @@ No. The only Graal3D server we have (`GServer.exe` from `graal3d.7z`) sets a ver
 
 Since packet ids, props and the login layout did not change, a server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log the beta in. It would no longer need to send level text, because the beta ignores it.
 
+## Config float defaults (static read, 2026-11-16)
+
+The new keys are doubles in an initialized table; the config file overwrites them when present. Built-in defaults **[bin]**:
+
+| Key | Default |
+|---|---|
+| `playerscale` | **1.2** |
+| `RUN_SPEED` | **8000** |
+| `WALK_SPEED` | **4000** |
+| `PLAYER_GROUND_FRICTION` | **20** |
+| `PLAYER_AIR_FRICTION` | **10** |
+| `PLAYER_GRAVITY` | **4000** |
+| `PLAYER_JUMP_THRUST` | **750** |
+| `CAMERA_DISTANCE` | **100** |
+| `CAMERA_PLAYERCENTERY` | **65** |
+| `CAMERA_DISTANCEY` | **30** |
+
+These are Genesis3D world units for this build. They are not the February 2000 follow-camera numbers (220 / +80) or the RM walk speeds in [client-behaviour.md](client-behaviour.md).
+
+## UDP vs `GR3DV002` (static read, 2026-11-16)
+
+Peer UDP matches the February 2000 layout **[bin]**:
+
+- First byte `c(id)` (`id + 32`).
+- **`c(0)`:** props **1–5** packed back to back with **no** prop-id bytes in the datagram (`s2 s2 s2 c s2` = **9** bytes). Shorter bodies are dropped.
+- **`c(1)`:** chat text (same prop-13 path as before).
+- Other type bytes ignored.
+
+Prop-id order **1,2,3,4,5** and widths **2,2,2,1,2** are the same table in both exes. Only in-memory player field offsets for UDP port / address differ with the Genesis object layout; the datagram bytes do not. See [protocol.md](protocol.md) §UDP.
+
 ## Open points
 
 - A lab run needs `genesis.dll` and the beta's art (`genvs.bsp`, `dema.act`, the bitmaps). None of them are in the RAR. The DLL from the public Genesis3D 1.x SDK may load if its version matches what `geEngine_CreateWithVersion` asks for; the art may also come from that SDK. Not tried.
-- The new physics keys have no defaults recorded yet. They are read from the config at start; the built-in defaults are float constants that this note did not read.
-- The beta's UDP datagram layout was not compared byte for byte with `GR3DV002`.
+- How the new speed / gravity / jump defaults map into per-tick motion (beyond the table above) was not fully traced.
