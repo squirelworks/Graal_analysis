@@ -69,7 +69,7 @@ In 2.31, GR-V parsing appears only in the web-level cache code. That's the one p
 
 ## GR-V1.05 (5.00r7)
 
-Multi-layer packed boards arrive with Windows **5.00r7**. Stock **4.20r8** still stops at `GR-V1.04` for the file magic. Layout and writer pick (layers greater than 1 → `1.05`, count capped at 223) are in [`gr-v105-500r7.md`](gr-v105-500r7.md). **[bin]**
+Multi-layer packed boards arrive with Windows **5.00r7**. Stock **4.20r8** still stops at `GR-V1.04` for the file magic. Layout and writer pick (layers greater than 1 → `1.05`, count capped at 223) are in [`gr-v105-500r7.md`](gr-v105-500r7.md). **[bin]** A loopback lab with stock 5.00r7 confirms the web-level cache writes `1.05` for live layers greater than 1 (count bytes `0x22` / `0x23`, no pad; heights inconclusive on that path): [`gr-v105-500r7-cache-lab.md`](gr-v105-500r7-cache-lab.md). **[lab]**
 
 ## Embedded tutorial levels (2.05)
 

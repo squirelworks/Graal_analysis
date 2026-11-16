@@ -74,6 +74,7 @@ The body is an ordinary GR-V level (`level-binary.md`, `level-binary-client.md`)
 | Chests | no, empty (`#`) |
 | Signs | yes, `x+32, y+32, sign text, \n` |
 | Heights | 2.31 only, as a `HEIGHTS` block when the level has a height map, which also switches the magic to `GR-V1.04` **[2.31]** |
+| Multi-layer boards | Stock **5.00r7** web-level cache writes `GR-V1.05` when live layers > 1 (count `0x22` / `0x23`, no pad). Heights did not appear in that Route B session even when the text source had them; see `gr-v105-500r7-cache-lab.md`. **[lab]** |
 
 ## Tool
 
