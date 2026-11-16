@@ -131,16 +131,8 @@ jobs:
           python formats/grv1-decoder/grv1.py "$RUNNER_TEMP/synth.graal"
 
   manual:
-    name: manual (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        # macOS 15 back on hosted runners (squirelworks/seihai#401)
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-15
-    runs-on: ${{ matrix.os }}
+    name: manual
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -177,16 +169,10 @@ jobs:
       - name: pytest tools/gs1-lint
         run: python -m pytest tools/gs1-lint -q
 
+  # One PDF render on ubuntu-latest only (no Windows/macOS matrix).
   manual-pdf:
-    name: manual PDF (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        # The PDF is not built on macOS: the checks above cover macOS (AGENTS.md).
-        # A pull request builds the PDF on Windows only, to keep PR runs
-        # short. A push builds both and keeps the Linux PDF.
-        os: ${{ github.event_name == 'pull_request' && fromJSON('["windows-latest"]') || fromJSON('["ubuntu-latest", "windows-latest"]') }}
-    runs-on: ${{ matrix.os }}
+    name: manual PDF
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -199,22 +185,16 @@ jobs:
 
       # ubuntu-latest already ships Google Chrome and its libraries, so the
       # Linux PDF uses it and needs no apt step (Graal_analysis#400).
-      - name: Use the runner's Chrome (Linux)
-        if: runner.os == 'Linux'
+      - name: Use the runner's Chrome
         run: |
           CHROME=$(command -v google-chrome || command -v google-chrome-stable)
           "$CHROME" --version
           echo "PLAYWRIGHT_CHROMIUM_EXECUTABLE=$CHROME" >> "$GITHUB_ENV"
 
-      - name: Install Chromium
-        if: runner.os != 'Linux'
-        run: python -m playwright install chromium
-
       - name: Build the reference manual PDF
         run: python tools/manual/build_manual.py --out "${{ runner.temp }}/graal-trm.pdf"
 
-      - name: Keep the Linux PDF
-        if: runner.os == 'Linux'
+      - name: Keep the PDF
         uses: actions/upload-artifact@v4
         with:
           name: graal-trm-pdf
