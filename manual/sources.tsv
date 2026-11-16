@@ -690,6 +690,7 @@ protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in
 protocol/gs2-official-functable-order-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 segment-2: dotted-last suffix, dense slots; hash-bucket order refuted; bodies/names private
 protocol/gs2-official-trailer-scan-2026-11-16.md	cited	E; 8.4	E; 8.4	enlarged trailer scan: 0/660 trailing 0x0A; stock setScript ignore; bodies private
 protocol/gs2-official-jump-narrow-returns-2026-11-16.md	pending		E; 8.4	offline jump/narrow consistency on 19; 18/660 missing final return; pass existence open; bodies private
+protocol/gs2-official-function-only-shape-2026-11-16.md	pending		E; 8.4	all 19 official bodies jump-past-end; PG1 live fixtures still open; bodies private
 protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	E; 8.4	E; 8.4	partial offline counts for opcodes 45/46/47/190 and segment-2 order on 7 official bodies; full 19 and the five-use rule stay open; bodies and names stay private
 protocol/gs2-official-varcache-19-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 offline counts for 45/46/47/190, temp.* slots, dense indices; five-use AST rule open; bodies/names private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
