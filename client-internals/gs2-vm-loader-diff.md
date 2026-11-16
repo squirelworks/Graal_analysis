@@ -66,3 +66,31 @@ Three images, not one profile. Windows and Linux were read separately. The Mac i
 | Dimension | Grade | What this build does |
 | --- | --- | --- |
 | Parse, slots, opcodes, maths, events, names and clock | open | Not read. The profile lends it the Mac image's rules, including the PowerPC shift, because that image is PowerPC too **[inf]** |
+
+## 4.20r6
+
+The label covers two different images. The Mac VM row is the 2006-09-19 build that carries a 4.20r6 label and the token of the 4.10r2/4.11 era. The Mac build dated 2006-12-21, which sends the real 4.20r6 token, was not the machine that was read **[bin]**. The Linux ELF is a third input.
+
+### Mac image dated 2006-09-19
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse | partial | Not opened on its own. The shared desktop layout is assumed from the 4.2 Windows reader **[inf]** |
+| Slots | settled | Same 45/46/47 slot opcodes as 3.153 **[bin]** **[doc]** |
+| Opcodes | settled | 3.153's set plus 104 (object compare, leaving −1, 0 or 1). No `waitfor` (11). No load-time folds **[bin]** **[doc]** |
+| Maths | settled | Stack 10000. Remainder uses `floor(a/b + 0.0001)`. Shifts stay on the PowerPC rule (count modulo 64). `b == 0.5` on a positive base is a square root, as on the other 4.x and 5.x VMs **[bin]** **[doc]** |
+| Events | open | The 4.2 Windows event names were not re-read on this image |
+| Names and clock | open | Not read on this image. The profile does not record a clock |
+
+### Linux 4.20r6
+
+The publication of this ELF says the editor matched a sanitized handoff and did not re-open the executable. Treat the rows as partial even where the note tags them **[bin]**.
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse | partial | Big-endian 32-bit segment words and NUL-terminated names. A leading `public.` is removed and a flag is forwarded; that flag is not a proof of call visibility. Markers for string indices and signed integers match the `F0`–`F5` widths. The numeric-text marker's grammar was not shown to be decimal-only. A second marker on the same instruction is not covered by the recovered corpus **[bin]** |
+| Slots | open | The fusion pass rewrites some records into 200–233 and leaves a record tagged 11 unchanged. It does not describe opcodes 45–47 |
+| Opcodes | partial | Fusion rewrites adjacent pairs into internal tags 200–233 and keeps the instruction positions, so a file whose highest opcode is 189 can still feed those tags. Opcode 11 has a real handler here, unlike Linux 4.04r2. That contradicts the Mac image's row, which has neither 11 nor the folds. The two images do not share a VM **[bin]** |
+| Maths | partial | The value stack grows by 100 and refuses to pass 10000, read on the opcode-11 path. Remainder, power and shifts were not read **[bin]** |
+| Events | partial | Opcode 11 takes a number and two strings. A saved wait needs a non-empty name and a positive number; zero is not an indefinite wait on the path that was read. Registration lowercases with the C library and, when the name starts with `on`, drops those two bytes. The saved key is normalized on insert, and an empty target may be compared with the current owner's name. Only the first matching pending record is replaced. Resume, cancellation and the value the opcode leaves were not run **[bin]** |
+| Names and clock | open | The empty-target comparison above is not a full resolver. The clock step was not read |
