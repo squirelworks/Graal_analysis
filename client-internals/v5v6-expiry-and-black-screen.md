@@ -86,9 +86,20 @@ Owner confirmation (2026-11-16): later Wine runs that called **Windows 6.03r7 bl
 
 Lab notes that scored 5.24r4 / 6.03r7 as “wire only” under Wine without staging that art set should be read with this cause: the messages arrived; the draw path never had a tileset. Re-run with assets before treating those cells as a Seihai or client defect.
 
+### Re-score with 2.22 base assets (2026-11-16) **[lab]**
+
+Loopback Wine re-run of **5.24r4** and **Windows 6.03r7** after staging the 2.22-era base files (`pics1.png`, `state.png`, `sprites.png`, ganis/bodies/heads/swords/shields/sounds/tileobjects; optional `chest.png`), clearing stale 5.24r4 `FILENAMECACHE.txt` rows for those names, and holding the login-server 178 until first file requests finished:
+
+| Client | Tiles | Local player | HUD | Still black? | Input note |
+|---|---|---|---|---|---|
+| 5.24r4 (Wine) | yes | yes (after body/head/sword/shield served) | yes | no (letterbox only) | XTest reaches game keys; chat under Wine still prefer real Windows |
+| 6.03r7 Windows (Wine) | yes | yes | yes | **no** | frame deltas after arrows/attack; full chat matrix still prefer real Windows |
+
+So the five-client “wire” cells for these two builds were an **asset / warp-timing** miss, not a protocol or permanent Wine draw failure. Screenshots stay private (original art). The seihai-gserver five-clients lab note can cite this cause when next edited.
+
 ## Open
 
 - [ ] The cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (inside the protection layer; binary search on the clock would find them).
 - [ ] Whether the Themida builds' timer check matches 5.24r4's thresholds.
 - [ ] The lab NPC `message` text not drawing on 5.24r4/6.03r7.
-- [ ] Re-score the five-client Wine “wire” cells for 5.24r4 / 6.03r7 with the 2.22 base asset set staged (draw and input may still differ from real Windows).
+- [x] Re-score the five-client Wine “wire” cells for 5.24r4 / 6.03r7 with the 2.22 base asset set staged (draw and input may still differ from real Windows). **Done 2026-11-16 [lab]** — both draw tiles/HUD/player under Wine with assets + warp hold; see table above.
