@@ -10,7 +10,7 @@ The bodies, keys, CRCs, script and server names stay out of this repository. Thi
 
 ## Cache file and packet 197
 
-- **197 is a descriptor, not the body.** Its tokens are `type,name,1,key,crc`. The key is two GINT5 words and the CRC is one GINT5. That is Claim C of App. E#202 and the 5.x reading in `v5x-clients.md`. The body comes from the cache file, or from 140 on a miss. **[cap]**
+- **197 is a descriptor, not the body.** Its tokens are `type,name,1,key,crc`. The key is two GINT5 words and the CRC is one GINT5. That is Claim C of App. E#202 and the 5.x reading in `v5x-clients.md`. The body comes from the cache file, or from 140 on a miss. Key-word unpack / weak-DES sample counts: [`../formats/grescr-key-words-2026-11-16.md`](../formats/grescr-key-words-2026-11-16.md). **[cap]**
 - **The CRC covers the stored, still-encrypted body.** It is the CRC32 of the bytes after `GRESCR01`, before decryption, not of the plaintext. This matches the corrected Windows 6.03 weapon contract (`../formats/windows-603-weapon-cache.md`) and the Linux 6.x class cache (`../formats/linux-6x-class-cache.md`). It contradicts the older "CRC of the plain text" sentence for this build. **[cap]**
 - **Encryption:** DES-ECB over whole 8-byte blocks. The last `len % 8` bytes are stored in clear. **[cap]**
 - **The plaintext is compiled GS2, not source.** Every body starts with segment type 1. **[cap]**
