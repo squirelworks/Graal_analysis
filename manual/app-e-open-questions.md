@@ -722,7 +722,7 @@ The server knows an RC token that no RC build read so far sends [srv] (protocol/
 | --- | --- | --- |
 | Claim A | the server knows the RC tokens `GSERV023` to `GSERV025` | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
 | Claim B | the RC builds read send `GSERV007`, `GSERV011`, `GSERV014` and `GSERV019` to `GSERV024`; none sends `GSERV025` | [bin] (protocol/gserv-1999.md#login); [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/remotecontrol.md#logins-bin) |
-| Open | which RC build sends `GSERV025`, and with which login type | [inf] (tools/remotecontrol-lineage.md) |
+| Open | ~~which RC build sends `GSERV025`~~ Narrowed: RC2 2.05 / RC3 / Linux 2006-01-20 send `GSERV025`; Batch-2 Linux 2005-12-09 still `GSERV024` ([rc2-sessions-stock-2026-11-16.md](../protocol/rc2-sessions-stock-2026-11-16.md)). Login-type pairing residuals stay in the lineage notes | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [inf] (tools/remotecontrol-lineage.md) |
 | Settles it | a static read of the later RC builds in the Drive RC folder (rc2, the custom RemoteControl, the RC3 beta) | [inf] (protocol/npc-control.md#drive-material-inventory-only-not-in-git) |
 
 ### E#406 How the official listserver assigns PC ids

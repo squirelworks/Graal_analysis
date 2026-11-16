@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **RC2-line session behaviour (stock).** ~~IRC after signature; no 194→prop35+location; GUI≠140; GSERV024/025.~~ [Note](../protocol/rc2-sessions-stock-2026-11-16.md).
+
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
 
 - [x] **`.nw` layer / tileset extensions (5.00r7).** ~~No TILESET; no trailing object-layer; BOARD layers >1 honoured.~~ [Note](../protocol/nw-layer-ext-500r7-2026-11-16.md).
