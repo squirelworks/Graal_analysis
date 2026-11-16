@@ -1,4 +1,4 @@
-# Next work (ordered)
+﻿# Next work (ordered)
 
 One change per branch and PR. Verify `origin/main` and the open PR list before
 starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" or
@@ -11,6 +11,8 @@ open-point closed.
 macOS CI is paused until the polish stage.
 
 ## Tasks
+
+- [ ] **Offline level-editor teardown (#619).** Assimilator batch / tiledef type 4 / GraalEditor BOARD. Standing notes in flight on `cursor/editor-teardown-619-d6e7`.
 
 - [x] **Gmap terrain stock LCG / height roles.** ~~Delphi LCG in TerrainGenerator.exe; HEIGHTMAP vs RANDOMSEEDS.~~ [Note](../tools/generators-222/gmap-terrain-stock-2026-11-16.md).
 

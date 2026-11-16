@@ -1001,3 +1001,14 @@ The Classic+ 1.13 and Era+ 1.0 sample corroborates lowercase boolean spellings f
 ### E#613 Windows 2.22 remote PM roster and visible result
 
 The selected modified control's composer and type-37 sender lookup are bounded statically in §2.8.7. Types 55, 56 and 82 select default cleanup in the recovered dispatcher. The remote-roster UI trigger, request builder, accepted reply and identity-creation route remain open; later `requestlist` / `pmserverplayers` behavior is not established here. Resolve the actual request caller and receive route before implementation. Virtual type-28 send framing and native visible message behavior also remain unverified, as do sibling builds. [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions)
+
+### E#614 Tiledef type 4 consumer (draw vs walk)
+
+Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch only names 0, 1|2 and 5 [#619](https://github.com/squirelworks/Graal_analysis/issues/619).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | Install type-4 rows store large pixel x offsets (and sometimes y) beside a replacement image and level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim B | Walk kinds for tilesets are 0 / 1\|2 / 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
+| Open | Whether type 4 is draw-at-(x,y) (addtiledef2-like), a new walk kind, or both | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| Settles it | A consumer trace or offline lab on a type-4 prefix level for draw and `tiletype`/wall | [inf] (formats/tiledef-type4-2026-11-16.md#open) |

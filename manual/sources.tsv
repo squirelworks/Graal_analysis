@@ -823,3 +823,5 @@ protocol/nc-write-ops-status.md	pending		7; E	NC write ops status; gap #40; seih
 protocol/carry-shoot-hit-status.md	pending		2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
 protocol/nonlocal-level-warp-status.md	pending		2.5; E	Non-local level warp status; gap #15; seihai-core#7
 protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
+tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
+formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
