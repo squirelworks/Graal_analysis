@@ -294,6 +294,7 @@ formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of sco
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/sign-text.md	cited	3.6	3.6	
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
+formats/tile-types-pics1-packing-2026-11-16.md	cited	3.5; E	3.5; E	pics1 strip packing; no client tiletypes0.dat; picso high-id OOB
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
 graal3d/beta3-genesis.md	cited	9; E	9	
@@ -353,6 +354,7 @@ protocol/format-notes-from-salvage.md	cited	E	2	Part 2 not needed: an early form
 protocol/graphics-movement-bytecode.md	cited	8; 8.3; 8.4; E	8.4	
 protocol/gs2-6113.md	cited	8.4; 10	8.4; 10	§8.4.2 and §10.1.9 carry that 6.113 adds no opcode; the 6.00 fold table and the compiler line citations stay in the note
 protocol/gs2-client-only-opcodes.md	cited	8.4	8.4	per-opcode effects of the bytes the client runs and the compiler does not emit; §8.4.2 points here from the container section
+protocol/gs2-fold-241-2026-11-16.md	pending		8.4; E	fold 241 stock yes / open repro not fused; 200-242 checklist otherwise matches
 protocol/gs2-client-vm.md	cited	8.3; 8.4; E	8.3; 8.4	opcode catalogue, client debug names, and the peephole stay in the note; §8.3 and §8.4 carry the container, that it is not GSHORT, and the load path
 protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1; E	8.3; 8.4; E	§8.4.2, §8.4.4 and §1.8.7 carry that unpacked 6.1.1.3 adds no opcode past 6.00 and still caches GRESCR01; E#209 cites the opcode 54 case. The per-case skip table stays in the note
 protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
@@ -485,6 +487,7 @@ tools/classic-tools/gserverstat.md	cited	5; 11	6; 11	Part 6 not needed: the tool
 tools/classic-tools/serverlist3.md	cited	6; 11; E	6; 11	
 tools/classic-tools/text-convert.md	cited	11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
 tools/generators-222/README.md	cited	11	11	
+tools/generators-222/gmap-terrain-stock-2026-11-16.md	cited	11; 3.2	11; 3.2	stock TerrainGenerator Delphi LCG; HEIGHTMAP/RANDOMSEEDS roles; writer vs 65x65 reader
 tools/generators.md	cited	11	11	
 tools/ghidra/README.md	excluded		11	repository analysis tooling, not Graal
 tools/ghidra/VERSION.txt	excluded		11	repository analysis tooling, not Graal
@@ -696,6 +699,7 @@ protocol/gs2-official-trailer-scan-2026-11-16.md	cited	E; 8.4	E; 8.4	enlarged tr
 protocol/gs2-official-jump-narrow-returns-2026-11-16.md	pending		E; 8.4	offline jump/narrow consistency on 19; 18/660 missing final return; pass existence open; bodies private
 protocol/gs2-official-function-only-shape-2026-11-16.md	pending		E; 8.4	all 19 official bodies jump-past-end; PG1 live fixtures still open; bodies private
 protocol/gs2-official-strings-latin1-2026-11-16.md	pending		8.4; E	one Latin-1 high-byte sample in official seg3; ANSI/ACP client path; live glyph open; bodies private
+protocol/gs2-seg1-event-mask-2026-11-16.md	cited	8.4; E	8.4; E	seg1 GS1 mask: official zeros; needEvent consumer; pkzonechanges bit27 absent 4.x/5.x
 protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	E; 8.4	E; 8.4	partial offline counts for opcodes 45/46/47/190 and segment-2 order on 7 official bodies; full 19 and the five-use rule stay open; bodies and names stay private
 protocol/gs2-official-varcache-19-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 offline counts for 45/46/47/190, temp.* slots, dense indices; five-use AST rule open; bodies/names private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note

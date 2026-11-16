@@ -12,6 +12,14 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Gmap terrain stock LCG / height roles.** ~~Delphi LCG in TerrainGenerator.exe; HEIGHTMAP vs RANDOMSEEDS.~~ [Note](../tools/generators-222/gmap-terrain-stock-2026-11-16.md).
+
+- [x] **GS2 fold 241 checklist.** ~~Stock 6.00 makes it; open repro does not fuse it.~~ [Note](../protocol/gs2-fold-241-2026-11-16.md).
+
+- [x] **Tile types / `pics1` packing.** ~~No client `tiletypes0.dat`; strip packing; picso high-id OOB.~~ [Note](../formats/tile-types-pics1-packing-2026-11-16.md).
+
+- [x] **GS2 segment-1 GS1 event mask.** ~~Official zeros; stock needEvent; bit27 absent on 4.x/5.x.~~ [Note](../protocol/gs2-seg1-event-mask-2026-11-16.md).
+
 - [x] **RC2-line session behaviour (stock).** ~~IRC after signature; no 194→prop35+location; GUI≠140; GSERV024/025.~~ [Note](../protocol/rc2-sessions-stock-2026-11-16.md).
 
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
