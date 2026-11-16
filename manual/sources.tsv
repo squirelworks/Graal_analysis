@@ -294,6 +294,7 @@ formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of sco
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/sign-text.md	cited	3.6	3.6	
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
+formats/tile-types-pics1-packing-2026-11-16.md	cited	3.5; E	3.5; E	pics1 strip packing; no client tiletypes0.dat; picso high-id OOB
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
 graal3d/beta3-genesis.md	cited	9; E	9	
