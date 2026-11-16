@@ -117,7 +117,7 @@ Ids whose purpose shows from the code that sends them **[bin][inf]**:
 | Magic | Notes |
 |---|---|
 | `GR-V1.00` – `GR-V1.04` | As in 3.x |
-| **`GR-V1.05`** | New. It is GR-V1.04 with **tile layers**: after the magic comes a GCHAR layer count, then one 64×64 board per layer (13-bit tiles, as in 1.02+). The rest of the body follows as in 1.04. It is accepted in local levels and in the web-level cache. **[bin]** |
+| **`GR-V1.05`** | New in **5.00r7** (absent from the stock 4.20r8 engine). It is GR-V1.04 with **tile layers**: after the magic comes a GCHAR layer count, then one 64×64 board per layer (13-bit tiles, as in 1.02+). The rest of the body follows as in 1.04. The writer emits `1.05` only when the live layer count is **greater than 1**, and clamps that count to at most 223 before the GCHAR. It is accepted in local levels and in the web-level cache. See [`formats/gr-v105-500r7.md`](../formats/gr-v105-500r7.md). **[bin]** |
 | `GLEVNW01`, `GSERVL01` | Text levels, as in 3.x |
 | `GWEBL001` | Web-level cache, as in 3.x. It now accepts GR-V1.03/1.04/1.05 bodies. **[bin]** |
 | `GRMAP001` | gmap, as in 3.x |
