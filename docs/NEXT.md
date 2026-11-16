@@ -121,7 +121,8 @@ macOS CI is paused until the polish stage.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop; re-test with OpenGL-capable guest display for a first frame.
 - [x] **Document 6.037 guest login loop status (C7–C9).** ~~Guest-first, compiled Login hosts, named-login lab settled; form/script gotchas unconfirmed.~~ [Note](../client-internals/6037-guest-login-loop.md). Win 6.03r7 loopback checklist remains open.
 
-- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md). Still open: login-step args, `?p=` binding, live Windows `conf.gs` harness, post-decrypt Login replies, 7.x script delta.
+- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md). Still open: login-step args, `?p=` binding, loopback `conf.gs` harness, post-decrypt Login replies, 7.x script delta.
+- [x] **Record Windows 6.113 live connector still-served + prop wire/slot join.** ~~Stock client caches `GRESCR01` `StartScript_Connector` before Login; wire 9→`setplayerprops`.~~ [Live](../protocol/v6113-live-connector-2026-11-16.md), [handlers/props](../protocol/v6113-receive-handlers-props.md). Loopback harness and Login reply contract remain open.
 
 - [x] **Identify the 2001 developer component.** ~~Separate package and executable versions and carry its bounded help/interface findings.~~ [Note](../tools/classic-tools/developer-component-2001.md), manual §11.3.4. Generator action, red-tree implementation, writer choice and exact editor grammar remain open in the note.
 
