@@ -130,6 +130,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Official GS2 function-only image shape](protocol/gs2-official-function-only-shape-2026-11-16.md) — all 19 official bodies start with jump-past-end; PG1 top-level re-run still needs live fixtures.
 - [Official GS2 strings are Latin-1 (one sample)](protocol/gs2-official-strings-latin1-2026-11-16.md) — Français as single-byte `0xE7`; focus clients on ANSI/ACP text path; live glyph fixture still open.
 - [GS2 segment-1 GS1 event mask](protocol/gs2-seg1-event-mask-2026-11-16.md) — official bodies leave seg1 0; stock `needEvent` filters; bit 27 `pkzonechanges` absent on 4.x/5.x.
+- [GS2 fold 241 checklist](protocol/gs2-fold-241-2026-11-16.md) — stock 6.00 makes fold 241; open graal-client-repro deliberately does not fuse it.
 - [Official GS2 variable-cache opcodes and function-table order (partial)](protocol/gs2-official-varcache-functable-partial-2026-11-16.md) — offline walk of 7 of those bodies: 45/46/47 common with 47→45 pairs, 190 rare; segment-2 not a CI name-hash sort; counts only.
 - [Official GS2 variable-cache opcodes on the full 19](protocol/gs2-official-varcache-19-2026-11-16.md) — full 19-body deepen: 403×45/1703×46/403×47, temp.* slots, dense 0..n, 190 rare; five-use rule still open; 199 non-official control has none.
 - [Official GS2 segment-2 function-table order (full 19)](protocol/gs2-official-functable-order-2026-11-16.md) — dotted/qualified names always last; slot ids dense 0..n; hash-bucket order refuted as the official rule.
