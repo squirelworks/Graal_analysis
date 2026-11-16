@@ -34,3 +34,35 @@ The machine the later profiles treat as the base. Desktop clients before 4.04r2 
 | Maths | settled | Value stack 256. Loop passes and call depth 10000. Integer conversion is `floor(x + 0.0001)`. Remainder drops the 0.0001 tolerance and is 0 when the divisor is 0. Shifts take the count modulo 64 and yield 0 or −1 past 31. Two numbers compare equal within 0.0001. Number-to-text is the shared nine-decimal rule **[bin]** **[doc]** |
 | Events | partial | The names this build's notes use as examples are `onCreated` and `onTimeout`. The 4.2 runner queues `created` and `timeout` instead, and that note does not re-read how 3.153 matches the two spellings. Whether `onTimeOut` is the same function as `onTimeout` was not read **[bin]** |
 | Names and clock | partial | An unqualified name walks `with`, locals, this script, the level, then globals. A leading `$` is special in the 3.153 account and is not special in the 4.2 resolver, which also adds `serverr` as a third name for the player object. Sleep is described as yielding for the given number of seconds, which matches the 4.2 3D clock and not the 2D 0.05 step **[bin]** |
+
+## 4.04r2
+
+Three images, not one profile. Windows and Linux were read separately. The Mac image was not.
+
+### Windows 4.04r2
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse | partial | The core has a GS2 segment-and-dispatcher interface beside a GS1 source parser. The segment walk itself was not opened on this image. The GS1 path normalizes source, splits on semicolons, and runs statement handlers **[bin]** |
+| Slots | open | The 45/46/47 rules are not stated for this image. The profile gives it the shared slot opcodes only because its handler set matches the Mac image below **[doc]** |
+| Opcodes | settled | The dispatcher matches the Mac image's set: 3.153's handlers plus 104, and not 11 and not the 200–233 folds. Linux 4.04r2, read on its own, also ends at 190 and sends opcode 11 down the skip path **[doc]** **[bin]** |
+| Maths | settled | The profile's rules are the Mac image's, on x86: stack 10000, tolerant remainder, shift count modulo 32 **[doc]** |
+| Events | partial | On the GS1 path, `created` is added to the active list on first run and is not queued through the later named-event helper. The legacy countdown queues the name `timeout` when it reaches 0. The GS2-style pass queues `istimeout` when the remaining time falls below 0.0001. How a source function `onTimeout` is chosen from those names was not read **[bin]** |
+| Names and clock | partial | Three clocks. Tick count scaled by 0.001, and that helper does not use the performance counter. The legacy `timeout` property stores passes: negatives clamp to 0, then the value is multiplied by 20, 0.0001 is added, and the result is floored; the getter multiplies by 0.05; each service call subtracts one and queues `timeout` at 0. A separate GS2-style clock starts from the scaled tick count and then adds 0.05 per pass. The save and restore of a sleeping script is open, and none of this measures the real update rate **[bin]** |
+
+### Linux 4.04r2
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse | partial | Embedded scripts recover as the four-segment container, with instruction indices in range. The reader was not given a full format write-up. A trailing newline and a `publicsoap.` prefix were not tested **[bin]** |
+| Slots | open | Not read |
+| Opcodes | settled | The dispatch table ends at 190. Opcode 11 selects the common skip path. Inserting opcode 11 into one event fixture did not change that fixture's event order. Folds at 200 and above are outside the table **[bin]** **[cap]** |
+| Maths | open | Limits and arithmetic helpers were not recovered. Do not copy the Windows row onto this executable |
+| Events | partial | One profile-script payload was linked into the native executor. That is one linkage, not an event-name rule **[cap]** |
+| Names and clock | open | Not read. The Windows clock section does not transfer |
+
+### Mac 4.04r2
+
+| Dimension | Grade | What this build does |
+| --- | --- | --- |
+| Parse, slots, opcodes, maths, events, names and clock | open | Not read. The profile lends it the Mac image's rules, including the PowerPC shift, because that image is PowerPC too **[inf]** |
