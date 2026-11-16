@@ -48,7 +48,7 @@ Notes on reading the table.
 | 2.17.1 | same | same, plus `HEIGHTS` in text when the overlay is modified | `*.graal, *.nw` | `GR-V1.04` is accepted by the weblevels cache path only. |
 | **2.22** | see `222-reference.md` | | `*.graal, *.nw` | Reference. |
 | 2.31 client | `GR-V1.00`–`GR-V1.04`, `Z3-V1`; **no `GLEVNW01`** | none (no editor) | — | `GR-V1.04` = `GR-V1.03` plus an optional 9 × 9 `HEIGHTS` block. See `formats/level-binary-client.md`. |
-| GraalEditor 2.3.1.1 | `*.graal, *.nw` | text with `HEIGHTS`; GR writer strings present | | **Conflict.** `tools/graaleditor.md` says its `BOARD 0` section is 64 lines of decimal tile indices and not accepted by the client loader. The 2.22 built-in writer produces base64 rows. This was not checked against a GraalEditor-written file in this pass. **[prev]** |
+| GraalEditor 2.3.1.1 | `*.graal, *.nw` | text with `HEIGHTS`; GR writer strings present | | Text writer emits base64 `BOARD` rows (GLEVNW01 packing); all-zero rows omitted. Earlier decimal claim withdrawn. **[bin]** (`tools/graaleditor-board-format-2026-11-16.md`) |
 
 Verification notes.
 

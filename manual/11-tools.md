@@ -43,7 +43,7 @@ The rules below give which level formats GraalEditor opens and how it saves [GE]
 | --- | --- |
 | Open: GR-V1.00–1.03, Z3-V1.03/1.04 and GLEVNW01, with the filter `Graal levels (*.graal, *.nw)` | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
 | Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still present; "Level(s) saved" means several levels can be saved at once | [GE][inf] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
-| The `BOARD 0` layer as GraalEditor writes it | disputed → App. E#600 |
+| The `BOARD 0` layer as GraalEditor writes it — base64 GLEVNW01 runs; all-zero rows omitted; settled → App. E#600 | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
 | Heights are a `TLevelHeights` overlay per level, not a second board | [GE] (tools/graaleditor.md#document-model) |
 | Sections read and written: `BOARD`, `LINK`, `SIGN`, `CHEST`, `NPC`, `BADDY`, `LEVELNAMES`, in the field order of the dialogs (→ §3.1.3) | [GE] (tools/graaleditor.md#document-model) |
 | The editor stores no tile types; collision comes from the 4096-byte type table (→ §3.5.2) | [GE] (tools/graaleditor.md#collision) |

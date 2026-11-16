@@ -1,4 +1,4 @@
-path	status	sections	planned	reason
+﻿path	status	sections	planned	reason
 protocol/windows-222-pm-static.md	cited	2.8; E	2.8; E	Selected modified-control composer, virtual send intent, receive defaults and sender lookup carried in 2.8.7; remote roster and runtime limits in E#613.
 tools/classic-tools/developer-component-2001.md	cited	11	11	Component identity, selected classifier/serializer paths and caller-seeded root corroboration with exception/indirect-call limits carried in 11.3.4; full stamp mapping and native output remain open.
 protocol/nc-standalone-flag-action.md	cited	7; E	7; E	Bounded action and analyst-seeded recovery carried in 7.3.4; ranges, recipient and receive uncertainties carried in E#425.
@@ -825,3 +825,4 @@ protocol/nonlocal-level-warp-status.md	pending		2.5; E	Non-local level warp stat
 protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
 tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
 formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
+tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11	
