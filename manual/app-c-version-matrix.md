@@ -148,7 +148,7 @@ Each run used an unmodified client against a GServer-v2 lab on a loopback-only n
 
 ## C.8 GS2 VM by build
 
-Each row is one read VM and the builds that borrow it. Builds marked [inf] were not read [bin][inf] (client-internals/gs2-vm-by-version.md).
+Each row is one read VM and the builds that borrow it, as published on 2026-11-13. Builds marked [inf] were not read then [bin][inf] (client-internals/gs2-vm-by-version.md). Later reads retire four of those loans: Windows 4.04r2 was read (x86 shifts, its own clocks), Windows 5.12 matches 5.00r7, 5.24r4 through 6.00r4 are one VM that is neither 5.00r7 nor 6.03r7, and Linux 4.20r6 is not the September 2006 Mac image. The graded table is [bin][doc] (client-internals/gs2-vm-loader-diff.md#loans-the-2026-11-13-side-by-side-should-no-longer-make).
 
 | VM | Builds | Opcodes added | Value stack | `%` tolerance | Shift count | Source |
 | --- | --- | --- | --- | --- | --- | --- |
