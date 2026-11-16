@@ -186,6 +186,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Publish the Android Classic static reading.** ~~Host, frame gate, collision, board, render, chat and the Classic 1.8 GS2 machine.~~ [Host and engine](../client-internals/android-classic.md); [GS2](../protocol/gs2-android-classic-18.md).
   - [x] ~~Decode the opaque Classic 1.8+ GANIs with a known-plaintext round trip.~~ [Resources](../client-internals/android-classic.md#resources): per-file DES, 47/47 round trip; decoder `tools/file-formats/classicgani.py`.
+  - [x] ~~Bound Android login/token unreadness and chat/dispatch versus desktop 6.x from held notes.~~ [Login boundary](../client-internals/android-login-token-boundary.md); [protocol vs 6.x](../protocol/android-classic-protocol-vs-6x.md). Connect-routine token recovery and the inbound command map remain open.
   - [ ] Run the GS2 loop-budget and event-queue boundaries in an Android runtime; read how 2.2 loads its six double-encrypted GANIs.
 
 - [x] **Record what the early Windows clients show when started.** ~~v0, v1 and v2 screenshot review.~~ [Source](../version-profiles/early-windows-screen-review-2026-11.md); scene and mechanic validation remain open (App. E#610).

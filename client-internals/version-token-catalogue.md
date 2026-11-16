@@ -220,7 +220,7 @@ The published survey covers 27 packages / 26 unique executables, with 23 token-b
 
 | Build | Token | Grade | Source | Platform | Role | Repro | Repro label |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Classic 1.6/1.7/1.8/2.0/2.2; Era 1.7/2.0 (seven inspected packages) | unknown | U | [U@unresolved] [Published Android study](android-classic.md#what-was-read) establishes package/host/selected engine coverage, not a login-token construction or capture; no iOS/desktop value is transferred | Android | unknown-game-login | not assessed |  |
+| Classic 1.6/1.7/1.8/2.0/2.2; Era 1.7/2.0 (seven inspected packages) | unknown | U | [U@unresolved] [Login/token boundary](android-login-token-boundary.md#what-remains-open): prior study covered host/engine/chat/GS2, not connect; native engines are unencrypted so the gap is unread construction, not a proven no-token family; no iOS/desktop value is transferred<br>[U@study] [Published Android study](android-classic.md#what-was-read) | Android | unknown-game-login | not assessed |  |
 
 ### Staff-tool login associations
 
