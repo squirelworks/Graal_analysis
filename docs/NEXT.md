@@ -13,6 +13,7 @@ macOS CI is paused until the polish stage.
 ## Tasks
 
 - [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
+
 - [x] **Official GS2 function-only image shape.** ~~All 19 start with jump-past-end; PG1 live fixtures still open.~~ [Note](../protocol/gs2-official-function-only-shape-2026-11-16.md).
 
 - [x] **Official GS2 trailing newline scan.** ~~0/660 trailing `0x0A`; stock readers ignore.~~ [Note](../protocol/gs2-official-trailer-scan-2026-11-16.md).
@@ -22,6 +23,8 @@ macOS CI is paused until the polish stage.
 - [x] **Official GS2 segment-2 order (full 19).** ~~Dotted names last; dense slots; hash-bucket order refuted.~~ [Note](../protocol/gs2-official-functable-order-2026-11-16.md).
 
 - [x] **Official GS2 jump/narrow/return residual.** ~~Consistent with no jump→uncond leftovers; 18/660 lack final return; pass existence open.~~ [Note](../protocol/gs2-official-jump-narrow-returns-2026-11-16.md).
+
+- [x] **Official GS2 strings Latin-1 (one sample).** ~~`0xE7` ç in seg3; ANSI/ACP client path; live glyph open.~~ [Note](../protocol/gs2-official-strings-latin1-2026-11-16.md).
 
 - [x] **Graal3D research resume (status index).** ~~Re-open Part IX / avenue #5 after the overnight freeze.~~ Settled vs open for `GR3DV002` + `GR3DV003`; stale far-plane index lines corrected; live `d3drm` / beta lab still open. [Note](../graal3d/research-status-2026-11-16.md).
 
