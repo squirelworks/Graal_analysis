@@ -91,6 +91,8 @@ macOS CI is paused until the polish stage.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop; re-test with OpenGL-capable guest display for a first frame.
 - [x] **Document 6.037 guest login loop status (C7–C9).** ~~Guest-first, compiled Login hosts, named-login lab settled; form/script gotchas unconfirmed.~~ [Note](../client-internals/6037-guest-login-loop.md). Win 6.03r7 loopback checklist remains open.
 
+- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md). Still open: login-step args, `?p=` binding, live Windows `conf.gs` harness, post-decrypt Login replies, 7.x script delta.
+
 - [x] **Identify the 2001 developer component.** ~~Separate package and executable versions and carry its bounded help/interface findings.~~ [Note](../tools/classic-tools/developer-component-2001.md), manual §11.3.4. Generator action, red-tree implementation, writer choice and exact editor grammar remain open in the note.
 
 - [x] **Make every known version-token association easy to find.** ~~Keep one canonical catalogue and generate a role-qualified token-first map and TSV, with prominent README/manual/protocol/profile links.~~ [Map](../VERSION-TOKENS.md), [canonical source](../client-internals/version-token-catalogue.md), [generation checks](../tools/token-map/README.md). Dated published-source coverage is explicit; unknowns and shared-token evidence remain separate.
