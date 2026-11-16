@@ -67,6 +67,10 @@ HEIGHTSEND
 
 In 2.31, GR-V parsing appears only in the web-level cache code. That's the one place the client both writes and reads GR-V1.04. **[2.31]**
 
+## GR-V1.05 (5.00r7)
+
+Multi-layer packed boards arrive with Windows **5.00r7**. Stock **4.20r8** still stops at `GR-V1.04` for the file magic. Layout and writer pick (layers greater than 1 → `1.05`, count capped at 223) are in [`gr-v105-500r7.md`](gr-v105-500r7.md). **[bin]**
+
 ## Embedded tutorial levels (2.05)
 
 The 2.05 exe carries the offline tutorial as 13 `RCDATA` resources, all plain GR-V1.03: **[2.05]**

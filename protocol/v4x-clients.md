@@ -153,7 +153,7 @@ New compared with what 3.x showed: 44 (the window list for 182), 50 (large-packe
 
 | Magic | Notes |
 |---|---|
-| `GR-V1.00`–`GR-V1.04`, `Z3-V1.03`, `Z3-V1.04`, `GLEVNW01` | Levels. The level loader accepts all of these magics (see `formats/level-binary.md`). No `GR-V1.05` yet: board layers exist on the wire (id 107) but not in the file format. **[bin]** |
+| `GR-V1.00`–`GR-V1.04`, `Z3-V1.03`, `Z3-V1.04`, `GLEVNW01` | Levels. The level loader accepts all of these magics (see `formats/level-binary.md`). No `GR-V1.05` yet: board layers exist on the wire (id 107) and as an in-engine `tilelayers` child, but the **file** magic is absent from stock 4.20r8 (it appears in 5.00r7; see [`formats/gr-v105-500r7.md`](../formats/gr-v105-500r7.md)). **[bin]** |
 | `GSERVL01`, `GWEBL001`, `GRMAP001` | As in 3.x. **[bin]** |
 | **`GRPKG001`** | New: the **update package** manifest (`.gupd`). Text lines `NAME`, `FLAG`, `VERSION`, `PLATFORM` (`any`, `win`, `mac`), `ACCOUNTS` (comma list), `MODE`, `SUBPACKAGE` (another `.gupd`), `FILE`, `DESCRIPTION … DESCRIPTIONEND`, `USECHECKSUM`, `ISMAINEXECUTABLE`, `PROTECTOVERWRITE`. Files ending `.exe`, `.lexe`, `.bat` or `.com` get extra checks before they are written; folder names are checked too. Local versions are kept in `localversions.txt`. Ties in with server ids 105, 106, 193 and 196, and with `ExeReplacer` on the Mac. **[bin]** |
 | `license.graal`, `sig.*` | See above. |

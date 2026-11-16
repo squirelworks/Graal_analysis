@@ -62,3 +62,4 @@ Coordinates in these records are whole tiles (GCHAR), not half-tiles. **[srv]**
 ## Open
 - ~~GR-V1.04 changes unknown.~~ Answered in `level-binary-client.md`: GR-V1.04 is GR-V1.03 plus an optional 9×9 `HEIGHTS` block after the signs (2.31). **[2.31]**
 - ~~Whether the 2.05 writer emits double runs.~~ Answered: it does. The writer emits a single run for 2 to 64 equal tiles and a double run (`ABAB…`, up to 64 pairs) where the pattern starts; it always writes `GR-V1.03` for non-`.nw` files. Single runs of exactly 64 occur in the embedded tutorial levels. **[2.05]**
+- ~~GR-V1.05.~~ Answered for the held Windows engines in `gr-v105-500r7.md`: new file magic in 5.00r7 (absent from 4.20r8); GCHAR layer count plus one 13-bit board per layer; writer emits it only when the live layer count is greater than 1 (count clamped to 223). **[bin]**

@@ -284,6 +284,7 @@ formats/graalsav.md	cited	3.7	3.7
 formats/grmap001.txt	cited	3.2; E	3.2	
 formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	cited	3.8	3.8	
+formats/gr-v105-500r7.md	cited	1; 3.1	1; 3.1	5.00r7 intro of GR-V1.05 (absent 4.20r8), GCHAR layers + N×13-bit boards, writer layers>1 with count clamp 223
 formats/level-binary-client.md	cited	3.1; 3.6; E	3.1	
 formats/level-binary.md	cited	1; 3.1; E	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
