@@ -41,3 +41,46 @@ stubs), different cores. **[bin]** (`packed-6037.md`, `packed-6113.md`,
 
 Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
 **[bin][inf]**
+
+## Still open
+
+1. **Login-step argument order after the cipher.** Names on 6.113 are known
+   (`connectToGameServer`, `setLoginAccount`, `getPassword`,
+   `sendLoginNewProtocol` / `sendPasswordAndIDs`); bytecode argument order is
+   not. `connector-script.md` Open. **[lab]**
+2. **What `?p=` binds** beyond “this launch’s request” for the signature.
+   `connector-script.md` Open. **[lab]**
+3. **Open: live `conf.gs` harness.** A loopback connector responder plus a
+   stock (or lab-redirected) 6.113 past the clear hello, with first encrypted
+   frames captured against a lab game sink. Existing Mac 6.111 offline replay
+   and Windows live memory reads already settle the cipher story; they do not
+   replace a Windows 6.113 loopback harness note. Do not wait on that harness
+   to keep the settled table above. **[lab]**
+4. **Clean fully-unpacked 6.113 image vs the existing unpacked-6113 notes.**
+   Packed game exe remains a Themida shell in the stock listing; a lab unpack
+   dump (private) may sharpen leftovers, but must not put digests, paths or
+   decompile text on git. Method only until a dump exists. **[bin]**
+5. **First Login / play replies a 6.113 client needs after decrypt** compared
+   with 6.037 — still the open half of #510. Needs the harness in (3). **[lab]**
+6. **7.x script delta** (token / template / cipher vs 6.11) — needs a 7.x
+   reply decrypted for its own launch. `connector-script.md` Open. **[lab]**
+
+## Implications for labs and Seihai
+
+- A lab that serves only Gen5 `G3D0311C` will see `GNP1905C` and then ciphertext
+  it cannot read without the connector key material. **[cap][inf]**
+- A lab that replays a genuine signed `conf.gs` can drive the stock hello and
+  key frames; it still cannot decrypt a stock client’s post-287 stream without
+  the operator private key that matches the script’s public wrap key.
+  `connector-script.md` §4c. **[lab][inf]**
+- gcr `graal-6.1.1.3-GNP1905C` stopping at the clear hello without a lab
+  connector path is expected, not a Gen5 framing bug. **[inf]**
+- Keep GRESCR keys, cache bodies, `?p=` blobs and connector hosts out of the
+  repository. Counts and structure only (`gs2-official-bytecode-6113.md`).
+
+## Non-goals here
+
+- Re-deriving bit-reversed DES or publishing key tables.
+- Copying third-party GLauncher decomp or Others-work NOTES into this repo.
+- Public-server captures (needs a separate owner OK).
+- Competing with gameplay track work for lab capacity.
