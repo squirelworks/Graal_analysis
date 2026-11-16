@@ -127,6 +127,7 @@ macOS CI is paused until the polish stage.
 
 - [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md). Still open: login-step args, `?p=` binding, loopback `conf.gs` harness, post-decrypt Login replies, 7.x script delta.
 - [x] **Record Windows 6.113 live connector still-served + prop wire/slot join.** ~~Stock client caches `GRESCR01` `StartScript_Connector` before Login; wire 9→`setplayerprops`.~~ [Live](../protocol/v6113-live-connector-2026-11-16.md), [handlers/props](../protocol/v6113-receive-handlers-props.md). Loopback harness and Login reply contract remain open.
+- [x] **Publish scrubbed Windows 6.113 live handshake reconfirm (2026-11-16).** ~~Clear `GNP1905C` + zlib `EILLLT`/`0xfd`, RC4-from-287, three answered `HOST:14900` sessions + unanswered SYN; stayed on 14900 after Login; no keys.~~ [Note](../protocol/v6113-live-handshake-2026-11-16.md). Keys, decrypts and loopback harness remain open.
 
 - [x] **Identify the 2001 developer component.** ~~Separate package and executable versions and carry its bounded help/interface findings.~~ [Note](../tools/classic-tools/developer-component-2001.md), manual §11.3.4. Generator action, red-tree implementation, writer choice and exact editor grammar remain open in the note.
 

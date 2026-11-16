@@ -39,7 +39,9 @@ in `v6113-status.md`.
 
 The run is enough to say the connector path is still served and still gates
 Login UI for this build. It is not a full wire decode of the post-hello
-RC4 stream (already settled elsewhere: `v611-outgoing-cipher.md`).
+RC4 stream (already settled elsewhere: `v611-outgoing-cipher.md`). A same-day
+official `HOST:14900` handshake reconfirm (clear hello, RC4-from-287, no keys)
+is separate: `v6113-live-handshake-2026-11-16.md`.
 
 ## What is not the connector
 

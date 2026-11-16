@@ -684,6 +684,7 @@ protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capt
 protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/v6113-status.md	cited	2.10; E	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
 protocol/v6113-live-connector-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
+protocol/v6113-live-handshake-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live HOST:14900 handshake reconfirm; GNP1905C + EILLLT/0xfd; RC4 from 287; no keys; §2.10 / E / #510
 protocol/v6113-receive-handlers-props.md	cited	2.10; 2.8	2.10; 2.8	6.113 receive-handler install joined to prop wires/slots and native parsers; §2.10 / props
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
 formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
