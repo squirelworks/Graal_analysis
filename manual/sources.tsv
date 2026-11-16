@@ -481,6 +481,7 @@ tools/classic-tools/gserverstat.md	cited	5; 11	6; 11	Part 6 not needed: the tool
 tools/classic-tools/serverlist3.md	cited	6; 11; E	6; 11	
 tools/classic-tools/text-convert.md	cited	11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
 tools/generators-222/README.md	cited	11	11	
+tools/generators-222/gmap-terrain-stock-2026-11-16.md	cited	11; 3.2	11; 3.2	stock TerrainGenerator Delphi LCG; HEIGHTMAP/RANDOMSEEDS roles; writer vs 65x65 reader
 tools/generators.md	cited	11	11	
 tools/ghidra/README.md	excluded		11	repository analysis tooling, not Graal
 tools/ghidra/VERSION.txt	excluded		11	repository analysis tooling, not Graal
