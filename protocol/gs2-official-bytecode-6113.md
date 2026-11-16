@@ -22,7 +22,7 @@ Each body was walked with the reader that `gs2-client-vm.md` gives for 4.2.0.8, 
 | Check | Result in all 19 |
 | --- | --- |
 | Segment order | 1, 2, 3, 4, once each |
-| Bytes left after segment 4 | none. There is no trailing `0x0A` (the third-party compiler writes one) and no `0xAC` wrapper |
+| Bytes left after segment 4 | none. There is no trailing `0x0A` (the third-party compiler writes one) and no `0xAC` wrapper. Enlarged scan: [gs2-official-trailer-scan-2026-11-16.md](gs2-official-trailer-scan-2026-11-16.md) |
 | Segment 1 | one 32-bit word, value 0 |
 | Segment 2 | 2 to 110 functions per script. Every op index falls inside the script's own instruction count. 12 of the 19 scripts have names with the `public.` prefix |
 | Segment 3 | NUL-terminated strings. The highest string index used is always the last string, so the table and its references line up exactly |
