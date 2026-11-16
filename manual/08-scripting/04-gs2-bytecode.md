@@ -191,7 +191,7 @@ The wrong-representation hash attempt remains superseded; only the corrected rea
 
 ## 8.4.9 The VM by client version, 3.153 to 6.03r7
 
-Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r7 (Windows), 6.01r1 and 6.03r7 (Linux). Unread builds borrow the nearest read VM [bin][inf] (client-internals/gs2-vm-by-version.md). The per-build matrix is App. C.8.
+Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r7 (Windows), 6.01r1 and 6.03r7 (Linux). Unread builds borrow the nearest read VM [bin][inf] (client-internals/gs2-vm-by-version.md). The per-build matrix is App. C.8. A later table adds the loader, the slots, event-name matching and the clock, and retires the loans for the builds that were read after this chapter: [bin][doc] (client-internals/gs2-vm-loader-diff.md).
 
 | Item | Rule | Source |
 | --- | --- | --- |

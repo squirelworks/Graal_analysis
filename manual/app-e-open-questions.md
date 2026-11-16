@@ -367,15 +367,20 @@ Two notes disagree on whether the OpenGS1 opcode set describes official bytecode
 
 ### E#209 GS2 VM: what the per-build reading left open
 
-The six-VM reading of 3.153 to 6.03r7 leaves these items open [bin] (client-internals/gs2-vm-by-version.md#not-known).
+The six-VM reading of 3.153 to 6.03r7 left the rows below. The cross-version table settles some of them and says which builds are still unread [bin][doc] (client-internals/gs2-vm-loader-diff.md).
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Opcode 54 | a three-operand member store from 5.00r7; what it stores is unknown | [bin] (client-internals/gs2-vm-by-version.md#opcodes-the-open-compilers-do-not-name) |
+| Opcode 54 | ~~what it stores is unknown~~ On unpacked 6.1.1.3 it is a member store: drop two values, convert the value then on top, store as opcode 50. 5.00r7's pop count is still two descriptions (two values, or value plus name plus object) | [bin] (protocol/gs2-unpacked-6113.md#cases-54-and-121); [doc] (client-internals/gs2-vm-loader-diff.md#500r7-and-512) |
 | Opcodes 48, 49 | operand order unread | [bin] (client-internals/gs2-vm-by-version.md#not-known) |
-| `waitfor` timeout | the value given when the timeout runs out; 0 is assumed | [inf] (client-internals/gs2-vm-by-version.md#named-opcodes-with-version-notes) |
-| 6.x loop limit | the scrambled property name | [bin] (client-internals/gs2-vm-by-version.md#limits) |
-| Unread builds | 4.04r2, 5.12 to 5.31r4, 6.00r2, 6.00r4 and 7.x borrow or lack a VM reading | [inf] (client-internals/gs2-vm-by-version.md#what-was-read) |
+| `waitfor` timeout | ~~0 is only assumed~~ Followed on 5.12 and 6.00r2: the wait is saved with 1 and resumed with 0 after the deadline. Not followed on 4.20r8 | [doc] (client-internals/gs2-vm-loader-diff.md#500r7-and-512) |
+| 6.x loop limit | the scrambled property name. 5.24r4 through 5.31r4 still say `maxlooplimit`; 6.00r2 and 6.00r4 keep the field without that name | [bin] (client-internals/gs2-vm-by-version.md#limits); [doc] (client-internals/gs2-vm-loader-diff.md#524r4-530r3-531r4-600r2-and-600r4-windows) |
+| Unread builds | ~~4.04r2, 5.12 to 5.31r4, 6.00r2 and 6.00r4 were unread~~ Windows 4.04r2, Windows 5.12 and 5.24r4 through 6.00r4 were read later. Still unread: Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, Classic other than 1.8, and 7.x (out of scope) | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
+
+- [ ] Prove opcodes 48 and 49's operand order on 5.00r7.
+- [ ] Pick one pop count for opcode 54 on 5.00r7.
+- [ ] Recover the 6.x loop-limit property name.
+- [ ] Read the VMs still marked open in the difference table, including event-name case (`onTimeout` / `onTimeOut`) and the client match for `onActionServerSide`.
 
 ### E#210 Particle emitter and `format` details
 
