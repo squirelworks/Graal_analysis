@@ -193,3 +193,46 @@ Only Classic 1.8's x86 engine was read as a GS2 machine. Classic 1.7 was read fo
 | Maths | settled | Integer conversion truncates toward zero, which is not the desktop `floor(x + 0.0001)`. Remainder is `a − b·floor(a/b)`, so the sign follows the divisor, and a zero divisor yields 0. Division by zero yields 0. The machine's own boolean is non-zero; the boolean passed to a native call is `floor(v + 0.0001) ≠ 0`, so 0.5 is true inside the machine and false at a native call. Numbers compare equal within 0.0001. String comparison ignores case; the desktop VMs compare strings by bytes. The loop budget is 10000 with a generation counter that resets when the generation changes. The call stack refuses a new frame at 10000. The value stack grows by 100 and this helper has no 10000 cap. Which pass, the 10000th or the 10001st, stops the loop was not run **[bin]** |
 | Events | partial | The queue refuses a new event at 1000. At that limit `onAllRCChat` is dropped silently and other events take the error path. `istimeout`, `created` and `initialized` go to the front. A scheduled event refuses a negative delay, lowercases the name, and is due within 0.0001 of its deadline. Whether `onTimeout` and `onTimeOut` select the same function, and how `onActionServerSide` is spelled, were not read **[bin]** |
 | Names and clock | partial | A positive sleep saves a continuation; zero or less does not suspend. The clock either samples real time or steps by a configured interval. It is not always 0.05. The frame gate in front of timers starts at 50 ms and can be changed, and a late frame does not catch up. The desktop reserved-name walk was not read. Joining a class ignores one already joined, otherwise appends it and installs its event catchers **[bin]** |
+
+## Reference implementations
+
+These are ours. They are not a client reading. Where they disagree with a settled client cell, the client cell wins.
+
+### seihai-core
+
+The executor is profiled per client version. `Machine::new` is the 3.153 profile. Builds before 4.04r2 are given that profile. Mac 4.04r2 is given the September 2006 Mac profile. Mac 5.12 is given 5.00r7 with the PowerPC shift. 6.015 and 6.034 are given the 6.03r7 profile. There is no 6.1.1.3 or Android profile; an unknown version falls through to 3.153 **[src]** **[doc]**.
+
+| Dimension | Grade | What it does |
+| --- | --- | --- |
+| Parse | partial | The GS2 path used here is a compiler into an in-memory script, not a four-segment file reader. The compiler keeps a `public.` prefix on the function name. Lookup accepts the plain name or that prefixed name, and the compare is case-sensitive. Clients strip the prefix at load **[src]** |
+| Slots | settled | Store into a slot ignores an index outside 0–1023. A load of a slot that was never stored pushes 0 **[src]** |
+| Opcodes | settled | The profile refuses 11, 104, 48, 49, 54 and 121 on the builds whose VM lacks them, and logs a skip. Other opcodes are attempted on every profile. Fused opcodes are not required; a bytecode file that never contains them still runs. 48 drops the pairs and pushes null, because there is no object value. 164 is not appended at load **[src]** **[doc]** |
+| Maths | partial | Integer conversion, the 0.0001 equality, number-to-text, the two remainder rules and the two shift rules follow the profile. `b == 2` shortened to `a * a`, and the single-precision square root, run only on the 6.03r7 profile. The profile note also records that short-circuit from 5.24r4; the executor does not apply it on the 5.24r4 profile **[src]** **[doc]** |
+| Events | settled | A timer expiry looks up the exact name `onTimeout`. `scheduleevent` drops a leading `on` without regard to case, keeps the rest of the spelling, and later looks up `on` plus that rest, so `onTimeOut` stays `onTimeOut`. `cancelevents` compares without case. `call_event` itself is case-sensitive. A function written `onTimeOut` does not run for the timer **[src]** |
+| Names and clock | settled | Commands and the `timeout` property match without case. The clock is GServer-v2's frame clock: one frame is 0.05 s, and a duration becomes `(int)(t * 20)` frames. A scheduled event of less than one frame runs on the next frame. GServer-v2 never fires that event. While a script is sleeping, a due event waits. This is not the client's double clock **[src]** |
+
+### GServer-v2
+
+No GS2 bytecode VM. Server scripts are JavaScript. The wrappers are the event-name rule for that host **[src]**.
+
+| Dimension | Grade | What it does |
+| --- | --- | --- |
+| Parse | settled | No segment reader. A weapon or NPC script is wrapped as a JavaScript function. There is nothing to say about `F0`–`F6` |
+| Slots | settled | No GS2 slots |
+| Opcodes | settled | No GS2 opcodes. `settimer` and `scheduleevent` are methods on the NPC object |
+| Maths | open | Not a GS2 maths VM. Do not copy a client remainder rule onto it |
+| Events | settled | The NPC wrapper declares `onTimeout` and copies it onto the NPC only when the script defined that exact identifier. The weapon wrapper declares `onActionServerSide` and assigns it even when the script did not define it. JavaScript identifiers are case-sensitive, so `onTimeOut` is a different function and is not copied to `onTimeout`. The weapon corpus's client event `onActionClientSide` is not one of these bindings **[src]** **[lab]** |
+| Names and clock | settled | `timeout` and a scheduled event count down in frames of one twentieth of a second. Each frame subtracts one. At 0 the NPC's `onTimeout` is queued once. A count that starts at 0 is off, and a scheduled count that starts below one never runs **[src]** |
+
+### gs2lib
+
+The C++ support library under the server: sockets, packet ciphers, packet queues, packet ids and the client-version table. It is not a script machine **[src]**.
+
+| Dimension | Grade | What it does |
+| --- | --- | --- |
+| Parse, slots, opcodes, maths, events | settled | None of these exist here. A script difference cannot be fixed in this library |
+| Names and clock | settled | The timeout helper is an integer countdown used by socket waits. It does not name `onTimeout`, and it does not step a script clock |
+
+### Client-shaped loader beside the notes
+
+The C++ loader in the client reproduction parses the four segments, strips an exact `public.` prefix, and looks functions up without case, so `ONCREATED` matches `onCreated`. It fuses 200–233 on every profile, and fuses 234–242 only on the 6.00 profile. Its "4.2" opcode set includes both `waitfor` and object compare, so it does not represent 3.153, Windows 4.04r2, or the September 2006 Mac image. Slot stores and loads outside 0–1023 do nothing and read as 0. An action is started by looking up `on` plus the queued name **[src]**.
