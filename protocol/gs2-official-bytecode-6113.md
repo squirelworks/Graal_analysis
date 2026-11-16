@@ -48,4 +48,4 @@ So the container reading of 4.2.0.8 to 6.00 also holds for what the official 6.1
 
 - The meaning of opcodes 150, 163 and 180–189 in server output, and why segment 1 is always zero here (an event mask the server leaves empty, or a field the 6.x client ignores).
 - Whether 4.x and 5.x servers wrote the same container. These 19 bodies are 6.113-era only.
-- A partial re-walk of seven of these bodies for opcodes 45/46/47/190 and segment-2 order is in [gs2-official-varcache-functable-partial-2026-11-16.md](gs2-official-varcache-functable-partial-2026-11-16.md); the full nineteen and the five-use cache rule stay open.
+- A partial re-walk of seven of these bodies for opcodes 45/46/47/190 and segment-2 order is in [gs2-official-varcache-functable-partial-2026-11-16.md](gs2-official-varcache-functable-partial-2026-11-16.md). The full-nineteen variable-cache deepen is in [gs2-official-varcache-19-2026-11-16.md](gs2-official-varcache-19-2026-11-16.md); the five-use cache rule stays open.

@@ -55,7 +55,7 @@ So the **serialized** segment-2 list is not a name-hash sort. The shape fits **d
 
 ## Still open
 
-- Repeat ranks 1–2 on the full nineteen-body set (six class + thirteen weapon).
+- ~~Repeat ranks 1–2 on the full nineteen-body set (six class + thirteen weapon).~~ Rank 1 deepen: [gs2-official-varcache-19-2026-11-16.md](gs2-official-varcache-19-2026-11-16.md). Rank 2 order: separate note.
 - Prove or refute the five-use / loop threshold with a controlled compile fixture.
 - Client-side function lookup: hash map vs linear table (**4.20r8**, **5.00r7**, **6.x**).
 - When segment 1 is non-zero and how the VM uses it.
