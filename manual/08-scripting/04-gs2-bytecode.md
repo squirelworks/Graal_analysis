@@ -191,7 +191,7 @@ The wrong-representation hash attempt remains superseded; only the corrected rea
 
 ## 8.4.9 The VM by client version, 3.153 to 6.03r7
 
-Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r7 (Windows), 6.01r1 and 6.03r7 (Linux). Unread builds borrow the nearest read VM [bin][inf] (client-internals/gs2-vm-by-version.md). The per-build matrix is App. C.8. A later table adds the loader, the slots, event-name matching and the clock, and retires the loans for the builds that were read after this chapter: [bin][doc] (client-internals/gs2-vm-loader-diff.md).
+Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r7 (Windows), 6.01r1 and 6.03r7 (Linux). Unread builds borrow the nearest read VM [bin][inf] (client-internals/gs2-vm-by-version.md). The per-build matrix is App. C.8. A later table adds the loader, the slots, event-name matching and the clock, and retires the loans for the builds that were read after this chapter: [bin][doc] (client-internals/gs2-vm-loader-diff.md). A compact quirks table restates those rows for era scripts and adds the Linux 6.03r7 timer ceil lab: [bin][lab][doc] (client-internals/gs2-vm-quirks-by-version.md).
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -202,5 +202,7 @@ Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r
 | integer conversion | `floor(x + 0.0001)` in every VM | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
 | `%`, `^`, shifts | the tolerance in `%` only in 4.20r6/4.20r8; `^ 0.5` is a square root in 4.x/5.x, `^ 2` is `a*a` in 6.x; shift counts modulo 64 on PowerPC, 32 on x86 | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
 | number to text | `"0"` under 0.0001; up to 9 truncated decimals, trailing zeros dropped, a trailing 999 carried up | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
+| 6.03r7 timer | with Seihai-compiled GS2 bytecode on loopback, periods **ceil** to 50 ms; sub-0.05 fires at ~20/s (not the classic GS1 floor) | [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab) |
+| event casing | schedule / cancel fold case; full function-table fold for `onTimeout` vs `onTimeOut` not proven per build | [bin][lab][inf] (client-internals/gs2-vm-quirks-by-version.md#5-event-name-matching-ontimeout-vs-ontimeout) |
 
 Open: → App. E#209.

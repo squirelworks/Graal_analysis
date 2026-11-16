@@ -73,10 +73,20 @@ static reading of Windows 4.04r2's legacy `timeout` (set × 20 + 0.0001, floored
 `walk.gani` has 8 frames and no `WAIT`: one frame per step, a 0.4 s cycle (static read of the
 file only) **[file]**.
 
+## 6.03r7 GS2 timer ceils to 50 ms
+
+A later loopback lab on **stock Linux 6.03r7**, with Seihai-compiled GS2 `setTimer` /
+`onTimeout` bytecode (and GS1 `timeout=` lowered onto the same delivery path), measured
+on-screen counters between fixed wall marks. Periods follow
+`ceil(T / 0.05)` whole 50 ms steps (minimum one). Sub-0.05 values (**0.01**, **0.02**)
+**do fire** at ~20/s. That is the opposite of the classic GS1 floor that drops
+`T < 0.05` to never-fire on 3.x / 4.x / 5.00r7. Do not copy the floor table onto this
+6.x client. Full table:
+[gs2-vm-quirks-by-version.md](gs2-vm-quirks-by-version.md#linux-603r7-timer-lab). **[lab]**
+
 ## Not measured
 
-- 6.03r7's script timer: the lab server sent no GS1 to clients after 5.0.0.7, had no GS2
-  compiler, and its NPC server crashed when a 6.x client got a weapon.
-- The `timeout` sweep on 5.x and 6.x, and on the 1.x and 2.x engines.
-- Walk GANI frame timing at run time.
+- Walk GANI frame timing at run time on the early cadence builds (later covered for 2.22 /
+  2.31 in the 2026-11-14 open-issue run).
 - Per-frame timestamps under Wine (averages only).
+- A spelling × client matrix for `onTimeout` vs `onTimeOut` (see the quirks note).
