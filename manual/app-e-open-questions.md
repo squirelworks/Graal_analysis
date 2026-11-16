@@ -417,7 +417,7 @@ The frame loop of the 3.x and 4.x clients was untimed. A 2026-11 lab settled it:
 | Windows 4.04r2 clocks | three time notions are traced statically (elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, legacy `timeout` pass counts); no update rate is measured | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
 | Settled | 50 ms steps, one render per step, 8 px per walk step; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
-| Still open | 6.03r7's script timer. 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down, and 2.22 and 2.31 play one walk frame per step (→ §4.1.8) | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/update-cadence-3x-6x.md#not-measured) |
+| Still open | Spelling × client matrix for `onTimeout` / `onTimeOut`. 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down; 2.22 and 2.31 play one walk frame per step (→ §4.1.8). Linux 6.03r7 GS2 timers **ceil** to 50 ms (→ §4.1.8) | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab) |
 
 ### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
 
