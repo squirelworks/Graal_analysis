@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **GS2 value-semantics vs third-party claims.** ~~100k/ontimeout and waitfor-stub rejected; tolerance/div0 match.~~ [Note](../client-internals/gs2-value-semantics-stock-2026-11-16.md).
+
 - [x] **Graal3D research resume (status index).** ~~Re-open Part IX / avenue #5 after the overnight freeze.~~ Settled vs open for `GR3DV002` + `GR3DV003`; stale far-plane index lines corrected; live `d3drm` / beta lab still open. [Note](../graal3d/research-status-2026-11-16.md).
 
 - [x] **NPC GS2 gmap re-entry (status).** ~~Survive or restart?~~ Seihai restarts; real-client lab open. [Note](../protocol/npc-gmap-reentry-status.md); gap #22.

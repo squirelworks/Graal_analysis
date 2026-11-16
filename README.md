@@ -107,6 +107,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [PLO 181 peer-UDP opt-out](protocol/plo-181-player-noudp.md) — `PLO_PLAYERNOUDP`: player id + toggle; flagged peers are left out of the nearby UDP send list; 2.17–5.24r4.
 - [PLO 109 HTTP(S) download](protocol/plo-109-httpdownload.md) — `PLO_HTTPDOWNLOAD` layout and 5.24r4–6.03r7 range; Others Work “v6 only” softened; first-string scheme-check still open.
 - [Mac OS X 6.11r1 GS2 runner](client-internals/mac-611r1-gs2-runner.md) — decoded records with cached handlers, the loop check, snapshot-based sleep and waitfor, and calls that wait for class downloads; static, one build.
+- [GS2 value-semantics vs third-party claims](client-internals/gs2-value-semantics-stock-2026-11-16.md) — 100k/ontimeout and waitfor-stub claims rejected; tolerance/div0/floored-% match.
 - [Linux 3.04 later first-handler checkpoint](client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint) — quantified relocation-aware linkage, with termination at handler entry.
 - [Exact 2.05r2 carried-NPC image association](npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) — independently corroborated static producer/consumer paths; broader runtime and receiver questions remain open.
 
