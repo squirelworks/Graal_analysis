@@ -24,8 +24,8 @@ Status words:
 | Client→server ids at our server (0–223) | 1 | 1 | 0 |
 | Wire bytes (NUL and high bytes inside a message) | 1 | 1 | 0 |
 | Baddy types | 1 | 0 | 0 |
-| Other streams and clients | 0 | 3 | 4 |
-| **Total** | **16** | **6** | **6** |
+| Other streams and clients | 1 | 2 | 4 |
+| **Total** | **17** | **5** | **6** |
 
 ## Own player props (`PLO_PLAYERPROPS`)
 
@@ -70,8 +70,8 @@ Status words:
 
 | Item | Status | Why |
 |---|---|---|
-| Other-player props 77 and 83 (`PLO_OTHERPLPROPS`) | open | needs a second lab client in the level as the observer |
-| NPC props 48–52 | open | needs a level NPC with a visible prop after the tested one |
+| Other-player props 77 and 83 (`PLO_OTHERPLPROPS`) | open | needs a second real client in the level. On 6.03r7, a player made only by `PLO_OTHERPLPROPS` (with level, join, x, y, head and body props) is not drawn at all (run `op603-b`). A level script cannot read `players[1]` either: the script stops compiling (`op603-a`) |
+| NPC props 48–52, 74–78 (6.03r7) | resolved | 48–52 and 78+ drop the rest of the message; 75–77 are two bytes; a CLASS the client lacks stops the NPC script |
 | Baddy type range a client accepts | resolved | 6.03r7 survives 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223 |
 | Baddy props 11 and up | open | needs a visible baddy prop after the tested one |
 | 6.1.1.3 | blocked | RC4 after a server-sent connector script; no loopback login yet (`v6113-status.md`) |

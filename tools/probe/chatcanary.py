@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """chatcanary: read the CHATBACK canary from a probe run's proxy log.
 
-  chatcanary.py PROXYLOG
+  chatcanary.py PROXYLOG [KEY WANT]
 
 With CHATBACK=1 the client copies its own counts into its chat ("b<bombs> r<gralats>")
 and reports the chat to the server in PLI_PLAYERPROPS (prop 12). For each `shot NAME`
 step in the plan, this prints the last chat the client had reported before the next
-step began: NAME, the chat text, and `landed` when the bomb count is 99, else `lost`.
+step began: NAME, the chat text, and `landed` when the field KEY (default `b`, the bomb
+count) reads WANT (default 99), else `lost`. The NPC field `x` is the probe NPC's own x.
 """
 import re, sys
 
@@ -23,6 +24,7 @@ def chat_of(hexbody):
 
 
 def main():
+    key, want = (sys.argv[2], sys.argv[3]) if len(sys.argv) > 3 else ('b', '99')
     chat = None; pending = None
     for line in open(sys.argv[1], encoding='latin1'):
         m = re.search(r'C>S id=2 .*\| hex=([0-9a-f]*)', line)
@@ -35,8 +37,8 @@ def main():
         if m:
             step = m.group(1)
             if pending:
-                b = re.match(r'b(\d+)', chat or '')
-                print('%s\t%s\t%s' % (pending, chat, 'landed' if b and b.group(1) == '99' else 'lost'))
+                b = re.search(r'(?:^| )%s(-?[\d.]+)' % re.escape(key), chat or '')
+                print('%s\t%s\t%s' % (pending, chat, 'landed' if b and b.group(1) == want else 'lost'))
                 pending = None
             if step.startswith('shot '):
                 pending = step[5:]

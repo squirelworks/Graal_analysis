@@ -505,3 +505,16 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-18	linux-6.03r7	s2c	2	3 (TYPE)	2 c:k c:1 c:x c:2 c:52 c:3 c:25 c:4 c:2 str: c:5 c:0	-	no	none	client quits right after the baddy arrives	bt603-b	type025
 2026-11-18	win-4.20r8	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included	bt420-a	type*
 2026-11-18	win-2.22	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included	bt222-a	type*
+2026-11-18	linux-6.03r7	s2c	3	2	3 i3:300 c:2 c:70	yes	yes	chat (CHATBACK, NPC x)	control: NPC x set to 35	np603-a	ctl-x
+2026-11-18	linux-6.03r7	s2c	3	7	3 i3:300 c:7 c:3 c:2 c:70	yes	yes	chat (CHATBACK, NPC x)	BOMBS one byte	np603-a	p07
+2026-11-18	linux-6.03r7	s2c	3	48	3 i3:300 c:48 c:0 c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-a	p48
+2026-11-18	linux-6.03r7	s2c	3	49	3 i3:300 c:49 str:x c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-a	p49
+2026-11-18	linux-6.03r7	s2c	3	50	3 i3:300 c:50 str:x c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-a	p50
+2026-11-18	linux-6.03r7	s2c	3	51	3 i3:300 c:51 str:x c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-a	p51
+2026-11-18	linux-6.03r7	s2c	3	52	3 i3:300 c:52 str:x c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-a	p52
+2026-11-18	linux-6.03r7	s2c	3	75	3 i3:300 c:75 s:960 c:2 c:70	yes	yes	chat (CHATBACK, NPC x)	X2, two bytes	np603-b	p75-s
+2026-11-18	linux-6.03r7	s2c	3	76	3 i3:300 c:76 s:960 c:2 c:70	yes	yes	chat (CHATBACK, NPC x)	Y2, two bytes	np603-b	p76-s
+2026-11-18	linux-6.03r7	s2c	3	77	3 i3:300 c:77 s:64 c:2 c:70	yes	yes	chat (CHATBACK, NPC x)	Z2, two bytes (a one-byte or three-byte value loses the rest)	np603-c	p77-s
+2026-11-18	linux-6.03r7	s2c	3	78	3 i3:300 c:78 c:0 c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-b	p78-c
+2026-11-18	linux-6.03r7	s2c	3	90	3 i3:300 c:90 c:0 c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-b	p90-c
+2026-11-18	linux-6.03r7	s2c	3	74	3 i3:300 c:74 str:x c:2 c:70	-	yes	chat (CHATBACK, NPC x)	CLASS set to a class the client does not have: the NPC script stops running (its chat report goes empty and stays empty)	np603-a, np603-b	p74-str
