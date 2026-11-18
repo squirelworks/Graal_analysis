@@ -80,23 +80,23 @@ Two of the open items below are now answered by disassembling the unpacked modul
 
 **[bin]** Its only caller is the gate itself: it reads `_time64(NULL)` for the current time, calls the helper for the reference `time_t`, then `difftime(now, reference)` and compares the result against `N × 60 × 60 × 24`. The two `60.0` and the `24.0` are `.rdata` doubles, so the threshold is **N days**; if `now − reference > N days` the gate returns true. Two one-byte enable flags guard it — if either is clear the gate returns false (check disabled).
 
-**[bin]** The three date values, `N` and both flags are **initialised data**, not run-time state. An earlier pass of this note read them at `0xC37E7B..0xC37E90` and found zero/garbage there, but that was an address slip: the rip-relative operands in the gate and the builder resolve to **`0xC03E7B..0xC03E90`**, in the engine's initialised data section. At the right addresses the unpacked image holds real values (table below). No instruction in `.text` writes the date, `N` or the enable flag. A rip-relative scan of the whole region, plus searches for absolute 64-bit pointers and 32-bit RVA tables to each address, found only reads. The one write is the gate itself clearing its second flag (`mov byte [0xC03E90], 0`) after a check passes, so later calls return "not expired" without recomputing. The values are therefore the compiled-in constants the developers set per release. They are not filled at start-up.
+**[bin]** The three date values, `N` and both flags are **initialised data**, not run-time state. An earlier pass of this note found zero/garbage for them, but that was an arithmetic slip in resolving the rip-relative operands, which pointed it at the wrong region. The operands actually resolve to a small block in the engine's initialised data section, and there the unpacked image holds real values (table below). No instruction in `.text` writes the date, `N` or the enable flag. A rip-relative scan of the whole region, plus searches for absolute 64-bit pointers and 32-bit RVA tables to each address, found only reads. The one write is the gate itself clearing its second flag (a byte store of 0) after a check passes, so later calls return "not expired" without recomputing. The values are therefore the compiled-in constants the developers set per release. They are not filled at start-up.
 
-**[bin]** The same routine, at a different address in each build, is in all seven unpacked engines. The latest build has a debug-style code shape (`sub eax, 0x76c`; `cvtsi2sd`). The six 2024 builds have an optimised shape (`add ecx, 0xfffff894`; `movd`/`cvtdq2pd`), with identical logic. Values read from each unpacked image:
+**[bin]** The same routine, at a different place in each build, is in all seven unpacked engines. The latest build has a debug-style code shape (the year stored as `year − 1900` via a subtract, `N` converted with `cvtsi2sd`). The six 2024 builds have an optimised shape (the same `year − 1900` done as an add of −1900, `N` converted with `movd`/`cvtdq2pd`), with identical logic. Values read from each unpacked image:
 
-| Build | Gate body (RVA) | Ref date (y/m/d globals) | `N` (days) | Enable flag / pending flag | Gate trips after |
-|---|---|---|---|---|---|
-| 548 | `0x647490` | 2022-10-17 (`0xC82C70`) | 180 | `0xC82C6C`=1 / `0xC82C6D`=1 | 2023-04-15 |
-| 610 | `0xa5c7b0` | 2022-04-22 (`0x14FC41C`) | 180 | `0x1545460`=**0** / `0x14FC428`=1 | never (dormant) |
-| 612 | `0x6dcff0` | 2023-10-17 (`0xD8F950`) | 180 | `0xD8F94C`=1 / `0xD8F94D`=1 | 2024-04-14 |
-| 613 | `0x6dddc0` | 2024-04-15 (`0xD90990`) | 180 | `0xD9098C`=1 / `0xD9098D`=1 | 2024-10-12 |
-| 614 | `0x6ddfa0` | 2024-04-15 (`0xD90990`) | 180 | `0xD9098C`=1 / `0xD9098D`=1 | 2024-10-12 |
-| 71243 | `0x9a86d0` | 2024-10-15 (`0x131FBF4`) | 180 | `0x131FBEB`=1 / `0x131FC00`=1 | 2025-04-13 |
-| latest (Unity 6000) | `0xb29b0` | 2026-04-07 (`0xC03E84`) | 180 | `0xC03E7B`=1 / `0xC03E90`=1 | 2026-10-04 |
+| Build | Reference date | `N` (days) | Enable flag / pending flag | Gate trips after |
+|---|---|---|---|---|
+| 548 | 2022-10-17 | 180 | 1 / 1 | 2023-04-15 |
+| 610 | 2022-04-22 | 180 | **0** / 1 | never (dormant) |
+| 612 | 2023-10-17 | 180 | 1 / 1 | 2024-04-14 |
+| 613 | 2024-04-15 | 180 | 1 / 1 | 2024-10-12 |
+| 614 | 2024-04-15 | 180 | 1 / 1 | 2024-10-12 |
+| 71243 | 2024-10-15 | 180 | 1 / 1 | 2025-04-13 |
+| latest (Unity 6000) | 2026-04-07 | 180 | 1 / 1 | 2026-10-04 |
 
 "Trips after" is reference + 180 days. The builder keeps the current time of day and `_mktime64` takes DST from the current `tm`, so the boundary is the same local clock time 180 days on, give or take an hour. The test is strictly greater-than.
 
-**[inf]** So the gate is **active** in every build except 610, and every one of those builds has long since expired at the real 2026 clock. That accounts for the empirical clock sensitivity without needing the TLS-certificate explanation. 614 dialled the connector with the guest clock at 2024-04-22, which is inside its window, and at the real clock it skipped boot init and quit after one frame. TLS validity may still matter later, at the connector handshake, but it is not what stops the boot. In 610 the enable byte (`0x1545460`) is 0 in the image and has a single reader and no writer, so the check is compiled off. Whether 610 boots at the real clock is a separate question: the launch-input and connector paths still apply. The reference date is a per-release constant, not the PE build timestamp. 613 and 614 share one value, and 610's is older than 548's, so it was not bumped on every build. A 180-day window is the same in all seven.
+**[inf]** So the gate is **active** in every build except 610, and every one of those builds has long since expired at the real 2026 clock. That accounts for the empirical clock sensitivity without needing the TLS-certificate explanation. 614 dialled the connector with the guest clock at 2024-04-22, which is inside its window, and at the real clock it skipped boot init and quit after one frame. TLS validity may still matter later, at the connector handshake, but it is not what stops the boot. In 610 the enable byte is 0 in the image and has a single reader and no writer, so the check is compiled off. Whether 610 boots at the real clock is a separate question: the launch-input and connector paths still apply. The reference date is a per-release constant, not the PE build timestamp. 613 and 614 share one value, and 610's is older than 548's, so it was not bumped on every build. A 180-day window is the same in all seven.
 
 ### The quit reason is native, and the instant-quit literal is `QuitInstant`
 
@@ -106,11 +106,11 @@ Two of the open items below are now answered by disassembling the unpacked modul
 
 ### For a live debugger: where to break and what to read
 
-The table above already gives the values. These breakpoints are for **confirming** them live, or for watching the verdict, in a v7 session (Bochs/QEMU, or the unpacked engine substituted in). RVAs below are in the unpacked `Graal3DEngine.dll` analysis image; rebase to the loaded engine's base at run time, or locate the routines by their landmarks (the `_time64`/`_localtime64`/`_mktime64` CRT-thunk cluster, and the `difftime` result compared to a `.rdata` `60.0/60.0/24.0` product). **[bin]**
+The table above already gives the values. To **confirm** them live, or watch the verdict, in a v7 session (Bochs/QEMU, or the unpacked engine substituted in), find the routines by landmark. Exact offsets per build are kept in the project's private working papers, not here. **[bin]**
 
-- **Gate function — RVA `0x36878`** (the call site) into the gate body at **`0xb29b0`**. Break here; the return value (AL) is the expired/true verdict (1 at any 2026 clock date after 2026-10-04 for this build).
-- **Reference-date builder — RVA `0xb24c0`.** Break after its three field stores to read the baked date: the `tm` fields come from globals **`year @0xC03E84`** (= 2026), **`month @0xC03E88`** (= 4), **`day @0xC03E8C`** (= 7) (as written: `tm_year = year − 1900`, `tm_mon = month − 1`, `tm_mday = day`). `_mktime64`'s return is the reference `time_t`.
-- **Window `N` — global `@0xC03E80`** (= 180; the `difftime` threshold is `N × 86400 s`). **Enable flags — `@0xC03E7B` and `@0xC03E90`** (both 1); if either is zero at the gate, the check is disabled. In the 2024 builds, use the addresses in the table.
+- **Gate function.** It is the one function that calls `_time64(NULL)`, then the reference-date builder, then `difftime`, and compares the result against a product of `.rdata` doubles `60.0 × 60.0 × 24.0` times an int global (`N`). It opens with two byte-flag tests that return false early. Break on its return: AL is the expired/true verdict (1 at any clock date after 2026-10-04 for the latest build). It has a single caller on the boot path.
+- **Reference-date builder.** It sits in the `_time64`/`_localtime64`/`_mktime64` CRT-thunk cluster. It takes the current local `tm`, stores three int globals into it as `tm_year = year − 1900`, `tm_mon = month − 1` and `tm_mday = day`, then calls `_mktime64`. Those three globals are the reference date (2026 / 4 / 7 in the latest build), and `_mktime64`'s return is the reference `time_t`.
+- **`N` and the flags** sit next to the date in the same small data block: `N` (= 180) just before the year, the enable byte just before `N`, and the pending byte just after the day.
 
 A read-only memory read of those six values in a running client (the packed engine tolerates read-only scans) should match the table byte for byte. The black-box cross-check is a clock test either side of the boundary, reading `Player.log` for boot-proceeds vs the one-frame `DoQuit`. For 614 the sharp prediction is guest clock 2024-10-12 → boots, 2024-10-13 → quits, which is tighter than "build date vs far future".
 
@@ -120,7 +120,7 @@ A read-only memory read of those six values in a running client (the packed engi
 
 **[bin]** Static read with a small PE32+ reader (section names and entropy, import/export directories, string searches) of the two unpacked modules of the latest Unity 6000 build, and symbol/context reads of the corrected-run `dump.cs` (class and `TypeDefIndex` for each cited field/method). **[cap]** The unpack, the IL2CPP reconstruction and the member-count validation were produced by earlier isolated lab-VM runs (unpacker and dumper only; `Worlds.exe` was not launched; no network). The tools were not re-run for this note, and no raw dump, private hash or lab path is reproduced here.
 
-**[bin]** The per-build gate table comes from Capstone disassembly and byte reads of the seven unpacked `Graal3DEngine.dll` images (548, 610, 612, 613, 614, 71243 and the latest Unity 6000 build). The routine was located by its code shape: the two flag tests, `_time64`, the builder call, `difftime`, and the `N × 60 × 60 × 24` product. The builder was located by its `year − 1900` / `month − 1` / `day` stores into `struct tm`. Each global was read from the image at its resolved RVA, and the region was checked for writers (rip-relative stores, absolute 64-bit pointers, 32-bit RVA tables). The gate's call site in the latest build was re-confirmed as `0x36878`, and in 614 it is `0x69003c`. Nothing was run.
+**[bin]** The per-build gate table comes from Capstone disassembly and byte reads of the seven unpacked `Graal3DEngine.dll` images (548, 610, 612, 613, 614, 71243 and the latest Unity 6000 build). The routine was located in each image by its code shape: the two flag tests, `_time64`, the builder call, `difftime`, and the `N × 60 × 60 × 24` product. The builder was located by its `year − 1900` / `month − 1` / `day` stores into `struct tm`. Each global was read from the image at its resolved offset, and the region was checked for writers (rip-relative stores, absolute 64-bit pointers, 32-bit RVA tables). The gate's single boot-path caller was re-confirmed in the latest build and in 614. Nothing was run.
 
 ## Still open
 
