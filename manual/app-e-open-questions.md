@@ -54,6 +54,7 @@ Two lists of the ids 5.00r7 sends disagree on id 11. A later static read sides w
 | Open | which list is right for 5.00r7; both are floors, since sends through a variable are not captured | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
 | Settles it | a 5.00r7 capture of a throw, or a re-read of the send wrappers for id 11 | [inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
 | Static resolution | the 5.00r7 backup engine's carried-object throw path sends id 11 with an empty body; the earlier wrapper list missed it. Claim B holds for that engine; a capture is still missing | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
+| Status (2026-11-16) | no throw capture yet; for 5.12 the 5.00r7 floor plus id 11 is the working proxy until a genuine 5.12 engine send-wrapper read; the 2.31 "id 44" question dissolves once S→C 44 (dropped) and C→S 44 (still sent) are separated | [bin][cap] (protocol/ids-sent-512-status.md) |
 
 ### E#5 Meaning of id 162 from the client (settled)
 
@@ -154,6 +155,7 @@ A static read predicts that GServer-v2's classic path makes 2.17 and older clien
 | Prediction | ending a neighbour reply with the player's cell level name, not the gmap name, keeps `BOARDMODIFY` and chest updates working on 2.17.1 and 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
 | Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
 | Settles it | a loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
+| Status (2026-11-16) | no classic-login lab yet; the static sequence (neighbour `LEVELNAME`, data, then the player's cell `LEVELNAME`) stands; the run is paired with the 2.22 gmap re-send lab | [bin][srv] (protocol/gmap-neighbour-classic-status.md) |
 
 ### E#14 Expiry dates of the Themida 5.x/6.00 builds
 
@@ -487,6 +489,7 @@ The offsets used to probe for links, and the flag that skips the neighbour table
 | --- | --- | --- |
 | Open | the per-facing probe offsets for link following; the flag that skips the 3 × 3 neighbour table; which big map 2.05 uses offline and whether 2.22 does the same with `PLO_BIGMAP` (171); how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 | Settles it | reading the probe table and the flag in 2.05, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
+| Status (2026-11-16) | 2.05 edge rules and the 3×3 neighbour fill are settled; 2.22's probe offsets, the skip flag and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` still need a 2.22 read | [bin] (protocol/link-probe-bigmap-status.md) |
 
 ### E#309 Knockback distance of 1.39
 
@@ -518,6 +521,7 @@ The blast hit zone read from code does not match the pattern of hits measured in
 | Claim A | a blast piece hurts when its centre, offset by one tile, is under one tile from the player's centre on both axes | [2.05] (client-internals/damage-sources.md#bombs-and-explosions) |
 | Claim B | in the 2.22 lab, with a bomb 0.5 or 1.5 tiles off the victim's row, hits came at y offsets +1, +3 and -3 but not at 0 or ±2, and at x offsets ±4 and +5 but not 0 or ±1: a pattern keyed on the bomb's half-tile y rather than a plain radius; a few trials took a full heart instead of a half without a clear rule | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Settles it | reading the 2.22 explosion routine and repeating the sweep with one bomb per trial | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Status (2026-11-16) | still open; queued behind a 2.22 throw/explosion routine read (E#323) | [bin] (protocol/carry-shoot-hit-status.md) |
 
 ### E#312 The last byte of a shot
 
@@ -528,6 +532,7 @@ Lab tests suggest the last byte of a shot does more than name its type [2.05] (c
 | Claim A | the last byte of `PLO_ARROWADD` (19) is the shot type, `byte - 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
 | Claim B | in the 2.22 lab an injected shot hurt only when that byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Settles it | reading the 2.22 shot receiver, or a capture of a real arrow that hurts | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Status (2026-11-16) | still open; SHOOT/SHOOT2 field scales are settled for 5.00r7–6.03r7, and GServer-v2's one-byte gravity disagrees with every client read | [bin][srv] (protocol/carry-shoot-hit-status.md) |
 
 ### E#313 Do arrows and fireballs pass walls
 
@@ -546,6 +551,7 @@ Whether entering a gmap from outside saves the respawn point depends on an order
 | --- | --- | --- |
 | Open | the order of the gmap's level list and when it is updated against the entry save decide whether entering a gmap from outside saves the respawn point | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 | Settles it | a lab walk from a plain level into a gmap and back on 2.05, dying on each side | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| Status (2026-11-16) | still open; needs a 2.22 death-on-each-side-of-a-seam run on a 2×2 gmap | [inf] (protocol/link-probe-bigmap-status.md) |
 
 ### E#315 The level-entry save in the 2.1 test builds
 
@@ -584,6 +590,7 @@ Whether offline 2.05 reloads a level on re-entry, which would bring a cut bush b
 | Open | ~~whether 2.05 offline reloads a level from disk when the player re-enters it, which would bring a cut bush back~~ settled below | [bin] (client-internals/board-respawn.md#open) |
 | Settles it | a lab run on 2.05 offline: cut a bush, leave the level, come back and read the board | [inf] (client-internals/board-respawn.md#open) |
 | Settled | no reload: 2.05 rev2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3/3) and after loading the level again (2/2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
+| Related (2026-11-16) | the online counterpart, whether a level NPC's GS2 state survives leaving and re-entering a gmap cell on 6.03r7 and 5.12, is open too; Seihai restarts it | [doc] (protocol/npc-gmap-reentry-status.md) |
 
 ### E#319 The single-player start levels
 
@@ -629,6 +636,7 @@ Several 2.22 level-object routines were not read. The row lists them [bin] (clie
 | --- | --- | --- |
 | Open | the throw of a lifted object, what a cut or lift drops, the carrying pose, the chest and sign probe points, the glove property value the server sends, snapping after a step, and the swim and carry speed factors were not read | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Settles it | reading those routines in the 2.22 client, or a lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Status (2026-11-16) | unread; `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry/throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
 
 ### E#324 Combat rules the 1.21 to 2.31 pass left open
 
@@ -745,6 +753,7 @@ The RC props tail holds two counts, and it is not known which counts flags and w
 | Claim A | the tail after the props block in 72 and 76 holds two `s` counts, then the weapons; one counts flags and one opened chests | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | Open | which `s` is which; both were 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | Settles it | a capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Status (2026-11-16) | still open; the only capture has both counts at 0. PLO 124 (`PLO_RC_PLAYERFLAGS`, proposed) is handled by RC3 only, which logs and discards its body | [cap][bin] (protocol/rc-props-flags-status.md) |
 
 ### E#421 The last byte of RC_PLAYERPROPSSET2
 
@@ -755,6 +764,7 @@ The 2004 RC adds one byte the server's message lacks, and its meaning is unknown
 | Claim A | the 2004 RC's 76 ends with one byte after the weapons, 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | Open | what the byte means; the server's 72 has no such byte | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | Settles it | a static read of the RC's 76 builder, or a capture after changing other dialog fields | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Status (2026-11-16) | seen as 0 only; meaning open; staff tooling should keep it as unknown | [cap] (protocol/rc-props-flags-status.md) |
 
 ### E#422 Quoting of folder rights
 
@@ -766,6 +776,7 @@ The 2004 RC and a server fork quote folder rights differently [cap] (protocol/rc
 | Claim B | a GServer-v2 fork returned the line unquoted, and the RC showed it as two lines | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | Open | whether the original server stored and returned the CSV form, which would make the fork's reply a fork bug | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | Settles it | a capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
+| Related (2026-11-16) | backslash and empty-field escaping in RC script GET/SET text: trailing empties are kept; the GServer-v2 fork doubles backslashes inside quoted lines; the original RC2/RC3 rule is unread | [cap][doc] (protocol/rc-text-escaping-status.md) |
 
 ### E#423 The 1999 servers: what the static read left open
 
@@ -799,6 +810,7 @@ The selected action in → §7.3.4 constructs a payload and enters an outgoing b
 | Recovery limit | analyst-seeded bodies, not default procedure recognition; exception tails, type/register meanings and indirect calls remain uncertain | [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits) |
 | Open | collection type, count overflow and length ranges, further buffer routine, terminator, ultimate peer and receive interpretation | [bin][inf] (protocol/nc-standalone-flag-action.md#open-questions) |
 | Settles it | trace the unresolved buffer/recipient and receive paths, then compare the nearest weapons-list baseline and other flag-list artifact; matching forms alone are insufficient | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+| Related (2026-11-16) | NC write-op inventory: get/delete/reset/script/flags ids and `i3` id layouts known; NPC add, class delete and weapon add/script layouts open | [bin][doc] (protocol/nc-write-ops-status.md) |
 
 ### E#500 Back clipping plane of the Graal3D client (settled)
 
@@ -859,14 +871,13 @@ The later Graal3D beta is known only from static reads [bin] (graal3d/beta3-gene
 
 ### E#600 Tile layer as GraalEditor writes it
 
-Which board form GraalEditor writes has never been checked against a file it saved [GE] (tools/graaleditor.md#document-model).
+**Settled for the text writer (2026-11-16).** Claim A is false; Claim B holds. The Delphi text writer emits GLEVNW01-style base64 `BOARD` runs and skips all-zero rows. A Save As `.nw` was not captured; file-level confirmation is optional. [bin] (tools/graaleditor-board-format-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619)
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices, which the client GLEVNW01 loader does not accept until rewritten as base64 runs | [GE] (tools/graaleditor.md#document-model); [GE] (formats/glevnw01.txt) |
-| Claim B | the 2.05 and 2.22 built-in editors, from which GraalEditor is derived, write base64 `BOARD` rows | [2.22] (tools/level-editor/version-deltas.md#3-formats-per-build) |
-| Open | which form a file saved by GraalEditor itself holds; the claim was never checked against such a file | [inf] (tools/level-editor/version-deltas.md#3-formats-per-build) |
-| Settles it | saving a level from GraalEditor 2.3.1.1 and reading its `BOARD` rows | [inf] (tools/level-editor/version-deltas.md#3-formats-per-build) |
+| Claim A | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | **false** for the text writer [bin] (tools/graaleditor-board-format-2026-11-16.md) |
+| Claim B | the writer matches the 2.05 / 2.22 built-in base64 `BOARD` rows | **holds** [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
+| Residual | optional Save As file confirm when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
 
 ### E#601 Whether link arrival offsets are evaluated
 
@@ -1001,3 +1012,35 @@ The Classic+ 1.13 and Era+ 1.0 sample corroborates lowercase boolean spellings f
 ### E#613 Windows 2.22 remote PM roster and visible result
 
 The selected modified control's composer and type-37 sender lookup are bounded statically in §2.8.7. Types 55, 56 and 82 select default cleanup in the recovered dispatcher. The remote-roster UI trigger, request builder, accepted reply and identity-creation route remain open; later `requestlist` / `pmserverplayers` behavior is not established here. Resolve the actual request caller and receive route before implementation. Virtual type-28 send framing and native visible message behavior also remain unverified, as do sibling builds. [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions)
+
+### E#614 Tiledef type 4 consumer (draw vs walk)
+
+Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch only names 0, 1|2 and 5 [file][2.22] (formats/tiledef-type4-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | Install type-4 rows store large pixel x offsets (and sometimes y) beside a replacement image and level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim B | Walk kinds for tilesets are 0 / 1\|2 / 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
+| Open | Whether type 4 is draw-at-(x,y) (addtiledef2-like), a new walk kind, or both | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| Settles it | A consumer trace or offline lab on a type-4 prefix level for draw and `tiletype`/wall | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+
+### E#615 v7 Worlds login identity, start-up quit and date gate
+
+The Worlds clients carry no baked login token, quit themselves after one frame when started standalone, and only dial the connector with the clock at the build date (→ §1.8.10).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | No cleartext token in 548–71243; the connector script builds the login; gs2lib names `G3D2204D` as Worlds | [bin][doc] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| Known | The managed quit entry takes a reason string; the managed side has no date gate; the unpacked engine imports calendar-to-timestamp functions | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Open | Which token the production connector makes these builds send; the reason string passed at the one-frame boot quit; the baked date and the comparison in the engine | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Settles it | A static read of the engine's caller of the calendar function and of the quit call sites in the unpacked engine; a decrypted connector script for the token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+
+### E#616 v7 connector script plaintext
+
+The v7 reply container and its per-launch signature are known (→ §2.10.7); the decrypted script is not.
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | Container layout, RSA-2048 signature bound to the per-launch request, AES-CBC and RC4 both exported | [lab][bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| Open | The payload cipher and whether the RSA block also wraps its key; the plaintext script, the game host/port it names and the login it builds; the `?p=` DES key | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Settles it | A post-decrypt read of the live script buffers by a method the anti-tamper tolerates, on a client whose baked public key is replaced | [inf] (protocol/v7-connector-live-20261111.md#5-open) |

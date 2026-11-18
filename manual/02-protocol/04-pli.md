@@ -106,6 +106,8 @@ The rules below say when a build picks one of those messages over another, and w
 
 The client's handling of the `PLO_SERVERWARP` reply is in → §2.5; the listserver side is in → §6.
 
+**Id 46 on the focus builds.** 2.22 does not send 46; 2.31 sends `c 1` on every level entry before the new level's props; 6.03r7 has 46 in its constant send set for level entry, with `c 1` carried from 2.31 until a capture; 5.00r7 and 5.12 are unread. No server reply to 46 is known. [cap][bin][inf] (protocol/enterlevel-focus-builds.md) A link or warp into a level the client does not hold has only adjacent evidence: a gmap warp (49) without the `.gmap` on disk hangs loading; a plain `.nw` door into an absent level is unobserved on 2.22 and 6.03r7. [bin][srv] (protocol/nonlocal-level-warp-status.md) Clients before 2.05 load no gmap; how a period server presented a gmap world to them is unobserved. [bin][inf] (protocol/pre-gmap-in-gmap-world.md)
+
 ## 2.4.4 Props
 
 Three messages carry property streams from the client: its own player, NPCs and baddies. The table gives each one's layout and what the server does with it. The streams themselves are in §2.6 [srv][2.05] (protocol/packet-layouts.md#other-client--server-senders-205).

@@ -90,9 +90,18 @@ and
 with one filter and treats both as text.
 It does not require the
 .B GLEVNW01
-signature.
+signature on open, but its text writer emits
+.B GLEVNW01
+and base64
+.B BOARD
+rows in the same packing as the client loader
+(see
+.IR tools/graaleditor-board-format-2026-11-16.md ).
+Each painted row is
 .B BOARD 0
-is the tile layer: 64 lines of 64 tile indices, not a base64 run.
+.I y
+.B 64 0
+then 128 base64 characters; all-zero rows are omitted.
 Heights are a
 .B TLevelHeights
 overlay, not a second
@@ -100,20 +109,10 @@ overlay, not a second
 Section keywords are the same words
 .RB ( LINK , SIGN , CHEST , NPC , BADDY , LEVELNAMES ),
 but the field order is the order the dialogs collect.
-It is not a byte-for-byte dump of the editor's save function,
-and it is not what
-.B TLevel::loadLevel
-accepts.
-A file of raw indices will not pass the SDL loader until it is
-rewritten as
-.B GLEVNW01
-base64 runs.
-The other direction is the same mistake:
-a client
-.I .nw
-is not a
+An earlier claim that the editor wrote decimal tile indices
+for
 .B BOARD 0
-grid of decimal indices.
+was wrong for this writer.
 .SS Generator levels
 .BR terraingenerator (7)
 writes
@@ -149,10 +148,11 @@ blocks.
 Stamp id 0 is replaced by a 4 by 4 ground fill before the board is stored.
 Stamp id 1 is a hole and is not written.
 .PP
-Three writers, two of them sharing the signature.
-The editor's decimal
-.B BOARD 0
-is the third shape.
+Three writers share the
+.B GLEVNW01
+base64
+.B BOARD
+shape: the client editor lineage, GraalEditor 2.3.1.1, and the generators.
 .SH SEE ALSO
 .BR tiletypes (5),
 .BR graaleditor (7),

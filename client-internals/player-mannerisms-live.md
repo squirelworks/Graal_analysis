@@ -6,7 +6,7 @@ Date: 2026-10-30. What the player does, tick by tick, in four real clients run u
 * **1.39, NewMain 1.41 (`graalnm24`) and 2.22.** These were traced the same way, from their own player records (see "Other builds" below). Tags **[1.39]**, **[1.41]**, **[2.22]**. Where only video was used, the tag is **[video]**, and those counts are good to ±1 tick.
 * **The gani files.** These are the files that the timings come from. Tag **[gani]**.
 
-A tick is the 50 ms game tick. Speeds are in tiles. This note has no addresses and no decompiler text. The harness, the level, the raw traces and the gani comparison script are in the project files under `graal-decompile/live-trace/mannerisms/`. Stills are in `mannerisms-shots/`.
+A tick is the 50 ms game tick. Speeds are in tiles. This note has no addresses and no decompiler text. The harness, the level, the raw traces and the gani comparison script are in the project files under `graal-decompile/live-trace/mannerisms/`. The stills are kept there too.
 
 ## Summary table (2.05 rev 2)
 

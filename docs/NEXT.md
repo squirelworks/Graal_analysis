@@ -12,6 +12,14 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the 2026-11-16 status notes into the manual.** ~~Twenty research-list status notes were `pending` in the source map.~~ Pointer rows in §2.3.5.1, §2.4.3, §2.5.6, §2.5.7, §2.5.13, §2.6.6, §2.7.3 and §2.7.10, and status rows in App. E#4, #13, #308, #311, #312, #314, #318, #323, #420, #421, #422 and #425. Each note's own open checklist stays the place to tick its labs.
+
+- [x] **v7 Worlds builds and connector in the manual.** ~~Fold the nine pending v7 notes (#463, #466, #623, the Unity 6000 unpack and the live connector capture) into Part I and §2.10.~~ Manual §1.8.10 (builds, identity, unpack and names, start-up and date gate) and §2.10.7 (connector); App. E#615, E#616. Static and earlier lab evidence only; no new run.
+  - [ ] Read the engine's quit call sites and the caller of its calendar function in the unpacked Unity 6000 engine: the boot-quit reason and the baked date ([note](../client-internals/v7-il2cpp-names-and-startup-gate.md#still-open); E#615).
+  - [ ] Decrypted v7 connector script, game host/port and login (E#616); needs a client with a replaced public key.
+
+- [x] **Offline level-editor teardown (#619).** ~~Assimilator batch / tiledef type 4 / GraalEditor BOARD.~~ Notes on [#621](https://github.com/squirelworks/Graal_analysis/pull/621); E#600 writer settled (base64); type-4 consumer remains E#614; optional Save As confirm open.
+
 - [x] **Gmap terrain stock LCG / height roles.** ~~Delphi LCG in TerrainGenerator.exe; HEIGHTMAP vs RANDOMSEEDS.~~ [Note](../tools/generators-222/gmap-terrain-stock-2026-11-16.md).
 
 - [x] **GS2 fold 241 checklist.** ~~Stock 6.00 makes it; open repro does not fuse it.~~ [Note](../protocol/gs2-fold-241-2026-11-16.md).
@@ -214,7 +222,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
   - [x] ~~Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.~~ [v5-props](../protocol/v5-props.md): 5.00r7, 5.12, 5.30r3 and 5.31r4 share 4.x's parsers plus 82; 6.x still parses natively (6.0.3.7 from the packet switch, 6.1.1.3 through `tclient_set*props`).
-  - [ ] What 6.x own-prop 83 sets, and a wire check of the one-byte skip on a 5.x or 6.x client.
+  - [x] ~~What 6.x own-prop 83 sets.~~ The gralat count in five bytes, same setter as 3 ([v5-props](../protocol/v5-props.md#83-a-wide-gralat-count)).
+  - [ ] A wire check of the one-byte skip on a 5.x or 6.x client, and a lab check of 83 above 2,097,151 on 6.03r7.
   - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
 
 - [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).

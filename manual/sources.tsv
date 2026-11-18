@@ -145,7 +145,7 @@ client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	cited	E	E
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
-client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3	4	
+client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3; E	4	
 client-internals/decomp-findings-2026-10-28-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	table form of 01-tile-type-tests.md in the same folder, which the manual cites
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
@@ -308,12 +308,8 @@ graal3d/reference-server/README.md	excluded		9	a server reimplementation written
 graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
 graal3d/g3d-version-tokens.md	pending		9; 10; E	G3D… mainline tokens vs GR3DV00x; 3D-capable eras; pointers into the token catalogue and torque-engine-4x.md
 live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
-live-runs/2gta-222-2026-10-30/walk-sword-c2s.txt	excluded		4	raw decoded log excerpt; its findings are in live-runs/2gta-222-2026-10-30/README.md, which the manual cites
 live-runs/client-harness-2026-11-13/README.md	cited	4.2; 4.3	4	
 live-runs/open-issues-2026-11-14/README.md	cited	2.5; 2.7; 4.1; 4.11; 8.2; 10; C; E	4; 8	Behaviour carried in §4.1.8, §8.2.12, §2.5.13, §2.7.10, §4.11.13, §10.13, App. C.7 and App. E#200, E#203, E#301 and E#324. Private run names, fixture account names and per-probe labels stay in the live-runs note. Partials stay open: an answering server for the rest of the 2.22 file checks, the other #398 builds, the 6.x timeout, the combat live checks, and in-game 3.04.
-live-runs/relay-bridge-2026-10-31/run2-4thalpha-java-native.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
-live-runs/relay-bridge-2026-10-31/run3-3rd-1st-joins.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
-live-runs/relay-bridge-2026-10-31/run4-dinput-format.txt	excluded		4	raw run log; summarised in client-internals/relay-room-bridge.md, which the manual cites
 npc-library/README.md	cited	8; 8.1	8	
 npc-library/archival-scripting-notes.md	cited	8; 8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
@@ -500,9 +496,6 @@ tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the 
 tools/token-scan/README.md	excluded			repository tooling for the notes (the static token readers behind login-tokens-3x-7x.md), not Graal
 tools/gs1-table-scan/builds.tsv	excluded			build list and binary MD5s for the scanner; the facts are in gs1-commands-by-version.md
 tools/lab-servers/README.md	cited	5; 6	6	
-tools/lab-servers/clver-5-24-lab/console-patched.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
-tools/lab-servers/clver-5-24-lab/console-stock.txt	excluded		6	raw lab client console; the result is summarised in tools/lab-servers/README.md
-tools/lab-servers/clver-5-24-lab/proxy-files.txt	excluded		6	raw lab proxy log; the result is summarised in tools/lab-servers/README.md
 tools/lab-setup.md	excluded		11	lab procedure
 tools/level-convert/README.md	excluded		11	a reimplementation converter written for this project
 tools/level-convert/SEIHAI-FORMAT.md	excluded		11	reimplementation package format
@@ -560,7 +553,7 @@ torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.9 carries the version strings, fixed words and companies on the skipped exports
-torque/study-torque-clients.md	cited	E; 10	10	§10.1.8 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
+torque/study-torque-clients.md	cited	E; 10	10	Part X opens with the study's three-program split (§10.0) and cites it through §10.1.8; the rebuild plan is excluded (#243)
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -680,7 +673,7 @@ client-internals/graal-wiki-crosscheck-2026-11-11.md	cited	3.3	3.3
 protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
-protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
+protocol/v7-connector-live-20261111.md	cited	1; 2.10; E	1; 2.10	v7 connector request order, reply container and online-play reach in §2.10.7; identity in §1.8.10; open decrypt in E#616
 protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/v6113-status.md	cited	2.10; E	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
 protocol/v6113-live-connector-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
@@ -726,12 +719,13 @@ protocol/v4x-windows-403r3-411.md	pending		2.4; 2.5; 9	Windows 4.03r3/4.04r2/4.1
 tools/thinstall-unpack/README.md	excluded			repository tooling for the notes (the static Thinstall unpacker behind v4x-windows-403r3-411.md), not Graal
 tools/switch-scan/README.md	excluded			repository tooling for the notes (the jump-table case scanner behind the 4.x handled-id rows), not Graal
 client-internals/unpacked-images-coverage.md	excluded			index from each owner-held unpacked client image to the note that covers it; no findings of its own
-client-internals/v7-gameassembly-il2cpp.md	pending		E	v7 managed side (IL2CPP): binding layer, per-build C# callback table, launch inputs, build diff; to be folded beside the v7 bridge entry
+client-internals/v7-gameassembly-il2cpp.md	cited	1	1	managed host, binding layer, launch inputs and build diff in §1.8.10
 protocol/client-string-fingerprints-3x-6x.md	pending		1; 2.3	string fingerprints of the 3.x to 6.x client binaries from our own scans; to be folded into the build list (§1.8) and the login section
 client-internals/linux-304-executable-build.md	cited	1; 10	1; 10	Build/dependency evidence in §1.8.4 and §10.1.10; voice/OpenAL questions remain explicit. Detailed sizes, banner stamps and installer naming stay in the source.
 client-internals/windows-404r2-components.md	cited	1; 10	1; 10	Component/capture boundary in §1.8.5; module/export map and unresolved lineage/forms/class map in §10.1.11. Private source-root spellings and detailed export/source-area inventory are not reproduced.
 client-internals/mac-611r1-send-slots.md	cited	1; 2.4	1; 2	Mac identity/dependencies in §1.8.7 and partial mapping/entry tests with remaining gates in §2.4.13. Full linked-framework list and instruction-level scan mechanics remain in the source.
-client-internals/v7-unity6000-unpack.md	pending		1	current Unity 6000 v7 client unpack and IL2CPP v31 metadata; to be folded into the build list beside the v7 IL2CPP name notes
+client-internals/v7-unity6000-unpack.md	cited	1	1	Unity 6000 build row, unpack shape and metadata 31 in §1.8.10
+client-internals/v7-il2cpp-names-and-startup-gate.md	cited	1; E	1	IL2CPP name recovery, start-up quit, launch inputs and native date gate in §1.8.10; open items in E#615
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
 client-internals/mac-ppc-404-512/SUMMARY.md	pending		2.3; 4.1	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule and PLO sets; to be folded into the framing and build sections
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
@@ -757,11 +751,11 @@ client-internals/v3-v5-protocol-pass/protocol/v5-script.md	pending		1; 2.3	Curso
 client-internals/v3-v5-protocol-pass/torque/v3-engine-surface.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
 client-internals/v3-v5-protocol-pass/torque/v4-engine-surface.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
 client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
-client-internals/v7-quattro-il2cpp-names/build-diff.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/inventory.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
+client-internals/v7-quattro-il2cpp-names/build-diff.md	cited	1	1	declared-name presence/absence only, §1.8.10
+client-internals/v7-quattro-il2cpp-names/inventory.md	cited	1	1	declared-name presence/absence only, §1.8.10
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	cited	1	1	declared-name presence/absence only, §1.8.10
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	cited	1	1	no protocol tables in managed code, §1.8.10
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	cited	1	1	declared-name presence/absence only, §1.8.10
 torque/v3-python-engines/combined/ROADMAP.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
 torque/v3-python-engines/combined/STATUS.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
 torque/v3-python-engines/python-repro/STATUS.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
@@ -796,30 +790,37 @@ version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	pending		1; E	Lion guest lau
 client-internals/how-139-gets-online.md	pending		1; C	1.39 has no listserver; direct connect dialog only; seihai-listserver starts 1.41r1; consolidates build-catalogue + versions-133-139
 protocol/gen5-cipher-step-5x.md	cited	2.2; E	2.2; E	5.12 gen-5 short-compressed step round-down settled; 5.00r7 unread; consolidates E#2 + v5v6-lab-play + Seihai stress
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
-protocol/v4-login-account-contract.md	pending		2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
+protocol/v4-login-account-contract.md	cited	2.3	2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
 formats/weblevels-code-residuals.md	cited	3.8	3.8	[bin] MD5(host∥decimal_port) lowercase level folders on 6.1.1.3; 4.20r8 vs later path table; LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
-protocol/filesendfailed-512-status.md	pending		2.5; 2.7	5.12 FILESENDFAILED (30) uniqueness status; gap #37
-protocol/rc-props-flags-status.md	pending		7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
+protocol/filesendfailed-512-status.md	cited	2.5	2.5; 2.7	5.12 FILESENDFAILED (30) uniqueness status; gap #37
+protocol/rc-props-flags-status.md	cited	E	7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
 version-profiles/nry-identity-f01-f03.md	pending		1; C; E	NRY F01–F03 identity index: 5.12-untouched=5.00r7; 2.1.x GLEVNW01/controlnpc; 1.x VERGRAAL vs 1.39 no list
-protocol/plo108-168-focus-status.md	pending		2.5; C; E	PLO 108 sub1 / 168 focus status (#43): 168 flag; sub1 unread outside ping; #254 lab negative on 6.03r7
-protocol/scripted-weapons-5x-status.md	pending		2.4; E	5.00r7/5.12 script delivery: classic+modern ids; stock path choice open; consolidates script-packet-guards
-protocol/v4-gui-survive-serverwarp.md	pending		2; E	v4 Login GUI after 178 (C5 lead); loopback stock 4.20r8 confirm open; adjacent C4
+protocol/plo108-168-focus-status.md	cited	2.5	2.5; C; E	PLO 108 sub1 / 168 focus status (#43): 168 flag; sub1 unread outside ping; #254 lab negative on 6.03r7
+protocol/scripted-weapons-5x-status.md	cited	2.5	2.4; E	5.00r7/5.12 script delivery: classic+modern ids; stock path choice open; consolidates script-packet-guards
+protocol/v4-gui-survive-serverwarp.md	cited	2.3	2; E	v4 Login GUI after 178 (C5 lead); loopback stock 4.20r8 confirm open; adjacent C4
 client-internals/141r1-nw-gmap-status.md	pending		1; C	1.41r1: GLEVNW01 string present, no GRMAP001; live .nw/gmap load unobserved; research-list #11 static status
-protocol/large-file-thresholds-focus.md	pending		2.5	Focus-build large-file / FILE reply ladder (1.39–6.037); token-table trap; consolidates file-transfer.md + labs; ~300 KB push still open
+protocol/large-file-thresholds-focus.md	cited	2.7	2.5	Focus-build large-file / FILE reply ladder (1.39–6.037); token-table trap; consolidates file-transfer.md + labs; ~300 KB push still open
 protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: client sends nothing; id1 extra row id2 ignored; silent_list_after_ms is lab/seihai accommodation; E#401 Claim C
-protocol/player-props-5x-status.md	pending		2.6; E	5.00r7/5.12 prop case sets point at v5-props; widths + P4–P6 open; research #6
-protocol/ids-sent-512-status.md	pending		2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
-protocol/update-packages-focus-status.md	pending		2.4; 2.5; 2.7	Update packages after login: 23/47/159/105/106/187 status; gap #28
-protocol/gmap-neighbour-classic-status.md	pending		2.5; E	Gmap neighbour framing classic 2.x: static settled; 2x2 lab open; gap #14 / E#13
-protocol/222-login-default-files.md	pending		2.7; C	2.22 login default-file checks: near-empty vs full first wave; post-answer set open; #32/#245 status
-protocol/enterlevel-focus-builds.md	pending		2.4; C	PLI_ENTERLEVEL on 5.x/6.037: 6.03r7 sends 46; 5.00r7/5.12 unread; research-list #18 status
+protocol/player-props-5x-status.md	cited	2.6	2.6; E	5.00r7/5.12 prop case sets point at v5-props; widths + P4–P6 open; research #6
+protocol/ids-sent-512-status.md	cited	E	2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
+protocol/update-packages-focus-status.md	cited	2.5	2.4; 2.5; 2.7	Update packages after login: 23/47/159/105/106/187 status; gap #28
+protocol/gmap-neighbour-classic-status.md	cited	E	2.5; E	Gmap neighbour framing classic 2.x: static settled; 2x2 lab open; gap #14 / E#13
+protocol/222-login-default-files.md	cited	2.7	2.7; C	2.22 login default-file checks: near-empty vs full first wave; post-answer set open; #32/#245 status
+protocol/enterlevel-focus-builds.md	cited	2.4	2.4; C	PLI_ENTERLEVEL on 5.x/6.037: 6.03r7 sends 46; 5.00r7/5.12 unread; research-list #18 status
 version-profiles/222-inferred-from-21-inventory.md	pending		1; C	2.22 profile inventory: settled vs era-carried / unmatched PLI; research #9; no new binary session
-protocol/rc-text-escaping-status.md	pending		7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
-protocol/pre-gmap-in-gmap-world.md	pending		2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
+protocol/rc-text-escaping-status.md	cited	E	7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
+protocol/pre-gmap-in-gmap-world.md	cited	2.4	2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
 graal3d/research-status-2026-11-16.md	pending		9; E	Graal3D resume status: settled GR3DV002 camera/collision/protocol rows; open live d3drm and GR3DV003 lab; E#500 draw-time still open
-protocol/npc-gmap-reentry-status.md	pending		2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
+protocol/npc-gmap-reentry-status.md	cited	E	2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
 protocol/nw-layer-ext-500r7-2026-11-16.md	cited	3.1; E	3.1; E	5.00r7 .nw: no TILESET; no trailing object-layer; BOARD layer uses tilelayers[]; 6.03 cleartext residual
-protocol/nc-write-ops-status.md	pending		7; E	NC write ops status; gap #40; seihai-npcserver#22
-protocol/carry-shoot-hit-status.md	pending		2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
-protocol/nonlocal-level-warp-status.md	pending		2.5; E	Non-local level warp status; gap #15; seihai-core#7
-protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
+protocol/nc-write-ops-status.md	cited	E	7; E	NC write ops status; gap #40; seihai-npcserver#22
+protocol/carry-shoot-hit-status.md	cited	E	2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
+protocol/nonlocal-level-warp-status.md	cited	2.4	2.5; E	Non-local level warp status; gap #15; seihai-core#7
+protocol/link-probe-bigmap-status.md	cited	E	2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
+tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
+formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
+tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11	
+server-notes/hubserver-037-and-delteria-2026-11-18.md	pending		11; E	Hubserver v0.3.7 vs v0.3.6 and the Delteria 2002/2019 backup inventory; to be folded into the server and level-format sections
+protocol/probe-targets-2026-11-18.md	pending		2.6; E	6.03r7 packet-probe pilot: prop 83 and 77-82 widths, unknown-id handling; to be folded into §2.6 and App. E
+protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
+tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal

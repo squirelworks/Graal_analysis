@@ -43,7 +43,7 @@ The rules below give which level formats GraalEditor opens and how it saves [GE]
 | --- | --- |
 | Open: GR-V1.00–1.03, Z3-V1.03/1.04 and GLEVNW01, with the filter `Graal levels (*.graal, *.nw)` | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
 | Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still present; "Level(s) saved" means several levels can be saved at once | [GE][inf] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
-| The `BOARD 0` layer as GraalEditor writes it | disputed → App. E#600 |
+| The `BOARD 0` layer as GraalEditor writes it — base64 GLEVNW01 runs; all-zero rows omitted; settled → App. E#600 | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
 | Heights are a `TLevelHeights` overlay per level, not a second board | [GE] (tools/graaleditor.md#document-model) |
 | Sections read and written: `BOARD`, `LINK`, `SIGN`, `CHEST`, `NPC`, `BADDY`, `LEVELNAMES`, in the field order of the dialogs (→ §3.1.3) | [GE] (tools/graaleditor.md#document-model) |
 | The editor stores no tile types; collision comes from the 4096-byte type table (→ §3.5.2) | [GE] (tools/graaleditor.md#collision) |
@@ -263,7 +263,7 @@ The rules below give the editor's tools and how tiles and tile definitions are a
 | Rule | Source |
 | --- | --- |
 | Tile ids are 0–4095 on the 2048 × 512 sheet; the id → sheet mapping is → §3.5.1 | [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
-| A tile definition line is `image,prefix,type,x,y`; type 0 is the old order and type 1 the new; type 4 and its x offsets are unmeasured | [2.22][inf] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
+| A tile definition line is `image,prefix,type,x,y`; type 0 is the old order and type 1 the new; type 4 is absent from the walk-kind switch and carries pixel x offsets in install files; draw/walk consumer open → App. E#614 | [2.22][file][bin] (formats/tiledef-type4-2026-11-16.md); [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
 | Palette: click picks one tile, drag picks a block that pastes as a floating selection; double-click sets the background tile, which fills new levels | [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
 | Undo covers board tiles only: a rectangle snapshot before each write, at most 128 records per tab | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
 | Draw mode: with one tile selected, left drag paints (1.41); flood fill with the right button (2.00), Shift for complete objects only, and the background tile when nothing is selected | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |

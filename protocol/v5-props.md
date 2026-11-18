@@ -56,13 +56,26 @@ Case sets in 6.x:
 | baddy | 0–10 | 0–10 |
 
 - **77 is parsed in 6.x self props as five bytes.** The handler only sets the value width to 5; nothing is stored. The server header calls 77 `ONLINESECS2`, a five-byte value, so a 6.x client skips it cleanly where 2.x ends the stream. **[bin][srv]**
-- **83 is new.** The self parser reads five bytes as one 5-byte number and passes it to a player setter when it is at most 999,999,999. GServer-v2 has no 83. Its meaning is not traced. **[bin]**
+- **83 is new, and it is the gralat count in five bytes.** The self parser reads five bytes as one 5-byte number and, when it is at most 999,999,999, passes it to the same player setter that 3 (`RUPEESCOUNT`, three bytes) calls. See [83: a wide gralat count](#83-a-wide-gralat-count). GServer-v2 has no 83. **[bin]**
 - **7 lost its case in 6.1.1.3.** It is still skipped as one byte, which is its width, so a stream with 7 in it stays in step. 6.0.3.7 still applies it (values 1 to 3 set bomb-power flags).
 - The self default is the same as in 4.x and 5.x: skip the id plus the current width (one byte unless the case changed it) and go on.
 
+### 83: a wide gralat count
+
+Date: 2026-11-18. Static read of unpacked Windows 6.03r7 and the Linux x86-64 6.03 build. Nothing was run. **[bin]**
+
+- **Same setter as 3.** In both builds the self parser's case for 3 reads a three-byte number and the case for 83 reads a five-byte number. Each one calls the same virtual method on the local player, with the same "below 1,000,000,000" test in front of it. No other self-prop case calls that method. **[bin]**
+- **That method is the gralat setter.** The item pickup routine uses the same getter and setter pair for item 19 (`goldrupee`): it reads the value, adds 100 and writes it back. Right after any pickup it clamps that value to 999,999,999, beside the 99 caps on arrows (4) and bombs (5). The symbol table of the Mac 6.11 build names the getter on the player class `getGralats`. **[bin]**
+- **So 83 sets the player's gralats.** It carries the same value as 3 in a wider encoding: three 7-bit groups hold at most 2,097,151, and five hold the full 999,999,999 the client allows. The 999,999,999 test is the client's gralat ceiling, the same one pickups clamp to, not a separate field. **[bin][inf]**
+- **Receive-only.** The outgoing player encoder has no case for 83 (nor for 3), the other-player parser stops at it, and NPC and baddy streams do not use it. A server sets a player's own gralats with 83; other players never see it. **[bin]**
+- **Name.** No server header in the materials names it. The gserver prop table that lists it calls it `UNKNOWN83` ([unknown-ids-2026-11-06.md](unknown-ids-2026-11-06.md)). A working name is `RUPEESCOUNT2`, following `ONLINESECS2` (77), the five-byte form of an older counter. **[inf]**
+- **Other builds.** 6.1.1.3 has the same case set (above); its setter was not re-traced in this pass. 4.x and 5.x skip 83 as one byte, so a server should send gralats above 2,097,151 to them as 3, clamped. No mobile prop parser has been read, so whether iPhone or Android clients parse 83 is open. **[bin][inf]**
+- **Checked at runtime (2026-11-18):** a lab server sent 83 to a Linux 6.03r7 client: 1234 and 999,999,999 set the gralat counter, 1,000,000,000 was ignored, and the next prop parsed after five bytes ([probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)). **[lab]**
+
 ## Open items
 
-- Which server sends 83. On 6.03r7, 83 is the gralat (rupee) count, the same counter as prop 3 (lab, 2026-11-18: [probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)).
+- [x] ~~What 83 sets on the player.~~ The gralat count, as a five-byte value ([above](#83-a-wide-gralat-count)), lab-confirmed on 6.03r7 ([probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)). Which real server sent it is still unknown.
+- Whether iPhone or Android clients parse own prop 83.
 - ~~Whether a real 5.x or 6.x client accepts a long value at an unknown own id without desync.~~ 6.03r7 does not: a three-byte value at an unknown id loses the rest of that message, and the next message parses normally (lab, 2026-11-18). 5.x is not checked yet.
 - 6.03r7 lab widths (2026-11-18): 77 five bytes, 78–80 two bytes (`X2`, `Y2`, `Z2`), 81 one byte, 82 string, 83 five bytes.
 - The per-id value widths of the 5.x and 6.x parsers, beyond the ids named above.
