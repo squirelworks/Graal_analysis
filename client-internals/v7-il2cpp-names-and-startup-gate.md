@@ -70,12 +70,32 @@ The runtime track spent many sessions failing to drive the stock client to a cap
 
 In short: unpack → static-index IL2CPP recovery → static read of the three gates, with a single clock-gated capture as the only runtime step. That is the better v7 method, and it is reproducible from public tooling.
 
+## The date gate and the quit reason, read by static disassembly
+
+Two of the open items below are now answered by disassembling the unpacked modules directly — Capstone over the engine's recovered `.text`, with the managed side cross-checked in the Il2CppDumper `script.json`. Nothing was run.
+
+### The date gate is an "N days after a reference date" check, wired to the boot quit
+
+**[bin]** The engine has a single `_mktime64` call path. A small helper takes the current local time (`_time64` → `_localtime64`), then overwrites three `struct tm` fields from three 32-bit globals — `tm_mday` (tm offset `0x0c`), `tm_mon = month − 1` (offset `0x10`) and `tm_year = year − 1900` (offset `0x14`; the literal `0x76c` = 1900) — and calls `_mktime64`, yielding a `time_t` for that (year, month, day).
+
+**[bin]** Its only caller is the gate itself: it reads `_time64(NULL)` for the current time, calls the helper for the reference `time_t`, then `difftime(now, reference)` and compares the result against `N × 60 × 60 × 24`. The two `60.0` and the `24.0` are `.rdata` doubles, so the threshold is **N days**; if `now − reference > N days` the gate returns true. Two one-byte enable flags guard it — if either is clear the gate returns false (check disabled).
+
+**[bin][inf]** The three date values, `N`, and both flags read as zero/uninitialised in the dump, which was taken before the client ran, so they are filled at run time — consistent with the reference date being the client's own build date and `N` a baked validity window.
+
+**[bin][inf]** The gate's single caller sits on the boot path: on **true** (out of window) it jumps past the normal init block; on **false** it falls through toward login. So the native date check decides whether boot proceeds — which is exactly the empirically observed clock gate (hold the guest clock near the build date and the client dials the connector; at the real clock it quits after one frame).
+
+### The quit reason is native, and the instant-quit literal is `QuitInstant`
+
+**[bin]** `Quattro.UQuattroUnityBridge.Quit(string reason)` resolves to a known method in the unpacked GameAssembly (`script.json` signature `void …Quit(System.String* reason, const MethodInfo*)`), but it has **no callers in managed `.text`**. It is invoked by the native engine across the bridge, so the `reason` is engine-supplied, not a managed literal.
+
+**[bin][inf]** The engine's quit handler logs `Do Quit` and assembles a `reason=` string; the concrete instant-quit reason literal is **`QuitInstant`** (the string `reason=QuitInstant` is appended at the quit site), paired with the GS2 script event name `Adventure_quit_Instant`. So the one-frame boot teardown is the engine's own `DoQuit`, and `QuitInstant` is the reason value it carries across the bridge.
+
 ## How this was checked
 
 **[bin]** Static read with a small PE32+ reader (section names and entropy, import/export directories, string searches) of the two unpacked modules of the latest Unity 6000 build, and symbol/context reads of the corrected-run `dump.cs` (class and `TypeDefIndex` for each cited field/method). **[cap]** The unpack, the IL2CPP reconstruction and the member-count validation were produced by earlier isolated lab-VM runs (unpacker and dumper only; `Worlds.exe` was not launched; no network). The tools were not re-run for this note, and no raw dump, private hash or lab path is reproduced here.
 
 ## Still open
 
-- **The quit reason string.** Recover the literal(s) `UQuattroUnityBridge.Quit(string reason)` is called with at the one-frame boot quit, from the engine `.text`.
-- **The exact native date comparison.** Locate `_mktime64`'s caller in the unpacked engine, read the baked date and the compare, and state the gate exactly.
+- **The quit reason string** — *answered above:* `Quit(string reason)` has no managed callers, so the reason is native; the instant-quit literal is `QuitInstant` (`reason=QuitInstant`), paired with the GS2 event `Adventure_quit_Instant`. Residual: confirm the exact reason the expiry path itself passes, versus the script-driven `QuitInstant`.
+- **The exact native date comparison** — *answered above:* `now − reference > N days`, reference built from three runtime globals via `_mktime64`, guarded by two enable flags, wired to the boot-skip. Residual: recover the literal reference date and `N` from the run-time initialiser that fills those globals (they are zero in the pre-run dump).
 - **The connector signing key.** Still the gating secret for an online repro; unchanged by this note. The signed-reply capture remains the one runtime step, and the key swap stays a private, owner-run task.
