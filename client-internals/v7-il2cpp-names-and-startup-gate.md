@@ -90,6 +90,16 @@ Two of the open items below are now answered by disassembling the unpacked modul
 
 **[bin][inf]** The engine's quit handler logs `Do Quit` and assembles a `reason=` string; the concrete instant-quit reason literal is **`QuitInstant`** (the string `reason=QuitInstant` is appended at the quit site), paired with the GS2 script event name `Adventure_quit_Instant`. So the one-frame boot teardown is the engine's own `DoQuit`, and `QuitInstant` is the reason value it carries across the bridge.
 
+### For a live debugger: where to break and what to read
+
+The one thing static analysis can't give — the runtime values of the gate's inputs — is a few breakpoints away for anyone with a live v7 session (Bochs/QEMU, or the unpacked engine substituted in). RVAs below are in the unpacked `Graal3DEngine.dll` analysis image; rebase to the loaded engine's base at run time, or locate the routines by their landmarks (the `_time64`/`_localtime64`/`_mktime64` CRT-thunk cluster, and the `difftime` result compared to a `.rdata` `60.0/60.0/24.0` product). **[bin]**
+
+- **Gate function — RVA `0x36878`** (the call site) into the gate body at **`0xb29b0`**. Break here; the return value (AL) is the expired/true verdict. Reading it directly says whether the gate is active and tripping in this build — the question static couldn't settle.
+- **Reference-date builder — RVA `0xb24c0`.** Break after its three field stores to read the baked date: the `tm` fields come from globals **`year @0xC37E84`**, **`month @0xC37E88`**, **`day @0xC37E8C`** (as written: `tm_year = year − 1900`, `tm_mon = month − 1`, `tm_mday = day`). `_mktime64`'s return is the reference `time_t`.
+- **Window `N` — global `@0xC37E80`** (the `difftime` threshold is `N × 86400 s`). **Enable flags — `@0xC37E7B` and `@0xC37E90`**; if either is zero at the gate, the check is disabled.
+
+Dumping those six values at the gate settles the literal reference date, `N`, and active/dormant in one stop — more cheaply and unambiguously than a clock-bisection, and without a connector or network. A clock test (boot at either side of `reference + N days`, read `Player.log` for boot-proceeds vs the one-frame `DoQuit`) is the black-box cross-check of the same thing.
+
 ## How this was checked
 
 **[bin]** Static read with a small PE32+ reader (section names and entropy, import/export directories, string searches) of the two unpacked modules of the latest Unity 6000 build, and symbol/context reads of the corrected-run `dump.cs` (class and `TypeDefIndex` for each cited field/method). **[cap]** The unpack, the IL2CPP reconstruction and the member-count validation were produced by earlier isolated lab-VM runs (unpacker and dumper only; `Worlds.exe` was not launched; no network). The tools were not re-run for this note, and no raw dump, private hash or lab path is reproduced here.
