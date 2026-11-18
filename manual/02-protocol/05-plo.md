@@ -261,6 +261,8 @@ One rule separates the old script path from the new one [srv] (protocol/packet-l
 | --- | --- | --- |
 | For v4 and later clients the server replaces the script prop with `NPCPROP_CLASS` and sends GS2 bytecode; 2.05 never sees that path | server | [srv] (protocol/packet-layouts.md#weapons) |
 
+**5.00r7 and 5.12 handle both script paths.** Classic delivery (193 hash, 132 weapon, 133 class) runs from 3.153 to 5.12; modern delivery (197 descriptor, 140 body) from 5.00r7 on. Never send 132/133/193 to 5.24 or later, and never 197/140 to 4.x. Which path a stock world used for 5.00r7 and 5.12 is open; preferring the classic path on them is a server policy. [bin][inf] (protocol/scripted-weapons-5x-status.md)
+
 ## 2.5.7 Files and update packages
 
 The download sequence, sizes and failure handling are in → §2.7.
@@ -279,6 +281,8 @@ The download sequence, sizes and failure handling are in → §2.7.
 | 111 | `PLO_SETNETCOOKIE` | `rest`, no fields | written byte for byte to `creationtime.dat` in the client's folder, replacing it; nothing is sent back | [bin][inf] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | 187 | `PLO_UPDATEPACKAGEISUPDATED` | `rest` = file name + `\n` (GServer-v2 `master`) | a package-update message; GServer-v2 `master` sends it when an RC uploads a new version of an existing game file | [srv] (protocol/packet-ids.md#server--client-plo_); [srv] (protocol/gserver-v2-master-handlers.md) |
 | 198 | `PLO_SERVEROPTIONS` | `i5` value | stored on the connection; nothing else in 6.03 reads it | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
+
+**Open on 5.12.** Every missing art request in the 5.x/6.x black-screen lab got one 30, but no counting decode shows exactly one 30 per missing name on 5.12, nor how 5.12 treats the empty file afterwards. [lab][bin] (protocol/filesendfailed-512-status.md) The client-side builders of C→S 47 and 159 on 4.20r8 to 6.03r7 are unread, so which of the two GServer-v2 readings of 159 a client writes is open; cold start asks for `basepackage.gupd` with id 23 and a cached copy is checked with id 47 and its CRC-32 on 4.x. [live][srv] (protocol/update-packages-focus-status.md)
 
 ## 2.5.8 Messages, windows and modes
 
@@ -407,3 +411,5 @@ Subtype 1 was set to 0, then 1, 5, 30 and 300. Each value was followed by 60 s w
 | connection | no timeout and no disconnect in 10 minutes, including 60 s without a ping at subtype 1 equal to 1 or to 5 | [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7) |
 
 On this build, in these windows, the subtype-1 value had no visible effect on ping answers, on that 5.1 s traffic, or on staying connected. The run does not show the client enforcing the value as a timeout inside 60 s, at 1 or at 5, whether those numbers are seconds or units of 5 s. The value may be unused, as the static read found, or longer than this test, or read on a path the lab did not trigger. [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7)
+
+Status 2026-11-16: 168 sets a one-shot flag on the local player in every client from 2.05 (high confidence); "login done" is the best name but medium confidence. Who reads the stored 108 subtype-1 value outside the ping path on 4.20r8 and 6.03r7 is still unread. [bin][lab] (protocol/plo108-168-focus-status.md)
