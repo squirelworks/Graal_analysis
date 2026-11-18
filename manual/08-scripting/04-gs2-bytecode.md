@@ -143,6 +143,36 @@ The table lists only the behaviours that were read handler by handler; it is not
 
 Nothing was run in a guest, so the clock's unit, the order of due snapshots and the native call interface are open (→ App. E#207). [bin] (client-internals/mac-611r1-gs2-runner.md#limits)
 
+#### Case sets across the readable builds
+
+One static pass read the dispatcher of every readable client VM, Windows 4.03r3 to 7.12.43, Linux 6.x x64 and Android Classic 1.8 and 2.2, and lists the opcodes each one runs [bin] (protocol/gs2-opcode-table.md#case-sets).
+
+| Builds | Cases | Change from the row above | Source |
+| --- | ---: | --- | --- |
+| 4.03r3, 4.04r2, 4.11 | 119 | base set: 1–10, 20–27, 30–47, 50–53, 60–104, 110–120, 130–142, 150, 151, 163, 180–184, 189, 190 | [bin] (protocol/gs2-opcode-table.md#case-sets) |
+| 4.20r8 | 154 | adds 11 (`waitfor`) and the folds 200–233 | [bin] (protocol/gs2-opcode-table.md#case-sets) |
+| 5.00r7, 5.12 | 158 | adds 48, 49, 54 and 121 (from the earlier export reading; the shipped DLLs were not re-read) | [bin] (protocol/gs2-opcode-table.md#case-sets) |
+| 5.30r3 to 6.1.1.3, 7.12.43, Android 1.8 and 2.2 | 165 | drops 48 and 49; adds the folds 234–242, which are already in 5.30r3 | [bin] (protocol/gs2-opcode-table.md#case-sets) |
+| Linux 6.x x64 (June 2011 beta, November 2011, 6.03r7) | 167 | the 165 above, plus 0 (a plain step to the next instruction) and 164 | [bin] (protocol/gs2-opcode-table.md#case-sets) |
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| 4.03r3 to 4.20r8 fill a table of opcode names, one ordinary word per byte (`add`, `sin`, `less`), at start-up; 5.x and later images carry no names. The table also names seven bytes no dispatcher runs: 160–162 and 185–188 | 4.03r3–4.20r8 | [bin] (protocol/gs2-opcode-table.md#the-clients-own-names) |
+| The Linux x64 builds resolve each decoded instruction to a handler address at load time and jump from handler to handler; an opcode with no handler stores a null address with no guard found, so an unknown byte is unsafe there rather than a skip | Linux 6.x x64 | [bin][inf] (protocol/gs2-opcode-table.md#linux-uses-threaded-dispatch) |
+| Opcode 164 switches to the next joined script that has instructions, or backs up and leaves the run loop; read as "continue in the next joined script"; no compiler is known to emit it | Linux 6.x x64 | [bin][inf] (protocol/gs2-opcode-table.md#opcode-164-on-linux) |
+| The decoded instruction is 24 bytes on Windows 4.2.0.8 to 6.1.1.3, 40 bytes on Linux x64, 7.12.43 and Android 2.2, and 20 or 32 bytes on Android 1.8 x86 or x86_64; none of this is in the byte stream | per build | [bin] (protocol/gs2-opcode-table.md#linux-uses-threaded-dispatch) |
+
+A compiler that must run on every client from 4.03r3 follows four rules [bin][cap] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm).
+
+| Rule | Source |
+| --- | --- |
+| Do not emit 11 (`waitfor`); it is not dispatched before 4.20r8 | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
+| 48 and 49 run only on 5.00r7 and 5.12, and 54 and 121 only from 5.00r7; emitting any of them breaks 4.x | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
+| 0, 160–162, 164 and 185–188 are never portable | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
+| The folds 200–242 are made by each client after decode; a compiler never writes them | [bin][cap] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
+
+Mapped onto the GS2 features a 2016–2019 server backup uses, only `waitfor` needs a VM newer than 4.03r3; the rest compile to the 119-case base set, so what limits such scripts on old clients is the command library behind opcode 6, not the opcode set [bin][inf] (protocol/gs2-opcode-table.md#delteria-2019-features-by-opcode). The Linux 6.x x86 dispatcher, the ARM-only Android builds and each handler's effect on 5.30r3 and 7.12.43 are still unread → App. E#207 [bin] (protocol/gs2-opcode-table.md#still-open).
+
 ## 8.4.5 Built-in names in unpacked 6.1.1.3 and 6.0.3.7
 
 Both unpacked images store the eighteen math names `abs`, `atan`, `atan2`, `ceil`, `cos`, `floor`, `log`, `max`, `min`, `pi`, `pow`, `random`, `round`, `sin`, `sqrt`, `sqrt1_2`, `sqrt2` and `tan`. [bin] (client-internals/gs2-builtins-6113.md)

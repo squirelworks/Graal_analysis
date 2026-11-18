@@ -304,6 +304,22 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 | The 2.22 send-side prop builder also knows 75 and 76 | 2.22 | [bin] (version-profiles/plo-playerprops-layouts.tsv) |
 | From 2.3 GServer-v2 puts X2 and Y2 before X and Y in other-player props | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 
+#### Lab check on Linux 6.03r7 (2026-11-18)
+
+A probe proxy injected single own-prop messages into a Linux 6.03r7 session, each followed by the bomb count (prop 5, one byte) as a canary. The rows below are what the client did; they agree with the static reads above [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Prop 83 is the gralat counter in five bytes: `83 = 1234` shows 1234 and the canary lands. Props 3 and 83 write the same counter, and each replaces the shown value | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| A prop 83 value above 999,999,999 (up to the largest five-byte value) is ignored, not clamped, and the rest of the message is still read | 6.03r7 | [lab][bin] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| The built-in HUD draws only the low seven digits of the count (999,999,999 shows as 9999999); whether all nine digits are stored is unmeasured | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| Prop 77 is read as five bytes with no visible effect | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| An unknown own-prop id is skipped as one byte: with a one-byte value the canary lands; with a longer value the rest of that message is lost, and the next message parses normally | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| Props 78, 79 and 80 are X2, Y2 and Z2 of the local player, two bytes each (pixels × 2, low bit the sign); Z2 lifts the sprite and leaves the shadow on the ground | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| Prop 81 is one byte with no visible effect on the local player; prop 82 is a length-prefixed string | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+
+The same checks on 4.20r8, 5.24r4 and 6.037, the 0–90 width table, and the other-player and NPC streams are still to run [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+
 Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → App. E#8.
 
 Status for 5.00r7 and 5.12 (2026-11-16): the case sets are settled (4.x plus 82); per-id value widths, a two-client wire diff and the third-party leads on colours via 177, ascending-id stop and sword/shield bias are open. [bin][inf] (protocol/player-props-5x-status.md)
