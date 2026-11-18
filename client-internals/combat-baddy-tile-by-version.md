@@ -141,5 +141,7 @@ watched in the running game.
 - [x] ~~The extra victim test in 2.17.1, 2.22 and 2.31.~~ Ghost mode (170), plus the Kingdoms/New World mode gate (176/177) (→ [Sword judge gates](#sword-judge-gates)).
 - [x] ~~The respawn AP bands before 2.x.~~ From 1.41 rev 1 (→ [Death](#death)).
 - [ ] The extra fields of the 1.41 rev 1 id 40 handler (body of 6 bytes or more).
-- Not run live: the 2-tile sideways edge (needs two players), a 2.05 control (expected: no
-  client item drops), anything on 1.21, and the sword spark.
+- [x] ~~The 2-tile sideways edge live.~~ Two real 1.35 online: hit at ±2 tiles, miss at ±2.5
+  (→ [live-runs/sword-edge-2026-11-18](../live-runs/sword-edge-2026-11-18/README.md)).
+- Not run live: a 2.05 control (expected: no client item drops), anything on 1.21, and the
+  sword spark.

@@ -353,6 +353,8 @@ Some ids are defined by the server but handled by no client the notes have read.
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
+On Linux 6.03r7, PLO 60, 78, 81, 83 and 110 were each sent in a lab session with four bodies (empty, one byte, 60 bytes of text, four binary bytes). The client ignored every one: it sent nothing back, did not crash, and read the next message normally [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+
 ## 2.5.11 Unpacked Windows 6.1.1.3: script-installed handlers
 
 #### Receive and send registration

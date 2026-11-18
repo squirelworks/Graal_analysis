@@ -137,6 +137,8 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Official GS2 jumps, narrow markers, missing returns](protocol/gs2-official-jump-narrow-returns-2026-11-16.md) — no jump→uncond leftovers and no fat markers on the 19; 18/660 bodies lack a final return; pass existence still open.
 - [Official GS2 function-only image shape](protocol/gs2-official-function-only-shape-2026-11-16.md) — all 19 official bodies start with jump-past-end; PG1 top-level re-run still needs live fixtures.
 - [Official GS2 strings are Latin-1 (one sample)](protocol/gs2-official-strings-latin1-2026-11-16.md) — Français as single-byte `0xE7`; focus clients on ANSI/ACP text path; live glyph fixture still open.
+- [GS2 opcode table, every byte and build](protocol/gs2-opcode-table.md) — 4.x name table in full; case sets 4.03r3 (119) → 4.20r8 (154) → 5.00r7 (158) → 5.30r3–6.1.1.3, 7.12.43 and Android (165); Linux x64 threaded dispatch adds 0 and 164; Delteria features by opcode.
+- [GS2 engine event names by build](client-internals/gs2-engine-event-names.md) — 221 `on…` literals over nine builds; 6.1.1.3's 55 `onSend…` hooks; Android and v7-only hooks.
 - [GS2 segment-1 GS1 event mask](protocol/gs2-seg1-event-mask-2026-11-16.md) — official bodies leave seg1 0; stock `needEvent` filters; bit 27 `pkzonechanges` absent on 4.x/5.x.
 - [GS2 fold 241 checklist](protocol/gs2-fold-241-2026-11-16.md) — stock 6.00 makes fold 241; open graal-client-repro deliberately does not fuse it.
 - [Official GS2 variable-cache opcodes and function-table order (partial)](protocol/gs2-official-varcache-functable-partial-2026-11-16.md) — offline walk of 7 of those bodies: 45/46/47 common with 47→45 pairs, 190 rare; segment-2 not a CI name-hash sort; counts only.

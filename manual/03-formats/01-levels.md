@@ -275,6 +275,7 @@ BOARD x y width layerindex tilesdata
 | trailing `=` | the client alphabet in the server's level code appends a `=`, which is not part of the 64-character alphabet | [srv] (formats/glevnw01.txt) |
 | rejection | a line is ignored unless it has 6 tokens, the run stays inside x 0 to 63, and `tilesdata` has at least `width*2` characters | [srv] (formats/glevnw01.txt) |
 | storage | the tile goes to `levelTiles[x + y*64]`; `layerindex` is parsed and not used | [srv] (formats/glevnw01.txt) |
+| layers in real content | in two server backups (2002 and 2019, 1,608 `.nw` files), only three 2019 levels use layers 1 and 2 (141 `BOARD` rows); every other file uses layer 0 only. Neither backup holds a `GR-V1.05` file, so no on-disk sample of that format is known | [file] (server-notes/hubserver-037-and-delteria-2026-11-18.md#level-formats-no-gr-v105-sample) |
 
 ### 3.1.3.3 Other records
 

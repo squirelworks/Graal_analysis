@@ -139,6 +139,18 @@ The classic `serverlist3` listserver survives as source. The rules below give it
 | A success is id 0 (the directory) and id 2 (status text), then the link closes; the trial and free-server texts also send id 3 first with the `showmore` URL | [bin] (tools/classic-tools/serverlist3.md#what-the-client-is-shown) |
 | Status texts: a welcome line, a staff sentence, a remaining-time sentence, the trial sentence or the free-server sentence | [bin] (tools/classic-tools/serverlist3.md#what-the-client-is-shown) |
 
+### 6.2.4 A third-party hub: the Preagonal Hubserver
+
+The Preagonal Hubserver is a current third-party hub, not the official listserver. Versions 0.3.6 and 0.3.7 were read statically; the rules below describe both [bin] (server-notes/hubserver-037-and-delteria-2026-11-18.md#hubserver-v037-against-v036).
+
+| Rule | Source |
+| --- | --- |
+| 0.3.7 runs the same program as 0.3.6: all 1,663 method bodies have the same IL, and the default settings and the bundled GS2 libraries are byte-identical; only the database libraries were updated. It adds no protocol, version-token or schema change | [bin] (server-notes/hubserver-037-and-delteria-2026-11-18.md#hubserver-v037-against-v036) |
+| Three listening sockets: one for game servers and one each for new-protocol and old-protocol clients; every setting can also come from environment variables | [bin] (server-notes/hubserver-037-and-delteria-2026-11-18.md#what-the-hubserver-shows-unchanged-from-v036) |
+| It carries its own allowed-version table from 1.25 to 6.037, plus the iPhone clients and the NPC-server token; every token is already in the repository's version token map | [bin][inf] (server-notes/hubserver-037-and-delteria-2026-11-18.md#what-the-hubserver-shows-unchanged-from-v036) |
+| It answers `lister`, `simplelist` and `simpleserverlist` requests, enforces unique server names, and checks registered-server passwords | [bin] (server-notes/hubserver-037-and-delteria-2026-11-18.md#what-the-hubserver-shows-unchanged-from-v036) |
+| It links a GS2 compiler and VM and compiles database NPCs itself; that code is MPL-2.0 and stays out of Seihai | [bin][inf] (server-notes/hubserver-037-and-delteria-2026-11-18.md#what-the-hubserver-shows-unchanged-from-v036) |
+
 ## 6.3 Login-type matrix
 
 On 2026-10-25 the public listserver was asked for its list 38 times, once per port for 19 version profiles of a reimplementation, with no game-server login [cap] (protocol/listserver-login-type-matrix-2026-10-25.md). The service chooses its reply by **login type**, not by version or token [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result).
