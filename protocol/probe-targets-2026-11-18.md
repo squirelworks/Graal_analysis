@@ -111,7 +111,25 @@ followed by the bomb canary. The canary was read from the client's own report:
   - 75 kept it only by chance, because the bytes of the string `linux` parse as other props.
 - **84–90** are skipped as one byte.
 
-This closes the 6.03r7 part of the per-id width item in `v5-props.md`.
+**Caveat and re-check.** In `widths.plan`, the multi-byte ids 24, 27–31, 36, 42 and 77 were
+sent as all-zero values. An all-zero tail can line up again by chance, because `0x20 0x20`
+reads as an empty prop 0. So `widths-fix.plan` sent those ids again with values whose
+too-short read leaves `0x20 0x9f` behind, and that swallows the canary. **[lab]**
+
+- On 6.03r7 (`wf603-a`), all of them hold.
+- On 4.20r8 (`wf420-a`) and 5.24r4 (`wf524-a`), all of them hold except 77, which has no case
+  there.
+
+**4.20r8 and 5.24r4.** The same plan ran on both (`w420-wid`, `w524-wid`). **[lab]**
+
+- Every id with a case reads at its documented width.
+- The ids with no case:
+  - 4.20r8: 33, 50, 51, 53, 75, 76, 77, 82 and 83
+  - 5.24r4: the same set without 82
+
+  Each one is skipped as one byte.
+
+This closes the per-id width item in `v5-props.md` for 4.20r8, 5.24r4 and 6.03r7.
 
 ## The same probes on Windows clients (2026-11-18)
 
@@ -138,11 +156,11 @@ of [`probe-results.tsv`](probe-results.tsv) is read with `tools/probe/canary.py`
 - **4.20r8 and 5.24r4 skip an id they have no case for as one byte,** like 6.03r7.
   - **5.24r4** reads 82 as a string, but has no case for 77 or 83. **[lab]**
   - **4.20r8** has no case for 82 either. **[lab]**
-- **2.22 stops reading a frame at a NUL byte.** The byte-by-byte runs (`b222-a`, `b420-a`, plan
-  `bytes2x.plan`) settle this:
-  - On 2.22, a message with a `00` byte anywhere in it loses every packet after it in the same
-    frame. This holds for an unknown id and for a chat prop alike.
-  - On 2.22, `ff`, `80` and `1f` bytes are harmless.
+- **2.22 and 2.31 stop reading a frame at a NUL byte.** The byte-by-byte runs (`b222-a`, `b231-a`,
+  `b420-a`, plan `bytes2x.plan`) settle this:
+  - On 2.22 and 2.31, a message with a `00` byte anywhere in it loses every packet after it in
+    the same frame. This holds for an unknown id and for a chat prop alike.
+  - On both, `ff`, `80` and `1f` bytes are harmless.
   - 4.20r8 keeps the rest of the frame in every case.
   - 2.31 lost the next packet after `ff 00 ff 00` on ids 60, 78, 81 and 83, but not on 110.
     That one case is not explained yet.
@@ -192,6 +210,18 @@ going.
 **Replies.** 34 (`PLI_UPDATEFILE`) got `PLO_FILEUPTODATE`, and 159 (`PLI_UPDATEPACKAGEREQUESTFILE`)
 got 105 and 106. 39 (`PLI_TAMPERCHECK`) got no reply and no log line, so this build does not act
 on the tamper check (E#320).
+
+**Which baddy types a client survives.** A follow-up sent `PLO_BADDYPROPS` with one new baddy
+per type, using plans `baddytypes*.plan`. **[lab]**
+
+| Client | Survives | Quits |
+|---|---|---|
+| 6.03r7 (`bt603-a`, `bt603-b`) | types 0–24 | type 25 and type 31; 26–30 not tried |
+| 4.20r8 (`bt420-a`) | every type sent, 223 included | — |
+| 2.22 (`bt222-a`) | every type sent, 223 included | — |
+
+So a server should never send a baddy type above 24 to a 6.x client, and should keep to 0–9
+(the named types) for any client.
 
 **What follows from this.**
 - A server should check each body's length before reading it, and should check the baddy type

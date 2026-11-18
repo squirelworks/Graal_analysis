@@ -15,16 +15,17 @@ Status words:
 | **open** | Not checked yet, but reachable with the clients and servers we have. |
 | **blocked** | No client or server we can run reaches it yet. The reason is in the row. |
 
-## Tally (2026-11-18)
+## Tally (2026-11-18, evening)
 
 | Group | Resolved | Open | Blocked |
 |---|---:|---:|---:|
-| Own player props on a real client (77–83, unknown ids, 0–76 widths) | 8 | 2 | 1 |
-| Server→client ids no client handles (60, 78, 81, 83, 110, 156) | 5 | 0 | 1 |
+| Own player props on real clients (77–83, unknown ids, widths 0–90) | 8 | 1 | 1 |
+| Server→client ids that no client handles (60, 78, 81, 83, 110, 156) | 5 | 0 | 1 |
 | Client→server ids at our server (0–223) | 1 | 1 | 0 |
 | Wire bytes (NUL and high bytes inside a message) | 1 | 1 | 0 |
+| Baddy types | 1 | 0 | 0 |
 | Other streams and clients | 0 | 3 | 4 |
-| **Total** | **15** | **7** | **6** |
+| **Total** | **16** | **6** | **6** |
 
 ## Own player props (`PLO_PLAYERPROPS`)
 
@@ -36,7 +37,7 @@ Status words:
 | 81 | PLAYERLISTCATEGORY | width | 1 byte | 1 byte | 1 byte | ends the message | resolved (effect on the player list: open) |
 | 82 | COMMUNITYNAME | width | string | string | skipped as 1 byte | ends the message | resolved |
 | 84–90 | (none) | how an unknown id is skipped | id + 1 byte; a longer value loses the rest of that message only | the same | the same | ends the message | resolved |
-| 0–76 | (named) | do the documented widths hold? | yes, for every id with a case; 33, 50, 51, 53, 75 and 76 have no case and are skipped as 1 byte | open (`widths.plan`) | open (`widths.plan`) | — | resolved for 6.03r7 |
+| 0–76 | (named) | do the documented widths hold? | yes, for every id with a case; 33, 50, 51, 53, 75 and 76 have no case and are skipped as 1 byte | yes; no case for 33, 50, 51, 53, 75, 76, 77, 83 | yes; no case for those and 82 | — | resolved |
 | 81 | PLAYERLISTCATEGORY | what it changes | — | — | — | — | open: needs a second client looking at the player list |
 | any | — | Windows 6.037 | — | — | — | — | blocked: runs only in the Win10 VM |
 
@@ -62,7 +63,7 @@ Status words:
 
 | Item | Result | Status |
 |---|---|---|
-| A NUL byte inside a message on 2.22 | Loses the rest of the frame; `ff`, `80` and `1f` are harmless; 4.20r8 is unaffected | resolved |
+| A NUL byte inside a message on 2.22 and 2.31 | Loses the rest of the frame on both; `ff`, `80` and `1f` are harmless; 4.20r8 is unaffected | resolved |
 | 2.31: why `ff 00 ff 00` lost the next packet after ids 60, 78, 81 and 83, but not after 110 | Run `bytes2x.plan` on 2.31 | open |
 
 ## Other streams and clients
@@ -71,7 +72,8 @@ Status words:
 |---|---|---|
 | Other-player props 77 and 83 (`PLO_OTHERPLPROPS`) | open | needs a second lab client in the level as the observer |
 | NPC props 48–52 | open | needs a level NPC with a visible prop after the tested one |
-| Baddy props 11 and up, and the baddy type range a client accepts | open | type 224 crashes 6.03r7; the valid range is not measured |
+| Baddy type range a client accepts | resolved | 6.03r7 survives 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223 |
+| Baddy props 11 and up | open | needs a visible baddy prop after the tested one |
 | 6.1.1.3 | blocked | RC4 after a server-sent connector script; no loopback login yet (`v6113-status.md`) |
 | Windows 6.037 | blocked | runs only in the Win10 VM (packed, clock-gated) |
 | 2.00 to 2.21 (gen 2, 3, 4) | blocked | the proxy speaks gen 5 only |
