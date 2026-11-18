@@ -613,6 +613,7 @@ No server is known to check the tamper-check value [srv][cap] (client-internals/
 | --- | --- | --- |
 | Open | the clients only send `PLI_TAMPERCHECK` (39); the open-source server discards it, and four public servers accepted a 2.22 login without it for 20 s; whether any server checks the value, or its periodic re-send from 2.31, is unknown | [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | Settles it | a 2.31 session on a public server with the re-send withheld or altered, which needs the user's approval for a public login | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
+| Lab (2026-11-18) | our GServer-v2 build (GS2Emu 4.0.0-beta) takes an empty `PLI_TAMPERCHECK` silently: no reply, no log line, the session continues. This confirms the open-source side only; public servers are still unknown | [lab] (protocol/probe-targets-2026-11-18.md) |
 
 ### E#321 The 2.31 window blacklist
 

@@ -1,0 +1,56 @@
+# Width re-check for the ids whose first test used all-zero multi-byte values (an all-zero tail can re-align by chance).
+# These values make a too-short read leave "0x20 0x9f" behind, which swallows the canary.
+waitsession 240
+wait s2c 9 90
+sleep 12
+s2c 9 c:5 c:1
+sleep 1.5
+shot ref-01
+s2c 9 c:5 c:99
+sleep 1.5
+shot ref-99
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:24 i3:16511 c:5 c:99
+sleep 1.2
+shot id24
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:27 i3:16511 c:5 c:99
+sleep 1.2
+shot id27
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:28 i3:16511 c:5 c:99
+sleep 1.2
+shot id28
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:29 i3:16511 c:5 c:99
+sleep 1.2
+shot id29
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:31 i3:16511 c:5 c:99
+sleep 1.2
+shot id31
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:36 i3:16511 c:5 c:99
+sleep 1.2
+shot id36
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:30 i5:2080768 c:5 c:99
+sleep 1.2
+shot id30
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:77 i5:2080768 c:5 c:99
+sleep 1.2
+shot id77
+s2c 9 c:5 c:1
+sleep 0.6
+s2c 9 c:42 c:0 i3:16511 c:5 c:99
+sleep 1.2
+shot id42

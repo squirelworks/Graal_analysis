@@ -1,0 +1,38 @@
+# Baddy type range on 6.03r7, part 2: types 21-31 (part 1 survived 0-20 and quit on 31).
+waitsession 240
+wait s2c 9 90
+sleep 8
+shot 00-base
+s2c 2 c:1 c:1 c:58 c:2 c:52 c:3 c:21 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type021
+s2c 2 c:2 c:1 c:60 c:2 c:52 c:3 c:22 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type022
+s2c 2 c:3 c:1 c:62 c:2 c:52 c:3 c:23 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type023
+s2c 2 c:4 c:1 c:64 c:2 c:52 c:3 c:24 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type024
+s2c 2 c:5 c:1 c:66 c:2 c:52 c:3 c:25 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type025
+s2c 2 c:6 c:1 c:56 c:2 c:52 c:3 c:26 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type026
+s2c 2 c:7 c:1 c:58 c:2 c:52 c:3 c:27 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type027
+s2c 2 c:8 c:1 c:60 c:2 c:52 c:3 c:28 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type028
+s2c 2 c:9 c:1 c:62 c:2 c:52 c:3 c:29 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type029
+s2c 2 c:10 c:1 c:64 c:2 c:52 c:3 c:30 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type030
+s2c 2 c:11 c:1 c:66 c:2 c:52 c:3 c:31 c:4 c:2 str: c:5 c:0
+sleep 2.5
+shot type031

@@ -78,4 +78,4 @@ Date: 2026-11-18. Static read of unpacked Windows 6.03r7 and the Linux x86-64 6.
 - Whether iPhone or Android clients parse own prop 83.
 - ~~Whether a real 5.x or 6.x client accepts a long value at an unknown own id without desync.~~ 6.03r7 does not: a three-byte value at an unknown id loses the rest of that message, and the next message parses normally (lab, 2026-11-18). 5.x is not checked yet.
 - 6.03r7 lab widths (2026-11-18): 77 five bytes, 78–80 two bytes (`X2`, `Y2`, `Z2`), 81 one byte, 82 string, 83 five bytes.
-- The per-id value widths of the 5.x and 6.x parsers, beyond the ids named above.
+- ~~The per-id value widths of the 5.x and 6.x parsers.~~ On 4.20r8, 5.24r4 and 6.03r7, every id with a case reads at the width `player-props.md` gives (lab, 2026-11-18, [probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)). 5.00r7, 5.12 and 6.1.1.3 are not run.
