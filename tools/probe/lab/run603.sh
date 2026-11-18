@@ -8,6 +8,7 @@ set -u
 #   CLIENT_TREE   a prepared Linux 6.03r7 client folder (run-client.sh, runtime-home)
 #   CLIENT_BIN    the 6.03r7 Graal binary          GSERVER_DIR  folder with gs2emu and seihai-listserver
 #   WORLD_TEMPLATE  a gs2emu server folder copied for the login and world servers
+#   GS2EMU        optional other gserver binary for the world only (CHATBACK needs one that sends level NPC bytecode)
 #   PICS1         the lab tile sheet               LAB_DNS      the lab's loopback DNS responder script
 [ -f $HOME/probelab/lab.env ] && . $HOME/probelab/lab.env
 : ${CLIENT_TREE:?} ${CLIENT_BIN:?} ${GSERVER_DIR:?} ${WORLD_TEMPLATE:?} ${LAB_DNS:?}
@@ -19,7 +20,7 @@ R=$HOME/probelab; O=$R/out/$RUN; T=$R/tools; DISP=${DISP:-87}
 rm -rf $O $R/client; mkdir -p $O $R/run
 cp -a $CLIENT_TREE $R/client
 cp $CLIENT_BIN $R/client/Graal
-W=$R/world; rm -rf $W; mkdir -p $W/servers; cp -f $GSERVER_DIR/gs2emu $GSERVER_DIR/seihai-listserver $W/
+W=$R/world; rm -rf $W; mkdir -p $W/servers; cp -f $GSERVER_DIR/gs2emu $GSERVER_DIR/seihai-listserver $W/; cp -f ${GS2EMU:-$GSERVER_DIR/gs2emu} $W/gs2emu-world
 printf 'bind = "%s"
 gserver_port = 14950
 client_ports = [14971]
@@ -35,7 +36,7 @@ for s in probe probelogin; do [ -f "$PICS1" ] && cp "$PICS1" $W/servers/$s/world
 # also seed the client's cache, so the tiles do not depend on the download beating the login warp
 K=$R/client/runtime-home/.graal/graal4/levels/images/downloads; mkdir -p $K; [ -f "$PICS1" ] && cp "$PICS1" $K/pics1.png
 o() { f=$W/servers/$1/config/serveroptions.txt; if grep -q "^$2 = " $f; then sed -i "s|^$2 = .*|$2 = $3|" $f; else echo "$2 = $3" >> $f; fi; }
-for s in probe probelogin; do o $s listport 14950; o $s listip $LO1; o $s serverinterface $LO2; o $s serverip $LO1; o $s localip $LO1; done
+for s in probe probelogin; do o $s localhostlist true; o $s listport 14950; o $s listip $LO1; o $s serverinterface $LO2; o $s serverip $LO1; o $s localip $LO1; done
 o probe name "Probe Lab 603"; o probe serverport 14901; o probe heartlimit 20; o probe gmaps ""
 o probelogin name "Probe Login 603"; o probelogin serverport 14900
 o probelogin serverside true; o probelogin serversidescriptlevels "probe_login*"; o probelogin startlevel probe_login.nw; o probelogin gmaps ""
@@ -66,7 +67,7 @@ ip addr add $LO2/8 dev lo 2>/dev/null; ip link set lo up 2>/dev/null
 python3 $LAB_DNS --private-log $O/dns.jsonl --seconds 400 > $O/dns.log 2>&1 &
 (cd $W && ./seihai-listserver --config ./ls.toml > $O/listserver.txt 2>&1 &)
 sleep 1
-(cd $W && ./gs2emu --server probe > $O/gs-world.txt 2>&1 &)
+(cd $W && ./gs2emu-world --server probe > $O/gs-world.txt 2>&1 &)
 (cd $W && ./gs2emu --server probelogin -p 14900 > $O/gs-login.txt 2>&1 &)
 python3 $T/gen5probe.py $LO1 14900 $LO2 14900 $O/proxy.log login $R/run/login.sock &
 python3 $T/gen5probe.py $LO1 14901 $LO2 14901 $O/proxy.log world $R/run/world.sock &
