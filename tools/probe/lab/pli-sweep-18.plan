@@ -1,0 +1,639 @@
+# Server-side sweep: PLI ids 18-223 with an empty body, from a live 6.03r7 session to our gs2emu (GServer-v2) world.
+# (17, BADDYADD, is left out: an empty one makes the server send a garbage baddy that crashes 6.03r7; see probe-results.tsv.)
+waitsession 180
+wait s2c 9 60
+sleep 6
+shot 00-base
+mark pli 18
+c2s 18
+sleep 0.8
+mark pli 19
+c2s 19
+sleep 0.8
+mark pli 20
+c2s 20
+sleep 0.8
+mark pli 21
+c2s 21
+sleep 0.8
+mark pli 22
+c2s 22
+sleep 0.8
+mark pli 23
+c2s 23
+sleep 0.8
+mark pli 24
+c2s 24
+sleep 0.8
+mark pli 25
+c2s 25
+sleep 0.8
+mark pli 26
+c2s 26
+sleep 0.8
+mark pli 27
+c2s 27
+sleep 0.8
+mark pli 28
+c2s 28
+sleep 0.8
+mark pli 29
+c2s 29
+sleep 0.8
+mark pli 30
+c2s 30
+sleep 0.8
+mark pli 31
+c2s 31
+sleep 0.8
+shot pli031
+mark pli 32
+c2s 32
+sleep 0.8
+mark pli 33
+c2s 33
+sleep 0.8
+mark pli 34
+c2s 34
+sleep 0.8
+mark pli 35
+c2s 35
+sleep 0.8
+mark pli 36
+c2s 36
+sleep 0.8
+mark pli 37
+c2s 37
+sleep 0.8
+mark pli 38
+c2s 38
+sleep 0.8
+mark pli 39
+c2s 39
+sleep 0.8
+mark pli 40
+c2s 40
+sleep 0.8
+mark pli 41
+c2s 41
+sleep 0.8
+mark pli 42
+c2s 42
+sleep 0.8
+mark pli 43
+c2s 43
+sleep 0.8
+mark pli 44
+c2s 44
+sleep 0.8
+mark pli 45
+c2s 45
+sleep 0.8
+mark pli 46
+c2s 46
+sleep 0.8
+mark pli 47
+c2s 47
+sleep 0.8
+shot pli047
+mark pli 48
+c2s 48
+sleep 0.8
+mark pli 49
+c2s 49
+sleep 0.8
+mark pli 50
+c2s 50
+sleep 0.8
+mark pli 51
+c2s 51
+sleep 0.8
+mark pli 52
+c2s 52
+sleep 0.8
+mark pli 53
+c2s 53
+sleep 0.8
+mark pli 54
+c2s 54
+sleep 0.8
+mark pli 55
+c2s 55
+sleep 0.8
+mark pli 56
+c2s 56
+sleep 0.8
+mark pli 57
+c2s 57
+sleep 0.8
+mark pli 58
+c2s 58
+sleep 0.8
+mark pli 59
+c2s 59
+sleep 0.8
+mark pli 60
+c2s 60
+sleep 0.8
+mark pli 61
+c2s 61
+sleep 0.8
+mark pli 62
+c2s 62
+sleep 0.8
+mark pli 63
+c2s 63
+sleep 0.8
+shot pli063
+mark pli 64
+c2s 64
+sleep 0.8
+mark pli 65
+c2s 65
+sleep 0.8
+mark pli 66
+c2s 66
+sleep 0.8
+mark pli 67
+c2s 67
+sleep 0.8
+mark pli 68
+c2s 68
+sleep 0.8
+mark pli 69
+c2s 69
+sleep 0.8
+mark pli 70
+c2s 70
+sleep 0.8
+mark pli 71
+c2s 71
+sleep 0.8
+mark pli 72
+c2s 72
+sleep 0.8
+mark pli 73
+c2s 73
+sleep 0.8
+mark pli 74
+c2s 74
+sleep 0.8
+mark pli 75
+c2s 75
+sleep 0.8
+mark pli 76
+c2s 76
+sleep 0.8
+mark pli 77
+c2s 77
+sleep 0.8
+mark pli 78
+c2s 78
+sleep 0.8
+mark pli 79
+c2s 79
+sleep 0.8
+shot pli079
+mark pli 80
+c2s 80
+sleep 0.8
+mark pli 81
+c2s 81
+sleep 0.8
+mark pli 82
+c2s 82
+sleep 0.8
+mark pli 83
+c2s 83
+sleep 0.8
+mark pli 84
+c2s 84
+sleep 0.8
+mark pli 85
+c2s 85
+sleep 0.8
+mark pli 86
+c2s 86
+sleep 0.8
+mark pli 87
+c2s 87
+sleep 0.8
+mark pli 88
+c2s 88
+sleep 0.8
+mark pli 89
+c2s 89
+sleep 0.8
+mark pli 90
+c2s 90
+sleep 0.8
+mark pli 91
+c2s 91
+sleep 0.8
+mark pli 92
+c2s 92
+sleep 0.8
+mark pli 93
+c2s 93
+sleep 0.8
+mark pli 94
+c2s 94
+sleep 0.8
+mark pli 95
+c2s 95
+sleep 0.8
+shot pli095
+mark pli 96
+c2s 96
+sleep 0.8
+mark pli 97
+c2s 97
+sleep 0.8
+mark pli 98
+c2s 98
+sleep 0.8
+mark pli 99
+c2s 99
+sleep 0.8
+mark pli 100
+c2s 100
+sleep 0.8
+mark pli 101
+c2s 101
+sleep 0.8
+mark pli 102
+c2s 102
+sleep 0.8
+mark pli 103
+c2s 103
+sleep 0.8
+mark pli 104
+c2s 104
+sleep 0.8
+mark pli 105
+c2s 105
+sleep 0.8
+mark pli 106
+c2s 106
+sleep 0.8
+mark pli 107
+c2s 107
+sleep 0.8
+mark pli 108
+c2s 108
+sleep 0.8
+mark pli 109
+c2s 109
+sleep 0.8
+mark pli 110
+c2s 110
+sleep 0.8
+mark pli 111
+c2s 111
+sleep 0.8
+shot pli111
+mark pli 112
+c2s 112
+sleep 0.8
+mark pli 113
+c2s 113
+sleep 0.8
+mark pli 114
+c2s 114
+sleep 0.8
+mark pli 115
+c2s 115
+sleep 0.8
+mark pli 116
+c2s 116
+sleep 0.8
+mark pli 117
+c2s 117
+sleep 0.8
+mark pli 118
+c2s 118
+sleep 0.8
+mark pli 119
+c2s 119
+sleep 0.8
+mark pli 120
+c2s 120
+sleep 0.8
+mark pli 121
+c2s 121
+sleep 0.8
+mark pli 122
+c2s 122
+sleep 0.8
+mark pli 123
+c2s 123
+sleep 0.8
+mark pli 124
+c2s 124
+sleep 0.8
+mark pli 125
+c2s 125
+sleep 0.8
+mark pli 126
+c2s 126
+sleep 0.8
+mark pli 127
+c2s 127
+sleep 0.8
+shot pli127
+mark pli 128
+c2s 128
+sleep 0.8
+mark pli 129
+c2s 129
+sleep 0.8
+mark pli 130
+c2s 130
+sleep 0.8
+mark pli 131
+c2s 131
+sleep 0.8
+mark pli 132
+c2s 132
+sleep 0.8
+mark pli 133
+c2s 133
+sleep 0.8
+mark pli 134
+c2s 134
+sleep 0.8
+mark pli 135
+c2s 135
+sleep 0.8
+mark pli 136
+c2s 136
+sleep 0.8
+mark pli 137
+c2s 137
+sleep 0.8
+mark pli 138
+c2s 138
+sleep 0.8
+mark pli 139
+c2s 139
+sleep 0.8
+mark pli 140
+c2s 140
+sleep 0.8
+mark pli 141
+c2s 141
+sleep 0.8
+mark pli 142
+c2s 142
+sleep 0.8
+mark pli 143
+c2s 143
+sleep 0.8
+shot pli143
+mark pli 144
+c2s 144
+sleep 0.8
+mark pli 145
+c2s 145
+sleep 0.8
+mark pli 146
+c2s 146
+sleep 0.8
+mark pli 147
+c2s 147
+sleep 0.8
+mark pli 148
+c2s 148
+sleep 0.8
+mark pli 149
+c2s 149
+sleep 0.8
+mark pli 150
+c2s 150
+sleep 0.8
+mark pli 151
+c2s 151
+sleep 0.8
+mark pli 152
+c2s 152
+sleep 0.8
+mark pli 153
+c2s 153
+sleep 0.8
+mark pli 154
+c2s 154
+sleep 0.8
+mark pli 155
+c2s 155
+sleep 0.8
+mark pli 156
+c2s 156
+sleep 0.8
+mark pli 157
+c2s 157
+sleep 0.8
+mark pli 158
+c2s 158
+sleep 0.8
+mark pli 159
+c2s 159
+sleep 0.8
+shot pli159
+mark pli 160
+c2s 160
+sleep 0.8
+mark pli 161
+c2s 161
+sleep 0.8
+mark pli 162
+c2s 162
+sleep 0.8
+mark pli 163
+c2s 163
+sleep 0.8
+mark pli 164
+c2s 164
+sleep 0.8
+mark pli 165
+c2s 165
+sleep 0.8
+mark pli 166
+c2s 166
+sleep 0.8
+mark pli 167
+c2s 167
+sleep 0.8
+mark pli 168
+c2s 168
+sleep 0.8
+mark pli 169
+c2s 169
+sleep 0.8
+mark pli 170
+c2s 170
+sleep 0.8
+mark pli 171
+c2s 171
+sleep 0.8
+mark pli 172
+c2s 172
+sleep 0.8
+mark pli 173
+c2s 173
+sleep 0.8
+mark pli 174
+c2s 174
+sleep 0.8
+mark pli 175
+c2s 175
+sleep 0.8
+shot pli175
+mark pli 176
+c2s 176
+sleep 0.8
+mark pli 177
+c2s 177
+sleep 0.8
+mark pli 178
+c2s 178
+sleep 0.8
+mark pli 179
+c2s 179
+sleep 0.8
+mark pli 180
+c2s 180
+sleep 0.8
+mark pli 181
+c2s 181
+sleep 0.8
+mark pli 182
+c2s 182
+sleep 0.8
+mark pli 183
+c2s 183
+sleep 0.8
+mark pli 184
+c2s 184
+sleep 0.8
+mark pli 185
+c2s 185
+sleep 0.8
+mark pli 186
+c2s 186
+sleep 0.8
+mark pli 187
+c2s 187
+sleep 0.8
+mark pli 188
+c2s 188
+sleep 0.8
+mark pli 189
+c2s 189
+sleep 0.8
+mark pli 190
+c2s 190
+sleep 0.8
+mark pli 191
+c2s 191
+sleep 0.8
+shot pli191
+mark pli 192
+c2s 192
+sleep 0.8
+mark pli 193
+c2s 193
+sleep 0.8
+mark pli 194
+c2s 194
+sleep 0.8
+mark pli 195
+c2s 195
+sleep 0.8
+mark pli 196
+c2s 196
+sleep 0.8
+mark pli 197
+c2s 197
+sleep 0.8
+mark pli 198
+c2s 198
+sleep 0.8
+mark pli 199
+c2s 199
+sleep 0.8
+mark pli 200
+c2s 200
+sleep 0.8
+mark pli 201
+c2s 201
+sleep 0.8
+mark pli 202
+c2s 202
+sleep 0.8
+mark pli 203
+c2s 203
+sleep 0.8
+mark pli 204
+c2s 204
+sleep 0.8
+mark pli 205
+c2s 205
+sleep 0.8
+mark pli 206
+c2s 206
+sleep 0.8
+mark pli 207
+c2s 207
+sleep 0.8
+shot pli207
+mark pli 208
+c2s 208
+sleep 0.8
+mark pli 209
+c2s 209
+sleep 0.8
+mark pli 210
+c2s 210
+sleep 0.8
+mark pli 211
+c2s 211
+sleep 0.8
+mark pli 212
+c2s 212
+sleep 0.8
+mark pli 213
+c2s 213
+sleep 0.8
+mark pli 214
+c2s 214
+sleep 0.8
+mark pli 215
+c2s 215
+sleep 0.8
+mark pli 216
+c2s 216
+sleep 0.8
+mark pli 217
+c2s 217
+sleep 0.8
+mark pli 218
+c2s 218
+sleep 0.8
+mark pli 219
+c2s 219
+sleep 0.8
+mark pli 220
+c2s 220
+sleep 0.8
+mark pli 221
+c2s 221
+sleep 0.8
+mark pli 222
+c2s 222
+sleep 0.8
+mark pli 223
+c2s 223
+sleep 0.8
+shot pli223
+sleep 3
+shot zz-end

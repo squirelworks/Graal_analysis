@@ -1,0 +1,52 @@
+# 2.x: does a NUL (or 0xff, 0x80, 0x1f) byte inside a message lose the rest of the frame? The canary (bombs 99) is in the same frame.
+waitsession 240
+wait s2c 9 90
+sleep 12
+s2c 9 c:5 c:1
+sleep 1.5
+shot ref-01
+s2c 9 c:5 c:99
+sleep 1.5
+shot ref-99
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 60 hex:410042
+s2c 9 c:5 c:99
+sleep 1.2
+shot nul-mid
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 60 hex:4100
+s2c 9 c:5 c:99
+sleep 1.2
+shot nul-end
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 60 hex:41ff42
+s2c 9 c:5 c:99
+sleep 1.2
+shot ff
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 60 hex:418042
+s2c 9 c:5 c:99
+sleep 1.2
+shot 80
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 60 hex:411f42
+s2c 9 c:5 c:99
+sleep 1.2
+shot 1f
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 60 t:AB
+s2c 9 c:5 c:99
+sleep 1.2
+shot plain
+s2c 9 c:5 c:1
+sleep 0.8
+s2c 9 c:12 str:a hex:00
+s2c 9 c:5 c:99
+sleep 1.2
+shot nul-known
