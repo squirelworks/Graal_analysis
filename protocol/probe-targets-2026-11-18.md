@@ -330,6 +330,39 @@ prop in a message.
 on the client and attacked the player. The position canary therefore does not hold for baddies,
 and props 11 and up stay open.
 
+## `PLO_LOADGANI` (195): the `SETBACKTO` list (2026-11-19)
+
+**Setup.** The clients were 6.03r7 (runs `lg603-b`, `lg603-c`), 4.20r8 (`lg420-a`) and 5.24r4
+(`lg524-a`), with plans `loadgani.plan` and `loadgani2.plan`. After the first steps, the proxy
+dropped the server's own 195 replies to `PLI_UPDATEGANI` (157). The result was read from the
+client's own gani reports (`PLI_PLAYERPROPS` prop 10), which it sends whenever it falls back to
+another gani. The three clients behaved the same in every test. **[lab]**
+
+**What 195 does:**
+- **Its list holds gani header lines that override the file's values for the named gani.**
+  `kick "SETBACKTO sit"` made `kick` fall back to `sit`, and `lift "SETBACKTO dead"` made `lift`
+  fall back to `dead`. On 6.03r7, `idle "SETBACKTO sword"` gave `idle`, which has no
+  `SETBACKTO` of its own, a fallback.
+- **The newest value wins.** A later 195 replaces an earlier one, and with two `SETBACKTO`
+  lines in one list the last one wins.
+- **Edge cases:**
+  - `"SETBACKTO "` with an empty target means no fallback.
+  - An empty list changes nothing (6.03r7).
+  - `"LOOP"` makes the gani loop (6.03r7).
+  - The quotes are optional, but a misspelled keyword is ignored.
+- **Timing:**
+  - A 195 that arrives before the client has loaded that gani is lost, because loading the file
+    resets the header. That is why the server sends 195 in answer to 157.
+  - A 195 that arrives while a finished gani is still shown makes the client fall back at once.
+- **Without any 195, the clients still use the file's own `SETBACKTO`** (`kick`→`idle`). So for
+  ganis the client has as files, the server's 195 is redundant.
+
+The GServer-v2 source says 4.x and later need it. Our guess is that it matters for ganis that
+reach the client as compiled script, which carry no header lines. **[inf]**
+
+**Not tested:** `CONTINUOUS`, `SINGLEDIRECTION`, the `DEFAULT*` lines (no visible report), and
+ganis with a `SCRIPT` section sent compiled. 2.x clients have no handler for 195.
+
 ## Recommended next batches
 
 1. ~~**Self-prop width table for 0–90 on 6.03r7.**~~ Done in run `cwid-b`. Next, run the same

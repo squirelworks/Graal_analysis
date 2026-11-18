@@ -605,3 +605,68 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-18	linux-6.03r7	s2c	8	90	8 s:67 90 c:0 c:16 c:56	no	yes	none	no case in the other-player stream: rest of the message dropped	opp-a	03-after-later
 2026-11-18	linux-6.03r7	s2c	8	12	8 s:68 12 str:hi c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later
 2026-11-18	linux-6.03r7	s2c	8	(control)	8 s:69  c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later
+2026-11-19	win-6.037	s2c	9	83	9 c:83 i5:1234 c:5 c:99	yes	yes	none	gralat counter 1234; bombs 99	w603	p83-i5
+2026-11-19	win-6.037	s2c	9	83	9 c:83 c:1 c:5 c:99	no	yes	none	canary lost (83 read as 5 bytes)	w603	p83-c1
+2026-11-19	win-6.037	s2c	9	77	9 c:77 i5:123456 c:5 c:99	yes	yes	none	canary landed (77 is 5 bytes)	w603	p77-i5
+2026-11-19	win-6.037	s2c	9	77	9 c:77 c:1 c:5 c:99	no	yes	none	canary lost	w603	p77-c1
+2026-11-19	win-6.037	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	canary landed	w603	p78-s
+2026-11-19	win-6.037	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	canary landed	w603	p79-s
+2026-11-19	win-6.037	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	canary landed	w603	p80-s
+2026-11-19	win-6.037	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	canary landed	w603	p81-c
+2026-11-19	win-6.037	s2c	9	82	9 c:82 str:x c:5 c:99	yes	yes	none	canary landed	w603	p82-str
+2026-11-19	win-6.037	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	none	canary landed (unknown id skips 1 byte)	w603	p90-c1
+2026-11-19	win-6.037	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	canary lost	w603	p90-i3
+2026-11-19	win-6.037	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	gralat counter 4321; bombs 99	w603	p3-i3
+2026-11-19	win-6.037	s2c	60	-	60  then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo60-empty
+2026-11-19	win-6.037	s2c	60	-	60 c:1 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo60-c1
+2026-11-19	win-6.037	s2c	60	-	60 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo60-text
+2026-11-19	win-6.037	s2c	60	-	60 hex:ff00ff00 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo60-bin
+2026-11-19	win-6.037	s2c	78	-	78  then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo78-empty
+2026-11-19	win-6.037	s2c	78	-	78 c:1 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo78-c1
+2026-11-19	win-6.037	s2c	78	-	78 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo78-text
+2026-11-19	win-6.037	s2c	78	-	78 hex:ff00ff00 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo78-bin
+2026-11-19	win-6.037	s2c	81	-	81  then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo81-empty
+2026-11-19	win-6.037	s2c	81	-	81 c:1 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo81-c1
+2026-11-19	win-6.037	s2c	81	-	81 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo81-text
+2026-11-19	win-6.037	s2c	81	-	81 hex:ff00ff00 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo81-bin
+2026-11-19	win-6.037	s2c	83	-	83  then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo83-empty
+2026-11-19	win-6.037	s2c	83	-	83 c:1 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo83-c1
+2026-11-19	win-6.037	s2c	83	-	83 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo83-text
+2026-11-19	win-6.037	s2c	83	-	83 hex:ff00ff00 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo83-bin
+2026-11-19	win-6.037	s2c	110	-	110  then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo110-empty
+2026-11-19	win-6.037	s2c	110	-	110 c:1 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo110-c1
+2026-11-19	win-6.037	s2c	110	-	110 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo110-text
+2026-11-19	win-6.037	s2c	110	-	110 hex:ff00ff00 then 9 c:5 c:99	yes	yes	none	ignored; canary landed	w603	plo110-bin
+2026-11-19	linux-6.03r7	s2c	195	-	(none; server 195 dropped) kick	-	yes	gani report (prop 10)	falls back to the file SETBACKTO idle	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick "SETBACKTO sit" after first use	-	yes	gani report (prop 10)	falls back to sit	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick "SETBACKTO idle" after that	-	yes	gani report (prop 10)	falls back to idle (newest 195 wins)	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 lift "SETBACKTO dead"	-	yes	gani report (prop 10)	falls back to dead	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 sword "SETBACKTO sit","SETBACKTO dead"	-	yes	gani report (prop 10)	falls back to dead (last field wins)	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 sword "SETBACKTO "	-	yes	gani report (prop 10)	stays on sword (empty target = no fallback)	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 hurt SETBACKTO sit (unquoted)	-	yes	gani report (prop 10)	falls back to sit	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 hurt SETBACKTO_sit	-	yes	gani report (prop 10)	ignored	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 grab "SETBACKTO idle" before first use	-	yes	gani report (prop 10)	lost (the file loads over it)	lg603-b, lg603-c	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 grab "SETBACKTO idle" while a finished grab shows	-	yes	gani report (prop 10)	falls back to idle at once	lg603-b, lg603-c	-
+2026-11-19	win-4.20r8	s2c	195	-	(none; server 195 dropped) kick	-	yes	gani report (prop 10)	falls back to the file SETBACKTO idle	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 kick "SETBACKTO sit" after first use	-	yes	gani report (prop 10)	falls back to sit	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 kick "SETBACKTO idle" after that	-	yes	gani report (prop 10)	falls back to idle (newest 195 wins)	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 lift "SETBACKTO dead"	-	yes	gani report (prop 10)	falls back to dead	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 sword "SETBACKTO sit","SETBACKTO dead"	-	yes	gani report (prop 10)	falls back to dead (last field wins)	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 sword "SETBACKTO "	-	yes	gani report (prop 10)	stays on sword (empty target = no fallback)	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 hurt SETBACKTO sit (unquoted)	-	yes	gani report (prop 10)	falls back to sit	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 hurt SETBACKTO_sit	-	yes	gani report (prop 10)	ignored	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 grab "SETBACKTO idle" before first use	-	yes	gani report (prop 10)	lost (the file loads over it)	lg420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 grab "SETBACKTO idle" while a finished grab shows	-	yes	gani report (prop 10)	falls back to idle at once	lg420-a	-
+2026-11-19	win-5.24r4	s2c	195	-	(none; server 195 dropped) kick	-	yes	gani report (prop 10)	falls back to the file SETBACKTO idle	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 kick "SETBACKTO sit" after first use	-	yes	gani report (prop 10)	falls back to sit	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 kick "SETBACKTO idle" after that	-	yes	gani report (prop 10)	falls back to idle (newest 195 wins)	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 lift "SETBACKTO dead"	-	yes	gani report (prop 10)	falls back to dead	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 sword "SETBACKTO sit","SETBACKTO dead"	-	yes	gani report (prop 10)	falls back to dead (last field wins)	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 sword "SETBACKTO "	-	yes	gani report (prop 10)	stays on sword (empty target = no fallback)	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 hurt SETBACKTO sit (unquoted)	-	yes	gani report (prop 10)	falls back to sit	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 hurt SETBACKTO_sit	-	yes	gani report (prop 10)	ignored	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 grab "SETBACKTO idle" before first use	-	yes	gani report (prop 10)	lost (the file loads over it)	lg524-a	-
+2026-11-19	win-5.24r4	s2c	195	-	195 grab "SETBACKTO idle" while a finished grab shows	-	yes	gani report (prop 10)	falls back to idle at once	lg524-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 idle "SETBACKTO sword"	-	yes	gani report (prop 10)	idle falls back to sword	lg603-b	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 sword (empty list)	-	yes	gani report (prop 10)	no change; the earlier override stays	lg603-b	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 sword "LOOP"	-	yes	gani report (prop 10)	sword loops	lg603-b	-

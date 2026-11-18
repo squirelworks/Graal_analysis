@@ -20,12 +20,12 @@ Status words:
 | Group | Resolved | Open | Blocked |
 |---|---:|---:|---:|
 | Own player props on real clients (77–83, unknown ids, widths 0–90) | 8 | 1 | 0 |
-| Server→client ids that no client handles (60, 78, 81, 83, 110, 156) | 5 | 1 | 0 |
+| Server→client ids (60, 78, 81, 83, 110 unhandled; 156; 195 LOADGANI list) | 6 | 1 | 0 |
 | Client→server ids at our server (0–223) | 1 | 1 | 0 |
 | Wire bytes (NUL and high bytes inside a message) | 2 | 0 | 0 |
 | Baddy types | 1 | 0 | 0 |
 | Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 4 | 1 | 4 |
-| **Total** | **21** | **4** | **4** |
+| **Total** | **22** | **4** | **4** |
 
 **New this round (resolved):**
 - 2.00–2.17 can now be probed (gen 3 in the proxy; 2.05 and 2.17.1 run).
@@ -55,6 +55,7 @@ Status words:
 | 81 | `PLO_UNKNOWN81` | The same | resolved |
 | 83 | `PLO_UNKNOWN83` | The same | resolved |
 | 110 | `PLO_UNKNOWN110` | The same | resolved |
+| 195 | `PLO_LOADGANI` list | resolved for 4.20r8, 5.24r4, 6.03r7: gani header lines (`SETBACKTO`, `LOOP`) that override the file for the named gani, newest wins, lost if sent before the gani loads; redundant for file ganis. Open: other header fields, compiled ganis | resolved |
 | 156 | `PLO_SETACTIVELEVEL` | The extra step in 2.31 | open: 2.31 now runs in the lab; read the step statically, then probe for its effect |
 
 ## Client→server ids at our server
