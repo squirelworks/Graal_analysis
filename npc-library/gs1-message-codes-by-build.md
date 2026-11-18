@@ -120,10 +120,26 @@ flag-name path as `if` **[lab]**. After `set 1;`, `while(1)` runs **[lab]**.
 The later `.graal` run found a bare number false on 1.33 as well, and did not
 repeat `set 1`.
 
+## The 2.17.1 condition and flag path (static)
+
+Read from the 2.17.1 `Graal.exe` (md5 `0fbef407…`) **[bin]**, matching the scenes above:
+
+- A bare name in a condition compiles to a *flag test* node that holds the name as a string.
+  When it runs it gives 1.0 or 0.0. It is 1.0 when the name is in the **current event list**
+  (the names the engine adds for this run: `created`, `playerenters`, `timeout`, `wasshot` and
+  so on), otherwise when the name is in the **global flag store** that `set`/`unset` change.
+  Anything else is 0.0.
+- Each built-in event name also has its own small test that only looks in the event list. A few
+  add an extra condition, such as `wasshot`-style events that also check a global switch.
+- The event list is cleared and refilled per run. Before the script runs, `created` is added
+  once per NPC (the first run, or after a reset), and the run's own event names follow.
+- A bare number token in a condition behaves like that flag test: `if (1)` and `while (1)` are
+  false until `set 1;` makes a flag named `1`, while `(1+0)` and `this.i<5` go through the
+  arithmetic nodes and are true by value **[lab]**. The compiler step that turns the token
+  into a flag test was not traced, so that link is *inferred*.
+
 ## Not in this note
 
 - What bare `#5` and `#6` echo, beyond the label text they showed.
-- A static trace of the 2.17 condition and flag path. The outcomes above are
-  the scenes.
 - Events, flags, variables and functions per 1.x build.
 - GANI frame timing with `WAIT` on 2.17.1 and 2.31. That session is not this note.
