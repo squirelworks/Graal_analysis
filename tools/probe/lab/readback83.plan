@@ -1,0 +1,23 @@
+# GS2-era client read-back of prop 83: a GS1 level NPC prints playerrupees above itself every 0.5 s (READBACK=1)
+waitsession 180
+wait s2c 9 60
+sleep 14
+shot 00-base
+s2c 9 c:83 i5:1234
+sleep 2
+shot 01-1234
+s2c 9 c:83 i5:12345678
+sleep 2
+shot 02-12345678
+s2c 9 c:83 i5:123456789
+sleep 2
+shot 03-123456789
+s2c 9 c:83 i5:999999999
+sleep 2
+shot 04-999999999
+s2c 9 c:83 i5:1000000000
+sleep 2
+shot 05-1e9-after-max
+s2c 9 c:3 i3:2097151
+sleep 2
+shot 06-p3-2097151

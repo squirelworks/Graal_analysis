@@ -1,0 +1,4 @@
+# settle: wait until the world session is up and has drawn for a while (used by run603.sh before the plan)
+waitsession 180
+wait s2c 9 60
+sleep 12

@@ -10,9 +10,10 @@ Results go in [`probe-results.tsv`](probe-results.tsv). Sources: [`packet-ids.md
 
 Clients the harness can drive:
 
-- **Now:** the native Linux 6.03r7 client (gen 5), through `tools/probe/lab/run603.sh`.
-- **Need only a runner:** Windows 4.20r8, 5.12, 5.24r4 and 6.037 (all gen 5). They already run under Wine in the same VM.
-- **Need a gen-2/3 codec in the proxy:** the 2.x clients.
+- **Now:** the native Linux 6.03r7 client (`tools/probe/lab/run603.sh`), and Windows 2.22, 2.31,
+  4.20r8 and 5.24r4 under Wine (`tools/probe/lab/runwine.sh`). All of them use gen 5.
+- **Need a gen-2/3/4 codec in the proxy:** 2.00 to 2.21.
+- **Need the Win10 VM:** Windows 6.037, which is packed and does not run under Wine.
 - **Out of reach:** 6.1.1.3, until a loopback connector harness exists ([`v6113-status.md`](v6113-status.md)).
 
 ## Priorities
@@ -91,6 +92,52 @@ Each inject was one packet. Most were `PLO_PLAYERPROPS` messages with the bomb c
 Lab notes: the lab world sometimes shows a black screen. This happens when the login
 server's warp arrives before the tile sheet. The HUD digits then draw over each other, so
 those runs were read by comparing the newly drawn pixels between shots.
+
+## The same probes on Windows clients (2026-11-18)
+
+The runs were `w222-a`, `w231-a`, `w420-c` and `w524-b`, all using plan `tools/probe/lab/wine-core.plan`.
+Before each test the bomb count was reset to 1, and the canary set it to 99. The canary column
+of [`probe-results.tsv`](probe-results.tsv) is read with `tools/probe/canary.py`.
+
+| Probe | 2.22 | 2.31 | 4.20r8 | 5.24r4 | 6.03r7 |
+|---|---|---|---|---|---|
+| Prop 3 (`i3`) | read | read | read | read | read |
+| Prop 77 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | 5 bytes |
+| Props 78–80 (`s`) | end the message | 2 bytes | 2 bytes | 2 bytes | 2 bytes |
+| Prop 81 (`c`) | ends the message | ends the message | 1 byte | 1 byte | 1 byte |
+| Prop 82 (string) | ends the message | ends the message | skipped as 1 byte | string | string |
+| Prop 83 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | 5 bytes, gralat count |
+| Unknown own id 90 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | skipped as 1 byte |
+| PLO 60, 78, 81, 83, 110 (text bodies) | ignored | ignored | ignored | ignored | ignored |
+| PLO 60, 78, 81, 83 (body `ff 00 ff 00`) | **next packet in the frame lost** | **next packet in the frame lost** (110: kept) | ignored | ignored | ignored |
+
+**What this shows**
+
+- **2.22 and 2.31 stop at any prop id they have no case for.** 2.31 has cases up to 80 and
+  2.22 stops before 78. **[lab]** This matches the 2.x rows of [`player-props.md`](player-props.md).
+- **4.20r8 and 5.24r4 skip an id they have no case for as one byte,** like 6.03r7.
+  - **5.24r4** reads 82 as a string, but has no case for 77 or 83. **[lab]**
+  - **4.20r8** has no case for 82 either. **[lab]**
+- **2.x and raw bytes:** on 2.22 and 2.31, an unknown packet whose body holds raw bytes
+  (`ff 00 ff 00`) loses the packet that follows it in the same frame. 4.x, 5.x and 6.x do not.
+  A byte-by-byte test is in `bytes2x.plan`. **[lab]**
+- No inject crashed any of the Windows clients.
+
+## A server-side finding: an empty `PLI_BADDYADD` crashes 6.03r7
+
+The PLI sweep sends every client→server id with an empty body from a live 6.03r7 session to
+our GServer-v2 build. Id 17 (`PLI_BADDYADD`) ended the session in both runs (`pli-a`, `pli-b`).
+**[lab][srv]**
+
+1. The server read the missing fields as `0 − 32`. That put the baddy at tile 112,112 with
+   type 224.
+2. The server sent that baddy to the level as `PLO_BADDYPROPS`.
+3. The client asked for `crush.wav` and then closed its connection. Its process exited with
+   nothing in its log.
+
+So the server needs to check the body length and the baddy type before it adds a baddy. A
+6.03r7 client also cannot survive a baddy whose type is out of range. The rest of the sweep
+(ids 18–223) is in run `pli-c`.
 
 ## Recommended next batches
 
