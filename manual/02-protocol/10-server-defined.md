@@ -110,3 +110,18 @@ The rows give what the unpacked 6.0.3.7 and 6.1.1.3 listings show beyond §2.10.
 | `onToall` is registered with parameters `o`, `s`; its feeder reads a two-byte player id ((b0 − 32) × 128 + (b1 − 32)), a third byte − 32 as the text length, and the text from the fourth byte; bodies of two bytes or fewer push nothing; no caller and no PLO id were found | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#what-ontoall-is-given) |
 | The port-binding method logs "Binding of port " and opens no socket when its allow check fails; success raises `onBind`, failure `onBindFailed`, both with no parameters; `onReceiveUDPData` takes `s`, `s`, `i` (data, sender ip, …) | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#bind-events) |
 | Before the connector runs, the client looks up `StartScript_Connector`, else `StartScript_Fail`; if `onCreated` exists and the SSL argument is set it writes `scriptip`, `scriptsslcipher`, `scriptsslsubject` and `scriptsslissuer`, then runs the script | 6.1.1.3 | [bin] (protocol/v6-repro-facts.md#before-the-connector-script-runs) |
+
+## 2.10.7 v7 Worlds: the same connector
+
+The Unity-hosted Worlds clients (→ §1.8.10) use the 6.11 connector design unchanged. The rules below come from a lab run of build 614 in a Windows guest with every name lookup answered locally, plus the engine's export inventory [lab][bin] (protocol/v7-connector-live-20261111.md).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Start-up order: an unrelated local probe, then TLS to the Worlds connector host on 443 with the host as SNI, then on TLS failure a plain-HTTP `GET /conf.gs?p=<blob> HTTP/1.0` with `User-Agent: Graal/6.77` and `Connection: Keep-Alive`, then the same request to a second host whose first label differs | 614 | [lab] (protocol/v7-connector-live-20261111.md#2-connector-request-order-lab) |
+| The `?p=` blob has the 6.11 shape (→ §2.10.1); its compiled-in key was not recovered | 614 | [doc] (protocol/v7-connector-live-20261111.md#2-connector-request-order-lab) |
+| Reply container: a 4-byte marker `00 00 01 00`, a 256-byte RSA-2048 block, a 4-byte inner length, then a high-entropy payload that differs on every request; `conf.gs`, `con.gs` and `con.png` return the same container; it is byte-for-byte the 6.11 Mac container from the same server banner | 614, 6.11 Mac | [lab] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| The RSA block is a signature the client verifies against a public key baked into it; the engine exports both AES-CBC and RC4 and selects between them for the payload | 548–71243 | [bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| A genuine reply verifies only for the per-launch `?p=` request it was signed for: replayed to the same request it is accepted (6.11 Mac), served to a fresh launch it is rejected and the client stays on its built-in skeleton and fail path | 614; 6.11 Mac | [lab][inf] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| Inline hooks on the engine's own exports make the process exit about 15 s into start-up; a read-only memory scan is tolerated | 614 | [lab] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| A stock v7 client cannot be brought online against a lab server, because a lab responder cannot sign a reply the client accepts; the routes are a client with a replaced public key, or a reproduction client that speaks the post-connector protocol directly | 548–71243 | [lab][inf] (protocol/v7-connector-live-20261111.md#4-online-play-reach-labinf) |
+| The plaintext connector script, the game host/port it names and the login it builds | all | unmeasured → App. E#616 |

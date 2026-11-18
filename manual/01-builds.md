@@ -808,6 +808,50 @@ The static comparison of four Windows launcher copies adds component identity, n
 
 The genuine 5.12 component set in this comparison uses the combined 3D-named engine module, rather than the separate game-engine module found in the relabelled pair. This is a distinction between these inspected inputs, not a rule that authenticates arbitrary files by name. Exact 5.12-versus-5.00r7 property value widths remain open; continue to use the established case sets in App. C.1 row J without upgrading them to width equivalence. Operational modification details remain in the source and supply no reproduction-side policy. [bin] (client-internals/launchers-420r8-500r7-512.md#the-genuine-512-engine); (client-internals/launchers-420r8-500r7-512.md#open-points)
 
+### 1.8.10 v7 Worlds: the Unity-hosted clients, 2022 to 2026
+
+**What v7 is.** A Worlds client ships two native modules in one Unity player: the Graal engine plugin `Graal3DEngine.dll` and Unity's IL2CPP `GameAssembly.dll`. The engine holds the whole Graal side: network protocol, ciphers, packet tables, GS2 machine and script builtins. The managed side is a host plus a generated binding layer (about 14,000 to 15,500 binding methods per build) through which the native engine calls Unity's API, so in v7 the native engine drives Unity rather than the reverse. No managed image contains a login token, a `Graal/6.7x` user-agent, a packet-id table or a GS2 opcode name. [bin] (client-internals/v7-gameassembly-il2cpp.md#what-the-managed-layer-is); [bin] (client-internals/v7-quattro-il2cpp-names/not-in-csharp.md) The protocol itself is in → §2.1 to §2.6 and §8.3 to §8.4 under the v7 rows. [bin] (protocol/v7-graal3d-identity-and-builds.md)
+
+| Build | Unity player | IL2CPP metadata | Engine export name | Connector `User-Agent` | Source |
+| --- | --- | --- | --- | --- | --- |
+| 548 (Dec 2022) | 2021.3.8 | 29 | `Graal3DEngineObfuscated.dll` | `Graal/6.76` | [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| 610 (Oct 2023) | 2022.3.9 | 29 | `Graal3DEngineObfuscated.dll` | `Graal/6.76` | [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| 612 (Jan 2024) | 2023.2.3 | 29 | `Graal3DEngineObfuscated.dll` | `Graal/6.76` | [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| 613 (Apr 2024) | 2023.2.13 | 29 | `Graal3DEngineObfuscated.dll` | `Graal/6.77` | [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| 614 (Apr 2024) | 2023.2.13 | 29 | `Graal3DEngineObfuscated.dll` | `Graal/6.77` (confirmed live) | [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin); [lab] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| 71243 (Oct 2024) | 2023.2.20 | 29 | `Graal3DEngineFlavor0.dll` | `Graal/6.77` | [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| Unity 6000 build (Apr 2026) | 6000.0.63f1 | 31 | `Graal3DEngineFlavor0.dll` | not read | [bin] (client-internals/v7-unity6000-unpack.md#the-build) |
+
+All six 2022–2024 builds carry VERSIONINFO product version 6.114, separate from the `User-Agent` number. The engine file keeps the name `Graal3DEngine.dll` even where its export directory says `Flavor0`, because the host loads it by module name. [bin] (protocol/v7-graal3d-identity-and-builds.md#1-how-the-client-reports-itself-bin); [bin][inf] (client-internals/v7-gameassembly-il2cpp.md#how-the-engine-is-hosted) The per-build native callback table (43 to 52 entries) and the managed changes between neighbouring builds are tabulated in the source. [bin] (client-internals/v7-gameassembly-il2cpp.md#what-changed-between-neighbouring-builds); [bin] (client-internals/v7-quattro-il2cpp-names/build-diff.md)
+
+#### Identity
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| No eight-character `G3D…`/`GNW…`/`GNP…` login token is baked into the client; the login identity is built by the connector script at run time, as in 6.11 (→ §2.10.2) | 548–71243 | [bin][inf] (protocol/v7-graal3d-identity-and-builds.md#2-login-token-bininf) |
+| The only self-identification on the wire to the connector is `User-Agent: Graal/<version>`, a number formatted after the literal prefix; the split 6.76 / 6.77 falls at build 613 | 548–71243 | [bin][lab] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| Whether the production connector makes these builds send `G3D2204D` (`CLVER_WORLDS` in gs2lib) or another token | all | unmeasured → App. E#615 |
+
+#### Packing, unpacking and the managed names
+
+Both modules are Themida-wrapped in every build. Unpacked analysis images add a leading `.text` and a trailing `.SCY` section and keep the Themida sections as dead weight; their relocation directories are empty, so they are base-fixed analysis images, not runnable replacements. [bin][cap] (client-internals/v7-unity6000-unpack.md#unpacking) The IL2CPP metadata ships in the clear beside the app: version 29 in 548–71243, version 31 in the Unity 6000 build. [bin] (client-internals/v7-gameassembly-il2cpp.md#the-six-images); [bin] (client-internals/v7-unity6000-unpack.md#il2cpp-metadata-version-31)
+
+The managed names of all seven builds are readable. The registration arrays in an unpacked image carry static metadata indices that the public dumper reads as runtime handles; with that one interpretation corrected, the unmodified dumper writes the full surface (for the Unity 6000 build: 15,546 types, 112,435 methods, 58,791 fields), and every generated assembly parses. This recovers declarations, signatures and the method map, not method bodies. [cap][bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-il2cpp-names-come-out-after-all) Earlier dumps without the correction rebound `Quattro*` names onto unrelated types; their declared-name tables are presence/absence evidence only. [bin] (client-internals/v7-quattro-il2cpp-names/inventory.md); (client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md); (client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md)
+
+#### Start-up, launch inputs and the date gate
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Started standalone (no launcher handoff), the client draws one frame and then quits itself before login: the native plugin calls quit across the bridge; it is not a crash | 614; Unity 6000 build | [lab] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-startup-quit-path-in-managed-names) |
+| The managed quit entry takes a reason string; application shutdown awaits a network teardown step | Unity 6000 build | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-startup-quit-path-in-managed-names) |
+| The host can hand the engine: a game to connect to and a premium flag (from 610; 548 has a single game input), a Steam identity or "not Steam" (from 610), a deep-link payload (613 and later), and the command line | 548–Unity 6000 | [bin] (client-internals/v7-gameassembly-il2cpp.md#launch-inputs); [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-launch-inputs-the-boot-path-reads) |
+| An empty game/session input on a standalone start is the likely trigger of the one-frame quit | Unity 6000 build | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-launch-inputs-the-boot-path-reads) |
+| With the guest clock at the build date the client reaches the connector; at the real 2026 clock it stalls without dialling | 614 lineage | [lab] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-dateversion-gate-is-native-not-managed) |
+| The managed side has no date or version gate (its only "expired" symbols are TLS certificate checks); the unpacked engine imports wall-clock and calendar-to-timestamp functions, so the gate is native | Unity 6000 build | [bin][inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-dateversion-gate-is-native-not-managed) |
+| The quit reason, the baked date and the exact comparison | Unity 6000 build | unmeasured → App. E#615 |
+
+The connector request and reply of these builds are in → §2.10.7.
+
 ## 1.9 Identity and platform evidence
 
 These records say what an archived file is, and where that identity stops. None of them is a behaviour reading; each keeps the scope its source gives it. [bin] (version-profiles/macos-client-compatibility.md)

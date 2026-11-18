@@ -1011,3 +1011,24 @@ Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch
 | Claim B | Walk kinds for tilesets are 0 / 1\|2 / 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
 | Open | Whether type 4 is draw-at-(x,y) (addtiledef2-like), a new walk kind, or both | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 | Settles it | A consumer trace or offline lab on a type-4 prefix level for draw and `tiletype`/wall | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+
+### E#615 v7 Worlds login identity, start-up quit and date gate
+
+The Worlds clients carry no baked login token, quit themselves after one frame when started standalone, and only dial the connector with the clock at the build date (→ §1.8.10).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | No cleartext token in 548–71243; the connector script builds the login; gs2lib names `G3D2204D` as Worlds | [bin][doc] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| Known | The managed quit entry takes a reason string; the managed side has no date gate; the unpacked engine imports calendar-to-timestamp functions | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Open | Which token the production connector makes these builds send; the reason string passed at the one-frame boot quit; the baked date and the comparison in the engine | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Settles it | A static read of the engine's caller of the calendar function and of the quit call sites in the unpacked engine; a decrypted connector script for the token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+
+### E#616 v7 connector script plaintext
+
+The v7 reply container and its per-launch signature are known (→ §2.10.7); the decrypted script is not.
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Known | Container layout, RSA-2048 signature bound to the per-launch request, AES-CBC and RC4 both exported | [lab][bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| Open | The payload cipher and whether the RSA block also wraps its key; the plaintext script, the game host/port it names and the login it builds; the `?p=` DES key | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Settles it | A post-decrypt read of the live script buffers by a method the anti-tamper tolerates, on a client whose baked public key is replaced | [inf] (protocol/v7-connector-live-20261111.md#5-open) |

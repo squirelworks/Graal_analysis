@@ -1,5 +1,6 @@
 file	row	cited	text
 manual/01-builds.md	Apple's `agl.h` names 72 and 73 `AGL_NO_RECOVERY` and `AGL_ACCELERATED`. If so, 	client-internals/mac-ppc-runtime-surface-2026-11-09.md#graphics-context-setup	
+manual/01-builds.md	An empty game/session input on a standalone start is the likely trigger of the o	client-internals/v7-il2cpp-names-and-startup-gate.md#the-launch-inputs-the-boot-path-reads	Unity 6000 build
 manual/02-protocol/03-login.md	A renaming bridge must keep the level part; mapping a level room onto a game-wid	client-internals/relay-room-bridge.md#what-this-means	
 manual/02-protocol/03-login.md	`R`	protocol/relay-1998.md#d-payloads	x, y | object at x, y removed
 manual/02-protocol/03-login.md	`X`	protocol/relay-1998.md#d-payloads	target id | hit or kill aimed at one player; only the named player applies it
