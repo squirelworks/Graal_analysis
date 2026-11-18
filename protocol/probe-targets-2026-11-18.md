@@ -240,6 +240,96 @@ So a server should never send a baddy type above 24 to a 6.x client, and should 
   before adding a baddy.
 - A 6.03r7 client cannot survive a baddy whose type is out of range.
 
+## Older clients: the proxy speaks gen 3 (2026-11-19)
+
+**Which codec 2.00–2.21 use** ([`codec-and-framing.md`](codec-and-framing.md),
+[`login-and-walk.md`](login-and-walk.md)):
+
+- **2.00 to 2.17 log in as client type 0 and use gen 3.**
+  - The login line is sent clean, with a random 7-bit key after the type byte.
+  - From then on, the client inserts one key-driven byte into every message it sends.
+  - The server sends plain zlib frames with no cipher.
+  - 2.00–2.04 are expected to match 2.05, because they log in the same way. They are not
+    captured yet.
+- **2.19 to 2.21 are client type 4 and use gen 4** (bz2 and the partial XOR). This is known
+  from server source only, because no 2.19–2.21 binary is held.
+
+**What the proxy now does.** `gen5probe.py` reads the generation from the login line: type 0
+with a key means gen 3, type 0 with a token means gen 2, type 4 means gen 4, and types 5 and 6
+mean gen 5.
+
+- **Gen 3:** it removes the client's inserted byte from each message, so the logs read clean.
+  It then inserts the byte again with its own iterator, so messages injected toward the server
+  keep the server's decoder in step. `selftest.py` checks this.
+- **Gen 4:** this is written from server source and is untested.
+
+**Real runs** (`runwine.sh 205` and `runwine.sh 217`, runs `w205-b` and `w217-b`). Real 2.05 rev 2
+and 2.17.1 logged in through the proxy as gen 3, and every message decoded. **[lab]**
+
+- Prop 3 is read.
+- Props 77–83 and unknown id 90 end the message, as on 2.22.
+- PLO 60, 78, 81, 83 and 110 are ignored.
+- A NUL byte in a message drops the rest of the frame.
+
+**The 2.31 / PLO 110 case is explained.** In `w231-a`, the canary after `110 ff00ff00` left the
+proxy 0.2 s later, in a frame of its own. So it never shared the frame with the NUL byte, and
+2.31 behaves like 2.05, 2.17.1 and 2.22. The proxy now takes `s2c A | B` to queue packets into
+one frame.
+
+## What makes 6.03r7 draw another player (2026-11-19)
+
+**Question:** does a player that exists only in injected packets need the server to know it,
+or the UDP position stream?
+
+**Answer: neither.** **[lab]**
+
+1. Two real 6.03r7 clients were run in one level (`CLIENTS=2`, run `tc-b`). The proxy recorded
+   the `PLO_OTHERPLPROPS` each client got about the other. That was one message with about 70
+   props (`tools/probe/lab/otherpl-fullprops.txt`, with session values replaced).
+2. That message was replayed to one client under a made-up player id that the server never
+   heard of (`tc-c`). The client drew a third player at the X and Y appended to it.
+3. No UDP traffic is involved. Per [`udp-p2p.md`](udp-p2p.md), UDP only carries peer-to-peer
+   movement between clients. Players are created from the TCP `PLO_OTHERPLPROPS`, and an
+   unknown id creates the player ([`packet-layouts.md`](packet-layouts.md)).
+
+**Which props are needed** (run `opv-a`: one fake player per prop set, then one screenshot):
+
+- **Drawn:**
+  - the full set
+  - the full set without 18 (`STATUS`), without 50 (`JOINLEAVELVL`), without 20 (`CURLEVEL`),
+    or without 78/79 (`X2`/`Y2`)
+  - level plus join plus 10 (`GANI`)
+  - level plus join plus 10 and 18
+- **Not drawn:**
+  - the full set without 10
+  - level plus join alone, or with 18, 17 (`SPRITE`), or head and body
+
+So **6.03r7 draws another player only once it has a gani (prop 10).** The first ghost in
+`op603-b` was not drawn because it had no gani.
+
+## Other-player props on 6.03r7 (run `opp-a`)
+
+Ten fake players were made from the full prop set. Each then got one message: the tested prop,
+followed by `Y = 28` as the canary. **[lab]**
+
+| Prop | Result |
+|---|---|
+| 81 | 1 byte |
+| 82 | a string |
+| 78 | 2 bytes; it also moved the player's x |
+| 12 (chat) | a string |
+| 77 (one byte or five bytes) | the rest of the message is dropped |
+| 83 (one byte or five bytes) | the rest of the message is dropped |
+| 90 | the rest of the message is dropped |
+
+This matches the 6.x case set for the other-player stream: no case for 77, or for 83 and up.
+So a server must never send 77 or 83 about another player to a 6.x client, except as the last
+prop in a message.
+
+**Baddy props (run `bp-a`) are not settled.** Baddies made by `PLO_BADDYPROPS` walk on their own
+on the client and attacked the player. The position canary therefore does not hold for baddies,
+and props 11 and up stay open.
+
 ## Recommended next batches
 
 1. ~~**Self-prop width table for 0–90 on 6.03r7.**~~ Done in run `cwid-b`. Next, run the same

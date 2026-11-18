@@ -15,20 +15,23 @@ Status words:
 | **open** | Not checked yet, but reachable with the clients and servers we have. |
 | **blocked** | No client or server we can run reaches it yet. The reason is in the row. |
 
-## Tally (2026-11-19)
-
-Each item counts once. Prop 83 counts twice: once for its meaning and width, and once for how
-much of it the client stores.
+## Tally (2026-11-19, round 3)
 
 | Group | Resolved | Open | Blocked |
 |---|---:|---:|---:|
 | Own player props on real clients (77–83, unknown ids, widths 0–90) | 8 | 1 | 0 |
 | Server→client ids that no client handles (60, 78, 81, 83, 110, 156) | 5 | 1 | 0 |
 | Client→server ids at our server (0–223) | 1 | 1 | 0 |
-| Wire bytes (NUL and high bytes inside a message) | 1 | 1 | 0 |
+| Wire bytes (NUL and high bytes inside a message) | 2 | 0 | 0 |
 | Baddy types | 1 | 0 | 0 |
-| Other streams and clients (NPC, other-player, baddy props; 6.1.1.3, 6.037, 2.00–2.21, mobile) | 1 | 2 | 4 |
-| **Total** | **17** | **6** | **4** |
+| Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 4 | 1 | 4 |
+| **Total** | **21** | **4** | **4** |
+
+**New this round (resolved):**
+- 2.00–2.17 can now be probed (gen 3 in the proxy; 2.05 and 2.17.1 run).
+- The other-player stream on 6.03r7.
+- What makes 6.03r7 draw an injected player.
+- The 2.31 / PLO 110 case.
 
 ## Own player props (`PLO_PLAYERPROPS`)
 
@@ -41,7 +44,7 @@ much of it the client stores.
 | 82 | COMMUNITYNAME | width | string | string | skipped as 1 byte | ends the message | resolved |
 | 84–90 | (none) | how an unknown id is skipped | id + 1 byte; a longer value loses the rest of that message only | the same | the same | ends the message | resolved |
 | 0–76 | (named) | do the documented widths hold? | yes, for every id with a case; 33, 50, 51, 53, 75 and 76 have no case and are skipped as 1 byte | yes; no case for 33, 50, 51, 53, 75, 76, 77, 83 | yes; no case for those and 82 | — | resolved |
-| 81 | PLAYERLISTCATEGORY | what it changes | — | — | — | — | open: needs a second client looking at the player list |
+| 81 | PLAYERLISTCATEGORY | what it changes | — | — | — | — | open: needs the player-list window opened on a client that has a second player |
 
 ## Server→client ids that no client handles
 
@@ -66,17 +69,19 @@ much of it the client stores.
 | Item | Result | Status |
 |---|---|---|
 | A NUL byte inside a message on 2.22 and 2.31 | Loses the rest of the frame on both; `ff`, `80` and `1f` are harmless; 4.20r8 is unaffected | resolved |
-| 2.31: why `ff 00 ff 00` lost the next packet after ids 60, 78, 81 and 83, but not after 110 | Run `bytes2x.plan` on 2.31 | open |
+| 2.31: why `ff 00 ff 00` lost the next packet after ids 60, 78, 81 and 83, but not after 110 | The canary after 110 went out in a frame of its own (0.2 s later), so it never met the NUL byte. 2.31 behaves like 2.05, 2.17.1 and 2.22. The proxy now takes `s2c A \| B` for one frame | resolved |
 
 ## Other streams and clients
 
 | Item | Status | Why |
 |---|---|---|
-| Other-player props 77 and 83 (`PLO_OTHERPLPROPS`) | open | needs a second real client in the level. On 6.03r7, a player made only by `PLO_OTHERPLPROPS` (with level, join, x, y, head and body props) is not drawn at all (run `op603-b`). A level script cannot read `players[1]` either: the script stops compiling (`op603-a`) |
+| Other-player props 77 and 83 (`PLO_OTHERPLPROPS`), 6.03r7 | resolved | 77 and 83 (and 90) have no case: the rest of the message is dropped; 81 is 1 byte, 82 a string, 78 2 bytes (run `opp-a`) |
+| Does an injected player need the server or UDP? | resolved | Neither. The server's own other-player message, replayed under an unknown id, draws a new player; 6.03r7 draws a player only once it has prop 10 (`GANI`) (runs `tc-c`, `opv-a`) |
 | NPC props 48–52, 74–78 (6.03r7) | resolved | 48–52 and 78+ drop the rest of the message; 75–77 are two bytes; a CLASS the client lacks stops the NPC script |
 | Baddy type range a client accepts | resolved | 6.03r7 survives 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223 |
-| Baddy props 11 and up | open | needs a visible baddy prop after the tested one |
+| Baddy props 11 and up | open | baddies made by `PLO_BADDYPROPS` walk on their own on 6.03r7 and attack, so a position canary does not hold (run `bp-a`); needs a still mode or a script read |
 | 6.1.1.3 | blocked | RC4 after a server-sent connector script; no loopback login yet (`v6113-status.md`) |
-| Windows 6.037 | blocked | runs only in the Win10 VM (packed, clock-gated) |
-| 2.00 to 2.21 (gen 2, 3, 4) | blocked | the proxy speaks gen 5 only |
-| Mobile clients | blocked | no lab path to a mobile client yet |
+| Windows 6.037 | blocked | runs only in the Win10 lab VM (8 GB); booting it on Mirae now would leave about 3 GB free, under the host-stability rule. The host side is ready: the proxy runs on Windows with a TCP control port (`tcp:PORT`) |
+| 2.00 to 2.17 (gen 3) | resolved | the proxy speaks gen 3; real 2.05 rev 2 and 2.17.1 probed (runs `w205-b`, `w217-b`) |
+| 2.19 to 2.21 (gen 4) | blocked | the proxy has gen 4 from server source, but no 2.19–2.21 binary is held |
+| Mobile clients | blocked | no Android APK or iOS Graal app on the lab hosts, no emulator, and no KVM in the Linux VM; the held Android Classic reading leaves the outer framing and encryption unread, so the proxy would not know the codec either |
