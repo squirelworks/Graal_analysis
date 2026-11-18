@@ -15,17 +15,20 @@ Status words:
 | **open** | Not checked yet, but reachable with the clients and servers we have. |
 | **blocked** | No client or server we can run reaches it yet. The reason is in the row. |
 
-## Tally (2026-11-18, evening)
+## Tally (2026-11-19)
+
+Each item counts once. Prop 83 counts twice: once for its meaning and width, and once for how
+much of it the client stores.
 
 | Group | Resolved | Open | Blocked |
 |---|---:|---:|---:|
-| Own player props on real clients (77–83, unknown ids, widths 0–90) | 8 | 1 | 1 |
-| Server→client ids that no client handles (60, 78, 81, 83, 110, 156) | 5 | 0 | 1 |
+| Own player props on real clients (77–83, unknown ids, widths 0–90) | 8 | 1 | 0 |
+| Server→client ids that no client handles (60, 78, 81, 83, 110, 156) | 5 | 1 | 0 |
 | Client→server ids at our server (0–223) | 1 | 1 | 0 |
 | Wire bytes (NUL and high bytes inside a message) | 1 | 1 | 0 |
 | Baddy types | 1 | 0 | 0 |
-| Other streams and clients | 1 | 2 | 4 |
-| **Total** | **17** | **5** | **6** |
+| Other streams and clients (NPC, other-player, baddy props; 6.1.1.3, 6.037, 2.00–2.21, mobile) | 1 | 2 | 4 |
+| **Total** | **17** | **6** | **4** |
 
 ## Own player props (`PLO_PLAYERPROPS`)
 
@@ -39,7 +42,6 @@ Status words:
 | 84–90 | (none) | how an unknown id is skipped | id + 1 byte; a longer value loses the rest of that message only | the same | the same | ends the message | resolved |
 | 0–76 | (named) | do the documented widths hold? | yes, for every id with a case; 33, 50, 51, 53, 75 and 76 have no case and are skipped as 1 byte | yes; no case for 33, 50, 51, 53, 75, 76, 77, 83 | yes; no case for those and 82 | — | resolved |
 | 81 | PLAYERLISTCATEGORY | what it changes | — | — | — | — | open: needs a second client looking at the player list |
-| any | — | Windows 6.037 | — | — | — | — | blocked: runs only in the Win10 VM |
 
 ## Server→client ids that no client handles
 
@@ -50,7 +52,7 @@ Status words:
 | 81 | `PLO_UNKNOWN81` | The same | resolved |
 | 83 | `PLO_UNKNOWN83` | The same | resolved |
 | 110 | `PLO_UNKNOWN110` | The same | resolved |
-| 156 | `PLO_SETACTIVELEVEL` | The extra step in 2.31 | blocked: needs a visible effect to look for; static reading first |
+| 156 | `PLO_SETACTIVELEVEL` | The extra step in 2.31 | open: 2.31 now runs in the lab; read the step statically, then probe for its effect |
 
 ## Client→server ids at our server
 
