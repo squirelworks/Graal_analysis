@@ -116,3 +116,7 @@ BATCH1-420R8-ENGINE-20261116	windows	static-export-strings
 BATCH1-LINUX4-APKG-20261116	linux	static-package-identity
 BATCH1-WIN411-THINSTALL-ID-20261116	windows	static-package-identity
 MAC-6015-LION-20261116	macos	lab-lion-guest-launch-and-static-inventory
+HUBSERVER-036-20261113	cross-platform	static-dotnet-bundle-metadata
+HUBSERVER-037-20261118	cross-platform	static-dotnet-bundle-metadata
+DELTERIA-2002-BACKUP-20261118	server-files	level-and-script-inventory
+DELTERIA-2019-BACKUP-20261118	server-files	level-and-script-inventory

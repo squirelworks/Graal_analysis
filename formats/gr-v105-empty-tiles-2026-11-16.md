@@ -24,6 +24,8 @@ So stock’s honest empty markers are **all-ones / −1 in fresh RAM** and **409
 
 Held corpus hunts for files that **start** with `GR-V1.05` remain empty so far. A start-only search is **not** a real negative once encrypted caches are in play: a level can sit deeper in a blob. Separately, held `GRESCR01` objects in a weblevels-style zip are **weapon / class scripts**, not level boards — do not treat them as encrypted levels awaiting packet-197 keys. **[file][inf]**
 
+2026-11-18: the two Delteria backups (2002 and 2019) hold no `GR-V1.05` file either; the 2019 set has three multi-layer `GLEVNW01` levels instead. See [`hubserver-037-and-delteria-2026-11-18.md`](../server-notes/hubserver-037-and-delteria-2026-11-18.md#level-formats-no-gr-v105-sample). **[file]**
+
 ## Still open
 
 - Pin any render-loop skip (or tileset blank) for disk value 4095 on layers above 0. **[bin]/[lab]**
