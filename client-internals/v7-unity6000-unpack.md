@@ -46,6 +46,8 @@ So the Unity 6000 client is unpacked, but its C# names are not readable with cur
 
 This run does not decide between them. **[inf]**
 
+> **Resolved later (2026-11-18).** The cause was the third item — the dumper's interpretation of the registration structures, not a metadata-31 limit and not image damage. With that corrected, the same dumper recovers the full type surface (15,546 types) for this build and all six older ones. See [v7-il2cpp-names-and-startup-gate.md](v7-il2cpp-names-and-startup-gate.md).
+
 ## What still holds from #463
 
 GameAssembly still exports the 241 `il2cpp_*` API names, and the engine plugin is still a separate native module with its own 309 exports. That is consistent with #463's picture of the native engine driving Unity through generated bindings. **[bin]** **[inf]** None of the 6000-build specifics (callback table, binding counts) were checked here.
