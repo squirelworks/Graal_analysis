@@ -38,7 +38,7 @@ comes in the connector script, whose reply is signed (see
 
 - **`LISTPROCESSES` (182) kills real Windows 6.03r7.** With 182 at the end
   of the login burst, the packed 6.03r7 exited with an access violation in
-  `ntdll.dll` (offset 0x5f603) about 13 s after login, before it opened its
+  `ntdll.dll` about 13 s after login, before it opened its
   window, every time and on any port. Without 182 it plays. GServer-v2 does
   not send 182 to it. Earlier Wine runs of a dumped 6.03r7 exe did not
   crash, so this was only visible on real Windows. **[lab]**
