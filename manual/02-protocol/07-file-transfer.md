@@ -57,6 +57,8 @@ Which file layout a client gets depends on how the server ranks its token, not o
 | A server for 5.x and 6.x clients must know every token it allows | server | [src] (protocol/file-transfer.md#gs2libs-version-table-src) |
 | A client cannot tell the server which layout to use | all | [inf] (protocol/file-transfer.md#gs2libs-version-table-src) |
 
+For the focus builds the ladder above gives: 1.39 takes the pre-2.1 path and never sends id 34; 2.22 and later take the ≥ 2.14 path with 32000-byte chunks, and 2.31 adds 84 to its receive set; 4.20r8, 5.00r7, 5.12 and 6.03r7 take the same path when the server's table knows their tokens, and fall back to the pre-2.1 path (large files fail with 30) when it does not. The per-executable receive constants of 4.20r8 to 6.03r7 were not read, so profile cells for them stay inferred from 2.14. [srv][bin][cap][inf] (protocol/large-file-thresholds-focus.md)
+
 ## 2.7.4 Requests at login
 
 Each build asks for different files when it enters a server. The table gives the first requests seen per build. The late builds always start with the base package [srv][inf][cap] (protocol/file-transfer.md#typical-flow-for-205-srvinf).
@@ -162,3 +164,5 @@ Both the near-empty folder and a full folder sent their file checks in the secon
 Id 23 asks for a file the client does not have. Id 34 is the update check and carries the local file's modification time. Which player-list icons are named follows the status list in S→C 180. With a full folder the online, away and do-not-disturb icons were not asked for; with a near-empty folder only those three were. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
 
 This server answered none of those requests: no S→C 102 and no 30. Neither client sent another file check afterwards, so sword, shield, body, bomb, bow and head images were not in this capture even though S→C 9 named some of them. The set above is only what leaves before any answer. An earlier run whose server did answer saw two further frames. A rerun against a server that answers id 23 and id 34 is still needed for the rest of the default set. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
+
+Status 2026-11-16: the shared second-frame bundling and the near-empty versus full first wave are settled; the full set after the server answers is still open (#245). [lab] (protocol/222-login-default-files.md)

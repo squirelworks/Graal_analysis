@@ -12,6 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **Carry the 2026-11-16 status notes into the manual.** ~~Twenty research-list status notes were `pending` in the source map.~~ Pointer rows in §2.3.5.1, §2.4.3, §2.5.6, §2.5.7, §2.5.13, §2.6.6, §2.7.3 and §2.7.10, and status rows in App. E#4, #13, #308, #311, #312, #314, #318, #323, #420, #421, #422 and #425. Each note's own open checklist stays the place to tick its labs.
+
 - [x] **Offline level-editor teardown (#619).** ~~Assimilator batch / tiledef type 4 / GraalEditor BOARD.~~ Notes on [#621](https://github.com/squirelworks/Graal_analysis/pull/621); E#600 writer settled (base64); type-4 consumer remains E#614; optional Save As confirm open.
 
 - [x] **Gmap terrain stock LCG / height roles.** ~~Delphi LCG in TerrainGenerator.exe; HEIGHTMAP vs RANDOMSEEDS.~~ [Note](../tools/generators-222/gmap-terrain-stock-2026-11-16.md).

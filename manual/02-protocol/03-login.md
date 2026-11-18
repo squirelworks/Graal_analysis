@@ -298,6 +298,8 @@ Each hardware field is computed the same way in every build read: the Windows 4.
 | The hashes are unsalted MD5 of short inputs, so a 4-byte serial or inode, or a MAC under a known vendor prefix, can be recovered by search; clients can send any values | all | [inf] (protocol/pcid.md#what-the-hashes-do-and-do-not-hide) |
 | The PC id a server sees is not computed from these fields by the game server: the listserver assigns it (→ §6.5.1) | 4.x and later | [src] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
 
+**Account step, 4.x against 5.x/6.x.** 4.x sends the typed or saved account in its first frame to the server named `Login` and never saves a `guest…` account; 5.24r4 and 6.03r7 log in as the built-in `guest` first, and a Login weapon renames the account before the world warp. A Login server for 4.x should accept a typed account on first connect without a guest-then-reconnect step. The stock 4.20r8 account dialog, its script API and whether an open Login GUI window survives S→C 178 are unconfirmed third-party leads until a loopback run on the unmodified engine. [bin][live][lab] (protocol/v4-login-account-contract.md); [bin][live] (protocol/v4-gui-survive-serverwarp.md)
+
 ## 2.3.6 Server parse and reply sequence
 
 ### 2.3.6.1 How a GServer-v2 parses the login
