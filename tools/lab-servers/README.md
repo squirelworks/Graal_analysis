@@ -12,7 +12,6 @@ Date: 2026-10-30. These are the two servers the offline lab runs (see `../lab-se
 | `gs2lib-CLVER_5_24.patch` | Adds 5.24 (`G3D15010`) to gs2lib as its own slot, `CLVER_5_24`, between 5.12 and 5.31x. Against gs2lib `5c36ab8` (what beta4 fetches). |
 | `gs2lib-CLVER_5_24-b839106.patch` | The same change against gs2lib `b839106` (our efb5b90 build). Applies with or without `gs2lib-GNW03081.patch`. |
 | `test_clver_5_24.cpp` | Checks the token → id → name lookups and the order 5.12 < 5.24 < 5.31x < 6.015 against a built gs2lib. |
-| `clver-5-24-lab/` | The 2026-10-31 lab run of real 5.24r4 on stock and patched gs2lib: screenshots, client consoles, proxy lines for the file messages. |
 | `run-lab-beta4.sh` | The beta4 pack's start script: listserver, the 2.x server on 14802 and the classic server on 14803. |
 
 Background on what each server is, and how they compare with GServer-v2 beta4 and the other open-source servers, is in `../../server-notes/lab-servers-2026-10-30.md`.
@@ -75,7 +74,7 @@ Both gs2lib versions built, and `test_clver_5_24.cpp` printed OK on both. On `b8
 | `pics1.png` (216,002 B) | S→C 30 `FILESENDFAILED` (over 64000 B for a "pre-2.14" client) | 68 `LARGEFILESTART`, 84 size, seven 32000-B chunks, 69 `LARGEFILEEND`, "done" |
 | screen after the warp | black: no tiles, no player | level drawn, player drawn with the downloaded head, body, sword and shield |
 
-Every file the patched run saved is byte-identical to the server's copy. Files under `clver-5-24-lab/`.
+Every file the patched run saved is byte-identical to the server's copy. The screenshots, client consoles and proxy lines are kept in the project's private files.
 
 Not covered: 6.00 beta2 (same token, so it gets the 5.24 slot; not run) and 6.00 beta1 (`G3D03048`, still unknown to gs2lib). The beta4 build with the master patch was compiled and unit-checked but not run against a client.
 

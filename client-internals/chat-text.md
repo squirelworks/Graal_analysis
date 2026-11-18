@@ -4,7 +4,7 @@ How the classic Windows clients draw the chat line (`PLPROP_CURCHAT`, prop 12) o
 
 There is no bubble. Every build draws the text straight onto the game view with the Windows canvas (`TCanvas.TextOut`), in a bold TrueType font, with no box behind it.
 
-![real 2.05 rev 2 (top) and Seihai (bottom), "hello world Wg"](chat-text-205-real-vs-seihai.png)
+*(screenshot: real 2.05 rev 2 (top) and Seihai (bottom), "hello world Wg"; kept in the project's private files)*
 
 ## Font per build
 
