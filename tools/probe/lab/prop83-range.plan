@@ -1,0 +1,38 @@
+# Follow-up: does the HUD clamp the gralat display at 7 digits, and is >999,999,999 ignored or clamped?
+waitsession 180
+wait s2c 9 60
+sleep 14
+shot 00-base
+s2c 9 c:83 i5:1234 c:5 c:11
+sleep 1.5
+shot 01-1234
+s2c 9 c:83 i5:1000000000 c:5 c:12
+sleep 1.5
+shot 02-1e9-after-1234
+s2c 9 c:83 i5:9999999 c:5 c:13
+sleep 1.5
+shot 03-9999999
+s2c 9 c:83 i5:10000000 c:5 c:14
+sleep 1.5
+shot 04-10000000
+s2c 9 c:83 i5:12345678 c:5 c:15
+sleep 1.5
+shot 05-12345678
+s2c 9 c:83 i5:123456789 c:5 c:16
+sleep 1.5
+shot 06-123456789
+s2c 9 c:83 i5:1234 c:5 c:17
+sleep 1.5
+shot 07-1234-again
+s2c 9 c:83 i5:999999999 c:5 c:18
+sleep 1.5
+shot 08-999999999
+s2c 9 c:83 i5:1000000001 c:5 c:19
+sleep 1.5
+shot 09-1000000001-after-max
+s2c 9 c:3 i3:2097151 c:5 c:20
+sleep 1.5
+shot 10-p3-max21bit
+s2c 9 c:3 i3:1234 c:5 c:21
+sleep 1.5
+shot 11-p3-1234

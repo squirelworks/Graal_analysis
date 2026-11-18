@@ -1,0 +1,46 @@
+# Pilot: player prop 83 on 6.03r7. Canary after each 83: prop 5 (bombs, 1 byte) must land.
+waitsession 90
+wait s2c 9 30
+sleep 14
+shot 00-base
+mark baseline rupees 7 bombs 5
+s2c 9 c:83 i5:1234
+sleep 2
+shot 01-p83-1234
+s2c 9 c:83 i5:1234 c:5 c:11
+sleep 2
+shot 02-p83-1234-bombs11
+s2c 9 c:83 i5:999999999 c:5 c:12
+sleep 2
+shot 03-p83-999999999-bombs12
+s2c 9 c:83 i5:1000000000 c:5 c:13
+sleep 2
+shot 04-p83-1000000000-bombs13
+s2c 9 c:83 i5:34359738367 c:5 c:14
+sleep 2
+shot 05-p83-max35bit-bombs14
+s2c 9 c:83 i5:0 c:5 c:15
+sleep 2
+shot 06-p83-0-bombs15
+s2c 9 c:3 i3:4321 c:5 c:16
+sleep 2
+shot 07-p3-rupees4321-bombs16
+s2c 9 c:83 i5:56789 c:5 c:17
+sleep 2
+shot 08-p83-56789-after-p3-bombs17
+# prop 77 (ONLINESECS2): the 6.x self parser reads 5 bytes and stores nothing
+s2c 9 c:77 i5:123456 c:5 c:18
+sleep 2
+shot 09-p77-i5-bombs18
+# unknown own id 90: one-byte value keeps sync; a 3-byte value should desync (open question in v5-props.md)
+s2c 9 c:90 c:1 c:5 c:19
+sleep 2
+shot 10-p90-1byte-bombs19
+s2c 9 c:90 i3:300000 c:5 c:20
+sleep 2
+shot 11-p90-3byte-bombs20
+s2c 9 c:5 c:21
+sleep 2
+shot 12-bombs21-resync
+sleep 3
+shot 13-end

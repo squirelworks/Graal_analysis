@@ -62,6 +62,7 @@ Case sets in 6.x:
 
 ## Open items
 
-- What 83 sets on the player, and which server sends it.
-- Whether a real 5.x or 6.x client accepts a long value at an unknown own id without desync (the skip is one byte, so it should not). A lab check needs a 5.x or 6.x client on the wire.
+- Which server sends 83. On 6.03r7, 83 is the gralat (rupee) count, the same counter as prop 3 (lab, 2026-11-18: [probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)).
+- ~~Whether a real 5.x or 6.x client accepts a long value at an unknown own id without desync.~~ 6.03r7 does not: a three-byte value at an unknown id loses the rest of that message, and the next message parses normally (lab, 2026-11-18). 5.x is not checked yet.
+- 6.03r7 lab widths (2026-11-18): 77 five bytes, 78–80 two bytes (`X2`, `Y2`, `Z2`), 81 one byte, 82 string, 83 five bytes.
 - The per-id value widths of the 5.x and 6.x parsers, beyond the ids named above.
