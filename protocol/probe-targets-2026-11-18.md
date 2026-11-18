@@ -118,26 +118,65 @@ of [`probe-results.tsv`](probe-results.tsv) is read with `tools/probe/canary.py`
 - **4.20r8 and 5.24r4 skip an id they have no case for as one byte,** like 6.03r7.
   - **5.24r4** reads 82 as a string, but has no case for 77 or 83. **[lab]**
   - **4.20r8** has no case for 82 either. **[lab]**
-- **2.x and raw bytes:** on 2.22 and 2.31, an unknown packet whose body holds raw bytes
-  (`ff 00 ff 00`) loses the packet that follows it in the same frame. 4.x, 5.x and 6.x do not.
-  A byte-by-byte test is in `bytes2x.plan`. **[lab]**
+- **2.22 stops reading a frame at a NUL byte.** The byte-by-byte runs (`b222-a`, `b420-a`, plan
+  `bytes2x.plan`) settle this:
+  - On 2.22, a message with a `00` byte anywhere in it loses every packet after it in the same
+    frame. This holds for an unknown id and for a chat prop alike.
+  - On 2.22, `ff`, `80` and `1f` bytes are harmless.
+  - 4.20r8 keeps the rest of the frame in every case.
+  - 2.31 lost the next packet after `ff 00 ff 00` on ids 60, 78, 81 and 83, but not on 110.
+    That one case is not explained yet.
+
+  **[lab]** So a server should never put a `00` byte in a message for a 2.x client. File
+  bodies sent behind `PLO_RAWDATA` hold such bytes and still arrive, so the raw-data path is
+  probably exempt. **[inf]**
 - No inject crashed any of the Windows clients.
 
-## A server-side finding: an empty `PLI_BADDYADD` crashes 6.03r7
 
-The PLI sweep sends every client→server id with an empty body from a live 6.03r7 session to
-our GServer-v2 build. Id 17 (`PLI_BADDYADD`) ended the session in both runs (`pli-a`, `pli-b`).
-**[lab][srv]**
+## Server side: every client→server id at our GServer-v2 build
 
-1. The server read the missing fields as `0 − 32`. That put the baddy at tile 112,112 with
-   type 224.
-2. The server sent that baddy to the level as `PLO_BADDYPROPS`.
-3. The client asked for `crush.wav` and then closed its connection. Its process exited with
-   nothing in its log.
+The sweep sent each id 0–223 with an empty body from a live 6.03r7 session. The target was our
+seihai-gserver-v2 build (`GS2Emu 4.0.0-beta`, built 2026-11-11). The runs were `pli-a`, `pli-b`
+(ids 0–17) and `pli-c` (18–223), using the plans `pli-sweep*.plan`. **[lab][srv]**
 
-So the server needs to check the body length and the baddy type before it adds a baddy. A
-6.03r7 client also cannot survive a baddy whose type is out of range. The rest of the sweep
-(ids 18–223) is in run `pli-c`.
+**Ids the build handles.** It handles 0–41, 44, 46–48, 50, 80, 81, 130, 152, 154, 157–159, 161
+and 223. Every other id from 18 to 223 is unknown to it (168 ids). The ids it does not handle
+include:
+
+| Id | Name |
+|---:|---|
+| 42 | |
+| 43 | `PLI_MUTEPLAYER` |
+| 45 | `PLI_PROCESSRUNNING` |
+| 49 | |
+| 51–79 | the RC range |
+| 82–129 | |
+| 131–151 | |
+| 153, 155, 156, 160 | |
+| 162–222 | |
+
+**What an unknown id does.** The server logs `Unknown Player Packet: N` and counts it. After
+three unknown packets it sends `PLO_DISCMESSAGE` ("Disconnected for sending invalid packets.")
+and drops the client. 6.03r7 then logs in again by itself, which is why the sweep could keep
+going.
+
+**Handled ids that do not check an empty body:**
+
+| Id | Name | What happened |
+|---:|---|---|
+| 17 | `PLI_BADDYADD` | The missing fields read as `0 − 32`, which made a type-224 baddy at tile 112,112. The server sent it to the level, and the 6.03r7 client asked for `crush.wav` and quit. This ended the session in both runs (`pli-a`, `pli-b`). The sweep's later plans skip 17. |
+| 31 | `PLI_PACKETCOUNT` | Logged "invalid packet count" and kept the client. |
+| 41 | `PLI_SERVERWARP` | Logged a serverwarp request to an empty server name. |
+| 130 | `PLI_REQUESTUPDATEBOARD` | Logged an empty level with x, y, w and h of −4128 and a junk modtime. |
+
+**Replies.** 34 (`PLI_UPDATEFILE`) got `PLO_FILEUPTODATE`, and 159 (`PLI_UPDATEPACKAGEREQUESTFILE`)
+got 105 and 106. 39 (`PLI_TAMPERCHECK`) got no reply and no log line, so this build does not act
+on the tamper check (E#320).
+
+**What follows from this.**
+- A server should check each body's length before reading it, and should check the baddy type
+  before adding a baddy.
+- A 6.03r7 client cannot survive a baddy whose type is out of range.
 
 ## Recommended next batches
 

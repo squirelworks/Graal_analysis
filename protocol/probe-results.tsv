@@ -164,3 +164,20 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-18	win-5.24r4	s2c	83	-	83 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w524-b	plo83-c1
 2026-11-18	win-5.24r4	s2c	83	-	83 	yes	yes	none	unknown PLO; canary in the same frame landed	w524-b	plo83-empty
 2026-11-18	win-5.24r4	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w524-b	plo83-text
+2026-11-18	win-2.22	s2c	60	-	60 hex:410042	no	yes	none	NUL byte in the message: the rest of the frame (the canary packet) is lost	b222-a	nul-mid
+2026-11-18	win-2.22	s2c	60	-	60 hex:4100	no	yes	none	NUL byte in the message: the rest of the frame (the canary packet) is lost	b222-a	nul-end
+2026-11-18	win-2.22	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	b222-a	ff
+2026-11-18	win-2.22	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	b222-a	80
+2026-11-18	win-2.22	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	b222-a	1f
+2026-11-18	win-2.22	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	b222-a	plain
+2026-11-18	win-2.22	s2c	9	12	9 c:12 str:a hex:00	no	yes	none	NUL byte in the message: the rest of the frame (the canary packet) is lost	b222-a	nul-known
+2026-11-18	win-4.20r8	s2c	60	-	60 hex:410042	yes	yes	none	canary in the same frame landed	b420-a	nul-mid
+2026-11-18	win-4.20r8	s2c	60	-	60 hex:4100	yes	yes	none	canary in the same frame landed	b420-a	nul-end
+2026-11-18	win-4.20r8	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	b420-a	ff
+2026-11-18	win-4.20r8	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	b420-a	80
+2026-11-18	win-4.20r8	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	b420-a	1f
+2026-11-18	win-4.20r8	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	b420-a	plain
+2026-11-18	win-4.20r8	s2c	9	12	9 c:12 str:a hex:00	yes	yes	none	canary in the same frame landed	b420-a	nul-known
+2026-11-18	linux-6.03r7 -> gs2emu 4.0.0-beta (2026-11-11)	c2s	17	-	17 (empty)	-	no	PLO_BADDYPROPS type 224	server makes a type-224 baddy at 112,112 and sends it; the client asks for crush.wav and quits	pli-a, pli-b	-
+2026-11-18	linux-6.03r7 -> gs2emu 4.0.0-beta (2026-11-11)	c2s	0-41,44,46-48,50,80,81,130,152,154,157-159,161,223 except 17	-	empty body	-	yes	see observed	handled; 34 -> PLO_FILEUPTODATE; 159 -> 105 + 106; 31 logs an invalid packet count; 41 logs a serverwarp to an empty name; 130 logs x/y/w/h -4128; 39 (tamper check) silent	pli-a, pli-b, pli-c	-
+2026-11-18	linux-6.03r7 -> gs2emu 4.0.0-beta (2026-11-11)	c2s	42,43,45,49,51-79,82-129,131-151,153,155,156,160,162-222	-	empty body	-	yes (reconnects)	PLO_DISCMESSAGE every third	logged as Unknown Player Packet; three of them disconnect the client ("Disconnected for sending invalid packets."); 6.03r7 logs in again by itself	pli-c	-
