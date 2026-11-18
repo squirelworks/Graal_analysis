@@ -1,0 +1,29 @@
+# NPC prop 77 on 6.03r7: its width (a one-byte value lost the canary in np603-b).
+waitsession 240
+wait s2c 9 90
+sleep 10
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:2 c:70
+sleep 1.5
+shot ctl-x
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:77 s:64 c:2 c:70
+sleep 1.5
+shot p77-s
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:77 i3:16511 c:2 c:70
+sleep 1.5
+shot p77-i3
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:77 str:x c:2 c:70
+sleep 1.5
+shot p77-str
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:77 i5:2080768 c:2 c:70
+sleep 1.5
+shot p77-i5
