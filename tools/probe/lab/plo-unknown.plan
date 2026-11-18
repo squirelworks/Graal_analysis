@@ -1,0 +1,72 @@
+# Unknown PLO ids on 6.03r7: empty, short and long bodies; a bombs canary after each shows the client still reads packets
+waitsession 180
+wait s2c 9 60
+sleep 14
+shot 00-base
+s2c 60 
+s2c 9 c:5 c:11
+sleep 1.5
+s2c 60 c:1
+s2c 9 c:5 c:12
+sleep 1.5
+s2c 60 t:"probe body with spaces and 0123456789 0123456789 0123456789"
+s2c 9 c:5 c:13
+sleep 1.5
+s2c 60 hex:ff00ff00
+s2c 9 c:5 c:14
+sleep 1.5
+shot id60-bombs14
+s2c 78 
+s2c 9 c:5 c:15
+sleep 1.5
+s2c 78 c:1
+s2c 9 c:5 c:16
+sleep 1.5
+s2c 78 t:"probe body with spaces and 0123456789 0123456789 0123456789"
+s2c 9 c:5 c:17
+sleep 1.5
+s2c 78 hex:ff00ff00
+s2c 9 c:5 c:18
+sleep 1.5
+shot id78-bombs18
+s2c 81 
+s2c 9 c:5 c:19
+sleep 1.5
+s2c 81 c:1
+s2c 9 c:5 c:20
+sleep 1.5
+s2c 81 t:"probe body with spaces and 0123456789 0123456789 0123456789"
+s2c 9 c:5 c:21
+sleep 1.5
+s2c 81 hex:ff00ff00
+s2c 9 c:5 c:22
+sleep 1.5
+shot id81-bombs22
+s2c 83 
+s2c 9 c:5 c:23
+sleep 1.5
+s2c 83 c:1
+s2c 9 c:5 c:24
+sleep 1.5
+s2c 83 t:"probe body with spaces and 0123456789 0123456789 0123456789"
+s2c 9 c:5 c:25
+sleep 1.5
+s2c 83 hex:ff00ff00
+s2c 9 c:5 c:26
+sleep 1.5
+shot id83-bombs26
+s2c 110 
+s2c 9 c:5 c:27
+sleep 1.5
+s2c 110 c:1
+s2c 9 c:5 c:28
+sleep 1.5
+s2c 110 t:"probe body with spaces and 0123456789 0123456789 0123456789"
+s2c 9 c:5 c:29
+sleep 1.5
+s2c 110 hex:ff00ff00
+s2c 9 c:5 c:30
+sleep 1.5
+shot id110-bombs30
+sleep 3
+shot zz-end

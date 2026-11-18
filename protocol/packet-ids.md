@@ -74,7 +74,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 57 | 0x59 | `PLO_RC_ACCOUNTPROPSGET` | · |   |
 | 58 | 0x5a | `PLO_RC_ACCOUNTCHANGE` | · |   |
 | 59 | 0x5b | `PLO_RC_PLAYERPROPSCHANGE` | · |   |
-| 60 | 0x5c | `PLO_UNKNOWN60` | · | no game or staff client handles it (1.21 to 6.03r7, RCs 1999 to RC3); the 1.33 RC used 60 client → server for "edit player: Apply" **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 60 | 0x5c | `PLO_UNKNOWN60` | · | no game or staff client handles it (1.21 to 6.03r7, RCs 1999 to RC3); the 1.33 RC used 60 client → server for "edit player: Apply" **[bin]** (`unknown-ids-2026-11-06.md`); 6.03r7 ignores it with any body, no reply **[lab]** (`probe-targets-2026-11-18.md`) |
 | 61 | 0x5d | `PLO_RC_SERVERFLAGSGET` | · |   |
 | 62 | 0x5e | `PLO_RC_PLAYERRIGHTSGET` | · |   |
 | 63 | 0x5f | `PLO_RC_PLAYERCOMMENTSGET` | · |   |
@@ -95,9 +95,9 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 78 | 0x6e | `PLO_NC_CONTROL` | · | repurposed by Graal Reborn; original purpose unknown; client 5.07+ ignores it |
 | 79 | 0x6f | `PLO_NPCSERVERADDR` | · | two bytes (0, 2), then `ip,port` text; client 5. ignores it |
 | 80 | 0x70 | `PLO_NC_LEVELLIST` | · | `str levels`; client 5.07+ ignores it |
-| 81 | 0x71 | `PLO_UNKNOWN81` | · | no game or staff client handles it; not an NC id (RC3's NC socket and NPC Control `NCL15031` lack it), against the gserver's "probably NC related" **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 81 | 0x71 | `PLO_UNKNOWN81` | · | no game or staff client handles it; not an NC id (RC3's NC socket and NPC Control `NCL15031` lack it), against the gserver's "probably NC related" **[bin]** (`unknown-ids-2026-11-06.md`); 6.03r7 ignores it with any body, no reply **[lab]** (`probe-targets-2026-11-18.md`) |
 | 82 | 0x72 | `PLO_SERVERTEXT` | · | reply to PLI_REQUESTTEXT / PLI_SENDTEXT |
-| 83 | 0x73 | `PLO_UNKNOWN83` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 83 | 0x73 | `PLO_UNKNOWN83` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`); 6.03r7 ignores it with any body, no reply **[lab]** (`probe-targets-2026-11-18.md`) |
 | 84 | 0x74 | `PLO_LARGEFILESIZE` | · | `i5 size` (2.31 only) **[bin]** |
 | 100 | 0x84 | `PLO_RAWDATA` | ✔ | `i3 length` |
 | 101 | 0x85 | `PLO_BOARDPACKET` | ✔ via RAWDATA |   |
@@ -109,7 +109,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 107 | 0x8b | `PLO_BOARDLAYER` | · | like LEVELBOARD, for extra layers |
 | 108 | 0x8c | `PLO_PING` (was `PLO_UNKNOWN108`) | · | ping: `c sub`, `s value`; sub 0 → the client answers PLI 162, sub 1 stores the value; 4.20 and 6.x, taken before the main switch **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 109 | 0x8d | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP(S); 5.24r4 to 6.03r7 **[bin]** (`plo-109-httpdownload.md`, `unknown-ids-2026-11-06.md`) |
-| 110 | 0x8e | `PLO_UNKNOWN110` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`) |
+| 110 | 0x8e | `PLO_UNKNOWN110` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`); 6.03r7 ignores it with any body, no reply **[lab]** (`probe-targets-2026-11-18.md`) |
 | 111 | 0x8f | `PLO_SETNETCOOKIE` | · | `rest cookie` |
 | 124 | 0x9c | `PLO_RC_UNKNOWN124` (was `PLO_UNKNOWN124`; proposed `PLO_RC_PLAYERFLAGS`) | · | RC3 only: logs `received player flags` and reads nothing from the body; not in the 2004 or 2010 RCs **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 131 | 0xa3 | `PLO_NPCBYTECODE` | · | `i3 code`, `bytecode` |
