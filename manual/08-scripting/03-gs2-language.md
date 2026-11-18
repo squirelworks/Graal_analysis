@@ -19,6 +19,7 @@ GS2 replaces client-side GS1 in steps. Each row gives a group of builds and the 
 | 4.x 3D engine | the Torque console and TorqueScript are gone; every engine object is exposed to Graal's GS2 script objects; there is no TorqueScript compiler and `.dso` files are never requested | [bin] (graal3d/torque-engine-4x.md#overview) |
 | 5.x (`G3D22067`, `G3D14097`, `G3D15010`, `G3D26090`) | GS2, with the `GRESCR01` script cache | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
 | 6.x | GS2; in 6.11 even the packet id tables come from the server's script | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| server content, 2002 and 2019 backups of one server | 2002: GS1 only, with no `function onX()`, `join` or `trigger*`. 2019 level NPCs are mixed: 190 files have `function onX()` handlers, 122 still use GS1 `if (created)`, and 100 use both; the 2019 server scripts are full GS2 | [file] (server-notes/hubserver-037-and-delteria-2026-11-18.md#script-dialects) |
 
 ## 8.3.2 Delivery
 
@@ -99,6 +100,32 @@ This is an input-substitution experiment with no server or server commit; later 
 [bin] Both inspected receivers reject when the existing queue has 1,000 actions, before duplicate suppression. The named route suppresses matching route/name with null arguments; above nine pending entries its additional non-null comparison uses argument string representations, not pointer equality. Internal names istimeout, created and initialized prepend; other names append. The enum route appends. These internal names are not a proven public event mapping. Activation avoids duplicate owners and has an unresolved special front-insertion category; per-pass markers and list mutation handling do not establish fairness or reentrancy. [bin] (client-internals/windows-500-event-queue.md)
 
 [inf] Independently authored queue contracts cover null-argument duplicates, lifecycle insertion and overrun-before-dedup, with a synthetic recording executor only. They are static-derived, not original-client output. Allocation failure, argument conversion/collisions, class-download deferral, complete virtual gates, cross-owner ordering and actual scheduler cadence remain open. Do not import this input's limit into another build or infer 20 Hz service. Broader event semantics remain partial in App. E#207. [inf] (client-internals/windows-500-event-queue.md)
+
+#### Engine event names by build
+
+The `on…` names each engine image holds are the events it can pass to a script by name: GUI callbacks, engine and network hooks, and platform hooks. They are not the GS1-mask events, which are built at run time from the bare name, and a literal is not proof that the event fires [bin][inf] (client-internals/gs2-engine-event-names.md#what-this-list-is).
+
+| Build | `on…` names | Source |
+| --- | ---: | --- |
+| 4.04r2 | 76 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| 4.20r8 | 81 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| 5.30r3 | 107 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| 6.00r2 | 111 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| 6.1.1.3 | 170 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| Linux 6.03r7 x64 | 106 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| Android Classic 1.8 | 157 | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| Android Classic 2.2 | 36 (a floor; names probably stored another way) | [bin][inf] (client-internals/gs2-engine-event-names.md#counts) |
+| 7.12.43 | 40 (a floor; names probably stored another way) | [bin][inf] (client-internals/gs2-engine-event-names.md#counts) |
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| 221 distinct names across the nine builds | all nine | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| 6.1.1.3 adds 55 `onSend…` hooks, one per outgoing message, matching its 55 script-filled send slots; Android 1.8 has 51 of them plus `onSendNPCProperties`; 6.00r2 and Linux 6.03r7 have none | 6.1.1.3; Android 1.8 | [bin] (client-internals/gs2-engine-event-names.md#what-changes-between-builds) |
+| 6.1.1.3 adds `onCreated`, `onAllRCChat`, `onReconnect`, `onDisconnected`, `onServerWarp` and `onFileRequests` | 6.1.1.3 and later | [bin] (client-internals/gs2-engine-event-names.md#what-changes-between-builds) |
+| `onInitialize`, `onKeyPress`, `onLoad` and `onUnload` exist only in 4.04r2 and 4.20r8; 5.30r3 adds the Flash-style and connection names (`onRollOver`, `onConnect`, `onHandShake`, `onMetaData`) | 4.x; 5.30r3 | [bin] (client-internals/gs2-engine-event-names.md#what-changes-between-builds) |
+| Android adds store and platform hooks; 7.12.43 adds Unity-era hooks (`onUpdate`, `onFixedUpdate`, `onLevel3DEnter`, `onDeeplink`) | Android; 7.12.43 | [bin] (client-internals/gs2-engine-event-names.md#what-changes-between-builds) |
+
+Which call site fires each name is unread → App. E#207 [inf] (client-internals/gs2-engine-event-names.md#still-open).
 
 ## 8.3.5 Names and the published API
 
