@@ -15,6 +15,8 @@ Observed behaviour:
 - Shows a client-version status that stays blank when no client is configured.
 - Offline graphics utility — not a network service.
 
+Batch contract for levels and scripts (filters, GIF/`setgif` rewrite, empty-run errors): `tools/assimilator-batch-ops-2026-11-16.md` ([#619](https://github.com/squirelworks/Graal_analysis/issues/619)).
+
 ## Recommended placement
 
 | Tag | `seihai` / `analysis-only` |

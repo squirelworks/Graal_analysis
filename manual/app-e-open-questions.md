@@ -859,14 +859,13 @@ The later Graal3D beta is known only from static reads [bin] (graal3d/beta3-gene
 
 ### E#600 Tile layer as GraalEditor writes it
 
-Which board form GraalEditor writes has never been checked against a file it saved [GE] (tools/graaleditor.md#document-model).
+**Settled for the text writer (2026-11-16).** Claim A is false; Claim B holds. The Delphi text writer emits GLEVNW01-style base64 `BOARD` runs and skips all-zero rows. A Save As `.nw` was not captured; file-level confirmation is optional. [bin] (tools/graaleditor-board-format-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619)
 
 | Item | Content | Source |
 | --- | --- | --- |
-| Claim A | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices, which the client GLEVNW01 loader does not accept until rewritten as base64 runs | [GE] (tools/graaleditor.md#document-model); [GE] (formats/glevnw01.txt) |
-| Claim B | the 2.05 and 2.22 built-in editors, from which GraalEditor is derived, write base64 `BOARD` rows | [2.22] (tools/level-editor/version-deltas.md#3-formats-per-build) |
-| Open | which form a file saved by GraalEditor itself holds; the claim was never checked against such a file | [inf] (tools/level-editor/version-deltas.md#3-formats-per-build) |
-| Settles it | saving a level from GraalEditor 2.3.1.1 and reading its `BOARD` rows | [inf] (tools/level-editor/version-deltas.md#3-formats-per-build) |
+| Claim A | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | **false** for the text writer [bin] (tools/graaleditor-board-format-2026-11-16.md) |
+| Claim B | the writer matches the 2.05 / 2.22 built-in base64 `BOARD` rows | **holds** [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
+| Residual | optional Save As file confirm when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
 
 ### E#601 Whether link arrival offsets are evaluated
 
@@ -1001,3 +1000,14 @@ The Classic+ 1.13 and Era+ 1.0 sample corroborates lowercase boolean spellings f
 ### E#613 Windows 2.22 remote PM roster and visible result
 
 The selected modified control's composer and type-37 sender lookup are bounded statically in §2.8.7. Types 55, 56 and 82 select default cleanup in the recovered dispatcher. The remote-roster UI trigger, request builder, accepted reply and identity-creation route remain open; later `requestlist` / `pmserverplayers` behavior is not established here. Resolve the actual request caller and receive route before implementation. Virtual type-28 send framing and native visible message behavior also remain unverified, as do sibling builds. [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions)
+
+### E#614 Tiledef type 4 consumer (draw vs walk)
+
+Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch only names 0, 1|2 and 5 [file][2.22] (formats/tiledef-type4-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619).
+
+| Item | Content | Source |
+| --- | --- | --- |
+| Claim A | Install type-4 rows store large pixel x offsets (and sometimes y) beside a replacement image and level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim B | Walk kinds for tilesets are 0 / 1\|2 / 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
+| Open | Whether type 4 is draw-at-(x,y) (addtiledef2-like), a new walk kind, or both | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| Settles it | A consumer trace or offline lab on a type-4 prefix level for draw and `tiletype`/wall | [inf] (formats/tiledef-type4-2026-11-16.md#open) |

@@ -145,7 +145,7 @@ client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	cited	E	E
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
-client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3	4	
+client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3; E	4	
 client-internals/decomp-findings-2026-10-28-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	table form of 01-tile-type-tests.md in the same folder, which the manual cites
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
@@ -823,3 +823,6 @@ protocol/nc-write-ops-status.md	pending		7; E	NC write ops status; gap #40; seih
 protocol/carry-shoot-hit-status.md	pending		2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
 protocol/nonlocal-level-warp-status.md	pending		2.5; E	Non-local level warp status; gap #15; seihai-core#7
 protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
+tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
+formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
+tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11	

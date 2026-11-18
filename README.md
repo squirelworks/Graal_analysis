@@ -101,6 +101,9 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Linux 3.04 local value-helper branches](torque/304-npcs.md#retained-local-numeric-and-string-helper-branches) — retained static numeric/string fallback and assignment distinctions, not complete coercion or callback results.
 
 - [Where the 3.04 client gets its tile types](torque/304-tile-types.md) — no `arrays.dat`: the walk and type lists are compiled into the executable and equal 2.22's (water list minus ids 1824 and 1825); type-0 sheets walk only on list ids, type 1/2 sheets use id ranges; `tiledefs` picks the sheet. Static.
+- [Assimilator batch ops on levels/scripts](tools/assimilator-batch-ops-2026-11-16.md) — GIF/setgif checklist rewrite; empty-list errors; not a board transcoder; #619(a); static.
+- [Tiledef type 4 (2.22)](formats/tiledef-type4-2026-11-16.md) — loader stores type+x,y; type 4 absent from walk kinds 0/1|2/5; install x offsets are tile columns; consumer open E#614; #619(b); static.
+- [GraalEditor BOARD text shape](tools/graaleditor-board-format-2026-11-16.md) — 2.3.1.1 text writer is base64 GLEVNW01 (not decimal); zero rows skipped; E#600 settled for writer; #619(c); static.
 
 - [Exact Linux 3.04 show-image wrapper constants](torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review) — retained static eight-command mode/flag map and bounded integer-key container distinction; no new rendering result.
 
