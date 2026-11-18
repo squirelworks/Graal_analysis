@@ -70,12 +70,60 @@ The runtime track spent many sessions failing to drive the stock client to a cap
 
 In short: unpack → static-index IL2CPP recovery → static read of the three gates, with a single clock-gated capture as the only runtime step. That is the better v7 method, and it is reproducible from public tooling.
 
+## The date gate and the quit reason, read by static disassembly
+
+Two of the open items below are now answered by disassembling the unpacked modules directly — Capstone over the engine's recovered `.text`, with the managed side cross-checked in the Il2CppDumper `script.json`. Nothing was run.
+
+### The date gate is an "N days after a reference date" check, wired to the boot quit
+
+**[bin]** The engine has a single `_mktime64` call path. A small helper takes the current local time (`_time64` → `_localtime64`), then overwrites three `struct tm` fields from three 32-bit globals — `tm_mday` (tm offset `0x0c`), `tm_mon = month − 1` (offset `0x10`) and `tm_year = year − 1900` (offset `0x14`; the literal `0x76c` = 1900) — and calls `_mktime64`, yielding a `time_t` for that (year, month, day).
+
+**[bin]** Its only caller is the gate itself: it reads `_time64(NULL)` for the current time, calls the helper for the reference `time_t`, then `difftime(now, reference)` and compares the result against `N × 60 × 60 × 24`. The two `60.0` and the `24.0` are `.rdata` doubles, so the threshold is **N days**; if `now − reference > N days` the gate returns true. Two one-byte enable flags guard it — if either is clear the gate returns false (check disabled).
+
+**[bin]** The three date values, `N` and both flags are **initialised data**, not run-time state. An earlier pass of this note found zero/garbage for them, but that was an arithmetic slip in resolving the rip-relative operands, which pointed it at the wrong region. The operands actually resolve to a small block in the engine's initialised data section, and there the unpacked image holds real values (table below). No instruction in `.text` writes the date, `N` or the enable flag. A rip-relative scan of the whole region, plus searches for absolute 64-bit pointers and 32-bit RVA tables to each address, found only reads. The one write is the gate itself clearing its second flag (a byte store of 0) after a check passes, so later calls return "not expired" without recomputing. The values are therefore the compiled-in constants the developers set per release. They are not filled at start-up.
+
+**[bin]** The same routine, at a different place in each build, is in all seven unpacked engines. The latest build has a debug-style code shape (the year stored as `year − 1900` via a subtract, `N` converted with `cvtsi2sd`). The six 2024 builds have an optimised shape (the same `year − 1900` done as an add of −1900, `N` converted with `movd`/`cvtdq2pd`), with identical logic. Values read from each unpacked image:
+
+| Build | Reference date | `N` (days) | Enable flag / pending flag | Gate trips after |
+|---|---|---|---|---|
+| 548 | 2022-10-17 | 180 | 1 / 1 | 2023-04-15 |
+| 610 | 2022-04-22 | 180 | **0** / 1 | never (dormant) |
+| 612 | 2023-10-17 | 180 | 1 / 1 | 2024-04-14 |
+| 613 | 2024-04-15 | 180 | 1 / 1 | 2024-10-12 |
+| 614 | 2024-04-15 | 180 | 1 / 1 | 2024-10-12 |
+| 71243 | 2024-10-15 | 180 | 1 / 1 | 2025-04-13 |
+| latest (Unity 6000) | 2026-04-07 | 180 | 1 / 1 | 2026-10-04 |
+
+"Trips after" is reference + 180 days. The builder keeps the current time of day and `_mktime64` takes DST from the current `tm`, so the boundary is the same local clock time 180 days on, give or take an hour. The test is strictly greater-than.
+
+**[inf]** So the gate is **active** in every build except 610, and every one of those builds has long since expired at the real 2026 clock. That accounts for the empirical clock sensitivity without needing the TLS-certificate explanation. 614 dialled the connector with the guest clock at 2024-04-22, which is inside its window, and at the real clock it skipped boot init and quit after one frame. TLS validity may still matter later, at the connector handshake, but it is not what stops the boot. In 610 the enable byte is 0 in the image and has a single reader and no writer, so the check is compiled off. Whether 610 boots at the real clock is a separate question: the launch-input and connector paths still apply. The reference date is a per-release constant, not the PE build timestamp. 613 and 614 share one value, and 610's is older than 548's, so it was not bumped on every build. A 180-day window is the same in all seven.
+
+### The quit reason is native, and the instant-quit literal is `QuitInstant`
+
+**[bin]** `Quattro.UQuattroUnityBridge.Quit(string reason)` resolves to a known method in the unpacked GameAssembly (`script.json` signature `void …Quit(System.String* reason, const MethodInfo*)`), but it has **no callers in managed `.text`**. It is invoked by the native engine across the bridge, so the `reason` is engine-supplied, not a managed literal.
+
+**[bin][inf]** The engine's quit handler logs `Do Quit` and assembles a `reason=` string; the concrete instant-quit reason literal is **`QuitInstant`** (the string `reason=QuitInstant` is appended at the quit site), paired with the GS2 script event name `Adventure_quit_Instant`. So the one-frame boot teardown is the engine's own `DoQuit`, and `QuitInstant` is the reason value it carries across the bridge.
+
+### For a live debugger: where to break and what to read
+
+The table above already gives the values. To **confirm** them live, or watch the verdict, in a v7 session (Bochs/QEMU, or the unpacked engine substituted in), find the routines by landmark. Exact offsets per build are kept in the project's private working papers, not here. **[bin]**
+
+- **Gate function.** It is the one function that calls `_time64(NULL)`, then the reference-date builder, then `difftime`, and compares the result against a product of `.rdata` doubles `60.0 × 60.0 × 24.0` times an int global (`N`). It opens with two byte-flag tests that return false early. Break on its return: AL is the expired/true verdict (1 at any clock date after 2026-10-04 for the latest build). It has a single caller on the boot path.
+- **Reference-date builder.** It sits in the `_time64`/`_localtime64`/`_mktime64` CRT-thunk cluster. It takes the current local `tm`, stores three int globals into it as `tm_year = year − 1900`, `tm_mon = month − 1` and `tm_mday = day`, then calls `_mktime64`. Those three globals are the reference date (2026 / 4 / 7 in the latest build), and `_mktime64`'s return is the reference `time_t`.
+- **`N` and the flags** sit next to the date in the same small data block: `N` (= 180) just before the year, the enable byte just before `N`, and the pending byte just after the day.
+
+A read-only memory read of those six values in a running client (the packed engine tolerates read-only scans) should match the table byte for byte. The black-box cross-check is a clock test either side of the boundary, reading `Player.log` for boot-proceeds vs the one-frame `DoQuit`. For 614 the sharp prediction is guest clock 2024-10-12 → boots, 2024-10-13 → quits, which is tighter than "build date vs far future".
+
+**[cap]** Runtime status at the time of writing: the 2024-04-22 (boots and dials) vs real-2026 (quits) observations on 614 from the earlier clock-test lab agree with the table. A boundary-date boot and an external memory read of the six globals are still to be run as cross-checks. Neither is needed to recover the values.
+
 ## How this was checked
 
 **[bin]** Static read with a small PE32+ reader (section names and entropy, import/export directories, string searches) of the two unpacked modules of the latest Unity 6000 build, and symbol/context reads of the corrected-run `dump.cs` (class and `TypeDefIndex` for each cited field/method). **[cap]** The unpack, the IL2CPP reconstruction and the member-count validation were produced by earlier isolated lab-VM runs (unpacker and dumper only; `Worlds.exe` was not launched; no network). The tools were not re-run for this note, and no raw dump, private hash or lab path is reproduced here.
 
+**[bin]** The per-build gate table comes from Capstone disassembly and byte reads of the seven unpacked `Graal3DEngine.dll` images (548, 610, 612, 613, 614, 71243 and the latest Unity 6000 build). The routine was located in each image by its code shape: the two flag tests, `_time64`, the builder call, `difftime`, and the `N × 60 × 60 × 24` product. The builder was located by its `year − 1900` / `month − 1` / `day` stores into `struct tm`. Each global was read from the image at its resolved offset, and the region was checked for writers (rip-relative stores, absolute 64-bit pointers, 32-bit RVA tables). The gate's single boot-path caller was re-confirmed in the latest build and in 614. Nothing was run.
+
 ## Still open
 
-- **The quit reason string.** Recover the literal(s) `UQuattroUnityBridge.Quit(string reason)` is called with at the one-frame boot quit, from the engine `.text`.
-- **The exact native date comparison.** Locate `_mktime64`'s caller in the unpacked engine, read the baked date and the compare, and state the gate exactly.
+- **The quit reason string** — *answered above:* `Quit(string reason)` has no managed callers, so the reason is native; the instant-quit literal is `QuitInstant` (`reason=QuitInstant`), paired with the GS2 event `Adventure_quit_Instant`. Residual: confirm the exact reason the expiry path itself passes, versus the script-driven `QuitInstant`.
+- **The native date comparison, as code** — *answered above:* `now − reference > N days`, with the reference built via `_mktime64` from three initialised dword globals and the check guarded by two byte flags, wired to the boot-skip. The literal values are in the per-build table: `N` = 180 days everywhere, a per-release reference date, active in every build except 610. Residual: a live boundary-date boot to confirm the table at run time.
 - **The connector signing key.** Still the gating secret for an online repro; unchanged by this note. The signed-reply capture remains the one runtime step, and the key swap stays a private, owner-run task.
