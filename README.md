@@ -1,4 +1,4 @@
-﻿# Graal Analysis
+# Graal Analysis
 
 Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No raw decompiles, code or binary addresses.
 

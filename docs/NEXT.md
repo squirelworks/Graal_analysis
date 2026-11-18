@@ -1,4 +1,4 @@
-﻿# Next work (ordered)
+# Next work (ordered)
 
 One change per branch and PR. Verify `origin/main` and the open PR list before
 starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" or
