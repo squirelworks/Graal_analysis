@@ -12,6 +12,10 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
+- [x] **v7 Worlds builds and connector in the manual.** ~~Fold the nine pending v7 notes (#463, #466, #623, the Unity 6000 unpack and the live connector capture) into Part I and §2.10.~~ Manual §1.8.10 (builds, identity, unpack and names, start-up and date gate) and §2.10.7 (connector); App. E#615, E#616. Static and earlier lab evidence only; no new run.
+  - [ ] Read the engine's quit call sites and the caller of its calendar function in the unpacked Unity 6000 engine: the boot-quit reason and the baked date ([note](../client-internals/v7-il2cpp-names-and-startup-gate.md#still-open); E#615).
+  - [ ] Decrypted v7 connector script, game host/port and login (E#616); needs a client with a replaced public key.
+
 - [x] **Offline level-editor teardown (#619).** ~~Assimilator batch / tiledef type 4 / GraalEditor BOARD.~~ Notes on [#621](https://github.com/squirelworks/Graal_analysis/pull/621); E#600 writer settled (base64); type-4 consumer remains E#614; optional Save As confirm open.
 
 - [x] **Gmap terrain stock LCG / height roles.** ~~Delphi LCG in TerrainGenerator.exe; HEIGHTMAP vs RANDOMSEEDS.~~ [Note](../tools/generators-222/gmap-terrain-stock-2026-11-16.md).

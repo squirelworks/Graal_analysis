@@ -560,7 +560,7 @@ torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.9 carries the version strings, fixed words and companies on the skipped exports
-torque/study-torque-clients.md	cited	E; 10	10	§10.1.8 carries the 6.00r2/r4 correction of the era-C GUI names; the rest of the per-era findings and the 3.04 script surface stay for §10 once Squirrel has reviewed the study and the rebuild plan
+torque/study-torque-clients.md	cited	E; 10	10	Part X opens with the study's three-program split (§10.0) and cites it through §10.1.8; the rebuild plan is excluded (#243)
 torque/wire-by-build.md	cited	10; E	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -680,7 +680,7 @@ client-internals/graal-wiki-crosscheck-2026-11-11.md	cited	3.3	3.3
 protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
-protocol/v7-connector-live-20261111.md	pending		1; 2.10	v7 Worlds connector capture: User-Agent split, request order, signed reply container and the online-play verdict; to be folded into the identity and connector sections
+protocol/v7-connector-live-20261111.md	cited	1; 2.10; E	1; 2.10	v7 connector request order, reply container and online-play reach in §2.10.7; identity in §1.8.10; open decrypt in E#616
 protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/v6113-status.md	cited	2.10; E	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
 protocol/v6113-live-connector-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
@@ -726,13 +726,13 @@ protocol/v4x-windows-403r3-411.md	pending		2.4; 2.5; 9	Windows 4.03r3/4.04r2/4.1
 tools/thinstall-unpack/README.md	excluded			repository tooling for the notes (the static Thinstall unpacker behind v4x-windows-403r3-411.md), not Graal
 tools/switch-scan/README.md	excluded			repository tooling for the notes (the jump-table case scanner behind the 4.x handled-id rows), not Graal
 client-internals/unpacked-images-coverage.md	excluded			index from each owner-held unpacked client image to the note that covers it; no findings of its own
-client-internals/v7-gameassembly-il2cpp.md	pending		E	v7 managed side (IL2CPP): binding layer, per-build C# callback table, launch inputs, build diff; to be folded beside the v7 bridge entry
+client-internals/v7-gameassembly-il2cpp.md	cited	1	1	managed host, binding layer, launch inputs and build diff in §1.8.10
 protocol/client-string-fingerprints-3x-6x.md	pending		1; 2.3	string fingerprints of the 3.x to 6.x client binaries from our own scans; to be folded into the build list (§1.8) and the login section
 client-internals/linux-304-executable-build.md	cited	1; 10	1; 10	Build/dependency evidence in §1.8.4 and §10.1.10; voice/OpenAL questions remain explicit. Detailed sizes, banner stamps and installer naming stay in the source.
 client-internals/windows-404r2-components.md	cited	1; 10	1; 10	Component/capture boundary in §1.8.5; module/export map and unresolved lineage/forms/class map in §10.1.11. Private source-root spellings and detailed export/source-area inventory are not reproduced.
 client-internals/mac-611r1-send-slots.md	cited	1; 2.4	1; 2	Mac identity/dependencies in §1.8.7 and partial mapping/entry tests with remaining gates in §2.4.13. Full linked-framework list and instruction-level scan mechanics remain in the source.
-client-internals/v7-unity6000-unpack.md	pending		1	current Unity 6000 v7 client unpack and IL2CPP v31 metadata; to be folded into the build list beside the v7 IL2CPP name notes
-client-internals/v7-il2cpp-names-and-startup-gate.md	pending		1	v7 IL2CPP name recovery (static-index correction) and the native startup/date gate
+client-internals/v7-unity6000-unpack.md	cited	1	1	Unity 6000 build row, unpack shape and metadata 31 in §1.8.10
+client-internals/v7-il2cpp-names-and-startup-gate.md	cited	1; E	1	IL2CPP name recovery, start-up quit, launch inputs and native date gate in §1.8.10; open items in E#615
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
 client-internals/mac-ppc-404-512/SUMMARY.md	pending		2.3; 4.1	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule and PLO sets; to be folded into the framing and build sections
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
@@ -758,11 +758,11 @@ client-internals/v3-v5-protocol-pass/protocol/v5-script.md	pending		1; 2.3	Curso
 client-internals/v3-v5-protocol-pass/torque/v3-engine-surface.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
 client-internals/v3-v5-protocol-pass/torque/v4-engine-surface.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
 client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
-client-internals/v7-quattro-il2cpp-names/build-diff.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/inventory.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
-client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	pending		1	Worlds IL2CPP declared names per build; to be folded into the build list beside the v7 IL2CPP notes
+client-internals/v7-quattro-il2cpp-names/build-diff.md	cited	1	1	declared-name presence/absence only, §1.8.10
+client-internals/v7-quattro-il2cpp-names/inventory.md	cited	1	1	declared-name presence/absence only, §1.8.10
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	cited	1	1	declared-name presence/absence only, §1.8.10
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	cited	1	1	no protocol tables in managed code, §1.8.10
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	cited	1	1	declared-name presence/absence only, §1.8.10
 torque/v3-python-engines/combined/ROADMAP.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
 torque/v3-python-engines/combined/STATUS.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
 torque/v3-python-engines/python-repro/STATUS.md	pending		1	Python v3 client reproductions and their teardown notes; status and evidence for the 3.x client, to be weighed against torque/ notes before any manual use
