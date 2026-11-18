@@ -158,6 +158,8 @@ Each row is one read VM and the builds that borrow it, as published on 2026-11-1
 | 5.00r7 | 5.00r7; 5.12, 5.24r4, 5.30r3, 5.31r4 [inf]; 5.12 Mac with the PowerPC shift [inf] | 48, 49, 54, 121; `maxlooplimit` | 10000 | no | modulo 32 | [bin] (client-internals/gs2-vm-by-version.md#limits) |
 | 6.03r7 | 6.01r1, 6.03r7; 6.00r2, 6.00r4, 6.015, 6.034 [inf] | 0, 164, 234–242; drops 48, 49 | none | no | modulo 32 | [bin] (client-internals/gs2-vm-by-version.md#limits) |
 
+The opcode pass of 2026-11-18 read the case sets directly (→ §8.4.4) and corrects the opcode column for two groups: the folds 234–242 and the drop of 48 and 49 are already in 5.30r3, so 5.30r3 to 6.1.1.3 run one 165-case set; and 0 and 164 are dispatched only by the Linux x64 builds, not by the Windows 6.x switches [bin] (protocol/gs2-opcode-table.md#case-sets).
+
 ## C.9 Combat and world rule groups, 1.21 to 2.31
 
 Each row is a group of builds whose combat, baddy and lava rules are the same [bin] (client-internals/combat-baddy-tile-by-version.md#summary-of-rule-groups).

@@ -86,13 +86,13 @@ This is the index of every prop id for players, NPCs and baddies. Each row gives
 | PLPROP | 74 | GATTRIB30 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
 | PLPROP | 75 | OSTYPE | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
 | PLPROP | 76 | TEXTCODEPAGE | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 77 | UNKNOWN77 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 78 | X2 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 79 | Y2 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 80 | Z2 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 81 | UNKNOWN81 | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 82 | COMMUNITYNAME | → §2.6.2 | [srv] (protocol/player-props.md#plprop-player) |
-| PLPROP | 83 | (unnamed; 6.x own props; gralats in five bytes) | → §2.6.6 | [bin] (protocol/v5-props.md#83-a-wide-gralat-count) |
+| PLPROP | 77 | UNKNOWN77 | → §2.6.2, §2.6.6 | [srv] (protocol/player-props.md#plprop-player); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| PLPROP | 78 | X2 | → §2.6.2, §2.6.6 | [srv] (protocol/player-props.md#plprop-player); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| PLPROP | 79 | Y2 | → §2.6.2, §2.6.6 | [srv] (protocol/player-props.md#plprop-player); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| PLPROP | 80 | Z2 | → §2.6.2, §2.6.6 | [srv] (protocol/player-props.md#plprop-player); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| PLPROP | 81 | UNKNOWN81 | → §2.6.2, §2.6.6 | [srv] (protocol/player-props.md#plprop-player); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| PLPROP | 82 | COMMUNITYNAME | → §2.6.2, §2.6.6 | [srv] (protocol/player-props.md#plprop-player); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| PLPROP | 83 | (unnamed; 6.x own props; gralats in five bytes) | → §2.6.6 | [bin] (protocol/v5-props.md#83-a-wide-gralat-count); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 | NPCPROP | 0 | IMAGE | → §2.6.4 | [srv] (protocol/player-props.md#npcprop) |
 | NPCPROP | 1 | SCRIPT | → §2.6.4 | [srv] (protocol/player-props.md#npcprop) |
 | NPCPROP | 2 | X | → §2.6.4 | [srv] (protocol/player-props.md#npcprop) |
