@@ -12,7 +12,7 @@ That open item is now resolved, and the readable names let the startup-quit path
 
 **[bin]** With the correction, the dumper writes the full set, not a partial:
 
-| | partial (first run, unpack note) | corrected run |
+| | partial (first run, #? / unpack note) | corrected run |
 |---|---|---|
 | `dump.cs` | 3.55 MB, 2,543 type entries, 16 `NullReferenceException` markers | ~32 MB, **15,546 types**, no embedded exception markers |
 | `il2cpp.h` | not written | written (~49 MB) |
@@ -63,7 +63,7 @@ The runtime lab established a **clock gate** empirically ([the 701750 bridge/clo
 
 The runtime track spent many sessions failing to drive the stock client to a capture (headless renders black; the connector gates behind Unity cloud services; the engine's bundled curl uses c-ares DNS that bypasses the loopback redirect; Themida blocks inline hooks; and the standalone boot `DoQuit`s before login). The unpacked modules make almost all of that unnecessary:
 
-1. **Unpack both Themida modules with the x64 Unlicense, one at a time.** Both `GameAssembly.dll` and `Graal3DEngine.dll` are **x64** (`.themida` + `.boot` sections). Use the **64-bit** Unlicense (0.4.0, Themida/WinLicense 3.x support) — a 32-bit `unlicense-32`/`unlicense_32` build cannot dump these x64 targets. Run `<tool> <dll> --timeout=60 --verbose=True`, no forced OEP or patch, in an isolated headless Win10 lab clone (no NIC, no shared folders); the unpacker runs the DLL through its own loader, so the client never starts and never phones home. The outputs gain a leading `.text` (the recovered code) and a trailing `.SCY` (the rebuilt IAT); the dead `.themida`/`.boot` sections stay as weight. These are base-fixed analysis images, not runnable replacements.
+1. **Unpack both Themida modules with the 64-bit Unlicense, one at a time.** Both `GameAssembly.dll` and `Graal3DEngine.dll` are **x64** (`.themida` + `.boot` sections), so the tool must be the **x64** Unlicense 0.4.0 build (Themida/WinLicense 3.x support); the Unlicense binary's own PE machine must read as AMD64. A 32-bit Unlicense (a `...-x86`/`unlicense-32` build) is the wrong bitness and cannot dump an x64 target — match the tool to the target. Run `<tool> <dll> --timeout=60 --verbose=True`, no forced OEP or patch, in an isolated headless Win10 lab clone (no NIC, no shared folders); the unpacker runs the DLL through its own loader, so the client never starts and never phones home. The outputs gain a leading `.text` (the recovered code) and a trailing `.SCY` (the rebuilt IAT); the dead `.themida`/`.boot` sections stay as weight. These are base-fixed analysis images, not runnable replacements.
 2. **Recover IL2CPP names with the static-index correction**, then read declarations/signatures/RVAs from `dump.cs`/`il2cpp.h`/`script.json` — don't try to read names out of a live process.
 3. **Read the gates statically:** launch inputs on `UnityMain`, the quit boundary on `UQuattroUnityBridge`, the native date gate via the engine's `_mktime64` caller.
 4. **Use the runtime only for the one thing static can't give cheaply:** the connector's signed reply. Capture it with the guest clock held at the build date (the only reliable way to make the stock client dial), and keep the capture and any replay material private.

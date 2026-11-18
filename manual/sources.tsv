@@ -732,7 +732,6 @@ client-internals/linux-304-executable-build.md	cited	1; 10	1; 10	Build/dependenc
 client-internals/windows-404r2-components.md	cited	1; 10	1; 10	Component/capture boundary in §1.8.5; module/export map and unresolved lineage/forms/class map in §10.1.11. Private source-root spellings and detailed export/source-area inventory are not reproduced.
 client-internals/mac-611r1-send-slots.md	cited	1; 2.4	1; 2	Mac identity/dependencies in §1.8.7 and partial mapping/entry tests with remaining gates in §2.4.13. Full linked-framework list and instruction-level scan mechanics remain in the source.
 client-internals/v7-unity6000-unpack.md	pending		1	current Unity 6000 v7 client unpack and IL2CPP v31 metadata; to be folded into the build list beside the v7 IL2CPP name notes
-client-internals/v7-il2cpp-names-and-startup-gate.md	pending		1	v7 IL2CPP name recovery (static-index correction) and the native startup/date gate
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
 client-internals/mac-ppc-404-512/SUMMARY.md	pending		2.3; 4.1	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule and PLO sets; to be folded into the framing and build sections
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
