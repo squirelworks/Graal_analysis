@@ -828,3 +828,4 @@ protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
+client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
