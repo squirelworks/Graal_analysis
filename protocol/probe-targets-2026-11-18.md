@@ -13,7 +13,7 @@ Clients the harness can drive:
 - **Now:** the native Linux 6.03r7 client (`tools/probe/lab/run603.sh`), and Windows 2.22, 2.31,
   4.20r8 and 5.24r4 under Wine (`tools/probe/lab/runwine.sh`). All of them use gen 5.
 - **Need a gen-2/3/4 codec in the proxy:** 2.00 to 2.21.
-- **Need the Win10 VM:** Windows 6.037, which is packed and does not run under Wine.
+- **Win10 VM:** Windows 6.037, which is packed and does not run under Wine. Run 2026-11-19 (`w603`) on a real Windows 10 guest through the proxy's `tcp:PORT` control: props 83, 77, 78–82, 90 and PLO 60/78/81/83/110 behave as on Linux 6.03r7 (rows `win-6.037` in `probe-results.tsv`).
 - **Out of reach:** 6.1.1.3, until a loopback connector harness exists ([`v6113-status.md`](v6113-status.md)).
 
 ## Priorities
