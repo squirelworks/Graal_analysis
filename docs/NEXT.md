@@ -214,7 +214,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
   - [x] ~~Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.~~ [v5-props](../protocol/v5-props.md): 5.00r7, 5.12, 5.30r3 and 5.31r4 share 4.x's parsers plus 82; 6.x still parses natively (6.0.3.7 from the packet switch, 6.1.1.3 through `tclient_set*props`).
-  - [ ] What 6.x own-prop 83 sets, and a wire check of the one-byte skip on a 5.x or 6.x client.
+  - [x] ~~What 6.x own-prop 83 sets.~~ The gralat count in five bytes, same setter as 3 ([v5-props](../protocol/v5-props.md#83-a-wide-gralat-count)).
+  - [ ] A wire check of the one-byte skip on a 5.x or 6.x client, and a lab check of 83 above 2,097,151 on 6.03r7.
   - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
 
 - [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).

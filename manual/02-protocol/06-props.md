@@ -300,7 +300,7 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 | The selected initial ver10 stream orders 0, 11, 13, 18, 31, 33; head has numeric/custom-name branches, colors take five bytes, status/additional flags one each, and UDP uses three encoded groups from the saved bound port | Graal 2002 ver10, static construction only; not a native capture | [bin] (client-internals/graal2002-and-140-builds.md#ordered-first-update-construction) |
 | No client checked parses PLPROP 77 or 81, or NPCPROP 48 | 2.05, 2.22, 2.31 | [2.05][2.22][2.31] (protocol/player-props.md#unknown-prop-ids-205-checked-against-222-and-231) |
 | 4.x parses PLPROP 81 as one byte of four flag bits in both player streams, and still not 77 | 4.04r2, 4.20r8 | [bin] (protocol/v4x-clients.md#prop-parsers) |
-| 5.x adds PLPROP 82 (a length-prefixed string) to both player streams; 6.x self props also skip 77 as five bytes and read 83 as a five-byte number | 5.00r7 to 5.31r4; 6.0.3.7, 6.1.1.3 | [bin] (protocol/v5-props.md) |
+| 5.x adds PLPROP 82 (a length-prefixed string) to both player streams; 6.x self props also skip 77 as five bytes and read 83 as a five-byte gralat count (same setter as 3) | 5.00r7 to 5.31r4; 6.0.3.7, 6.1.1.3 | [bin] (protocol/v5-props.md) |
 | The 2.22 send-side prop builder also knows 75 and 76 | 2.22 | [bin] (version-profiles/plo-playerprops-layouts.tsv) |
 | From 2.3 GServer-v2 puts X2 and Y2 before X and Y in other-player props | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 
