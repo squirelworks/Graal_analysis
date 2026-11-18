@@ -829,3 +829,4 @@ tools/probe/README.md	excluded			repository tooling for the notes (the packet pr
 live-runs/sword-edge-2026-11-18/README.md	pending		4	two-player sword sideways edge on 1.35 (#443): |side| <= 2 tiles hits, edge included; to be folded into ch. 4 combat
 live-runs/real-win10-2026-11-18/README.md	pending		2.5; 4; 6; E	real Windows 4.20r8 to 6.03r7 on a lab Login server: 182 crash, 168/190 box, 47 checks, lobby files; to be folded into §2.5, ch. 4, ch. 6 and App. E
 client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
+protocol/unknowns-ledger.md	excluded			running tally of the probe work (status per id and prop), a working list beside probe-targets-2026-11-18.md

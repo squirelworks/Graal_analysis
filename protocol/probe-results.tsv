@@ -181,3 +181,100 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-18	linux-6.03r7 -> gs2emu 4.0.0-beta (2026-11-11)	c2s	17	-	17 (empty)	-	no	PLO_BADDYPROPS type 224	server makes a type-224 baddy at 112,112 and sends it; the client asks for crush.wav and quits	pli-a, pli-b	-
 2026-11-18	linux-6.03r7 -> gs2emu 4.0.0-beta (2026-11-11)	c2s	0-41,44,46-48,50,80,81,130,152,154,157-159,161,223 except 17	-	empty body	-	yes	see observed	handled; 34 -> PLO_FILEUPTODATE; 159 -> 105 + 106; 31 logs an invalid packet count; 41 logs a serverwarp to an empty name; 130 logs x/y/w/h -4128; 39 (tamper check) silent	pli-a, pli-b, pli-c	-
 2026-11-18	linux-6.03r7 -> gs2emu 4.0.0-beta (2026-11-11)	c2s	42,43,45,49,51-79,82-129,131-151,153,155,156,160,162-222	-	empty body	-	yes (reconnects)	PLO_DISCMESSAGE every third	logged as Unknown Player Packet; three of them disconnect the client ("Disconnected for sending invalid packets."); 6.03r7 logs in again by itself	pli-c	-
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1234	-	yes	chat (CHATBACK)	client script reads playerrupees = 1234	cb83-d	01-1234
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:12345678	-	yes	chat (CHATBACK)	client script reads playerrupees = 12345678	cb83-d	02-12345678
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:123456789	-	yes	chat (CHATBACK)	client script reads playerrupees = 123456789	cb83-d	03-123456789
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:999999999	-	yes	chat (CHATBACK)	client script reads playerrupees = 999999999	cb83-d	04-999999999
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1000000000	-	yes	chat (CHATBACK)	client script reads playerrupees = 999999999 (unchanged)	cb83-d	05-1e9-after-max
+2026-11-18	linux-6.03r7	s2c	9	3	9 c:3 i3:2097151	-	yes	chat (CHATBACK)	client script reads playerrupees = 2097151	cb83-d	06-p3-2097151
+2026-11-18	linux-6.03r7	s2c	9	0	9 c:0 str:Probe c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id00
+2026-11-18	linux-6.03r7	s2c	9	1	9 c:1 c:3 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id01
+2026-11-18	linux-6.03r7	s2c	9	2	9 c:2 c:6 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id02
+2026-11-18	linux-6.03r7	s2c	9	3	9 c:3 i3:7 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id03
+2026-11-18	linux-6.03r7	s2c	9	4	9 c:4 c:10 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id04
+2026-11-18	linux-6.03r7	s2c	9	5	9 c:5 c:3 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id05
+2026-11-18	linux-6.03r7	s2c	9	6	9 c:6 c:1 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id06
+2026-11-18	linux-6.03r7	s2c	9	7	9 c:7 c:1 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id07
+2026-11-18	linux-6.03r7	s2c	9	8	9 c:8 c:31 str:sword1.png c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id08
+2026-11-18	linux-6.03r7	s2c	9	9	9 c:9 c:11 str:shield1.png c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id09
+2026-11-18	linux-6.03r7	s2c	9	10	9 c:10 str:idle c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id10
+2026-11-18	linux-6.03r7	s2c	9	11	9 c:11 c:109 t:head0.png c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id11
+2026-11-18	linux-6.03r7	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id12
+2026-11-18	linux-6.03r7	s2c	9	13	9 c:13 c:0 c:0 c:0 c:0 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id13
+2026-11-18	linux-6.03r7	s2c	9	15	9 c:15 c:60 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id15
+2026-11-18	linux-6.03r7	s2c	9	16	9 c:16 c:61 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id16
+2026-11-18	linux-6.03r7	s2c	9	17	9 c:17 c:2 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id17
+2026-11-18	linux-6.03r7	s2c	9	18	9 c:18 c:20 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id18
+2026-11-18	linux-6.03r7	s2c	9	19	9 c:19 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id19
+2026-11-18	linux-6.03r7	s2c	9	21	9 c:21 str: c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id21
+2026-11-18	linux-6.03r7	s2c	9	22	9 c:22 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id22
+2026-11-18	linux-6.03r7	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id23
+2026-11-18	linux-6.03r7	s2c	9	24	9 c:24 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id24
+2026-11-18	linux-6.03r7	s2c	9	25	9 c:25 s:1 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id25
+2026-11-18	linux-6.03r7	s2c	9	26	9 c:26 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id26
+2026-11-18	linux-6.03r7	s2c	9	27	9 c:27 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id27
+2026-11-18	linux-6.03r7	s2c	9	28	9 c:28 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id28
+2026-11-18	linux-6.03r7	s2c	9	29	9 c:29 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id29
+2026-11-18	linux-6.03r7	s2c	9	30	9 c:30 i5:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id30
+2026-11-18	linux-6.03r7	s2c	9	31	9 c:31 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id31
+2026-11-18	linux-6.03r7	s2c	9	32	9 c:32 c:50 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id32
+2026-11-18	linux-6.03r7	s2c	9	33	9 c:33 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	no case in the 6.x self parser: skipped as one byte	cwid-b	id33
+2026-11-18	linux-6.03r7	s2c	9	34	9 c:34 str:guest c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id34
+2026-11-18	linux-6.03r7	s2c	9	35	9 c:35 str:body.png c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id35
+2026-11-18	linux-6.03r7	s2c	9	36	9 c:36 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id36
+2026-11-18	linux-6.03r7	s2c	9	37	9 c:37 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id37
+2026-11-18	linux-6.03r7	s2c	9	38	9 c:38 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id38
+2026-11-18	linux-6.03r7	s2c	9	39	9 c:39 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id39
+2026-11-18	linux-6.03r7	s2c	9	40	9 c:40 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id40
+2026-11-18	linux-6.03r7	s2c	9	41	9 c:41 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id41
+2026-11-18	linux-6.03r7	s2c	9	42	9 c:42 c:0 i3:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id42
+2026-11-18	linux-6.03r7	s2c	9	43	9 c:43 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id43
+2026-11-18	linux-6.03r7	s2c	9	44	9 c:44 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id44
+2026-11-18	linux-6.03r7	s2c	9	45	9 c:45 c:50 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id45
+2026-11-18	linux-6.03r7	s2c	9	46	9 c:46 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id46
+2026-11-18	linux-6.03r7	s2c	9	47	9 c:47 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id47
+2026-11-18	linux-6.03r7	s2c	9	48	9 c:48 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id48
+2026-11-18	linux-6.03r7	s2c	9	49	9 c:49 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id49
+2026-11-18	linux-6.03r7	s2c	9	50	9 c:50 c:1 c:5 c:99	yes	yes	chat (CHATBACK)	no case in the 6.x self parser: skipped as one byte	cwid-b	id50
+2026-11-18	linux-6.03r7	s2c	9	52	9 c:52 str:English c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id52
+2026-11-18	linux-6.03r7	s2c	9	53	9 c:53 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	no case in the 6.x self parser: skipped as one byte	cwid-b	id53
+2026-11-18	linux-6.03r7	s2c	9	54	9 c:54 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id54
+2026-11-18	linux-6.03r7	s2c	9	55	9 c:55 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id55
+2026-11-18	linux-6.03r7	s2c	9	56	9 c:56 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id56
+2026-11-18	linux-6.03r7	s2c	9	57	9 c:57 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id57
+2026-11-18	linux-6.03r7	s2c	9	58	9 c:58 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id58
+2026-11-18	linux-6.03r7	s2c	9	59	9 c:59 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id59
+2026-11-18	linux-6.03r7	s2c	9	60	9 c:60 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id60
+2026-11-18	linux-6.03r7	s2c	9	61	9 c:61 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id61
+2026-11-18	linux-6.03r7	s2c	9	62	9 c:62 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id62
+2026-11-18	linux-6.03r7	s2c	9	63	9 c:63 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id63
+2026-11-18	linux-6.03r7	s2c	9	64	9 c:64 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id64
+2026-11-18	linux-6.03r7	s2c	9	65	9 c:65 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id65
+2026-11-18	linux-6.03r7	s2c	9	66	9 c:66 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id66
+2026-11-18	linux-6.03r7	s2c	9	67	9 c:67 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id67
+2026-11-18	linux-6.03r7	s2c	9	68	9 c:68 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id68
+2026-11-18	linux-6.03r7	s2c	9	69	9 c:69 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id69
+2026-11-18	linux-6.03r7	s2c	9	70	9 c:70 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id70
+2026-11-18	linux-6.03r7	s2c	9	71	9 c:71 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id71
+2026-11-18	linux-6.03r7	s2c	9	72	9 c:72 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id72
+2026-11-18	linux-6.03r7	s2c	9	73	9 c:73 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id73
+2026-11-18	linux-6.03r7	s2c	9	74	9 c:74 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id74
+2026-11-18	linux-6.03r7	s2c	9	75	9 c:75 str:linux c:5 c:99	yes	yes	chat (CHATBACK)	no case in the 6.x self parser: skipped as one byte (landed only by chance: the string bytes parse as other props)	cwid-b	id75
+2026-11-18	linux-6.03r7	s2c	9	76	9 c:76 i3:1252 c:5 c:99	no	yes	chat (CHATBACK)	no case in the 6.x self parser: skipped as one byte (the value given was longer, so the canary was lost)	cwid-b	id76
+2026-11-18	linux-6.03r7	s2c	9	77	9 c:77 i5:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id77
+2026-11-18	linux-6.03r7	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id78
+2026-11-18	linux-6.03r7	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id79
+2026-11-18	linux-6.03r7	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id80
+2026-11-18	linux-6.03r7	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id81
+2026-11-18	linux-6.03r7	s2c	9	82	9 c:82 str:x c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id82
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:7 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id83
+2026-11-18	linux-6.03r7	s2c	9	84	9 c:84 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id84
+2026-11-18	linux-6.03r7	s2c	9	85	9 c:85 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id85
+2026-11-18	linux-6.03r7	s2c	9	86	9 c:86 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id86
+2026-11-18	linux-6.03r7	s2c	9	87	9 c:87 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id87
+2026-11-18	linux-6.03r7	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id88
+2026-11-18	linux-6.03r7	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id89
+2026-11-18	linux-6.03r7	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	chat (CHATBACK)	unknown id: skipped as one byte	cwid-b	id90
+2026-11-18	linux-6.03r7	s2c	9	51	9 c:51  c:5 c:99	no	yes	chat (CHATBACK)	no case in the 6.x self parser: skipped as one byte (the value given was longer, so the canary was lost)	cwid-b	id51
+2026-11-18	linux-6.03r7	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id20
+2026-11-18	linux-6.03r7	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	chat (CHATBACK)	documented width holds	cwid-b	id14

@@ -59,9 +59,10 @@ Each inject was one packet. Most were `PLO_PLAYERPROPS` messages with the bomb c
   | 999,999,999 | 1,000,000,001 | unchanged |
   | any | 2^35 − 1 (largest five-byte value) | unchanged |
 
-- **The built-in HUD draws only the low seven digits.** Whether the client stores all
-  nine digits is not visible on the HUD. A GS2 read of `player.rupees` would settle it
-  (next batches, item 3). **[lab]**
+- **The built-in HUD draws only the low seven digits, but the client stores all nine.**
+  In run `cb83-d`, a level script copied `playerrupees` into the player's chat, and the client
+  reported that chat to the server. After 83 = 123,456,789 the script read 123456789. After
+  999,999,999 it read 999999999, and after 1,000,000,000 the value stayed 999999999. **[lab]**
 
   | Value | HUD shows |
   |---|---|
@@ -92,6 +93,25 @@ Each inject was one packet. Most were `PLO_PLAYERPROPS` messages with the bomb c
 Lab notes: the lab world sometimes shows a black screen. This happens when the login
 server's warp arrives before the tile sheet. The HUD digits then draw over each other, so
 those runs were read by comparing the newly drawn pixels between shots.
+
+## Self-prop widths 0–90 on 6.03r7 (run `cwid-b`)
+
+Each own prop 0–90 was sent at the width that [`player-props.md`](player-props.md) gives it,
+followed by the bomb canary. The canary was read from the client's own report:
+`CHATBACK=1` adds a level script that copies the bomb count into the player's chat (see
+`tools/probe/chatcanary.py`). This avoids the black-screen problem. **[lab]**
+
+- **Every id with a case reads at its documented width.** That is 0–32, 34–49, 52, 54–74 and
+  77–83, including the risky ids 14 (`ID`) and 20 (`CURLEVEL`). The client stayed up
+  throughout.
+- **The ids with no case** are 33, 50, 51, 53, 75 and 76, the 6.x self parser's no-case set.
+  Each one is skipped as one byte:
+  - 51 (sent with no value) and 76 (sent as three bytes) lost the canary.
+  - 33, 50 and 53 (sent as one byte) kept it.
+  - 75 kept it only by chance, because the bytes of the string `linux` parse as other props.
+- **84–90** are skipped as one byte.
+
+This closes the 6.03r7 part of the per-id width item in `v5-props.md`.
 
 ## The same probes on Windows clients (2026-11-18)
 
@@ -180,16 +200,13 @@ on the tamper check (E#320).
 
 ## Recommended next batches
 
-1. **Self-prop width table for ids 0–90 on 6.03r7.** Run one group of ids at a time, with
-   values of 1, 2, 3 and 5 bytes and a canary after each. This closes the per-id width item
-   in `v5-props.md`. graal-client-repro's prop parser and the seihai-gserver encoder can
-   then be tested against the table.
+1. ~~**Self-prop width table for 0–90 on 6.03r7.**~~ Done in run `cwid-b`. Next, run the same
+   plan on 4.20r8 and 5.24r4. Their HUD canary works because those runs draw the screen.
 2. **The same tests on Windows 4.20r8, 5.24r4 and 6.037 under Wine:** prop 83, prop 77,
    unknown ids and PLO 60/78/81/83/110. These clients already run in the VM (`~/sl13`), so
    this needs only a runner. 4.x and 5.x have no case for 83, so the probe shows how they
    skip it.
-3. **A GS2 read-back of prop 83.** Push a weapon that echoes `player.rupees` to chat, using
-   the `gen5swap` bytecode route. This shows whether all nine digits are stored.
+3. ~~**A script read-back of prop 83.**~~ Done in run `cb83-d`: all nine digits are stored.
 4. **Other-player and NPC streams.** Test other-player props 77 and 83 (expected to end the
    stream) and NPC props 48–52. A second lab client in the level acts as the observer.
 5. **Server side.** Send unknown PLI ids with `c2s` to our GServer-v2 build and to
