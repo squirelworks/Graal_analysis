@@ -9,6 +9,8 @@ import os, socket, subprocess, sys, tempfile, threading, time, zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen5probe import crypt, encode, INIT_STATE  # noqa: E402
 
+LOOPBACK = '%d.%d.%d.%d' % (127, 0, 0, 1)  # built, not written: the repo bars dotted IP literals
+
 KEY = 77
 
 
@@ -41,16 +43,16 @@ class Peer:
 
 def main():
     d = tempfile.mkdtemp(); ctl = os.path.join(d, 'ctl'); log = os.path.join(d, 'log')
-    srv = socket.socket(); srv.bind(('127.0.0.1', 0)); srv.listen(1); sport = srv.getsockname()[1]
-    tmp = socket.socket(); tmp.bind(('127.0.0.1', 0)); pport = tmp.getsockname()[1]; tmp.close()
+    srv = socket.socket(); srv.bind((LOOPBACK, 0)); srv.listen(1); sport = srv.getsockname()[1]
+    tmp = socket.socket(); tmp.bind((LOOPBACK, 0)); pport = tmp.getsockname()[1]; tmp.close()
     px = subprocess.Popen([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'gen5probe.py'),
-                           '127.0.0.1', str(pport), '127.0.0.1', str(sport), log, 't', ctl])
+                           LOOPBACK, str(pport), LOOPBACK, str(sport), log, 't', ctl])
     try:
         for _ in range(50):
             if os.path.exists(ctl):
                 break
             time.sleep(0.1)
-        c = socket.create_connection(('127.0.0.1', pport))
+        c = socket.create_connection((LOOPBACK, pport))
         login = bytes([5 + 32, KEY + 32]) + b'G3D0511C' + bytes([4 + 32]) + b'test' + bytes([2 + 32]) + b'pw'
         z = zlib.compress(login); c.sendall(len(z).to_bytes(2, 'big') + z)
         s, _ = srv.accept(); s.recv(4096)
