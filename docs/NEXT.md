@@ -12,8 +12,8 @@ macOS CI is paused until the polish stage.
 
 ## Tasks
 
-
 - [x] **Carry the 2026-11-16 status notes into the manual.** ~~Twenty research-list status notes were `pending` in the source map.~~ Pointer rows in §2.3.5.1, §2.4.3, §2.5.6, §2.5.7, §2.5.13, §2.6.6, §2.7.3 and §2.7.10, and status rows in App. E#4, #13, #308, #311, #312, #314, #318, #323, #420, #421, #422 and #425. Each note's own open checklist stays the place to tick its labs.
+
 - [x] **v7 Worlds builds and connector in the manual.** ~~Fold the nine pending v7 notes (#463, #466, #623, the Unity 6000 unpack and the live connector capture) into Part I and §2.10.~~ Manual §1.8.10 (builds, identity, unpack and names, start-up and date gate) and §2.10.7 (connector); App. E#615, E#616. Static and earlier lab evidence only; no new run.
   - [ ] Read the engine's quit call sites and the caller of its calendar function in the unpacked Unity 6000 engine: the boot-quit reason and the baked date ([note](../client-internals/v7-il2cpp-names-and-startup-gate.md#still-open); E#615).
   - [ ] Decrypted v7 connector script, game host/port and login (E#616); needs a client with a replaced public key.
