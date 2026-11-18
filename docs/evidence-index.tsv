@@ -120,3 +120,7 @@ HUBSERVER-036-20261113	cross-platform	static-dotnet-bundle-metadata
 HUBSERVER-037-20261118	cross-platform	static-dotnet-bundle-metadata
 DELTERIA-2002-BACKUP-20261118	server-files	level-and-script-inventory
 DELTERIA-2019-BACKUP-20261118	server-files	level-and-script-inventory
+GS2-OPTABLE-WIN-20261118	windows	static-dispatch-table
+GS2-OPTABLE-LNX-20261118	linux	static-dispatch-table
+GS2-OPTABLE-ANDROID-20261118	android	static-dispatch-table
+GS2-EVENTNAMES-20261118	cross-platform	static-strings
