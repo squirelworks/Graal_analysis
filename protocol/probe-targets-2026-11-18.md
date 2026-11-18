@@ -131,6 +131,18 @@ too-short read leaves `0x20 0x9f` behind, and that swallows the canary. **[lab]*
 
 This closes the per-id width item in `v5-props.md` for 4.20r8, 5.24r4 and 6.03r7.
 
+## NPC props on 6.03r7 (runs `np603-a`, `np603-b`, `np603-c`)
+
+The `CHATBACK` level NPC also reports its own x, and its id in this world is 300. Before each
+test its x was reset to 30. The tested prop was then sent, followed by `X = 35` as the
+canary, in one `PLO_NPCPROPS` message. **[lab]**
+
+- **48–52, 78 and 90 drop the rest of the NPC message.** This matches the static case set
+  (0–47, 53–77).
+- **75, 76 and 77 are two bytes each** (X2, Y2, Z2).
+- **74 (`CLASS`)**, set to a class the client does not have, stops the NPC's script. Its
+  reports stop, and they stay stopped for the rest of the run.
+
 ## The same probes on Windows clients (2026-11-18)
 
 The runs were `w222-a`, `w231-a`, `w420-c` and `w524-b`, all using plan `tools/probe/lab/wine-core.plan`.

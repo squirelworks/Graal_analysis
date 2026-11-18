@@ -1,0 +1,68 @@
+# NPC prop stream (PLO_NPCPROPS) on 6.03r7: the CHATBACK NPC (id 300 in this world) reports its own x.
+# Reset x to 30 (c:2 c:60) before each test; the canary sets x = 35 (c:2 c:70) after the tested prop.
+waitsession 240
+wait s2c 9 90
+sleep 10
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:2 c:70
+sleep 1.5
+shot ctl-x
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:7 c:3 c:2 c:70
+sleep 1.5
+shot p07
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:48 c:0 c:2 c:70
+sleep 1.5
+shot p48-c
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:49 str:x c:2 c:70
+sleep 1.5
+shot p49-str
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:50 str:x c:2 c:70
+sleep 1.5
+shot p50-str
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:51 str:x c:2 c:70
+sleep 1.5
+shot p51-str
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:52 str:x c:2 c:70
+sleep 1.5
+shot p52-str
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:74 str:x c:2 c:70
+sleep 1.5
+shot p74-str
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:75 s:960 c:2 c:70
+sleep 1.5
+shot p75-s
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:77 c:0 c:2 c:70
+sleep 1.5
+shot p77-c
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:78 c:0 c:2 c:70
+sleep 1.5
+shot p78-c
+s2c 3 i3:300 c:2 c:60
+sleep 1
+s2c 3 i3:300 c:90 c:0 c:2 c:70
+sleep 1.5
+shot p90-c
+s2c 3 i3:300 c:2 c:60
+sleep 1
+shot zz-reset
