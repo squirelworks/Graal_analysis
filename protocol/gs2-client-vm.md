@@ -97,7 +97,7 @@ Each decoded instruction is a 24-byte record: the opcode, a type tag, a string, 
 
 ### Names the client gives the opcodes
 
-4.2.0.8 fills a table, one string per opcode from 0, used as the instruction's own name. Empty slots are unnamed. A slot whose symbol is only a character or two is the operator spelling (`+`, `==`, and the rest) and is not given a long name. The long names that are present: **[bin]**
+4.2.0.8 fills a table, one string per opcode from 0, used as the instruction's own name. (2026-11-18: the full table, including the slots this section calls short symbols, which are ordinary words, is in [`gs2-opcode-table.md`](gs2-opcode-table.md).) Empty slots are unnamed. A slot whose symbol is only a character or two is the operator spelling (`+`, `==`, and the rest) and is not given a long name. The long names that are present: **[bin]**
 
 | Bytes | Client name | What the dispatcher does |
 | --- | --- | --- |
