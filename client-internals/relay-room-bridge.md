@@ -72,7 +72,7 @@ apart. Either way it never equals Zelda Online 2's `Z<base>1.6`.
   the loopback address on 14801 and went straight to GServ (captured with tcpdump,
   decoded with `tools/relay-bridge/pcap_lines.py`).
 
-Captures and screenshots: `live-runs/relay-bridge-2026-10-31/`.
+The raw run logs and screenshots are kept in the project's private files, not in the repository.
 
 ## Run 1: Java Graal and 5th Graal through the bridge
 

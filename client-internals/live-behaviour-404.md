@@ -23,7 +23,7 @@ Other login details seen live: GServer-v2 reports the client as `G3D17026 (4.042
 * The text is drawn centred above the head in white bold sans, with a pure blue (#0000FF) copy 1 px down and right as a shadow. There is no bubble, frame or background, the same as the classic clients (`chat-text.md`). **[live]**
 * Sent as C→S 2, prop 12 (`PLPROP_CURCHAT`). **[live]**
 
-![4.04r2 chat text over the player](live-404-chat.png)
+*(screenshot: 4.04r2 chat text over the player; kept in the project's private files)*
 
 ## Walking and pushing against a wall
 
@@ -47,7 +47,7 @@ Other login details seen live: GServer-v2 reports the client as `G3D17026 (4.042
 
 * **Carrying** sends `carry` while walking and `carrystill` while standing. The held object is the gani's `ATTR3` sprite, drawn last and 22 px above the body. The head and the raised hands are drawn first, so the object covers the top of the head. That comes from the gani, so another server's ganis can draw it differently. **[live]**
 * **D while carrying hides the player under the object**, as in 2.05 (`carry-hide-and-glove.md`). The client sends `hiddenstill`, then `hidden` while walking, and sets status (prop 18) to 0x16, which has bit 0x02. Only the bush is drawn, and the player is not. Hidden walking moves 1.6 px per tick on average (steps of 4 and 2 half-pixels), which is 0.2 of a normal step, the same factor as 2.05. **[live]**
-![lift, hide (D), hidden walk left, hidden still](live-404-carry-hide.png)
+*(screenshot: lift, hide (D), hidden walk left, hidden still; kept in the project's private files)*
 
 * **A while carrying throws**: C→S 11 (`PLI_THROWCARRIED`) with an empty payload, then `idle`, and the carry sprite is cleared. **[live]**
 
@@ -68,9 +68,9 @@ For these, two pots, a stone and a black stone were placed on the lab level, and
 * Coming out of hiding with A sends `carrystill` and status 0x14, which clears bit 0x02. A second A throws. S throws straight from hiding. **[live]**
 * Every respawn is a single S→C 7 with the original 2×2 tiles. The 14 to 15 s spread is GServer-v2's 15 s timer, checked once a second. **[live][src]**
 
-![pot: lift, D (no hide), throw and shards](live-404-pot.png)
+*(screenshot: pot: lift, D (no hide), throw and shards; kept in the project's private files)*
 
-![black stone: carried, hidden (D), thrown, gone](live-404-blackstone.png)
+*(screenshot: black stone: carried, hidden (D), thrown, gone; kept in the project's private files)*
 
 ## Hidden state survives a reconnect
 

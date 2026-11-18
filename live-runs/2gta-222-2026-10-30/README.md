@@ -8,7 +8,7 @@ What follows is what the screen showed. Nothing here was read from packets.
 
 ## Server list
 
-![server list](222-serverlist.png)
+*(screenshot: server list; kept in the project's private files)*
 
 - Window title "Graal Reborn Server list". The footer greets the account ("Welcome to Graal Reborn, Seji. There are 10 server(s) online.").
 - Gold tab: Graal the Adventure (0 players) and GServer-RS (0 players). Silver and Bronze were not opened.
@@ -17,35 +17,35 @@ What follows is what the screen showed. Nothing here was read from packets.
 
 ## First screen after Connect
 
-![start](gta-start.png)
+*(screenshot: start; kept in the project's private files)*
 
 - The client opens a separate window titled with the server name, "Graal the Adventure". The empty strip at the bottom is the chat line.
 - HUD: the A, S and D slots top left (S shows the sword with a "1", D a ring), the magic bar under them, the rupee/bomb/arrow counters in the middle, three hearts and the `00/01` counter on the right.
-- Right after the level appears the counters read 0 rupees, 00 bombs, 03 arrows. A few seconds later (first screenshot after walking, [walk1](walk1.png)) they read 6, 05, 03, and later 7, 10, 03. The real client shows the counts as they arrive, after the level is already drawn; the start screen is not held back for them.
+- Right after the level appears the counters read 0 rupees, 00 bombs, 03 arrows. A few seconds later (first screenshot after walking, walk1 (screenshot, private)) they read 6, 05, 03, and later 7, 10, 03. The real client shows the counts as they arrive, after the level is already drawn; the start screen is not held back for them.
 - A server-side minimap is drawn at the bottom left, with the player's head as the marker. It is a weapon/NPC image, not a built-in client panel.
 - An NPC message ("Come one come all! The house of bananas is open…") scrolls across the bottom of the view in an outlined font.
 
 ## Camera
 
-Walking right or up moves the view, not the player: the player stays at the same place on screen (about the window's middle) while the board scrolls under them, until the level edge. Compare [gta-start](gta-start.png) with [walk1](walk1.png).
+Walking right or up moves the view, not the player: the player stays at the same place on screen (about the window's middle) while the board scrolls under them, until the level edge. Compare gta-start (screenshot, private) with walk1 (screenshot, private).
 
 ## Level-name banner
 
-![banner](walk2.png)
+*(screenshot: banner; kept in the project's private files)*
 
 Walking up the stairs north of the start crosses into the next level. The client then shows a parchment panel, "US Sparring Complex", in the lower half of the view, over the board, for a few seconds. It is drawn in the same panel style as a sign. It is most likely a server script (the level's or a weapon's); this run did not check whether the client itself names levels on entry.
 
 ## Door, water and other NPCs
 
-![inside](inside.png)
+*(screenshot: inside; kept in the project's private files)*
 
 - Walking up into the complex's door loads the interior. The player arrives in the deep water on the left and is drawn with the swim sprite (head and shoulders only).
 - NPCs carry name labels under them in the outlined font ("Marge", "Gemetzel Haus' Fighter"). The fighter shows a green "?!" above it.
-- Walking down out of the interior puts the player outside on the path south of the building ([down1](down1.png)), facing down with the shield in front.
+- Walking down out of the interior puts the player outside on the path south of the building (down1 (screenshot, private)), facing down with the shield in front.
 
 ## Sword
 
-![sword](sword-a.png)
+*(screenshot: sword; kept in the project's private files)*
 
 One S press, captured about 90 ms in: the sword frame facing down with the blade tip below the player.
 ## Second pass: bushes, hiding, chat (20:22 to 20:28 local)
@@ -56,33 +56,33 @@ Done next to the bush east of Cat's Pub. Crops are 600 x 450 physical pixels aro
 
 | Step | Screenshot | What the screen showed |
 |---|---|---|
-| A facing the bush | [lift-b](lift-b.png) | The bush goes over the head and the 2 x 2 stump is left on the board at once. The carried bush is drawn green, while the bush on the board was the bluish-grey variety: the carried image is the plain bush sprite, not the board's tiles. |
-| D while carrying | [duck-b](duck-b.png) | The player disappears under the bush; only the bush is drawn, at ground level, on the player's spot. |
-| Left arrow while hidden | [hidemove](hidemove.png) | The bush moves with the player (one tile in 250 ms), still with nothing of the player showing. |
-| D again | [unhide](unhide.png) | Back to the normal carry pose. D toggles. |
-| A | [throw-a](throw-a.png) | The bush is thrown in the facing direction (left) and leaves the view. |
+| A facing the bush | lift-b (screenshot, private) | The bush goes over the head and the 2 x 2 stump is left on the board at once. The carried bush is drawn green, while the bush on the board was the bluish-grey variety: the carried image is the plain bush sprite, not the board's tiles. |
+| D while carrying | duck-b (screenshot, private) | The player disappears under the bush; only the bush is drawn, at ground level, on the player's spot. |
+| Left arrow while hidden | hidemove (screenshot, private) | The bush moves with the player (one tile in 250 ms), still with nothing of the player showing. |
+| D again | unhide (screenshot, private) | Back to the normal carry pose. D toggles. |
+| A | throw-a (screenshot, private) | The bush is thrown in the facing direction (left) and leaves the view. |
 
 ### Bush respawn on this server
 
-Lifted at 20:26:34.7 and thrown away, then the bush's spot was captured every 2.5 s for 100 s ([resp-montage](resp-montage.png)). The stump shows at 3, 6, 8, 11 and 13 s; the bush is back at 16 s and stays. So the server puts a lifted bush back about **14 to 16 s** after the lift. That fits the GServer-v2 rule in `client-internals/board-respawn.md` (exactly `respawntime`, default 15 s), not the 1.3-era 6 to 12 s random timer. A first, untimed lift on the same bush (20:22) had also come back within a minute.
+Lifted at 20:26:34.7 and thrown away, then the bush's spot was captured every 2.5 s for 100 s (resp-montage (screenshot, private)). The stump shows at 3, 6, 8, 11 and 13 s; the bush is back at 16 s and stays. So the server puts a lifted bush back about **14 to 16 s** after the lift. That fits the GServer-v2 rule in `client-internals/board-respawn.md` (exactly `respawntime`, default 15 s), not the 1.3-era 6 to 12 s random timer. A first, untimed lift on the same bush (20:22) had also come back within a minute.
 
 ### Sword on a bush
 
 | Screenshot | What it shows |
 |---|---|
-| [cut-a](cut-a.png), about 100 ms after S | The sword arc to the right and four green leaf pieces flying out from the bush's spot; the stump is already on the board. |
-| [cut-b](cut-b.png), 700 ms later | Leaves gone, stump left. |
+| cut-a (screenshot, private), about 100 ms after S | The sword arc to the right and four green leaf pieces flying out from the bush's spot; the stump is already on the board. |
+| cut-b (screenshot, private), 700 ms later | Leaves gone, stump left. |
 
 The leaf pieces are green although this bush is the bluish-grey kind.
 
 ### Pushing
 
-Holding right into the bush ([face2](face2.png)) shows the push pose: arms forward, body leaning into the bush. Nothing moves.
+Holding right into the bush (face2 (screenshot, private)) shows the push pose: arms forward, body leaning into the bush. Nothing moves.
 
 ### Chat
 
-- Tab opens the chat line at the bottom; the typed text shows there in the system font ([chat-typing](chat-typing.png)).
-- Enter sends it ("hi"). The text then shows above the player's head as small white text with a dark outline, with **no bubble or box around it** ([chat-a](chat-a.png)). On this server, with the 2.22 client, "chat bubble" is just outlined text.
+- Tab opens the chat line at the bottom; the typed text shows there in the system font (chat-typing (screenshot, private)).
+- Enter sends it ("hi"). The text then shows above the player's head as small white text with a dark outline, with **no bubble or box around it** (chat-a (screenshot, private)). On this server, with the 2.22 client, "chat bubble" is just outlined text.
 - The line was still over the head about 45 s later, while the player had not moved. That matches Seihai's note that your own line is held until a direction key (`chat-lists.md`).
 - After Enter the chat line keeps the keyboard: the arrows did not move or turn the player until Tab was pressed again. A Seihai profile for 2.22 should do the same.
 
@@ -90,7 +90,7 @@ Holding right into the bush ([face2](face2.png)) shows the push pose: arms forwa
 
 ### Server list, all tabs
 
-The Silver tab lists Doomsday and the Bronze tab lists "Jojo???s" (a name with non-ASCII characters, shown as `???`) and Testbed, all with 0 players ([silver](silver.png), [bronze](bronze.png)). The right-hand details panel does **not** change when the tab changes: it keeps showing the server picked last (Graal the Adventure). The listserver reply in the capture names 9 servers: Graal the Adventure (14913), Sharp3D TEST (14917), Testbed (14842), Login DEV (14914), Login Mobile (14912), Jojo???s (30903), Doomsday (14802), Login (14911), GServer-RS (14801). Four of them (Sharp3D TEST and the three Login servers) are on no tab, while the footer says "There are 10 server(s) online".
+The Silver tab lists Doomsday and the Bronze tab lists "Jojo???s" (a name with non-ASCII characters, shown as `???`) and Testbed, all with 0 players (silver (screenshot, private), bronze (screenshot, private)). The right-hand details panel does **not** change when the tab changes: it keeps showing the server picked last (Graal the Adventure). The listserver reply in the capture names 9 servers: Graal the Adventure (14913), Sharp3D TEST (14917), Testbed (14842), Login DEV (14914), Login Mobile (14912), Jojo???s (30903), Doomsday (14802), Login (14911), GServer-RS (14801). Four of them (Sharp3D TEST and the three Login servers) are on no tab, while the footer says "There are 10 server(s) online".
 
 On the reconnect the HUD counters were right from the first frame (7 rupees, 10 bombs), unlike the very first connect of the day, where they started at 0.
 
@@ -124,7 +124,7 @@ So 2.22 keeps 2.05's movement model: 0.5 tile per 50 ms tick, a 0.9 s push thres
 
 ### What the client sends while walking and cutting
 
-Capture with Wireshark's `dumpcap` on the Wi-Fi adapter from before the login, decoded with `seihai capture show FILE --version 2.22`. The game connection decodes completely (gen 5, key taken from the login frame). The account and password are masked by Seihai and not kept here. Excerpt: [walk-sword-c2s.txt](walk-sword-c2s.txt).
+Capture with Wireshark's `dumpcap` on the Wi-Fi adapter from before the login, decoded with `seihai capture show FILE --version 2.22`. The game connection decodes completely (gen 5, key taken from the login frame). The account and password are masked by Seihai and not kept here. Excerpt: walk-sword-c2s.txt (screenshot, private).
 
 Walking right 450 ms from x 42:
 
