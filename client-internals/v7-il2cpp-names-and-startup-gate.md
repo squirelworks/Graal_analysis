@@ -80,9 +80,36 @@ Two of the open items below are now answered by disassembling the unpacked modul
 
 **[bin]** Its only caller is the gate itself: it reads `_time64(NULL)` for the current time, calls the helper for the reference `time_t`, then `difftime(now, reference)` and compares the result against `N × 60 × 60 × 24`. The two `60.0` and the `24.0` are `.rdata` doubles, so the threshold is **N days**; if `now − reference > N days` the gate returns true. Two one-byte enable flags guard it — if either is clear the gate returns false (check disabled).
 
-**[bin]** The three date values, `N`, and both flags read as zero/garbage in the dump (that region also overlaps pointer data), and — the important part — **no instruction in `.text` writes them.** A full scan for rip-relative stores (32/64/16-bit register and immediate, vector stores) and for any `lea` taking their address found nothing: the gate only ever *reads* these globals. So their values are not set by the engine's own code in any form this static pass can see.
+**[bin]** The inputs are **initialised data in the image**, and the gate is **active**. (An earlier revision of this note read the wrong addresses — an off-by-`0x34000` slip in the rip-relative arithmetic landed in an uninitialised pointer region and wrongly suggested the gate might be dormant. The correct addresses were pinned by the v7 runtime-dump thread's read of the live data and then re-confirmed against this static image.) At the right globals:
 
-**[inf]** Two readings fit. Either the inputs are populated by something outside the engine's `.text` (a loader step, a data-directory copy, or a run-time path the dump was taken too early to capture) with the reference being the build date and `N` a validity window; or the gate is **dormant in this build** — the enable flags default to zero, so the early-exit always fires and the date comparison never runs. This static pass cannot decide between them, so do **not** assume this routine is the mechanism behind the empirically observed clock sensitivity. That sensitivity (hold the guest clock near the build date → the client dials the connector; at the real clock it quits after one frame) has at least one other candidate cause — TLS/UnityTLS certificate-validity failure on the connector handshake, which is also clock-dependent. Which one drives the observed behaviour is unsettled here.
+| global | address (RVA) | value |
+|---|---|---|
+| enable flag A | `0xC03E7B` | `1` |
+| enable flag B | `0xC03E90` | `1` |
+| window `N` | `0xC03E80` | `180` (days) |
+| reference year | `0xC03E84` | `2026` |
+| reference month | `0xC03E88` | `4` |
+| reference day | `0xC03E8C` | `7` |
+
+Three neighbouring bytes (`0xC03E78`/`79`/`7A`) are also `1`. Nothing in the code writes these — the only write anywhere near them is the gate clearing flag B (`0xC03E90`) after a pass.
+
+**[bin][inf]** So this build's reference date is **2026-04-07** (its engine build date) and the window is **180 days**, i.e. it is valid until **2026-10-04**. Both enable flags are set, so the check runs. At any clock past 2026-10-04 — today included — `now − reference > 180 days`, the gate returns true, and its caller skips the normal boot init toward the one-frame quit. This **is** the empirically observed clock gate: holding the guest clock on or before 2026-10-04 lets boot proceed (and the connector dial); at the real clock the engine date gate trips and the client quits after one frame. It is a native, self-contained check — no connector or certificate involved — which settles the earlier TLS-versus-engine ambiguity in favour of the engine gate. Source: confirmed by the v7 runtime-dump thread's read of the data, re-verified here against the unpacked image.
+
+### The same gate across all seven builds
+
+The v7 runtime-dump thread read the gate's globals for every build. The same `now − reference > N days` check is present in each; the reference is each build's own engine date, and one build ships with the gate disabled:
+
+| build | reference date | state |
+|---|---|---|
+| 548 | 2022-10-17 | active |
+| 610 | 2022-04-22 | **dormant** (enable byte 0) |
+| 612 | 2023-10-17 | active |
+| 613 | 2024-04-15 | active |
+| 614 | 2024-04-15 | active (`N = 180` → valid to 2024-10-12) |
+| 71243 | 2024-10-15 | active |
+| latest (Unity 6000) | 2026-04-07 | active (`N = 180` → valid to 2026-10-04) |
+
+Where `N` is reported it is **180 days**. Build 614 gives the sharpest black-box check: with `N = 180`, `reference + 180 days = 2024-10-12`, and the test is strict (`>`), so a guest clock of **2024-10-12 boots** and **2024-10-13 skips init and quits**. That one-day flip is the cleanest confirmation available if a lab clock test is ever run (headroom permitting). Source: v7 runtime-dump thread; the latest-build values re-verified here.
 
 ### The quit reason is native, and the instant-quit literal is `QuitInstant`
 
@@ -94,11 +121,11 @@ Two of the open items below are now answered by disassembling the unpacked modul
 
 The one thing static analysis can't give — the runtime values of the gate's inputs — is a few breakpoints away for anyone with a live v7 session (Bochs/QEMU, or the unpacked engine substituted in). RVAs below are in the unpacked `Graal3DEngine.dll` analysis image; rebase to the loaded engine's base at run time, or locate the routines by their landmarks (the `_time64`/`_localtime64`/`_mktime64` CRT-thunk cluster, and the `difftime` result compared to a `.rdata` `60.0/60.0/24.0` product). **[bin]**
 
-- **Gate function — RVA `0x36878`** (the call site) into the gate body at **`0xb29b0`**. Break here; the return value (AL) is the expired/true verdict. Reading it directly says whether the gate is active and tripping in this build — the question static couldn't settle.
-- **Reference-date builder — RVA `0xb24c0`.** Break after its three field stores to read the baked date: the `tm` fields come from globals **`year @0xC37E84`**, **`month @0xC37E88`**, **`day @0xC37E8C`** (as written: `tm_year = year − 1900`, `tm_mon = month − 1`, `tm_mday = day`). `_mktime64`'s return is the reference `time_t`.
-- **Window `N` — global `@0xC37E80`** (the `difftime` threshold is `N × 86400 s`). **Enable flags — `@0xC37E7B` and `@0xC37E90`**; if either is zero at the gate, the check is disabled.
+- **Gate function — RVA `0x36878`** (the call site) into the gate body at **`0xb29b0`**. The return value (AL) is the expired/true verdict.
+- **Reference-date builder — RVA `0xb24c0`.** The `tm` fields come from globals **`year @0xC03E84`**, **`month @0xC03E88`**, **`day @0xC03E8C`** (as written: `tm_year = year − 1900`, `tm_mon = month − 1`, `tm_mday = day`). `_mktime64`'s return is the reference `time_t`.
+- **Window `N` — global `@0xC03E80`** (the `difftime` threshold is `N × 86400 s`). **Enable flags — `@0xC03E7B` and `@0xC03E90`**; if either is zero at the gate, the check is disabled.
 
-Dumping those six values at the gate settles the literal reference date, `N`, and active/dormant in one stop — more cheaply and unambiguously than a clock-bisection, and without a connector or network. A clock test (boot at either side of `reference + N days`, read `Player.log` for boot-proceeds vs the one-frame `DoQuit`) is the black-box cross-check of the same thing.
+These globals are initialised data, and their values for this build are read out above (reference `2026-04-07`, `N = 180`, both flags `1`). A clock test (boot at either side of `reference + N days`, read `Player.log` for boot-proceeds vs the one-frame `DoQuit`) is the black-box cross-check of the same thing.
 
 ## How this was checked
 
@@ -107,5 +134,5 @@ Dumping those six values at the gate settles the literal reference date, `N`, an
 ## Still open
 
 - **The quit reason string** — *answered above:* `Quit(string reason)` has no managed callers, so the reason is native; the instant-quit literal is `QuitInstant` (`reason=QuitInstant`), paired with the GS2 event `Adventure_quit_Instant`. Residual: confirm the exact reason the expiry path itself passes, versus the script-driven `QuitInstant`.
-- **The native date comparison, as code** — *answered above:* `now − reference > N days`, reference built from three in-memory dword fields via `_mktime64`, guarded by two byte flags, wired to the boot-skip. But its inputs are never written in `.text`, so the literal reference date, `N`, and whether the gate is even active in this build are **not** recoverable statically. Settling it needs a run-time observation — e.g. a headless, no-network clock test in the lab VM, booting a v7 build with the guest clock set on either side of candidate dates and recording boot-vs-quit. Keep the reference-date/`N` values and any such result in this doc; keep raw captures private.
+- **The native date comparison** — *answered:* `now − reference > N days`, with the inputs recovered as initialised data — reference **2026-04-07**, `N = 180` days (valid until **2026-10-04**), both enable flags set, so the gate is **active** and trips at any clock past 2026-10-04. Confirmed by the v7 runtime-dump thread and re-verified here.
 - **The connector signing key.** Still the gating secret for an online repro; unchanged by this note. The signed-reply capture remains the one runtime step, and the key swap stays a private, owner-run task.
