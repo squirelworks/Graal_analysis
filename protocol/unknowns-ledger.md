@@ -70,7 +70,7 @@ Status words:
 
 | Item | Status | Why |
 |---|---|---|
-| Other-player props 77 and 83 (`PLO_OTHERPLPROPS`) | open | needs a second lab client in the level as the observer |
+| Other-player props 77 and 83 (`PLO_OTHERPLPROPS`) | open | needs a second real client in the level. On 6.03r7, a player made only by `PLO_OTHERPLPROPS` (with level, join, x, y, head and body props) is not drawn at all (run `op603-b`). A level script cannot read `players[1]` either: the script stops compiling (`op603-a`) |
 | NPC props 48–52, 74–78 (6.03r7) | resolved | 48–52 and 78+ drop the rest of the message; 75–77 are two bytes; a CLASS the client lacks stops the NPC script |
 | Baddy type range a client accepts | resolved | 6.03r7 survives 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223 |
 | Baddy props 11 and up | open | needs a visible baddy prop after the tested one |
