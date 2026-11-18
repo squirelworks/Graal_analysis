@@ -70,11 +70,12 @@ Date: 2026-11-18. Static read of unpacked Windows 6.03r7 and the Linux x86-64 6.
 - **Receive-only.** The outgoing player encoder has no case for 83 (nor for 3), the other-player parser stops at it, and NPC and baddy streams do not use it. A server sets a player's own gralats with 83; other players never see it. **[bin]**
 - **Name.** No server header in the materials names it. The gserver prop table that lists it calls it `UNKNOWN83` ([unknown-ids-2026-11-06.md](unknown-ids-2026-11-06.md)). A working name is `RUPEESCOUNT2`, following `ONLINESECS2` (77), the five-byte form of an older counter. **[inf]**
 - **Other builds.** 6.1.1.3 has the same case set (above); its setter was not re-traced in this pass. 4.x and 5.x skip 83 as one byte, so a server should send gralats above 2,097,151 to them as 3, clamped. No mobile prop parser has been read, so whether iPhone or Android clients parse 83 is open. **[bin][inf]**
-- **Settles it at runtime:** send 83 with a value above 2,097,151 from a lab server to a 6.03r7 client and read the gralat count on the status bar. Not run.
+- **Checked at runtime (2026-11-18):** a lab server sent 83 to a Linux 6.03r7 client: 1234 and 999,999,999 set the gralat counter, 1,000,000,000 was ignored, and the next prop parsed after five bytes ([probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)). **[lab]**
 
 ## Open items
 
-- [x] ~~What 83 sets on the player.~~ The gralat count, as a five-byte value ([above](#83-a-wide-gralat-count)). Which real server sent it is still unknown.
+- [x] ~~What 83 sets on the player.~~ The gralat count, as a five-byte value ([above](#83-a-wide-gralat-count)), lab-confirmed on 6.03r7 ([probe-targets-2026-11-18.md](probe-targets-2026-11-18.md)). Which real server sent it is still unknown.
 - Whether iPhone or Android clients parse own prop 83.
-- Whether a real 5.x or 6.x client accepts a long value at an unknown own id without desync (the skip is one byte, so it should not). A lab check needs a 5.x or 6.x client on the wire.
+- ~~Whether a real 5.x or 6.x client accepts a long value at an unknown own id without desync.~~ 6.03r7 does not: a three-byte value at an unknown id loses the rest of that message, and the next message parses normally (lab, 2026-11-18). 5.x is not checked yet.
+- 6.03r7 lab widths (2026-11-18): 77 five bytes, 78–80 two bytes (`X2`, `Y2`, `Z2`), 81 one byte, 82 string, 83 five bytes.
 - The per-id value widths of the 5.x and 6.x parsers, beyond the ids named above.

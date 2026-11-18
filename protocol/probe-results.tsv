@@ -1,0 +1,38 @@
+date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	run	shot
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1234	-	yes	none	gralat counter shows 1234 (was 7)	p83-d	01-p83-1234
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1234 c:5 c:11	yes	yes	none	counter 1234; bombs 11, so 83 is read as 5 bytes	p83-d	02-p83-1234-bombs11
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:999999999 c:5 c:12	yes	yes	none	counter draws seven 9s (the HUD shows only the low seven digits; see p83r-a)	p83-d	03-p83-999999999-bombs12
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1000000000 c:5 c:13	yes	yes	none	counter unchanged; value over 999,999,999 not applied	p83-d	04-p83-1000000000-bombs13
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:34359738367 c:5 c:14	yes	yes	none	counter unchanged (largest 5-byte value)	p83-d	05-p83-max35bit-bombs14
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:0 c:5 c:15	yes	yes	none	counter 0	p83-d	06-p83-0-bombs15
+2026-11-18	linux-6.03r7	s2c	9	3	9 c:3 i3:4321 c:5 c:16	yes	yes	none	prop 3 (RUPEESCOUNT) sets the same counter: 4321	p83-d	07-p3-rupees4321-bombs16
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:56789 c:5 c:17	yes	yes	none	counter 56789 after prop 3 set it	p83-d	08-p83-56789-after-p3-bombs17
+2026-11-18	linux-6.03r7	s2c	9	77	9 c:77 i5:123456 c:5 c:18	yes	yes	none	nothing visible; read as 5 bytes	p83-d	09-p77-i5-bombs18
+2026-11-18	linux-6.03r7	s2c	9	90	9 c:90 c:1 c:5 c:19	yes	yes	none	unknown own id, 1-byte value: skipped, stream in step	p83-d	10-p90-1byte-bombs19
+2026-11-18	linux-6.03r7	s2c	9	90	9 c:90 i3:300000 c:5 c:20	no	yes	none	unknown own id, 3-byte value: rest of the message lost (desync); no visible side effect	p83-d	11-p90-3byte-bombs20
+2026-11-18	linux-6.03r7	s2c	9	5	9 c:5 c:21	yes	yes	none	next message parses normally (desync does not outlive the message)	p83-d	12-bombs21-resync
+2026-11-18	linux-6.03r7	s2c	60	-	empty, c:1, 60-char text, hex ff00ff00	yes	yes	none	ignored	plo-a	id60-bombs14
+2026-11-18	linux-6.03r7	s2c	78	-	empty, c:1, 60-char text, hex ff00ff00	yes	yes	none	ignored	plo-a	id78-bombs18
+2026-11-18	linux-6.03r7	s2c	81	-	empty, c:1, 60-char text, hex ff00ff00	yes	yes	none	ignored	plo-a	id81-bombs22
+2026-11-18	linux-6.03r7	s2c	83	-	empty, c:1, 60-char text, hex ff00ff00	yes	yes	none	ignored	plo-a	id83-bombs26
+2026-11-18	linux-6.03r7	s2c	110	-	empty, c:1, 60-char text, hex ff00ff00	yes	yes	none	ignored	plo-a	id110-bombs30
+2026-11-18	linux-6.03r7	s2c	9	78	9 c:78 c:1|i3:5000|i5:600000 c:5 c:N	no	yes	none	player drawn at the left edge; 1-, 3- and 5-byte values all lose the canary (width is 2)	w78-a	p78-*
+2026-11-18	linux-6.03r7	s2c	9	79	9 c:79 c:1|i3:5000|i5:600000 c:5 c:N	no	yes	none	player drawn at the top edge; canary lost at every width tried	w78-a	p79-*
+2026-11-18	linux-6.03r7	s2c	9	80	9 c:80 c:1|i3:5000|i5:600000 c:5 c:N	no	yes	none	player drawn higher (height); canary lost at every width tried	w78-a	p80-*
+2026-11-18	linux-6.03r7	s2c	9	81	9 c:81 c:1 c:5 c:20	yes	yes	none	nothing visible; 1-byte value	w78-a	p81-c-bombs20
+2026-11-18	linux-6.03r7	s2c	9	81	9 c:81 i3:5000|i5:600000 c:5 c:N	no	yes	none	canary lost (width 1)	w78-a	p81-i3-bombs21
+2026-11-18	linux-6.03r7	s2c	9	82	9 c:82 c:1|i3:5000|i5:600000 c:5 c:N	no	yes	none	canary lost: 82 is a length-prefixed string, as v5-props.md says	w78-a	p82-*
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1000000000 c:5 c:12 (after 1234)	yes	yes	none	counter stays 1234: over 999,999,999 is ignored, not clamped	p83r-a	02-1e9-after-1234
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:10000000 c:5 c:14	yes	yes	none	counter draws a single 0 (low seven digits of 10,000,000)	p83r-a	04-10000000
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:12345678 c:5 c:15	yes	yes	none	counter draws 2345678	p83r-a	05-12345678
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:123456789 c:5 c:16	yes	yes	none	counter draws 3456789	p83r-a	06-123456789
+2026-11-18	linux-6.03r7	s2c	9	83	9 c:83 i5:1000000001 c:5 c:19 (after 999999999)	yes	yes	none	counter unchanged	p83r-a	09-1000000001-after-max
+2026-11-18	linux-6.03r7	s2c	9	3	9 c:3 i3:2097151 c:5 c:20	yes	yes	none	prop 3 at its 3-byte maximum: counter draws 2097151	p83r-a	10-p3-max21bit
+2026-11-18	linux-6.03r7	s2c	9	78	9 c:78 s:320 c:5 c:11	yes	yes	none	player moves to x = 160 px (10 tiles): X2 = pixels x 2, two bytes	w78-c	01-x2-160px-bombs11
+2026-11-18	linux-6.03r7	s2c	9	79	9 c:79 s:320 c:5 c:12	yes	yes	none	player moves to y = 160 px: Y2, two bytes	w78-c	02-y2-160px-bombs12
+2026-11-18	linux-6.03r7	s2c	9	80	9 c:80 s:64 c:5 c:13	yes	yes	none	player drawn 32 px up with its shadow left on the ground: Z2 (height), two bytes	w78-c	03-z2-32px-bombs13
+2026-11-18	linux-6.03r7	s2c	9	80	9 c:80 s:0 c:5 c:14	yes	yes	none	player back on the ground	w78-c	04-z2-0-bombs14
+2026-11-18	linux-6.03r7	s2c	9	78	9 c:78 s:961 c:5 c:15	yes	yes	none	low bit = sign: x = -480 px, player off screen to the left	w78-c	05-x2-neg480-bombs15
+2026-11-18	linux-6.03r7	s2c	9	78+79	9 c:78 s:960 c:79 s:960 c:5 c:16	yes	yes	none	player at (480, 480) px	w78-c	06-x2y2-480px-bombs16
+2026-11-18	linux-6.03r7	s2c	9	81	9 c:81 c:1|c:2 c:5 c:N	yes	yes	none	one byte, nothing visible	w78-c	07-p81-1-bombs17
+2026-11-18	linux-6.03r7	s2c	9	82	9 c:82 str:Probe c:5 c:19	yes	yes	none	length-prefixed string; nothing visible on the local player	w78-c	09-p82-str-bombs19
