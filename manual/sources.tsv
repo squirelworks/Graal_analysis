@@ -826,3 +826,4 @@ client-internals/gs2-engine-event-names.md	pending		8.3; 8.4	engine event names 
 protocol/probe-targets-2026-11-18.md	pending		2.6; E	6.03r7 packet-probe pilot: prop 83 and 77-82 widths, unknown-id handling; to be folded into §2.6 and App. E
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
+live-runs/sword-edge-2026-11-18/README.md	pending		4	two-player sword sideways edge on 1.35 (#443): |side| <= 2 tiles hits, edge included; to be folded into ch. 4 combat
