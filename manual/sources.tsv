@@ -826,7 +826,7 @@ client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event name
 protocol/probe-targets-2026-11-18.md	cited	2.5; 2.6; B; E	2.6; 2.5; B; E	6.03r7 lab rows in §2.6.6 and §2.5.10; App. B rows 77-83; lab row in E#320 (server PLI sweep)
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
-live-runs/sword-edge-2026-11-18/README.md	pending		4	two-player sword sideways edge on 1.35 (#443): |side| <= 2 tiles hits, edge included; to be folded into ch. 4 combat
-live-runs/real-win10-2026-11-18/README.md	pending		2.5; 4; 6; E	real Windows 4.20r8 to 6.03r7 on a lab Login server: 182 crash, 168/190 box, 47 checks, lobby files; to be folded into §2.5, ch. 4, ch. 6 and App. E
+live-runs/sword-edge-2026-11-18/README.md	cited	4.3	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
+live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
 client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
 protocol/unknowns-ledger.md	excluded			running tally of the probe work (status per id and prop), a working list beside probe-targets-2026-11-18.md

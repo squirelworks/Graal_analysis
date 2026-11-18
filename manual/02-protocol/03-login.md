@@ -360,6 +360,23 @@ One read-only run of the unmodified packed Windows 6.03r7 against a community GS
 | — | `basepackage.gupd` is `GRPKG001`, `VERSION 3.00`, `PLATFORM any`, one `SUBPACKAGE login.gupd`, `USECHECKSUM false`, `PROTECTOVERWRITE true`, `FLAG popupforoptionalpackages=true`, no `FILE` lines; `login.gupd` (3.01) has subpackages `levels`, `sounds`, `videocompression` (`PLATFORM win`, the FFmpeg DLLs), `fonts` (`MODE required`, `USECHECKSUM true`) and `images` | [cap] (protocol/login-session-observed.md#packages) |
 | — | the first run downloads about 300 files before the login screen is usable, under a "Download Progress" window | [cap] (protocol/login-session-observed.md#packages) |
 
+### 2.3.6.4 Real Windows 4.20r8 to 6.03r7 through a lab `Login` lobby
+
+Unchanged Windows clients ran on Windows 10 against our own lab server and lobby, offline, with each guest clock held at its build's era. Each dialled its baked `Login` name, took the burst and its first files there, and was warped (178) to the game port [lab] (live-runs/real-win10-2026-11-18/README.md#results).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| All five reached the game port through the lobby and drew tiles, player, HUD and NPC text; 4.20r8, 5.00r7, 5.24r4 and 6.03r7 walked (5.12 was not driven) | 4.20r8, 5.00r7, 5.12, 5.24r4, 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#results) |
+| 5.x and 6.x log in as `guest` before any account form; only 4.20r8 shows a login form first | 4.20r8 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
+| Right after the burst every build asks the `Login` server for its first files (tileset, bow and bomb icons, player art: 5 to 11 requests in about 0.4 s), then checks them again on the game server with `UPDATEFILE` and the cached time | 4.20r8 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
+| 5.x and 6.x check `basepackage.gupd` on the game port with 47 (CRC-32, then the name) after asking for it on the `Login` server | 5.00r7 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
+| Ping (108, answered with 162 echoing the value) was answered by 4.20r8 and 6.03r7; the server did not send it to 5.x | 4.20r8, 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#results) |
+| 4.20r8, 5.00r7 and 5.12 send 152 and 154 right after login on the game port | 4.20r8 to 5.12 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
+| Other files a world may need: `minimap.txt` (6.03r7), `bigmap.txt` (4.20r8 to 5.12), `head26.png` (5.00r7, 5.12), `guigames_arcmessage2.png` (5.24r4) and the player-list window images (4.20r8 to 5.12); an NPC with no image sent as `-` makes every build from 1.39 to 6.03r7 ask for `-.gif` | 1.39 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
+| 1.39, 2.22, 2.31, 5.24r4 and 6.03r7 online together in one level each saw the others arrive, drew them with body and name, and saw them move | 1.39 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#five-builds-in-one-level) |
+
+The 182 crash and the 168/190 box are in → §2.5.8. 6.1.1.3 was not run: its login token comes in the signed connector script (→ App. E#616) [lab] (live-runs/real-win10-2026-11-18/README.md#results).
+
 ## 2.3.7 Unpacked 6.037 against unpacked 6.1.1.3
 
 The unpacked 6.037 and 6.1.1.3 images were compared for how they log in. Each rule is one difference found by reading strings and code, not by a capture [bin] (protocol/v6037-hello-diff.md#login-token).

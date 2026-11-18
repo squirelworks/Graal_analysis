@@ -327,6 +327,8 @@ Id 178 moves a client to another server. The rules below come from lab runs of 2
 | Item 1 becomes the current server's name, without a two-character type prefix when its second character is a space; 2.31 also puts it in the window caption, alone if it contains "graal" in any case, else after `Graal: `; the name is not used to connect | 2.17.1 to 2.31; caption 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md#the-connect-routine) |
 | A real service's 178 text, item 0 in particular, has never been captured | all | [doc] (client-internals/decomp-findings-2026-10-25-g/04-open-points.md) |
 | 182 and 183 are a process scan used as an anti-cheat check (→ §4.10) | 5.00r7 | [bin][inf] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 182 at the end of the login burst makes the packed 6.03r7 exit with an access violation about 13 s after login, before its window opens, every time; without 182 it plays. A Wine run of a dumped 6.03r7 did not crash, so only real Windows shows it; a server should not send 182 to 6.03r7 | 6.03r7 (real Windows 10, lab) | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
+| 6.03r7 keeps a "Connecting to …" box over the level until the server has sent 168 and 190; with both in the login burst it closes as soon as the level is in | 6.03r7 (lab) | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
 
 ## 2.5.9 Staff and NPC-control messages
 
