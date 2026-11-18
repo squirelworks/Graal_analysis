@@ -827,3 +827,4 @@ protocol/link-probe-bigmap-status.md	pending		2.5; E	2.x link probe / PLO_BIGMAP
 tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
 formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
 tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11	
+server-notes/hubserver-037-and-delteria-2026-11-18.md	pending		11; E	Hubserver v0.3.7 vs v0.3.6 and the Delteria 2002/2019 backup inventory; to be folded into the server and level-format sections
