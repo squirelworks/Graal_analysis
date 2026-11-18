@@ -69,7 +69,7 @@ Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRIN
 | 78–80 | X2 / Y2 / Z2 | s: `abs(v × 16) << 1`, low bit = sign | pixel precision, newer clients only; 4.x+ clamp the encoded value at 0x6FFF (see `player-x-half-tile.md`) [bin] |
 | 81 | PLAYERLISTCATEGORY | c | player-list category, name from GServer-v2 `beta4` [srv]. Above the highest id that 2.31 parses (80), so 2.31 and older stop reading at it [2.31] |
 | 82 | COMMUNITYNAME | str | first parsed in 5.x, in both player streams: one length byte, then the text [bin] (v5-props.md) |
-| 83 | (unnamed) | i5 | 6.0.3.7 and 6.1.1.3 own props only: a five-byte number, applied when at most 999,999,999; not in GServer-v2 [bin] (v5-props.md) |
+| 83 | (unnamed; `UNKNOWN83` in a gserver table; working name RUPEESCOUNT2) | i5 | gralats in five bytes: 6.0.3.7 and 6.1.1.3 own props only, applied when at most 999,999,999 through the same setter as 3; never sent by the client; not in GServer-v2 [bin] (v5-props.md#83-a-wide-gralat-count) |
 
 2.05 sends props 0, 11, 13, 18, 31, and 33 together at session start, and 42, 15, 16 together on attach or move. **[2.05]** Which ids 2.05 parses depends on the stream (see "Unknown prop ids" below). **[2.05]**
 
