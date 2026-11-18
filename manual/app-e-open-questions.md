@@ -1003,7 +1003,7 @@ The selected modified control's composer and type-37 sender lookup are bounded s
 
 ### E#614 Tiledef type 4 consumer (draw vs walk)
 
-Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch only names 0, 1|2 and 5 [#619](https://github.com/squirelworks/Graal_analysis/issues/619).
+Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch only names 0, 1|2 and 5 [file][2.22] (formats/tiledef-type4-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619).
 
 | Item | Content | Source |
 | --- | --- | --- |

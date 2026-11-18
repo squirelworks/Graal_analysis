@@ -1,4 +1,4 @@
-﻿path	status	sections	planned	reason
+path	status	sections	planned	reason
 protocol/windows-222-pm-static.md	cited	2.8; E	2.8; E	Selected modified-control composer, virtual send intent, receive defaults and sender lookup carried in 2.8.7; remote roster and runtime limits in E#613.
 tools/classic-tools/developer-component-2001.md	cited	11	11	Component identity, selected classifier/serializer paths and caller-seeded root corroboration with exception/indirect-call limits carried in 11.3.4; full stamp mapping and native output remain open.
 protocol/nc-standalone-flag-action.md	cited	7; E	7; E	Bounded action and analyst-seeded recovery carried in 7.3.4; ranges, recipient and receive uncertainties carried in E#425.
@@ -145,7 +145,7 @@ client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	cited	E	E
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
-client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3	4	
+client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3; E	4	
 client-internals/decomp-findings-2026-10-28-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	table form of 01-tile-type-tests.md in the same folder, which the manual cites
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
