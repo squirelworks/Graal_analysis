@@ -821,6 +821,6 @@ tools/assimilator-batch-ops-2026-11-16.md	cited	11	11
 formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
 tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11	
 server-notes/hubserver-037-and-delteria-2026-11-18.md	pending		11; E	Hubserver v0.3.7 vs v0.3.6 and the Delteria 2002/2019 backup inventory; to be folded into the server and level-format sections
-protocol/probe-targets-2026-11-18.md	pending		2.6; E	6.03r7 packet-probe pilot: prop 83 and 77-82 widths, unknown-id handling; to be folded into §2.6 and App. E
+protocol/probe-targets-2026-11-18.md	cited	E	2.6; E	Packet probes on 2.22, 2.31, 4.20r8, 5.24r4 and 6.03r7 (prop 83 and 77-82 widths, unknown-id handling, 2.22 NUL byte, server PLI sweep); lab row in E#320; props to be folded into §2.6
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal

@@ -43,14 +43,19 @@ L=$W/servers/probelogin/world/probe_login.nw; grep -E "^(GLEVNW01|BOARD)" $W/ser
 # The warp is immediate. It can beat pics1.png and leave the screen black (HUD digits then draw over
 # each other; compare newly drawn pixels between shots). A serverside timeout before the warp never fired.
 printf 'NPC - 30 30\nif (playerenters) {\n  serverwarp Probe Lab 603;\n}\nNPCEND\n' >> $L
-# start level: one grass tile everywhere (tile 2047 = "f/" in the lab tile sheet), so HUD shots have a background
-LV=$W/servers/probe/world/probe_start.nw; echo GLEVNW01 > $LV
-ROW=$(printf 'f/%.0s' $(seq 64)); for y in $(seq 0 63); do echo "BOARD 0 $y 64 0 $ROW" >> $LV; done
 # READBACK=1: a level NPC (GS1, run by the client) that shows the client's own player values above it
-[ "${READBACK:-0}" = 1 ] && printf 'NPC - 30 26\nif (created||timeout) {\n  message r=#v(playerrupees) b=#v(playerbombs) a=#v(playerdarts);\n  timeout = 0.5;\n}\nNPCEND\n' >> $W/servers/probe/world/issho_a.nw
+rm -f $R/run/npc-readback.txt $R/run/npc-chatback.txt
+[ "${READBACK:-0}" = 1 ] && printf 'NPC - 30 26\nif (created||timeout) {\n  message r=#v(playerrupees) b=#v(playerbombs) a=#v(playerdarts);\n  timeout = 0.5;\n}\nNPCEND\n' > $R/run/npc-readback.txt
+# CHATBACK=1: a level NPC (GS1, run by the client) that copies the client's own bomb and gralat counts
+# into the player's chat, so the client reports them to the server (read by chatcanary.py; no screen needed)
+[ "${CHATBACK:-0}" = 1 ] && printf 'NPC - 30 27\nif (created||timeout) {\n  setplayerprop #c,b#v(playerbombs) r#v(playerrupees);\n  timeout = 0.3;\n}\nNPCEND\n' > $R/run/npc-chatback.txt
+# put those NPCs right after the board (the level's last block is a SIGN with no SIGNEND, which would swallow them)
+SL=$W/servers/probe/world/issho_a.nw; rm -f $R/run/npc-add.txt
+for f in readback chatback; do [ -f $R/run/npc-$f.txt ] && cat $R/run/npc-$f.txt >> $R/run/npc-add.txt && rm $R/run/npc-$f.txt; done
+[ -f $R/run/npc-add.txt ] && awk -v F=$R/run/npc-add.txt '{print} /^BOARD 0 63 /{while ((getline l < F) > 0) print l}' $SL > $SL.new && mv $SL.new $SL
 A="$W/servers/probe/accounts/(defaultaccount).txt"
 a() { sed -i "s|^$1 .*|$1 $2|" "$A"; }
-a LEVEL probe_start.nw; a MAXHP 3.00; a HP 3.00; a RUPEES ${RUPEES:-7}; a BOMBS ${BOMBS:-5}; a ARROWS ${ARROWS:-10}
+a MAXHP 3.00; a HP 3.00; a RUPEES ${RUPEES:-7}; a BOMBS ${BOMBS:-5}; a ARROWS ${ARROWS:-10}
 cp "$A" $O/world-defaultaccount.txt; cp $PLAN $O/plan.txt
 echo "nameserver $LO1" > $O/resolv.conf
 export DISPLAY=:$DISP
