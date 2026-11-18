@@ -12,7 +12,7 @@ That open item is now resolved, and the readable names let the startup-quit path
 
 **[bin]** With the correction, the dumper writes the full set, not a partial:
 
-| | partial (first run, #? / unpack note) | corrected run |
+| | partial (first run, unpack note) | corrected run |
 |---|---|---|
 | `dump.cs` | 3.55 MB, 2,543 type entries, 16 `NullReferenceException` markers | ~32 MB, **15,546 types**, no embedded exception markers |
 | `il2cpp.h` | not written | written (~49 MB) |
