@@ -312,13 +312,23 @@ A probe proxy injected single own-prop messages into a Linux 6.03r7 session, eac
 | --- | --- | --- |
 | Prop 83 is the gralat counter in five bytes: `83 = 1234` shows 1234 and the canary lands. Props 3 and 83 write the same counter, and each replaces the shown value | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 | A prop 83 value above 999,999,999 (up to the largest five-byte value) is ignored, not clamped, and the rest of the message is still read | 6.03r7 | [lab][bin] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| The built-in HUD draws only the low seven digits of the count (999,999,999 shows as 9999999); whether all nine digits are stored is unmeasured | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| The built-in HUD draws only the low seven digits of the count (999,999,999 shows as 9999999), but the client stores all nine: a level script reading the count reports 123456789 and 999999999 | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 | Prop 77 is read as five bytes with no visible effect | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 | An unknown own-prop id is skipped as one byte: with a one-byte value the canary lands; with a longer value the rest of that message is lost, and the next message parses normally | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 | Props 78, 79 and 80 are X2, Y2 and Z2 of the local player, two bytes each (pixels × 2, low bit the sign); Z2 lifts the sprite and leaves the shadow on the ground | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 | Prop 81 is one byte with no visible effect on the local player; prop 82 is a length-prefixed string | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
 
-The same checks on 4.20r8, 5.24r4 and 6.037, the 0–90 width table, and the other-player and NPC streams are still to run [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+Later runs (2026-11-18 and 19) widened the check to every own prop 0–90, to 2.05 rev 2 through 5.24r4 under Wine, and to the other-player and NPC streams [lab] (protocol/probe-targets-2026-11-18.md#self-prop-widths-090-on-603r7-run-cwid-b).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Every own prop id with a case reads at its documented width, 14 (`ID`) and 20 (`CURLEVEL`) included; each id with no case, and 84–90, is skipped as one byte. No-case sets: 6.03r7 33, 50, 51, 53, 75, 76; 5.24r4 also 77 and 83; 4.20r8 also 77, 82 and 83 | 4.20r8, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#self-prop-widths-090-on-603r7-run-cwid-b) |
+| 2.05 rev 2, 2.17.1, 2.22 and 2.31 end the message at any own prop they have no case for: 77, 81, 82, 83 and 90 on all four, and 78–80 on 2.22 and earlier (2.31 reads them as two bytes) | 2.05r2 to 2.31 | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
+| In the other-player stream, 81 is one byte, 82 a string and 78 two bytes, while 77, 83 and 90 drop the rest of the message, at any width; so 77 and 83 about another player may only go last | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#other-player-props-on-603r7-run-opp-a) |
+| 6.03r7 draws another player only once it has a gani (prop 10); the level, join and status props alone do not draw it. A player that exists only in injected TCP props, with no UDP and an id the server never knew, is drawn | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-makes-603r7-draw-another-player-2026-11-19) |
+| In the NPC stream 48–52, 78 and 90 drop the rest of the message; 75, 76 and 77 are two bytes each (X2, Y2, Z2); 74 (`CLASS`) naming a class the client lacks stops that NPC's script for the rest of the run | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#npc-props-on-603r7-runs-np603-a-np603-b-np603-c) |
+
+Baddy props 11 and up are unsettled: lab baddies walk on their own, so the position canary does not hold [lab] (protocol/probe-targets-2026-11-18.md#other-player-props-on-603r7-run-opp-a).
 
 Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → App. E#8.
 
