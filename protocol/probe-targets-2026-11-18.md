@@ -398,7 +398,10 @@ world had the player riding a horse, so only the name tests could be read there.
     worked.
   - A NUL byte ends the target name, which leaves "no fallback".
   - `SETBACKTOsit` is ignored.
-- **2.22 and 2.31** have no handler for 195 (see `../version-profiles/plo-handled-ids-by-build.tsv`).
+- **2.22 and 2.31 ignore 195** (runs `lgw222`, `lgw231`), as their packet tables suggest (`../version-profiles/plo-handled-ids-by-build.tsv`). **[lab]**
+  - They never send 157 or ask for gani files.
+  - Every fallback stayed at the file default (`idle`), whatever 195 said.
+  - The 60 KB and NUL lists did not disturb them.
 
 **`CONTINUOUS` (run `lg603-j`).** `hurt` (about 1.5 s) was set again 0.7 s into playing. Without
 `CONTINUOUS` it restarts and falls back after 2.1–2.3 s. After 195 `hurt "CONTINUOUS"` it falls
