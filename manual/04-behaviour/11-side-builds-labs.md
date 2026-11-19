@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # 4.11 Precursors, side builds and the 4.x clients in play
 
-This chapter covers how the builds outside the 2.x Delphi line behave: the Java precursors, the relay room bridge, the Game Boy Color demo, the 39ster fan client, and the 4.04r2 and 4.20r8 clients run live. It then covers what changed inside the Delphi line (§4.11.6 to §4.11.10), the Android packages (§4.11.11), what the early clients show when started and the windows around play (§4.11.12, §4.11.14), and the action list on 4.x to 6.x (§4.11.13). Their place in the build list is in → §1.7 and → §1.8.
+This chapter covers how the builds outside the 2.x Delphi line behave: the Java precursors, the relay room bridge, the Game Boy Color demo, the 39ster fan client, and the 4.04r2 and 4.20r8 clients run live. It then covers what changed inside the Delphi line (§4.11.6 to §4.11.10), the Android packages (§4.11.11), what the early clients show when started and the windows around play (§4.11.12, §4.11.15), and the action list on 4.x to 6.x (§4.11.13, §4.11.14). Their place in the build list is in → §1.7 and → §1.8.
 
 ## 4.11.1 Zelda Online and Java Graal
 
@@ -336,7 +336,9 @@ Windows 5.00r7 (`G3D22067`) under Wine, watched by Linux 6.03r7 (`G3D0511C`) on 
 | spin chest, glove chest, spin, wall push, grab, bush lift, throw, chat, level link | not shown. No chest, grab, lift or carry packet in the action window, and the chat bar was not focused | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
 | not run | 4.20r8, 5.12, Windows 6.03r7 and 6.113 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
 
-A 2026-11-19 run filled in the rest. Real, unchanged Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 in the Windows 10 lab VM, each with the guest clock at its build's era, logged in through a lab `Login` lobby; there was no observer, so a pass means the server received the action. Two Linux 6.03r7 clients ran the same list with one as observer [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
+## 4.11.14 The action list on 4.20r8 to 6.03r7 (2026-11-19)
+
+A 2026-11-19 run filled in the rest of the #398 list that → §4.11.13 left partial. Real, unchanged Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 in the Windows 10 lab VM, each with the guest clock at its build's era, logged in through a lab `Login` lobby; there was no observer, so a pass means the server received the action. Two Linux 6.03r7 clients ran the same list with one as observer [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
 
 | Action | Windows 4.20r8, 5.00r7, 5.12, 5.24r4 | Windows 6.03r7 | Linux 6.03r7 | Source |
 | --- | --- | --- | --- | --- |
@@ -350,7 +352,9 @@ A 2026-11-19 run filled in the rest. Real, unchanged Windows 4.20r8, 5.00r7, 5.1
 
 On Linux 6.03r7 an injected warp to the same level froze input, so the run placed the player with props 15 and 16 instead [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
 
-## 4.11.14 Start windows and game windows, 1998 to 4.04r2
+What is still open from this run is tracked in #652 [lab] (live-runs/open-issues-2026-11-19/README.md#still-open-after-this-run).
+
+## 4.11.15 Start windows and game windows, 1998 to 4.04r2
 
 The graal-delphi rebuilds were compared side by side with the real clients, under Wine and on Windows 10, and each build's own forms were read from its executable. The tables below collect what that showed about the windows a player meets before and around play. They leave out what the rebuilds chose for themselves [bin][lab][cap] (client-internals/rebuild-traces-2026-11-05.md).
 

@@ -125,3 +125,18 @@ The Unity-hosted Worlds clients (→ §1.8.10) use the 6.11 connector design unc
 | Inline hooks on the engine's own exports make the process exit about 15 s into start-up; a read-only memory scan is tolerated | 614 | [lab] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
 | A stock v7 client cannot be brought online against a lab server, because a lab responder cannot sign a reply the client accepts; the routes are a client with a replaced public key, or a reproduction client that speaks the post-connector protocol directly | 548–71243 | [lab][inf] (protocol/v7-connector-live-20261111.md#4-online-play-reach-labinf) |
 | The plaintext connector script, the game host/port it names and the login it builds | all | unmeasured → App. E#616 |
+
+## 2.10.8 Windows 6.1.1.3 in a loopback lab
+
+The unmodified packed Windows 6.1.1.3 ran in a lab VM that could reach only loopback forwards; its state was read from host-side memory snapshots. The rules below are what that run showed about getting it past login [lab] (protocol/v6113-login-lab-method.md#there-are-two-gates-not-one).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Start-up has two gates that fail independently: first a classic login-and-list step ("Connecting to the login server…"), then, for the game server, the signed connector script that supplies the token and sets up RC4. With the login host unreachable the client never reaches the connector | 6.1.1.3 | [lab][bin] (protocol/v6113-login-lab-method.md#there-are-two-gates-not-one) |
+| The `conf.gs?p=` request was byte-identical across two fresh launches: it binds nothing per launch, unlike the v7 request (→ §2.10.7) | 6.1.1.3 | [lab] (protocol/v6113-login-lab-method.md#the-connector-request-is-deterministic-across-launches) |
+| In a launch where no connector reply was accepted, the client's memory held no copy of the login token, `setprotocol` or the `EILLLT` template; the client does not hold those words until the script runs | 6.1.1.3 | [lab] (protocol/v6113-login-lab-method.md#the-token-and-framing-are-not-in-the-client-at-all--shown-from-the-other-side) |
+| A stock client cannot be given a forged reply, since it checks the signature against a compiled-in public key before decrypting; a genuine reply is not blocked at the request level on later launches of the same build, unless the script itself carries a short-lived value | 6.1.1.3 | [bin][cap][inf] (protocol/v6113-login-lab-method.md#replay-forge-and-the-only-lab-bypass) |
+| The only lab path for a stock client is to make it trust a lab key, by swapping the public modulus in memory after unpacking and serving a lab-signed script on loopback; the clean-room repro already runs this way with its own key | 6.1.1.3 | [bin][inf] (protocol/v6113-login-lab-method.md#replay-forge-and-the-only-lab-bypass) |
+
+A full logged-in session of the real client, its post-RC4 login message, and whether the first-hop login token is classic or connector-supplied are still open → App. E#616 [lab] (protocol/v6113-login-lab-method.md#still-open-carried-not-closed).
+

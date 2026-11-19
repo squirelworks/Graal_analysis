@@ -216,7 +216,7 @@ client-internals/player-mannerisms-live.md	cited	4; 4.1; 4.2; 4.3; 4.5; E	4
 client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
-client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6; E	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.14), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
+client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6; E	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.15), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §8.3 (coverage audit 2026-11-04)
@@ -823,14 +823,14 @@ tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11
 server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3; E	6; 3; 8; E	Hubserver v0.3.7 vs v0.3.6 in §6.2.4; Delteria layer counts and the GR-V1.05 negative in §3.1.3.2; script dialects in §8.3.1
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
-protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; B; E	2.6; 2.5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types); App. B rows 77-83; App. E open points
+protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3; E	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5; E	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
-client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
-protocol/unknowns-ledger.md	cited	E	E	
-protocol/v6113-login-lab-method.md	cited	E	2; E	Two-gate 6.113 login in a loopback lab; deterministic conf.gs request; forge/replay/trust-anchor analysis and the from-outside method; to fold into the protocol chapter
+client-internals/hypervisor-live-debug.md	cited	E	E	host-side QEMU/KVM debugging method, cited as the method row of E#616
+protocol/unknowns-ledger.md	cited	E	E	running tally of the probe work (status per id and prop), cited for the probe status in App. E
+protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login: two gates, deterministic request, trust-anchor path, in §2.10.8 and E#616
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
-live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.11; E	2.7; 4.1; 4.3; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.8), combat checks (§4.3.8), 4.x-6.x action list (§4.11.13); open points in App. E
+live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.7, §4.1.8), combat checks (§4.3.8), 2.05r2 drop control (§4.5.5), 4.x-6.x action list (§4.11.14); open points in App. E
