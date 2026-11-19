@@ -272,6 +272,7 @@ docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/windows-222-verifier-variants.md	cited	3.5; E	3.5; E	Four-guard variant comparison and separate prior control claim carried in 3.5.5.1; broader lineage, caller and runtime uncertainties carried in E#103.

@@ -45,6 +45,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 15 | audit and PDF build | done: `check_manual.py --final` passes; `manual/pdf/graal-trm-0.0.3.pdf` built with `build_manual.py` from commit b8643ec, 347 pages A4 |
 | 16 | coverage audit and 0.0.4 | done: every flagged note carried or given a reason, `check_carry.py` in CI; `manual/pdf/graal-trm-0.0.4.pdf` built with `build_manual.py --version 0.0.4` from commit 3a700ad, 377 pages A4 |
 | 17 | research publication and 0.0.5 | done: the 0.0.5 research merged (#372), reading syntheses for Parts I, II, IV, VIII and X, `coverage.py` as a report; `manual/pdf/graal-trm-0.0.5.pdf` built with `build_manual.py --version 0.0.5` from commit 4cd8153, 304 pages (A4, with nine A4 landscape pages for six wide tables and one A3 landscape page for the §0.12 system map), with bookmarks, footnoted sources and a reading paragraph before every table; the print set is `graal-trm-0.0.5-print-a4.pdf` plus `graal-trm-0.0.5-a3-inserts.pdf` |
+| 18 | research publication and 0.0.6 | done: the research merged since 0.0.5 carried, App. E rewritten as a discussion of each unknown; `manual/pdf/graal-trm-0.0.6.pdf` built with `build_manual.py --version 0.0.6` from commit 55822d4, 379 pages (A4, with eight wide tables on A4 landscape pages and the §0.12 system map on one A3 landscape page); the print set is `graal-trm-0.0.6-print-a4.pdf` plus `graal-trm-0.0.6-a3-inserts.pdf` |
 
 ## Checks
 
