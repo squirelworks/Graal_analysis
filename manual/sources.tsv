@@ -834,3 +834,5 @@ protocol/v6113-login-lab-method.md	pending		2; E	Two-gate 6.113 login in a loopb
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
 live-runs/open-issues-2026-11-19/README.md	pending		2.7; 4.1; 4.3	2.05r2 drop control and 1.21 kill reward (§4.3), 6.03r7 timer repeat (§4.1.8), full 2.22 login file checks (§2.7.10), 6.03r7 Linux action list (§4.2)
+protocol/conf-gs-fuzzing.md	pending		2; E	conf.gs fuzzing design + the 6.113 trust-anchor key patch; two-phase (container framing on a stock client, then decrypted-script content after the swap); loopback harness in tools/connfuzz/; to fold into the protocol chapter
+tools/connfuzz/README.md	excluded			repository tooling for the notes (the loopback conf.gs fuzzer behind conf-gs-fuzzing.md), not Graal
