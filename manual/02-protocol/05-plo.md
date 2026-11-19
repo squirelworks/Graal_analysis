@@ -263,6 +263,19 @@ One rule separates the old script path from the new one [srv] (protocol/packet-l
 
 **5.00r7 and 5.12 handle both script paths.** Classic delivery (193 hash, 132 weapon, 133 class) runs from 3.153 to 5.12; modern delivery (197 descriptor, 140 body) from 5.00r7 on. Never send 132/133/193 to 5.24 or later, and never 197/140 to 4.x. Which path a stock world used for 5.00r7 and 5.12 is open; preferring the classic path on them is a server policy. [bin][inf] (protocol/scripted-weapons-5x-status.md)
 
+#### `PLO_LOADGANI` (195) in the lab
+
+Lab runs on 6.03r7, 5.24r4, 5.12 and 4.20r8 show that 195 carries header lines that override a gani's own, not a whole gani script [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| The list holds gani header lines (`SETBACKTO`, `LOOP`, `CONTINUOUS`, `SINGLEDIRECTION`) for the named gani, and they override the file's values for every player that plays it; the newest value wins, and of two `SETBACKTO` lines the last wins | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19); [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| `SETBACKTO ` with an empty target means no fallback; unknown or misspelled keywords are ignored; a `LOOP` is not undone by a later 195 without it; `DEFAULT*` lines show no effect | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| For a gani the client has not loaded, 195 makes it request `<name>.gani` (23) and send 157; the file's header then replaces the 195, which is why a server answers 157 with 195 | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| Names are case-insensitive; chains play through; a 60 KB list or 300 empty items cause no crash; a `00` byte ends the target name | 5.12 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| Without any 195 the client still uses the file's own `SETBACKTO`, so for ganis the client holds as files the server's 195 repeats the file | 4.20r8 to 6.03r7 | [lab][inf] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19) |
+| 2.22 and 2.31 ignore 195: they never send 157 or ask for gani files | 2.22, 2.31 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+
 ## 2.5.7 Files and update packages
 
 The download sequence, sizes and failure handling are in → §2.7.
@@ -355,7 +368,9 @@ Some ids are defined by the server but handled by no client the notes have read.
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
-On Linux 6.03r7, PLO 60, 78, 81, 83 and 110 were each sent in a lab session with four bodies (empty, one byte, 60 bytes of text, four binary bytes). The client ignored every one: it sent nothing back, did not crash, and read the next message normally [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+On Linux 6.03r7, PLO 60, 78, 81, 83 and 110 were each sent in a lab session with four bodies (empty, one byte, 60 bytes of text, four binary bytes). The client ignored every one: it sent nothing back, did not crash, and read the next message normally [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show). 2.05 rev 2, 2.17.1, 2.22, 2.31, 4.20r8 and 5.24r4 ignore the same ids with text bodies too [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19).
+
+On 2.05 rev 2 to 2.31, a message with a `00` byte anywhere in it loses every message after it in the same frame, whatever its id; `ff`, `80` and `1f` bytes are harmless, and 4.20r8 keeps the rest of the frame. So a server should not put a `00` byte in a message to a 2.x client; file bodies behind `PLO_RAWDATA` still arrive, so that path is probably exempt [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab][inf] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19).
 
 ## 2.5.11 Unpacked Windows 6.1.1.3: script-installed handlers
 
