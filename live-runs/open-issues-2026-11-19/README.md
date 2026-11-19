@@ -91,7 +91,13 @@ lists are kept with the private logs.
 
 The test level, an overlay image and the `tiledefsOffline` lines were built. Under the VM's
 load, 2.22 stopped repainting after the F5 load, so where the type-4 tiles draw and how they
-walk was not measured. **Not concluded**; needs a rerun on a quieter VM.
+walk was not measured.
+
+A second try at low load did not get further. 2.22's F5 loader also freezes under Wine on
+its own tutorial level, so the freeze is not caused by the test level. In 2.31, Training opens
+the level editor, and Play there does read `tiledefsOffline`: a type-0 line blacks out the
+whole board. The 256 × 512 test overlay never drew, so where type-4 tiles land and how they
+walk is still **not measured**. Next: a full-size 2048 × 512 overlay, or a run outside Wine.
 
 ## 6. #398: the action list on Linux 6.03r7
 
@@ -122,9 +128,19 @@ actor sent it and the observer saw it. The observer saw every gani the actor sen
 - Prop 81 (`PLAYERLISTCATEGORY`): not run. 6.03r7 has no key that opens a player list here;
   on 6.x the list is a script window, which the lab server does not provide.
 
+## Real Windows 6.03r7 on the Debian lab server
+
+Real Windows 6.03r7 reached the fixture level through the lobby of a lab server in the Debian
+VM, once the proxy kept `LISTPROCESSES` (182) out of the login burst. That server build was
+older than the seihai-gserver#158 fix for 182. The Windows action rows were not run.
+
 ## Still open after this run
 
-- 1.21: dropped gralat or direct reward.
+Tracked in #652:
+
+
+- 1.21: dropped gralat or direct reward (a sword kill one tile further away did not reach the archer; a ranged kill needs 1.21's item keys).
+- 2.17.1 drop check.
 - The sword spark.
 - Tiledef type 4 draw and walk.
 - The #398 action list on Windows 4.20r8 to 6.03r7.
