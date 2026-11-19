@@ -20,6 +20,10 @@
 # Put the RC binaries under $WINELAB/clients/<DIR> (rc2004/rc205/rc3/rc2002/rcpre); RC_EXE overrides
 # the exe name. Output in ~/probelab/out/RUN.
 #
+# RC_WORLD picks the gserver world (default gs1world). To fuzz the NC socket that RC 2002/01/11 opens,
+# run `RC_WORLD=npcdemo RC_NC=1 sh runrc.sh rc2002 ...`: the NPC server then answers the RC login with
+# PLO 79 and the RC dials its NC socket back through this same proxy as a second (gen-2, NCL) session.
+#
 # Connecting the RC is GUI-driven. rc2004 has a calibrated default (dismiss Options, click the server
 # list's Connect, at 1024x768). For another build or window size, set RC_CONNECT to the xdotool
 # command that dismisses any dialog and clicks Connect (run once by hand, read the geometry, pin it).
@@ -53,10 +57,21 @@ cp $PLAN $O/plan.txt
 # A gserver world behind the proxy, and the listserver advertising the proxy address.
 # The world is bound to $LO2:$PORT so the proxy on $LO1:$PORT is the only thing the RC reaches
 # (gs1world ships on 14807, so serverport must be rewritten too or nothing listens behind the proxy).
-P=$G/w/servers/probrc; rm -rf $P; cp -a $G/w/servers/gs1world $P
+# RC_WORLD selects the source world (default gs1world; use npcdemo for the RC-embedded NC run).
+WORLD=${RC_WORLD:-gs1world}
+P=$G/w/servers/probrc; rm -rf $P; cp -a $G/w/servers/$WORLD $P
 SO=$P/config/serveroptions.txt
 sed -i "s/^serverinterface = .*/serverinterface = $LO2/" $SO 2>/dev/null || true
 sed -i "s/^serverport = .*/serverport = $PORT/" $SO 2>/dev/null || true
+# RC_NC=1: fuzz the NC socket the RC opens (RC 2002/01/11). The gserver's own NPC server
+# (serverside=true) answers RC login with PLO 79, whose connectString points the RC's NC socket
+# back at the proxy. npcrights=false sends that without the account needing the NPC-Control right,
+# and ns_ip (read from adminconfig.txt, not serveroptions) makes connectString = $LO1,$PORT.
+if [ "${RC_NC:-0}" = 1 ]; then
+  grep -q '^npcrights ' "$SO" && sed -i "s/^npcrights .*/npcrights = false/" "$SO" || echo 'npcrights = false' >> "$SO"
+  AC=$P/config/adminconfig.txt
+  grep -q '^ns_ip ' "$AC" 2>/dev/null && sed -i "s/^ns_ip .*/ns_ip = $LO1/" "$AC" || echo "ns_ip = $LO1" >> "$AC"
+fi
 # The RC login account needs RC rights, not just a place on the staff list, or GServer-v2 answers
 # "You do not have RC rights." Ensure the super account has full admin rights and an open IP range.
 ACC=$P/accounts/super.txt
