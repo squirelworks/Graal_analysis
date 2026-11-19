@@ -112,6 +112,6 @@ The code list, the 1.41r1 set, bare `#5` and `#6` on 2.17.1 to 2.31, and `#v(##)
 - [x] ~~`while (1)` on a real client.~~ A bare number is false on 1.33 to 2.31 ([run](../live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition)); a flag named `1` makes `while(1)` run on 1.41r1 to 2.31 ([note](gs1-message-codes-by-build.md#a-flag-named-1)).
 - [x] ~~`##` in the 2.17 engine.~~ One-pass escape on 2.05r2 and 2.17.1; empty on 1.33 ([run](../live-runs/open-issues-2026-11-14/README.md#1b--in-the-2171-engine-and-133)). `#v(##)` is `0` on 1.41r1 to 2.31 ([note](gs1-message-codes-by-build.md#v-of-a-doubled-hash)).
 - [x] ~~What `#F`, `#S`, `#D`, `#I`, `#R`, `#P6`–`#P9`, `#C6` and `#C7` return in a populated context.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context).
-- [ ] A static trace of the 2.17 engine's condition and flag path.
+- [x] ~~A static trace of the 2.17 engine's condition and flag path.~~ A bare name or number is a flag test: the current event list first, then the global flag store ([note](gs1-message-codes-by-build.md#the-2171-condition-and-flag-path-static)).
 - [x] ~~1.33 needs a `.graal` scene, because it cannot load `.nw` levels.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#1d-133-loops-graal-scene).
 - [ ] Events, flags, variables and functions per 1.x build.
