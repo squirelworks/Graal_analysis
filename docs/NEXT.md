@@ -520,9 +520,9 @@ macOS CI is paused until the polish stage.
   the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (304 pages, sources footnoted, every table introduced, wide tables on landscape pages, an A3 system map with an A4 print copy and A3 insert) is built and waits for its tag.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
-  1.0.0"): 0.0.5 publishes the current research (built, awaiting its tag), then
-  0.0.6 coverage, 0.0.7 implementability, 0.0.8 triage of the unknowns, 0.0.9
-  release quality, 1.0.0 sign-off (Squirrel's call). Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
+  1.0.0"). 0.0.5 and 0.0.6 publish the research as it stands (owner, 2026-11-11 and
+  2026-11-19). Coverage, implementability, triage of the unknowns and release quality
+  are the 1.0.0 criteria in #191, met in later releases; 1.0.0 sign-off is Squirrel's call. Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
 - [ ] **16. Torque study and the 3.04 plan. Live work, top priority** (Squirrel,
   2026-11-13: there is no Torque hold; the 2026-11-05 "on hold" note was an agent error).
