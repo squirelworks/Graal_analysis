@@ -165,4 +165,6 @@ Id 23 asks for a file the client does not have. Id 34 is the update check and ca
 
 This server answered none of those requests: no S→C 102 and no 30. Neither client sent another file check afterwards, so sword, shield, body, bomb, bow and head images were not in this capture even though S→C 9 named some of them. The set above is only what leaves before any answer. An earlier run whose server did answer saw two further frames. A rerun against a server that answers id 23 and id 34 is still needed for the rest of the default set. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
 
-Status 2026-11-16: the shared second-frame bundling and the near-empty versus full first wave are settled; the full set after the server answers is still open (#245). [lab] (protocol/222-login-default-files.md)
+With a server that answers each check, 2.22 sends at most four file messages per frame: the first four share the frame with the first props line, and each further batch goes out after the server has answered the one before. A full folder checked every default file with 34 (13 messages); a near-empty one asked for every default file with 23 (17 messages) [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers).
+
+Status 2026-11-16: the shared second-frame bundling and the near-empty versus full first wave are settled; why the answered counts differ (13 against 17) is still open (#245). [lab] (protocol/222-login-default-files.md)

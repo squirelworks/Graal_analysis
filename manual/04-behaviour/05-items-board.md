@@ -135,6 +135,7 @@ The rules below give the evidence for that change and what follows from it, offl
 | the change | at 1.42: "bush rupees and pot hearts are server-side"; the roll is gone from NewMain 24 and 26 and still in 1.41 | [doc][bin] (client-internals/item-drops.md#summary) |
 | arrows and stones | no client ever rolls arrows, and no client drops anything for a stone | [bin] (client-internals/item-drops.md#summary) |
 | 2.05 offline | the cut routine makes only the leaves and the lift routine only the carried object, so an offline 2.05 bush or pot gives nothing | [bin] (client-internals/board-respawn.md#item-drops-from-142-on-server-side) |
+| 2.05 rev 2 offline, live | 17 archer and 8 soldier kills dropped nothing; 1.39 on the same levels dropped on 9 of 12 archer kills, which fits its roll | [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies) |
 | server drop timing | on a 2.22 server with pot drops on, the heart arrived in the same frame as the lift, at the pot's spot, and stayed when the pot was thrown | [cap] (live-runs/2gta-222-2026-10-30/README.md#pots) |
 
 ### 4.5.5.1 The 1.x roll

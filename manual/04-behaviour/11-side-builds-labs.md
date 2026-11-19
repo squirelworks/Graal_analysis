@@ -335,3 +335,18 @@ Windows 5.00r7 (`G3D22067`) under Wine, watched by Linux 6.03r7 (`G3D0511C`) on 
 | sword, three swings | 3/3. The actor sent the `sword` gani and C→S 157; the observer received `sword` in S→C 8 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
 | spin chest, glove chest, spin, wall push, grab, bush lift, throw, chat, level link | not shown. No chest, grab, lift or carry packet in the action window, and the chat bar was not focused | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
 | not run | 4.20r8, 5.12, Windows 6.03r7 and 6.113 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
+
+## 4.11.14 The action list on 4.20r8 to 6.03r7 (2026-11-19)
+
+The #398 action list ran on two Linux 6.03r7 clients (actor and observer) on the harness world, and on real Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 through a lab `Login` lobby with no observer [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7).
+
+| Action | Result | Source |
+| --- | --- | --- |
+| walk, sword, spin chest, wall push, wall grab-and-pull, block pull, bush lift, throw, swim, level link | passed on every build; the Linux observer saw every gani the actor sent; throw sends id 11 | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| block push | 3/3 everywhere except Windows 6.03r7 (1/3) | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| hide | lifting the bush and then pressing D hides (2/2 on every build); pressing A again, or S, does not | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| chat | 4.20r8 opens a chat line; 5.x and 6.x show none unless the server sends a chat script | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| spin (double tap) and glove chest | not results: the Windows key path is too slow for a double tap, and no build ever sent the glove chest's open message, so the fixture is suspect | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| warp to the same level | an injected player warp to the level the 6.03r7 player is already in freezes its input | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7) |
+
+What is still open from this run is tracked in #652 [lab] (live-runs/open-issues-2026-11-19/README.md#still-open-after-this-run).
