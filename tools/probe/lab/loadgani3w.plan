@@ -1,0 +1,96 @@
+# PLO_LOADGANI (195), part 3 for the Wine clients: the report-channel tests of loadgani3.plan without the
+# compiled-gani (needs test ganis on the server) and visual parts.
+# DEFAULT* file requests, visual checks. Results come from the client's gani reports (prop 10), its requests (157, 23) and shots.
+waitsession 240
+wait s2c 9 90
+sleep 8
+shot 00-base
+drop s2c 195
+mark P prepare: play kick, hurt, lift once so they are loaded
+s2c 9 c:10 str:kick
+sleep 3
+s2c 9 c:10 str:hurt
+sleep 3
+s2c 9 c:10 str:lift
+sleep 3
+mark R1 SETBACKTO to a gani that does not exist
+s2c 195 str:kick hex:225345544241434b544f206e6f7375636867616e6922
+sleep 1
+s2c 9 c:10 str:kick
+sleep 5
+mark R2 chain kick -> hurt -> sit
+s2c 195 str:hurt hex:225345544241434b544f2073697422 | 195 str:kick hex:225345544241434b544f206875727422
+sleep 1
+s2c 9 c:10 str:kick
+sleep 6
+mark R3 self loop sword -> sword, then released to idle
+s2c 9 c:10 str:sword
+sleep 3
+s2c 195 str:sword hex:225345544241434b544f2073776f726422
+sleep 1
+s2c 9 c:10 str:sword
+sleep 6
+s2c 195 str:sword hex:225345544241434b544f2069646c6522
+sleep 4
+mark R4 an unknown keyword before SETBACKTO
+s2c 195 str:kick hex:22464f4f20626172222c225345544241434b544f2073697422
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+mark R5 DEFAULT* lines with images the client does not have
+s2c 195 str:idle hex:2244454641554c54484541442070726f6265686561642e706e67222c2244454641554c54424f44592070726f6265626f64792e706e67222c2244454641554c5441545452312070726f62656861742e706e67222c2244454641554c5453574f52442070726f626573776f72642e706e67222c2244454641554c54534849454c442070726f6265736869656c642e706e6722
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+shot r5-defaults
+mark R6 gani name with .gani and in upper case
+s2c 195 str:kick.gani hex:225345544241434b544f206465616422
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+s2c 195 str:KICK hex:225345544241434b544f206465616422
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+mark R7 empty gani name
+s2c 195 str: hex:225345544241434b544f206465616422
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+mark R8 LOOP then SETBACKTO only: does LOOP stay?
+s2c 195 str:lift hex:224c4f4f5022
+sleep 1
+s2c 9 c:10 str:lift
+sleep 4
+s2c 195 str:lift hex:225345544241434b544f2069646c6522
+sleep 1
+s2c 9 c:10 str:lift
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark M1 a list of 300 empty items
+s2c 195 str:hurt rep:300:,
+sleep 2
+mark M2 one 3000-byte item
+s2c 195 str:hurt t:"\"SETBACKTO " rep:3000:x t:\""
+sleep 2
+mark M3 a 60000-byte list
+s2c 195 str:hurt rep:600:"FOOyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+sleep 3
+mark M4 NUL and high bytes in the list
+s2c 195 str:hurt hex:225345544241434b544f2000ff8022
+sleep 2
+mark M5 SETBACKTO without a space
+s2c 195 str:hurt hex:225345544241434b544f73697422
+sleep 1
+s2c 9 c:10 str:hurt
+sleep 4
+mark M6 sanity after the malformed lists: hurt SETBACKTO sit
+s2c 195 str:hurt hex:225345544241434b544f2073697422
+sleep 1
+s2c 9 c:10 str:hurt
+sleep 4
+shot zz-end
+mark END
+sleep 2
+

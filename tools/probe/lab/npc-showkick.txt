@@ -1,0 +1,7 @@
+NPC - 34 28
+if (created||timeout) {
+  showcharacter;
+  setcharani kick,;
+  timeout = 2;
+}
+NPCEND

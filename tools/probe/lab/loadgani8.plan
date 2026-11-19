@@ -1,0 +1,71 @@
+# PLO_LOADGANI (195): CONTINUOUS, timed with hurt (about 1.5 s long). Set hurt, set it again 0.7 s later,
+# and time the fallback from the first set. A restart makes the fallback later; CONTINUOUS should not.
+waitsession 240
+wait s2c 9 90
+sleep 8
+drop s2c 195
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C0-0 hurt once, plain
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C0-1 hurt once, plain
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C0-2 hurt once, plain
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C1-0 hurt twice, plain
+s2c 9 c:10 str:hurt
+sleep 0.7
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C1-1 hurt twice, plain
+s2c 9 c:10 str:hurt
+sleep 0.7
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C1-2 hurt twice, plain
+s2c 9 c:10 str:hurt
+sleep 0.7
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+s2c 195 str:hurt hex:22434f4e54494e554f555322
+sleep 1
+mark C2-0 hurt twice, CONTINUOUS
+s2c 9 c:10 str:hurt
+sleep 0.7
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C2-1 hurt twice, CONTINUOUS
+s2c 9 c:10 str:hurt
+sleep 0.7
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark C2-2 hurt twice, CONTINUOUS
+s2c 9 c:10 str:hurt
+sleep 0.7
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 9 c:10 str:idle
+sleep 2
+mark END
+sleep 1

@@ -670,3 +670,35 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	linux-6.03r7	s2c	195	-	195 idle "SETBACKTO sword"	-	yes	gani report (prop 10)	idle falls back to sword	lg603-b	-
 2026-11-19	linux-6.03r7	s2c	195	-	195 sword (empty list)	-	yes	gani report (prop 10)	no change; the earlier override stays	lg603-b	-
 2026-11-19	linux-6.03r7	s2c	195	-	195 sword "LOOP"	-	yes	gani report (prop 10)	sword loops	lg603-b	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 for a gani not loaded yet	-	yes	gani reports, file requests, shots	client asks for <name>.gani (23) and sends 157; the file header then replaces the 195	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 KICK / kick.gani / empty name	-	yes	gani reports, file requests, shots	case-insensitive; kick.gani is another gani (asks for kick.gani.gani); empty name asks for .gani	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick "SETBACKTO nosuchgani"	-	yes	gani reports, file requests, shots	client switches to nosuchgani anyway and asks for its file	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick→hurt, hurt→sit (two 195s in one frame)	-	yes	gani reports, file requests, shots	chain plays through	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 sword "SETBACKTO sword"	-	yes	gani reports, file requests, shots	sword repeats until a new 195	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick "FOO bar","SETBACKTO sit"	-	yes	gani reports, file requests, shots	unknown keyword ignored, SETBACKTO applied	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 lift "LOOP" then "SETBACKTO idle"	-	yes	gani reports, file requests, shots	LOOP stays	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	malformed: 300 empty items, 3000-byte item, 60 KB list, NUL in name	-	yes	gani reports, file requests, shots	no crash; next 195 works; NUL ends the name (empty = no fallback)	lg603-d	-
+2026-11-19	win-5.24r4	s2c	195	-	195 for a gani not loaded yet	-	yes	gani reports, file requests, shots	client asks for <name>.gani (23) and sends 157; the file header then replaces the 195	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	195 KICK / kick.gani / empty name	-	yes	gani reports, file requests, shots	case-insensitive; kick.gani is another gani (asks for kick.gani.gani); empty name asks for .gani	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	195 kick "SETBACKTO nosuchgani"	-	yes	gani reports, file requests, shots	client switches to nosuchgani anyway and asks for its file	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	195 kick→hurt, hurt→sit (two 195s in one frame)	-	yes	gani reports, file requests, shots	chain plays through	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	195 sword "SETBACKTO sword"	-	yes	gani reports, file requests, shots	sword repeats until a new 195	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	195 kick "FOO bar","SETBACKTO sit"	-	yes	gani reports, file requests, shots	unknown keyword ignored, SETBACKTO applied	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	195 lift "LOOP" then "SETBACKTO idle"	-	yes	gani reports, file requests, shots	LOOP stays	lgw524	-
+2026-11-19	win-5.24r4	s2c	195	-	malformed: 300 empty items, 3000-byte item, 60 KB list, NUL in name	-	yes	gani reports, file requests, shots	no crash; next 195 works; NUL ends the name (empty = no fallback)	lgw524	-
+2026-11-19	win-5.12	s2c	195	-	195 for a gani not loaded yet	-	yes	gani reports, file requests, shots	client asks for <name>.gani (23) and sends 157; the file header then replaces the 195	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	195 KICK / kick.gani / empty name	-	yes	gani reports, file requests, shots	case-insensitive; kick.gani is another gani (asks for kick.gani.gani); empty name asks for .gani	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	195 kick "SETBACKTO nosuchgani"	-	yes	gani reports, file requests, shots	client switches to nosuchgani anyway and asks for its file	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	195 kick→hurt, hurt→sit (two 195s in one frame)	-	yes	gani reports, file requests, shots	chain plays through	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	195 sword "SETBACKTO sword"	-	yes	gani reports, file requests, shots	sword repeats until a new 195	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	195 kick "FOO bar","SETBACKTO sit"	-	yes	gani reports, file requests, shots	unknown keyword ignored, SETBACKTO applied	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	195 lift "LOOP" then "SETBACKTO idle"	-	yes	gani reports, file requests, shots	LOOP stays	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	malformed: 300 empty items, 3000-byte item, 60 KB list, NUL in name	-	yes	gani reports, file requests, shots	no crash; next 195 works; NUL ends the name (empty = no fallback)	lgw512	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 idle "SINGLEDIRECTION"	-	yes	gani reports, file requests, shots	idle shows one (up) frame in every direction (shots)	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 idle DEFAULTHEAD/BODY/ATTR1 (own player)	-	yes	gani reports, file requests, shots	no image requests, no visible effect	lg603-d	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick DEFAULT* + a minimal other player playing kick	-	yes	gani reports, file requests, shots	no image requests; the client gives it its default head	lg603-e	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick DEFAULT* + an NPC character playing kick	-	yes	gani reports, file requests, shots	no image requests	lg603-h	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 kick "SETBACKTO dead" + another player plays kick	-	yes	gani reports, file requests, shots	the other player ends lying dead; client fetches dead.gani	lg603-e	-
+2026-11-19	linux-6.03r7	s2c	195	-	no 195; ganis with a GS1 or GS2 SCRIPT section (NPC-server mode on)	-	yes	gani reports, file requests, shots	the text .gani is downloaded and its SETBACKTO applies; no PLO_GANISCRIPT is ever sent	lg603-d, lg603-f	-
+2026-11-19	linux-6.03r7	s2c	195	-	forged PLO_GANISCRIPT (134) behind RAWDATA, no 195	-	yes	gani reports, file requests, shots	client fetches and loads the gani; fallback from the file	lg603-g	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 hurt "CONTINUOUS", hurt set twice 0.7 s apart	-	yes	gani reports, file requests, shots	no restart: fallback after 1.5 s (2.1-2.3 s without CONTINUOUS)	lg603-j	-

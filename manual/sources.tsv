@@ -831,3 +831,4 @@ live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5	2.3; 2.5	real Windows 4
 client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
 protocol/unknowns-ledger.md	excluded			running tally of the probe work (status per id and prop), a working list beside probe-targets-2026-11-18.md
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
+tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
