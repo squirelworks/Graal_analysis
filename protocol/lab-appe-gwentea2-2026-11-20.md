@@ -43,8 +43,10 @@ with owners 3 and 999.
   No hearts are lost and no props are sent.
 - Bytes 0x23 and up burst in a bomb-style blast only when the shot hits something (a block NPC or a
   wall). The client fetches `bomb.wav` once. 0x20 fetches `arrow.wav`.
-- So the earlier lab's "0x23 and up hurt" is not reproduced with an unknown or absent shooter. A
-  run with a real other player as the shooter, as in that lab, is queued.
+- The earlier lab's "0x23 and up hurt" is not reproduced: not with an unknown shooter, not with no
+  shooter, and not with a visible other player (id 3) as the owner.
+- This lab server sets no no-PK option. The 2026-10-25 lab that saw hurts ran a different server,
+  so a server-side difference is the open lead.
 
 ## NPC prop widths on 2.22 and 2.31
 
@@ -112,10 +114,32 @@ so swimming uses factor 1.0, not 0.4 or 0.8. Riding, shield and carrying were no
   overwrite. 2.22 sends modtime 0 in `PLI_LEVELWARP`-time level requests (35).
 - After death (power 0, then a key), the respawn request went to the gmap entry point, not the
   start level. So entering a gmap from outside saves the point.
-- Death on each side of a seam is queued.
-- The first 2.17.1 run was invalid: a shared cache and identical level times made the server
-  answer every 35 with an empty board. 2.17.1 sent the current level's modtime for every
-  neighbour. It is queued again with distinct times.
+- Walking across the x seam into the next cell and dying there sends the same request, for the
+  gmap entry point. So crossing a seam inside the gmap does not save a new point.
+- 2.17.1 also asks for the gmap entry point after a death in the first cell, through `PLI` 30.
+
+### Neighbour overwrite on 2.17.1 (E#13)
+
+The server is the lab gserver with its stock classic-path framing. 2.17.1 (`GNW22122`) logs in
+the classic way and is warped (`PLO` 14) onto the gmap. The `.gmap` is already on disk and no
+neighbour levels are cached.
+
+- 2.17.1 sends 35 (modtime 0) for the three neighbour cells.
+- The server answers each with a board (raw data, board packet, level modtime) and no
+  `PLO_LEVELNAME` before it.
+- The player's own cell, which is all grass on the server, then shows neighbour wall tiles along
+  its right edge. The next cell's water stripes never appear. So the neighbour boards overwrite
+  the player's own level.
+- 2.22 against the same server gets a gmap warp (49) and every neighbour framed by `LEVELNAME`, and
+  draws each neighbour in its own place.
+- The leg with fixed framing was not run, because it needs a server change.
+
+Three conditions change what 2.17.1 sends, and matter for any rerun:
+- If the `.gmap` is not on disk at the warp, 2.17.1 fetches it (id 23) after the warp and then
+  never sends 35.
+- If the neighbour levels are already cached, 35 carries the cached modtime and the server sends
+  empty boards.
+- In one cached-state run, 2.17.1 put the current level's modtime in every 35.
 
 ## GS1 condition truth on 2.05, 2.17.1, 2.22 and 2.31 (E#200)
 
@@ -199,3 +223,47 @@ so this is the Linux build of the same version.
 - E#319 and E#604: need the offline editor-and-play path, driven by GUI clicks.
 - E#201 and E#203: their outlook is a static read, not a lab run.
 - E#23 and E#9: need a 6.x script window, and 6.x does not draw in this VM.
+
+## Glove power on 2.05 (E#316)
+
+Client: 2.05 rev 2, run `aq-e316b-205` (an earlier run lost key presses). Glove power was set
+with prop 6 and facing with prop 17. Each lift was A held for 0.3 s with the object directly
+ahead. A lift counts when the client sends a board change (1) and the lift and carry ganis.
+
+| Glove | Lifts |
+| --- | --- |
+| 0 | bush, sign |
+| 1 | bush, sign, pot |
+| 2 | adds the light stone |
+| 3 | adds the black stone |
+
+Glove power N lifts the first N + 2 entries of the lift list. The first object it can't lift only
+plays the grab gani.
+
+## Throw id on 5.12 (E#4)
+
+5.00r7 could not reach the lab server. Its `license.graal` names a private LAN login host, and
+with the licence moved aside it stalls before connecting; nothing left the lab. On the 5.12
+control run, lifting a bush sends a board change (1), and the throw sends id 11 with an empty
+body, once. Two more throw presses were lost to harness timing.
+
+## Protocol 19 on 4.04r2 (E#506, half)
+
+The native Linux 4.04r2 runs of 2026-11-19 against the lab protocol-19 server went through link,
+datablocks and mission start. The control object was delivered and the client printed "Graal3D
+has been activated!". No 3.153 client runs in this lab, because it is Mac only.
+
+## Not run in the final batch
+
+- E#309 and E#617 need the classic 14923 listserver lab.
+- E#324 needs two clients or an archer scene.
+- E#326 and E#327 need 6.03r7 to draw, which it does not under the virtual display.
+- E#420, E#423 and E#424 need the RC and NC labs.
+- E#504 needs a server patched for `GR3DV003`.
+- E#505: 5.12 stops at "Starting 3D mode" under Wine.
+- E#507 is a static read.
+- E#610 and E#611 were not attempted.
+- E#618 needs a guest with working OpenGL.
+- E#619 and E#14 need installed 5.30r3, 5.31r4 and 6.00 builds; only Themida installers are held.
+- E#15 was not attempted.
+- E#16 and E#18 need the mobile clients.

@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; lab runs on 2026-11-20 moved E#25, E#204, E#212, E#313, E#314, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; lab runs on 2026-11-20 moved E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -41,7 +41,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#9 | Uploads from game clients | Lab | the late clients' file browser is a staff tool that servers accept only from staff accounts | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| E#13 | Gmap neighbour overwrite on classic logins | Lab | the overwrite happens with stock GServer-v2 | [inf] (protocol/gmap-adjacent-level-target.md#short-answer) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | E#15 | Graal 2002 and 1.40 exact-input behaviour | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Lab | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
@@ -75,7 +74,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#311 | Blast hit zone and full-heart hits | Read | two overlapping blast pieces hitting in one tick | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
 | E#312 | The last byte of a shot | Read | a type field whose low values mean harmless or friendly | [inf] (client-internals/damage-sources.md#shot-19) |
 | E#315 | Level-entry save in the 2.1 test builds | Read | every entry saves | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| E#316 | Glove power steps | Lab | Claim B, read from the lift table | [inf] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
 | E#317 | 1.x pickup box and item draw order | Read | items draw under players | [inf] (client-internals/item-drops.md#open) |
 | E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
@@ -316,6 +314,7 @@ These questions are about single messages and props: which builds send or handle
 | Claim B | The 5.00r7 profile lists 4 to 19, with 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
 | Tried | A later static read found the 5.00r7 backup engine's carried-object throw path, which sends 11 with an empty body; the wrapper list had missed it. The 2.31 "id 44" puzzle dissolved once S→C 44 (dropped) and C→S 44 (still sent) were told apart | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing); [bin][cap] (protocol/ids-sent-512-status.md) |
 | Tried | The 2026-11-19 run of real, unchanged Windows clients had the server receive a throw 3 times out of 3 on 5.00r7, as on 4.20r8, 5.12, 5.24r4 and 6.03r7; the write-up names id 11 only for the Linux 6.03r7 throw | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Tried (2026-11-20) | 5.12 sends id 11 with an empty body on a throw; 5.00r7 could not reach the lab server (its licence names a LAN login host) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#throw-id-on-512-e4) |
 | Best guess | Claim B: 5.00r7 sends 11 from the throw. Confidence: high | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 | Settles it | The id of the 5.00r7 throws in that run's server log, or one more 5.00r7 throw with the id recorded | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab; probably already answered by the 2026-11-19 log | [inf] (live-runs/open-issues-2026-11-19/README.md) |
@@ -357,21 +356,6 @@ These questions are about single messages and props: which builds send or handle
 | Best guess | The rule arrived with the gmap work, after 2.1.0.4 and by 2.17.1. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 | Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
-
-### E#13 Gmap neighbour overwrite on classic-login 2.x clients
-
-**Question.** Whether GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level. A static read predicts it [bin][srv] (protocol/gmap-adjacent-level-target.md#short-answer).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Prediction | With stock `PlayerClientOriginal`, a 2.17.1 client on a 2x2 gmap shows neighbour boards and links on its own level | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
-| Prediction | Ending a neighbour reply with the player's cell level name, not the gmap name, keeps `BOARDMODIFY` and chest updates working on 2.17.1 and 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
-| Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
-| Tried | No classic-login lab yet; the static sequence (neighbour `LEVELNAME`, data, then the player's cell `LEVELNAME`) stands, and the run is paired with the 2.22 gmap re-send lab | [bin][srv] (protocol/gmap-neighbour-classic-status.md) |
-| Tried (2026-11-20) | 2.22 entering a 2 x 2 gmap from a plain level drew the neighbours correctly, with no overwrite; the 2.17.1 run was invalid (shared cache and equal level times) and is queued again | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
-| Best guess | The overwrite happens with stock GServer-v2, and the fixed framing cures it. Confidence: moderate to high | [inf] (protocol/gmap-adjacent-level-target.md#short-answer) |
-| Settles it | A loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
-| Outlook | Lab | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
 
 ### E#23 What prop 81 changes in the player list
 
@@ -613,9 +597,9 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Claim A | The byte is the shot type, `byte − 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
 | Claim B | On 2.22 an injected shot hurt only when the byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Evidence | The `SHOOT` and `SHOOT2` field scales are settled for 5.00r7 to 6.03r7, and GServer-v2's one-byte gravity disagrees with every client read | [bin][srv] (protocol/carry-shoot-hit-status.md) |
-| Tried (2026-11-20) | On open ground, every byte from 0x20 to 0x7e flew through the player with no heart lost; 0x23 and up burst only on hitting an NPC or wall. The earlier "0x23 and up hurt" is not reproduced with an unknown or absent shooter; a run with a real other player as shooter is queued | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#shot-last-byte-on-222-e312) |
+| Tried (2026-11-20) | On 2.22 open ground, every byte from 0x20 to 0x7e flew through the player with no heart lost, with no shooter, an unknown shooter, and a visible other player as owner; 0x23 and up burst only on hitting an NPC or wall. The earlier hurt is not reproduced; the lab server sets no no-PK option, and the 2026-10-25 lab used another server | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#shot-last-byte-on-222-e312) |
 | Best guess | The low types (0 and 1, wire `0x21` and `0x22`) are shots that the shooter's own client judges, so a receiving client never hurts from them. Confidence: low to moderate | [inf] (client-internals/damage-sources.md#shot-19) |
-| Settles it | Reading the 2.22 shot receiver, or a capture of a real arrow that hurts | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Settles it | Reading the 2.22 shot receiver, or the same sweep against the server of the 2026-10-25 lab | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Outlook | Read | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 
 ### E#315 The level-entry save in the 2.1 test builds
@@ -628,19 +612,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | Every level entry saves the respawn point. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | Settles it | Reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 | Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-
-### E#316 Glove power steps
-
-**Question.** Which objects each glove power can lift [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Every player starts at glove 1, which lifts bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
-| Claim B | A bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
-| Tried | The 2026-11-19 runs lifted bushes on every build, but the glove chest never opened (0 of 1 on every Windows build and Linux 6.03r7), so glove power was not raised | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Best guess | Claim B, which is read from the lift table itself; Claim A mixes the client table with the server's starting glove. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
-| Settles it | A lift of each object on 2.05 at glove 0, 1, 2 and 3, set through the props rather than the suspect chest | [inf] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
-| Outlook | Lab | [inf] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
 
 ### E#317 The 1.x pickup box and item draw order
 
@@ -1183,6 +1154,7 @@ These questions are about the 3D side: the 2000 Graal3D client and the Torque-ba
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Every layout is read from the 4.04r2 plug-in's readers; the 3.153 side is its mission scripts; a lab server implements the order | [bin][srv] (torque/protocol19-server.md#5-mission-start) |
+| Tried (2026-11-20) | Native Linux 4.04r2 against the lab protocol-19 server went through link, datablocks and mission start, took the control object and printed "Graal3D has been activated!"; no 3.153 client runs in the lab | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#protocol-19-on-404r2-e506-half) |
 | Best guess | It works for 4.04r2 with a `Camera` control object; 3.153 matches, being the same Torque line. Showing other players needs the unread `Player` layouts and a real `.dts` player shape, which is not held. Confidence: moderate for the camera path | [inf] (torque/protocol19-server.md#open) |
 | Settles it | A 4.04r2 and a 3.153 run against the lab server | [inf] (torque/protocol19-server.md#open) |
 | Outlook | Lab for the camera path; Missing for a player shape | [inf] (torque/protocol19-server.md#open) |
@@ -1274,6 +1246,17 @@ Two reads disagreed on whether the NewWorld betas send ids 8 and 20 [bin] (clien
 | Claim B | The betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
 | Settled | Claim A: every send site in both betas was re-read; none sends 8 or 20 (nor 7, 11, 15, 16, 17), none passes the id in a register, and the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
 | Note | Claim B's count of 34 was 39 less five, the arithmetic that hid the gap | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
+
+### E#13 Gmap neighbour overwrite on classic-login 2.x clients (settled)
+
+Whether GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level was predicted by a static read; a lab run settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Prediction | With stock framing, a 2.17.1 client on a 2 x 2 gmap shows neighbour boards on its own level; ending each neighbour reply with the player's cell name cures it | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Settled | 2.17.1 asks for the three neighbours with 35, the server answers each board with no `PLO_LEVELNAME` before it, and the player's own all-grass cell then shows neighbour walls at its edge. 2.22 on the same server gets every neighbour framed by `LEVELNAME` and draws them in place | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
+| Verdict | Verified: the overwrite happens with the stock classic path | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
+| Left over | The fixed-framing leg, which needs a server change; 2.17.1 sends no 35 when the `.gmap` is fetched after the warp, and sends cached modtimes when neighbours are cached | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
 
 ### E#17 The 6.1.1.3 login after the RC4 switch (settled as far as the project will take it)
 
@@ -1436,8 +1419,18 @@ Whether entering a gmap from outside saves the respawn point was open; a 2.22 la
 | --- | --- | --- |
 | Before | The order of the gmap's level list against the entry save decides it, and neither was read | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 | Settled | On 2.22, a player who walks into a 2 x 2 gmap from a plain level and then dies is sent back to the gmap entry point, not the start level | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
-| Verdict | Verified on 2.22; the best guess held | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
-| Left over | Death on each side of a seam (queued), and builds other than 2.22 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+| Verdict | Verified on 2.22, and on 2.17.1 for a death in the first cell; the best guess held | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+| Also measured | A death after crossing a seam inside the gmap also returns to the entry point, so a seam crossing saves nothing new; 2.17.1 asks for the same entry point after a death | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+
+### E#316 Glove power steps (settled)
+
+Which objects each glove power can lift was open between two reads; a lab run with the power set through the props settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: glove 1 lifts bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone. B: a bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
+| Settled | On 2.05 rev 2, glove power N lifts the first N + 2 entries of the lift list: 0 bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone. The first object out of reach only plays the grab gani | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
+| Verdict | Verified: Claim A's steps hold, and Claim B is right that a bare hand lifts bush and sign but wrong that power 2 adds both stones | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
 
 ### E#318 Level reload on re-entry offline (settled)
 
