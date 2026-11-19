@@ -106,7 +106,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 104 | 0x88 | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) | · | `str file`, `c a`, `i5 lo`, `i5 hi`: the DES key for an encrypted package or `.enc` file, keyed by lower-cased file name; 3.153 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`, `formats/gpak.md`) |
 | 105 | 0x89 | `PLO_UPDATEPACKAGESIZE` | · | package-update message (5.07, 6.037) |
 | 106 | 0x8a | `PLO_UPDATEPACKAGEDONE` | · | package-update message (5.07, 6.037) |
-| 107 | 0x8b | `PLO_BOARDLAYER` | · | like LEVELBOARD, for extra layers |
+| 107 | 0x8b | `PLO_BOARDLAYER` | · | raw `layer x y w h` + w×h little-endian 16-bit tiles; `0xFFFF` = empty, 4095 draws as a tile ([lab](../formats/gr-v105-fuzz-2026-11-19.md)) |
 | 108 | 0x8c | `PLO_PING` (was `PLO_UNKNOWN108`) | · | ping: `c sub`, `s value`; sub 0 → the client answers PLI 162, sub 1 stores the value; 4.20 and 6.x, taken before the main switch **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 109 | 0x8d | `PLO_HTTPDOWNLOAD` (was `PLO_UNKNOWN109`; proposed `PLO_DOWNLOADURL`) | · | `i5 modtime`, `str localname`, `str url` (the gserver's layout is one string short): fetch a file over HTTP(S); 5.24r4 to 6.03r7 **[bin]** (`plo-109-httpdownload.md`, `unknown-ids-2026-11-06.md`) |
 | 110 | 0x8e | `PLO_UNKNOWN110` | · | no game or staff client handles it **[bin]** (`unknown-ids-2026-11-06.md`); 6.03r7 ignores it with any body, no reply **[lab]** (`probe-targets-2026-11-18.md`) |
