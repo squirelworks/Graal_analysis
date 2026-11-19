@@ -58,6 +58,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [2.x link probe / BIGMAP / entry save (gap #34)](protocol/link-probe-bigmap-status.md) — 2.05 edge rules settled; probe offsets, skip flag, 171 vs bigmap, E#314 still open.
 - [2.05 and 2.22 edge-link probe offsets](protocol/link-probe-offsets-205-222-2026-11-19.md) — the per-facing probe table, the same in both builds, and walking past the edge with the neighbour loaded.
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
+- [Static reads for Appendix E, second batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-b.md) — 1.39 movement tables, the 2.1 test entry save, the RC 76 last byte, GS2 opcodes 48, 49 and 54 on 5.00r7.
 - [Missing-file replies on 5.12 (gap #37)](protocol/filesendfailed-512-status.md) — 30 layout and 2.05 empty-file settle settled; one-per-name count on 5.12 still needs lab.
 - [RC props tail / SET2 byte / PLO 124 (gap #42)](protocol/rc-props-flags-status.md) — tail shape settled; flag vs chest counts and 76 last byte open; 124 body discarded by RC3.
 - [PLO 108 sub 1 and PLO 168 focus status](protocol/plo108-168-focus-status.md) — 168 = logged-in flag (medium on the name); 108 sub 1 unread outside ping, no effect on 6.03r7 in the #254 lab; static + prior lab.

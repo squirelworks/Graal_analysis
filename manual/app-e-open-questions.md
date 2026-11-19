@@ -59,7 +59,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#206 | `move` caller side in 2.05 | Read | one queued step per frame | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#208 | Whether 3.153 uses OpenGS1's layout | Read | no | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| E#209 | GS2 VM details left open by the per-build read | Read | opcode 54 pops two values in 5.00r7 too | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| E#209 | GS2 VM details left open by the per-build read | Read | 48, 49 and 54 settled on 5.00r7; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
 | E#212 | Whether a function-only image skips the top-level pass | Lab | yes, and other images re-run top level before each event | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
@@ -71,7 +71,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#303 | Two lists in the blocked-point test | Read | other players and baddies | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| E#307 | 1.39 movement tables | Read | the same tables as 2.05 (shared probe block) | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 | E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
 | E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
 | E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
@@ -79,7 +78,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#312 | The last byte of a shot | Read | a type field whose low values mean harmless or friendly | [inf] (client-internals/damage-sources.md#shot-19) |
 | E#313 | Arrows and fireballs through walls | Lab | they pass walls in 2.05, as the code reads | [inf] (client-internals/damage-sources.md#open) |
 | E#314 | Gmap entry and the respawn save | Lab | entering a gmap from outside saves the respawn point | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-| E#315 | Level-entry save in the 2.1 test builds | Read | every entry saves | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | E#316 | Glove power steps | Lab | Claim B, read from the lift table | [inf] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
 | E#317 | 1.x pickup box and item draw order | Read | items draw under players | [inf] (client-internals/item-drops.md#open) |
 | E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
@@ -99,7 +97,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#420 | Flag and chest counts in the RC props tail | Lab | flags first, then chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| E#421 | The last byte of `RC_PLAYERPROPSSET2` | Read | a "save now" or "notify player" flag | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#423 | The 1999 servers' open rules | Lab | the 1.3 test client works against them | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 | E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
@@ -568,19 +565,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
 | Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
 
-### E#307 Probe, nudge and step tables of 1.39
-
-**Question.** The numeric movement tables of 1.39; 1st Graal's are now read [bin] (client-internals/first-graal-movement-2026-11-09.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | 1st Graal's exact step, six ordered probes, one-eighth-tile nudges and stepped-axis snapping are in → §4.2.2.3 | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
-| Evidence | For 1.39, six probes and the blocked-step counter shape were read, without the numbers | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
-| Tried (2026-11-19) | 1.39 holds the same 64-byte probe-offset block as 2.05 and 2.22, byte for byte; the six-probe and nudge tables were not extracted | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#139-movement-e307) |
-| Best guess | 1.39 uses the same tables as 2.05, since the probe count, counter shape and probe-offset block match. Confidence: moderate to high | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
-| Settles it | Recover the 1.39 tables, then validate the runtime gates on exact inputs | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
-| Outlook | Read | [1.39] (version-profiles/matrix/rules-139.md#still-open) |
-
 ### E#308 Link probe offsets and the neighbour-table flag
 
 **Question.** The flag that skips the 3 x 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
@@ -665,17 +649,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | The save happens, because the list is updated after the save. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 | Settles it | A 2.22 run on a 2 x 2 gmap: walk in from a plain level and die on each side of a seam | [inf] (protocol/link-probe-bigmap-status.md) |
 | Outlook | Lab | [inf] (protocol/link-probe-bigmap-status.md) |
-
-### E#315 The level-entry save in the 2.1 test builds
-
-**Question.** How the 2.1 test builds save the entry point, which is expected to differ from 2.05 [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| Best guess | Every level entry saves the respawn point. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| Settles it | Reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 
 ### E#316 Glove power steps
 
@@ -940,17 +913,6 @@ These questions are about the programs on the other side of the connection (→ 
 | Settles it | A capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 | Outlook | Lab | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 
-### E#421 The last byte of RC_PLAYERPROPSSET2
-
-**Question.** What the one byte the 2004 RC adds at the end of 76 means; the server's 72 has no such byte [cap] (protocol/rc-capture-2026-11-04.md#player-props).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The byte follows the weapons and was 0 in the only capture; staff tooling should keep it as unknown | [cap] (protocol/rc-props-flags-status.md) |
-| Best guess | A dialog option such as "apply now" or "notify the player", sent only from the edit dialog. Confidence: low | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settles it | A static read of the RC's 76 builder, or a capture after changing each dialog field | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Outlook | Read | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-
 ### E#422 Quoting of folder rights
 
 **Question.** Whether the original server stored folder rights in the RC's CSV form [cap] (protocol/rc-capture-2026-11-04.md#rights).
@@ -1121,13 +1083,14 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | 6.x loop limit | 5.24r4 to 5.31r4 still name the property `maxlooplimit`; 6.00r2 and 6.00r4 keep the field under a scrambled name | [bin] (client-internals/gs2-vm-by-version.md#limits); [doc] (client-internals/gs2-vm-loader-diff.md#524r4-530r3-531r4-600r2-and-600r4-windows) |
 | Unread builds | Windows 4.04r2, 5.12 and 5.24r4 to 6.00r4 are now read; still unread are Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, Classic other than 1.8, and 7.x (out of scope) | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | Tried (2026-11-19) | Script fuzz on 6.03r7, 5.24r4 and 4.20r8: setting `maxlooplimit` works on 6.03r7 and 5.24r4 (50 reads back as 100; 2000000 lets a 20000-pass loop stop as expected), so 6.03r7 still takes the property by that name; opcode 54 on 6.03r7 and 5.24r4 matches the two-value prediction for every push order and is not dispatched on 4.20r8; opcodes 48 and 49 give an empty value on 4.20r8 and 5.24r4 and crash 6.03r7, so their operand order still needs 5.00r7 or 5.12, which dispatch them | [lab] (protocol/script-fuzz-2026-11-19.md) |
-| Best guess | Opcode 54 pops two values in 5.00r7 as in 6.1.1.3; 48 and 49 take the object before the member name; the 6.x property is still `maxlooplimit` under the scrambling. Confidence: moderate, low, moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| Settled (2026-11-20) | On 5.00r7, 54 consumes three values, pushed as object, member name, value, then runs the opcode-50 store. 49 pops up to its clamped count and appends in pop order, so the list is in reverse push order. 48 builds an object from pairs pushed name then value, but its loop counter counts up, so with a positive count it takes pairs until two or fewer values remain | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) |
+| Best guess | The 6.x property is still `maxlooplimit` under the scrambling, as the fuzz run shows for 6.03r7. The remaining items are the unread builds. Confidence: moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | Outlook | Read | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
 
 The work list carried from the difference table:
 
-- [ ] Prove opcodes 48 and 49's operand order on 5.00r7. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
-- [ ] Pick one pop count for opcode 54 on 5.00r7. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
+- [x] ~~Prove opcodes 48 and 49's operand order on 5.00r7.~~ Settled by the 2026-11-20 read [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
+- [x] ~~Pick one pop count for opcode 54 on 5.00r7.~~ Three values [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 - [ ] Recover the 6.x loop-limit property name. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 - [ ] Read the VMs still marked open in the difference table, including event-name case (`onTimeout` / `onTimeOut`) and the client match for `onActionServerSide`. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 
@@ -1477,6 +1440,28 @@ Which flag makes a successful pull play `lift2.wav` instead of `lift.wav` was op
 | Verdict | Verified by static read; the earlier note named the wrong owner of the flag | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
 | Left over | What the byte means for each object kind | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
 
+### E#307 Probe, nudge and step tables of 1.39 (settled)
+
+The numeric movement tables of 1.39 were open; a static read of its constant block settled them [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Six probes and the blocked-step counter shape were known without numbers; best guess the same tables as 2.05 | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab); [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| Settled | 1.39 keeps 1st Graal's inner probe points (x 0.6, 1.4, 1.6, 2.4; y 1.1, 1.9, 2.1, 2.9) and its ±0.125 nudge, but uses 2.05's edge lines (y 1.0 and 3.0, x 0.5 and 2.5); points 4 and 5 (2.525, 0.475, 3.025, 0.975) and the half-tile step are the same in all three builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
+| Verdict | The guess was wrong: 1.39 is between 1st Graal and 2.05. 2.05 moves the inner points 0.075 outwards and makes the nudge 0.1. The 0.125 nudge agrees with the live 1.39 run | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
+| Left over | The 1.39 refusal and snap branches were not compared instruction by instruction | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
+
+### E#315 The level-entry save in the 2.1 test builds (settled)
+
+How the 2.1 test builds save the entry point was open; a static read of their entry decision settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The builds lack the name-group delimiter constant; best guess every level entry saves | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| Settled | 2.1 test 2 and 3 run 2.17.1's rule: save at login or when the product of the two levels' gmap-list indices is negative, otherwise do not save; no group test; no gmap gives −1 for both | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+| Verdict | The guess was wrong; ordinary level changes keep the old respawn point | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+| Left over | NewWorld beta 2, which also lacks the constant, was not read | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+
 ### E#318 Level reload on re-entry offline (settled)
 
 Whether offline 2.05 reloads a level on re-entry, bringing a cut bush back, was untested [bin] (client-internals/board-respawn.md#open).
@@ -1496,6 +1481,17 @@ Which RC builds send `GSERV025` was open while only the earlier RC builds had be
 | Settled | RC2 2.05, RC3 and the 2006-01-20 Linux RC send `GSERV025`; the 2005-12-09 Linux RC and the 2004 RC (login type 6) send `GSERV024`. The token changed between December 2005 and January 2006 | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [bin] (tools/remotecontrol.md#logins-bin); [lab] (protocol/rc-fuzz-2026-11-19.md) |
 | Verdict | Verified for every held official RC build. A server should accept both tokens | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
 | Left over | The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer | [inf] (tools/remotecontrol-lineage.md) |
+
+### E#421 The last byte of RC_PLAYERPROPSSET2 (settled)
+
+What the extra byte the 2004 RC puts at the end of 76 means was open; a static read of the RC's 76 builder and 72 parser settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | One byte after the weapons, 0 in the only capture; best guess a dialog option | [cap] (protocol/rc-props-flags-status.md) |
+| Settled | It is the length byte of an empty string. The RC keeps one optional length-prefixed string that may follow the weapon list in the server's 72, never edits it, and writes it back at the end of 76. The GServer-v2 72 has no such string, so the RC sends it empty | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| Verdict | The guess was wrong; it is an echoed field, not a dialog option | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| Left over | What an older server put in that string | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
 
 ### E#500 Back clipping plane of the Graal3D client (settled)
 
