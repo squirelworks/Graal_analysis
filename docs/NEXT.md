@@ -458,9 +458,7 @@ macOS CI is paused until the polish stage.
   pre-2.1 settled-name no re-check (batch e `01-request-lists`). Static read of 2.05 rev 2
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
-  (a horse does not change it). **Still open:** the rest of the 2.22 default file-check
-  set. The near-empty start files and the first unanswered frame are recorded
-  ([run](../live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder); manual §2.7.10); that server answered none, so sword, shield, body and the later icons still need a server that answers id 23 and id 34. Maps folder
+  (a horse does not change it). ~~**Still open:** the rest of the 2.22 default file-check set.~~ Done with a server that answers: 13 checks (id 34) with a full folder, 17 (id 23) with only the start files, at most four per frame ([2026-11-19 run](../live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)). **Still open:** maps folder
   in 2.1–2.16. ~~The client archive still has no build between the 2.1 test builds and 2.22.~~ The Windows 2.1.0.0–2.1.0.4 images are in `client-internals/graal2002-and-140-builds.md`; the maps-folder behaviour is still unread.
   Tracked in #245.
 

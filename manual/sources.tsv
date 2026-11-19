@@ -833,3 +833,4 @@ protocol/unknowns-ledger.md	excluded			running tally of the probe work (status p
 protocol/v6113-login-lab-method.md	pending		2; E	Two-gate 6.113 login in a loopback lab; deterministic conf.gs request; forge/replay/trust-anchor analysis and the from-outside method; to fold into the protocol chapter
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
+live-runs/open-issues-2026-11-19/README.md	pending		2.7; 4.1; 4.3	2.05r2 drop control and 1.21 kill reward (§4.3), 6.03r7 timer repeat (§4.1.8), full 2.22 login file checks (§2.7.10), 6.03r7 Linux action list (§4.2)
