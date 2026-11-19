@@ -1,0 +1,185 @@
+# nc-core.plan : server->client fuzz of the NPC-Control receive handlers.
+#
+# Drives ncprobe.py against a real NC client (nc7132001 and the other standalone
+# NPCControl builds, or RC in NC mode) talking to a lab npcserver. Each step injects one NC-server->client
+# packet (`s2c`) and then takes a `shot`; PROBE_SHOT records whether the client
+# window still exists (alive / CLIENT-GONE) and captures its state. There is no HUD
+# canary in a staff tool, so the oracle is: window survives, and a benign NC_LEVELLIST
+# (80) sent between groups still repaints the level-list editor (stream stayed in step).
+#
+# Handlers under test (protocol/npc-control.md): 16 DISCMESSAGE, 33 NPCWEAPONADD,
+# 80 NC_LEVELLIST, 157 NC_NPCATTRIBUTES, 158 NC_NPCADD, 159 NC_NPCDELETE,
+# 160 NC_NPCSCRIPT, 161 NC_NPCFLAGS, 162 NC_CLASSGET, 163 NC_CLASSADD,
+# 164 NC_LEVELDUMP, 167 NC_WEAPONLISTGET, 188 NC_CLASSDELETE.
+#
+# Field notes: c:N = GCHAR (N+32); b:N = one raw byte (for an out-of-range length
+# prefix, since a length GCHAR holds len = byte-32, max 223); s:N = GSHORT;
+# str:TEXT = correct GCHAR length + text; i3:N = GINT3 id.
+
+waitsession 180
+sleep 4
+shot baseline
+
+# --- warm, well-formed references (should all be accepted) ---
+s2c 80 t:"level1.nw"
+sleep 1
+shot ref-levellist
+s2c 158 i3:1 c:50 str:refnpc c:51 str:OBJECT c:52 str:level1.nw
+sleep 1
+shot ref-npcadd
+s2c 167 str:refsword str:refbow
+sleep 1
+shot ref-weaponlist
+
+# --- 16 DISCMESSAGE: empty, huge, high bytes (text -> disconnect box) ---
+s2c 16
+sleep 1
+shot disc-empty
+s2c 16 rep:4000:A
+sleep 1
+shot disc-4k
+s2c 16 hex:00ff00ff0a00
+sleep 1
+shot disc-bin
+
+# --- 158 NC_NPCADD: truncated GINT3 id, over-long str prop, unknown prop ids ---
+# 1-byte id where 3 are expected (0xBE=158+32, one id byte, newline added by proxy)
+s2c 158 hex:bE20
+sleep 1
+shot npcadd-shortid
+# prop 50 name length prefix claims 200 bytes, supplies 2 (b:232 = len 200)
+s2c 158 i3:2 c:50 b:232 t:AB
+sleep 1
+shot npcadd-name-overread
+# prop 50 name length prefix claims max 223, supplies 0
+s2c 158 i3:3 c:50 b:255
+sleep 1
+shot npcadd-name-overread-max
+# unknown prop id 99 then a value
+s2c 158 i3:4 c:99 str:x
+sleep 1
+shot npcadd-badprop
+# oversized name
+s2c 158 i3:5 c:50 str:refok c:51 rep:3000:B
+sleep 1
+shot npcadd-huge
+s2c 80 t:"resync1.nw"
+sleep 1
+shot resync-1
+
+# --- 159 / 160 / 161 : GINT3-id ops, truncated and oversized ---
+s2c 159 hex:bf20
+sleep 1
+shot npcdelete-shortid
+s2c 160 i3:6 t:"// script line"
+sleep 1
+shot npcscript-ok
+s2c 160 hex:a020
+sleep 1
+shot npcscript-shortid
+s2c 160 i3:7 rep:8000:C
+sleep 1
+shot npcscript-huge
+s2c 161 i3:8 t:"flag1=1"
+sleep 1
+shot npcflags-ok
+s2c 161 hex:a120
+sleep 1
+shot npcflags-shortid
+s2c 80 t:"resync2.nw"
+sleep 1
+shot resync-2
+
+# --- 33 NPCWEAPONADD: str name, str image, GSHORT script-len + script ---
+s2c 33 str:wok str:wimg s:3 t:abc
+sleep 1
+shot weaponadd-ok
+# name length prefix over-read
+s2c 33 b:255 t:ab
+sleep 1
+shot weaponadd-name-overread
+# GSHORT script length claims 16000, supplies 2 (trusts-length over-read)
+s2c 33 str:wn str:wi s:16000 t:XY
+sleep 1
+shot weaponadd-scriptlen-big
+# GSHORT script length claims 0, supplies a large body
+s2c 33 str:wn str:wi s:0 rep:4000:Z
+sleep 1
+shot weaponadd-scriptlen-zero
+s2c 80 t:"resync3.nw"
+sleep 1
+shot resync-3
+
+# --- 162 NC_CLASSGET / 163 NC_CLASSADD / 188 NC_CLASSDELETE ---
+s2c 162 str:classA t:"// class body"
+sleep 1
+shot classget-ok
+s2c 162 b:255 t:ab
+sleep 1
+shot classget-name-overread
+s2c 163 t:"classB"
+sleep 1
+shot classadd-ok
+s2c 163
+sleep 1
+shot classadd-empty
+s2c 163 rep:4000:D
+sleep 1
+shot classadd-huge
+s2c 188 t:"classB"
+sleep 1
+shot classdelete-name
+s2c 188 b:255 t:ab
+sleep 1
+shot classdelete-overread
+s2c 80 t:"resync4.nw"
+sleep 1
+shot resync-4
+
+# --- 157 attributes / 164 leveldump (view-only) / 167 weapon list ---
+s2c 157 t:"attr1=1"
+sleep 1
+shot attributes-ok
+s2c 157 rep:6000:E
+sleep 1
+shot attributes-huge
+s2c 164 t:"dump text"
+sleep 1
+shot leveldump-ok
+s2c 164 hex:00010203040a
+sleep 1
+shot leveldump-bin
+# 167 weapon list is repeated str name: an over-read in the middle of the list
+s2c 167 str:w1 b:255 t:ab
+sleep 1
+shot weaponlist-overread
+s2c 167 rep:50:str
+sleep 1
+shot weaponlist-manyjunk
+s2c 80 t:"resync5.nw"
+sleep 1
+shot resync-5
+
+# --- 80 NC_LEVELLIST / general boundary ids ---
+s2c 80
+sleep 1
+shot levellist-empty
+s2c 80 rep:9000:F
+sleep 1
+shot levellist-huge
+# ids with no handler on the NC socket (boundary): should be ignored, not crash
+s2c 200 t:"xx"
+sleep 1
+shot id200
+s2c 223 t:"xx"
+sleep 1
+shot id223
+s2c 0
+sleep 1
+shot id0
+
+# --- final responsiveness check ---
+s2c 80 t:"final.nw"
+sleep 1
+shot final-alive
+status
