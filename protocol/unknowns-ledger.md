@@ -55,7 +55,7 @@ Status words:
 | 81 | `PLO_UNKNOWN81` | The same | resolved |
 | 83 | `PLO_UNKNOWN83` | The same | resolved |
 | 110 | `PLO_UNKNOWN110` | The same | resolved |
-| 195 | `PLO_LOADGANI` list | resolved for 4.20r8, 5.24r4, 6.03r7: gani header lines (`SETBACKTO`, `LOOP`) that override the file for the named gani, newest wins, lost if sent before the gani loads; redundant for file ganis. Round 2: `CONTINUOUS`, `SINGLEDIRECTION` and `LOOP` taken too; `DEFAULT*` no effect seen; a 195 or a forged `PLO_GANISCRIPT` for an unloaded gani makes the client load it; names are case-insensitive; other players and 5.12 match. Open: `DEFAULT*` uses, 6.1.1.3, 6.037 | resolved |
+| 195 | `PLO_LOADGANI` list | resolved for 4.20r8, 5.24r4, 6.03r7: gani header lines (`SETBACKTO`, `LOOP`) that override the file for the named gani, newest wins, lost if sent before the gani loads; redundant for file ganis. Round 2: `CONTINUOUS`, `SINGLEDIRECTION` and `LOOP` taken too; `DEFAULT*` no effect seen; a 195 or a forged `PLO_GANISCRIPT` for an unloaded gani makes the client load it; names are case-insensitive; other players and 5.12 match. 2.22 and 2.31 ignore 195 (lab). Open: `DEFAULT*` uses, 6.1.1.3, 6.037 | resolved |
 | 156 | `PLO_SETACTIVELEVEL` | The extra step in 2.31 | open: 2.31 now runs in the lab; read the step statically, then probe for its effect |
 
 ## Client→server ids at our server

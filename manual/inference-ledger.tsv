@@ -54,6 +54,7 @@ manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasu
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
 manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
+manual/08-scripting/03-gs2-language.md	Open: which 4.x build first has each GS2-only name such as `triggerserver`, `sch	npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	
@@ -62,4 +63,6 @@ manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what
 manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
+manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
+manual/10-torque.md	Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef`	torque/304-tile-types.md#not-settled	
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	

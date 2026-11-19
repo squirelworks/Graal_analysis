@@ -70,6 +70,13 @@ macOS CI is paused until the polish stage.
 
 - [x] **RC props tail / 76 byte / PLO 124 (status).** ~~Which count is flags?~~ Tail shape and 124 discard settled; counts + 76 byte + 124 layout still need lab/S. [Note](../protocol/rc-props-flags-status.md); gap #42; E#420/E#421.
 
+- [ ] **Fuzz the Remote Control clients.** Harness is in place: `gen5probe.py` picks the RC/NC staff logins (gen 2 plain-zlib and type-6 gen 5), `tools/probe/rccanary.py` is the RC liveness canary, and `tools/probe/lab/runrc.sh` + `rc-core.plan` / `rc-widths.plan` drive a run (covered by `selftest.py`). [Harness](../tools/probe/README.md#remote-control).
+  - [x] ~~`rc2004` (2004 Delphi, gen 5) `rc-core`; `rc3` (2015, gen 5) `rc-core` + `rc-widths`.~~ No crash, no desync on either. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [ ] A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.
+  - [ ] `rc205` (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.
+  - [x] ~~`rcpre` (pre-2002 gen-2, rc8212001 / GSERV022) `rc-core`.~~ gen-2 login detection confirmed on a real client; no crash/desync. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [x] ~~RC-embedded NC socket (2002/05/02 RC, GSERV023 + NCL11012) via ncprobe.~~ NC login accepted, 45 packets injected, no crash. [Note](../protocol/rc-fuzz-2026-11-19.md). Found a GServer-v2 bug: it never answers `PLI_NPCSERVERQUERY` (94) from a gen-2 RC with `PLO 79` — needs a gsv2 issue (NC-fuzz thread owns).
+
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 
 - [x] **PLO 108 sub 1 / 168 focus status (#43).** ~~Who reads sub 1; is 168 login done?~~ 168 = one-shot flag (name medium); sub 1 no visible effect on 6.03r7 (#254 lab); reader still open. [Note](../protocol/plo108-168-focus-status.md).
@@ -213,6 +220,7 @@ macOS CI is paused until the polish stage.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
   - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) and manual §4.11.13.
     - 2026-11-18: 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 logged in through a lab `Login` lobby on real Windows 10, drew the level and walked ([run](../live-runs/real-win10-2026-11-18/README.md), §2.3.6.4). Still open: the full action list on the fixture world, and 6.113 (signed connector).
+    - 2026-11-19: the action list ran on Linux 6.03r7 (with an observer) and on real Windows 4.20r8 to 6.03r7 (§4.11.14). Spin and the glove chest are not client results; the rest is tracked in #652.
   - [x] ~~Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).~~ [Note](../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md): tileset sent, level draws; 3.153 and 5.12 send id 18 only for `client.` flags.
   - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
   - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
@@ -458,9 +466,7 @@ macOS CI is paused until the polish stage.
   pre-2.1 settled-name no re-check (batch e `01-request-lists`). Static read of 2.05 rev 2
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
-  (a horse does not change it). **Still open:** the rest of the 2.22 default file-check
-  set. The near-empty start files and the first unanswered frame are recorded
-  ([run](../live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder); manual §2.7.10); that server answered none, so sword, shield, body and the later icons still need a server that answers id 23 and id 34. Maps folder
+  (a horse does not change it). ~~**Still open:** the rest of the 2.22 default file-check set.~~ Done with a server that answers: 13 checks (id 34) with a full folder, 17 (id 23) with only the start files, at most four per frame ([2026-11-19 run](../live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)). **Still open:** maps folder
   in 2.1–2.16. ~~The client archive still has no build between the 2.1 test builds and 2.22.~~ The Windows 2.1.0.0–2.1.0.4 images are in `client-internals/graal2002-and-140-builds.md`; the maps-folder behaviour is still unread.
   Tracked in #245.
 

@@ -114,6 +114,74 @@ def gen3_test(ask, pport, srv):
     c.close(); s.close()
 
 
+def strf(s):  # GCHAR length + text, as the RC/NC logins frame account and password
+    b = s.encode('latin1'); return bytes([len(b) + 32]) + b
+
+
+class Gen2Peer:
+    """A plain-zlib staff endpoint (pre-2002 RC / NewWorld RC / NC): u16be length + zlib body,
+    messages 'id...\\n', no cipher, no type byte, no iterator byte. Both sides are symmetric."""
+    def __init__(self, sock, skip_login=False):
+        self.s = sock; self.buf = b''; self.got = []; self.skip = skip_login
+
+    def send(self, payload):
+        z = zlib.compress(payload); self.s.sendall(len(z).to_bytes(2, 'big') + z)
+
+    def read(self, secs=1):
+        self.s.settimeout(0.2); end = time.time() + secs
+        while time.time() < end:
+            try:
+                d = self.s.recv(65536)
+            except socket.timeout:
+                continue
+            if not d:
+                break
+            self.buf += d
+            while len(self.buf) >= 2 and len(self.buf) >= int.from_bytes(self.buf[:2], 'big') + 2:
+                ln = int.from_bytes(self.buf[:2], 'big'); fr, self.buf = self.buf[2:ln + 2], self.buf[ln + 2:]
+                for p in zlib.decompress(fr).split(b'\n'):
+                    if not p:
+                        continue
+                    if self.skip:
+                        self.skip = False; continue  # the login frame is forwarded raw to the server
+                    self.got.append(p)
+        return self.got
+
+
+def rc_test(ask, pport, srv):
+    """A pre-2002 RC: login id 1 + GSERV021 token, then plain zlib with no cipher. The proxy must
+    pick gen 2 from the token and relay/inject both ways with the stream staying in step."""
+    c = socket.create_connection((LOOPBACK, pport))
+    C = Gen2Peer(c)
+    C.send(bytes([1 + 32]) + b'GSERV021' + strf('super') + strf('super') + b'\n')
+    s, _ = srv.accept(); S = Gen2Peer(s, skip_login=True)
+    C.send(encode('2 c:1 c:5')); assert S.read(1)[-1] == encode('2 c:1 c:5')[:-1], S.got
+    S.send(encode('55 s:3 str:labrc')); assert C.read(1)[-1] == encode('55 s:3 str:labrc')[:-1], C.got
+    assert ask('s2c 74 t:hello').startswith('ok'); assert C.read(1)[-1] == encode('74 t:hello')[:-1], C.got
+    assert ask('c2s 2 c:1 c:6').startswith('ok'); assert S.read(1)[-1] == encode('2 c:1 c:6')[:-1], S.got
+    assert ask('after s2c 55 74 t:armed').startswith('ok')
+    S.send(encode('55 s:4 str:other'))
+    got = C.read(1); assert got[-2:] == [encode('55 s:4 str:other')[:-1], encode('74 t:armed')[:-1]], got
+    # still in step after the inject + after
+    S.send(encode('56 s:4')); assert C.read(1)[-1] == encode('56 s:4')[:-1], C.got
+    c.close(); s.close()
+
+
+def rc5_test(ask, pport, srv):
+    """RC2 / RC3 / 2004 RC: login type 6 + key + GSERV025 token, then gen 5 (the same cipher as
+    2.22/2.31). The proxy must pick gen 5 from the type byte and relay/inject both ways."""
+    c = socket.create_connection((LOOPBACK, pport))
+    login = bytes([6 + 32, KEY + 32]) + b'GSERV025' + strf('super') + strf('super')
+    z = zlib.compress(login); c.sendall(len(z).to_bytes(2, 'big') + z)
+    s, _ = srv.accept(); s.recv(4096)
+    C, S = Peer(c), Peer(s)
+    S.send(encode('55 s:3 str:labrc')); assert C.read(1)[-1] == encode('55 s:3 str:labrc')[:-1], C.got
+    C.send(encode('2 c:1 c:5')); assert S.read(1)[-1] == encode('2 c:1 c:5')[:-1], S.got
+    assert ask('s2c 74 t:hello').startswith('ok'); assert encode('74 t:hello')[:-1] in C.read(1), C.got
+    assert ask('c2s 73 s:3').startswith('ok'); assert encode('73 s:3')[:-1] in S.read(1), S.got
+    c.close(); s.close()
+
+
 def main():
     d = tempfile.mkdtemp(); ctl = os.path.join(d, 'ctl'); log = os.path.join(d, 'log')
     srv = socket.socket(); srv.bind((LOOPBACK, 0)); srv.listen(1); sport = srv.getsockname()[1]
@@ -152,7 +220,9 @@ def main():
         C.send(encode('2 c:1 c:6')); assert S.read(1)[-1] == encode('2 c:1 c:6')[:-1]
         c.close(); s.close()
         gen3_test(ask, pport, srv)
-        print('selftest ok (gen 5 and gen 3)'); return 0
+        rc_test(ask, pport, srv)
+        rc5_test(ask, pport, srv)
+        print('selftest ok (gen 5, gen 3, RC gen 2, RC2/RC3 gen 5)'); return 0
     finally:
         px.kill()
 

@@ -223,6 +223,8 @@ The rules below cover what surrounds the login message: how it is sent and built
 | The password is obfuscated the same way | 2.31 | [bin] (protocol/client-versions.md#game-server-login) |
 | 2.00 sends the same type 0 shape with the token `GNW24011`; the account and password are neither hidden nor hashed | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#login-string-gserver) |
 | A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) ; [lab] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#token-allow-list) |
+| Real 2.05 rev 2 and 2.17.1 log in through a generation-3 proxy that removes the inserted byte from each message and re-inserts it with its own iterator; every message decodes, so the rule above holds live | 2.05 rev 2, 2.17.1 (lab) | [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
+| 2.19 to 2.21 log in as client type 4 and use generation 4; this comes from server source only, since no binary of those builds is held (→ App. E#19) | 2.19 to 2.21 | [srv] (protocol/codec-and-framing.md); [doc] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
 
 ### 2.3.3.1 Graal 2002 token identity boundary
 
@@ -374,6 +376,8 @@ Unchanged Windows clients ran on Windows 10 against our own lab server and lobby
 | 4.20r8, 5.00r7 and 5.12 send 152 and 154 right after login on the game port | 4.20r8 to 5.12 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
 | Other files a world may need: `minimap.txt` (6.03r7), `bigmap.txt` (4.20r8 to 5.12), `head26.png` (5.00r7, 5.12), `guigames_arcmessage2.png` (5.24r4) and the player-list window images (4.20r8 to 5.12); an NPC with no image sent as `-` makes every build from 1.39 to 6.03r7 ask for `-.gif` | 1.39 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
 | 1.39, 2.22, 2.31, 5.24r4 and 6.03r7 online together in one level each saw the others arrive, drew them with body and name, and saw them move | 1.39 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#five-builds-in-one-level) |
+
+Because 5.x and 6.x log in as `guest`, a lab that needs a named account on the game server can set it from a script: a clientside GS2 weapon on the `Login` server that calls `adventure_setaccountname` and `adventure_setpassword` in `onCreated` makes 5.24r4 and 6.03r7 log in to the next server under that account. The world server saw the named login; it ran in local mode, so the password was not checked (→ §8.3.5). [lab] (protocol/named-login-5x-6x.md#what-the-server-sees)
 
 The 182 crash and the 168/190 box are in → §2.5.8. 6.1.1.3 was not run: its login token comes in the signed connector script (→ App. E#616) [lab] (live-runs/real-win10-2026-11-18/README.md#results).
 
