@@ -86,6 +86,14 @@ after that case) and sudden `rtt_ms` growth (the server slowed — watch the inf
 and flood cases). `reply` shows the packet ids the server sent back to the case itself; an
 unexpected reply to a malformed packet is worth a look even when the canary stays up.
 
+**The goal is protocol learning, not only crash hunting.** `replies.tsv` is the capture for
+that: one row per S→C packet the server sent back to each probe —
+`n category name reply_id reply_len body_hex` (body capped at 128 bytes). It answers which
+C→S ids the server acts on, what it replies with, and how it rejects bad input (e.g. id 16
+`DISCMESSAGE` on a bad login, id 30 `FILESENDFAILED` on a refused file). `srvfuzz.log` keeps
+the same timeline in prose. Fold the confirmed per-id behaviour into the protocol notes
+(`../../protocol/gserv-1999.md` for gen-2, `listserver.md` for the list link).
+
 Turn confirmed findings into a plain-behaviour note under `../../protocol/` with a `[lab]`
 tag and the server build + commit, per `AGENTS.md` — never a host, IP, or binary address.
 File server bugs as issues/PRs in the matching repo.

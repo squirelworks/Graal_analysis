@@ -211,7 +211,7 @@ def deliver(host, port, case, pre_login):
     try:
         s = socket.create_connection((host, port), timeout=CANARY_TIMEOUT)
     except OSError as e:
-        return 'connect-refused', True, 'connect:%s' % e.__class__.__name__, 0
+        return 'connect-refused', True, 'connect:%s' % e.__class__.__name__, 0, []
     try:
         if pre_login is not None:
             send_raw(s, pre_login)
@@ -219,11 +219,11 @@ def deliver(host, port, case, pre_login):
         send_raw(s, case.payload)
         pkts, closed, err = recv_frames(s, RECV_TIMEOUT)
     except OSError as e:
-        return 'send-error', True, 'send:%s' % e.__class__.__name__, len(case.payload)
+        return 'send-error', True, 'send:%s' % e.__class__.__name__, len(case.payload), []
     finally:
         s.close()
     summary = 'ids=%s' % ','.join(str(p[0]) for p in pkts[:8]) if pkts else 'none'
-    return summary, closed, err or '', len(case.payload)
+    return summary, closed, err or '', len(case.payload), pkts
 
 
 def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch):
@@ -238,6 +238,13 @@ def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch)
     tsv = open(tsv_path, 'a', buffering=1)
     if new:
         tsv.write('n\tcategory\tname\tsent_len\treply\tclosed\tdecode_err\tcanary\tcanary_note\trtt_ms\n')
+    # replies.tsv is the protocol capture: the full server reply (id + body bytes) to every
+    # probe, one row per S->C packet, so a run teaches the protocol and not only crash/no-crash.
+    rtsv_path = os.path.join(out_dir, 'replies.tsv')
+    rtsv_new = not os.path.exists(rtsv_path)
+    rtsv = open(rtsv_path, 'a', buffering=1)
+    if rtsv_new:
+        rtsv.write('n\tcategory\tname\treply_id\treply_len\tbody_hex\n')
 
     def rec(*a):
         log.write('%.3f %s\n' % (time.monotonic(), ' '.join(str(x) for x in a)))
@@ -257,7 +264,9 @@ def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch)
         if c.n < resume:
             continue
         pl = pre_login if c.pre_login else None
-        summary, closed, err, slen = deliver(host, port, c, pl)
+        summary, closed, err, slen, pkts = deliver(host, port, c, pl)
+        for pid, body in pkts:  # the protocol capture: every S->C packet this probe drew
+            rtsv.write('%d\t%s\t%s\t%d\t%d\t%s\n' % (c.n, c.cat, c.name, pid, len(body), body[:128].hex()))
         time.sleep(float(os.environ.get('SRVFUZZ_SETTLE', '0.15')))  # let a crash manifest before the canary
         cstate, cnote, rtt = (canary(host, port, token) if mode == 'gen2' else canary(host, port))
         tsv.write('%d\t%s\t%s\t%d\t%s\t%s\t%s\t%s\t%s\t%d\n'
