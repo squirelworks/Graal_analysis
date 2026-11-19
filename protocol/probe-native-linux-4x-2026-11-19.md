@@ -86,11 +86,38 @@ no desync.
   gen-5 fine, it was only refused by server policy, so the `modern` range in the world template's
   `allowedversions.txt` was widened to admit `G3D11125` for that run.
 
+## 3.04 Linux
+
+3.04 (the static `graalexe`, SDL/fmod bundled) uses the same Torque engine and **gen-5** login, but
+a **listserver** flow rather than the 4.x login-server+serverwarp: its `license.graal` names the
+official list-server host on port 14922; the client queries the listserver for a server list, then
+connects to the chosen game server. [`../tools/probe/lab/run3x.sh`](../tools/probe/lab/run3x.sh)
+runs one gserver that registers with `seihai-listserver`; hostshim maps the official host to
+loopback and `GRAAL_PORTMAP` maps the client's 14922 to the listserver's client port. The game
+connection (login token `G3D03014`, gen 5) goes through gen5probe exactly as 4.x does. 3.04 ships
+its own HUD assets, so the on-screen bomb-count canary works (classified by `tools/probe/canary.py`,
+box `324 46 354 66`); the chatback NPC is not used (3.04's clientside GS1 does not reflect
+`setplayerprop #c`).
+
+3.04 matches 4.x on most probes, with **one difference**:
+
+| probe | 3.04 | 4.x | note |
+|---|:-:|:-:|---|
+| prop 77 (1-byte / 5-byte) | 1-byte lands, 5-byte loses | same | read as 1 byte |
+| **prop 78 / 79 / 80 (2-byte `s:`)** | **lose** | **land** | **defined (2-byte) on 4.x, unknown (1-byte skip) on 3.04** |
+| prop 81 (1-byte) | lands | lands | |
+| prop 82 (`str:`) | loses | loses | |
+| prop 83 (1-byte / 5-byte) | 1-byte lands, 5-byte loses | same | 1 byte (5-byte gralat is 6.x-only) |
+| prop 90 (1-byte / 3-byte) | 1-byte lands, 3-byte loses | same | 1 byte |
+| prop 3 (3-byte rupees) | lands | lands | |
+| unknown PLO 60/78/81/83/110 | ignored, alive | ignored, alive | no crash/desync |
+
+So **props 78–80 were added in the 4.x line**: on 3.04 they are unknown ids (skipped as one byte, so
+a 2-byte value desyncs the message), whereas 4.x reads them as 2-byte props. Everything else is
+identical to 4.x.
+
 ## Not yet covered (follow-ons)
 
-- **3.04 (and 3.0b/3.01/3.151) Linux.** Same engine, but `license.graal` points at a **listserver**
-  (the official list-server host on port 14922), not the 4.x login-server+serverwarp flow — needs a
-  listserver-shaped harness, and a check that the 3.x login is gen-5 (its login decoded as gen-5 in
-  a smoke run; to be confirmed on a real session).
+- **3.0b / 3.01 / 3.151 Linux** (same engine/flow as 3.04; `run3x.sh` should take them directly).
 - **6.015 Mac** in the Lion VM, and the **PPC Mac** 3.153/4.x/5.12 builds (need a Tiger/PPC
   environment, not the Intel Lion VM).
