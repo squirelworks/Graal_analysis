@@ -518,3 +518,90 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-18	linux-6.03r7	s2c	3	78	3 i3:300 c:78 c:0 c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-b	p78-c
 2026-11-18	linux-6.03r7	s2c	3	90	3 i3:300 c:90 c:0 c:2 c:70	no	yes	chat (CHATBACK, NPC x)	no case: the rest of the NPC message is dropped	np603-b	p90-c
 2026-11-18	linux-6.03r7	s2c	3	74	3 i3:300 c:74 str:x c:2 c:70	-	yes	chat (CHATBACK, NPC x)	CLASS set to a class the client does not have: the NPC script stops running (its chat report goes empty and stays empty)	np603-a, np603-b	p74-str
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	canary landed	w217-b	p3-i3
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	77	9 c:77 c:1 c:5 c:99	no	yes	none	canary lost	w217-b	p77-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	none	canary lost	w217-b	p77-i5
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	78	9 c:78 s:960 c:5 c:99	no	yes	none	canary lost	w217-b	p78-s
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	79	9 c:79 s:960 c:5 c:99	no	yes	none	canary lost	w217-b	p79-s
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	80	9 c:80 s:0 c:5 c:99	no	yes	none	canary lost	w217-b	p80-s
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	81	9 c:81 c:0 c:5 c:99	no	yes	none	canary lost	w217-b	p81-c
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	canary lost	w217-b	p82-str
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	83	9 c:83 c:1 c:5 c:99	no	yes	none	canary lost	w217-b	p83-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	none	canary lost	w217-b	p83-i5
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	90	9 c:90 c:1 c:5 c:99	no	yes	none	canary lost	w217-b	p90-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	canary lost	w217-b	p90-i3
+2026-11-18	win-2.17.1 (gen 3)	s2c	110	-	110 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w217-b	plo110-bin
+2026-11-18	win-2.17.1 (gen 3)	s2c	110	-	110 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo110-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	110	-	110 	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo110-empty
+2026-11-18	win-2.17.1 (gen 3)	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo110-text
+2026-11-18	win-2.17.1 (gen 3)	s2c	60	-	60 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w217-b	plo60-bin
+2026-11-18	win-2.17.1 (gen 3)	s2c	60	-	60 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo60-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	60	-	60 	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo60-empty
+2026-11-18	win-2.17.1 (gen 3)	s2c	60	-	60 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo60-text
+2026-11-18	win-2.17.1 (gen 3)	s2c	78	-	78 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w217-b	plo78-bin
+2026-11-18	win-2.17.1 (gen 3)	s2c	78	-	78 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo78-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	78	-	78 	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo78-empty
+2026-11-18	win-2.17.1 (gen 3)	s2c	78	-	78 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo78-text
+2026-11-18	win-2.17.1 (gen 3)	s2c	81	-	81 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w217-b	plo81-bin
+2026-11-18	win-2.17.1 (gen 3)	s2c	81	-	81 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo81-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	81	-	81 	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo81-empty
+2026-11-18	win-2.17.1 (gen 3)	s2c	81	-	81 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo81-text
+2026-11-18	win-2.17.1 (gen 3)	s2c	83	-	83 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w217-b	plo83-bin
+2026-11-18	win-2.17.1 (gen 3)	s2c	83	-	83 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo83-c1
+2026-11-18	win-2.17.1 (gen 3)	s2c	83	-	83 	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo83-empty
+2026-11-18	win-2.17.1 (gen 3)	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w217-b	plo83-text
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	canary landed	w205-b	p3-i3
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	77	9 c:77 c:1 c:5 c:99	no	yes	none	canary lost	w205-b	p77-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	none	canary lost	w205-b	p77-i5
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	78	9 c:78 s:960 c:5 c:99	no	yes	none	canary lost	w205-b	p78-s
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	79	9 c:79 s:960 c:5 c:99	no	yes	none	canary lost	w205-b	p79-s
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	80	9 c:80 s:0 c:5 c:99	no	yes	none	canary lost	w205-b	p80-s
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	81	9 c:81 c:0 c:5 c:99	no	yes	none	canary lost	w205-b	p81-c
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	canary lost	w205-b	p82-str
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	83	9 c:83 c:1 c:5 c:99	no	yes	none	canary lost	w205-b	p83-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	none	canary lost	w205-b	p83-i5
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	90	9 c:90 c:1 c:5 c:99	no	yes	none	canary lost	w205-b	p90-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	canary lost	w205-b	p90-i3
+2026-11-18	win-2.05r2 (gen 3)	s2c	110	-	110 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w205-b	plo110-bin
+2026-11-18	win-2.05r2 (gen 3)	s2c	110	-	110 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo110-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	110	-	110 	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo110-empty
+2026-11-18	win-2.05r2 (gen 3)	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo110-text
+2026-11-18	win-2.05r2 (gen 3)	s2c	60	-	60 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w205-b	plo60-bin
+2026-11-18	win-2.05r2 (gen 3)	s2c	60	-	60 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo60-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	60	-	60 	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo60-empty
+2026-11-18	win-2.05r2 (gen 3)	s2c	60	-	60 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo60-text
+2026-11-18	win-2.05r2 (gen 3)	s2c	78	-	78 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w205-b	plo78-bin
+2026-11-18	win-2.05r2 (gen 3)	s2c	78	-	78 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo78-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	78	-	78 	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo78-empty
+2026-11-18	win-2.05r2 (gen 3)	s2c	78	-	78 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo78-text
+2026-11-18	win-2.05r2 (gen 3)	s2c	81	-	81 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w205-b	plo81-bin
+2026-11-18	win-2.05r2 (gen 3)	s2c	81	-	81 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo81-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	81	-	81 	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo81-empty
+2026-11-18	win-2.05r2 (gen 3)	s2c	81	-	81 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo81-text
+2026-11-18	win-2.05r2 (gen 3)	s2c	83	-	83 hex:ff00ff00	no	yes	none	unknown PLO; canary in the same frame LOST	w205-b	plo83-bin
+2026-11-18	win-2.05r2 (gen 3)	s2c	83	-	83 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo83-c1
+2026-11-18	win-2.05r2 (gen 3)	s2c	83	-	83 	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo83-empty
+2026-11-18	win-2.05r2 (gen 3)	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	none	unknown PLO; canary in the same frame landed	w205-b	plo83-text
+2026-11-18	linux-6.03r7 x2	s2c	8	(full set)	server-made PLO_OTHERPLPROPS replayed under unknown player id 7	-	yes	none	drawn: a player the server never heard of appears from this message alone; no UDP involved	tc-c	02-fake-player-7
+2026-11-18	linux-6.03r7	s2c	8	set: full	fake player 40	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: level+join	fake player 41	-	yes	none	not drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: level+join+10 gani	fake player 42	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: level+join+18	fake player 43	-	yes	none	not drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: level+join+17	fake player 44	-	yes	none	not drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: level+join+11+35	fake player 45	-	yes	none	not drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: level+join+10+18	fake player 46	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: full-10	fake player 47	-	yes	none	not drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: full-18	fake player 48	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: full-50	fake player 49	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: full-20	fake player 50	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	set: full-78/79	fake player 51	-	yes	none	drawn	opv-a	02-variants-later
+2026-11-18	linux-6.03r7	s2c	8	77	8 s:60 77 c:0 c:16 c:56	no	yes	none	no case in the other-player stream: rest of the message dropped	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	77	8 s:61 77 i5 c:16 c:56	no	yes	none	no case in the other-player stream: rest of the message dropped	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	81	8 s:62 81 c:0 c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	82	8 s:63 82 str:x c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	83	8 s:64 83 c:0 c:16 c:56	no	yes	none	no case in the other-player stream: rest of the message dropped	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	83	8 s:65 83 i5 c:16 c:56	no	yes	none	no case in the other-player stream: rest of the message dropped	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	78	8 s:66 78 s:960 c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	90	8 s:67 90 c:0 c:16 c:56	no	yes	none	no case in the other-player stream: rest of the message dropped	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	12	8 s:68 12 str:hi c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later
+2026-11-18	linux-6.03r7	s2c	8	(control)	8 s:69  c:16 c:56	yes	yes	none	read at this width	opp-a	03-after-later

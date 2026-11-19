@@ -1,0 +1,44 @@
+# Baddy prop stream on 6.03r7: one graysoldier per test at (x, 12) in look mode; the test packet holds the tested prop,
+# then Y = 28 (prop 2) as the canary. A baddy that moved down to row 28 read the tested prop at the right width.
+waitsession 240
+wait s2c 9 90
+sleep 6
+mark baddy 1 ctl at x=6
+s2c 2 c:1 c:1 c:12 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+mark baddy 2 p10-str at x=14
+s2c 2 c:2 c:1 c:28 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+mark baddy 3 p11-c at x=22
+s2c 2 c:3 c:1 c:44 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+mark baddy 4 p12-str at x=30
+s2c 2 c:4 c:1 c:60 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+mark baddy 5 p20-c at x=38
+s2c 2 c:5 c:1 c:76 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+mark baddy 6 p5-c at x=46
+s2c 2 c:6 c:1 c:92 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+mark baddy 7 p7-c at x=54
+s2c 2 c:7 c:1 c:108 c:2 c:24 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.7
+sleep 2
+shot 01-before
+s2c 2 c:1  c:2 c:56
+sleep 0.5
+s2c 2 c:2 c:10 str:x c:2 c:56
+sleep 0.5
+s2c 2 c:3 c:11 c:0 c:2 c:56
+sleep 0.5
+s2c 2 c:4 c:12 str:x c:2 c:56
+sleep 0.5
+s2c 2 c:5 c:20 c:0 c:2 c:56
+sleep 0.5
+s2c 2 c:6 c:5 c:0 c:2 c:56
+sleep 0.5
+s2c 2 c:7 c:7 c:5 c:2 c:56
+sleep 0.5
+sleep 3
+shot 02-after

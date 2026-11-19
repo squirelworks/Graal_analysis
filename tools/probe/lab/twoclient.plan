@@ -1,0 +1,8 @@
+# Two real 6.03r7 clients in one level: what does the server send each about the other?
+# The probe acts on the client that logged in last (left window); the other client is on the right.
+waitsession 300
+wait s2c 9 90
+sleep 20
+shot 00-both
+sleep 10
+shot 01-both-later

@@ -1,0 +1,14 @@
+# Two real 6.03r7 clients. The probe client (logged in last, left window) is moved by its own X/Y props,
+# so the other client (right window) should draw it apart from itself; then a fake player id 7 is sent
+# to the probe client with the exact props the server sent it about the real other player.
+waitsession 300
+wait s2c 9 90
+sleep 15
+shot 00-both
+s2c 9 c:15 c:40 c:16 c:40
+sleep 6
+shot 01-probe-moved-to-20-20
+# {FAKE} = 2-byte player id 7 + the body of otherpl-fullprops.txt + X 50, Y 40
+s2c 8 {FAKE}
+sleep 6
+shot 02-fake-player-7

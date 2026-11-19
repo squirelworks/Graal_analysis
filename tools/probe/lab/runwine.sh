@@ -14,14 +14,20 @@ CL=$1; PLAN=$(readlink -f "$2"); RUN=$3; shift 3
 [ -f $HOME/probelab/lab.env ] && . $HOME/probelab/lab.env; G=${WINELAB:?}; R=$HOME/probelab; O=$R/out/$RUN; T=$R/tools; mkdir -p $O $R/run; cd $G
 case $CL in 420) D=94; DIR=c420; EXE=Graal4.exe; FT="@2007-07-01 12:00:00"; LOG=graal4console.log;;
             524) D=91; DIR=c524; EXE=Graal.exe; FT=""; LOG=game_console.log;;
-            222|231) D=93; DIR=c22x; EXE=Graal_$CL.exe; FT=""; LOG=graalconsole.log;; *) echo "client 420, 524, 222 or 231"; exit 1;; esac
+            222|231) D=93; DIR=c22x; EXE=Graal_$CL.exe; FT=""; LOG=graalconsole.log;;
+            217) D=96; DIR=c22x; EXE=Graal_2171.exe; FT=""; LOG=graalconsole.log;;
+            205) D=95; DIR=c205; EXE=Graal.exe; FT=""; LOG=graalconsole.log;; # needs WINELAB205 (client + GDI-renderer prefix)
+            *) echo "client 205, 217, 222, 231, 420 or 524"; exit 1;; esac
+CLASSIC=0; case $CL in 205|217|222|231) CLASSIC=1;; esac
 [ -e ns.pid ] && [ -d /proc/$(cat ns.pid) ] || sh tools/ns.sh > /dev/null
 ./k.sh "Graal4?\.exe|wine|\.exe|gen5swap|gen5probe|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null; sleep 1
 cp $PLAN $O/plan.txt
 ./E sh -c "cd $G/w && setsid nohup ./seihai-listserver --config ls.toml > $O/listserver.txt 2>&1 &"; sleep 1
-if [ $D = 93 ]; then
+if [ $CLASSIC = 1 ]; then
   P=$G/w/servers/probeclassic; rm -rf $P; cp -a $G/w/servers/gs1classic $P
   sed -i "s/^serverinterface = .*/serverinterface = $LO2/" $P/config/serveroptions.txt
+  # let 2.05 (GNW03081) and 2.17.1 (GNW22122) in as well
+  sed -i 's/^newmain = GNW07080,/newmain = GNW03081, GNW22122, GNW07080,/' $P/config/allowedversions.txt
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probeclassic > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14808 $LO2 14808 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"
 else
@@ -31,10 +37,14 @@ else
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14807 $LO2 14807 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"
 fi
 sleep 4
-C=clients/$DIR; : > $C/$LOG; rm -f $C/FILENAMECACHE.txt
+C=clients/$DIR; [ $CL = 205 ] && C=${WINELAB205:?}/c205
+: > $C/$LOG; rm -f $C/FILENAMECACHE.txt
 mkdir -p $C/levels/images/downloads; cp w/servers/gs1world/world/pics1.png $C/levels/images/downloads/pics1.png
 rm -f /tmp/.X11-unix/X$D /tmp/.X$D-lock
-./cl.sh xvfb $D; ./cl.sh start $D $DIR $EXE wpD "$FT"
+./cl.sh xvfb $D
+if [ $CL = 205 ]; then
+  ./E sh -c "cd $C && DISPLAY=:$D WINEPREFIX=$WINELAB205/wp205 WINEARCH=win32 WINEDEBUG=-all setsid nohup /usr/lib/wine/wine $EXE > $G/run/wine$D.log 2>&1 &"
+else ./cl.sh start $D $DIR $EXE wpD "$FT"; fi
 win() { DISPLAY=:$D xdotool search --onlyvisible --name . 2>/dev/null | while read w; do eval $(DISPLAY=:$D xdotool getwindowgeometry --shell $w); [ $WIDTH -ge 600 ] && echo $w; done | head -1; }
 if [ $CL = 420 ]; then
   for i in $(seq 1 90); do W=$(win); [ -n "$W" ] && break; sleep 2; done; sleep 8   # the login form; slow under VM load
@@ -43,6 +53,15 @@ if [ $CL = 420 ]; then
   c 752 472; DISPLAY=:$D xdotool key --delay 80 $B; DISPLAY=:$D xdotool type --delay 100 $ACC
   c 805 532; DISPLAY=:$D xdotool key --delay 80 $B; DISPLAY=:$D xdotool type --delay 150 $ACC
   c 818 557; DISPLAY=:$D xdotool key --delay 80 $B; DISPLAY=:$D xdotool type --delay 100 labpass; sleep 1; c 696 643
+fi
+ck() { DISPLAY=:$D xdotool mousemove $1 $2 click 1; sleep 1; }; ky() { DISPLAY=:$D xdotool key --delay 80 "$@"; }; ty() { DISPLAY=:$D xdotool type --delay 60 "$1"; }
+BK="End BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace"; AC=o$(date +%H%M%S)
+if [ $CL = 205 ]; then   # 2.05 rev 2: nickname screen, then server list with account and password
+  sleep 25; ck 657 417; ky $BK; ty $AC; ck 660 523; sleep 6
+  ck 435 521; ky $BK; ty $AC; ck 703 521; ky $BK; ty labpass; ck 300 319; sleep 1; ck 720 576; sleep 12
+elif [ $CL = 217 ]; then   # 2.17.1: account and password, then the server list
+  sleep 25; ck 505 367; ky $BK; ty $AC; ck 510 421; ky $BK; ty labpass; ck 508 575; sleep 6
+  ck 300 331; sleep 1; ck 510 575; sleep 12; ck 815 300
 fi
 if [ $D = 93 ]; then   # 2.22 / 2.31 login form, then the server list (window offsets of the 2.22 login form)
   ww() { i=0; while [ $i -lt $2 ]; do w=$(DISPLAY=:$D xdotool search --onlyvisible --name "$1" 2>/dev/null | head -1); [ -n "$w" ] && { echo $w; return 0; }; sleep 1; i=$((i+1)); done; return 1; }
