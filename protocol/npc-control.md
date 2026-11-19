@@ -153,16 +153,18 @@ third loopback) so `nc-core.plan` runs on it while the game socket is untouched.
   [NCL11012 (1.1)]`), the server sent Control-NPC 158 + 42, and `nc-core.plan` injected 45 S→C
   packets. The RC stayed alive at all 46 shots — **no crash, no disconnect** — matching the
   standalone NPCControl result. The cipher-free NCL framing decoded and re-framed intact.
-- **GServer-v2 discovery (server-side, [srv], NOT a confirmed HEAD bug):** on the lab gserver the
-  RC's `PLI_NPCSERVERQUERY` (94) drew no `PLO_NPCSERVERADDR` (79). But the captured 94 body is
-  exactly `location` and the server logged no "unknown message", so `msgPLI_NPCSERVERQUERY` ran
-  correctly — the `== "location"` theory is wrong. The silent drop is in `NPCServer::sendNCLoginToPlayer`,
-  which returns on `!isRC()` or (with `npcrights` on) `!hasRight(PLPERM_NPCCONTROL)`. `isRC()` is
-  `(m_type & PLTYPE_ANYRC)`, true for the RC game session; `PLPERM_NPCCONTROL = 0x80000` is included
-  in the test account's `ADMINRIGHTS 1048575` (0xFFFFF); `hasRight` is `adminRights & right`. So a
-  righted RC should pass the guard and get 79. The lab built seihai-gserver-v2 at **4991f9d8 (pre-#97)**;
-  current HEAD (e12ca7f) carries #97, which skips the rights check when `npcrights = false`. So the
-  observed no-79 is most likely a **stale-build artifact**, not a current-HEAD defect — a retest on
-  current HEAD is pending. Any residual bug would be a gen-2 RC not loading its staff `adminRights`
-  (unconfirmed). The lab injected 79 on the game socket to proceed; that did not affect the
-  client-fuzz result above. Cross-ref: the RC-fuzz thread's rc-fuzz note.
+- **GServer-v2 discovery (server-side, [srv], resolved — NOT a server bug):** on the lab gserver the
+  RC's `PLI_NPCSERVERQUERY` (94) drew no `PLO_NPCSERVERADDR` (79). The captured 94 body is exactly
+  `location` and the server logged no "unknown message", so `msgPLI_NPCSERVERQUERY` ran; the
+  `== "location"` theory is wrong. The silent drop is in `NPCServer::sendNCLoginToPlayer`, which
+  returns on `!isRC()` or (with `npcrights` on) `!hasRight(PLPERM_NPCCONTROL)`. `isRC()` is true for
+  the RC game session, so the guard that failed is the rights check: `hasRight` is `adminRights & right`
+  and `PLPERM_NPCCONTROL = 0x80000`. The root cause is a **lab-harness config error, not a server
+  defect**: the harness (`runrc.sh`) wrote the right as an `ADMINRIGHTS 1048575` line into the account
+  file, but `FlatFileAccountLoader` fills `adminRights` from the **`LOCALRIGHTS`** key (source: the
+  loader reads/writes `LOCALRIGHTS`; **there is no `ADMINRIGHTS` key**). The line was silently ignored,
+  the account kept `adminRights = 0`, `hasRight(NPCCONTROL)` failed, and 79 was correctly withheld.
+  Retesting on current HEAD (e12ca7f) with the right written under `LOCALRIGHTS 1048575` makes 94→79
+  succeed in ~2 ms. No seihai-gserver-v2 issue was filed; the fix is in the harness. The lab had
+  injected 79 on the game socket to proceed, which did not affect the client-fuzz result above.
+  Cross-ref: the RC-fuzz thread's rc-fuzz note.
