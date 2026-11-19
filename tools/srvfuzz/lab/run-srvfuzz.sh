@@ -1,8 +1,8 @@
 #!/bin/sh
 # run-srvfuzz.sh: one C->S fuzz sweep against an original Graal server, lab VM only.
 #
-# Loopback only (AGENTS.md). Start the target server yourself, bound to 127.0.0.1 on a
-# lab port, inside the VM; this script points srvfuzz at it, collects output, and
+# Loopback only (AGENTS.md). Start the target server yourself, bound to the loopback
+# address on a lab port inside the VM; this script points srvfuzz at it, collects output, and
 # relaunches the target if a case takes it down so the sweep finishes.
 #
 # This is a TEMPLATE: the server binary, its working directory, the port and the login

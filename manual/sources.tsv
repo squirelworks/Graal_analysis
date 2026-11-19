@@ -834,3 +834,5 @@ protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login:
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
 live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.7, §4.1.8), combat checks (§4.3.8), 2.05r2 drop control (§4.5.5), 4.x-6.x action list (§4.11.14); open points in App. E
+protocol/server-fuzz-c2s-targets.md	excluded			C→S server-fuzz targets, harness pointer and per-build run status; the cipher-free framing/login facts it restates are already cited from gserv-1999.md and listserver.md, and no real-binary run has happened yet (no new behaviour)
+tools/srvfuzz/README.md	excluded			repository tooling for the notes (the standalone C→S server fuzzer behind protocol/server-fuzz-c2s-targets.md), not Graal
