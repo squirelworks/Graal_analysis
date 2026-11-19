@@ -111,8 +111,8 @@ def gen2_login_cases(token):
     yield Case('login', 'type-only', fr(bytes([32])), False)
     # truncated: type + partial token.
     yield Case('login', 'trunc-token', fr(bytes([32]) + b'GSERV'), False)
-    # two login lines in one frame.
-    yield Case('login', 'double-login', fr(login_gen2(token, 'guest', 'guest') + b'\n' + login_gen2(token, 'guest', 'guest')), False)
+    # two login lines in one frame (each login_gen2 already ends in '\n').
+    yield Case('login', 'double-login', fr(login_gen2(token, 'guest', 'guest') + login_gen2(token, 'guest', 'guest')), False)
     # a non-login id as the very first packet (login expected first).
     yield Case('login', 'first-packet-not-login', fr(encode('2 c:5 c:11')), False)
 

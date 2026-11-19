@@ -123,16 +123,18 @@ def recv_frames(sock, timeout=RECV_TIMEOUT):
 # ------------------------------------------------------------------------ login build
 
 def login_gen2(token, account, password, ptype=0):
-    """Build the gen-2 login line body (no trailing newline added by the frame layer here).
+    """Build the gen-2 login line, terminated by '\\n'.
 
     Shape (../../protocol/gserv-1999.md): chr(type+32), 'GSERVnnn' (8 bytes),
     chr(len(acct)+32)+acct, chr(len(pass)+32)+pass. Player type is 0; the server reads 1 as RC.
+    The trailing newline matters: a real 1.x GServer reads a line and will not reply to a login
+    that never ends (confirmed on GServer 1.28b2, lab 2026-11-19), so the canary must include it.
     """
     acct = account.encode('latin1'); pw = password.encode('latin1')
     tok = token.encode('latin1')
     return (bytes([(ptype + 32) & 0xff]) + tok
             + bytes([(len(acct) + 32) & 0xff]) + acct
-            + bytes([(len(pw) + 32) & 0xff]) + pw)
+            + bytes([(len(pw) + 32) & 0xff]) + pw + b'\n')
 
 
 def list_login_frames(account='guest', password='guest', version='newmain'):

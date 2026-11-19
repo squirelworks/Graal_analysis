@@ -33,7 +33,7 @@ def login_reply():
 
 
 def serve_one(c):
-    buf = b''; logged_in = False
+    buf = b''; pending = b''; logged_in = False  # pending = bytes before the next '\n' (a real line reader)
     c.settimeout(5.0)
     try:
         while True:
@@ -54,7 +54,10 @@ def serve_one(c):
                     body = dco.decompress(fr, INFLATE_CAP)
                 except Exception:
                     continue  # a real server may error or drop; the mock just ignores the frame
-                for line in body.split(b'\n'):
+                # Only act on complete, newline-terminated lines, as a real GServer does:
+                # a login with no trailing '\n' is read but never answered.
+                *lines, pending = (pending + body).split(b'\n')
+                for line in lines:
                     if not line:
                         continue
                     pid = line[0] - 32
