@@ -1,0 +1,163 @@
+# keysweep.py key list: NAME<TAB>ACTION[<TAB>RESET]; see keysweep.py
+F1	key F1
+F2	key F2
+F3	key F3
+F4	key F4
+F5	key F5
+F6	key F6
+F7	key F7
+F8	key F8
+F9	key F9
+F10	key F10
+F11	key F11
+F12	key F12
+Escape	key Escape
+`	key grave
+1	key 1
+2	key 2
+3	key 3
+4	key 4
+5	key 5
+6	key 6
+7	key 7
+8	key 8
+9	key 9
+0	key 0
+-	key minus
+=	key equal
+BackSpace	key BackSpace
+Tab	key Tab	again
+A	key a
+B	key b
+C	key c
+D	key d
+E	key e
+F	key f
+G	key g
+H	key h
+I	key i
+J	key j
+K	key k
+L	key l
+M	key m	again
+N	key n
+O	key o
+P	key p	again
+Q	key q	again
+R	key r
+S	key s
+T	key t
+U	key u
+V	key v
+W	key w
+X	key x
+Y	key y
+Z	key z
+[	key bracketleft
+]	key bracketright
+\	key backslash
+;	key semicolon
+'	key apostrophe
+,	key comma
+.	key period
+/	key slash
+Return	key Return	again
+Space	key space
+Shift	key Shift_L
+Ctrl	key Control_L
+Alt	key Alt_L
+Insert	key Insert
+Delete	key Delete
+Home	key Home
+End	key End
+Prior	key Prior
+Next	key Next
+Left	hold Left 0.4	undo hold Right 0.4
+Right	hold Right 0.4	undo hold Left 0.4
+Up	hold Up 0.4	undo hold Down 0.4
+Down	hold Down 0.4	undo hold Up 0.4
+KP_0	key KP_0	again
+KP_1	key KP_1
+KP_2	key KP_2
+KP_3	key KP_3
+KP_4	key KP_4
+KP_5	key KP_5
+KP_6	key KP_6
+KP_7	key KP_7
+KP_8	key KP_8
+KP_9	key KP_9
+KP_Add	key KP_Add
+KP_Subtract	key KP_Subtract
+KP_Multiply	key KP_Multiply
+KP_Divide	key KP_Divide
+KP_Decimal	key KP_Decimal
+KP_Enter	key KP_Enter
+Pause	key Pause	again
+Print	key Print
+Scroll_Lock	key Scroll_Lock	again
+Caps_Lock	key Caps_Lock	again
+Num_Lock	key Num_Lock	again
+Ctrl+A	key ctrl+a
+Ctrl+B	key ctrl+b
+Ctrl+C	key ctrl+c
+Ctrl+D	key ctrl+d
+Ctrl+E	key ctrl+e
+Ctrl+F	key ctrl+f
+Ctrl+G	key ctrl+g
+Ctrl+H	key ctrl+h
+Ctrl+I	key ctrl+i
+Ctrl+J	key ctrl+j
+Ctrl+K	key ctrl+k
+Ctrl+L	key ctrl+l
+Ctrl+M	key ctrl+m
+Ctrl+N	key ctrl+n
+Ctrl+O	key ctrl+o
+Ctrl+P	key ctrl+p
+Ctrl+Q	key ctrl+q
+Ctrl+R	key ctrl+r
+Ctrl+S	key ctrl+s
+Ctrl+T	key ctrl+t
+Ctrl+U	key ctrl+u
+Ctrl+V	key ctrl+v
+Ctrl+W	key ctrl+w
+Ctrl+X	key ctrl+x
+Ctrl+Y	key ctrl+y
+Ctrl+Z	key ctrl+z
+Alt+0	key alt+0
+Alt+1	key alt+1
+Alt+2	key alt+2
+Alt+3	key alt+3
+Alt+4	key alt+4
+Alt+5	key alt+5
+Alt+6	key alt+6
+Alt+7	key alt+7
+Alt+8	key alt+8
+Alt+9	key alt+9
+Alt+Return	key alt+Return
+Shift+Left	hold shift+Left 0.4	undo hold Right 0.4
+Shift+Right	hold shift+Right 0.4	undo hold Left 0.4
+Shift+Up	hold shift+Up 0.4	undo hold Down 0.4
+Shift+Down	hold shift+Down 0.4	undo hold Up 0.4
+Ctrl+Left	hold ctrl+Left 0.4	undo hold Right 0.4
+Ctrl+Right	hold ctrl+Right 0.4	undo hold Left 0.4
+Ctrl+Up	hold ctrl+Up 0.4	undo hold Down 0.4
+Ctrl+Down	hold ctrl+Down 0.4	undo hold Up 0.4
+LeftClick player	click 1 player
+RightClick player	click 3 player
+MiddleClick player	click 2 player
+DoubleClick player	dclick 1 player
+LeftClick ground	click 1 ground
+RightClick ground	click 3 ground
+MiddleClick ground	click 2 ground
+DoubleClick ground	dclick 1 ground
+LeftClick npc	click 1 npc
+RightClick npc	click 3 npc
+MiddleClick npc	click 2 npc
+DoubleClick npc	dclick 1 npc
+LeftClick hud	click 1 hud
+RightClick hud	click 3 hud
+MiddleClick hud	click 2 hud
+DoubleClick hud	dclick 1 hud
+WheelUp	wheel up ground
+WheelDown	wheel down ground
+Alt+F4	key alt+F4

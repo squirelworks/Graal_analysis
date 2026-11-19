@@ -22,6 +22,8 @@ GraalOnline server, and nothing here helps reach one.
 | `lab/run603.sh` | One run of the native Linux 6.03r7 client: login gserver that serverwarps to a world gserver behind `gen5probe.py`, own Xvfb, no window manager, everything in `bwrap --unshare-net --unshare-pid`. Screenshots go through the plan's `shot` steps. |
 | `lab/runwine.sh` | One run of a Windows client under Wine in the same VM: 2.05 rev 2 and 2.17.1 (gen 3), 2.22, 2.31 (gen 5, login form and server list), 4.20r8 (clock held at 2007-07-01, login form) or 5.24r4. It reuses the gs1 lab tree (Wine prefix, clients, worlds and its own network namespace). |
 | `lab/*.plan` | Probe plans. `prop83.plan` is the pilot. `wine-core.plan` runs the same core probes on every client. `widths.plan` checks each self prop 0–90 at its documented width. `pli-sweep*.plan` sends every client→server id to our gserver. `bytes2x.plan` tests raw bytes inside a message. `readback83.plan` reads prop 83 back through a level script. |
+| `lab/keysweep.sh`, `lab/keysweep.py`, `lab/keysweep.keys` | The key and mouse sweep (see below): presses every key of the list on one client, one at a time, and records windows, screen change, packets and what a key-logging script saw. `keysweep_tsv.py` turns the raw rows into the derived table. |
+| `lab/keylog-gs1.npc`, `lab/keylog.gs2`, `lab/keylog-gs2.bc.hex`, `lab/keylog-stub.npc` | The sweep's key loggers: a GS1 level NPC for 2.x, and for 4.x–6.x a GS2 `onKeyPressed` script compiled to bytecode by Seihai's own compiler, delivered over a stub NPC through the proxy. |
 | `canary.py` | Classifies each shot's bomb count against two reference shots (canary lost: count 1; canary landed: count 99). Pass the bomb-count box for the client's HUD. |
 | `xwd2png.py` | Converts the `xwd` screenshots. |
 
@@ -84,6 +86,35 @@ On some runs the 6.03r7 client never draws the tile layer, and the screen stays 
 digits then draw over each other, which breaks the canary. `run603.sh` waits until the
 session is up, checks a shot of the game area, and starts the whole run again if it is black
 (up to four tries, recorded in `tries.txt`). `NOBLACK=0` turns this off.
+
+## Key and mouse sweep
+
+`lab/keysweep.sh CLIENT SWEEP` runs every entry of `lab/keysweep.keys` (F1–F12, Escape, the number
+row, every letter and punctuation key, Return, Space, the modifiers alone, the edit block, arrows,
+keypad, lock keys, Ctrl+letters, Alt+digits, Alt+Return, Shift/Ctrl+arrows, mouse buttons and double
+clicks on the player, the ground, an NPC and the HUD, the wheel, and Alt+F4 last) on one client. For
+each one `keysweep.py` records the visible windows and a root screen grab, marks the proxy log, sends
+the key to the game window with `xdotool`, waits 1.5 s, and records windows, screen difference
+(changed pixels and bounding box), whether the client is alive and still in its session, and the
+client→server packets between the marks. It then resets: new windows get Escape, then `n`; pause,
+item-list, map, chat and lock keys are pressed again; arrows are undone with the opposite arrow. When
+the client died, lost its session or kept a window open, the next run logs in again and goes on from
+the next key (a key that fails three runs in a row is skipped).
+
+`KEYLOG=1` adds a key logger that copies each key event and the `keydown(0..10)` bits into the
+player's chat, so they arrive in the proxy log as chat props. 2.x clients take the GS1 text NPC
+`keylog-gs1.npc` (`keypressed`, `#p(0..2)`). 4.x–6.x clients take bytecode, and the lab gserver's
+GS1 lowering has no `keypressed`, so `keylog-stub.npc` goes in the level and `keysweep.py
+--bytecode` replaces its script through the proxy (PLO_RAWDATA + PLO_NPCBYTECODE) with
+`keylog-gs2.bc.hex`, which is `keylog.gs2` compiled by seihai-core's GS2 compiler. Run each client
+once with and once without the logger (`KEYLOG=0`); `keysweep_tsv.py ROWS --clean ROWS2` takes the
+screen and window effects from the clean run, so the logger's chat bubble does not count as an effect.
+
+Lab inputs: `PROBE_ROOT` names the lab folder (default `$HOME/probelab`), so a sweep can run in its own
+folder next to other probe runs; `DISP` picks the display. For the Wine clients `WINELAB` must be a
+private copy of the Wine lab tree (marked with a `.keysweep-ok` file), because the sweep rewrites its
+start levels before each run. Raw rows, logs and screen grabs stay in `$PROBE_ROOT/out/keysweep-*`;
+only the derived tables go in the repo (`protocol/keysweep/`).
 
 ## Limits
 

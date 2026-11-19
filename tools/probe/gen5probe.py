@@ -376,8 +376,8 @@ def control(probe, path, rec):
         if os.path.exists(path):
             os.unlink(path)
         L = socket.socket(socket.AF_UNIX); L.bind(path); L.listen(4)
-    while True:
-        c, _ = L.accept(); f = c.makefile('rwb')
+    def serve(c):  # one thread per connection, so an observer can talk to the proxy while a plan runs
+        f = c.makefile('rwb')
         for line in f:
             try:
                 reply = probe.command(line.decode('latin1'))
@@ -385,6 +385,9 @@ def control(probe, path, rec):
                 reply = 'err %r' % e
             f.write((reply + '\n').encode()); f.flush()
         c.close()
+    while True:
+        c, _ = L.accept()
+        threading.Thread(target=serve, args=(c,), daemon=True).start()
 
 
 def main():

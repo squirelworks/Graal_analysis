@@ -10,13 +10,15 @@ set -u
 #   WORLD_TEMPLATE  a gs2emu server folder copied for the login and world servers
 #   GS2EMU        optional other gserver binary for the world only (CHATBACK needs one that sends level NPC bytecode)
 #   PICS1         the lab tile sheet               LAB_DNS      the lab's loopback DNS responder script
-[ -f $HOME/probelab/lab.env ] && . $HOME/probelab/lab.env
+# PROBE_ROOT: the lab folder (default $HOME/probelab); give each concurrent thread its own
+PROBE_ROOT=${PROBE_ROOT:-$HOME/probelab}
+[ -f $PROBE_ROOT/lab.env ] && . $PROBE_ROOT/lab.env
 : ${CLIENT_TREE:?} ${CLIENT_BIN:?} ${GSERVER_DIR:?} ${WORLD_TEMPLATE:?} ${LAB_DNS:?}
 # the loopback address and a second loopback address (no dotted literals in this repo)
 LO1=$(printf '%d.%d.%d.%d' 127 0 0 1); LO2=$(printf '%d.%d.%d.%d' 127 0 0 2)
 PLAN=$(readlink -f "$1"); RUN=$2; shift 2
-[ -z "${PROBE_TRY:-}" ] && rm -f $HOME/probelab/out/$RUN.tries
-R=$HOME/probelab; O=$R/out/$RUN; T=$R/tools; DISP=${DISP:-87}
+[ -z "${PROBE_TRY:-}" ] && rm -f $PROBE_ROOT/out/$RUN.tries
+R=$PROBE_ROOT; O=$R/out/$RUN; T=$R/tools; DISP=${DISP:-87}
 rm -rf $O $R/client; mkdir -p $O $R/run
 cp -a $CLIENT_TREE $R/client
 cp $CLIENT_BIN $R/client/Graal
@@ -54,7 +56,9 @@ rm -f $R/run/npc-readback.txt $R/run/npc-chatback.txt
 [ "${CHATBACK:-0}" = 1 ] && printf 'NPC - 30 27\nif (created||timeout) {\n  setplayerprop #c,b#v(playerbombs) r#v(playerrupees) x#v(x);\n  timeout = 0.3;\n}\nNPCEND\n' > $R/run/npc-chatback.txt
 # put those NPCs right after the board (the level's last block is a SIGN with no SIGNEND, which would swallow them)
 SL=$W/servers/probe/world/issho_a.nw; rm -f $R/run/npc-add.txt
-for f in readback chatback; do [ -f $R/run/npc-$f.txt ] && cat $R/run/npc-$f.txt >> $R/run/npc-add.txt && rm $R/run/npc-$f.txt; done
+# EXTRANPC=FILE: more level NPC blocks (GS1 text) put in the start level the same way (e.g. a key logger)
+[ -n "${EXTRANPC:-}" ] && cp "$EXTRANPC" $R/run/npc-extra.txt
+for f in readback chatback extra; do [ -f $R/run/npc-$f.txt ] && cat $R/run/npc-$f.txt >> $R/run/npc-add.txt && rm $R/run/npc-$f.txt; done
 [ -f $R/run/npc-add.txt ] && awk -v F=$R/run/npc-add.txt '{print} /^BOARD 0 63 /{while ((getline l < F) > 0) print l}' $SL > $SL.new && mv $SL.new $SL
 A="$W/servers/probe/accounts/(defaultaccount).txt"
 a() { sed -i "s|^$1 .*|$1 $2|" "$A"; }

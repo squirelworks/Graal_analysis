@@ -1,0 +1,5 @@
+NPC keylog.png 40 32
+if (created) {
+  this.k = 1;
+}
+NPCEND
