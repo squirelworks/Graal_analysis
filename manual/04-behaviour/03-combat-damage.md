@@ -273,6 +273,15 @@ A 2026-11 static pass compared the baddy, combat and tile code of 35 Windows bui
 | death | dead-bit threshold 28 and timer cap 30 in every build; respawn AP bands (3 / 5 / max hearts at under 20 / under 40 / 40+ AP) from 1.41 rev 1 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
 | sword-clash spark: five ticks of `arrays.dat` array 21 | 1.28 beta 2 to 2.31 | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-clash-spark) |
 
+Lab runs since the static pass checked three of these rows on real clients [lab] (live-runs/sword-edge-2026-11-18/README.md); [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies).
+
+| Check | Result | Source |
+| --- | --- | --- |
+| sideways sword edge | two real 1.35 clients: a victim exactly 2 tiles to the side is hit on both sides; 2.5 tiles misses | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
+| no client drop roll from 2.0 | 2.05 rev 2 offline: 17 archer and 8 soldier kills, no drop; a 1.39 control on the same levels dropped 9 times in 12 archer kills (8 darts, 1 green gralat), as the 75 % archer roll predicts | [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies) |
+| 1.21 kill reward | 12 of 12 archer kills raised the gralat count by exactly 1 in the frame of death, with no darts or hearts, which does not fit the 0–99 roll; whether it is a dropped gralat picked up at once or a direct reward is open | [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies) |
+| sword-clash spark | on 1.39, three swings into a rock wall showed the blade from about 25 to 240 ms after key-down and no separate spark | [lab] (live-runs/open-issues-2026-11-19/README.md#2-443-the-sword-spark) |
+
 Open: → App. E#324.
 
 ## 4.3.9 Spin and lay on the wire (2.05 rev 2, 2.22)

@@ -1,386 +1,1353 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-Each entry quotes the claims, names their sources, and says what would settle it. No entry is resolved by guess (→ §0.4). Entries are numbered in the order they were added; the number never changes.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves.
 
-> Status: draft. Seeded from each part as it was written, and from the 0.0.2 disagreements chapter and CONSOLIDATED.md (E#600–608). Id ranges: E#1–99 front matter, Part I and Part II; E#100s Part III; E#200s Part VIII; E#300s Part IV; E#400s Parts V–VII; E#500s Parts IX–X; E#600s Part XI and the seed.
+## E.0 How to read this appendix
+
+This appendix is where the manual keeps everything it does not know. The other Parts state what was measured or read and mark the rest `unmeasured` or `disputed → App. E#n`; each such cell points here (→ §0.4).
+Entries are grouped by subject in the order of the Parts (→ §E.2 to §E.10), and the questions that were answered are kept together at the end so the reasoning that settled them stays on record (→ §E.11).
+An entry number is permanent. The hundreds give the Part where the question was first raised: E#1–99 front matter, Part I and Part II; E#100s Part III; E#200s Part VIII; E#300s Part IV; E#400s Parts V to VII; E#500s Parts IX and X; E#600s Part XI and the seed taken from CONSOLIDATED.md [doc] (CONSOLIDATED.md).
+
+Each entry has the same parts, in this order:
+
+- **Question.** One sentence that says what is unknown and why it matters. (→ §0.3)
+- **Evidence.** The claims on record, each with its source. When two notes disagree, both are quoted as Claim A and Claim B. (→ §0.3)
+- **Tried.** What has already been done to answer it, so the same step is not repeated blind. (→ §0.3)
+- **Best guess.** The reading the evidence favours today, tagged `[inf]`. A best guess is a working assumption for a reader who must build something now. It is never used to fill a table cell elsewhere in the manual, which still says `unmeasured` or `disputed` (→ §0.4).
+- **Settles it.** The specific read, lab run or capture that would answer the question, with the client and setup it needs. (→ §0.3)
+- **Outlook.** One of the five words in the table below. (→ §0.3)
+
+The outlook says what stands between the question and its answer. It is the most useful single word for deciding what to work on next:
+
+| Outlook | Meaning | Source |
+| --- | --- | --- |
+| **Lab** | A loopback lab run with clients and servers already held would answer it. Nothing else is missing | [doc] (AGENTS.md#labs) |
+| **Read** | A static read of a binary already held would answer it, possibly followed by one confirming lab run | [doc] (AGENTS.md#decompile-and-pyreborn-material-stays-here) |
+| **Owner** | The only clean answer touches a public server or service, so it waits for the owner's written permission | [doc] (AGENTS.md#labs) |
+| **Missing** | It needs a binary, app, host or document that is not held. It becomes Lab or Read if that material turns up | [doc] (client-internals/build-catalogue.md) |
+| **Maybe never** | The evidence that would settle it probably no longer exists (lost builds, the official servers' own source and data). The entry is kept so that a later find can be recognised | [inf] (client-internals/build-catalogue.md) |
+
+## E.1 The unknowns at a glance
+
+The table lists every open entry with its outlook and a one-line best guess, so a reader can choose work without reading each entry. Settled entries are listed in → §E.11, and the closing discussion of what may stay unknown is in → §E.12.
+
+| Entry | Question | Outlook | Best guess | Source |
+| --- | --- | --- | --- | --- |
+| E#1 | Compiler of the early Delphi builds | Read | a Delphi-2-level compiler of 1997, such as C++Builder 1's | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| E#2 | Generation-5 step count of 5.00r7 | Read | the same round-down rule as 5.12 | [inf] (protocol/gen5-cipher-step-5x.md) |
+| E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
+| E#4 | Whether 5.00r7 sends id 11 | Lab | yes, from the carried-object throw | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
+| E#6 | Ids 14 and 22 in 1.21 and 1.32 | Read | the per-build profile is right and the range summary rounded over the gaps | [inf] (client-internals/version-profiles/v121-v132.toml) |
+| E#9 | Uploads from game clients | Lab | the late clients' file browser is a staff tool that servers accept only from staff accounts | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| E#10 | When downloads moved to `maps` | Read | 2.17 or shortly before | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
+| E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| E#13 | Gmap neighbour overwrite on classic logins | Lab | the overwrite happens with stock GServer-v2 | [inf] (protocol/gmap-adjacent-level-target.md#short-answer) |
+| E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| E#15 | Graal 2002 and 1.40 exact-input behaviour | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+| E#16 | Classic+ 1.13 login wire layout | Read | a desktop-style login body inside a mobile frame | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| E#17 | The 6.1.1.3 login packet after the RC4 switch | Lab | a 6.x login body under RC4 | [inf] (protocol/v6113-login-lab-method.md) |
+| E#18 | Mobile clients' outer framing and cipher | Read | the desktop generation-5 frame | [inf] (client-internals/android-login-token-boundary.md) |
+| E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
+| E#20 | 2.31's extra step on `PLO_SETACTIVELEVEL` (156) | Read | it re-binds the gmap neighbour state to the new active level | [inf] (protocol/unknowns-ledger.md) |
+| E#21 | Whether a compiled gani script (134) runs | Lab | yes, on 4.x to 6.x, like a class body | [inf] (protocol/probe-targets-2026-11-18.md) |
+| E#22 | What `DEFAULT*` lines in `PLO_LOADGANI` (195) do | Lab | nothing in play: they are the gani editor's preview images | [inf] (protocol/probe-targets-2026-11-18.md) |
+| E#23 | What prop 81 changes in the player list | Lab | the folder or group a player is listed under | [inf] (protocol/unknowns-ledger.md) |
+| E#24 | Baddy props 11 and up on 6.03r7 | Lab | an unknown id ends the message, as for NPC props | [inf] (protocol/unknowns-ledger.md) |
+| E#25 | Why 2.22 checks 13 files with a full folder and 17 with an empty one | Lab | four of the start files are checked only when missing | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| E#100 | Whether a placed bush blocks | Lab | yes, like a bush drawn into the board; the inspected arrays are not the collision path | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| E#102 | Tile id to pixel position | Read | Claim B (eight blocks of 512 ids) | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
+| E#103 | 2.22 signature verifier variants | Read | a cracked or debug variant, not an official one | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+| E#200 | GS1 condition truth outside 2.05r2 | Lab | the same zero/non-zero rule, with build-specific parser quirks | [inf] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
+| E#201 | Runtime meaning of four 2.05 argument signatures | Lab | equivalent at run time | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
+| E#202 | Which message carries GS2 bytecode on 4.x | Lab | 197 names the script and 140 carries the body, as on 6.x | [inf] (formats/linux-6x-class-cache.md) |
+| E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is a reserved empty field | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| E#204 | What writing to GS1 object members does | Lab | writes go to the same fields the getters read | [inf] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
+| E#206 | `move` caller side in 2.05 | Read | one queued step per frame | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
+| E#208 | Whether 3.153 uses OpenGS1's layout | Read | no | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| E#209 | GS2 VM details left open by the per-build read | Read | opcode 54 pops two values in 5.00r7 too | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+| E#212 | Whether a function-only image skips the top-level pass | Lab | yes, and other images re-run top level before each event | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+| E#213 | How GS2 text bytes draw on screen | Lab | through the Windows code page, so Latin-1 on Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
+| E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+| E#215 | When GS2-only names arrived, and what a missing name does | Read | most by 4.20r8; a missing name logs an error and the script goes on | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| E#300 | Tick timing of three early builds | Lab | 50 ms, as later builds | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| E#302 | Walking speed factors 0.4 and 0.8 | Lab | 0.8 while carrying a heavy object, 0.4 in water or a slowing state | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| E#303 | Two lists in the blocked-point test | Read | other players and baddies | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
+| E#306 | Flag that picks `lift2.wav` | Read | the heavy-object flag | [inf] (client-internals/ledges-push-pull.md#open) |
+| E#307 | 1.39 movement tables | Read | the same tables as 1st Graal | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| E#308 | 2.22 link probe offsets and `PLO_BIGMAP` | Read | the same as 2.05 | [inf] (protocol/link-probe-bigmap-status.md) |
+| E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
+| E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
+| E#311 | Blast hit zone and full-heart hits | Read | two overlapping blast pieces hitting in one tick | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
+| E#312 | The last byte of a shot | Read | a type field whose low values mean harmless or friendly | [inf] (client-internals/damage-sources.md#shot-19) |
+| E#313 | Arrows and fireballs through walls | Lab | they pass walls in 2.05, as the code reads | [inf] (client-internals/damage-sources.md#open) |
+| E#314 | Gmap entry and the respawn save | Lab | entering a gmap from outside saves the respawn point | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| E#315 | Level-entry save in the 2.1 test builds | Read | every entry saves | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| E#316 | Glove power steps | Lab | Claim B, read from the lift table | [inf] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
+| E#317 | 1.x pickup box and item draw order | Read | items draw under players | [inf] (client-internals/item-drops.md#open) |
+| E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
+| E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
+| E#321 | The 2.31 window blacklist | Read | known cheat-tool window titles; the reaction is a quit or a report | [inf] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| E#322 | How others see a key emote | Lab | a server script re-sends the image | [inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| E#323 | 2.22 level-object routines | Read | as in 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
+| E#327 | Chest art and menu skin in the 6.03r7 item run | Lab | both come from files the lab world lacks | [inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
+| E#328 | What drives 2.22's tick: a multimedia timer or the idle handler | Read | a timer created in code, which a form scan does not see | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
+| E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
+| E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| E#405 | Login-type pairing of `GSERV025` | Read | narrowed to RC2 2.05, RC3 and the 2006 Linux RC | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
+| E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+| E#420 | Flag and chest counts in the RC props tail | Lab | flags first, then chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| E#421 | The last byte of `RC_PLAYERPROPSSET2` | Read | a "save now" or "notify player" flag | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
+| E#423 | The 1999 servers' open rules | Lab | the 1.3 test client works against them | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+| E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| E#425 | Standalone NC flag-action recipient | Read | the NC server, as a flag-list write | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+| E#501 | Class CRC sent by 4.04r2 | Lab | `0xFFFFFFFF`, nothing computed | [inf] (torque/wire-by-build.md#the-handshake-per-build) |
+| E#502 | Whether 4.04r2 loads `.mis` files | Read | not reachable outside the network path | [inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| E#503 | Whether 4.04r2 reads `.dso` | Read | the reader is present but unreachable | [inf] (torque/404r2-resource-filter.md#download-filter) |
+| E#504 | The `GR3DV003` beta at run time | Lab | it runs with the public Genesis3D DLL | [inf] (graal3d/beta3-genesis.md#open-points) |
+| E#601 | Link arrival offsets | Lab | the client evaluates them | [inf] (tools/level-editor/222-reference.md#16-open) |
+| E#602 | Code width of `Z3-V1.02` | Read | 11 bits, read only by the 1998 Java games | [inf] (formats/level-binary.md#z3-v1-differences) |
+| E#603 | Whole tiles and fractions in level records | Read | link boxes are fractional, record positions whole | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+| E#605 | Listserver frames in two vocabularies | Lab | one observation in two vocabularies | [inf] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
+| E#606 | `HEIGHTS` in gmaps beyond the read builds | Read | all 4.x and later readers accept both forms | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
+| E#607 | Leftover lines in the protocol cheat sheet | Lab | every leftover line is wrong | [inf] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
+| E#608 | How many `arrays.dat` lists make a tile passable | Read | two lists in the old-mode path | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| E#609 | macOS archive labels and 3.153 | Missing | the v3-labelled Mac images are 3.153 | [inf] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
+| E#613 | 2.22 remote PM roster | Read | a request for the server's player list, answered with the list message | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
+| E#614 | Tiledef type 4 | Lab | a draw-only overlay at a pixel offset | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| E#617 | Whether 1.41 rev 1 loads `.nw` levels online | Lab | yes for `.nw`; a gmap is ignored | [inf] (client-internals/141r1-nw-gmap-status.md) |
+| E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | yes, on a guest with working OpenGL | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | Lab | only as a fallback when `license.graal` is missing | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+| E#620 | What the 1.41 rev 1 program-check handler does | Read | shows a message and stops the client | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+
+## E.2 Builds, identity and protection
+
+These questions are about which build is which, who built it and how it protects itself. They matter because every other Part keys its rows to an exact build (→ §1.1), and a wrong identity moves a finding to the wrong row [doc] (client-internals/build-catalogue.md).
 
 ### E#1 Compiler of the early Delphi builds
 
-Two clues about the compiler of the earliest builds point to different Delphi versions. The question stays open until their runtime library is matched against candidates [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
+**Question.** Which compiler built 1st Graal, 3rd Graal to 1.1.9 and 1.21. It matters for reading their runtime library correctly, not for their behaviour [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A | 1st Graal, 3rd Graal to 1.1.9 and 1.21 use the Delphi 2 class-metadata layout (self pointer 64, class name 32 bytes before the VMT) | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Claim B | the same builds carry the RTL copyright "1983,97 Borland", a year late for Delphi 2 | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Open | which compiler built them; a Delphi-2-level compiler shipped in 1997, such as C++Builder 1's, would fit both, but it has not been checked | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Settles it | matching the RTL of these builds against C++Builder 1 and Delphi 2 runtime libraries | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-
-### E#2 Generation-5 step count of 5.12 (and unread 5.00r7)
-
-**Status (2026-11-16):** Claim A is the working rule for **Windows 5.12** (lab proxy + Seihai `gen5_round_down` + stress). Claim B is not treated as a competing decoder once short compressed frames are considered. **Windows 5.00r7** is still unread. Canonical write-up: [protocol/gen5-cipher-step-5x.md](../protocol/gen5-cipher-step-5x.md) [bin][wire] (protocol/gen5-cipher-step-5x.md)
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A (preferred for 5.12) | 5.12's frame decoder steps the iterator `len / 4` times, rounded down, for zlib and bz2 frames (capped at 4), and rounds up for raw frames; it encodes the same way; a proxy that re-encodes with round-down stepping lets 5.12 play against GServer-v2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count; protocol/gen5-cipher-step-5x.md) |
-| Claim B | every later frame of ten 5.x and 6.x Windows captures, 5.12 among them, decodes with one step per group present, rounded up | [cap] (protocol/v5v6-windows-unpacked.md) |
-| Open (5.12) | a published short compressed 5.12 frame that proves Claim B cannot decode it | [inf] (protocol/gen5-cipher-step-5x.md) |
-| Open (5.00r7) | static step rule for short compressed frames both ways; do not assume 5.12's round-down | [inf] (protocol/gen5-cipher-step-5x.md) |
-| Settles 5.00r7 | a binary read of the 5.00r7 codec, or a discriminating capture decoded both ways | [inf] (protocol/gen5-cipher-step-5x.md) |
-
-Separately, four exact Mac PowerPC receivers use whole-group compressed advancement and partial-group raw advancement. That agrees with Claim A's compressed rule and does not close Windows 5.00r7. [bin] (protocol/macos-ppc-receive-framing.md)
-
-### E#3 Public `Login` server session (5.x, 6.x)
-
-Nobody has recorded what a public 5.x or 6.x `Login` server sends. Each row is one thing still unobserved; settling them needs the owner's permission [doc] (protocol/login-session-known.md#still-unobserved).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Unobserved | the bytes a public 5.x or 6.x `Login` server sends, including the payload of S→C 190 | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | the GUI script text for the server list, the account screens and the `ChatBar` control | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | the file list inside that server's `basepackage.gupd`, and any later update package | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | the backdrop level that server chooses | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | the 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client uses | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Settles it | a capture of a real `Login` session, which needs the owner's written permission because it touches a public server | [doc] (AGENTS.md#labs) |
-
-### E#4 Whether 5.00r7 sends id 11
-
-Two lists of the ids 5.00r7 sends disagree on id 11. A later static read sides with the list that includes it, and a capture is still missing [bin] (protocol/v5x-clients.md#client--server-ids-500r7).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the 5.00r7 send wrappers send 1, 2, 4–10, 12–19, …: no 11 (`PLI_THROWCARRIED`) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
-| Claim B | the 5.00r7 profile lists 4–19, which includes 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
-| Open | which list is right for 5.00r7; both are floors, since sends through a variable are not captured | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
-| Settles it | a 5.00r7 capture of a throw, or a re-read of the send wrappers for id 11 | [inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
-| Static resolution | the 5.00r7 backup engine's carried-object throw path sends id 11 with an empty body; the earlier wrapper list missed it. Claim B holds for that engine; a capture is still missing | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| Status (2026-11-16) | no throw capture yet; for 5.12 the 5.00r7 floor plus id 11 is the working proxy until a genuine 5.12 engine send-wrapper read; the 2.31 "id 44" question dissolves once S→C 44 (dropped) and C→S 44 (still sent) are separated | [bin][cap] (protocol/ids-sent-512-status.md) |
-
-### E#5 Meaning of id 162 from the client (settled)
-
-Three readings of client id 162 turned out to be one message, a ping answer. The entry is kept to show how it was settled [srv] (protocol/packet-ids.md#client--server-pli_).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the 2026-10 gs2lib named 162 `PLI_RC_UNKNOWN162` (upstream now `PLI_PONG`): an empty message from the RC3 beta | [srv] (protocol/packet-ids.md#client--server-pli_) |
-| Claim B | 4.20r8 sends 162 as the answer to S→C 108 | [bin] (protocol/v4x-clients.md#client--server-ids) |
-| Claim C | 6.01r1 and 6.03r7 send 162 as a reply to a server request: `!` followed by a 2-byte value (two 7-bit groups, capped at `0x6FFF`) the server sent; probably the ping answer that 6.11 calls `onSendPingAnswer` | [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Open | ~~whether B and C are the same message, and how the RC3 beta's empty 162 relates to them~~ settled below | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Settles it | a capture of a 4.x or 6.x client answering S→C 108 | [inf] (protocol/v4x-clients.md#client--server-ids) |
-| Settled | one message, a ping: 4.20r6, 4.20r8, 6.01r1 and 6.03r7 send 162 only from their 108 handler, with the same code in 4.20r8 and 6.03r7; the 2010 RC and RC3 send it empty every 60 s and have no 108 handler; a capture of the game-client answer is still missing | [bin] (protocol/unknown-ids-2026-11-06.md) |
-
-### E#6 Client-to-server constants of 1.21 and 1.32
-
-Two reads of the 1.21 and 1.32 send sites disagree on ids 14 and 22 [bin] (protocol/gserv-1999.md#message-ids).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32 | [bin] (protocol/gserv-1999.md#message-ids) |
-| Claim B | the per-build profile lists 1.21 as 0, 10–13, 15–26 (no 14) and 1.32 as 0, 10–21, 23–30 (no 22) | [bin] (client-internals/version-profiles/v121-v132.toml) |
-| Open | whether A is a range summary of B or B missed a send site; both are floors, since some sends pass the id in a register | [bin] (client-internals/version-profiles/v121-v132.toml) |
-| Settles it | a re-read of the 1.21 and 1.32 send sites for ids 14 and 22 | [inf] (protocol/gserv-1999.md#open-questions) |
-
-### E#7 Receive-branch revision discrepancy (settled for the checked inputs)
-
-Two tables placed ids 47 and 168 in different revisions. A static check settled it for the revisions that were read; the scope row says how far that goes [bin] (client-internals/cross-version-timeline.md#server--client-packets).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Historical claim A | the timeline formerly placed 47 at 2.02 rev2 and 168 at 2.05 rev1; those revision labels are corrected | [bin] (client-internals/cross-version-timeline.md#server--client-packets) |
-| Historical claim B | the per-build table already included 47 in 2.02 revisions 0 and 1 and 168 in 2.05 revision 0 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
-| Resolution | the exact-input static check corroborates Claim B for Windows x86 2.02 revisions 0–2 and 2.05 revisions 0–2; counts and ID sets are in → §2.5.2 | [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#distinct-receive-routes) |
-| Scope limit | this settles route presence in those inputs; successful runtime handling, payload semantics and first occurrence across all historical branches are not established | [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#validation-and-limits) |
-
-### E#8 Prop parser ranges of 2.00
-
-Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36. A re-read of the 2.0x jump tables settles it: Claim A holds [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the cross-version timeline has the player-prop parser gain 35 and 36 in 1.41, and the NPC-prop parser gain 36 to 40 only in 2.02 rev2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
-| Claim B | the 2.00 layout tables have the self and other-player streams accept 0–35 (no 36) and the NPC stream accept 0–36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
-| Resolution | the 2.00 and 2.01 self switch covers 0–36 and the NPC switch 0–35; NPC 36–40 arrive in 2.02 rev2. Claim A is right for both | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
-| Other players | the 2.00 and 2.01 other-player switch also accepts 36 (and 50, 51), with the same sparse stops as 2.05 | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
-
-### E#9 Uploads from game clients
-
-One source says game clients never upload, while the late clients send the upload ids. Which feature sends them, and whether a server accepts them, is open [srv] (protocol/file-transfer.md#upload-rc-only).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | game clients cannot upload; the RC file-browser ids are for RemoteControl only | [srv] (protocol/file-transfer.md#upload-rc-only) |
-| Claim B | 6.01r1 and 6.03r7 send the file-browser and upload ids (93, 96–98, 155, 156) with an upload queue, and 3.153 and 5.00r7 send several of them | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/3.04-3.153.md#client--server-ids) |
-| Open | whether a server accepts these from a game connection, and which game feature sends them | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Settles it | a capture of a 6.x game client using the upload path against a server | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-
-### E#10 When the `maps` download folder arrived
-
-No surviving build shows when downloads began going to a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | the 2.1 test builds save downloads with no `maps` rule and 2.17.1 has one; no client between them has been found, so the build that added it is unknown | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
-| Settles it | the save routine of any client from 2.1 to 2.16, if one turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
-
-### E#11 Client-to-server ids the NewWorld betas lack
-
-Two reads of the NewWorld betas disagree on whether they send ids 8 and 20 [bin] (client-internals/version-profiles/141-217.toml).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the betas send the 2.1 test set without 7, 8, 11, 15, 16, 17 and 20 | [bin] (client-internals/version-profiles/141-217.toml) |
-| Claim B | the betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
-| Open | ~~the two reads disagree on 8 (`HORSEDEL`) and 20 (`OPENCHEST`); Claim B's count of 34 is 39 less five~~ settled below | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
-| Settles it | a re-read of the beta send sites for constants 8 and 20 | [inf] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
-| Settled | Claim A: a re-read of every send site in both betas finds no send of 8 or 20 (nor of 7, 11, 15, 16, 17), and no send that passes the id in a register; the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
+| Claim A | The builds use the Delphi 2 class-metadata layout: self pointer 64, class name 32 bytes before the VMT | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Claim B | The same builds carry the runtime-library copyright "1983,97 Borland", a year late for Delphi 2 | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Tried | Nothing beyond reading the two clues; no runtime library has been matched against candidates | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Best guess | A compiler of Delphi 2's generation shipped in 1997, such as C++Builder 1's Pascal compiler, which would fit both clues. Confidence: moderate | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Settles it | Matching the runtime library of these builds against the C++Builder 1 and Delphi 2 libraries, function by function | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Outlook | Read, given copies of the candidate runtime libraries; low priority, since no behaviour depends on it | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 
 ### E#12 Whether the token digits are a build date
 
-Reading the `GNW` digits as a build date fits well, but nothing in the binaries states it [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
+**Question.** Whether the five digits of a `GNW` login token are the build date (DDMMY). The reading is used to place builds with no other date [bin] (client-internals/build-catalogue.md#patterns-worth-knowing).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A | the `GNW` digits are DDMMY, on or a few days before the link date | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Claim B | the dates fit the change-log order of 2.01 to 2.05, but nothing in the binary names the format | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
-| Open | the reading is a strong fit, not a stated format | [inf] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#reading-the-digits-inferred) |
-| Settles it | a vendor note or server source that decodes the token | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
-
-### E#13 Gmap neighbour overwrite on classic-login 2.x clients
-
-A static read predicts that GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level [bin][srv] (protocol/gmap-adjacent-level-target.md#short-answer).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Prediction | with stock `PlayerClientOriginal`, a 2.17.1 client on a 2x2 gmap shows neighbour boards and links on its own level | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
-| Prediction | ending a neighbour reply with the player's cell level name, not the gmap name, keeps `BOARDMODIFY` and chest updates working on 2.17.1 and 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
-| Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
-| Settles it | a loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
-| Status (2026-11-16) | no classic-login lab yet; the static sequence (neighbour `LEVELNAME`, data, then the player's cell `LEVELNAME`) stands; the run is paired with the 2.22 gmap re-send lab | [bin][srv] (protocol/gmap-neighbour-classic-status.md) |
+| Evidence | Read as DDMMY, the digits fall on or a few days before each build's link date | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Evidence | The dates fit the change-log order of 2.01 to 2.05, but nothing in a binary names the format | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
+| Tried | Every held `GNW` build was compared with its link date; none contradicts the reading | [inf] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#reading-the-digits-inferred) |
+| Best guess | The digits are a build date. Confidence: high. The manual uses the reading for ordering only, never to date a build that has its own link date | [inf] (client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md#reading-the-digits-inferred) |
+| Settles it | A vendor note, a server source or a version table that decodes the token | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
+| Outlook | Maybe never. The format was never published, and the official server source is not held | [inf] (client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md#open) |
 
 ### E#14 Expiry dates of the Themida 5.x/6.00 builds
 
-Four protected builds exit on today's date; where their cutoff lies was not read [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#open).
+**Question.** On what date 5.30r3, 5.31r4, 6.00r2 and 6.00r4 stop running, and which mechanism stops them. Running them in a lab needs the guest clock set inside the window [bin][lab] (client-internals/v5v6-expiry-and-black-screen.md#open).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Open | the cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (known to run with the clock at 2011-06-14 and 2011-06-28 for 6.00r2 and 6.00r4) | [lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
-| Open | whether the check is WinLicense's own expiration feature or a check inside its VM macros | [inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
-| Open | whether the Themida builds' timer check uses 5.24r4's thresholds | [bin] (client-internals/v5v6-expiry-and-black-screen.md#open) |
-| Settles it | a binary search on the guest clock for each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Evidence | The four builds exit on today's date. 6.00r2 and 6.00r4 are known to run with the clock at 2011-06-14 and 2011-06-28 | [lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| Evidence | Whether the check is WinLicense's own expiration feature or a check inside its virtual-machine macros is not known; nor whether the timer check uses 5.24r4's thresholds | [inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
+| Tried | Fixed clock dates that are known to work; no search for the boundary | [lab] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Best guess | WinLicense's own expiry, set a few months after each build's date, the way the v7 builds carry a 180-day window (→ App. E#615). Confidence: moderate | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settles it | A binary search on the guest clock for each build in a headless VM; a few boots per build find the day | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Outlook | Lab. The clients are held and the method is cheap | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 
 ### E#15 Graal 2002 and 1.40 exact-input validation
 
-The static inputs in §1.1.5 establish tokens, command names and receive-route differences, not the exact-input login or gameplay behavior. These remaining questions retain the source study's boundaries. [bin] (client-internals/graal2002-and-140-builds.md#open-points)
+**Question.** How the Graal 2002 builds and the checked 1.40 behave at login and in play, each on its own evidence. The static inputs in §1.1.5 establish tokens, command names and receive-route differences, not exact-input login or gameplay [bin] (client-internals/graal2002-and-140-builds.md#open-points).
 
-| Open item | Discriminator | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| `GNW31101` and `GNW23090` login evidence | exact ver10 is now wire-captured; v22 and checked 1.40 still need their own isolated login captures, with no shared-token grade transfer | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
-| ver7–ver13 default routes 2, 4, 17, 18, 154, 155 | a correctly identified baddy/chest/horse fixture and observable result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
-| Exact ver10 first emitted properties update | observe the normal interactive client before the first server reply; compare fresh sessions with no reply, an unrelated reply and self-properties id 9. Static gate clearing and six-property construction do not settle the other startup guards or actual emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
-| Exact ver10 local entry | normal isolated list/game entry is now observed for the unchanged ver10 executable with mixed supporting DATA; the first-update discriminator remains incomplete, with a timer-confounded no-reply arm and bounded no-later-chunk reply observations | [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary) |
-| Six Graal 2002 PLI sets | read their own send sites; do not borrow neighboring build or shared-token rows | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Evidence | Exact ver10 is wire-captured at login, and its normal list and game entry has been observed with mixed supporting data | [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary) |
+| Open | `GNW31101` and `GNW23090`: v22 and the checked 1.40 still need their own isolated login captures; no grade transfers between builds that share a token | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Open | The ver7 to ver13 default routes for 2, 4, 17, 18, 154 and 155 need an identified baddy, chest or horse fixture with a visible result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Open | Exact ver10's first properties update: the no-reply arm is confounded by a timer, and the reply arms are bounded; static gate clearing does not prove emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
+| Open | The six Graal 2002 client-to-server id sets need their own send-site reads | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Best guess | Each build behaves like the neighbour that shares its token. The manual does not borrow those rows, because the 2002 builds were patched in places the token does not show | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Settles it | One isolated login capture per build, send-site reads for each id set, and a fixture per default route | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Outlook | Lab and Read: all inputs are held | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+
+### E#609 macOS archive labels and application identity
+
+**Question.** Whether the Mac uploads labelled 3.04 and 3.15r2 are the historical 3.153 image, as an earlier comparison said [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Historical claim | The earlier upload comparison identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Evidence | The newer collection's two v3-labelled main executables share one PowerPC digest, and its five v5 copies share another; this collection did not authenticate their release versions | [bin] (version-profiles/macos-client-compatibility.md) |
+| Evidence | Regular-file contents and names match across two v3 extractions of 718 files and five v5 extractions of 73 files; timestamps, permissions, empty folders and containers were not compared | [test] (version-profiles/macos-resource-identity.md) |
+| Tried | The earlier note gives no full input digest, so its inputs cannot be matched to the current record | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Best guess | The v3-labelled images are 3.153 under archive labels, as the earlier comparison said. Confidence: moderate | [inf] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Settles it | The earlier inputs' full digests and authenticated build metadata set beside this collection's identities | [inf] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
+| Outlook | Missing: it needs the earlier comparison's inputs or their digests | [test] (version-profiles/macos-resource-identity.md) |
+
+### E#615 v7 Worlds login identity, start-up quit and date gate
+
+**Question.** What login token a v7 Worlds client sends, and which reason its expiry path gives. The clients carry no baked token, quit after one frame when started standalone, and only dial the connector inside each build's 180-day window (→ §1.8.10) [bin][doc] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | No cleartext token in 548 to 71243; the connector script builds the login; gs2lib names `G3D2204D` as Worlds | [bin][doc] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
+| Evidence | The managed quit entry takes a reason string; the managed side has no date gate; the unpacked engine imports calendar-to-timestamp functions | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Settled part | The date gate is `now − reference > 180 days` with a compiled-in reference date per release, active in every build except 610; the instant-quit reason literal is `QuitInstant` (→ §1.8.10) | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-date-gate-is-an-n-days-after-a-reference-date-check-wired-to-the-boot-quit); [bin][inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-quit-reason-is-native-and-the-instant-quit-literal-is-quitinstant) |
+| Tried | The Unity 6000 build's gate values and both verdicts were confirmed live from outside a QEMU guest: inside the window it passes and disarms itself; after it the client stays on a black window without crashing (→ §1.8.10) | [cap] (client-internals/v7-il2cpp-names-and-startup-gate.md#for-a-live-debugger-where-to-break-and-what-to-read) |
+| Best guess | The production connector sends a `G3D`-family token of the `G3D2204D` kind, and the expiry path passes its own reason rather than `QuitInstant`. Confidence: low for the reason, moderate for the token family | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Settles it | A decrypted connector script for the token (→ App. E#616); a boundary-date boot of 614 (2024-10-12 boots, 2024-10-13 quits, by the table) for the reason | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Outlook | Lab for the expiry reason; Owner or Maybe never for the token, which depends on E#616 | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+
+### E#617 Whether 1.41 rev 1 loads `.nw` levels online
+
+**Question.** Whether a real 1.41 rev 1 loads and plays a `.nw` level sent by a server, and what it does with a gmap (→ §1.5) [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The build carries the `GLEVNW01` loader string beside the GR-V1 readers and has no `GRMAP001`; no real 1.41 rev 1 has been seen loading a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Context | `.nw` support is not monotonic: 1.41 rev 1 and NewMain 1.42 have the string, 2.00 to 2.04 drop it, 2.05 restores it with gmaps | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Best guess | It loads `.nw` levels: a loader string in the level-magic list has meant a working reader in every build checked so far. A gmap is not understood and is ignored or fails. Confidence: moderate | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
+| Settles it | A loopback lab: a small `.nw` start level the client can reach through the list, then a tiny gmap, noting whether link and height messages appear | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
+| Outlook | Lab | [inf] (client-internals/141r1-nw-gmap-status.md#open-after-this-note) |
+
+### E#618 Whether Mac 6.004 and 6.015 draw a game frame
+
+**Question.** Whether the Mac 6.004 and 6.015 clients get past a white window to a rendered frame, a login and a level (→ §1.8.7) [lab] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Tried | Mac 6.015 on Mac OS X 10.7.5 in an emulator, offline: once the executable bit was restored, the app came up with a Graal menu and a window titled Graal whose content stayed white; no crash | [lab] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015) |
+| Evidence | Mac 6.11r1 showed the same white window on the same guest, which has no OpenGL acceleration; both 6.0x builds use a Cocoa OpenGL view | [lab][bin] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#static-surface-used-to-choose-the-live-build) |
+| Best guess | The white window is the missing guest OpenGL, not a fault in the client. Confidence: moderate | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| Settles it | A run on a guest or machine with working OpenGL; or a static trace of one slice from entry to the game loop | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| Outlook | Lab. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+
+### E#619 Whether 5.30r3 and 5.31r4 use their built-in login host
+
+**Question.** 5.30r3 and 5.31r4 store a default login host and port side by side. Whether they ever dial it when `license.graal` is present, missing or bad (→ §1.9.4) [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The two strings sit next to each other in both images; the 5.x notes say the host and port normally come from `license.graal` | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| Best guess | A fallback used when the licence file gives no host, as the compiled-in hosts of 5.24 and later suggest. Confidence: low to moderate | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+| Settles it | One lab run per `license.graal` case, with a local listener on the stored port and the clock set back for the beta expiry | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+| Outlook | Lab | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+
+### E#620 What the 1.41 rev 1 program-check handler does
+
+**Question.** What the program-check error handler of 1.41 rev 1 does when it runs, and what raises its event. One held copy runs the handler; the other and the baseline bind the event to its final return, so it does nothing (→ §1.1.5) [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The handler builds text-like values, sets a byte of state and calls helpers before cleanup; one helper tests a result and conditionally calls another. Their effects were not identified | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
+| Limit | The study does not show a warning dialog, an exit, the triggering condition, or who changed the binding | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
+| Best guess | It reports a failed self-check, shows a message and stops the client, and the copy that binds to the final return had that check switched off. Confidence: low; the history of the change is not known | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+| Settles it | A static read of the event's trigger and of the helpers; a run of each copy only if that read leaves a precise thing to watch | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+| Outlook | Read for what the handler does; Maybe never for why the copies differ | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+
+## E.3 Transport: frames, ciphers and logins
+
+These questions are about the layer under the messages: how a frame is cut, ciphered and compressed, and what the first exchange looks like. They come first among the protocol questions because a wrong frame rule makes every later byte unreadable (→ §2.1, → §2.2, → §2.3) [srv] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering).
+
+### E#2 Generation-5 step count of 5.12 (and unread 5.00r7)
+
+**Question.** How many cipher steps a generation-5 frame advances when its compressed body is shorter than a whole number of four-byte groups. A wrong rule desynchronises the cipher after the first short frame [bin][wire] (protocol/gen5-cipher-step-5x.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (working rule for 5.12) | 5.12 steps the iterator `len / 4` times rounded down for zlib and bz2 frames (capped at 4) and rounded up for raw frames, both ways; a proxy that re-encodes with that rule lets 5.12 play against GServer-v2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count; protocol/gen5-cipher-step-5x.md) |
+| Claim B | Every later frame of ten 5.x and 6.x Windows captures, 5.12 among them, decodes with one step per group present, rounded up | [cap] (protocol/v5v6-windows-unpacked.md) |
+| Tried | Lab proxy, Seihai's `gen5_round_down` and a stress run for 5.12; once short compressed frames are taken into account, Claim B is not a competing decoder. Four Mac PowerPC receivers use whole-group compressed and partial-group raw advancement, which agrees with Claim A | [bin][wire] (protocol/gen5-cipher-step-5x.md); [bin] (protocol/macos-ppc-receive-framing.md) |
+| Best guess | 5.00r7 uses the same round-down rule as 5.12 and the Mac receivers. Confidence: moderate. The manual does not assume it, because 5.00r7 is a separate engine | [inf] (protocol/gen5-cipher-step-5x.md) |
+| Settles it | For 5.12: a published short compressed frame that Claim B cannot decode. For 5.00r7: a static read of its frame codec, or one capture with a short compressed frame decoded both ways | [inf] (protocol/gen5-cipher-step-5x.md) |
+| Outlook | Read for 5.00r7; the 5.12 rule is settled in practice | [inf] (protocol/gen5-cipher-step-5x.md) |
+
+### E#3 Public `Login` server session (5.x, 6.x)
+
+**Question.** What a public 5.x or 6.x `Login` server sends after the handshake: the lobby that every later client sees before it reaches a game server [doc] (protocol/login-session-known.md#still-unobserved).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Unobserved | The bytes the server sends, including the payload of S→C 190 | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Unobserved | The GUI script text for the server list, the account screens and the `ChatBar` control | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Unobserved | The file list inside `basepackage.gupd` and any later update package, and the backdrop level the server chooses | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Unobserved | The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client uses on the public service (the lab path is in → App. E#17) | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Tried | A real Windows 4.20r8 to 6.03r7 run reached a lab `Login` server, so the client side of the lobby is known; the server side is what a lab server chooses to send | [lab] (live-runs/real-win10-2026-11-18/README.md) |
+| Best guess | The lobby is a set of GUI scripts delivered in the update package and driven by S→C 190, with no lobby logic in the client beyond the script runtime. Confidence: moderate | [inf] (protocol/login-session-known.md#still-unobserved) |
+| Settles it | A capture of a real `Login` session; it touches a public server, so it needs the owner's written permission | [doc] (AGENTS.md#labs) |
+| Outlook | Owner. If the service has changed since these clients shipped, part of the period behaviour may be lost for good | [doc] (AGENTS.md#labs) |
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout
 
-The selected prefix/copy follow-up establishes one-byte prefix construction and the selected positive byte-copy count, not a captured mobile login. The short-path object append, full codec and native acceptance remain unresolved, and selector 5 still has no established wire category. [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up); [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary)
+**Question.** What Classic+ 1.13 actually puts on the wire at login. The static follow-up established one-byte prefix construction and the selected positive byte-copy count, not a captured mobile login [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up); [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary).
 
-| Unknown | Discriminator | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Remaining append/field codec | inspect the short-path object append and remaining field cases before claiming a complete codec, character semantics or server-accepted size limits; allocation failure and runtime behavior remain unvalidated | [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) |
-| String identities and vector format | bind the getters and serializer to their actual consumers before naming fields or a complete trailer | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
-| Framing, trigger and native acceptance | trace the selected lower sender and constructor trigger; establish a separately qualified exact-input native control and receive-property mapping | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| Open | The short-path object append and the remaining field cases, before any claim of a complete codec, character semantics or size limits | [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) |
+| Open | String identities and the vector format: the getters and serializer must be bound to their consumers before fields are named | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
+| Open | Framing, trigger and native acceptance: the lower sender and constructor trigger are not traced; selector 5 has no established wire category | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| Best guess | A desktop-style login body (type, key, token, account, password) inside the mobile frame of → App. E#18. Confidence: low | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| Settles it | Tracing the lower sender, then a qualified native run with a capture | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| Outlook | Read; the run waits on the same emulator as E#18 | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+
+### E#17 The 6.1.1.3 login packet after the RC4 switch
+
+**Question.** What the real 6.1.1.3 client sends as its login once the stream turns to RC4, and which first server replies it needs. 6.1.1.3 carries no protocol of its own; the connector script sets it (→ §2.10) [lab] (protocol/v6113-login-lab-method.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled part | The clear hello `GNP1905C` comes from the script; the outgoing stream is clear up to offset 287 and plain RC4 with a 16-byte session key after it; the server's key arrives RSA-wrapped in a clear `0xfc` message | [lab][cap] (protocol/v6113-status.md) |
+| Settled part | The connector request is a pure function of the build, so a genuine reply stays valid on every later launch of that build, unlike 7.x | [lab] (protocol/v6113-login-lab-method.md) |
+| Open | The post-RC4 login packet: account and password framing, and the order of the login-step arguments | [lab] (protocol/v6113-login-lab-method.md) |
+| Tried | Two gates were found: a classic login on the first hop, then the connector; the lab bypass replaces the client's trust anchor so a lab-signed script loads | [lab] (protocol/v6113-login-lab-method.md) |
+| Best guess | The login body is the 6.0x body (→ §2.3) under RC4, framed as `EILLLT` bundles. Confidence: moderate | [inf] (protocol/v6113-login-lab-method.md) |
+| Settles it | Drive the real client with a lab connector script whose RC4 key the lab chose, then read the first encrypted send; loopback only | [inf] (protocol/v6113-login-lab-method.md) |
+| Outlook | Lab. The owner treats 6.1.1.3 as an outlier, so this is low priority | [doc] (protocol/v6113-status.md) |
+
+### E#18 Mobile clients: outer framing and cipher
+
+**Question.** How the Android and iPhone clients frame, compress and cipher their stream. Without it no mobile client can be probed, even on a lab server [bin] (client-internals/android-login-token-boundary.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The held Android Classic and Era reading covers the Java host, the frame gate, collision, board, render, chat builder and the Classic 1.8 GS2 machine across seven packages; it did not recover the connect and token builders | [bin] (client-internals/android-classic.md); [bin] (client-internals/android-login-token-boundary.md) |
+| Evidence | The native engine libraries are not encrypted, so the connect and token builders are within reach of a static pass | [bin] (client-internals/android-login-token-boundary.md) |
+| Tried | No device, emulator or capture. The lab Linux VM has no nested KVM, and no Android or iPhone app is installed on a lab host | [doc] (protocol/unknowns-ledger.md) |
+| Best guess | The mobile clients reuse the desktop generation-5 frame (length, compression byte, partial XOR), since the engine is a port of the desktop C++ engine. Confidence: low to moderate | [inf] (client-internals/android-login-token-boundary.md) |
+| Settles it | A static read of the native socket layer for frame length, compression and cipher, then one loopback run in an emulator on a host with hardware acceleration | [inf] (client-internals/android-login-token-boundary.md) |
+| Outlook | Read now; Lab once an emulator host is set up | [doc] (protocol/unknowns-ledger.md) |
+
+### E#19 Generation 4 on the wire (2.19 to 2.21)
+
+**Question.** Whether the generation-4 codec in the server source (bz2, then XOR over the first dwords) is what 2.19, 2.2 and 2.21 actually sent [srv] (protocol/codec-and-framing.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Everything known about generation 4 comes from the server source; no type-4 login or frame has been captured | [srv] (protocol/codec-and-framing.md) |
+| Tried | The probe proxy has a generation-4 codec from the server source, but no client to point it at | [doc] (protocol/unknowns-ledger.md) |
+| Lead | Server tables list Linux 3.0beta (`G3D16053`) and 3.01 (`G3D27063`) as client type 4, generation 4, and clean installers of both are held (→ §1.8.4). A lab login with either would show a generation-4 frame from a real client, even though they are not 2.19 to 2.21 | [bin][inf] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#open-still) |
+| Best guess | The server source is right: it was written against those clients, and generations 3 and 5 on either side match their source. Confidence: moderate to high | [inf] (protocol/codec-and-framing.md) |
+| Settles it | Any 2.19 to 2.21 binary, read statically or run against the proxy; meanwhile, a Linux 3.0beta or 3.01 login against the proxy tests the codec itself | [inf] (protocol/codec-and-framing.md); [inf] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#open-still) |
+| Outlook | Missing. If no build of these versions survives, Maybe never | [inf] (protocol/codec-and-framing.md) |
+
+### E#605 Client listserver frames in two vocabularies
+
+**Question.** Whether two descriptions of the client's listserver frames describe the same bytes. They use different words and have never been set beside one capture [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | 2.00 and 2.05 send id 0 and `newmain` in one plain zlib frame; 2.17 adds id 1 with account and password; 2.22 and 2.31 send id 7, a key byte, `GNW30123` and `newmain`, then a generation-5 frame with id 1 | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
+| Claim B | The classic Server Lister ELF acts on two client lines, an edition line (id 0) and an account line (id 1), and has no version token and no later cipher | [bin] (tools/classic-tools/serverlist3.md#what-a-client-sends) |
+| Best guess | One observation in two vocabularies: "edition" is the `newmain` line, and the Server Lister predates the 2.2 token, so "no version token" and "`GNW30123`" describe two programs. Confidence: high | [inf] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
+| Settles it | Loopback captures of 2.05, 2.17 and 2.22 written out frame by frame beside both descriptions | [doc] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
+| Outlook | Lab | [doc] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
+
+### E#607 Leftover lines in the protocol cheat sheet
+
+**Question.** Whether the lines an old protocol cheat sheet still prints are wrong, as later notes say [doc] (protocol/PROTOCOL-CHEATSHEET.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The cheat sheet shows a raw byte after the version, says RC clients do not scramble, names 100, 101 and 102 as file length, tiles and file blob, and cuts frames into 1,024-byte slices; the recovery note guesses ids 1 (login), 16 (level request) and 32 (player update) | [doc] (protocol/PROTOCOL-CHEATSHEET.md); [doc] (protocol/login-recovery-start.md) |
+| Claim B | The login has no mystery byte (the extra byte is the generation-3 insertion, and RC 1.x is generation 3 too); 100, 101 and 102 are raw data, board and file; no slice size exists; the login is type 0, the level request client id 0, a walk client id 2; facings are 0 up, 1 left, 2 down, 3 right | [doc] (protocol/login-and-walk.md); [doc] (protocol/codec-and-framing.md) |
+| Best guess | Every leftover line is wrong, and the cheat sheet was written from guesses before the codec was understood. Confidence: high; the manual follows the later notes (→ §2.1 to §2.3) | [inf] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
+| Settles it | A 2.05 login, a generation-3 RC session, a generation-5 flush and four labelled facings, each set beside the line it tests | [doc] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
+| Outlook | Lab; a bookkeeping item rather than a real unknown | [doc] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
+
+### E#616 v7 connector script plaintext
+
+**Question.** What the decrypted v7 connector script says: the game host it names, the framing and cipher it sets and the login it builds. The reply container and its per-launch signature are known (→ §2.10.7) [lab][bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Container layout, an RSA-2048 signature bound to the per-launch request, and both AES-CBC and RC4 exported | [lab][bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
+| Open | The payload cipher and whether the RSA block also wraps its key; the plaintext; the `?p=` DES key | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Tried | The live date gate was read from outside a QEMU guest without tripping the anti-tamper layer (→ App. E#615); the script buffers were not read | [cap] (client-internals/v7-il2cpp-names-and-startup-gate.md#for-a-live-debugger-where-to-break-and-what-to-read) |
+| Method (2026-11-18) | Host-side debugging through QEMU/KVM's gdb server reads a running packed client with nothing inside the guest; it stopped the v7 date gate at entry and read its inputs live. Bochs was assessed and not used | [lab] (client-internals/hypervisor-live-debug.md#short-answer); [lab] (client-internals/hypervisor-live-debug.md#what-was-done-on-v7-lab) |
+| Evidence (6.1.1.3, 2026-11-19) | The 6.1.1.3 request is deterministic across launches, and its connector gate can be passed in a lab only by a lab trust anchor; the joined login and connector chain has not been run (→ §2.10.8) | [lab][inf] (protocol/v6113-login-lab-method.md#replay-forge-and-the-only-lab-bypass); [lab] (protocol/v6113-login-lab-method.md#still-open-carried-not-closed) |
+| Best guess | The RSA block wraps an AES key for the payload, and the script follows the 6.11 script's structure (→ §2.10): set protocol, set ciphers, id tables, connect, login. Confidence: moderate | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Settles it | A read of the live script buffers after decryption, by a method the anti-tamper layer tolerates, on a client whose baked public key is replaced | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Outlook | Maybe never for the production script, which only the operator's service produces for a live launch; Lab for the structure, using a lab-signed script | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+
+## E.4 Messages, props and what they do
+
+These questions are about single messages and props: which builds send or handle an id, how wide a field is, and what a message changes on the screen. Each one leaves a `unmeasured` or `disputed` cell in → §2.4, → §2.5, → §2.6 or App. A, and most of them are within reach of the probe proxy, which injects a message into a live loopback session and watches the client's reaction [lab] (protocol/probe-targets-2026-11-18.md).
+
+### E#4 Whether 5.00r7 sends id 11
+
+**Question.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws. Two lists of the ids it sends disagreed [bin] (protocol/v5x-clients.md#client--server-ids-500r7).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The 5.00r7 send wrappers send 1, 2, 4 to 10, 12 to 19 and more: no 11 | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
+| Claim B | The 5.00r7 profile lists 4 to 19, with 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
+| Tried | A later static read found the 5.00r7 backup engine's carried-object throw path, which sends 11 with an empty body; the wrapper list had missed it. The 2.31 "id 44" puzzle dissolved once S→C 44 (dropped) and C→S 44 (still sent) were told apart | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing); [bin][cap] (protocol/ids-sent-512-status.md) |
+| Tried | The 2026-11-19 run of real, unchanged Windows clients had the server receive a throw 3 times out of 3 on 5.00r7, as on 4.20r8, 5.12, 5.24r4 and 6.03r7; the write-up names id 11 only for the Linux 6.03r7 throw | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | Claim B: 5.00r7 sends 11 from the throw. Confidence: high | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
+| Settles it | The id of the 5.00r7 throws in that run's server log, or one more 5.00r7 throw with the id recorded | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Outlook | Lab; probably already answered by the 2026-11-19 log | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+
+### E#6 Client-to-server constants of 1.21 and 1.32
+
+**Question.** Whether 1.21 sends id 14 and 1.32 sends id 22. Two reads of their send sites disagree [bin] (protocol/gserv-1999.md#message-ids).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32 | [bin] (protocol/gserv-1999.md#message-ids) |
+| Claim B | The per-build profile lists 1.21 as 0, 10 to 13, 15 to 26 (no 14) and 1.32 as 0, 10 to 21, 23 to 30 (no 22) | [bin] (client-internals/version-profiles/v121-v132.toml) |
+| Tried | Both are floors: some sends pass the id in a register, so a constant search can miss them | [bin] (client-internals/version-profiles/v121-v132.toml) |
+| Best guess | Claim B is a site-by-site list and Claim A a range summary that rounded over the gaps, so 14 and 22 are not sent. Confidence: moderate | [inf] (client-internals/version-profiles/v121-v132.toml) |
+| Settles it | A re-read of the 1.21 and 1.32 send sites for 14 and 22, including register-passed ids | [inf] (protocol/gserv-1999.md#open-questions) |
+| Outlook | Read | [inf] (protocol/gserv-1999.md#open-questions) |
+
+### E#9 Uploads from game clients
+
+**Question.** Which game-client feature sends the file-browser and upload ids, and whether any server accepts them from a game connection [srv] (protocol/file-transfer.md#upload-rc-only).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Game clients cannot upload; the file-browser ids are for RemoteControl only | [srv] (protocol/file-transfer.md#upload-rc-only) |
+| Claim B | 6.01r1 and 6.03r7 send the file-browser and upload ids (93, 96 to 98, 155, 156) with an upload queue, and 3.153 and 5.00r7 send several of them | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/3.04-3.153.md#client--server-ids) |
+| Best guess | The late clients carry an in-game file browser for staff (the GS2-era client merged RC features), and servers accept the ids only from accounts with folder rights. Confidence: moderate | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Settles it | A 6.x game client using the upload path against a lab server, with and without folder rights | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Outlook | Lab, if a GUI script that opens the browser can be delivered through the probe | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+
+### E#10 When the `maps` download folder arrived
+
+**Question.** Which build started saving downloads into a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The 2.1 test builds save downloads with no `maps` rule, and 2.17.1 has one; no client between them has been read | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
+| Tried | The Windows 2.1.0.0 to 2.1.0.4 images are now identified, so the question no longer waits on a binary for that range; 2.12 to 2.16 have none | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md) |
+| Best guess | The rule arrived with the gmap work shortly before 2.17. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
+| Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
+| Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
+
+### E#13 Gmap neighbour overwrite on classic-login 2.x clients
+
+**Question.** Whether GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level. A static read predicts it [bin][srv] (protocol/gmap-adjacent-level-target.md#short-answer).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Prediction | With stock `PlayerClientOriginal`, a 2.17.1 client on a 2x2 gmap shows neighbour boards and links on its own level | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Prediction | Ending a neighbour reply with the player's cell level name, not the gmap name, keeps `BOARDMODIFY` and chest updates working on 2.17.1 and 2.22 | [bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Not checked | 2.05 rev 2 sends 35 for `bigmap.txt` neighbours and was not read further | [bin] (protocol/gmap-adjacent-level-target.md#limits) |
+| Tried | No classic-login lab yet; the static sequence (neighbour `LEVELNAME`, data, then the player's cell `LEVELNAME`) stands, and the run is paired with the 2.22 gmap re-send lab | [bin][srv] (protocol/gmap-neighbour-classic-status.md) |
+| Best guess | The overwrite happens with stock GServer-v2, and the fixed framing cures it. Confidence: moderate to high | [inf] (protocol/gmap-adjacent-level-target.md#short-answer) |
+| Settles it | A loopback lab with a 2x2 gmap: 2.17.1 against stock and fixed framing, and 2.22 against the fixed framing | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
+| Outlook | Lab | [inf] (protocol/gmap-adjacent-level-target.md#limits) |
+
+### E#20 The 2.31 step on `PLO_SETACTIVELEVEL` (156)
+
+**Question.** What the extra step 2.31 takes on `PLO_SETACTIVELEVEL` does. Every other client checked only sets the object level (→ §2.5.3) [bin] (protocol/unknowns-ledger.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | 2.31's handler for 156 calls one more routine after setting the object level; no other build checked has it | [bin] (protocol/unknowns-ledger.md) |
+| Evidence | Without 156 during a level load, 2.01 and later clients wait on the loading screen; on 4.x, 156 starts the `Login` session's warp | [src][lab] (server-notes/lab-servers-2026-10-30.md#2-gserver-v2-beta4-against-our-build); [lab] (client-internals/live-behaviour-404.md) |
+| Tried | 2.31 now runs through the probe proxy with the generation-3 and generation-5 codecs, so the step is reachable; it has not been read or probed | [lab] (protocol/probe-targets-2026-11-18.md) |
+| Best guess | The step re-binds level-scoped state, most likely the gmap neighbour grid or the NPC list, to the newly active level; 2.31 is the first build with server-side gmaps in mind. Confidence: low | [inf] (protocol/unknowns-ledger.md) |
+| Settles it | A static read of the 2.31 handler, then 156 sent for the current level, another loaded level and an unknown level, each with a canary, on 2.31 and 2.22 | [inf] (protocol/unknowns-ledger.md) |
+| Outlook | Read, then Lab | [inf] (protocol/unknowns-ledger.md) |
+
+### E#21 Whether a compiled gani script (`PLO_GANISCRIPT`, 134) runs
+
+**Question.** Whether 4.x to 6.x run a valid compiled GS2 gani script sent in 134. The gani's header travels in 195 and its script in 134, but no lab has sent a real compiled body [lab] (protocol/probe-targets-2026-11-18.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | GServer-v2 answers `PLI_UPDATEGANI` (157) with the script as bytecode in 134 only when an NPC server is running and the checksum differs, then sends 195 | [lab][srv] (protocol/probe-targets-2026-11-18.md) |
+| Tried | With NPC-server mode on, our build still sent no 134; a forged 134 behind `PLO_RAWDATA` made 6.03r7 fetch and load the gani like a 195, with the fallback taken from the file | [lab] (protocol/probe-targets-2026-11-18.md) |
+| Best guess | A valid body runs like a class body, firing the gani's events while it plays; the client keeps the text file's header. Confidence: moderate | [inf] (protocol/probe-targets-2026-11-18.md) |
+| Settles it | A 134 carrying a body built with a working GS2 compiler, sent through the probe to 6.03r7, then 4.20r8, 5.12 and 5.24r4, recording events fired and the effect of a bad checksum or empty body | [inf] (protocol/probe-targets-2026-11-18.md) |
+| Outlook | Lab | [inf] (protocol/probe-targets-2026-11-18.md) |
+
+### E#22 `DEFAULT*` lines in `PLO_LOADGANI` (195)
+
+**Question.** What the `DEFAULT*` header lines do when a server sends them in 195. The other header lines are settled (→ §2.5.6) [lab] (protocol/probe-targets-2026-11-18.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | `SETBACKTO`, `LOOP`, `CONTINUOUS` and `SINGLEDIRECTION` all take effect on 4.20r8, 5.12, 5.24r4 and 6.03r7; 2.22 and 2.31 ignore 195 | [lab] (protocol/probe-targets-2026-11-18.md) |
+| Tried | `DEFAULT*` lines sent for the own player, for another player with no head or body set, and for a level NPC showing a character: no visible change and no image request | [lab] (protocol/probe-targets-2026-11-18.md) |
+| Best guess | They do nothing in play: they are the preview images the gani editor shows, kept in the header so the file is self-describing. Confidence: moderate | [inf] (protocol/probe-targets-2026-11-18.md) |
+| Settles it | A static read of the 6.03r7 gani-header parser for the `DEFAULT*` keywords and the fields they set, then one run that shows that field | [inf] (protocol/probe-targets-2026-11-18.md) |
+| Outlook | Read, then Lab | [inf] (protocol/probe-targets-2026-11-18.md) |
+
+### E#23 What prop 81 changes in the player list
+
+**Question.** What `PLAYERLISTCATEGORY` (prop 81) changes on screen. Its width is settled at one byte on 4.20r8, 5.24r4 and 6.03r7 (→ §2.6) [lab] (protocol/unknowns-ledger.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Tried | 6.03r7 has no built-in key that opens a player list against the lab server; on 6.x the list is a script window the lab server does not provide | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | The value picks the folder or group a player is listed under (for example staff, friends or others). Confidence: moderate, from the name | [inf] (protocol/unknowns-ledger.md) |
+| Settles it | A list GUI script delivered as bytecode through the probe, as the 2026-11-19 timer test did, then prop 81 set to several values for a second player | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Outlook | Lab | [inf] (protocol/unknowns-ledger.md) |
+
+### E#24 Baddy props 11 and up on 6.03r7
+
+**Question.** The width and effect of each baddy prop from 11 up on 6.03r7, and whether an unknown id ends the message or is skipped [lab] (protocol/unknowns-ledger.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Tried | Baddies made by `PLO_BADDYPROPS` walk and attack on their own on 6.03r7, so the canary method (send the tested prop, then a visible one) cannot read a position | [lab] (protocol/unknowns-ledger.md) |
+| Evidence | For NPC props on 6.03r7, ids past the last handled one drop the rest of the message; for player props, an unknown id is skipped as one byte (→ §2.6) | [lab] (protocol/probe-targets-2026-11-18.md) |
+| Best guess | Baddy props behave like NPC props: an id with no case ends the message. Confidence: low to moderate | [inf] (protocol/unknowns-ledger.md) |
+| Settles it | A baddy held still (a mode value the client leaves alone, or a level where it cannot move), or a static read of the 6.03r7 baddy-prop reader confirmed by one run | [inf] (protocol/unknowns-ledger.md) |
+| Outlook | Lab | [inf] (protocol/unknowns-ledger.md) |
+
+### E#25 The 2.22 start-up file checks: 13 against 17
+
+**Question.** Why 2.22 checks 13 files with a full data folder and 17 with a folder that holds only the start files (→ §2.7) [lab] (live-runs/open-issues-2026-11-19/README.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | With an answering server, a full folder checks 13 files with id 34, a near-empty folder checks 17 with id 23, and at most four file packets go in one frame, each batch waiting for the answers to the one before | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Tried | The per-file lists of the two runs were not compared | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | Four files are requested only when missing (id 23) and never update-checked when present (id 34). Confidence: moderate | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Settles it | The two runs' file names set side by side | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Outlook | Lab; the existing run logs may already hold the answer | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+
+### E#613 Windows 2.22 remote PM roster and visible result
+
+**Question.** How 2.22 asks the server for its remote player roster and what it shows with the reply. The composer and type-37 sender lookup are bounded statically (→ §2.8.7) [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Types 55, 56 and 82 select default cleanup in the recovered dispatcher | [bin] (protocol/windows-222-pm-static.md#remaining-questions) |
+| Open | The roster's UI trigger, request builder, accepted reply and identity-creation route; virtual type-28 send framing; the visible message; sibling builds. Later `requestlist` and `pmserverplayers` behaviour is not established | [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions) |
+| Best guess | The roster is a request for the server's player list answered with the ordinary player-list message, and the result opens a PM window per name. Confidence: low | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
+| Settles it | Resolve the request caller and receive route statically, then one lab run with two players | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
+| Outlook | Read, then Lab | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
+
+## E.5 File formats and tiles
+
+These questions are about what is in a file and how a client reads it (→ Part III). Several of them look like format questions but are really questions about which client routine consumes a field, which a file alone cannot answer [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
 
 ### E#100 Collision of the Bush stamp tiles
 
-Whether a placed bush blocks the player is a runtime question. File membership alone cannot answer it [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
+**Question.** Whether a bush placed with the editor's Bush stamp blocks the player [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Established file result | the inspected first two arrays exclude Bush values 2, 3, 18 and 19; the earlier membership assertion is superseded within that collection | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| Existing type-table evidence | the outside client's type bytes describe walls; they do not establish the selected official client's active collision path | [src] (formats/tiletypes.txt) |
-| Open | actual blocking of a placed bush for an exact client, table and selected sheet | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Settles it | identify that exact consumer or record a controlled scene; file membership alone does not settle runtime collision | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Evidence | The inspected first two arrays exclude Bush values 2, 3, 18 and 19; the earlier membership assertion is superseded within that collection | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| Evidence | The outside client's type bytes describe walls; they do not establish the official client's active collision path | [src] (formats/tiletypes.txt) |
+| Best guess | A placed bush blocks like a bush drawn into the board, because the player must cut or lift it; the inspected arrays are not the path that decides this. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Settles it | The exact consumer, or a controlled scene: walk into a stamped bush on one exact client with a known table and sheet | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Outlook | Lab | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#101 Size of the type-0 allow lists
 
-An earlier mask count of walkable tiles cannot yet be linked to the lists read from the exact file [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
+**Question.** Whether an earlier mask count of walkable tiles describes the lists read from the exact file [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Established file result | the exact-input lengths, overlap and union are in → §3.5.3.1; they do not reproduce the earlier mask count | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| Earlier mask | the export counted 3195 non-blocking and 682 blocking tiles | [live] (formats/tile-walk.md#type-0-allow-lists) |
-| Open | mask producer, coverage, mapping and selected sheet remain unlinked to the inspected input; no runtime walkability total follows | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Settles it | link the original mask and exact file to the producing client path and sheet before interpreting or comparing runtime categories | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Evidence | The exact-input lengths, overlap and union are in → §3.5.3.1; they do not reproduce the earlier count | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| Evidence | The earlier export counted 3195 non-blocking and 682 blocking tiles | [live] (formats/tile-walk.md#type-0-allow-lists) |
+| Best guess | The earlier mask was made from another sheet or a later table, so the numbers describe a different input. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Settles it | Link the original mask and the exact file to the producing client path and sheet before comparing | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Outlook | Read, if the mask's producer can be identified; otherwise the old count is simply retired | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ### E#102 Tile id to pixel position on pics1
 
-Two formulas map a tile id to its place on `pics1.png`. The manual follows the later one, and a 4.04r2 code read agrees with it [file] (formats/tiletypes.txt).
+**Question.** Which formula maps a tile id to its place on `pics1.png` [file] (formats/tiletypes.txt).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
 | Claim A | `col = id % 128`, `row = id / 128`, pixel `(col * 16, row * 16)` | [file] (formats/tiletypes.txt) |
-| Claim B | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`: eight side-by-side blocks of 512 ids, each 16 columns by 32 rows; Claim A is called wrong in a correction dated 2026-10-25 | [file] (client-internals/client-assets.md#tile-sheets) |
-| Open | the manual follows Claim B, the later correction; Claim A's note has not been updated | [inf] (client-internals/client-assets.md#tile-sheets) |
-| Settles it | correcting `formats/tiletypes.txt`, or rendering a known board with both rules against a client screenshot | [inf] (client-internals/client-assets.md#tile-sheets) |
-| Windows 4.04r2 code | the tile draw path and its invalidation path both compute Claim B's formula before optional tiledef remapping | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
+| Claim B | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`: eight side-by-side blocks of 512 ids, each 16 columns by 32 rows; a correction dated 2026-10-25 calls Claim A wrong | [file] (client-internals/client-assets.md#tile-sheets) |
+| Tried | The Windows 4.04r2 tile draw and invalidation paths both compute Claim B before optional tiledef remapping | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
+| Best guess | Claim B for every build. Confidence: high; the manual follows it | [inf] (client-internals/client-assets.md#tile-sheets) |
+| Settles it | Correcting `formats/tiletypes.txt`, or rendering a known board both ways against a client screenshot | [inf] (client-internals/client-assets.md#tile-sheets) |
+| Outlook | Read; this is a stale note, not a real unknown | [inf] (client-internals/client-assets.md#tile-sheets) |
 
 ### E#103 Verifier variant reachability and signature interpretation
 
-The bounded four-guard result in → §3.5.5.1 compares distinct retained inputs; it does not resolve the earlier key-encoding question or measure startup acceptance [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
+**Question.** What the four unconditional guards in one 2.22 verifier variant mean for which signed files a client accepts. The bounded result in → §3.5.5.1 compares retained inputs; it does not measure startup acceptance [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Static result | four conditional guards in one RSA-verification routine are unconditional in the compared variant; only A was deep-imported, with B compared by full byte difference | [bin] (formats/windows-222-verifier-variants.md#evidence-and-method) |
-| Separate prior claim | the earlier three-branch community-control patch is a different comparison; the control is not authenticated as pristine official code | [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note) |
-| Open | broader lineage differences, startup caller reachability, helper algorithm, signature format and accepted inputs | [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Settles it | trace the callers and helper against identified inputs before interpreting runtime acceptance; no PM or GS1 conclusion follows from the verifier | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+| Evidence | Four conditional guards in one RSA-verification routine are unconditional in the compared variant; only A was deep-imported, B compared by full byte difference | [bin] (formats/windows-222-verifier-variants.md#evidence-and-method) |
+| Evidence | The earlier three-branch community-control patch is a different comparison; the control is not authenticated as pristine official code | [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note) |
+| Open | Broader lineage differences, startup caller reachability, the helper algorithm, the signature format and the inputs accepted | [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+| Best guess | The variant with unconditional guards is a patched community build that accepts unsigned files, not an official release. Confidence: moderate. No PM or GS1 conclusion follows from the verifier | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+| Settles it | Trace the callers and helper against identified inputs before interpreting runtime acceptance | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+| Outlook | Read | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
+
+### E#601 Whether link arrival offsets are evaluated
+
+**Question.** Whether the client evaluates an offset in a link's arrival field, such as `playery+10` [2.22] (tools/level-editor/222-reference.md#8-links).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Arrival fields may hold `playerx` or `playery` plus a signed offset; 21 arrivals in a 3113-level archive have that form, and the link dialog says math and variables may be used | [2.22] (tools/level-editor/222-reference.md#8-links) |
+| Claim B | The editors store the arrival text verbatim and do not parse it | [2.22] (tools/level-editor/formats-crossref.md#batch-f-decomp-findings-2026-10-25-f-pr-39) |
+| Best guess | The client evaluates the expression when the link fires: level authors used the form, which they would not have kept if it failed. Confidence: moderate | [inf] (tools/level-editor/222-reference.md#16-open) |
+| Settles it | A lab run through a link with an offset arrival, or a trace of the warp code | [inf] (tools/level-editor/222-reference.md#16-open) |
+| Outlook | Lab | [inf] (tools/level-editor/222-reference.md#16-open) |
+
+### E#602 Code width of `Z3-V1` boards
+
+**Question.** How many bits a board code uses in `Z3-V1.02` [srv] (formats/level-binary.md#z3-v1-differences).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | `Z3-V1.02` uses 11-bit codes and `.03` and `.04` use 12; only the 1998 Java Zelda Online games read `.02` | [srv] (formats/level-binary.md#z3-v1-differences) |
+| Claim B | The 2.05 and 2.31 readers use 12 bits for both `Z3-V1` versions they handle; the 2.05 string table lists `.03` and `.04` only | [2.05][2.31] (formats/level-binary-client.md) |
+| Best guess | Both are right: `.02` is 11-bit and no Graal client reads it, so the 12-bit readers never meet it. Confidence: moderate to high | [inf] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
+| Settles it | A `Z3-V1.02` file decoded both ways, and a trace of whether 2.05 reads that magic | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
+| Outlook | Read | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
+
+### E#603 Whole tiles and fractions in level records
+
+**Question.** Which level-record fields hold whole tiles and which take fractions [srv] (formats/level-binary.md#records).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Coordinates in the binary level records are whole tiles | [srv] (formats/level-binary.md#records) |
+| Claim B | `Z3-V1.03` link numbers are floating point and include halves such as `43.5`; GLEVNW01 allows fractional NPC positions; of 18,710 arrival fields in an archive, 12,035 were plain numbers, halves included | [srv] (formats/level-binary.md#z3-v1-differences); [GE] (formats/glevnw01.txt); [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
+| Tried | The Windows 4.04r2 reader: link boxes are floating point; arrivals stay text; baddy positions are raw bytes and NPC, chest and sign positions bytes minus 32, all whole | [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Best guess | In binary records, link boxes are fractional and every other position is whole; text formats allow fractions where the 4.04r2 reader shows floats. Confidence: moderate | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Settles it | A field list for link box, link arrival, baddy, NPC, chest and sign, each with its stated type and one real file of each magic | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
+| Outlook | Read | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
+
+### E#604 Where a binary sign list ends
+
+**Question.** Where the sign list in a binary level ends when a `HEIGHTS` block may follow it [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | 2.05 reads signs to the end of the file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+| Claim B | The sign section runs until an empty line or the end of the file | [srv] (formats/level-binary.md#layout) |
+| Tried | The Windows 4.04r2 sign reader stops after a line shorter than two bytes or at the end of the file and does not know `HEIGHTS`; only the web-level cache reader reads heights after it | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Best guess | Each reader keeps its own rule, so a file with signs, a blank line and `HEIGHTS` reads differently by build; a writer that targets old clients should put nothing after the signs. Confidence: high | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+| Settles it | One such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
+| Outlook | Lab | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
+
+### E#606 Whether a gmap carries `HEIGHTS` blocks
+
+**Question.** Whether gmaps hold per-level `HEIGHTS` blocks as well as the coarse `HEIGHTMAP`, beyond the builds already read [doc] (protocol/format-notes-from-salvage.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Windows 4.04r2 reads both `HEIGHTMAP` and named per-level `HEIGHTS` inside a gmap; an archive-labelled Mac 4.04r2 fixture contains both, and the native readers in four Mac PowerPC builds handle both. `HEIGHTS` is not confined to level files (→ §3.2.4) | [bin][file] (formats/gmap-heights-404r2.md); [bin] (formats/gmap-heights-mac-ppc.md#the-reader-in-all-four-builds) |
+| Historical claim | `HEIGHTS` belongs to level files and `HEIGHTMAP` to the generator gmap; read as exclusive placement, this is too broad | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md); [bin][file] (formats/gmap-heights-404r2.md) |
+| Open | The salvage author's intent, rendering, server support and the original Windows fixture packaging | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
+| Best guess | Every 4.x and later gmap reader accepts both forms. Confidence: moderate | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
+| Settles it | The gmap reader of one 5.x and one 6.x build | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
+| Outlook | Read | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
+
+### E#608 How many `arrays.dat` lists make a tile passable
+
+**Question.** How many `arrays.dat` lists decide whether a tile is walkable [doc] (CONSOLIDATED.md#tiles).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The first array supplies passable tiles and all others are walls | [doc] (CONSOLIDATED.md#tiles) |
+| Claim B | The old-mode 2.05 path checks arrays 0 and 1 | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
+| Evidence | The two operations differ for the exact inspected input (→ §3.5.3.1); that does not identify a runtime consumer | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Best guess | Claim B for the old-mode path, which is a code read; Claim A is a summary that dropped list 1. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Settles it | Trace the exact consumer, or a scene that walks onto a value present only in list 1 | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Outlook | Read, then Lab | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+
+### E#614 Tiledef type 4 consumer (draw against walk)
+
+**Question.** What a type-4 tiledef line does. Such lines are common in 2.22 install tiledefs, but the walk-kind switch names only 0, 1|2 and 5 [file][2.22] (formats/tiledef-type4-2026-11-16.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Install type-4 rows store large pixel x offsets (and sometimes y) beside a replacement image and a level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim B | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
+| Tried | On 2026-11-19, 2.22's F5 loader froze under Wine even on its own tutorial level; 2.31's Training editor reads `tiledefsOffline.txt` (a type-0 line blacks out the board), but a 256 x 512 test overlay never drew | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | Type 4 draws a replacement image at a pixel offset (like a later `addtiledef2`) and does not change walking. Confidence: moderate | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| Settles it | A full-size 2048 x 512 overlay in the 2.31 editor, a run outside Wine, or a consumer trace | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| Outlook | Lab | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+
+## E.6 Client behaviour
+
+These questions are about what a client does in play: timing, walking, combat, items and the screen (→ Part IV). Most were raised by a static read that found a routine but not every input to it, so most are settled by one controlled lab scene on the exact build [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
+
+### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
+
+**Question.** How fast the three early builds really tick. They were first said to have no frame timer; an exact read found one in each [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The configured timer and its static binding are in → §4.1.2; the survey's interval cells are corrected | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
+| Tried | A debugger breakpoint counted 61, 61 and 60 callback hits in 3 s for the three builds; that proves the callback runs, not its cadence | [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
+| Best guess | About 20 ticks a second (50 ms), the cadence every later client uses (→ §4.1.7); the breakpoint counts of about 20 a second agree. Confidence: moderate | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Settles it | Runtime timing of those exact builds that tells the declared interval from elapsed time, and a check for idle handlers installed at run time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Outlook | Lab | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+
+### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
+
+**Question.** Which states use the walking speed factors 0.4 and 0.8 [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The walking code multiplies the half-tile step by a factor: 1.0 on foot, 1.2 in a high-speed state; hiding gives 0.1 tile per tick | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step); [live] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
+| Evidence | Factors 0.4 and 0.8 also exist, and 0.8 depends on a carried object; carrying, measured live, does not slow the walk | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Best guess | 0.8 applies to one heavy carried kind (a black stone) that the live test did not carry, and 0.4 to a slowing state such as shallow water. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settles it | A lab walk in each candidate state on 2.05 (riding, shield, carrying each object kind, water) | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+
+### E#303 Two unidentified lists in the blocked-point test
+
+**Question.** What fills two object lists that the blocked-point test reads [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | One list holds objects with two flags and a player-sized body box (read only with a client option on); the other holds 1.5 x 2 boxes with an enabled flag | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Best guess | The first is other players (the option is player collision) and the second is NPCs or baddies with a blocking flag. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settles it | Tracing what fills each list, or walking into each kind of level object in the lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+
+### E#304 Stopping positions and the wire rounding of nudged positions
+
+**Question.** Where a player stops after a blocked step, and how a position that is not on a half tile is rounded when sent [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The flush snap and the 0.1 nudges are read from the 2.05, 2.17.1, 2.22 and 2.31 walking routines | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step) |
+| Open | The stopping positions on a live client, and the rounding of a nudged position on the wire | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Best guess | The stop is the read flush snap, and the wire value is the position in half tiles, truncated. Confidence: low for the rounding | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settles it | A lab walk towards a rock from both half-tile alignments on 2.22, with the props messages captured | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+
+### E#305 The 2.22 push frame field
+
+**Question.** Whether a memory trace of 2.22 that disagrees with the 2.05 push timing was reading the gani frame [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | 2.22 plays `push` as 5 frames of 4 ticks, looping, as 2.05 does | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| Claim B | A trace of 2.22 against a public server showed a push frame field cycling 0 to 3 every tick once the blocked count passed 18 | [live] (live-runs/2gta-222-2026-10-30/README.md) |
+| Best guess | The traced field is another per-tick counter, and the second run used the server's own push gani, so Claim A stands. Confidence: moderate | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
+| Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
+| Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
+
+### E#306 The flag that picks `lift2.wav` for a pull
+
+**Question.** Which player flag makes a successful pull play `lift2.wav` instead of `lift.wav` [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | A successful pull plays `lift.wav`, or `lift2.wav` by a player flag that was not traced | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
+| Best guess | A flag for a heavy object (one that needs a stronger glove), giving the heavier sound. Confidence: low | [inf] (client-internals/ledges-push-pull.md#open) |
+| Settles it | Tracing the flag in 2.05's pull routine | [inf] (client-internals/ledges-push-pull.md#open) |
+| Outlook | Read | [inf] (client-internals/ledges-push-pull.md#open) |
+
+### E#307 Probe, nudge and step tables of 1.39
+
+**Question.** The numeric movement tables of 1.39; 1st Graal's are now read [bin] (client-internals/first-graal-movement-2026-11-09.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | 1st Graal's exact step, six ordered probes, one-eighth-tile nudges and stepped-axis snapping are in → §4.2.2.3 | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
+| Evidence | For 1.39, six probes and the blocked-step counter shape were read, without the numbers | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
+| Best guess | 1.39 uses the same tables as 2.05, since the probe count and counter shape match. Confidence: moderate | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| Settles it | Recover the 1.39 tables, then validate the runtime gates on exact inputs | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| Outlook | Read | [1.39] (version-profiles/matrix/rules-139.md#still-open) |
+
+### E#308 Link probe offsets and the neighbour-table flag
+
+**Question.** The per-facing link probe offsets of 2.22, the flag that skips the 3 x 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The 2.05 edge rules and the 3 x 3 neighbour fill are settled | [bin] (protocol/link-probe-bigmap-status.md) |
+| Open | 2.22's probe offsets, the skip flag, and how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
+| Best guess | 2.22 keeps 2.05's offsets, and 171 fills the same grid as `bigmap.txt`. Confidence: moderate | [inf] (protocol/link-probe-bigmap-status.md) |
+| Settles it | A 2.22 read of the probe table and flag, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
+| Outlook | Read, then Lab | [inf] (protocol/link-probe-bigmap-status.md) |
+
+### E#309 Knockback distance of 1.39
+
+**Question.** Whether 1.39 knocks a hurt player back four or five tiles [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The binary moves the player one tile per tick while the hurt counter reads 39 down to 35: five steps | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
+| Claim B | The offline run measured four tiles on the touch-NPC test | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| Best guess | Five on open ground; the live run lost one step to collision or to the ±1 tick of video timing. Confidence: moderate | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
+| Settles it | A fresh 1.39 knockback on open ground | [inf] (version-profiles/matrix/rules-139.md#still-open) |
+| Outlook | Lab | [inf] (version-profiles/matrix/rules-139.md#still-open) |
+
+### E#310 Where the once-per-second hit stamp sits
+
+**Question.** Which hit paths share the per-attacker once-per-second stamp [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The stamp is shared by the sword and both hit messages, and stored before the guild test | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
+| Claim B | In 2.00 to 2.05 rev 2 the stamp is in the hurt-message path only; no sword judge of any build has it | [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
+| Tried | The 1.35 two-player run saw one hit per round of three swings 1.2 s apart, which neither claim forbids | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
+| Best guess | Claim B: the later, build-by-build read. Confidence: moderate | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
+| Settles it | Two sword hits from one attacker inside one second on 2.05, two players in the lab | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
+| Outlook | Lab | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
+
+### E#311 Blast hit zone and the occasional full-heart hit
+
+**Question.** Why the blast zone read from code does not match the hits measured on 2.22, and why some trials took a full heart [2.05] (client-internals/damage-sources.md#bombs-and-explosions).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | A blast piece hurts when its centre, offset by one tile, is under one tile from the player's centre on both axes | [2.05] (client-internals/damage-sources.md#bombs-and-explosions) |
+| Claim B | On 2.22, with a bomb 0.5 or 1.5 tiles off the victim's row, hits came at y offsets +1, +3 and −3 but not 0 or ±2, and at x offsets ±4 and +5 but not 0 or ±1; a few trials took a full heart | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Best guess | Each of the blast's pieces tests separately, so the pattern follows the bomb's half-tile y and two overlapping pieces give the full heart. Confidence: low to moderate | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
+| Settles it | Reading the 2.22 explosion routine (with → App. E#323), then the sweep repeated with one bomb per trial | [bin] (protocol/carry-shoot-hit-status.md) |
+| Outlook | Read, then Lab | [bin] (protocol/carry-shoot-hit-status.md) |
+
+### E#312 The last byte of a shot
+
+**Question.** What the last byte of `PLO_ARROWADD` (19) does besides naming the shot type [2.05] (client-internals/damage-sources.md#shot-19).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The byte is the shot type, `byte − 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
+| Claim B | On 2.22 an injected shot hurt only when the byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Evidence | The `SHOOT` and `SHOOT2` field scales are settled for 5.00r7 to 6.03r7, and GServer-v2's one-byte gravity disagrees with every client read | [bin][srv] (protocol/carry-shoot-hit-status.md) |
+| Best guess | The low types (0 and 1, wire `0x21` and `0x22`) are shots that the shooter's own client judges, so a receiving client never hurts from them. Confidence: low to moderate | [inf] (client-internals/damage-sources.md#shot-19) |
+| Settles it | Reading the 2.22 shot receiver, or a capture of a real arrow that hurts | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| Outlook | Read | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+
+### E#313 Do arrows and fireballs pass walls
+
+**Question.** Whether arrows and fireballs fly through walls in 2.05 [2.05] (client-internals/damage-sources.md#open).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | In the 2.05 shot flow, types 0 and 1 skip the blocking test that stops types 2 and 3; the test's arguments were not recovered | [2.05] (client-internals/damage-sources.md#open) |
+| Best guess | They pass walls in 2.05, as the code reads; a separate stop that the read missed is the only thing that would prevent it. Confidence: moderate | [inf] (client-internals/damage-sources.md#open) |
+| Settles it | A lab shot at a wall on 2.05 | [inf] (client-internals/damage-sources.md#open) |
+| Outlook | Lab | [inf] (client-internals/damage-sources.md#open) |
+
+### E#314 Gmap list order and the level-entry save
+
+**Question.** Whether entering a gmap from outside saves the respawn point [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The order of the gmap's level list, and when it is updated against the entry save, decide it; neither is read | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| Best guess | The save happens, because the list is updated after the save. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| Settles it | A 2.22 run on a 2 x 2 gmap: walk in from a plain level and die on each side of a seam | [inf] (protocol/link-probe-bigmap-status.md) |
+| Outlook | Lab | [inf] (protocol/link-probe-bigmap-status.md) |
+
+### E#315 The level-entry save in the 2.1 test builds
+
+**Question.** How the 2.1 test builds save the entry point, which is expected to differ from 2.05 [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| Best guess | Every level entry saves the respawn point. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| Settles it | Reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+
+### E#316 Glove power steps
+
+**Question.** Which objects each glove power can lift [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Every player starts at glove 1, which lifts bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
+| Claim B | A bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
+| Tried | The 2026-11-19 runs lifted bushes on every build, but the glove chest never opened (0 of 1 on every Windows build and Linux 6.03r7), so glove power was not raised | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | Claim B, which is read from the lift table itself; Claim A mixes the client table with the server's starting glove. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
+| Settles it | A lift of each object on 2.05 at glove 0, 1, 2 and 3, set through the props rather than the suspect chest | [inf] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
+| Outlook | Lab | [inf] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
+
+### E#317 The 1.x pickup box and item draw order
+
+**Question.** The 1.x pickup box in tiles, and whether items draw under or over players [bin] (client-internals/item-drops.md#open).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Only 1.3's pixel overlap for picking up a floor item was read | [bin] (client-internals/item-drops.md#open) |
+| Best guess | Items draw under players, as level objects do. Confidence: moderate | [inf] (client-internals/item-drops.md#open) |
+| Settles it | Reading the pickup test of 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
+| Outlook | Read and Lab | [inf] (client-internals/item-drops.md#open) |
+
+### E#319 The single-player start levels
+
+**Question.** What the extra setup step does when 2.05 loads `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` [2.05] (client-internals/offline-tutorial-205.md#special-level-names).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | On the public 2.1.0.0 image and on v22 the call passes the level and two 31s; what the helper changes is unknown, and whether 2.05 passes the same values was not read | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
+| Best guess | It places the player at a fixed start point, tile (31, 31), near the middle of a 64 x 64 level, for the levels that begin the single-player game. Confidence: low to moderate | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
+| Settles it | Loading each name offline on 2.05 and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
+| Outlook | Lab | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
+
+### E#320 Does any server check the tamper check
+
+**Question.** Whether any server checks the value of `PLI_TAMPERCHECK` (39), or its periodic re-send from 2.31 [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The clients only send it; the open-source server discards it; four public servers accepted a 2.22 login without it for 20 s | [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
+| Tried | Our GServer-v2 build (GS2Emu 4.0.0-beta) takes an empty 39 silently: no reply, no log line, and the session continues | [lab] (protocol/probe-targets-2026-11-18.md) |
+| Best guess | No server rejects a missing or wrong value; at most an official server logged it for staff. Confidence: moderate | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
+| Settles it | A 2.31 session on a public server with the re-send withheld or altered, which needs the owner's written permission | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
+| Outlook | Owner | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
+
+### E#321 The 2.31 window blacklist
+
+**Question.** Which windows 2.31's blacklist names, and what the client does on a match [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | 2.31 compares top-level window titles and classes with an obfuscated list every 3.2 s | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| Best guess | The list names the period's memory editors and speed hacks, and a match quits the client or reports to the server. Confidence: moderate for the list, low for the reaction | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
+| Settles it | Decoding the list, then a lab run with a window of a listed title open | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
+| Outlook | Read, then Lab | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
+
+### E#322 How others see a key emote
+
+**Question.** How other players see a Ctrl+letter emote, when the 2.05 path draws it locally and sends nothing [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| Best guess | Others do not see a key emote; the captured frames come from a server script calling `showimg`. Confidence: moderate | [inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| Settles it | A capture of a real 2.05 client pressing Ctrl+A next to a second client on a script-free lab server | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
+| Outlook | Lab | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
+
+### E#323 Level-object routines not read (2.22)
+
+**Question.** How 2.22 throws a lifted object, what a cut or lift drops, and the rest of its level-object routines [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Open | The throw, the drop on cut or lift, the carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Evidence | `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry and throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
+| Best guess | The routines match 2.05's, since 2.22's walking rule does. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Settles it | Reading those routines in 2.22, or one lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+
+### E#324 Combat rules the 1.21 to 2.31 pass left open
+
+**Question.** The live checks left after the static combat pass over 35 builds settled its four unidentified gates [bin] (client-internals/combat-baddy-tile-by-version.md#not-known).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled part | 1.39 and 1.41 rev 1 handle id 40; player mode 7 is attachment to another local player; the extra victim test is ghost mode (170), and from 2.17.1 Kingdoms or New World mode (176, 177); respawn AP bands match 2.05 from 1.41 rev 1 | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46); [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates); [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
+| Settled part | The 2-tile sideways sword edge is included on both sides on 1.35, and half a tile further misses | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
+| Settled part | 2.05 rev 2 has no client-side drop roll offline: 17 archer and 8 soldier kills, no drop, against 9 drops in 12 archer kills on 1.39 | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Open | The extra fields 1.41 rev 1 reads from an id 40 body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
+| Open | 1.21 gave exactly one gralat in the frame of each of 12 archer kills, with no darts or hearts; the drop spot overlapped the player, so a dropped gralat picked up at once and a direct kill reward look the same | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Open | 2.17.1's drop behaviour, and the sword spark (no separate spark sprite was seen on 1.39 against a rock wall) | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | 1.21 gives a direct kill reward of one gralat rather than rolling a drop; 2.17.1 has no drop roll, like 2.05; the spark appears only when a sword meets a sword or a shield. Confidence: moderate, low, low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Settles it | A ranged kill on 1.21 (thrown bush or pot, or an arrow), the same archer scene on 2.17.1, and a sword against a sword or a baddy's shield | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Outlook | Lab | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
+
+### E#325 Later sound census and playback limits
+
+**Question.** How many distinct WAVs the 4.x to 6.x builds ship, and which formats each client really plays [file][doc] (client-internals/sound-files-6x.md#what-the-files-are).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The survey reports 255 distinct WAVs, but its format counts (202 + 43 + 6 + 3) and channel counts (193 + 61) each total 254 | [file][doc] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Evidence | Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behaviour; the survey ran no client (→ §3.10.5, → §4.7.5) | [file][bin] (client-internals/sound-files-6x.md) |
+| Best guess | One file was dropped from both splits, so 255 is right and each split is one short. Confidence: moderate | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Settles it | Recount against the surveyed inputs, and test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Outlook | Read for the count; Lab for playback | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+
+### E#326 Remaining 6.03r7 HUD measurements
+
+**Question.** The heart row's right margin, the sword sprite's right edge and the Windows text positions on 6.03r7 [shot][doc] (client-internals/hud-603r7-black-box.md#hearts).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The source calls the full-size row's right margin 68 pixels, but its own formula x = W − 198 + 45k with a 40-pixel full heart gives 23 pixels for four hearts (k = 0 to 3); 68 fits three | [shot][doc] (client-internals/hud-603r7-black-box.md#hearts) |
+| Evidence | The sword source rectangle's right edge (width 28 to 34 pixels), Windows text positions at other window sizes, and Windows operation with a current clock (its run used a 2012 clock) are unresolved (→ §4.6.9) | [shot][lab] (client-internals/hud-603r7-black-box.md#open) |
+| Best guess | The formula is right and the 68-pixel figure was measured with three hearts. Confidence: moderate | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
+| Settles it | Identified-state captures: a known heart count, a known window size, the sword drawn on a plain background | [inf] (client-internals/hud-603r7-black-box.md#open) |
+| Outlook | Lab | [inf] (client-internals/hud-603r7-black-box.md#open) |
+
+### E#327 Missing chest art and menu skin in the 6.03r7 item run
+
+**Question.** Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle (→ §4.5.8) [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Chest collision and opening were observed without chest art; an orange rectangle appeared after D, Q, Tab or Esc toggled the menu status | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
+| Best guess | Both come from files or scripts the lab world lacks: the chest image and the GUI skin are delivered by the server on 6.x. Confidence: moderate | [inf] (client-internals/items-603r7-black-box.md#open) |
+| Settles it | Controlled input changes: add the chest image and a GUI skin and see what changes | [inf] (client-internals/items-603r7-black-box.md#open) |
+| Outlook | Lab | [inf] (client-internals/items-603r7-black-box.md#open) |
+
+### E#328 What drives 2.22's tick
+
+**Question.** Whether 2.22's game step runs from a 50 ms multimedia timer or from the application's idle handler behind a 50 ms gate (→ §4.1.2, §4.6.10) [bin] (client-internals/rebuild-traces-2026-11-05.md#222); [bin] (version-profiles/matrix/builds-static-survey.tsv).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The rebuild read of `Graal_222.exe` found a multimedia timer with an interval of 50 ms and a resolution of 10, whose handler is the game step | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Claim B | The static survey of every Delphi build lists NewMain 1.42 to 2.31, 2.22 included, as having no form timer, with the frame run from the idle handler | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
+| Best guess | Both are partly right: the survey looks for timers on forms, and a multimedia timer is created in code, so it would not show there. Whether the idle path also still steps the game in 2.22 is not known. Confidence: moderate | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Settles it | Read 2.22's start-up code for the timer's creation and check whether the idle handler calls the game step; or count steps under Wine with the timer blocked | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Outlook | Read | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+
+Either way the tick is 50 ms, so no duration in this manual changes; only the mechanism is open [bin] (version-profiles/matrix/builds-static-survey.tsv).
+
+### E#610 Windows 4.04r2 offline initialization against gameplay
+
+**Question.** Whether 4.04r2 plays offline. A harness drove its offline transition, but no gameplay was seen [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Open | A rendered offline level, player movement, and cutting, lifting, carrying or hiding on that build | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Best guess | It plays offline as 4.20r6 does, once the level files it expects are present. Confidence: low | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Settles it | A controlled scene with captured actions and the state before and after each one | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Outlook | Lab | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+
+### E#611 Windows 4.04r2 pickup semantics and input qualification
+
+**Question.** What 4.04r2's pickup-bound field means and which key reaches it. The pickup state is recovered statically, but no interaction was captured [bin][cap] (client-internals/404r2-carry-state.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Static recovery separates the pickup action, the carried category and the carrying flag | [bin][cap] (client-internals/404r2-carry-state.md) |
+| Open | The meaning of the pickup-bound field, the path from a physical key to the action, and the asset behind a provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
+| Evidence | The countdown cannot give elapsed timing without the clocks of → App. E#301 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
+| Best guess | The bound field is the carried object's kind, set when the lift starts. Confidence: low | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A semantic read of the field and the input route, then a scene that captures each action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Outlook | Read, then Lab | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+
+## E.7 Servers, listserver, RC and NC
+
+These questions are about the programs on the other side of the connection (→ Parts V to VII). They split cleanly in two: the lab servers and staff tools that are held can answer theirs, while questions about what the official servers of 1999 to 2010 did depend on a capture of a public service or on source that is not held [doc] (AGENTS.md#labs).
+
+### E#400 Two projects called Ash
+
+**Question.** Whether the two things the notes call Ash are one project at two stages or two projects that share a name [src] (server-notes/01-lineage.md#what-is-binary--world-only).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Ash is a Python rewrite of the gs2emu protocol with its own world and default port 14812; it is not the Reborn 2.4 binary | [src] (server-notes/01-lineage.md#what-is-binary--world-only); [src] (server-notes/ash-overview.md) |
+| Claim B | Ash is the blueprint pack of the 2006 39ster 2.1 GServer, describing that server as written; default port 14822 | [src] (ash/INDEX.md); [src] (ash/ARCHIVAL-NOTE.md) |
+| Best guess | Two projects that share a name: the ports, languages and subjects differ. Confidence: moderate. The manual keeps them apart (→ §5.2, → §5.3.1) | [inf] (ash/ARCHIVAL-NOTE.md) |
+| Settles it | The Drive archives of both, compared by date and content | [doc] (ash/ARCHIVAL-NOTE.md#full-archive) |
+| Outlook | Missing: the full archives are owner-held | [doc] (ash/ARCHIVAL-NOTE.md#full-archive) |
+
+### E#401 Listserver reply ids 1 and 2
+
+**Question.** What listserver reply ids 1 and 2 meant in 2002. The 1.41 game client, RC 1.41 and later clients read them differently [srv] (protocol/listserver.md#listserver--client; protocol/listserver-141r1-silent-list.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | Id 1 is empty and id 2 is status text with `\r` as a line break; 2.17, 2.22 and the public service send status text as id 2 | [srv] (protocol/listserver.md#listserver--client); [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
+| Claim B | RC 1.41 (2002) reads id 1 as one more server entry and id 2 as the end of the list, then disconnects | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| Claim C | Game client 1.41 rev 1 reads id 1 as one more server entry and ignores 2, 3 and 4; it never sends a list login | [bin][lab] (protocol/listserver.md#141-rev1-no-login-the-server-speaks-first-binlab; protocol/listserver-141r1-silent-list.md) |
+| Best guess | The 2002 listserver used 1 as "one more server" and 2 as "end of list", as both 1.41 programs read; the meanings changed when the later listserver took over. Confidence: moderate | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
+| Settles it | A 2002-era listserver binary or capture, or a re-read of the 2.05 handler for id 1 | [inf] (protocol/listserver.md#205-specifics-205) |
+| Outlook | Read for 2.05's handler; Maybe never for the 2002 service itself | [inf] (protocol/listserver.md#205-specifics-205) |
+
+### E#402 The 2000-era listserver reply
+
+**Question.** Whether today's legacy listserver reply is what the service sent in 2000 to 2002 [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | A real 2.00-era reply is observed: one plain zlib frame, id 0 only, 4 rows, no status, site or upgrade lines (the public 14923 reply to a classic login) | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
+| Claim B | What a real 2.00-era listserver sent is unobserved; the two-frame list 2.00 accepted in the lab came from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205) |
+| Best guess | Today's legacy reply is a kept copy of the old path and matches it in shape, though not in content. Confidence: moderate | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
+| Settles it | A capture of a real 2.00 or 2.05 against the 14923 service, or a 2000-era listserver binary | [inf] (protocol/login-frames-by-version-2026-10-25.md#captures-that-would-settle-it-all-read-only-list-requests) |
+| Outlook | Owner for today's service; Maybe never for the service of 2000 | [doc] (AGENTS.md#labs) |
+
+### E#403 Classic logins on port 14922
+
+**Question.** Why a real 2.17.1 sends a classic login to a port that does not answer it today [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | A real 2.17.1 sends a classic login (shape B) to port 14922, the port in its signed `arrays2.dat` | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
+| Claim B | The public 14922 accepts a classic login and never answers it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
+| Open | Whether the 2001 service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether the zlib header (`78 DA` against `78 9C`) matters | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Best guess | 14922 answered classic logins when 2.17.1 shipped and stopped when the service moved them to 14923; the zlib header does not matter. Confidence: moderate | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Settles it | A list-only capture of a pristine 2.17.1 against the public service, with the owner's written permission | [doc] (AGENTS.md#labs) |
+| Outlook | Owner; even then, today's service may not show what 2001's did | [doc] (AGENTS.md#labs) |
+
+### E#404 A public server refusing 2.05 inside its own range
+
+**Question.** Why a public server refused 2.05 although its printed range seems to include it [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The printed range runs from 1.41r1 to iPhone Belote 1.5, which in the current version table covers every 2.x to 6.x entry | [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| Claim B | The same server refused 2.05 (`GNW03081`) | [cap] (server-notes/public-allowed-versions.md#the-refusals-on-record) |
+| Best guess | The server runs an older version table with no 2.05 entry, so 2.05's token falls outside the range by lookup. Confidence: moderate | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| Settles it | One 5.00r7 or 6.03r7 login to that server, with the owner's written permission | [inf] (server-notes/public-allowed-versions.md#open) |
+| Outlook | Owner | [inf] (server-notes/public-allowed-versions.md#open) |
+
+### E#405 RC token `GSERV025`
+
+**Question.** Which RC builds send `GSERV025`, and how each RC token pairs with a login type [srv] (protocol/chat-pm-rc.md#admin-and-staff).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The server knows the RC tokens `GSERV023` to `GSERV025` | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
+| Claim B | The RC builds first read send `GSERV007`, `GSERV011`, `GSERV014` and `GSERV019` to `GSERV024`, none `GSERV025` | [bin] (protocol/gserv-1999.md#login); [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/remotecontrol.md#logins-bin) |
+| Tried | RC2 2.05, RC3 and the 2006-01-20 Linux RC send `GSERV025`; the 2005-12-09 Linux RC still sends `GSERV024`. The login-type pairing stays in the lineage notes | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [inf] (tools/remotecontrol-lineage.md) |
+| Best guess | `GSERV025` arrived between December 2005 and January 2006 with RC2, and every later RC sends it. Confidence: high | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
+| Settles it | A static read of the remaining RC builds in the Drive RC folder (the custom RemoteControl, the RC3 beta) | [inf] (protocol/npc-control.md#drive-material-inventory-only-not-in-git) |
+| Outlook | Read; nearly settled | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
+
+### E#406 How the official listserver assigns PC ids
+
+**Question.** The rule by which the official listserver turns a client's machine fields into a PC id [src] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The id is a signed 64-bit decimal from `SVI_ASSIGNPCID`; the listserver's inputs are the identity string, account, password and the game server | [src] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+| Also open | Whether 5.12 reads the product id as 5.24 and later do; what `getlockcomputer` compares; what 6.11 and later connector scripts send as machine fields; the empty product id under 64-bit Windows | [inf] (protocol/pcid.md#open) |
+| Best guess | A row number in a listserver table of machines matched on the hardware hashes; a truncated hash of the fields would fit too. Confidence: low | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+| Settles it | The official listserver, or captures of its `ASSIGNPCID` replies for known inputs (public servers need the owner's written permission) | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+| Outlook | Maybe never for the rule, which lives only in the operator's database; a clean-room server can pick its own rule, since clients only store the number | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
+
+### E#420 Flag and chest counts in the RC props tail
+
+**Question.** Which of the two counts in the RC props tail counts flags and which counts opened chests [cap] (protocol/rc-capture-2026-11-04.md#player-props).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons; both were 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Evidence | PLO 124 (`PLO_RC_PLAYERFLAGS`, proposed) is handled by RC3 only, which logs and discards its body | [cap][bin] (protocol/rc-props-flags-status.md) |
+| Best guess | Flags first, then chests, the order the server stores them in the account file. Confidence: low to moderate | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Settles it | A capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Outlook | Lab | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+
+### E#421 The last byte of RC_PLAYERPROPSSET2
+
+**Question.** What the one byte the 2004 RC adds at the end of 76 means; the server's 72 has no such byte [cap] (protocol/rc-capture-2026-11-04.md#player-props).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The byte follows the weapons and was 0 in the only capture; staff tooling should keep it as unknown | [cap] (protocol/rc-props-flags-status.md) |
+| Best guess | A dialog option such as "apply now" or "notify the player", sent only from the edit dialog. Confidence: low | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Settles it | A static read of the RC's 76 builder, or a capture after changing each dialog field | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Outlook | Read | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
+
+### E#422 Quoting of folder rights
+
+**Question.** Whether the original server stored folder rights in the RC's CSV form [cap] (protocol/rc-capture-2026-11-04.md#rights).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The 2004 RC sends folder-rights lines as CSV, so `rw levels/*` goes out quoted, and splits what it reads back the same way | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
+| Claim B | A GServer-v2 fork returned the line unquoted, and the RC showed it as two lines | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
+| Evidence | In RC script text, trailing empty fields are kept and the GServer-v2 fork doubles backslashes inside quoted lines; the original RC2 and RC3 rule is unread | [cap][doc] (protocol/rc-text-escaping-status.md) |
+| Best guess | The original server stored and returned the CSV form, so the fork's reply is a fork bug. Confidence: moderate to high, because the RC was built against that server | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
+| Settles it | A capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
+| Outlook | Maybe never for the original server; a clean-room server should follow the RC | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
+
+### E#423 The 1999 servers: what the static read left open
+
+**Question.** The rules of GServer 1.28 beta 2 and 1.3 that the static read did not reach [bin] (server-notes/gserver-1999-rules.md#not-known).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Open | Which older builds get the "cannot answer" PM reply | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
+| Open | How the nickname and head of players in other levels are sent, and server-side prop limits beyond the counted props | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| Best guess | The 1.3 test client works against a server running these rules, since they were built together. Confidence: moderate | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+| Settles it | The 1.3 test client against a lab server that follows these rules, and a further read of the send paths | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+| Outlook | Lab and Read | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+
+### E#424 RC2's Admins folder against a one-space level
+
+**Question.** Where RC2 2.05 lists other RCs when GServer-v2 sends their level as one space instead of empty [bin][srv] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The 2001 servers send RCs an empty level, which puts them in RC2's Admins folder | [src][bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Claim B | GServer-v2 sends one space, so RC2 2.05, which tests the level by length with no trim, would list other RCs under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Also open | The send path of the 2005 Linux i386 RC (unpacked, not read) | [bin] (protocol/rc-list-online.md#open) |
+| Best guess | Claim B: other RCs appear under Players. Confidence: high | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Settles it | RC2 2.05 and two RC logins against the GServer-v2 fork in the lab | [inf] (protocol/rc-list-online.md#open) |
+| Outlook | Lab | [inf] (protocol/rc-list-online.md#open) |
+
+### E#425 Standalone NC flag-action recipient and ranges
+
+**Question.** Where the standalone NC's flag action ends up and how its fields are bounded. The action in → §7.3.4 builds a payload and enters an outgoing buffer, which is not end-to-end behaviour [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The count's low part uses seven bits; the high part is shifted and narrowed to a byte without an established seven-bit mask; biased item lengths and contents follow | [bin] (protocol/nc-standalone-flag-action.md#bounded-observations) |
+| Evidence | The bodies were analyst-seeded, not recognised procedures; exception tails, type and register meanings and indirect calls stay uncertain | [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits) |
+| Open | Collection type, count overflow, length ranges, the further buffer routine, the terminator, the final recipient and the receive side | [bin][inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+| Evidence | The NC write-op inventory knows the get, delete, reset, script and flag ids and the `i3` id layouts; the NPC add, class delete and weapon add and script layouts are open | [bin][doc] (protocol/nc-write-ops-status.md) |
+| Best guess | The NC server, as a flag-list write in the same shape as the weapons list. Confidence: moderate | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+| Settles it | Trace the buffer and recipient and the receive path, then compare with the weapons-list baseline; matching forms alone are not enough | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+| Outlook | Read | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
+
+## E.8 NPC scripting
+
+These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at a time, so its open points are mostly "does the 2.05 result hold elsewhere". GS2 is the largest open area in the manual: the bytecode container and the opcode sets are read, but the language, its library and its event model are known only in part [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
 
 ### E#200 When a GS1 condition counts as true
 
-When a GS1 condition counts as true is now settled for one exact build. Each row gives that result, its exceptions and what stays open in other builds [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing).
+**Question.** When a GS1 condition counts as true in builds other than 2.05 rev 2, and for unusual values [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Exact-build resolution | checked original Windows 2.05 revision 2 IF uses zero/nonzero for ordinary finite computed results; computed positive and negative halves are true, computed zero false | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
-| Parsing qualification | bare `0.5` and bare `1` are false despite numeric displays 0.5 and 1 (computed `(1+0)` is true); `created` is true despite numeric display zero. Condition-name resolution and numeric message expansion are separate | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
-| Separate defect | constant numeric comparisons fold to zero in this build, while dynamic comparison controls work; mechanism and observations carried in §8.1.3 | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#constant-comparison-folding) |
-| Open | other builds, nonfinite/malformed values, complete aliases/precedence and named-flag collisions | [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
-| Linux positive follow-up | An independently authored source weapon on original Linux 3.04 produces created/playerenters flag messages and fresh-account persistence. Numeric readbacks and explicit positive comparisons work while tested bare predicates do not activate. This is a separate build scope from the Windows 2.05r2 resolution; no universal numeric threshold or complete predicate/name-lookup rule is established. | [lab][cap] (npc-library/linux-304-gs1-runtime.md) |
-| Loop conditions, 1.33 to 2.31 | a bare number in `while` or `for` is false on 1.33, 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31, so `while(1)` runs 0 times. `while(1==1)` is false on 1.41r1 and 2.05r2 and true from 2.17.1. On 1.33 `true` is an unset flag and `while((1+0))` does not run (→ §8.2.12) | [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition) |
-
+| Settled part | On original Windows 2.05 rev 2, `if` uses zero against non-zero for ordinary finite computed results; computed positive and negative halves are true, computed zero false | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing) |
+| Settled part | Bare `0.5` and bare `1` are false although they display as 0.5 and 1 (computed `(1+0)` is true); `created` is true although it displays as zero. Constant numeric comparisons fold to zero in this build (→ §8.1.3) | [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#condition-execution-and-parsing); [2.05][bin][lab] (npc-library/gs1-condition-truth-205r2.md#constant-comparison-folding) |
+| Settled part | In loops, a bare number in `while` or `for` is false on 1.33, 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31, so `while(1)` runs 0 times; `while(1==1)` is false on 1.41r1 and 2.05r2 and true from 2.17.1; on 1.33 `true` is an unset flag (→ §8.2.12) | [lab] (live-runs/open-issues-2026-11-14/README.md#1a-is-a-bare-number-true-in-a-loop-condition) |
+| Evidence | On original Linux 3.04, a source weapon produces created and playerenters flag messages; numeric read-backs and explicit positive comparisons work, while the bare predicates tested do not | [lab][cap] (npc-library/linux-304-gs1-runtime.md) |
+| Open | Other builds' `if`, non-finite and malformed values, the full alias and precedence rules, and named-flag collisions | [lab] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
+| Best guess | Every GS1 build uses the zero against non-zero rule for computed values, and bare literals are parsed as flag names, which is why they are false. Confidence: moderate | [inf] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
+| Settles it | The 2.05 `if` test scenes repeated on 1.39, 2.17.1, 2.22 and 2.31 | [inf] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
+| Outlook | Lab | [inf] (npc-library/gs1-condition-truth-205r2.md#verification-and-limits) |
 
 ### E#201 Four GS1 argument signatures in 2.05
 
-The stored argument letters of four GS1 commands were re-read. What they mean at run time is still open [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters).
+**Question.** What the stored argument letters of four GS1 commands mean at run time [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Static resolution | exact-input stored letters are recorded in → §8.2; the follow-up agrees with the earlier reference and corrects the command reference's alternatives | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
-| Superseded claim | the command reference formerly printed `M`, `F,R,R`, `R,F,R,R` and `S,S` respectively; those are not the stored sequences for the four commands in the checked input | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
-| Open | whether differing argument descriptions express equivalent runtime semantics; conversion and coercion remain untested | [bin] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
-| Settles it | targeted parser/executor observations or controlled runtime tests of argument conversion in that exact build | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
+| Evidence | The exact stored letters are in → §8.2; the follow-up agrees with the earlier reference and corrects the command reference's alternatives | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
+| Superseded | The command reference formerly printed `M`, `F,R,R`, `R,F,R,R` and `S,S`; those are not the stored sequences in the checked input | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
+| Best guess | The differing descriptions are equivalent at run time, since the executor converts arguments by position. Confidence: low to moderate | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
+| Settles it | Controlled runtime tests of argument conversion on that exact build | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
+| Outlook | Lab | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
 
 ### E#202 Which message carries GS2 bytecode
 
-Three sources name different messages as the carrier of GS2 bytecode. The Linux rows add partial results without closing the question [srv] (protocol/packet-ids.md; protocol/graphics-movement-bytecode.md#on-wire).
+**Question.** Which message carries a GS2 script body on 4.x and 5.x clients. Three sources name different messages [srv] (protocol/packet-ids.md; protocol/graphics-movement-bytecode.md#on-wire).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
 | Claim A | NPC bytecode is `PLO_NPCBYTECODE`, id 131, sent to clients at or above `CLVER_4_0211` and wrapped in `PLO_RAWDATA` | [srv] (protocol/packet-ids.md; protocol/graphics-movement-bytecode.md#on-wire) |
-| Claim B | for v4 and later clients the script prop is replaced by `NPCPROP_CLASS` plus id 197 (`PLO_UNKNOWN197`, "GS2 bytecode"); the weapon-list note also lists 197 as the bytecode that replaces the script for GS2 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
-| Claim C | id 197 is `PLO_LOADSCRIPT`, a list `type,name,saveToDisk,desKey,crc32` | [srv] (protocol/packet-ids.md) |
-| Open | whether 197 carries bytecode, a script-load descriptor, or both in different server versions, and how it relates to 131 | [inf] (protocol/packet-ids.md; protocol/packet-layouts.md) |
-| Settles it | a capture of a 4.x or 5.x client receiving an NPC with a GS2 script from a lab server | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Linux 4.04r2 partial result | A static message-131 path strips a three-byte identifier and reaches the compiled-segment reader. No network fixture was delivered; lookup roles, the indirect initialization callback, messages 140/197 and cache validation remain unresolved. The 97-case switch count is not a complete handled-ID count (→ §2.5.12) | [bin] (protocol/linux-404r2-receive-scope.md) |
-| Linux cross-version follow-up | Preserve tag normalization and exact-build case behavior without publishing an unproved delivery grammar. The broader question remains partial (→ §2.5.12) | [bin] (protocol/linux-cross-version-receive.md) |
-| Status (2026-11-18) | The opcode case sets of every readable client VM are now listed (→ §8.4.4). They cover what a client runs once a body has arrived, not which message carries it, so this question stays open | [bin] (protocol/gs2-opcode-table.md#case-sets) |
-| Linux positive follow-up | Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
-| Windows 6.113 capture | 19 decrypted cache bodies: 197 is the descriptor `type,name,1,key,crc`, the CRC covers the stored encrypted body, and the body arrives from the cache or from 140, never inside 197. 4.x ids 131 and 197 are not covered by this capture | [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles) |
-| Linux 6.x class cache | On Linux 6.03r7 x64 and 6.01r1 x86, 197 is a metadata list with the expected CRC and 140 carries the body; a header-only cache file can never be a class hit; a class miss sends 161 with the stored-body CRC. Other builds and server generations stay open (→ §3.8.9) | [bin] (formats/linux-6x-class-cache.md) |
-
+| Claim B | For v4 and later clients the script prop is replaced by `NPCPROP_CLASS` plus id 197 ("GS2 bytecode"); the weapon-list note also lists 197 as the bytecode that replaces the script | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
+| Claim C | Id 197 is `PLO_LOADSCRIPT`, a list `type,name,saveToDisk,desKey,crc32` | [srv] (protocol/packet-ids.md) |
+| Evidence | Windows 6.113: 19 decrypted cache bodies show 197 is the descriptor `type,name,1,key,crc`, the CRC covers the stored encrypted body, and the body comes from the cache or from 140, never inside 197 | [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles) |
+| Evidence | Linux 6.03r7 x64 and 6.01r1 x86: 197 is a metadata list with the expected CRC and 140 carries the body; a header-only cache file is never a class hit; a miss sends 161 with the stored-body CRC (→ §3.8.9) | [bin] (formats/linux-6x-class-cache.md) |
+| Evidence | Linux 4.04r2: a static path for 131 strips a three-byte identifier and reaches the compiled-segment reader; no network fixture was delivered, and 140, 197 and cache validation stay unresolved; the 97-case switch is not a handled-id count (→ §2.5.12) | [bin] (protocol/linux-404r2-receive-scope.md) |
+| Evidence | Three Linux 6.03r7 x64 probes establish class parsing, execution of an explicitly registered weapon and continuation at the saved position, with proxy-origin bodies; not a normal server compiler path, timing or cache-hit proof | [lab][cap] (protocol/linux-603-network-gs2.md) |
+| Tried | The opcode sets of every readable client VM are listed (→ §8.4.4), but they describe what runs after a body arrives, not which message carries it; the Linux cross-version follow-up keeps tag normalisation per build | [bin] (protocol/gs2-opcode-table.md#case-sets); [bin] (protocol/linux-cross-version-receive.md) |
+| Best guess | Two eras: 4.0x clients take NPC bodies in 131, and from about 4.2 the 6.x scheme holds, with 197 as the descriptor and 140 as the body; Claim B's "197 carries bytecode" names the whole exchange by its first message. Confidence: moderate | [inf] (formats/linux-6x-class-cache.md) |
+| Settles it | A capture of a 4.x and a 5.x client receiving an NPC with a GS2 script from a lab server | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Outlook | Lab | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#203 The 2.05 `#` message-code set
 
-The full set of `#` message codes in 2.05 is partly recovered. Each row gives a part that is settled and the fields that remain open [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage).
+**Question.** The full set of 2.05 `#` message codes, what each field holds, and how other builds differ [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Partial resolution | exact original 2.05r2 outer dispatch has 44 selector bytes / 53 family-expanded spellings, including preserved display codes and empty-output #7; supported contract carried in §8.1.11 | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage) |
-| Runtime controls | thirty qualified outputs from three usable offline scenes support bounded expansion behavior; fourth scene diagnostic only | [lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
-| Field identities | `#a` is the account name and `#L` the recorded level name; `#E` was a space in one context, writer unresolved; a positive pickup/drop control showed `#6` as the carried NPC's lowercased image name, then empty | [2.05][bin][lab] (npc-library/gs1-message-codes-205r2.md#field-identities-a-l-e-and-a-positive-carry-control) |
-| Open | the #E writer, quoted scanners, exact numeric formatting and downstream renderer semantics; other builds and live remote selectors unqualified | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
-| Boundary | accepted C5 storage read does not prove a sixth clothing color or alter the five-byte wire color property; property setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
-| Exact 2.05r2 #6 follow-up | carried-NPC image association independently linked to selected pickup/throw/clear paths; runtime, complete selectors/eligibility/lifetime and receiver identity remain unvalidated; other field identities remain open | [bin] (npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint) |
-| Exact 2.05r2 #p follow-up | shared parameter list is produced by dispatch splitting actor pending text, distinct from tokenize; callnpc/callweapon use empty-parameter queue wrappers. Only producer linkage is resolved; other E#203 fields remain open | [bin][lab] (npc-library/gs1-event-parameters-205r2.md#producer-and-consumer-linkage; npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls) |
-| Other builds, populated | `#F`, `#S`, `#I` and `#P6` to `#P9` hold values from 2.17.1; `#R` from 2.22; `#C6` and `#C7` stay empty in every build tested. `##` is a one-pass `#` escape on 2.05r2 and 2.17.1 and an empty code on 1.33 (→ §8.2.12). The 2.05 field questions in the rows above stay open | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
-| Other builds, `#D` | `#D` exists from 2.17.1 and is empty in the 2.17.1 context the lab reports | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
-| Other builds, registry | 2.17.1 names 46 codes; 2.22 and 2.31 add `R(S)`; Linux 3.04 drops `C5`, `C6` and `C7`. 1.41r1's scene set has no `#e` or `#K` (→ §8.2.12) | [bin][lab] (npc-library/gs1-message-codes-by-build.md#registered-names) |
-| Other builds, bare `#5` and `#6` | on 2.17.1, 2.22 and 2.31 a bare `#5` or `#6` was replaced by the label text in front of it. 2.05r2 shows empty. The cause was not traced | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| Settled part | Original 2.05r2's outer dispatch has 44 selector bytes, 53 family-expanded spellings, including preserved display codes and an empty `#7` (→ §8.1.11); thirty outputs from three usable offline scenes bound the expansion | [bin] (npc-library/gs1-message-codes-205r2.md#selector-membership-and-coverage); [lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| Settled part | `#a` is the account and `#L` the recorded level name; `#6` held the carried NPC's lowercased image name in a pickup and drop control; the shared `#p` list is made by dispatch splitting the actor's pending text, with `callnpc` and `callweapon` using empty-parameter queue wrappers | [2.05][bin][lab] (npc-library/gs1-message-codes-205r2.md#field-identities-a-l-e-and-a-positive-carry-control); [bin] (npc-library/gs1-message-codes-205r2.md#independent-carried-npc-association-checkpoint); [bin][lab] (npc-library/gs1-event-parameters-205r2.md#producer-and-consumer-linkage; npc-library/gs1-event-parameters-205r2.md#new-end-to-end-original-client-controls) |
+| Settled part | Other builds: `#F`, `#S`, `#I` and `#P6` to `#P9` hold values from 2.17.1, `#R` from 2.22, `#D` exists from 2.17.1 (empty in the context tested), and `#C6` and `#C7` stay empty everywhere; `##` is a one-pass escape on 2.05r2 and 2.17.1 and an empty code on 1.33 (→ §8.2.12) | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+| Settled part | 2.17.1 names 46 codes; 2.22 and 2.31 add `R(S)`; Linux 3.04 drops `C5`, `C6` and `C7`; 1.41r1 has no `#e` or `#K` | [bin][lab] (npc-library/gs1-message-codes-by-build.md#registered-names) |
+| Boundary | Reading `C5` from storage does not prove a sixth clothing colour or change the five-byte wire colour prop; prop setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
+| Open | The writer of `#E` (a space in one context), quoted scanners, exact number formatting and renderer semantics in 2.05; why a bare `#5` or `#6` on 2.17.1, 2.22 and 2.31 is replaced by the label text in front of it while 2.05r2 shows it empty | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls); [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| Best guess | `#E` is a field no 2.05 feature fills, left from an earlier design; the bare `#5` and `#6` effect is a scanner change in 2.17 that backs up over the label when the code has no index. Confidence: low | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| Settles it | A read of the `#E` writer, and a 2.17.1 trace of the bare-code scanner | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| Outlook | Read | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
 
 ### E#204 Member names of the GS1 object arrays
 
-The member names of the GS1 object arrays are settled for one build. What writing to them does, and how they change across builds, is still open [bin] (npc-library/gs1-object-members-205r2.md#parser-binding).
+**Question.** What writing to a GS1 object member does, and how the members change across builds. The names are settled for one build [bin] (npc-library/gs1-object-members-205r2.md#parser-binding).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Checked-build resolution | explicit suffix records and first-success parser establish the seven families' name-to-ID mappings: 36 records, 35 distinct spellings; carried in §8.2 | [bin] (npc-library/gs1-object-members-205r2.md#parser-binding) |
-| Arrow defect | dx663 binds first; duplicate dx664 vertical getter is shadowed. No builtin dy spelling; observing unassigned dy0 does not establish general fallback or no vertical movement | [bin][lab] (npc-library/gs1-object-members-205r2.md#parser-binding; npc-library/gs1-object-members-205r2.md#original-client-corroboration) |
-| Open | writes/setter side effects, unknown-member fallback, scanner details, enum meanings, specialized getters/integrity consequences and cross-version changes | [bin] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
-
-### E#205 Index of the hare baddy (settled)
-
-The hare baddy's type index is settled: it is type 5, shared with the frog [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Known | 2.05 ships `baddyhare.gif`, so a hare baddy type exists; the baddy name table has 10 names, 0–9 | [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables) |
-| Open | ~~the hare's type index~~ settled below, see `client-internals/baddies-222.md` | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
-| Settles it | reading the 2.05 baddy image selection by type | [inf] (npc-library/gs1-reference-205.md#constants-doc) |
-| Settled | type 5 (`frog`): the 2.22 client draws type 5 with `baddyhare.png` and plays `frog.wav` for it; the hare and the frog are one type | [2.22] (client-internals/baddies-222.md#types-222) |
+| Settled part | Explicit suffix records and a first-success parser establish the seven families' name-to-id mappings: 36 records, 35 spellings (→ §8.2) | [bin] (npc-library/gs1-object-members-205r2.md#parser-binding) |
+| Evidence | For arrows, `dx` binds first and a duplicate vertical getter is shadowed; there is no built-in `dy` spelling, and an unassigned `dy` reading 0 does not show a general fallback | [bin][lab] (npc-library/gs1-object-members-205r2.md#parser-binding; npc-library/gs1-object-members-205r2.md#original-client-corroboration) |
+| Open | Writes and setter side effects, unknown-member fallback, scanner details, enum meanings and changes across builds | [bin] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
+| Best guess | Writes go to the same fields the getters read, with no side effect beyond the next draw; an unknown member reads as an unset variable. Confidence: low to moderate | [inf] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
+| Settles it | A scene that writes each member and reads it back, and the same names on 1.39 and 2.22 | [inf] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
+| Outlook | Lab | [inf] (npc-library/gs1-object-members-205r2.md#coverage-and-limits) |
 
 ### E#206 `move` option bits in 2.05
 
-The `move` command's queued consumer is read for one build. The caller side and some edge cases are still open [2.05][bin] (npc-library/gs1-move-205r2.md).
+**Question.** The caller side of `move` in 2.05 and its edge cases. The queued consumer is read [2.05][bin] (npc-library/gs1-move-205r2.md).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Established | the exact Windows 2.05r2 queued consumer now supplies static replacement, progression, collision and option behavior → §8.2.9 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
-| Open | caller frequency/catch-up, complete collision eligibility, unidentified object collection, later event execution, exceptional numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
-| Settles it | targeted exact-input caller/state tracing and controlled runtime observations for these residuals | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| Evidence | The exact Windows 2.05r2 queued consumer supplies replacement, progression, collision and option behaviour (→ §8.2.9) | [2.05][bin] (npc-library/gs1-move-205r2.md) |
+| Open | How often the caller runs and whether it catches up, the full collision eligibility, one unidentified object collection, later event execution, unusual numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| Best guess | The consumer runs once per 50 ms step with no catch-up, like the rest of the 2.05 loop (→ §4.1). Confidence: moderate | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| Settles it | A caller trace and a timed `move` on 2.05 | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| Outlook | Read, then Lab | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ### E#207 GS2 language and bytecode format
 
-GS2 syntax, its library and its event model are the largest open question in the manual. Each row adds a result from one build without closing it [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
+**Question.** GS2's syntax, standard library and event model, enough to write a compatible compiler and VM. Each result below closes part of it [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Known | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
-| Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse one four-segment container, do not share OpenGS1's layout, and run the switch in → §8.4.2 and → §8.3.3. The value stack caps at 10000. Opcode 9 stops past 10000. Opcode 10 stores the stack height and does not jump | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#opcodes) |
-| Open | GS2 syntax, the standard library and the event model. The container and the dispatcher for those builds are recorded. Still open: the opcode helpers the engine note did not open, which gameplay site fires each `script_event` name, and packet id 140's own framing | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Settles it | a lab note decoding a captured bytecode message from a 4.x client session, a reading of the built-in command table and the source compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Linux 4.04r2 event result | Two instrumented dispatches repeat top-level execution; queued delivery follows the running handler. This partially qualifies the event question, without closing joined-class or other lifecycle semantics (→ §8.3.4) | [cap] (client-internals/linux-404r2-events.md) |
-| Linux 4.04r2 continuation result | A positive-sleep snapshot preserves the next instruction through restore; elapsed timing, cancellation and replacement remain unmeasured (→ §8.3.4) | [cap] (client-internals/linux-404r2-sleep.md) |
-| Linux 4.04r2 catalog correction | Correct grouping gives 176 types and 332 globals, restoring 38 root-object declarations; binding, conversion and inherited behavior remain unmeasured (→ §8.3.5) | [test] (client-internals/linux-404r2-api-ownership.md) |
-| Earlier Linux 4.04r2 VM boundary | Dispatch ends at 190 and slot 11 selects a common skip path; one insertion control completes unchanged. Static frame fields and helper semantics remain qualified (→ §8.4.4) | [bin][cap] (client-internals/linux-404r2-vm-dispatch.md) |
-| Linux 4.04r2 embedded linkage | Fourteen structurally validated script candidates include one profile payload matched to live input before executor entry; this is not corpus-wide execution or historical server-content recovery (→ §8.4.7) | [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
-| Linux cross-version follow-up | Use whole-payload equality and round-trip controls without asserting feature removal or native semantic equivalence. The broader question remains partial (→ §8.4.7) | [bin] (client-internals/linux-cross-version-embedded-controls.md) |
-| Opcode table result (2026-11-18) | Case sets for 4.03r3 to 7.12.43, Linux 6.x x64 and Android 1.8/2.2: 119, 154, 158, 165 and 167 cases; the dispatcher stops changing at 5.30r3; four portability rules for a compiler (→ §8.4.4). Still open: the Linux x86 and ARM Android dispatchers, handler effects on 5.30r3 and 7.12.43, and 5.00r7/5.12 from the shipped DLLs | [bin] (protocol/gs2-opcode-table.md#case-sets); [bin] (protocol/gs2-opcode-table.md#still-open) |
-| Event names result (2026-11-18) | 221 distinct engine `on…` names across nine builds, with 55 `onSend…` hooks new in 6.1.1.3 (→ §8.3.4). Still open: the call site that fires each name | [bin] (client-internals/gs2-engine-event-names.md#counts); [inf] (client-internals/gs2-engine-event-names.md#still-open) |
-| Linux cross-version follow-up | Separate static selector classifications, executor-entry stops and three observed startup cached jumps. The broader question remains partial (→ §8.4.4) | [bin] [cap] (client-internals/linux-cross-version-dispatch.md) |
-| Linux cross-version follow-up | Document static state saving and first-match pending-record replacement without inventing wait/timeout API results. The broader question remains partial (→ §8.3.4) | [bin] (client-internals/linux-420r6-selector11.md) |
-| Linux cross-version follow-up | Explain serialized tags versus fused internal selectors while preserving native/validator error-handling differences. The broader question remains partial (→ §8.4.6) | [bin] (client-internals/linux-420r6-reader-fusion.md) |
-| Windows 5.00 installed-input boundary | Named/enum delivery queues separately from service; limit-before-dedup and named lifecycle priority are statically bounded for a used/patched backup input. Gates, conversions, reentrancy and runtime timing remain open (→ §8.3.4) | [bin][inf] (client-internals/windows-500-event-queue.md) |
-| Linux positive follow-up | Three exact Linux 6.03r7 x64 probes establish class parsing, explicitly registered weapon instruction execution and later continuation at the saved next position. The proxy-origin bodies and corrected descriptor-length boundary are independently reviewed. This is not normal server compiler/writer validation, a script return-value oracle, exact sleep timing, cache-hit proof or rendered gameplay. | [lab][cap] (protocol/linux-603-network-gs2.md) |
-| Linux 6.01 x86 static increment | Distinguishes reader/postpass/executor preparation and mixed saved-state handling without claiming full handler recovery, runtime restore or cross-architecture layout equivalence | [bin] (client-internals/linux-601-x86-program-state.md) |
-| Official bytecode, 6.113 caches | 19 real server-compiled bodies walk with the 4.2–6.00 container reader: segments 1–4 in order, segment 1 zero, `F0`–`F6` operands in range, no trailing newline, no opcode ≥ 200; the official compiler emits 190 `loadparams`, which the third-party compiler does not | [cap] (protocol/gs2-official-bytecode-6113.md#container-what-all-19-bodies-show) |
-| Mac OS X 6.11r1 runner | Decoded 40-byte records with cached handlers, an appended end marker 164, a per-record loop check with default limit 10000, snapshot-based sleep and waitfor, and calls that can suspend on `classesdownloaded`. Table extent, opcode 7, arithmetic handlers and runtime behaviour stay open (→ §8.4.4) | [bin] (client-internals/mac-611r1-gs2-runner.md) |
-
-| Playerworld corpus survey | Three owner-held script sets rank the GS2 constructs real 2007–2008 scripts use (joins, methods, for-each, `switch`, GUI `new`, code outside functions) and the GS1 commands a port must replace; no message code sits inside a GS2 string literal. Language use only, not official compiler output | [lab] (npc-library/gs2-world-corpus-2026-11-12.md) |
+| Evidence | 4.x and later clients run GS2 and receive it compiled; 3.153 already handles the NPC bytecode ids | [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting) |
+| Container | 4.2.0.8, 5.0.0.7 and unpacked 6.00 parse one four-segment container unlike OpenGS1's and run the switch in → §8.4.2 and → §8.3.3; the value stack caps at 10000, opcode 9 stops past 10000, and opcode 10 stores the stack height without jumping | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#opcodes) |
+| Official output | 19 server-compiled bodies from 6.113 caches walk with the 4.2 to 6.00 reader: segments 1 to 4 in order, segment 1 zero, `F0` to `F6` operands in range, no trailing newline, no opcode at or above 200; the official compiler emits 190 `loadparams`, which the third-party compiler does not | [cap] (protocol/gs2-official-bytecode-6113.md#container-what-all-19-bodies-show) |
+| Opcode sets | Case sets for 4.03r3 to 7.12.43, Linux 6.x x64 and Android 1.8 and 2.2: 119, 154, 158, 165 and 167 cases; the dispatcher stops changing at 5.30r3; four portability rules for a compiler (→ §8.4.4) | [bin] (protocol/gs2-opcode-table.md#case-sets) |
+| Events | 221 distinct engine `on…` names across nine builds, with 55 `onSend…` hooks new in 6.1.1.3 (→ §8.3.4) | [bin] (client-internals/gs2-engine-event-names.md#counts) |
+| Linux 4.04r2 | Two instrumented dispatches repeat top-level execution and queued delivery follows the running handler; a positive-sleep snapshot keeps the next instruction through restore; correct grouping gives 176 types and 332 globals; dispatch ends at 190 and slot 11 selects a common skip path; fourteen script candidates include one profile payload matched to live input (→ §8.3.4, → §8.3.5, → §8.4.4, → §8.4.7) | [cap] (client-internals/linux-404r2-events.md); [cap] (client-internals/linux-404r2-sleep.md); [test] (client-internals/linux-404r2-api-ownership.md); [bin][cap] (client-internals/linux-404r2-vm-dispatch.md); [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
+| Cross-version | The Linux follow-ups separate static selector classes, executor-entry stops and three observed startup cached jumps; record static state saving and first-match pending-record replacement; and explain serialized tags against fused internal selectors, each without claiming a wider result (→ §8.3.4, → §8.4.4, → §8.4.6, → §8.4.7) | [bin] (client-internals/linux-cross-version-embedded-controls.md); [bin] [cap] (client-internals/linux-cross-version-dispatch.md); [bin] (client-internals/linux-420r6-selector11.md); [bin] (client-internals/linux-420r6-reader-fusion.md) |
+| Other builds | Windows 5.00 queues named and enum delivery separately from service, with limit-before-dedup and named lifecycle priority bounded statically; Linux 6.01 x86 separates reader, post-pass and executor preparation; the Mac OS X 6.11r1 runner decodes 40-byte records with cached handlers, an end marker 164, a per-record loop check with default limit 10000, snapshot-based sleep and waitfor, and calls that can suspend on `classesdownloaded` (→ §8.3.4, → §8.4.4) | [bin][inf] (client-internals/windows-500-event-queue.md); [bin] (client-internals/linux-601-x86-program-state.md); [bin] (client-internals/mac-611r1-gs2-runner.md) |
+| Language use | Three owner-held script sets rank the GS2 constructs real 2007 to 2008 scripts use (joins, methods, for-each, `switch`, GUI `new`, code outside functions) and the GS1 commands a port must replace; no message code sits inside a GS2 string literal | [lab] (npc-library/gs2-world-corpus-2026-11-12.md) |
+| Open | The built-in command table's semantics and the source grammar the official compiler accepts; which gameplay site fires each event name; packet 140's own framing; the Linux x86 and ARM Android dispatchers; handler effects on 5.30r3 and 7.12.43; 5.00r7 and 5.12 from the shipped DLLs; table extent, opcode 7 and arithmetic handlers on the Mac runner | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation); [bin] (protocol/gs2-opcode-table.md#still-open); [inf] (client-internals/gs2-engine-event-names.md#still-open) |
+| Best guess | The official compiler accepts the GS2 syntax the archived scripting pages and the world corpus show, and the clients' opcode semantics are stable from 5.30r3 on, so one compiler targeting 5.30r3 to 6.03r7 is realistic; the event model is a per-object queue drained once per 50 ms step. Confidence: moderate | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
+| Settles it | A decoded bytecode message from a 4.x lab session, a reading of the built-in command table and the compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Outlook | Read and Lab for the client side; Maybe never for the official compiler's own source, so its grammar must be inferred from its output | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#208 What the OpenGS1 opcode set describes
 
-Two notes disagree on whether the OpenGS1 opcode set describes official bytecode [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode).
+**Question.** Whether the OpenGS1 opcode set describes any official bytecode [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A | the graphics-and-bytecode note calls the OpenGS1 VM "GS1 bytecode" and lists the full GS1 opcode set and constant-table layout as known | [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode) |
+| Claim A | The graphics and bytecode note calls the OpenGS1 VM "GS1 bytecode" and lists its opcode set and constant-table layout as known | [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode) |
 | Claim B | 2.05 does not compile GS1 to bytecode; OpenGS1's opcode set is an independent reimplementation that 2.05 does not share | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-commands.md#update-2026-10-21) |
-| Known | 4.2.0.8, 5.0.0.7, and unpacked 6.00 do not use OpenGS1's layout | [bin] (protocol/gs2-client-vm.md#container-the-client-reads) |
-| Official 6.113 output | real server-compiled GS2 bodies use the four-segment container, not OpenGS1's body offset, constant tables and packed values | [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles) |
-| Open | whether 3.153's bytecode matches OpenGS1, or only OpenGS1 itself | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Settles it | comparing a captured official bytecode message (→ App. E#207) with the OpenGS1 layout | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Evidence | 4.2.0.8, 5.0.0.7 and unpacked 6.00 do not use OpenGS1's layout, and real server-compiled GS2 bodies use the four-segment container, not OpenGS1's body offset, constant tables and packed values | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles) |
+| Best guess | OpenGS1 describes only itself; 3.153 uses the four-segment container or an early form of it. Confidence: moderate to high | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Settles it | 3.153's bytecode reader set beside the OpenGS1 layout, or an official bytecode message for 3.153 (→ App. E#207) | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
+| Outlook | Read | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
 ### E#209 GS2 VM: what the per-build reading left open
 
-The six-VM reading of 3.153 to 6.03r7 left the rows below. The cross-version table settles some of them and says which builds are still unread [bin][doc] (client-internals/gs2-vm-loader-diff.md).
+**Question.** The VM details the six-VM reading of 3.153 to 6.03r7 left open. The cross-version table settles some and names the builds still unread [bin][doc] (client-internals/gs2-vm-loader-diff.md).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Opcode 54 | ~~what it stores is unknown~~ On unpacked 6.1.1.3 it is a member store: drop two values, convert the value then on top, store as opcode 50. 5.00r7's pop count is still two descriptions (two values, or value plus name plus object) | [bin] (protocol/gs2-unpacked-6113.md#cases-54-and-121); [doc] (client-internals/gs2-vm-loader-diff.md#500r7-and-512) |
-| Opcodes 48, 49 | operand order unread | [bin] (client-internals/gs2-vm-by-version.md#not-known) |
-| `waitfor` timeout | ~~0 is only assumed~~ Followed on 5.12 and 6.00r2: the wait is saved with 1 and resumed with 0 after the deadline. Not followed on 4.20r8 | [doc] (client-internals/gs2-vm-loader-diff.md#500r7-and-512) |
-| 6.x loop limit | the scrambled property name. 5.24r4 through 5.31r4 still say `maxlooplimit`; 6.00r2 and 6.00r4 keep the field without that name | [bin] (client-internals/gs2-vm-by-version.md#limits); [doc] (client-internals/gs2-vm-loader-diff.md#524r4-530r3-531r4-600r2-and-600r4-windows) |
-| Unread builds | ~~4.04r2, 5.12 to 5.31r4, 6.00r2 and 6.00r4 were unread~~ Windows 4.04r2, Windows 5.12 and 5.24r4 through 6.00r4 were read later. Still unread: Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, Classic other than 1.8, and 7.x (out of scope) | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| Opcode 54 | On unpacked 6.1.1.3 it is a member store: drop two values, convert the value then on top, store as opcode 50. 5.00r7's pop count still has two descriptions (two values, or value plus name plus object) | [bin] (protocol/gs2-unpacked-6113.md#cases-54-and-121); [doc] (client-internals/gs2-vm-loader-diff.md#500r7-and-512) |
+| Opcodes 48, 49 | Operand order unread | [bin] (client-internals/gs2-vm-by-version.md#not-known) |
+| `waitfor` timeout | Followed on 5.12 and 6.00r2: the wait is saved with 1 and resumed with 0 after the deadline; not followed on 4.20r8 | [doc] (client-internals/gs2-vm-loader-diff.md#500r7-and-512) |
+| 6.x loop limit | 5.24r4 to 5.31r4 still name the property `maxlooplimit`; 6.00r2 and 6.00r4 keep the field under a scrambled name | [bin] (client-internals/gs2-vm-by-version.md#limits); [doc] (client-internals/gs2-vm-loader-diff.md#524r4-530r3-531r4-600r2-and-600r4-windows) |
+| Unread builds | Windows 4.04r2, 5.12 and 5.24r4 to 6.00r4 are now read; still unread are Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, Classic other than 1.8, and 7.x (out of scope) | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| Best guess | Opcode 54 pops two values in 5.00r7 as in 6.1.1.3; 48 and 49 take the object before the member name; the 6.x property is still `maxlooplimit` under the scrambling. Confidence: moderate, low, moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| Outlook | Read | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
+
+The work list carried from the difference table:
 
 - [ ] Prove opcodes 48 and 49's operand order on 5.00r7. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 - [ ] Pick one pop count for opcode 54 on 5.00r7. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
@@ -389,666 +1356,253 @@ The six-VM reading of 3.153 to 6.03r7 left the rows below. The cross-version tab
 
 ### E#210 Particle emitter and `format` details
 
-The static read of the emitter and opcodes 82/84 left these open [bin] (client-internals/showimg-particles-and-gs2-format.md#not-settled).
+**Question.** The details of the particle emitter and of opcodes 82 and 84 (`format`, `indexof`) that the static read left open [bin] (client-internals/showimg-particles-and-gs2-format.md#not-settled).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Open | whether `removemodifiers()` clears the emit list as well as the local and global lists | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| Open | when a global modifier's clock starts (the read suggests time zero, so a global `once` fires on the first frame) | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| Open | the exact particle kinds; "store its own data (good for text emitters)" shows a text kind exists | [doc] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| Open | case handling in `indexof` string search, and whether `%d` truncates or floors | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| Settles it | a runtime probe on a 4.x or 6.x client in the lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | Whether `removemodifiers()` clears the emit list as well as the local and global lists | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | When a global modifier's clock starts; the read suggests time zero, so a global `once` fires on the first frame | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | The exact particle kinds; "store its own data (good for text emitters)" shows that a text kind exists | [doc] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Open | Case handling in `indexof`, and whether `%d` truncates or floors | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Best guess | `removemodifiers()` leaves the emit list; the global clock starts at zero as read; `indexof` is case-sensitive and `%d` truncates, as in the C library it wraps. Confidence: low to moderate | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Settles it | A runtime probe on a 4.x or 6.x client in the lab, now possible with bytecode delivered through the probe proxy | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Outlook | Lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 
-### E#300 Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha
+### E#211 Which objects make 6.00 fuse fold 241
 
-These three early builds were first said to have no frame timer. An exact read found one in each, and their real tick timing is still unmeasured [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration).
+**Question.** Stock 6.00 makes fold 241 when a name load resolves to an object carrying a flag and a store or resolve follows. Which objects carry that flag (→ §8.4.6) [bin] (protocol/gs2-fold-241-2026-11-16.md#234242-600).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Superseded observation | the survey formerly reported no form timer for these three builds; the exact-input follow-up finds a configured timer in every one | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
-| Static resolution | the configured timer and its static binding are described in → §4.1.2; the three survey interval cells are corrected | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) |
-| Callback execution | a debugger breakpoint counted 61, 61 and 60 callback hits in 3 s for the three builds; this proves execution, not cadence | [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
-| Open | elapsed tick timing, runtime configuration changes and programmatic idle-handler installation remain unmeasured | [bin] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
-| Settles it | runtime observation of those exact builds, preserving the distinction between declared interval and elapsed time | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
+| Evidence | Every other fold from 200 to 242 matches between stock 4.20r8, 5.00r7 and 6.00 and the open reimplementation; 241 is the one left out, on purpose, until the flag is known | [bin][doc] (protocol/gs2-fold-241-2026-11-16.md#verdict) |
+| Best guess | The flag marks objects that resolve once and can be cached on the instruction, such as weapons and globals; running the sequence unfused gives the same result, more slowly. Confidence: low for the flag, moderate for "same result" | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+| Settles it | A deeper static read of the 6.00 fusion stage at the flag test | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+| Outlook | Read | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
 
-### E#301 Frame loop of the 3.x and 4.x clients (settled)
+### E#212 Whether a function-only image skips the top-level pass
 
-The frame loop of the 3.x and 4.x clients was untimed. A 2026-11 lab settled it: every 3.04, 4.04r2, 4.20r6 and 6.03r7 client steps every 50 ms [lab] (client-internals/update-cadence-3x-6x.md).
+**Question.** All 19 official bodies start with a jump to the end, the shape of an image with no top-level statements. Whether stock clients treat that shape as "skip the top-level pass", and re-run top-level code before every event when the image has some (→ §8.4.10) [cap] (protocol/gs2-official-function-only-shape-2026-11-16.md#observation).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Unobserved | the 3.x and 4.x Torque-era clients' tick length and loop driver; the 5.x and 6.x clients are timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
-| Settles it | a timed walk of a 3.x and a 4.x client on the lab server | [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
-| Windows 4.04r2 clocks | three time notions are traced statically (elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, legacy `timeout` pass counts); no update rate is measured | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
-| Linux cross-version follow-up | Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D (→ §4.1.6) | [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
-| Settled | 50 ms steps, one render per step, 8 px per walk step; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
-| Still open | Spelling × client matrix for `onTimeout` / `onTimeOut`. 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down; 2.22 and 2.31 play one walk frame per step (→ §4.1.8). Linux 6.03r7 GS2 timers **ceil** to 50 ms (→ §4.1.8) | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab) |
+| Evidence | The 19 official bodies are all function-only, so they never exercise a real top level | [cap] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| Tried | A Linux 4.04r2 event experiment on a fixture that is not function-only suggests a top-level re-run (→ §8.3.4) | [lab] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| Best guess | Yes on both counts: the leading jump is the compiler's way of making the top level empty, and the re-run is real for scripts that have one. Confidence: moderate | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+| Settles it | Three loopback fixtures on stock 4.20r8, 5.12 and 6.03r7: top level plus `onCreated`, its function-only twin, and a handler at instruction 0 | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+| Outlook | Lab | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
 
-### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
+### E#213 How GS2 text bytes draw on screen
 
-Two walking speed factors, 0.4 and 0.8, exist in the code, but the states that use them are unknown [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step).
+**Question.** Official bytecode stores non-ASCII text as single Latin-1 bytes. Whether the clients draw those bytes as the intended letters (→ §8.4.10) [cap] (protocol/gs2-official-strings-latin1-2026-11-16.md#official-segment-3-bytes).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Known | the walking code multiplies the half-tile step by a speed factor: 1.0 on foot, 1.2 in a high speed state; hiding gives 0.1 tile per tick | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step); [live] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
-| Open | factors 0.4 and 0.8 also exist (0.8 depends on a carried object); which states use them is not traced; carrying measured live does not slow the walk | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settles it | a lab walk in each candidate state (riding, shield, carrying each object kind) on 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Evidence | One official string, *Français*, holds `0xE7`; 5.00r7 and 6.03r7 draw through the Windows ANSI path, and the scanned 5.00r7 engine has no UTF-8 literal | [cap][bin] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+| Best guess | The bytes pass through the Windows code page, so they draw as Latin-1 on Western European installs and as other letters elsewhere. Confidence: moderate to high for Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+| Settles it | A `showtext` or sign with `0xE7` on 5.00r7 and a 6.x build, checked on screen; and a read of the code-page argument along the text path | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
+| Outlook | Lab | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
 
-### E#303 Two unidentified lists in the blocked-point test
+### E#214 Why some official bodies do not end in a return
 
-Two object lists in the blocked-point test have not been identified [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
+**Question.** 18 of 660 official bodies do not end in a return instruction. Whether that is intended, truncation, or a separate emitter path (→ §8.4.10) [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Open | the blocked-point test reads a list of objects with two flags and a player-sized body box (only with a client option on), and a list of 1.5 × 2 boxes with an enabled flag; neither is identified (signs, baddies, dropped objects and other players are candidates) | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settles it | tracing what fills each list, or a lab test of walking into each kind of level object | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Evidence | The other 642 end in a return; the 18 are a real residual, and the official compiler is not held | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
+| Best guess | A separate emitter path for one kind of script, since the bodies otherwise look clean; a client that stops at the end of the stream handles both. Confidence: low | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+| Settles it | Grouping the 18 by what they are, from the private bodies; or the official compiler | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+| Outlook | Owner, since the bodies stay private; Maybe never for the compiler's reason | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
 
-### E#304 Stopping positions and the wire rounding of nudged positions
+### E#215 When GS2-only names arrived, and what a missing name does
 
-The stopping positions after a blocked step are read from code but not confirmed live, and the wire rounding of a nudged position is not captured [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
+**Question.** Which 4.x build first has each GS2-only name (`triggerserver`, `scheduleevent`, `findimg`, `findweapon`, `md5`, `cancelevents`, `keydown2`, `onwall2`), and what a 4.x to 6.x client does when a script calls a name it does not have (→ §8.3.9) [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Known | the flush snap and the 0.1 nudges are read from the 2.05, 2.17.1, 2.22 and 2.31 walking routines | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step) |
-| Open | the stopping positions are not confirmed on a live client; how the client rounds a position that is not on a half-tile when it sends it is not captured | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settles it | a lab walk towards a rock from both half-tile alignments on 2.22, with the props messages captured | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
-### E#305 The 2.22 push frame field
-
-A memory trace of 2.22 does not match the push timing expected from 2.05 [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | 2.22 plays `push` as 5 frames × 4 ticks, looping, as 2.05 does | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Claim B | a memory trace of 2.22 against a public server showed a push frame field cycling 0 to 3 every tick from the moment the blocked count passed 18 | [live] (live-runs/2gta-222-2026-10-30/README.md) |
-| Open | whether the traced field is the gani frame or another per-tick counter; the second run used the server's own push gani | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| Settles it | reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
-
-### E#306 The flag that picks `lift2.wav` for a pull
-
-The flag that chooses between the two pull sounds was not traced [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | a successful pull plays `lift.wav`, or `lift2.wav` by a player flag that was not traced | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
-| Settles it | tracing the flag in 2.05's pull routine | [inf] (client-internals/ledges-push-pull.md#open) |
-
-### E#307 Probe, nudge and step tables of 1st Graal and 1.39
-
-1st Graal's movement tables are now read. The 1.39 tables are still missing [bin] (client-internals/first-graal-movement-2026-11-09.md).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Established for 1st Graal | exact-input static step, six ordered probes, one-eighth-tile nudges and stepped-axis snapping are in → §4.2.2.3; the older unread-table and free-axis descriptions are superseded | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
-| Existing 1.39 evidence | six probes and the blocked-step counter shape were read, without the numeric tables | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
-| Open | 1.39 numeric tables, cross-build equality, and complete exceptional gates/runtime cadence for the new static 1st Graal finding | [bin] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits); [1.39] (version-profiles/matrix/rules-139.md#still-open) |
-| Settles it | recover the 1.39 tables independently and validate unresolved runtime/state gates on exact inputs | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
-
-### E#308 Link probe offsets and the neighbour-table flag
-
-The offsets used to probe for links, and the flag that skips the neighbour table, are unread [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | the per-facing probe offsets for link following; the flag that skips the 3 × 3 neighbour table; which big map 2.05 uses offline and whether 2.22 does the same with `PLO_BIGMAP` (171); how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
-| Settles it | reading the probe table and the flag in 2.05, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
-| Status (2026-11-16) | 2.05 edge rules and the 3×3 neighbour fill are settled; 2.22's probe offsets, the skip flag and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` still need a 2.22 read | [bin] (protocol/link-probe-bigmap-status.md) |
-
-### E#309 Knockback distance of 1.39
-
-The 1.39 binary gives five tiles of knockback, while a live run measured four [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the 1.39 binary moves the player one tile per tick while the hurt counter reads 39 down to 35: five steps | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| Claim B | the offline 1.39 run measured four tiles of knockback on the touch-NPC test | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Open | whether the live run lost a step to collision or to the ±1 tick of the video timing | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| Settles it | a fresh 1.39 knockback re-measure on open ground | [inf] (version-profiles/matrix/rules-139.md#still-open) |
-
-### E#310 Where the once-per-second hit stamp sits
-
-Two reads disagree on which hit paths share the once-per-second stamp [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the per-attacker second-of-day stamp is shared by the sword and both hit messages, and is stored before the guild test | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
-| Claim B | in 2.00 to 2.05 rev 2 the stamp is in the hurt-message path only; it was not found in the sword judge of any build | [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
-| Settles it | a lab test of two sword hits from one attacker inside one second on 2.05 | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-
-### E#311 Blast hit zone and the occasional full-heart hit
-
-The blast hit zone read from code does not match the pattern of hits measured in the 2.22 lab [2.05] (client-internals/damage-sources.md#bombs-and-explosions).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | a blast piece hurts when its centre, offset by one tile, is under one tile from the player's centre on both axes | [2.05] (client-internals/damage-sources.md#bombs-and-explosions) |
-| Claim B | in the 2.22 lab, with a bomb 0.5 or 1.5 tiles off the victim's row, hits came at y offsets +1, +3 and -3 but not at 0 or ±2, and at x offsets ±4 and +5 but not 0 or ±1: a pattern keyed on the bomb's half-tile y rather than a plain radius; a few trials took a full heart instead of a half without a clear rule | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
-| Settles it | reading the 2.22 explosion routine and repeating the sweep with one bomb per trial | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
-| Status (2026-11-16) | still open; queued behind a 2.22 throw/explosion routine read (E#323) | [bin] (protocol/carry-shoot-hit-status.md) |
-
-### E#312 The last byte of a shot
-
-Lab tests suggest the last byte of a shot does more than name its type [2.05] (client-internals/damage-sources.md#shot-19).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the last byte of `PLO_ARROWADD` (19) is the shot type, `byte - 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
-| Claim B | in the 2.22 lab an injected shot hurt only when that byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
-| Settles it | reading the 2.22 shot receiver, or a capture of a real arrow that hurts | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
-| Status (2026-11-16) | still open; SHOOT/SHOOT2 field scales are settled for 5.00r7–6.03r7, and GServer-v2's one-byte gravity disagrees with every client read | [bin][srv] (protocol/carry-shoot-hit-status.md) |
-
-### E#313 Do arrows and fireballs pass walls
-
-The code suggests arrows and fireballs fly through walls, but this has not been tested [2.05] (client-internals/damage-sources.md#open).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | in the 2.05 shot flow types 0 and 1 skip the blocking test that stops types 2 and 3, which would let arrows and fireballs fly through walls; the test's arguments were not recovered | [2.05] (client-internals/damage-sources.md#open) |
-| Settles it | a lab shot at a wall on 2.05 | [inf] (client-internals/damage-sources.md#open) |
-
-### E#314 Gmap list order and the level-entry save
-
-Whether entering a gmap from outside saves the respawn point depends on an order that has not been read [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | the order of the gmap's level list and when it is updated against the entry save decide whether entering a gmap from outside saves the respawn point | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-| Settles it | a lab walk from a plain level into a gmap and back on 2.05, dying on each side | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-| Status (2026-11-16) | still open; needs a 2.22 death-on-each-side-of-a-seam run on a 2×2 gmap | [inf] (protocol/link-probe-bigmap-status.md) |
-
-### E#315 The level-entry save in the 2.1 test builds
-
-The level-entry save in the 2.1 test builds is expected to differ from 2.05's, but it was not read [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| Settles it | reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-
-### E#316 Glove power steps
-
-Two readings disagree on which objects each glove power can lift [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | every player starts at glove 1, which lifts the bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
-| Claim B | a bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
-| Settles it | a lab lift of each object on 2.05 at glove 0, 1, 2 and 3 | [inf] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
-
-### E#317 The 1.x pickup box and item draw order
-
-The 1.x pickup box and whether items draw under or over players are unknown [bin] (client-internals/item-drops.md#open).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | only 1.3's pixel overlap for picking up a floor item was read; the 1.x box in tiles, and whether items are drawn under or over players, are not known | [bin] (client-internals/item-drops.md#open) |
-| Settles it | reading the pickup test of 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
-
-### E#318 Level reload on re-entry offline
-
-Whether offline 2.05 reloads a level on re-entry, which would bring a cut bush back, is untested [bin] (client-internals/board-respawn.md#open).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | ~~whether 2.05 offline reloads a level from disk when the player re-enters it, which would bring a cut bush back~~ settled below | [bin] (client-internals/board-respawn.md#open) |
-| Settles it | a lab run on 2.05 offline: cut a bush, leave the level, come back and read the board | [inf] (client-internals/board-respawn.md#open) |
-| Settled | no reload: 2.05 rev2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3/3) and after loading the level again (2/2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
-| Related (2026-11-16) | the online counterpart, whether a level NPC's GS2 state survives leaving and re-entering a gmap cell on 6.03r7 and 5.12, is open too; Seihai restarts it | [doc] (protocol/npc-gmap-reentry-status.md) |
-
-### E#319 The single-player start levels
-
-Three level names trigger an extra setup step in 2.05 that was not traced [2.05] (client-internals/offline-tutorial-205.md#special-level-names).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | loading `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda` runs an extra setup step in 2.05; what the step does was not traced | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
-| Measured later | on the public 2.1.0.0 image and on v22 the call passes the level and two 31s; those two values are the arguments, and what the helper changes stays unknown; whether 2.05 passes the same values was not read | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
-| Settles it | loading each name offline on 2.05 in the lab and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
-
-### E#320 Does any server check the tamper check
-
-No server is known to check the tamper-check value [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | the clients only send `PLI_TAMPERCHECK` (39); the open-source server discards it, and four public servers accepted a 2.22 login without it for 20 s; whether any server checks the value, or its periodic re-send from 2.31, is unknown | [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
-| Settles it | a 2.31 session on a public server with the re-send withheld or altered, which needs the user's approval for a public login | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
-| Lab (2026-11-18) | our GServer-v2 build (GS2Emu 4.0.0-beta) takes an empty `PLI_TAMPERCHECK` silently: no reply, no log line, the session continues. This confirms the open-source side only; public servers are still unknown | [lab] (protocol/probe-targets-2026-11-18.md) |
-
-### E#321 The 2.31 window blacklist
-
-The 2.31 window blacklist and the client's reaction to a match are not decoded [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | 2.31 compares top-level window titles and classes with an obfuscated list every 3.2 s; the list and the client's reaction to a match are not decoded | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
-| Settles it | decoding the list in 2.31 and a lab run with a window of a listed title open | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
-
-### E#322 How others see a key emote
-
-A key emote is drawn locally and not sent, yet captures show an image being re-sent. The source of those frames is unknown [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | the 2.05 Ctrl+letter path draws the emote locally and sends nothing, yet captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s; they may come from a server script calling `showimg` or from an untraced path | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
-| Settles it | a lab capture of a real 2.05 client pressing Ctrl+A next to a second client | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
-### E#323 Level-object routines not read (2.22)
-
-Several 2.22 level-object routines were not read. The row lists them [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Open | the throw of a lifted object, what a cut or lift drops, the carrying pose, the chest and sign probe points, the glove property value the server sends, snapping after a step, and the swim and carry speed factors were not read | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
-| Settles it | reading those routines in the 2.22 client, or a lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
-| Status (2026-11-16) | unread; `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry/throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
-
-### E#324 Combat rules the 1.21 to 2.31 pass left open
-
-The static pass over 35 builds left four gates unidentified. A follow-up read settled them [bin] (client-internals/combat-baddy-tile-by-version.md#not-known). What stays open is listed below.
-
-| Item | Content | Source |
-| --- | --- | --- |
-| 1.x packet hits | settled: 1.39 and 1.41 rev 1 handle id 40; open: the extra fields 1.41 rev 1 reads from a body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
-| Player mode 7 | settled: attached to another local player in same-PC play (carried, or a horse passenger) | [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing) |
-| Extra victim test | settled: ghost mode (170); the 2.17.1+ judge also stops in Kingdoms or New World mode (176, 177) | [bin] (client-internals/combat-baddy-tile-by-version.md#sword-judge-gates) |
-| Respawn AP bands | settled: from 1.41 rev 1, the same bands as 2.05 | [bin] (client-internals/combat-baddy-tile-by-version.md#death) |
-| Live checks | the 2-tile sideways edge, a 2.05 no-drop control, 1.21's item roll, and the sword spark stay open. A 2026-11-14 run did not identify the spark on 2.22, did not run the 2.05 control or the two-player edge, and loaded a 1.21 baddy scene without seeing the item roll | [lab] (live-runs/open-issues-2026-11-14/README.md#2c-combat-live-checks-partial); [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
-
-### E#325 Later sound census and playback limits
-
-The 4.x–6.x file survey reports 255 distinct WAVs, but its format counts (202 + 43 + 6 + 3) and channel counts (193 + 61) each total 254. The missing or miscounted entry has not been identified; retain the reported figures without choosing a corrected total. [file][doc] (client-internals/sound-files-6x.md#what-the-files-are)
-
-Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behavior. Reconcile the census against the surveyed inputs and test each format on the exact client/backend before treating the compatibility targets as native acceptance. The survey itself ran no client. [file][bin] (client-internals/sound-files-6x.md); see §3.10.5 and §4.7.5.
-
-### E#326 Remaining 6.03r7 HUD measurements
-
-The source also calls the full-size row's right margin 68 pixels, but its formula x = W − 198 + 45k with a 40-pixel-wide full-heart sprite gives 23 pixels for four hearts (k = 0–3); 68 corresponds to three. The reported formula and fixed-margin assertion are not reconciled. Check identified-state captures before selecting a margin rule; the arithmetic alone does not establish which observation needs correction. [shot][doc] (client-internals/hud-603r7-black-box.md#hearts)
-
-The Linux/Windows black-box study in → §4.6.9 leaves the sword source rectangle's right edge unresolved (width 28–34 pixels), Windows text positions at other window sizes unmeasured, and Windows operation with a current clock unchecked; its Windows run used a 2012 clock. Resolve these with exact-build, identified-state captures before choosing a definitive crop, text layout or clock-compatibility claim. [shot][lab] (client-internals/hud-603r7-black-box.md#open)
-
-### E#327 Missing chest art and menu skin in the 6.03r7 item run
-
-The script-free Linux run in → §4.5.8 observed chest collision/opening without chest art, and an orange rectangle after D/Q/Tab/Esc toggled the menu status. The missing art's source and the proposed GUI-skin explanation are unresolved. Identify the board/file or script dependency with controlled input changes before attributing either rendering path to the client. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests); (client-internals/items-603r7-black-box.md#open)
-
-### E#400 Two projects called Ash
-
-Two different things are called Ash in the notes. The manual keeps them apart until their archives are compared [src] (server-notes/01-lineage.md#what-is-binary--world-only).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | Ash is a Python rewrite of the gs2emu protocol, with its own world and default port 14812; it is not the Reborn 2.4 binary | [src] (server-notes/01-lineage.md#what-is-binary--world-only); [src] (server-notes/ash-overview.md) |
-| Claim B | Ash is the blueprint pack of the 2006 39ster 2.1 GServer, which describes that server as written, not a rewrite; default port 14822 | [src] (ash/INDEX.md); [src] (ash/ARCHIVAL-NOTE.md) |
-| Open | whether the two are one project at two stages or two projects that share a name; the manual keeps them apart (→ §5.2, → §5.3.1) | [inf] (ash/ARCHIVAL-NOTE.md) |
-| Settles it | the Drive archives of both, compared by date and content | [doc] (ash/ARCHIVAL-NOTE.md#full-archive) |
-
-### E#401 Listserver reply ids 1 and 2
-
-Listserver ids 1 and 2 are read differently by the 1.41 **game** client, by RC 1.41, and by later clients [srv] (protocol/listserver.md#listserver--client; protocol/listserver-141r1-silent-list.md).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | id 1 is NULL (empty) and id 2 is STATUS text with `\r` as a line break; 2.17, 2.22 and the public service send status text as id 2 | [srv] (protocol/listserver.md#listserver--client); [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
-| Claim B | RC 1.41 (2002) reads id 1 as one more server entry and id 2 as the end of the list, then disconnects | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
-| Claim C | game client 1.41 rev 1 reads id 1 as one more server entry and **ignores** id 2 (and 3, 4); it never sends a list login | [bin][lab] (protocol/listserver.md#141-rev1-no-login-the-server-speaks-first-binlab; protocol/listserver-141r1-silent-list.md) |
-| Open | whether the 2002 listserver used 1 and 2 differently from the later Reborn listserver, or the RC reads them its own way | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
-| Settles it | a 2002-era listserver binary or capture, or a re-read of the 2.05 handler for id 1 | [inf] (protocol/listserver.md#205-specifics-205) |
-
-### E#402 The 2000-era listserver reply
-
-Whether today's legacy listserver reply matches the service of 2000 to 2002 is unknown [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the real 2.00-era listserver reply is observed: one plain zlib frame, id 0 only, 4 rows, no status, site or upgrade lines (the public service's 14923 reply to a classic login) | [cap] (protocol/public-listserver-2026-10-25.md#what-the-runs-settle) |
-| Claim B | what a real 2.00-era listserver sends is still unobserved; the two-frame list that 2.00 accepted in the lab came from a lab forwarder | [lab] (protocol/listserver.md#205-specifics-205) |
-| Open | whether today's 14923 legacy reply is the same as the service of 2000 to 2002 | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
-| Settles it | a capture of a real 2.00 or 2.05 against the 14923 service, or a 2000-era listserver binary | [inf] (protocol/login-frames-by-version-2026-10-25.md#captures-that-would-settle-it-all-read-only-list-requests) |
-
-### E#403 Classic logins on port 14922
-
-A real 2.17.1 sends a classic login to a port that does not answer it today [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | a real 2.17.1 sends a classic login (shape B) to port 14922, the port in its signed `arrays2.dat` | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
-| Claim B | the public 14922 accepts a classic login and never answers it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
-| Open | whether the 2001-era service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether the zlib header (`78 DA` against `78 9C`) matters for a classic frame | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
-| Settles it | a list-only capture of a pristine 2.17.1 against the public service; this touches a public server and needs the owner's written permission | [doc] (AGENTS.md#labs) |
-
-### E#404 A public server refusing 2.05 inside its own range
-
-A public server refused 2.05 although its printed range seems to include it [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the server's printed range runs from 1.41r1 to iPhone Belote 1.5, which in the current version table covers every 2.x to 6.x entry, 2.05 included | [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
-| Claim B | the same server refused 2.05 (`GNW03081`) | [cap] (server-notes/public-allowed-versions.md#the-refusals-on-record) |
-| Open | which version table the server runs; an older table with no 2.05 entry would explain both | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
-| Settles it | one 5.00r7 or 6.03r7 login to that server, with the owner's written permission | [inf] (server-notes/public-allowed-versions.md#open) |
-
-### E#405 RC token `GSERV025`
-
-The server knows an RC token that no RC build read so far sends [srv] (protocol/chat-pm-rc.md#admin-and-staff).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the server knows the RC tokens `GSERV023` to `GSERV025` | [srv] (protocol/chat-pm-rc.md#admin-and-staff) |
-| Claim B | the RC builds read send `GSERV007`, `GSERV011`, `GSERV014` and `GSERV019` to `GSERV024`; none sends `GSERV025` | [bin] (protocol/gserv-1999.md#login); [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/remotecontrol.md#logins-bin) |
-| Open | ~~which RC build sends `GSERV025`~~ Narrowed: RC2 2.05 / RC3 / Linux 2006-01-20 send `GSERV025`; Batch-2 Linux 2005-12-09 still `GSERV024` ([rc2-sessions-stock-2026-11-16.md](../protocol/rc2-sessions-stock-2026-11-16.md)). Login-type pairing residuals stay in the lineage notes | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [inf] (tools/remotecontrol-lineage.md) |
-| Settles it | a static read of the later RC builds in the Drive RC folder (rc2, the custom RemoteControl, the RC3 beta) | [inf] (protocol/npc-control.md#drive-material-inventory-only-not-in-git) |
-
-### E#406 How the official listserver assigns PC ids
-
-The game server forwards the client's machine fields and stores the PC id the listserver returns; the rule in between is not held [src] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Known | the id is a signed 64-bit decimal from `SVI_ASSIGNPCID`; its inputs available to the listserver are the identity string, account, password and the game server | [src] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-| Guess | a row number in a listserver table of machines matched on the hardware hashes; a truncated hash of the fields would fit too | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-| Also open | whether 5.12 reads the product id as 5.24+ does; what `getlockcomputer` compares; what 6.11+ connector scripts send as machine fields; a lab confirmation of the empty product id under 64-bit Windows | [inf] (protocol/pcid.md#open) |
-| Settles it | the official listserver, or captures of its `ASSIGNPCID` replies for known inputs (public servers need the owner's written OK) | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-
-### E#420 Flag and chest counts in the RC props tail
-
-The RC props tail holds two counts, and it is not known which counts flags and which counts chests [cap] (protocol/rc-capture-2026-11-04.md#player-props).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the tail after the props block in 72 and 76 holds two `s` counts, then the weapons; one counts flags and one opened chests | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Open | which `s` is which; both were 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settles it | a capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Status (2026-11-16) | still open; the only capture has both counts at 0. PLO 124 (`PLO_RC_PLAYERFLAGS`, proposed) is handled by RC3 only, which logs and discards its body | [cap][bin] (protocol/rc-props-flags-status.md) |
-
-### E#421 The last byte of RC_PLAYERPROPSSET2
-
-The 2004 RC adds one byte the server's message lacks, and its meaning is unknown [cap] (protocol/rc-capture-2026-11-04.md#player-props).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the 2004 RC's 76 ends with one byte after the weapons, 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Open | what the byte means; the server's 72 has no such byte | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settles it | a static read of the RC's 76 builder, or a capture after changing other dialog fields | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Status (2026-11-16) | seen as 0 only; meaning open; staff tooling should keep it as unknown | [cap] (protocol/rc-props-flags-status.md) |
-
-### E#422 Quoting of folder rights
-
-The 2004 RC and a server fork quote folder rights differently [cap] (protocol/rc-capture-2026-11-04.md#rights).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the 2004 RC sends folder rights lines as CSV, so `rw levels/*` goes out quoted, and splits what it reads back the same way | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
-| Claim B | a GServer-v2 fork returned the line unquoted, and the RC showed it as two lines | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
-| Open | whether the original server stored and returned the CSV form, which would make the fork's reply a fork bug | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
-| Settles it | a capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
-| Related (2026-11-16) | backslash and empty-field escaping in RC script GET/SET text: trailing empties are kept; the GServer-v2 fork doubles backslashes inside quoted lines; the original RC2/RC3 rule is unread | [cap][doc] (protocol/rc-text-escaping-status.md) |
-
-### E#423 The 1999 servers: what the static read left open
-
-The read of GServer 1.28 beta 2 and 1.3 leaves these open [bin] (server-notes/gserver-1999-rules.md#not-known).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| PM reply | which older builds get the "cannot answer" reply | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
-| Other levels | how the nickname and head of players in other levels are sent | [bin] (server-notes/gserver-1999-rules.md#own-props) |
-| Prop limits | server-side limits beyond the counted props | [bin] (server-notes/gserver-1999-rules.md#own-props) |
-| Real-client check | the 1.3 test client against a server running these rules | [inf] (server-notes/gserver-1999-rules.md#not-known) |
-
-### E#424 RC2's Admins folder against a one-space level
-
-RC2 2.05 tests an entry's level by length with no trim, and GServer-v2 sends RCs a level of one space [bin][srv] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the 2001 servers send RCs an empty level, which puts them in RC2's Admins folder | [src][bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Claim B | GServer-v2 sends one space, so RC2 2.05 would most likely list other RCs under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Also open | the send path of the 2005 Linux i386 RC (unpacked, not read) | [bin] (protocol/rc-list-online.md#open) |
-| Settles it | a lab run with RC2 2.05 and two RC logins against the GServer-v2 fork | [inf] (protocol/rc-list-online.md#open) |
-
-### E#425 Standalone NC flag-action recipient and ranges
-
-The selected action in → §7.3.4 constructs a payload and enters an outgoing buffer, but this is not measured end-to-end behavior [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Static result | count low component uses seven bits; high component is shifted and byte-narrowed without an established seven-bit mask; biased item lengths and contents follow | [bin] (protocol/nc-standalone-flag-action.md#bounded-observations) |
-| Recovery limit | analyst-seeded bodies, not default procedure recognition; exception tails, type/register meanings and indirect calls remain uncertain | [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits) |
-| Open | collection type, count overflow and length ranges, further buffer routine, terminator, ultimate peer and receive interpretation | [bin][inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Settles it | trace the unresolved buffer/recipient and receive paths, then compare the nearest weapons-list baseline and other flag-list artifact; matching forms alone are insufficient | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Related (2026-11-16) | NC write-op inventory: get/delete/reset/script/flags ids and `i3` id layouts known; NPC add, class delete and weapon add/script layouts open | [bin][doc] (protocol/nc-write-ops-status.md) |
-
-### E#500 Back clipping plane of the Graal3D client (settled)
-
-Which back clipping plane the Graal3D client uses was open. A static re-read settled it: 5000 [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets no field of its own | [doc] (graal3d/camera.md#field-of-view) |
-| Claim B | a later public DelphiX fork calls `SetBack(5000)` during retained-mode init | [doc] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
-| Settled | the February 2000 exe calls `SetBack(5000)` right after `CreateViewport`, the only constant `SetBack` in the exe; Claim B's value holds for this client, and Claim A's 100 is overridden | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
-| Still open | the value at draw time in a live run with native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
+| Evidence | The 2007 world export uses most of these names, so most existed by mid-2007; the GS1 command table does not list them | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Tried | On 6.03r7 a missing name gives a "not found" message, as `Adventure.setAccountName` did (→ §8.3.5) | [lab] (protocol/named-login-5x-6x.md#524r4-and-603r7) |
+| Best guess | Most names are in 4.20r8; a missing name logs "not found" and the script goes on. Confidence: moderate for the first, low for the second | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Settles it | Reading each engine's function table for the names; a lab script that calls an unknown name and then sets a flag | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Outlook | Read for the names; Lab for the behaviour | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+
+## E.9 Graal3D and the Torque-era 3D
+
+These questions are about the 3D side: the 2000 Graal3D client and the Torque-based plug-in of the 3.x and 4.x clients (→ Parts IX and X). They matter less to a 2D server, and most are answerable from the held plug-ins [bin] (graal3d/torque-engine-4x.md#not-done).
 
 ### E#501 Class CRC of the 4.04r2 3D plug-in
 
-Two reads disagree on whether 4.04r2 sends a real class CRC [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
+**Question.** Which class CRC a real 4.04r2 client sends in its 3D connect request [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A | the 4.04r2 connect request carries the stock Torque class CRC, so a server needs exactly the same list of networked classes or the client is rejected with `CHR_INVALID` | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
-| Claim B | the 4.04r2 CRC table is static data holding `0xFFFFFFFF` for group 0 with no writer, so nothing computes a CRC, as in 5.12 | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
-| Open | which value a real 4.04r2 client sends; Claim B is the later, more specific read, and the 4.x plug-in note now defers to it | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Settles it | a capture of a 4.04r2 connect request | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Claim A | The connect request carries the stock Torque class CRC, so a server needs exactly the same networked classes or the client is rejected with `CHR_INVALID` | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
+| Claim B | The 4.04r2 CRC table is static data holding `0xFFFFFFFF` for group 0 with no writer, so nothing computes a CRC, as in 5.12 | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
+| Best guess | Claim B, the later and more specific read; the 4.x plug-in note now defers to it. Confidence: moderate to high | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Settles it | A capture of a 4.04r2 connect request against a lab server | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Outlook | Lab | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#502 Whether 4.04r2 loads `.mis` mission files
 
-Whether 4.04r2 can load a local `.mis` file is open. The network path is confirmed, but a local reader is neither found nor ruled out [bin] (torque/engine-and-formats.md#3d-resource-formats).
+**Question.** Whether 4.04r2 can load a local `.mis` file as well as receiving its mission over the network [bin] (torque/engine-and-formats.md#3d-resource-formats).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
 | Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
-| Claim B | the 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
-| Retained-code result | Native mission phases and network ghost construction populate the mission group, including deferred preloading; this is a positive network path, not proof that a separate local mission reader is absent | [bin] (torque/404r2-resource-filter.md#positive-native-mission-path) |
-| Open | whether a separate 4.04r2 local mission reader exists and is reachable; the positive network path does not close that question | [bin][inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
-| Settles it | a static read of the 4.04r2 plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Claim B | The 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
+| Evidence | Native mission phases and network ghost construction populate the mission group, with deferred preloading; that is a positive network path, not proof that no local reader exists | [bin] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| Best guess | A local reader survives from the Torque base but no Graal path reaches it. Confidence: moderate | [bin][inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| Settles it | A static read of the plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Outlook | Read | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
 
-Whether 4.04r2 still reads compiled TorqueScript is open. The corrected evidence row narrows what the strings show [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
+**Question.** Whether 4.04r2 still reads compiled TorqueScript [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A | the 4.04r2 plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
-| Historical Claim B | the earlier note inferred no TorqueScript compiler/console and no `.dso`/`.cs` use; the retained-code result narrows download exclusion to one branch and does not establish absence of local readers | [bin] (graal3d/torque-engine-4x.md#overview); [bin] (torque/404r2-resource-filter.md#download-filter) |
-| Open | whether a `.dso` reader remains in the plug-in without being reachable | [inf] (graal3d/torque-engine-4x.md#files) |
-| Settles it | a static read of the 4.04r2 plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Corrected evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and participate with `.ter` in a resource-miss download exclusion filter. The earlier defined-string export omitted them; the no-`.dso`-strings claim is withdrawn for this image. Later 5.00r7/5.12 scans are not re-evaluated | [bin] (torque/404r2-resource-filter.md#download-filter) |
+| Claim A | The plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
+| Historical claim | An earlier note inferred no TorqueScript compiler or console and no `.dso` or `.cs` use; the retained-code result narrows download exclusion to one branch and does not show that local readers are absent | [bin] (graal3d/torque-engine-4x.md#overview); [bin] (torque/404r2-resource-filter.md#download-filter) |
+| Evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and take part, with `.ter`, in a download exclusion filter for resource misses; the no-strings claim is withdrawn for this image; later 5.00r7 and 5.12 scans are not re-checked | [bin] (torque/404r2-resource-filter.md#download-filter) |
+| Best guess | The code-block loader is present but unreachable: Graal excluded the script formats from download rather than removing the reader. Confidence: moderate | [inf] (graal3d/torque-engine-4x.md#files) |
+| Settles it | A static read of the plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Outlook | Read | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#504 The `GR3DV003` beta at run time
 
-The later Graal3D beta is known only from static reads [bin] (graal3d/beta3-genesis.md#open-points).
+**Question.** How the later Graal3D beta behaves when run. It is known only from static reads [bin] (graal3d/beta3-genesis.md#open-points).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Open | whether the public Genesis3D 1.x SDK `genesis.dll` and demo art load in the beta | [inf] (graal3d/beta3-genesis.md#open-points) |
-| Open | the built-in defaults of the new physics and camera keys | [bin] (graal3d/beta3-genesis.md#open-points) |
-| Open | whether the beta's UDP datagrams match `GR3DV002` byte for byte | [bin] (graal3d/beta3-genesis.md#open-points) |
-| Settles it | a lab run with the SDK engine DLL and art against a server patched to accept `GR3DV003` | [inf] (graal3d/beta3-genesis.md#open-points) |
+| Open | Whether the public Genesis3D 1.x SDK `genesis.dll` and demo art load in the beta | [inf] (graal3d/beta3-genesis.md#open-points) |
+| Open | The built-in defaults of the new physics and camera keys, and whether the beta's UDP datagrams match `GR3DV002` byte for byte | [bin] (graal3d/beta3-genesis.md#open-points) |
+| Best guess | It runs with the public SDK DLL, since it links the SDK's exports, and its datagrams differ from `GR3DV002` only in the version field and the new physics fields. Confidence: low to moderate | [inf] (graal3d/beta3-genesis.md#open-points) |
+| Settles it | A lab run with the SDK engine DLL and art against a server patched to accept `GR3DV003` | [inf] (graal3d/beta3-genesis.md#open-points) |
+| Outlook | Lab | [inf] (graal3d/beta3-genesis.md#open-points) |
 
-### E#600 Tile layer as GraalEditor writes it
+## E.10 Tools
 
-**Settled for the text writer (2026-11-16).** Claim A is false; Claim B holds. The Delphi text writer emits GLEVNW01-style base64 `BOARD` runs and skips all-zero rows. A Save As `.nw` was not captured; file-level confirmation is optional. [bin] (tools/graaleditor-board-format-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619)
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | **false** for the text writer [bin] (tools/graaleditor-board-format-2026-11-16.md) |
-| Claim B | the writer matches the 2.05 / 2.22 built-in base64 `BOARD` rows | **holds** [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
-| Residual | optional Save As file confirm when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
-
-### E#601 Whether link arrival offsets are evaluated
-
-Whether the client evaluates an offset in a link's arrival field is untested [2.22] (tools/level-editor/222-reference.md#8-links).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | link arrival fields may hold `playerx` or `playery` plus a signed offset such as `playery+10`; 21 arrivals in a 3113-level archive have that form, and the link dialog says math and variables may be used | [2.22] (tools/level-editor/222-reference.md#8-links) |
-| Claim B | the editors store the arrival text verbatim and do not parse it | [2.22] (tools/level-editor/formats-crossref.md#batch-f-decomp-findings-2026-10-25-f-pr-39) |
-| Open | whether the client evaluates the offset when the link fires, or treats it as the bare variable | [inf] (tools/level-editor/222-reference.md#16-open) |
-| Settles it | a lab run through a link with an offset arrival, or a trace of the warp code | [inf] (tools/level-editor/222-reference.md#16-open) |
-
-### E#602 Code width of `Z3-V1` boards
-
-Two sources give different board code widths for `Z3-V1.02` [srv] (formats/level-binary.md#z3-v1-differences).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | `Z3-V1.02` uses 11-bit codes and `Z3-V1.03`/`.04` use 12; only the 1998 Java Zelda Online games read `.02` | [srv] (formats/level-binary.md#z3-v1-differences) |
-| Claim B | the 2.05 and 2.31 readers use 12 bits for both `Z3-V1` versions they handle; the 2.05 string table lists `.03` and `.04` only | [2.05][2.31] (formats/level-binary-client.md) |
-| Open | the two agree on `.03` and `.04`; read as a width for every Z3 file they do not, and whether 2.05's reader is ever called on a `.02` magic is unmeasured | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
-| Settles it | a `Z3-V1.02` file decoded both ways, and a trace of whether 2.05 reads that magic | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
-
-### E#603 Whole tiles and fractions in level records
-
-Which level-record fields are whole tiles and which take fractions is not fully listed. A 4.04r2 read covers one reader [srv] (formats/level-binary.md#records).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | coordinates in the binary level records are whole tiles | [srv] (formats/level-binary.md#records) |
-| Claim B | `Z3-V1.03` link numbers are floating point and include halves such as `43.5`; GLEVNW01 allows fractional NPC positions; of 18,710 arrival fields in an archive, 12,035 were plain numbers, halves included | [srv] (formats/level-binary.md#z3-v1-differences); [GE] (formats/glevnw01.txt); [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
-| Open | which fields the whole-tile sentence covers | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
-| Settles it | a field list for link box, link arrival, baddy, NPC, chest and sign, each with its stated type and one real file of each magic | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
-| Windows 4.04r2 reader | link boxes are floating point; arrivals stay text; baddy positions are raw bytes and NPC, chest and sign positions bytes minus 32, all whole numbers without half-tile scaling; cross-magic examples still missing | [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-
-### E#604 Where a binary sign list ends
-
-Where a binary sign list ends differs between readers [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | 2.05 reads signs to the end of the file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| Claim B | the sign section runs until an empty line or the end of the file | [srv] (formats/level-binary.md#layout) |
-| Open | both client behaviours fit Claim B but not each other on a file with signs, a blank line and a `HEIGHTS` block; the server layout does not say which bytes are signs there | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
-| Settles it | one such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
-| Windows 4.04r2 reader | the sign reader stops after a line shorter than two bytes or at end of file and does not recognize `HEIGHTS`; only the web-level cache reader reads heights after it | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-
-### E#605 Client listserver frames in two vocabularies
-
-Two descriptions of the client's listserver frames use different words and have not been set beside a capture [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | 2.00 and 2.05 send id 0 and `newmain` in one plain zlib frame; 2.17 adds id 1 with account and password; 2.22 and 2.31 send id 7, a key byte, `GNW30123` and `newmain`, then a generation-5 frame with id 1 | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
-| Claim B | the classic Server Lister ELF acts on two client lines, an edition line (id 0) and an account line (id 1), and has no version token and no later cipher | [bin] (tools/classic-tools/serverlist3.md#what-a-client-sends) |
-| Open | whether "edition" and "list id 0 and `newmain`" are one observation, and whether "no version token" and "the client sends `GNW30123`" describe two programs; no capture has been laid beside both | [doc] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
-| Settles it | loopback captures of 2.05, 2.17 and 2.22 written out frame by frame beside both descriptions | [doc] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
-
-### E#606 Whether a gmap carries `HEIGHTS` blocks
-
-Whether a gmap holds per-level `HEIGHTS` blocks is settled for one reader. The remaining limit says what is still unknown [doc] (protocol/format-notes-from-salvage.md).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Clarified Claim A | the salvage note describes a level grid rather than a tile board; its wording now names coarse and per-level height forms with explicit Windows 4.04r2 reader scope | [doc] (protocol/format-notes-from-salvage.md); [bin][file] (formats/gmap-heights-404r2.md) |
-| Historical Claim B | `HEIGHTS` belongs to level files and `HEIGHTMAP` to the generator gmap; writer/server variants differ. Read as exclusive placement, this claim is too broad for the later evidence | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md); [bin][file] (formats/gmap-heights-404r2.md) |
-| Bounded resolution | Windows 4.04r2 reads both coarse `HEIGHTMAP` and named per-level `HEIGHTS` inside a gmap; a separate archive-labelled Mac 4.04r2 fixture contains both forms, and the native readers in four Mac PowerPC builds handle both forms too. `HEIGHTS` is not confined to level files (→ §3.2.4) | [bin][file] (formats/gmap-heights-404r2.md); [bin] (formats/gmap-heights-mac-ppc.md#the-reader-in-all-four-builds) |
-| Remaining limit | The salvage author's historical intent, rendering, server support and original Windows fixture packaging are not established. Its wording is corrected to state the measured build scope | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
-
-### E#607 Leftover lines in the protocol cheat sheet
-
-An old protocol cheat sheet still carries lines that later notes withdrew [doc] (protocol/PROTOCOL-CHEATSHEET.md).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Claim A | the cheat sheet still shows a raw byte after the version, says RC clients do not scramble, names 100, 101 and 102 as file length, tiles and file blob, and cuts frames into 1,024-byte slices; the recovery note shows guessed ids 1 (login), 16 (level request) and 32 (player update) | [doc] (protocol/PROTOCOL-CHEATSHEET.md); [doc] (protocol/login-recovery-start.md) |
-| Claim B | the login has no mystery byte (the extra byte is the generation-3 insertion, and RC 1.x is generation 3 too); 100, 101 and 102 are raw-data, board and file; no 1,024-byte slice is given; the login is type 0, the level request client id 0 and a walk client id 2; directions are 0 up, 1 left, 2 down, 3 right | [doc] (protocol/login-and-walk.md); [doc] (protocol/codec-and-framing.md) |
-| Open | these are withdrawals written in the later notes; the manual follows the later notes (→ §2.1–2.3), but no capture has been set beside each leftover line | [doc] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
-| Settles it | a 2.05 login, a generation-3 RC session, a generation-5 flush and four labelled facings, each set beside the line it tests | [doc] (docs/book/04-where-the-notes-disagree.md#a-sketch-that-still-prints-another-frame) |
-
-### E#608 How many `arrays.dat` lists make a tile passable
-
-Two summaries disagree on how many `arrays.dat` lists decide walkability, and no runtime consumer has been traced [doc] (CONSOLIDATED.md#tiles).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Existing one-list claim | the first array supplies passable tiles and all others are walls | [doc] (CONSOLIDATED.md#tiles) |
-| Existing two-list claim | the old-mode 2.05 path checks arrays 0 and 1 | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
-| Established file distinction | the operations differ for the exact inspected input → §3.5.3.1; this does not identify a runtime consumer | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Open | which operation each exact client path uses, and how the older summary relates to it; the new inspection did not trace consumers | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Settles it | trace the exact consumer or test distinguishing list-1-only values in a controlled client scene | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-
-### E#609 macOS archive labels and application identity
-
-The macOS archive labels cannot yet be tied to the historical 3.153 build [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Historical claim | The earlier upload comparison explicitly identifies its Mac uploads labelled 3.04 and 3.15r2 as byte-identical copies of the 3.153 image | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
-| Current observation | The newer collection's two v3-labelled main executables share a PowerPC digest, but this collection did not independently authenticate their release version; its five v5 copies also share a main-executable digest | [bin] (version-profiles/macos-client-compatibility.md) |
-| Evidence limit | The earlier published note supplies no full input digest for comparison with the current record. It remains unverified whether its image comparison concerns these exact inputs; equality of current main executables is narrower than whole-image or resource equality | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim) |
-| Resource follow-up | Regular-file contents and relative names match across two v3 extractions of 718 files each and five v5 extractions of 73 files each; timestamps, permissions, empty directories and original containers were not compared | [test] (version-profiles/macos-resource-identity.md) |
-| Open | Exact-input linkage to the historical 3.153 attribution; extracted regular-file equality does not authenticate historical labels or original containers | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
-| Settles it | A sanitized comparison supplying the earlier inputs' full digests and authenticated build metadata alongside this collection's identities; broader container/metadata equivalence requires separate evidence if claimed | [inf] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
-
-### E#610 Windows 4.04r2 offline initialization versus gameplay
-
-A 4.04r2 offline transition was observed under a harness, but no gameplay was. The rows say what was seen and what is open [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Observed | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Open | A complete rendered offline level, player movement and selected cutting, lifting, carrying or hiding behavior in the exact captured build | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Settles it | A version-specific controlled scene with captured user actions and before/after state for each mechanic, preserving fixture and harness identities | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-
-### E#611 Windows 4.04r2 pickup semantics and input qualification
-
-4.04r2's pickup state is recovered statically, but no interaction was captured [bin][cap] (client-internals/404r2-carry-state.md).
-
-| Item | Content | Source |
-| --- | --- | --- |
-| Observed | Static recovery separates pickup action, carried category and carrying flag; no interaction was captured successfully | [bin][cap] (client-internals/404r2-carry-state.md) |
-| Open | Meaning of the pickup-bound field, configured physical key-to-action path, and asset/effect qualification of the provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
-| Settles it | A version-specific semantic read for the bound field and input route, separate asset mapping, and a complete scene capturing each selected action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
-| Timing dependency | The countdown cannot supply elapsed timing without the clocks in → App. E#301 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
+This question is about the period's editors and the formats they wrote (→ Part XI) [doc] (tools/graalshop.md#movie-mode-file-grammar).
 
 ### E#612 GraalShop movie editor attribution and sample limits
 
-The published movie-grammar note attributes its read to a 2002-05-01 editor, while the comparison describes the old 2002 editor as sprite-only and associates movie support with the 2006 editor. The exact editor inputs have not been reconciled. A packaged mobile movie cannot identify which editor wrote it. [doc] (tools/graalshop.md#movie-mode-file-grammar); [doc] (tools/graaleditor-vs-205.md#workflow)
+**Question.** Which editor wrote the movie format, and how a movie plays [doc] (tools/graalshop.md#movie-mode-file-grammar); [doc] (tools/graaleditor-vs-205.md#workflow).
 
-The Classic+ 1.13 and Era+ 1.0 sample corroborates lowercase boolean spellings for its SPRITE and TEXT declarations only (→ §3.3.6). Indexed CHAR-key spelling, coordinate units, frame duration and native interpolation/playback remain open. Reconcile exact editor identities and their reader/writer evidence separately from a controlled playback test; neither package presence nor a static declaration supplies that test. [file][doc] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits)
-### E#613 Windows 2.22 remote PM roster and visible result
-
-The selected modified control's composer and type-37 sender lookup are bounded statically in §2.8.7. Types 55, 56 and 82 select default cleanup in the recovered dispatcher. The remote-roster UI trigger, request builder, accepted reply and identity-creation route remain open; later `requestlist` / `pmserverplayers` behavior is not established here. Resolve the actual request caller and receive route before implementation. Virtual type-28 send framing and native visible message behavior also remain unverified, as do sibling builds. [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions)
-
-### E#614 Tiledef type 4 consumer (draw vs walk)
-
-Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch only names 0, 1|2 and 5 [file][2.22] (formats/tiledef-type4-2026-11-16.md); [#619](https://github.com/squirelworks/Graal_analysis/issues/619).
-
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A | Install type-4 rows store large pixel x offsets (and sometimes y) beside a replacement image and level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
-| Claim B | Walk kinds for tilesets are 0 / 1\|2 / 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
-| Open | Whether type 4 is draw-at-(x,y) (addtiledef2-like), a new walk kind, or both | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
-| Settles it | A consumer trace or offline lab on a type-4 prefix level for draw and `tiletype`/wall | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+| Claim A | The movie-grammar note attributes its read to a 2002-05-01 editor | [doc] (tools/graalshop.md#movie-mode-file-grammar) |
+| Claim B | The comparison describes the old 2002 editor as sprite-only and ties movie support to the 2006 editor | [doc] (tools/graaleditor-vs-205.md#workflow) |
+| Evidence | The Classic+ 1.13 and Era+ 1.0 sample confirms lowercase boolean spellings for its `SPRITE` and `TEXT` declarations only (→ §3.3.6); a packaged mobile movie cannot say which editor wrote it | [file][doc] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits) |
+| Open | Indexed `CHAR`-key spelling, coordinate units, frame duration and native interpolation and playback | [file][doc] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits) |
+| Best guess | The 2006 editor wrote the movie format, and the 2002 attribution names the wrong input. Confidence: low to moderate | [inf] (tools/graaleditor-vs-205.md#workflow) |
+| Settles it | The exact editor inputs and their reader and writer evidence reconciled, then a controlled playback test on a client that plays movies | [inf] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits) |
+| Outlook | Missing for the editor identity; Lab for playback | [inf] (tools/graalshop.md#shipped-movie-sample-and-remaining-limits) |
 
-### E#615 v7 Worlds login identity, start-up quit and date gate
+## E.11 Settled questions
 
-The Worlds clients carry no baked login token, quit themselves after one frame when started standalone, and only dial the connector while the clock is inside each build's 180-day window (→ §1.8.10).
+These entries were answered. Each keeps its number and a short record of how it was settled, so that a reader who meets the old claim in a note can see why the manual does not follow it [doc] (docs/book/04-where-the-notes-disagree.md).
 
-| Item | Content | Source |
+### E#5 Meaning of id 162 from the client (settled)
+
+Three readings of client id 162 turned out to be one message, a ping answer [srv] (protocol/packet-ids.md#client--server-pli_).
+
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Known | No cleartext token in 548–71243; the connector script builds the login; gs2lib names `G3D2204D` as Worlds | [bin][doc] (protocol/v7-connector-live-20261111.md#1-self-identification-labbin) |
-| Known | The managed quit entry takes a reason string; the managed side has no date gate; the unpacked engine imports calendar-to-timestamp functions | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
-| Settled (2026-11-18) | The date gate is `now − reference > 180 days` with a compiled-in reference date per release; it is active in every build except 610. The instant-quit reason literal is `QuitInstant` (→ §1.8.10) | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-date-gate-is-an-n-days-after-a-reference-date-check-wired-to-the-boot-quit); [bin][inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-quit-reason-is-native-and-the-instant-quit-literal-is-quitinstant) |
-| Live result (2026-11-18) | The Unity 6000 build's gate values and both verdicts were confirmed from outside a QEMU guest: inside the window it passes and disarms itself, after it the client stays on a black window without crashing (→ §1.8.10) | [cap] (client-internals/v7-il2cpp-names-and-startup-gate.md#for-a-live-debugger-where-to-break-and-what-to-read) |
-| Open | Which token the production connector makes these builds send; which reason the expiry path passes, against the script-driven `QuitInstant`; a boundary-date boot of a 2024 build | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
-| Settles it | A decrypted connector script for the token (→ E#616); a boundary-date boot of 614 (2024-10-12 boots, 2024-10-13 quits, by the table) | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Claim A | The 2026-10 gs2lib named 162 `PLI_RC_UNKNOWN162` (upstream now `PLI_PONG`): an empty message from the RC3 beta | [srv] (protocol/packet-ids.md#client--server-pli_) |
+| Claim B | 4.20r8 sends 162 as the answer to S→C 108 | [bin] (protocol/v4x-clients.md#client--server-ids) |
+| Claim C | 6.01r1 and 6.03r7 send 162 as a reply to a server request: `!` and a 2-byte value (two 7-bit groups, capped at `0x6FFF`) the server sent; probably the ping answer 6.11 calls `onSendPingAnswer` | [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Settled | One message, a ping: 4.20r6, 4.20r8, 6.01r1 and 6.03r7 send 162 only from their 108 handler, with the same code in 4.20r8 and 6.03r7; the 2010 RC and RC3 send it empty every 60 s and have no 108 handler | [bin] (protocol/unknown-ids-2026-11-06.md) |
+| Left over | A capture of a game client's answer to S→C 108 is still missing | [inf] (protocol/v4x-clients.md#client--server-ids) |
 
-### E#616 v7 connector script plaintext
+### E#7 Receive-branch revision discrepancy (settled for the checked inputs)
 
-The v7 reply container and its per-launch signature are known (→ §2.10.7); the decrypted script is not.
+Two tables placed ids 47 and 168 in different revisions; a static check settled it for the revisions read [bin] (client-internals/cross-version-timeline.md#server--client-packets).
 
-| Item | Content | Source |
+| Part | Discussion | Source |
 | --- | --- | --- |
-| Known | Container layout, RSA-2048 signature bound to the per-launch request, AES-CBC and RC4 both exported | [lab][bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
-| Open | The payload cipher and whether the RSA block also wraps its key; the plaintext script, the game host/port it names and the login it builds; the `?p=` DES key | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| Settles it | A post-decrypt read of the live script buffers by a method the anti-tamper tolerates, on a client whose baked public key is replaced | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| Method (2026-11-18) | Host-side debugging through QEMU/KVM's gdb server reads a running packed client with nothing inside the guest; it stopped the v7 date gate at entry and read its inputs live. Bochs was assessed and not used | [lab] (client-internals/hypervisor-live-debug.md#short-answer); [lab] (client-internals/hypervisor-live-debug.md#what-was-done-on-v7-lab) |
-| 6.1.1.3 lab (2026-11-19) | The 6.1.1.3 request is deterministic across launches, and its connector gate can be passed in a lab only by a lab trust anchor; the joined login and connector chain has not been run (→ §2.10.8) | [lab][inf] (protocol/v6113-login-lab-method.md#replay-forge-and-the-only-lab-bypass); [lab] (protocol/v6113-login-lab-method.md#still-open-carried-not-closed) |
+| Claim A | The timeline formerly placed 47 at 2.02 rev 2 and 168 at 2.05 rev 1; those labels are corrected | [bin] (client-internals/cross-version-timeline.md#server--client-packets) |
+| Claim B | The per-build table already had 47 in 2.02 revisions 0 and 1 and 168 in 2.05 revision 0 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
+| Settled | The exact-input check backs Claim B for Windows x86 2.02 revisions 0 to 2 and 2.05 revisions 0 to 2 (→ §2.5.2) | [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#distinct-receive-routes) |
+| Scope | Route presence only; runtime handling, payloads and first occurrence across all branches are not established | [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#validation-and-limits) |
+
+### E#8 Prop parser ranges of 2.00 (settled)
+
+Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36; a re-read of the 2.0x jump tables settled it [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The player-prop parser gains 35 and 36 in 1.41, and the NPC-prop parser gains 36 to 40 only in 2.02 rev 2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
+| Claim B | The 2.00 layout tables have the self and other-player streams accept 0 to 35 and the NPC stream 0 to 36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
+| Settled | The 2.00 and 2.01 self switch covers 0 to 36 and the NPC switch 0 to 35; NPC 36 to 40 arrive in 2.02 rev 2. Claim A holds; the other-player switch also accepts 36 (and 50, 51) | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
+
+### E#11 Client-to-server ids the NewWorld betas lack (settled)
+
+Two reads disagreed on whether the NewWorld betas send ids 8 and 20 [bin] (client-internals/version-profiles/141-217.toml).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The betas send the 2.1 test set without 7, 8, 11, 15, 16, 17 and 20 | [bin] (client-internals/version-profiles/141-217.toml) |
+| Claim B | The betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+| Settled | Claim A: every send site in both betas was re-read; none sends 8 or 20 (nor 7, 11, 15, 16, 17), none passes the id in a register, and the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
+| Note | Claim B's count of 34 was 39 less five, the arithmetic that hid the gap | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
+
+### E#205 Index of the hare baddy (settled)
+
+The hare baddy is type 5, shared with the frog [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | 2.05 ships `baddyhare.gif`, and the baddy name table has 10 names, 0 to 9 | [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables) |
+| Settled | The 2.22 client draws type 5 with `baddyhare.png` and plays `frog.wav` for it: the hare and the frog are one type | [2.22] (client-internals/baddies-222.md#types-222) |
+
+### E#301 Frame loop of the 3.x and 4.x clients (settled)
+
+The frame loop of the 3.x and 4.x clients was untimed; a 2026-11 lab settled it [lab] (client-internals/update-cadence-3x-6x.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The 3.x and 4.x tick length and loop driver were unobserved; 5.x and 6.x were timed only from their 50 ms position messages | [wire] (protocol/v5v6-lab-play.md); [doc] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
+| Static | Windows 4.04r2 has three time notions: elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, and legacy `timeout` pass counts; the Linux follow-up ties six updater returns to a registered state predicate | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks); [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
+| Settled | 50 ms steps, one render per step, 8 pixels per walk step for every 3.04, 4.04r2, 4.20r6 and 6.03r7 client; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
+| Later | 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down; 2.22 and 2.31 play one walk frame per step; Linux 6.03r7 GS2 timers round up to 50 ms steps (→ §4.1.8). The `onTimeout` / `onTimeOut` spelling by client is tracked in → App. E#209 | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+
+### E#318 Level reload on re-entry offline (settled)
+
+Whether offline 2.05 reloads a level on re-entry, bringing a cut bush back, was untested [bin] (client-internals/board-respawn.md#open).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | No reload: 2.05 rev 2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3 of 3) and after loading the level again (2 of 2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
+| Still open nearby | Whether a level NPC's GS2 state survives leaving and re-entering a gmap cell on 6.03r7 and 5.12; Seihai restarts it | [doc] (protocol/npc-gmap-reentry-status.md) |
+
+### E#500 Back clipping plane of the Graal3D client (settled)
+
+Which back clipping plane the Graal3D client uses was open; a static re-read settled it at 5000 [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets none of its own | [doc] (graal3d/camera.md#field-of-view) |
+| Claim B | A later public DelphiX fork calls `SetBack(5000)` during retained-mode init | [doc] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Settled | The February 2000 exe calls `SetBack(5000)` right after `CreateViewport`, its only constant `SetBack`; Claim A's 100 is overridden | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Left over | The value at draw time in a live run with the native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
+
+### E#600 Tile layer as GraalEditor writes it (settled)
+
+Whether GraalEditor writes `BOARD` as decimal tile indices or as base64 runs was open; the text writer settles it [bin] (tools/graaleditor-board-format-2026-11-16.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (false) | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
+| Claim B (holds) | The writer matches the 2.05 and 2.22 built-in base64 `BOARD` rows, emits GLEVNW01-style runs and skips all-zero rows | [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
+| Left over | An optional file-level confirmation from a Save As `.nw` when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
+
+## E.12 What may never be known
+
+The project's aim is to be as complete as the surviving evidence allows. Some questions have a clear path to an answer, and the outlook column of → §E.1 marks them Lab or Read. Others depend on material that may no longer exist, and it is better to say so than to let a guess harden into a fact [inf] (client-internals/build-catalogue.md).
+
+Three kinds of evidence are missing for good, or nearly so:
+
+- **Lost builds.** No binary of 2.12 to 2.16 or of 2.19 to 2.21 is held, so the first build of the `maps` folder (→ App. E#10) and the generation-4 wire (→ App. E#19) rest on neighbours and on server source. A build that turns up in an old archive would reopen them at once; the build catalogue lists what to look for. [bin] (client-internals/build-catalogue.md)
+- **The official servers' own code and data.** The 1999 to 2010 official game servers, listservers and RC backends were never published. Their rules can only be inferred from what the clients expect, from open-source servers written to match them, and from today's services, which may have changed. This limits E#401, E#402, E#406 and E#422, and the meaning of the `GNW` digits (→ App. E#12). [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields)
+- **Signed or server-held scripts.** From 6.11 on, the protocol itself lives in a script the operator signs (→ §2.10). The structure can be learned with a lab-signed script, but the production script's exact content can only come from the live service (→ App. E#616). [inf] (protocol/v7-connector-live-20261111.md#5-open)
+
+For these, the manual's rule is the same as everywhere else: state what is known, mark the rest, and keep the entry open. A clean-room server or client does not need most of these answers, because the client tolerates a range of server behaviour; where it does need one, the best guess in the entry is the starting point and the lab run in "Settles it" is the check. [inf] (protocol/probe-targets-2026-11-18.md)
