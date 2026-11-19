@@ -153,13 +153,18 @@ third loopback) so `nc-core.plan` runs on it while the game socket is untouched.
   [NCL11012 (1.1)]`), the server sent Control-NPC 158 + 42, and `nc-core.plan` injected 45 S→C
   packets. The RC stayed alive at all 46 shots — **no crash, no disconnect** — matching the
   standalone NPCControl result. The cipher-free NCL framing decoded and re-framed intact.
-- **GServer-v2 discovery bug (server-side, [srv], cause under confirmation):** the RC's
-  `PLI_NPCSERVERQUERY` (94) did **not** draw a `PLO_NPCSERVERADDR` (79) back on the lab gserver
-  (gs2emu-73/76/101a) despite `serverside = true`, the NPC server loaded, `ns_ip` set, and the
-  account holding `NPCCONTROL`. In the seihai-gserver-v2 source `msgPLI_NPCSERVERQUERY` only replies
-  with 79 when the query body equals exactly `"location"` (else it logs "unknown"), and there is no
-  send-79-at-login path — the three `sendNCLoginToPlayer` callers are this query, an RC
-  server-options update, and an `NPCCONTROL` rights change. Whether the real RC's 94 body differs
-  from `"location"`, or the lab gserver build diverges from that source, is still being pinned from
-  the captured 94 bytes before filing. The lab worked around it by injecting 79 on the game socket
-  after connect, which opened the NC socket immediately. Cross-ref: the RC-fuzz thread's rc-fuzz note.
+- **GServer-v2 discovery (server-side, [srv], resolved — NOT a server bug):** on the lab gserver the
+  RC's `PLI_NPCSERVERQUERY` (94) drew no `PLO_NPCSERVERADDR` (79). The captured 94 body is exactly
+  `location` and the server logged no "unknown message", so `msgPLI_NPCSERVERQUERY` ran; the
+  `== "location"` theory is wrong. The silent drop is in `NPCServer::sendNCLoginToPlayer`, which
+  returns on `!isRC()` or (with `npcrights` on) `!hasRight(PLPERM_NPCCONTROL)`. `isRC()` is true for
+  the RC game session, so the guard that failed is the rights check: `hasRight` is `adminRights & right`
+  and `PLPERM_NPCCONTROL = 0x80000`. The root cause is a **lab-harness config error, not a server
+  defect**: the harness (`runrc.sh`) wrote the right as an `ADMINRIGHTS 1048575` line into the account
+  file, but `FlatFileAccountLoader` fills `adminRights` from the **`LOCALRIGHTS`** key (source: the
+  loader reads/writes `LOCALRIGHTS`; **there is no `ADMINRIGHTS` key**). The line was silently ignored,
+  the account kept `adminRights = 0`, `hasRight(NPCCONTROL)` failed, and 79 was correctly withheld.
+  Retesting on current HEAD (e12ca7f) with the right written under `LOCALRIGHTS 1048575` makes 94→79
+  succeed in ~2 ms. No seihai-gserver-v2 issue was filed; the fix is in the harness. The lab had
+  injected 79 on the game socket to proceed, which did not affect the client-fuzz result above.
+  Cross-ref: the RC-fuzz thread's rc-fuzz note.
