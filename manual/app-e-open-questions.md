@@ -45,7 +45,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | E#15 | Graal 2002 and 1.40 exact-input behaviour | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Lab | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
-| E#17 | The 6.1.1.3 login after the RC4 switch | Settled (as far as taken) | our own stack's login works; the stock client's exact body stays a best guess, not pursued | [lab] (protocol/v6113-login-lab-method.md) |
 | E#18 | Mobile clients' outer framing and cipher | Lab | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#23 | What prop 81 changes in the player list | Lab | the folder or group a player is listed under | [inf] (protocol/unknowns-ledger.md) |
