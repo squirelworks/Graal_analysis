@@ -6,6 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Key and mouse sweep on real clients](protocol/keysweep/README.md) — every key, modifier combination and mouse button pressed on live 6.03r7 and 4.20r8 (2.x/5.x in progress): script key codes (Windows VK codes plus Shift 256 / Ctrl 512 / Alt 1024), PLI 38 click format (half-tile x/y, `leftmouse`/`rightmouse`/`middlemouse`/`doublemouse`), game key sets, windows each key opens; per-key tables; lab.
 - [Packet and prop probes on real clients](protocol/probe-targets-2026-11-18.md) — a lab proxy injects chosen packets into live sessions of 2.22, 2.31, 4.20r8, 5.24r4 and Linux 6.03r7; prop 83 is the five-byte gralat count, 78–80 are X2/Y2/Z2, unknown own ids skip one byte, unknown PLO ids are ignored; per-inject rows in `probe-results.tsv`, running tally in [`unknowns-ledger.md`](protocol/unknowns-ledger.md); lab.
 - [NRY identity F01–F03](version-profiles/nry-identity-f01-f03.md) — 5.12-untouched=5.00r7; 2.1.x level magics / controlnpc; 1.x VERGRAAL vs 1.39 no listserver; research #53; index.
 - [Scripted weapons on 5.00r7 / 5.12](protocol/scripted-weapons-5x-status.md) — classic vs modern delivery ids; transitional 5.x handles both; stock path / #55 open; research #5; static status.

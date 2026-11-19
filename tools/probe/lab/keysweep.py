@@ -368,6 +368,13 @@ def main():
             sc.run('xdotool', 'windowfocus', str(w[0])); sc.run('xdotool', 'key', 'n'); time.sleep(0.8)
         if new:
             ws2, _ = gamewin(); left = [w for w in new if w[0] in {x[0] for x in ws2}]
+            for w in left:  # last resort: Alt+F4, only while that window (not the game) has the focus
+                if w[0] == game[0]:
+                    continue
+                sc.run('xdotool', 'windowfocus', str(w[0])); time.sleep(0.3)
+                if sc.run('xdotool', 'getwindowfocus').strip() == str(w[0]):
+                    sc.run('xdotool', 'key', 'alt+F4'); time.sleep(0.8)
+            ws2, _ = gamewin(); left = [w for w in new if w[0] in {x[0] for x in ws2}]
             rnote.append('closed %d/%d new windows' % (len(new) - len(left), len(new)))
         else:
             left = []

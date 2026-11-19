@@ -68,7 +68,7 @@ elif [ $CL = 217 ]; then   # 2.17.1: account and password, then the server list
   sleep 25; ck 505 367; ky $BK; ty $AC; ck 510 421; ky $BK; ty labpass; ck 508 575; sleep 6
   ck 300 331; sleep 1; ck 510 575; sleep 12; ck 815 300
 fi
-if [ $D = 93 ]; then   # 2.22 / 2.31 login form, then the server list (window offsets of the 2.22 login form)
+if [ $CL = 222 ] || [ $CL = 231 ]; then   # 2.22 / 2.31 login form, then the server list (window offsets of the 2.22 login form)
   ww() { i=0; while [ $i -lt $2 ]; do w=$(DISPLAY=:$D xdotool search --onlyvisible --name "$1" 2>/dev/null | head -1); [ -n "$w" ] && { echo $w; return 0; }; sleep 1; i=$((i+1)); done; return 1; }
   pos() { w=$(ww "$1" 120) || return 1; eval $(DISPLAY=:$D xdotool getwindowgeometry --shell $w); dx=$((X-223)); dy=$((Y-189)); }
   c() { DISPLAY=:$D xdotool mousemove $(($1+dx)) $(($2+dy)) click 1; sleep 1; }

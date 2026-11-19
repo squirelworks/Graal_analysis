@@ -11,6 +11,7 @@
 #               keylog-stub.npc goes in the level and keysweep.py replaces its script through the proxy with
 #               keylog-gs2.bc.hex (keylog.gs2, onKeyPressed, compiled by Seihai's own GS2 compiler)
 #   TARGETS     mouse targets relative to the game window: 'player=X,Y ground=X,Y npc=X,Y hud=X,Y'
+#   LOADMAX     wait before each client start while the 1-minute load is above this (default 3)
 #   KEYS        key list (default $T/keysweep.keys)   DISP  X display (default 61)   START  first index
 # The client is started again (a full login) whenever it dies, loses its session or keeps a window
 # open; the sweep goes on from the next key. A key that fails three runs in a row is skipped.
@@ -30,6 +31,8 @@ fi
 fails=0; last=-1; run=0
 while [ $next -lt $N ] && [ $run -lt ${MAXRUNS:-30} ]; do
   run=$((run+1)); RUN=ks-$SW-$run
+  # shared VM: wait (up to an hour) while the 1-minute load is above LOADMAX (default 3)
+  w=0; while [ $w -lt 720 ] && awk -v m=${LOADMAX:-3} '{exit !($1 > m)}' /proc/loadavg; do sleep 5; w=$((w+1)); done
   if [ $CL = 603 ]; then SOCK=$R/run/world.sock; else SOCK=$R/run/wine.sock
     for lv in w/servers/gs1world/world/gs1lab.nw w/servers/gs1classic/world/gs1ctl.nw; do
       [ -f $G/$lv.orig ] || cp $G/$lv $G/$lv.orig; cp $G/$lv.orig $G/$lv
