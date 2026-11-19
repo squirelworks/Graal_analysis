@@ -31,7 +31,7 @@ The server can also ask for a process list, and 2.31 scans windows on its own. T
 | Rule | Detail | Source |
 | --- | --- | --- |
 | process list | the server sends `PLO_LISTPROCESSES` (182) once during login to 2.17 and later; the client can answer `PLI_PROCESSLIST` (44) with its running programs (→ §2.4.9) | [srv][inf] (client-internals/feature-specs/08-tampercheck.md#exact-server-behaviour-srv) |
-| 2.31 window scan | tick 20 of the 64-tick cycle compares the titles and classes of top-level windows with an obfuscated blacklist; the list is not decoded and what the client does on a match is unknown (→ App. E#321) | [bin] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap); [doc] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| 2.31 window scan | tick 20 of the 64-tick cycle runs a third-party anti-debugging component over the top-level windows. It looks for 20 scrambled tool names (monitors, dumpers and decompilers such as Regmon, File Monitor, ProcDump32, DeDe and Memory Editor) anywhere in each title; on a match it posts a quit message to that window and ends the client, and sends nothing to the server (→ App. E#321) | [bin] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
 | 2.31 debugger probe | tick 1 of the cycle probes for a debugger and arms a 5000 ms timer | [bin] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md#pli-39-re-send-every-32-s) |
 
 ### 4.10.1.3 What outside input tools look like
@@ -43,7 +43,7 @@ The recovered trainers of the period are summarised here only for what the clien
 | how they act | every recovered sample types keys into a classic client window or writes text into it through window messages; none speaks the game protocol | [bin] (recovered-hacks/behaviour-models.md#what-a-server-can-see) |
 | memory | no memory-writing or remote-thread imports were found in the unpacked samples, so none of them changes the client's image; the tamper check of → §4.10.1.1 cannot see them | [bin] (recovered-hacks/TRAINER_RE_NOTES.md); [inf] (recovered-hacks/THREAT_TAXONOMY.md) |
 | what the server sees | only the resulting actions (dig, use, walk, chat), at the rates the tool's waits allow | [inf] (recovered-hacks/behaviour-models.md#what-a-server-can-see); [inf] (recovered-hacks/static-2026-11-01/README.md#what-a-checker-can-use) |
-| window titles | some tools look for the client window by title, and some show their own named window; such a window is the kind of thing the 2.31 scan compares, but whether its list names any of them is unknown (→ App. E#321) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
+| window titles | some tools look for the client window by title, and some show their own named window; the 2.31 scan's list names debugging and monitoring tools, not game trainers, so it does not catch them (→ App. E#321) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
 
 ### 4.10.1.4 The recovered trainers, tool by tool
 

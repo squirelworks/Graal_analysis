@@ -867,3 +867,4 @@ tools/probe/lab/cfg/11.txt	excluded			probe input: the start-form game mode for 
 tools/probe/lab/cfg/119.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/14th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/15th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
+client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
