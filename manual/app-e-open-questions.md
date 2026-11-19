@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred.
 
 ## E.0 How to read this appendix
 
@@ -45,7 +45,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | E#15 | Graal 2002 and 1.40 exact-input behaviour | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Lab | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
-| E#17 | The 6.1.1.3 login after the RC4 switch | Read, Lab | the 6.0x login body under RC4 in `EILLLT` bundles; our own stack's login is built | [inf] (protocol/v6113-login-lab-method.md) |
+| E#17 | The 6.1.1.3 login after the RC4 switch | Settled (as far as taken) | our own stack's login works; the stock client's exact body stays a best guess, not pursued | [lab] (protocol/v6113-login-lab-method.md) |
 | E#18 | Mobile clients' outer framing and cipher | Lab | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#23 | What prop 81 changes in the player list | Lab | the folder or group a player is listed under | [inf] (protocol/unknowns-ledger.md) |
@@ -283,21 +283,6 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Best guess | The two strings are account and password, as on desktop. Confidence: moderate | [inf] (protocol/ios-classic-plus-113-framing.md#login) |
 | Settles it | Tracing the lower sender, then a qualified native run with a capture | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 | Outlook | Read; the run waits on the same emulator as E#18 | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
-
-### E#17 The 6.1.1.3 login packet after the RC4 switch
-
-**Question.** What the real 6.1.1.3 client sends as its login once the stream turns to RC4, and which first server replies it needs. 6.1.1.3 carries no protocol of its own; the connector script sets it (→ §2.10) [lab] (protocol/v6113-login-lab-method.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Settled part | The clear hello `GNP1905C` comes from the script; the outgoing stream is clear up to offset 287 and plain RC4 with a 16-byte session key after it; the server's key arrives RSA-wrapped in a clear `0xfc` message | [lab][cap] (protocol/v6113-status.md) |
-| Settled part | The connector request is a pure function of the build, so a genuine reply stays valid on every later launch of that build, unlike 7.x | [lab] (protocol/v6113-login-lab-method.md) |
-| Our stack | The clean-room client repro builds, verifies and decrypts its own signed `conf.gs` and runs the hello and two-way key exchange; seihai-core's secure login completes against our own server. So a working 6.1.1.3-shaped login exists for the project's own client, with the argument order and payload cipher chosen by us. This does not establish the stock client's framing | [lab][inf] (protocol/v6113-login-lab-method.md); [lab] (protocol/conf-gs-fuzzing.md) |
-| Open | The stock client's post-RC4 login packet: how the account and password are framed, and the order of the login-step arguments | [lab] (protocol/v6113-login-lab-method.md) |
-| Tried | The key-swap route (make a stock client trust a lab-signed reply) is a proven dead end: the verify runs inside the protector's virtual machine and no swappable copy of the key exists. It is not pursued | [lab] (protocol/conf-gs-fuzzing.md) |
-| Best guess | The login body is the 6.0x body (→ §2.3) under RC4, framed as `EILLLT` bundles. Confidence: moderate | [inf] (protocol/v6113-login-lab-method.md) |
-| Settles it | The login-step argument order read from a decrypted official `conf.gs` script's bytecode (owner-held, off-git), which needs no public server; and, for the first server replies and timing, a capture of a real session from a QEMU lab against the public service, which the owner has authorised for this entry (keep the raw capture private, publish only a clean-room description). A passive capture alone leaves the login body under RC4 | [inf][lab] (protocol/v6113-login-lab-method.md); [doc] (AGENTS.md#labs) |
-| Outlook | Read for the argument order (from a decrypted script); Lab for the handshake confirmation. The owner treats 6.1.1.3 as low priority | [inf] (protocol/v6113-login-lab-method.md) |
 
 ### E#18 Mobile clients: outer framing and cipher
 
@@ -1445,6 +1430,18 @@ Two reads disagreed on whether the NewWorld betas send ids 8 and 20 [bin] (clien
 | Claim B | The betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
 | Settled | Claim A: every send site in both betas was re-read; none sends 8 or 20 (nor 7, 11, 15, 16, 17), none passes the id in a register, and the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
 | Note | Claim B's count of 34 was 39 less five, the arithmetic that hid the gap | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
+
+### E#17 The 6.1.1.3 login after the RC4 switch (settled as far as the project will take it)
+
+What the stock 6.1.1.3 client sends as its login once the stream turns to RC4 is not fully known, and the project will not pursue it further. The handshake is read, a 6.1.1.3-shaped login works end to end in the project's own stack, and the stock client's exact login-argument order is left at a best guess (→ §2.10) [lab] (protocol/v6113-login-lab-method.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled (handshake) | The clear hello `GNP1905C` comes from the connector script; the outgoing stream is clear up to offset 287 and plain RC4 with a 16-byte session key after it; the server's key arrives RSA-wrapped in a clear `0xfc` message. The connector request is a pure function of the build, so a genuine reply stays valid on every later launch | [lab][cap] (protocol/v6113-status.md); [lab] (protocol/v6113-login-lab-method.md) |
+| Settled (our stack) | The clean-room client repro builds, verifies and decrypts its own signed `conf.gs` and runs the hello and two-way key exchange; seihai-core's secure login completes against our own server. A working 6.1.1.3-shaped login exists for the project's own client, with the argument order and payload cipher chosen by us | [lab][inf] (protocol/v6113-login-lab-method.md); [lab] (protocol/conf-gs-fuzzing.md) |
+| Best guess (stock client) | The stock client's post-RC4 login body is the 6.0x body (→ §2.3) under RC4, framed as `EILLLT` bundles. Confidence: moderate | [inf] (protocol/v6113-login-lab-method.md) |
+| Not pursued | Confirming the stock client's exact account and password framing would need either reading its login key out of the protected client (a key-swap shown to be a dead end in the lab) or a capture against the live official service. The project has chosen to do neither, so the best guess stands | [lab] (protocol/conf-gs-fuzzing.md) |
+| Verdict | Settled as far as the project will take it: the project's own 6.1.1.3-style login works, and the stock client's exact body is left at the best guess and not chased | [inf] (protocol/v6113-login-lab-method.md) |
 
 ### E#20 The 2.31 step on `PLO_SETACTIVELEVEL` (156) (settled)
 
