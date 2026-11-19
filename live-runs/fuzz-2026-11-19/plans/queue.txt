@@ -1,0 +1,11 @@
+222 npcwidth-win3.plan fz-nw222-a
+231 npcwidth-win3.plan fz-nw231-a
+222 shotbyte222.plan fz-sb222-a
+420 gs2deliver420.plan fz-gd420-a
+205 e322-205.plan fz-e322-205-a D=183
+222 keychat.plan fz-kc222-a D=183 LV=gs1ctl.nw
+420 keychat.plan fz-kc420-a D=183 LV=gs1lab.nw
+524 keychat.plan fz-kc524-a D=183 LV=gs1lab.nw
+603 keychat.plan fz-kc603-a D=187 LV=issho_a.nw
+231 keychat.plan fz-kc231-a D=183 LV=gs1ctl.nw
+205 keychat.plan fz-kc205-a D=183 LV=gs1ctl.nw

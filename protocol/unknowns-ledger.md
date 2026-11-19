@@ -20,12 +20,12 @@ Status words:
 | Group | Resolved | Open | Blocked |
 |---|---:|---:|---:|
 | Own player props on real clients (77–83, unknown ids, widths 0–90) | 8 | 1 | 0 |
-| Server→client ids (60, 78, 81, 83, 110 unhandled; 156; 195 LOADGANI list) | 6 | 1 | 0 |
+| Server→client ids (60, 78, 81, 83, 110 unhandled; 156; 195 LOADGANI list) | 7 | 0 | 0 |
 | Client→server ids at our server (0–223) | 1 | 1 | 0 |
 | Wire bytes (NUL and high bytes inside a message) | 2 | 0 | 0 |
 | Baddy types | 1 | 0 | 0 |
-| Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 4 | 1 | 4 |
-| **Total** | **22** | **4** | **4** |
+| Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 5 | 0 | 4 |
+| **Total** | **24** | **2** | **4** |
 
 **New this round (resolved):**
 - 2.00–2.17 can now be probed (gen 3 in the proxy; 2.05 and 2.17.1 run).
@@ -55,8 +55,8 @@ Status words:
 | 81 | `PLO_UNKNOWN81` | The same | resolved |
 | 83 | `PLO_UNKNOWN83` | The same | resolved |
 | 110 | `PLO_UNKNOWN110` | The same | resolved |
-| 195 | `PLO_LOADGANI` list | resolved for 4.20r8, 5.24r4, 6.03r7: gani header lines (`SETBACKTO`, `LOOP`) that override the file for the named gani, newest wins, lost if sent before the gani loads; redundant for file ganis. Round 2: `CONTINUOUS`, `SINGLEDIRECTION` and `LOOP` taken too; `DEFAULT*` no effect seen; a 195 or a forged `PLO_GANISCRIPT` for an unloaded gani makes the client load it; names are case-insensitive; other players and 5.12 match. 2.22 and 2.31 ignore 195 (lab). Open: `DEFAULT*` uses, 6.1.1.3, 6.037 | resolved |
-| 156 | `PLO_SETACTIVELEVEL` | The extra step in 2.31 | open: 2.31 now runs in the lab; read the step statically, then probe for its effect |
+| 195 | `PLO_LOADGANI` list | resolved for 4.20r8, 5.24r4, 6.03r7: gani header lines (`SETBACKTO`, `LOOP`) that override the file for the named gani, newest wins, lost if sent before the gani loads; redundant for file ganis. Round 2: `CONTINUOUS`, `SINGLEDIRECTION` and `LOOP` taken too; `DEFAULT*` no effect seen; a 195 or a forged `PLO_GANISCRIPT` for an unloaded gani makes the client load it; names are case-insensitive; other players and 5.12 match. 2.22 and 2.31 ignore 195 (lab). `DEFAULT*` lines (head, body, attr1–3, shield, sword, horse, param1) change nothing for the player's own character on 6.03r7 and 4.20r8, and no named file is fetched ([fuzz](../live-runs/fuzz-2026-11-19/README.md)). Open: `DEFAULT*` on an NPC with no head of its own, 6.1.1.3, 6.037 | resolved |
+| 156 | `PLO_SETACTIVELEVEL` | The extra step in 2.31 | resolved: sends pending `graal://` start parameters once as a `serverstartparams` trigger action; confirmed on 2.31 under Wine ([note](plo-156-setactivelevel-231.md), [lab](lab-baddyprops-ganiscript-156-2026-11-19.md)). Fuzz on 2.22 and 2.31: no screen change for the current, neighbour, empty or unknown name, and later board and prop updates still land; a gmap name makes both ask for the gmap file (`PLI_UPDATEFILE`) ([fuzz](../live-runs/fuzz-2026-11-19/README.md)) |
 
 ## Client→server ids at our server
 
@@ -78,11 +78,11 @@ Status words:
 |---|---|---|
 | Other-player props 77 and 83 (`PLO_OTHERPLPROPS`), 6.03r7 | resolved | 77 and 83 (and 90) have no case: the rest of the message is dropped; 81 is 1 byte, 82 a string, 78 2 bytes (run `opp-a`) |
 | Does an injected player need the server or UDP? | resolved | Neither. The server's own other-player message, replayed under an unknown id, draws a new player; 6.03r7 draws a player only once it has prop 10 (`GANI`) (runs `tc-c`, `opv-a`) |
-| NPC props 48–52, 74–78 (6.03r7) | resolved | 48–52 and 78+ drop the rest of the message; 75–77 are two bytes; a CLASS the client lacks stops the NPC script |
+| NPC props 48–52, 74–78 (6.03r7) | resolved | 48–52 and 78+ drop the rest of the message; 75–77 are two bytes; a CLASS the client lacks stops the NPC script. 4.20r8 and 5.24r4: the same widths; 74 ends the message there ([fuzz](../live-runs/fuzz-2026-11-19/README.md)). 2.22 and 2.31 not run yet |
 | Baddy type range a client accepts | resolved | 6.03r7 survives 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223 |
-| Baddy props 11 and up | open | baddies made by `PLO_BADDYPROPS` walk on their own on 6.03r7 and attack, so a position canary does not hold (run `bp-a`); needs a still mode or a script read |
+| Baddy props 11 and up | resolved | 6.03r7 has cases for 0–10 only; any id of 11 or more ends the message, so later props are lost (static read, then a mode-9 kill canary, run `kc`; [lab](lab-baddyprops-ganiscript-156-2026-11-19.md)). 4.20r8 and 2.22 are the same: ids 11–30, as a byte or a string, lose the rest of the message (silent mode-10 baddy, mode 0 as the canary, `PLI_BADDYPROPS` as the observer; [fuzz](../live-runs/fuzz-2026-11-19/README.md)) |
 | 6.1.1.3 | blocked | RC4 after a server-sent connector script; no loopback login yet (`v6113-status.md`) |
 | Windows 6.037 | blocked | runs only in the Win10 lab VM (8 GB); booting it on Mirae now would leave about 3 GB free, under the host-stability rule. The host side is ready: the proxy runs on Windows with a TCP control port (`tcp:PORT`) |
 | 2.00 to 2.17 (gen 3) | resolved | the proxy speaks gen 3; real 2.05 rev 2 and 2.17.1 probed (runs `w205-b`, `w217-b`) |
 | 2.19 to 2.21 (gen 4) | blocked | the proxy has gen 4 from server source, but no 2.19–2.21 binary is held |
-| Mobile clients | blocked | no Android APK or iOS Graal app on the lab hosts, no emulator, and no KVM in the Linux VM; the held Android Classic reading leaves the outer framing and encryption unread, so the proxy would not know the codec either |
+| Mobile clients | blocked | iPhone codec now known: Classic+ 1.13 is desktop gen 5 with round-down for compressed bodies, which the proxy already speaks ([note](ios-classic-plus-113-framing.md)). Still blocked on running it: no 32-bit iOS device or emulator, no Android package on the lab hosts, no KVM in the Linux VM |

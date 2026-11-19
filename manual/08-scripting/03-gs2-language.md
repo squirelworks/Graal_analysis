@@ -146,6 +146,20 @@ These GS2 names appear in the notes; each row gives only what the source says ab
 | `getDatablockProperties(obj, list)` | function | lists datablock fields (name, type and attributes) for GS2 scripts | [bin] (graal3d/torque-engine-4x.md; protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 | `addtiledef("pics1.png", "", 0)` | function | called from a GS2 weapon `-System` on a 5.x/6.x lab server; the full level drew after the warp with or without that weapon | [shot] (protocol/v5v6-lab-play.md#the-login-server-mode) |
 
+#### Linux 6.03r7: the script function table
+
+The Linux 6.03r7 client keeps its engine-provided script functions in one table: each entry holds the name, the return type, an argument signature (`s` string, `i` int, `d` double, `b` bool, `o` object, `X` variable) and the handler, and lookup ignores case. The names are stored lightly obfuscated, one byte per character, so the table was decoded by fitting known names; after about the twelfth character the decode is ambiguous, and a decoded `q` is probably a `2`. [bin] (protocol/named-login-5x-6x.md#how-603r7-stores-its-script-function-names)
+
+| Group | Names (argument signature) | Source |
+| --- | --- | --- |
+| account | `adventure_setaccountname(s)`, `adventure_setpassword(s)`, `adventure_setnickname(s)`, `getloginaccountname()`, `adventure_geteditnickname()`, `adventure_geteditaccountnames()` | [bin] (protocol/named-login-5x-6x.md#how-603r7-stores-its-script-function-names) |
+| connection | `adventure_reconnect()`, `adventure_openserverlist()`, `isofflinemode()` | [bin] (protocol/named-login-5x-6x.md#how-603r7-stores-its-script-function-names) |
+| options and window | `adventure_savegraaloptions()`, `adventure_setgraalcontrolrecreate(b)`, `adventure_setfullscreen(b)`, `isfullscreenmode()` | [bin] (protocol/named-login-5x-6x.md#how-603r7-stores-its-script-function-names) |
+| chat, input and files | `adventure_setchat(s)`, `adventure_openexternalpm(o)`, `adventure_invokekeyevent(i,i,s,i)`, `adventure_invokemouseevent(i,i,d,d,i,b)`, `adventure_uploadfile(s)` and request calls to delete, rename and move files and folders | [bin] (protocol/named-login-5x-6x.md#how-603r7-stores-its-script-function-names) |
+| install | `adventure_getwindowlist()`, `adventure_getinstallationpath()`, `adventure_installgraal(s,b,b)`, `adventure_addmenulink(s,s,s)`, `adventure_adddesktopicon(s,s,s)` | [bin] (protocol/named-login-5x-6x.md#how-603r7-stores-its-script-function-names) |
+
+Only the two account setters were exercised. On 5.24r4 and 6.03r7 a clientside weapon on the `Login` server that calls them in `onCreated` makes the client log in to the next server under the set account, with no delay needed; the server must run clientside scripts as GS2 for this. `getloginaccountname()` still returned `guest` afterwards on 6.03r7. The 3.x form `Adventure.setAccountName(...)` is "not found" on 6.03r7 (→ §2.3.5). [lab] (protocol/named-login-5x-6x.md#524r4-and-603r7)
+
 #### Linux 4.04r2: published API membership
 
 Linux 4.04r2 publishes a catalogue of script types and globals. The table gives what the exact input shows and where that stops [test] (client-internals/linux-404r2-api-ownership.md#declaration-ownership-correction).
@@ -226,3 +240,32 @@ Static reads of the Windows 4.20r8 GraalEngine.dll (4.2.0.8) and the Linux 6.03 
 | Conversions `%%`, `%d`/`%i` (precision zero-pads, width space-pads), `%u`, `%x`/`%X`, `%c`, `%f`, `%s` (precision truncates); any other letter prints nothing | [bin] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-84-format) |
 | Missing arguments: `%s` prints empty (still padded), `%d`/`%i`/`%u` print `0`, `%f` likely 0; a positional past the end counts as missing; extra arguments are ignored | [bin][inf] (client-internals/showimg-particles-and-gs2-format.md#gs2-opcode-84-format) |
 | Open: whether `removemodifiers` clears the emit list, when a global clock starts, the particle kinds (image, ani, text), `indexof` case handling and `%d` rounding → App. E#210 | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+
+## 8.3.9 What weapon scripts ask of a 4.x to 6.x client
+
+A survey of the client half of real GS2 weapon scripts counts which events, commands and `player` members they use. Only aggregates are published: no script text or world, weapon or class name. Set B is a 2007 world export (554 weapons, 522 with a client part), written for 4.20r8 and 5.00r7; set E is a 2018 playerworld export (854 weapons, 811 with a client part), written for 5.x and 6.x. The bytecode counts come from compiling the client parts with an open compiler, not from official bytecode [lab][inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#the-sets).
+
+| Event | Set E weapons | Set B weapons | What fires it | Source |
+| --- | ---: | ---: | --- | --- |
+| `onCreated` | 539 | 460 | the script loading | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onWeaponFired` | 445 | 18 | the player using the selected weapon | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onTimeout` | 342 | 264 | a timer running out | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onPlayerEnters` | 208 | 79 | the player arriving in a level | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onPlayerChats` | 200 | 98 | the player's own chat line | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onActionClientSide` | 194 | 58 | the server's 48 with `clientside,<weapon>,…` (→ §2.5) | [lab][srv] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onKeyPressed` | 180 | 41 | a key, with key code and key in `params` | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onMouseDown` | 76 | 14 | a mouse press on the play area | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onPlayerHurt`, `onPlayerDies` | 38, 15 | 0, 0 | the player taking damage or dying | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| any other `on…` function | 255 | 258 | `scheduleevent`, `trigger` or another script's call | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+
+The rules below summarise what those scripts do, and so what a client has to run first [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#what-onweaponfired-does-set-e-445-handlers).
+
+| Rule | Source |
+| --- | --- |
+| The two worlds fire weapons differently: set E uses `onWeaponFired`; set B fires spells from a world key handler that calls a world event on the weapon, so `findweapon` and calls into another weapon's public functions matter more there | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#the-sets) |
+| A typical fired weapon checks a cooldown or level rule (and says so in `player.chat`), plays an attack gani with the player held for its length, tells the server, and releases on a timer. The commonest calls in the handlers are `setani` (164), `freezeplayer` (98), `triggerserver` (93), `setTimer` (59) and `say2` (45) | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#what-onweaponfired-does-set-e-445-handlers) |
+| `triggerserver` and `triggeraction(0, 0, "serverside", …)` both end as client 38 with `serverside,<weapon>,<params>`, which GServer-v2 turns into the weapon's `onActionServerSide`; that `triggerserver` sends exactly this is read from scripts and server, not a client | [srv][inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#implementation-order) |
+| The `player` members used most in set E are `chat` 413, `y` 327, `x` 325, `level` 287, `dir` 264, `account` 234 and `ani` 136; set B adds `target` and many world-defined members | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#player-members-read-or-written) |
+| The opcodes these scripts lean on beyond calls and arithmetic are list membership (`in`, 81 and 80), `getangle` (95), list `add` (136), `tokenize` (118) and `getdir` (96); `waitfor` (11) is rare and 4.20r8 on only (→ §8.4.4) | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#opcodes-the-repro-machine-still-refuses) |
+| Open: which 4.x build first has each GS2-only name such as `triggerserver`, `scheduleevent` and `findweapon`; and what a client does when a script calls a name it lacks (→ App. E#215) | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+

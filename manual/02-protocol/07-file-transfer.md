@@ -150,7 +150,7 @@ The 2.05 rev 2 file receiver was read exactly. Each row names one property of it
 | startup qualification | only copied world greeting emptied to bypass HTML/Wine stall; milestone 6 and equal level objects; default greeting unchanged; native Windows/cause unproved | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
 | limits | other clients, large-file continuation and malformed inputs remain unqualified; no server patches published in this increment | [lab] (protocol/file-205r2-prefix-lf.md#fixture-and-execution-limits) |
 
-## 2.7.10 What 2.22 sends before any file answer (partial)
+## 2.7.10 The 2.22 start-up file checks
 
 Windows 2.22 (`GNW03014`) on a loopback lab, listserver port 14922 and the decrypting proxy on 14803. The near-empty folder that reaches the server list is the executable, `bass.dll`, `basswma.dll`, `hvdi.dll`, `arrays.dat`, `arrays2.dat`, `arrays2.sig`, `graal.sig` and `pics1.png`. The login screen itself appears once `graal.sig` is present; its images are inside the executable. Start Online then asks for `arrays.dat` and `pics1.png`. The client writes `graalconfig.txt`, `servermessage.html` and `weblevels` itself. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
 
@@ -165,4 +165,16 @@ Id 23 asks for a file the client does not have. Id 34 is the update check and ca
 
 This server answered none of those requests: no S→C 102 and no 30. Neither client sent another file check afterwards, so sword, shield, body, bomb, bow and head images were not in this capture even though S→C 9 named some of them. The set above is only what leaves before any answer. An earlier run whose server did answer saw two further frames. A rerun against a server that answers id 23 and id 34 is still needed for the rest of the default set. [lab] (live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder)
 
-Status 2026-11-16: the shared second-frame bundling and the near-empty versus full first wave are settled; the full set after the server answers is still open (#245). [lab] (protocol/222-login-default-files.md)
+The shared second-frame bundling and the near-empty against full first wave were settled first [lab] (protocol/222-login-default-files.md). A 2026-11-19 rerun with a GServer-v2 build that answers each check took the client past its first frame and gave the whole set [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers).
+
+| Data folder | Packet | Files checked | Source |
+| --- | --- | ---: | --- |
+| full | 34 (modification time, then name) | 13 | [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers) |
+| near-empty (root start-up files only) | 23 (name only) | 17 | [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers) |
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| At most four file packets go in one frame. The first four share a frame with the first flags and props line, and each later batch of up to four waits until the server has answered the batch before it | 2.22 | [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers) |
+| With nothing but the executable, 2.22 stops at start-up because `pics1.png` is missing, so a near-empty folder still needs the root start-up files | 2.22 | [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers) |
+
+Why one folder checks 13 files and the other 17 is open (→ App. E#25). [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)

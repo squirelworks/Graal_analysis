@@ -168,7 +168,11 @@ The following Windows Delphi inputs were read statically; no login frame or game
 | 1.40 | 1.3.9.1 | unmeasured | 1488384 | `GNW23090` | 125 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
 | 1.40 rev 1 | 1.4.0.1 | unmeasured | 1488384 | `GNW23090` | 125 | [bin] (client-internals/graal2002-and-140-builds.md#the-builds) |
 
-The two additional 1.41 rev 1 copies are 1506816 bytes with FileVersion 1.4.1.1, token `GNW13110`, 126 command entries and the catalogued receive set; their bytes differ, so these matches do not establish identical execution. The later focused callback study distinguishes one handler-body binding from a final-return binding without settling triggers, helper effects or modification history. Twenty-one of the 22 code-section bytes spell the list host and the list port; the two copies do not spell the same endpoint, and that is not a packet, property or command change. The host and the port are not written out. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
+The two additional 1.41 rev 1 copies are 1506816 bytes with FileVersion 1.4.1.1, token `GNW13110`, 126 command entries and the catalogued receive set; their bytes differ, so these matches do not establish identical execution. Twenty-one of the 22 code-section bytes spell the list host and the list port; the two copies do not spell the same endpoint, and that is not a packet, property or command change. The host and the port are not written out. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
+
+The remaining byte decides where the form's program-check component sends its error event. In one copy the event reaches the start of a handler body; in the other copy, and in the catalogued baseline, it reaches that body's final return, so the handler does nothing. The handler builds text, sets a byte of state and calls helpers whose effects were not identified, so the study does not show a warning, an exit, what raises the event, or who changed the binding and why (→ App. E#620). [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result)
+
+The same comparison found that the duplicate 1.39 (FileVersion 1.3.9.1) and the catalogued 1.39 (1.3.8.0) share an import list but differ in code and some resources, so it is not a version-resource-only change; 1.40 adds four imports over it, including registry and keyboard-event calls; and 1.40 rev 1 has the same size and imports as 1.40 but differs in code and three resources. None of these differences has been traced to behaviour yet. [bin] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client)
 
 The Graal 2002 distributions contain gmaps for main, forest, dustari, pirates, samurai and zormite plus `loadgmaps.txt`; v22 adds caverns, start and mines. They are the earliest gmap-based world clients in this checked set, not proof of the format's first historical use. The public 2.1.0.0 image's `GRMAP001` reader includes `LEVELNAMES` through `LEVELNAMESEND` plus the generator keys, `MAPIMG`, `HEIGHTMAP`, `RANDOMSEEDS` and `HEIGHTS`, and it records `Loaded gmap`. v22 is the image in this set whose executable preloads each line of `loadgmaps.txt`; the literal is absent from ver7 through ver13 and from the public image, so a shipped file is not proof those executables open it. On ver10, the loader runs when a gate byte is clear and the resolved path of `controlnpc.txt` is nonempty. The client loads the file; the helper trims each line-feed-terminated piece and removes a preceding carriage return, appends the section-sign separator, then appends a remaining nonempty unterminated tail unchanged, and installs that joined text as the weapon `Control-NPC`. The helper does not compile or execute GS1. The gate's option key is still unidentified. Whether the joined text later runs or causes a packet stays unestablished. The literal is absent from the public image and from v22. The public reader's key list and v22's per-line preload are body reads of those two images. Literal counts of `LEVELNAMES` and `Loaded gmap` on the other images in the set are presence. [bin] (client-internals/graal2002-and-140-builds.md#what-the-graal-2002-builds-settle); [bin] (client-internals/graal2002-and-140-builds.md#local-gmap-preload-and-controlnpc)
 
@@ -326,6 +330,8 @@ Each client reads a fixed set of level and map file magics and writes one save-f
 
 GR-V1.03 is the last `.graal` revision any catalogued build reads [bin] (client-internals/build-catalogue.md#catalogue). `.nw` support is not monotonic: 1.41 rev1 and NewMain 1.42 read GLEVNW01, 2.00 to 2.04 contain neither GLEVNW01 nor GRMAP001, and both return in 2.05 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). That 2.0 branched from a pre-NewMain tree is an inference from strings [inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The 2.05 string table holds exactly Z3-V1.03, Z3-V1.04, GR-V1.00 to GR-V1.03 and GLEVNW01 as level magics [2.05] (formats/level-binary.md). The save writer was traced only in 1.21 and 1.32; for 1.33 to 1.41 rev1 the save magics are inferred from the same string arrangement [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The formats themselves are in → §3.1, → §3.2 and → §3.7.
 
+For 1.41 rev 1 the `.nw` reader is known from its strings only: the build carries `GLEVNW01` and no `GRMAP001`, and no real 1.41 rev 1 has yet been seen loading a `.nw` level from a server. Whether it plays one online, and what it does with a gmap, are open (→ App. E#617). [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue)
+
 ## 1.6 Era timeline
 
 The manual groups builds into thirteen eras. Inside an era the clients share their engine and wire format [bin] (version-profiles/matrix/README.md#eras). An era letter is a heading aid; facts stay attached to builds (→ §0.9).
@@ -425,6 +431,8 @@ The seven gen-2 GNW clients share one wire and one feature base; every shipped `
 | Wire: every flush is one `u16be length` + zlib stream, with no size threshold, no cipher and no key byte (gen 2, → §2.2) | [bin] (client-internals/versions-133-139.md#what-is-the-same-in-all-seven) |
 | Login is message id 0 (`chr(32)`, which also marks a player client): the 8-byte token, then `chr(len+32)` + account, then `chr(len+32)` + password | [bin][cap] (client-internals/versions-133-139.md#what-is-the-same-in-all-seven) |
 | No listserver and no server list window: the connect dialog is pre-filled with `<list-host-classic>:14900` and the `guest`/`guest` account | [bin] (client-internals/versions-133-139.md#what-is-the-same-in-all-seven) |
+| So a 1.3x client gets online by direct dial: the player edits the address in that dialog and the client logs in to the game server itself. It opens no list session and parses no list reply, and a server for these builds needs no listserver. The first build that goes online through a list is 1.41 rev 1 (→ §6.1) | [bin][lab] (client-internals/how-139-gets-online.md#what-139-does) |
+| The `VERGRAAL` strings in the 1.25 and 1.27 installers and the 1.3x images belong to the local save and DES key family (→ §3.7), not to a listserver login | [bin] (version-profiles/nry-identity-f01-f03.md) |
 | Levels: only `GR-V1.00` to `1.03` (and `Z3-V1` `.zelda` for the offline levels); no `.nw`, no `.gmap`. The board arrives as `RAWDATA` (100) then `BOARDPACKET` (101) in its own frame. Saves are written as `Graalsv11`; the reader also takes `Graalsav9` and `Graalsv10` (→ §3.7) | [bin][cap] (client-internals/versions-133-139.md#what-is-the-same-in-all-seven) |
 | Files: asked for with `WANTFILE` (23), never `UPDATEFILE` (34), no large-file ids; the reply is `RAWDATA` then `PLO_FILE` (102) with no modtime. A server adds `.gif` to image names with no extension for clients before 2.1 | [bin][cap] (client-internals/versions-133-139.md#what-is-the-same-in-all-seven) |
 | No tampercheck (39). A peer UDP channel for "data packages" with `noudp=` and `fixedudpport=` (default 14899) (→ §2.9) | [bin] (client-internals/versions-133-139.md#what-is-the-same-in-all-seven) |
@@ -514,6 +522,7 @@ The four Graal Reborn executables can be compared side by side. The rules below 
 | The Reborn `Graal_222.exe` is dated 2009 and `Graal_231.exe` 2007, and the 2.17 build beside them is rebranded "Eradia Online", so text and server-list edits by the community cannot be ruled out | [bin][inf] (version-profiles/2.22-2.31.md#builds-in-this-range) |
 | Tampercheck (39) re-sends differ: 2.17 once at login; 2.22 at login, on each gmap edge crossing and after each client-initiated level-link request; 2.31 at login and about every 3.2 s. 2.31 also sends 24 about every 5.1 s and 46 on every level entry; 2.22 sends 24 = 9 every 5.1 s only while another player is in its level | [cap] (version-profiles/2.22-2.31.md#wire-protocol) |
 | 2.22 login in the lab: 37 `English`, 39, 34 `UPDATEFILE` for the default sword, shield, body and bomb images, 23, then 2; it answers S→C 182 with 44 | [cap] (version-profiles/2.22-2.31.md#wire-protocol) |
+| Most of the 2.22 profile is read from its binary, but a few cells still ride on era defaults: the send sites for C→S 36, 42 and 45 are unmatched, so the sent list is marked incomplete, and some generation-5 defaults are cited for "2.1 and later" rather than for 2.22 itself. A static pass on 2.22 for those three ids would close them. 2.3 has no binary and stays inferred from 2.31 | [bin][inf] (version-profiles/222-inferred-from-21-inventory.md#still-open-or-era-carried-replace-or-re-tag) |
 | GServer-v2 sends a `-gr_zlib_fix` weapon to clients 2.21 to 2.31 that pads chat made of long runs of one or two characters; it works around a client compression bug, which a faithful client should keep or tolerate | [srv][inf] (version-profiles/2.22-2.31.md#wire-protocol) |
 | 2.31 does not request the map file after `setmap`, so GServer-v2 pushes every BIGMAP file at login for 2.31 but not for 2.3 | [srv][inf] (version-profiles/2.22-2.31.md#wire-protocol) |
 
@@ -552,7 +561,18 @@ The 3.x clients look like a new engine but speak the 2.x protocol. The rules say
 | The listserver host is not compiled in: `license/license.graal` names it (`<list-host-3x>`, port 14922, site, signup and translate URLs, two fallbacks) and is RSA-1024 signed (PKCS#1 v1.5 over SHA-1, e = 17) in `license/sig.license`; `sig.graal` signs the packed executable; all three verify against the key embedded in the client | [bin][file] (protocol/v3x-clients.md#listserver) |
 | The server name's prefix picks the tab: `P ` Graal Gold, `3 ` Graal 3D, `H ` Hosted, `U ` not listed, none Classic | [bin] (protocol/v3x-clients.md#listserver) |
 | Neither build sends 39 after login, and the account and password go as plain strings, with no `~b − 10` step | [bin][cap] (protocol/v3x-clients.md#game-server-login-and-cipher) |
+| A clean Linux 3.151 installer has since been found. It unpacks to a normal ELF with the 3.153 folder layout and component version 3.151, so the damaged upload in the next row is superseded for binary work | [file][bin] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#clean-3151-closes-the-damaged-upload-gap) |
 | The 3.151 Linux installer upload is 139 bytes short: an ASCII-mode transfer turned every CR LF into LF, so only its metadata (version 3.151, the 3.153 data layout) survives. The two Mac uploads are byte-identical (3.153), and the 3.04 installer and tgz hold the same game files | [file] (protocol/v3x-clients.md#the-uploads-for-the-record) |
+
+The same batch held clean Linux installers for 3.0beta, 3.01 and 3.151. Their tokens are the catalogue reads, not new captures; none was run [bin] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#builds).
+
+| Build | Token | What the strings add | Source |
+| --- | --- | --- | --- |
+| 3.0beta | `G3D16053` | the early Torque program; server tables list it as client type 4, generation 4 | [bin] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#builds) |
+| 3.01 | `G3D27063` | almost 3.0beta's strings, plus a direct-connect preference; still type 4 in the server tables | [bin] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#behaviour-deltas-visible-without-a-live-run) |
+| 3.151 | `G3D27015` | most of the 3.153 surface: PM and player-list windows, server-weapon and class-script type names, `addweapon`, 3D GUI controls, and the `dontsavepasswords` and `nomassmessages` preferences | [bin] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#behaviour-deltas-visible-without-a-live-run) |
+
+3.0beta and 3.01 matter beyond 3.x: they are the only held clients that server tables put on generation 4, so a lab login with either is the most direct test of that codec (→ App. E#19). [inf] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#open-still)
 
 Profile [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids):
 
@@ -564,6 +584,14 @@ Profile [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids):
 | Precise move | no | X2/Y2/Z2 and `MOVE2` | [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids) |
 | Start window | Nick, Language, Options, Tutorial, Account, Password, Get Account, Start; tabs Graal Gold, Classic, Graal 3D, Hosted with a direct-connect field; options Graphics, Audio, General; no editor | adds a 3D mode, snow and xmas themes, the RC file browser and script uploads, server-side class scripts (131–134); prefs ship with `noudp = 1` | [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids) |
 | GS1 | 496 names; every 2.05 command except `putobject`, `setbackpal`, `setbody`, `setbacktile`, `drawovertrees`, `setbacktile2` | not counted | [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids) |
+
+A later independent static read of the Linux 3.04 ELF agrees with the profile above and adds two details [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md#identity--high-binary--medium-runtime-version-string).
+
+| Rule | Source |
+| --- | --- |
+| The property codec covers ids 0 to 76 with gaps at 25, 27 to 30, 34, 36, 50 and 51, as in the profile; ids 8 and 9 normalise the sword and shield image names | [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-properties.md#wire-codec--high) |
+| Compiled `.code` scripts are wrapped by the client's own `descipher`: padded with newlines to a multiple of 8, prefixed with a 4-byte length, each block mixed with an LCG keystream (the generation-5 multiplier, increment 1) and a block transform, and closed with an 8-byte additive checksum checked on load. It is not the `GRESCR01` container and not the game socket's cipher (→ §3.7.5) | [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md#3-descipher-code-scripts-not-the-game-socket) |
+| No eight-character token or version literal is stored in the clear; `3.0.4` is only the file name, and the version reaches the server list through `getVersionString` (→ §1.2) | [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md#identity--high-binary--medium-runtime-version-string) |
 
 Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu [cap] (version-profiles/lab-304-linux-2026-10-30.md#setup-for-repeating-it); [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#3153).
 
@@ -599,6 +627,15 @@ From 4.x, Windows Graal is two programs: a Delphi launcher and a C++ engine DLL.
 | 4.04r2 ships `Graal4.exe`, `GraalEngine.dll` (3 March 2006), `Graal3DEngine.dll`, `fmod.dll`, `ExeReplacer_temp.exe` and `graalv4_installfiles.txt`; its `license.graal` and `pics1.png` are byte-identical to Mac 4.20r6's | [bin][file] (protocol/v4x-clients.md#what-404r2-ships) |
 | `ExeReplacer` swaps in a new executable and restarts it for the `GRPKG001` update system; packages live in `localversions.txt` and are driven by S→C 105, 106, 193, 196 (→ §8.3) | [bin][inf] (protocol/v4x-clients.md#what-these-clients-are); [bin] (protocol/v4x-clients.md#file-formats) |
 
+#### What the 4.2.0.8 strings add
+
+An independent static read of the 4.2.0.8 launcher and engine confirms the split above and the classic line framing: newline-delimited records whose first byte is the id plus 32, with no send-slot remapper. It adds the rules below. Its functional labels for individual client-to-server ids are guesses from the send wrappers and are not adopted here; the ids themselves match the 4.x sets in → §2.4 [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md#framing--high-cleartext-pl--high-voice-hcrypt--low-tcp-length-header); [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md#pli-client--server--high-ids--medium-names).
+
+| Rule | Source |
+| --- | --- |
+| A `graal://` or `graal3://` link is split at `/`: the first segment is a protocol token passed to `setGraalProtocolString`, the rest is kept separately; the production token is supplied at run time, not stored | [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md#version--protocol-token--high-parser--low-production-value) |
+| The voice path is separate from the game line: an HVDI packet's type sits in the low 6 bits, `0x40` adds a 2-byte big-endian sequence and `0x80` marks a body encrypted by the `hcrypt` functions | [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md#voice-path-hvdi--separate) |
+
 #### Third-party engines
 
 Some surviving 4.x engines are not original builds. The rule below identifies one modified engine, so its traces are not taken as Graal's own behaviour [bin][src] (protocol/v4x-clients.md#packet-logger-third-party-build).
@@ -616,6 +653,19 @@ These rules set 4.04r2 against 4.20r8 and say how the 3D plug-in shares work wit
 | 4.04r2 against 4.20r8: no layered board change (107), 108 or 196; one saved password; 4.20r8 adds a network thread, an XML parser, browser and array GUI controls, reconnect and "cheat window" checks and `MRandomLCG`; 4.04r2 still has `decryptGraalMemoryDES` | [bin] (protocol/v4x-clients.md#protocol-and-engine-differences-from-420r8) |
 | 3D in 4.04r2 is the `Graal3DEngine.dll` plug-in, loaded for a server whose name starts `3 `; it takes over every `graal_set*` callback and owns the window and OpenGL, while the 2D engine keeps game logic and the Graal connection (→ §10) | [bin][inf] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 | The later recovered Windows 4.04r2 collection separates the client shell, main engine and original-carrier 3D engine. Its load-only 3D capture establishes module loading, not 3D gameplay initialization or a working rebuild; it does not turn the earlier packer-stub export into an engine export | [bin][cap] (torque/v4-404r2-exe.md#later-recovery-does-not-change-this-exports-identity) |
+
+#### Linux 4.03r1, 4.10r2 and 4.11
+
+The Linux 4.x autopackages for 4.03r1, 4.10r2 and 4.11 hold ordinary ELF32 i386 programs, not UPX-packed. The tokens are catalogue reads; the program does not store them as plain text. Every build still carries `GSERVL01` and `GLEVNW01` [file][bin] (version-profiles/batch-linux-4x-autopackage-2026-11-16.md#package-identity).
+
+| Build | Token | Against the build before it | Source |
+| --- | --- | --- | --- |
+| 4.03r1 | `G3D11125` | (the earliest held Linux 4.x) | [bin] (version-profiles/batch-linux-4x-autopackage-2026-11-16.md#package-identity) |
+| 4.04r2 | `G3D19026` | adds the tile-layer surface, music status and tags, `findnpcbyid`, particle and weather preferences and class join help; drops `onKeyRepeat`. This matches the Windows story of tile layers and music arriving before id 107 | [bin][inf] (version-profiles/batch-linux-4x-autopackage-2026-11-16.md#string-ladder-static) |
+| 4.10r2 | `G3D28076` | adds a Flash and SWF stack, a TrueType preference, `getclass`, `isbuddy`, and the "Please update your Graal" server-version warnings; many stock Torque class names leave the string table, which shows a trimmed rebuild, not lost behaviour | [bin] (version-profiles/batch-linux-4x-autopackage-2026-11-16.md#string-ladder-static) |
+| 4.11 | `G3D28076`, the same as Linux 4.10r2; Windows 4.11 is `G3D26076` | adds `playerrotation`, `playerstretchx`, `playerstretchy` and `playerzoom`, as Windows 4.11 does | [bin] (version-profiles/batch-linux-4x-autopackage-2026-11-16.md#string-ladder-static) |
+
+The Windows 4.20r8 engine also names a class API: `joinClass`, `leaveClass`, `addClassScript`, `getClass`, `setClasses` and the update checks, beside the weapon and login hooks. A 4.20r8 client therefore expects classes through the 4.x path (ids 132, 133 and 193) and cannot join a class it was never sent; the 6.x cache path (197, 140) is a different route (→ §2.4, §2.5). [bin] (client-internals/v4-420r8-class-surface.md)
 
 #### Mac 4.20r6 in the lab
 
@@ -668,6 +718,19 @@ The 5.x builds change how they are packaged more than how they play. The rules f
 | License files: 5.00r7 four (`license.graal`, `sig.graal`, `sig.graallib`, `sig.license`); 5.12 two (`license.graal`, `sig.license`); from 5.24 none, with the three login hosts compiled in. Every Windows build still connects to the `Login` server on 14900 | [bin][file][cap] (protocol/v5v6-windows-unpacked.md#login-server-and-license); [bin] (protocol/v5x-clients.md#license-file-and-signatures) |
 | The 5.00r7 "CRC patch" is third-party: 8 changed bytes in the license loader skip the not-found, invalid and five-line checks, so any `license.graal` is accepted | [bin] (protocol/v5x-clients.md#the-crc-patch-third-party) |
 | `GR-V1.05` is new in 5.00r7 (absent from 4.20r8): GCHAR layer count plus one 13-bit board per layer; the writer emits it only when layers > 1 (count capped at 223). Stock 5.00r7 web-level cache lab confirms count bytes `0x22`/`0x23` and no pad; heights on that path stay inconclusive (→ §3.1, → §3.8). `GRESCR01` caches DES-encrypted class and weapon scripts whose key arrives in clear with each script (S→C 140, 197; → §3.1, → §8.3) | [bin] (formats/gr-v105-500r7.md); [lab] (formats/gr-v105-500r7-cache-lab.md); [bin] (protocol/v5x-clients.md#file-formats) |
+
+#### 5.30r3 and 5.31r4: one executable
+
+An independent static read of the unpacked 5.30r3 and 5.31r4 images finds the shape that 5.24 began: one executable with no engine DLL and no Torque names, built on `quattro_lib` (SHA-1, DES and triple DES sources). The rules below are what it adds or confirms [bin] (client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md#late-5-is-one-exe--high); [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-identity.md#product--high).
+
+| Rule | Source |
+| --- | --- |
+| The framing is the classic generation-5 family: records may not contain a newline ("Illegal characters in the outgoing data") except two internal ids that take a length wrap, the buffer flushes above 4095 bytes, and the receiver reads a 2-byte big-endian length with an extended path for `0xFFFF`. Errors say "Received illegal data (1)" or "(2)", the wording of 6.03, not 6.11's "invalid" | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md#exact-wire-layout-5314-ghidra--high) |
+| There is no connector script, no AES selector, no RC4 helper exports and no named send slots: those arrive in 6.03 and 6.11 (→ §1.9.4, §2.10). `RC4` appears only in a crypto library's algorithm list | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md#cipher--medium) |
+| No eight-character token is stored in the clear, so where these builds build their token is open | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-identity.md#version--login-token--medium-absence-high) |
+| The script player properties come from two tables rather than one comma list (6.03 has the list, → §1.9.4); the names run from `account`, `guild` and `communityname` through the body, stats, pose, attachment and social flags to the six `peltwith…` carry tests | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-properties.md#script-facing-names--high-late-5) |
+| The property applicator switches on ids 0 to 82; only head (11), chat (12) and gani (17) are named by strings in their arms | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-properties.md#wire-property-ids--high-switch-exists--high-three-names) |
+| The same read calls late 5.x a GS1-only client with no opcode VM, from the absence of the string `GS2`. That does not hold: the case-set read finds the GS2 dispatcher with folds 234 to 242 already in 5.30r3 (→ §8.4.4). It also reports no `fixedudpport` string, where the string probe found it (→ §1.9.4) | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-script.md#kind--high) |
 
 #### Login, tokens and wire
 
@@ -724,6 +787,8 @@ Play in 5.x and 6.x was measured in the lab against 2.05. The rules give the tim
 The separately inspected Mac 6.11r1 x86-64 executable contains `onSendNPCProperties` in slot 45. Its static study matches 52 Windows slot numbers, leaving four mappings, ordinary-send reachability and script-side table population open (→ §2.4.13). Name presence and partial slot agreement are not a complete Mac wire profile. The declared minimum OS is 10.7.0, with graphics/audio/application-framework dependencies; metadata does not establish runtime compatibility. [bin] (client-internals/mac-611r1-send-slots.md)
 
 The inspected Mac 6.004 and 6.015 executables each contain PowerPC 7400, i386 and x86_64 slices. All three slices of both builds declare OpenGL, OpenAL and AppKit dependencies. These declarations do not establish successful initialization or OS compatibility. The catalogue's login-token reads for these two Mac builds remain x86_64-specific; neither the other slices nor a similarly numbered Windows build inherit their behavior. Selected-slice entry through application/window initialization to the game loop, and compatible-guest first-frame observation, remain separate open work. [bin][inf] (client-internals/mac-6004-6015-slices.md)
+
+A first run of Mac 6.015 on Mac OS X 10.7.5 in an emulator, offline, got as far as a window. After the executable bit was restored (the staging copy had dropped it), the app came to the front with a **Graal** menu and a window titled Graal whose content stayed white, and the process stayed up. That matches the earlier Mac 6.11r1 run on the same guest, which had no OpenGL acceleration; it does not show a rendered frame, a login or a level. The x86_64 tokens are `G3D27090` (6.004) and `G3D3107A` (6.015). No Mac 6.03r7 is held (→ App. E#618). [lab][bin] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015)
 
 A separate bounded read of a reconstructed Windows 6.002 input connects command-line argument flow and option parsing to an initialization/boolean-tick/teardown wrapper. The tick tests a shared quit flag; a message-shaped pump sets that flag on a quit record and passes other records through indirect handlers. A subsequent reconstructed import is named `MsgWaitForMultipleObjects`; original API bindings remain unverified. The mapped entry only supplies a security-cookie initializer in this read, and the protected setup edge has not been joined to window creation or play. This is neither original startup proof nor a runtime module census, and it does not establish absence of dynamically loaded engine modules. [bin][inf] (client-internals/engine-600r2.md#reconstructed-lifecycle-and-message-pump-boundary)
 
@@ -804,6 +869,7 @@ The static comparison of four Windows launcher copies adds component identity, n
 | --- | --- | --- | --- |
 | Two 4.20r8 launchers | matching build, with the observed difference confined to an added padding string | launcher identity alone does not authenticate every companion component | [bin] (client-internals/launchers-420r8-500r7-512.md) |
 | 5.00r7 launcher and a 5.12-labelled copy | the latter is the 5.00r7 launcher with edited version metadata and a code change; its companion engine is a modified 5.00r7 engine; the `Graal3DEngine.dll` in that pair matches the 5.00r7 `Graal3DEngine.dll` byte for byte | the 5.12 label supplies no 5.12 protocol or script-VM evidence | [bin] (client-internals/launchers-420r8-500r7-512.md#its-engine-is-the-500r7-engine-patched) |
+| Index of the three identity findings | a "5.12 untouched" tree is the 5.00r7 launcher and engine, so it is not a second source for 5.12 props, cipher or weapons; `GLEVNW01` and `GSERVL01` hits are level-file magics, not login tokens | the index adds no new binary read | [bin] (version-profiles/nry-identity-f01-f03.md) |
 | Separately identified genuine 5.12 engine | the study reads the engine file, rather than only the earlier process image; its self/other-player, NPC and baddy case sets agree with the prior 5.x row | case-set equality does not establish equal per-id value widths or whole-program equivalence | [bin] (client-internals/launchers-420r8-500r7-512.md#the-genuine-512-engine) |
 
 The genuine 5.12 component set in this comparison uses the combined 3D-named engine module, rather than the separate game-engine module found in the relabelled pair. This is a distinction between these inspected inputs, not a rule that authenticates arbitrary files by name. Exact 5.12-versus-5.00r7 property value widths remain open; continue to use the established case sets in App. C.1 row J without upgrading them to width equivalence. Operational modification details remain in the source and supply no reproduction-side policy. [bin] (client-internals/launchers-420r8-500r7-512.md#the-genuine-512-engine); (client-internals/launchers-420r8-500r7-512.md#open-points)
@@ -885,3 +951,22 @@ The later 6.03 cohort separately records class parsing, registered-weapon execut
 ### 1.9.3 The imported Windows v4 carrier
 
 The imported report’s supplied `4.20r8` alias and the retained collection’s `4.04r2` label refer to a carrier with SHA-256 `71378394469bcf16038ee3b335da786afcdf357fe4e8dd6329a05ba926a5e4bf`. A separate retained-resource checkpoint reports FileVersion `4.0.4.2`, ProductVersion `4`, OriginalFilename `Graal.exe` and ProductName `Graal`. This corroborates byte identity and metadata, not official release provenance. Keep the packed/stub carrier separate from subsequently recovered engine/shell/3D components; no behavior transfers from an alias. No target execution or original package authentication occurred. [file][doc] (version-profiles/windows-v4-import-provenance.md)
+
+### 1.9.4 String fingerprints of the 3.x to 6.x clients
+
+A plain string probe of seven client images, Linux 3.04 to Windows 6.113, records which marker strings each stores. Nothing was run. A missing string means only that the bytes are not stored in the clear: it can be built at run time or sit in a packed block, so absence does not prove a feature is missing [bin] (protocol/client-string-fingerprints-3x-6x.md#the-images).
+
+| Marker | Where it is stored | What it tells a reader | Source |
+| --- | --- | --- | --- |
+| Torque's console and object names | 3.04 only | from the 4.20 split the 2D engine has no Torque object system (→ §10) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `setGraalProtocolString` | the 4.20 host and engine only | a 4.20 name; 5.3x and 6.x keep only the `graal://` and `graal3://` prefixes | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `hvdi…`, `hcrypt…` | the 4.20 engine only | voice codec names, not the game cipher, which on 4.x is generation 5 (→ §2.2) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `fixedudpport`, `noudp` | 3.04 to 5.31 | the UDP preferences leave in 6.x, which keeps only the scripted datagram hooks (→ §2.9); a separate read of 5.31r4 missed them, so the probe's result is the one kept (→ §1.8.6) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| a default login host and its port | 5.30r3, 5.31r4 | stored side by side; whether they are used when `license.graal` is missing or bad is not checked (→ App. E#619) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `GSERVL01`, `Z3-V1.04` | up to 5.31 | gone from both 6.x images; `GRMAP001`, `GWEBL001` and `GR-V1.04` stay in all but the 4.20 host | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| "Received illegal data (1)", "(2)" | 5.30 to 6.03 | 6.11 says "Received invalid data" with a third case, which belongs to its server-defined header path (→ §2.10) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `Arc4Process`, `Arc4SetKey` | 6.03, 6.11 | the RC4 helpers first appear in 6.03 | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| 55 `onSend…` names, `tclient_` | 6.11 only | the named send slots (→ §2.4) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `StartScript_QuitDialog` | 4.20 engine, 5.30r3 | gone in 5.31r4 and 6.x | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+
+Both 6.x images also store one comma-separated list of script player property names. 6.03 has 96, with `ismuted` as entry 50 counting from 0; 6.11 has 95, the same list without `ismuted`. These are script names, not wire prop ids, and a list position is not an id (→ §2.6). Whether any 6.11 script still uses `ismuted` is not known. [bin] (protocol/client-string-fingerprints-3x-6x.md#the-script-property-list-96-names-in-603-95-in-611)

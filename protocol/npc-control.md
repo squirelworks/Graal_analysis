@@ -17,8 +17,9 @@ only.
 
 | Socket | First message | Framing after login |
 |---|---|---|
-| NC | type **3**, token `NCL11012`, `str account`, `str password` (no key byte) | fixed zlib frame (`u16be` length + zlib body), **no** type byte, **no** cipher, for the whole session **[bin]** |
+| NC | type **3**, 8-byte token, `str account`, `str password` (no key byte) | fixed zlib frame (`u16be` length + zlib body), **no** type byte, **no** cipher, for the whole session **[bin]** |
 
+- **Login token is build-dependent.** The standalone NPCControl tools (`nc7132001` = "GServer2 NPC Control 2001/07/13", and the 2001-05-21 build the Jan-2002 leak re-dates) send token `NCL15031`; the NC socket embedded in RC 2002/01/11 sends `NCL11012`. Both are type 3, no key byte, no junk byte after the password; the framing is identical. A loopback run of both standalone builds through `tools/probe/ncprobe.py` confirmed type 3 + `NCL15031` + `str account` + `str password` and the cipher-free zlib stream. **[lab]** This also answers "Check on loopback" item 1 below for the standalone tools.
 - Message body: classic Graal text lines (`GCHAR id` + payload + `\n`), G-integers with `+0x20`. Batches flush at 0x1000 bytes. **[bin]**
 - Large uploads: id 50 (`PLI_RAWDATA`) with a GINT3 length, then one raw frame; receive id 100 (`PLO_RAWDATA`) switches the reader for the next *length* bytes. **[bin]**
 - The NC login did not change between RC 1.41 (2002) and the 2004 RemoteControl. The RC game-server login did (`GSERV023` type 1 → `GSERV024` type 6 / gen 5). **[bin]**
@@ -109,10 +110,61 @@ Id 111 matches the 2001 PM `add npc` field list moved onto its own packet. **[in
 
 Confirm against GServer-v2 lab + Wine `RemoteControl.exe` / RC 1.41 (sandbox, the loopback address, lab ports only):
 
-1. Exact bytes of NC login (type 3 / `NCL11012` / account / password) and whether any junk byte follows.
+1. ~~Exact bytes of NC login (type 3 / token / account / password) and whether any junk byte follows.~~ Done for the standalone tools: type 3 + `NCL15031` + `str account` + `str password`, no key byte, no junk byte (see Login, **[lab]**). RC-2002 embedded socket (`NCL11012`) still to confirm live.
 2. Packet 79 address string format (`ip,port` vs spaces) when the lab NPC-server player appears.
 3. NC_NPCADD (158) property order when the server sends all three props; whether missing props clear or leave the row.
 4. NC_CLASSDELETE (188 / client 119): payload is bare class name vs length-prefixed string.
 5. Weapon add (33) script length: `GSHORT` vs GINT3 on large scripts; RAWDATA path for big set packets (109 / 113 / 117).
 6. Local-NPC list reply id and layout after client 114 (not named in the 2002 handler table above).
 7. Whether id 16 on the NC socket really shares the RC disconnect UI when the NPC-server drops the link.
+
+## Receive-handler fuzz (first pass) **[lab]**
+
+A first pass of malformed NC-server→client packets injected through `tools/probe/ncprobe.py`
+with `tools/probe/lab/nc-core.plan`, against the standalone NPCControl tools under Wine with a
+loopback NC stub as the server (it accepts the `NCL15031` login, logs ids, sends nothing; the
+injected packets came from the proxy). Clients: `nc7132001` (2001/07/13) and the 2001-05-21
+build (runs `nc713-a`, `nc2002-a`).
+
+- The sweep covered receive ids 16, 33, 80, 157–164, 167, 188 with empty bodies, truncated
+  GINT3 ids, `str`/`GSHORT` length-prefix over-reads (up to the 223-byte single-GCHAR max and a
+  16000-byte GSHORT claim), oversized bodies and high/NUL bytes.
+- **No crash in either build**: 46/46 shots stayed alive, no `CLIENT-GONE`, and no
+  frame-decode-error, exception or traceback in the proxy or client logs.
+- The clients did *read* the malformed packets rather than ignore them — 167 populated the
+  weapon list, 164 opened the dump viewer, and the over-read weapon/name strings were drawn — so
+  "alive" means the parsers tolerated the bad input, not that they skipped it.
+- **Not yet fuzzed:** client→NC write ops against a server that actually parses them (gap #40,
+  `nc-write-ops-status.md`).
+
+### RC-embedded NC socket (second pass) **[lab]**
+
+The NC socket embedded in a staff RC was then fuzzed through the RC's own discovery flow, jointly
+with the RC-fuzz lab: RC logs into the game server (gen-2), the server presents the `(Server)`
+player, the RC opens its NC socket, and `ncprobe.py` fronts only that NC socket (ns_ip pointed at a
+third loopback) so `nc-core.plan` runs on it while the game socket is untouched.
+
+- **Build:** the usable embedded-NC RC is the **2002/05/02** `RemoteControl.exe` (game login
+  `GSERV023`, NC login `NCL11012`, both verified in strings). The archived "RC 2 (Jan 2002)" rars
+  (`rc2.rar` and its duplicate, 5 copies, one md5) are the **2002/01/04** build, token `GSERV022`,
+  with **no** NCL token — i.e. no embedded NC socket. So the Jan-2002 RC does not carry the NC
+  client; the May-2002 build is the earliest held RC that does. **[bin][lab]**
+- **Result:** the NC login was accepted (`NCL11012`, the server logging `New login: … [NC]
+  [NCL11012 (1.1)]`), the server sent Control-NPC 158 + 42, and `nc-core.plan` injected 45 S→C
+  packets. The RC stayed alive at all 46 shots — **no crash, no disconnect** — matching the
+  standalone NPCControl result. The cipher-free NCL framing decoded and re-framed intact.
+- **GServer-v2 discovery (server-side, [srv], resolved — NOT a server bug):** on the lab gserver the
+  RC's `PLI_NPCSERVERQUERY` (94) drew no `PLO_NPCSERVERADDR` (79). The captured 94 body is exactly
+  `location` and the server logged no "unknown message", so `msgPLI_NPCSERVERQUERY` ran; the
+  `== "location"` theory is wrong. The silent drop is in `NPCServer::sendNCLoginToPlayer`, which
+  returns on `!isRC()` or (with `npcrights` on) `!hasRight(PLPERM_NPCCONTROL)`. `isRC()` is true for
+  the RC game session, so the guard that failed is the rights check: `hasRight` tests the
+  `PLPERM_NPCCONTROL` bit of `adminRights`. The root cause is a **lab-harness config error, not a server
+  defect**: the harness (`runrc.sh`) wrote the right as an `ADMINRIGHTS 1048575` line into the account
+  file, but `FlatFileAccountLoader` fills `adminRights` from the **`LOCALRIGHTS`** key (source: the
+  loader reads/writes `LOCALRIGHTS`; **there is no `ADMINRIGHTS` key**). The line was silently ignored,
+  the account kept `adminRights = 0`, `hasRight(NPCCONTROL)` failed, and 79 was correctly withheld.
+  Retesting on current HEAD (e12ca7f) with the right written under `LOCALRIGHTS 1048575` makes 94→79
+  succeed in ~2 ms. No seihai-gserver-v2 issue was filed; the fix is in the harness. The lab had
+  injected 79 on the game socket to proceed, which did not affect the client-fuzz result above.
+  Cross-ref: the RC-fuzz thread's rc-fuzz note.

@@ -27,7 +27,7 @@ Earlier notes established this from the capture and the unpacked image (the eigh
 
 - **Forge a reply for a stock client — not possible.** The reply is a 4-byte marker, a 256-byte RSA-2048 signature over the **bare** SHA-256 of the payload (no DigestInfo), a length, and the encrypted script. The client checks the signature against a **public key compiled into the client** *before* it decrypts, and never runs a reply that fails (`connector-script.md` §2, `v6-login-token-explained.md`). Without the operator's private key you cannot make a payload a stock client will accept. **[bin][cap]**
 - **Replay a genuine captured reply — not blocked at the request level for 6.113.** Because the request is deterministic (above), a genuine reply's signed payload stays valid on every later launch of the same build; the signature is over the payload, which does not change. This is unlike 7.x. The open caveat is whether the decrypted **script** itself carries a short-lived element the client re-checks (a clock or sequence value); that cannot be decided without a genuine reply in hand, which is owner-held and off-git. **[inf]**
-- **The only lab path that drives a *stock* client — replace the trust anchor.** Since the gate is the compiled-in public key, a lab drives the client by making the client trust a lab key: serve a lab `conf.gs` signed with a lab private key whose public half the client checks against. The clean-room repro already works exactly this way — it bakes in its **own** modulus and runs its **own** signed script (`graal-client-repro`, `Connector6113.pas`: "a stock connector reply does not verify against it, and a reply signed for this key is never accepted by a stock client"). For the real packed client the equivalent is an in-memory swap of the public modulus once Themida has unpacked it, read and patched from the host with the from-outside method, then a loopback connector that signs with the matching key. This keeps everything on loopback and needs nothing from any real server. **[bin][inf]**
+- **Replacing the trust anchor — the clean-room repro, not the stock client.** Since the gate is the compiled-in public key, the clean-room repro drives its own client by trusting a lab key: it bakes in its **own** modulus and runs its **own** signed script (`graal-client-repro`, `Connector6113.pas`: "a stock connector reply does not verify against it, and a reply signed for this key is never accepted by a stock client"). The equivalent for the real packed client would have been an in-memory swap of the public modulus once Themida unpacked it. **That swap was tried on loopback and does not work** — the packer virtualizes verify and consumes the modulus inline, so the in-memory patch does not flip the verdict ([`v6113-login-lab-2026-11-19.md`](v6113-login-lab-2026-11-19.md)). So the anchor swap is a clean-room-repro technique only; a stock client still needs a genuine signed reply. **[bin][lab][inf]**
 
 ## Method (loopback only)
 
@@ -35,6 +35,13 @@ Earlier notes established this from the capture and the unpacked image (the eigh
 
 ## Still open (carried, not closed)
 
-- A full end-to-end **logged-in** session of the *real* client in the lab. It needs the login/list gate served (the clean-room `seihai` stack) **and** the connector gate passed (lab-key trust anchor + lab connector), wired together. Each half is understood; they have not been run as one chain. **[lab]**
+> **Update (2026-11-19, #510):** a loopback attempt at the trust-anchor swap below came back a
+> decisive negative — the packer virtualizes the signature check and consumes the modulus
+> inline, so an in-memory public-key swap does not flip the stock client's verdict. The
+> stock-client anchor-swap path is therefore ruled out; see
+> [`v6113-login-lab-2026-11-19.md`](v6113-login-lab-2026-11-19.md). The clean-room login
+> handshake did run end to end there.
+
+- A full end-to-end **logged-in** session of the *real* client in the lab. It needs the login/list gate served (the clean-room `seihai` stack) **and** the connector gate passed. The anchor-swap route is now ruled out for a stock client (see the 2026-11-19 update above), so this needs a genuine signed reply, which stays owner-held. **[lab]**
 - The **post-RC4 login packet** of the real client (account/password framing, login-step argument order). It is runtime-only and still unread; the clean way to get it is to drive the real client with a connector script whose RC4 key the lab chose, then read the first encrypted send. Needs the bypass above. **[lab]**
 - Whether 6.113's **first-hop login/list token** is classic or connector-supplied. **[lab]**

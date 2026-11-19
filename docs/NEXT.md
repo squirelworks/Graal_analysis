@@ -27,7 +27,7 @@ macOS CI is paused until the polish stage.
 - [x] **Tile types / `pics1` packing.** ~~No client `tiletypes0.dat`; strip packing; picso high-id OOB.~~ [Note](../formats/tile-types-pics1-packing-2026-11-16.md).
 
 - [x] **GS2 opcode table across builds (#370 item 3).** ~~One byte table, client names, case sets per build, events.~~ [Table](../protocol/gs2-opcode-table.md); [events](../client-internals/gs2-engine-event-names.md).
-  - [ ] Linux 6.x x86 and ARM-only Android dispatchers; who emits Linux-only 164; per-call-site event firing.
+  - [ ] ~~Linux 6.x x86~~ (done 11-19: same 167) and ARM-only Android dispatchers; who emits Linux-only 164; per-call-site event firing.
 - [x] **GS2 segment-1 GS1 event mask.** ~~Official zeros; stock needEvent; bit27 absent on 4.x/5.x.~~ [Note](../protocol/gs2-seg1-event-mask-2026-11-16.md).
 
 - [x] **RC2-line session behaviour (stock).** ~~IRC after signature; no 194→prop35+location; GUI≠140; GSERV024/025.~~ [Note](../protocol/rc2-sessions-stock-2026-11-16.md).
@@ -37,6 +37,7 @@ macOS CI is paused until the polish stage.
 - [x] **`.nw` layer / tileset extensions (5.00r7).** ~~No TILESET; no trailing object-layer; BOARD layers >1 honoured.~~ [Note](../protocol/nw-layer-ext-500r7-2026-11-16.md).
 
 - [x] **GR-V1.05 upper-layer empty tiles.** ~~Disk 4095 / RAM −1; no equality-skip found; sample hunt limits.~~ [Note](../formats/gr-v105-empty-tiles-2026-11-16.md).
+- [x] **GR-V1.05 fuzz levels and PLO_BOARDLAYER (107).** ~~Raw header, LE tiles, layers 0–255, 4095 draws, 0xFFFF empty; lab gserver 1.05 skew and two crashes.~~ [Note](../formats/gr-v105-fuzz-2026-11-19.md).
 
 - [x] **Official GS2 function-only image shape.** ~~All 19 start with jump-past-end; PG1 live fixtures still open.~~ [Note](../protocol/gs2-official-function-only-shape-2026-11-16.md).
 
@@ -69,6 +70,13 @@ macOS CI is paused until the polish stage.
 - [x] **5.12 FILESENDFAILED uniqueness (status).** ~~One 30 per missing image?~~ Layout + 2.05 settle settled; 5.12 count lab open. [Note](../protocol/filesendfailed-512-status.md); gap #37.
 
 - [x] **RC props tail / 76 byte / PLO 124 (status).** ~~Which count is flags?~~ Tail shape and 124 discard settled; counts + 76 byte + 124 layout still need lab/S. [Note](../protocol/rc-props-flags-status.md); gap #42; E#420/E#421.
+
+- [ ] **Fuzz the Remote Control clients.** Harness is in place: `gen5probe.py` picks the RC/NC staff logins (gen 2 plain-zlib and type-6 gen 5), `tools/probe/rccanary.py` is the RC liveness canary, and `tools/probe/lab/runrc.sh` + `rc-core.plan` / `rc-widths.plan` drive a run (covered by `selftest.py`). [Harness](../tools/probe/README.md#remote-control).
+  - [x] ~~`rc2004` (2004 Delphi, gen 5) `rc-core`; `rc3` (2015, gen 5) `rc-core` + `rc-widths`.~~ No crash, no desync on either. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [ ] A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.
+  - [ ] `rc205` (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.
+  - [x] ~~`rcpre` (pre-2002 gen-2, rc8212001 / GSERV022) `rc-core`.~~ gen-2 login detection confirmed on a real client; no crash/desync. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [x] ~~RC-embedded NC socket (2002/05/02 RC, GSERV023 + NCL11012) via ncprobe.~~ NC login accepted, 45 packets injected, no crash. [Note](../protocol/rc-fuzz-2026-11-19.md). The first runs saw no `PLO 79` back for `PLI_NPCSERVERQUERY` (94); traced to a harness bug, **not** a GServer-v2 bug — `runrc.sh` set `ADMINRIGHTS` where the flat-file loader reads `LOCALRIGHTS`, so the account lacked the NPC-Control right and `sendNCLoginToPlayer` dropped it. Fixed in `runrc.sh`; with `LOCALRIGHTS` set the server answers 94 with 79 natively. No gsv2 issue to file.
 
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 
@@ -135,7 +143,7 @@ macOS CI is paused until the polish stage.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop; re-test with OpenGL-capable guest display for a first frame.
 - [x] **Document 6.037 guest login loop status (C7–C9).** ~~Guest-first, compiled Login hosts, named-login lab settled; form/script gotchas unconfirmed.~~ [Note](../client-internals/6037-guest-login-loop.md). Win 6.03r7 loopback checklist remains open.
 
-- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md). Still open: login-step args, `?p=` binding, loopback `conf.gs` harness, post-decrypt Login replies, 7.x script delta.
+- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md), [2026-11-19 lab](../protocol/v6113-login-lab-2026-11-19.md). The stock-client trust-anchor swap is now ruled out (packer virtualizes verify); clean-room `SEI00001` login runs end to end. Still open: authentic first-hop login/list path, post-decrypt Login replies (6.113-vs-6.037 reply contract **not** established), login-step args, `?p=` binding, `GNP1905C` catalogue gap in `gs2lib`, 7.x script delta.
 - [x] **Record Windows 6.113 live connector still-served + prop wire/slot join.** ~~Stock client caches `GRESCR01` `StartScript_Connector` before Login; wire 9→`setplayerprops`.~~ [Live](../protocol/v6113-live-connector-2026-11-16.md), [handlers/props](../protocol/v6113-receive-handlers-props.md). Loopback harness and Login reply contract remain open.
 - [x] **Publish scrubbed Windows 6.113 live handshake reconfirm (2026-11-16).** ~~Clear `GNP1905C` + zlib `EILLLT`/`0xfd`, RC4-from-287, three answered `HOST:14900` sessions + unanswered SYN; stayed on 14900 after Login; no keys.~~ [Note](../protocol/v6113-live-handshake-2026-11-16.md). Keys, decrypts and loopback harness remain open.
 
@@ -213,6 +221,7 @@ macOS CI is paused until the polish stage.
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
   - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) and manual §4.11.13.
     - 2026-11-18: 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 logged in through a lab `Login` lobby on real Windows 10, drew the level and walked ([run](../live-runs/real-win10-2026-11-18/README.md), §2.3.6.4). Still open: the full action list on the fixture world, and 6.113 (signed connector).
+    - 2026-11-19: the action list ran on Linux 6.03r7 (with an observer) and on real Windows 4.20r8 to 6.03r7 (§4.11.14). Spin and the glove chest are not client results; the rest is tracked in #652.
   - [x] ~~Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).~~ [Note](../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md): tileset sent, level draws; 3.153 and 5.12 send id 18 only for `client.` flags.
   - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
   - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
@@ -458,9 +467,7 @@ macOS CI is paused until the polish stage.
   pre-2.1 settled-name no re-check (batch e `01-request-lists`). Static read of 2.05 rev 2
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
-  (a horse does not change it). **Still open:** the rest of the 2.22 default file-check
-  set. The near-empty start files and the first unanswered frame are recorded
-  ([run](../live-runs/open-issues-2026-11-14/README.md#4-245-222-login-default-checks-with-a-near-empty-data-folder); manual §2.7.10); that server answered none, so sword, shield, body and the later icons still need a server that answers id 23 and id 34. Maps folder
+  (a horse does not change it). ~~**Still open:** the rest of the 2.22 default file-check set.~~ Done with a server that answers: 13 checks (id 34) with a full folder, 17 (id 23) with only the start files, at most four per frame ([2026-11-19 run](../live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)). **Still open:** maps folder
   in 2.1–2.16. ~~The client archive still has no build between the 2.1 test builds and 2.22.~~ The Windows 2.1.0.0–2.1.0.4 images are in `client-internals/graal2002-and-140-builds.md`; the maps-folder behaviour is still unread.
   Tracked in #245.
 
@@ -513,9 +520,9 @@ macOS CI is paused until the polish stage.
   the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (304 pages, sources footnoted, every table introduced, wide tables on landscape pages, an A3 system map with an A4 print copy and A3 insert) is built and waits for its tag.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
-  1.0.0"): 0.0.5 publishes the current research (built, awaiting its tag), then
-  0.0.6 coverage, 0.0.7 implementability, 0.0.8 triage of the unknowns, 0.0.9
-  release quality, 1.0.0 sign-off (Squirrel's call). Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
+  1.0.0"). 0.0.5 and 0.0.6 publish the research as it stands (owner, 2026-11-11 and
+  2026-11-19). Coverage, implementability, triage of the unknowns and release quality
+  are the 1.0.0 criteria in #191, met in later releases; 1.0.0 sign-off is Squirrel's call. Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
 - [ ] **16. Torque study and the 3.04 plan. Live work, top priority** (Squirrel,
   2026-11-13: there is no Torque hold; the 2026-11-05 "on hold" note was an agent error).

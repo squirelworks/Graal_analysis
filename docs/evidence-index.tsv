@@ -124,3 +124,8 @@ GS2-OPTABLE-WIN-20261118	windows	static-dispatch-table
 GS2-OPTABLE-LNX-20261118	linux	static-dispatch-table
 GS2-OPTABLE-ANDROID-20261118	android	static-dispatch-table
 GS2-EVENTNAMES-20261118	cross-platform	static-strings
+W231-SETACTIVELEVEL-STATIC-20261119	windows	static-handler-read
+IOS-CLASSIC113-FRAMING-STATIC-20261119	ios	static-socket-layer-read
+LAB-RESEARCH-UNKNOWNS-20261119	linux	loopback-lab
+V6113-LIVESWAP-NEG-20261119	windows	loopback-trust-anchor-swap-negative
+GCR-6113-SEI00001-LOGIN-20261119	windows	clean-room-loopback-login
