@@ -164,7 +164,7 @@ Shots fly one tile per tick. The rules below cover local and remote shots, their
 | hit box | size from the sprite table entry `v` (array 24): width `((v >> 6) & 63) / 16`, height `(v & 63) / 16`; hits when `x + w > px + 0.5`, `x < px + 2.5`, `y + h > py + 1`, `y < py + 3` | [2.05] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
 | skipped | while the shot bounces back, for a player's shot (one's own, or one received in a `noplayerkilling` level), or when the player cannot be hurt | [2.05] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
 | shield | the player faces the shot, shield power above 0, the shot is type 0 or 1, and the animation is one of two built-in names (inferred `idle` and `walk`); power 1: an arrow turns back for 3 ticks with a sound, any other sprite is gone; power 2 or more: the shot is sent back the other way and re-sent as a new shot | [2.05][inf] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
-| walls | whether arrows and fireballs pass walls is open (→ App. E#313) | [2.05] (client-internals/damage-sources.md#open) |
+| walls | arrows (type 0) and fireballs (type 1) pass walls; types 2 to 4 burst on them, measured on 2.05 rev 2 (→ App. E#313) | [2.05] (client-internals/damage-sources.md#open); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
 | lab | an injected shot hurt only when its last byte was `0x23` or more; meaning open (→ App. E#312) | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 
 ## 4.3.6 Hits by message

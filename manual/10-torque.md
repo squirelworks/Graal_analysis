@@ -377,7 +377,7 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 | --- | --- | --- | --- | --- | --- | --- |
 | game string | `Torque Game Engine Demo` | `Graal3D` | `Graal3D` | `Graal3D` | `Graal3D` | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
 | current = minimum protocol | 9 | 19 | 19 | 21 | 24 | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
-| class CRC | stock table, value unmeasured | unmeasured | disputed → App. E#501 | unmeasured | `0xFFFFFFFF` (static table, never written) | [bin][run] (torque/wire-by-build.md#the-handshake-per-build) |
+| class CRC | stock table, value unmeasured | unmeasured | `0xFFFFFFFF`, group 0 (captured from the Linux build; → App. E#501) | unmeasured | `0xFFFFFFFF` (static table, never written) | [bin][run] (torque/wire-by-build.md#the-handshake-per-build); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#404r2-3d-connect-request-e501) |
 | join password | the server-password pref | set by the engine, not traced | the account password, plain text | not traced | the account password, plain text | [bin] (torque/network.md#the-connect-request-by-version) |
 | argc (at most 16), then strings | script args | engine-set, not traced | 2: account, nickname | not traced | 2: account, nickname | [bin] (torque/network.md#the-connect-request-by-version) |
 | server side of the request | stock script `onConnectRequest` | stock script `onConnectRequest` | native | native | native | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
