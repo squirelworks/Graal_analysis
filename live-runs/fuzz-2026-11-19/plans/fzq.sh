@@ -6,7 +6,7 @@ busy() {
   awk '{exit !($1 >= 4)}' /proc/loadavg && { echo load; return 0; }
   for p in $(ps -eo pid=,args= | awk '/[r]unwine\.sh|[r]un603\.sh/ {print $1}'); do
     a=$(tr '\0' ' ' < /proc/$p/cmdline 2>/dev/null); c=$(readlink /proc/$p/cwd 2>/dev/null)
-    case "$a $c" in *"/home/<user>/fzlab/"*|*"/home/<user>/fzlab "*) ;; *) echo "other:$p"; return 0;; esac
+    case "$a $c" in *"$HOME/fzlab/"*|*"$HOME/fzlab "*) ;; *) echo "other:$p"; return 0;; esac
   done
   return 1
 }

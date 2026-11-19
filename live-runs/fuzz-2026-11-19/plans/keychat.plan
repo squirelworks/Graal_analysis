@@ -4,100 +4,100 @@ wait s2c 9 90
 sleep 12
 shot 00-base
 mark K01 tab-open-type-return
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
 sleep 0.5
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type 'fzhello1'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type 'fzhello1'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1.5
 shot k01
 mark K02 type-return
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type 'fzhello2'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type 'fzhello2'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1.5
 shot k02
 mark K03 long-300
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type 'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type 'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 2
 shot k03
 mark K04 long-300-noTab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 2
 shot k04
 mark K05 hashcodes
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '#c#n#v(playerrupees)#s(x)#g#m#1#8#a#e#f#K(65)#w#p(0)#P1'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '#c#n#v(playerrupees)#s(x)#g#m#1#8#a#e#f#K(65)#w#p(0)#P1'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 2
 shot k05
 mark K06 highbytes
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type 'fzäöüÿ€§°'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type 'fzäöüÿ€§°'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 2
 shot k06
 mark K07 chat-open-then-ctrl-fkeys
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type 'fzopen'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+a ctrl+c ctrl+v F2 F3 F4 F9 F10 Escape
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type 'fzopen'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+a ctrl+c ctrl+v F2 F3 F4 F9 F10 Escape
 sleep 2
 shot k07
 mark K08 rapid-a-x200
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} rep 200 a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} rep 200 a
 sleep 2
 shot k08
 mark K09 rapid-space-x50
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} rep 50 space
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} rep 50 space
 sleep 3
 shot k09
 mark K10 hold-right-across-warp
-sh sh -c "/home/<user>/fzlab/fz/bin/kx.sh {D} hold Right 3 &"
+sh sh -c "$HOME/fzlab/fz/bin/kx.sh {D} hold Right 3 &"
 sleep 1
 s2c 14 c:60 c:60 t:{LV}
 sleep 4
 shot k10
 mark K11 all-mods-letters
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+a shift+ctrl+a alt+shift+a
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+s shift+ctrl+s alt+shift+s
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+d shift+ctrl+d alt+shift+d
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+q shift+ctrl+q alt+shift+q
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+w shift+ctrl+w alt+shift+w
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+e shift+ctrl+e alt+shift+e
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+z shift+ctrl+z alt+shift+z
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+x shift+ctrl+x alt+shift+x
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+alt+c shift+ctrl+c alt+shift+c
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+a shift+ctrl+a alt+shift+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+s shift+ctrl+s alt+shift+s
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+d shift+ctrl+d alt+shift+d
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+q shift+ctrl+q alt+shift+q
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+w shift+ctrl+w alt+shift+w
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+e shift+ctrl+e alt+shift+e
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+z shift+ctrl+z alt+shift+z
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+x shift+ctrl+x alt+shift+x
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+alt+c shift+ctrl+c alt+shift+c
 sleep 2
 shot k11
 mark K12 slashcmds
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/help'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/help'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/sethead fzh.png'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/sethead fzh.png'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/setbody fzb.png'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/setbody fzb.png'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/setnick fz'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/setnick fz'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/toall fz'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/toall fz'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/showkills'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/showkills'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Tab
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} type '/reconnect'
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Return
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Tab
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} type '/reconnect'
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Return
 sleep 1
 sleep 2
 shot k12

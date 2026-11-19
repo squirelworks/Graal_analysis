@@ -1,5 +1,21 @@
 # Protocol fuzzing, 2026-11-19
 
+**What this round adds.** It extends results already on `main` to more clients.
+- Baddy props 11 and up end the message on 4.20r8 and 2.22 too, not only on 6.03r7
+  ([6.03r7 note](../../protocol/lab-baddyprops-ganiscript-156-2026-11-19.md)).
+- On 2.22 and 2.31, `PLO_SETACTIVELEVEL` (156) with a gmap name makes the client ask for the
+  gmap file. Level names get no reply, and nothing changes on screen
+  ([static note](../../protocol/plo-156-setactivelevel-231.md)).
+- `DEFAULT*` lines in `PLO_LOADGANI` (195) change nothing for the player's own character on
+  6.03r7 and 4.20r8, and no named file is fetched.
+- NPC prop widths on 4.20r8 and 5.24r4 match 6.03r7: 75–77 are two bytes, and 48–52, 74 and 78–90
+  end the message. On these builds 74 cuts the message short; it does not stop the script.
+- Queued but not run, because the VM was overloaded: 2.22/2.31 NPC widths, the shot last-byte
+  sweep (App. E #312), 4.20r8 GS2 delivery (#202), keyboard and chat fuzzing, and the 2.05
+  key emote (#322).
+
+Evidence: lab **[lab]**. Rows are appended to [`probe-results.tsv`](../../protocol/probe-results.tsv).
+
 Real clients in the Debian lab VM, each in a private network namespace with only a loopback
 interface. A lab gserver sits behind the `gen5probe` proxy, which injects server packets. Clients:
 6.03r7 (native Linux), plus 4.20r8, 5.24r4, 2.22 and 2.31 under Wine. Packet specs use the probe

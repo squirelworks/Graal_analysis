@@ -4,37 +4,37 @@ wait s2c 9 90
 sleep 12
 shot 00-base
 mark E01 plain-a
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key a
 sleep 3
 shot e01
 mark E02 ctrl+a
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+a
 sleep 3
 shot e02
 mark E03 ctrl+a-x3
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+a
 sleep 1.5
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+a
 sleep 1.5
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+a
 sleep 3
 shot e03
 mark E04 ctrl+s-ctrl+d
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+s
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+s
 sleep 2
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key ctrl+d
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key ctrl+d
 sleep 3
 shot e04
 mark E05 alt+a-shift+a
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key alt+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key alt+a
 sleep 2
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key shift+a
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key shift+a
 sleep 3
 shot e05
 mark E06 F-keys
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
 sleep 1
-sh sh /home/<user>/fzlab/fz/bin/kx.sh {D} key Escape Escape
+sh sh $HOME/fzlab/fz/bin/kx.sh {D} key Escape Escape
 sleep 3
 shot e06
 mark E07 end
