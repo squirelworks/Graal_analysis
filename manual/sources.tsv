@@ -840,3 +840,5 @@ protocol/ios-classic-plus-113-framing.md	cited	E	E	iPhone Classic+ 1.13 uses des
 protocol/probe-native-linux-4x-2026-11-19.md	excluded		2.6; B	native Linux 3.x/4.x probe run (run4x.sh): 4.x prop widths and unknown-PLO handling match win-4.20r8; folds into the prop-width-by-build rows (2.6.6) and App. B that probe-targets-2026-11-18.md already carries
 protocol/probe-mac-6015-2026-11-19.md	excluded		2.6; B	6.015 macOS client probe in the Lion VM (runmac.sh): 6.x prop widths (83/77 five-byte, 82 string) matching 6.03r7; folds into the prop-width-by-build rows (2.6.6) and App. B
 protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; E	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
+protocol/conf-gs-fuzzing.md	pending		2; E	conf.gs fuzzing design + the 6.113 trust-anchor key patch; two-phase (container framing on a stock client, then decrypted-script content after the swap); loopback harness in tools/connfuzz/; to fold into the protocol chapter
+tools/connfuzz/README.md	excluded			repository tooling for the notes (the loopback conf.gs fuzzer behind conf-gs-fuzzing.md), not Graal
