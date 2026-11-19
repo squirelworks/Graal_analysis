@@ -325,7 +325,7 @@ The research owner started the v0, v1 and v2 Windows clients offline in a Wine l
 
 [lab][cap] 17 of 18 v1 builds reach a scene; 1.32 and later start in the welcome cave, and 1.19 stays at the start screen. In v2, 2.04 and the three 2.05 revisions draw the tutorial; 2.00, 2.01 rev 1 and 2.03 stop on a missing `objects.dat`; 2.02 and its revisions show a black window; the stock 2.22 warns of a corrupted executable. Scene and mechanic validation stays open (→ App. E#610). [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v1-119-to-141-18-builds); [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v2-200-to-222-23-builds)
 
-## 4.11.13 What a second client saw of 5.00r7 (partial)
+## 4.11.13 The action list on 4.x to 6.x clients
 
 Windows 5.00r7 (`G3D22067`) under Wine, watched by Linux 6.03r7 (`G3D0511C`) on the same loopback lab (lobby 14900, proxy 14803, gserver 14802). Both used the built-in guest login. The observer's decoded server-to-client stream is the record of what was relayed. Place-dependent actions were not reached, because the key timing did not leave the actor on the fixture. 4.20r8, 5.12, Windows 6.03r7 and 6.113 were not run as the actor. [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only)
 
@@ -338,15 +338,18 @@ Windows 5.00r7 (`G3D22067`) under Wine, watched by Linux 6.03r7 (`G3D0511C`) on 
 
 ## 4.11.14 The action list on 4.20r8 to 6.03r7 (2026-11-19)
 
-The #398 action list ran on two Linux 6.03r7 clients (actor and observer) on the harness world, and on real Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 through a lab `Login` lobby with no observer [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7).
+A 2026-11-19 run filled in the rest of the #398 list that → §4.11.13 left partial. Real, unchanged Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 in the Windows 10 lab VM, each with the guest clock at its build's era, logged in through a lab `Login` lobby; there was no observer, so a pass means the server received the action. Two Linux 6.03r7 clients ran the same list with one as observer [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
 
-| Action | Result | Source |
-| --- | --- | --- |
-| walk, sword, spin chest, wall push, wall grab-and-pull, block pull, bush lift, throw, swim, level link | passed on every build; the Linux observer saw every gani the actor sent; throw sends id 11 | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| block push | 3/3 everywhere except Windows 6.03r7 (1/3) | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| hide | lifting the bush and then pressing D hides (2/2 on every build); pressing A again, or S, does not | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| chat | 4.20r8 opens a chat line; 5.x and 6.x show none unless the server sends a chat script | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| spin (double tap) and glove chest | not results: the Windows key path is too slow for a double tap, and no build ever sent the glove chest's open message, so the fixture is suspect | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| warp to the same level | an injected player warp to the level the 6.03r7 player is already in freezes its input | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7) |
+| Action | Windows 4.20r8, 5.00r7, 5.12, 5.24r4 | Windows 6.03r7 | Linux 6.03r7 | Source |
+| --- | --- | --- | --- | --- |
+| walk, sword, spin chest, wall push, wall grab-and-pull, block pull, bush lift, swim, level link | pass on every attempt | pass on every attempt | pass on every attempt | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| throw | 3/3 | 3/3 | 3/3, sending id 11 | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7) |
+| block push | 3/3 | 1/3 | 3/3 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| hide | lift the bush, then D: 2/2; A again or S never hides | the same | 3/8 (2/2 with lift then D) | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| glove chest | 0/1: the client never sends the open-chest packet, so the fixture is suspect | 0/1 | 0/1 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| chat | 1/1 on 4.20r8; 5.x shows no chat line without a server chat script | 0/1 for the same reason | 0/1: Tab opens no chat line | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| spin (double tap) | not measurable: each VirtualBox key event takes about 0.1 s | the same | 1/3 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+
+On Linux 6.03r7 an injected warp to the same level froze input, so the run placed the player with props 15 and 16 instead [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
 
 What is still open from this run is tracked in #652 [lab] (live-runs/open-issues-2026-11-19/README.md#still-open-after-this-run).
