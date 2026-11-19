@@ -73,7 +73,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
 | E#306 | Flag that picks `lift2.wav` | Read | the heavy-object flag | [inf] (client-internals/ledges-push-pull.md#open) |
 | E#307 | 1.39 movement tables | Read | the same tables as 1st Graal | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
-| E#308 | 2.22 link probe offsets and `PLO_BIGMAP` | Read | the same as 2.05 | [inf] (protocol/link-probe-bigmap-status.md) |
+| E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
 | E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
 | E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
 | E#311 | Blast hit zone and full-heart hits | Read | two overlapping blast pieces hitting in one tick | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
@@ -620,14 +620,15 @@ These questions are about what a client does in play: timing, walking, combat, i
 
 ### E#308 Link probe offsets and the neighbour-table flag
 
-**Question.** The per-facing link probe offsets of 2.22, the flag that skips the 3 x 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
+**Question.** The flag that skips the 3 x 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | The 2.05 edge rules and the 3 x 3 neighbour fill are settled | [bin] (protocol/link-probe-bigmap-status.md) |
-| Open | 2.22's probe offsets, the skip flag, and how walking behaves past the edge before the link fires when the neighbour is loaded | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
-| Best guess | 2.22 keeps 2.05's offsets, and 171 fills the same grid as `bigmap.txt`. Confidence: moderate | [inf] (protocol/link-probe-bigmap-status.md) |
-| Settles it | A 2.22 read of the probe table and flag, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
+| Settled (2026-11-19) | The per-facing probe offsets, in tiles: up (+1.5, +1.0), left (+0.5, +2.0), down (+1.5, +3.0), right (+2.5, +2.0). The table is byte-identical in 2.05 and 2.22, so 2.22 keeps 2.05's offsets. With the neighbour loaded, only the probe threshold applies, so the player can walk past the edge until it fires | [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md) |
+| Open | The flag that skips the neighbour-table build, which lives in a routine not yet traced, and a crossing run on 2.22 | [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md#still-open) |
+| Best guess | 171 fills the same grid as `bigmap.txt`. Confidence: moderate | [inf] (protocol/link-probe-bigmap-status.md) |
+| Settles it | A 2.22 read of the neighbour-table builder, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 | Outlook | Read, then Lab | [inf] (protocol/link-probe-bigmap-status.md) |
 
 ### E#309 Knockback distance of 1.39

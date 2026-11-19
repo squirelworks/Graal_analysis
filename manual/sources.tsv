@@ -857,3 +857,4 @@ live-runs/fuzz-2026-11-19/fuzz-results.tsv	excluded			per-inject rows of the 202
 live-runs/fuzz-2026-11-19/plans/queue.txt	excluded			repository tooling for the notes (run queue for the fuzz plans), not Graal
 formats/pics1-tile-layout-render-2026-11-19.md	cited	E	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
 formats/gmap-heights-by-component-2026-11-19.md	cited	3.2; E	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
+protocol/link-probe-offsets-205-222-2026-11-19.md	cited	4.2; E	4.2; E	Disassembler read: per-facing edge-link probe offsets of 2.05, byte-identical in 2.22; walking past the edge with the neighbour loaded

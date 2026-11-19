@@ -343,7 +343,7 @@ Links are tested every tick. The rules below give how the client builds the neig
 | Rule | Detail | Source |
 | --- | --- | --- |
 | neighbours | on entering a level while a big map is loaded, the client fills a 3 × 3 table of level names round it from the big map's text grid (→ §3.2.5); cells off the grid stay empty; the step is skipped under an unidentified flag (→ App. E#308) | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#the-levels-neighbours) |
-| probe | each tick, the player's position plus a per-facing offset (offsets unread → App. E#308) | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
+| probe | each tick, the player's position plus a per-facing offset in tiles: up (+1.5, +1.0), left (+0.5, +2.0), down (+1.5, +3.0), right (+2.5, +2.0); 2.22 has the same table | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link); [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md) |
 | order | each link of the level in order; the first that fires is taken; offline the client loads the level, online it asks the server | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
 
 On a big map the client adds four edge links of its own. Each row gives one edge, the condition that fires it and where the player arrives [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link).

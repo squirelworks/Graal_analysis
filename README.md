@@ -56,6 +56,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Carry/throw, hit and shoot (gap #26)](protocol/carry-shoot-hit-status.md) — SHOOT/SHOOT2 settled for 5.x/6.x; throw/HITOBJECTS/E#311–312 still open.
 - [Non-local level warp (gap #15)](protocol/nonlocal-level-warp-status.md) — gmap hang settled; plain `.nw` missing-level link lab still open.
 - [2.x link probe / BIGMAP / entry save (gap #34)](protocol/link-probe-bigmap-status.md) — 2.05 edge rules settled; probe offsets, skip flag, 171 vs bigmap, E#314 still open.
+- [2.05 and 2.22 edge-link probe offsets](protocol/link-probe-offsets-205-222-2026-11-19.md) — the per-facing probe table, the same in both builds, and walking past the edge with the neighbour loaded.
 - [Missing-file replies on 5.12 (gap #37)](protocol/filesendfailed-512-status.md) — 30 layout and 2.05 empty-file settle settled; one-per-name count on 5.12 still needs lab.
 - [RC props tail / SET2 byte / PLO 124 (gap #42)](protocol/rc-props-flags-status.md) — tail shape settled; flag vs chest counts and 76 last byte open; 124 body discarded by RC3.
 - [PLO 108 sub 1 and PLO 168 focus status](protocol/plo108-168-focus-status.md) — 168 = logged-in flag (medium on the name); 108 sub 1 unread outside ping, no effect on 6.03r7 in the #254 lab; static + prior lab.
