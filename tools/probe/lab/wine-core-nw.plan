@@ -1,0 +1,191 @@
+# wine-core.plan for the NewWorld betas: their HUD shows no bomb count, so the canary is the rupee count (prop 3, GINT3): reset to 1, canary 99.
+# Otherwise identical to wine-core.plan.
+waitsession 240
+wait s2c 9 90
+sleep 12
+s2c 9 c:3 i3:1
+sleep 1.5
+shot ref-01
+s2c 9 c:3 i3:99
+sleep 1.5
+shot ref-99
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:83 i5:1234 c:3 i3:99
+sleep 1.2
+shot p83-i5
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:83 c:1 c:3 i3:99
+sleep 1.2
+shot p83-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:77 i5:123456 c:3 i3:99
+sleep 1.2
+shot p77-i5
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:77 c:1 c:3 i3:99
+sleep 1.2
+shot p77-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:78 s:960 c:3 i3:99
+sleep 1.2
+shot p78-s
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:79 s:960 c:3 i3:99
+sleep 1.2
+shot p79-s
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:80 s:0 c:3 i3:99
+sleep 1.2
+shot p80-s
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:81 c:0 c:3 i3:99
+sleep 1.2
+shot p81-c
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:82 str:x c:3 i3:99
+sleep 1.2
+shot p82-str
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:90 c:1 c:3 i3:99
+sleep 1.2
+shot p90-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:90 i3:300000 c:3 i3:99
+sleep 1.2
+shot p90-i3
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 9 c:3 i3:4321 c:3 i3:99
+sleep 1.2
+shot p3-i3
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 60 
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo60-empty
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 60 c:1
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo60-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 60 t:"probe body 0123456789"
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo60-text
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 60 hex:ff00ff00
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo60-bin
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 78 
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo78-empty
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 78 c:1
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo78-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 78 t:"probe body 0123456789"
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo78-text
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 78 hex:ff00ff00
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo78-bin
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 81 
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo81-empty
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 81 c:1
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo81-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 81 t:"probe body 0123456789"
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo81-text
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 81 hex:ff00ff00
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo81-bin
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 83 
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo83-empty
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 83 c:1
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo83-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 83 t:"probe body 0123456789"
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo83-text
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 83 hex:ff00ff00
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo83-bin
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 110 
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo110-empty
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 110 c:1
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo110-c1
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 110 t:"probe body 0123456789"
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo110-text
+s2c 9 c:3 i3:1
+sleep 0.6
+s2c 110 hex:ff00ff00
+s2c 9 c:3 i3:99
+sleep 1.2
+shot plo110-bin
