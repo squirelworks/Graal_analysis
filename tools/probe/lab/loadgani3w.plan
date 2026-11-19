@@ -72,7 +72,7 @@ mark M1 a list of 300 empty items
 s2c 195 str:hurt rep:300:,
 sleep 2
 mark M2 one 3000-byte item
-s2c 195 str:hurt t:"\"SETBACKTO " rep:3000:x t:\""
+s2c 195 str:hurt t:'"SETBACKTO ' rep:3000:x t:'"'
 sleep 2
 mark M3 a 60000-byte list
 s2c 195 str:hurt rep:600:"FOOyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
