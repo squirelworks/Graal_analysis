@@ -76,56 +76,56 @@ client	key	effect	c2s	script_event	notes
 6.03r7	Right	screen 3417 px 100x48 box 494,360-593,407 (near player)	2:PLAYERPROPS{gani='walk' x2=29.5} | 2:PLAYERPROPS{x2=30} | 2:PLAYERPROPS{x2=30.5} | 24:SHOWIMG{)} | 2:PLAYERPROPS{x2=31} ..(6).. 2:PLAYERPROPS{x2=34.5} | 2:PLAYERPROPS{gani='idle'}	key(39,,114) keydown=0	reset: undo; effect from the run without the key logger
 6.03r7	Up	screen 703 px 34x44 box 488,362-521,405 (near player)	2:PLAYERPROPS{gani='walk' sprite=0 y2=29.5} | 2:PLAYERPROPS{y2=29} ..(6).. 2:PLAYERPROPS{y2=25.5} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	key(38,,111) keydown=0	reset: undo; effect from the run without the key logger
 6.03r7	Down	nothing seen	2:PLAYERPROPS{gani='walk' y2=28} | 2:PLAYERPROPS{y2=28.5} ..(6).. 2:PLAYERPROPS{y2=32} | 2:PLAYERPROPS{gani='idle'}	key(40,,116) keydown=4 keydown=0	reset: undo; effect from the run without the key logger
-6.03r7	KP_0	nothing seen	2:PLAYERPROPS{status=21}	key(96,0,90)	effect from the run without the key logger
-6.03r7	KP_1	chat prop sent	2:PLAYERPROPS{chat=''}	-	effect from the run without the key logger
-6.03r7	KP_2	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	KP_3	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_4	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_5	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_6	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_7	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	KP_8	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_9	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_Add	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_Subtract	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_Multiply	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_Divide	nothing seen	-	-	effect from the run without the key logger
-6.03r7	KP_Decimal	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	KP_Enter	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Pause	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Print	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Scroll_Lock	nothing seen	-	-	reset: again; effect from the run without the key logger
-6.03r7	Caps_Lock	nothing seen	-	-	reset: again; effect from the run without the key logger
-6.03r7	Num_Lock	nothing seen	-	-	reset: again; effect from the run without the key logger
-6.03r7	Ctrl+A	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+B	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+C	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+D	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+E	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+F	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+G	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+H	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+I	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+J	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+K	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+L	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+M	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+N	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+O	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+P	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+Q	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+R	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+S	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+T	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+U	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+V	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+W	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+X	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Ctrl+Y	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Ctrl+Z	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Alt+0	nothing seen	-	-	effect from the run without the key logger
-6.03r7	Alt+1	nothing seen	24:SHOWIMG{)}	-	effect from the run without the key logger
-6.03r7	Alt+2	opens window: Save As 420x400@430,312; screen 167265 px 420x400 box 302,184-721,583 (near player)	23:WANTFILE{fileicon_folder.png,guiblue_button.png,guiblue_check.png,guiblue_scroll.png,guiblue_textedit.png,guiblue_window.png}	-	window would not close: Save As; reset: closed 0/1 new windows, again(auto); screen still differs after reset (167265 px); effect from the run without the key logger
+6.03r7	KP_0	nothing seen	2:PLAYERPROPS{status=21} | 24:SHOWIMG{)} | 23:WANTFILE{letters.png}	key(96,0,90)	reset: again
+6.03r7	KP_1	screen 138 px 23x16 box 375,48-397,63 (centre 386,55)	157:UPDATEGANI{     shoot} | 2:PLAYERPROPS{gani='shoot,wbow1.png'} | 157:UPDATEGANI{     shoot} | 9:ARROWADD{^^*.!} | 2:PLAYERPROPS{arrows=9} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)} | 23:WANTFILE{arrow.wav,shoot.gani,wbow1.png}	key(97,1,87) keydown=0	
+6.03r7	KP_2	screen 519535 px 1024x768 box 0,0-1023,767 (near player)	157:UPDATEGANI{     walk} | 2:PLAYERPROPS{gani='walk' y2=30.5} | 2:PLAYERPROPS{gani='idle'} | 157:UPDATEGANI{     walk} | 23:WANTFILE{steps.wav,walk.gani}	key(98,2,88)	reset: again(auto), escape; screen still differs after reset (519535 px)
+6.03r7	KP_3	nothing seen	-	key(99,3,89) keydown=0	
+6.03r7	KP_4	screen 1211 px 42x46 box 478,362-519,407 (near player)	2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)} | 23:WANTFILE{steps2.wav}	key(100,4,83) keydown=0	
+6.03r7	KP_5	nothing seen	157:UPDATEGANI{     sword} | 2:PLAYERPROPS{gani='sword' sprite=1} | 157:UPDATEGANI{     sword} | 2:PLAYERPROPS{sprite=1} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{sword.gani,sword.wav}	key(101,5,84) keydown=0	
+6.03r7	KP_6	screen 1127 px 44x46 box 478,362-521,407 (near player)	2:PLAYERPROPS{gani='walk' sprite=3 x2=30} | 2:PLAYERPROPS{gani='idle'}	key(102,6,85) keydown=0	
+6.03r7	KP_7	nothing seen	-	key(103,7,79)	
+6.03r7	KP_8	chat prop sent	2:PLAYERPROPS{chat=''}	key(104,8,80)	
+6.03r7	KP_9	nothing seen	24:SHOWIMG{)}	key(105,9,81)	
+6.03r7	KP_Add	nothing seen	-	key(107,+,86)	
+6.03r7	KP_Subtract	nothing seen	24:SHOWIMG{)}	key(109,-,82)	
+6.03r7	KP_Multiply	nothing seen	-	key(106,*,63)	
+6.03r7	KP_Divide	nothing seen	-	key(111,/,106)	
+6.03r7	KP_Decimal	nothing seen	24:SHOWIMG{)}	key(110,.,91)	
+6.03r7	KP_Enter	chat prop sent	2:PLAYERPROPS{chat=''}	-	
+6.03r7	Pause	nothing seen	24:SHOWIMG{)}	key(19,,127)	reset: again
+6.03r7	Print	nothing seen	24:SHOWIMG{)}	key(42,,107)	
+6.03r7	Scroll_Lock	chat prop sent	2:PLAYERPROPS{chat=''}	key(145,,78)	reset: again
+6.03r7	Caps_Lock	nothing seen	-	key(20,,66)	reset: again
+6.03r7	Num_Lock	nothing seen	-	key(144,,77)	reset: again
+6.03r7	Ctrl+A	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+B	nothing seen	24:SHOWIMG{)}	key(162,,37)	
+6.03r7	Ctrl+C	chat prop sent	2:PLAYERPROPS{chat=''}	key(162,,37)	
+6.03r7	Ctrl+D	chat prop sent	2:PLAYERPROPS{chat=''}	-	
+6.03r7	Ctrl+E	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+F	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+G	chat prop sent	2:PLAYERPROPS{chat=''} | 24:SHOWIMG{)}	-	
+6.03r7	Ctrl+H	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+I	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+J	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+K	chat prop sent	2:PLAYERPROPS{chat=''}	key(162,,37)	
+6.03r7	Ctrl+L	chat prop sent	2:PLAYERPROPS{chat=''} | 24:SHOWIMG{)}	-	
+6.03r7	Ctrl+M	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+N	chat prop sent	24:SHOWIMG{)} | 2:PLAYERPROPS{chat=''}	-	
+6.03r7	Ctrl+O	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+P	chat prop sent	2:PLAYERPROPS{chat=''}	key(162,,37)	
+6.03r7	Ctrl+Q	chat prop sent	2:PLAYERPROPS{chat=''} | 24:SHOWIMG{)}	-	
+6.03r7	Ctrl+R	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+S	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+T	nothing seen	24:SHOWIMG{)}	key(162,,37)	
+6.03r7	Ctrl+U	chat prop sent	2:PLAYERPROPS{chat=''}	-	
+6.03r7	Ctrl+V	nothing seen	24:SHOWIMG{)}	key(162,,37)	
+6.03r7	Ctrl+W	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+X	nothing seen	-	key(162,,37)	
+6.03r7	Ctrl+Y	nothing seen	24:SHOWIMG{)}	key(162,,37)	
+6.03r7	Ctrl+Z	chat prop sent	2:PLAYERPROPS{chat=''}	-	
+6.03r7	Alt+0	nothing seen	24:SHOWIMG{)}	key(1072,0,19)	
+6.03r7	Alt+1	nothing seen	-	key(164,,64) key(1073,1,10)	
+6.03r7	Alt+2	opens window: Save As 420x400@430,312; screen 168000 px 420x400 box 302,184-721,583 (near player)	23:WANTFILE{fileicon_folder.png,guiblue_button.png,guiblue_check.png,guiblue_scroll.png,guiblue_textedit.png,guiblue_window.png}	key(164,,64)	window would not close: Save As; reset: closed 0/1 new windows; screen still differs after reset (168000 px)
 6.03r7	Alt+3	nothing seen	-	key(164,,64)	effect from the run without the key logger
 6.03r7	Alt+4	chat prop sent	2:PLAYERPROPS{chat=''} | 24:SHOWIMG{)}	key(164,,64)	effect from the run without the key logger
 6.03r7	Alt+5	chat prop sent	2:PLAYERPROPS{chat=''}	-	effect from the run without the key logger
