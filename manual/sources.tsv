@@ -676,7 +676,7 @@ protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, number
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
 protocol/v7-connector-live-20261111.md	cited	1; 2.10; E	1; 2.10	v7 connector request order, reply container and online-play reach in §2.10.7; identity in §1.8.10; open decrypt in E#616
-protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
+protocol/connector-script.md	cited	2.10; E	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/v6113-status.md	cited	2.10; E	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
 protocol/v6113-live-connector-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
 protocol/v6113-live-handshake-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live HOST:14900 handshake reconfirm; GNP1905C + EILLLT/0xfd; RC4 from 287; no keys; §2.10 / E / #510
