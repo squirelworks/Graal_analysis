@@ -75,7 +75,7 @@ macOS CI is paused until the polish stage.
   - [ ] A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.
   - [ ] `rc205` (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.
   - [x] ~~`rcpre` (pre-2002 gen-2, rc8212001 / GSERV022) `rc-core`.~~ gen-2 login detection confirmed on a real client; no crash/desync. [Note](../protocol/rc-fuzz-2026-11-19.md).
-  - [x] ~~RC-embedded NC socket (2002/05/02 RC, GSERV023 + NCL11012) via ncprobe.~~ NC login accepted, 45 packets injected, no crash. [Note](../protocol/rc-fuzz-2026-11-19.md). Found a GServer-v2 bug: it never answers `PLI_NPCSERVERQUERY` (94) from a gen-2 RC with `PLO 79` — needs a gsv2 issue (NC-fuzz thread owns).
+  - [x] ~~RC-embedded NC socket (2002/05/02 RC, GSERV023 + NCL11012) via ncprobe.~~ NC login accepted, 45 packets injected, no crash. [Note](../protocol/rc-fuzz-2026-11-19.md). The first runs saw no `PLO 79` back for `PLI_NPCSERVERQUERY` (94); traced to a harness bug, **not** a GServer-v2 bug — `runrc.sh` set `ADMINRIGHTS` where the flat-file loader reads `LOCALRIGHTS`, so the account lacked the NPC-Control right and `sendNCLoginToPlayer` dropped it. Fixed in `runrc.sh`; with `LOCALRIGHTS` set the server answers 94 with 79 natively. No gsv2 issue to file.
 
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 
