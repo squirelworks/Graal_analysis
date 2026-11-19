@@ -12,11 +12,11 @@ This is the one table that `#370` item 3 (App. E#202, E#207) asks for: which byt
 | 4.20r8 | Windows `GraalEngine.dll` (two copies, same table) | the same switch shape, opcodes 1–233; also the opcode **name table** |
 | 5.00r7, 5.12 | — | not re-read here: the DLL copies held show no readable strings (packed). The 5.0.0.7 row is the earlier export reading in `gs2-client-vm.md` |
 | 5.30r3, 6.00r2, 6.00r4, 6.0.3.7, 6.1.1.3 | unpacked Windows executables | two-level switch over opcodes 1–242 |
-| Linux x64: a June 2011 6.x beta, a November 2011 build, and 6.03r7 | x64 ELF | a 243-entry handler-pointer table (see "Linux uses threaded dispatch") |
+| Linux x64: a June 2011 6.x beta, a November 2011 build, and 6.03r7; Linux x86: the June 2011 beta and the November 2011 build | x64 and x86 ELF | a 243-entry handler-pointer table (see "Linux uses threaded dispatch") |
 | 7.12.43 | unpacked x64 `Graal3DEngine.dll` (v7 Worlds) | two-level switch over opcodes 1–242 |
 | Android Classic 1.8 and 2.2 | x86_64 `libqplay.so` | the `TScriptMachine::executeScript` jump table (1.8 keeps that symbol; 2.2 was found by the same switch shape) |
 
-Not resolved: the Linux 6.x **x86** builds (their handler table was not found by the x64 pattern), and the ARM-only Android APKs (Classic 1.6, 1.7, the 2014 Classic build, Era 1.7 and 2.0). **[bin]**
+Not resolved: the ARM-only Android APKs (Classic 1.6, 1.7, the 2014 Classic build, Era 1.7 and 2.0). **[bin]**
 
 ## The client's own names
 
@@ -34,7 +34,7 @@ The table names seven bytes that no dispatcher runs: `goto` (160), `break` (161)
 | 4.20r8 | 154 | adds 11 (`waitfor`) and the folds 200–233 |
 | 5.00r7, 5.12 | 158 | adds 48, 49, 54, 121 (`gs2-client-vm.md`) |
 | 5.30r3 to 6.1.1.3, 7.12.43, Android 1.8 and 2.2 | 165 | drops 48 and 49; adds the folds 234–242 |
-| Linux 6.x x64 (all three builds) | 167 | the 165 above, plus 0 and 164 |
+| Linux 6.x x64 (all three builds) and x86 (both builds) | 167 | the 165 above, plus 0 and 164 |
 
 So the dispatcher stopped changing at 5.30r3. 6.00r2, 6.00r4, 6.0.3.7, 6.1.1.3, the 2019+ v7 engine and both Android builds run the same 165 bytes. Android adds no opcode. **[bin]**
 
@@ -299,7 +299,7 @@ Only `waitfor` needs a newer VM than the oldest 4.x. Everything else in the Delt
 
 ## Still open
 
-- The Linux 6.x x86 dispatcher, and the ARM-only Android builds.
+- The ARM-only Android builds. (The Linux x86 dispatcher was read on 2026-11-19: the same 167 handlers as x64, in a 243-entry table of 4-byte handler addresses.)
 - Who emits 164, if anyone, and a live run that reaches it.
 - Each handler's effect on 5.30r3 and 7.12.43 (only the case set was read). The 6.1.1.3 effects are in `gs2-unpacked-6113.md`.
 - 5.00r7 and 5.12 from the shipped DLLs rather than the earlier export.
