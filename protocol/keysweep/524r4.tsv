@@ -37,30 +37,30 @@ client	key	effect	c2s	script_event	notes
 5.24r4	H	screen 1682 px 736x595 box 24,0-759,594 (near player)	-	key(72,h,35)	
 5.24r4	I	screen 991 px 98x20 box 352,264-449,283 (near player)	-	key(73,i,23)	
 5.24r4	J	screen 115860 px 800x600 box 0,0-799,599 (near player)	34:UPDATEFILE{&w}0Fwalk.gani} | 157:UPDATEGANI{     walk} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{steps.wav,steps2.wav}	key(74,j,36)	reset: again(auto), escape; screen still differs after reset (148500 px)
-5.24r4	K	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
-5.24r4	L	screen 876 px 688x579 box 80,0-767,578 (near player)	-	-	
-5.24r4	M	screen 1613 px 736x595 box 32,0-767,594 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	reset: again
-5.24r4	N	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
-5.24r4	O	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	
-5.24r4	P	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	reset: again
-5.24r4	Q	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	reset: again
-5.24r4	R	screen 876 px 688x579 box 80,0-767,578 (near player)	-	-	
-5.24r4	S	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
-5.24r4	T	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
-5.24r4	U	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	
-5.24r4	V	nothing seen	-	-	
-5.24r4	W	screen 1142 px 736x594 box 32,0-767,593 (near player)	-	-	
-5.24r4	X	screen 1129 px 735x595 box 32,0-766,594 (near player)	24:SHOWIMG{)}	-	
-5.24r4	Y	nothing seen	-	-	
-5.24r4	Z	screen 876 px 688x579 box 80,0-767,578 (near player)	-	-	
-5.24r4	[	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
-5.24r4	]	screen 1149 px 736x595 box 32,0-767,594 (near player)	24:SHOWIMG{)}	-	
-5.24r4	\	screen 1142 px 736x594 box 32,0-767,593 (near player)	-	-	
-5.24r4	;	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
-5.24r4	'	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
-5.24r4	,	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	
-5.24r4	.	nothing seen	-	-	
-5.24r4	/	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
+5.24r4	K	screen 1904 px 736x595 box 24,0-759,594 (near player)	-	key(75,k,37)	
+5.24r4	L	screen 115559 px 800x600 box 0,0-799,599 (near player)	34:UPDATEFILE{&w}0Fwalk.gani} | 157:UPDATEGANI{     walk} | 2:PLAYERPROPS{gani='walk' sprite=3 x2=30.5} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{steps.wav,steps2.wav}	key(76,l,38)	reset: again(auto), escape; screen still differs after reset (183409 px)
+5.24r4	M	nothing seen	24:SHOWIMG{)}	-	reset: again
+5.24r4	N	nothing seen	-	-	
+5.24r4	O	screen 1295 px 792x595 box 8,0-799,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	P	screen 1295 px 792x595 box 8,0-799,594 (near player)	-	-	reset: again
+5.24r4	Q	screen 1295 px 792x595 box 8,0-799,594 (near player)	-	-	reset: again
+5.24r4	R	screen 1286 px 792x594 box 8,0-799,593 (near player)	24:SHOWIMG{)}	-	
+5.24r4	S	screen 1072 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	T	screen 1295 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	U	screen 1295 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	V	screen 2144 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	W	screen 2125 px 792x594 box 8,0-799,593 (near player)	24:SHOWIMG{)}	-	
+5.24r4	X	screen 1294 px 792x594 box 8,0-799,593 (near player)	-	-	
+5.24r4	Y	screen 1295 px 792x595 box 8,0-799,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	Z	screen 1072 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	[	screen 1295 px 792x595 box 8,0-799,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	]	nothing seen	-	-	
+5.24r4	\	screen 1295 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	;	screen 1294 px 792x594 box 8,0-799,593 (near player)	-	-	
+5.24r4	'	screen 1286 px 792x594 box 8,0-799,593 (near player)	-	-	
+5.24r4	,	screen 1286 px 792x594 box 8,0-799,593 (near player)	-	-	
+5.24r4	.	screen 1287 px 792x595 box 8,0-799,594 (near player)	-	-	
+5.24r4	/	nothing seen	-	-	
 5.24r4	Return	CLIENT GONE (crash or quit)	-	-	reset: again; screen still differs after reset (479907 px)
 5.24r4	Space	screen 1976 px 587x595 box 24,0-610,594 (near player)	157:UPDATEGANI{     sword} | 2:PLAYERPROPS{gani='sword' sprite=2} | 34:UPDATEFILE{&w}0Fsword.gani} | 157:UPDATEGANI{     sword} | 2:PLAYERPROPS{sprite=2} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{sword.gani,sword.wav}	key(32, ,57,0,0)	
 5.24r4	Shift	screen 2227 px 688x579 box 72,0-759,578 (near player)	-	key(160,,42)	
