@@ -135,6 +135,25 @@ So 208–215, which fuse arithmetic with assign, run as plain binary operations 
 - **4.20r8 clamps big numbers to 4294967295:** `"1e400"`, a long run of 9s, `99999999999` and `2147483647*1e9` all give 4294967295, while `-2147483649` stays as it is.
 - 6.03r7 prints NaN as `0.-000000000`.
 
+## GS2: which texts read as −1
+
+A follow-up run (`numtext`, 94 cases on 4.20r8, 5.24r4 and 6.03r7) put 23 texts through `+ 0`, `!`, `== 0` and `== -1`. The 6.03r7 Linux client's text-to-number routine was also read. **[bin][lab]** It works in this order:
+
+1. `""` is 0, `"true"` is 1 and `"false"` is 0.
+2. A text that starts with `0x` is read as hex (`strtoul`, base 16). Any other text goes through `strtod`.
+3. A zero result stands only when the text is exactly `"0"` or `"0x0"`, or `"0.0"` on 6.03r7. Anything else that reads as zero returns −1, the client's "not a number".
+
+| Text | 4.20r8 | 5.24r4 | 6.03r7 |
+| --- | ---: | ---: | ---: |
+| `"0"`, `"0x0"`, `""`, `"false"` | 0 | 0 | 0 |
+| `"0.0"` | −1 | −1 | 0 |
+| `"00"`, `" 0"`, `"0 "`, `"+0"`, `"-0"`, `".0"`, `"0."`, `"0e5"`, `"0abc"` | −1 | −1 | −1 |
+| `"abc"`, `"a1"`, `" "`, `"null"` | −1 | −1 | −1 |
+| `"true"`, `"1"`, `"000001"`, `"1abc"` | 1 | 1 | 1 |
+| `"-1"` | −1 | −1 | −1 |
+
+So `!` of any text in the −1 rows is 0, `== 0` is false and `== -1` is true. A script notices this when a variable holds a name or a word: `this.mode == 0` is false for a name, and a text flag `"true"` equals 1. The 4.20r8 and 5.24r4 routines were not read, and their rule is inferred from the run. Seihai's GS2 VM follows the rule from seihai-core PR #120 on; GS1 keeps 0, because GS1 reads a text in `#v` as 0.
+
 ## GS2: value rules that differ from Seihai's VM
 
 Unless a line names one client, these hold on 4.20r8, 5.24r4 and 6.03r7.

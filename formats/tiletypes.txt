@@ -134,11 +134,17 @@ On
 .PP
 .RS
 .nf
-col = id % 128
-row = id / 128
+col = (id % 16) + (id / 512) * 16
+row = (id / 16) % 32
 pixel = (col * 16, row * 16)
 .fi
 .RE
+.PP
+Correction (2026-11-19): the sheet is eight side-by-side blocks of 512 ids,
+each 16 columns by 32 rows.
+An earlier version of this page gave col = id % 128, row = id / 128;
+rendering real levels both ways shows that form is wrong
+(formats/pics1-tile-layout-render-2026-11-19.md, App. E#102).
 .PP
 The first data line of
 .I tiledefs.txt
