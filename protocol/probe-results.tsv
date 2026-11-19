@@ -704,3 +704,111 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	linux-6.03r7	s2c	195	-	195 hurt "CONTINUOUS", hurt set twice 0.7 s apart	-	yes	gani reports, file requests, shots	no restart: fallback after 1.5 s (2.1-2.3 s without CONTINUOUS)	lg603-j	-
 2026-11-19	win-2.22	s2c	195	-	the loadgani3w.plan list (chain, missing target, overrides, malformed)	-	yes	gani reports	ignored: no 157, no gani file requests, every fallback stays the file default (idle); the client stays up	lgw222	-
 2026-11-19	win-2.31	s2c	195	-	the loadgani3w.plan list (chain, missing target, overrides, malformed)	-	yes	gani reports	ignored: no 157, no gani file requests, every fallback stays the file default (idle); the client stays up	lgw231	-
+
+2026-11-19	linux-4.04r2	s2c	9	5	9 c:5 c:1	no	yes	-	canary lost	core-404	ref-01
+2026-11-19	linux-4.04r2	s2c	9	5	9 c:5 c:99	yes	yes	-	canary landed	core-404	ref-99
+2026-11-19	linux-4.04r2	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	-	canary lost	core-404	p83-i5
+2026-11-19	linux-4.04r2	s2c	9	83	9 c:83 c:1 c:5 c:99	yes	yes	-	canary landed	core-404	p83-c1
+2026-11-19	linux-4.04r2	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	-	canary lost	core-404	p77-i5
+2026-11-19	linux-4.04r2	s2c	9	77	9 c:77 c:1 c:5 c:99	yes	yes	-	canary landed	core-404	p77-c1
+2026-11-19	linux-4.04r2	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	-	canary landed	core-404	p78-s
+2026-11-19	linux-4.04r2	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	-	canary landed	core-404	p79-s
+2026-11-19	linux-4.04r2	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	-	canary landed	core-404	p80-s
+2026-11-19	linux-4.04r2	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	-	canary landed	core-404	p81-c
+2026-11-19	linux-4.04r2	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	-	canary lost	core-404	p82-str
+2026-11-19	linux-4.04r2	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	-	canary landed	core-404	p90-c1
+2026-11-19	linux-4.04r2	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	-	canary lost	core-404	p90-i3
+2026-11-19	linux-4.04r2	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	-	canary landed	core-404	p3-i3
+2026-11-19	linux-4.04r2	s2c	60	-	60	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo60-empty
+2026-11-19	linux-4.04r2	s2c	60	-	60 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo60-c1
+2026-11-19	linux-4.04r2	s2c	60	-	60 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo60-text
+2026-11-19	linux-4.04r2	s2c	60	-	60 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo60-bin
+2026-11-19	linux-4.04r2	s2c	78	-	78	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo78-empty
+2026-11-19	linux-4.04r2	s2c	78	-	78 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo78-c1
+2026-11-19	linux-4.04r2	s2c	78	-	78 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo78-text
+2026-11-19	linux-4.04r2	s2c	78	-	78 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo78-bin
+2026-11-19	linux-4.04r2	s2c	81	-	81	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo81-empty
+2026-11-19	linux-4.04r2	s2c	81	-	81 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo81-c1
+2026-11-19	linux-4.04r2	s2c	81	-	81 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo81-text
+2026-11-19	linux-4.04r2	s2c	81	-	81 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo81-bin
+2026-11-19	linux-4.04r2	s2c	83	-	83	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo83-empty
+2026-11-19	linux-4.04r2	s2c	83	-	83 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo83-c1
+2026-11-19	linux-4.04r2	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo83-text
+2026-11-19	linux-4.04r2	s2c	83	-	83 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo83-bin
+2026-11-19	linux-4.04r2	s2c	110	-	110	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo110-empty
+2026-11-19	linux-4.04r2	s2c	110	-	110 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo110-c1
+2026-11-19	linux-4.04r2	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo110-text
+2026-11-19	linux-4.04r2	s2c	110	-	110 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-404	plo110-bin
+2026-11-19	linux-4.03r1	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 (29/34 land, 0 gone); version gate widened to admit G3D11125	core-403r1b	-
+2026-11-19	linux-4.10r2	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 (29/34 land, 0 gone)	core-410r2	-
+2026-11-19	linux-4.11	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 (29/34 land, 0 gone)	core-411	-
+2026-11-19	linux-4.20r6	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 (29/34 land, 0 gone)	core-420r6	-
+2026-11-19	linux-4.20r8	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 and to the recorded win-4.20r8 (29/34 land, 0 gone)	core-420r8	-
+
+2026-11-19	linux-3.04	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	-	canary landed	core-304	p3-i3
+2026-11-19	linux-3.04	s2c	9	77	9 c:77 c:1 c:5 c:99	yes	yes	-	canary landed	core-304	p77-c1
+2026-11-19	linux-3.04	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	-	canary lost	core-304	p77-i5
+2026-11-19	linux-3.04	s2c	9	78	9 c:78 s:960 c:5 c:99	no	yes	-	canary lost	core-304	p78-s
+2026-11-19	linux-3.04	s2c	9	79	9 c:79 s:960 c:5 c:99	no	yes	-	canary lost	core-304	p79-s
+2026-11-19	linux-3.04	s2c	9	80	9 c:80 s:0 c:5 c:99	no	yes	-	canary lost	core-304	p80-s
+2026-11-19	linux-3.04	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	-	canary landed	core-304	p81-c
+2026-11-19	linux-3.04	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	-	canary lost	core-304	p82-str
+2026-11-19	linux-3.04	s2c	9	83	9 c:83 c:1 c:5 c:99	yes	yes	-	canary landed	core-304	p83-c1
+2026-11-19	linux-3.04	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	-	canary lost	core-304	p83-i5
+2026-11-19	linux-3.04	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	-	canary landed	core-304	p90-c1
+2026-11-19	linux-3.04	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	-	canary lost	core-304	p90-i3
+2026-11-19	linux-3.04	s2c	110	-	110 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo110-bin
+2026-11-19	linux-3.04	s2c	110	-	110 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo110-c1
+2026-11-19	linux-3.04	s2c	110	-	110	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo110-empty
+2026-11-19	linux-3.04	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo110-text
+2026-11-19	linux-3.04	s2c	60	-	60 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo60-bin
+2026-11-19	linux-3.04	s2c	60	-	60 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo60-c1
+2026-11-19	linux-3.04	s2c	60	-	60	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo60-empty
+2026-11-19	linux-3.04	s2c	60	-	60 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo60-text
+2026-11-19	linux-3.04	s2c	78	-	78 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo78-bin
+2026-11-19	linux-3.04	s2c	78	-	78 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo78-c1
+2026-11-19	linux-3.04	s2c	78	-	78	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo78-empty
+2026-11-19	linux-3.04	s2c	78	-	78 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo78-text
+2026-11-19	linux-3.04	s2c	81	-	81 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo81-bin
+2026-11-19	linux-3.04	s2c	81	-	81 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo81-c1
+2026-11-19	linux-3.04	s2c	81	-	81	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo81-empty
+2026-11-19	linux-3.04	s2c	81	-	81 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo81-text
+2026-11-19	linux-3.04	s2c	83	-	83 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-bin
+2026-11-19	linux-3.04	s2c	83	-	83 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-c1
+2026-11-19	linux-3.04	s2c	83	-	83	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-empty
+2026-11-19	linux-3.04	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-text
+
+2026-11-19	mac-6.015	s2c	9	5	9 c:5 c:1	no	yes	-	canary lost	core-mac	ref-01
+2026-11-19	mac-6.015	s2c	9	5	9 c:5 c:99	yes	yes	-	canary landed	core-mac	ref-99
+2026-11-19	mac-6.015	s2c	9	83	9 c:83 i5:1234 c:5 c:99	yes	yes	-	canary landed	core-mac	p83-i5
+2026-11-19	mac-6.015	s2c	9	83	9 c:83 c:1 c:5 c:99	no	yes	-	canary lost	core-mac	p83-c1
+2026-11-19	mac-6.015	s2c	9	77	9 c:77 i5:123456 c:5 c:99	yes	yes	-	canary landed	core-mac	p77-i5
+2026-11-19	mac-6.015	s2c	9	77	9 c:77 c:1 c:5 c:99	no	yes	-	canary lost	core-mac	p77-c1
+2026-11-19	mac-6.015	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	-	canary landed	core-mac	p78-s
+2026-11-19	mac-6.015	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	-	canary landed	core-mac	p79-s
+2026-11-19	mac-6.015	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	-	canary landed	core-mac	p80-s
+2026-11-19	mac-6.015	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	-	canary landed	core-mac	p81-c
+2026-11-19	mac-6.015	s2c	9	82	9 c:82 str:x c:5 c:99	yes	yes	-	canary landed	core-mac	p82-str
+2026-11-19	mac-6.015	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	-	canary landed	core-mac	p90-c1
+2026-11-19	mac-6.015	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	-	canary lost	core-mac	p90-i3
+2026-11-19	mac-6.015	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	-	canary landed	core-mac	p3-i3
+2026-11-19	mac-6.015	s2c	60	-	60	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo60-empty
+2026-11-19	mac-6.015	s2c	60	-	60 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo60-c1
+2026-11-19	mac-6.015	s2c	60	-	60 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo60-text
+2026-11-19	mac-6.015	s2c	60	-	60 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo60-bin
+2026-11-19	mac-6.015	s2c	78	-	78	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo78-empty
+2026-11-19	mac-6.015	s2c	78	-	78 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo78-c1
+2026-11-19	mac-6.015	s2c	78	-	78 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo78-text
+2026-11-19	mac-6.015	s2c	78	-	78 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo78-bin
+2026-11-19	mac-6.015	s2c	81	-	81	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo81-empty
+2026-11-19	mac-6.015	s2c	81	-	81 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo81-c1
+2026-11-19	mac-6.015	s2c	81	-	81 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo81-text
+2026-11-19	mac-6.015	s2c	81	-	81 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo81-bin
+2026-11-19	mac-6.015	s2c	83	-	83	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo83-empty
+2026-11-19	mac-6.015	s2c	83	-	83 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo83-c1
+2026-11-19	mac-6.015	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo83-text
+2026-11-19	mac-6.015	s2c	83	-	83 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo83-bin
+2026-11-19	mac-6.015	s2c	110	-	110	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-empty
+2026-11-19	mac-6.015	s2c	110	-	110 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-c1
+2026-11-19	mac-6.015	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-text
+2026-11-19	mac-6.015	s2c	110	-	110 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-bin
