@@ -1028,6 +1028,8 @@ Type 4 sheet lines are common in 2.22 install tiledefs, but the walk-kind switch
 | Open | Whether type 4 is draw-at-(x,y) (addtiledef2-like), a new walk kind, or both | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 | Settles it | A consumer trace or offline lab on a type-4 prefix level for draw and `tiletype`/wall | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 
+**Settled (2026-11-19).** Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; the image must be an 8-bit palette PNG; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. Water under an overlay and other builds are not measured. [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19)
+
 ### E#615 v7 Worlds login identity, start-up quit and date gate
 
 The Worlds clients carry no baked login token, quit themselves after one frame when started standalone, and only dial the connector while the clock is inside each build's 180-day window (→ §1.8.10).

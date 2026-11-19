@@ -263,7 +263,7 @@ The rules below give the editor's tools and how tiles and tile definitions are a
 | Rule | Source |
 | --- | --- |
 | Tile ids are 0–4095 on the 2048 × 512 sheet; the id → sheet mapping is → §3.5.1 | [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
-| A tile definition line is `image,prefix,type,x,y`; type 0 is the old order and type 1 the new; type 4 is absent from the walk-kind switch and carries pixel x offsets in install files; draw/walk consumer open → App. E#614 | [2.22][file][bin] (formats/tiledef-type4-2026-11-16.md); [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
+| A tile definition line is `image,prefix,type,x,y`; type 0 is the old order and type 1 the new; type 4 pastes its image (8-bit palette PNG) into the tile sheet at pixel (x, y) and does not change walking, which follows the board's tile codes (lab, 2026-11-19; E#614) | [2.22][file][bin][lab] (formats/tiledef-type4-2026-11-16.md); [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
 | Palette: click picks one tile, drag picks a block that pastes as a floating selection; double-click sets the background tile, which fills new levels | [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
 | Undo covers board tiles only: a rectangle snapshot before each write, at most 128 records per tab | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
 | Draw mode: with one tile selected, left drag paints (1.41); flood fill with the right button (2.00), Shift for complete objects only, and the background tile when nothing is selected | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
