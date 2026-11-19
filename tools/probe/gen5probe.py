@@ -331,6 +331,11 @@ def handle(probe, c, uh, up, rec, n):
                             line, _, more = lg.partition(b'\n')
                             if typ == 0 and lg[1:4] in (b'GNW', b'GNP', b'G3D', b'GSE'):
                                 s.gen, s.key, off = 2, 0, 1  # a known token right after the type: no key, no cipher
+                            elif typ in (1, 3) and (lg[1:6] in (b'GSERV', b'G2NRC') or lg[1:4] == b'NCL'):
+                                # staff login (pre-2002 RC id 1, NewWorld RC id 1, NC id 3): a token right after
+                                # the id, then plain u16be+zlib with no cipher, no type byte and no key byte for the
+                                # whole session. gen 2 is the proxy's plain-zlib path, so it fits these unchanged.
+                                s.gen, s.key, off = 2, 0, 1
                             else:
                                 s.gen = 3 if typ == 0 else 4 if typ == 4 else 5
                                 s.key, off = lg[1] - 32, 2

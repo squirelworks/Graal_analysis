@@ -63,4 +63,6 @@ manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what
 manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
+manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
+manual/10-torque.md	Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef`	torque/304-tile-types.md#not-settled	
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	
