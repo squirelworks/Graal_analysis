@@ -74,8 +74,42 @@ Some of the status display has not been read. The table lists what is still unme
 | Item | State | Source |
 | --- | --- | --- |
 | 2.22 and 2.31 status routines | unmeasured; their sheets and a 2.22 screenshot match 2.05 | [cap] (client-internals/status-display.md#not-read) |
-| builds before 2.05, including 1.41's three button cells | unmeasured | [doc] (client-internals/status-display.md#not-read) |
-| font, colour and anchor of the glove and sword power text | unmeasured | [doc] (client-internals/status-display.md#not-read) |
+| the 1998 betas to 1.28 beta 2 | measured from captures since: → §4.6.1.6 | [cap] (client-internals/beta-hud-layouts.tsv) |
+| 1.3x and 1.41, including 1.41's three button cells | unmeasured | [doc] (client-internals/status-display.md#not-read) |
+| font of the key letters and the sword power text, 2.0x and 2.1x | traced under Wine since: → §4.6.1.7 | [lab] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace) |
+| glove power text | not seen in a trace; the same routine prints it as the sword power, so it is taken to use the same font | [lab][inf] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace) |
+
+### 4.6.1.6 The status display before 2.0 (1998 betas to 1.28 beta 2)
+
+The early builds draw the status display from their own `state.gif` and the digit sprites of the body sheet (`link.gif` or `sprites.gif`). Each build's layout was measured by matching its sheets against the real client's first game frame, a 640 × 448 view, and every piece lands on the real frame to the pixel. The per-build table is the source; the rows below group the builds that share a layout [cap] (client-internals/beta-hud-layouts.tsv); [cap] (client-internals/rebuild-traces-2026-11-05.md#1998-betas-11-119-121-and-128-beta-2).
+
+| Builds | Rupee count | Other parts | Source |
+| --- | --- | --- | --- |
+| 1st and 2nd Graal | three padded digits (`000`) from `link.gif`, 14 px high, 16 px apart, from x 230 | bomb count at x 294, arrows at x 342, all on y 48; full heart from (348, 0) | [cap] (client-internals/beta-hud-layouts.tsv) |
+| 3rd Graal to 6th Graal | 14 px digits from sheet row 1472, 12 px apart, centred on x 250 | bombs at x 296, arrows at x 344; 5th Graal alpha and 6th Graal take the full heart from (228, 33) instead of (348, 33); 5th Graal moves the digits to `sprites.gif` | [cap] (client-internals/beta-hud-layouts.tsv) |
+| 7th Graal to 15th Graal, 1.1, 1.1.9 | 16 px digits from row 1454, centred on x 250 | the redrawn `state.gif`: a 60 × 60 piece at (67, 15), a 31 × 30 piece at (146, 30) and the three counter icons | [cap] (client-internals/beta-hud-layouts.tsv) |
+| 1.21, 1.28 beta 2 | 16 px digits from row 896, centred on x 280 | the A, S and D buttons at x 15, 80 and 145, and the sword picture (`sword1.gif`, 28 × 28) at (105, 31): the layout 2.05 keeps | [cap] (client-internals/beta-hud-layouts.tsv) |
+
+The rules below add what every early build shares: where the hearts go and what a new game starts with [cap] (client-internals/rebuild-traces-2026-11-05.md#1998-betas-11-119-121-and-128-beta-2).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| hearts | 45 px apart from (422, 24), or from (442, 24) in 1.21 and 1.28 beta 2 | [cap] (client-internals/beta-hud-layouts.tsv) |
+| start counts | 10 bombs, 5 arrows and 3 hearts; the rupees are 0 in most builds, 300 in 4th Graal alpha to 6th Graal, and 100 in 7th to 9th Graal | [cap] (client-internals/rebuild-traces-2026-11-05.md#1998-betas-11-119-121-and-128-beta-2) |
+| gap | 1.3x to 1.41 were not measured this way, so the 2.05 layout is not assumed for them (→ §4.6.1.5) | [doc] (client-internals/status-display.md#not-read) |
+
+### 4.6.1.7 Key letters and power text, 2.0x and 2.1x
+
+The real NewMain 26 and NewWorld clients were run under Wine with a log of every font creation and text call. The table gives the font each build asks for and how the text is drawn; Wine maps the faces it lacks to Arial [lab] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace).
+
+| What | Builds | Font asked for | Drawn | Source |
+| --- | --- | --- | --- | --- |
+| A, S, D key letters | 2.0 to 2.05 rev 2, 2.1 test 2 and 3, 2.17.1, NewMain 24 and 26 | `Helvetica`, cell 26, bold | black at +1, +1, then white, with the text origin one pixel right and two down from each button's corner: (16, 32), (81, 32), (146, 32) | [lab] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace) |
+| item-list key over the D button | same | `Helvetica`, cell 10, bold | at (146, 27); the 2.05 static read gives (147, 27), and the routine was not rechecked | [lab] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace) |
+| sword power, names under characters | same | `Tempus Sans ITC`, cell 24, bold, the `graalconfig.txt` font | white over a blue shadow, as chat (→ §4.6.3); the exe installs the bundled `tempsitc.ttf` before asking for it, and without it Windows falls back to Arial | [lab] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace) |
+| A, S, D key letters | NewWorld betas | a face named `b`, cell 24, regular weight, which no system has, so Arial | white, no shadow, three pixels into each tag; the tags are 60 px apart | [lab] (client-internals/rebuild-traces-2026-11-05.md#status-display-text-20x-and-21x-wine-font-trace) |
+
+The NewWorld betas draw a different status bar, matched pixel for pixel against a real NewWorld screen. Power shows as `POWER/MAX` (`150/150` offline) in `state.png`'s digits, right-aligned to end at x 540 on y 39; the bear sits at (532, 24) and the gralat orb at (274, 30) with its count. There are no hearts and no bomb or arrow counters. The clock and the sword picture are not placed yet [cap] (client-internals/rebuild-traces-2026-11-05.md#newworld-beta-status-bar).
 
 ## 4.6.2 The sign panel (2.05)
 
@@ -145,6 +179,7 @@ The rules below say how the chat text is drawn, how the config overrides the fon
 | height | the value is the cell height in pixels, not a point size; for Tempus Sans ITC a 24 px cell is an em of about 18.4 px, which the live capture matches | [bin][live][2.05] (client-internals/chat-text.md#font-per-build) |
 | missing faces | `Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows | [inf] (client-internals/chat-text.md#font-per-build) |
 | bold | Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider | [inf] (client-internals/chat-text.md#font-per-build) |
+| NPC messages, 1.3x and 1.4x | on Windows 10 they look like white Arial Bold with a blue shadow, wrap at the view's width with each line centred over the NPC, and are not shown for an NPC outside the view; one 556 px line fits an em of about 20 px, narrower than the `Dialog` 28 or `Helvetica` 24 cells above would give, so either NPC messages use another size or Windows 10 maps the faces differently; the capture's font call was not traced | [cap] (client-internals/rebuild-traces-2026-11-05.md#13x-and-14x-game-view) |
 
 ### 4.6.3.2 Colour and position
 
@@ -337,3 +372,17 @@ At matched sizes 640 × 480, 800 × 600 and 1024 × 768, the measured Linux/Wind
 At world login, PLO 9 supplied maximum/current hearts, gralats, ammunition, glove/sword/shield and AP/MP fields; PLO 42 arrived every five seconds in this server setup. At about 66–68 seconds the server raised AP 50 to 51, visibly adding one fill column. That is a captured server change, not a client regeneration timer. WANTFILE 23 requests included the base package, tileset and animation on login, then body/equipment/state art and fonts on the world server; the source retains the complete request list. [cap][shot] (client-internals/hud-603r7-black-box.md#files-and-packets)
 
 If PLO 178 interrupted the `pics1.png` download, both clients dropped it, showed a black world and did not request it again; pre-seeding the cache avoided the failure in these runs. Tab, Q, M and F2 opened nothing with this script-free server. The Windows software GDI renderer ran the packed original; a neighbouring Mesa library was not loaded, and a separately dumped executable failed at startup. These observations do not establish behavior with arbitrary renderers, clocks or server GUI scripts. Sword width, other-size Windows text positions and a current-clock Windows check remain open (→ App. E#326). [lab][shot][cap] (client-internals/hud-603r7-black-box.md#windows-against-linux); (client-internals/hud-603r7-black-box.md#files-and-packets); (client-internals/hud-603r7-black-box.md#open)
+
+## 4.6.10 Draw order, layers and ground on 2.22
+
+The rebuild work read 2.22's drawing code and checked it against the lab's frames of the real client. The rules below give how shown pictures and NPCs are layered, how the new-world ground is drawn, and the text sizes found on the way [bin][cap] (client-internals/rebuild-traces-2026-11-05.md#222).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| `changeimgvis` | accepts 0 to 20; 0 to 2 become layers −1 to 1, and 3 and up become layers 9 and up; a layer under 9 counts from the NPC's own layer. Layer 9 is light, the same as `drawaslight`, and the exe's own script export writes layer 9 as `drawaslight;`. This agrees with the 2.05 reading (→ §8.2) and gives the full mapping | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| draw list | shown pictures and NPCs share one list, sorted by layer, then by bottom y, then by x; NPCs on one layer sort by y, then x, then list order. Light therefore comes after everything else | [bin][cap] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| new-world ground | tile 0 is picked from the four corner heights, in seven bands (0, 3, 4, 5, 25, 55, 65). When all four corners reach a band, a tile from that band's full patch is used, a flower, mushroom or stone when the fraction of the corners' sum × 1000 is under 63; when only some do, a transition tile is chosen by a corner mask | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| ground light | every tile, level tiles included, is lit per pixel by the slope down the screen, a darkening of 0 to 63 that is 32 on flat ground; ground below 0 is water that darkens with depth, has a set blue level and foams at the shore | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| gani text | `fontsize` is in points at 96 dpi (14 gives an 18 px em), and the gani's `bold` flag is used; "Touch to get information" is 195 px wide, its baseline 4 px above the arrow | [bin][cap] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| sign letters | the half-width table and the `#` codes are 2.05's (→ §4.6.2); an unknown code draws glyph 86 and the letter is then drawn as text | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| tick | this read finds a multimedia timer of 50 ms, resolution 10, whose handler is the game step; the static survey in → §4.1.2 lists 2.22 as idle-driven with no form timer. The two reads disagree (→ App. E#328). How far a gani advances per tick was not traced | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |

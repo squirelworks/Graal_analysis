@@ -102,6 +102,8 @@ The rules below give how 2.05 handles those replies and fills its server window 
 | RC 1.41 reads 0 (server list), 1 (one more server entry), 2 (end, disconnect) and 4 (error text, disconnect), and shows name and player count | RC 1.41 | [bin] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | The 2004 RC logs in with client id 5, an empty token and an empty list name, then `str account`, `str password`; it shows name and player count from an id 0 list, and id 4 text in a message box | RC 2004 | [cap] (protocol/rc-capture-2026-11-04.md#rc-list-from-the-listserver) |
 | 2.22 shows the status lines and the Show More and Donations buttons, and files tagged servers under tabs (→ §6.4) | 2.22 | [lab] (tools/lab-servers/README.md#tests-run-2026-10-30) |
+| Show More and Donations are hidden in the list form; the client shows Show More when id 3 (`SITEURL`) arrives and Donations when id 5 (`UPGURL`) arrives. Each, like Get an account! and Go, opens its page through an "Open URL" box that asks before starting the browser | 2.31 | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#231-and-23-which-has-no-surviving-exe) |
+| The first list request is id 0 alone; names lose a `P ` prefix, and other prefixes stay | 2.0 to 2.05 rev 2 | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
 
 ### 6.2.2 Reply frames seen
 

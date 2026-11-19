@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # 4.11 Precursors, side builds and the 4.x clients in play
 
-This chapter covers how the builds outside the 2.x Delphi line behave: the Java precursors, the relay room bridge, the Game Boy Color demo, the 39ster fan client, and the 4.04r2 and 4.20r8 clients run live. Their place in the build list is in → §1.7 and → §1.8.
+This chapter covers how the builds outside the 2.x Delphi line behave: the Java precursors, the relay room bridge, the Game Boy Color demo, the 39ster fan client, and the 4.04r2 and 4.20r8 clients run live. It then covers what changed inside the Delphi line (§4.11.6 to §4.11.10), the Android packages (§4.11.11), what the early clients show when started and the windows around play (§4.11.12, §4.11.15), and the action list on 4.x to 6.x (§4.11.13, §4.11.14). Their place in the build list is in → §1.7 and → §1.8.
 
 ## 4.11.1 Zelda Online and Java Graal
 
@@ -353,3 +353,33 @@ A 2026-11-19 run filled in the rest of the #398 list that → §4.11.13 left par
 On Linux 6.03r7 an injected warp to the same level froze input, so the run placed the player with props 15 and 16 instead [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
 
 What is still open from this run is tracked in #652 [lab] (live-runs/open-issues-2026-11-19/README.md#still-open-after-this-run).
+
+## 4.11.15 Start windows and game windows, 1998 to 4.04r2
+
+The graal-delphi rebuilds were compared side by side with the real clients, under Wine and on Windows 10, and each build's own forms were read from its executable. The tables below collect what that showed about the windows a player meets before and around play. They leave out what the rebuilds chose for themselves [bin][lab][cap] (client-internals/rebuild-traces-2026-11-05.md).
+
+| Builds | Start window | Game window | Source |
+| --- | --- | --- | --- |
+| 1st to 15th Graal, 1.1, 1.1.9, 1.21, 1.28 beta 2 | a start dialog owned by the application window in 1st to 5th Graal, also kept on top in 3rd to 5th, and with no owner from 5th Graal alpha on; its character list draws each head from `heads.gif` at half size, and holds the build's own names (4 in 3rd Graal, up to 19 in 9th to 15th) | `TAdventure`, owned by the hidden application window, with a 640 × 448 client; 1.21 and 1.28 beta 2 add a 24-pixel chat field. Alt+Enter goes to a 640 × 480 full screen, except in 2nd to 5th Graal, which show "Display mode cannot be changed (640x480 16bit)" | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#windows) |
+| 1.3test to 1.41 rev 1 | the start dialog; up to 1.39 its scroll range counts the details panel at full height, so Windows 10 shows both scroll bars | a sizable Delphi form owned by the hidden application window; no `Application.Title` is set, so the taskbar shows the exe name (1.3test shows "Graal13"); Alt+Enter toggles a 640 × 480 full screen; the minimap shows only on a level of the map grid | [cap][bin] (client-internals/rebuild-traces-2026-11-05.md#13x-and-14x-game-view) |
+| 2.0 to 2.05 rev 2 | `TConnectFrame`, a 476 × 330 dialog titled "Graal 2001" with only a close button; Training, Options and Start in 12 pt bold, the accelerator letter in red. Start opens the server list as its own 577 × 416 window, where the account and password are typed | 640 × 480, "Graal", resizable; the taskbar entry is the hidden "Graal" application window | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
+| 2.1 tests, 2.17.1, NewMain 24 and 26, NewWorld betas | each build's own start window and server list, sized to the form; NewMain 24 and 26 fill the character box from `headsconfig.txt` | 2.17.1's Alt+Enter goes to `graalconfig.txt`'s `fullscreenmode` (1024 × 768 as installed); Shift on Start or Training, or `startinfullscreen`, starts in full screen | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#21x-launchers-21-tests-2171-newmain-2426-newworld-betas) |
+| 2.22 | not compared in this work | the Training window is titled `G r a a l` | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| 2.31 | its own 577 × 416 window titled "GraalOnline", Training as the wide button at the top; Editor and Training start `GraalEditor.exe`, and an Error box names it when it is missing; every form uses `MS Sans Serif` | 640 × 480, `G r a a l` with random space padding offline or "Graal: <server>" online; the play area is the 456 pixels above the chat line; Esc asks before quitting. Its full-screen view was not captured | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#231-and-23-which-has-no-surviving-exe) |
+| Graal3D (February 2000) | a 433 × 321 JPEG board titled "Graal 3D", five dark red fields, Server IP as a drop-down, one Start button and no offline or quit button | `TAdventure`, 640 × 480; the start window closes while the game runs and comes back after it | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#graal3d-february-2000) |
+| 4.04r2 | none: `Graal4.exe` opens its 640 × 480 game window and the engine draws the start screen in it from `levels3d/gui` pictures, with the nickname, account and password panels, Start, and Become a Member, Options and Offline Test along the bottom | "G r a a l" with eight spaces placed at random around it; Offline Test plays the offline tutorial | [lab] (client-internals/rebuild-traces-2026-11-05.md#404r2) |
+
+The rules below give what the 2.0x server list and data files do, and where the early builds start a new game [bin][lab][cap] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| list request | the 2.0x list is first asked for with id 0 alone (→ §6.1); "Getting server list ..." shows while the listserver answers, and the window title says "(loading...)" until the servers are in | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
+| server names | lose a `P ` prefix; other prefixes stay | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
+| list form | four versions: 2.0 to 2.01 rev 1 (with a description box and two server icons), 2.02 to 2.02 rev 2, 2.05 rev 1 alone, and 2.03, 2.04, 2.05 and 2.05 rev 2 | [bin] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
+| language file | a `language<Name>.txt` next to the program renames the start window's controls by component name | [bin][lab] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
+| pictures | the exe lists its whole install tree and opens a picture by its exact name wherever it is; a `.png` is not taken for a `.gif` | [lab] (client-internals/rebuild-traces-2026-11-05.md#20x-launchers-20-to-205-rev-2) |
+| start spot, 1st to 13th Graal | `house1.graal` at 28.5, 30, the middle of the room; 6th Graal starts in `level13.graal` at 16.5, 35 | [cap] (client-internals/rebuild-traces-2026-11-05.md#start-level-and-spot) |
+| start spot, 14th Graal to 1.31 | 21.5, 28 (the bed), from a start table in the exe; 1.3test and 1.31 in `house1.graal` | [bin] (client-internals/rebuild-traces-2026-11-05.md#start-level-and-spot); [bin] (client-internals/rebuild-traces-2026-11-05.md#13x-and-14x-game-view) |
+| start spot, 1.32 on | `start1.graal` at 21.5, 28, set before the level loads; its `playerenters` script then moves the player to 13.5, 37.5 | [bin][cap] (client-internals/rebuild-traces-2026-11-05.md#13x-and-14x-game-view) |
+
+Still open from the same work: how 9th Graal applies the player's five colours to the body sheet, and whether the other betas share its pose and equipment tables; only 9th Graal's were read, and not yet against a capture [bin] (client-internals/rebuild-traces-2026-11-05.md#the-1998-betas-player-drawing-9th-graal-unfinished).

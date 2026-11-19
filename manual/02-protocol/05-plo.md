@@ -44,7 +44,9 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 3.04 (Linux) | 79 | 0–49, 68, 69, 75, 84, 100–102, 150, 151, 153–156, 165, 166, 168, 169, 171–176, 178–181, 184–186 | [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 3.153 (Mac OS X) | 88 | the 3.04 set without 44, plus 67, 74, 82, 104, 131–134, 187, 189 | [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 4.20r8 | 101 | 0–25, 27–43, 45–49, 67–69, 74, 75, 82, 84, 100–102, 104–108, 131–134, 150, 151, 153–156, 165, 166, 168–176, 178–187, 189–191, 193–196 | [bin] (protocol/v4x-clients.md#server--client-ids) |
-| 4.20r6 (Mac) | 99 | the 4.20r8 set without 41 and 196 | [bin] (protocol/v4x-clients.md#server--client-ids) |
+| 4.04r2 (Mac) | 97 | the Mac 4.20r6 set without 107 and 108; one switch with bound 195, and 100 a case of it | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
+| 4.20r6 (Mac) | 99 | the 4.20r8 set without 41 and 196 | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
+| 5.12 (Mac) | 101 | the Mac 4.20r6 set plus 140 and 197; against Windows 5.12 it lacks 41 and adds 100 and 108 | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
 | 5.00r7 | 100 | 0–25, 27–43, 45–49, 67–69, 74, 75, 82, 84, 101, 102, 104–107, 131–134, 140, 150, 151, 153–156, 165, 166, 168–176, 178–187, 189–191, 193–195, 197 | [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 6.01r1 | 91 | the 6.03r7 set without 111 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | 6.03r7 | 92 | 0–25, 27–40, 42, 43, 45–49, 67–69, 74, 82, 84, 101, 102, 104–107, 109, 111, 131, 134, 140, 150, 151, 153–156, 166, 168, 170, 172–174, 176, 178–180, 182, 183, 185–187, 189–191, 194, 195, 197, 198 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |

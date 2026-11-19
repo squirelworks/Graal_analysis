@@ -95,6 +95,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
 | E#327 | Chest art and menu skin in the 6.03r7 item run | Lab | both come from files the lab world lacks | [inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
+| E#328 | What drives 2.22's tick: a multimedia timer or the idle handler | Read | a timer created in code, which a form scan does not see | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
@@ -946,6 +947,20 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | Both come from files or scripts the lab world lacks: the chest image and the GUI skin are delivered by the server on 6.x. Confidence: moderate | [inf] (client-internals/items-603r7-black-box.md#open) |
 | Settles it | Controlled input changes: add the chest image and a GUI skin and see what changes | [inf] (client-internals/items-603r7-black-box.md#open) |
 | Outlook | Lab | [inf] (client-internals/items-603r7-black-box.md#open) |
+
+### E#328 What drives 2.22's tick
+
+**Question.** Whether 2.22's game step runs from a 50 ms multimedia timer or from the application's idle handler behind a 50 ms gate (→ §4.1.2, §4.6.10) [bin] (client-internals/rebuild-traces-2026-11-05.md#222); [bin] (version-profiles/matrix/builds-static-survey.tsv).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The rebuild read of `Graal_222.exe` found a multimedia timer with an interval of 50 ms and a resolution of 10, whose handler is the game step | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Claim B | The static survey of every Delphi build lists NewMain 1.42 to 2.31, 2.22 included, as having no form timer, with the frame run from the idle handler | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
+| Best guess | Both are partly right: the survey looks for timers on forms, and a multimedia timer is created in code, so it would not show there. Whether the idle path also still steps the game in 2.22 is not known. Confidence: moderate | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Settles it | Read 2.22's start-up code for the timer's creation and check whether the idle handler calls the game step; or count steps under Wine with the timer blocked | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Outlook | Read | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+
+Either way the tick is 50 ms, so no duration in this manual changes; only the mechanism is open [bin] (version-profiles/matrix/builds-static-survey.tsv).
 
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
