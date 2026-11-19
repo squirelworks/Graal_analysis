@@ -1,10 +1,11 @@
 #!/bin/sh
 # camp12.sh BUILD TAG : the whole fuzz12 row set on BUILD (lab tree $FZ, run12.sh). A crash is followed
 # by a fresh login that resumes at the next row; a row never shot twice is skipped. A build whose
-# login never yields a session twice in a row is abandoned.
+# login never yields a session twice in a row is abandoned. FUZZGEN picks another row set, START the first row.
 B=$1; TAG=$2; F=${FZ:-$HOME/fz12}; T=$(cd "$(dirname "$0")" && pwd); mkdir -p $F/plans
 GEN=2; case $B in 1st|2nd|3rd|4th*|5th*|6th|7th|8th|9th*|1?th|11|119) GEN=1;; esac
-N=$(python3 $T/../fuzz12.py rows $GEN | wc -l); i=0; k=0; tries=0; nos=0
+[ -n "${FUZZGEN:-}" ] && GEN=$FUZZGEN   # 3 = gen-2 own-prop width sweep, 4 = gen-1 lobby probes
+N=$(python3 $T/../fuzz12.py rows $GEN | wc -l); i=${START:-0}; k=0; tries=0; nos=0
 while [ $i -lt $N ] && [ $k -lt 25 ]; do
   k=$((k+1)); R=$TAG-$k
   python3 $T/../fuzz12.py plan $GEN $i > $F/plans/$R.plan

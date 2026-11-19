@@ -12,7 +12,7 @@ as captured (protocol/relay-1998.md, client-internals/live-trace-early.md).
 
   relay98.py HOST PORT [--nl] [--fakepeer=ID]
     --nl          send `NL` after `NR` (the 1.1.9 server's local-levels mode)
-    --fakepeer=ID announce a peer ID (`+IDdef`) in every room a client joins, and confirm the client's
+    --fakepeer=N   announce a peer with id N (sent as 8 digits) (`+IDdef`) in every room a client joins, and confirm the client's
                   `P ID`. A client only answers `+` with `P` just after it joins a room, so this is how a
                   probe gets a partner whose `D` lines (injected by gen5probe) the client will take.
 """
@@ -20,7 +20,7 @@ import select, socket, sys, time
 
 ARGS = [a for a in sys.argv[1:] if not a.startswith('--')]
 NL = '--nl' in sys.argv
-FAKE = next((a.split('=', 1)[1] for a in sys.argv if a.startswith('--fakepeer=')), None)
+FAKE = next(('%08d' % int(a.split('=', 1)[1]) for a in sys.argv if a.startswith('--fakepeer=')), None)  # id as 8 digits
 HOST, PORT = ARGS[0], int(ARGS[1])
 T0 = time.monotonic()
 

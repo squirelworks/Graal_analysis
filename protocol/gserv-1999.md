@@ -113,9 +113,14 @@ Per-build values, and the client-to-server ids, are in `client-internals/version
 
 The 1.28 beta 2 notes call this "direct data packages", and it is the first build that links `bind`, `sendto` and `recvfrom`.
 The client binds a UDP socket and sends single, uncompressed, unframed messages (anything without a `\n`) straight to another player's address and port. In 1.28 beta 2 captures, a walking client sent id 0 to the other player every 100 ms, while the server got only the changed props over TCP and forwarded nothing. Id 0 carries X, Y, SPRITE, STATUS and CARRYSPRITE (props 15 to 19; `0x1F` is −1, nothing carried), the same fields that 2.05 sends in UDP id 0. Id 12 is arrow add, with the same 5 bytes as relay `A`. One player per level sends the level NPCs' arrows to the others: the level leader, picked by the server with id 10 (`ISLEADER`, empty). The server sends 10 at the end of the first player's login reply, and to the next player when the leader leaves. **[cap]** The address and port are stored on the other player's record, so they most likely come from the server (*inferred*).
+The client reports its own UDP port to the server as player prop 31 (GINT3) in its first `PLI_PLAYERPROPS`: on 1.28 beta 2 to 1.39 under Wine the value matched the bound UDP socket ([lab results](early-clients-probe-2026-11-19.md#what-the-clients-send-unprompted)). **[lab]**
 The main loop reads TCP and UDP separately ("tcp read", "udp read" in the 1.32 profiler labels).
 1.31 adds `noudp=` and `fixedudpport=` to `graalconfig.txt` (the catalogue gives 14899 as the fixed-port default).
 The client handles UDP ids 0 and 10 to 22 in 1.28 beta 2 and 1.3 test, and 0 and 10 to 23 from 1.31. These are the same ids, with the same +32 offset, that 1.33 handles. Ids 0 (movement) and 12 (arrow add) match 2.05 on the wire. A newcomer sends one empty id 22 to each player already in the level; 2.05 uses 22 for chat. The other ids have not been mapped yet. `protocol/udp-p2p.md` covers the 2.05 UDP ids and is the closest reference.
+
+## Lab results (2026-11-19)
+
+Real 1.28 beta 2, 1.3 test and 1.31–1.39 behind the probe proxy: how unknown props, NUL bytes and empty lines are parsed, the own-prop width table per build, and the 10.2 s `PLI_PACKETCOUNT` from 1.33 on are in [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md).
 
 ## Open questions
 

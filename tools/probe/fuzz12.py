@@ -14,7 +14,7 @@ frame), takes a shot, then sends bombs=99 again in a frame of its own and takes 
   row lost, post landed   -> ignored-rest: the client dropped the rest of that message or frame
   both lost, alive        -> desync-or-hang
   CLIENT-GONE             -> crash (the game window went away)
-Gen 1 (1998 relay, text lines): relay98 --fakepeer pairs the client with a fake partner (00009900)
+Gen 1 (1998 relay, text lines): relay98 --fakepeer pairs the client with a fake partner (id 9900)
 as it joins its level room; the D rows carry that partner's id. These clients send nothing unprompted
 and do not redraw while idle under Wine, so there is no in-band canary: a row is `crash` (window
 gone), `conn-closed` (the client dropped a relay connection) or `alive`.
@@ -58,12 +58,32 @@ def rows2():
     return r
 
 
-def plan2(rows):
+# Values chosen so that any misread puts unknown prop 90 (0x7a) or 65/66 next, which ends the
+# message in every 1.x build, so only the right layout lets the canary land. Every layout has its
+# own length (1, 2, 3, 5, 7 and 8 bytes), so a string is never taken for a number of the same width.
+WIDTHS = [('c', 'c:3'), ('s', 's:90'), ('i3', 'i3:11610'), ('i5', 'i5:190229850'), ('str', 'str:abcdef'), ('cstr', 'c:1 str:abcdef')]
+
+
+def rows3():
+    """Gen-2 own-prop sweep: props 0-40, each with five layouts, the bomb canary behind it.
+    The layout whose canary lands is the one the build reads; none landing = longer/compound or
+    the end of the build's prop table (it stops reading the message there)."""
+    r = []
+    for p in range(0, 41):
+        if p == 5:
+            continue  # the canary prop itself
+        for wn, val in WIDTHS:
+            r.append(('w%02d-%s' % (p, wn), '9 c:%d %s %s' % (p, val, CAN)))
+    return r
+
+
+def plan2(rows, post=True):
     out = ['# fuzz12 gen-2 rows (generated)', 'waitsession 240', 'wait s2c 9 90', 'sleep 10',
            's2c 9 c:5 c:1', 'sleep 1.5', 'shot ref-01', 's2c 9 %s' % CAN, 'sleep 1.5', 'shot ref-99']
     for n, spec in rows:
-        out += ['mark row %s' % n, 's2c 9 c:5 c:1', 'sleep 0.8', 's2c %s' % spec, 'sleep 1.5', 'shot %s' % n,
-                's2c 9 %s' % CAN, 'sleep 1.5', 'shot %s-post' % n]
+        out += ['mark row %s' % n, 's2c 9 c:5 c:1', 'sleep 0.8', 's2c %s' % spec, 'sleep 1.3', 'shot %s' % n]
+        if post:
+            out += ['s2c 9 %s' % CAN, 'sleep 1.5', 'shot %s-post' % n]
     out += ['sleep 2', 'shot final']
     return out
 
@@ -82,7 +102,7 @@ def rows1():
         ('lobby-plus-long', ['+' + 'A' * 300]),
         ('lobby-P-unknown', ['P00009999']),
         ('lobby-C-empty', ['C']),
-        ('lobby-minus-unknown', ['-00007777']),
+        ('lobby-minus-unknown', ['-' + '%08d' % 7777]),
         ('lobby-unknown-cmd', ['Zprobe']),
         ('lobby-NR', ['NR']),
         ('lobby-NX', ['NX']),
@@ -109,12 +129,42 @@ def rows1():
     ]
 
 
+def rows4():
+    """Gen-1 lobby semantics probes. Read with g1obs.py: the sender id inside the client's own D
+    lines shows its current id; whether D lines keep flowing shows whether it still has a partner."""
+    peer = '0000%04d' % PEER
+    return [
+        ('I-8digits', ['I12345678']),
+        ('I-9digits', ['I123456789']),
+        ('I-7digits', ['I1234567']),
+        ('I-nondigit', ['I1234567x']),
+        ('I-junk-after', ['I00000005junk']),
+        ('I-empty', ['I']),
+        ('I-reset', ['I00000001']),
+        ('C-partner', ['C' + peer]),
+        ('P-partner-again', ['P' + peer]),
+        ('plus-partner-again', ['+' + peer + 'def']),
+        ('minus-partner', ['-' + peer]),
+        ('plus-new-peer', ['+00009800def']),
+        ('P-new-peer', ['P00009800']),
+        ('NL-alone', ['NL']),
+        ('NR-alone', ['NR']),
+    ]
+
+
 def hexline(l):
     return 's2c raw hex:' + (l.encode('latin1') + b'\n').hex()
 
 
+def plan4(rows, conn=1):
+    out = ['# fuzz12 gen-1 lobby probes (generated)', 'waitsession 240', 'sleep 10', 'use %d' % conn, 'mark row baseline', 'sleep 6']
+    for n, lines in rows:
+        out += ['mark row %s' % n] + [hexline(l) for l in lines] + ['sleep 6', 'shot %s' % n]
+    return out + ['shot final']
+
+
 def plan1(rows, conn=1):
-    """The relay (relay98 --fakepeer=00009900) has already paired the client with the fake partner
+    """The relay (relay98 --fakepeer=9900) has already paired the client with the fake partner
     whose sid the D rows carry. After each row: a shot (window alive?) and the proxy's record of
     whether the client closed either relay connection."""
     out = ['# fuzz12 gen-1 rows (generated)', 'waitsession 240', 'sleep 10', 'use %d' % conn, 'shot ref']
@@ -144,12 +194,17 @@ def autobox(d):
     return ImageChops.difference(a, b).point(lambda v: 255 if v > 40 else 0).getbbox()
 
 
+def white(im, box):
+    """The HUD digits are white: compare only near-white pixels, so a changed background does not count."""
+    return [255 if min(p) > 200 else 0 for p in pixels(im.convert('RGB').crop(box))]
+
+
 def boxv(d, name, box, rl, rd):
     from PIL import Image
     f = os.path.join(d, name + '.png')
     if not os.path.exists(f):
         return None
-    x = pixels(Image.open(f).convert('L').crop(box))
+    x = white(Image.open(f), box)
     dl = sum(abs(p - q) for p, q in zip(x, rl)) / len(x); dd = sum(abs(p - q) for p, q in zip(x, rd)) / len(x)
     return 'landed' if dd < dl * 0.5 else 'lost' if dl < dd * 0.5 else 'unclear'
 
@@ -168,7 +223,7 @@ def replies(d, gen):
             out[cur].append('closed'); continue
         if not cur or ' C>S ' not in line:
             continue
-        if gen == 2:
+        if gen in (2, 3):
             m = re.search(r'C>S id=(-?\d+)', line)
             if m:
                 out[cur].append(m.group(1))
@@ -194,7 +249,7 @@ WORDS = {'ok': 'canary landed', 'ignored-rest': 'rest of message/frame dropped; 
 
 def tsvrow(gen, client, date, r):
     n, sp, c, post, alive, rep, v, run = r
-    if gen == 2:
+    if gen in (2, 3):
         t = sp.split(' | ')[0].split(); pk = t[0] if t[0] != 'raw' else 'raw'
         pr = t[1][2:] if pk == '9' and len(t) > 1 and t[1].startswith('c:') else '-'
     else:
@@ -212,19 +267,19 @@ def read(gen, d):
         if len(p) == 2:
             marks[p[0]] = p[1]
     rep = replies(d, gen)
-    rows = rows2() if gen == 2 else rows1()
-    if gen == 2:
+    rows = rows2() if gen == 2 else rows3() if gen == 3 else rows1()
+    if gen in (2, 3):
         from PIL import Image
         box = autobox(d)
         if not box:
             print('# %s: no bomb-count difference between ref-01 and ref-99: canary unusable' % d); return
-        rl = pixels(Image.open(os.path.join(d, 'ref-01.png')).convert('L').crop(box))
-        rd = pixels(Image.open(os.path.join(d, 'ref-99.png')).convert('L').crop(box))
+        rl = white(Image.open(os.path.join(d, 'ref-01.png')), box)
+        rd = white(Image.open(os.path.join(d, 'ref-99.png')), box)
     for n, spec in rows:
         if n not in marks:
             continue
         st = marks[n]; alive = st.startswith('alive')
-        if gen == 2:
+        if gen in (2, 3):
             c = boxv(d, n, box, rl, rd) if alive else '-'
             ps = marks.get(n + '-post', '')
             post = boxv(d, n + '-post', box, rl, rd) if ps.startswith('alive') else '-'
@@ -245,13 +300,13 @@ def read(gen, d):
 def main():
     a = sys.argv[1:]
     gen = int(a[1])
-    rows = rows2() if gen == 2 else rows1()
+    rows = rows2() if gen == 2 else rows3() if gen == 3 else rows4() if gen == 4 else rows1()
     if a[0] == 'rows':
         for i, (n, _) in enumerate(rows):
             print(i, n)
     elif a[0] == 'plan':
         sel = pick(rows, a[2], a[3] if len(a) > 3 else None)
-        print('\n'.join(plan2(sel) if gen == 2 else plan1(sel)))
+        print('\n'.join(plan2(sel) if gen == 2 else plan2(sel, post=False) if gen == 3 else plan4(sel) if gen == 4 else plan1(sel)))
     elif a[0] == 'read':
         for d in a[2:]:
             read(gen, d)
