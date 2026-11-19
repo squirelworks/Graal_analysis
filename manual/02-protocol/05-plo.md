@@ -197,6 +197,8 @@ These messages describe the players: the local player and everyone else on the l
 | 181 | `PLO_PLAYERNOUDP` (was `PLO_UNKNOWN181`) | `s player id, c toggle`; at least 3 bytes | sets a flag on that player; while set, the client leaves the player out of its peer-to-peer UDP sends | [bin] (protocol/plo-181-player-noudp.md); [bin] (version-profiles/plo-layouts-217-231.tsv); [bin] (protocol/unknown-ids-2026-11-06.md) |
 | 55, 56 | `PLO_ADDPLAYER`, `PLO_DELPLAYER` | GServer-v2 `master` writes 55 as `s id`, `str account`, then prop pairs (nickname, `PLPROP_UNKNOWN81` + type byte), and 56 as `s id`; sent to RCs | ignored by 5.07 and later | [srv] (protocol/packet-ids.md#server--client-plo_); [srv] (protocol/gserver-v2-master-handlers.md) |
 
+A player exists for a client as soon as an 8 arrives with an id it has not seen. A replay of the server's own other-player message under a made-up id draws a new player on 6.03r7: the server does not need to know the player, and the peer-to-peer UDP channel plays no part. Of the roughly 70 props in that message, 6.03r7 draws the player only once it has prop 10 (`GANI`); the level and join props alone, or with sprite, status, head and body, draw nothing [lab] (protocol/probe-targets-2026-11-18.md#what-makes-603r7-draw-another-player-2026-11-19).
+
 ## 2.5.5 Combat and level objects
 
 These are the server's copies of the client actions in → §2.4.5; each carries the sender's `s player id` unless the row says otherwise.
@@ -244,14 +246,14 @@ These messages move, script and remove NPCs and hand out weapons. Rows marked un
 | 44 | `PLO_HASNPCSERVER` | empty | the client stops applying NPC props itself | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 131 | `PLO_NPCBYTECODE` | `i3 code`, bytecode | script and class registration: 3.153 registers classes (`joinedclasses`) and `public.` variables from it, with 132 and 133 (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 133 | `PLO_UNKNOWN133` (beta4 gserver: `PLO_CLASSBYTECODE`) | `str name`, rest = compiled class script | creates or updates the named class; `public.` functions become callable from outside; 3.153 to 5.12 | [bin] (protocol/unknown-ids-2026-11-06.md) |
-| 134 | `PLO_GANISCRIPT` | gani text | 3.153 parses the gani text in place | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
+| 134 | `PLO_GANISCRIPT` | gani text (3.153); compiled gani script (GServer-v2) | 3.153 parses the gani text in place. GServer-v2 answers `PLI_UPDATEGANI` (157) with the gani's script as bytecode in 134, only when an NPC server runs and the checksum differs; a forged 134 behind `PLO_RAWDATA` makes 6.03r7 fetch and load the named gani, as 195 does. Whether a valid compiled body runs is open (→ App. E) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled); [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
 | 140 | `PLO_NPCWEAPONSCRIPT` | `s info_length`, script | class and weapon script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 165 | `PLO_MOVE` | `i3 npc id` (> 0), then complete 7-byte records: `c x×2, c y×2, c (dx+50)×2, c (dy+50)×2, s duration×20, c options` | passed to the NPC movement routine; an unknown NPC is not created and an incomplete trailing record is ignored | [bin] (version-profiles/plo-layouts-217-231.tsv) [2.05][bin] (protocol/payload-and-trigger-205r2.md#npc-movement-plo-165) |
 | 166 | `PLO_SHOWIMGNPC` | `i3 npc id`, `rest` = props | applies the props to that NPC in the active level | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 189 | `PLO_MOVE2` | `i3 npc id`, `rest` | as 165, with an extra flag set | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 193 | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | `i5` CRC32, `rest` = weapon name | raises the script level to at least 3; loads `weblevels/weapons/<name>.code` if its zlib CRC32 matches, else asks for the script with `PLI_UPDATESCRIPT` (158); 4.04r2 to 5.12 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 194 | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | empty; precedes the weapon list | 4.20r8 clears its weapon and class script lists; 5.00r7 clears every loaded level and the level caches | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
-| 195 | `PLO_LOADGANI` | `str gani`, then the gani text | loaded as a server-sent gani script | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids) |
+| 195 | `PLO_LOADGANI` | `str gani`, then a list of gani header lines (`SETBACKTO name`, `LOOP`, `CONTINUOUS`, `SINGLEDIRECTION`, `DEFAULT*`) | loads the named gani if it is not loaded and overrides the file's header values for that gani name, for every player that plays it; the newest value wins (→ §2.5.6.1) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids); [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19) |
 | 196 | (no gs2lib name) | as 193 | 4.20r8 reads it and does nothing else | [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 197 | `PLO_LOADSCRIPT` | a list `type,name,saveToDisk,desKey,crc32`; type weapon, npc, class or gani; the key is two `i5` | script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 
@@ -260,6 +262,26 @@ One rule separates the old script path from the new one [srv] (protocol/packet-l
 | Rule | Builds | Source |
 | --- | --- | --- |
 | For v4 and later clients the server replaces the script prop with `NPCPROP_CLASS` and sends GS2 bytecode; 2.05 never sees that path | server | [srv] (protocol/packet-layouts.md#weapons) |
+
+### 2.5.6.1 Gani header overrides (195) in the lab
+
+A probe proxy sent 195 into live loopback sessions of 4.20r8, 5.12, 5.24r4 and 6.03r7 under Wine and Linux, and of 2.22 and 2.31 for comparison. The client's own gani reports (prop 10 in its props messages), its file requests and screenshots showed what each list did. The four 4.x to 6.x clients behaved the same wherever the test could be read [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19).
+
+| Observation | Builds | Source |
+| --- | --- | --- |
+| `kick "SETBACKTO sit"` makes `kick` fall back to `sit`; a gani with no `SETBACKTO` of its own gets one; `"SETBACKTO "` with no target means no fallback; an empty list changes nothing | 4.20r8, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19) |
+| `LOOP`, `CONTINUOUS` and `SINGLEDIRECTION` are taken too; a later 195 without `LOOP` does not undo it; `CONTINUOUS` stops a re-set gani from restarting | 5.12, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| `DEFAULT*` lines had no visible effect and caused no image request, for the own player, another player and a level NPC (→ App. E) | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| The newest value wins: a later 195 replaces an earlier one, and with two `SETBACKTO` lines in one list the last wins; two 195s in one frame both apply | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| A 195 for a gani the client has not loaded makes it ask for `<name>.gani` (23) and send 157; the file's header then replaces the 195, so a 195 sent before the gani loads is lost. That is why a server sends 195 in answer to 157 | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| Names are case-insensitive; `kick.gani` is a different name (the client asks for `kick.gani.gani`); unknown keywords and `SETBACKTOsit` are ignored and the rest of the list applies; a NUL byte ends the target name | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| Chains play through (`kick` → `hurt` → `sit`); a `SETBACKTO` to a missing gani is followed and the file requested; a self-reference repeats the gani | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| The override is per gani name for everyone: another player that played `kick` after `kick "SETBACKTO dead"` ended lying dead | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| Without any 195 the clients still use the file's own `SETBACKTO`, so for ganis the client has as files the server's 195 is redundant | 4.20r8, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19) |
+| 300 empty items, a 3000-byte item and a 60 KB list caused no crash | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| 2.22 and 2.31 ignore 195: they never send 157 or ask for gani files, and every fallback stays at the file default | 2.22, 2.31 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+
+So the working role of 195 is "load this gani now and apply these header overrides". In every path the lab server can build, its `SETBACKTO` repeats the file's own; the GServer-v2 source says 4.x and later need it, most likely for ganis whose script reaches the client compiled in 134 [lab][inf] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19).
 
 **5.00r7 and 5.12 handle both script paths.** Classic delivery (193 hash, 132 weapon, 133 class) runs from 3.153 to 5.12; modern delivery (197 descriptor, 140 body) from 5.00r7 on. Never send 132/133/193 to 5.24 or later, and never 197/140 to 4.x. Which path a stock world used for 5.00r7 and 5.12 is open; preferring the classic path on them is a server policy. [bin][inf] (protocol/scripted-weapons-5x-status.md)
 
@@ -355,7 +377,12 @@ Some ids are defined by the server but handled by no client the notes have read.
 | 252 | `PLO_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 | 253 | `PLO_BUNDLE` | several messages in one (→ §2.10) | unmeasured | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
-On Linux 6.03r7, PLO 60, 78, 81, 83 and 110 were each sent in a lab session with four bodies (empty, one byte, 60 bytes of text, four binary bytes). The client ignored every one: it sent nothing back, did not crash, and read the next message normally [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+The probe proxy confirmed this silence on real clients. PLO 60, 78, 81, 83 and 110 were sent into live loopback sessions with empty, one-byte, text and binary bodies [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+
+| Observation | Builds | Source |
+| --- | --- | --- |
+| Each id is ignored: no reply, no crash, and the next message is read normally | 2.05 rev 2, 2.17.1, 2.22, 2.31, 4.20r8, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
+| A body holding a `00` byte makes the 2.x clients drop every later message in the same frame; this is a framing rule, not a property of these ids (→ §2.1) | 2.05 rev 2 to 2.31 | [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
 
 ## 2.5.11 Unpacked Windows 6.1.1.3: script-installed handlers
 
@@ -416,4 +443,4 @@ Subtype 1 was set to 0, then 1, 5, 30 and 300. Each value was followed by 60 s w
 
 On this build, in these windows, the subtype-1 value had no visible effect on ping answers, on that 5.1 s traffic, or on staying connected. The run does not show the client enforcing the value as a timeout inside 60 s, at 1 or at 5, whether those numbers are seconds or units of 5 s. The value may be unused, as the static read found, or longer than this test, or read on a path the lab did not trigger. [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7)
 
-Status 2026-11-16: 168 sets a one-shot flag on the local player in every client from 2.05 (high confidence); "login done" is the best name but medium confidence. Who reads the stored 108 subtype-1 value outside the ping path on 4.20r8 and 6.03r7 is still unread. [bin][lab] (protocol/plo108-168-focus-status.md)
+Id 168 sets a one-shot flag on the local player in every client from 2.05 (high confidence); "login done" is the best name for it, with medium confidence. Who reads the stored 108 subtype-1 value outside the ping path on 4.20r8 and 6.03r7 is still unread. [bin][lab] (protocol/plo108-168-focus-status.md)
