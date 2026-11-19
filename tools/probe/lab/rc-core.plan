@@ -1,11 +1,14 @@
 # RC game-socket fuzz: malformed / out-of-range server->client packets into a live Remote Control.
-# For RC2 2.05, RC3 and the 2004 Delphi RC (all gen 5, login type 6). Read afterwards with
+# Works for the gen-5 RCs (2004 RC, RC2 2.05, RC3; login type 6) and the gen-2 RCs (pre-2002 and
+# RC 2002/01/11; login id 1 + GSERVxxx). Read afterwards with
 #   rccanary.py OUT/proxy.log OUT/marks.txt
 # gone/disconnect = crash or dropped socket; silent = possible parse wedge (check gs-world.txt).
 # A well-formed sentinel 55 (a player the RC should list) runs before and after the nasty set,
 # so a shot of the player-list window is a before/after control for the operator.
 waitsession 120
-wait c2s 2 30
+# the gen-5 RCs send id 2 right after login; the older gen-2 RCs may not, so this is a short gate,
+# not a hard requirement (it falls through after the timeout).
+wait c2s 2 10
 sleep 4
 shot 00-base
 # --- control: a clean player the RC should add to its list ---

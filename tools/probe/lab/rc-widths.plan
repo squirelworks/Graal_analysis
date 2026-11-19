@@ -5,7 +5,7 @@
 # (box over the player row's nickname cell; capture the two refs from shots 01 and 02 here).
 # Player id {ID} defaults to 7; keep it off any id the server already assigned.
 waitsession 120
-wait c2s 2 30
+wait c2s 2 10
 sleep 4
 shot 00-base
 # reference "landed": nickname set cleanly, no test prop
