@@ -28,6 +28,6 @@ Held corpus hunts for files that **start** with `GR-V1.05` remain empty so far. 
 
 ## Still open
 
-- Pin any render-loop skip (or tileset blank) for disk value 4095 on layers above 0. **[bin]/[lab]**
-- Decode one real on-disk `GR-V1.05` sample when held. **[file]**
-- Live serve of a multi-layer file to **5.12** / **6.03r7**. **[lab]**
+- [x] ~~Pin any render-loop skip (or tileset blank) for disk value 4095 on layers above 0.~~ On the wire 4095 draws as tileset cell 4095 and `0xFFFF` draws as empty; see [`gr-v105-fuzz-2026-11-19.md`](gr-v105-fuzz-2026-11-19.md). **[lab]**
+- [ ] Decode one real on-disk `GR-V1.05` sample when held. **[file]**
+- [ ] Live serve of a multi-layer file to **5.12** / **6.03r7**. Tried 2026-11-19, but our lab gserver misreads GR-V1.05 (four-byte skew); see [`gr-v105-fuzz-2026-11-19.md`](gr-v105-fuzz-2026-11-19.md). **[lab]**

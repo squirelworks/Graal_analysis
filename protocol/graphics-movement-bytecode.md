@@ -7,7 +7,7 @@ Sources: GServer-v2 `TLevel.cpp` / `TPlayer.cpp` / `TNPC.cpp`, OpenGS1 VM.
 
 ### Board data
 - `PLO_BOARDPACKET`: raw 64×64 `short` tile array (layer 0), 8192 bytes + newline.
-- `PLO_BOARDLAYER`: `(layer:u8)(0)(0)(64)(64)` + raw `short[4096]` for that layer.
+- `PLO_BOARDLAYER`: `(layer:u8)(0)(0)(64)(64)` + raw `short[4096]` for that layer. All five header bytes are raw (not GCHAR); clients 4.20r8–6.03r7 accept any rectangle and keep w×h little-endian tiles ([lab](../formats/gr-v105-fuzz-2026-11-19.md)).
 - `PLO_LEVELBOARD` / `PLO_BOARDMODIFY`: concatenated `getBoardStr()` results from `TLevelBoardChange`.
   - Change holds `x, y, width, height, tiles, oldTiles, modTime`.
   - Byte layout confirmed on the wire for 2.05: `c x, c y, c w, c h` + w × h GSHORT tiles, one change per message. See `packet-layouts.md`, "Board change on the wire". **[cap]**
