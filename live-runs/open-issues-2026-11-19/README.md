@@ -98,7 +98,7 @@ A second try at low load did not get further. 2.22's F5 loader also freezes unde
 its own tutorial level, so the freeze is not caused by the test level. In 2.31, Training opens
 the level editor, and Play there does read `tiledefsOffline`: a type-0 line blacks out the
 whole board. The 256 × 512 test overlay never drew, so where type-4 tiles land and how they
-walk is still **not measured**. Next: a full-size 2048 × 512 overlay, or a run outside Wine.
+walk was still not measured in that round. **Measured later: see §8.**
 
 ## 6. #398: the action list on Linux 6.03r7
 
@@ -168,13 +168,28 @@ There was no observer client: a pass here means the server received the action f
 - **Chat:** 5.x and 6.x show no chat line unless the server sends a chat script. 4.20r8 does
   without one.
 
+## 8. #619: tiledef type 4 on 2.22
+
+A later round ran 2.22 under Wine with a virtual desktop and the GDI renderer. The earlier
+"freeze" was Wine leaving the hidden Load dialog's window over the game when no window
+manager runs. With that, F5 loads the test level. Two things blocked §5: the overlay was a
+24-bit PNG, which 2.22 ignores without a message, and the window problem.
+
+- Type 4 pastes an 8-bit palette image into the tile sheet at **pixel** (x, y): (256, 0) lands
+  at sheet column 16, (256, 64) at column 16 and row 4, and (264, 0) splits image columns across
+  sheet column 17.
+- Walking follows the board's tile codes; a rock row blocks the same with the stock sheet,
+  under a type-4 overlay, and with type 0.
+
+Write-up: [formats/tiledef-type4-2026-11-16.md](../../formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19).
+**[lab]**
+
 ## Still open after this run
 
 Tracked in #652:
 
 - 1.21: dropped gralat or direct reward (a sword kill one tile further away did not reach the archer; a ranged kill needs 1.21's item keys).
-- 2.17.1 drop check.
+- 2.17.1 drop check, and the sword spark on 2.22 (the Training player has no sword; a way to give the offline player one is needed).
 - The sword spark.
-- Tiledef type 4 draw and walk.
 - Spin on the Windows builds (needs a faster input path), and the fixture's glove chest.
 - Prop 81's effect on the player list.

@@ -1,0 +1,580 @@
+# fz: PLO_ARROWADD (19) last byte (shot type, byte-33) sweep 0x20..0x7e on 2.22. Unknown sender id 999.
+# Before each: player to (30,30) and 3 hearts (PLO 9 props 15/16 and 2). Shot from (30,20) flying down (flags 2, sprite 109).
+waitsession 240
+wait s2c 9 90
+sleep 12
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 1.5
+shot 00-base
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 20
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:20
+sleep 1.8
+shot t20
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 21
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:21
+sleep 1.8
+shot t21
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 22
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:22
+sleep 1.8
+shot t22
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 23
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:23
+sleep 1.8
+shot t23
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 24
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:24
+sleep 1.8
+shot t24
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 25
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:25
+sleep 1.8
+shot t25
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 26
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:26
+sleep 1.8
+shot t26
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 27
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:27
+sleep 1.8
+shot t27
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 28
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:28
+sleep 1.8
+shot t28
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 29
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:29
+sleep 1.8
+shot t29
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 2a
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:2a
+sleep 1.8
+shot t2a
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 2b
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:2b
+sleep 1.8
+shot t2b
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 2c
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:2c
+sleep 1.8
+shot t2c
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 2d
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:2d
+sleep 1.8
+shot t2d
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 2e
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:2e
+sleep 1.8
+shot t2e
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 2f
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:2f
+sleep 1.8
+shot t2f
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 30
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:30
+sleep 1.8
+shot t30
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 31
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:31
+sleep 1.8
+shot t31
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 32
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:32
+sleep 1.8
+shot t32
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 33
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:33
+sleep 1.8
+shot t33
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 34
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:34
+sleep 1.8
+shot t34
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 35
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:35
+sleep 1.8
+shot t35
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 36
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:36
+sleep 1.8
+shot t36
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 37
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:37
+sleep 1.8
+shot t37
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 38
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:38
+sleep 1.8
+shot t38
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 39
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:39
+sleep 1.8
+shot t39
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 3a
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:3a
+sleep 1.8
+shot t3a
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 3b
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:3b
+sleep 1.8
+shot t3b
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 3c
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:3c
+sleep 1.8
+shot t3c
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 3d
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:3d
+sleep 1.8
+shot t3d
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 3e
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:3e
+sleep 1.8
+shot t3e
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 3f
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:3f
+sleep 1.8
+shot t3f
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 40
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:40
+sleep 1.8
+shot t40
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 41
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:41
+sleep 1.8
+shot t41
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 42
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:42
+sleep 1.8
+shot t42
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 43
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:43
+sleep 1.8
+shot t43
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 44
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:44
+sleep 1.8
+shot t44
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 45
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:45
+sleep 1.8
+shot t45
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 46
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:46
+sleep 1.8
+shot t46
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 47
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:47
+sleep 1.8
+shot t47
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 48
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:48
+sleep 1.8
+shot t48
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 49
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:49
+sleep 1.8
+shot t49
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 4a
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:4a
+sleep 1.8
+shot t4a
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 4b
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:4b
+sleep 1.8
+shot t4b
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 4c
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:4c
+sleep 1.8
+shot t4c
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 4d
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:4d
+sleep 1.8
+shot t4d
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 4e
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:4e
+sleep 1.8
+shot t4e
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 4f
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:4f
+sleep 1.8
+shot t4f
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 50
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:50
+sleep 1.8
+shot t50
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 51
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:51
+sleep 1.8
+shot t51
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 52
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:52
+sleep 1.8
+shot t52
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 53
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:53
+sleep 1.8
+shot t53
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 54
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:54
+sleep 1.8
+shot t54
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 55
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:55
+sleep 1.8
+shot t55
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 56
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:56
+sleep 1.8
+shot t56
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 57
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:57
+sleep 1.8
+shot t57
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 58
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:58
+sleep 1.8
+shot t58
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 59
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:59
+sleep 1.8
+shot t59
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 5a
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:5a
+sleep 1.8
+shot t5a
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 5b
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:5b
+sleep 1.8
+shot t5b
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 5c
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:5c
+sleep 1.8
+shot t5c
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 5d
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:5d
+sleep 1.8
+shot t5d
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 5e
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:5e
+sleep 1.8
+shot t5e
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 5f
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:5f
+sleep 1.8
+shot t5f
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 60
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:60
+sleep 1.8
+shot t60
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 61
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:61
+sleep 1.8
+shot t61
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 62
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:62
+sleep 1.8
+shot t62
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 63
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:63
+sleep 1.8
+shot t63
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 64
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:64
+sleep 1.8
+shot t64
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 65
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:65
+sleep 1.8
+shot t65
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 66
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:66
+sleep 1.8
+shot t66
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 67
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:67
+sleep 1.8
+shot t67
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 68
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:68
+sleep 1.8
+shot t68
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 69
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:69
+sleep 1.8
+shot t69
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 6a
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:6a
+sleep 1.8
+shot t6a
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 6b
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:6b
+sleep 1.8
+shot t6b
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 6c
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:6c
+sleep 1.8
+shot t6c
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 6d
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:6d
+sleep 1.8
+shot t6d
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 6e
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:6e
+sleep 1.8
+shot t6e
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 6f
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:6f
+sleep 1.8
+shot t6f
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 70
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:70
+sleep 1.8
+shot t70
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 71
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:71
+sleep 1.8
+shot t71
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 72
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:72
+sleep 1.8
+shot t72
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 73
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:73
+sleep 1.8
+shot t73
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 74
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:74
+sleep 1.8
+shot t74
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 75
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:75
+sleep 1.8
+shot t75
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 76
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:76
+sleep 1.8
+shot t76
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 77
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:77
+sleep 1.8
+shot t77
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 78
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:78
+sleep 1.8
+shot t78
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 79
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:79
+sleep 1.8
+shot t79
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 7a
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:7a
+sleep 1.8
+shot t7a
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 7b
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:7b
+sleep 1.8
+shot t7b
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 7c
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:7c
+sleep 1.8
+shot t7c
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 7d
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:7d
+sleep 1.8
+shot t7d
+s2c 9 c:15 c:60 c:16 c:60 c:2 c:6
+sleep 0.5
+mark shot type byte 7e
+s2c 19 s:999 c:60 c:40 c:2 c:109 hex:7e
+sleep 1.8
+shot t7e
+sleep 2
+shot zz-end

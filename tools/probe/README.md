@@ -31,6 +31,8 @@ GraalOnline server, and nothing here helps reach one.
 | `lab/runnc.sh` | One run of an NPC-Control client under Wine (`713` = nc7132001; `2002` = a second standalone NPCControl dir) against a lab npcserver, with `ncprobe.py` between them. A template: it reuses the Wine lab tree but needs NC-specific hooks in `lab.env` (`NCSERVER`, the client dir/exe, a build-specific `NC_LOGIN` form-fill), named in its header. The true Jan-2002 NC is the RC-2002 embedded socket, which needs an RC harness, not this script. |
 | `lab/runrc.sh` | One run of a Remote Control client behind `gen5probe.py`: `rc2004` (2004 Delphi), `rc205` (RC2 2.05 GTK), `rc3` (RC3 beta) or `rcpre` (a pre-2002 Delphi RC). It stands up the lab listserver, a gserver world and the proxy on `14804`, launches the RC, logs it in as `super`/`super`, and runs a plan. The connect click is calibrated per build through `RC_CONNECT` (see the script header); `RC_NATIVE=1` runs a native Linux RC2 instead of Wine. |
 | `lab/*.plan` | Probe plans. `prop83.plan` is the pilot. `wine-core.plan` runs the same core probes on every game client. `nc-core.plan` fuzzes the NC receive handlers (16, 33, 80, 157–164, 167, 188) with empty / truncated-GINT3 / length-prefix-over-read / oversized / high-byte bodies. `widths.plan` checks each self prop 0–90 at its documented width. `pli-sweep*.plan` sends every client→server id to our gserver. `bytes2x.plan` tests raw bytes inside a message. `readback83.plan` reads prop 83 back through a level script. `rc-core.plan` sends malformed / out-of-range server→client packets to a live RC; `rc-widths.plan` is the RC player-prop width canary. |
+| `lab/keysweep.sh`, `lab/keysweep.py`, `lab/keysweep.keys` | The key and mouse sweep (see below): presses every key of the list on one client, one at a time, and records windows, screen change, packets and what a key-logging script saw. `keysweep_tsv.py` turns the raw rows into the derived table. |
+| `lab/keylog-gs1.npc`, `lab/keylog.gs2`, `lab/keylog-gs2.bc.hex`, `lab/keylog-stub.npc` | The sweep's key loggers: a GS1 level NPC for 2.x, and for 4.x–6.x a GS2 `onKeyPressed` script compiled to bytecode by Seihai's own compiler, delivered over a stub NPC through the proxy. |
 | `canary.py` | Classifies each shot's bomb count against two reference shots (canary lost: count 1; canary landed: count 99). Pass the bomb-count box for the client's HUD. Also serves the RC player-list width canary: pass the box over an entry's nickname cell and two RC reference shots. |
 | `rccanary.py` | The Remote Control canary. An RC has no HUD, so this reads the proxy log (and the run's `marks.txt`) and classifies each `shot` as `gone` (window vanished — a crash), `disconnect` (socket closed), `silent` (no client→server packet since the last inject) or `alive` (the RC sent something after the inject). An RC only talks when a user acts, so an idle RC is `silent` too: `silent` means no crash and no disconnect, not a wedged parser. In-step parsing is read from the shots (player count rising, dialogs opening on the injected values) and from `rc-widths.plan`. |
 | `xwd2png.py` | Converts the `xwd` screenshots. |
@@ -94,6 +96,35 @@ On some runs the 6.03r7 client never draws the tile layer, and the screen stays 
 digits then draw over each other, which breaks the canary. `run603.sh` waits until the
 session is up, checks a shot of the game area, and starts the whole run again if it is black
 (up to four tries, recorded in `tries.txt`). `NOBLACK=0` turns this off.
+
+## Key and mouse sweep
+
+`lab/keysweep.sh CLIENT SWEEP` runs every entry of `lab/keysweep.keys` (F1–F12, Escape, the number
+row, every letter and punctuation key, Return, Space, the modifiers alone, the edit block, arrows,
+keypad, lock keys, Ctrl+letters, Alt+digits, Alt+Return, Shift/Ctrl+arrows, mouse buttons and double
+clicks on the player, the ground, an NPC and the HUD, the wheel, and Alt+F4 last) on one client. For
+each one `keysweep.py` records the visible windows and a root screen grab, marks the proxy log, sends
+the key to the game window with `xdotool`, waits 1.5 s, and records windows, screen difference
+(changed pixels and bounding box), whether the client is alive and still in its session, and the
+client→server packets between the marks. It then resets: new windows get Escape, then `n`; pause,
+item-list, map, chat and lock keys are pressed again; arrows are undone with the opposite arrow. When
+the client died, lost its session or kept a window open, the next run logs in again and goes on from
+the next key (a key that fails three runs in a row is skipped).
+
+`KEYLOG=1` adds a key logger that copies each key event and the `keydown(0..10)` bits into the
+player's chat, so they arrive in the proxy log as chat props. 2.x clients take the GS1 text NPC
+`keylog-gs1.npc` (`keypressed`, `#p(0..2)`). 4.x–6.x clients take bytecode, and the lab gserver's
+GS1 lowering has no `keypressed`, so `keylog-stub.npc` goes in the level and `keysweep.py
+--bytecode` replaces its script through the proxy (PLO_RAWDATA + PLO_NPCBYTECODE) with
+`keylog-gs2.bc.hex`, which is `keylog.gs2` compiled by seihai-core's GS2 compiler. Run each client
+once with and once without the logger (`KEYLOG=0`); `keysweep_tsv.py ROWS --clean ROWS2` takes the
+screen and window effects from the clean run, so the logger's chat bubble does not count as an effect.
+
+Lab inputs: `PROBE_ROOT` names the lab folder (default `$HOME/probelab`), so a sweep can run in its own
+folder next to other probe runs; `DISP` picks the display. For the Wine clients `WINELAB` must be a
+private copy of the Wine lab tree (marked with a `.keysweep-ok` file), because the sweep rewrites its
+start levels before each run. Raw rows, logs and screen grabs stay in `$PROBE_ROOT/out/keysweep-*`;
+only the derived tables go in the repo (`protocol/keysweep/`).
 
 ## Remote Control
 
