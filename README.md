@@ -179,6 +179,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Windows 4.04r2 3D filtering](torque/404r2-resource-filter.md) — short script-extension checks and positive native mission paths, with local-reader reachability still open.
 
 - [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.
+- [Which gmap readers take `HEIGHTS`](formats/gmap-heights-by-component-2026-11-19.md) — the 3D engine components and the merged 6.x client read per-level heights; the 4.x/5.x Linux 2D engine does not.
 
 - [macOS extracted-resource identity](version-profiles/macos-resource-identity.md) — regular-file comparison within the v3/v5 archive groups, with historical-label and container limits retained.
 

@@ -116,7 +116,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#602 | Code width of `Z3-V1.02` | Read | 11 bits, read only by the 1998 Java games | [inf] (formats/level-binary.md#z3-v1-differences) |
 | E#603 | Whole tiles and fractions in level records | Read | link boxes are fractional, record positions whole | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 | E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| E#606 | `HEIGHTS` in gmaps beyond the read builds | Read | all 4.x and later readers accept both forms | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
 | E#608 | How many `arrays.dat` lists make a tile passable | Read | two lists in the old-mode path | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -519,19 +518,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Best guess | Each reader keeps its own rule, so a file with signs, a blank line and `HEIGHTS` reads differently by build; a writer that targets old clients should put nothing after the signs. Confidence: high | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
 | Settles it | One such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
 | Outlook | Lab | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
-
-### E#606 Whether a gmap carries `HEIGHTS` blocks
-
-**Question.** Whether gmaps hold per-level `HEIGHTS` blocks as well as the coarse `HEIGHTMAP`, beyond the builds already read [doc] (protocol/format-notes-from-salvage.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Windows 4.04r2 reads both `HEIGHTMAP` and named per-level `HEIGHTS` inside a gmap; an archive-labelled Mac 4.04r2 fixture contains both, and the native readers in four Mac PowerPC builds handle both. `HEIGHTS` is not confined to level files (→ §3.2.4) | [bin][file] (formats/gmap-heights-404r2.md); [bin] (formats/gmap-heights-mac-ppc.md#the-reader-in-all-four-builds) |
-| Historical claim | `HEIGHTS` belongs to level files and `HEIGHTMAP` to the generator gmap; read as exclusive placement, this is too broad | [bin] (formats/grmap001.txt); [srv] (formats/gmap.md); [bin][file] (formats/gmap-heights-404r2.md) |
-| Open | The salvage author's intent, rendering, server support and the original Windows fixture packaging | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
-| Best guess | Every 4.x and later gmap reader accepts both forms. Confidence: moderate | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
-| Settles it | The gmap reader of one 5.x and one 6.x build | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
-| Outlook | Read | [inf] (formats/gmap-heights-404r2.md#correction-and-limits) |
 
 ### E#608 How many `arrays.dat` lists make a tile passable
 
@@ -1565,6 +1551,17 @@ Whether two descriptions of the client's listserver frames describe the same byt
 | Claim B | The classic Server Lister ELF reads an edition line (id 0) and an account line (id 1) and ignores any other line; no version token, no cipher | [bin] (tools/classic-tools/serverlist3.md) |
 | Settled | The two describe one layout. Both use a big-endian 16-bit length, a zlib body and newline-separated lines whose first byte is the id plus 32. The edition line is the `newmain` line (the ELF selects rows whose edition contains that text), and the account line is 2.17's id 1. The ELF ignores 2.22's id 7 line, so "no version token" and `GNW30123` describe two listserver generations, not a disagreement about one frame | [bin] (tools/classic-tools/serverlist3.md); [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
 | Verdict | Settled by matching the two field layouts against held captures; inferred, not measured, in the sense that no single capture was replayed into the Server Lister ELF | [inf] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
+
+### E#606 Whether a gmap carries `HEIGHTS` blocks (settled)
+
+Whether gmaps hold per-level `HEIGHTS` blocks as well as the coarse `HEIGHTMAP`, beyond the builds already read, was open; a read of the gmap parser in each engine component settled it [bin] (formats/gmap-heights-by-component-2026-11-19.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Windows 4.04r2 and four Mac PowerPC builds read both forms; the best guess was that every 4.x and later gmap reader does | [bin][file] (formats/gmap-heights-404r2.md); [bin] (formats/gmap-heights-mac-ppc.md#the-reader-in-all-four-builds) |
+| Settled | Support follows the engine component, not the version. The Linux 2D engine library, one identical file in 4.04r2 to 5.12, reads only the level-name grid and has no `HEIGHTMAP` or `HEIGHTS` section. The 3D components (Windows `GraalEngine.dll` and `Graal3DEngine.dll` in 4.20r8 and 5.00r7, the Linux 4.20r6 3D binary) and the merged 6.03r7 client read both. 6.03r7 also adds `NOAUTOMAPPING` and `MINIMAPIMG` | [bin] (formats/gmap-heights-by-component-2026-11-19.md) |
+| Verdict | Verified at the token level: whether each parser has the section, not how each stores it. The best guess was wrong | [bin] (formats/gmap-heights-by-component-2026-11-19.md) |
+| Left over | Rendering, server support and the salvage author's intent | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
 
 ### E#607 Leftover lines in the protocol cheat sheet (settled)
 
