@@ -158,8 +158,8 @@ third loopback) so `nc-core.plan` runs on it while the game socket is untouched.
   `location` and the server logged no "unknown message", so `msgPLI_NPCSERVERQUERY` ran; the
   `== "location"` theory is wrong. The silent drop is in `NPCServer::sendNCLoginToPlayer`, which
   returns on `!isRC()` or (with `npcrights` on) `!hasRight(PLPERM_NPCCONTROL)`. `isRC()` is true for
-  the RC game session, so the guard that failed is the rights check: `hasRight` is `adminRights & right`
-  and `PLPERM_NPCCONTROL = 0x80000`. The root cause is a **lab-harness config error, not a server
+  the RC game session, so the guard that failed is the rights check: `hasRight` tests the
+  `PLPERM_NPCCONTROL` bit of `adminRights`. The root cause is a **lab-harness config error, not a server
   defect**: the harness (`runrc.sh`) wrote the right as an `ADMINRIGHTS 1048575` line into the account
   file, but `FlatFileAccountLoader` fills `adminRights` from the **`LOCALRIGHTS`** key (source: the
   loader reads/writes `LOCALRIGHTS`; **there is no `ADMINRIGHTS` key**). The line was silently ignored,
