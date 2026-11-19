@@ -518,7 +518,7 @@ tools/tools-coverage-2026-11-14.md	excluded		11	coverage audit of the tools fold
 torque/304-adventure.md	cited	10	10	§10.1.4 carries the session in one row; mouse, chat, the local-level magic gate, gmap keys and the console methods stay in the note
 torque/304-audio-ui.md	cited	10	10	§10.1.4 carries fmod in one row; the extension split, volume prefs and the microphone control stay in the note
 torque/304-draw.md	cited	10	10	§10.1.4 carries the type family in one row; gani words, single-direction names and polygon rules stay in the note; exact304 wrapper constants/key-container limits carried in10.11
-torque/304-tile-types.md	pending		10	3.04 tile-type lists compiled into the executable, the walk test per sheet type and tiledefs sheet choice; to be folded into §10.1.4 beside 304-draw.md
+torque/304-tile-types.md	cited	10; E	10; E	
 torque/304-net.md	cited	10	10	§10.1.4 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
 torque/304-npcs.md	cited	10	10	§10.1.4 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note; selected304 local value-helper branches/limits carried in10.12
 torque/4208-engine.md	cited	10	10	§10.1.5 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
@@ -545,9 +545,9 @@ torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered 
 torque/network.md	cited	10	10	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
 torque/scripting.md	cited	10	10	
-torque/lab-2026-11-12-udp-trace.md	pending		10	lab trace of the 5.12 Torque UDP session; to be folded into §10 with udp-session.md
-torque/udp-session.md	pending		10	client-side walk-through of the Torque UDP session with the 2026-11 lab results and test vectors; to be folded into §10 with the pending real-client trace
-torque/protocol19-server.md	pending		10	server side of protocol 19 past the handshake (mission start, datablocks, Camera control object, moves); to be folded into §10 with the real-client run
+torque/lab-2026-11-12-udp-trace.md	cited	10; E	10; E	
+torque/udp-session.md	cited	10; E	10; E	
+torque/protocol19-server.md	cited	10; E	10; E	
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
