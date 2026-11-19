@@ -168,6 +168,7 @@ A compiler that must run on every client from 4.03r3 follows four rules [bin][ca
 | --- | --- |
 | Do not emit 11 (`waitfor`); it is not dispatched before 4.20r8 | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
 | 48 and 49 run only on 5.00r7 and 5.12, and 54 and 121 only from 5.00r7; emitting any of them breaks 4.x | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
+| on 5.00r7, 54 consumes object, member name and value (pushed in that order); 49 builds its list in reverse push order; 48 takes name/value pairs (name pushed first) but keeps taking them until two or fewer values remain, whatever its count (→ App. E#209) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) |
 | 0, 160–162, 164 and 185–188 are never portable | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
 | The folds 200–242 are made by each client after decode; a compiler never writes them | [bin][cap] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
 

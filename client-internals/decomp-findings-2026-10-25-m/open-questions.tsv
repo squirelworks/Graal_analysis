@@ -1,6 +1,6 @@
 question	status	note
-the object list with two flags and a player-sized box (checked only with a client option on)	open	found in the blocking test; what it holds was not identified
-the 1.5 x 2 box list with an enabled flag (x + 0.25 to x + 1.75, y to y + 2)	open	found in the blocking test; not identified (signs, baddies, something else)
+the object list with two flags and a player-sized box (checked only with a client option on)	settled	the level's players; the 'option' is a temporary flag set by a few movement routines (static-reads-appendix-e-2026-11-20-c.md)
+the 1.5 x 2 box list with an enabled flag (x + 0.25 to x + 1.75, y to y + 2)	settled	the level's bombs (static-reads-appendix-e-2026-11-20-c.md)
 NPC shape blocking (rectangle versus per-tile shapes)	open	two shape kinds are read; the per-tile one compares a tile type to 20
 speed factors other than 1.0 and 1.2	open	slower factors exist for swimming and carrying (0.2, 0.4, 0.8); the 0.8 case depends on a carried object; not tied to states
 the push/pull block probes	open	a separate probe set; not read
