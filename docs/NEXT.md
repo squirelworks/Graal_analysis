@@ -70,6 +70,13 @@ macOS CI is paused until the polish stage.
 
 - [x] **RC props tail / 76 byte / PLO 124 (status).** ~~Which count is flags?~~ Tail shape and 124 discard settled; counts + 76 byte + 124 layout still need lab/S. [Note](../protocol/rc-props-flags-status.md); gap #42; E#420/E#421.
 
+- [ ] **Fuzz the Remote Control clients.** Harness is in place: `gen5probe.py` picks the RC/NC staff logins (gen 2 plain-zlib and type-6 gen 5), `tools/probe/rccanary.py` is the RC liveness canary, and `tools/probe/lab/runrc.sh` + `rc-core.plan` / `rc-widths.plan` drive a run (covered by `selftest.py`). [Harness](../tools/probe/README.md#remote-control).
+  - [x] ~~`rc2004` (2004 Delphi, gen 5) `rc-core`; `rc3` (2015, gen 5) `rc-core` + `rc-widths`.~~ No crash, no desync on either. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [ ] A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.
+  - [ ] `rc205` (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.
+  - [x] ~~`rcpre` (pre-2002 gen-2, rc8212001 / GSERV022) `rc-core`.~~ gen-2 login detection confirmed on a real client; no crash/desync. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [x] ~~RC-embedded NC socket (2002/05/02 RC, GSERV023 + NCL11012) via ncprobe.~~ NC login accepted, 45 packets injected, no crash. [Note](../protocol/rc-fuzz-2026-11-19.md). The first runs saw no `PLO 79` back for `PLI_NPCSERVERQUERY` (94); traced to a harness bug, **not** a GServer-v2 bug — `runrc.sh` set `ADMINRIGHTS` where the flat-file loader reads `LOCALRIGHTS`, so the account lacked the NPC-Control right and `sendNCLoginToPlayer` dropped it. Fixed in `runrc.sh`; with `LOCALRIGHTS` set the server answers 94 with 79 natively. No gsv2 issue to file.
+
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 
 - [x] **PLO 108 sub 1 / 168 focus status (#43).** ~~Who reads sub 1; is 168 login done?~~ 168 = one-shot flag (name medium); sub 1 no visible effect on 6.03r7 (#254 lab); reader still open. [Note](../protocol/plo108-168-focus-status.md).
