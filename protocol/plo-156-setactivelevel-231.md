@@ -80,10 +80,11 @@ a level when the action arrives. **[inf]**
   ordinary trigger action from the player. **[srv]**
 - To test it: start 2.31 with a `graal://` link that names the lab server and has text
   after it, then watch for the trigger action after the first 156. The probe proxy logs
-  it as a `C>S` line with id 38. That lab run is still open (issue #647).
+  it as a `C>S` line with id 38. Confirmed in [the 2026-11-19 lab](lab-baddyprops-ganiscript-156-2026-11-19.md#231-start-parameters-after-156-647). **[lab]**
 
 ## Open
 
-- [ ] Lab: start 2.31 under Wine with `graal://<lab server name>/hello` and confirm the
-  `PLI_TRIGGERACTION` after the first 156, and that a second 156 sends nothing.
+- [x] ~~Lab: start 2.31 under Wine with `graal://<lab server name>/hello` and confirm the
+  `PLI_TRIGGERACTION` after the first 156, and that a second 156 sends nothing.~~ Confirmed in
+  [the 2026-11-19 lab](lab-baddyprops-ganiscript-156-2026-11-19.md#231-start-parameters-after-156-647).
 - [ ] Whether the extra flag on the 2.31 gmap lookup changes anything a player can see.

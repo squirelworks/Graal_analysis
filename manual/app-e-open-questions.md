@@ -50,7 +50,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#18 | Mobile clients' outer framing and cipher | Lab | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#20 | 2.31's extra step on `PLO_SETACTIVELEVEL` (156) | Read | it re-binds the gmap neighbour state to the new active level | [inf] (protocol/unknowns-ledger.md) |
-| E#21 | Whether a compiled gani script (134) runs | Lab | yes, on 4.x to 6.x, like a class body | [inf] (protocol/probe-targets-2026-11-18.md) |
+| E#21 | Whether a compiled gani script (134) runs | Lab | runs on 6.03r7 (lab); 4.x and 5.x not run | [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
 | E#22 | What `DEFAULT*` lines in `PLO_LOADGANI` (195) do | Lab | nothing in play: they are the gani editor's preview images | [inf] (protocol/probe-targets-2026-11-18.md) |
 | E#23 | What prop 81 changes in the player list | Lab | the folder or group a player is listed under | [inf] (protocol/unknowns-ledger.md) |
 | E#24 | Baddy props 11 and up on 6.03r7 | Lab | an unknown id ends the message, as for NPC props | [inf] (protocol/unknowns-ledger.md) |

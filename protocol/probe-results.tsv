@@ -812,3 +812,12 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	mac-6.015	s2c	110	-	110 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-c1
 2026-11-19	mac-6.015	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-text
 2026-11-19	mac-6.015	s2c	110	-	110 hex:ff00ff00	yes	yes	-	unknown PLO; same-frame canary landed	core-mac	plo110-bin
+2026-11-19	linux-6.03r7	s2c	2	5	baddy: 5=9 (mode 9)	yes	yes	-	baddy removed	kc	kc-01
+2026-11-19	linux-6.03r7	s2c	2	11	baddy: 11, then 5=9	no	yes	-	baddy stays; id 11 ends the message	kc	kc-02
+2026-11-19	linux-6.03r7	s2c	2	20	baddy: 20, then 5=9	no	yes	-	baddy stays; id 20 ends the message	kc	kc-04
+2026-11-19	linux-6.03r7	s2c	134	-	RAWDATA + name + valid compiled GS2 gani	-	yes	PLI 2 chat from onCreated; 23; 157	script runs: onCreated, then onTimeout about 3 s later	gani646	-
+2026-11-19	linux-6.03r7	s2c	134	-	the same with one bytecode byte flipped	-	yes	none	no script event, no crash	gani646	-
+2026-11-19	linux-6.03r7	s2c	134	-	name only, empty script	-	yes	none	no events, no crash	gani646	-
+2026-11-19	win-2.31 (wine)	s2c	156	-	first 156, client started from graal://<lab world>/hello	-	yes	PLI 38 npc 0, x 0, y 0, serverstartparams,hello	one trigger action	link647	-
+2026-11-19	win-2.31 (wine)	s2c	156	-	second 156 (injected)	-	yes	none	no second trigger action	link647	-
+2026-11-19	win-2.31 (wine)	s2c	156	-	first 156, no link	-	yes	none	no trigger action	nolink647	-
