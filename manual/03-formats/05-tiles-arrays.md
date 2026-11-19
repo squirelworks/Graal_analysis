@@ -145,7 +145,7 @@ One packaged `arrays.dat` was read exactly to settle which tile ids are in its f
 | first lists | 934 and 116 internally unique values; 15 shared; union 1,035 values within 0–4095; list 1 contributes 101 values absent from list 0 | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | Bush values | 2, 3, 18 and 19 are absent from both lists, also in all 25 successfully parsed distinct inputs; file membership does not establish runtime collision | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | collection validation | 53 occurrences, 26 hashes; 25 parse completely and reproduce original bytes on re-encoding; an unsupported 39ster-labelled representation is excluded; other inputs have different shapes and counts | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance and one-list versus two-list consumption remain open → App. E#100, E#101, E#608 | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance remains open → App. E#100, E#101; the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ App. E#608) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
 
 ## 3.5.4 arrays2.dat
 
