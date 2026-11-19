@@ -21,6 +21,15 @@ Every client-to-server message (PLI) follows the same few rules. The table state
 | Before a long id 93 payload, 4.20r8 and 5.00r7 send id 50 with an `i3` length | 4.20r8, 5.00r7 | [bin] (protocol/v4x-clients.md#cipher-and-framing); [bin][inf] (protocol/v5x-clients.md#client--server-ids-500r7) |
 | A server re-emits most level-object PLIs to the rest of the level with `s player id` added in front; the PLO forms are in §2.5 | server | [srv] (protocol/packet-layouts.md#combat-and-objects-both-directions) |
 
+What a server does with an id it does not handle is its own choice, and clients do not depend on it. Our GServer-v2 build (GS2Emu 4.0.0-beta) was swept with every id 0–223 and an empty body from a live 6.03r7 session; the rows record that build's behaviour as a reference point for a clean-room server [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build).
+
+| Observation | Server | Source |
+| --- | --- | --- |
+| Handled: 0–41, 44, 46–48, 50, 80, 81, 130, 152, 154, 157–159, 161 and 223; every other id from 18 to 223 is unknown to it, the RC range 51–79 included | GServer-v2 | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| An unknown id is logged and counted; after three, the server sends `PLO_DISCMESSAGE` ("Disconnected for sending invalid packets.") and drops the client, and 6.03r7 logs in again by itself | GServer-v2 | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| Four handled ids do not check an empty body: 17 (`PLI_BADDYADD`) reads its missing fields as `0 − 32` and makes a type-224 baddy that ends the 6.03r7 session; 31, 41 and 130 log junk values and continue. A server should check each body's length, and a baddy's type, before acting | GServer-v2 | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| Empty 34 gets `PLO_FILEUPTODATE`, empty 159 gets 105 and 106, and 39 (`PLI_TAMPERCHECK`) gets no reply and no log line (→ App. E#320) | GServer-v2 | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+
 Whether a level-object PLI also goes, or only goes, over the UDP peer channel is in → §2.9.
 
 ## 2.4.2 Ids sent by build

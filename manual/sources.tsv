@@ -823,7 +823,7 @@ tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11
 server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3; E	6; 3; 8; E	Hubserver v0.3.7 vs v0.3.6 in §6.2.4; Delteria layer counts and the GR-V1.05 negative in §3.1.3.2; script dialects in §8.3.1
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
-protocol/probe-targets-2026-11-18.md	cited	2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	lab rows in §2.6.6 and §2.5.10 (props, widths, other-player and NPC streams, unknown PLO, 2.x NUL frames), 195 in §2.5.6, the GServer-v2 PLI sweep in §5.3.3; App. B rows 77-83; E#320
+protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3; E	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
