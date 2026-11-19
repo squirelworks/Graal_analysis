@@ -1742,3 +1742,9 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	win-2.31 (wine)	s2c	156	-	first 156, client started from graal://<lab world>/hello	-	yes	PLI 38 npc 0, x 0, y 0, serverstartparams,hello	one trigger action	link647	-
 2026-11-19	win-2.31 (wine)	s2c	156	-	second 156 (injected)	-	yes	none	no second trigger action	link647	-
 2026-11-19	win-2.31 (wine)	s2c	156	-	first 156, no link	-	yes	none	no trigger action	nolink647	-
+2026-11-19	win-4.20r8 (wine)	s2c	134	-	RAWDATA + name + valid compiled GS2 gani	-	yes	23; 157; PLI 2 chat from onCreated and onTimeout	script runs: onCreated, then onTimeout	gani646-420	-
+2026-11-19	win-4.20r8 (wine)	s2c	134	-	the same with one bytecode byte flipped	-	yes	none	no script event, no crash	gani646-420	-
+2026-11-19	win-4.20r8 (wine)	s2c	134	-	name only, empty script	-	yes	none	no events, no crash	gani646-420	-
+2026-11-19	win-5.24r4 (wine)	s2c	134	-	RAWDATA + name + valid compiled GS2 gani	-	yes	23; 157; PLI 2 chat from onCreated and onTimeout	script runs: onCreated, then onTimeout	gani646-524	-
+2026-11-19	win-5.24r4 (wine)	s2c	134	-	the same with one bytecode byte flipped	-	yes	none	no script event, no crash	gani646-524	-
+2026-11-19	win-5.24r4 (wine)	s2c	134	-	name only, empty script	-	yes	none	no events, no crash	gani646-524	-
