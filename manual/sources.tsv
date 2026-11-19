@@ -823,14 +823,14 @@ tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11
 server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3; E	6; 3; 8; E	Hubserver v0.3.7 vs v0.3.6 in §6.2.4; Delteria layer counts and the GR-V1.05 negative in §3.1.3.2; script dialects in §8.3.1
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
-protocol/probe-targets-2026-11-18.md	cited	2.5; 2.6; B; E	2.6; 2.5; B; E	6.03r7 lab rows in §2.6.6 and §2.5.10; App. B rows 77-83; lab row in E#320 (server PLI sweep)
+protocol/probe-targets-2026-11-18.md	cited	2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	lab rows in §2.6.6 and §2.5.10 (props, widths, other-player and NPC streams, unknown PLO, 2.x NUL frames), 195 in §2.5.6, the GServer-v2 PLI sweep in §5.3.3; App. B rows 77-83; E#320
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3; E	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5; E	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
-client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
-protocol/unknowns-ledger.md	cited	E	E	
-protocol/v6113-login-lab-method.md	cited	E	2; E	Two-gate 6.113 login in a loopback lab; deterministic conf.gs request; forge/replay/trust-anchor analysis and the from-outside method; to fold into the protocol chapter
+client-internals/hypervisor-live-debug.md	cited	E	E	host-side QEMU/KVM debugging method, cited as the method row of E#616
+protocol/unknowns-ledger.md	cited	E	E	running tally of the probe work (status per id and prop), cited for the probe status in App. E
+protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login: two gates, deterministic request, trust-anchor path, in §2.10.8 and E#616
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
-live-runs/open-issues-2026-11-19/README.md	cited	E	2.7; 4.1; 4.3; E	open points carried in App. E (E#4, E#23, E#25, E#316, E#324, E#614); the settled results go to §2.7.10, §4.1.8 and §4.3 in the Part II and IV prose pass
+live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2.05r2 drop control (§4.5.5), 6.03r7 timer repeat (§4.1.7), 2.22 login file checks with answers (§2.7.10), the #398 action list (§4.11.14); open points carried in App. E (E#4, E#23, E#25, E#316, E#324, E#614); the 1.21 kill reward goes to §4.3 in the Part IV pass
