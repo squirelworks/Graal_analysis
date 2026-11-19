@@ -585,6 +585,14 @@ Profile [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids):
 | Start window | Nick, Language, Options, Tutorial, Account, Password, Get Account, Start; tabs Graal Gold, Classic, Graal 3D, Hosted with a direct-connect field; options Graphics, Audio, General; no editor | adds a 3D mode, snow and xmas themes, the RC file browser and script uploads, server-side class scripts (131–134); prefs ship with `noudp = 1` | [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids) |
 | GS1 | 496 names; every 2.05 command except `putobject`, `setbackpal`, `setbody`, `setbacktile`, `drawovertrees`, `setbacktile2` | not counted | [bin][file][cap] (version-profiles/3.04-3.153.md#client--server-ids) |
 
+A later independent static read of the Linux 3.04 ELF agrees with the profile above and adds two details [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md#identity--high-binary--medium-runtime-version-string).
+
+| Rule | Source |
+| --- | --- |
+| The property codec covers ids 0 to 76 with gaps at 25, 27 to 30, 34, 36, 50 and 51, as in the profile; ids 8 and 9 normalise the sword and shield image names | [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-properties.md#wire-codec--high) |
+| Compiled `.code` scripts are wrapped by the client's own `descipher`: padded with newlines to a multiple of 8, prefixed with a 4-byte length, each block mixed with an LCG keystream (the generation-5 multiplier, increment 1) and a block transform, and closed with an 8-byte additive checksum checked on load. It is not the `GRESCR01` container and not the game socket's cipher (→ §3.7.5) | [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md#3-descipher-code-scripts-not-the-game-socket) |
+| No eight-character token or version literal is stored in the clear; `3.0.4` is only the file name, and the version reaches the server list through `getVersionString` (→ §1.2) | [bin] (client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md#identity--high-binary--medium-runtime-version-string) |
+
 Lab runs: 3.04 on Linux in a loopback namespace, 3.153 on Mac OS X 10.4 in qemu [cap] (version-profiles/lab-304-linux-2026-10-30.md#setup-for-repeating-it); [cap] (version-profiles/lab-mac-tiger-2026-10-31.md#3153).
 
 | Rule | Source |
@@ -618,6 +626,15 @@ From 4.x, Windows Graal is two programs: a Delphi launcher and a C++ engine DLL.
 | The 4.04r2 installer is a Thinstall (2003) virtualised bundle: an outer loader found through the PE `LoaderFlags` field, an inner stub, and a compressed directory of 151 records (14 folders) with blocks tagged stored, LZ77, LZ77 XOR 0xF0 or range-coded; the extracted files verify against their signatures (→ §11) | [bin] (protocol/v4x-clients.md#how-the-installer-is-packed) |
 | 4.04r2 ships `Graal4.exe`, `GraalEngine.dll` (3 March 2006), `Graal3DEngine.dll`, `fmod.dll`, `ExeReplacer_temp.exe` and `graalv4_installfiles.txt`; its `license.graal` and `pics1.png` are byte-identical to Mac 4.20r6's | [bin][file] (protocol/v4x-clients.md#what-404r2-ships) |
 | `ExeReplacer` swaps in a new executable and restarts it for the `GRPKG001` update system; packages live in `localversions.txt` and are driven by S→C 105, 106, 193, 196 (→ §8.3) | [bin][inf] (protocol/v4x-clients.md#what-these-clients-are); [bin] (protocol/v4x-clients.md#file-formats) |
+
+#### What the 4.2.0.8 strings add
+
+An independent static read of the 4.2.0.8 launcher and engine confirms the split above and the classic line framing: newline-delimited records whose first byte is the id plus 32, with no send-slot remapper. It adds the rules below. Its functional labels for individual client-to-server ids are guesses from the send wrappers and are not adopted here; the ids themselves match the 4.x sets in → §2.4 [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md#framing--high-cleartext-pl--high-voice-hcrypt--low-tcp-length-header); [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md#pli-client--server--high-ids--medium-names).
+
+| Rule | Source |
+| --- | --- |
+| A `graal://` or `graal3://` link is split at `/`: the first segment is a protocol token passed to `setGraalProtocolString`, the rest is kept separately; the production token is supplied at run time, not stored | [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md#version--protocol-token--high-parser--low-production-value) |
+| The voice path is separate from the game line: an HVDI packet's type sits in the low 6 bits, `0x40` adds a 2-byte big-endian sequence and `0x80` marks a body encrypted by the `hcrypt` functions | [bin] (client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md#voice-path-hvdi--separate) |
 
 #### Third-party engines
 
@@ -701,6 +718,19 @@ The 5.x builds change how they are packaged more than how they play. The rules f
 | License files: 5.00r7 four (`license.graal`, `sig.graal`, `sig.graallib`, `sig.license`); 5.12 two (`license.graal`, `sig.license`); from 5.24 none, with the three login hosts compiled in. Every Windows build still connects to the `Login` server on 14900 | [bin][file][cap] (protocol/v5v6-windows-unpacked.md#login-server-and-license); [bin] (protocol/v5x-clients.md#license-file-and-signatures) |
 | The 5.00r7 "CRC patch" is third-party: 8 changed bytes in the license loader skip the not-found, invalid and five-line checks, so any `license.graal` is accepted | [bin] (protocol/v5x-clients.md#the-crc-patch-third-party) |
 | `GR-V1.05` is new in 5.00r7 (absent from 4.20r8): GCHAR layer count plus one 13-bit board per layer; the writer emits it only when layers > 1 (count capped at 223). Stock 5.00r7 web-level cache lab confirms count bytes `0x22`/`0x23` and no pad; heights on that path stay inconclusive (→ §3.1, → §3.8). `GRESCR01` caches DES-encrypted class and weapon scripts whose key arrives in clear with each script (S→C 140, 197; → §3.1, → §8.3) | [bin] (formats/gr-v105-500r7.md); [lab] (formats/gr-v105-500r7-cache-lab.md); [bin] (protocol/v5x-clients.md#file-formats) |
+
+#### 5.30r3 and 5.31r4: one executable
+
+An independent static read of the unpacked 5.30r3 and 5.31r4 images finds the shape that 5.24 began: one executable with no engine DLL and no Torque names, built on `quattro_lib` (SHA-1, DES and triple DES sources). The rules below are what it adds or confirms [bin] (client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md#late-5-is-one-exe--high); [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-identity.md#product--high).
+
+| Rule | Source |
+| --- | --- |
+| The framing is the classic generation-5 family: records may not contain a newline ("Illegal characters in the outgoing data") except two internal ids that take a length wrap, the buffer flushes above 4095 bytes, and the receiver reads a 2-byte big-endian length with an extended path for `0xFFFF`. Errors say "Received illegal data (1)" or "(2)", the wording of 6.03, not 6.11's "invalid" | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md#exact-wire-layout-5314-ghidra--high) |
+| There is no connector script, no AES selector, no RC4 helper exports and no named send slots: those arrive in 6.03 and 6.11 (→ §1.9.4, §2.10). `RC4` appears only in a crypto library's algorithm list | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md#cipher--medium) |
+| No eight-character token is stored in the clear, so where these builds build their token is open | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-late-identity.md#version--login-token--medium-absence-high) |
+| The script player properties come from two tables rather than one comma list (6.03 has the list, → §1.9.4); the names run from `account`, `guild` and `communityname` through the body, stats, pose, attachment and social flags to the six `peltwith…` carry tests | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-properties.md#script-facing-names--high-late-5) |
+| The property applicator switches on ids 0 to 82; only head (11), chat (12) and gani (17) are named by strings in their arms | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-properties.md#wire-property-ids--high-switch-exists--high-three-names) |
+| The same read calls late 5.x a GS1-only client with no opcode VM, from the absence of the string `GS2`. That does not hold: the case-set read finds the GS2 dispatcher with folds 234 to 242 already in 5.30r3 (→ §8.4.4). It also reports no `fixedudpport` string, where the string probe found it (→ §1.9.4) | [bin] (client-internals/v3-v5-protocol-pass/protocol/v5-script.md#kind--high) |
 
 #### Login, tokens and wire
 
@@ -931,7 +961,7 @@ A plain string probe of seven client images, Linux 3.04 to Windows 6.113, record
 | Torque's console and object names | 3.04 only | from the 4.20 split the 2D engine has no Torque object system (→ §10) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `setGraalProtocolString` | the 4.20 host and engine only | a 4.20 name; 5.3x and 6.x keep only the `graal://` and `graal3://` prefixes | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `hvdi…`, `hcrypt…` | the 4.20 engine only | voice codec names, not the game cipher, which on 4.x is generation 5 (→ §2.2) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
-| `fixedudpport`, `noudp` | 3.04 to 5.31 | the UDP preferences leave in 6.x, which keeps only the scripted datagram hooks (→ §2.9) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| `fixedudpport`, `noudp` | 3.04 to 5.31 | the UDP preferences leave in 6.x, which keeps only the scripted datagram hooks (→ §2.9); a separate read of 5.31r4 missed them, so the probe's result is the one kept (→ §1.8.6) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | a default login host and its port | 5.30r3, 5.31r4 | stored side by side; whether they are used when `license.graal` is missing or bad is not checked (→ App. E#619) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `GSERVL01`, `Z3-V1.04` | up to 5.31 | gone from both 6.x images; `GRMAP001`, `GWEBL001` and `GR-V1.04` stay in all but the 4.20 host | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | "Received illegal data (1)", "(2)" | 5.30 to 6.03 | 6.11 says "Received invalid data" with a third case, which belongs to its server-defined header path (→ §2.10) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
