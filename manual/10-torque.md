@@ -490,6 +490,48 @@ The rules below give how the server drives the phases and how the client answers
 
 The retained Windows 4.04r2 review traces native datablock/ghost/lighting phase dispatch and network-class construction into the mission group, with a deferred-preload path. This is positive network-mission evidence; separate local mission/script readers remain unresolved (→ App. E#502, → App. E#503). No new 3D session or file-loading trace was obtained. [bin] (torque/404r2-resource-filter.md#positive-native-mission-path)
 
+### 10.3.7 The session from a client's side
+
+The UDP session has been run end to end with a real 5.12 client against a lab server, through login step 6 and a drawn 3D view; 4.20r6's protocol 21 shares its packet shapes. The rules below are what a clean-room client needs beyond the layouts above [lab][bin] (torque/udp-session.md#1-two-connections-one-session).
+
+| Rule | Source |
+| --- | --- |
+| The 3D decision is made on the server name alone; no login type or packet flag says "3D". A `PLO_SERVERWARP` to a name starting `3 ` opens the two links as picking it from the list does | [bin] (torque/udp-session.md#1-two-connections-one-session) |
+| The challenge request leaves before, or in the same millisecond as, the TCP connect, so a client must not wait for the TCP login before starting the handshake | [run] (torque/udp-session.md#ordering-and-matching) |
+| A server ties the UDP link to the TCP session by the account name in the connect request and the source address. A 5.x guest sends `guest` there, not its assigned guest name. The client repeats the connect request until it is accepted, and gives up after about 15 s with "The connection to the Graal3D server couldn't be established." | [lab] (torque/udp-session.md#ordering-and-matching) |
+| For the 5.12 3D view to show, every TCP file request the world causes must be answered, with the file or `PLO_FILESENDFAILED`, because login step 6 waits for them all; and the "Connecting..." window closes only on `PLO_SERVERLISTCONNECTED` | [lab] (torque/udp-session.md#what-a-512-client-needs-on-tcp-for-the-3d-view-to-show) |
+| Bits are packed least significant first. Strings inside data packets carry one extra flag before the usual string: set, it reuses a prefix of the previous string in the same packet. This holds for protocol 24 in both directions; a writer may always send the flag clear | [lab] (torque/udp-session.md#2-bit-stream-conventions) |
+| Protocol 9 (Linux 3.04) is stock TGE 1.x networking with no Graal changes and ships no 3D scripts; no 3D server for it is known | [bin] (torque/udp-session.md#10-protocol-19-3153-404r2-what-differs) |
+
+### 10.3.8 A full 5.12 session, decoded
+
+A real Windows 5.12 client was traced from inside its own process against a lab server holding a ground, a cube, sun, sky, a camera and one GS2 movement weapon. All 319 datagrams of an idle session decode with the layouts above, and a second run of 583 datagrams added walking and closing. The rules below are what the traces settle [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles).
+
+| Rule | Source |
+| --- | --- |
+| Order: challenge, response, connect request (with `guest` and the nickname), the TCP login burst, the accept (10 object and 9 event classes, protocol 24), then the client's first data packet with its rate pair (32 ms, 450 bytes). The server never sent a rate field | [lab] (torque/lab-2026-11-12-udp-trace.md#timeline) |
+| The mission acks go as `RemoteCommandEvent` plain strings, not tags; every client event is guaranteed-ordered | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| The client acks every server data packet at once with a 5-byte ack packet; 124 of its 191 data-link packets were acks. Idle, it sent a data packet every 1.7 s on average, the server about every 0.9 s | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| Padding bits are not always zero, so a reader stops at the last field. Connect sequence 0 is valid | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| On taking its control object the client echoes that object's shape, transform and flags once; a zero rotation comes back as axis (1, 0, 0). Later packets carry an empty update and the position | [lab][inf] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| The client re-sends `w <weapon>` for its movement weapon about every 2.3 s, so a server must treat a repeated `w` as harmless | [lab][inf] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| The ghost index width is the bit count of the highest index in that packet | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| After the first 1.35 s the client sent nothing on TCP. Killed, it sends no UDP disconnect; the server notices the TCP close | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
+| Walking sends nothing new: the arrow keys reached the GS2 script, but every client packet stayed the same apart from counters, because protocol 24 has no moves and the client cannot move its own control object. A server has to drive the player's movement (→ App. E#505). Enter opened no chat bar in the 3D view | [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun) |
+
+### 10.3.9 Protocol 19 past the handshake: what a server sends
+
+Protocol 19 (3.153, 4.04r2) has been read but not run past the handshake. A static read of the 4.04r2 plug-in and the 3.153 mission scripts gives what a server must send, using the smallest control object these clients take, a stock `Camera`. The handshake, header, rate fields, string buffer, event lists and ghost section are those of protocol 24; the accept's class table has three types: object, datablock, event [bin] (torque/protocol19-server.md#1-what-is-the-same-as-protocol-24).
+
+| Rule | Source |
+| --- | --- |
+| A move is three optional `int16` rotations (sent only when non-zero), `int6` x, y and z with 16 for no movement, then a free-look flag and ten trigger flags; a move with no rotation is 32 bits. A `Camera` or `Player` client sends moves; only a control object with the vehicle type bit sends its own state | [bin] (torque/protocol19-server.md#3-client--server-game-section) |
+| The camera ghost must be a `ShapeBase`, or the client logs "Received unknown camera object" and drops the rest of the packet; the client drops queued moves up to the server's move ack | [bin] (torque/protocol19-server.md#2-server--client-game-section) |
+| Connection messages use TGE 1.x numbering: 0 ghost-always done, 1 ready for normal ghosts, 2 end ghosting, 3 ghost-always starting, 5 datablocks done, 6 datablocks download done. Torque3D numbers the last pair 6 and 7. Messages 0, 2, 3 and 4 before a ghost table exists are refused as "Invalid packet" | [bin] (torque/protocol19-server.md#4-connection-messages-tge-1x-numbering) |
+| A workable order: phase 1; on its ack the datablocks, then message 5; on message 6, phase 2, message 3 and the ghosts; when phase 2 is acked, message 0 and phase 3; on phase 3's ack, the control object. A ghost naming a datablock the client has not loaded drops the connection | [bin][srv] (torque/protocol19-server.md#5-mission-start) |
+| The smallest `CameraData` is 137 bits with empty names; the `Camera` ghost update and packet data carry position, two rotation angles and a mode (0 stationary to 4 orbit point) | [bin][srv] (torque/protocol19-server.md#7-cameradata--shapebasedata-nothing-of-its-own) |
+| Still unread: `ShapeBase`'s main update section and the `Player` layouts, which other players need; and whether 3.153 matches 4.04r2 here (→ App. E#506) | [bin][inf] (torque/protocol19-server.md#open) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
@@ -781,3 +823,17 @@ The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` alrea
 | server list | `onDNSResolved` and `onConnected` are logged as having no namespace when the list connects. The list showed one tab, because the lab list had one server in one category | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
 | leaving | `quit` typed in the console without parentheses is a syntax error. The client then exits and writes its prefs and key map. The password is not saved | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
 | not covered | a four-tab server list, and any in-game screen. Tutorial was not opened | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
+
+## 10.14 Linux 3.04: where tile types come from
+
+3.04 has no `arrays.dat` and no tile-type file or packet. The tile lists the 2.x clients read from `arrays.dat` are compiled into the executable as sorted lists of tile ids, and they equal 2.22's except that the water list lacks ids 1824 and 1825. Which rule judges a tile depends on the sheet type `tiledefs` picks for the level (→ §4.2) [bin][file] (torque/304-tile-types.md#short-answer).
+
+| Rule | Source |
+| --- | --- |
+| Sheet type 0, the classic `pics1.png`: a tile is walkable only if its id is in the walkable list or the water list; any other id is a wall. Off-board positions use id 632, which is in neither, so they block | [bin] (torque/304-tile-types.md#the-walk-test-onwall-and-movement) |
+| Sheet types 1 and 2, such as the offline tutorial's `picso.png`: no lists. With row = id / 16 and col = id % 16, a tile blocks when id is 32, or row is 26 or 27 with col ≥ 2, or row is in 30–47, 84–95 or 116–127, or row ≥ 128 with bit 16 of row set | [bin] (torque/304-tile-types.md#the-walk-test-onwall-and-movement) |
+| Type tests (3, 4, 5, water 11, 12, 20, ledge 21) use the matching list on sheet type 0 and fixed id ranges on types 1 and 2; a failed test falls back to the level's objects | [bin] (torque/304-tile-types.md#type-tests) |
+| `tiledefs<server>.txt` lines are `image,levelprefix,type[,x,y]`; on entering a level the longest matching prefix of type 0, 1, 2 or 5 wins, else `pics1.png` type 0. The scripts' `addtiledef`, `addtiledef2` and `removetiledefs` change the entries. The package ships only `tiledefsOffline.txt` for the tutorial | [bin][file] (torque/304-tile-types.md#how-the-sheet-type-is-chosen) |
+| So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-tile type table, the range rule on a `pics1` level, or the wrong board on a gmap | [inf] (torque/304-tile-types.md#what-this-means-for-the-rebuild) |
+| Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef` lines at login (→ App. E#507) | [inf] (torque/304-tile-types.md#not-settled) |
+
