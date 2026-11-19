@@ -1,0 +1,114 @@
+# fz: PLO_LOADGANI (195) DEFAULT* lines. Each 195 names unique files; a WANTFILE/UPDATEFILE for one shows the client
+# read the line. After each 195 the player is set to that gani (PLO 9 prop 10) and shot.
+waitsession 240
+wait s2c 9 90
+sleep 8
+drop s2c 195
+shot 00-base
+mark D1 idle: DEFAULTHEAD fzhead1.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c544845414420667a68656164312e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d01
+mark D2 idle: DEFAULTBODY fzbody1.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54424f445920667a626f6479312e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d02
+mark D3 idle: DEFAULTATTR1 fzattr1.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54415454523120667a61747472312e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d03
+mark D4 idle: DEFAULTSHIELD fzshield1.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54534849454c4420667a736869656c64312e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d04
+mark D5 idle: DEFAULTSWORD fzsword1.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c5453574f524420667a73776f7264312e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d05
+mark D6 idle: DEFAULTPARAM1 fzparam1
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54504152414d3120667a706172616d3122
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d06
+mark D7 idle: DEFAULTATTR2 fzattr2.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54415454523220667a61747472322e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d07
+mark D8 idle: DEFAULTATTR3 fzattr3.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54415454523320667a61747472332e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d08
+mark D9 walk: DEFAULTHEAD fzhead2.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:walk hex:2244454641554c544845414420667a68656164322e706e6722
+sleep 0.5
+s2c 9 c:10 str:walk
+sleep 2.5
+shot d09
+mark D10 sit: DEFAULTHEAD fzhead3.png,DEFAULTBODY fzbody3.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:sit hex:2244454641554c544845414420667a68656164332e706e67222c2244454641554c54424f445920667a626f6479332e706e6722
+sleep 0.5
+s2c 9 c:10 str:sit
+sleep 2.5
+shot d10
+mark D11 idle: DEFAULTHORSE fzhorse1.png
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c54484f52534520667a686f727365312e706e6722
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d11
+mark D12 idle: SPRITE 0 fzsprite1.png 0 0 32 32 x
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:22535052495445203020667a737072697465312e706e6720302030203332203332207822
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d12
+mark D13 idle: DEFAULTHEAD
+s2c 9 c:10 str:dead
+sleep 0.8
+s2c 195 str:idle hex:2244454641554c544845414422
+sleep 0.5
+s2c 9 c:10 str:idle
+sleep 2.5
+shot d13
+s2c 9 c:10 str:idle
+sleep 2
+shot zz-end

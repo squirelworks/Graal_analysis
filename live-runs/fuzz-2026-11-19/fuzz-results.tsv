@@ -1,0 +1,229 @@
+date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	run	shot
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:0	-	yes	C>S 15 x/y	baddy walks; the client reports its x/y/ani/dir (PLI 15) as level leader	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:1	-	yes	C>S 15 x/y	baddy walks; the client reports its x/y/ani/dir (PLI 15) as level leader	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:2	-	yes	C>S 15 x/y	baddy walks; the client reports its x/y/ani/dir (PLI 15) as level leader	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:3	-	yes	C>S 15 x/y	baddy walks; the client reports its x/y/ani/dir (PLI 15) as level leader	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:4	-	yes	C>S 15 x/y	baddy walks; the client reports its x/y/ani/dir (PLI 15) as level leader	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:8	-	yes	C>S 15 x/y	baddy walks; the client reports its x/y/ani/dir (PLI 15) as level leader	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:5	-	yes	C>S 15 ani only	ani counts down 55..0 (dying), then no more reports	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:6	-	yes	C>S 15 ani only	animates in place (ani 1..20 repeating), no x/y reports	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:7	-	yes	C>S 15 ani + one y	jumps in place (one y report), no x reports	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:9	-	yes	none	no C>S 15 reports at all for 10 s: used as the still mode for the canary below	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE)	2 c:k c:1 c:x c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:10	-	yes	none	no C>S 15 reports at all for 10 s: used as the still mode for the canary below	fz-still603-a	-
+2026-11-19	linux-6.03r7	s2c	2	5 (MODE canary)	2 c:k c:5 c:0 (after mode 10)	yes	yes	C>S 15 x/y	control: switching mode 10 -> 0 makes the client walk and report the baddy	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	10	2 c:k c:10 str:x c:5 c:0	yes	yes	C>S 15 x/y	control: string prop 10 then mode canary lands	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	7 (DIR)	2 c:k c:7 c:2 c:5 c:0	yes	yes	C>S 15 x/y	control: 1-byte prop 7 then mode canary lands	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	11	2 c:k c:11 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	11	2 c:k c:11 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	12	2 c:k c:12 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	12	2 c:k c:12 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	13	2 c:k c:13 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	13	2 c:k c:13 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	14	2 c:k c:14 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	14	2 c:k c:14 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	15	2 c:k c:15 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	15	2 c:k c:15 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	16	2 c:k c:16 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	16	2 c:k c:16 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	17	2 c:k c:17 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	17	2 c:k c:17 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	18	2 c:k c:18 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	18	2 c:k c:18 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	19	2 c:k c:19 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	19	2 c:k c:19 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	20	2 c:k c:20 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	20	2 c:k c:20 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	21	2 c:k c:21 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	21	2 c:k c:21 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	22	2 c:k c:22 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	22	2 c:k c:22 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	23	2 c:k c:23 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	23	2 c:k c:23 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	24	2 c:k c:24 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	24	2 c:k c:24 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	25	2 c:k c:25 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	25	2 c:k c:25 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	26	2 c:k c:26 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	26	2 c:k c:26 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	27	2 c:k c:27 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	27	2 c:k c:27 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	28	2 c:k c:28 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	28	2 c:k c:28 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	29	2 c:k c:29 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	29	2 c:k c:29 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	30	2 c:k c:30 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	linux-6.03r7	s2c	2	30	2 c:k c:30 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp603-a	-
+2026-11-19	win-4.20r8	s2c	2	5 (MODE canary)	2 c:k c:5 c:0 (after mode 10)	yes	yes	C>S 15 ani/dir	control: mode 10 -> 0 makes the client report the baddy (ani/dir; no x/y inside 1.6 s)	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	10	2 c:k c:10 str:x c:5 c:0	yes	yes	C>S 15	control: string prop 10 then mode canary lands	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	7 (DIR)	2 c:k c:7 c:2 c:5 c:0	yes	yes	C>S 15	control: 1-byte prop 7 then mode canary lands	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	11	2 c:k c:11 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	11	2 c:k c:11 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	12	2 c:k c:12 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	12	2 c:k c:12 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	13	2 c:k c:13 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	13	2 c:k c:13 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	14	2 c:k c:14 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	14	2 c:k c:14 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	15	2 c:k c:15 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	15	2 c:k c:15 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	16	2 c:k c:16 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	16	2 c:k c:16 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	17	2 c:k c:17 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	17	2 c:k c:17 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	18	2 c:k c:18 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	18	2 c:k c:18 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	19	2 c:k c:19 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	19	2 c:k c:19 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	20	2 c:k c:20 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	20	2 c:k c:20 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	21	2 c:k c:21 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	21	2 c:k c:21 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	22	2 c:k c:22 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	22	2 c:k c:22 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	23	2 c:k c:23 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	23	2 c:k c:23 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	24	2 c:k c:24 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	24	2 c:k c:24 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	25	2 c:k c:25 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	25	2 c:k c:25 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	26	2 c:k c:26 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	26	2 c:k c:26 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	27	2 c:k c:27 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	27	2 c:k c:27 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	28	2 c:k c:28 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	28	2 c:k c:28 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	29	2 c:k c:29 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	29	2 c:k c:29 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	30	2 c:k c:30 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	30	2 c:k c:30 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp420-c	-
+2026-11-19	win-4.20r8	s2c	2	10 (mode 10)	2 c:k c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10	-	yes	none	mode 10 baddy: no C>S 15 reports (same as 6.03r7)	fz-bp420-c	-
+2026-11-19	win-2.22	s2c	2	5 (MODE canary)	2 c:k c:5 c:0 (after mode 10)	yes	yes	C>S 15 ani/dir	control: mode 10 -> 0 makes the client report the baddy	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	10	2 c:k c:10 str:x c:5 c:0	yes	yes	C>S 15	control: string prop 10 then mode canary lands	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	7 (DIR)	2 c:k c:7 c:2 c:5 c:0	yes	yes	C>S 15	control: 1-byte prop 7 then mode canary lands	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	11	2 c:k c:11 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	11	2 c:k c:11 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	12	2 c:k c:12 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	12	2 c:k c:12 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	13	2 c:k c:13 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	13	2 c:k c:13 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	14	2 c:k c:14 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	14	2 c:k c:14 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	15	2 c:k c:15 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	15	2 c:k c:15 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	16	2 c:k c:16 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	16	2 c:k c:16 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	17	2 c:k c:17 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	17	2 c:k c:17 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	18	2 c:k c:18 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	18	2 c:k c:18 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	19	2 c:k c:19 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	19	2 c:k c:19 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	20	2 c:k c:20 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	20	2 c:k c:20 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	21	2 c:k c:21 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	21	2 c:k c:21 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	22	2 c:k c:22 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	22	2 c:k c:22 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	23	2 c:k c:23 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	23	2 c:k c:23 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	24	2 c:k c:24 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	24	2 c:k c:24 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	25	2 c:k c:25 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	25	2 c:k c:25 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	26	2 c:k c:26 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	26	2 c:k c:26 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	27	2 c:k c:27 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	27	2 c:k c:27 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	28	2 c:k c:28 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	28	2 c:k c:28 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	29	2 c:k c:29 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	29	2 c:k c:29 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	30	2 c:k c:30 c:0 c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	2	30	2 c:k c:30 str:x c:5 c:0	no	yes	none	no case: the rest of the baddy message is dropped	fz-bp222-b	-
+2026-11-19	win-2.22	s2c	7	-	7 c:8 c:20 c:3 c:3 s:512 x9 (no 156)	yes	yes	none	control: 3x3 block drawn; bombs canary 21 lands	fz-sal222-a	01-ctl
+2026-11-19	win-2.22	s2c	156	-	156 t:gs1ctl.nw	yes	yes	none	no visible change; the next PLO_BOARDMODIFY block and PLO_PLAYERPROPS bombs both land	fz-sal222-a	-
+2026-11-19	win-2.22	s2c	156	-	156 t:labroom.nw	yes	yes	none	no visible change; the next PLO_BOARDMODIFY block and PLO_PLAYERPROPS bombs both land	fz-sal222-a	-
+2026-11-19	win-2.22	s2c	156	-	156 (empty)	yes	yes	none	no visible change; the next PLO_BOARDMODIFY block and PLO_PLAYERPROPS bombs both land	fz-sal222-a	-
+2026-11-19	win-2.22	s2c	156	-	156 t:nosuchlevel.nw	yes	yes	none	no visible change; the next PLO_BOARDMODIFY block and PLO_PLAYERPROPS bombs both land	fz-sal222-a	-
+2026-11-19	win-2.22	s2c	156	-	156 t:lab.gmap	yes	yes	C>S 34 (UPDATEFILE lab.gmap)	client asks for the gmap file; no visible change; later board block and bombs land	fz-sal222-a	-
+2026-11-19	win-2.31	s2c	7	-	7 c:8 c:20 c:3 c:3 s:512 x9 (no 156)	yes	yes	none	control: 3x3 block drawn; bombs canary 21 lands	fz-sal231-a	01-ctl
+2026-11-19	win-2.31	s2c	156	-	156 t:gs1ctl.nw	yes	yes	none	no visible change; level NPC keeps running; the next PLO_BOARDMODIFY block and bombs prop both land	fz-sal231-a	-
+2026-11-19	win-2.31	s2c	156	-	156 t:labroom.nw	yes	yes	none	no visible change; level NPC keeps running; the next PLO_BOARDMODIFY block and bombs prop both land	fz-sal231-a	-
+2026-11-19	win-2.31	s2c	156	-	156 (empty)	yes	yes	none	no visible change; level NPC keeps running; the next PLO_BOARDMODIFY block and bombs prop both land	fz-sal231-a	-
+2026-11-19	win-2.31	s2c	156	-	156 t:nosuchlevel.nw	yes	yes	none	no visible change; level NPC keeps running; the next PLO_BOARDMODIFY block and bombs prop both land	fz-sal231-a	-
+2026-11-19	win-2.31	s2c	156	-	156 t:lab.gmap	yes	yes	C>S 34 (UPDATEFILE lab.gmap)	client asks for the gmap file; no visible change; later board block and bombs land	fz-sal231-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTHEAD fzhead1.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTBODY fzbody1.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTATTR1 fzattr1.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTSHIELD fzshield1.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTSWORD fzsword1.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTPARAM1 fzparam1", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTATTR2 fzattr2.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTATTR3 fzattr3.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTHORSE fzhorse1.png", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "SPRITE 0 fzsprite1.png 0 0 32 32 x", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:idle "DEFAULTHEAD (no value)", then PLO 9 gani=idle	-	yes	none	no request for the named file; own player drawn pixel-identical to the plain idle shot	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:walk "DEFAULTHEAD fzhead2.png", then gani=walk	-	yes	WANTFILE walk.gani, steps2.wav, 157 walk	walk drawn normally with the player's own head; fzhead2.png never requested	fz-def603-a	-
+2026-11-19	linux-6.03r7	s2c	195	-	195 str:sit "DEFAULTHEAD fzhead3.png","DEFAULTBODY fzbody3.png", then gani=sit	-	yes	WANTFILE sit.gani, 157 sit	sit drawn normally with own head/body; named files never requested	fz-def603-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTHEAD fzhead1.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTBODY fzbody1.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTATTR1 fzattr1.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTSHIELD fzshield1.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTSWORD fzsword1.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTPARAM1 fzparam1", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTATTR2 fzattr2.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTATTR3 fzattr3.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTHORSE fzhorse1.png", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "SPRITE 0 fzsprite1.png 0 0 32 32 x", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:idle "DEFAULTHEAD (no value)", then PLO 9 gani=idle	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:walk "DEFAULTHEAD fzhead2.png", then PLO 9 gani=walk	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	195	-	195 str:sit "DEFAULTHEAD fzhead3.png,DEFAULTBODY fzbody3.png", then PLO 9 gani=sit	-	yes	none (only the usual UPDATEFILE/157 for walk, sit)	no request for the named file; own player drawn the same as without the line	fz-def420-a	-
+2026-11-19	win-4.20r8	s2c	3	48	3 i3:300 c:48 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	49	3 i3:300 c:49 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	50	3 i3:300 c:50 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	51	3 i3:300 c:51 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	52	3 i3:300 c:52 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	74	3 i3:300 c:74 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	78	3 i3:300 c:78 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	79	3 i3:300 c:79 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	80	3 i3:300 c:80 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	81	3 i3:300 c:81 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	82	3 i3:300 c:82 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	83	3 i3:300 c:83 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	84	3 i3:300 c:84 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	85	3 i3:300 c:85 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	86	3 i3:300 c:86 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	87	3 i3:300 c:87 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	88	3 i3:300 c:88 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	89	3 i3:300 c:89 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	90	3 i3:300 c:90 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	75 (X2)	3 i3:300 c:75 s:300 c:2 c:70 / str:x	yes	yes	none	two bytes: canary lands (str:x is 2 bytes too)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	75 (X2)	3 i3:300 c:75 {c:0 | i5:2080768} c:2 c:70	no	yes	none	wrong width: the NPC jumps off-screen (bytes after read as X2 / next props)	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	77 (Z2)	3 i3:300 c:77 {s:300 | str:x} c:2 c:70	yes	yes	none	two bytes: NPC drawn raised at x=35	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	77 (Z2)	3 i3:300 c:77 {c:0 | i5:2080768} c:2 c:70	no	yes	none	wrong width: canary lost	fz-nw420-b	-
+2026-11-19	win-4.20r8	s2c	3	76 (Y2)	3 i3:300 c:76 {c:0|s:300|str:x|i5} c:2 c:70	-	yes	none	inconclusive: every value moved the NPC out of view (s:300 is above the view)	fz-nw420-b	-
+2026-11-19	win-5.24r4	s2c	3	48	3 i3:300 c:48 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	49	3 i3:300 c:49 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	50	3 i3:300 c:50 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	51	3 i3:300 c:51 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	52	3 i3:300 c:52 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	74	3 i3:300 c:74 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	78	3 i3:300 c:78 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	79	3 i3:300 c:79 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	80	3 i3:300 c:80 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	81	3 i3:300 c:81 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	82	3 i3:300 c:82 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	83	3 i3:300 c:83 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	84	3 i3:300 c:84 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	85	3 i3:300 c:85 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	86	3 i3:300 c:86 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	87	3 i3:300 c:87 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	88	3 i3:300 c:88 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	89	3 i3:300 c:89 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	90	3 i3:300 c:90 {c:0 | s:300 | str:x | i5:2080768} c:2 c:70	no	yes	none	no case at any of the four widths: the rest of the NPC message is dropped (NPC stays at x=30)	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	75 (X2)	3 i3:300 c:75 {s:300 | str:x} c:2 c:70	yes	yes	none	two bytes: canary lands	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	75 (X2)	3 i3:300 c:75 {c:0 | i5:2080768} c:2 c:70	no	yes	none	wrong width: NPC leaves the view	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	76 (Y2)	3 i3:300 c:76 s:864 c:2 c:70	yes	yes	none	two bytes: NPC stays on row 27 and moves to x=35	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	76 (Y2)	3 i3:300 c:76 {c:0 | str:x | i5:2080768} c:2 c:70	no	yes	none	wrong width (or str:x read as a far Y2): NPC leaves the view	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	77 (Z2)	3 i3:300 c:77 {s:300 | str:x} c:2 c:70	-	yes	none	NPC drawn raised (Z2 read as 2 bytes); x not readable from the shot	fz-nw524-a	-
+2026-11-19	win-5.24r4	s2c	3	77 (Z2)	3 i3:300 c:77 {c:0 | i5:2080768} c:2 c:70	no	yes	none	wrong width: canary lost	fz-nw524-a	-
