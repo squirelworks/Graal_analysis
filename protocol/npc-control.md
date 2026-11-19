@@ -153,13 +153,16 @@ third loopback) so `nc-core.plan` runs on it while the game socket is untouched.
   [NCL11012 (1.1)]`), the server sent Control-NPC 158 + 42, and `nc-core.plan` injected 45 S→C
   packets. The RC stayed alive at all 46 shots — **no crash, no disconnect** — matching the
   standalone NPCControl result. The cipher-free NCL framing decoded and re-framed intact.
-- **GServer-v2 discovery bug (server-side, [srv], cause under confirmation):** the RC's
-  `PLI_NPCSERVERQUERY` (94) did **not** draw a `PLO_NPCSERVERADDR` (79) back on the lab gserver
-  (gs2emu-73/76/101a) despite `serverside = true`, the NPC server loaded, `ns_ip` set, and the
-  account holding `NPCCONTROL`. In the seihai-gserver-v2 source `msgPLI_NPCSERVERQUERY` only replies
-  with 79 when the query body equals exactly `"location"` (else it logs "unknown"), and there is no
-  send-79-at-login path — the three `sendNCLoginToPlayer` callers are this query, an RC
-  server-options update, and an `NPCCONTROL` rights change. Whether the real RC's 94 body differs
-  from `"location"`, or the lab gserver build diverges from that source, is still being pinned from
-  the captured 94 bytes before filing. The lab worked around it by injecting 79 on the game socket
-  after connect, which opened the NC socket immediately. Cross-ref: the RC-fuzz thread's rc-fuzz note.
+- **GServer-v2 discovery (server-side, [srv], NOT a confirmed HEAD bug):** on the lab gserver the
+  RC's `PLI_NPCSERVERQUERY` (94) drew no `PLO_NPCSERVERADDR` (79). But the captured 94 body is
+  exactly `location` and the server logged no "unknown message", so `msgPLI_NPCSERVERQUERY` ran
+  correctly — the `== "location"` theory is wrong. The silent drop is in `NPCServer::sendNCLoginToPlayer`,
+  which returns on `!isRC()` or (with `npcrights` on) `!hasRight(PLPERM_NPCCONTROL)`. `isRC()` is
+  `(m_type & PLTYPE_ANYRC)`, true for the RC game session; `PLPERM_NPCCONTROL = 0x80000` is included
+  in the test account's `ADMINRIGHTS 1048575` (0xFFFFF); `hasRight` is `adminRights & right`. So a
+  righted RC should pass the guard and get 79. The lab built seihai-gserver-v2 at **4991f9d8 (pre-#97)**;
+  current HEAD (e12ca7f) carries #97, which skips the rights check when `npcrights = false`. So the
+  observed no-79 is most likely a **stale-build artifact**, not a current-HEAD defect — a retest on
+  current HEAD is pending. Any residual bug would be a gen-2 RC not loading its staff `adminRights`
+  (unconfirmed). The lab injected 79 on the game socket to proceed; that did not affect the
+  client-fuzz result above. Cross-ref: the RC-fuzz thread's rc-fuzz note.
