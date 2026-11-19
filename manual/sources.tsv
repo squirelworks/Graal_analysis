@@ -28,7 +28,7 @@ book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft inpu
 client-internals/6037-guest-login-loop.md	cited	2.3; E	2.3; E	6.037 guest-first Login loop status; C7–C9 form/script gotchas unconfirmed; §2.3 / E
 client-internals/baddies-222.md	cited	2.6; 4.3; 5; 8.2; E	4.3	
 client-internals/bare-level-names.md	cited	3.1	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
-client-internals/beta-hud-layouts.tsv	pending		4.6	per-build HUD layouts of the 1998 betas to 1.28b2, measured from captures; for the HUD section's early-builds table
+client-internals/beta-hud-layouts.tsv	cited	4.6	4.6	per-build HUD layouts of the 1998 betas to 1.28b2, measured from captures; carried into §4.6.1.6
 client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
 client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
 client-internals/build-catalogue.md	cited	0; 1; 2.1; 2.2; E	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -216,7 +216,7 @@ client-internals/player-mannerisms-live.md	cited	4; 4.1; 4.2; 4.3; 4.5; E	4
 client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
-client-internals/rebuild-traces-2026-11-05.md	pending		4.6; 4.11; 6	graal-delphi v0.0.4 traces (HUD text, start windows, 2.22 layers and timer, 2.31 list buttons); to be folded into the HUD, side-builds and listserver sections
+client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6; E	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.14), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §8.3 (coverage audit 2026-11-04)
@@ -727,7 +727,7 @@ client-internals/mac-611r1-send-slots.md	cited	1; 2.4	1; 2	Mac identity/dependen
 client-internals/v7-unity6000-unpack.md	cited	1	1	Unity 6000 build row, unpack shape and metadata 31 in §1.8.10
 client-internals/v7-il2cpp-names-and-startup-gate.md	cited	1; E	1	IL2CPP name recovery, start-up quit, launch inputs and native date gate in §1.8.10; open items in E#615
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
-client-internals/mac-ppc-404-512/SUMMARY.md	pending		2.3; 4.1	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule and PLO sets; to be folded into the framing and build sections
+client-internals/mac-ppc-404-512/SUMMARY.md	cited	2.2; 2.5	2.2; 2.5	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule (§2.2.3) and PLO sets (§2.5)
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
 client-internals/v3-v5-protocol-pass/README.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
 client-internals/v3-v5-protocol-pass/client-internals/older-v3-v5-inventory.md	pending		1; 2.3	Cursor's cleaned v3–v5 identity, framing, PLI/PLO and script pass; to be cross-checked against the existing per-build notes and folded into the build list and protocol sections
