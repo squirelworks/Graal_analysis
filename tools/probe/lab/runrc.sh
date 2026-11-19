@@ -33,8 +33,13 @@
 # An RC only sends when a user acts, so every post-base shot reads `silent`: that is liveness
 # (no crash / no disconnect), not proof the parser stayed in step. In-step is read from the shots
 # (player count rising, dialogs opening with the injected values) and from rc-widths.plan's canary.
+# Known rendering gaps under Wine (2026-11-19 run): RC3's main window stays BLACK (no paint), so its
+# width canary can't be read from shots — set a Wine virtual desktop in the prefix registry first
+# (HKCU\Software\Wine\Explorer\Desktops). RC2 2.05 (GTK) fails Pango font fallback ("All font
+# fallbacks failed") and draws text as boxes; it also sets no X window title, so match it with
+# `xdotool search --class .`, not `--name .`. Both are prefix/Wine issues, not proxy issues.
 set -u
-LO1=$(printf '%d.%d.%d.%d' 127 0 0 1); LO2=$(printf '%d.%d.%d.%d' 127 0 0 2)
+LO1=$(printf '%d.%d.%d.%d' 127 0 0 1); LO2=$(printf '%d.%d.%d.%d' 127 0 0 2); LO3=$(printf '%d.%d.%d.%d' 127 0 0 3)
 RC=$1; PLAN=$(readlink -f "$2"); RUN=$3; shift 3
 [ -f $HOME/probelab/lab.env ] && . $HOME/probelab/lab.env; G=${WINELAB:?}; R=$HOME/probelab
 O=$R/out/$RUN; T=$R/tools; mkdir -p $O $R/run; cd $G
@@ -51,7 +56,7 @@ NATIVE=${RC_NATIVE:-0}
 PORT=14804
 
 [ -e ns.pid ] && [ -d /proc/$(cat ns.pid) ] || sh tools/ns.sh > /dev/null
-./k.sh "RemoteControl|remotecontrol|wine|\.exe|gen5probe|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null; sleep 1
+./k.sh "RemoteControl|remotecontrol|wine|\.exe|gen5probe|ncprobe|ncstub|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null; sleep 1
 cp $PLAN $O/plan.txt
 
 # A gserver world behind the proxy, and the listserver advertising the proxy address.
@@ -63,14 +68,24 @@ P=$G/w/servers/probrc; rm -rf $P; cp -a $G/w/servers/$WORLD $P
 SO=$P/config/serveroptions.txt
 sed -i "s/^serverinterface = .*/serverinterface = $LO2/" $SO 2>/dev/null || true
 sed -i "s/^serverport = .*/serverport = $PORT/" $SO 2>/dev/null || true
+# GServer-v2 reads RC eligibility from the staff list, so super must be on `staff =` (ADMINRIGHTS on
+# the account file alone is not enough — the RC login is refused "You do not have RC rights").
+if grep -q '^staff = ' "$SO" 2>/dev/null; then
+  grep '^staff = ' "$SO" | grep -q 'super' || sed -i '/^staff = /s/$/,super/' "$SO"
+else
+  echo 'staff = super' >> "$SO"
+fi
 # RC_NC=1: fuzz the NC socket the RC opens (RC 2002/01/11). The gserver's own NPC server
-# (serverside=true) answers RC login with PLO 79, whose connectString points the RC's NC socket
-# back at the proxy. npcrights=false sends that without the account needing the NPC-Control right,
-# and ns_ip (read from adminconfig.txt, not serveroptions) makes connectString = $LO1,$PORT.
+# (serverside=true) answers RC login with PLO 79, whose connectString points the RC's NC socket.
+# The game socket stays on gen5probe ($LO1); the NC socket is fronted by a SEPARATE ncprobe on a
+# THIRD loopback ($LO3) so it is the only connection that proxy sees (no session-select race, and
+# the ncstub fallback is a one-arg swap). connectString's port is always serverport, so the NC
+# proxy needs a distinct IP: ns_ip=$LO3 makes PLO 79 = $LO3,$PORT. npcrights=false sends 79 without
+# the account needing the NPC-Control right. ns_ip is read from adminconfig.txt, not serveroptions.
 if [ "${RC_NC:-0}" = 1 ]; then
   grep -q '^npcrights ' "$SO" && sed -i "s/^npcrights .*/npcrights = false/" "$SO" || echo 'npcrights = false' >> "$SO"
   AC=$P/config/adminconfig.txt
-  grep -q '^ns_ip ' "$AC" 2>/dev/null && sed -i "s/^ns_ip .*/ns_ip = $LO1/" "$AC" || echo "ns_ip = $LO1" >> "$AC"
+  grep -q '^ns_ip ' "$AC" 2>/dev/null && sed -i "s/^ns_ip .*/ns_ip = $LO3/" "$AC" || echo "ns_ip = $LO3" >> "$AC"
 fi
 # The RC login account needs RC rights, not just a place on the staff list, or GServer-v2 answers
 # "You do not have RC rights." Ensure the super account has full admin rights and an open IP range.
@@ -82,6 +97,17 @@ fi
 ./E sh -c "cd $G/w && setsid nohup ./seihai-listserver --config ls.toml > $O/listserver.txt 2>&1 &"; sleep 1
 ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probrc > $O/gs-world.txt 2>&1 &"; sleep 1
 ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 $PORT $LO2 $PORT $O/proxy.log rc $R/run/rc.sock > $O/proxy.out 2>&1 &"
+# RC_NC: front only the NC socket with ncprobe on $LO3:$PORT. Upstream is the gserver's NPC backend
+# ($LO2:$PORT); RC_NC_FALLBACK=1 instead runs ncstub on $LO2:14805 and points ncprobe there (used if
+# the gserver drops the RC's NCL session). Run nc-core.plan on $R/run/ncrc.sock.
+if [ "${RC_NC:-0}" = 1 ]; then
+  NCUP_H=$LO2; NCUP_P=$PORT
+  if [ "${RC_NC_FALLBACK:-0}" = 1 ]; then
+    NCUP_P=14805
+    ./E sh -c "setsid nohup python3 $T/ncstub.py $LO2 $NCUP_P $O/ncstub.log ncstub > $O/ncstub.out 2>&1 &"; sleep 1
+  fi
+  ./E sh -c "setsid nohup python3 $T/ncprobe.py $LO3 $PORT $NCUP_H $NCUP_P $O/ncproxy.log ncrc $R/run/ncrc.sock > $O/ncprobe.out 2>&1 &"
+fi
 sleep 3
 
 C=clients/$DIR; LOG=controlconsole.log; : > $C/$LOG 2>/dev/null || true

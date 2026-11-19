@@ -71,10 +71,10 @@ macOS CI is paused until the polish stage.
 - [x] **RC props tail / 76 byte / PLO 124 (status).** ~~Which count is flags?~~ Tail shape and 124 discard settled; counts + 76 byte + 124 layout still need lab/S. [Note](../protocol/rc-props-flags-status.md); gap #42; E#420/E#421.
 
 - [ ] **Fuzz the Remote Control clients.** Harness is in place: `gen5probe.py` picks the RC/NC staff logins (gen 2 plain-zlib and type-6 gen 5), `tools/probe/rccanary.py` is the RC liveness canary, and `tools/probe/lab/runrc.sh` + `rc-core.plan` / `rc-widths.plan` drive a run (covered by `selftest.py`). [Harness](../tools/probe/README.md#remote-control).
-  - [x] ~~`rc2004` (2004 Delphi, gen 5) `rc-core`.~~ No crash, no desync. [Note](../protocol/rc-fuzz-2026-11-19.md).
-  - [ ] `rc-widths.plan` (player-prop width canary) on the 2004 RC.
-  - [ ] `rc205` (RC2 2.05) and `rc3` — same gen-5 login, through the same harness.
-  - [ ] `rc2002` (RC 2002/01/11, gen 2) and a pre-2002 `rcpre` — gen-2 path. `rc2002` also carries the NC socket (coordinate with the NC-fuzz thread for the 94/79 discovery glue).
+  - [x] ~~`rc2004` (2004 Delphi, gen 5) `rc-core`; `rc3` (2015, gen 5) `rc-core` + `rc-widths`.~~ No crash, no desync on either. [Note](../protocol/rc-fuzz-2026-11-19.md).
+  - [ ] A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.
+  - [ ] `rc205` (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.
+  - [ ] `rc2002` (RC 2002/01/11, gen 2) and a pre-2002 `rcpre` — gen-2 path. `rc2002` carries the NC socket; `runrc.sh RC_WORLD=npcdemo RC_NC=1` fronts it with ncprobe (NC-fuzz thread, PR #670).
 
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 
