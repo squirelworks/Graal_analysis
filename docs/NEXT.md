@@ -70,6 +70,8 @@ macOS CI is paused until the polish stage.
 
 - [x] **RC props tail / 76 byte / PLO 124 (status).** ~~Which count is flags?~~ Tail shape and 124 discard settled; counts + 76 byte + 124 layout still need lab/S. [Note](../protocol/rc-props-flags-status.md); gap #42; E#420/E#421.
 
+- [ ] **Fuzz the Remote Control clients.** Harness is in place: `gen5probe.py` now picks the RC/NC staff logins (gen 2 plain-zlib and type-6 gen 5), `tools/probe/rccanary.py` is the RC liveness canary, and `tools/probe/lab/runrc.sh` + `rc-core.plan` / `rc-widths.plan` drive a run. Covered by `selftest.py`. Open: the brief lab runs on the probelab — `rc2004` (2004 Delphi), `rc205` (RC2 2.05), `rc3`, then a pre-2002 `rcpre` — recording crashes / disconnects / wedges and the player-prop width table. Calibrate `RC_CONNECT` per build on the first run. [Harness](../tools/probe/README.md#remote-control).
+
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 
 - [x] **PLO 108 sub 1 / 168 focus status (#43).** ~~Who reads sub 1; is 168 login done?~~ 168 = one-shot flag (name medium); sub 1 no visible effect on 6.03r7 (#254 lab); reader still open. [Note](../protocol/plo108-168-focus-status.md).

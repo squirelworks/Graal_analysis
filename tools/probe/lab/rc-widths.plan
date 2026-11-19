@@ -1,0 +1,51 @@
+# RC player-prop width canary: does the RC read a 55 ADDPLAYER prop at the width we gave it?
+# Each 55 sets a test prop, then prop 0 (nickname) = CAN<n> LAST. If the test prop's width is
+# mis-read, the stream desyncs and the nickname is not CAN<n>. Read it from the RC player-list
+# window with a screenshot diff:  canary.py OUT ref-lost.png ref-landed.png X0 Y0 X1 Y1
+# (box over the player row's nickname cell; capture the two refs from shots 01 and 02 here).
+# Player id {ID} defaults to 7; keep it off any id the server already assigned.
+waitsession 120
+wait c2s 2 30
+sleep 4
+shot 00-base
+# reference "landed": nickname set cleanly, no test prop
+mark ref-landed
+s2c 55 s:{ID} str:acct c:20 str:"" c:0 str:CAN99 c:11 str:head0.png
+sleep 1.5
+shot 01-ref-landed
+# reference "lost": a deliberately desyncing junk prop before the nickname
+mark ref-lost
+s2c 55 s:{ID} str:acct c:250 b:40 b:40 b:40 c:0 str:CAN99 c:11 str:head0.png
+sleep 1.5
+shot 02-ref-lost
+# prop 81 (player-list category) read as one byte: canary should land
+mark p81-1byte
+s2c 55 s:{ID} str:acct c:81 c:1 c:0 str:CAN01 c:11 str:head0.png
+sleep 1.5
+shot 03-p81-1byte
+# prop 36 (rating) read as i3: canary should land if width is 3
+mark p36-i3
+s2c 55 s:{ID} str:acct c:36 i3:768350 c:0 str:CAN02 c:11 str:head0.png
+sleep 1.5
+shot 04-p36-i3
+# prop 20 (level) as a GSTRING: canary should land after the string
+mark p20-str
+s2c 55 s:{ID} str:acct c:20 str:onlinestartlocal.nw c:0 str:CAN03 c:11 str:head0.png
+sleep 1.5
+shot 05-p20-str
+# prop 11 (head): length byte, head name; canary after
+mark p11-head
+s2c 55 s:{ID} str:acct c:11 str:head25.gif c:0 str:CAN04 c:11 str:head0.png
+sleep 1.5
+shot 06-p11-head
+# unknown prop 82 with a one-byte value, then three-byte value: which width keeps sync?
+mark p82-1byte
+s2c 55 s:{ID} str:acct c:82 c:1 c:0 str:CAN05 c:11 str:head0.png
+sleep 1.5
+shot 07-p82-1byte
+mark p82-3byte
+s2c 55 s:{ID} str:acct c:82 i3:300000 c:0 str:CAN06 c:11 str:head0.png
+sleep 1.5
+shot 08-p82-3byte
+sleep 2
+shot 09-end

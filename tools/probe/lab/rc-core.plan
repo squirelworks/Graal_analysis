@@ -1,0 +1,103 @@
+# RC game-socket fuzz: malformed / out-of-range server->client packets into a live Remote Control.
+# For RC2 2.05, RC3 and the 2004 Delphi RC (all gen 5, login type 6). Read afterwards with
+#   rccanary.py OUT/proxy.log OUT/marks.txt
+# gone/disconnect = crash or dropped socket; silent = possible parse wedge (check gs-world.txt).
+# A well-formed sentinel 55 (a player the RC should list) runs before and after the nasty set,
+# so a shot of the player-list window is a before/after control for the operator.
+waitsession 120
+wait c2s 2 30
+sleep 4
+shot 00-base
+# --- control: a clean player the RC should add to its list ---
+mark sentinel-add
+s2c 55 s:3 str:labsent c:20 str:"" c:0 str:SENT c:11 str:head0.png
+sleep 1.5
+shot 01-sentinel
+# --- 55 ADDPLAYER: oversized nickname length byte, few bytes follow ---
+mark 55-overlong-str
+s2c 55 s:4 str:acct c:0 b:232 t:abc
+sleep 1.5
+shot 02-55-overlong-str
+# --- 55: prop id stream that runs off the end ---
+mark 55-prop-runoff
+s2c 55 s:5 str:acct c:20 b:250 t:x
+sleep 1.5
+shot 03-55-prop-runoff
+# --- 56 DELPLAYER: id of a player that was never added, and a max id ---
+mark 56-unknown-id
+s2c 56 s:6
+sleep 1
+s2c 56 s:65535
+sleep 1.5
+shot 04-56-ids
+# --- 72 RC_PLAYERPROPSGET: declared prop-byte count far larger than the body ---
+mark 72-count-overrun
+s2c 72 s:3 str:acct str:world b:250 t:x
+sleep 1.5
+shot 05-72-count-overrun
+# --- 62 RC_PLAYERRIGHTSGET: huge rights int + huge folder-line count, short body (no dotted IPs) ---
+mark 62-rights-overrun
+s2c 62 str:acct i5:4294967295 str:iprange s:9999 t:short
+sleep 1.5
+shot 06-62-rights-overrun
+# --- 63 COMMENTS / 64 BAN: unterminated CSV, high bytes ---
+mark 63-64-csv
+s2c 63 str:acct hex:22ff00
+sleep 1
+s2c 64 str:acct c:1 hex:00ffff
+sleep 1.5
+shot 07-63-64-csv
+# --- 74 RC_CHAT: embedded NUL and high bytes, then a very long line ---
+mark 74-chat-bytes
+s2c 74 b:0 b:255 b:0 b:255 t:end
+sleep 1
+s2c 74 rep:4000:A
+sleep 1.5
+shot 08-74-chat
+# --- 37 PRIVATEMESSAGE: malformed quoted/type list ---
+mark 37-pm-malformed
+s2c 37 s:3 hex:2c2c22
+sleep 1.5
+shot 09-37-pm
+# --- 47 STAFFGUILDS / 180 STATUSLIST: broken comma lists ---
+mark 47-180-lists
+s2c 47 hex:2c22ff2c
+sleep 1
+s2c 180 hex:00ff2c
+sleep 1.5
+shot 10-47-180
+# --- 100 PLO_RAWDATA: declares a huge raw length, nothing follows in-frame ---
+mark 100-rawdata
+s2c 100 i3:16777215
+sleep 1.5
+shot 11-100-rawdata
+# --- 102 PLO_FILE / 103 RC_MAXUPLOADFILESIZE: odd sizes ---
+mark 102-103
+s2c 103 i5:4294967295
+sleep 1
+s2c 102 hex:00
+sleep 1.5
+shot 12-102-103
+# --- unknown / unhandled / deprecated ids ---
+mark unknown-ids
+s2c 60
+sleep 0.6
+s2c 66 s:3
+sleep 0.6
+s2c 200 t:x
+sleep 0.6
+s2c 223 hex:ffff
+sleep 1.5
+shot 13-unknown-ids
+# --- empty bodies for every id the RC2 receive switch handles ---
+mark empty-handled
+s2c 8 | 13 | 16 | 30 | 35 | 58 | 59 | 61 | 67 | 68 | 69 | 70 | 73 | 75 | 76 | 77 | 79 | 82 | 190
+sleep 2
+shot 14-empty-handled
+# --- control again: the sentinel player, to show the list still updates ---
+mark sentinel-again
+s2c 55 s:3 str:labsent c:20 str:"" c:0 str:SEN2 c:11 str:head0.png
+sleep 1.5
+shot 15-sentinel-again
+sleep 2
+shot 16-end

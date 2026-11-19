@@ -16,13 +16,15 @@ GraalOnline server, and nothing here helps reach one.
 
 | File | Role |
 |---|---|
-| `gen5probe.py` | Proxy for encryption generations 2–5 (picked from the login line). Decrypts and logs both directions, re-encrypts with its own cipher state, and takes commands on a unix socket: `s2c SPEC`, `c2s SPEC`, `after s2c ID SPEC`, `drop s2c ID`, `seen s2c ID`, `mark TEXT`, `status`. |
+| `gen5probe.py` | Proxy for encryption generations 2–5 (picked from the login line). Decrypts and logs both directions, re-encrypts with its own cipher state, and takes commands on a unix socket: `s2c SPEC`, `c2s SPEC`, `after s2c ID SPEC`, `drop s2c ID`, `seen s2c ID`, `mark TEXT`, `status`. The login line also picks out the staff clients: a Remote Control (login id 1 + `GSERV`/`G2NRC` token, or NC id 3 + `NCL`) runs plain zlib with no cipher (the proxy's gen-2 path), while RC2 2.05, RC3 and the 2004 Delphi RC log in as type 6 and use gen 5 exactly like 2.22/2.31. |
 | `probectl.py` | Sends one command, or runs a plan file step by step (`waitsession`, `wait s2c ID`, `sleep`, `shot NAME`, `sh CMD`, and any proxy command). Every step is also written to the proxy log as a `MARK`, so one log holds the whole timeline. |
 | `selftest.py` | A fake gen-5 client and server around the proxy. It checks relaying, injection both ways, `after`, `drop`, and that the cipher stays in step afterwards. Run `python3 selftest.py` (Linux). |
 | `lab/run603.sh` | One run of the native Linux 6.03r7 client: login gserver that serverwarps to a world gserver behind `gen5probe.py`, own Xvfb, no window manager, everything in `bwrap --unshare-net --unshare-pid`. Screenshots go through the plan's `shot` steps. |
 | `lab/runwine.sh` | One run of a Windows client under Wine in the same VM: 2.05 rev 2 and 2.17.1 (gen 3), 2.22, 2.31 (gen 5, login form and server list), 4.20r8 (clock held at 2007-07-01, login form) or 5.24r4. It reuses the gs1 lab tree (Wine prefix, clients, worlds and its own network namespace). |
-| `lab/*.plan` | Probe plans. `prop83.plan` is the pilot. `wine-core.plan` runs the same core probes on every client. `widths.plan` checks each self prop 0–90 at its documented width. `pli-sweep*.plan` sends every client→server id to our gserver. `bytes2x.plan` tests raw bytes inside a message. `readback83.plan` reads prop 83 back through a level script. |
-| `canary.py` | Classifies each shot's bomb count against two reference shots (canary lost: count 1; canary landed: count 99). Pass the bomb-count box for the client's HUD. |
+| `lab/runrc.sh` | One run of a Remote Control client behind `gen5probe.py`: `rc2004` (2004 Delphi), `rc205` (RC2 2.05 GTK), `rc3` (RC3 beta) or `rcpre` (a pre-2002 Delphi RC). It stands up the lab listserver, a gserver world and the proxy on `14804`, launches the RC, logs it in as `super`/`super`, and runs a plan. The connect click is calibrated per build through `RC_CONNECT` (see the script header); `RC_NATIVE=1` runs a native Linux RC2 instead of Wine. |
+| `lab/*.plan` | Probe plans. `prop83.plan` is the pilot. `wine-core.plan` runs the same core probes on every game client. `widths.plan` checks each self prop 0–90 at its documented width. `pli-sweep*.plan` sends every client→server id to our gserver. `bytes2x.plan` tests raw bytes inside a message. `readback83.plan` reads prop 83 back through a level script. `rc-core.plan` sends malformed / out-of-range server→client packets to a live RC; `rc-widths.plan` is the RC player-prop width canary. |
+| `canary.py` | Classifies each shot's bomb count against two reference shots (canary lost: count 1; canary landed: count 99). Pass the bomb-count box for the client's HUD. Also serves the RC player-list width canary: pass the box over an entry's nickname cell and two RC reference shots. |
+| `rccanary.py` | The Remote Control canary. An RC has no HUD, so this reads the proxy log (and the run's `marks.txt`) and classifies each `shot` as `gone` (window vanished — a crash), `disconnect` (socket closed), `silent` (no client→server packet since the last inject — a possible parse wedge) or `alive` (the RC kept talking past the injected packet). |
 | `xwd2png.py` | Converts the `xwd` screenshots. |
 
 ## Packet spec
@@ -84,6 +86,25 @@ On some runs the 6.03r7 client never draws the tile layer, and the screen stays 
 digits then draw over each other, which breaks the canary. `run603.sh` waits until the
 session is up, checks a shot of the game area, and starts the whole run again if it is black
 (up to four tries, recorded in `tries.txt`). `NOBLACK=0` turns this off.
+
+## Remote Control
+
+The RC game socket uses the same wire as a game client, so the proxy injects into a live RC the
+same way. Two things differ. The login: RC2 2.05 / RC3 / the 2004 RC send login type 6 and then
+gen 5 (the proxy already handles type 6 as gen 5 — `GSERV024`/`GSERV025` sits where a version
+string would, so the framing is identical); the pre-2002 RCs and the NC socket send a `GSERV` /
+`G2NRC` / `NCL` token after the message id and then stay in plain zlib with no cipher, which the
+proxy now picks out as gen 2. The canary: an RC has no bomb HUD, so `rccanary.py` reads liveness
+from the log (`gone` / `disconnect` / `silent` / `alive`) instead of a screenshot, and a width
+canary uses the player-list nickname with `canary.py` and a box. A run:
+
+```sh
+RC_CONNECT='...xdotool...' sh tools/runrc.sh rc2004 tools/rc-core.plan rc2004-core   # ~/probelab/out/rc2004-core
+python3 tools/rccanary.py ~/probelab/out/rc2004-core/proxy.log ~/probelab/out/rc2004-core/marks.txt
+```
+
+`selftest.py` covers all four login paths (gen 5, gen 3, RC gen 2, RC2/RC3 gen 5) with fake peers,
+so the login detection and relaying are checked without the lab.
 
 ## Limits
 
