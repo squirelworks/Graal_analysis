@@ -17,6 +17,7 @@ SPEC is a packet id followed by typed fields, for example `9 c:83 i5:1234`
   b:N  one raw byte        t:TEXT raw text            str:TEXT GCHAR length + text
   hex:HEX raw bytes          rep:N:TEXT TEXT repeated N times
 Quote text with spaces: t:"two words". The trailing newline is added.
+A spec starting with `raw` (`raw hex:0a`) is sent as exactly its fields: no id byte, no newline.
 
 Usage: gen5probe.py LISTEN_HOST PORT UP_HOST UP_PORT LOGFILE LABEL CTLSOCK   (CTLSOCK = a unix socket path, or tcp:PORT)
 """
@@ -52,7 +53,8 @@ def encode(spec):
     toks = shlex.split(spec)
     if not toks:
         raise ValueError('empty spec')
-    out = bytearray([int(toks[0], 0) + 32])
+    raw = toks[0] == 'raw'  # 'raw FIELDS': exactly these bytes, no id byte and no newline (wire-level tests)
+    out = bytearray() if raw else bytearray([(int(toks[0], 0) + 32) & 0xff])
     for t in toks[1:]:
         kind, _, v = t.partition(':')
         if kind == 'c':
@@ -73,7 +75,7 @@ def encode(spec):
             n, _, txt = v.partition(':'); out += txt.encode('latin1') * int(n)
         else:
             raise ValueError('unknown field %r' % t)
-    return bytes(out) + b'\n'
+    return bytes(out) if raw else bytes(out) + b'\n'
 
 
 def show(b, n=160):
@@ -96,16 +98,19 @@ class Session:
     def __init__(self, n, c, u, rec):
         self.n = n; self.c = c; self.u = u; self.rec = rec; self.key = None
         self.cs, self.sc = Dir('C>S'), Dir('S>C'); self.lock = threading.Lock(); self.alive = True
-        self.gen = 5  # set from the login line: 2 or 3 (type 0), 4 (type 4), 5 (type 5 and 6)
+        self.gen = 5  # set from the login line: 2 or 3 (type 0), 4 (type 4), 5 (type 5 and 6); 1 for a relay join line
 
 
 class Probe:
     def __init__(self, rec):
-        self.rec = rec; self.sessions = []; self.lock = threading.Lock()
+        self.rec = rec; self.sessions = []; self.lock = threading.Lock(); self.use = 0
 
     def current(self):
         with self.lock:
             live = [s for s in self.sessions if s.alive and s.key is not None]
+        if self.use:  # `use N`: aim at connection N while it lives (a gen-1 client keeps two)
+            pick = [s for s in live if s.n == self.use]
+            return pick[0] if pick else None
         return live[-1] if live else None
 
     def command(self, line):
@@ -115,6 +120,8 @@ class Probe:
         cmd, rest = parts[0], (parts[1] if len(parts) > 1 else '')
         if cmd == 'mark':
             self.rec('MARK', rest); return 'ok'
+        if cmd == 'use':  # use N : send to connection N (0 = the newest live one)
+            self.use = int(rest or 0); self.rec('USE', self.use); return 'ok'
         if cmd == 'status':
             s = self.current()
             if not s:
@@ -214,6 +221,8 @@ def junk_in(d, key, body):
 
 
 def frame(s, d, key, payload):
+    if s.gen == 1:  # 1998 relay: the lines go out as they are
+        return payload
     if s.gen == 5:
         typ = 4 if d.typ == 2 and len(payload) > 60000 else d.typ  # an uncompressed frame cannot exceed the u16 length
         comp = payload if typ == 2 else zlib.compress(payload, 9) if typ == 4 else bz2.compress(payload)
@@ -275,8 +284,30 @@ def pump_old(s, d, data):
     return out
 
 
+def pump_lines(s, d, data):
+    """Gen 1 (1st Graal to 1.1.9, the relay lobby): LF-terminated text lines, no length, no
+    compression, no cipher. The first character is the command (`N`, `I`, `+`, `P`, `D` ...);
+    `seen` counts lines by that character's code. A partial line is held until its LF arrives,
+    so an injected line always lands between two whole lines."""
+    d.buf += data; out = bytearray()
+    while b'\n' in d.buf:
+        ln, d.buf = d.buf.split(b'\n', 1)
+        k = ln[0] if ln else 10
+        if k in d.drop:
+            s.rec(d.name, 'DROPPED line', chr(k)); continue
+        out += ln + b'\n'
+        d.seen[k] = d.seen.get(k, 0) + 1
+        s.rec(d.name, 'line', 'len=%d' % len(ln), '|', show(ln), '| hex=' + ln[:48].hex())
+        for aid, pkt in list(d.after):
+            if aid == k:
+                d.queue.append(pkt); d.after.remove((aid, pkt)); break
+    return bytes(out)
+
+
 def pump(s, d, data):
     """Decrypt frames from one side, log, re-encrypt with our state, and return bytes for the other side."""
+    if s.gen == 1:
+        return pump_lines(s, d, data)
     if s.gen != 5:
         return pump_old(s, d, data)
     d.buf += data; out = b''
@@ -326,6 +357,15 @@ def handle(probe, c, uh, up, rec, n):
                 if sock is c:
                     if s.key is None:  # the login frame goes through untouched
                         pre += data
+                        if pre[:1] in (b'N', b'O', b'S', b'V'):  # gen 1: a lobby join line, not a u16 length
+                            if b'\n' not in pre:
+                                continue
+                            s.gen, s.key = 1, 0
+                            rec('C>S GEN1 relay session (plain lines), first line:', show(pre.split(b'\n')[0]))
+                            o = pump(s, s.cs, pre)
+                            with s.lock:
+                                u.sendall(o)
+                            continue
                         if len(pre) >= 2 and len(pre) >= int.from_bytes(pre[:2], 'big') + 2:
                             ln = int.from_bytes(pre[:2], 'big'); first, rest = pre[:ln + 2], pre[ln + 2:]
                             lg = zlib.decompress(first[2:]); typ = lg[0] - 32

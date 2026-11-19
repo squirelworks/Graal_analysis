@@ -25,7 +25,10 @@ Status words:
 | Wire bytes (NUL and high bytes inside a message) | 2 | 0 | 0 |
 | Baddy types | 1 | 0 | 0 |
 | Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 5 | 0 | 4 |
-| **Total** | **24** | **2** | **4** |
+| Early clients, gen 1 relay and gen 2 GSERV/GNW (1st Graal to 1.39) | 8 | 5 | 0 |
+| **Total** | **32** | **7** | **4** |
+
+**Early clients (2026-11-19, [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md)):** gen-2 parse rules, `PLI_PACKETCOUNT` cadence, prop 31 as the UDP port, own-prop widths per build, and the relay join, pairing, `I` and line-length rules on 18 betas.
 
 **New this round (resolved):**
 - 2.00–2.17 can now be probed (gen 3 in the proxy; 2.05 and 2.17.1 run).
@@ -86,3 +89,23 @@ Status words:
 | 2.00 to 2.17 (gen 3) | resolved | the proxy speaks gen 3; real 2.05 rev 2 and 2.17.1 probed (runs `w205-b`, `w217-b`) |
 | 2.19 to 2.21 (gen 4) | blocked | the proxy has gen 4 from server source, but no 2.19–2.21 binary is held |
 | Mobile clients | blocked | iPhone codec now known: Classic+ 1.13 is desktop gen 5 with round-down for compressed bodies, which the proxy already speaks ([note](ios-classic-plus-113-framing.md)). Still blocked on running it: no 32-bit iOS device or emulator, no Android package on the lab hosts, no KVM in the Linux VM |
+
+## Early clients (gen 1 relay, gen 2 GSERV/GNW)
+
+From [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md); rows `w1xx-*` and `w<beta>-*` in `probe-results.tsv`.
+
+| Item | Status | Why |
+|---|---|---|
+| How 1.28b2–1.39 parse an unknown own prop, a NUL, an empty line, unknown PLO ids | resolved | unknown prop ends the message (no skip); NUL or an empty line drops the rest of the frame; unknown PLO with a text body is ignored; same on all 11 builds |
+| Own-prop widths 0–40, 1.28b2 to 1.39 | resolved | width sweep with a white-digit bomb canary; table in the note |
+| C>S `PLI_PACKETCOUNT` (31) | resolved | every 10.2 s with a GSHORT count, 1.33 to 1.39 only; the GSERV builds never send it |
+| C>S own prop 31 at login | resolved | the client's own UDP port as GINT3 (matched the bound socket); 1.32+ add props 18 and 33 |
+| Relay join and rooms, 1st Graal to 1.1.9 | resolved | 1st–5th join the level room directly; 6th on join `G<n>`, leave, re-join `G<n>onlinestart.graal`; fixed rooms `Zelda2`, `Graal`, `Graal2`…`Graal8` |
+| Relay pairing and state push | resolved | `+` answered with `P` only when unpartnered; the server's `P` triggers a `D` push whose types grow by build (`Y` from 4th alpha, `7` from 10th) |
+| Relay `I` (own id) | resolved | 8 decimal digits; shorter ignored; sender id = id mod 16384 |
+| Relay line length | resolved | 10th–15th and 1.1 reset the connection on a 1104-byte line; 1st–9th and 1.1.9 keep it |
+| `PLO_OTHERPLPROPS` player-id width on 1.35 vs 1.36 | open | neither id form drew a player on 1.34–1.37; needs a second real client |
+| Own props with no simple layout (23 on 1.34–1.39, and the `—` cells) | open | sweep two-field layouts (byte + byte, byte + GSHORT) |
+| 1.1.9 state push to a fake peer | open | answers the join `+` with `P` but pushes nothing and ignores later lobby lines; a real second 1.1.9 does get a push |
+| 1.21 | open | different start form; tree prepared (1.28b2 image folders), login not attempted |
+| 5th Graal alpha, 9th Graal alpha | open | never reached the relay in two tries each (9th alpha needed `commands.rtf` first) |
