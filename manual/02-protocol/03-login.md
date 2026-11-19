@@ -224,7 +224,7 @@ The rules below cover what surrounds the login message: how it is sent and built
 | 2.00 sends the same type 0 shape with the token `GNW24011`; the account and password are neither hidden nor hashed | 2.00 | [bin] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#login-string-gserver) |
 | A lab GServer-v2 admits 2.00 once `GNW24011` is in its allowed-versions list | 2.00 | [lab] (client-internals/version-tokens.md) ; [lab] (client-internals/decomp-findings-2026-10-24-b/04-v2.00-client.md#token-allow-list) |
 | Real 2.05 rev 2 and 2.17.1 log in through a generation-3 proxy that removes the inserted byte from each message and re-inserts it with its own iterator; every message decodes, so the rule above holds live | 2.05 rev 2, 2.17.1 (lab) | [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
-| 2.19 to 2.21 log in as client type 4 and use generation 4; this comes from server source only, since no binary of those builds is held (→ App. E) | 2.19 to 2.21 | [srv] (protocol/codec-and-framing.md); [doc] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
+| 2.19 to 2.21 log in as client type 4 and use generation 4; this comes from server source only, since no binary of those builds is held (→ App. E#19) | 2.19 to 2.21 | [srv] (protocol/codec-and-framing.md); [doc] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
 
 ### 2.3.3.1 Graal 2002 token identity boundary
 
