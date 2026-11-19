@@ -75,7 +75,7 @@ macOS CI is paused until the polish stage.
   - [ ] A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.
   - [ ] `rc205` (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.
   - [x] ~~`rcpre` (pre-2002 gen-2, rc8212001 / GSERV022) `rc-core`.~~ gen-2 login detection confirmed on a real client; no crash/desync. [Note](../protocol/rc-fuzz-2026-11-19.md).
-  - [ ] `rc2002` (RC 2002/01/11, gen 2) with the embedded NC socket: `runrc.sh RC_WORLD=npcdemo RC_NC=1` fronts the NC socket with ncprobe (NC-fuzz thread, PR #670).
+  - [x] ~~RC-embedded NC socket (2002/05/02 RC, GSERV023 + NCL11012) via ncprobe.~~ NC login accepted, 45 packets injected, no crash. [Note](../protocol/rc-fuzz-2026-11-19.md). Found a GServer-v2 bug: it never answers `PLI_NPCSERVERQUERY` (94) from a gen-2 RC with `PLO 79` — needs a gsv2 issue (NC-fuzz thread owns).
 
 - [x] **Publish NRY identity findings F01–F03 (#53).** ~~5.12-untouched=5.00r7; 2.1.x GLEVNW01/170–177/controlnpc; 1.x VERGRAAL vs no-listserver 1.39.~~ [Index](../version-profiles/nry-identity-f01-f03.md).
 

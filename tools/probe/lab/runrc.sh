@@ -95,7 +95,7 @@ if [ -f "$ACC" ]; then
   grep -q '^IPRANGE ' "$ACC" && sed -i 's/^IPRANGE .*/IPRANGE */' "$ACC" || echo 'IPRANGE *' >> "$ACC"
 fi
 ./E sh -c "cd $G/w && setsid nohup ./seihai-listserver --config ls.toml > $O/listserver.txt 2>&1 &"; sleep 1
-./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probrc > $O/gs-world.txt 2>&1 &"; sleep 1
+./E sh -c "cd $G/w && setsid nohup ./${RC_GS:-gs2emu-73} --server probrc > $O/gs-world.txt 2>&1 &"; sleep 1
 ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 $PORT $LO2 $PORT $O/proxy.log rc $R/run/rc.sock > $O/proxy.out 2>&1 &"
 # RC_NC: front only the NC socket with ncprobe on $LO3:$PORT. Upstream is the gserver's NPC backend
 # ($LO2:$PORT); RC_NC_FALLBACK=1 instead runs ncstub on $LO2:14805 and points ncprobe there (used if
@@ -131,6 +131,15 @@ elif [ "$RC" = rc2004 ]; then
   DISPLAY=:$D xdotool mousemove 236 359 click 1
 else
   DISPLAY=:$D xdotool key --delay 80 Return   # placeholder: calibrate RC_CONNECT for this build
+fi
+
+# RC_NC: GServer-v2 does not answer the RC's PLI_NPCSERVERQUERY (94) from a gen-2 RC with PLO 79
+# (lab 2026-11-19 -- a gserver bug), so the RC never opens its NC socket on its own. Inject PLO 79
+# on the game socket to hand the RC the NC address ($LO3,$PORT = ncprobe), which it then dials.
+# Drop this once the gserver answers 94. RC_NS_PID is the (Server) player id (seen as 2 in the lab).
+if [ "${RC_NC:-0}" = 1 ]; then
+  sleep 4
+  python3 $T/probectl.py $R/run/rc.sock cmd "s2c 79 s:${RC_NS_PID:-2} t:$LO3,$PORT" >> $O/plan.log 2>&1
 fi
 
 # The shot hook records the window state and a CPU sample (a wedged RC often pegs a core and
