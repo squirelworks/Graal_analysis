@@ -39,7 +39,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#4 | Whether 5.00r7 sends id 11 | Lab | yes, from the carried-object throw | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 | E#6 | Ids 14 and 22 in 1.21 and 1.32 | Read | the per-build profile is right and the range summary rounded over the gaps | [inf] (client-internals/version-profiles/v121-v132.toml) |
 | E#9 | Uploads from game clients | Lab | the late clients' file browser is a staff tool that servers accept only from staff accounts | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| E#10 | When downloads moved to `maps` | Read | 2.17 or shortly before | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
+| E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#13 | Gmap neighbour overwrite on classic logins | Lab | the overwrite happens with stock GServer-v2 | [inf] (protocol/gmap-adjacent-level-target.md#short-answer) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
@@ -71,8 +71,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#303 | Two lists in the blocked-point test | Read | other players and baddies | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| E#306 | Flag that picks `lift2.wav` | Read | the heavy-object flag | [inf] (client-internals/ledges-push-pull.md#open) |
-| E#307 | 1.39 movement tables | Read | the same tables as 1st Graal | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| E#307 | 1.39 movement tables | Read | the same tables as 2.05 (shared probe block) | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 | E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
 | E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
 | E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
@@ -92,7 +91,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
 | E#327 | Chest art and menu skin in the 6.03r7 item run | Lab | both come from files the lab world lacks | [inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
-| E#328 | What drives 2.22's tick: a multimedia timer or the idle handler | Read | a timer created in code, which a form scan does not see | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| E#328 | What drives 2.22's tick: a window timer or the idle handler | Read | not a multimedia timer (none imported); window timer or idle | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
@@ -116,7 +115,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#602 | Code width of `Z3-V1.02` | Read | 11 bits, read only by the 1998 Java games | [inf] (formats/level-binary.md#z3-v1-differences) |
 | E#603 | Whole tiles and fractions in level records | Read | link boxes are fractional, record positions whole | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 | E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| E#608 | How many `arrays.dat` lists make a tile passable | Read | two lists in the old-mode path | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
@@ -126,7 +124,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#617 | Whether 1.41 rev 1 loads `.nw` levels online | Lab | yes for `.nw`; a gmap is ignored | [inf] (client-internals/141r1-nw-gmap-status.md) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
 | E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | Lab | only as a fallback when `license.graal` is missing | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
-| E#620 | What the 1.41 rev 1 program-check handler does | Read | shows a message and stops the client | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
 
 ## E.2 Builds, identity and protection
 
@@ -235,18 +232,6 @@ These questions are about which build is which, who built it and how it protects
 | Best guess | A fallback used when the licence file gives no host, as the compiled-in hosts of 5.24 and later suggest. Confidence: low to moderate | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 | Settles it | One lab run per `license.graal` case, with a local listener on the stored port and the clock set back for the beta expiry | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 | Outlook | Lab | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
-
-### E#620 What the 1.41 rev 1 program-check handler does
-
-**Question.** What the program-check error handler of 1.41 rev 1 does when it runs, and what raises its event. One held copy runs the handler; the other and the baseline bind the event to its final return, so it does nothing (→ §1.1.5) [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The handler builds text-like values, sets a byte of state and calls helpers before cleanup; one helper tests a result and conditionally calls another. Their effects were not identified | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
-| Limit | The study does not show a warning dialog, an exit, the triggering condition, or who changed the binding | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
-| Best guess | It reports a failed self-check, shows a message and stops the client, and the copy that binds to the final return had that check switched off. Confidence: low; the history of the change is not known | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
-| Settles it | A static read of the event's trigger and of the helpers; a run of each copy only if that read leaves a precise thing to watch | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
-| Outlook | Read for what the handler does; Maybe never for why the copies differ | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
 
 ## E.3 Transport: frames, ciphers and logins
 
@@ -375,7 +360,8 @@ These questions are about single messages and props: which builds send or handle
 | --- | --- | --- |
 | Evidence | The 2.1 test builds save downloads with no `maps` rule, and 2.17.1 has one; no client between them has been read | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | Tried | The Windows 2.1.0.0 to 2.1.0.4 images are now identified, so the question no longer waits on a binary for that range; 2.12 to 2.16 have none | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md) |
-| Best guess | The rule arrived with the gmap work shortly before 2.17. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
+| Tried (2026-11-19) | The gmap code, `loadgmaps.txt` included, is absent from 2.1.0.0 to 2.1.0.4 and present in 2.17.1 | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#gmap-code-in-the-21-builds-e10) |
+| Best guess | The rule arrived with the gmap work, after 2.1.0.4 and by 2.17.1. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 | Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 
@@ -519,19 +505,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Settles it | One such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
 | Outlook | Lab | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
 
-### E#608 How many `arrays.dat` lists make a tile passable
-
-**Question.** How many `arrays.dat` lists decide whether a tile is walkable [doc] (CONSOLIDATED.md#tiles).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The first array supplies passable tiles and all others are walls | [doc] (CONSOLIDATED.md#tiles) |
-| Claim B | The old-mode 2.05 path checks arrays 0 and 1 | [2.05] (formats/arrays-and-signatures.md#arraysdat) |
-| Evidence | The two operations differ for the exact inspected input (→ §3.5.3.1); that does not identify a runtime consumer | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Best guess | Claim B for the old-mode path, which is a code read; Claim A is a summary that dropped list 1. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Settles it | Trace the exact consumer, or a scene that walks onto a value present only in list 1 | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Outlook | Read, then Lab | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-
 ## E.6 Client behaviour
 
 These questions are about what a client does in play: timing, walking, combat, items and the screen (→ Part IV). Most were raised by a static read that found a routine but not every input to it, so most are settled by one controlled lab scene on the exact build [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
@@ -595,17 +568,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
 | Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
 
-### E#306 The flag that picks `lift2.wav` for a pull
-
-**Question.** Which player flag makes a successful pull play `lift2.wav` instead of `lift.wav` [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | A successful pull plays `lift.wav`, or `lift2.wav` by a player flag that was not traced | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
-| Best guess | A flag for a heavy object (one that needs a stronger glove), giving the heavier sound. Confidence: low | [inf] (client-internals/ledges-push-pull.md#open) |
-| Settles it | Tracing the flag in 2.05's pull routine | [inf] (client-internals/ledges-push-pull.md#open) |
-| Outlook | Read | [inf] (client-internals/ledges-push-pull.md#open) |
-
 ### E#307 Probe, nudge and step tables of 1.39
 
 **Question.** The numeric movement tables of 1.39; 1st Graal's are now read [bin] (client-internals/first-graal-movement-2026-11-09.md).
@@ -614,7 +576,8 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Evidence | 1st Graal's exact step, six ordered probes, one-eighth-tile nudges and stepped-axis snapping are in → §4.2.2.3 | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
 | Evidence | For 1.39, six probes and the blocked-step counter shape were read, without the numbers | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
-| Best guess | 1.39 uses the same tables as 2.05, since the probe count and counter shape match. Confidence: moderate | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| Tried (2026-11-19) | 1.39 holds the same 64-byte probe-offset block as 2.05 and 2.22, byte for byte; the six-probe and nudge tables were not extracted | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#139-movement-e307) |
+| Best guess | 1.39 uses the same tables as 2.05, since the probe count, counter shape and probe-offset block match. Confidence: moderate to high | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 | Settles it | Recover the 1.39 tables, then validate the runtime gates on exact inputs | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 | Outlook | Read | [1.39] (version-profiles/matrix/rules-139.md#still-open) |
 
@@ -791,6 +754,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Open | The throw, the drop on cut or lift, the carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Evidence | `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry and throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
+| Tried (2026-11-19) | 2.22's probe table is byte-identical to 2.05's; its carry, throw and take-player-carry logic sits in one large script action dispatcher; the routines were not compared one by one | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#222-level-object-code-e323) |
 | Best guess | The routines match 2.05's, since 2.22's walking rule does. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Settles it | Reading those routines in 2.22, or one lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
@@ -854,7 +818,8 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Claim A | The rebuild read of `Graal_222.exe` found a multimedia timer with an interval of 50 ms and a resolution of 10, whose handler is the game step | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
 | Claim B | The static survey of every Delphi build lists NewMain 1.42 to 2.31, 2.22 included, as having no form timer, with the frame run from the idle handler | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
-| Best guess | Both are partly right: the survey looks for timers on forms, and a multimedia timer is created in code, so it would not show there. Whether the idle path also still steps the game in 2.22 is not known. Confidence: moderate | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
+| Tried (2026-11-19) | 2.22 imports no multimedia-timer functions, but does import the window timer (`SetTimer`) and three clock reads. Claim A's multimedia timer is not there, unless it is looked up by name at run time | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#tick-source-e328-222) |
+| Best guess | The step runs from a window timer or from the idle handler behind a clock gate; not a multimedia timer. Which of the two is not read. Confidence: moderate | [inf] (client-internals/static-reads-appendix-e-2026-11-19.md#tick-source-e328-222) |
 | Settles it | Read 2.22's start-up code for the timer's creation and check whether the idle handler calls the game step; or count steps under Wine with the timer blocked | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
 | Outlook | Read | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
 
@@ -1501,6 +1466,17 @@ The frame loop of the 3.x and 4.x clients was untimed; a 2026-11 lab settled it 
 | Settled | 50 ms steps, one render per step, 8 pixels per walk step for every 3.04, 4.04r2, 4.20r6 and 6.03r7 client; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
 | Later | 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down; 2.22 and 2.31 play one walk frame per step; Linux 6.03r7 GS2 timers round up to 50 ms steps (→ §4.1.8). The `onTimeout` / `onTimeOut` spelling by client is tracked in → App. E#209 | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
 
+### E#306 What picks `lift2.wav` for a pull (settled)
+
+Which flag makes a successful pull play `lift2.wav` instead of `lift.wav` was open; a static read of 2.05 settled it [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | A player flag that was not traced; best guess a heavy-object flag | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
+| Settled | The choice reads a byte of the object being lifted or pulled, not a player flag: non-zero plays `lift.wav`, zero plays `lift2.wav` | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+| Verdict | Verified by static read; the earlier note named the wrong owner of the flag | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+| Left over | What the byte means for each object kind | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+
 ### E#318 Level reload on re-entry offline (settled)
 
 Whether offline 2.05 reloads a level on re-entry, bringing a cut bush back, was untested [bin] (client-internals/board-respawn.md#open).
@@ -1575,6 +1551,16 @@ Whether the lines an old protocol cheat sheet still prints are wrong was open as
 | Settled | The probe proxy, written to Claim B's rules, decodes and re-encodes live sessions of real 2.05 rev 2 and 2.17.1 (generation 3), 2.22, 2.31 and 4.x to 6.x (generation 5) and the 2004 RC (login type 6, generation 5) without loss; a 1,024-byte slice or a raw version byte would break every one of those sessions at the first frame | [lab] (protocol/unknowns-ledger.md); [lab] (protocol/rc-fuzz-2026-11-19.md); [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md) |
 | Verdict | Verified for the framing, cipher and RC lines by live sessions; the 100 to 102 names and the facing order follow the server source and the manual | [lab] (protocol/unknowns-ledger.md) |
 
+### E#608 How many `arrays.dat` lists make a tile passable (settled)
+
+How many `arrays.dat` lists decide whether a tile is walkable was open between a summary and a code read; a static read of the consumer settled it for 2.05 [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the first array supplies passable tiles and all others are walls. B: the old-mode 2.05 path checks arrays 0 and 1 | [doc] (CONSOLIDATED.md#tiles); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
+| Settled | The loader reads 25 lists; the old-mode passability test checks list 0 and, on a miss, list 1, and no other | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+| Verdict | Verified by static read: Claim B holds; Claim A dropped list 1 | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+
 ### E#609 macOS archive labels and application identity (settled)
 
 Whether the Mac uploads labelled 3.04 and 3.15r2 are the historical 3.153 image was open, because the earlier comparison gave no digest to match [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim).
@@ -1595,6 +1581,17 @@ What a type-4 tiledef line does was open: such lines are common in 2.22 install 
 | Claim B (holds) | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
 | Settled | Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. The image must be an 8-bit palette PNG; a 24-bit one is ignored without a message, which is why the earlier tries saw nothing | [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19) |
 | Left over | Water under an overlay, and type-4 lines on builds other than 2.22 | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+
+### E#620 What the 1.41 rev 1 program-check handler does (settled)
+
+What the program-check handler of 1.41 rev 1 does, and why one copy skips it, was open; a static read settled it [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The handler builds text values and calls helpers whose effects were not identified | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
+| Settled | The handler is the stock Delphi TProgramCheck 1.1 self-integrity component: on a failed check it says the program "has been modified either by a virus or by a transfer problem", that the Graal executable is corrupted, and ends the client | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1) |
+| Inferred | The component warns that an active check "not processed by stamp.exe" has nothing to compare against; the copy bound to the final return fits a build that was not stamped | [bin][inf] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1) |
+| Verdict | Verified for what the handler does; why the copies differ is inferred | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1) |
 
 ## E.12 What may never be known
 
