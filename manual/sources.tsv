@@ -830,4 +830,5 @@ live-runs/sword-edge-2026-11-18/README.md	cited	4.3	4	two-player sword sideways 
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
 client-internals/hypervisor-live-debug.md	pending		11; E	Method note: host-side QEMU/KVM gdbstub debugging of the Themida-protected v7 and 6.113 clients, Bochs assessment, software D3D limits; to be folded into the tools chapter
 protocol/unknowns-ledger.md	excluded			running tally of the probe work (status per id and prop), a working list beside probe-targets-2026-11-18.md
+protocol/v6113-login-lab-method.md	pending		2; E	Two-gate 6.113 login in a loopback lab; deterministic conf.gs request; forge/replay/trust-anchor analysis and the from-outside method; to fold into the protocol chapter
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal

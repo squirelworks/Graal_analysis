@@ -52,7 +52,11 @@ Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
    `sendLoginNewProtocol` / `sendPasswordAndIDs`); bytecode argument order is
    not. `connector-script.md` Open. **[lab]**
 2. **What `?p=` binds** beyond “this launch’s request” for the signature.
-   `connector-script.md` Open. **[lab]**
+   Sharpened: the `?p=` request is **byte-identical across fresh launches**
+   of a build (no per-launch nonce; it encodes only game/platform/version/
+   build), so for 6.113 the request binds nothing per launch — any per-launch
+   binding, if it exists, is inside the decrypted script, not the request.
+   `v6113-login-lab-method.md`, `connector-script.md` Open. **[lab]**
 3. **Open: loopback `conf.gs` harness** (partial). Live Windows 6.113 still
    fetches a connector and reaches Login UI
    (`v6113-live-connector-2026-11-16.md`). Official post-Login traffic on
@@ -60,7 +64,12 @@ Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
    (`v6113-live-handshake-2026-11-16.md`). A loopback connector responder plus
    first encrypted frames against a lab game sink is still missing. Mac 6.111
    offline replay already settles the cipher story; do not wait on the
-   harness to keep the settled table above. **[lab]**
+   harness to keep the settled table above. A loopback run of the real packed
+   client confirmed the two-gate order (classic login/list first, then the
+   signed-connector game-connect) and that the connector gate is total — no
+   accepted reply, no token/framing in memory. The stock-client lab path is a
+   trust-anchor swap (lab public key + lab-signed `conf.gs`), the way the gcr
+   repro already bakes in its own key. `v6113-login-lab-method.md`. **[lab]**
 4. **Clean fully-unpacked 6.113 image vs the existing unpacked-6113 notes.**
    Packed game exe remains a Themida shell in the stock listing; a lab unpack
    dump (private) may sharpen leftovers, but must not put digests, paths or
