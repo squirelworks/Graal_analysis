@@ -113,6 +113,14 @@ python3 tools/rccanary.py ~/probelab/out/rc2004-core/proxy.log ~/probelab/out/rc
 `selftest.py` covers all four login paths (gen 5, gen 3, RC gen 2, RC2/RC3 gen 5) with fake peers,
 so the login detection and relaying are checked without the lab.
 
+## Multi-thread shared-VM fuzzing protocol
+
+When more than one fuzz thread shares one Win10 lab VM, serialise the guest desktop and its proxy seams with a lock file, or clients collide.
+
+- **Lock**: `v7-lab\desktop.lock`. Acquire by an *atomic* create (fail if it already exists); if the create fails, the VM is taken — wait and retry. Write your build tag + a START time into it. Release by deleting it.
+- **Slices**: hold for at most ~20 min and for one build's run; release (delete the lock) between builds; wait ≥2 min, or until the other thread has taken and released it, before re-acquiring, so neither thread is starved.
+- **Both seams flip per holder**: while you hold the lock, point *both* the guest login seam (portproxy `14900`) *and* the world seam (portproxy `14802`) at your own dedicated host ports — e.g. this thread `14900→15900` / `14802→15802`, the 4.x/5.x thread `14900→16900` / `14802→16812` — and restore the other side's pair on release. Flipping only `14900` is a bug: the client's world session (where the `s2c 9` prop injects land) is warped to `14802`, so if `14802` is not also flipped, another thread's client cross-wires into your world. (Seen 2026-11-19: a 5.24r4 client warped into another thread's probe/world for ~40 min because `14802` was left pointing at it.)
+
 ## Limits
 
 - Generations 2, 3 and 5 are tested (gen 3 on real 2.05 and 2.17.1, gen 5 on 2.22 and later). Gen 4 (2.19–2.21) follows the server source and is untested. 6.1.1.3's RC4 stream is not covered.
