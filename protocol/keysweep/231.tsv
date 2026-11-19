@@ -128,33 +128,36 @@ client	key	effect	c2s	script_event	notes
 2.31	Alt+6	screen 159 px 247x287 box 322,111-568,397 (centre 445,254)	-	-	
 2.31	Alt+7	screen 393 px 85x316 box 248,111-332,426 (near player)	-	-	
 2.31	Alt+8	screen 105332 px 640x456 box 0,0-639,455 (near player)	39:MAPINFO{).U.`.....}	-	reset: again(auto), escape; screen still differs after reset (117708 px)
-2.31	Alt+9	nothing seen	-	-	
-2.31	Shift+Left	nothing seen	-	-	reset: undo
-2.31	Shift+Right	nothing seen	-	-	reset: undo
-2.31	Shift+Up	nothing seen	-	-	client stopped sending packets (hung); key pressed again after a restart; reset: undo
-2.31	Shift+Down	nothing seen	-	-	reset: undo
-2.31	Ctrl+Left	nothing seen	-	-	reset: undo
-2.31	Ctrl+Right	nothing seen	-	-	reset: undo
-2.31	Ctrl+Up	nothing seen	-	-	reset: undo
-2.31	Ctrl+Down	nothing seen	-	-	reset: undo
-2.31	LeftClick player	nothing seen	-	-	
-2.31	RightClick player	nothing seen	-	-	
-2.31	MiddleClick player	nothing seen	-	-	
-2.31	DoubleClick player	nothing seen	-	-	
-2.31	LeftClick ground	nothing seen	-	-	
-2.31	RightClick ground	nothing seen	-	-	
-2.31	MiddleClick ground	nothing seen	-	-	
-2.31	DoubleClick ground	nothing seen	-	-	
-2.31	LeftClick npc	nothing seen	-	-	
-2.31	RightClick npc	nothing seen	-	-	
-2.31	MiddleClick npc	nothing seen	-	-	
-2.31	DoubleClick npc	nothing seen	-	-	
-2.31	LeftClick hud	nothing seen	-	-	
-2.31	RightClick hud	nothing seen	-	-	
-2.31	MiddleClick hud	nothing seen	-	-	
-2.31	DoubleClick hud	nothing seen	-	-	
-2.31	WheelUp	nothing seen	-	-	
-2.31	WheelDown	nothing seen	-	-	
-2.31	Escape	screen 88978 px 640x347 box 0,0-639,346 (near npc)	34:UPDATEFILE{#.)FLsword.gani} | 1:BOARDMODIFY{>R""%E%F%U%V} | 34:UPDATEFILE{$T.0.crush.wav} | 34:UPDATEFILE{#.xP.item2.wav} | 2:PLAYERPROPS{gani='idle'} | 34:UPDATEFILE{#SL.8item.wav}	keydown=1120	reset: again(auto); screen still differs after reset (71091 px)
-2.31	Tab	nothing seen	-	-	reset: again
-2.31	Return	screen 288239 px 832x637 box -192,-157-639,479 (near npc); CLIENT GONE (crash or quit)	-	-	reset: again; screen still differs after reset (288239 px)
+2.31	Alt+9	screen 327 px 512x315 box 72,112-583,426 (near player)	-	-	
+2.31	Shift+Left	screen 133141 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 34:UPDATEFILE{#.xP.steps2.wav} | 2:PLAYERPROPS{x2=29} ..(3).. 2:PLAYERPROPS{x2=27} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	keydown=2 keydown=0	reset: undo; screen still differs after reset (135302 px)
+2.31	Shift+Right	screen 25294 px 632x456 box 8,0-639,455 (near player)	2:PLAYERPROPS{gani='walk' x2=31.5} | 2:PLAYERPROPS{x2=32} | 2:PLAYERPROPS{x2=32.5} | 24:SHOWIMG{)} | 2:PLAYERPROPS{x2=33.5} | 2:PLAYERPROPS{x2=34} | 2:PLAYERPROPS{gani='idle'}	keydown=8 keydown=0	reset: undo
+2.31	Shift+Up	screen 160789 px 832x613 box -192,-157-639,455 (near npc)	2:PLAYERPROPS{gani='walk' sprite=0 y2=31.5} | 2:PLAYERPROPS{y2=31} ..(4).. 2:PLAYERPROPS{y2=28.5} | 2:PLAYERPROPS{gani='idle'} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	keydown=1 keydown=0	reset: undo; screen still differs after reset (162088 px)
+2.31	Shift+Down	screen 148754 px 832x613 box -192,-157-639,455 (near npc)	24:SHOWIMG{)} | 2:PLAYERPROPS{gani='walk' y2=33} | 2:PLAYERPROPS{y2=33.5} ..(5).. 2:PLAYERPROPS{y2=36.5} | 2:PLAYERPROPS{gani='idle'} | 39:MAPINFO{).U.`.....}	keydown=4 keydown=0	reset: undo; screen still differs after reset (148545 px)
+2.31	Ctrl+Left	screen 1377 px 511x324 box 56,71-566,394 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	reset: undo; screen still differs after reset (127366 px)
+2.31	Ctrl+Right	screen 622 px 608x316 box 0,79-607,394 (near player); chat prop sent	39:MAPINFO{).U.`.....} | 2:PLAYERPROPS{chat=''}	-	reset: undo; screen still differs after reset (105836 px)
+2.31	Ctrl+Up	screen 496 px 48x127 box 285,79-332,205 (near npc); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	-	reset: undo; screen still differs after reset (93671 px)
+2.31	Ctrl+Down	screen 735 px 560x433 box 16,23-575,455 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	reset: undo; screen still differs after reset (81186 px)
+2.31	LeftClick player	screen 780 px 512x385 box 64,71-575,455 (near player); chat prop sent	39:MAPINFO{).U.`.....} | 38:TRIGGERACTION{   `hleftmouse} | 2:PLAYERPROPS{chat=''}	-	
+2.31	RightClick player	opens window: Profile 618x386@236,62; screen 235148 px 618x386 box 44,-95-661,290 (near npc)	80:?{c224729} | 38:TRIGGERACTION{   8Krightmouse} | 24:SHOWIMG{)}	-	window would not close: Profile; reset: closed 0/1 new windows; screen still differs after reset (277415 px)
+2.31	MiddleClick player	screen 283 px 41x16 box 292,111-332,126 (near npc)	38:TRIGGERACTION{   _cmiddlemouse} | 39:MAPINFO{).U.`.....}	-	
+2.31	DoubleClick player	screen 494 px 512x317 box 72,110-583,426 (near player)	38:TRIGGERACTION{   _cleftmouse} | 38:TRIGGERACTION{   _cdoublemouse} | 38:TRIGGERACTION{   _cleftmouse} | 24:SHOWIMG{)}	-	
+2.31	LeftClick ground	screen 327 px 511x315 box 72,112-582,426 (near player)	38:TRIGGERACTION{   Dsleftmouse}	-	
+2.31	RightClick ground	screen 509 px 512x316 box 72,111-583,426 (near player)	38:TRIGGERACTION{   Dsrightmouse}	-	
+2.31	MiddleClick ground	screen 227 px 87x317 box 248,110-334,426 (near player)	38:TRIGGERACTION{   Dsmiddlemouse} | 24:SHOWIMG{)}	-	
+2.31	DoubleClick ground	screen 94 px 11x15 box 323,112-333,126 (near npc)	38:TRIGGERACTION{   Dsleftmouse} | 38:TRIGGERACTION{   Dsdoublemouse} | 38:TRIGGERACTION{   Dsleftmouse}	-	
+2.31	LeftClick npc	screen 1166 px 511x356 box 72,71-582,426 (near player)	38:TRIGGERACTION{   ^Wleftmouse}	-	
+2.31	RightClick npc	screen 856 px 113x315 box 248,112-360,426 (near player)	38:TRIGGERACTION{   ^Wrightmouse} | 24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	MiddleClick npc	screen 318 px 86x317 box 248,110-333,426 (near player)	38:TRIGGERACTION{   ^Wmiddlemouse} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	-	
+2.31	DoubleClick npc	screen 300 px 512x315 box 72,112-583,426 (near player)	38:TRIGGERACTION{   ^Wleftmouse} | 38:TRIGGERACTION{   ^Wdoublemouse} | 38:TRIGGERACTION{   ^Wleftmouse}	-	
+2.31	LeftClick hud	screen 334 px 512x315 box 72,112-583,426 (near player)	38:TRIGGERACTION{   vKleftmouse}	-	
+2.31	RightClick hud	screen 273 px 40x16 box 293,111-332,126 (near npc)	38:TRIGGERACTION{   vKrightmouse} | 39:MAPINFO{).U.`.....}	-	
+2.31	MiddleClick hud	screen 301 px 42x17 box 292,110-333,126 (near npc)	38:TRIGGERACTION{   vKmiddlemouse} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	-	
+2.31	DoubleClick hud	screen 296 px 41x16 box 293,111-333,126 (near npc)	38:TRIGGERACTION{   vKleftmouse} | 38:TRIGGERACTION{   vKdoublemouse} | 38:TRIGGERACTION{   vKleftmouse}	-	
+2.31	WheelUp	screen 360 px 511x317 box 72,110-582,426 (near player)	-	-	
+2.31	WheelDown	screen 238 px 86x316 box 248,111-333,426 (near player)	24:SHOWIMG{)}	-	
+2.31	Escape	opens window: Warning 226x80@399,357; screen 18378 px 226x316 box 207,111-432,426 (near player)	-	-	reset: closed 1/1 new windows
+2.31	Tab	screen 537 px 581x364 box 3,111-583,474 (near player)	39:MAPINFO{).U.`.....}	-	reset: again
+2.31	Return	screen 532 px 581x364 box 3,111-583,474 (near player)	39:MAPINFO{).U.`.....}	-	reset: again
+2.31	KP_Enter	screen 419 px 85x316 box 248,111-332,426 (near player)	-	-	
+2.31	Alt+Return	opens window: Â Â Â   Graal: AÂ GS1 Control Â   Â 648x514@188,127; screen 316847 px 836x641 box -192,-157-643,483 (near npc); CLIENT GONE (crash or quit)	-	-	window would not close: Â Â Â   Graal: AÂ GS1 Control Â   Â; reset: closed 0/1 new windows; screen still differs after reset (603006 px)
+2.31	Alt+F4	screen 306296 px 832x637 box -192,-157-639,479 (near npc); CLIENT GONE (crash or quit)	-	-	screen still differs after reset (306296 px)
