@@ -134,6 +134,32 @@ build (runs `nc713-a`, `nc2002-a`).
 - The clients did *read* the malformed packets rather than ignore them — 167 populated the
   weapon list, 164 opened the dump viewer, and the over-read weapon/name strings were drawn — so
   "alive" means the parsers tolerated the bad input, not that they skipped it.
-- **Not yet fuzzed:** the RC 2002/01/11 embedded NC socket (`NCL11012`), which needs the RC
-  game-server login + 94/79 discovery flow rather than a direct NC connect; and client→NC write
-  ops against a server that actually parses them (gap #40, `nc-write-ops-status.md`).
+- **Not yet fuzzed:** client→NC write ops against a server that actually parses them (gap #40,
+  `nc-write-ops-status.md`).
+
+### RC-embedded NC socket (second pass) **[lab]**
+
+The NC socket embedded in a staff RC was then fuzzed through the RC's own discovery flow, jointly
+with the RC-fuzz lab: RC logs into the game server (gen-2), the server presents the `(Server)`
+player, the RC opens its NC socket, and `ncprobe.py` fronts only that NC socket (ns_ip pointed at a
+third loopback) so `nc-core.plan` runs on it while the game socket is untouched.
+
+- **Build:** the usable embedded-NC RC is the **2002/05/02** `RemoteControl.exe` (game login
+  `GSERV023`, NC login `NCL11012`, both verified in strings). The archived "RC 2 (Jan 2002)" rars
+  (`rc2.rar` and its duplicate, 5 copies, one md5) are the **2002/01/04** build, token `GSERV022`,
+  with **no** NCL token — i.e. no embedded NC socket. So the Jan-2002 RC does not carry the NC
+  client; the May-2002 build is the earliest held RC that does. **[bin][lab]**
+- **Result:** the NC login was accepted (`NCL11012`, the server logging `New login: … [NC]
+  [NCL11012 (1.1)]`), the server sent Control-NPC 158 + 42, and `nc-core.plan` injected 45 S→C
+  packets. The RC stayed alive at all 46 shots — **no crash, no disconnect** — matching the
+  standalone NPCControl result. The cipher-free NCL framing decoded and re-framed intact.
+- **GServer-v2 discovery bug (server-side, [srv], cause under confirmation):** the RC's
+  `PLI_NPCSERVERQUERY` (94) did **not** draw a `PLO_NPCSERVERADDR` (79) back on the lab gserver
+  (gs2emu-73/76/101a) despite `serverside = true`, the NPC server loaded, `ns_ip` set, and the
+  account holding `NPCCONTROL`. In the seihai-gserver-v2 source `msgPLI_NPCSERVERQUERY` only replies
+  with 79 when the query body equals exactly `"location"` (else it logs "unknown"), and there is no
+  send-79-at-login path — the three `sendNCLoginToPlayer` callers are this query, an RC
+  server-options update, and an `NPCCONTROL` rights change. Whether the real RC's 94 body differs
+  from `"location"`, or the lab gserver build diverges from that source, is still being pinned from
+  the captured 94 bytes before filing. The lab worked around it by injecting 79 on the game socket
+  after connect, which opened the NC socket immediately. Cross-ref: the RC-fuzz thread's rc-fuzz note.
