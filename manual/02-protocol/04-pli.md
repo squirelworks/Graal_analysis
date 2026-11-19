@@ -38,10 +38,11 @@ The *First sent* column of the tables below names the earliest build in this tab
 
 | Build | Ids sent | Complete? | Source |
 | --- | --- | --- | --- |
-| 1.21 | 0, 10–13, 15–26 | floor; disputed → App. E#6 | [bin] (client-internals/version-profiles/v121-v132.toml) |
+| 1.21 | 0–13, 15–26 | yes: every send passes a constant id (→ App. E#6) | [bin] (client-internals/version-profiles/v121-v132.toml); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
 | 1.28 beta 2 | 0, 15–21, 23, 25, 28, 29 | floor (fewer constants than 1.21 for the reason above) | [bin] (client-internals/version-profiles/v121-v132.toml) |
 | 1.3 test | 0, 14–21, 23, 25, 28–30 | floor | [bin] (client-internals/version-profiles/v121-v132.toml) |
-| 1.31, 1.32 | 0, 10–21, 23–30 | floor; 1.32 disputed → App. E#6 | [bin] (client-internals/version-profiles/v121-v132.toml) |
+| 1.31 | 0, 10–21, 23–30 | floor | [bin] (client-internals/version-profiles/v121-v132.toml) |
+| 1.32 | 0–30 | yes: every send passes a constant id (→ App. E#6) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
 | 1.33 to 1.37 | 0–31 | yes for constant ids; a few register sends uncounted | [bin] (client-internals/version-profiles/v133-v139.toml) |
 | 1.38 | 0–24, 26–33 | as above | [bin] (client-internals/version-profiles/v133-v139.toml) |
 | 1.39 | 0–24, 26–33, 80, 81 | as above | [bin] (client-internals/version-profiles/v133-v139.toml) |
@@ -83,7 +84,7 @@ The id table above says which ids a build can send. The rules below add the exce
 | 2.02 rev1 has no `PLI_LANGUAGE` (37) send site and sends none in the lab; rev2 is the first build that sends 37 | 2.02 rev1, rev2 | [bin][cap] (client-internals/version-profiles/141-217.toml) |
 | Ids 4.x adds over 3.x: 44 (window list for PLO 182), 50 (large-packet length), 157 and 161 (file requests carrying an `i5` time), 158 (weapon by name), 162 | 4.20r8 | [bin] (protocol/v4x-clients.md#client--server-ids) |
 
-The summary lists for 1.21 and 1.32 in the 1999 protocol note disagree with the per-build profile by one id each → App. E#6.
+A full read of the 1.21 and 1.32 send routines settled the earlier disagreement: 1.21 never sends 14, and 1.32 sends 22. Both also send 1 to 9 [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
 
 The six Graal 2002 inputs in §1.1.5 have static receive and command-table findings, but this study did not establish their client-to-server send sets. Do not assign the 2.1 test or 2.17.1 row to them from a shared token; the per-input PLI audit remains open in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#open-points)
 
