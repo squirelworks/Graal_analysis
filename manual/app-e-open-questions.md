@@ -109,7 +109,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 marks a drawing variant; servers sent none | [inf] (torque/304-tile-types.md#not-settled) |
 | E#601 | Link arrival offsets | Lab | the client evaluates them | [inf] (tools/level-editor/222-reference.md#16-open) |
 | E#602 | Code width of `Z3-V1.02` | Read | 11 bits, read only by the 1998 Java games | [inf] (formats/level-binary.md#z3-v1-differences) |
-| E#603 | Whole tiles and fractions in level records | Read | link boxes are fractional, record positions whole | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 | E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -474,19 +473,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Best guess | Both are right: `.02` is 11-bit and no Graal client reads it, so the 12-bit readers never meet it. Confidence: moderate to high | [inf] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
 | Settles it | A `Z3-V1.02` file decoded both ways, and a trace of whether 2.05 reads that magic | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
 | Outlook | Read | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
-
-### E#603 Whole tiles and fractions in level records
-
-**Question.** Which level-record fields hold whole tiles and which take fractions [srv] (formats/level-binary.md#records).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Coordinates in the binary level records are whole tiles | [srv] (formats/level-binary.md#records) |
-| Claim B | `Z3-V1.03` link numbers are floating point and include halves such as `43.5`; GLEVNW01 allows fractional NPC positions; of 18,710 arrival fields in an archive, 12,035 were plain numbers, halves included | [srv] (formats/level-binary.md#z3-v1-differences); [GE] (formats/glevnw01.txt); [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
-| Tried | The Windows 4.04r2 reader: link boxes are floating point; arrivals stay text; baddy positions are raw bytes and NPC, chest and sign positions bytes minus 32, all whole | [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-| Best guess | In binary records, link boxes are fractional and every other position is whole; text formats allow fractions where the 4.04r2 reader shows floats. Confidence: moderate | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-| Settles it | A field list for link box, link arrival, baddy, NPC, chest and sign, each with its stated type and one real file of each magic | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
-| Outlook | Read | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
 
 ### E#604 Where a binary sign list ends
 
@@ -1513,6 +1499,17 @@ Whether GraalEditor writes `BOARD` as decimal tile indices or as base64 runs was
 | Claim A (false) | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
 | Claim B (holds) | The writer matches the 2.05 and 2.22 built-in base64 `BOARD` rows, emits GLEVNW01-style runs and skips all-zero rows | [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
 | Left over | An optional file-level confirmation from a Save As `.nw` when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
+
+### E#603 Whole tiles and fractions in level records (settled for 2.05 and 4.04r2)
+
+Which binary level-record fields hold whole tiles and which take fractions was disputed; a static read of the 2.05 reader, beside the earlier 4.04r2 read, settled it for both builds [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: coordinates are whole tiles. Claim B: link numbers can be halves such as `43.5`. Best guess: link boxes fractional, every other position whole | [srv] (formats/level-binary.md#records); [srv] (formats/level-binary.md#z3-v1-differences); [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Settled | 2.05 parses a link's x, y, width and height as numbers and rounds each to a whole tile; arrivals stay text expressions; baddy (raw byte), NPC, chest and sign (byte − 32) positions are whole. 4.04r2 keeps link boxes as floating point and the other positions whole | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603); [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Verdict | Build-dependent: the best guess holds for 4.04r2; in 2.05 a fractional link box is rounded, so both claims are right for different builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
+| Left over | 2.22 and 2.31, which were not read for this field | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 
 ### E#605 Client listserver frames in two vocabularies (settled)
 

@@ -1,7 +1,7 @@
 # Static reads for Appendix E, third batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a disassembler read of the real client executables on the
-Mirae lab, with no client run). Only behaviour is given here. Covers App. E#303 and E#317.
+Mirae lab, with no client run). Only behaviour is given here. Covers App. E#303, E#317 and E#603.
 
 Builds read: 2.05 rev 2 `Graal.exe` and 1.39.
 
@@ -43,3 +43,22 @@ chests and then the tile.
 - The overlap is strict on all four sides. When it holds, the client looks the item kind up in its 25-entry table; online
   it sends `PLI_ITEMTAKE` (32) with the position and the item. The offline branch was not followed.
 - The draw order of items against players was not read.
+
+## Whole tiles and fractions in 2.05 binary level records (E#603)
+
+The 2.05 rev 2 reader of the `GR-V1.0x` binary levels types each record field as follows.
+
+| Record | Field | How 2.05 reads it |
+| --- | --- | --- |
+| link | x, y, width, height | text, parsed as a decimal number and then rounded to a whole tile (half up: 43.5 becomes 44) |
+| link | arrival x, arrival y | kept as text expressions; a missing value means `playerx` or `playery` |
+| baddy | x, y | raw bytes, whole tiles (no 32 offset) |
+| NPC | x, y | byte − 32, whole tiles |
+| chest | x, y | byte − 32, whole tiles |
+| sign | x, y | byte − 32, whole tiles |
+
+- So in 2.05 every stored position is a whole tile. The one exception is a link's arrival, which stays
+  an expression and so can be fractional when it is evaluated.
+- A fractional link box such as `43.5` loads, but it is rounded.
+- The Windows 4.04r2 reader keeps link boxes as floating point, so the two builds differ on exactly
+  that field.
