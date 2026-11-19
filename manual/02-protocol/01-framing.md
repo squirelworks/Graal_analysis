@@ -39,6 +39,8 @@ Inside a frame, the unit is the message. Each rule below gives one property of h
 | The receiver splits an inflated frame on `\n` | 1.21 to 2.05 | [bin] (protocol/gserv-1999.md#framing); [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
 | An id the receive dispatcher has no case for is ignored silently; 2.05 has 59 cases | 2.05 | [2.05] (protocol/codec-and-framing.md#205-send-pipeline-update-2026-10-21-205) |
 | Every 2.05 handler checks a minimum length first and drops a short message silently | 2.05 | [2.05] (protocol/packet-layouts.md#how-205-reads-a-message-205) |
+| A `00` byte inside a message makes the client drop that message and every later one in the same frame; `ff`, `80` and `1f` bytes are harmless. A server should never put a `00` byte in a message for a 2.x client outside the raw-data escape, which carries file bodies with such bytes and arrives intact | 2.05 rev 2, 2.17.1, 2.22, 2.31 (lab); 4.20r8 keeps the rest of the frame | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
+| An id with no case is ignored with any body, and the next message is read normally | 2.05 rev 2 to 6.03r7 (lab, ids 60, 78, 81, 83, 110) | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
 
 ## 2.1.3 The raw-data escape
 

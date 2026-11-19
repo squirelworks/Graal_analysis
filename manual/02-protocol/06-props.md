@@ -304,25 +304,37 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 | The 2.22 send-side prop builder also knows 75 and 76 | 2.22 | [bin] (version-profiles/plo-playerprops-layouts.tsv) |
 | From 2.3 GServer-v2 puts X2 and Y2 before X and Y in other-player props | server | [srv] (version-profiles/2.22-2.31.md#wire-protocol) |
 
-#### Lab check on Linux 6.03r7 (2026-11-18)
+#### What the clients do with each id, in the lab
 
-A probe proxy injected single own-prop messages into a Linux 6.03r7 session, each followed by the bomb count (prop 5, one byte) as a canary. The rows below are what the client did; they agree with the static reads above [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+A probe proxy injected single prop messages into live loopback sessions, each followed by a visible prop as a canary (the bomb count, or an x or y), and read whether the canary landed. The results agree with the static case sets above and add the one rule a server writer most needs: **2.x clients stop at an id they have no case for, while 4.x to 6.x clients skip it as one byte** [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18).
+
+| Own-player prop | 2.05 rev 2, 2.17.1, 2.22 | 2.31 | 4.20r8 | 5.24r4 | 6.03r7 | Source |
+| --- | --- | --- | --- | --- | --- | --- |
+| 3 (`i3`) | read | read | read | read | read | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
+| 77 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | 5 bytes, no visible effect | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
+| 78–80 (`s` each) | end the message | 2 bytes | 2 bytes | 2 bytes | 2 bytes: X2, Y2, Z2 (pixels × 2, low bit the sign); Z2 lifts the sprite and leaves the shadow | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| 81 (`c`) | ends the message | ends the message | 1 byte | 1 byte | 1 byte, no visible effect on the local player (→ App. E) | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
+| 82 (string) | ends the message | ends the message | skipped as 1 byte | string | string | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
+| 83 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | 5 bytes: the gralat count | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
+| 84–90 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | skipped as 1 byte | [lab] (protocol/probe-targets-2026-11-18.md#self-prop-widths-090-on-603r7-run-cwid-b) |
+
+The 2.05 rev 2 and 2.17.1 column was run through the proxy's generation-3 codec and matched 2.22 [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19).
+
+Further rows from the same runs:
 
 | Rule | Builds | Source |
 | --- | --- | --- |
-| Prop 83 is the gralat counter in five bytes: `83 = 1234` shows 1234 and the canary lands. Props 3 and 83 write the same counter, and each replaces the shown value | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| A prop 83 value above 999,999,999 (up to the largest five-byte value) is ignored, not clamped, and the rest of the message is still read | 6.03r7 | [lab][bin] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| The built-in HUD draws only the low seven digits of the count (999,999,999 shows as 9999999); whether all nine digits are stored is unmeasured | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| Prop 77 is read as five bytes with no visible effect | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| An unknown own-prop id is skipped as one byte: with a one-byte value the canary lands; with a longer value the rest of that message is lost, and the next message parses normally | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| Props 78, 79 and 80 are X2, Y2 and Z2 of the local player, two bytes each (pixels × 2, low bit the sign); Z2 lifts the sprite and leaves the shadow on the ground | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| Prop 81 is one byte with no visible effect on the local player; prop 82 is a length-prefixed string | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| Every own prop 0–90 with a case reads at the width this chapter gives, including 14 (`ID`) and 20 (`CURLEVEL`); multi-byte ids were re-sent with values that cannot realign by chance, and all held | 6.03r7, and 4.20r8 and 5.24r4 except 77 | [lab] (protocol/probe-targets-2026-11-18.md#self-prop-widths-090-on-603r7-run-cwid-b) |
+| The own-prop ids with no case, each skipped as one byte: 33, 50, 51, 53, 75 and 76 on 6.03r7; those plus 77 and 83 on 5.24r4; those plus 77, 82 and 83 on 4.20r8. A skipped id followed by a longer value loses the rest of that message only, and the next message parses normally | 4.20r8, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#self-prop-widths-090-on-603r7-run-cwid-b) |
+| Prop 83 and prop 3 write the same gralat counter, and each replaces the shown value; a value above 999,999,999 is ignored, not clamped, and the rest of the message is still read; the HUD draws only the low seven digits | 6.03r7 | [lab][bin] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
+| In the other-player stream (8), 81 is one byte, 82 a string and 78 two bytes, but 77, 83 and 90 drop the rest of the message: a server must never send 77 or 83 about another player to a 6.x client except as the last prop | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#other-player-props-on-603r7-run-opp-a) |
+| In the NPC stream, 48–52, 78 and 90 drop the rest of the message (the static case set is 0–47 and 53–77); 75, 76 and 77 are two bytes each (X2, Y2, Z2); a `CLASS` (74) the client does not have stops that NPC's script for the rest of the session | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#npc-props-on-603r7-runs-np603-a-np603-b-np603-c) |
+| Baddy types: 6.03r7 survives types 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223. A server should keep to the named types 0–9 for any client, and never send a type above 24 to 6.x | 2.22, 4.20r8, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| Baddy props 11 and up are not measured: probe baddies walk and attack on their own, so a position canary does not hold (→ App. E) | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#other-player-props-on-603r7-run-opp-a) |
 
-The same checks on 4.20r8, 5.24r4 and 6.037, the 0–90 width table, and the other-player and NPC streams are still to run [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show).
+For 5.00r7 and 5.12 the case sets are settled (the 4.x set plus 82), but per-id widths have not been run in the lab; a two-client wire diff and third-party leads on colours via 177, an ascending-id stop and sword and shield bias are still open [bin][inf] (protocol/player-props-5x-status.md).
 
 Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → App. E#8.
-
-Status for 5.00r7 and 5.12 (2026-11-16): the case sets are settled (4.x plus 82); per-id value widths, a two-client wire diff and the third-party leads on colours via 177, ascending-id stop and sword/shield bias are open. [bin][inf] (protocol/player-props-5x-status.md)
 
 ## 2.6.7 Property ids in unpacked 6.1.1.3 and 6.0.3.7
 
