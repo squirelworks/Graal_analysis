@@ -831,6 +831,7 @@ protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.
 protocol/keysweep/README.md	pending		4.6	Key and mouse sweep on real clients (6.03r7, 4.20r8); script key codes, PLI 38 clicks, game key sets for §4.6.6
 protocol/keysweep/603r7.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/420r8.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
+protocol/keysweep/524r4.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3; E	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5; E	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8

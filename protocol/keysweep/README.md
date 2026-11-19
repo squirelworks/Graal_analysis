@@ -19,6 +19,7 @@ Tables, one per client (`client, key, effect, c2s, script_event, notes`):
 |---|---|---|
 | [`603r7.tsv`](603r7.tsv) | 6.03r7 Linux | with logger + clean (effects from the clean run) |
 | [`420r8.tsv`](420r8.tsv) | 4.20r8 Windows | with logger |
+| [`524r4.tsv`](524r4.tsv) | 5.24r4 Windows | with logger; \` … / were typed into the Escape menu (redo pending) |
 
 Columns: `effect` gives any new window (title, size), the screen change (changed pixels and
 bounding box in game-window pixels, and what it is near), and any disconnect or crash. `c2s` lists

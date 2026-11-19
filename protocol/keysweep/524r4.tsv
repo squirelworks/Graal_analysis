@@ -1,0 +1,163 @@
+client	key	effect	c2s	script_event	notes
+5.24r4	F1	screen 1845 px 587x595 box 24,0-610,594 (near player)	-	key(112,,59)	
+5.24r4	F2	screen 219 px 59x16 box 390,265-448,280 (near player)	-	key(113,,60)	
+5.24r4	F3	screen 1623 px 736x595 box 24,0-759,594 (near player)	-	key(114,,61)	
+5.24r4	F4	screen 1306 px 587x595 box 24,0-610,594 (near player)	-	key(115,,62)	
+5.24r4	F5	screen 171 px 60x16 box 390,265-449,280 (near player)	-	key(116,,63)	
+5.24r4	F6	screen 1477 px 688x579 box 72,0-759,578 (near player)	-	key(117,,64)	
+5.24r4	F7	screen 387 px 60x19 box 390,265-449,283 (near player)	-	key(118,,65)	
+5.24r4	F8	screen 1521 px 735x594 box 24,0-758,593 (near player)	-	key(119,,66)	
+5.24r4	F9	screen 1386 px 736x594 box 24,0-759,593 (near player)	-	key(120,,67)	
+5.24r4	F10	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
+5.24r4	F11	screen 1607 px 736x594 box 24,0-759,593 (near player)	-	key(122,,87)	
+5.24r4	F12	screen 235 px 62x16 box 389,265-450,280 (near player)	-	key(123,,88)	
+5.24r4	Escape	screen 52151 px 735x594 box 24,0-758,593 (near player)	34:UPDATEFILE{&wz.kguiblue_window.png} | 34:UPDATEFILE{&wz.kguiblue_button.png}	key(27,,1)	reset: again(auto); screen still differs after reset (52150 px)
+5.24r4	`	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	1	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	2	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	3	screen 863 px 587x595 box 24,0-610,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	4	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	5	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	6	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	7	screen 1125 px 735x595 box 24,0-758,594 (near player)	-	-	
+5.24r4	8	screen 1107 px 736x594 box 24,0-759,593 (near player)	24:SHOWIMG{)}	-	
+5.24r4	9	nothing seen	-	-	
+5.24r4	0	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
+5.24r4	-	nothing seen	-	-	
+5.24r4	=	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	BackSpace	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
+5.24r4	Tab	screen 5457 px 736x594 box 24,0-759,593 (near player)	-	-	reset: again
+5.24r4	A	screen 857 px 688x579 box 72,0-759,578 (near player)	24:SHOWIMG{)}	-	
+5.24r4	B	screen 1125 px 735x595 box 24,0-758,594 (near player)	-	-	
+5.24r4	C	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
+5.24r4	D	screen 1125 px 735x595 box 24,0-758,594 (near player)	-	-	
+5.24r4	E	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	F	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	G	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
+5.24r4	H	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	I	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
+5.24r4	J	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
+5.24r4	K	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	L	nothing seen	-	-	
+5.24r4	M	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	reset: again
+5.24r4	N	screen 1107 px 736x594 box 24,0-759,593 (near player)	24:SHOWIMG{)}	-	
+5.24r4	O	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	P	screen 1110 px 735x594 box 24,0-758,593 (near player)	24:SHOWIMG{)}	-	reset: again
+5.24r4	Q	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	reset: again
+5.24r4	R	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	S	screen 1110 px 735x594 box 24,0-758,593 (near player)	24:SHOWIMG{)}	-	
+5.24r4	T	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
+5.24r4	U	screen 1125 px 735x595 box 24,0-758,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	V	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	W	screen 1125 px 735x595 box 24,0-758,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	X	nothing seen	-	-	
+5.24r4	Y	screen 857 px 688x579 box 72,0-759,578 (near player)	24:SHOWIMG{)}	-	
+5.24r4	Z	nothing seen	-	-	
+5.24r4	[	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	
+5.24r4	]	screen 863 px 587x595 box 24,0-610,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	\	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	;	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	'	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
+5.24r4	,	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	
+5.24r4	.	nothing seen	-	-	
+5.24r4	/	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	Return	CLIENT GONE (crash or quit)	-	-	reset: again; screen still differs after reset (479907 px)
+5.24r4	Space	screen 1976 px 587x595 box 24,0-610,594 (near player)	157:UPDATEGANI{     sword} | 2:PLAYERPROPS{gani='sword' sprite=2} | 34:UPDATEFILE{&w}0Fsword.gani} | 157:UPDATEGANI{     sword} | 2:PLAYERPROPS{sprite=2} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{sword.gani,sword.wav}	key(32, ,57,0,0)	
+5.24r4	Shift	screen 2227 px 688x579 box 72,0-759,578 (near player)	-	key(160,,42)	
+5.24r4	Ctrl	screen 1778 px 735x594 box 24,0-758,593 (near player)	-	key(162,,29)	
+5.24r4	Alt	screen 1513 px 587x595 box 24,0-610,594 (near player)	-	key(164,,56)	
+5.24r4	Insert	screen 2141 px 735x595 box 24,0-758,594 (near player)	-	key(45,,82)	
+5.24r4	Delete	screen 1295 px 735x595 box 24,0-758,594 (near player)	-	key(46,,83)	
+5.24r4	Home	screen 1629 px 735x594 box 24,0-758,593 (near player)	24:SHOWIMG{)}	key(36,,71)	
+5.24r4	End	screen 1068 px 587x595 box 24,0-610,594 (near player)	-	key(35,,79)	
+5.24r4	Prior	screen 1310 px 735x595 box 24,0-758,594 (near player)	24:SHOWIMG{)}	key(33,,73)	
+5.24r4	Next	screen 597 px 88x16 box 357,265-444,280 (near player)	-	key(34,,81)	
+5.24r4	Left	screen 187499 px 800x600 box 0,0-799,599 (near player)	34:UPDATEFILE{&w}0Fwalk.gani} | 157:UPDATEGANI{     walk} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 2:PLAYERPROPS{x2=29} ..(2).. 2:PLAYERPROPS{x2=27.5} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{steps.wav,steps2.wav}	key(37,,75) keydown=0	reset: undo; screen still differs after reset (178374 px)
+5.24r4	Right	screen 181303 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' x2=32.5} | 2:PLAYERPROPS{x2=33} ..(3).. 2:PLAYERPROPS{x2=35} | 2:PLAYERPROPS{gani='idle'}	key(39,,77) keydown=8 keydown=0	reset: undo; screen still differs after reset (116501 px)
+5.24r4	Up	screen 123105 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' sprite=0 y2=31.5} | 2:PLAYERPROPS{y2=31} | 2:PLAYERPROPS{gani='idle'}	key(38,,72) keydown=0	reset: undo; screen still differs after reset (214022 px)
+5.24r4	Down	screen 190396 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' y2=36} | 2:PLAYERPROPS{y2=36.5} | 2:PLAYERPROPS{y2=37} | 2:PLAYERPROPS{gani='idle'}	key(40,,80) keydown=4 keydown=0	reset: undo; screen still differs after reset (125955 px)
+5.24r4	KP_0	screen 1650 px 608x290 box 112,265-719,554 (near player)	-	key(96,0,82)	reset: again
+5.24r4	KP_1	screen 856 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	KP_2	screen 1780 px 719x557 box 64,29-782,585 (near player); chat prop sent	24:SHOWIMG{)} | 2:PLAYERPROPS{chat=''}	-	
+5.24r4	KP_3	screen 600 px 608x175 box 112,380-719,554 (centre 415,467)	-	-	
+5.24r4	KP_4	screen 864 px 719x557 box 64,29-782,585 (near player)	-	-	
+5.24r4	KP_5	screen 864 px 719x557 box 64,29-782,585 (near player)	24:SHOWIMG{)}	-	
+5.24r4	KP_6	screen 860 px 719x557 box 64,29-782,585 (near player)	-	-	
+5.24r4	KP_7	screen 860 px 719x557 box 64,29-782,585 (near player)	-	-	
+5.24r4	KP_8	screen 856 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	KP_9	screen 720 px 720x559 box 64,28-783,586 (near player)	24:SHOWIMG{)}	-	
+5.24r4	KP_Add	nothing seen	-	-	
+5.24r4	KP_Subtract	screen 860 px 719x557 box 64,29-782,585 (near player)	-	-	
+5.24r4	KP_Multiply	screen 4326 px 207x38 box 55,112-261,149 (centre 158,130)	-	-	
+5.24r4	KP_Divide	screen 860 px 719x557 box 64,29-782,585 (near player)	-	-	
+5.24r4	KP_Decimal	nothing seen	-	-	
+5.24r4	KP_Enter	screen 4980 px 377x169 box 55,112-431,280 (centre 243,196)	2:PLAYERPROPS{status=20}	key(13,,28) keydown=1024	
+5.24r4	Pause	screen 1599 px 608x290 box 112,265-719,554 (near player)	-	key(19,,69)	reset: again
+5.24r4	Print	screen 1293 px 720x559 box 64,28-783,586 (near player)	-	key(44,,55)	
+5.24r4	Scroll_Lock	screen 957 px 99x19 box 351,265-449,283 (near player)	-	key(145,,70)	reset: again
+5.24r4	Caps_Lock	screen 1006 px 99x19 box 351,265-449,283 (near player)	-	key(20,,58)	reset: again
+5.24r4	Num_Lock	screen 1791 px 720x559 box 64,28-783,586 (near player)	-	key(144,,69)	reset: again
+5.24r4	Ctrl+A	screen 1405 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+B	screen 850 px 98x19 box 352,265-449,283 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	
+5.24r4	Ctrl+C	screen 1706 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+D	nothing seen	-	-	
+5.24r4	Ctrl+E	screen 1706 px 720x559 box 64,28-783,586 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	
+5.24r4	Ctrl+F	screen 1706 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+G	screen 864 px 719x557 box 64,29-782,585 (near player)	-	-	
+5.24r4	Ctrl+H	screen 1714 px 719x557 box 64,29-782,585 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+I	nothing seen	-	-	
+5.24r4	Ctrl+J	screen 1702 px 720x559 box 64,28-783,586 (near player)	24:SHOWIMG{)}	key(162,,29)	
+5.24r4	Ctrl+K	screen 720 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	Ctrl+L	nothing seen	-	key(162,,29)	
+5.24r4	Ctrl+M	screen 720 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	Ctrl+N	screen 1706 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+O	screen 850 px 98x19 box 352,265-449,283 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	
+5.24r4	Ctrl+P	screen 1158 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29) keydown=0	
+5.24r4	Ctrl+Q	screen 1863 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+R	screen 864 px 719x557 box 64,29-782,585 (near player)	24:SHOWIMG{)}	-	
+5.24r4	Ctrl+S	screen 864 px 719x557 box 64,29-782,585 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+T	screen 600 px 608x175 box 112,380-719,554 (centre 415,467)	-	-	
+5.24r4	Ctrl+U	screen 1570 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+V	screen 852 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	Ctrl+W	screen 852 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	Ctrl+X	screen 1714 px 719x557 box 64,29-782,585 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	
+5.24r4	Ctrl+Y	screen 1570 px 720x559 box 64,28-783,586 (near player)	-	key(162,,29)	
+5.24r4	Ctrl+Z	screen 856 px 720x559 box 64,28-783,586 (near player)	-	-	
+5.24r4	Alt+0	screen 1862 px 720x559 box 64,28-783,586 (near player)	24:SHOWIMG{)}	key(164,,56) key(1072,,11)	
+5.24r4	Alt+1	screen 1716 px 608x290 box 112,265-719,554 (near player)	-	key(1073,,2)	
+5.24r4	Alt+2	opens window: Save As 408x370@308,212; screen 151539 px 720x559 box 64,28-783,586 (near player)	2:PLAYERPROPS{status=21} | 34:UPDATEFILE{&wz.kguiblue_window.png} | 34:UPDATEFILE{&wz.kguiblue_scroll.png} | 34:UPDATEFILE{&wz.kguiblue_button.png} | 34:UPDATEFILE{&wz.kguiblue_textedit.png} | 34:UPDATEFILE{&wz.kguiblue_check.png} | 23:WANTFILE{fileicon_folder.png}	key(164,,56)	window would not close: Save As; reset: closed 0/1 new windows, again(auto), escape; screen still differs after reset (151539 px)
+5.24r4	Alt+3	screen 840 px 99x19 box 351,265-449,283 (near player)	-	key(164,,56)	
+5.24r4	Alt+4	nothing seen	-	-	
+5.24r4	Alt+5	screen 1947 px 736x594 box 24,0-759,593 (near player)	-	key(164,,56)	
+5.24r4	Alt+6	screen 10521 px 717x260 box 15,24-731,283 (near npc); chat prop sent	2:PLAYERPROPS{chat=''}	-	
+5.24r4	Alt+7	screen 828 px 99x19 box 351,265-449,283 (near player)	-	key(164,,56) key(1079,,8)	
+5.24r4	Alt+8	screen 1657 px 736x594 box 24,0-759,593 (near player)	-	key(1080,,9)	
+5.24r4	Alt+9	screen 2429 px 736x595 box 24,0-759,594 (near player)	24:SHOWIMG{)}	key(1081,,10)	
+5.24r4	Alt+Return	opens window: Wine Debugger 657x400@4,30; Program Error 410x263@150,150; screen 494137 px 912x697 box -112,-97-799,599 (near npc)	-	key(164,,56) key(1037,,28)	window would not close: Wine Debugger; reset: closed 1/2 new windows, again(auto), escape; screen still differs after reset (496422 px)
+5.24r4	Shift+Left	screen 194867 px 800x600 box 0,0-799,599 (near player)	34:UPDATEFILE{&w}0Fwalk.gani} | 157:UPDATEGANI{     walk} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 2:PLAYERPROPS{x2=29} ..(4).. 2:PLAYERPROPS{x2=26.5} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)} | 23:WANTFILE{steps.wav,steps2.wav}	key(293,,75) keydown=0	reset: undo; screen still differs after reset (184992 px)
+5.24r4	Shift+Right	screen 193177 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' x2=29} | 2:PLAYERPROPS{x2=29.5} ..(4).. 2:PLAYERPROPS{x2=32} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	key(295,,77) keydown=0	reset: undo
+5.24r4	Shift+Up	screen 196227 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' sprite=0 y2=31.5} | 2:PLAYERPROPS{y2=31} ..(5).. 2:PLAYERPROPS{y2=28} | 2:PLAYERPROPS{sprite=0 x2=28.375} | 2:PLAYERPROPS{gani='idle' sprite=0}	key(294,,72) keydown=0	reset: undo; screen still differs after reset (148150 px)
+5.24r4	Shift+Down	screen 122853 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' y2=31.5} | 2:PLAYERPROPS{y2=32} | 2:PLAYERPROPS{gani='idle'}	key(160,,42) key(296,,80) keydown=0	reset: undo; screen still differs after reset (126028 px)
+5.24r4	Ctrl+Left	screen 120865 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' sprite=1 x2=27.875} | 2:PLAYERPROPS{gani='idle'}	key(549,,75) keydown=0	reset: undo; screen still differs after reset (177980 px)
+5.24r4	Ctrl+Right	screen 184693 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' x2=30.875} | 2:PLAYERPROPS{x2=31.375} ..(5).. 2:PLAYERPROPS{x2=34.375} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	key(551,,77) keydown=0	reset: undo
+5.24r4	Ctrl+Up	screen 160948 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' sprite=0 y2=29.5} | 2:PLAYERPROPS{y2=29} ..(1).. 2:PLAYERPROPS{y2=28} | 2:PLAYERPROPS{sprite=0} | 2:PLAYERPROPS{gani='idle' sprite=0}	key(550,,72) keydown=0	reset: undo; screen still differs after reset (184328 px)
+5.24r4	Ctrl+Down	screen 148502 px 800x600 box 0,0-799,599 (near player)	2:PLAYERPROPS{gani='walk' y2=29} | 2:PLAYERPROPS{gani='idle'}	key(552,,80) keydown=0	reset: undo; screen still differs after reset (150844 px)
+5.24r4	LeftClick player	screen 1838 px 736x574 box 18,4-753,577 (near player)	38:TRIGGERACTION{   _Zleftmouse}	-	
+5.24r4	RightClick player	screen 2290 px 592x575 box 18,4-609,578 (near player)	38:TRIGGERACTION{   _Zrightmouse}	-	
+5.24r4	MiddleClick player	screen 1839 px 736x575 box 18,4-753,578 (near player)	38:TRIGGERACTION{   _Zmiddlemouse}	-	
+5.24r4	DoubleClick player	nothing seen	38:TRIGGERACTION{   _Zleftmouse} | 38:TRIGGERACTION{   _Zdoublemouse}	-	
+5.24r4	LeftClick ground	nothing seen	38:TRIGGERACTION{   ?oleftmouse}	-	
+5.24r4	RightClick ground	nothing seen	38:TRIGGERACTION{   ?orightmouse}	-	
+5.24r4	MiddleClick ground	screen 1833 px 735x574 box 18,5-752,578 (near player)	38:TRIGGERACTION{   ?omiddlemouse}	-	
+5.24r4	DoubleClick ground	screen 1838 px 736x574 box 18,4-753,577 (near player)	38:TRIGGERACTION{   ?oleftmouse} | 38:TRIGGERACTION{   ?odoublemouse}	-	
+5.24r4	LeftClick npc	nothing seen	38:TRIGGERACTION{   ^Oleftmouse}	-	
+5.24r4	RightClick npc	screen 1454 px 592x575 box 18,4-609,578 (near player)	38:TRIGGERACTION{   ^Orightmouse}	-	
+5.24r4	MiddleClick npc	screen 1832 px 735x574 box 18,4-752,577 (near player)	38:TRIGGERACTION{   ^Omiddlemouse}	-	
+5.24r4	DoubleClick npc	screen 1833 px 735x574 box 18,5-752,578 (near player)	38:TRIGGERACTION{   ^Oleftmouse} | 38:TRIGGERACTION{   ^Odoublemouse}	-	
+5.24r4	LeftClick hud	screen 1839 px 736x575 box 18,4-753,578 (near player)	38:TRIGGERACTION{   .:leftmouse}	-	
+5.24r4	RightClick hud	screen 1839 px 736x575 box 18,4-753,578 (near player)	38:TRIGGERACTION{   .:rightmouse}	-	
+5.24r4	MiddleClick hud	nothing seen	38:TRIGGERACTION{   .:middlemouse}	-	
+5.24r4	DoubleClick hud	nothing seen	38:TRIGGERACTION{   .:leftmouse} | 38:TRIGGERACTION{   .:doublemouse} | 24:SHOWIMG{)}	-	
+5.24r4	WheelUp	screen 1839 px 736x575 box 18,4-753,578 (near player)	-	-	
+5.24r4	WheelDown	screen 1832 px 735x574 box 18,4-752,577 (near player)	-	-	
+5.24r4	Alt+F4	screen 481998 px 909x668 box -109,-68-799,599 (near player); CLIENT GONE (crash or quit)	-	key(164,,56)	screen still differs after reset (481998 px)
