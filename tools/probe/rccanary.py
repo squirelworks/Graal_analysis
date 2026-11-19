@@ -17,8 +17,11 @@ VERDICT, worst first:
   gone        the shot recorded the window as gone (MARKSFILE has `NAME CLIENT-GONE`): a crash.
   disconnect  the RC socket closed at or before this shot (a `conn N closed/error` line): the
               client or the connection dropped after an earlier inject.
-  silent      the RC sent no client->server packet between the last inject and this shot, and
-              is still connected: a possible parse wedge or hang (compare the quiet baseline).
+  silent      the RC sent no client->server packet between the last inject and this shot, and is
+              still connected. An RC only sends when a user acts, so an idle RC is silent too (the
+              base shot, before any inject, is the baseline for this): silent means "no crash, no
+              disconnect", NOT "parser wedged". To tell a wedge from idleness, read the shot (did
+              the injected packet's visible effect appear?) or drive a reply in the plan.
   alive       the RC sent at least one client->server packet after the last inject: the receive
               stream stayed in step past the injected packet.
 

@@ -10,32 +10,39 @@
 # builds are plain zlib with no cipher; gen5probe picks that from the GSERV/G2NRC/NCL token.
 #
 # Topology (loopback only, inside the lab namespace): RC -> gen5probe on $LO1:14804 -> gserver on
-# $LO2:14804. The lab listserver advertises $LO1:14804 so server-list builds (rc205, rc3) connect
-# through the proxy; direct-address builds (rc2004, rcpre) have their start dialog pointed at $LO1.
-# The RC logs in as super/super (the build default); the gserver's staff list must hold that account.
+# $LO2:14804. The lab listserver advertises $LO1:14804, and the RC builds reach the world through the
+# server list (the 2004/RC2/RC3/2002 builds all pick it from the list, not a typed address). The RC
+# logs in as super/super (the build default); the gserver must accept that account AND grant it RC
+# rights (this script sets ADMINRIGHTS/IPRANGE on the world's super account — see below).
 #
 # Reuses the same lab tree as runwine.sh ($WINELAB in $HOME/probelab/lab.env: Wine prefix, the E /
 # k.sh / cl.sh / tools/ns.sh helpers, the gserver build and world, and its loopback-only namespace).
-# Put the RC binaries under $WINELAB/clients/<DIR> (rc2004/rc205/rc3/rcpre), each with its own
-# config so it starts on the staff account. Output in ~/probelab/out/RUN.
+# Put the RC binaries under $WINELAB/clients/<DIR> (rc2004/rc205/rc3/rc2002/rcpre); RC_EXE overrides
+# the exe name. Output in ~/probelab/out/RUN.
 #
-# Connecting the RC is GUI-driven and build-specific. Rather than bake in coordinates, set
-# RC_CONNECT to the xdotool command that fills the dialog and clicks Connect for your build and
-# window size (run once by hand, read the geometry, then pin it). The default just presses Return,
-# which connects a dialog whose fields already hold the lab defaults. $D is the Xvfb display.
+# Connecting the RC is GUI-driven. rc2004 has a calibrated default (dismiss Options, click the server
+# list's Connect, at 1024x768). For another build or window size, set RC_CONNECT to the xdotool
+# command that dismisses any dialog and clicks Connect (run once by hand, read the geometry, pin it).
+# $D is the Xvfb display.
 #
 # Read a run with:  python3 tools/rccanary.py out/RUN/proxy.log out/RUN/marks.txt
+# An RC only sends when a user acts, so every post-base shot reads `silent`: that is liveness
+# (no crash / no disconnect), not proof the parser stayed in step. In-step is read from the shots
+# (player count rising, dialogs opening with the injected values) and from rc-widths.plan's canary.
 set -u
 LO1=$(printf '%d.%d.%d.%d' 127 0 0 1); LO2=$(printf '%d.%d.%d.%d' 127 0 0 2)
 RC=$1; PLAN=$(readlink -f "$2"); RUN=$3; shift 3
 [ -f $HOME/probelab/lab.env ] && . $HOME/probelab/lab.env; G=${WINELAB:?}; R=$HOME/probelab
 O=$R/out/$RUN; T=$R/tools; mkdir -p $O $R/run; cd $G
+# EXE can be overridden with RC_EXE (the archived builds use different exe names).
 case $RC in
-  rc2004) D=81; DIR=rc2004; EXE=RemoteControl.exe; GEN=5; LIST=0;;
-  rc205)  D=82; DIR=rc205;  EXE=RemoteControl.exe; GEN=5; LIST=1;;
+  rc2004) D=81; DIR=rc2004; EXE=RemoteControl.exe;  GEN=5; LIST=1;;
+  rc205)  D=82; DIR=rc205;  EXE=RemoteControl.exe;  GEN=5; LIST=1;;
   rc3)    D=83; DIR=rc3;    EXE=RemoteControl3.exe; GEN=5; LIST=1;;
-  rcpre)  D=84; DIR=rcpre;  EXE=remotecontrol.exe; GEN=2; LIST=0;;
-  *) echo "RC = rc2004 | rc205 | rc3 | rcpre"; exit 1;; esac
+  rc2002) D=85; DIR=rc2002; EXE=RemoteControl.exe;  GEN=2; LIST=1;;  # RC 2002/01/11 (GSERV023, gen 2); has the NC socket
+  rcpre)  D=84; DIR=rcpre;  EXE=remotecontrol.exe;  GEN=2; LIST=0;;
+  *) echo "RC = rc2004 | rc205 | rc3 | rc2002 | rcpre"; exit 1;; esac
+EXE=${RC_EXE:-$EXE}
 NATIVE=${RC_NATIVE:-0}
 PORT=14804
 
@@ -44,8 +51,19 @@ PORT=14804
 cp $PLAN $O/plan.txt
 
 # A gserver world behind the proxy, and the listserver advertising the proxy address.
+# The world is bound to $LO2:$PORT so the proxy on $LO1:$PORT is the only thing the RC reaches
+# (gs1world ships on 14807, so serverport must be rewritten too or nothing listens behind the proxy).
 P=$G/w/servers/probrc; rm -rf $P; cp -a $G/w/servers/gs1world $P
-sed -i "s/^serverinterface = .*/serverinterface = $LO2/" $P/config/serveroptions.txt 2>/dev/null || true
+SO=$P/config/serveroptions.txt
+sed -i "s/^serverinterface = .*/serverinterface = $LO2/" $SO 2>/dev/null || true
+sed -i "s/^serverport = .*/serverport = $PORT/" $SO 2>/dev/null || true
+# The RC login account needs RC rights, not just a place on the staff list, or GServer-v2 answers
+# "You do not have RC rights." Ensure the super account has full admin rights and an open IP range.
+ACC=$P/accounts/super.txt
+if [ -f "$ACC" ]; then
+  grep -q '^ADMINRIGHTS ' "$ACC" && sed -i 's/^ADMINRIGHTS .*/ADMINRIGHTS 1048575/' "$ACC" || echo 'ADMINRIGHTS 1048575' >> "$ACC"
+  grep -q '^IPRANGE ' "$ACC" && sed -i 's/^IPRANGE .*/IPRANGE */' "$ACC" || echo 'IPRANGE *' >> "$ACC"
+fi
 ./E sh -c "cd $G/w && setsid nohup ./seihai-listserver --config ls.toml > $O/listserver.txt 2>&1 &"; sleep 1
 ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probrc > $O/gs-world.txt 2>&1 &"; sleep 1
 ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 $PORT $LO2 $PORT $O/proxy.log rc $R/run/rc.sock > $O/proxy.out 2>&1 &"
@@ -65,8 +83,13 @@ win() { DISPLAY=:$D xdotool search --onlyvisible --name . 2>/dev/null | head -1;
 for i in $(seq 1 90); do W=$(win); [ -n "$W" ] && break; sleep 2; done; sleep 4
 if [ -n "${RC_CONNECT:-}" ]; then
   eval "$RC_CONNECT"
+elif [ "$RC" = rc2004 ]; then
+  # rc2004 connects through the server list (not a direct address): dismiss the Options dialog,
+  # then click Connect in the server list. Coordinates calibrated at 1024x768 (lab run 2026-11-19).
+  DISPLAY=:$D xdotool mousemove 181 303 click 1; sleep 6
+  DISPLAY=:$D xdotool mousemove 236 359 click 1
 else
-  DISPLAY=:$D xdotool key --delay 80 Return
+  DISPLAY=:$D xdotool key --delay 80 Return   # placeholder: calibrate RC_CONNECT for this build
 fi
 
 # The shot hook records the window state and a CPU sample (a wedged RC often pegs a core and
