@@ -70,6 +70,11 @@ Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
    accepted reply, no token/framing in memory. The stock-client lab path is a
    trust-anchor swap (lab public key + lab-signed `conf.gs`), the way the gcr
    repro already bakes in its own key. `v6113-login-lab-method.md`. **[lab]**
+   The responder + mutator skeleton and the fuzz/key-patch design have landed
+   (`conf-gs-fuzzing.md`, `../tools/connfuzz/`, offline selftest passing); the
+   live run is what remains. Note from the concurrent unpack: the 6.113
+   connector anchor is runtime-materialized and the verify virtualized, so the
+   swap is an in-memory at-verify-time patch, not a static offset. **[lab]**
 4. **Clean fully-unpacked 6.113 image vs the existing unpacked-6113 notes.**
    Packed game exe remains a Themida shell in the stock listing; a lab unpack
    dump (private) may sharpen leftovers, but must not put digests, paths or
