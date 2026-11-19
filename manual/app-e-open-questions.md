@@ -45,12 +45,12 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#13 | Gmap neighbour overwrite on classic logins | Lab | the overwrite happens with stock GServer-v2 | [inf] (protocol/gmap-adjacent-level-target.md#short-answer) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | E#15 | Graal 2002 and 1.40 exact-input behaviour | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
-| E#16 | Classic+ 1.13 login wire layout | Read | a desktop-style login body inside a mobile frame | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| E#16 | Classic+ 1.13 login wire layout | Lab | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
 | E#17 | The 6.1.1.3 login packet after the RC4 switch | Lab | a 6.x login body under RC4 | [inf] (protocol/v6113-login-lab-method.md) |
-| E#18 | Mobile clients' outer framing and cipher | Read | the desktop generation-5 frame | [inf] (client-internals/android-login-token-boundary.md) |
+| E#18 | Mobile clients' outer framing and cipher | Lab | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#20 | 2.31's extra step on `PLO_SETACTIVELEVEL` (156) | Read | it re-binds the gmap neighbour state to the new active level | [inf] (protocol/unknowns-ledger.md) |
-| E#21 | Whether a compiled gani script (134) runs | Lab | yes, on 4.x to 6.x, like a class body | [inf] (protocol/probe-targets-2026-11-18.md) |
+| E#21 | Whether a compiled gani script (134) runs | Lab | runs on 6.03r7 (lab); 4.x and 5.x not run | [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
 | E#22 | What `DEFAULT*` lines in `PLO_LOADGANI` (195) do | Lab | nothing in play: they are the gani editor's preview images | [inf] (protocol/probe-targets-2026-11-18.md) |
 | E#23 | What prop 81 changes in the player list | Lab | the folder or group a player is listed under | [inf] (protocol/unknowns-ledger.md) |
 | E#24 | Baddy props 11 and up on 6.03r7 | Lab | an unknown id ends the message, as for NPC props | [inf] (protocol/unknowns-ledger.md) |
@@ -315,8 +315,9 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | --- | --- | --- |
 | Open | The short-path object append and the remaining field cases, before any claim of a complete codec, character semantics or size limits | [bin] (client-internals/classic-113-login-construction.md#prefix-and-copy-helper-follow-up) |
 | Open | String identities and the vector format: the getters and serializer must be bound to their consumers before fields are named | [bin] (client-internals/classic-113-login-construction.md#caller-observations) |
-| Open | Framing, trigger and native acceptance: the lower sender and constructor trigger are not traced; selector 5 has no established wire category | [bin] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
-| Best guess | A desktop-style login body (type, key, token, account, password) inside the mobile frame of → App. E#18. Confidence: low | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
+| Settled part | Framing: selector 5 is the login message id (client type 5); the sender adds the key byte after it on the first message, and the login goes out as one zlib frame with no compression byte and no XOR | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
+| Open | Native acceptance: no run yet | [bin] (protocol/ios-classic-plus-113-framing.md#open) |
+| Best guess | The two strings are account and password, as on desktop. Confidence: moderate | [inf] (protocol/ios-classic-plus-113-framing.md#login) |
 | Settles it | Tracing the lower sender, then a qualified native run with a capture | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 | Outlook | Read; the run waits on the same emulator as E#18 | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 
@@ -343,9 +344,10 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Evidence | The held Android Classic and Era reading covers the Java host, the frame gate, collision, board, render, chat builder and the Classic 1.8 GS2 machine across seven packages; it did not recover the connect and token builders | [bin] (client-internals/android-classic.md); [bin] (client-internals/android-login-token-boundary.md) |
 | Evidence | The native engine libraries are not encrypted, so the connect and token builders are within reach of a static pass | [bin] (client-internals/android-login-token-boundary.md) |
 | Tried | No device, emulator or capture. The lab Linux VM has no nested KVM, and no Android or iPhone app is installed on a lab host | [doc] (protocol/unknowns-ledger.md) |
-| Best guess | The mobile clients reuse the desktop generation-5 frame (length, compression byte, partial XOR), since the engine is a port of the desktop C++ engine. Confidence: low to moderate | [inf] (client-internals/android-login-token-boundary.md) |
-| Settles it | A static read of the native socket layer for frame length, compression and cipher, then one loopback run in an emulator on a host with hardware acceleration | [inf] (client-internals/android-login-token-boundary.md) |
-| Outlook | Read now; Lab once an emulator host is set up | [doc] (protocol/unknowns-ledger.md) |
+| Settled part | iPhone Classic+ 1.13 uses the desktop generation-5 frame: two-byte length (or `FF FF` and four bytes), compression byte, partial XOR with round-down for compressed bodies, and a type-5 login with a key byte in one zlib frame | [bin] (protocol/ios-classic-plus-113-framing.md) |
+| Best guess | Android uses the same frame, since it is the same engine. Confidence: moderate | [inf] (protocol/ios-classic-plus-113-framing.md) |
+| Settles it | For Android, the same static read of the native socket layer; for both, one loopback run on an emulator or device | [inf] (protocol/ios-classic-plus-113-framing.md) |
+| Outlook | Read (Android); Lab once an emulator or device is set up | [doc] (protocol/unknowns-ledger.md) |
 
 ### E#19 Generation 4 on the wire (2.19 to 2.21)
 

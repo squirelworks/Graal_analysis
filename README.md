@@ -6,6 +6,9 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
+- [Lab: baddy props 11+, compiled gani scripts, 2.31 start params](protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) — 6.03r7 baddy props stop at 10 (11+ ends the message); a valid compiled gani script in PLO 134 runs on 6.03r7, a corrupt one is ignored; 2.31 `serverstartparams` confirmed; lab.
+- [PLO_SETACTIVELEVEL (156): the extra step in 2.31](protocol/plo-156-setactivelevel-231.md) — 2.31 sends the text of a `graal://SERVER/TEXT` launch link once, as a `serverstartparams` trigger action after the first 156; 2.17.1/2.22 and 4.x lack it; static, lab confirmation open.
+- [iPhone Classic+ 1.13: framing, compression and cipher](protocol/ios-classic-plus-113-framing.md) — the desktop gen-5 stream (length, compression byte, partial XOR, type-5 login with key byte), with the 5.12-style round-down for compressed bodies; static.
 - [Packet and prop probes on real clients](protocol/probe-targets-2026-11-18.md) — a lab proxy injects chosen packets into live sessions of 2.22, 2.31, 4.20r8, 5.24r4 and Linux 6.03r7; prop 83 is the five-byte gralat count, 78–80 are X2/Y2/Z2, unknown own ids skip one byte, unknown PLO ids are ignored; per-inject rows in `probe-results.tsv`, running tally in [`unknowns-ledger.md`](protocol/unknowns-ledger.md); lab.
 - [Packet fuzz of the Windows 4.x and 5.x clients](protocol/fuzz-4x-5x-win-2026-11-19.md) — the 4.20r8/5.24r4 probe set on 4.03r3, 4.04r2, 4.11 (Wine) and 5.00r7, 5.24r3, 5.30r3, 5.31r4 (native Win10): no differences in 130 canary cases per build; prop 82 becomes a string by 5.00r7; a NUL inside a `SETBACKTO` name is kept; lab.
 - [NRY identity F01–F03](version-profiles/nry-identity-f01-f03.md) — 5.12-untouched=5.00r7; 2.1.x level magics / controlnpc; 1.x VERGRAAL vs 1.39 no listserver; research #53; index.
