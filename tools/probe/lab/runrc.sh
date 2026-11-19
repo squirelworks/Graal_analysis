@@ -140,7 +140,10 @@ W=\$(DISPLAY=:$D xdotool search --onlyvisible --name . 2>/dev/null | head -1); \
 PC=\$(ps -o %cpu= -C $EXE 2>/dev/null | awk '{s+=\$1} END{printf \"%.0f\", s}'); \
 [ -n \"\$W\" ] && echo '{name} alive cpu='\$PC >> $O/marks.txt || echo '{name} CLIENT-GONE' >> $O/marks.txt"
 
-python3 $T/probectl.py $R/run/rc.sock plan $PLAN "$@" > $O/plan.log 2>&1
+# In RC_NC mode the plan fuzzes the NC socket, so it runs on ncprobe's control socket (ncrc.sock),
+# where `waitsession` gates on the RC's 2nd (NC) connection; otherwise it runs on the game proxy.
+CTL=$R/run/rc.sock; [ "${RC_NC:-0}" = 1 ] && CTL=$R/run/ncrc.sock
+python3 $T/probectl.py $CTL plan $PLAN "$@" > $O/plan.log 2>&1
 cp $C/$LOG $O/ 2>/dev/null; cp run/rc$D.log $O/ 2>/dev/null
-./k.sh "RemoteControl|remotecontrol|wine|\.exe|gen5probe|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null
+./k.sh "RemoteControl|remotecontrol|wine|\.exe|gen5probe|ncprobe|ncstub|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null
 echo "done: $O"
