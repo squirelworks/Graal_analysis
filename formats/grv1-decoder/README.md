@@ -19,3 +19,7 @@ Behaviour follows the 2.05 client loader:
 Checked against the 13 tutorial levels embedded in the 2.05 client and the 9 in 2.22. All parse with the expected link grid, chest items, and sign text (see `client-internals/offline-tutorial-205.md`).
 
 To get the tutorial levels, extract the `TUTORIAL*` RCDATA resources from your own copy of the client (any PE resource tool works). The levels are not committed here.
+
+`GR-V1.05` (5.00r7 and later) is read too: a GCHAR layer count, then one 13-bit board per layer, each starting on a byte boundary. `--board` prints every layer, and the summary counts the cells on each layer that are not 4095.
+
+`grv105gen.py OUTDIR [--base LEVEL] [--tile N]` writes the GR-V1.05 lab set (a hub plus 15 cases, some deliberately malformed) and `MANIFEST.tsv`. See `../gr-v105-fuzz-2026-11-19.md`.

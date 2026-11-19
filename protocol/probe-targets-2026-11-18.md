@@ -437,4 +437,7 @@ packet's working role is "load this gani now and apply these header overrides".
    client.
 6. **2.x clients**, after a gen-2/3 codec is added to the proxy. This also covers the extra
    step that 2.31 runs on `SETACTIVELEVEL`.
-7. **6.1.1.3**, once a loopback connector harness exists.
+7. **6.1.1.3**, once a loopback connector harness exists. Connector-gate side
+   started: the `conf.gs` responder + mutator skeleton and fuzz/key-patch design
+   are in [`conf-gs-fuzzing.md`](conf-gs-fuzzing.md) and `../tools/connfuzz/`;
+   the live run (and then handing the game wire to `gen5probe.py`) is still open.

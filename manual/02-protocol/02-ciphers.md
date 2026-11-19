@@ -91,6 +91,8 @@ Builds agree on the cap but not always on rounding. The table gives the number o
 | 2.22, 2.31 | `ceil(len / 4)`, capped at 4 | [2.22][cap] (protocol/codec-and-framing.md#gen-45-partial-xor) |
 | 3.04, 3.153 | `ceil(len / 4)`, capped at 4 | [bin] (protocol/v3x-clients.md#game-server-login-and-cipher) |
 | 4.04r2, 4.20r6, 4.20r8 | `floor(len / 4)`, capped at 4; an incomplete tail takes no step. Raw bodies use `ceil(len / 4)`, capped at 12 | [bin] (protocol/v4x-clients.md#cipher-and-framing) |
+| Mac 4.04r2, Mac 4.20r6, Mac 5.12 | the same `floor` rule, read in both the encode and the decode routines | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule) |
+| Windows 4.04r2 | not read: the installer labelled "4.04r2 Windows" holds the 4.20r8 executable. Linux 4.04r2 and Windows 4.20r8 both use `floor`, so 4.04r2 on Windows very likely does too | [bin][inf] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule) |
 | 5.12 | disputed → App. E#2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [cap] (protocol/v5v6-windows-unpacked.md) |
 | 5.24r3 and later 5.x, 6.00 to 6.03r7 | `ceil(len / 4)`, capped at 4 | [cap] (protocol/v5v6-windows-unpacked.md); [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 
@@ -98,7 +100,9 @@ Builds agree on the cap but not always on rounding. The table gives the number o
 
 For the four exact Mac inputs identified by digest in the source note, let n be body length after any mode selector is removed, before decompression. Raw mode 2 processes min(ceil(n / 4), 12) groups, including a partial final group. Compressed modes 4/6 process min(floor(n / 4), 4) groups; an incomplete tail is unchanged and advances no state. Before each processed group, state is multiplied by 134775813 and increased by an additive object word, retaining the low 32 bits. Its bytes are XORed least-significant first despite the big-endian target. State persists through the inspected receiver's iterations. [bin] (protocol/macos-ppc-receive-framing.md)
 
-Initial seed, additive-word provenance, reset/rekey writers, negotiation and outgoing symmetry remain untraced. No live frame result or Windows 5.12 capture resolution follows; E#2 remains open. [bin] (protocol/macos-ppc-receive-framing.md)
+A wider static read of the same three Mac builds found the encode routines step the same way as the decode routines, so the rule holds in both directions; the two rules differ only for a compressed body under 16 bytes whose length is not a multiple of 4, which a 4.x client never sends, since it compresses only plaintext over 47 bytes [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule).
+
+Initial seed, additive-word provenance, reset/rekey writers and negotiation remain untraced. No live frame result or Windows 5.12 capture resolution follows; E#2 remains open. [bin] (protocol/macos-ppc-receive-framing.md)
 
 ## 2.2.4 Compression choice
 
