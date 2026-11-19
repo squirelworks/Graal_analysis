@@ -52,7 +52,7 @@ Columns:
   - Modifiers are added to the code: Shift +256, Ctrl +512, Alt +1024 (Shift+Left 293, Ctrl+Left
     549, Alt+7 1079, Alt+Return 1037). A combination first reports the modifier alone (Ctrl 162,
     Alt 164).
-  - On 4.20r8 and 5.24r4, Ctrl+letter reports only the Ctrl key (162), not a combined code. The
+  - On 4.20r8, 5.24r4 and 6.03r7, Ctrl+letter reports only the Ctrl key (162), not a combined code. The
     letter still drives the game key: Ctrl+A sets the action bit, Ctrl+M the map bit.
   - The third value is the hardware scan code: the X keycode on Linux 6.03r7 (a 38, F1 67), the PC
     set-1 scan code under Windows (a 30, F1 59).
@@ -85,7 +85,7 @@ The wheel sends nothing. On 2.31 and 4.20r8 a right click on the own player also
 [lab] 6.03r7 uses the default `game_config.txt` key sets:
 
 - Set 0: arrows, D item, S attack, A action, M map, Tab to chat, Q item list, P pause.
-- Set 1: keypad 8/4/2/6 to move, keypad 1 item, keypad 5 attack, keypad 3 action, + map,
+- Set 1: keypad 8/4/2/6 to move, keypad 1 item (fires the bow), keypad 5 attack, keypad 3 action, + map,
   \* item list, keypad 0 pause.
 - Set 2: I/J/K/L to move, Space attack.
 
