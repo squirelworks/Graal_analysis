@@ -1,0 +1,12 @@
+# PLO_LOADGANI (195): DEFAULT* lines on a level NPC that shows a character with no head, body or attr set.
+# The NPC (EXTRA_NPC) plays kick; 195 kick names images nobody has. Does the client ask for them?
+waitsession 240
+wait s2c 9 90
+sleep 6
+drop s2c 195
+mark D1 195 kick DEFAULTHEAD/BODY/ATTR1 before the NPC appears
+s2c 195 str:kick hex:2244454641554c54484541442070726f626568656164342e706e67222c2244454641554c54424f44592070726f6265626f6479342e706e67222c2244454641554c5441545452312070726f6265686174342e706e6722
+sleep 8
+shot d1
+mark END
+sleep 2

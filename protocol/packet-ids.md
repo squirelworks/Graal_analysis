@@ -161,7 +161,7 @@ Legend, 2.05 column: **✔** handled or sent by 2.05 · **·** not present in 2.
 | 192 | 0xe0 | `PLO_NC_WEAPONGET` | · | `str name`, `str image`, `script`; client 5.07+ ignores it |
 | 193 | 0xe1 | `PLO_WEAPONHASH` (was `PLO_UNKNOWN193`; proposed `PLO_WEAPONCRC`) | · | `i5 crc32`, rest = weapon name: load the cached `weblevels/weapons/<name>.code` if its CRC32 matches, else request it with PLI 158; 4.04r2 to 5.12 **[bin]** (`unknown-ids-2026-11-06.md`) |
 | 194 | 0xe2 | `PLO_RESETCLIENT` (was `PLO_CLEARWEAPONS`) | · | empty; precedes the weapon list; clears weapon and class scripts (how much differs by version); 4.04r2 to 6.03r7 **[bin]** (`unknown-ids-2026-11-06.md`) |
-| 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others) |
+| 195 | 0xe3 | `PLO_LOADGANI` | · | `str gani`, `list` (SETBACKTO and others): gani header lines that override the file's values for that gani (newest wins; `LOOP` also taken; lost if sent before the client loads the gani); 4.20r8, 5.24r4, 6.03r7 **[lab]** (`probe-targets-2026-11-18.md`) |
 | 197 | 0xe5 | `PLO_LOADSCRIPT` | · | `list type,name,saveToDisk,desKey,crc32` (type weapon/npc/class/gani; key = two i5) |
 | 198 | 0xe6 | `PLO_SERVEROPTIONS` | · | `i5 serverOptions`; stored and never read up to 6.03 (`client-internals/serveroptions-198.md`) |
 | 252 | — | `PLO_SET_ENC_KEY` | · | sets AES/RC4 key and IV |

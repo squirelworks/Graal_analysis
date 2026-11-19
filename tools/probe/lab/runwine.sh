@@ -36,7 +36,7 @@ if [ $CLASSIC = 1 ]; then
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probeclassic > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14808 $LO2 14808 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"
 else
-  LB=gs2emu-hud1111; [ $CL = 524 ] && LB=gs2emu-73   # hud1111 refuses the 5.24r4 token (G3D15010)
+  LB=gs2emu-hud1111; case $CL in 512|524) LB=gs2emu-73;; esac   # hud1111 refuses the 5.24r4 token (G3D15010)
   ./E sh -c "cd $G/w && setsid nohup ./$LB --server gs1login > $O/gs-login.txt 2>&1 &"
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server gs1world > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14807 $LO2 14807 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"

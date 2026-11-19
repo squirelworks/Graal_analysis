@@ -143,5 +143,9 @@ watched in the running game.
 - [ ] The extra fields of the 1.41 rev 1 id 40 handler (body of 6 bytes or more).
 - [x] ~~The 2-tile sideways edge live.~~ Two real 1.35 online: hit at ±2 tiles, miss at ±2.5
   (→ [live-runs/sword-edge-2026-11-18](../live-runs/sword-edge-2026-11-18/README.md)).
-- Not run live: a 2.05 control (expected: no client item drops), anything on 1.21, and the
-  sword spark.
+- [x] ~~2.05 control.~~ Real 2.05r2 offline on GR-V1.03 scenes: 17 archer and 8 gray-soldier kills, no item
+  drawn and no counter change; the 1.39 control on the same levels dropped 9 times in 12 archer kills. 2.05r2 has no
+  client-side drop roll (→ [live-runs/open-issues-2026-11-19](../live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies)).
+- [ ] 1.21 live: 12 archer kills each gave +1 gralat in the frame of death and nothing else, which does not fit the
+  0–99 roll. Whether that is a dropped green gralat picked up at once or a direct reward is open (same run).
+- [ ] The sword spark live: not identified in 1.39 frames at about 28 a second (same run).

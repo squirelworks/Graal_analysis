@@ -1,0 +1,19 @@
+# PLO_LOADGANI (195), compiled gani: the world runs its NPC server, so a gani with a GS2 SCRIPT section is compiled
+# and sent as PLO_GANISCRIPT. The server's own 195 is dropped throughout.
+waitsession 240
+wait s2c 9 90
+sleep 8
+drop s2c 195
+mark K1 probes3 (GS2 SCRIPT, file SETBACKTO sit), no 195
+s2c 9 c:10 str:probes3
+sleep 5
+mark K2 probes2 (same, no SCRIPT), no 195
+s2c 9 c:10 str:probes2
+sleep 5
+mark K3 probes3 again with 195 SETBACKTO dead
+s2c 195 str:probes3 hex:225345544241434b544f206465616422
+sleep 1
+s2c 9 c:10 str:probes3
+sleep 5
+mark END
+sleep 2

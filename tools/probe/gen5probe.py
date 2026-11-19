@@ -15,7 +15,7 @@ SPEC is a packet id followed by typed fields, for example `9 c:83 i5:1234`
 (PLO_PLAYERPROPS, prop 83, a 5-byte number). Field types:
   c:N  GCHAR (N+32)        s:N  GSHORT (2 x 7 bits)   i3/i4/i5:N  3/4/5 x 7 bits
   b:N  one raw byte        t:TEXT raw text            str:TEXT GCHAR length + text
-  hex:HEX raw bytes
+  hex:HEX raw bytes          rep:N:TEXT TEXT repeated N times
 Quote text with spaces: t:"two words". The trailing newline is added.
 
 Usage: gen5probe.py LISTEN_HOST PORT UP_HOST UP_PORT LOGFILE LABEL CTLSOCK   (CTLSOCK = a unix socket path, or tcp:PORT)
@@ -69,6 +69,8 @@ def encode(spec):
             out.append(len(v.encode('latin1')) + 32); out += v.encode('latin1')
         elif kind == 'hex':
             out += bytes.fromhex(v)
+        elif kind == 'rep':  # rep:COUNT:TEXT, TEXT repeated COUNT times (for size tests)
+            n, _, txt = v.partition(':'); out += txt.encode('latin1') * int(n)
         else:
             raise ValueError('unknown field %r' % t)
     return bytes(out) + b'\n'
