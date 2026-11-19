@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """ncprobe: lab-only zlib-only proxy for the NPC-Control (NC) socket.
 
-NC framing (protocol/npc-control.md): login is type 3 + token ``NCL11012`` + a
-``str`` account + a ``str`` password, with **no** key byte; after login every frame
-is ``u16be length + zlib body``, with **no** type byte and **no** cipher, both
-directions, for the whole session. Message bodies are classic Graal text lines
+NC framing (protocol/npc-control.md): login is type 3 + an 8-byte token + a ``str``
+account + a ``str`` password, with **no** key byte; after login every frame is
+``u16be length + zlib body``, with **no** type byte and **no** cipher, both
+directions, for the whole session. The token is build-dependent: the standalone
+NPCControl tools (nc7132001 and the 2001 builds) send ``NCL15031`` [lab]; the NC
+socket embedded in RC 2002/01/11 sends ``NCL11012``. This proxy passes the login
+frame through untouched, so it does not care which. Message bodies are classic Graal text lines
 (``GCHAR id`` + payload + ``\\n``), G-integers biased ``+0x20``; batches flush at
 0x1000 bytes. Id 50 (PLI_RAWDATA, C>S) / id 100 (PLO_RAWDATA, S>C) announce a raw
 block of ``GINT3`` length that must not be line-split.
@@ -12,8 +15,8 @@ block of ``GINT3`` length that must not be line-split.
 Because there is no cipher and no compression-type byte, this is a much simpler
 cousin of ``gen5probe.py``: every frame is an independent, complete zlib stream.
 
-Sits between a real NC client (``nc7132001``, the Jan-2002 NC builds, or RC in NC
-mode) and our own lab npcserver, inside a private network namespace with loopback
+Sits between a real NC client (``nc7132001`` and the other standalone NPCControl
+builds, or RC in NC mode) and our own lab npcserver, inside a private network namespace with loopback
 only. It is never pointed at a public server, and nothing here helps reach one.
 
 Control is a unix socket (``tcp:PORT`` on Windows, which has no AF_UNIX in Python):

@@ -67,8 +67,10 @@ def main():
                 break
             time.sleep(0.1)
         c = socket.create_connection((LOOPBACK, pport))
-        # NC login: type 3 + NCL11012 + str account + str password, no key byte. Passed through untouched.
-        login = bytes([3 + 32]) + b'NCL11012' + bytes([4 + 32]) + b'test' + bytes([2 + 32]) + b'pw'
+        # NC login: type 3 + token + str account + str password, no key byte. Passed through untouched.
+        # Standalone NPCControl sends NCL15031 (RC-2002's embedded NC socket sends NCL11012); the proxy
+        # is token-agnostic, so either works. Use the standalone token this harness models.
+        login = bytes([3 + 32]) + b'NCL15031' + bytes([4 + 32]) + b'test' + bytes([2 + 32]) + b'pw'
         z = zlib.compress(login, 9); c.sendall(len(z).to_bytes(2, 'big') + z)
         s, _ = srv.accept()
         C, S = Peer(c), Peer(s)

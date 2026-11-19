@@ -1,7 +1,7 @@
 # nc-core.plan : server->client fuzz of the NPC-Control receive handlers.
 #
-# Drives ncprobe.py against a real NC client (nc7132001 / the Jan-2002 NC builds /
-# RC in NC mode) talking to a lab npcserver. Each step injects one NC-server->client
+# Drives ncprobe.py against a real NC client (nc7132001 and the other standalone
+# NPCControl builds, or RC in NC mode) talking to a lab npcserver. Each step injects one NC-server->client
 # packet (`s2c`) and then takes a `shot`; PROBE_SHOT records whether the client
 # window still exists (alive / CLIENT-GONE) and captures its state. There is no HUD
 # canary in a staff tool, so the oracle is: window survives, and a benign NC_LEVELLIST
