@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317.
 
 ## E.0 How to read this appendix
 
@@ -34,10 +34,9 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 
 | Entry | Question | Outlook | Best guess | Source |
 | --- | --- | --- | --- | --- |
-| E#1 | Compiler of the early Delphi builds | Read | a Delphi-2-level compiler of 1997, such as C++Builder 1's | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
 | E#4 | Whether 5.00r7 sends id 11 | Lab | yes, from the carried-object throw | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| E#6 | Ids 14 and 22 in 1.21 and 1.32 | Read | the per-build profile is right and the range summary rounded over the gaps | [inf] (client-internals/version-profiles/v121-v132.toml) |
 | E#9 | Uploads from game clients | Lab | the late clients' file browser is a staff tool that servers accept only from staff accounts | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
@@ -65,7 +64,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#212 | Whether a function-only image skips the top-level pass | Lab | yes, and other images re-run top level before each event | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
 | E#213 | How GS2 text bytes draw on screen | Lab | through the Windows code page, so Latin-1 on Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
 | E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
-| E#215 | When GS2-only names arrived, and what a missing name does | Read | most by 4.20r8; a missing name logs an error and the script goes on | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| E#215 | When GS2-only names arrived, and what a missing name does | Lab | all eight in the January 2007 4.20 engine; a missing name logs an error and the script goes on | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 | E#300 | Tick timing of three early builds | Lab | 50 ms, as later builds | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | E#302 | Walking speed factors 0.4 and 0.8 | Lab | 0.8 while carrying a heavy object, 0.4 in water or a slowing state | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
@@ -81,14 +80,12 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#317 | 1.x pickup box and item draw order | Read and Lab | the 1.39 player box is the 2 × 2 body box; item box size and draw order open | [inf] (client-internals/item-drops.md#open) |
 | E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
-| E#321 | The 2.31 window blacklist | Read | known cheat-tool window titles; the reaction is a quit or a report | [inf] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
 | E#322 | How others see a key emote | Lab | a server script re-sends the image | [inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
 | E#327 | Chest art and menu skin in the 6.03r7 item run | Lab | both come from files the lab world lacks | [inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
-| E#328 | What drives 2.22's tick: a window timer or the idle handler | Read | not a multimedia timer (none imported); window timer or idle | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
@@ -101,14 +98,13 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
 | E#425 | Standalone NC flag-action recipient | Read | the NC server, as a flag-list write | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
 | E#501 | Class CRC sent by 4.04r2 | Lab | `0xFFFFFFFF`, nothing computed | [inf] (torque/wire-by-build.md#the-handshake-per-build) |
-| E#502 | Whether 4.04r2 loads `.mis` files | Read | not reachable outside the network path | [inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
-| E#503 | Whether 4.04r2 reads `.dso` | Read | the reader is present but unreachable | [inf] (torque/404r2-resource-filter.md#download-filter) |
+| E#502 | Whether 4.04r2 loads `.mis` files | Lab | no: no script command reads a mission file; only an uncalled file reader could remain | [inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
+| E#503 | Whether 4.04r2 reads `.dso` | Lab | no script path reads one; the string compiler stays for `eval` | [inf] (torque/404r2-resource-filter.md#download-filter) |
 | E#504 | The `GR3DV003` beta at run time | Lab | it runs with the public Genesis3D DLL | [inf] (graal3d/beta3-genesis.md#open-points) |
 | E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
 | E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | Lab | the static server order works as read | [inf] (torque/protocol19-server.md#open) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 marks a drawing variant; servers sent none | [inf] (torque/304-tile-types.md#not-settled) |
 | E#601 | Link arrival offsets | Lab | the client evaluates them | [inf] (tools/level-editor/222-reference.md#16-open) |
-| E#602 | Code width of `Z3-V1.02` | Read | 11 bits, read only by the 1998 Java games | [inf] (formats/level-binary.md#z3-v1-differences) |
 | E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -133,9 +129,10 @@ These questions are about which build is which, who built it and how it protects
 | Claim A | The builds use the Delphi 2 class-metadata layout: self pointer 64, class name 32 bytes before the VMT | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | Claim B | The same builds carry the runtime-library copyright "1983,97 Borland", a year late for Delphi 2 | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | Tried | Nothing beyond reading the two clues; no runtime library has been matched against candidates | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Best guess | A compiler of Delphi 2's generation shipped in 1997, such as C++Builder 1's Pascal compiler, which would fit both clues. Confidence: moderate | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Settles it | Matching the runtime library of these builds against the C++Builder 1 and Delphi 2 libraries, function by function | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| Outlook | Read, given copies of the candidate runtime libraries; low priority, since no behaviour depends on it | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| Tried (2026-11-20) | 1st Graal, 3rd to 15th Graal, 1.1 and 1.1.9 keep the 64-byte self pointer but carry the `SysInit` unit, language interfaces and a package-information resource, which are Delphi 3 features; none has C++ start-up code, so C++Builder 1 is ruled out. 2nd Graal, 1.3 beta and later use shipping Delphi 3's 76-byte layout | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#compiler-of-the-early-delphi-builds-e1) |
+| Best guess | A pre-release Delphi 3 compiler, whose class table is 12 bytes shorter than the shipping one's, with the 1997 runtime library. Confidence: moderate | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#compiler-of-the-early-delphi-builds-e1) |
+| Settles it | That pre-release compiler's own runtime library, matched function by function | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#compiler-of-the-early-delphi-builds-e1) |
+| Outlook | Maybe never, since Delphi 3 pre-release kits are unlikely to turn up; low priority, since no behaviour depends on it | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#compiler-of-the-early-delphi-builds-e1) |
 
 ### E#12 Whether the token digits are a build date
 
@@ -322,19 +319,6 @@ These questions are about single messages and props: which builds send or handle
 | Settles it | The id of the 5.00r7 throws in that run's server log, or one more 5.00r7 throw with the id recorded | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab; probably already answered by the 2026-11-19 log | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 
-### E#6 Client-to-server constants of 1.21 and 1.32
-
-**Question.** Whether 1.21 sends id 14 and 1.32 sends id 22. Two reads of their send sites disagree [bin] (protocol/gserv-1999.md#message-ids).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32 | [bin] (protocol/gserv-1999.md#message-ids) |
-| Claim B | The per-build profile lists 1.21 as 0, 10 to 13, 15 to 26 (no 14) and 1.32 as 0, 10 to 21, 23 to 30 (no 22) | [bin] (client-internals/version-profiles/v121-v132.toml) |
-| Tried | Both are floors: some sends pass the id in a register, so a constant search can miss them | [bin] (client-internals/version-profiles/v121-v132.toml) |
-| Best guess | Claim B is a site-by-site list and Claim A a range summary that rounded over the gaps, so 14 and 22 are not sent. Confidence: moderate | [inf] (client-internals/version-profiles/v121-v132.toml) |
-| Settles it | A re-read of the 1.21 and 1.32 send sites for 14 and 22, including register-passed ids | [inf] (protocol/gserv-1999.md#open-questions) |
-| Outlook | Read | [inf] (protocol/gserv-1999.md#open-questions) |
-
 ### E#9 Uploads from game clients
 
 **Question.** Which game-client feature sends the file-browser and upload ids, and whether any server accepts them from a game connection [srv] (protocol/file-transfer.md#upload-rc-only).
@@ -462,17 +446,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Settles it | A lab run through a link with an offset arrival, or a trace of the warp code | [inf] (tools/level-editor/222-reference.md#16-open) |
 | Outlook | Lab | [inf] (tools/level-editor/222-reference.md#16-open) |
 
-### E#602 Code width of `Z3-V1` boards
-
-**Question.** How many bits a board code uses in `Z3-V1.02` [srv] (formats/level-binary.md#z3-v1-differences).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | `Z3-V1.02` uses 11-bit codes and `.03` and `.04` use 12; only the 1998 Java Zelda Online games read `.02` | [srv] (formats/level-binary.md#z3-v1-differences) |
-| Claim B | The 2.05 and 2.31 readers use 12 bits for both `Z3-V1` versions they handle; the 2.05 string table lists `.03` and `.04` only | [2.05][2.31] (formats/level-binary-client.md) |
-| Best guess | Both are right: `.02` is 11-bit and no Graal client reads it, so the 12-bit readers never meet it. Confidence: moderate to high | [inf] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
-| Settles it | A `Z3-V1.02` file decoded both ways, and a trace of whether 2.05 reads that magic | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
-| Outlook | Read | [doc] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
 
 ### E#604 Where a binary sign list ends
 
@@ -672,17 +645,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | A 2.31 session on a public server with the re-send withheld or altered, which needs the owner's written permission | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
 | Outlook | Owner | [inf] (client-internals/feature-specs/08-tampercheck.md#needs) |
 
-### E#321 The 2.31 window blacklist
-
-**Question.** Which windows 2.31's blacklist names, and what the client does on a match [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | 2.31 compares top-level window titles and classes with an obfuscated list every 3.2 s | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
-| Best guess | The list names the period's memory editors and speed hacks, and a match quits the client or reports to the server. Confidence: moderate for the list, low for the reaction | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
-| Settles it | Decoding the list, then a lab run with a window of a listed title open | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
-| Outlook | Read, then Lab | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
-
 ### E#322 How others see a key emote
 
 **Question.** How other players see a Ctrl+letter emote, when the 2.05 path draws it locally and sends nothing [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes).
@@ -757,21 +719,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | Both come from files or scripts the lab world lacks: the chest image and the GUI skin are delivered by the server on 6.x. Confidence: moderate | [inf] (client-internals/items-603r7-black-box.md#open) |
 | Settles it | Controlled input changes: add the chest image and a GUI skin and see what changes | [inf] (client-internals/items-603r7-black-box.md#open) |
 | Outlook | Lab | [inf] (client-internals/items-603r7-black-box.md#open) |
-
-### E#328 What drives 2.22's tick
-
-**Question.** Whether 2.22's game step runs from a 50 ms multimedia timer or from the application's idle handler behind a 50 ms gate (→ §4.1.2, §4.6.10) [bin] (client-internals/rebuild-traces-2026-11-05.md#222); [bin] (version-profiles/matrix/builds-static-survey.tsv).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The rebuild read of `Graal_222.exe` found a multimedia timer with an interval of 50 ms and a resolution of 10, whose handler is the game step | [bin] (client-internals/rebuild-traces-2026-11-05.md#222) |
-| Claim B | The static survey of every Delphi build lists NewMain 1.42 to 2.31, 2.22 included, as having no form timer, with the frame run from the idle handler | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
-| Tried (2026-11-19) | 2.22 imports no multimedia-timer functions, but does import the window timer (`SetTimer`) and three clock reads. Claim A's multimedia timer is not there, unless it is looked up by name at run time | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#tick-source-e328-222) |
-| Best guess | The step runs from a window timer or from the idle handler behind a clock gate; not a multimedia timer. Which of the two is not read. Confidence: moderate | [inf] (client-internals/static-reads-appendix-e-2026-11-19.md#tick-source-e328-222) |
-| Settles it | Read 2.22's start-up code for the timer's creation and check whether the idle handler calls the game step; or count steps under Wine with the timer blocked | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
-| Outlook | Read | [inf] (client-internals/rebuild-traces-2026-11-05.md#222) |
-
-Either way the tick is 50 ms, so no duration in this manual changes; only the mechanism is open [bin] (version-profiles/matrix/builds-static-survey.tsv).
 
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
@@ -1138,9 +1085,10 @@ The work list carried from the difference table:
 | Evidence | The 2007 world export uses most of these names, so most existed by mid-2007; the GS1 command table does not list them | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 | Tried | On 6.03r7 a missing name gives a "not found" message, as `Adventure.setAccountName` did (→ §8.3.5) | [lab] (protocol/named-login-5x-6x.md#524r4-and-603r7) |
 | Tried (2026-11-19) | In GS1 on 2.05, 2.22 and 2.31 an unknown command halts the script; the GS2 case (an unknown name on 4.x to 6.x) was not in the fuzz set | [lab] (protocol/script-fuzz-2026-11-19.md) |
-| Best guess | Most names are in 4.20r8; a missing name logs "not found" and the script goes on. Confidence: moderate for the first, low for the second | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
-| Settles it | Reading each engine's function table for the names; a lab script that calls an unknown name and then sets a flag | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
-| Outlook | Read for the names; Lab for the behaviour | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Tried (2026-11-20) | The engines of 4.20 (linked January 2007), 5.00r7 and 5.12 and the dumped 5.24r3 to 5.30r3 exes hold all eight names; 6.x scrambles its name strings and the packed Windows 4.04r2 exe gives none | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215) |
+| Best guess | All eight are in the January 2007 4.20 engine, and probably in 4.04r2 too; a missing name logs "not found" and the script goes on. Confidence: high for 4.20, low for 4.04r2 and for the behaviour | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215) |
+| Settles it | A lab script that calls an unknown name and then sets a flag; an unpacked 4.04r2 or 4.11 engine for the earliest build | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Outlook | Lab for the behaviour; Read for 4.04r2 and 4.11 from an unpacked image | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 
 ## E.9 Graal3D and the Torque-era 3D
 
@@ -1167,9 +1115,10 @@ These questions are about the 3D side: the 2000 Graal3D client and the Torque-ba
 | Claim A | `.mis` mission files are used by 3.x and 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | Claim B | The 4.04r2 plug-in does not use `.mis`; the mission arrives over the network | [bin][inf] (graal3d/torque-engine-4x.md#files) |
 | Evidence | Native mission phases and network ghost construction populate the mission group, with deferred preloading; that is a positive network path, not proof that no local reader exists | [bin] (torque/404r2-resource-filter.md#positive-native-mission-path) |
-| Best guess | A local reader survives from the Torque base but no Graal path reaches it. Confidence: moderate | [bin][inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
-| Settles it | A static read of the plug-in for the mission loader and its callers, or a capture from a 4.04r2 3D session | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Outlook | Read | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Tried (2026-11-20) | The console function table keeps `eval`, `echo`, `schedule` and others but has no `exec` or `compile`, the commands a Torque mission load goes through; no `.mis` literal and none of the base engine's script-loading messages remain | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| Best guess | 4.04r2 does not load a local `.mis`: no script command can read one, and the mission is built from the network. A file reader could still be linked in uncalled. Confidence: moderate to high | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| Settles it | A 4.04r2 3D session with a `.mis` placed beside the client, if the remaining doubt matters | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Outlook | Lab, only to close the uncalled-reader doubt | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#503 Whether 4.04r2 reads `.dso` compiled TorqueScript
 
@@ -1180,9 +1129,10 @@ These questions are about the 3D side: the 2000 Graal3D client and the Torque-ba
 | Claim A | The plug-in's formats include `.dso` compiled TorqueScript | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 | Historical claim | An earlier note inferred no TorqueScript compiler or console and no `.dso` or `.cs` use; the retained-code result narrows download exclusion to one branch and does not show that local readers are absent | [bin] (graal3d/torque-engine-4x.md#overview); [bin] (torque/404r2-resource-filter.md#download-filter) |
 | Evidence | Short `.dso` and `.cs` literals occur in the retained 4.04r2 image and take part, with `.ter`, in a download exclusion filter for resource misses; the no-strings claim is withdrawn for this image; later 5.00r7 and 5.12 scans are not re-checked | [bin] (torque/404r2-resource-filter.md#download-filter) |
-| Best guess | The code-block loader is present but unreachable: Graal excluded the script formats from download rather than removing the reader. Confidence: moderate | [inf] (graal3d/torque-engine-4x.md#files) |
-| Settles it | A static read of the plug-in for the code-block loader and its callers | [inf] (graal3d/torque-engine-4x.md#not-done) |
-| Outlook | Read | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Tried (2026-11-20) | `exec` and `compile` are missing from the console function table, `.dso` appears only in the download filter, and `eval` remains, so the string compiler is present | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| Best guess | No script path reads a `.dso`; Graal removed the file commands and excluded the formats from download. Whether a compiled-code reader is linked in uncalled cannot be told from the stripped image. Confidence: moderate to high | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| Settles it | A 4.04r2 3D session with a `.dso` placed beside the client | [inf] (graal3d/torque-engine-4x.md#not-done) |
+| Outlook | Lab, only to close the uncalled-reader doubt | [inf] (graal3d/torque-engine-4x.md#not-done) |
 
 ### E#504 The `GR3DV003` beta at run time
 
@@ -1273,6 +1223,17 @@ Three readings of client id 162 turned out to be one message, a ping answer [srv
 | Claim C | 6.01r1 and 6.03r7 send 162 as a reply to a server request: `!` and a 2-byte value (two 7-bit groups, capped at `0x6FFF`) the server sent; probably the ping answer 6.11 calls `onSendPingAnswer` | [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | Settled | One message, a ping: 4.20r6, 4.20r8, 6.01r1 and 6.03r7 send 162 only from their 108 handler, with the same code in 4.20r8 and 6.03r7; the 2010 RC and RC3 send it empty every 60 s and have no 108 handler | [bin] (protocol/unknown-ids-2026-11-06.md) |
 | Left over | A capture of a game client's answer to S→C 108 is still missing | [inf] (protocol/v4x-clients.md#client--server-ids) |
+
+### E#6 Client-to-server constants of 1.21 and 1.32 (settled)
+
+Whether 1.21 sends id 14 and 1.32 sends id 22 was open, because two reads of their send sites disagreed; a static read of both send routines settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: 0 and 10 to 26 in 1.21, 0 and 10 to 30 in 1.32. Claim B (profile): no 14 in 1.21, no 22 in 1.32. Best guess: neither is sent | [bin] (protocol/gserv-1999.md#message-ids); [bin] (client-internals/version-profiles/v121-v132.toml) |
+| Settled | Every call to each build's send routine passes a constant id. 1.21 sends 0 to 13 and 15 to 26 (no 14). 1.32 sends 0 to 30, so it sends both 14 and 22; its 22 goes out when a list lookup finds no match, its 29 when one does | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+| Verdict | Half right: the profile is right for 1.21 and missed 22 in 1.32. Both claims also left out 1 to 9, which both builds send | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+| Left over | What 14 and 22 carry in these builds | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
 
 ### E#7 Receive-branch revision discrepancy (settled for the checked inputs)
 
@@ -1457,6 +1418,28 @@ Whether offline 2.05 reloads a level on re-entry, bringing a cut bush back, was 
 | Settled | No reload: 2.05 rev 2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3 of 3) and after loading the level again (2 of 2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
 | Still open nearby | Whether a level NPC's GS2 state survives leaving and re-entering a gmap cell on 6.03r7 and 5.12; Seihai restarts it | [doc] (protocol/npc-gmap-reentry-status.md) |
 
+### E#321 The 2.31 window blacklist (settled)
+
+Which windows 2.31's blacklist names and what the client does on a match was open; a static read decoded the list and the reaction [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | An obfuscated list of window titles and classes compared every 3.2 s; best guess the period's memory editors and speed hacks, with a quit or a report on a match | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| Settled | A third-party Delphi anti-debugging component with all four of its switches on. It looks for 20 tool names anywhere in each window title (case-sensitive): ExeSpy, wxr95, Regmon, File Monitor, RegMonEx, Window Detective, DebugView, ResSpy, Advanced Registry Tracer, regsnap, MEMSPY, Memory Doctor, ProcDump32, Memory Editor, FrogsICE, SMU Winspector, Memory Dumper, MemoryMonitor, DeDe and OpenTrap. On a match it posts a quit message to that window and ends the client; it sends nothing to the server | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
+| Verdict | The reaction guess was half right (a quit, no report); the list holds monitors, dumpers and decompilers, not game trainers or speed hacks | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
+| Left over | A lab run with one listed window open, to watch the quit | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
+
+### E#328 What drives 2.22's tick (settled)
+
+Whether 2.22's game step runs from a 50 ms multimedia timer or from the idle handler behind a 50 ms gate was open; a static read of the timer's creation settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: a multimedia timer of 50 ms, resolution 10. Claim B: no form timer, the idle handler behind a 50 ms gate. A 2026-11-19 read found no multimedia-timer import | [bin] (client-internals/rebuild-traces-2026-11-05.md#222); [bin] (version-profiles/matrix/builds-static-survey.tsv); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#tick-source-e328-222) |
+| Settled | 2.22 creates the DelphiX timer component in code, with interval 50 ms and maximum lag 10, bound to the game step. The component runs from the application's idle event: when 50 ms have passed by `timeGetTime` it resets its start to the current time and calls the step once, so late steps are not made up. 2.05 rev 2 creates it the same way | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328) |
+| Verdict | Claim B is the mechanism; Claim A's "resolution 10" is the component's lag count, not a multimedia timer | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328) |
+| Left over | Nothing for the tick; the tick is 50 ms either way, so no duration in the manual changes | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328) |
+
 ### E#405 RC token `GSERV025` (settled)
 
 Which RC builds send `GSERV025` was open while only the earlier RC builds had been read [bin] (protocol/rc2-sessions-stock-2026-11-16.md).
@@ -1499,6 +1482,17 @@ Whether GraalEditor writes `BOARD` as decimal tile indices or as base64 runs was
 | Claim A (false) | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
 | Claim B (holds) | The writer matches the 2.05 and 2.22 built-in base64 `BOARD` rows, emits GLEVNW01-style runs and skips all-zero rows | [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
 | Left over | An optional file-level confirmation from a Save As `.nw` when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
+
+### E#602 Code width of `Z3-V1` boards (settled)
+
+How many bits a board code uses in `Z3-V1.02` was disputed between the server source and the client readers; a check of every client's magic list settled why both are right [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: `.02` uses 11-bit codes, `.03` and `.04` use 12. Claim B: the 2.05 and 2.31 readers use 12 bits for both versions they handle. Best guess: both right, since no Graal client reads `.02` | [srv] (formats/level-binary.md#z3-v1-differences); [2.05][2.31] (formats/level-binary-client.md) |
+| Settled | Every Windows client exe held from 1st Graal to 6.00r4 lists only `Z3-V1.03` and `Z3-V1.04`; none holds `Z3-V1.02` | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602) |
+| Verdict | Verified: no Graal client reads `.02`, so the 12-bit readers never meet an 11-bit board | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602) |
+| Left over | The 11-bit width rests on the server source alone; a real `.02` file decoded both ways would confirm it | [inf] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
 
 ### E#603 Whole tiles and fractions in level records (settled for 2.05 and 4.04r2)
 

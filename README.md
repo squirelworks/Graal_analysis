@@ -60,6 +60,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
 - [Static reads for Appendix E, second batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-b.md) — 1.39 movement tables, the 2.1 test entry save, the RC 76 last byte, GS2 opcodes 48, 49 and 54 on 5.00r7.
 - [Static reads for Appendix E, third batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-c.md) — the bomb and player lists in the 2.05 blocked-point test, the 1.39 pickup box, whole tiles in 2.05 level records.
+- [Static reads for Appendix E (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20.md) — the 2.22 tick source, the early Delphi compiler, 1.21 and 1.32 send ids, the 2.31 window blacklist, GS2-only names, 4.04r2 `.mis`/`.dso`, `Z3-V1.02`.
 - [Missing-file replies on 5.12 (gap #37)](protocol/filesendfailed-512-status.md) — 30 layout and 2.05 empty-file settle settled; one-per-name count on 5.12 still needs lab.
 - [RC props tail / SET2 byte / PLO 124 (gap #42)](protocol/rc-props-flags-status.md) — tail shape settled; flag vs chest counts and 76 last byte open; 124 body discarded by RC3.
 - [PLO 108 sub 1 and PLO 168 focus status](protocol/plo108-168-focus-status.md) — 168 = logged-in flag (medium on the name); 108 sub 1 unread outside ping, no effect on 6.03r7 in the #254 lab; static + prior lab.
