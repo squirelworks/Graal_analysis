@@ -188,6 +188,18 @@ Of the names Preagonal's compiler turns into opcodes, these images contain `abs`
 
 [bin] A jump-index pass and adjacent-pattern fusion rewrite selected records to internal tags 200–233 while retaining collection positions and advancing past matches; a current first tag 11 stays unchanged. This explains a corpus maximum of 189 alongside a larger internal range, without asserting transmitted fused values or a recovered compiler. Offline review runs no client/server. Malformed-input behavior, numeric grammar and public/joined semantics remain open in E#207. [bin] (client-internals/linux-420r6-reader-fusion.md)
 
+#### The folds by build, and fold 241
+
+The folds are made by the client after decoding, so a compiler never writes them (→ §8.4.4). A checklist of folds 200 to 242 against stock 4.20r8, 5.00r7 and 6.00, and against the published open reimplementation's fuse table, found one difference [bin][doc] (protocol/gs2-fold-241-2026-11-16.md#version-gate).
+
+| Build | Folds the stock client makes | Source |
+| --- | --- | --- |
+| 4.20r8 | 200 to 233: all 34 arithmetic, boolean, compare and register-load folds | [bin] (protocol/gs2-fold-241-2026-11-16.md#200233) |
+| 5.00r7 | 200 to 233; none of 234 to 242 | [bin] (protocol/gs2-fold-241-2026-11-16.md#version-gate) |
+| 6.00r2, 6.00r4 | 200 to 242 | [bin] (protocol/gs2-fold-241-2026-11-16.md#version-gate) |
+
+Fold 241 is the one the open reimplementation leaves out. Stock 6.00 makes and runs it when a name load resolves to an object carrying a particular flag and the next instruction is one of a short set of stores and resolves; the object is then kept on the instruction. Which objects carry that flag is not read, so a clean-room VM cannot yet decide when to fuse it (→ App. E#211). A VM that runs the same sequence unfused gets the same result, so the gap affects speed, not behaviour, as far as is known. [bin][inf] (protocol/gs2-fold-241-2026-11-16.md#234242-600)
+
 #### Linux 6.01 x86: decoded program and saved state
 
 [bin] In the exact Linux 6.01r1 x86 review, the reader creates decoded records with initially empty native targets. A postpass constructs fused internal tags and caches a registry pointer on one selected path; the executor separately prepares jump targets and adds a termination record. These stages do not define new source-language or serialized opcodes. [bin] (client-internals/linux-601-x86-program-state.md).
@@ -236,3 +248,26 @@ Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r
 | event casing | schedule / cancel fold case; full function-table fold for `onTimeout` vs `onTimeOut` not proven per build | [bin][lab][inf] (client-internals/gs2-vm-quirks-by-version.md#5-event-name-matching-ontimeout-vs-ontimeout) |
 
 Open: → App. E#209.
+
+## 8.4.10 What official compiled bodies look like
+
+Nineteen official GS2 bodies of the 6.113 era were walked offline, and a larger sample of 660 for one check. The bodies, keys and names stay private; only counts are published. These describe what the official compiler wrote, which a clean-room compiler can aim for; they do not show which compiler passes produced it [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#on-the-19-official-6113-era-bodies).
+
+| Check | Result on the official bodies | Source |
+| --- | --- | --- |
+| jumps whose target is an unconditional jump | 0 of 2239 | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#on-the-19-official-6113-era-bodies) |
+| jumps whose target is any jump | 69, nearly all conditional to conditional; no Or to Or chains | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#on-the-19-official-6113-era-bodies) |
+| integer markers | `F3` 5113, `F4` 3128, `F5` 19; none wider than its value needs, and all 19 `F5` loads need the width | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#on-the-19-official-6113-era-bodies) |
+| string markers | `F0` 11251, `F1` 3045, `F2` none; none wider than needed | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#on-the-19-official-6113-era-bodies) |
+| how a body ends | 18 of 660 bodies do not end in a return instruction (→ App. E#214) | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
+| how a body begins | all 19 start with an unconditional jump to the end of the stream: a function-only image, with no top-level statements, whose named functions start at their function-table indices | [cap][inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#observation) |
+| non-ASCII strings | one body of 19 has a high byte in its string segment: *Français* stored with the single byte `0xE7` for ç, which is Latin-1 or Windows-1252, not UTF-8 | [cap] (protocol/gs2-official-strings-latin1-2026-11-16.md#official-segment-3-bytes) |
+
+The rules below say what follows for a client and a compiler, and where the evidence stops [cap][inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return).
+
+| Rule | Source |
+| --- | --- |
+| Clean output is consistent with a jump-threading and marker-narrowing pass, but careful emitting alone gives the same stream, so the official compiler's passes are not known. Open compilers' test baselines do leave jump-to-jump chains and wide `F4` markers | [cap][inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
+| Whether a stock client skips the top-level pass for a function-only image, and re-runs top-level code before each event when the image is not function-only, is open; a Linux 4.04r2 experiment already suggests the re-run (→ §8.3.4, App. E#212) | [lab][inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently (→ App. E#213) | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+
