@@ -111,6 +111,7 @@ A 2026-11 lab timed the Linux 3.04, 4.04r2, 4.20r6 and 6.03r7 clients natively a
 | behind schedule | 3.x and 4.x slow down (no catch-up); 6.03r7 makes up one missed step and drops the rest | [lab] (client-internals/update-cadence-3x-6x.md#the-loop) |
 | 6.03r7 | also runs a once-a-second dispatch every 20th step | [bin] (client-internals/update-cadence-3x-6x.md#the-loop) |
 | GS1 `timeout` (3.04, 4.04r2, 4.20r6) | counts whole 50 ms steps, rounded down; a value under 0.05 never fires (0.07 fires every 50 ms, 0.12 every 100 ms, 0.15 every 150 ms) | [lab] (client-internals/update-cadence-3x-6x.md#gs1-timeout-counts-whole-steps-rounded-down) |
+| 6.03r7 GS2 `setTimer`, repeated | 0.01–0.05 fire every 50 ms, 0.07 and 0.1 every 100 ms, 0.12 and 0.15 every 150 ms, 0.2 every 200 ms: rounded up to whole steps, the opposite of the GS1 floor | [lab] (live-runs/open-issues-2026-11-19/README.md#3-443-the-603r7-timer-repeated) |
 | later sweep | 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down, and 2.22 and 2.31 play one walk frame per step (→ §4.1.8). Linux 6.03r7 GS2 / lowered-GS1 timers **ceil** to 50 ms and fire sub-0.05 | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [lab] (client-internals/update-cadence-3x-6x.md#603r7-gs2-timer-ceils-to-50-ms) |
 
 ## 4.1.8 GS1 timeout rounding and the walk frame, 1.33 to 5.00r7
