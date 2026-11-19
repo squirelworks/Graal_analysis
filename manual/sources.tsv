@@ -272,6 +272,7 @@ docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/unreleased.md	excluded			notes for the next GitHub release, not Graal
 docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
@@ -781,6 +782,7 @@ protocol/named-login-5x-6x.md	cited	2.3; 8.3; E	2.3; 8; E
 client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding and prefix/copy observations carried; short-path object append, field identity, vector/wire and runtime gates remain open; no mobile profile or native acceptance inferred.
 formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement field context and preservation boundary carried in3.3.8; native resolution remains open.
 VERSION-TOKENS.md	excluded			Generated discovery index of the canonical version-token catalogue, not an independently maintained source.
+VERSIONING.md	excluded			repository release policy, not Graal
 version-profiles/version-token-map.tsv	excluded			Generated machine-readable associations from the canonical catalogue.
 tools/token-map/README.md	excluded			Generation and integrity-check instructions; no independent client behavior.
 client-internals/mac-6004-6015-slices.md	cited	1	1	Architecture and per-slice declared dependencies carried in §1.8.7; selected-slice startup, runtime initialization and Windows module boundaries remain open.
