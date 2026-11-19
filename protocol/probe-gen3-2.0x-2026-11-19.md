@@ -58,9 +58,9 @@ matching 2.05 rev 1 shot.
 ## 2.02, 2.02 rev 1, 2.02 rev 2: local crash on Start
 
 All three are the only 2.0x builds that load `zlib.dll` dynamically. With it in place they reach the start window,
-then crash with an access violation the moment Start is pressed, before the list connection opens
-(2.02 rev 1 at `0x47d41c`/`0x47d42e`, 2.02 rev 2 at `0x47d008`, inside the routine that raises
-"MNG loading failed!"). The crash is the same with every `.mng` file removed from the data tree, and under Wine.
+then crash the moment Start is pressed, before the list connection opens: an access violation inside the client's
+MNG image loader (the routine that raises "MNG loading failed!"). The crash is the same with every `.mng` file removed
+from the data tree, and under Wine.
 This is a client start-up problem in our setup, not a protocol finding. These builds have no rows.
 
 ## Server-side consequences
