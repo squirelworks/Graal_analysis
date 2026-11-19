@@ -122,7 +122,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#613 | 2.22 remote PM roster | Read | a request for the server's player list, answered with the list message | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| E#614 | Tiledef type 4 | Lab | a draw-only overlay at a pixel offset | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
 | E#617 | Whether 1.41 rev 1 loads `.nw` levels online | Lab | yes for `.nw`; a gmap is ignored | [inf] (client-internals/141r1-nw-gmap-status.md) |
@@ -546,19 +545,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Best guess | Claim B for the old-mode path, which is a code read; Claim A is a summary that dropped list 1. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | Settles it | Trace the exact consumer, or a scene that walks onto a value present only in list 1 | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | Outlook | Read, then Lab | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-
-### E#614 Tiledef type 4 consumer (draw against walk)
-
-**Question.** What a type-4 tiledef line does. Such lines are common in 2.22 install tiledefs, but the walk-kind switch names only 0, 1|2 and 5 [file][2.22] (formats/tiledef-type4-2026-11-16.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Install type-4 rows store large pixel x offsets (and sometimes y) beside a replacement image and a level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
-| Claim B | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
-| Tried | On 2026-11-19, 2.22's F5 loader froze under Wine even on its own tutorial level; 2.31's Training editor reads `tiledefsOffline.txt` (a type-0 line blacks out the board), but a 256 x 512 test overlay never drew | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Best guess | Type 4 draws a replacement image at a pixel offset (like a later `addtiledef2`) and does not change walking. Confidence: moderate | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
-| Settles it | A full-size 2048 x 512 overlay in the 2.31 editor, a run outside Wine, or a consumer trace | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
-| Outlook | Lab | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 
 ## E.6 Client behaviour
 
@@ -1600,6 +1586,17 @@ Whether the Mac uploads labelled 3.04 and 3.15r2 are the historical 3.153 image 
 | Before | The newer collection's two v3-labelled main executables share one PowerPC digest; the earlier note said both are 3.153 but gave no digest | [bin] (version-profiles/macos-client-compatibility.md) |
 | Settled | The executable studied and run as 3.153 has a SHA-256 beginning `6eb0a1f9` and an MD5 beginning `3930f663`; the "3.15r2" setup image's `readme.txt` gives version 3.153 and its token is `G3D28015`; the owner-held `MAC-CLIENTS` inventory records that same digest for both v3-labelled images. So both labels carry the 3.153 executable | [bin][lab] (version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md); [lab] (version-profiles/lab-mac-tiger-2026-10-31.md); [bin] (npc-library/gs1-commands-by-version.md) |
 | Verdict | Verified by digest (prefix and suffix compared; the full digest is owner-held) | [bin] (version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md) |
+
+### E#614 Tiledef type 4 consumer (settled)
+
+What a type-4 tiledef line does was open: such lines are common in 2.22 install tiledefs, but the walk-kind switch names only 0, 1|2 and 5. A live 2.22 run settled it [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (holds) | Install type-4 rows store pixel x offsets (and sometimes y) beside a replacement image and a level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim B (holds) | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
+| Settled | Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. The image must be an 8-bit palette PNG; a 24-bit one is ignored without a message, which is why the earlier tries saw nothing | [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19) |
+| Left over | Water under an overlay, and type-4 lines on builds other than 2.22 | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 
 ## E.12 What may never be known
 
