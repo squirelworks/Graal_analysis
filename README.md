@@ -7,6 +7,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 ## Contents
 
 - [Packet and prop probes on real clients](protocol/probe-targets-2026-11-18.md) — a lab proxy injects chosen packets into live sessions of 2.22, 2.31, 4.20r8, 5.24r4 and Linux 6.03r7; prop 83 is the five-byte gralat count, 78–80 are X2/Y2/Z2, unknown own ids skip one byte, unknown PLO ids are ignored; per-inject rows in `probe-results.tsv`, running tally in [`unknowns-ledger.md`](protocol/unknowns-ledger.md); lab.
+- [C→S fuzzing of the original servers](protocol/server-fuzz-c2s-targets.md) — standalone cipher-free fuzzer [`tools/srvfuzz/`](tools/srvfuzz/) for GServer13, the 1.2x GServers and ListServer 2.37, covering malformed frames and login (pre-auth), the id 0–223 sweep and malformed bodies (incl. `WANTFILE` path traversal), with a fresh-login canary; self-tested on loopback mocks (292 gen-2 + 43 list cases), no real-binary run yet; lab.
 - [NRY identity F01–F03](version-profiles/nry-identity-f01-f03.md) — 5.12-untouched=5.00r7; 2.1.x level magics / controlnpc; 1.x VERGRAAL vs 1.39 no listserver; research #53; index.
 - [Scripted weapons on 5.00r7 / 5.12](protocol/scripted-weapons-5x-status.md) — classic vs modern delivery ids; transitional 5.x handles both; stock path / #55 open; research #5; static status.
 - [v4 GUI windows after server-warp](protocol/v4-gui-survive-serverwarp.md) — C5 lead: Login GUI may survive 178 unless hidden; loopback confirm open; research #56; static status.
