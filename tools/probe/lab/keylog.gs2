@@ -1,0 +1,26 @@
+function onCreated() {
+  this.o = -1;
+  setTimer(0.1);
+}
+function onKeyPressed(code, key, scan) {
+  player.chat = "K" @ code @ "_" @ key @ "_" @ scan;
+}
+function onTimeout() {
+  this.d = 0;
+  if (keydown(0)) this.d = this.d + 1;
+  if (keydown(1)) this.d = this.d + 2;
+  if (keydown(2)) this.d = this.d + 4;
+  if (keydown(3)) this.d = this.d + 8;
+  if (keydown(4)) this.d = this.d + 16;
+  if (keydown(5)) this.d = this.d + 32;
+  if (keydown(6)) this.d = this.d + 64;
+  if (keydown(7)) this.d = this.d + 128;
+  if (keydown(8)) this.d = this.d + 256;
+  if (keydown(9)) this.d = this.d + 512;
+  if (keydown(10)) this.d = this.d + 1024;
+  if (this.d != this.o) {
+    this.o = this.d;
+    player.chat = "D" @ this.d;
+  }
+  setTimer(0.1);
+}
