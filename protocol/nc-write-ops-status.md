@@ -34,3 +34,5 @@ Tags: **[bin][doc]**. No new NC lab in this pass. Do not copy GPL NPC-server cod
 ## Lab next
 
 Loopback NC (Wine 2004 / RC3) against seihai-npcserver or the fork: dump each write once with known fixtures; fill the open rows above without pasting GPL.
+
+- [ ] Tooling for this now exists: `tools/probe/ncprobe.py` is a cipher-free NCL11012 proxy that logs every NC packet both ways and can inject/drop on either side (selftest `tools/probe/ncselftest.py`). `tools/probe/lab/runnc.sh` + `lab/nc-core.plan` drive it against nc7132001 / the Jan-2002 builds. Running the fixtures through `ncprobe` dumps the write layouts (prop order, clear-vs-leave, length-prefix form) straight into `proxy.log`, filling the open rows above. The fuzz plan also stresses the **receive** handlers for crashes (separate from this write-layout gap).
