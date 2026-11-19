@@ -377,6 +377,8 @@ Unchanged Windows clients ran on Windows 10 against our own lab server and lobby
 | Other files a world may need: `minimap.txt` (6.03r7), `bigmap.txt` (4.20r8 to 5.12), `head26.png` (5.00r7, 5.12), `guigames_arcmessage2.png` (5.24r4) and the player-list window images (4.20r8 to 5.12); an NPC with no image sent as `-` makes every build from 1.39 to 6.03r7 ask for `-.gif` | 1.39 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#client-behaviour-seen) |
 | 1.39, 2.22, 2.31, 5.24r4 and 6.03r7 online together in one level each saw the others arrive, drew them with body and name, and saw them move | 1.39 to 6.03r7 | [lab] (live-runs/real-win10-2026-11-18/README.md#five-builds-in-one-level) |
 
+Because 5.x and 6.x log in as `guest`, a lab that needs a named account on the game server can set it from a script: a clientside GS2 weapon on the `Login` server that calls `adventure_setaccountname` and `adventure_setpassword` in `onCreated` makes 5.24r4 and 6.03r7 log in to the next server under that account. The world server saw the named login; it ran in local mode, so the password was not checked (→ §8.3.5). [lab] (protocol/named-login-5x-6x.md#what-the-server-sees)
+
 The 182 crash and the 168/190 box are in → §2.5.8. 6.1.1.3 was not run: its login token comes in the signed connector script (→ App. E#616) [lab] (live-runs/real-win10-2026-11-18/README.md#results).
 
 ## 2.3.7 Unpacked 6.037 against unpacked 6.1.1.3

@@ -69,6 +69,11 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#208 | Whether 3.153 uses OpenGS1's layout | Read | no | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | E#209 | GS2 VM details left open by the per-build read | Read | opcode 54 pops two values in 5.00r7 too | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+| E#212 | Whether a function-only image skips the top-level pass | Lab | yes, and other images re-run top level before each event | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+| E#213 | How GS2 text bytes draw on screen | Lab | through the Windows code page, so Latin-1 on Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
+| E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+| E#215 | When GS2-only names arrived, and what a missing name does | Read | most by 4.20r8; a missing name logs an error and the script goes on | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 | E#300 | Tick timing of three early builds | Lab | 50 ms, as later builds | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | E#302 | Walking speed factors 0.4 and 0.8 | Lab | 0.8 while carrying a heavy object, 0.4 in water or a slowing state | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#303 | Two lists in the blocked-point test | Read | other players and baddies | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
@@ -1362,6 +1367,63 @@ The work list carried from the difference table:
 | Best guess | `removemodifiers()` leaves the emit list; the global clock starts at zero as read; `indexof` is case-sensitive and `%d` truncates, as in the C library it wraps. Confidence: low to moderate | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Settles it | A runtime probe on a 4.x or 6.x client in the lab, now possible with bytecode delivered through the probe proxy | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Outlook | Lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+
+### E#211 Which objects make 6.00 fuse fold 241
+
+**Question.** Stock 6.00 makes fold 241 when a name load resolves to an object carrying a flag and a store or resolve follows. Which objects carry that flag (→ §8.4.6) [bin] (protocol/gs2-fold-241-2026-11-16.md#234242-600).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Every other fold from 200 to 242 matches between stock 4.20r8, 5.00r7 and 6.00 and the open reimplementation; 241 is the one left out, on purpose, until the flag is known | [bin][doc] (protocol/gs2-fold-241-2026-11-16.md#verdict) |
+| Best guess | The flag marks objects that resolve once and can be cached on the instruction, such as weapons and globals; running the sequence unfused gives the same result, more slowly. Confidence: low for the flag, moderate for "same result" | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+| Settles it | A deeper static read of the 6.00 fusion stage at the flag test | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+| Outlook | Read | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
+
+### E#212 Whether a function-only image skips the top-level pass
+
+**Question.** All 19 official bodies start with a jump to the end, the shape of an image with no top-level statements. Whether stock clients treat that shape as "skip the top-level pass", and re-run top-level code before every event when the image has some (→ §8.4.10) [cap] (protocol/gs2-official-function-only-shape-2026-11-16.md#observation).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The 19 official bodies are all function-only, so they never exercise a real top level | [cap] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| Tried | A Linux 4.04r2 event experiment on a fixture that is not function-only suggests a top-level re-run (→ §8.3.4) | [lab] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| Best guess | Yes on both counts: the leading jump is the compiler's way of making the top level empty, and the re-run is real for scripts that have one. Confidence: moderate | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+| Settles it | Three loopback fixtures on stock 4.20r8, 5.12 and 6.03r7: top level plus `onCreated`, its function-only twin, and a handler at instruction 0 | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+| Outlook | Lab | [inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#still-open) |
+
+### E#213 How GS2 text bytes draw on screen
+
+**Question.** Official bytecode stores non-ASCII text as single Latin-1 bytes. Whether the clients draw those bytes as the intended letters (→ §8.4.10) [cap] (protocol/gs2-official-strings-latin1-2026-11-16.md#official-segment-3-bytes).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | One official string, *Français*, holds `0xE7`; 5.00r7 and 6.03r7 draw through the Windows ANSI path, and the scanned 5.00r7 engine has no UTF-8 literal | [cap][bin] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+| Best guess | The bytes pass through the Windows code page, so they draw as Latin-1 on Western European installs and as other letters elsewhere. Confidence: moderate to high for Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+| Settles it | A `showtext` or sign with `0xE7` on 5.00r7 and a 6.x build, checked on screen; and a read of the code-page argument along the text path | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
+| Outlook | Lab | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
+
+### E#214 Why some official bodies do not end in a return
+
+**Question.** 18 of 660 official bodies do not end in a return instruction. Whether that is intended, truncation, or a separate emitter path (→ §8.4.10) [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The other 642 end in a return; the 18 are a real residual, and the official compiler is not held | [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
+| Best guess | A separate emitter path for one kind of script, since the bodies otherwise look clean; a client that stops at the end of the stream handles both. Confidence: low | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+| Settles it | Grouping the 18 by what they are, from the private bodies; or the official compiler | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+| Outlook | Owner, since the bodies stay private; Maybe never for the compiler's reason | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
+
+### E#215 When GS2-only names arrived, and what a missing name does
+
+**Question.** Which 4.x build first has each GS2-only name (`triggerserver`, `scheduleevent`, `findimg`, `findweapon`, `md5`, `cancelevents`, `keydown2`, `onwall2`), and what a 4.x to 6.x client does when a script calls a name it does not have (→ §8.3.9) [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The 2007 world export uses most of these names, so most existed by mid-2007; the GS1 command table does not list them | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Tried | On 6.03r7 a missing name gives a "not found" message, as `Adventure.setAccountName` did (→ §8.3.5) | [lab] (protocol/named-login-5x-6x.md#524r4-and-603r7) |
+| Best guess | Most names are in 4.20r8; a missing name logs "not found" and the script goes on. Confidence: moderate for the first, low for the second | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Settles it | Reading each engine's function table for the names; a lab script that calls an unknown name and then sets a flag | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| Outlook | Read for the names; Lab for the behaviour | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 
 ## E.9 Graal3D and the Torque-era 3D
 
