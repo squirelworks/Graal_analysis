@@ -12,55 +12,55 @@ client	key	effect	c2s	script_event	notes
 5.24r4	F11	screen 1607 px 736x594 box 24,0-759,593 (near player)	-	key(122,,87)	
 5.24r4	F12	screen 235 px 62x16 box 389,265-450,280 (near player)	-	key(123,,88)	
 5.24r4	Escape	screen 52151 px 735x594 box 24,0-758,593 (near player)	34:UPDATEFILE{&wz.kguiblue_window.png} | 34:UPDATEFILE{&wz.kguiblue_button.png}	key(27,,1)	reset: again(auto); screen still differs after reset (52150 px)
-5.24r4	`	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	1	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	2	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	3	screen 863 px 587x595 box 24,0-610,594 (near player)	24:SHOWIMG{)}	-	
-5.24r4	4	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	5	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	6	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	7	screen 1125 px 735x595 box 24,0-758,594 (near player)	-	-	
-5.24r4	8	screen 1107 px 736x594 box 24,0-759,593 (near player)	24:SHOWIMG{)}	-	
-5.24r4	9	nothing seen	-	-	
-5.24r4	0	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
-5.24r4	-	nothing seen	-	-	
-5.24r4	=	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	BackSpace	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
-5.24r4	Tab	screen 5457 px 736x594 box 24,0-759,593 (near player)	-	-	reset: again
-5.24r4	A	screen 857 px 688x579 box 72,0-759,578 (near player)	24:SHOWIMG{)}	-	
-5.24r4	B	screen 1125 px 735x595 box 24,0-758,594 (near player)	-	-	
-5.24r4	C	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
-5.24r4	D	screen 1125 px 735x595 box 24,0-758,594 (near player)	-	-	
-5.24r4	E	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	F	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	G	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
-5.24r4	H	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	I	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
-5.24r4	J	screen 857 px 688x579 box 72,0-759,578 (near player)	-	-	
-5.24r4	K	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	L	nothing seen	-	-	
-5.24r4	M	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	reset: again
-5.24r4	N	screen 1107 px 736x594 box 24,0-759,593 (near player)	24:SHOWIMG{)}	-	
-5.24r4	O	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	P	screen 1110 px 735x594 box 24,0-758,593 (near player)	24:SHOWIMG{)}	-	reset: again
-5.24r4	Q	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	reset: again
-5.24r4	R	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	S	screen 1110 px 735x594 box 24,0-758,593 (near player)	24:SHOWIMG{)}	-	
-5.24r4	T	screen 1107 px 736x594 box 24,0-759,593 (near player)	-	-	
-5.24r4	U	screen 1125 px 735x595 box 24,0-758,594 (near player)	24:SHOWIMG{)}	-	
-5.24r4	V	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	W	screen 1125 px 735x595 box 24,0-758,594 (near player)	24:SHOWIMG{)}	-	
-5.24r4	X	nothing seen	-	-	
-5.24r4	Y	screen 857 px 688x579 box 72,0-759,578 (near player)	24:SHOWIMG{)}	-	
-5.24r4	Z	nothing seen	-	-	
-5.24r4	[	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	
-5.24r4	]	screen 863 px 587x595 box 24,0-610,594 (near player)	24:SHOWIMG{)}	-	
-5.24r4	\	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
-5.24r4	;	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	'	screen 863 px 587x595 box 24,0-610,594 (near player)	-	-	
-5.24r4	,	screen 1110 px 735x594 box 24,0-758,593 (near player)	-	-	
+5.24r4	`	screen 806 px 106x20 box 348,264-453,283 (near player)	24:SHOWIMG{)}	key(192,`,41)	
+5.24r4	1	screen 935 px 106x20 box 348,264-453,283 (near player)	-	key(49,1,2)	
+5.24r4	2	screen 1338 px 587x595 box 24,0-610,594 (near player)	-	key(50,2,3)	
+5.24r4	3	screen 624 px 87x19 box 357,265-443,283 (near player)	-	key(51,3,4)	
+5.24r4	4	screen 1467 px 735x595 box 24,0-758,594 (near player)	-	key(52,4,5)	
+5.24r4	5	screen 1638 px 735x594 box 24,0-758,593 (near player)	-	key(53,5,6)	
+5.24r4	6	screen 1656 px 735x594 box 24,0-758,593 (near player)	-	key(54,6,7)	
+5.24r4	7	screen 1527 px 736x594 box 24,0-759,593 (near player)	24:SHOWIMG{)}	key(55,7,8)	
+5.24r4	8	screen 325 px 61x19 box 383,265-443,283 (near player)	-	key(56,8,9)	
+5.24r4	9	screen 1073 px 98x19 box 352,265-449,283 (near player)	-	key(57,9,10)	
+5.24r4	0	screen 1563 px 688x579 box 72,0-759,578 (near player)	-	key(48,0,11)	
+5.24r4	-	screen 1980 px 587x595 box 24,0-610,594 (near player)	-	key(189,-,12)	
+5.24r4	=	screen 2157 px 735x594 box 24,0-758,593 (near player)	-	key(187,=,13)	
+5.24r4	BackSpace	screen 3108 px 736x594 box 24,0-759,593 (near player)	-	key(8,,14)	
+5.24r4	Tab	screen 353 px 76x16 box 363,265-438,280 (near player)	-	key(9,,15)	reset: again
+5.24r4	A	screen 2066 px 736x595 box 24,0-759,594 (near player)	-	key(65,a,30)	
+5.24r4	B	screen 1788 px 101x73 box 350,264-450,336 (near player)	-	key(66,b,48)	
+5.24r4	C	screen 596 px 101x20 box 350,264-450,283 (near player)	24:SHOWIMG{)}	key(67,c,46)	
+5.24r4	D	screen 560 px 73x20 box 378,264-450,283 (near player)	-	key(68,d,32)	
+5.24r4	E	screen 1671 px 735x595 box 24,0-758,594 (near player)	-	key(69,e,18)	
+5.24r4	F	screen 1779 px 688x579 box 72,0-759,578 (near player)	-	key(70,f,33)	
+5.24r4	G	screen 2092 px 736x595 box 24,0-759,594 (near player)	24:SHOWIMG{)}	key(71,g,34)	
+5.24r4	H	screen 1682 px 736x595 box 24,0-759,594 (near player)	-	key(72,h,35)	
+5.24r4	I	screen 991 px 98x20 box 352,264-449,283 (near player)	-	key(73,i,23)	
+5.24r4	J	screen 115860 px 800x600 box 0,0-799,599 (near player)	34:UPDATEFILE{&w}0Fwalk.gani} | 157:UPDATEGANI{     walk} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{steps.wav,steps2.wav}	key(74,j,36)	reset: again(auto), escape; screen still differs after reset (148500 px)
+5.24r4	K	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
+5.24r4	L	screen 876 px 688x579 box 80,0-767,578 (near player)	-	-	
+5.24r4	M	screen 1613 px 736x595 box 32,0-767,594 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	reset: again
+5.24r4	N	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
+5.24r4	O	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	
+5.24r4	P	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	reset: again
+5.24r4	Q	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	reset: again
+5.24r4	R	screen 876 px 688x579 box 80,0-767,578 (near player)	-	-	
+5.24r4	S	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
+5.24r4	T	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
+5.24r4	U	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	
+5.24r4	V	nothing seen	-	-	
+5.24r4	W	screen 1142 px 736x594 box 32,0-767,593 (near player)	-	-	
+5.24r4	X	screen 1129 px 735x595 box 32,0-766,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	Y	nothing seen	-	-	
+5.24r4	Z	screen 876 px 688x579 box 80,0-767,578 (near player)	-	-	
+5.24r4	[	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
+5.24r4	]	screen 1149 px 736x595 box 32,0-767,594 (near player)	24:SHOWIMG{)}	-	
+5.24r4	\	screen 1142 px 736x594 box 32,0-767,593 (near player)	-	-	
+5.24r4	;	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
+5.24r4	'	screen 883 px 582x595 box 32,0-613,594 (near player)	-	-	
+5.24r4	,	screen 1149 px 736x595 box 32,0-767,594 (near player)	-	-	
 5.24r4	.	nothing seen	-	-	
-5.24r4	/	screen 1122 px 736x595 box 24,0-759,594 (near player)	-	-	
+5.24r4	/	screen 1122 px 735x594 box 32,0-766,593 (near player)	-	-	
 5.24r4	Return	CLIENT GONE (crash or quit)	-	-	reset: again; screen still differs after reset (479907 px)
 5.24r4	Space	screen 1976 px 587x595 box 24,0-610,594 (near player)	157:UPDATEGANI{     sword} | 2:PLAYERPROPS{gani='sword' sprite=2} | 34:UPDATEFILE{&w}0Fsword.gani} | 157:UPDATEGANI{     sword} | 2:PLAYERPROPS{sprite=2} | 2:PLAYERPROPS{gani='idle'} | 23:WANTFILE{sword.gani,sword.wav}	key(32, ,57,0,0)	
 5.24r4	Shift	screen 2227 px 688x579 box 72,0-759,578 (near player)	-	key(160,,42)	
