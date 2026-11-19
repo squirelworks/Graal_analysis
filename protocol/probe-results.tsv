@@ -1225,7 +1225,403 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	win-5.24r3	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	c524r3-widths	id88
 2026-11-19	win-5.24r3	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	c524r3-widths	id89
 2026-11-19	win-5.24r3	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	c524r3-widths	id90
-2026-11-19	win-5.31r4	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 does the same (run c524n); the Wine 5.24r4 run reported no fallback: a host difference, not a build one	c531d	-
-2026-11-19	win-5.30r3	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 does the same (run c524n); the Wine 5.24r4 run reported no fallback: a host difference, not a build one	c530b	-
-2026-11-19	win-5.00r7	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 does the same (run c524n); the Wine 5.24r4 run reported no fallback: a host difference, not a build one	c500b	-
-2026-11-19	win-5.24r3	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 does the same (run c524n); the Wine 5.24r4 run reported no fallback: a host difference, not a build one	c524r3b	-
+2026-11-19	win-5.31r4	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 (run c524n) and Wine 4.03r3, 4.04r2 and 4.11 do the same; only the 2026-11-18 Wine 5.24r4 run (lgw524) showed no fallback	c531d	-
+2026-11-19	win-5.30r3	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 (run c524n) and Wine 4.03r3, 4.04r2 and 4.11 do the same; only the 2026-11-18 Wine 5.24r4 run (lgw524) showed no fallback	c530b	-
+2026-11-19	win-5.00r7	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 (run c524n) and Wine 4.03r3, 4.04r2 and 4.11 do the same; only the 2026-11-18 Wine 5.24r4 run (lgw524) showed no fallback	c500b	-
+2026-11-19	win-5.24r3	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, so NUL does not end the name. Native Win10 5.24r4 (run c524n) and Wine 4.03r3, 4.04r2 and 4.11 do the same; only the 2026-11-18 Wine 5.24r4 run (lgw524) showed no fallback	c524r3b	-
+2026-11-19	win-4.03r3	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p3-i3
+2026-11-19	win-4.03r3	s2c	9	77	9 c:77 c:1 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p77-c1
+2026-11-19	win-4.03r3	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	none	canary lost	w403-wine-core	p77-i5
+2026-11-19	win-4.03r3	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p78-s
+2026-11-19	win-4.03r3	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p79-s
+2026-11-19	win-4.03r3	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p80-s
+2026-11-19	win-4.03r3	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p81-c
+2026-11-19	win-4.03r3	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	canary lost	w403-wine-core	p82-str
+2026-11-19	win-4.03r3	s2c	9	83	9 c:83 c:1 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p83-c1
+2026-11-19	win-4.03r3	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	none	canary lost	w403-wine-core	p83-i5
+2026-11-19	win-4.03r3	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	none	canary landed	w403-wine-core	p90-c1
+2026-11-19	win-4.03r3	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	canary lost	w403-wine-core	p90-i3
+2026-11-19	win-4.03r3	s2c	110	-	110 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo110-bin
+2026-11-19	win-4.03r3	s2c	110	-	110 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo110-c1
+2026-11-19	win-4.03r3	s2c	110	-	110 	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo110-empty
+2026-11-19	win-4.03r3	s2c	110	-	"110 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo110-text
+2026-11-19	win-4.03r3	s2c	60	-	60 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo60-bin
+2026-11-19	win-4.03r3	s2c	60	-	60 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo60-c1
+2026-11-19	win-4.03r3	s2c	60	-	60 	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo60-empty
+2026-11-19	win-4.03r3	s2c	60	-	"60 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo60-text
+2026-11-19	win-4.03r3	s2c	78	-	78 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo78-bin
+2026-11-19	win-4.03r3	s2c	78	-	78 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo78-c1
+2026-11-19	win-4.03r3	s2c	78	-	78 	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo78-empty
+2026-11-19	win-4.03r3	s2c	78	-	"78 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo78-text
+2026-11-19	win-4.03r3	s2c	81	-	81 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo81-bin
+2026-11-19	win-4.03r3	s2c	81	-	81 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo81-c1
+2026-11-19	win-4.03r3	s2c	81	-	81 	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo81-empty
+2026-11-19	win-4.03r3	s2c	81	-	"81 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo81-text
+2026-11-19	win-4.03r3	s2c	83	-	83 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo83-bin
+2026-11-19	win-4.03r3	s2c	83	-	83 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo83-c1
+2026-11-19	win-4.03r3	s2c	83	-	83 	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo83-empty
+2026-11-19	win-4.03r3	s2c	83	-	"83 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w403-wine-core	plo83-text
+2026-11-19	win-4.03r3	s2c	60	-	60 hex:410042	yes	yes	none	canary in the same frame landed	w403-bytes2x	nul-mid
+2026-11-19	win-4.03r3	s2c	60	-	60 hex:4100	yes	yes	none	canary in the same frame landed	w403-bytes2x	nul-end
+2026-11-19	win-4.03r3	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	w403-bytes2x	ff
+2026-11-19	win-4.03r3	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	w403-bytes2x	80
+2026-11-19	win-4.03r3	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	w403-bytes2x	1f
+2026-11-19	win-4.03r3	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	w403-bytes2x	plain
+2026-11-19	win-4.03r3	s2c	9	12	9 c:12 str:a hex:00	yes	yes	none	canary in the same frame landed	w403-bytes2x	nul-known
+2026-11-19	win-4.03r3	s2c	9	0	9 c:0 str:Probe c:5 c:99	yes	yes	none	documented width holds	w403-widths	id00
+2026-11-19	win-4.03r3	s2c	9	1	9 c:1 c:3 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id01
+2026-11-19	win-4.03r3	s2c	9	2	9 c:2 c:6 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id02
+2026-11-19	win-4.03r3	s2c	9	3	9 c:3 i3:7 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id03
+2026-11-19	win-4.03r3	s2c	9	4	9 c:4 c:10 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id04
+2026-11-19	win-4.03r3	s2c	9	5	9 c:5 c:3 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id05
+2026-11-19	win-4.03r3	s2c	9	6	9 c:6 c:1 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id06
+2026-11-19	win-4.03r3	s2c	9	7	9 c:7 c:1 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id07
+2026-11-19	win-4.03r3	s2c	9	8	9 c:8 c:31 str:sword1.png c:5 c:99	yes	yes	none	documented width holds	w403-widths	id08
+2026-11-19	win-4.03r3	s2c	9	9	9 c:9 c:11 str:shield1.png c:5 c:99	yes	yes	none	documented width holds	w403-widths	id09
+2026-11-19	win-4.03r3	s2c	9	10	9 c:10 str:idle c:5 c:99	yes	yes	none	documented width holds	w403-widths	id10
+2026-11-19	win-4.03r3	s2c	9	11	9 c:11 c:109 t:head0.png c:5 c:99	yes	yes	none	documented width holds	w403-widths	id11
+2026-11-19	win-4.03r3	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	none	documented width holds	w403-widths	id12
+2026-11-19	win-4.03r3	s2c	9	13	9 c:13 c:0 c:0 c:0 c:0 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id13
+2026-11-19	win-4.03r3	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id14
+2026-11-19	win-4.03r3	s2c	9	15	9 c:15 c:60 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id15
+2026-11-19	win-4.03r3	s2c	9	16	9 c:16 c:61 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id16
+2026-11-19	win-4.03r3	s2c	9	17	9 c:17 c:2 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id17
+2026-11-19	win-4.03r3	s2c	9	18	9 c:18 c:20 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id18
+2026-11-19	win-4.03r3	s2c	9	19	9 c:19 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id19
+2026-11-19	win-4.03r3	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	none	documented width holds	w403-widths	id20
+2026-11-19	win-4.03r3	s2c	9	21	9 c:21 str: c:5 c:99	yes	yes	none	documented width holds	w403-widths	id21
+2026-11-19	win-4.03r3	s2c	9	22	9 c:22 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id22
+2026-11-19	win-4.03r3	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id23
+2026-11-19	win-4.03r3	s2c	9	24	9 c:24 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id24
+2026-11-19	win-4.03r3	s2c	9	25	9 c:25 s:1 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id25
+2026-11-19	win-4.03r3	s2c	9	26	9 c:26 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id26
+2026-11-19	win-4.03r3	s2c	9	27	9 c:27 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id27
+2026-11-19	win-4.03r3	s2c	9	28	9 c:28 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id28
+2026-11-19	win-4.03r3	s2c	9	29	9 c:29 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id29
+2026-11-19	win-4.03r3	s2c	9	30	9 c:30 i5:2080768 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id30
+2026-11-19	win-4.03r3	s2c	9	31	9 c:31 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id31
+2026-11-19	win-4.03r3	s2c	9	32	9 c:32 c:50 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id32
+2026-11-19	win-4.03r3	s2c	9	33	9 c:33 c:0 c:5 c:99	yes	yes	none	no case: skipped as one byte	w403-widths	id33
+2026-11-19	win-4.03r3	s2c	9	34	9 c:34 str:guest c:5 c:99	yes	yes	none	documented width holds	w403-widths	id34
+2026-11-19	win-4.03r3	s2c	9	35	9 c:35 str:body.png c:5 c:99	yes	yes	none	documented width holds	w403-widths	id35
+2026-11-19	win-4.03r3	s2c	9	36	9 c:36 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id36
+2026-11-19	win-4.03r3	s2c	9	37	9 c:37 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id37
+2026-11-19	win-4.03r3	s2c	9	38	9 c:38 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id38
+2026-11-19	win-4.03r3	s2c	9	39	9 c:39 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id39
+2026-11-19	win-4.03r3	s2c	9	40	9 c:40 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id40
+2026-11-19	win-4.03r3	s2c	9	41	9 c:41 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id41
+2026-11-19	win-4.03r3	s2c	9	42	9 c:42 c:0 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w403-widths-fix	id42
+2026-11-19	win-4.03r3	s2c	9	43	9 c:43 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id43
+2026-11-19	win-4.03r3	s2c	9	44	9 c:44 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id44
+2026-11-19	win-4.03r3	s2c	9	45	9 c:45 c:50 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id45
+2026-11-19	win-4.03r3	s2c	9	46	9 c:46 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id46
+2026-11-19	win-4.03r3	s2c	9	47	9 c:47 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id47
+2026-11-19	win-4.03r3	s2c	9	48	9 c:48 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id48
+2026-11-19	win-4.03r3	s2c	9	49	9 c:49 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id49
+2026-11-19	win-4.03r3	s2c	9	50	9 c:50 c:1 c:5 c:99	yes	yes	none	no case: skipped as one byte	w403-widths	id50
+2026-11-19	win-4.03r3	s2c	9	51	9 c:51  c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w403-widths	id51
+2026-11-19	win-4.03r3	s2c	9	52	9 c:52 str:English c:5 c:99	yes	yes	none	documented width holds	w403-widths	id52
+2026-11-19	win-4.03r3	s2c	9	53	9 c:53 c:0 c:5 c:99	yes	yes	none	no case: skipped as one byte	w403-widths	id53
+2026-11-19	win-4.03r3	s2c	9	54	9 c:54 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id54
+2026-11-19	win-4.03r3	s2c	9	55	9 c:55 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id55
+2026-11-19	win-4.03r3	s2c	9	56	9 c:56 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id56
+2026-11-19	win-4.03r3	s2c	9	57	9 c:57 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id57
+2026-11-19	win-4.03r3	s2c	9	58	9 c:58 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id58
+2026-11-19	win-4.03r3	s2c	9	59	9 c:59 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id59
+2026-11-19	win-4.03r3	s2c	9	60	9 c:60 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id60
+2026-11-19	win-4.03r3	s2c	9	61	9 c:61 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id61
+2026-11-19	win-4.03r3	s2c	9	62	9 c:62 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id62
+2026-11-19	win-4.03r3	s2c	9	63	9 c:63 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id63
+2026-11-19	win-4.03r3	s2c	9	64	9 c:64 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id64
+2026-11-19	win-4.03r3	s2c	9	65	9 c:65 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id65
+2026-11-19	win-4.03r3	s2c	9	66	9 c:66 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id66
+2026-11-19	win-4.03r3	s2c	9	67	9 c:67 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id67
+2026-11-19	win-4.03r3	s2c	9	68	9 c:68 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id68
+2026-11-19	win-4.03r3	s2c	9	69	9 c:69 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id69
+2026-11-19	win-4.03r3	s2c	9	70	9 c:70 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id70
+2026-11-19	win-4.03r3	s2c	9	71	9 c:71 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id71
+2026-11-19	win-4.03r3	s2c	9	72	9 c:72 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id72
+2026-11-19	win-4.03r3	s2c	9	73	9 c:73 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id73
+2026-11-19	win-4.03r3	s2c	9	74	9 c:74 str:x c:5 c:99	yes	yes	none	documented width holds	w403-widths	id74
+2026-11-19	win-4.03r3	s2c	9	75	9 c:75 str:linux c:5 c:99	yes	yes	none	no case: skipped as one byte (landed only by chance)	w403-widths	id75
+2026-11-19	win-4.03r3	s2c	9	76	9 c:76 i3:1252 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w403-widths	id76
+2026-11-19	win-4.03r3	s2c	9	77	9 c:77 i5:2080768 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w403-widths-fix	id77
+2026-11-19	win-4.03r3	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id78
+2026-11-19	win-4.03r3	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id79
+2026-11-19	win-4.03r3	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id80
+2026-11-19	win-4.03r3	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	documented width holds	w403-widths	id81
+2026-11-19	win-4.03r3	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w403-widths	id82
+2026-11-19	win-4.03r3	s2c	9	83	9 c:83 i5:7 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w403-widths	id83
+2026-11-19	win-4.03r3	s2c	9	84	9 c:84 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id84
+2026-11-19	win-4.03r3	s2c	9	85	9 c:85 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id85
+2026-11-19	win-4.03r3	s2c	9	86	9 c:86 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id86
+2026-11-19	win-4.03r3	s2c	9	87	9 c:87 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id87
+2026-11-19	win-4.03r3	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id88
+2026-11-19	win-4.03r3	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id89
+2026-11-19	win-4.03r3	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w403-widths	id90
+2026-11-19	win-4.03r3	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included (same as 4.20r8)	w403-baddytypes	type*
+2026-11-19	win-4.03r3	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section (the 4.20r8 run lgw420 is unusable: that account rode a horse throughout); after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, under Wine too	w403-loadgani3w	-
+2026-11-19	win-4.11	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p3-i3
+2026-11-19	win-4.11	s2c	9	77	9 c:77 c:1 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p77-c1
+2026-11-19	win-4.11	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	none	canary lost	w411-wine-core	p77-i5
+2026-11-19	win-4.11	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p78-s
+2026-11-19	win-4.11	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p79-s
+2026-11-19	win-4.11	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p80-s
+2026-11-19	win-4.11	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p81-c
+2026-11-19	win-4.11	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	canary lost	w411-wine-core	p82-str
+2026-11-19	win-4.11	s2c	9	83	9 c:83 c:1 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p83-c1
+2026-11-19	win-4.11	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	none	canary lost	w411-wine-core	p83-i5
+2026-11-19	win-4.11	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	none	canary landed	w411-wine-core	p90-c1
+2026-11-19	win-4.11	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	canary lost	w411-wine-core	p90-i3
+2026-11-19	win-4.11	s2c	110	-	110 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo110-bin
+2026-11-19	win-4.11	s2c	110	-	110 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo110-c1
+2026-11-19	win-4.11	s2c	110	-	110 	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo110-empty
+2026-11-19	win-4.11	s2c	110	-	"110 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo110-text
+2026-11-19	win-4.11	s2c	60	-	60 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo60-bin
+2026-11-19	win-4.11	s2c	60	-	60 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo60-c1
+2026-11-19	win-4.11	s2c	60	-	60 	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo60-empty
+2026-11-19	win-4.11	s2c	60	-	"60 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo60-text
+2026-11-19	win-4.11	s2c	78	-	78 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo78-bin
+2026-11-19	win-4.11	s2c	78	-	78 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo78-c1
+2026-11-19	win-4.11	s2c	78	-	78 	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo78-empty
+2026-11-19	win-4.11	s2c	78	-	"78 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo78-text
+2026-11-19	win-4.11	s2c	81	-	81 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo81-bin
+2026-11-19	win-4.11	s2c	81	-	81 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo81-c1
+2026-11-19	win-4.11	s2c	81	-	81 	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo81-empty
+2026-11-19	win-4.11	s2c	81	-	"81 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo81-text
+2026-11-19	win-4.11	s2c	83	-	83 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo83-bin
+2026-11-19	win-4.11	s2c	83	-	83 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo83-c1
+2026-11-19	win-4.11	s2c	83	-	83 	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo83-empty
+2026-11-19	win-4.11	s2c	83	-	"83 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w411-wine-core	plo83-text
+2026-11-19	win-4.11	s2c	60	-	60 hex:410042	yes	yes	none	canary in the same frame landed	w411-bytes2x	nul-mid
+2026-11-19	win-4.11	s2c	60	-	60 hex:4100	yes	yes	none	canary in the same frame landed	w411-bytes2x	nul-end
+2026-11-19	win-4.11	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	w411-bytes2x	ff
+2026-11-19	win-4.11	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	w411-bytes2x	80
+2026-11-19	win-4.11	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	w411-bytes2x	1f
+2026-11-19	win-4.11	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	w411-bytes2x	plain
+2026-11-19	win-4.11	s2c	9	12	9 c:12 str:a hex:00	yes	yes	none	canary in the same frame landed	w411-bytes2x	nul-known
+2026-11-19	win-4.11	s2c	9	0	9 c:0 str:Probe c:5 c:99	yes	yes	none	documented width holds	w411-widths	id00
+2026-11-19	win-4.11	s2c	9	1	9 c:1 c:3 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id01
+2026-11-19	win-4.11	s2c	9	2	9 c:2 c:6 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id02
+2026-11-19	win-4.11	s2c	9	3	9 c:3 i3:7 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id03
+2026-11-19	win-4.11	s2c	9	4	9 c:4 c:10 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id04
+2026-11-19	win-4.11	s2c	9	5	9 c:5 c:3 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id05
+2026-11-19	win-4.11	s2c	9	6	9 c:6 c:1 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id06
+2026-11-19	win-4.11	s2c	9	7	9 c:7 c:1 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id07
+2026-11-19	win-4.11	s2c	9	8	9 c:8 c:31 str:sword1.png c:5 c:99	yes	yes	none	documented width holds	w411-widths	id08
+2026-11-19	win-4.11	s2c	9	9	9 c:9 c:11 str:shield1.png c:5 c:99	yes	yes	none	documented width holds	w411-widths	id09
+2026-11-19	win-4.11	s2c	9	10	9 c:10 str:idle c:5 c:99	yes	yes	none	documented width holds	w411-widths	id10
+2026-11-19	win-4.11	s2c	9	11	9 c:11 c:109 t:head0.png c:5 c:99	yes	yes	none	documented width holds	w411-widths	id11
+2026-11-19	win-4.11	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	none	documented width holds	w411-widths	id12
+2026-11-19	win-4.11	s2c	9	13	9 c:13 c:0 c:0 c:0 c:0 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id13
+2026-11-19	win-4.11	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id14
+2026-11-19	win-4.11	s2c	9	15	9 c:15 c:60 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id15
+2026-11-19	win-4.11	s2c	9	16	9 c:16 c:61 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id16
+2026-11-19	win-4.11	s2c	9	17	9 c:17 c:2 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id17
+2026-11-19	win-4.11	s2c	9	18	9 c:18 c:20 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id18
+2026-11-19	win-4.11	s2c	9	19	9 c:19 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id19
+2026-11-19	win-4.11	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	none	documented width holds	w411-widths	id20
+2026-11-19	win-4.11	s2c	9	21	9 c:21 str: c:5 c:99	yes	yes	none	documented width holds	w411-widths	id21
+2026-11-19	win-4.11	s2c	9	22	9 c:22 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id22
+2026-11-19	win-4.11	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id23
+2026-11-19	win-4.11	s2c	9	24	9 c:24 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id24
+2026-11-19	win-4.11	s2c	9	25	9 c:25 s:1 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id25
+2026-11-19	win-4.11	s2c	9	26	9 c:26 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id26
+2026-11-19	win-4.11	s2c	9	27	9 c:27 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id27
+2026-11-19	win-4.11	s2c	9	28	9 c:28 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id28
+2026-11-19	win-4.11	s2c	9	29	9 c:29 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id29
+2026-11-19	win-4.11	s2c	9	30	9 c:30 i5:2080768 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id30
+2026-11-19	win-4.11	s2c	9	31	9 c:31 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id31
+2026-11-19	win-4.11	s2c	9	32	9 c:32 c:50 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id32
+2026-11-19	win-4.11	s2c	9	33	9 c:33 c:0 c:5 c:99	yes	yes	none	no case: skipped as one byte	w411-widths	id33
+2026-11-19	win-4.11	s2c	9	34	9 c:34 str:guest c:5 c:99	yes	yes	none	documented width holds	w411-widths	id34
+2026-11-19	win-4.11	s2c	9	35	9 c:35 str:body.png c:5 c:99	yes	yes	none	documented width holds	w411-widths	id35
+2026-11-19	win-4.11	s2c	9	36	9 c:36 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id36
+2026-11-19	win-4.11	s2c	9	37	9 c:37 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id37
+2026-11-19	win-4.11	s2c	9	38	9 c:38 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id38
+2026-11-19	win-4.11	s2c	9	39	9 c:39 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id39
+2026-11-19	win-4.11	s2c	9	40	9 c:40 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id40
+2026-11-19	win-4.11	s2c	9	41	9 c:41 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id41
+2026-11-19	win-4.11	s2c	9	42	9 c:42 c:0 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w411-widths-fix	id42
+2026-11-19	win-4.11	s2c	9	43	9 c:43 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id43
+2026-11-19	win-4.11	s2c	9	44	9 c:44 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id44
+2026-11-19	win-4.11	s2c	9	45	9 c:45 c:50 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id45
+2026-11-19	win-4.11	s2c	9	46	9 c:46 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id46
+2026-11-19	win-4.11	s2c	9	47	9 c:47 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id47
+2026-11-19	win-4.11	s2c	9	48	9 c:48 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id48
+2026-11-19	win-4.11	s2c	9	49	9 c:49 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id49
+2026-11-19	win-4.11	s2c	9	50	9 c:50 c:1 c:5 c:99	yes	yes	none	no case: skipped as one byte	w411-widths	id50
+2026-11-19	win-4.11	s2c	9	51	9 c:51  c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w411-widths	id51
+2026-11-19	win-4.11	s2c	9	52	9 c:52 str:English c:5 c:99	yes	yes	none	documented width holds	w411-widths	id52
+2026-11-19	win-4.11	s2c	9	53	9 c:53 c:0 c:5 c:99	yes	yes	none	no case: skipped as one byte	w411-widths	id53
+2026-11-19	win-4.11	s2c	9	54	9 c:54 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id54
+2026-11-19	win-4.11	s2c	9	55	9 c:55 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id55
+2026-11-19	win-4.11	s2c	9	56	9 c:56 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id56
+2026-11-19	win-4.11	s2c	9	57	9 c:57 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id57
+2026-11-19	win-4.11	s2c	9	58	9 c:58 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id58
+2026-11-19	win-4.11	s2c	9	59	9 c:59 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id59
+2026-11-19	win-4.11	s2c	9	60	9 c:60 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id60
+2026-11-19	win-4.11	s2c	9	61	9 c:61 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id61
+2026-11-19	win-4.11	s2c	9	62	9 c:62 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id62
+2026-11-19	win-4.11	s2c	9	63	9 c:63 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id63
+2026-11-19	win-4.11	s2c	9	64	9 c:64 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id64
+2026-11-19	win-4.11	s2c	9	65	9 c:65 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id65
+2026-11-19	win-4.11	s2c	9	66	9 c:66 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id66
+2026-11-19	win-4.11	s2c	9	67	9 c:67 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id67
+2026-11-19	win-4.11	s2c	9	68	9 c:68 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id68
+2026-11-19	win-4.11	s2c	9	69	9 c:69 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id69
+2026-11-19	win-4.11	s2c	9	70	9 c:70 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id70
+2026-11-19	win-4.11	s2c	9	71	9 c:71 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id71
+2026-11-19	win-4.11	s2c	9	72	9 c:72 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id72
+2026-11-19	win-4.11	s2c	9	73	9 c:73 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id73
+2026-11-19	win-4.11	s2c	9	74	9 c:74 str:x c:5 c:99	yes	yes	none	documented width holds	w411-widths	id74
+2026-11-19	win-4.11	s2c	9	75	9 c:75 str:linux c:5 c:99	yes	yes	none	no case: skipped as one byte (landed only by chance)	w411-widths	id75
+2026-11-19	win-4.11	s2c	9	76	9 c:76 i3:1252 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w411-widths	id76
+2026-11-19	win-4.11	s2c	9	77	9 c:77 i5:2080768 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w411-widths-fix	id77
+2026-11-19	win-4.11	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id78
+2026-11-19	win-4.11	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id79
+2026-11-19	win-4.11	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id80
+2026-11-19	win-4.11	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	documented width holds	w411-widths	id81
+2026-11-19	win-4.11	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w411-widths	id82
+2026-11-19	win-4.11	s2c	9	83	9 c:83 i5:7 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w411-widths	id83
+2026-11-19	win-4.11	s2c	9	84	9 c:84 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id84
+2026-11-19	win-4.11	s2c	9	85	9 c:85 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id85
+2026-11-19	win-4.11	s2c	9	86	9 c:86 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id86
+2026-11-19	win-4.11	s2c	9	87	9 c:87 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id87
+2026-11-19	win-4.11	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id88
+2026-11-19	win-4.11	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id89
+2026-11-19	win-4.11	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w411-widths	id90
+2026-11-19	win-4.11	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included (same as 4.20r8)	w411-baddytypes	type*
+2026-11-19	win-4.11	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section (the 4.20r8 run lgw420 is unusable: that account rode a horse throughout); after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, under Wine too	w411-loadgani3w	-
+2026-11-19	win-4.04r2	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p3-i3
+2026-11-19	win-4.04r2	s2c	9	77	9 c:77 c:1 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p77-c1
+2026-11-19	win-4.04r2	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	none	canary lost	w404-wine-core	p77-i5
+2026-11-19	win-4.04r2	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p78-s
+2026-11-19	win-4.04r2	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p79-s
+2026-11-19	win-4.04r2	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p80-s
+2026-11-19	win-4.04r2	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p81-c
+2026-11-19	win-4.04r2	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	canary lost	w404-wine-core	p82-str
+2026-11-19	win-4.04r2	s2c	9	83	9 c:83 c:1 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p83-c1
+2026-11-19	win-4.04r2	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	none	canary lost	w404-wine-core	p83-i5
+2026-11-19	win-4.04r2	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	none	canary landed	w404-wine-core	p90-c1
+2026-11-19	win-4.04r2	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	canary lost	w404-wine-core	p90-i3
+2026-11-19	win-4.04r2	s2c	110	-	110 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo110-bin
+2026-11-19	win-4.04r2	s2c	110	-	110 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo110-c1
+2026-11-19	win-4.04r2	s2c	110	-	110 	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo110-empty
+2026-11-19	win-4.04r2	s2c	110	-	"110 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo110-text
+2026-11-19	win-4.04r2	s2c	60	-	60 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo60-bin
+2026-11-19	win-4.04r2	s2c	60	-	60 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo60-c1
+2026-11-19	win-4.04r2	s2c	60	-	60 	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo60-empty
+2026-11-19	win-4.04r2	s2c	60	-	"60 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo60-text
+2026-11-19	win-4.04r2	s2c	78	-	78 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo78-bin
+2026-11-19	win-4.04r2	s2c	78	-	78 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo78-c1
+2026-11-19	win-4.04r2	s2c	78	-	78 	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo78-empty
+2026-11-19	win-4.04r2	s2c	78	-	"78 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo78-text
+2026-11-19	win-4.04r2	s2c	81	-	81 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo81-bin
+2026-11-19	win-4.04r2	s2c	81	-	81 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo81-c1
+2026-11-19	win-4.04r2	s2c	81	-	81 	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo81-empty
+2026-11-19	win-4.04r2	s2c	81	-	"81 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo81-text
+2026-11-19	win-4.04r2	s2c	83	-	83 hex:ff00ff00	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo83-bin
+2026-11-19	win-4.04r2	s2c	83	-	83 c:1	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo83-c1
+2026-11-19	win-4.04r2	s2c	83	-	83 	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo83-empty
+2026-11-19	win-4.04r2	s2c	83	-	"83 t:""probe body 0123456789"""	yes	yes	none	unknown PLO; canary in the same frame landed	w404-wine-core	plo83-text
+2026-11-19	win-4.04r2	s2c	60	-	60 hex:410042	yes	yes	none	canary in the same frame landed	w404-bytes2x	nul-mid
+2026-11-19	win-4.04r2	s2c	60	-	60 hex:4100	yes	yes	none	canary in the same frame landed	w404-bytes2x	nul-end
+2026-11-19	win-4.04r2	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	w404-bytes2x	ff
+2026-11-19	win-4.04r2	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	w404-bytes2x	80
+2026-11-19	win-4.04r2	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	w404-bytes2x	1f
+2026-11-19	win-4.04r2	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	w404-bytes2x	plain
+2026-11-19	win-4.04r2	s2c	9	12	9 c:12 str:a hex:00	yes	yes	none	canary in the same frame landed	w404-bytes2x	nul-known
+2026-11-19	win-4.04r2	s2c	9	0	9 c:0 str:Probe c:5 c:99	yes	yes	none	documented width holds	w404-widths	id00
+2026-11-19	win-4.04r2	s2c	9	1	9 c:1 c:3 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id01
+2026-11-19	win-4.04r2	s2c	9	2	9 c:2 c:6 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id02
+2026-11-19	win-4.04r2	s2c	9	3	9 c:3 i3:7 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id03
+2026-11-19	win-4.04r2	s2c	9	4	9 c:4 c:10 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id04
+2026-11-19	win-4.04r2	s2c	9	5	9 c:5 c:3 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id05
+2026-11-19	win-4.04r2	s2c	9	6	9 c:6 c:1 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id06
+2026-11-19	win-4.04r2	s2c	9	7	9 c:7 c:1 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id07
+2026-11-19	win-4.04r2	s2c	9	8	9 c:8 c:31 str:sword1.png c:5 c:99	yes	yes	none	documented width holds	w404-widths	id08
+2026-11-19	win-4.04r2	s2c	9	9	9 c:9 c:11 str:shield1.png c:5 c:99	yes	yes	none	documented width holds	w404-widths	id09
+2026-11-19	win-4.04r2	s2c	9	10	9 c:10 str:idle c:5 c:99	yes	yes	none	documented width holds	w404-widths	id10
+2026-11-19	win-4.04r2	s2c	9	11	9 c:11 c:109 t:head0.png c:5 c:99	yes	yes	none	documented width holds	w404-widths	id11
+2026-11-19	win-4.04r2	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	none	documented width holds	w404-widths	id12
+2026-11-19	win-4.04r2	s2c	9	13	9 c:13 c:0 c:0 c:0 c:0 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id13
+2026-11-19	win-4.04r2	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id14
+2026-11-19	win-4.04r2	s2c	9	15	9 c:15 c:60 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id15
+2026-11-19	win-4.04r2	s2c	9	16	9 c:16 c:61 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id16
+2026-11-19	win-4.04r2	s2c	9	17	9 c:17 c:2 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id17
+2026-11-19	win-4.04r2	s2c	9	18	9 c:18 c:20 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id18
+2026-11-19	win-4.04r2	s2c	9	19	9 c:19 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id19
+2026-11-19	win-4.04r2	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	none	documented width holds	w404-widths	id20
+2026-11-19	win-4.04r2	s2c	9	21	9 c:21 str: c:5 c:99	yes	yes	none	documented width holds	w404-widths	id21
+2026-11-19	win-4.04r2	s2c	9	22	9 c:22 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id22
+2026-11-19	win-4.04r2	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id23
+2026-11-19	win-4.04r2	s2c	9	24	9 c:24 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id24
+2026-11-19	win-4.04r2	s2c	9	25	9 c:25 s:1 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id25
+2026-11-19	win-4.04r2	s2c	9	26	9 c:26 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id26
+2026-11-19	win-4.04r2	s2c	9	27	9 c:27 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id27
+2026-11-19	win-4.04r2	s2c	9	28	9 c:28 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id28
+2026-11-19	win-4.04r2	s2c	9	29	9 c:29 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id29
+2026-11-19	win-4.04r2	s2c	9	30	9 c:30 i5:2080768 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id30
+2026-11-19	win-4.04r2	s2c	9	31	9 c:31 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id31
+2026-11-19	win-4.04r2	s2c	9	32	9 c:32 c:50 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id32
+2026-11-19	win-4.04r2	s2c	9	33	9 c:33 c:0 c:5 c:99	yes	yes	none	no case: skipped as one byte	w404-widths	id33
+2026-11-19	win-4.04r2	s2c	9	34	9 c:34 str:guest c:5 c:99	yes	yes	none	documented width holds	w404-widths	id34
+2026-11-19	win-4.04r2	s2c	9	35	9 c:35 str:body.png c:5 c:99	yes	yes	none	documented width holds	w404-widths	id35
+2026-11-19	win-4.04r2	s2c	9	36	9 c:36 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id36
+2026-11-19	win-4.04r2	s2c	9	37	9 c:37 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id37
+2026-11-19	win-4.04r2	s2c	9	38	9 c:38 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id38
+2026-11-19	win-4.04r2	s2c	9	39	9 c:39 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id39
+2026-11-19	win-4.04r2	s2c	9	40	9 c:40 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id40
+2026-11-19	win-4.04r2	s2c	9	41	9 c:41 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id41
+2026-11-19	win-4.04r2	s2c	9	42	9 c:42 c:0 i3:16511 c:5 c:99	yes	yes	none	documented width holds	w404-widths-fix	id42
+2026-11-19	win-4.04r2	s2c	9	43	9 c:43 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id43
+2026-11-19	win-4.04r2	s2c	9	44	9 c:44 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id44
+2026-11-19	win-4.04r2	s2c	9	45	9 c:45 c:50 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id45
+2026-11-19	win-4.04r2	s2c	9	46	9 c:46 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id46
+2026-11-19	win-4.04r2	s2c	9	47	9 c:47 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id47
+2026-11-19	win-4.04r2	s2c	9	48	9 c:48 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id48
+2026-11-19	win-4.04r2	s2c	9	49	9 c:49 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id49
+2026-11-19	win-4.04r2	s2c	9	50	9 c:50 c:1 c:5 c:99	yes	yes	none	no case: skipped as one byte	w404-widths	id50
+2026-11-19	win-4.04r2	s2c	9	51	9 c:51  c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w404-widths	id51
+2026-11-19	win-4.04r2	s2c	9	52	9 c:52 str:English c:5 c:99	yes	yes	none	documented width holds	w404-widths	id52
+2026-11-19	win-4.04r2	s2c	9	53	9 c:53 c:0 c:5 c:99	yes	yes	none	no case: skipped as one byte	w404-widths	id53
+2026-11-19	win-4.04r2	s2c	9	54	9 c:54 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id54
+2026-11-19	win-4.04r2	s2c	9	55	9 c:55 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id55
+2026-11-19	win-4.04r2	s2c	9	56	9 c:56 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id56
+2026-11-19	win-4.04r2	s2c	9	57	9 c:57 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id57
+2026-11-19	win-4.04r2	s2c	9	58	9 c:58 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id58
+2026-11-19	win-4.04r2	s2c	9	59	9 c:59 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id59
+2026-11-19	win-4.04r2	s2c	9	60	9 c:60 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id60
+2026-11-19	win-4.04r2	s2c	9	61	9 c:61 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id61
+2026-11-19	win-4.04r2	s2c	9	62	9 c:62 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id62
+2026-11-19	win-4.04r2	s2c	9	63	9 c:63 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id63
+2026-11-19	win-4.04r2	s2c	9	64	9 c:64 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id64
+2026-11-19	win-4.04r2	s2c	9	65	9 c:65 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id65
+2026-11-19	win-4.04r2	s2c	9	66	9 c:66 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id66
+2026-11-19	win-4.04r2	s2c	9	67	9 c:67 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id67
+2026-11-19	win-4.04r2	s2c	9	68	9 c:68 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id68
+2026-11-19	win-4.04r2	s2c	9	69	9 c:69 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id69
+2026-11-19	win-4.04r2	s2c	9	70	9 c:70 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id70
+2026-11-19	win-4.04r2	s2c	9	71	9 c:71 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id71
+2026-11-19	win-4.04r2	s2c	9	72	9 c:72 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id72
+2026-11-19	win-4.04r2	s2c	9	73	9 c:73 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id73
+2026-11-19	win-4.04r2	s2c	9	74	9 c:74 str:x c:5 c:99	yes	yes	none	documented width holds	w404-widths	id74
+2026-11-19	win-4.04r2	s2c	9	75	9 c:75 str:linux c:5 c:99	yes	yes	none	no case: skipped as one byte (landed only by chance)	w404-widths	id75
+2026-11-19	win-4.04r2	s2c	9	76	9 c:76 i3:1252 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w404-widths	id76
+2026-11-19	win-4.04r2	s2c	9	77	9 c:77 i5:2080768 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w404-widths-fix	id77
+2026-11-19	win-4.04r2	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id78
+2026-11-19	win-4.04r2	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id79
+2026-11-19	win-4.04r2	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id80
+2026-11-19	win-4.04r2	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	none	documented width holds	w404-widths	id81
+2026-11-19	win-4.04r2	s2c	9	82	9 c:82 str:x c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w404-widths	id82
+2026-11-19	win-4.04r2	s2c	9	83	9 c:83 i5:7 c:5 c:99	no	yes	none	no case: skipped as one byte (longer value, canary lost)	w404-widths	id83
+2026-11-19	win-4.04r2	s2c	9	84	9 c:84 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id84
+2026-11-19	win-4.04r2	s2c	9	85	9 c:85 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id85
+2026-11-19	win-4.04r2	s2c	9	86	9 c:86 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id86
+2026-11-19	win-4.04r2	s2c	9	87	9 c:87 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id87
+2026-11-19	win-4.04r2	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id88
+2026-11-19	win-4.04r2	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id89
+2026-11-19	win-4.04r2	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id90
+2026-11-19	win-4.04r2	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included (same as 4.20r8)	w404-baddytypes	type*
+2026-11-19	win-4.04r2	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section (the 4.20r8 run lgw420 is unusable: that account rode a horse throughout); after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, under Wine too	w404-loadgani3w	-
