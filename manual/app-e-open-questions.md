@@ -118,6 +118,9 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#502 | Whether 4.04r2 loads `.mis` files | Read | not reachable outside the network path | [inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
 | E#503 | Whether 4.04r2 reads `.dso` | Read | the reader is present but unreachable | [inf] (torque/404r2-resource-filter.md#download-filter) |
 | E#504 | The `GR3DV003` beta at run time | Lab | it runs with the public Genesis3D DLL | [inf] (graal3d/beta3-genesis.md#open-points) |
+| E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
+| E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | Lab | the static server order works as read | [inf] (torque/protocol19-server.md#open) |
+| E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 marks a drawing variant; servers sent none | [inf] (torque/304-tile-types.md#not-settled) |
 | E#601 | Link arrival offsets | Lab | the client evaluates them | [inf] (tools/level-editor/222-reference.md#16-open) |
 | E#602 | Code width of `Z3-V1.02` | Read | 11 bits, read only by the 1998 Java games | [inf] (formats/level-binary.md#z3-v1-differences) |
 | E#603 | Whole tiles and fractions in level records | Read | link boxes are fractional, record positions whole | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
@@ -1478,6 +1481,39 @@ These questions are about the 3D side: the 2000 Graal3D client and the Torque-ba
 | Best guess | It runs with the public SDK DLL, since it links the SDK's exports, and its datagrams differ from `GR3DV002` only in the version field and the new physics fields. Confidence: low to moderate | [inf] (graal3d/beta3-genesis.md#open-points) |
 | Settles it | A lab run with the SDK engine DLL and art against a server patched to accept `GR3DV003` | [inf] (graal3d/beta3-genesis.md#open-points) |
 | Outlook | Lab | [inf] (graal3d/beta3-genesis.md#open-points) |
+
+### E#505 How a server makes a 5.12 player move in 3D
+
+**Question.** A 5.12 client in 3D puts no movement on UDP: protocol 24 has no moves and its script cannot move its own control object. How a server is meant to move the player, and what the client then echoes (→ §10.3.8) [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | With the keyboard on the 3D view, all 183 client data packets stayed the same apart from counters; the GS2 walking script ran but nothing moved | [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun) |
+| Best guess | The server gives the control object a movement type and movement data (the update's sections 3 and 8), the client then moves it locally and reports its transform. Confidence: moderate | [inf] (torque/udp-session.md#open) |
+| Settles it | A lab run where the server sets movetype and movement data, recording the client's own update sections 5, 9 and 3 | [inf] (torque/udp-session.md#open) |
+| Outlook | Lab | [inf] (torque/udp-session.md#open) |
+
+### E#506 Protocol 19 against a real 3.153 or 4.04r2 client
+
+**Question.** Whether a real 3.153 or 4.04r2 client accepts the protocol-19 server order and layouts read statically (→ §10.3.9) [bin] (torque/protocol19-server.md#5-mission-start).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Every layout is read from the 4.04r2 plug-in's readers; the 3.153 side is its mission scripts; a lab server implements the order | [bin][srv] (torque/protocol19-server.md#5-mission-start) |
+| Best guess | It works for 4.04r2 with a `Camera` control object; 3.153 matches, being the same Torque line. Showing other players needs the unread `Player` layouts and a real `.dts` player shape, which is not held. Confidence: moderate for the camera path | [inf] (torque/protocol19-server.md#open) |
+| Settles it | A 4.04r2 and a 3.153 run against the lab server | [inf] (torque/protocol19-server.md#open) |
+| Outlook | Lab for the camera path; Missing for a player shape | [inf] (torque/protocol19-server.md#open) |
+
+### E#507 3.04 sheet type 5 and server tile definitions
+
+**Question.** What a `tiledefs` entry of type 5 changes in 3.04, and whether a 3.04-era server sent `addtiledef` lines at login (→ §10.14) [bin] (torque/304-tile-types.md#not-settled).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | Type 5 is accepted when picking an entry and sets a flag of its own; the package ships only the offline tutorial's line | [bin][file] (torque/304-tile-types.md#how-the-sheet-type-is-chosen) |
+| Best guess | Type 5 marks a drawing variant rather than a walk rule, and ordinary servers sent no tile definitions, so `pics1.png` type 0 was the norm. Confidence: low | [inf] (torque/304-tile-types.md#not-settled) |
+| Settles it | A static read of where the type-5 flag is tested; any 3.04-era server capture | [inf] (torque/304-tile-types.md#not-settled) |
+| Outlook | Read for the flag; Missing for the server side | [inf] (torque/304-tile-types.md#not-settled) |
 
 ## E.10 Tools
 
