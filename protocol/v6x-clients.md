@@ -16,6 +16,14 @@ Sources: nine uploads, read statically. Nothing was run. The Linux and Mac build
 
 Both Windows wrappers need to run to unpack, so the Windows builds are only identified here. 6.01r1 and 6.03r7 Linux are the same releases as Windows 6.01/6.03, so they stand in for them. **[bin][inf]**
 
+## Packet-fuzz runtime status (2026-11-19)
+
+None of the four Windows 6.0x beta builds (6.00b1, 6.00b2, 6.00r2, 6.00r4) could be brought to a live session for S→C packet fuzzing in the headless Win10 lab VM, so they have no `w600*` rows in `protocol/probe-results.tsv` (contrast 6.03r7, the `w603` run). **[lab]**
+
+- **6.00r2, 6.00r4** (Themida/WinLicense 2.x): the packed exe fail-fasts at launch inside the VM — BEX, `c0000409` (STATUS_STACK_BUFFER_OVERRUN) in KERNELBASE — the protector's anti-VM/anti-tamper trip. The only unpacked artifacts on hand (`unpacked_GraalSetup v6.00r2/r4.EXE`) are unlicense/Scylla OEP+IAT dumps (they carry a `.SCY` section): they recover imports for static analysis but do **not** launch (r4 exits immediately; r2 lingers as a process with no window and never connects). One archived `6.00r4\Graal.exe` is itself a raw memory dump (single `.dump` section), not a runnable PE.
+- **6.00b1, 6.00b2** (Jan-2010 custom packer, not Themida): the packed exe exits at launch with no window and no session (guest clock held at 2010-02 for the build's era).
+- **Root cause**: the 6.03r7 `w603` run used a clean **pre-Themida** `Graal.exe` (≈2.75 MB, no `.SCY`); no equivalent clean original exists for the 6.0x betas. The automatic unpack recipe recovers OEP+IAT only (no Themida devirtualization) — its 6.1.1.3 output was likewise never confirmed to launch. To fuzz these a runnable client must first be produced (a clean original, or full devirtualization), which is out of scope for a probe slice. **[lab]**
+
 ## Architecture
 
 - One native C++ program per platform. The 4.x/5.x split into a Delphi launcher and a `GraalEngine.dll` is gone. The class names come from the same `graallib` code base as 5.x (`TGraalVar`, `TGraalConnection`, `TGaniObject`, `TServerPlayer`, `GuiGraalCtrl`, `TSecureVar<T>`, `TEncodedFileKey`), but there is no Torque layer left. **[bin]**
