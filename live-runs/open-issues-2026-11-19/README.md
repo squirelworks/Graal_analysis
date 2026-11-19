@@ -98,7 +98,7 @@ A second try at low load did not get further. 2.22's F5 loader also freezes unde
 its own tutorial level, so the freeze is not caused by the test level. In 2.31, Training opens
 the level editor, and Play there does read `tiledefsOffline`: a type-0 line blacks out the
 whole board. The 256 × 512 test overlay never drew, so where type-4 tiles land and how they
-walk is still **not measured**. Next: a full-size 2048 × 512 overlay, or a run outside Wine.
+walk was still not measured in that round. **Measured later: see §8.**
 
 ## 6. #398: the action list on Linux 6.03r7
 
