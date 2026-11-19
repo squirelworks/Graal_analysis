@@ -23,7 +23,7 @@ def code_width(magic):
     # 2.05 itself picks 13 bits only for GR-V1.02 and GR-V1.03.
     if magic == b'Z3-V1.02':
         return 11
-    if magic in (b'GR-V1.02', b'GR-V1.03', b'GR-V1.04'):
+    if magic in (b'GR-V1.02', b'GR-V1.03', b'GR-V1.04', b'GR-V1.05'):
         return 13
     return 12
 
@@ -105,7 +105,17 @@ def load(data):
     r.p = 8
     lv = {'magic': magic.decode(), 'links': [], 'baddies': [], 'npcs': [],
           'chests': [], 'signs': []}
-    lv['board'] = read_board(r, code_width(magic))
+    width = code_width(magic)
+    if magic == b'GR-V1.05':
+        # GR-V1.05 (5.00r7+): GCHAR layer count, then one board per layer,
+        # no pad after the count (formats/gr-v105-500r7.md).
+        count = r.byte()
+        if count is None:
+            raise ValueError('no layer count')
+        lv['layers'] = [read_board(r, width) for _ in range(max(count - 32, 0))]
+        lv['board'] = lv['layers'][0] if lv['layers'] else []
+    else:
+        lv['board'] = read_board(r, width)
     while True:                                   # links
         s = r.line()
         if not s or s == b'#':
@@ -135,7 +145,7 @@ def load(data):
             lv['npcs'].append({'x': s[0] - 32, 'y': s[1] - 32,
                                'image': img.decode('latin1'),
                                'script': script.replace(b'\xa7', b'\n').decode('latin1')})
-    if magic in (b'GR-V1.01', b'GR-V1.02', b'GR-V1.03', b'GR-V1.04'):
+    if magic in (b'GR-V1.01', b'GR-V1.02', b'GR-V1.03', b'GR-V1.04', b'GR-V1.05'):
         while True:                               # chests
             s = r.line()
             if not s or s == b'#':
@@ -181,11 +191,16 @@ def main():
     if '--json' in sys.argv:
         if '--board' not in sys.argv:
             lv.pop('board')
+            lv.pop('layers', None)
         print(json.dumps(lv, indent=1))
         return
     print('%s  links=%d baddies=%d npcs=%d chests=%d signs=%d' % (
         lv['magic'], len(lv['links']), len(lv['baddies']), len(lv['npcs']),
         len(lv['chests']), len(lv['signs'])))
+    if 'layers' in lv:
+        for i, layer in enumerate(lv['layers']):
+            print('  layer %d: %d cells not 4095' % (
+                i, sum(1 for t in layer if t != 4095)))
     if 'heights' in lv:
         print('  heights %d rows' % len(lv['heights']))
     for k in ('links', 'baddies', 'chests'):
@@ -197,9 +212,11 @@ def main():
     for s in lv['signs']:
         print('  sign', s['x'], s['y'], repr(s['text']))
     if '--board' in sys.argv:
-        b = lv['board']
-        for y in range(64):
-            print(' '.join('%4d' % t for t in b[y * 64:y * 64 + 64]))
+        for i, b in enumerate(lv.get('layers', [lv['board']])):
+            if 'layers' in lv:
+                print('layer %d' % i)
+            for y in range(64):
+                print(' '.join('%4d' % t for t in b[y * 64:y * 64 + 64]))
 
 
 if __name__ == '__main__':
