@@ -21,9 +21,11 @@ class Ctl:
     def __init__(self, path):
         for _ in range(120):  # the proxy may still be starting
             try:
+                if path.startswith('tcp:'):
+                    self.s = socket.create_connection(('%d.%d.%d.%d' % (127, 0, 0, 1), int(path[4:]))); break
                 self.s = socket.socket(socket.AF_UNIX); self.s.connect(path); break
             except OSError:
-                self.s.close(); time.sleep(0.5)
+                time.sleep(0.5)
         else:
             raise SystemExit('no control socket at %s' % path)
         self.f = self.s.makefile('rwb')

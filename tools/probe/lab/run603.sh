@@ -20,6 +20,8 @@ R=$HOME/probelab; O=$R/out/$RUN; T=$R/tools; DISP=${DISP:-87}
 rm -rf $O $R/client; mkdir -p $O $R/run
 cp -a $CLIENT_TREE $R/client
 cp $CLIENT_BIN $R/client/Graal
+# CLIENTS=2: a second real 6.03r7 client in the same namespace (own folder and HOME), for other-player probes
+rm -rf $R/client2; [ "${CLIENTS:-1}" = 2 ] && cp -a $R/client $R/client2
 W=$R/world; rm -rf $W; mkdir -p $W/servers; cp -f $GSERVER_DIR/gs2emu $GSERVER_DIR/seihai-listserver $W/; cp -f ${GS2EMU:-$GSERVER_DIR/gs2emu} $W/gs2emu-world
 printf 'bind = "%s"
 gserver_port = 14950
@@ -61,7 +63,8 @@ cp "$A" $O/world-defaultaccount.txt; cp $PLAN $O/plan.txt
 echo "nameserver $LO1" > $O/resolv.conf
 export DISPLAY=:$DISP
 [ -e /tmp/.X11-unix/X$DISP ] && { echo "display :$DISP is in use; pick another DISP"; exit 1; }
-Xvfb :$DISP -screen 0 1280x1024x24 -nolisten tcp > $O/xvfb.log 2>&1 & XV=$!; sleep 2
+XW=1280; [ "${CLIENTS:-1}" = 2 ] && XW=2100
+Xvfb :$DISP -screen 0 ${XW}x1024x24 -nolisten tcp > $O/xvfb.log 2>&1 & XV=$!; sleep 2
 cat > $R/run/inner.sh <<IN
 ip addr add $LO2/8 dev lo 2>/dev/null; ip link set lo up 2>/dev/null
 python3 $LAB_DNS --private-log $O/dns.jsonl --seconds 400 > $O/dns.log 2>&1 &
@@ -72,6 +75,10 @@ sleep 1
 python3 $T/gen5probe.py $LO1 14900 $LO2 14900 $O/proxy.log login $R/run/login.sock &
 python3 $T/gen5probe.py $LO1 14901 $LO2 14901 $O/proxy.log world $R/run/world.sock &
 sleep 5
+if [ -d $R/client2 ]; then
+  (cd $R/client2; HOME=$R/client2/runtime-home LIBGL_ALWAYS_SOFTWARE=1 SDL_AUDIODRIVER=dummy ./run-client.sh > $O/client2.log 2>&1 &)
+  sleep ${CLIENT2_LEAD:-40}
+fi
 cd $R/client; HOME=$R/client/runtime-home LIBGL_ALWAYS_SOFTWARE=1 SDL_AUDIODRIVER=dummy exec ./run-client.sh > $O/client.log 2>&1
 IN
 # The tile layer sometimes never draws (a black screen, see README). With NOBLACK=1 (the default),
@@ -91,7 +98,14 @@ if [ "${NOBLACK:-1}" = 1 ]; then
   fi
 fi
 echo "window=$WIN" >> $O/marks.txt; cp $R/out/$RUN.tries $O/tries.txt 2>/dev/null
+if [ "${CLIENTS:-1}" = 2 ]; then
+  # move the second window (the first one to open) to the right half; shots take the whole screen
+  for i in $(seq 1 120); do [ $(xdotool search --onlyvisible --name . 2>/dev/null | wc -l) -ge 2 ] && break; sleep 1; done
+  xdotool search --onlyvisible --name . 2>/dev/null | head -1 | xargs -r -I{} xdotool windowmove {} 1060 0
+  export PROBE_SHOT="scrot -o $O/{name}.png; echo '{name} windows='\$(xdotool search --onlyvisible --name . 2>/dev/null | wc -l) >> $O/marks.txt"
+else
 export PROBE_SHOT="W=\$(xdotool search --onlyvisible --name . 2>/dev/null | head -1); [ -n \"\$W\" ] && xwd -silent -id \$W > $O/{name}.xwd && python3 $T/xwd2png.py $O/{name}.xwd $O/{name}.png > /dev/null && rm $O/{name}.xwd; xdotool search --onlyvisible --name . > /dev/null 2>&1 && echo '{name} alive' >> $O/marks.txt || echo '{name} CLIENT-GONE' >> $O/marks.txt"
+fi
 python3 $T/probectl.py $R/run/world.sock plan $PLAN "$@" > $O/plan.log 2>&1
 cp $R/client/runtime-home/.graal/graal4/game_console.log $O/ 2>/dev/null
 # --unshare-pid + --die-with-parent: ending bwrap ends every process of this run, and only those

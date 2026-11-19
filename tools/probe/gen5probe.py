@@ -18,11 +18,12 @@ SPEC is a packet id followed by typed fields, for example `9 c:83 i5:1234`
   hex:HEX raw bytes
 Quote text with spaces: t:"two words". The trailing newline is added.
 
-Usage: gen5probe.py LISTEN_HOST PORT UP_HOST UP_PORT LOGFILE LABEL CTLSOCK
+Usage: gen5probe.py LISTEN_HOST PORT UP_HOST UP_PORT LOGFILE LABEL CTLSOCK   (CTLSOCK = a unix socket path, or tcp:PORT)
 """
 import bz2, os, select, shlex, socket, sys, threading, time, zlib
 
 INIT_STATE = 0x04a80b38
+FULLHEX = {int(x) for x in os.environ.get('PROBE_FULLHEX', '').split(',') if x.strip()}
 
 
 def crypt(data, key, state, typ):
@@ -93,6 +94,7 @@ class Session:
     def __init__(self, n, c, u, rec):
         self.n = n; self.c = c; self.u = u; self.rec = rec; self.key = None
         self.cs, self.sc = Dir('C>S'), Dir('S>C'); self.lock = threading.Lock(); self.alive = True
+        self.gen = 5  # set from the login line: 2 or 3 (type 0), 4 (type 4), 5 (type 5 and 6)
 
 
 class Probe:
@@ -123,13 +125,14 @@ class Probe:
             d, pid = rest.split()
             dd = s.sc if d == 's2c' else s.cs
             return 'ok %d' % dd.seen.get(int(pid), 0)
-        if cmd in ('s2c', 'c2s'):
-            pkt = encode(rest)
+        if cmd in ('s2c', 'c2s'):  # several specs joined by ' | ' are queued at once and so share one frame
+            pkts = [encode(x) for x in rest.split(' | ')]
             dd = s.sc if cmd == 's2c' else s.cs
             with s.lock:
-                dd.queue.append(pkt)
-            self.rec('QUEUE', cmd, 'id=%d' % (pkt[0] - 32), 'len=%d' % (len(pkt) - 1), '|', show(pkt[1:-1]), '| hex=' + pkt[1:-1][:64].hex())
-            return 'ok queued %d bytes' % len(pkt)
+                dd.queue.extend(pkts)
+            for pkt in pkts:
+                self.rec('QUEUE', cmd, 'id=%d' % (pkt[0] - 32), 'len=%d' % (len(pkt) - 1), '|', show(pkt[1:-1]), '| hex=' + pkt[1:-1][:64].hex())
+            return 'ok queued %d bytes' % sum(len(p) for p in pkts)
         if cmd == 'after':  # after s2c|c2s ID SPEC : add SPEC right after the next packet with that id
             d, pid, spec = rest.split(None, 2)
             dd = s.sc if d == 's2c' else s.cs
@@ -180,13 +183,46 @@ def split_packets(d, body, rec, keep):
 def log_packet(d, p, rec):
     pid = p[0] - 32; body = p[1:]
     d.seen[pid] = d.seen.get(pid, 0) + 1
-    rec(d.name, 'id=%d' % pid, 'len=%d' % len(p), '|', show(body), '| hex=' + body[:48].hex())
+    n = len(body) if pid in FULLHEX else 48  # PROBE_FULLHEX=8,9 logs those ids' whole bodies
+    rec(d.name, 'id=%d' % pid, 'len=%d' % len(p), '|', show(body), '| hex=' + body[:n].hex())
 
 
-def frame(d, key, payload):
-    comp = payload if d.typ == 2 else zlib.compress(payload, 9) if d.typ == 4 else bz2.compress(payload)
-    enc, d.ostate = crypt(comp, key, d.ostate, d.typ)
-    return (len(enc) + 1).to_bytes(2, 'big') + bytes([d.typ]) + enc
+def lcg(state, key):
+    return (state * 0x08088405 + key) & 0xffffffff
+
+
+def junk_out(d, key, body):
+    """Gen 3, client to server: insert the iterator byte into every message, as the client does."""
+    out = bytearray()
+    for m in body.split(b'\n')[:-1]:
+        d.ostate = lcg(d.ostate, key); it = d.ostate
+        pos = (it & 0xffff) % (len(m) + 1)
+        out += m[:pos] + bytes([((it >> 16) & 0x7f) + 0x20]) + m[pos:] + b'\n'
+    return bytes(out)
+
+
+def junk_in(d, key, body):
+    """Gen 3, client to server: remove the iterator byte from every message, as the server does."""
+    out = bytearray()
+    for m in body.split(b'\n')[:-1]:
+        d.state = lcg(d.state, key); it = d.state
+        pos = (it & 0xffff) % len(m) if m else 0
+        out += m[:pos] + m[pos + 1:] + b'\n'
+    return bytes(out)
+
+
+def frame(s, d, key, payload):
+    if s.gen == 5:
+        comp = payload if d.typ == 2 else zlib.compress(payload, 9) if d.typ == 4 else bz2.compress(payload)
+        enc, d.ostate = crypt(comp, key, d.ostate, d.typ)
+        return (len(enc) + 1).to_bytes(2, 'big') + bytes([d.typ]) + enc
+    if s.gen == 3 and d.name == 'C>S':
+        payload = junk_out(d, key, payload)
+    if s.gen == 4:  # bz2 body, then the partial XOR (unverified: no gen-4 client is held)
+        enc, d.ostate = crypt(bz2.compress(payload), key, d.ostate, 6)
+    else:
+        enc = zlib.compress(payload, 9)
+    return len(enc).to_bytes(2, 'big') + enc
 
 
 def flush(s, d):
@@ -196,7 +232,7 @@ def flush(s, d):
         if not d.queue or not d.clean() or s.key is None:
             return
         pkts, d.queue = d.queue, []
-        data = frame(d, s.key, b''.join(pkts))
+        data = frame(s, d, s.key, b''.join(pkts))
         sock = s.c if d.name == 'S>C' else s.u
         try:
             sock.sendall(data)
@@ -206,8 +242,40 @@ def flush(s, d):
         s.rec('INJECT', d.name, 'id=%d' % (p[0] - 32), 'len=%d' % (len(p) - 1), '|', show(p[1:-1]), '| hex=' + p[1:-1][:64].hex())
 
 
+def pump_old(s, d, data):
+    """Gens 2, 3 and 4: u16 length + zlib body (bz2 + partial XOR in gen 4), no compression byte.
+    Gen 3 client frames carry one iterator byte per message; it is removed for logging and
+    re-inserted with the proxy's own iterator, so injected messages keep the server in step."""
+    d.buf += data; out = b''
+    while len(d.buf) >= 2:
+        ln = int.from_bytes(d.buf[:2], 'big')
+        if len(d.buf) < ln + 2:
+            break
+        fr, d.buf = d.buf[2:ln + 2], d.buf[ln + 2:]
+        try:
+            if s.gen == 4:
+                dec, d.state = crypt(fr, s.key, d.state, 6); body = bz2.decompress(dec)
+            else:
+                body = zlib.decompress(fr)
+        except Exception as e:
+            s.rec(d.name, 'frame-decode-error gen', s.gen, e)
+            out += ln.to_bytes(2, 'big') + fr; continue
+        if s.gen == 3 and d.name == 'C>S':
+            body = junk_in(d, s.key, body)
+        extra = []
+        nb = split_packets(d, body, s.rec, extra)
+        if nb:
+            out += frame(s, d, s.key, nb)
+        if extra:
+            with s.lock:
+                d.queue.extend(extra)
+    return out
+
+
 def pump(s, d, data):
     """Decrypt frames from one side, log, re-encrypt with our state, and return bytes for the other side."""
+    if s.gen != 5:
+        return pump_old(s, d, data)
     d.buf += data; out = b''
     while len(d.buf) >= 2:
         ln = int.from_bytes(d.buf[:2], 'big')
@@ -238,7 +306,9 @@ def pump(s, d, data):
 
 
 def handle(probe, c, uh, up, rec, n):
-    u = socket.create_connection((uh, up)); s = Session(n, c, u, rec)
+    u = socket.create_connection((uh, up))
+    crec = lambda *a, _r=rec: _r('c%d' % n, *a)  # every line of this connection carries its number
+    s = Session(n, c, u, crec); rec = crec
     with probe.lock:
         probe.sessions.append(s)
     rec('conn', n, 'open')
@@ -255,10 +325,21 @@ def handle(probe, c, uh, up, rec, n):
                         pre += data
                         if len(pre) >= 2 and len(pre) >= int.from_bytes(pre[:2], 'big') + 2:
                             ln = int.from_bytes(pre[:2], 'big'); first, rest = pre[:ln + 2], pre[ln + 2:]
-                            lg = zlib.decompress(first[2:])
-                            s.key = lg[1] - 32; al = lg[10] - 32
-                            rec('C>S LOGIN type=%d key=%d ver=%s account=%s password=<pw>' % (
-                                lg[0] - 32, s.key, lg[2:10].decode('latin1'), lg[11:11 + al].decode('latin1')))
+                            lg = zlib.decompress(first[2:]); typ = lg[0] - 32
+                            line, _, more = lg.partition(b'\n')
+                            if typ == 0 and lg[1:4] in (b'GNW', b'GNP', b'G3D', b'GSE'):
+                                s.gen, s.key, off = 2, 0, 1  # a known token right after the type: no key, no cipher
+                            else:
+                                s.gen = 3 if typ == 0 else 4 if typ == 4 else 5
+                                s.key, off = lg[1] - 32, 2
+                            al = lg[off + 8] - 32
+                            rec('C>S LOGIN type=%d gen=%d key=%d ver=%s account=%s password=<pw>' % (
+                                typ, s.gen, s.key, lg[off:off + 8].decode('latin1'), lg[off + 9:off + 9 + al].decode('latin1')))
+                            if s.gen == 3 and more:  # the rest of the first frame already carries iterator bytes
+                                clean = junk_in(s.cs, s.key, more)
+                                for m in clean.split(b'\n')[:-1]:
+                                    s.cs.ostate = lcg(s.cs.ostate, s.key)  # the server steps for these too
+                                split_packets(s.cs, clean, rec, [])
                             with s.lock:
                                 u.sendall(first)
                             o = pump(s, s.cs, rest)
@@ -288,9 +369,13 @@ def handle(probe, c, uh, up, rec, n):
 
 
 def control(probe, path, rec):
-    if os.path.exists(path):
-        os.unlink(path)
-    L = socket.socket(socket.AF_UNIX); L.bind(path); L.listen(4)
+    if path.startswith('tcp:'):  # Windows has no AF_UNIX in Python: a loopback TCP port instead
+        L = socket.socket(); L.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        L.bind(('%d.%d.%d.%d' % (127, 0, 0, 1), int(path[4:]))); L.listen(4)
+    else:
+        if os.path.exists(path):
+            os.unlink(path)
+        L = socket.socket(socket.AF_UNIX); L.bind(path); L.listen(4)
     while True:
         c, _ = L.accept(); f = c.makefile('rwb')
         for line in f:
