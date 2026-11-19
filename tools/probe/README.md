@@ -23,6 +23,9 @@ GraalOnline server, and nothing here helps reach one.
 | `ncselftest.py` | A fake NC client and npcserver around `ncprobe.py`. Checks relaying both ways, `s2c`/`c2s` injection, `after`, `drop`, and that a RAWDATA block with embedded newlines is not mis-split. Run `python3 ncselftest.py` (Linux). |
 | `ncstub.py` | A minimal cipher-free NC backend: accepts the NC login (any token), logs every packet id, sends nothing, holds the socket open. Use it as `ncprobe.py`'s upstream for standalone NPCControl runs, or as the fallback upstream for the RC-embedded NC run if the gserver drops the RC's NCL session. The fuzz packets come from the proxy's `s2c`, so the backend only has to keep the client connected. |
 | `lab/run603.sh` | One run of the native Linux 6.03r7 client: login gserver that serverwarps to a world gserver behind `gen5probe.py`, own Xvfb, no window manager, everything in `bwrap --unshare-net --unshare-pid`. Screenshots go through the plan's `shot` steps. |
+| `lab/run4x.sh` | One run of a native Linux 3.x/4.x client (same engine, gen-5 login, GUI login form). Like `run603.sh` but adds the i386 runtime, the `license/` subdir, an "arial" X font, and a 32-bit `hostshim`, and drives the login form with xdotool. Uses the screen-free chatback canary. See [`../../protocol/probe-native-linux-4x-2026-11-19.md`](../../protocol/probe-native-linux-4x-2026-11-19.md) and the script header. |
+| `lab/run3x.sh` | One run of the native Linux 3.04 client (static `graalexe`, SDL bundled). Same engine as `run4x.sh` but a listserver flow (client → listserver → game server); drives the login form and the server-list step with xdotool, and uses the on-screen bomb-count canary via `canary.py`. See the 4.x note and the script header. |
+| `lab/runmac.sh` | Serves one playable 6.x world behind `gen5probe` (run inside the debian lab VM) for the 6.015 macOS client in the Lion research VM; the Mac is driven via `qmp.py`. See [`../../protocol/probe-mac-6015-2026-11-19.md`](../../protocol/probe-mac-6015-2026-11-19.md). |
 | `lab/runwine.sh` | One run of a Windows client under Wine in the same VM: 2.05 rev 2 and 2.17.1 (gen 3), 2.22, 2.31 (gen 5, login form and server list), 4.20r8 (clock held at 2007-07-01, login form) or 5.24r4. It reuses the gs1 lab tree (Wine prefix, clients, worlds and its own network namespace). |
 | `lab/runnc.sh` | One run of an NPC-Control client under Wine (`713` = nc7132001; `2002` = a second standalone NPCControl dir) against a lab npcserver, with `ncprobe.py` between them. A template: it reuses the Wine lab tree but needs NC-specific hooks in `lab.env` (`NCSERVER`, the client dir/exe, a build-specific `NC_LOGIN` form-fill), named in its header. The true Jan-2002 NC is the RC-2002 embedded socket, which needs an RC harness, not this script. |
 | `lab/runrc.sh` | One run of a Remote Control client behind `gen5probe.py`: `rc2004` (2004 Delphi), `rc205` (RC2 2.05 GTK), `rc3` (RC3 beta) or `rcpre` (a pre-2002 Delphi RC). It stands up the lab listserver, a gserver world and the proxy on `14804`, launches the RC, logs it in as `super`/`super`, and runs a plan. The connect click is calibrated per build through `RC_CONNECT` (see the script header); `RC_NATIVE=1` runs a native Linux RC2 instead of Wine. |
@@ -140,6 +143,14 @@ python3 tools/rccanary.py ~/probelab/out/rc2004-core/proxy.log ~/probelab/out/rc
 
 `selftest.py` covers all four login paths (gen 5, gen 3, RC gen 2, RC2/RC3 gen 5) with fake peers,
 so the login detection and relaying are checked without the lab.
+
+## Multi-thread shared-VM fuzzing protocol
+
+When more than one fuzz thread shares one Win10 lab VM, serialise the guest desktop and its proxy seams with a lock file, or clients collide.
+
+- **Lock**: `v7-lab\desktop.lock`. Acquire by an *atomic* create (fail if it already exists); if the create fails, the VM is taken — wait and retry. Write your build tag + a START time into it. Release by deleting it.
+- **Slices**: hold for at most ~20 min and for one build's run; release (delete the lock) between builds; wait ≥2 min, or until the other thread has taken and released it, before re-acquiring, so neither thread is starved.
+- **Both seams flip per holder**: while you hold the lock, point *both* the guest login seam (portproxy `14900`) *and* the world seam (portproxy `14802`) at your own dedicated host ports — e.g. this thread `14900→15900` / `14802→15802`, the 4.x/5.x thread `14900→16900` / `14802→16812` — and restore the other side's pair on release. Flipping only `14900` is a bug: the client's world session (where the `s2c 9` prop injects land) is warped to `14802`, so if `14802` is not also flipped, another thread's client cross-wires into your world. (Seen 2026-11-19: a 5.24r4 client warped into another thread's probe/world for ~40 min because `14802` was left pointing at it.)
 
 ## Limits
 

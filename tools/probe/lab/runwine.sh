@@ -1,7 +1,9 @@
 #!/bin/sh
 # runwine.sh CLIENT PLAN RUN [VAR=VALUE ...] : one probe run of a Windows client under Wine.
-# CLIENT is 420 (4.20r8, faketime 2007-07-01, login form filled), 512 (5.12, faketime 2007-11-19),
-# 524 (5.24r4), or 222 / 231
+# CLIENT is 420 (4.20r8, faketime 2007-07-01, login form filled), 524 (5.24r4), or 222 / 231
+# Also 403 / 404 / 411 (4.03r3, 4.04r2, 4.11: packed Graal4Setup.exe stubs, same login form as
+# 4.20r8, clock held near their build date, prefix wp4 with Direct3D csmt=0), and 500 / 530 / 531
+# (5.00r7 unpacked + CRC patch, 5.30r3, 5.31r4 packed originals). CLFT=... overrides the faketime.
 # (2.22 / 2.31: login form, then the server list; they play on a copy of the "A GS1 Control"
 # world, moved to $LO2 behind gen5probe on $LO1:14808).
 # Reuses a Wine lab tree ($WINELAB, set in $HOME/probelab/lab.env: Wine clients, prefix, worlds,
@@ -12,17 +14,22 @@ set -u
 # the loopback address and a second loopback address (no dotted literals in this repo)
 LO1=$(printf '%d.%d.%d.%d' 127 0 0 1); LO2=$(printf '%d.%d.%d.%d' 127 0 0 2)
 CL=$1; PLAN=$(readlink -f "$2"); RUN=$3; shift 3
-# PROBE_ROOT: the lab folder (default $HOME/probelab); DISP: override the client's display number
-PROBE_ROOT=${PROBE_ROOT:-$HOME/probelab}; DISP0=${DISP:-}
-[ -f $PROBE_ROOT/lab.env ] && . $PROBE_ROOT/lab.env; G=${WINELAB:?}; R=$PROBE_ROOT; O=$R/out/$RUN; T=$R/tools; mkdir -p $O $R/run; cd $G
+PROBE_ROOT=${PROBE_ROOT:-$HOME/probelab}; DISP0=${DISP:-}; [ -f $PROBE_ROOT/lab.env ] && . $PROBE_ROOT/lab.env; G=${WINELAB:?}; R=$PROBE_ROOT; O=$R/out/$RUN; T=$R/tools; mkdir -p $O $R/run; cd $G
 case $CL in 420) D=94; DIR=c420; EXE=Graal4.exe; FT="@2007-07-01 12:00:00"; LOG=graal4console.log;;
             524) D=91; DIR=c524; EXE=Graal.exe; FT=""; LOG=game_console.log;;
             512) D=97; DIR=c512; EXE=Graal.exe; FT="@2007-11-19 12:00:00"; LOG=game_console.log;;
             222|231) D=93; DIR=c22x; EXE=Graal_$CL.exe; FT=""; LOG=graalconsole.log;;
             217) D=96; DIR=c22x; EXE=Graal_2171.exe; FT=""; LOG=graalconsole.log;;
+            403) D=81; DIR=c403; EXE=Graal4.exe; FT="@2006-01-12 12:00:00"; LOG=graal4console.log;;
+            404) D=82; DIR=c404; EXE=Graal4.exe; FT="@2006-03-15 12:00:00"; LOG=graal4console.log;;
+            411) D=83; DIR=c411; EXE=Graal4.exe; FT="@2006-11-03 12:00:00"; LOG=graal4console.log;;
+            500) D=84; DIR=c500; EXE=Graal.exe; FT="@2007-08-15 12:00:00"; LOG=game_console.log;;
+            530) D=85; DIR=c530; EXE=Graal.exe; FT=""; LOG=game_console.log;;
+            531) D=86; DIR=c531; EXE=Graal.exe; FT=""; LOG=game_console.log;;
             205) D=95; DIR=c205; EXE=Graal.exe; FT=""; LOG=graalconsole.log;; # needs WINELAB205 (client + GDI-renderer prefix)
-            *) echo "client 205, 217, 222, 231, 420, 512 or 524"; exit 1;; esac
+            *) echo "client 205, 217, 222, 231, 403, 404, 411, 420, 500, 512, 524, 530 or 531"; exit 1;; esac
 [ -n "$DISP0" ] && D=$DISP0
+FT=${CLFT:-$FT}; PFX=wpD; case $CL in 403|404|411) PFX=wp4;; esac   # wp4: wpD plus Direct3D csmt=0 (4.0x wined3d CS-thread crash)
 CLASSIC=0; case $CL in 205|217|222|231) CLASSIC=1;; esac
 [ -e ns.pid ] && [ -d /proc/$(cat ns.pid) ] || sh tools/ns.sh > /dev/null
 ./k.sh "Graal4?\.exe|wine|\.exe|gen5swap|gen5probe|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null; sleep 1
@@ -36,7 +43,7 @@ if [ $CLASSIC = 1 ]; then
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probeclassic > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14808 $LO2 14808 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"
 else
-  LB=gs2emu-hud1111; case $CL in 512|524) LB=gs2emu-73;; esac   # hud1111 refuses the 5.24r4 token (G3D15010)
+  LB=gs2emu-hud1111; case $CL in 5*) LB=gs2emu-73;; esac   # hud1111 refuses the 5.24r4 token (G3D15010)
   ./E sh -c "cd $G/w && setsid nohup ./$LB --server gs1login > $O/gs-login.txt 2>&1 &"
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server gs1world > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14807 $LO2 14807 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"
@@ -49,9 +56,9 @@ rm -f /tmp/.X11-unix/X$D /tmp/.X$D-lock
 ./cl.sh xvfb $D
 if [ $CL = 205 ]; then
   ./E sh -c "cd $C && DISPLAY=:$D WINEPREFIX=$WINELAB205/wp205 WINEARCH=win32 WINEDEBUG=-all setsid nohup /usr/lib/wine/wine $EXE > $G/run/wine$D.log 2>&1 &"
-else ./cl.sh start $D $DIR $EXE wpD "$FT"; fi
+else ./cl.sh start $D $DIR $EXE $PFX "$FT"; fi
 win() { DISPLAY=:$D xdotool search --onlyvisible --name . 2>/dev/null | while read w; do eval $(DISPLAY=:$D xdotool getwindowgeometry --shell $w); [ $WIDTH -ge 600 ] && echo $w; done | head -1; }
-if [ $CL = 420 ]; then
+if [ $CL = 420 ] || [ $CL = 403 ] || [ $CL = 404 ] || [ $CL = 411 ]; then
   for i in $(seq 1 90); do W=$(win); [ -n "$W" ] && break; sleep 2; done; sleep 8   # the login form; slow under VM load
   ACC=p$(date +%H%M%S); W=$(win); eval $(DISPLAY=:$D xdotool getwindowgeometry --shell $W); dx=$((X-380)); dy=$((Y-290))
   B="End $(printf 'BackSpace %.0s' $(seq 12))"; c(){ DISPLAY=:$D xdotool mousemove $(($1+dx)) $(($2+dy)) click 1; sleep 1; }
@@ -76,7 +83,7 @@ if [ $CL = 222 ] || [ $CL = 231 ]; then   # 2.22 / 2.31 login form, then the ser
   B="End BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace BackSpace"; ACC=c$(date +%H%M%S)
   if pos "^(Graal Reborn|GraalOnline)$"; then sleep 4
     c 510 441; k $B; t $ACC; c 505 529; k $B; t $ACC; c 512 561; k $B; t labpass; sleep 1
-    c 696 545; pos "Server [Ll]ist$" && { sleep 5; c 300 440; c 712 575; }
+    c 696 545; pos "Server [Ll]ist$" && { sleep 12; c 300 440; c 712 575; for r in 1 2 3; do sleep 8; grep -q "world c1" $O/proxy.log && break; pos "Server [Ll]ist$"; echo "server list retry $r" >> $O/marks.txt; c 300 440; c 712 575; done; }
   else echo "no login window" >> $O/marks.txt; fi
 fi
 export PROBE_SHOT="DISPLAY=:$D scrot -o $O/{name}.png; W=\$(DISPLAY=:$D xdotool search --onlyvisible --name . 2>/dev/null | head -1); [ -n \"\$W\" ] && echo '{name} alive' >> $O/marks.txt || echo '{name} CLIENT-GONE' >> $O/marks.txt"

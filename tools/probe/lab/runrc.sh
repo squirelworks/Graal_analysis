@@ -13,7 +13,7 @@
 # $LO2:14804. The lab listserver advertises $LO1:14804, and the RC builds reach the world through the
 # server list (the 2004/RC2/RC3/2002 builds all pick it from the list, not a typed address). The RC
 # logs in as super/super (the build default); the gserver must accept that account AND grant it RC
-# rights (this script sets ADMINRIGHTS/IPRANGE on the world's super account — see below).
+# rights (this script sets LOCALRIGHTS/IPRANGE on the world's super account — see below).
 #
 # Reuses the same lab tree as runwine.sh ($WINELAB in $HOME/probelab/lab.env: Wine prefix, the E /
 # k.sh / cl.sh / tools/ns.sh helpers, the gserver build and world, and its loopback-only namespace).
@@ -68,8 +68,8 @@ P=$G/w/servers/probrc; rm -rf $P; cp -a $G/w/servers/$WORLD $P
 SO=$P/config/serveroptions.txt
 sed -i "s/^serverinterface = .*/serverinterface = $LO2/" $SO 2>/dev/null || true
 sed -i "s/^serverport = .*/serverport = $PORT/" $SO 2>/dev/null || true
-# GServer-v2 reads RC eligibility from the staff list, so super must be on `staff =` (ADMINRIGHTS on
-# the account file alone is not enough — the RC login is refused "You do not have RC rights").
+# GServer-v2 reads RC eligibility from the staff list, so super must be on `staff =` (the account
+# rights line alone is not enough — the RC login is refused "You do not have RC rights").
 if grep -q '^staff = ' "$SO" 2>/dev/null; then
   grep '^staff = ' "$SO" | grep -q 'super' || sed -i '/^staff = /s/$/,super/' "$SO"
 else
@@ -80,18 +80,20 @@ fi
 # The game socket stays on gen5probe ($LO1); the NC socket is fronted by a SEPARATE ncprobe on a
 # THIRD loopback ($LO3) so it is the only connection that proxy sees (no session-select race, and
 # the ncstub fallback is a one-arg swap). connectString's port is always serverport, so the NC
-# proxy needs a distinct IP: ns_ip=$LO3 makes PLO 79 = $LO3,$PORT. npcrights=false sends 79 without
-# the account needing the NPC-Control right. ns_ip is read from adminconfig.txt, not serveroptions.
+# proxy needs a distinct IP: ns_ip=$LO3 makes PLO 79 = $LO3,$PORT. The super account carries the
+# NPC-Control right (LOCALRIGHTS, set below), so the server answers 94 with 79 on its own and
+# npcrights can stay at its default. ns_ip is read from adminconfig.txt, not serveroptions.
 if [ "${RC_NC:-0}" = 1 ]; then
-  grep -q '^npcrights ' "$SO" && sed -i "s/^npcrights .*/npcrights = false/" "$SO" || echo 'npcrights = false' >> "$SO"
   AC=$P/config/adminconfig.txt
   grep -q '^ns_ip ' "$AC" 2>/dev/null && sed -i "s/^ns_ip .*/ns_ip = $LO3/" "$AC" || echo "ns_ip = $LO3" >> "$AC"
 fi
-# The RC login account needs RC rights, not just a place on the staff list, or GServer-v2 answers
-# "You do not have RC rights." Ensure the super account has full admin rights and an open IP range.
+# The super account also needs its admin-rights bitmask set so the NPC-Control right
+# (PLPERM_NPCCONTROL) is present, or sendNCLoginToPlayer drops PLI_NPCSERVERQUERY (94) and never sends
+# PLO 79. The flat-file loader reads this bitmask from the LOCALRIGHTS key (there is no ADMINRIGHTS
+# key -- it is ignored). Give it full rights and an open IP range; RC *eligibility* is the staff fix.
 ACC=$P/accounts/super.txt
 if [ -f "$ACC" ]; then
-  grep -q '^ADMINRIGHTS ' "$ACC" && sed -i 's/^ADMINRIGHTS .*/ADMINRIGHTS 1048575/' "$ACC" || echo 'ADMINRIGHTS 1048575' >> "$ACC"
+  grep -q '^LOCALRIGHTS ' "$ACC" && sed -i 's/^LOCALRIGHTS .*/LOCALRIGHTS 1048575/' "$ACC" || echo 'LOCALRIGHTS 1048575' >> "$ACC"
   grep -q '^IPRANGE ' "$ACC" && sed -i 's/^IPRANGE .*/IPRANGE */' "$ACC" || echo 'IPRANGE *' >> "$ACC"
 fi
 ./E sh -c "cd $G/w && setsid nohup ./seihai-listserver --config ls.toml > $O/listserver.txt 2>&1 &"; sleep 1
@@ -133,11 +135,11 @@ else
   DISPLAY=:$D xdotool key --delay 80 Return   # placeholder: calibrate RC_CONNECT for this build
 fi
 
-# RC_NC: GServer-v2 does not answer the RC's PLI_NPCSERVERQUERY (94) from a gen-2 RC with PLO 79
-# (lab 2026-11-19 -- a gserver bug), so the RC never opens its NC socket on its own. Inject PLO 79
-# on the game socket to hand the RC the NC address ($LO3,$PORT = ncprobe), which it then dials.
-# Drop this once the gserver answers 94. RC_NS_PID is the (Server) player id (seen as 2 in the lab).
-if [ "${RC_NC:-0}" = 1 ]; then
+# RC_NC: with the NPC-Control right set (LOCALRIGHTS above), GServer-v2 answers the RC's
+# PLI_NPCSERVERQUERY (94) with PLO 79 on its own and the RC opens its NC socket. As a fallback for an
+# old binary or an account that still doesn't get the right, RC_NC_INJECT79=1 hand-injects PLO 79 on
+# the game socket ($LO3,$PORT = ncprobe). RC_NS_PID is the (Server) player id (seen as 2 in the lab).
+if [ "${RC_NC:-0}" = 1 ] && [ "${RC_NC_INJECT79:-0}" = 1 ]; then
   sleep 4
   python3 $T/probectl.py $R/run/rc.sock cmd "s2c 79 s:${RC_NS_PID:-2} t:$LO3,$PORT" >> $O/plan.log 2>&1
 fi
