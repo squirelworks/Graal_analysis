@@ -68,7 +68,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#215 | When GS2-only names arrived, and what a missing name does | Read | most by 4.20r8; a missing name logs an error and the script goes on | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 | E#300 | Tick timing of three early builds | Lab | 50 ms, as later builds | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | E#302 | Walking speed factors 0.4 and 0.8 | Lab | 0.8 while carrying a heavy object, 0.4 in water or a slowing state | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| E#303 | Two lists in the blocked-point test | Read | other players and baddies | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
 | E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
@@ -79,7 +78,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#313 | Arrows and fireballs through walls | Lab | they pass walls in 2.05, as the code reads | [inf] (client-internals/damage-sources.md#open) |
 | E#314 | Gmap entry and the respawn save | Lab | entering a gmap from outside saves the respawn point | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 | E#316 | Glove power steps | Lab | Claim B, read from the lift table | [inf] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
-| E#317 | 1.x pickup box and item draw order | Read | items draw under players | [inf] (client-internals/item-drops.md#open) |
+| E#317 | 1.x pickup box and item draw order | Read and Lab | the 1.39 player box is the 2 × 2 body box; item box size and draw order open | [inf] (client-internals/item-drops.md#open) |
 | E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#321 | The 2.31 window blacklist | Read | known cheat-tool window titles; the reaction is a quit or a report | [inf] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
@@ -530,17 +529,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | A lab walk in each candidate state on 2.05 (riding, shield, carrying each object kind, water) | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 
-### E#303 Two unidentified lists in the blocked-point test
-
-**Question.** What fills two object lists that the blocked-point test reads [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | One list holds objects with two flags and a player-sized body box (read only with a client option on); the other holds 1.5 x 2 boxes with an enabled flag | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Best guess | The first is other players (the option is player collision) and the second is NPCs or baddies with a blocking flag. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settles it | Tracing what fills each list, or walking into each kind of level object in the lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
 ### E#304 Stopping positions and the wire rounding of nudged positions
 
 **Question.** Where a player stops after a blocked step, and how a position that is not on a half tile is rounded when sent [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
@@ -670,8 +658,9 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Only 1.3's pixel overlap for picking up a floor item was read | [bin] (client-internals/item-drops.md#open) |
+| Tried (2026-11-20) | 1.39 tests a strict overlap in eighths of a tile between the player's 2 × 2 body box (x + 0.5 to x + 2.5, y + 1 to y + 3) and an item box centred across x + 1 from y + 1/8, sized from the item sprite's stored size; online it then sends 32. The size's unit and the draw order were not read | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-139-pickup-test-e317) |
 | Best guess | Items draw under players, as level objects do. Confidence: moderate | [inf] (client-internals/item-drops.md#open) |
-| Settles it | Reading the pickup test of 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
+| Settles it | The unit of the item sprite size in 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
 | Outlook | Read and Lab | [inf] (client-internals/item-drops.md#open) |
 
 ### E#319 The single-player start levels
@@ -1428,6 +1417,17 @@ The frame loop of the 3.x and 4.x clients was untimed; a 2026-11 lab settled it 
 | Static | Windows 4.04r2 has three time notions: elapsed ticks via `GetTickCount`, a GS2 script clock advancing 0.05 per pass, and legacy `timeout` pass counts; the Linux follow-up ties six updater returns to a registered state predicate | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks); [bin] [cap] (client-internals/linux-420r6-clock-property.md) |
 | Settled | 50 ms steps, one render per step, 8 pixels per walk step for every 3.04, 4.04r2, 4.20r6 and 6.03r7 client; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
 | Later | 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down; 2.22 and 2.31 play one walk frame per step; Linux 6.03r7 GS2 timers round up to 50 ms steps (→ §4.1.8). The `onTimeout` / `onTimeOut` spelling by client is tracked in → App. E#209 | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
+
+### E#303 Two unidentified lists in the blocked-point test (settled)
+
+What fills the two object lists that the 2.05 blocked-point test reads was open; a static read of what adds to each list settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | One list of player-sized boxes with two flags, read only with a "client option" on; one list of 1.5 × 2 boxes with an enabled flag. Best guess: other players, and NPCs or baddies | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settled | The 1.5 × 2 list is the level's bombs: only placing a bomb and putting down a carried bomb add to it, each setting the enabled flag. The player-sized list is the level's list of players. The "option" is a temporary flag that a few movement routines set around their own probes and the walking step clears, and the test also needs the client to be online | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| Verdict | Half right: the first list is players, as guessed, but ordinary walking does not test it; the second is bombs, not NPCs or baddies | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| Left over | Which movement routines set the players flag; whether 2.22 and 2.31 keep the same lists | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
 
 ### E#306 What picks `lift2.wav` for a pull (settled)
 

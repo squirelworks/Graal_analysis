@@ -178,7 +178,7 @@ An item on the floor has a life that counts down. The rules below give that life
 | offline value | green 1, blue 5, red 30, gold 100 rupees (up to 9,999,999); bombs and darts 5 each (up to 99); a heart one whole heart; sound `extra.wav` | [bin] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin) |
 | online pickup | `PLI_ITEMTAKE` (32) with the item's three bytes; the server answers with props (for example RUPEESCOUNT) | [cap] (client-internals/item-drops.md#lab-runs-livecap) |
 | 1.3 | the pickup test is an overlap of pixel boxes, and a timeout is silent | [bin] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin) |
-| 1.x pickup box in tiles, draw order against players | unmeasured (→ App. E#317) | [bin] (client-internals/item-drops.md#open) |
+| 1.x pickup box in tiles, draw order against players | 1.39: strict overlap in eighths of a tile of the player's body box (x + 0.5 to x + 2.5, y + 1 to y + 3) with the item's sprite box centred across x + 1; the sprite size unit and the draw order are unmeasured (→ App. E#317) | [bin] (client-internals/item-drops.md#open); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-139-pickup-test-e317) |
 
 ## 4.5.7 Board respawn on the client
 

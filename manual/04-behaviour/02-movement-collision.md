@@ -126,9 +126,9 @@ Tested in this order; the first hit blocks:
 
 | # | Test | Source |
 | --- | --- | --- |
-| 1 | a list of objects with two flags and a player-sized body box, checked only when a client option is on (unidentified → App. E#303) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
+| 1 | the level's players (a body box like the player's; players with either of two state flags are skipped), checked only online and only while a movement routine has set a temporary flag around its own probes, so ordinary walking passes through other players (→ App. E#303) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
 | 2 | the level's NPCs that have a blocking shape or image | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
-| 3 | a list of 1.5 × 2 boxes with an enabled flag, x + 0.25 to x + 1.75, y to y + 2 (unidentified → App. E#303) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
+| 3 | the level's bombs, x + 0.25 to x + 1.75, y to y + 2, while their enabled flag is set; placing a bomb or putting down a carried one sets it (→ App. E#303) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
 | 4 | chests: each covers x to x + 2, y to y + 2, edges included, opened or not | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
 | 5 | the tile, which blocks unless it is in the passable list or the liquid list of `arrays.dat` (arrays 0 and 1, → §3.5.3) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
 
