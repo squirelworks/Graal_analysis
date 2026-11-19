@@ -129,6 +129,10 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#614 | Tiledef type 4 | Lab | a draw-only overlay at a pixel offset | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| E#617 | Whether 1.41 rev 1 loads `.nw` levels online | Lab | yes for `.nw`; a gmap is ignored | [inf] (client-internals/141r1-nw-gmap-status.md) |
+| E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | yes, on a guest with working OpenGL | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | Lab | only as a fallback when `license.graal` is missing | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+| E#620 | What the 1.41 rev 1 program-check handler does | Read | shows a message and stops the client | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
 
 ## E.2 Builds, identity and protection
 
@@ -216,6 +220,53 @@ These questions are about which build is which, who built it and how it protects
 | Settles it | A decrypted connector script for the token (→ App. E#616); a boundary-date boot of 614 (2024-10-12 boots, 2024-10-13 quits, by the table) for the reason | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Outlook | Lab for the expiry reason; Owner or Maybe never for the token, which depends on E#616 | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 
+### E#617 Whether 1.41 rev 1 loads `.nw` levels online
+
+**Question.** Whether a real 1.41 rev 1 loads and plays a `.nw` level sent by a server, and what it does with a gmap (→ §1.5) [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The build carries the `GLEVNW01` loader string beside the GR-V1 readers and has no `GRMAP001`; no real 1.41 rev 1 has been seen loading a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Context | `.nw` support is not monotonic: 1.41 rev 1 and NewMain 1.42 have the string, 2.00 to 2.04 drop it, 2.05 restores it with gmaps | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Best guess | It loads `.nw` levels: a loader string in the level-magic list has meant a working reader in every build checked so far. A gmap is not understood and is ignored or fails. Confidence: moderate | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
+| Settles it | A loopback lab: a small `.nw` start level the client can reach through the list, then a tiny gmap, noting whether link and height messages appear | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
+| Outlook | Lab | [inf] (client-internals/141r1-nw-gmap-status.md#open-after-this-note) |
+
+### E#618 Whether Mac 6.004 and 6.015 draw a game frame
+
+**Question.** Whether the Mac 6.004 and 6.015 clients get past a white window to a rendered frame, a login and a level (→ §1.8.7) [lab] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Tried | Mac 6.015 on Mac OS X 10.7.5 in an emulator, offline: once the executable bit was restored, the app came up with a Graal menu and a window titled Graal whose content stayed white; no crash | [lab] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015) |
+| Evidence | Mac 6.11r1 showed the same white window on the same guest, which has no OpenGL acceleration; both 6.0x builds use a Cocoa OpenGL view | [lab][bin] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#static-surface-used-to-choose-the-live-build) |
+| Best guess | The white window is the missing guest OpenGL, not a fault in the client. Confidence: moderate | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| Settles it | A run on a guest or machine with working OpenGL; or a static trace of one slice from entry to the game loop | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| Outlook | Lab. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+
+### E#619 Whether 5.30r3 and 5.31r4 use their built-in login host
+
+**Question.** 5.30r3 and 5.31r4 store a default login host and port side by side. Whether they ever dial it when `license.graal` is present, missing or bad (→ §1.9.4) [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The two strings sit next to each other in both images; the 5.x notes say the host and port normally come from `license.graal` | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| Best guess | A fallback used when the licence file gives no host, as the compiled-in hosts of 5.24 and later suggest. Confidence: low to moderate | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+| Settles it | One lab run per `license.graal` case, with a local listener on the stored port and the clock set back for the beta expiry | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+| Outlook | Lab | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
+
+### E#620 What the 1.41 rev 1 program-check handler does
+
+**Question.** What the program-check error handler of 1.41 rev 1 does when it runs, and what raises its event. One held copy runs the handler; the other and the baseline bind the event to its final return, so it does nothing (→ §1.1.5) [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | The handler builds text-like values, sets a byte of state and calls helpers before cleanup; one helper tests a result and conditionally calls another. Their effects were not identified | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
+| Limit | The study does not show a warning dialog, an exit, the triggering condition, or who changed the binding | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
+| Best guess | It reports a failed self-check, shows a message and stops the client, and the copy that binds to the final return had that check switched off. Confidence: low; the history of the change is not known | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+| Settles it | A static read of the event's trigger and of the helpers; a run of each copy only if that read leaves a precise thing to watch | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+| Outlook | Read for what the handler does; Maybe never for why the copies differ | [inf] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client) |
+
 ## E.3 Transport: frames, ciphers and logins
 
 These questions are about the layer under the messages: how a frame is cut, ciphered and compressed, and what the first exchange looks like. They come first among the protocol questions because a wrong frame rule makes every later byte unreadable (→ §2.1, → §2.2, → §2.3) [srv] (protocol/codec-and-framing.md#encryption-generations-gs2lib-numbering).
@@ -296,8 +347,9 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | --- | --- | --- |
 | Evidence | Everything known about generation 4 comes from the server source; no type-4 login or frame has been captured | [srv] (protocol/codec-and-framing.md) |
 | Tried | The probe proxy has a generation-4 codec from the server source, but no client to point it at | [doc] (protocol/unknowns-ledger.md) |
+| Lead | Server tables list Linux 3.0beta (`G3D16053`) and 3.01 (`G3D27063`) as client type 4, generation 4, and clean installers of both are held (→ §1.8.4). A lab login with either would show a generation-4 frame from a real client, even though they are not 2.19 to 2.21 | [bin][inf] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#open-still) |
 | Best guess | The server source is right: it was written against those clients, and generations 3 and 5 on either side match their source. Confidence: moderate to high | [inf] (protocol/codec-and-framing.md) |
-| Settles it | Any 2.19 to 2.21 binary, read statically or run against the proxy | [inf] (protocol/codec-and-framing.md) |
+| Settles it | Any 2.19 to 2.21 binary, read statically or run against the proxy; meanwhile, a Linux 3.0beta or 3.01 login against the proxy tests the codec itself | [inf] (protocol/codec-and-framing.md); [inf] (version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#open-still) |
 | Outlook | Missing. If no build of these versions survives, Maybe never | [inf] (protocol/codec-and-framing.md) |
 
 ### E#605 Client listserver frames in two vocabularies
