@@ -272,6 +272,7 @@ docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/unreleased.md	excluded			notes for the next GitHub release, not Graal
 docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
@@ -781,6 +782,7 @@ protocol/named-login-5x-6x.md	cited	2.3; 8.3; E	2.3; 8; E
 client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding and prefix/copy observations carried; short-path object append, field identity, vector/wire and runtime gates remain open; no mobile profile or native acceptance inferred.
 formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement field context and preservation boundary carried in3.3.8; native resolution remains open.
 VERSION-TOKENS.md	excluded			Generated discovery index of the canonical version-token catalogue, not an independently maintained source.
+VERSIONING.md	excluded			repository release policy, not Graal
 version-profiles/version-token-map.tsv	excluded			Generated machine-readable associations from the canonical catalogue.
 tools/token-map/README.md	excluded			Generation and integrity-check instructions; no independent client behavior.
 client-internals/mac-6004-6015-slices.md	cited	1	1	Architecture and per-slice declared dependencies carried in §1.8.7; selected-slice startup, runtime initialization and Windows module boundaries remain open.
@@ -855,6 +857,7 @@ protocol/v6113-login-lab-2026-11-19.md	pending		2.10; E	#510 loopback: in-memory
 live-runs/fuzz-2026-11-19/README.md	pending	E	2.6; 2.5; E	2026-11-19 packet fuzz: baddy props 11+ end the message on 4.20r8 and 2.22, 156 with a gmap name fetches the gmap on 2.22/2.31, 195 DEFAULT* no own-player effect, NPC prop widths on 4.20r8/5.24r4; to fold into the prop-width and receive sections
 live-runs/fuzz-2026-11-19/fuzz-results.tsv	excluded			per-inject rows of the 2026-11-19 fuzz run, already appended to protocol/probe-results.tsv
 live-runs/fuzz-2026-11-19/plans/queue.txt	excluded			repository tooling for the notes (run queue for the fuzz plans), not Graal
+protocol/probe-gen3-2.0x-2026-11-19.md	excluded		2.6; B	gen-3 2.0x-era Windows clients (2.00-2.05r1, GraalX, NewMain 24/26, 1.41r1, 2.1 tests, NewWorld betas) probed natively on Win10 with wine-core.plan: all identical to w205-b, 2.02x crash on Start before any packet; folds into the prop-width-by-build rows (2.6.6) and App. B
 formats/pics1-tile-layout-render-2026-11-19.md	cited	E	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
 formats/gmap-heights-by-component-2026-11-19.md	cited	3.2; E	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
 protocol/link-probe-offsets-205-222-2026-11-19.md	cited	4.2; E	4.2; E	Disassembler read: per-facing edge-link probe offsets of 2.05, byte-identical in 2.22; walking past the edge with the neighbour loaded
