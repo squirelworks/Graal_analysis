@@ -120,6 +120,8 @@ def main():
             eff.append('CLIENT GONE (crash or quit)')
         elif not r['connected'] or not r['connected_after']:
             eff.append('DISCONNECTED')
+        if r.get('hung'):
+            notes.append('client stopped sending packets (hung); key pressed again after a restart')
         if v['windows_left']:
             notes.append('window would not close: ' + ', '.join(v['windows_left']))
         if v['reset']:

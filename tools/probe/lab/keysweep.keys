@@ -11,7 +11,6 @@ F9	key F9
 F10	key F10
 F11	key F11
 F12	key F12
-Escape	key Escape
 `	key grave
 1	key 1
 2	key 2
@@ -26,7 +25,6 @@ Escape	key Escape
 -	key minus
 =	key equal
 BackSpace	key BackSpace
-Tab	key Tab	again
 A	key a
 B	key b
 C	key c
@@ -61,7 +59,6 @@ Z	key z
 ,	key comma
 .	key period
 /	key slash
-Return	key Return	again
 Space	key space
 Shift	key Shift_L
 Ctrl	key Control_L
@@ -91,7 +88,6 @@ KP_Subtract	key KP_Subtract
 KP_Multiply	key KP_Multiply
 KP_Divide	key KP_Divide
 KP_Decimal	key KP_Decimal
-KP_Enter	key KP_Enter
 Pause	key Pause	again
 Print	key Print
 Scroll_Lock	key Scroll_Lock	again
@@ -133,7 +129,6 @@ Alt+6	key alt+6
 Alt+7	key alt+7
 Alt+8	key alt+8
 Alt+9	key alt+9
-Alt+Return	key alt+Return
 Shift+Left	hold shift+Left 0.4	undo hold Right 0.4
 Shift+Right	hold shift+Right 0.4	undo hold Left 0.4
 Shift+Up	hold shift+Up 0.4	undo hold Down 0.4
@@ -160,4 +155,9 @@ MiddleClick hud	click 2 hud
 DoubleClick hud	dclick 1 hud
 WheelUp	wheel up ground
 WheelDown	wheel down ground
+Escape	key Escape
+Tab	key Tab	again
+Return	key Return	again
+KP_Enter	key KP_Enter
+Alt+Return	key alt+Return
 Alt+F4	key alt+F4

@@ -28,6 +28,7 @@ import argparse, json, os, re, socket, struct, subprocess, sys, time, zlib
 WAIT = 1.5
 BIG = 0.02          # share of the screen that counts as a large lasting change
 PIXTOL = 24         # per-channel difference below this is not a change (dithering, fades)
+QUIET = 15          # no C>S packet for this long (seconds) = the client hung: restart it
 RELEASE = ['Shift_L', 'Shift_R', 'Control_L', 'Control_R', 'Alt_L', 'Alt_R', 'Left', 'Right', 'Up', 'Down',
            'space', 'Return', 'Tab'] + ['KP_%d' % d for d in range(10)] + ['KP_Up', 'KP_Down', 'KP_Left', 'KP_Right',
            'KP_Home', 'KP_End', 'KP_Prior', 'KP_Next', 'KP_Insert', 'KP_Delete', 'KP_Begin', 'KP_Enter', 'KP_Add',
@@ -109,6 +110,26 @@ def decode_props(b):
 
 
 LINE = re.compile(r'^\s*([\d.]+) (\S+) (?:c\d+ )?(C>S|S>C|MARK) ?(.*)$')
+
+
+def quiet_for(log, mark):
+    """seconds between the last C>S packet and the given mark (a hung client sends nothing at all;
+    a live one has a periodic packet every few seconds)"""
+    last_cs, tmark = None, None
+    try:
+        for ln in open(log, encoding='latin1'):
+            m = LINE.match(ln)
+            if not m:
+                continue
+            if m.group(3) == 'C>S':
+                last_cs = float(m.group(1))
+            elif m.group(3) == 'MARK' and m.group(4).strip() == mark:
+                tmark = float(m.group(1))
+    except OSError:
+        return 0
+    if tmark is None or last_cs is None:
+        return 0
+    return tmark - last_cs
 
 
 def packets(log, k0, k1):
@@ -382,7 +403,7 @@ def main():
             do(reset[5:]); time.sleep(0.6); rnote.append('undo')
         elif reset == 'again':
             do(action); time.sleep(WAIT); rnote.append('again')
-        elif reset != 'none' and alive and n > BIG * W * H:
+        elif reset != 'none' and alive and not new and n > BIG * W * H:  # an in-game GUI, not a new window
             g2 = sc.grab(); n2, _ = Screen.diff(pre, g2)
             if n2 > BIG * W * H:
                 do(action); time.sleep(WAIT); rnote.append('again(auto)')
@@ -401,9 +422,16 @@ def main():
                'gone_windows': [w[1] for w in gone], 'alive': alive, 'connected': conn,
                'c2s': cs, 's2c_ids': s2c, 'reset': rnote, 'after_reset_px': nf, 'after_reset_box': bbf,
                'alive_after': alive2, 'connected_after': conn2, 'windows_left': [w[1] for w in left]}
+        quiet = quiet_for(a.proxylog, k1); hung = quiet > QUIET
+        row['quiet_s'] = round(quiet, 1); row['hung'] = hung
         rows.write(json.dumps(row) + '\n'); rows.flush()
-        say(i, name, 'diff', n, bb, 'new', len(new), 'c2s', len(cs), 'alive', alive2, 'conn', conn2)
-        if not alive2 or not conn2 or left:
+        say(i, name, 'diff', n, bb, 'new', len(new), 'c2s', len(cs), 'alive', alive2, 'conn', conn2, 'quiet', round(quiet, 1))
+        if hung:
+            say('no C>S packet for %.0f s: client hung' % quiet)
+        if hung:  # the last few keys may have gone to a hung client: press them again after the restart
+            say('restart needed after', name, st2)
+            open(os.path.join(a.out, 'next.txt'), 'w').write('%d' % max(a.start + 1, i - 3) + chr(10)); return 3
+        if not alive2 or not conn2 or left or hung:
             say('restart needed after', name, st2)
             open(os.path.join(a.out, 'next.txt'), 'w').write('%d\n' % (i + 1)); return 3
     open(os.path.join(a.out, 'next.txt'), 'w').write('%d\n' % len(keys))
