@@ -1,0 +1,54 @@
+# PLO_LOADGANI (195) on 6.03r7. The CHATBACK level script reports the player's current gani (g) every 0.3 s.
+# Part 1 lets the server answer the client's PLI_UPDATEGANI (157) as usual; from part 2 on the server's own 195 is dropped.
+waitsession 240
+wait s2c 9 90
+sleep 8
+mark A server 195 allowed: sword (file SETBACKTO idle)
+s2c 9 c:10 str:sword
+sleep 4
+drop s2c 195
+mark B no 195 at all: kick (file SETBACKTO idle, first use)
+s2c 9 c:10 str:kick
+sleep 4
+mark C 195 sword SETBACKTO sit
+s2c 195 str:sword hex:225345544241434b544f2073697422
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark D 195 sword empty list
+s2c 195 str:sword
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark E 195 sword LOOP
+s2c 195 str:sword hex:224c4f4f5022
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark F 195 sword SETBACKTO dead + SINGLEDIRECTION
+s2c 195 str:sword hex:225345544241434b544f2064656164222c2253494e474c45444952454354494f4e22
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark G 195 hurt SETBACKTO sit (hurt never used yet)
+s2c 195 str:hurt hex:225345544241434b544f2073697422
+sleep 1
+s2c 9 c:10 str:hurt
+sleep 4
+mark H 195 probeani (no such file) SETBACKTO sit
+s2c 195 str:probeani hex:225345544241434b544f2073697422
+sleep 1
+s2c 9 c:10 str:probeani
+sleep 4
+mark I 195 idle SETBACKTO sword (idle has no SETBACKTO)
+s2c 195 str:idle hex:225345544241434b544f2073776f726422
+sleep 1
+s2c 9 c:10 str:idle
+sleep 4
+mark J 195 sword with an unquoted list
+s2c 195 str:sword t:SETBACKTO_sit
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark END
+sleep 2

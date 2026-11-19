@@ -330,6 +330,94 @@ prop in a message.
 on the client and attacked the player. The position canary therefore does not hold for baddies,
 and props 11 and up stay open.
 
+## `PLO_LOADGANI` (195): the `SETBACKTO` list (2026-11-19)
+
+**Setup.** The clients were 6.03r7 (runs `lg603-b`, `lg603-c`), 4.20r8 (`lg420-a`) and 5.24r4
+(`lg524-a`), with plans `loadgani.plan` and `loadgani2.plan`. After the first steps, the proxy
+dropped the server's own 195 replies to `PLI_UPDATEGANI` (157). The result was read from the
+client's own gani reports (`PLI_PLAYERPROPS` prop 10), which it sends whenever it falls back to
+another gani. The three clients behaved the same in every test. **[lab]**
+
+**What 195 does:**
+- **Its list holds gani header lines that override the file's values for the named gani.**
+  `kick "SETBACKTO sit"` made `kick` fall back to `sit`, and `lift "SETBACKTO dead"` made `lift`
+  fall back to `dead`. On 6.03r7, `idle "SETBACKTO sword"` gave `idle`, which has no
+  `SETBACKTO` of its own, a fallback.
+- **The newest value wins.** A later 195 replaces an earlier one, and with two `SETBACKTO`
+  lines in one list the last one wins.
+- **Edge cases:**
+  - `"SETBACKTO "` with an empty target means no fallback.
+  - An empty list changes nothing (6.03r7).
+  - `"LOOP"` makes the gani loop (6.03r7).
+  - The quotes are optional, but a misspelled keyword is ignored.
+- **Timing:**
+  - A 195 that arrives before the client has loaded that gani is lost, because loading the file
+    resets the header. That is why the server sends 195 in answer to 157.
+  - A 195 that arrives while a finished gani is still shown makes the client fall back at once.
+- **Without any 195, the clients still use the file's own `SETBACKTO`** (`kick`→`idle`). So for
+  ganis the client has as files, the server's 195 is redundant.
+
+The GServer-v2 source says 4.x and later need it. Our guess is that it matters for ganis that
+reach the client as compiled script, which carry no header lines. **[inf]**
+
+**Not tested:** `CONTINUOUS`, `SINGLEDIRECTION`, the `DEFAULT*` lines (no visible report), and
+ganis with a `SCRIPT` section sent compiled. 2.x clients have no handler for 195.
+
+### 195, round 2 (2026-11-19)
+
+**Setup.** The plans were `loadgani3.plan` (6.03r7, run `lg603-d`), `loadgani3w.plan` (4.20r8,
+5.24r4, 5.12, 2.22 and 2.31 under Wine) and `loadgani4.plan` (other players, `lg603-e`).
+Test ganis came in through `EXTRA_WORLD`. Results were read from the client's gani reports,
+its file and gani requests (23, 157), and screenshots. **[lab]**
+
+**Results.** 5.12 and 5.24r4 matched 6.03r7 wherever they could be read. On 4.20r8, the gs1 lab
+world had the player riding a horse, so only the name tests could be read there.
+
+- **Loading:** a 195 for a gani the client has not loaded makes it ask for `<name>.gani` (23)
+  and send 157. The file's header then replaces the 195. This explains why an early 195 is
+  lost.
+- **Names** are case-insensitive (`KICK`). `kick.gani` is a different gani (the client asks for
+  `kick.gani.gani`), and an empty name asks for `.gani`.
+- **Chains** play through (`kick`→`hurt`→`sit`), and two 195s in one frame both apply.
+  - A `SETBACKTO` to a missing gani is still followed: the client reports that gani and asks
+    for its file.
+  - A self-reference repeats the gani until a new 195.
+- **Fields:**
+  - Unknown keywords are ignored, and the rest of the list applies.
+  - `LOOP` is not undone by a later 195 without it.
+  - `SINGLEDIRECTION` works (screenshots).
+  - `DEFAULT*` lines had no visible effect and caused no image requests, for the own player or
+    for another player with no head or body set.
+- **Other players:** another player that played `kick` after 195 `kick "SETBACKTO dead"`
+  ended lying dead, and the client fetched `dead.gani`. So the override is per gani name for
+  everyone.
+- **SCRIPT section:** with every 195 dropped, a gani with a `SCRIPT` section still arrived as
+  its text file, and its `SETBACKTO` applied. This server never sends a gani as compiled code.
+- **Robustness:**
+  - 300 empty items, a 3000-byte item and a 60 KB list caused no crash, and the next 195
+    worked.
+  - A NUL byte ends the target name, which leaves "no fallback".
+  - `SETBACKTOsit` is ignored.
+- **2.22 and 2.31** have no handler for 195 (see `../version-profiles/plo-handled-ids-by-build.tsv`).
+
+**`CONTINUOUS` (run `lg603-j`).** `hurt` (about 1.5 s) was set again 0.7 s into playing. Without
+`CONTINUOUS` it restarts and falls back after 2.1–2.3 s. After 195 `hurt "CONTINUOUS"` it falls
+back after 1.5 s (three of three runs). So 195 takes `CONTINUOUS` too.
+
+**Compiled ganis (runs `lg603-f`, `lg603-g`).**
+- With NPC-server mode on and a GS2 `SCRIPT` section, our build still sent no
+  `PLO_GANISCRIPT` (134).
+- A forged one, sent behind `PLO_RAWDATA`, made the client fetch and load the gani like a 195
+  does. The fallback still came from the file.
+- GServer-v2's own reply to 157 is the script bytecode (134), sent only when it has an NPC
+  server and the checksum differs, followed by 195 with the file's `SETBACKTO`.
+
+So the `SETBACKTO` copy in the server's 195 repeats the file in every path we can build. The
+packet's working role is "load this gani now and apply these header overrides".
+
+**`DEFAULT*` lines on an NPC (`lg603-h`).** A level NPC showing a character played `kick` after
+195 named three `DEFAULT*` images. No image was requested.
+
 ## Recommended next batches
 
 1. ~~**Self-prop width table for 0–90 on 6.03r7.**~~ Done in run `cwid-b`. Next, run the same

@@ -14,10 +14,11 @@ CL=$1; PLAN=$(readlink -f "$2"); RUN=$3; shift 3
 [ -f $HOME/probelab/lab.env ] && . $HOME/probelab/lab.env; G=${WINELAB:?}; R=$HOME/probelab; O=$R/out/$RUN; T=$R/tools; mkdir -p $O $R/run; cd $G
 case $CL in 420) D=94; DIR=c420; EXE=Graal4.exe; FT="@2007-07-01 12:00:00"; LOG=graal4console.log;;
             524) D=91; DIR=c524; EXE=Graal.exe; FT=""; LOG=game_console.log;;
+            512) D=97; DIR=c512; EXE=Graal.exe; FT="@2007-11-19 12:00:00"; LOG=game_console.log;;
             222|231) D=93; DIR=c22x; EXE=Graal_$CL.exe; FT=""; LOG=graalconsole.log;;
             217) D=96; DIR=c22x; EXE=Graal_2171.exe; FT=""; LOG=graalconsole.log;;
             205) D=95; DIR=c205; EXE=Graal.exe; FT=""; LOG=graalconsole.log;; # needs WINELAB205 (client + GDI-renderer prefix)
-            *) echo "client 205, 217, 222, 231, 420 or 524"; exit 1;; esac
+            *) echo "client 205, 217, 222, 231, 420, 512 or 524"; exit 1;; esac
 CLASSIC=0; case $CL in 205|217|222|231) CLASSIC=1;; esac
 [ -e ns.pid ] && [ -d /proc/$(cat ns.pid) ] || sh tools/ns.sh > /dev/null
 ./k.sh "Graal4?\.exe|wine|\.exe|gen5swap|gen5probe|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null; sleep 1
@@ -31,7 +32,7 @@ if [ $CLASSIC = 1 ]; then
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server probeclassic > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14808 $LO2 14808 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"
 else
-  LB=gs2emu-hud1111; [ $CL = 524 ] && LB=gs2emu-73   # hud1111 refuses the 5.24r4 token (G3D15010)
+  LB=gs2emu-hud1111; case $CL in 512|524) LB=gs2emu-73;; esac   # hud1111 refuses the 5.24r4 token (G3D15010)
   ./E sh -c "cd $G/w && setsid nohup ./$LB --server gs1login > $O/gs-login.txt 2>&1 &"
   ./E sh -c "cd $G/w && setsid nohup ./gs2emu-73 --server gs1world > $O/gs-world.txt 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/gen5probe.py $LO1 14807 $LO2 14807 $O/proxy.log world $R/run/wine.sock > $O/proxy.out 2>&1 &"

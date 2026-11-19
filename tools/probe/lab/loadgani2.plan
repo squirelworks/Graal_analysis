@@ -1,0 +1,62 @@
+# PLO_LOADGANI (195), part 2: separate ganis per question so one override does not mask the next.
+# The client reports every gani change in PLI_PLAYERPROPS (prop 10); 157 is its UPDATEGANI request.
+waitsession 240
+wait s2c 9 90
+sleep 8
+mark A server 195 allowed: play lift once (file SETBACKTO carrystill)
+s2c 9 c:10 str:lift
+sleep 4
+mark A2 play kick once (file SETBACKTO idle), server 195 allowed
+s2c 9 c:10 str:kick
+sleep 4
+drop s2c 195
+mark B 195 kick SETBACKTO sit after kick is loaded
+s2c 195 str:kick hex:225345544241434b544f2073697422
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+mark C 195 kick SETBACKTO idle again (does a later 195 replace the override?)
+s2c 195 str:kick hex:225345544241434b544f2069646c6522
+sleep 1
+s2c 9 c:10 str:kick
+sleep 4
+mark D 195 lift SETBACKTO dead, lift loaded
+s2c 195 str:lift hex:225345544241434b544f206465616422
+sleep 1
+s2c 9 c:10 str:lift
+sleep 4
+mark E 195 hurt unquoted SETBACKTO sit (hurt first use comes after)
+s2c 9 c:10 str:hurt
+sleep 4
+s2c 195 str:hurt t:SETBACKTO_sit
+sleep 1
+s2c 9 c:10 str:hurt
+sleep 4
+mark F 195 hurt with the field unquoted and a space
+s2c 195 str:hurt hex:5345544241434b544f20736974
+sleep 1
+s2c 9 c:10 str:hurt
+sleep 4
+mark G 195 sword two SETBACKTO fields (which wins?)
+s2c 9 c:10 str:sword
+sleep 3
+s2c 195 str:sword hex:225345544241434b544f20736974222c225345544241434b544f206465616422
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark H 195 sword SETBACKTO with no name
+s2c 195 str:sword hex:225345544241434b544f2022
+sleep 1
+s2c 9 c:10 str:sword
+sleep 4
+mark I 195 grab SETBACKTO idle (grab file has no SETBACKTO), before and after its first use
+s2c 195 str:grab hex:225345544241434b544f2069646c6522
+sleep 1
+s2c 9 c:10 str:grab
+sleep 4
+s2c 195 str:grab hex:225345544241434b544f2069646c6522
+sleep 1
+s2c 9 c:10 str:grab
+sleep 4
+mark END
+sleep 2

@@ -32,6 +32,8 @@ gserver_ip = "peer"
 ' "$LO1" > $W/ls.toml
 for s in probe probelogin; do cp -a $WORLD_TEMPLATE $W/servers/$s; rm -rf $W/servers/$s/logs; mkdir $W/servers/$s/logs
   find $W/servers/$s/accounts -name "*.txt" ! -name "(defaultaccount).txt" ! -name "(npcserver).txt" -delete; done
+# EXTRA_WORLD=DIR: files copied over the world server's world folder (e.g. test ganis in DIR/ganis)
+for s in probe; do [ -n "${EXTRA_WORLD:-}" ] && [ -d "$EXTRA_WORLD" ] && cp -r "$EXTRA_WORLD"/. $W/servers/$s/world/; done
 # tile art, so the screen repaints between shots (without it, HUD digits draw over each other)
 PICS1=${PICS1:-}
 for s in probe probelogin; do [ -f "$PICS1" ] && cp "$PICS1" $W/servers/$s/world/pics1.png; done
@@ -40,6 +42,8 @@ K=$R/client/runtime-home/.graal/graal4/levels/images/downloads; mkdir -p $K; [ -
 o() { f=$W/servers/$1/config/serveroptions.txt; if grep -q "^$2 = " $f; then sed -i "s|^$2 = .*|$2 = $3|" $f; else echo "$2 = $3" >> $f; fi; }
 for s in probe probelogin; do o $s localhostlist true; o $s listport 14950; o $s listip $LO1; o $s serverinterface $LO2; o $s serverip $LO1; o $s localip $LO1; done
 o probe name "Probe Lab 603"; o probe serverport 14901; o probe heartlimit 20; o probe gmaps ""
+# WORLD_SERVERSIDE=1: run the world with its built-in NPC server (compiles GS2, e.g. gani SCRIPT sections)
+[ "${WORLD_SERVERSIDE:-0}" = 1 ] && o probe serverside true
 o probelogin name "Probe Login 603"; o probelogin serverport 14900
 o probelogin serverside true; o probelogin serversidescriptlevels "probe_login*"; o probelogin startlevel probe_login.nw; o probelogin gmaps ""
 L=$W/servers/probelogin/world/probe_login.nw; grep -E "^(GLEVNW01|BOARD)" $W/servers/probelogin/world/issho_a.nw > $L
@@ -51,10 +55,13 @@ rm -f $R/run/npc-readback.txt $R/run/npc-chatback.txt
 [ "${READBACK:-0}" = 1 ] && printf 'NPC - 30 26\nif (created||timeout) {\n  message r=#v(playerrupees) b=#v(playerbombs) a=#v(playerdarts);\n  timeout = 0.5;\n}\nNPCEND\n' > $R/run/npc-readback.txt
 # CHATBACK=1: a level NPC (GS1, run by the client) that copies the client's own bomb and gralat counts
 # into the player's chat, so the client reports them to the server (read by chatcanary.py; no screen needed)
-[ "${CHATBACK:-0}" = 1 ] && printf 'NPC - 30 27\nif (created||timeout) {\n  setplayerprop #c,b#v(playerbombs) r#v(playerrupees) x#v(x);\n  timeout = 0.3;\n}\nNPCEND\n' > $R/run/npc-chatback.txt
+GF=""; [ "${CHATGANI:-0}" = 1 ] && GF=" g#m"   # CHATGANI=1: also report the current gani
+[ "${CHATBACK:-0}" = 1 ] && printf 'NPC - 30 27\nif (created||timeout) {\n  setplayerprop #c,b#v(playerbombs) r#v(playerrupees) x#v(x)%s;\n  timeout = 0.3;\n}\nNPCEND\n' "$GF" > $R/run/npc-chatback.txt
 # put those NPCs right after the board (the level's last block is a SIGN with no SIGNEND, which would swallow them)
 SL=$W/servers/probe/world/issho_a.nw; rm -f $R/run/npc-add.txt
-for f in readback chatback; do [ -f $R/run/npc-$f.txt ] && cat $R/run/npc-$f.txt >> $R/run/npc-add.txt && rm $R/run/npc-$f.txt; done
+# EXTRA_NPC=FILE: one more level NPC block (NPC ... NPCEND) put after the board as well
+[ -n "${EXTRA_NPC:-}" ] && [ -f "$EXTRA_NPC" ] && cp "$EXTRA_NPC" $R/run/npc-extra.txt
+for f in readback chatback extra; do [ -f $R/run/npc-$f.txt ] && cat $R/run/npc-$f.txt >> $R/run/npc-add.txt && rm $R/run/npc-$f.txt; done
 [ -f $R/run/npc-add.txt ] && awk -v F=$R/run/npc-add.txt '{print} /^BOARD 0 63 /{while ((getline l < F) > 0) print l}' $SL > $SL.new && mv $SL.new $SL
 A="$W/servers/probe/accounts/(defaultaccount).txt"
 a() { sed -i "s|^$1 .*|$1 $2|" "$A"; }
