@@ -110,7 +110,7 @@ Ctrl and a letter shows an emote. The rules below give the keys, how the image i
 | lookup | the letter is lowercased and the client takes the first loaded file whose name starts with `emoticon_<letter>` and ends in png, mng or gif; there is no letter-to-name table, so the mapping is whatever files exist | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes); [2.05] (client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md#emotes-ctrlletter) |
 | drawing | at the player's x + 2, y − 5 (a little lower when a second flag is set) for 50 ticks (2.5 s) | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | network | the key path sends nothing; `PLI_SHOWIMG` (24) is sent only by the script command `showimg` (→ §8.2) | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
-| others seeing it | unmeasured: captured SHOWIMG frames re-sending an AFK image about every 3 s are not explained by the key path (→ App. E#322) | [cap][inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| others seeing it | nothing: on 2.05 rev 2 a key emote sends only a one-time file check for its image, no `PLI_SHOWIMG` and no props, so the captured AFK frames came from a server script (→ App. E#322) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 | earlier builds | 1.38 introduced Ctrl+letter emotes, and 1.39 added letters | [doc] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 
 ## 4.10.4 Picking up and dropping items online
