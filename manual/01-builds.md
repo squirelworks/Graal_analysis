@@ -98,7 +98,7 @@ Three facts settle which compiler built a client: the PE header and runtime stri
 | --- | --- | --- | --- |
 | all Delphi builds | Borland Delphi, linker 2.25, DelphiX for DirectDraw, RTL copyright "1983,97 Borland" | PE header and RTL strings | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | 2nd Graal; 1.28 beta 2 and later | Delphi 4 | Delphi 3+ class-metadata layout (self pointer 76, name 44 bytes before the VMT) and `TMultiReadExclusiveWriteSynchronizer` linked | [bin] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| 1st Graal; 3rd Graal to 1.1.9; 1.21 | disputed → App. E#1 | Delphi 2 class-metadata layout (64 and 32 bytes) but a 1997 RTL string | [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
+| 1st Graal; 3rd Graal to 1.1.9; 1.21 | inferred → App. E#1 | a 64-byte class self pointer (shorter than shipping Delphi 3's) with a 1997 RTL string, but also `SysInit`, language interfaces and package information, which are Delphi 3 features; no C++ start-up, so not C++Builder 1. Probably a pre-release Delphi 3 | [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#compiler-of-the-early-delphi-builds-e1) |
 
 ### 1.1.3 Companion executables in the 1998 to 2001 archives
 

@@ -59,6 +59,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [2.05 and 2.22 edge-link probe offsets](protocol/link-probe-offsets-205-222-2026-11-19.md) — the per-facing probe table, the same in both builds, and walking past the edge with the neighbour loaded.
 - [Appendix E lab runs on GwenTea2 (2026-11-20)](protocol/lab-appe-gwentea2-2026-11-20.md) — key emote, 4.20r8 class path, shot byte, NPC prop widths, walls, links, file checks, gmap entry, GS1 truth and member writes, GS2 top level and `format`, 4.04r2 class CRC.
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
+- [Static reads for Appendix E (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20.md) — the 2.22 tick source, the early Delphi compiler, 1.21 and 1.32 send ids, the 2.31 window blacklist, GS2-only names, 4.04r2 `.mis`/`.dso`, `Z3-V1.02`.
 - [Missing-file replies on 5.12 (gap #37)](protocol/filesendfailed-512-status.md) — 30 layout and 2.05 empty-file settle settled; one-per-name count on 5.12 still needs lab.
 - [RC props tail / SET2 byte / PLO 124 (gap #42)](protocol/rc-props-flags-status.md) — tail shape settled; flag vs chest counts and 76 last byte open; 124 body discarded by RC3.
 - [PLO 108 sub 1 and PLO 168 focus status](protocol/plo108-168-focus-status.md) — 168 = logged-in flag (medium on the name); 108 sub 1 unread outside ping, no effect on 6.03r7 in the #254 lab; static + prior lab.
