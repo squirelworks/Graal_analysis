@@ -215,9 +215,10 @@ def junk_in(d, key, body):
 
 def frame(s, d, key, payload):
     if s.gen == 5:
-        comp = payload if d.typ == 2 else zlib.compress(payload, 9) if d.typ == 4 else bz2.compress(payload)
-        enc, d.ostate = crypt(comp, key, d.ostate, d.typ)
-        return (len(enc) + 1).to_bytes(2, 'big') + bytes([d.typ]) + enc
+        typ = 4 if d.typ == 2 and len(payload) > 60000 else d.typ  # an uncompressed frame cannot exceed the u16 length
+        comp = payload if typ == 2 else zlib.compress(payload, 9) if typ == 4 else bz2.compress(payload)
+        enc, d.ostate = crypt(comp, key, d.ostate, typ)
+        return (len(enc) + 1).to_bytes(2, 'big') + bytes([typ]) + enc
     if s.gen == 3 and d.name == 'C>S':
         payload = junk_out(d, key, payload)
     if s.gen == 4:  # bz2 body, then the partial XOR (unverified: no gen-4 client is held)

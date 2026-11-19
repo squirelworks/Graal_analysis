@@ -303,3 +303,4 @@ Only `waitfor` needs a newer VM than the oldest 4.x. Everything else in the Delt
 - Who emits 164, if anyone, and a live run that reaches it.
 - Each handler's effect on 5.30r3 and 7.12.43 (only the case set was read). The 6.1.1.3 effects are in `gs2-unpacked-6113.md`.
 - 5.00r7 and 5.12 from the shipped DLLs rather than the earlier export.
+- Live runs of every undispatched byte, the raw fold bytes and opcodes 45–54, 66, 67, 104 and 121 on 6.03r7, 5.24r4 and 4.20r8 are in `script-fuzz-2026-11-19.md`. 48 and 49 still need a build that dispatches them.
