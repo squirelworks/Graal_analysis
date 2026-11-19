@@ -171,7 +171,7 @@ Player administration was captured on the wire from a 2004 RC. Each row gives a 
 | S→RC | 55 ADDPLAYER | `s player id`, `str account`, then props as id + value | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
 | RC→S | 73 RC_PLAYERPROPSGET2 | `s player id` | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | S→RC | 72 RC_PLAYERPROPSGET | `s player id`, `str account`, `str world`, `c n`, n bytes of props, tail | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| RC→S | 76 RC_PLAYERPROPSSET2 | `str account`, `str world`, `c n`, n bytes of props, tail, then one more byte (0 seen; → App. E#421) | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| RC→S | 76 RC_PLAYERPROPSSET2 | `str account`, `str world`, `c n`, n bytes of props, tail, then `str` copied back from an optional string after the weapons in the server's 72 (empty when 72 has none, which shows as one byte 0; → App. E#421) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
 | both | props tail | `s`, `s` (flag and chest counts, order unseen → App. E#420), `c weapon count`, `str` per weapon | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | RC→S | 83 RC_PLAYERRIGHTSGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | S→RC | 62 RC_PLAYERRIGHTSGET | `str account`, `i5 rights`, `str IP range`, `s n` + n bytes of folder rights | [cap] (protocol/rc-capture-2026-11-04.md#rights) |

@@ -121,7 +121,7 @@ Builds that carry the group test's delimiter set, by a constant scan, with the r
 | 1.1 to 1.36 | absent | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 1.37, 1.38, 1.39, 1.41 | present | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.00 to 2.05 rev 2, NewMain 24 and 26, NewWorld beta 1 | present (rule read in all 2.00 to 2.05 builds) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
-| 2.1 test 2 and 3, NewWorld beta 2 | absent; their entry code not read (→ App. E#315) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
+| 2.1 test 2 and 3, NewWorld beta 2 | absent; 2.1 test 2 and 3 read: 2.17.1's rule, no group test; NewWorld beta 2 not read (→ App. E#315) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315); [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.17.1, 2.22, 2.31 | absent; entry code read, no group test | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 
 ## 4.4.5 Server side (GServer-v2)

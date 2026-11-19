@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; lab runs on 2026-11-20 moved E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -55,7 +55,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#206 | `move` caller side in 2.05 | Read | one queued step per frame | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#208 | Whether 3.153 uses OpenGS1's layout | Read | no | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| E#209 | GS2 VM details left open by the per-build read | Read | opcode 54 pops two values in 5.00r7 too | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| E#209 | GS2 VM details left open by the per-build read | Read | 48, 49 and 54 settled on 5.00r7; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
 | E#213 | How GS2 text bytes draw on screen | Lab | through the Windows code page, so Latin-1 on Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
@@ -63,17 +63,14 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#215 | When GS2-only names arrived, and what a missing name does | Lab | all eight in the January 2007 4.20 engine; a missing name logs an error and the script goes on | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 | E#300 | Tick timing of three early builds | Lab | 50 ms, as later builds | [inf] (client-internals/early-form-timers-2026-11-09.md#validation-and-remaining-questions) |
 | E#302 | Walking speed factors 0.4 and 0.8 | Lab | 0.8 while carrying a heavy object, 0.4 in water or a slowing state | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| E#303 | Two lists in the blocked-point test | Read | other players and baddies | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| E#307 | 1.39 movement tables | Read | the same tables as 2.05 (shared probe block) | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 | E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
 | E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
 | E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
 | E#311 | Blast hit zone and full-heart hits | Read | two overlapping blast pieces hitting in one tick | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
 | E#312 | The last byte of a shot | Read | a type field whose low values mean harmless or friendly | [inf] (client-internals/damage-sources.md#shot-19) |
-| E#315 | Level-entry save in the 2.1 test builds | Read | every entry saves | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| E#317 | 1.x pickup box and item draw order | Read | items draw under players | [inf] (client-internals/item-drops.md#open) |
+| E#317 | 1.x pickup box and item draw order | Read and Lab | the 1.39 player box is the 2 × 2 body box; item box size and draw order open | [inf] (client-internals/item-drops.md#open) |
 | E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
@@ -88,7 +85,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#420 | Flag and chest counts in the RC props tail | Lab | flags first, then chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| E#421 | The last byte of `RC_PLAYERPROPSSET2` | Read | a "save now" or "notify player" flag | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#423 | The 1999 servers' open rules | Lab | the 1.3 test client works against them | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 | E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
@@ -99,7 +95,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
 | E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | Lab | the static server order works as read | [inf] (torque/protocol19-server.md#open) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 marks a drawing variant; servers sent none | [inf] (torque/304-tile-types.md#not-settled) |
-| E#603 | Whole tiles and fractions in level records | Read | link boxes are fractional, record positions whole | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
 | E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -406,18 +401,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Outlook | Read | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
 
 
-### E#603 Whole tiles and fractions in level records
-
-**Question.** Which level-record fields hold whole tiles and which take fractions [srv] (formats/level-binary.md#records).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Coordinates in the binary level records are whole tiles | [srv] (formats/level-binary.md#records) |
-| Claim B | `Z3-V1.03` link numbers are floating point and include halves such as `43.5`; GLEVNW01 allows fractional NPC positions; of 18,710 arrival fields in an archive, 12,035 were plain numbers, halves included | [srv] (formats/level-binary.md#z3-v1-differences); [GE] (formats/glevnw01.txt); [test] (client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md) |
-| Tried | The Windows 4.04r2 reader: link boxes are floating point; arrivals stay text; baddy positions are raw bytes and NPC, chest and sign positions bytes minus 32, all whole | [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-| Best guess | In binary records, link boxes are fractional and every other position is whole; text formats allow fractions where the 4.04r2 reader shows floats. Confidence: moderate | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-| Settles it | A field list for link box, link arrival, baddy, NPC, chest and sign, each with its stated type and one real file of each magic | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
-| Outlook | Read | [doc] (docs/book/04-where-the-notes-disagree.md#whole-tiles-and-fractions) |
 
 ### E#604 Where a binary sign list ends
 
@@ -462,17 +445,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | A lab walk in each candidate state on 2.05 (riding, shield, carrying each object kind, water) | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 
-### E#303 Two unidentified lists in the blocked-point test
-
-**Question.** What fills two object lists that the blocked-point test reads [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | One list holds objects with two flags and a player-sized body box (read only with a client option on); the other holds 1.5 x 2 boxes with an enabled flag | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Best guess | The first is other players (the option is player collision) and the second is NPCs or baddies with a blocking flag. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settles it | Tracing what fills each list, or walking into each kind of level object in the lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
 ### E#304 Stopping positions and the wire rounding of nudged positions
 
 **Question.** Where a player stops after a blocked step, and how a position that is not on a half tile is rounded when sent [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
@@ -497,19 +469,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | The traced field is another per-tick counter, and the second run used the server's own push gani, so Claim A stands. Confidence: moderate | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
 | Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
 | Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
-
-### E#307 Probe, nudge and step tables of 1.39
-
-**Question.** The numeric movement tables of 1.39; 1st Graal's are now read [bin] (client-internals/first-graal-movement-2026-11-09.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | 1st Graal's exact step, six ordered probes, one-eighth-tile nudges and stepped-axis snapping are in → §4.2.2.3 | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
-| Evidence | For 1.39, six probes and the blocked-step counter shape were read, without the numbers | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
-| Tried (2026-11-19) | 1.39 holds the same 64-byte probe-offset block as 2.05 and 2.22, byte for byte; the six-probe and nudge tables were not extracted | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#139-movement-e307) |
-| Best guess | 1.39 uses the same tables as 2.05, since the probe count, counter shape and probe-offset block match. Confidence: moderate to high | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
-| Settles it | Recover the 1.39 tables, then validate the runtime gates on exact inputs | [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
-| Outlook | Read | [1.39] (version-profiles/matrix/rules-139.md#still-open) |
 
 ### E#308 Link probe offsets and the neighbour-table flag
 
@@ -575,16 +534,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | Reading the 2.22 shot receiver, or the same sweep against the server of the 2026-10-25 lab | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Outlook | Read | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 
-### E#315 The level-entry save in the 2.1 test builds
-
-**Question.** How the 2.1 test builds save the entry point, which is expected to differ from 2.05 [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | 2.1 test 2 and 3 lack the delimiter constant of the name-group test, so they are expected to have no group test; their entry code was not read | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| Best guess | Every level entry saves the respawn point. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
-| Settles it | Reading the entry routine of the two builds | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
-| Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
 
 ### E#317 The 1.x pickup box and item draw order
 
@@ -593,8 +542,9 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Only 1.3's pixel overlap for picking up a floor item was read | [bin] (client-internals/item-drops.md#open) |
+| Tried (2026-11-20) | 1.39 tests a strict overlap in eighths of a tile between the player's 2 × 2 body box (x + 0.5 to x + 2.5, y + 1 to y + 3) and an item box centred across x + 1 from y + 1/8, sized from the item sprite's stored size; online it then sends 32. The size's unit and the draw order were not read | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-139-pickup-test-e317) |
 | Best guess | Items draw under players, as level objects do. Confidence: moderate | [inf] (client-internals/item-drops.md#open) |
-| Settles it | Reading the pickup test of 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
+| Settles it | The unit of the item sprite size in 1.39, and a screenshot of a player standing on an item | [inf] (client-internals/item-drops.md#open) |
 | Outlook | Read and Lab | [inf] (client-internals/item-drops.md#open) |
 
 ### E#319 The single-player start levels
@@ -800,17 +750,6 @@ These questions are about the programs on the other side of the connection (→ 
 | Settles it | A capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 | Outlook | Lab | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 
-### E#421 The last byte of RC_PLAYERPROPSSET2
-
-**Question.** What the one byte the 2004 RC adds at the end of 76 means; the server's 72 has no such byte [cap] (protocol/rc-capture-2026-11-04.md#player-props).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The byte follows the weapons and was 0 in the only capture; staff tooling should keep it as unknown | [cap] (protocol/rc-props-flags-status.md) |
-| Best guess | A dialog option such as "apply now" or "notify the player", sent only from the edit dialog. Confidence: low | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settles it | A static read of the RC's 76 builder, or a capture after changing each dialog field | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Outlook | Read | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-
 ### E#422 Quoting of folder rights
 
 **Question.** Whether the original server stored folder rights in the RC's CSV form [cap] (protocol/rc-capture-2026-11-04.md#rights).
@@ -969,13 +908,14 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | 6.x loop limit | 5.24r4 to 5.31r4 still name the property `maxlooplimit`; 6.00r2 and 6.00r4 keep the field under a scrambled name | [bin] (client-internals/gs2-vm-by-version.md#limits); [doc] (client-internals/gs2-vm-loader-diff.md#524r4-530r3-531r4-600r2-and-600r4-windows) |
 | Unread builds | Windows 4.04r2, 5.12 and 5.24r4 to 6.00r4 are now read; still unread are Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, Classic other than 1.8, and 7.x (out of scope) | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | Tried (2026-11-19) | Script fuzz on 6.03r7, 5.24r4 and 4.20r8: setting `maxlooplimit` works on 6.03r7 and 5.24r4 (50 reads back as 100; 2000000 lets a 20000-pass loop stop as expected), so 6.03r7 still takes the property by that name; opcode 54 on 6.03r7 and 5.24r4 matches the two-value prediction for every push order and is not dispatched on 4.20r8; opcodes 48 and 49 give an empty value on 4.20r8 and 5.24r4 and crash 6.03r7, so their operand order still needs 5.00r7 or 5.12, which dispatch them | [lab] (protocol/script-fuzz-2026-11-19.md) |
-| Best guess | Opcode 54 pops two values in 5.00r7 as in 6.1.1.3; 48 and 49 take the object before the member name; the 6.x property is still `maxlooplimit` under the scrambling. Confidence: moderate, low, moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| Settled (2026-11-20) | On 5.00r7, 54 consumes three values, pushed as object, member name, value, then runs the opcode-50 store. 49 pops up to its clamped count and appends in pop order, so the list is in reverse push order. 48 builds an object from pairs pushed name then value, but its loop counter counts up, so with a positive count it takes pairs until two or fewer values remain | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) |
+| Best guess | The 6.x property is still `maxlooplimit` under the scrambling, as the fuzz run shows for 6.03r7. The remaining items are the unread builds. Confidence: moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | Outlook | Read | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
 
 The work list carried from the difference table:
 
-- [ ] Prove opcodes 48 and 49's operand order on 5.00r7. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
-- [ ] Pick one pop count for opcode 54 on 5.00r7. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
+- [x] ~~Prove opcodes 48 and 49's operand order on 5.00r7.~~ Settled by the 2026-11-20 read [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
+- [x] ~~Pick one pop count for opcode 54 on 5.00r7.~~ Three values [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 - [ ] Recover the 6.x loop-limit property name. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 - [ ] Read the VMs still marked open in the difference table, including event-name case (`onTimeout` / `onTimeOut`) and the client match for `onActionServerSide`. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 
@@ -1352,6 +1292,17 @@ The frame loop of the 3.x and 4.x clients was untimed; a 2026-11 lab settled it 
 | Settled | 50 ms steps, one render per step, 8 pixels per walk step for every 3.04, 4.04r2, 4.20r6 and 6.03r7 client; 3.x and 4.x slow down when behind, 6.03r7 makes up one step and drops the rest; GS1 `timeout` counts whole steps rounded down on the C++ engine (→ §4.1.7) | [lab][cap] (client-internals/update-cadence-3x-6x.md#measurements) |
 | Later | 1.33 to 2.31 and 5.00r7 round a GS1 `timeout` down; 2.22 and 2.31 play one walk frame per step; Linux 6.03r7 GS2 timers round up to 50 ms steps (→ §4.1.8). The `onTimeout` / `onTimeOut` spelling by client is tracked in → App. E#209 | [lab] (live-runs/open-issues-2026-11-14/README.md#2-443-gameplay-rules-timing-and-live-checks); [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [inf] (version-profiles/matrix/README.md#what-is-still-unknown) |
 
+### E#303 Two unidentified lists in the blocked-point test (settled)
+
+What fills the two object lists that the 2.05 blocked-point test reads was open; a static read of what adds to each list settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | One list of player-sized boxes with two flags, read only with a "client option" on; one list of 1.5 × 2 boxes with an enabled flag. Best guess: other players, and NPCs or baddies | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settled | The 1.5 × 2 list is the level's bombs: only placing a bomb and putting down a carried bomb add to it, each setting the enabled flag. The player-sized list is the level's list of players. The "option" is a temporary flag that a few movement routines set around their own probes and the walking step clears, and the test also needs the client to be online | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| Verdict | Half right: the first list is players, as guessed, but ordinary walking does not test it; the second is bombs, not NPCs or baddies | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| Left over | Which movement routines set the players flag; whether 2.22 and 2.31 keep the same lists | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+
 ### E#306 What picks `lift2.wav` for a pull (settled)
 
 Which flag makes a successful pull play `lift2.wav` instead of `lift.wav` was open; a static read of 2.05 settled it [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205).
@@ -1362,6 +1313,17 @@ Which flag makes a successful pull play `lift2.wav` instead of `lift.wav` was op
 | Settled | The choice reads a byte of the object being lifted or pulled, not a player flag: non-zero plays `lift.wav`, zero plays `lift2.wav` | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
 | Verdict | Verified by static read; the earlier note named the wrong owner of the flag | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
 | Left over | What the byte means for each object kind | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+
+### E#307 Probe, nudge and step tables of 1.39 (settled)
+
+The numeric movement tables of 1.39 were open; a static read of its constant block settled them [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Six probes and the blocked-step counter shape were known without numbers; best guess the same tables as 2.05 | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab); [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| Settled | 1.39 keeps 1st Graal's inner probe points (x 0.6, 1.4, 1.6, 2.4; y 1.1, 1.9, 2.1, 2.9) and its ±0.125 nudge, but uses 2.05's edge lines (y 1.0 and 3.0, x 0.5 and 2.5); points 4 and 5 (2.525, 0.475, 3.025, 0.975) and the half-tile step are the same in all three builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
+| Verdict | The guess was wrong: 1.39 is between 1st Graal and 2.05. 2.05 moves the inner points 0.075 outwards and makes the nudge 0.1. The 0.125 nudge agrees with the live 1.39 run | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
+| Left over | The 1.39 refusal and snap branches were not compared instruction by instruction | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
 
 ### E#313 Do arrows and fireballs pass walls (settled)
 
@@ -1383,6 +1345,17 @@ Whether entering a gmap from outside saves the respawn point was open; a 2.22 la
 | Settled | On 2.22, a player who walks into a 2 x 2 gmap from a plain level and then dies is sent back to the gmap entry point, not the start level | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
 | Verdict | Verified on 2.22, and on 2.17.1 for a death in the first cell; the best guess held | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
 | Also measured | A death after crossing a seam inside the gmap also returns to the entry point, so a seam crossing saves nothing new; 2.17.1 asks for the same entry point after a death | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+
+### E#315 The level-entry save in the 2.1 test builds (settled)
+
+How the 2.1 test builds save the entry point was open; a static read of their entry decision settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The builds lack the name-group delimiter constant; best guess every level entry saves | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| Settled | 2.1 test 2 and 3 run 2.17.1's rule: save at login or when the product of the two levels' gmap-list indices is negative, otherwise do not save; no group test; no gmap gives −1 for both | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+| Verdict | The guess was wrong; ordinary level changes keep the old respawn point | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+| Left over | NewWorld beta 2, which also lacks the constant, was not read | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
 
 ### E#316 Glove power steps (settled)
 
@@ -1423,6 +1396,7 @@ How other players see a Ctrl+letter emote was open, because captures showed AFK 
 | Before | Captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | Settled | On 2.05 rev 2, Ctrl+A draws the AFK bubble locally and sends only one file check (34) for its image, once per session; Ctrl+S and Ctrl+D likewise; no `PLI_SHOWIMG` and no props leave the client, so the server has nothing to relay | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 | Verdict | Verified: others do not see a key emote; the captured AFK frames came from a server script | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
+
 ### E#328 What drives 2.22's tick (settled)
 
 Whether 2.22's game step runs from a 50 ms multimedia timer or from the idle handler behind a 50 ms gate was open; a static read of the timer's creation settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328).
@@ -1444,6 +1418,17 @@ Which RC builds send `GSERV025` was open while only the earlier RC builds had be
 | Settled | RC2 2.05, RC3 and the 2006-01-20 Linux RC send `GSERV025`; the 2005-12-09 Linux RC and the 2004 RC (login type 6) send `GSERV024`. The token changed between December 2005 and January 2006 | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [bin] (tools/remotecontrol.md#logins-bin); [lab] (protocol/rc-fuzz-2026-11-19.md) |
 | Verdict | Verified for every held official RC build. A server should accept both tokens | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
 | Left over | The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer | [inf] (tools/remotecontrol-lineage.md) |
+
+### E#421 The last byte of RC_PLAYERPROPSSET2 (settled)
+
+What the extra byte the 2004 RC puts at the end of 76 means was open; a static read of the RC's 76 builder and 72 parser settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | One byte after the weapons, 0 in the only capture; best guess a dialog option | [cap] (protocol/rc-props-flags-status.md) |
+| Settled | It is the length byte of an empty string. The RC keeps one optional length-prefixed string that may follow the weapon list in the server's 72, never edits it, and writes it back at the end of 76. The GServer-v2 72 has no such string, so the RC sends it empty | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| Verdict | The guess was wrong; it is an echoed field, not a dialog option | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| Left over | What an older server put in that string | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
 
 ### E#500 Back clipping plane of the Graal3D client (settled)
 
@@ -1485,6 +1470,7 @@ Whether the client evaluates an offset in a link's arrival field, such as `playe
 | Claims | A: arrival fields may hold `playerx` or `playery` plus an offset, and 21 archived arrivals do. B: the editors store the text verbatim | [2.22] (tools/level-editor/222-reference.md#8-links); [2.22] (tools/level-editor/formats-crossref.md#batch-f-decomp-findings-2026-10-25-f-pr-39) |
 | Settled | On 2.22 a link with arrival `playerx playery+10`, entered at y about 20, sent the player to (30, 30); a plain `30 40` control arrived at (30, 40). The client evaluates the expression; the editors only store it | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
 | Verdict | Verified on 2.22; both claims hold, at different stages | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
+
 ### E#602 Code width of `Z3-V1` boards (settled)
 
 How many bits a board code uses in `Z3-V1.02` was disputed between the server source and the client readers; a check of every client's magic list settled why both are right [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602).
@@ -1495,6 +1481,17 @@ How many bits a board code uses in `Z3-V1.02` was disputed between the server so
 | Settled | Every Windows client exe held from 1st Graal to 6.00r4 lists only `Z3-V1.03` and `Z3-V1.04`; none holds `Z3-V1.02` | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602) |
 | Verdict | Verified: no Graal client reads `.02`, so the 12-bit readers never meet an 11-bit board | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602) |
 | Left over | The 11-bit width rests on the server source alone; a real `.02` file decoded both ways would confirm it | [inf] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
+
+### E#603 Whole tiles and fractions in level records (settled for 2.05 and 4.04r2)
+
+Which binary level-record fields hold whole tiles and which take fractions was disputed; a static read of the 2.05 reader, beside the earlier 4.04r2 read, settled it for both builds [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: coordinates are whole tiles. Claim B: link numbers can be halves such as `43.5`. Best guess: link boxes fractional, every other position whole | [srv] (formats/level-binary.md#records); [srv] (formats/level-binary.md#z3-v1-differences); [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Settled | 2.05 parses a link's x, y, width and height as numbers and rounds each to a whole tile; arrivals stay text expressions; baddy (raw byte), NPC, chest and sign (byte − 32) positions are whole. 4.04r2 keeps link boxes as floating point and the other positions whole | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603); [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Verdict | Build-dependent: the best guess holds for 4.04r2; in 2.05 a fractional link box is rounded, so both claims are right for different builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
+| Left over | 2.22 and 2.31, which were not read for this field | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 
 ### E#605 Client listserver frames in two vocabularies (settled)
 
