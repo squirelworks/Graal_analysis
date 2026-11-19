@@ -18,7 +18,7 @@
 #     (mesa-dri pulls i386 llvmpipe, used via LIBGL_ALWAYS_SOFTWARE=1 under Xvfb).
 #   * license/ subdir: the autopackage extraction flattens it, but the client hard-exits at
 #     startup unless data/license/{sig.graal,sig.license,license.graal} exist. license.graal is
-#     the server config (loginserver.graalonline.com:14900 for 4.x); hostshim maps that host to
+#     the server config the official login-server host on port 14900 for 4.x; hostshim maps that host to
 #     $LO1, so no portmap is needed.
 #   * arial X font: the client loads "arial" as an X core font (fallback helvetica) via
 #     XLoadQueryFont("-*-arial-medium-r-*-*-SIZE-*..."). A bare Xvfb has no fonts, which disables
@@ -68,7 +68,7 @@ export DISPLAY=:$DISP
 [ -e /tmp/.X11-unix/X$DISP ] && { echo "display :$DISP in use"; exit 1; }
 FP=/usr/share/fonts/X11/misc,/usr/share/fonts/X11/75dpi,/usr/share/fonts/X11/100dpi,/usr/share/fonts/X11/Type1,$HOME/labfonts
 Xvfb :$DISP -screen 0 1280x1024x24 -nolisten tcp -fp "$FP" > $O/xvfb.log 2>&1 & XV=$!; sleep 2
-# --- inner: servers + proxies + client (hostshim32 redirects *.graalonline.com -> LO1) ---
+# --- inner: servers + proxies + client (hostshim32 redirects the official Graal hostnames -> LO1) ---
 cat > $R/run/inner.sh <<IN
 ip addr add $LO2/8 dev lo 2>/dev/null; ip link set lo up 2>/dev/null
 (cd $W && ./seihai-listserver --config ./ls.toml > $O/listserver.txt 2>&1 &)

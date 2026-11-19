@@ -22,7 +22,7 @@ things had to be added to drive them (all documented in the header of `run4x.sh`
    `LIBGL_ALWAYS_SOFTWARE=1`.
 2. **`license/` subdir.** The autopackage extraction flattens it, but the client hard-exits at
    startup unless `license/{sig.graal,sig.license,license.graal}` exist. `license.graal` is the
-   server config: for 4.x it names `loginserver.graalonline.com:14900`, which the LD_PRELOAD
+   server config: for 4.x it names the official login-server host on port 14900, which the LD_PRELOAD
    `hostshim` maps to loopback — so no port remap is needed.
 3. **An "arial" X font.** The client loads `arial` (fallback `helvetica`) as an X **core** font via
    `XLoadQueryFont("-*-arial-medium-r-*-*-SIZE-*...")`. A bare Xvfb has no fonts, which disables
@@ -89,7 +89,7 @@ no desync.
 ## Not yet covered (follow-ons)
 
 - **3.04 (and 3.0b/3.01/3.151) Linux.** Same engine, but `license.graal` points at a **listserver**
-  (`listserver.graalonline.com:14922`), not the 4.x login-server+serverwarp flow — needs a
+  (the official list-server host on port 14922), not the 4.x login-server+serverwarp flow — needs a
   listserver-shaped harness, and a check that the 3.x login is gen-5 (its login decoded as gen-5 in
   a smoke run; to be confirmed on a real session).
 - **6.015 Mac** in the Lion VM, and the **PPC Mac** 3.153/4.x/5.12 builds (need a Tiger/PPC
