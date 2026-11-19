@@ -1,8 +1,9 @@
 # Open-issue lab run, 2026-11-19
 
 Lab run for #443 (drop control, 1.21, sword spark, 6.x timer), #245 (login default checks),
-#619 (tiledef type 4) and #398 (the action list on Linux 6.03r7). Every run was offline, in
-the Debian lab VM, on lab servers at the loopback address and lab ports. Raw logs and
+#619 (tiledef type 4) and #398 (the action list on Linux 6.03r7 and on real Windows 4.20r8
+to 6.03r7). Every run was offline, in the Debian lab VM and the Windows 10 lab VM, on lab
+servers at the loopback address and lab ports. Raw logs and
 screenshots are kept privately; this page has the derived results. **[lab]**
 
 ## Setup
@@ -128,20 +129,52 @@ actor sent it and the observer saw it. The observer saw every gani the actor sen
 - Prop 81 (`PLAYERLISTCATEGORY`): not run. 6.03r7 has no key that opens a player list here;
   on 6.x the list is a script window, which the lab server does not provide.
 
-## Real Windows 6.03r7 on the Debian lab server
+## 7. #398: the action list on real Windows 4.20r8 to 6.03r7
 
-Real Windows 6.03r7 reached the fixture level through the lobby of a lab server in the Debian
-VM, once the proxy kept `LISTPROCESSES` (182) out of the login burst. That server build was
-older than the seihai-gserver#158 fix for 182. The Windows action rows were not run.
+Real, unchanged Windows clients in the Windows 10 lab VM, each with the guest clock at its
+build's era (as in [real-win10-2026-11-18](../real-win10-2026-11-18/README.md)), logged in
+through the Login lobby of a lab server in the Debian VM, on lab ports only. The logging proxy
+kept `LISTPROCESSES` (182) out of the burst, since it crashes Windows 6.03r7 and that server
+build predates the seihai-gserver#158 fix, and sent the two packets that close the
+"Connecting…" box. The player was placed with props 15/16. Keys went in as VirtualBox scan
+codes after one click inside the game window; without that click no key reached any build.
+There was no observer client: a pass here means the server received the action from the player.
+
+| Action | 4.20r8 | 5.00r7 | 5.12 | 5.24r4 | 6.03r7 |
+| --- | --- | --- | --- | --- | --- |
+| walk | 4/4 | 4/4 | 4/4 | 4/4 | 4/4 |
+| sword | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+| spin chest | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+| glove chest | 0/1 | 0/1 | 0/1 | 0/1 | 0/1 |
+| spin (double-tap S) | 0/3 ‡ | 0/3 ‡ | 0/3 ‡ | 0/3 ‡ | 0/3 ‡ |
+| wall push | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+| wall grab-and-pull | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+| block push | 3/3 | 3/3 | 3/3 | 3/3 | 1/3 |
+| block pull | 5/5 | 5/5 | 5/5 | 5/5 | 5/5 |
+| bush lift | 3/3 | 3/3 | 3/3 | 3/3 | 3/3 |
+| throw | 3/3 | 3/3 | 3/3 | 3/3 | 3/3 |
+| hide | 3/8 | 3/8 | 3/8 | 3/8 | 3/8 |
+| swim | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+| chat | 1/1 | 0/1 | 0/1 | 0/1 | 0/1 |
+| level link | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+
+‡ Not a client result: each VirtualBox key event takes about 0.1 s, too slow for the double tap.
+
+- **Hide:** lifting the bush and then pressing D hides, 2/2 on every build. Pressing A again,
+  or S, never hides.
+- **Block push on 6.03r7:** the two pushes on the push/pull stone did not register.
+- **Glove chest:** 0/1 on every Windows build and on Linux 6.03r7. The client never sends the
+  open-chest packet, so the fixture's glove chest itself is suspect.
+- **Chat:** 5.x and 6.x show no chat line unless the server sends a chat script. 4.20r8 does
+  without one.
 
 ## Still open after this run
 
 Tracked in #652:
 
-
 - 1.21: dropped gralat or direct reward (a sword kill one tile further away did not reach the archer; a ranged kill needs 1.21's item keys).
 - 2.17.1 drop check.
 - The sword spark.
 - Tiledef type 4 draw and walk.
-- The #398 action list on Windows 4.20r8 to 6.03r7.
+- Spin on the Windows builds (needs a faster input path), and the fixture's glove chest.
 - Prop 81's effect on the player list.
