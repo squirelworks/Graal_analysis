@@ -221,6 +221,18 @@ These rules come from running real clients against GServer-v2 builds and fixing 
 
 Real 2.05 rev 2, 2.17.1 and 2.22 reach the game and walk on a GServer-v2 build with these fixes, and real 1.33 to 1.39 play on its classic server [lab] (tools/lab-servers/README.md#tests-run-2026-10-30).
 
+#### Every client-to-server id at a GServer-v2 build
+
+Our GServer-v2 lab build was sent every id 0–223 with an empty body from a live 6.03r7 session, then one baddy of each type [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build).
+
+| Rule | Source |
+| --- | --- |
+| It handles 0–41, 44, 46–48, 50, 80, 81, 130, 152, 154, 157–159, 161 and 223; every other id from 18 to 223 (168 ids) is unknown to it | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| Each unknown id is logged and counted; after three it sends `PLO_DISCMESSAGE` and drops the client, and 6.03r7 then logs in again by itself | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| Some handled ids do not check an empty body: 17 (`PLI_BADDYADD`) made a type-224 baddy that ended the 6.03r7 session; 31, 41 and 130 logged junk values | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| 39 (`PLI_TAMPERCHECK`) gets no reply and no log line (→ App. E#320) | [lab][srv] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+| 6.03r7 survives baddy types 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223. A server should keep to the named types 0–9 and never send a 6.x client a type above 24 | [lab] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
+
 ### 5.3.4 Version-dependent paths
 
 GServer-v2 serves clients differently by version. Each row gives a path that depends on the version id and the rule behind it [src] (tools/lab-servers/README.md#524-in-gs2libs-version-table-2026-10-31).
