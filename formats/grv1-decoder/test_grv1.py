@@ -93,3 +93,29 @@ def test_heightsend_is_case_insensitive_and_caps_the_grid():
     loaded = grv1.load(body)
     assert len(loaded['heights']) == 9
     assert loaded['heights'][0] == [float(i) for i in range(9)]
+
+
+def test_gr_v105_layers_round_trip():
+    import grv105gen
+    base = [7] * 4096
+    for name, data, _ in grv105gen.build_set('t', base, 0x2a0):
+        if any(k in name for k in ('-0.', 'many-short', 'count255', 'trunc')):
+            continue
+        loaded = grv1.load(data)
+        assert loaded['links'], name
+        if loaded['magic'] == 'GR-V1.05':
+            assert loaded['layers'][0][:4032] == base[:4032] or 'base4095' in name
+    for rle in (False, True):
+        layer1 = grv105gen.paint(grv105gen.blank(), 36, 28, 8, 8,
+                                 lambda x, y: 0x2a0 if (x + y) % 2 else 4095)
+        data = grv105gen.level([base, layer1], rle=rle)
+        loaded = grv1.load(data)
+        assert loaded['magic'] == 'GR-V1.05'
+        assert data[8] == 0x22                      # GCHAR(2), no pad after it
+        assert loaded['layers'] == [base, layer1]
+
+
+def test_gr_v105_heights_after_signs():
+    import grv105gen
+    data = grv105gen.level([[0] * 4096, grv105gen.blank()], heights=[[1, 2], [3, 4]])
+    assert grv1.load(data)['heights'] == [[1.0, 2.0], [3.0, 4.0]]

@@ -27,7 +27,7 @@ macOS CI is paused until the polish stage.
 - [x] **Tile types / `pics1` packing.** ~~No client `tiletypes0.dat`; strip packing; picso high-id OOB.~~ [Note](../formats/tile-types-pics1-packing-2026-11-16.md).
 
 - [x] **GS2 opcode table across builds (#370 item 3).** ~~One byte table, client names, case sets per build, events.~~ [Table](../protocol/gs2-opcode-table.md); [events](../client-internals/gs2-engine-event-names.md).
-  - [ ] Linux 6.x x86 and ARM-only Android dispatchers; who emits Linux-only 164; per-call-site event firing.
+  - [ ] ~~Linux 6.x x86~~ (done 11-19: same 167) and ARM-only Android dispatchers; who emits Linux-only 164; per-call-site event firing.
 - [x] **GS2 segment-1 GS1 event mask.** ~~Official zeros; stock needEvent; bit27 absent on 4.x/5.x.~~ [Note](../protocol/gs2-seg1-event-mask-2026-11-16.md).
 
 - [x] **RC2-line session behaviour (stock).** ~~IRC after signature; no 194→prop35+location; GUI≠140; GSERV024/025.~~ [Note](../protocol/rc2-sessions-stock-2026-11-16.md).
@@ -37,6 +37,7 @@ macOS CI is paused until the polish stage.
 - [x] **`.nw` layer / tileset extensions (5.00r7).** ~~No TILESET; no trailing object-layer; BOARD layers >1 honoured.~~ [Note](../protocol/nw-layer-ext-500r7-2026-11-16.md).
 
 - [x] **GR-V1.05 upper-layer empty tiles.** ~~Disk 4095 / RAM −1; no equality-skip found; sample hunt limits.~~ [Note](../formats/gr-v105-empty-tiles-2026-11-16.md).
+- [x] **GR-V1.05 fuzz levels and PLO_BOARDLAYER (107).** ~~Raw header, LE tiles, layers 0–255, 4095 draws, 0xFFFF empty; lab gserver 1.05 skew and two crashes.~~ [Note](../formats/gr-v105-fuzz-2026-11-19.md).
 
 - [x] **Official GS2 function-only image shape.** ~~All 19 start with jump-past-end; PG1 live fixtures still open.~~ [Note](../protocol/gs2-official-function-only-shape-2026-11-16.md).
 
