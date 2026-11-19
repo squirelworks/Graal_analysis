@@ -2552,3 +2552,13 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	win10-NWbeta2 (gen 3, native)	s2c	110	-	110 c:1	yes	yes	none	unknown PLO; rupee canary in the same frame landed	wnwb2	plo110-c1
 2026-11-19	win10-NWbeta2 (gen 3, native)	s2c	110	-	110 hex:ff00ff00	no	yes	none	unknown PLO; rupee canary in the same frame LOST	wnwb2	plo110-bin
 2026-11-19	win10-NWbeta2 (gen 3, native)	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	none	unknown PLO; rupee canary in the same frame landed	wnwb2	plo110-text
+2026-11-19	win-4.20r8 (wine)	s2c	197	-	197 t:weapon,fzw1,1,16909060,84281096,195948557	-	yes	none	no fetch request, no script ran	fz-gd420-g	g01
+2026-11-19	win-4.20r8 (wine)	s2c	197	-	197 i5 weapon descriptor	-	yes	none	no fetch request, no script ran	fz-gd420-g	g02
+2026-11-19	win-4.20r8 (wine)	s2c	197	-	197 i5 class descriptor	-	yes	none	no fetch request, no script ran	fz-gd420-g	g03
+2026-11-19	win-4.20r8 (wine)	s2c	197	-	197 empty	-	yes	none	no fetch request, no script ran	fz-gd420-g	g04
+2026-11-19	win-4.20r8 (wine)	s2c	197	-	197 name only	-	yes	none	no fetch request, no script ran	fz-gd420-g	g05
+2026-11-19	win-4.20r8 (wine)	s2c	140	-	140 weapon,fzw6,0 + keylog body	-	yes	none	weapon script did not run (no D0 chat)	fz-gd420-g	g06
+2026-11-19	win-4.20r8 (wine)	s2c	140	-	140 weapon cache=1 + keylog body	-	yes	none	weapon script did not run (no D0 chat)	fz-gd420-g	g07
+2026-11-19	win-4.20r8 (wine)	s2c	197	-	197 after 140 with the same key	-	yes	none	no fetch request, no script ran	fz-gd420-g	g08
+2026-11-19	win-4.20r8 (wine)	s2c	140	-	140 header length -2 + keylog body	-	yes	none	weapon script did not run (no D0 chat)	fz-gd420-g	g09
+2026-11-19	win-4.20r8 (wine)	s2c	140	-	140 empty body	-	yes	none	weapon script did not run (no D0 chat)	fz-gd420-g	g10

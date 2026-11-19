@@ -85,7 +85,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#319 | Single-player start-level setup | Lab | it places the player at a fixed start point (the two 31s) | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#321 | The 2.31 window blacklist | Read | known cheat-tool window titles; the reaction is a quit or a report | [inf] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
-| E#322 | How others see a key emote | Lab | a server script re-sends the image | [inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
@@ -193,7 +192,8 @@ These questions are about which build is which, who built it and how it protects
 | Evidence | The managed quit entry takes a reason string; the managed side has no date gate; the unpacked engine imports calendar-to-timestamp functions | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Settled part | The date gate is `now − reference > 180 days` with a compiled-in reference date per release, active in every build except 610; the instant-quit reason literal is `QuitInstant` (→ §1.8.10) | [bin] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-date-gate-is-an-n-days-after-a-reference-date-check-wired-to-the-boot-quit); [bin][inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#the-quit-reason-is-native-and-the-instant-quit-literal-is-quitinstant) |
 | Tried | The Unity 6000 build's gate values and both verdicts were confirmed live from outside a QEMU guest: inside the window it passes and disarms itself; after it the client stays on a black window without crashing (→ §1.8.10) | [cap] (client-internals/v7-il2cpp-names-and-startup-gate.md#for-a-live-debugger-where-to-break-and-what-to-read) |
-| Best guess | The production connector sends a `G3D`-family token of the `G3D2204D` kind, and the expiry path passes its own reason rather than `QuitInstant`. Confidence: low for the reason, moderate for the token family | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
+| Tried (2026-11-20) | 614 standalone with no network: on 2024-10-12 it reaches OpenGL init; on 2024-10-13 it stalls before graphics init. Neither date quits within minutes or logs a reason | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#v7-worlds-614-at-the-date-boundary-e615) |
+| Best guess | The production connector sends a `G3D`-family token of the `G3D2204D` kind, and past the gate the client stalls before graphics init rather than quitting with a reason, at least standalone. Confidence: moderate for the stall, moderate for the token family | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Settles it | A decrypted connector script for the token (→ App. E#616); a boundary-date boot of 614 (2024-10-12 boots, 2024-10-13 quits, by the table) for the reason | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Outlook | Lab for the expiry reason; Owner or Maybe never for the token, which depends on E#616 | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 
@@ -640,6 +640,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Claim A | The byte is the shot type, `byte − 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
 | Claim B | On 2.22 an injected shot hurt only when the byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Evidence | The `SHOOT` and `SHOOT2` field scales are settled for 5.00r7 to 6.03r7, and GServer-v2's one-byte gravity disagrees with every client read | [bin][srv] (protocol/carry-shoot-hit-status.md) |
+| Tried (2026-11-20) | A 2.22 sweep from 0x20 to 0x7e: 0x23 and up end in a bomb-style blast and fetch `bomb.wav`; 0x20 to 0x22 make no blast, and 0x20 fetches `arrow.wav`. A block NPC stood in the path, and nothing hurt; an open-ground sweep is queued | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#shot-last-byte-on-222-e312-partial) |
 | Best guess | The low types (0 and 1, wire `0x21` and `0x22`) are shots that the shooter's own client judges, so a receiving client never hurts from them. Confidence: low to moderate | [inf] (client-internals/damage-sources.md#shot-19) |
 | Settles it | Reading the 2.22 shot receiver, or a capture of a real arrow that hurts | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 | Outlook | Read | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
@@ -734,17 +735,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | The list names the period's memory editors and speed hacks, and a match quits the client or reports to the server. Confidence: moderate for the list, low for the reaction | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
 | Settles it | Decoding the list, then a lab run with a window of a listed title open | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
 | Outlook | Read, then Lab | [inf] (client-internals/decomp-findings-2026-10-24-b/05-open-items.md) |
-
-### E#322 How others see a key emote
-
-**Question.** How other players see a Ctrl+letter emote, when the 2.05 path draws it locally and sends nothing [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
-| Best guess | Others do not see a key emote; the captured frames come from a server script calling `showimg`. Confidence: moderate | [inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
-| Settles it | A capture of a real 2.05 client pressing Ctrl+A next to a second client on a script-free lab server | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
-| Outlook | Lab | [inf] (client-internals/feature-specs/README.md#still-open-after-the-2026-10-24-decompile-pass-new-or-remaining) |
 
 ### E#323 Level-object routines not read (2.22)
 
@@ -1444,7 +1434,8 @@ Which message carries a GS2 script body on 4.x and 5.x clients was open: three s
 | Settled (NPCs) | 131 behind 100 carries a runnable NPC body on 4.20r8, 5.24r4 and 6.03r7: the script fuzz delivered every case that way and the scripts ran | [lab] (protocol/script-fuzz-2026-11-19.md) |
 | Settled (classes and weapons) | On 6.x, 197 is the descriptor `type,name,1,key,crc` and 140 carries the body, from the cache or the wire, never inside 197 | [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles); [bin] (formats/linux-6x-class-cache.md); [lab][cap] (protocol/linux-603-network-gs2.md) |
 | Verdict | Verified: two messages for two kinds of object, not three rival claims. Claim B names the class exchange by its first message | [lab] (protocol/script-fuzz-2026-11-19.md) |
-| Left over | The 197 and 140 class path on 4.20r8 (plan queued in the 2026-11-19 fuzz round), and 4.0x before 4.20r8 | [lab] (live-runs/fuzz-2026-11-19/README.md) |
+| Also measured | 4.20r8 does not honour the 6.x class path as sent: ten 197 and 140 variants with a valid compiled body ran no script and drew no request, while 131 behind 100 runs NPC bodies on the same build | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
+| Left over | How 4.20r8 delivers weapon and class scripts, and 4.0x before 4.20r8 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
 
 ### E#205 Index of the hare baddy (settled)
 
@@ -1485,6 +1476,16 @@ Whether offline 2.05 reloads a level on re-entry, bringing a cut bush back, was 
 | --- | --- | --- |
 | Settled | No reload: 2.05 rev 2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3 of 3) and after loading the level again (2 of 2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
 | Still open nearby | Whether a level NPC's GS2 state survives leaving and re-entering a gmap cell on 6.03r7 and 5.12; Seihai restarts it | [doc] (protocol/npc-gmap-reentry-status.md) |
+
+### E#322 How others see a key emote (settled)
+
+How other players see a Ctrl+letter emote was open, because captures showed AFK images re-sent while the 2.05 code draws the emote locally; a lab run on a script-free server settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| Settled | On 2.05 rev 2, Ctrl+A draws the AFK bubble locally and sends only one file check (34) for its image, once per session; Ctrl+S and Ctrl+D likewise; no `PLI_SHOWIMG` and no props leave the client, so the server has nothing to relay | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
+| Verdict | Verified: others do not see a key emote; the captured AFK frames came from a server script | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 
 ### E#405 RC token `GSERV025` (settled)
 
