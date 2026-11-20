@@ -79,6 +79,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | Before | A static read found the backup engine's throw path sending 11 with an empty body | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 | Settled | An unchanged 5.00r7, reaching the lab through a connect shim with its licence untouched, sent 11 with an empty body on each of 2 throws, after the lift's board change and ganis | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
 | Verdict | Verified: Claim B holds; the wrapper list missed the throw path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| Older builds | On 2.22 the same id means something else: two bytes, the object's x and y, sent when a landed object leaves the level by pickup, grab or script, and never at the throw (App. E#323) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-e.md#what-222-sends-as-id-11-e323) |
 
 **Settled question, formerly E#6: client-to-server constants of 1.21 and 1.32.** Whether 1.21 sends id 14 and 1.32 sends id 22 was open, because two reads of their send sites disagreed; a static read of both send routines settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
 

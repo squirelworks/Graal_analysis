@@ -67,6 +67,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Appendix E lab runs on Mirae, batch 4 (2026-11-20)](protocol/lab-appe-mirae-2026-11-20d.md) — Mac 3.153 on protocol 19, the 2.05 sleep-gani walk, 2.22 shot types, `move` timing, `replaceani` and `showimg`, 5.00r7 Latin-1 `showtext`.
 - [Appendix E lab runs on GwenTea2, fourth batch (2026-11-20)](protocol/lab-appe-gwentea2-2026-11-20d.md) — RC2 2.05's RC list, the Windows 6.03r7 HUD, Mac 6.015 on macOS 15.
 - [Static reads for Appendix E, fourth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-d.md) — 2.05 `#E` and `move` queue, 2.22 explosions and the shot receiver, 3.04 sheet type 5.
+- [Static reads for Appendix E, fifth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-e.md) — what 2.22 sends as id 11 (a landed object is gone, not a throw).
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
 - [Static reads for Appendix E, second batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-b.md) — 1.39 movement tables, the 2.1 test entry save, the RC 76 last byte, GS2 opcodes 48, 49 and 54 on 5.00r7.
 - [Static reads for Appendix E, third batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-c.md) — the bomb and player lists in the 2.05 blocked-point test, the 1.39 pickup box, whole tiles in 2.05 level records.
