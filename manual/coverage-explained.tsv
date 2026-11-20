@@ -37,12 +37,22 @@ ash/BLUEPRINT.md	tcpReceive	GServer-v2, gs2emu or 1999-source identifier (§0.10
 ash/BLUEPRINT.md	tcpSend	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 ash/BLUEPRINT.md	tcpaccept	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 ash/BLUEPRINT.md	tcplisten	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+client-internals/141r1-nw-gmap-status.md	cached_links	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/141r1-nw-gmap-status.md	silent_list_after_ms	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/404r2-carry-state.md	W404-HANDOFF-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/404r2-carry-state.md	W404-MECHANIC-TABLES	an evidence or lab-run id; the manual cites the note
 client-internals/404r2-carry-state.md	W404-NATIVE	an evidence or lab-run id; the manual cites the note
 client-internals/404r2-carry-state.md	WIN-OFFLINE	an evidence or lab-run id; the manual cites the note
 client-internals/404r2-carry-state.md	WIN-OFFLINE-TRACE	an evidence or lab-run id; the manual cites the note
 client-internals/404r2-carry-state.md	WIN-STARTUP	an evidence or lab-run id; the manual cites the note
+client-internals/android-classic.md	45 CE 4A 0C 24 89 1B 07	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+client-internals/android-classic.md	VX-ANDROID-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/android-classic.md	defexplo_dir2	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/android-classic.md	ghostani	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/android-classic.md	hiddenobj	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/android-classic.md	i mod 8	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/android-classic.md	is name character	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/android-classic.md	tutorial_touch	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/android-login-token-boundary.md	ANDROID-LOGIN-BOUNDARY-20261116	an evidence or lab-run id; the manual cites the note
 client-internals/android-login-token-boundary.md	VX-ANDROID-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/android-login-token-boundary.md	stored_length + 32	an evidence id, identifier or notation of the note; the manual carries the result
@@ -90,6 +100,24 @@ client-internals/client-assets.md	image,prefix,type[,x,y]	the note's notation; �
 client-internals/combat-baddy-tile-by-version.md	base + 8	the note's notation for a rule §4 carries
 client-internals/combat-baddy-tile-by-version.md	base - 12	the note's notation for a rule §4 carries
 client-internals/config-and-input.md	keyset_<action>_key0..2	the note's pattern for the keyset keys, which §3.9 lists
+client-internals/cross-version-timeline.md	TAdventureBacktileArea	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TAdventureBoolOperation	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TAdventureSign	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TClipboard	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TDrawText	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TEditVariable	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TEditorChest	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TEditorDefNPC	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TEditorOpponent	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TGraalImage	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TMemo	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TNPCMove	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TOtherClient	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TPageControl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TSmilie	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TTabSheet	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TWebBrowser	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/cross-version-timeline.md	TWinamp	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	0xedb88320	the standard reflected CRC-32 polynomial; §4.10 says the words are standard reflected CRC-32 values
 client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	z_stream8	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	link lines plus	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
@@ -106,6 +134,96 @@ client-internals/des-and-hidden-strings.md	GCHAR key	the 2.22 login transform; �
 client-internals/des-and-hidden-strings.md	enc(b) = NOT (b + 10)	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
 client-internals/early-form-timers-2026-11-09.md	GRAAL-E300-20261109-01	an evidence or lab-run id; the manual cites the note
 client-internals/early-form-timers-2026-11-09.md	GRAAL-E300-RUNTIME-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/early-windows-callback-variants.md	WIN-CLASSIC-CALLBACK-20261114	an evidence or lab-run id; the manual cites the note
+client-internals/engine-600r2.md	Direct3DCreate9	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_Clip	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_GuiShowImgCtrl	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_MLTextCtrl	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_Particles	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_Polygon	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_ScrollCtrl	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_ShowImg	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Draw_WindowCtrl	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Game_Draw	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Game_Draw_GetDrawObjects	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Game_Draw_Player	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Game_Draw_Texts	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	GraalSetup	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Gui*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	GuiAccordionCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiAccountPasswordCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiAnimationCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiButtonCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiCheckBoxCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiDefaultProfile	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	GuiDrawingPanel	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	GuiPMCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiPMEditCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiPMHistoryCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiSlideShowCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiStartMenuCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiTaskbar	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	GuiTextEditCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	GuiTextListCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	HTTP_	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	MovieClip	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	Quattro_Play	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	RenderGUI	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	StartScript_FileScanDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	StartScript_MessageBoxDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	StartScript_Profiles	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	StartScript_SelectFileDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	StartScript_SetupDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	TActionScriptVar	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	THTTPRequest	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TRTMPClient	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TRTMPStream	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TScriptFunction	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TScriptUniverse	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerBomb	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerCarry	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerChest	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerExtra	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerFlying	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerHorse	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerLeap	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerLevelLink	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerSign	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TServerWeapon	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	TWindowOpenGL::setScreenMode	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r2.md	client-windows-6002-lifecycle-static	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	forceaboveterrain	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	profile.fontcolor	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r2.md	resolveHost	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Draw_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Draw_Particles	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Draw_ShowImg	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Game_Draw	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Game_Draw_GetDrawObjects	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Game_Draw_Player	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Game_Draw_Texts	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	GraalSetup	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	Quattro_Play	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	RenderGUI	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	TRTMPClient	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r4.md	TWindowOpenGL::setScreenMode	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/engine-600r4.md	avcodec-51	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-600r4.md	resolveHost	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	CyaSSL_Debugging_OFF	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	DebugBreak	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	Jun 12 2011	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	Md5Update	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	Quattro_Play	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	crc32_combine64	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	get_crc_table	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	gh issue comment	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	inflateReset2	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	inflateUndermine	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	recqxwzm	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	resolveHost	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	tlrwuvpz	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/engine-6113.md	yfnbwito	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/feature-specs/01-sound.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
 client-internals/feature-specs/01-sound.md	8da6800	a commit id of a reference server or tool, not a Graal fact
 client-internals/feature-specs/01-sound.md	SoundOut	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
@@ -285,6 +403,14 @@ client-internals/feature-specs/README.md	[dec]	a code identifier of the referenc
 client-internals/feature-specs/README.md	msgPLI_NULL	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
 client-internals/feature-timeline.md	PLPROP_GATTRIB10	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/feature-timeline.md	PLPROP_GATTRIB10–30	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
+client-internals/gameboy-demo.md	add_VBL	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	arand	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	file x y w h newx newy	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	joypad	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	memcpy	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	set_bkg_data	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	set_sprite_palette	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gameboy-demo.md	set_win_tiles	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/graal-wiki-crosscheck-2026-11-11.md	ATTR4 8 16	an example line; §3.3 carries the glued slot-number rule
 client-internals/graal-wiki-crosscheck-2026-11-11.md	DESCRIPTIONEND	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
 client-internals/graal-wiki-crosscheck-2026-11-11.md	FILE <path>	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
@@ -314,6 +440,22 @@ client-internals/graal-wiki-crosscheck-2026-11-11.md	speedhacktolerance	a wiki s
 client-internals/graal-wiki-crosscheck-2026-11-11.md	syncdistancex	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
 client-internals/graal-wiki-crosscheck-2026-11-11.md	translatedlanguages	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
 client-internals/graal-wiki-crosscheck-2026-11-11.md	weaponorder	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal2002-and-140-builds.md	0xa9	a server version id byte in hex; Part I gives each one in decimal
+client-internals/graal2002-and-140-builds.md	0xaa	a server version id byte in hex; Part I gives each one in decimal
+client-internals/graal2002-and-140-builds.md	0xae	a server version id byte in hex; Part I gives each one in decimal
+client-internals/graal2002-and-140-builds.md	0xb1	a server version id byte in hex; Part I gives each one in decimal
+client-internals/graal2002-and-140-builds.md	CLIENT-HUNT-20261113	an evidence or lab-run id; the manual cites the note
+client-internals/graal2002-and-140-builds.md	Loaded & set map	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/graal2002-and-140-builds.md	Loaded minimap	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/graal2002-and-140-builds.md	WIN-PUBLIC210-MAP-STATE-20261115	an evidence or lab-run id; the manual cites the note
+client-internals/graal2002-and-140-builds.md	WIN-VER10-GATE03-WIRE-20261115	an evidence or lab-run id; the manual cites the note
+client-internals/graal2002-and-140-builds.md	WIN-VER10-INITIAL-PROPS-20261115	an evidence or lab-run id; the manual cites the note
+client-internals/graal2002-and-140-builds.md	WIN-VER10-LIST-ENTRY-LAB-20261115	an evidence or lab-run id; the manual cites the note
+client-internals/graal2002-and-140-builds.md	WIN-VER10-LIST-ENTRY-STATIC-20261115	an evidence or lab-run id; the manual cites the note
+client-internals/graal2002-and-140-builds.md	arm-A02.events	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/graal2002-and-140-builds.md	arm-B.events	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/graal2002-and-140-builds.md	arm-C.events	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/graal2002-and-140-builds.md	c(100 + length)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/graalconfig-reference.md	StrToInt	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
 client-internals/graalconfig-reference.md	TStringList.Values	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
 client-internals/gs1-on-5x-hud-and-flags.md	lowresourcesmode	the note's notation for a rule §4 carries
@@ -1425,11 +1567,25 @@ client-internals/gs2-vm-quirks-by-version.md	floor(v+1e-4)	an evidence id, engin
 client-internals/gs2-vm-quirks-by-version.md	floor(x+1e-4)	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/gs2-vm-quirks-by-version.md	onPlayerTouchsMe	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/gs2-vm-quirks-by-version.md	setScript	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
+client-internals/gserv-125-127-builds.md	#s(var)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gserv-125-127-builds.md	CLIENT-HUNT-20261113	an evidence or lab-run id; the manual cites the note
+client-internals/gserv-125-127-builds.md	_SETUP.1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gserv-125-127-builds.md	nodecompressionerror=	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gserv-125-127-builds.md	save[0]	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gserv-125-127-builds.md	save[9]	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/gserv-125-127-builds.md	strequals(str1,str2)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/gui-windows-fkeys.md	576c9543	a commit id of a reference server or tool, not a Graal fact
 client-internals/gui-windows-fkeys.md	FKEY-WINDOWS-139-20261111	an evidence or lab-run id; the manual cites the note
 client-internals/gui-windows-fkeys.md	about:blank	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/gui-windows-fkeys.md	seihai-gserver-v2	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/how-139-gets-online.md	silent_list_after_ms	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/hud-603r7-black-box.md	heartlimit	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/iphone-version-tokens.md	CLVER_IPHONE_*	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/iphone-version-tokens.md	CLVER_UNKNOWN	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/iphone-version-tokens.md	again, then	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/iphone-version-tokens.md	clientVersions[]	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/iphone-version-tokens.md	cryptid	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/iphone-version-tokens.md	read_token	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
 client-internals/item-drops.md	TAdventureExplosion	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
 client-internals/item-drops.md	TAdventureExtra	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
 client-internals/item-drops.md	"^d"""	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
@@ -1452,6 +1608,10 @@ client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	Reje
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	parse_hurtplayer	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/lab-cells-200-205-2026-11-13.md	0f53796	a commit id of a reference server or tool, not a Graal fact
 client-internals/lab-cells-200-205-2026-11-13.md	seihai-gserver	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/launchers-420r8-500r7-512.md	CLIENT-HUNT-4X5X-20261113	an evidence or lab-run id; the manual cites the note
+client-internals/launchers-420r8-500r7-512.md	GetProcAddress	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/launchers-420r8-500r7-512.md	LogOutgoingPackets	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/launchers-420r8-500r7-512.md	dispscan	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/laying-items-and-hiding.md	GCHAR round(x × 2)	the note's notation for a rule §4 carries
 client-internals/laying-items-and-hiding.md	GCHAR round(y × 2)	the note's notation for a rule §4 carries
 client-internals/ledges-push-pull.md	[column][row]	the note's notation for a rule §4 carries
@@ -1462,6 +1622,47 @@ client-internals/level-editor-205.md	TEditorChest	a Delphi class or form-member 
 client-internals/level-editor-205.md	TEditorLink	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
 client-internals/level-editor-205.md	TEditorObject	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
 client-internals/level-editor-205.md	TEditorSign	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/linux-304-executable-build.md	DT_NEEDED	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	Dec 14 2003, 21:07:09	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	FMUSIC_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	FSOUND_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	GLIBC_2.1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	GLIBC_2.1.1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	GLIBC_2.2	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	Jan  3 2004 at 22:32:08	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	OpenALInitDriver	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	SDL_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	SDL_GL_LoadLibrary	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	_IO_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	__divdi3	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	__register_frame_info	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	__udivdi3	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	__umoddi3	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	choosenvoicecodec	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	deflate 1.1.3	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	gl*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	hvdi*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	inflate 1.1.3	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libGL.so.1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libSDL	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libSDL-1.2.so.0	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libX11.so.6	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libc.so.6	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libdl.so.2	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libfmod	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libgcc_s	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libm.so.6	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libopenal	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libpthread.so.0	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	libstdc++	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	readelf	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	setVoiceDecodingMask	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	setVoiceEncodingLevel	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	stderr	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	stdin	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	stdout	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	t16ConcreteClassRep1Z8AIPlayer	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-executable-build.md	upx -d	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/linux-404r2-api-ownership.md	L404-API-CORRECTION	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-embedded-scripts.md	L404-CONTAINER-READER	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-embedded-scripts.md	L404-CONTAINER-WRITER	an evidence or lab-run id; the manual cites the note
@@ -1570,8 +1771,32 @@ client-internals/live-trace-early.md	shootarrowleft	a lab setting, command, conf
 client-internals/live-trace-early.md	shootarrowup	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/live-trace-early.md	v+33	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/live-trace-early.md	without ever setting	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/mac-6004-6015-slices.md	MAC-6004-6015-SLICES-20261115	an evidence or lab-run id; the manual cites the note
 client-internals/mac-611r1-gs2-runner.md	Graal v6.11r1[Mac OS X]	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/mac-611r1-gs2-runner.md	MAC-V6-OPCODE-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/mac-611r1-send-slots.md	__cstring	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-611r1-send-slots.md	cmp eax, 0xFE	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-611r1-send-slots.md	libobjc	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-611r1-send-slots.md	libstdc++.6	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	4, 5, 73, 72, 12, D, 0	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	AGL_DEPTH_SIZE	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	AGL_DOUBLEBUFFER	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	AGL_FULLSCREEN	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	AGL_PIXEL_SIZE	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	AGL_RGBA	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	Could not create context	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	MAC-PPC-404-BROAD-STATIC-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	MAC-PPC-420-BROAD-STATIC-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	MAC-PPC-RESOURCES-BROAD-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	MAC-PPC-V3-BROAD-STATIC-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	MAC-PPC-V5-BROAD-STATIC-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	SetFullScreen(0Hz) failed	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	TFlash	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/mac-ppc-runtime-surface-2026-11-09.md	newsmilie	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/mac-ppc-startup-input-2026-11-09.md	GuiInputCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/mac-ppc-startup-input-2026-11-09.md	MAC-PPC-404-STARTUP-INPUT-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-startup-input-2026-11-09.md	MAC-PPC-420-STARTUP-INPUT-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/mac-ppc-startup-input-2026-11-09.md	MAC-PPC-V5-STARTUP-INPUT-STATIC-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/macos-v5-animation-group-lifecycle.md	MAC-PPC-V5-GMAP-GANI-20261109-R1	an evidence or lab-run id; the manual cites the note
 client-internals/newworld-betas.md	<gmap base>_heights<ext>	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
 client-internals/newworld-betas.md	TAdventureBacktileArea	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
@@ -1613,6 +1838,26 @@ client-internals/player-mannerisms-live.md	t222	a lab setting, command, config l
 client-internals/precursor-mechanics-2026-11-09.md	GRAAL39STER-ENGINE-20261109-01	an evidence or lab-run id; the manual cites the note
 client-internals/precursor-mechanics-2026-11-09.md	VX-GRAALX-NW-SAVE-20261109-01	an evidence or lab-run id; the manual cites the note
 client-internals/precursor-mechanics-2026-11-09.md	VX-JAVA1-INPUT-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/precursors-and-fan-builds.md	39ster Graal v1.00.7z	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	FileLink	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	I<id>	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	KeyPreview	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	TNewOpponent	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/precursors-and-fan-builds.md	TZeldaFrame	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/precursors-and-fan-builds.md	agrethouse1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	agretweapons1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	arrives it sends	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	dungeona*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	ebon*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	eggsecretroom1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	file x y w h newx newy	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	gameover	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	house15	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	is dropped, and a missing	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	mod*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	payload types:	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	sominside*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/precursors-and-fan-builds.md	zeldaonline2.7z	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/rebuild-traces-2026-11-05.md	$16CE0000	a binary offset or address; the manual gives no addresses (§0.10)
 client-internals/rebuild-traces-2026-11-05.md	$16CF0000	a binary offset or address; the manual gives no addresses (§0.10)
 client-internals/rebuild-traces-2026-11-05.md	$50100	a binary offset or address; the manual gives no addresses (§0.10)
@@ -1668,13 +1913,48 @@ client-internals/sound-files-6x.md	TSoundEffectFMOD	a library API or class name 
 client-internals/sound-files-6x.md	TSoundPlayerFMOD	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
 client-internals/sound-files-6x.md	fire_torch0-2	sound file names in a list; §3.10 and §4.7 carry the sound sets
 client-internals/sound-files-6x.md	spell_firelaunch	sound file names in a list; §3.10 and §4.7 carry the sound sets
+client-internals/static-reads-appendix-e-2026-11-19.md	QueryPerformanceCounter	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-19.md	WM_TIMER	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-19.md	timeKillEvent	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-19.md	timeSetEvent	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/static-reads-appendix-e-2026-11-20-c.md	GR-V1.0x	a pattern standing for GR-V1.00 to 1.05, each in §3.1
 client-internals/static-reads-appendix-e-2026-11-20-i.md	findlevel	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/static-reads-appendix-e-2026-11-20-j.md	ma?looplimit	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/static-reads-appendix-e-2026-11-20-k.md	not(b) − 10	the 2.22 login transform in the note's notation; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF
+client-internals/static-reads-appendix-e-2026-11-20.md	IUnknown	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-20.md	TInterfacedObject	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/static-reads-appendix-e-2026-11-20.md	activatePackage	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-20.md	dumpConsoleClasses	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-20.md	findFirstFile	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-20.md	getRealTime	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/static-reads-appendix-e-2026-11-20.md	setLogMode	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/status-display.md	i < power	the note's notation for a rule §4 carries
 client-internals/status-display.md	power − 1 ≥ i	the note's notation for a rule §4 carries
 client-internals/status-display.md	round(17.5(k + 1)) − 35	the note's notation for a rule §4 carries
+client-internals/stock-420r8-profile-recheck-2026-11-16.md	CLIENT-HUNT-4X5X-20261113	an evidence or lab-run id; the manual cites the note
+client-internals/stock-420r8-profile-recheck-2026-11-16.md	g3dref	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/stock-420r8-profile-recheck-2026-11-16.md	gs1scan	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/stock-420r8-profile-recheck-2026-11-16.md	set_by	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	BSS	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	UPX0	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	UPX1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	WinLicenseDriverVersion	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	WinLicenseInstance	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	WinLicenseVersion	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	recqxwzm	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	tlrwuvpz	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/themida-pack.md	yfnbwito	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	ChatBar3D	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	Game_Draw	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	Game_Draw_GetDrawObjects	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	Game_Draw_Player	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	Game_Draw_Texts	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	StartScript_FileScanDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	StartScript_MessageBoxDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	StartScript_Profiles	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	StartScript_SelectFileDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	StartScript_SetupDialog	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/unpacked-6113.md	tlrwuvpz	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/update-cadence-3x-6x.md	LD_PRELOAD	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/update-cadence-3x-6x.md	T < 0.05	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/update-cadence-3x-6x.md	last += 50	a lab setting, command, config line or notation of the run; the manual carries the measured result
@@ -1692,10 +1972,443 @@ client-internals/v2.00-connect-path.md	GCHAR len + text	the note's field notatio
 client-internals/v2.00-connect-path.md	PostQuitMessage	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	WSAStartup	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	htons(StrToInt(port))	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	$pref::Graal::fixedport	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	$pref::Graal::fixedudpport	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	$pref::Graal::noudp	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	Disconnection reason: %s	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	ServerGraalVersion	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	graalexe 3.0.4	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	id + 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	id+0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	loginserver	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	onSend*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	scriptfunctions	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	state * 0x8088405 + 1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-identity-and-framing.md	value + 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-properties.md	n + 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-properties.md	shield3.	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v3-properties.md	sword4.	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	CompressBuf	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	DecompressBuf	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	DecryptPacket	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	connection_vtable+0xC	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	first_byte - 32	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	guest_	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	hcryptEncryptPacket	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	hvdiPacketEncode	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	id = byte - 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	id+0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	len+0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	onSend*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	opcode + 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	sendOutgoingData	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	setDefaultGuestAccount	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	value + 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-identity-and-framing.md	vtable+8(opcode, payload)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md	byte - 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md	first_byte - 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md	getgani	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md	id+0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md	onSend*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v4-pli-plo.md	sendServerText	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md	DOQLHRbY	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md	Received illegal data (2)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md	Received invalid data (3)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md	id + 0x20	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-framing.md	onSend*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-identity.md	Client-version:	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-late-identity.md	GRAALRELOADED-version	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	TServerWeapon	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	aniparams	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	anistep	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	chatoffset	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	headimg	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	horseimg	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	id = byte − 0x20	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	isadmin	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	ischannel	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	ischannelopen	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	ischanneluser	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	isexternal	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	isguildpm	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	isignored	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	isignoring	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	isloggedin	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	ismasspm	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	ismuting	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	languagedomain	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	mapicon	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	messagebubble	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	npcsindex	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	peltwithblackstone	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	peltwithbush	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	peltwithnpc	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	peltwithsign	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	peltwithstone	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	peltwithvase	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	playersindex	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	ratingd	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	shield3.	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	shieldimg	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	sword4.	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-properties.md	swordimg	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	StartScript_Profiles	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	getPlatform	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	iddd	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	isDemoVersion	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	isPremiumVersion	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	isopengl	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	loadclass	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	requestfiledeletion	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	requestfilerename	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	requestfilesmove	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	sendrpgmessage	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	siii	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	ssdd	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	switchToDirectX	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/protocol/v5-script.md	switchToOpenGL	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	Con::	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	DOQLHRbY	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	loginserver	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	onSend*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	switchToDirectX	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	switchToOpenGL	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v4-420r8-class-surface.md	BATCH1-420R8-ENGINE-20261116	an evidence or lab-run id; the manual cites the note
+client-internals/v4-420r8-class-surface.md	addGraalPlayerWeapon	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	checkLeaveClasses	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	checkUpdatedClasses	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	classUpdateAction	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	deleteGraalPlayerWeapon	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	getGraalLoginInfo	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	graal_setOnServerLogin	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	invokeWeaponEvent	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	joinClassSimple	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	needEventWithoutClass	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	setGraalPlayerWeaponScript	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v4-420r8-class-surface.md	"this.join(""class"")"	a script-visible name from the engine string table; Part VIII carries the script surface
+client-internals/v5v6-expiry-and-black-screen.md	GetLocalTime	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v5v6-expiry-and-black-screen.md	GetSystemTimeAsFileTime	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v5v6-expiry-and-black-screen.md	QueryPerformanceCounter	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/v5v6-expiry-and-black-screen.md	fbd30767	a commit id, not a Graal fact
 client-internals/v7-701750-bridge-clock.md	UnityMain.FixedUpdate	an evidence id, identifier or notation of the note; the manual carries the result
 client-internals/v7-701750-bridge-clock.md	UnityMain.Update	an evidence id, identifier or notation of the note; the manual carries the result
 client-internals/v7-701750-bridge-clock.md	W701750-FOCUSED-NATIVE-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/v7-701750-bridge-clock.md	kernel32	an evidence id, identifier or notation of the note; the manual carries the result
+client-internals/v7-gameassembly-il2cpp.md	AskFileExists	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assemblies-Quattro	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assemblies-Quattroshared	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assemblies-graalunity	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assemblies-playmaker	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assemblies-quattroplugins	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assemblies-quattrosharedlowlevel	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Assembly-CSharp	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Awake	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	BindingsPart0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	BindingsPart17	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	CONNECTED TO SERVER	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	CloseBindings	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	CopyTilesPixels	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DISCONNECTED FROM SERVER	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DatasFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DelegateType	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DistanceFromPlayer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DistanceFromPlayerTo1	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DoAwake	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	DoQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Era3D.Editor	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	FillPointerWithFile	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	FillPointerWithTexture2	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetDeepLinkDatas	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetEnteredGamepadTextInput	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetFileSize	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetGameFromUnity	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetGameToConnectIfLogin	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetPersonaName	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetPremium	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetSteamId	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GetTextureSize	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	GraalPackageNamer.GetFileNameForDownload	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	LoadTilesTexture	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	ManageMultiTouch	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	MapLoadingManager	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	MemorySize	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	NativeScript.Bindings	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	NativeScript.BootScript	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	NativeScript.NativeTypedDelegates	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	OnApplicationQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	OnTouchEvent	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	OpenBindings	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	OpenPlugin OUT	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	PLAYER CONNECTED	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	PrepareTilesAtlas	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro.Graal.DatasFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro.Rendering.TMeshWrapperManager	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro.SecureIds	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro.UQuattroUnityBridge	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro.UnityMain	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro2D	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro3D.UQuattro3DBridge	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Quattro3DBridge	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Scripting.Engine	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Scripting.Engine.THashList	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SendFileToCpp	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SendFileToHttpRequest	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SendTexturesWithOpenGLESAndroid	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SendTileAtlasToUnity	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SendToGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SetFrameTick	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SetStartServerClassicReloaded	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SimpleLoadMap	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SmallServerSSL	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	SteamAppId	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	TFileDownload_*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	Texture2DWrapper	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	TileRenderer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	TryCatchOnQuattro	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	UServerNPC3D	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	UServerPlayer3D	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	UnityEngine.GameObject	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	UnityMain	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	UnloadTilesTexture	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	WantsToQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	WillQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	_SetCsharpException	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	clearDeepLinkData	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	debugLibraryLoad	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	deepLinkData	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	exitPopupGo	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	forceIsSteam	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	gameToConnectIfLogin	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	il2cpp_*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	isSteam	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	leavingApplication	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	notsteam	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	onDeepLinkActivated	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	quattrosharedlowlevel	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	sentFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	steamWorkManagerGo	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-gameassembly-il2cpp.md	testingworlds	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	0x0c	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+client-internals/v7-il2cpp-names-and-startup-gate.md	0x76c	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+client-internals/v7-il2cpp-names-and-startup-gate.md	24.0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	60.0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	60.0 × 60.0 × 24.0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	CERT_HAS_EXPIRED	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	Connection.OnApplicationQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	DateTime.get_Now	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	Do Quit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	DoQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	DummyDll	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	Environment.GetCommandLineArgs()	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	ForceDump	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	ForceIl2CppVersion	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	ForceQuit()	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	GetSystemTimeAsFileTime	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	N × 60 × 60 × 24	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	NativeTypedDelegates:DoQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	NullReferenceException	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	OnApplicationQuit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	OpenPlugin(InitMode)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	Quattro->Do Quit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	QuattroUnityMainMethodForceQuit()	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	QuattroUnityMainMethodGetDeepLinkDatas	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	QueryPerformanceCounter	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	Quit(string reason)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	Reporter : MonoBehaviour	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	TypeDefIndex	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	UNITYTLS_X509VERIFY_FLAG_EXPIRED	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	UQuattroUnityBridge	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	UnityMain	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	UnityMain : MonoBehaviour	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	X509FindType.FindByTimeExpired	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	_localtime64	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	_mktime64	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	_time64	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	_time64(NULL)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	async void	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	buildDate	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	clearDeepLinkData	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	converted with	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	cvtdq2pd	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	deepLinkData	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	difftime	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	difftime(now, reference)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	forceIsSteam	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	gameToConnectIfLogin	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	month − 1	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	now − reference > N days	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	reason=	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	reason=QuitInstant	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	struct tm	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	time_t	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	tm_mday	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	tm_mday = day	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	tm_mon = month − 1	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	tm_year = year − 1900	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	unlicense-32	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	year − 1900	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-il2cpp-names-and-startup-gate.md	→ clean	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	<CreateNewFolderCoroutine>	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	<WaitForSaveDialog>	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	ActorType	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	BrainFrame	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	DatasFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	GetPropertyVisitor	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	InputProperties	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	KeysRequiredEventHandler	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	OnSuccess	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	PartialInputStream	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	Quattro.Graal.DatasFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	Quattro3DText.EasingFunction	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	Quattro3DTextType.Function	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	QuattroC2DRenderer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	QuattroC2DRenderer.Tile*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	QuattroC2DRenderer.TileLightParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/build-diff.md	QuattroC2DRenderer.TileWarpParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/inventory.md	QuattroC2DRenderer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/inventory.md	QuattroObjectRenderer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	BCryptGenRandom	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	ConvertToNative	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	CreateFilePrivate	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	DllImport	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	FreeLibrary	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	GetFileAttributesExPrivate	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	LoadLibraryEx	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	MessageCallback	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	MonoPInvokeCallback	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	OnAppReceiptRetrieved	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	OnPurchaseSucceeded	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	QuattroInitializedReturn	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	QuattroObjectRenderer.BindingsMarshaller	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	TMeshWrapper	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	TMeshWrapperManager	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/native-bridge-stubs.md	static extern	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	ActorType	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	DistanceFromPlayer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	FileRemoteProtocolInfo	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	GetFromGraal(int channel)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	ProtocolError	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	Quattro.Graal.DatasFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	TlsProtocols	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	UnsupportedProtocol	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	onSend*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/not-in-csharp.md	sentFromGraal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	13_0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	27_0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	<>c__DisplayClass12_0	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	BindTileAmbientLightParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	BindTileLightParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	BindTilesParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	BindingsMarshaller	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	BindingsMarshaller.ConvertToNative	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	BuildTilesToMap	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	ContentInfo	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	ConvertToNative	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	CopyParametersTo	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DeriveBytes	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DllImport	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSet*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetDirectionX	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetDirectionY	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetEnabled	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetGradient	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetGradientA	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetGradientRange	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetHideWithCamera	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetIntensity	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetOutDirection	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetOutLevel	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetParticlesPrefabs	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetRange	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	DoSetSpotAngle	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	Era3DMapFileUtils	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	EraEditorObject	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	GUILayoutUtility	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	GetDoorParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	GetSpawnParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	Invoke()	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	Invoke(int id)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	Invoke(tile)	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	LayoutCache	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	OpenTileParametersInterface	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	PartitionSystem	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	ProTilePropertiesManager	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	QuattroC2DRenderer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	QuattroObjectRendererActor*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	QuattroObjectRendererSpriteDraw*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	ReadParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	RecalculateDynamicBounds	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	RegisterTileForUI	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	ResetCursor	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	SendMinidump	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	SkinChangedDelegate	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileAmbientLight	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileAmbientSound	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileBackGround	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileCamera	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileComposite	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileDecal	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileDirectionalLight	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileDoor	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileFlower	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileHouse	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileLight	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileLightParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileNameParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileParticles	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileParticlesParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileSpawn	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileSpotLight	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileTestSpawn	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileTree	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileWarp	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TileWarpParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	Tilemap	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	TypeInit	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	UnregisterTileForUI	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	WindowFunction	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	WriteParameters	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	class QuattroC2DRenderer	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	guiStyleState	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-quattro-il2cpp-names/quattro-renderer-surface.md	{ }	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-unity6000-unpack.md	NullReferenceException	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-unity6000-unpack.md	TServerBomb	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-unity6000-unpack.md	TServerCarry	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-unity6000-unpack.md	TServerChest	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/v7-unity6000-unpack.md	il2cpp_*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+client-internals/version-id-map.md	GNW30123newmain	the 2.22/2.31 listserver hello written as one string; §1.2.2 gives GNW30123 and newmain
+client-internals/version-id-map.md	TAdventureClient_Create	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/version-id-map.md	_LStrFromChar	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/version-token-catalogue.md	CLVER_4_102_MAC	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	CLVER_4_206_MAC	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	CLVER_IPHONE_1_11	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	CLVER_IPHONE_BELOTE_1_5	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	NW51	a short level-magic literal from a string scan, not a login token (the catalogue says so); §1.2 carries the tokens
+client-internals/version-token-catalogue.md	[B@mirror~static]	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	[B@static] citation	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	[L@legacy!conflict]	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	[W@capture] citation	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	graal-client-repro	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	mov al	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	mov bl	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version-token-catalogue.md	upx -d	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/version/VERSION.md	CompanyName	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/version/VERSION.md	InternalName	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/version/VERSION.md	VS_VERSION_INFO	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	[confidence]	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	[features]	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	c(10+len)+image	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	chr(head number)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	chr(id+32)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	gotbow	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	gotsword	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	mapmantara	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	mappw	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	npcprops_known	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	plo_known	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/versions-133-139.md	plprops_known	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/windows-404r2-500r7-static-2026-11-09.md	01020304	an evidence id, identifier or notation of the note; the manual carries the result
 client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-E102-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-E301-CLOCK-20261109	an evidence or lab-run id; the manual cites the note
@@ -1705,8 +2418,43 @@ client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-GS1-REGISTRY-2026
 client-internals/windows-404r2-500r7-static-2026-11-09.md	W500-E4-THROW-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/windows-404r2-500r7-static-2026-11-09.md	W500-SCRIPT-INTERFACE-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/windows-404r2-500r7-static-2026-11-09.md	getHighPrecisionTime	an evidence id, identifier or notation of the note; the manual carries the result
+client-internals/windows-404r2-components.md	Box3F	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	ColorI	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	FileStream	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	GPalette	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	GuiBitmapCtrl	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	JString	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	MRandomGenerator	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	MatrixF	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	MemStream	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	PlaneF	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	Point3F	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	QuatF	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	TDoubleArrayVar	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	TGraalClientVar	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	TGraalVarProperty	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	THashList	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	TJStringList	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+client-internals/windows-404r2-components.md	UPX0	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	_hcrypt*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	_hvdi*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	connectToGraalServer	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	endGraal3DEngine	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	getGraalLoginInfo	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	getGraalMicroGain	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	getGraalMicroInputDevices	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	getGraalScriptFunctions	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	jpc	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	loadGraal3DEngine	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	mif	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	pnm	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-404r2-components.md	runGraal3DEngine	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/windows-500-event-queue.md	alpha, beta	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/windows-500-event-queue.md	created, alpha, beta	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
+client-internals/zelda-online-1998.md	FileLink	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/zelda-online-1998.md	ZeldaClient	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/zelda-online-1998.md	signx-32	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/zelda-online-1998.md	signy-32	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 docs/book/00-how-to-read.md	v0.0.1	an old edition number of the book, not Graal
 docs/book/04-where-the-notes-disagree.md	includes halves such as	a phrase fragment, not a term
 formats/arrays-and-signatures.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
@@ -1721,6 +2469,8 @@ formats/gmap.md	= the grid cell.	a code identifier or phrase fragment; §3.2 car
 formats/gmap.md	CommaText	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
 formats/gmap.md	PLPROP_CURLEVEL	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
 formats/gmap.md	PLPROP_GMAPLEVELX	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gr-v105-500r7-cache-lab.md	board ended early	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+formats/gr-v105-500r7.md	tilelayers	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 formats/gr-v105-empty-tiles-2026-11-16.md	0x0fff	code 4095 as the empty tile is in §3.1; this is the same value in hex and code form
 formats/gr-v105-empty-tiles-2026-11-16.md	if (tile == 4095)	code 4095 as the empty tile is in §3.1; this is the same value in hex and code form
 formats/graalsav.md	TValueType	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
@@ -1729,6 +2479,9 @@ formats/gwebl001-cache.md	len % 8	the note's notation or a test detail; §3.8 ca
 formats/gwebl001-cache.md	type,name,cacheflag,i5,i5	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
 formats/ios-gani-param1-placements.md	IOS-GANI-PARAM1-20261115-04	an evidence or lab-run id; the manual cites the note
 formats/level-binary-client.md	sign_text	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+formats/level-binary.md	TLevel::loadGraal	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+formats/level-binary.md	TLevel::loadZelda	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+formats/level-binary.md	count == 1	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-HANDOFF-20261109	an evidence or lab-run id; the manual cites the note
 formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-PACKET-20261109	an evidence or lab-run id; the manual cites the note
 formats/linux-6x-class-cache.md	LNX601-X86-DELIVERY-20261109	an evidence or lab-run id; the manual cites the note
@@ -2030,6 +2783,49 @@ protocol/android-classic-socket-layer-2026-11-20.md	<connector-host>	a placehold
 protocol/android-classic-socket-layer-2026-11-20.md	Host: <connector-host>	a placeholder for a real host name, which the manual never gives
 protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
 protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
+protocol/client-string-fingerprints-3x-6x.md	1049be8d	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	1174175b	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	2be6bf4b	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	32d67755	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	6e9e35a3	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	828e9311	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	Client-version:	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	Con::	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/client-string-fingerprints-3x-6x.md	DOQLHRbY	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	Received invalid data (1)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	StartScript_Profiles	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	fc2ff99f	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	fixedudpport=14899	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	getGraalLoginInfo	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	guest_	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	hcryptEncryptPacket	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	hvdiPacketEncode	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	ismuting	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	sendServerText	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/client-string-fingerprints-3x-6x.md	switchToOpenGL	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	"""RC4"""	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	base64decode	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	cipherkey	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	ciphertype	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	ciphertypeint	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	clientversion	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	doLogin	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	generate16ByteKey	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	generate16ByteKey()	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	getplatform	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	idlist	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	initvector	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	keydata	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	loginservers	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	logintype	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	onCannotConnect	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	passcode	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	reconnections	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	setDataHandlersNewProtocol	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	setDataHandlersOldProtocol	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	usenewprotocol	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	v611-outgoing-cipher.md#the-cipher	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/connector-script.md	v611-outgoing-cipher.md#the-switch	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 protocol/graphics-movement-bytecode.md	CONST_ARRAY	an opcode, engine string or notation; §8.4 and the opcode table in §8.4.12 carry the facts
 protocol/graphics-movement-bytecode.md	CONST_STRING	an opcode, engine string or notation; §8.4 and the opcode table in §8.4.12 carry the facts
 protocol/graphics-movement-bytecode.md	PACKVALUE_CONST_NUMBER	an opcode, engine string or notation; §8.4 and the opcode table in §8.4.12 carry the facts
@@ -2108,12 +2904,49 @@ protocol/gs2-seg1-event-mask-2026-11-16.md	needEvent	a script fragment, test cas
 protocol/gs2-seg1-event-mask-2026-11-16.md	needEvent(index)	a script fragment, test case or notation of the note; §8.1 to §8.4 carry the measured rule
 protocol/gs2-seg1-event-mask-2026-11-16.md	pkzonechanges	a script fragment, test case or notation of the note; §8.1 to §8.4 carry the measured rule
 protocol/gs2-seg1-event-mask-2026-11-16.md	shapetrigger	a script fragment, test case or notation of the note; §8.1 to §8.4 carry the measured rule
+protocol/gserv-1999.md	TAdventureCarry	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/gserv-1999.md	TAdventureSign	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/gserv-1999.md	TEditorLink	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/gserv-1999.md	TOtherClient	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/gserv-1999.md	chr(132)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/gserv-1999.md	nodecompressionerror=	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 protocol/keysweep/README.md	c2s	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/keysweep/README.md	id:NAME{decoded props}	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/keysweep/README.md	key(code,char,scan)	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/keysweep/README.md	keydown(0..10)	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/keysweep/README.md	keydown=N	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-gwentea2-2026-11-20b.md	debian-lab446	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-gwentea2-2026-11-20b.md	"md5(""abc"")"	a lab test case or script fragment; the manual carries the measured rule
 protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal
+protocol/lab-appe-mirae-2026-11-20.md	gen5probe	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20.md	libfaketime	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20.md	togglescriptedplayerlist	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	!(0+0)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	"""30"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	"""Lab Quoted"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	"""push"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	"""ride.png"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	#s(an)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	#s(hs)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	#s(nx)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	#s(wn)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	0.1+0.2==0.3	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	0==0	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	14+14	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	1==1.00001	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	dead hurt	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	gen5probe	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	gs1 timer ok	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	playerx!=playerx	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	playerx==playerx	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	ride png	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	sit,lift	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	strequals(#a,#a)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	this.a==1.00001	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	while ((1+0))	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	while (1)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	while (1==1)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-mirae-2026-11-20c.md	while (this.c<3)	a lab test case or script fragment; the manual carries the measured rule
 protocol/lab-appe-mirae-2026-11-20d.md	"""GS2 C"" @ char(231) @ ""a"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/lab-appe-mirae-2026-11-20d.md	"""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/lab-appe-mirae-2026-11-20d.md	#K(-15)	a lab setting, command, config line or notation of the run; the manual carries the measured result
@@ -2161,6 +2994,26 @@ protocol/listserver.md	login_fail_limit = 0	lab tool setting or note placeholder
 protocol/listserver.md	silent_list_after_ms	lab tool setting or note placeholder, not Graal
 protocol/listserver.md	srvfuzz list	lab tool setting or note placeholder, not Graal
 protocol/listserver.md	type+name	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/login-tokens-3x-7x.md	"""2"""	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	"""3 """	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	"""3"""	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	"""D"""	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	"""G"""	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	50 1d 54 21 09 15 11 44	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/login-tokens-3x-7x.md	50 1d 54 21 11 15 11 44	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/login-tokens-3x-7x.md	GNW30123newmain	the 2.22/2.31 listserver hello written as one string; §1.2.2 gives GNW30123 and newmain
+protocol/login-tokens-3x-7x.md	JString	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	JString::operator<<	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/login-tokens-3x-7x.md	PLTYPE_*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	PlayerClient::handleLogin	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+protocol/login-tokens-3x-7x.md	_LStrFromChar	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	addis	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	lea eax,[ebp-..]	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	mflr	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	mov bl, imm8	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	mov edx,ebx	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	upx -d	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/login-tokens-3x-7x.md	v7-graal3d-*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 protocol/nc-flag-list-round-trip-2026-11-20.md	TFlagList	Delphi form class name; the manual names the window by its title
 protocol/nc-standalone-flag-action.md	NC-FLAG-ACTION-STATIC	evidence id; the manual cites the note
 protocol/npc-control.md	!hasRight(PLPERM_NPCCONTROL)	GServer-v2 source expression; §7.2.2 step 3a carries the rule in words
@@ -2256,6 +3109,7 @@ protocol/script-fuzz-2026-11-19.md	ran-past	a script fragment, test case or nota
 protocol/script-fuzz-2026-11-19.md	scriptfuzz.py score	a script fragment, test case or notation of the note; §8.1 to §8.4 carry the measured rule
 protocol/script-fuzz-2026-11-19.md	the nick and	a script fragment, test case or notation of the note; §8.1 to §8.4 carry the measured rule
 protocol/script-fuzz-2026-11-19.md	with a tiny exponent, and	a script fragment, test case or notation of the note; §8.1 to §8.4 carry the measured rule
+protocol/unpacked-6113-wire.md	resolveHost	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 protocol/v5v6-lab-play.md	<login-host-4x>*	a placeholder for a real host name, which the manual never gives
 protocol/v5v6-lab-play.md	GLOVEP 3	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/v5v6-lab-play.md	bushitems = true	a lab setting, command, config line or notation of the run; the manual carries the measured result
@@ -2263,10 +3117,40 @@ protocol/v5v6-lab-play.md	font=Arial	a lab setting, command, config line or nota
 protocol/v5v6-lab-play.md	font=Tempus Sans ITC	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/v5v6-lab-play.md	fontsize=24	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/v5v6-lab-play.md	useopengl=1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/v6113-list-capture.md	01 02 00 01 21 fd	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-list-capture.md	01 02 00 01 22 fd	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-list-capture.md	LLL=279	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/v6113-list-capture.md	T=0xfd	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/v6113-udp.md	00 00 00 00	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-udp.md	01 01	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-udp.md	2e a7 d9 0b	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-udp.md	81 80	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-udp.md	81 85	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-udp.md	84 00	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+protocol/v6113-udp.md	<?xml	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/v6113-udp.md	M-SEARCH	an evidence or lab-run id; the manual cites the note
+protocol/v6113-udp.md	udp.length	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+protocol/v7-connector-live-20261111.md	00 00 <len16>	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-connector-live-20261111.md	<len16>	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-connector-live-20261111.md	AesCbcDecrypt	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-connector-live-20261111.md	AesCbcEncrypt	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-connector-live-20261111.md	RsaSSL_Verify	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-connector-live-20261111.md	graal-client-repro	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
 protocol/v7-graal3d-gs2-and-scripts.md	TActionScriptVar	a class or method name of the engine (binary internals, §0.10); the manual carries the behaviour
 protocol/v7-graal3d-gs2-and-scripts.md	TScriptFunction	a class or method name of the engine (binary internals, §0.10); the manual carries the behaviour
 protocol/v7-graal3d-gs2-and-scripts.md	TScriptUniverse	a class or method name of the engine (binary internals, §0.10); the manual carries the behaviour
 protocol/v7-graal3d-gs2-and-scripts.md	TServerWeapon	a class or method name of the engine (binary internals, §0.10); the manual carries the behaviour
+protocol/v7-graal3d-identity-and-builds.md	AesCbcDecrypt	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	AesCbcEncrypt	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	AesSetIV	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	AesSetKey	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	Client-version:	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	DoRenderGraalControl	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	GRAALRELOADED-version	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	GRAALRELOADED-version:	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	QuattroInitializedReturn	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	SendFileToHttpRequest	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
+protocol/v7-graal3d-identity-and-builds.md	TFileDownload_*	an IL2CPP, Unity or engine identifier of the v7 client (binary internals, §0.10); §1.8 and §1.9 carry identity and behaviour
 recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
 recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
 recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
@@ -2640,8 +3524,93 @@ tools/small-utilities-2026-11-14.md	key = value	a third-party utility's own name
 tools/small-utilities-2026-11-14.md	seihai-launcher	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	seihai-rc	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	tryloadsoundson64bit=true|false	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+version-profiles/222-inferred-from-21-inventory.md	Basis::Binary	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/222-inferred-from-21-inventory.md	Basis::Inferred	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/222-inferred-from-21-inventory.md	inferred = true	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/222-inferred-from-21-inventory.md	pli_sent_complete = false	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/222-inferred-from-21-inventory.md	rows_match_version_profile_toml	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	BATCH1-LINUX3-20261116	an evidence or lab-run id; the manual cites the note
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	BATCH1-LINUX3151-CLEAN-20261116	an evidence or lab-run id; the manual cites the note
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	TServerWeapon	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	scripts*	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	update_url	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	upx -d	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	version=	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	$pref::Video::truetypefonts	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	4.0301	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	4.0402	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	4.102	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	BATCH1-LINUX4-APKG-20261116	an evidence or lab-run id; the manual cites the note
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	BATCH1-WIN411-THINSTALL-ID-20261116	an evidence or lab-run id; the manual cites the note
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	ConcreteClassRep	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	SoftwareVersion	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	TFlash*	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	TJoinedClassesProperty	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	TShowImg_Flash	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	TTilesLayer	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	dataSize	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	getMusicStatus	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	getMusicTags	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	metaSize	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	particleeffect	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	skipLines	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	tilelayercount	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	tilelayers	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/batch-linux-4x-autopackage-2026-11-16.md	weathereffect	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 version-profiles/early-windows-screen-review-2026-11.md	EARLY-VISUAL-V0-20261109	an evidence or lab-run id; the manual cites the note
 version-profiles/early-windows-screen-review-2026-11.md	EARLY-VISUAL-V1V2-20261109	an evidence or lab-run id; the manual cites the note
+version-profiles/lab-304-linux-2026-10-30.md	0 0 0	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+version-profiles/lab-304-linux-2026-10-30.md	iproute2	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libasound2t64	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libc6	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libgl1	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libgl1-mesa-dri	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libglu1-mesa	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libglx-mesa0	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libopenal1	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libstdc++	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libx11-6	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	libxext6	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	noudp = 0	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-304-linux-2026-10-30.md	xdotool	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	%sword	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	"0 ""unknown"""	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	0,Lab Server,HOST,PORT	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	18 gr.x=30	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	18=20	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	20 29 82	a byte value or offset in the note's notation; the manual gives no addresses (§0.10)
+version-profiles/lab-mac-tiger-2026-10-31.md	31=0	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	33=0	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	"52 ""English"""	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	"75 ""mac"""	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	DYLD_INSERT_LIBRARIES	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	HOST:PORT	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	NOWARP=1	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	gr.y=30.5	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	graal_reborn	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	listport	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	"mac,"""","""","""""	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-tiger-2026-10-31.md	macosx10.4tigerretaildvd	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	Initialized OpenGL.	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	LC_BUILD_VERSION	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	LC_VERSION_MIN_MACOSX	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	MAC-6015-LION-20261116	an evidence or lab-run id; the manual cites the note
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	NET=none	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	NSApplication	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	NSOpenGLView	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	TWindowCocoa	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	TWindowCocoaView	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	chmod +x	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	ditto	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	machotok	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-v5-2026-10-30.md	<list-host-3x>*	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-v5-2026-10-30.md	<login-host-4x>*	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-v5-2026-10-30.md	SETBACKTO idle	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-v5-2026-10-30.md	walk, then	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/lab-v5-2026-10-30.md	xdotool windowfocus	a lab setting, command, package name or log fragment; the manual carries the measured result
+version-profiles/linux-network-bootstrap-evidence.md	LNX-BOOTSTRAP-LEDGER-20261109	an evidence or lab-run id; the manual cites the note
+version-profiles/macos-client-compatibility.md	MAC-V3-ARCHIVE-IDENTITY-20261109	an evidence or lab-run id; the manual cites the note
+version-profiles/macos-resource-identity.md	MAC-PPC-RESOURCE-IDENTITY-20261109-R1	an evidence or lab-run id; the manual cites the note
 version-profiles/matrix/README.md	<list-host-3x>:14922	a placeholder for a real host name, which the manual never gives
 version-profiles/matrix/README.md	<list-host-classic>:14804	a placeholder for a real host name, which the manual never gives
 version-profiles/matrix/README.md	<login-host-4x>:14900	a placeholder for a real host name, which the manual never gives
@@ -2710,6 +3679,8 @@ version-profiles/matrix/live-runs-2026-10-30.md	openbox	a lab setting, command, 
 version-profiles/matrix/live-runs-2026-10-30.md	unshare --net	a lab setting, command, config line or notation of the run; the manual carries the measured result
 version-profiles/matrix/live-runs-2026-10-30.md	walkBC	a lab setting, command, config line or notation of the run; the manual carries the measured result
 version-profiles/matrix/live-runs-2026-10-30.md	xdotool keydown	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/nry-identity-f01-f03.md	5.12-untouched	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+version-profiles/save-games-142-2171.md	Load game (F2)	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 version-profiles/windows-404r2-teardown.md	W404-R01-TUTORIAL-20261108	an evidence or lab-run id; the manual cites the note
 version-profiles/windows-404r2-teardown.md	WIN-3D-PROVENANCE	an evidence or lab-run id; the manual cites the note
 version-profiles/windows-404r2-teardown.md	WIN-CODE-COVERAGE	an evidence or lab-run id; the manual cites the note
