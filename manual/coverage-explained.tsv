@@ -1,4 +1,37 @@
 path	term	reason
+ash/ALGORITHMS.md	"""GR-V1.01"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	"""GR-V1.02"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	"""GR-V1.03"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	< 100	public host placeholder; §0.10 does not name public hosts
+ash/ALGORITHMS.md	CBuffer::writebyte	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	CPlayer::CPlayer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	addBuffer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	enc1(100 + n)	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	msgFuncs[opcode](rest)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	readbyte	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	readbyteN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	readchar	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	value + 32	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	writebyteN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	writechar	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	getDataFile(name)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	getSubDirs	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	loadAccount	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	playerIds	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	CBuffer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	CList	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	CPlayer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	[section]	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/BLUEPRINT.md	getDataFile	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	getDataFile(name)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	setProperties	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	setsync	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	subdir + name	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	subdirs	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcpReceive	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcpSend	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcpaccept	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcplisten	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 client-internals/build-catalogue.md	<list-host-reborn>:14923	public host placeholder; §0.10 does not name public hosts
 client-internals/build-catalogue.md	<www-graalin-site>	public host placeholder; §0.10 does not name public hosts
 client-internals/build-catalogue.md	_SETUP.1	an installer archive member name, not a client fact
@@ -142,17 +175,150 @@ protocol/rc-capture-2026-11-04.md	labrc	lab account, server name, address placeh
 protocol/rc-capture-2026-11-04.md	seihai-gserver-v2	lab account, server name, address placeholder or commit from the capture setup, not Graal
 protocol/rc-capture-2026-11-04.md	seihai-listserver	lab account, server name, address placeholder or commit from the capture setup, not Graal
 protocol/rc-capture-2026-11-04.md	test1	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-fuzz-2026-11-19.md	74 RC_CHAT	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	ADMINRIGHTS 1048575	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	LOCALRIGHTS 1048575	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	PLO 79	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	RC-FUZZ-20261119	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	RC_NC	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	RC_NC_INJECT79=1	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	conn 1 open	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	gs2emu-73	a commit, build, archive or author name identifying a source, not a Graal fact
+protocol/rc-fuzz-2026-11-19.md	id 1 + GSERVxxx	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	isRC()	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+protocol/rc-fuzz-2026-11-19.md	ncprobe	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rc-core	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rc-widths	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rc2002	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rccanary	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rcpre	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	seihai-listserver	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	sendNCLoginToPlayer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+protocol/rc-fuzz-2026-11-19.md	wait c2s 2	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	xdotool --class	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
 protocol/rc-list-online.md	New RC: <new account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
 protocol/rc-list-online.md	New RC: <that account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
 protocol/rc-list-online.md	seihai-rc	a reimplementation, out of scope (§0.1)
 protocol/rc-list-online.md	str head	§7.1.9 carries it as `c 11` + head
 protocol/rc-list-online.md	str nickname	§7.1.9 carries it as `c 0` + nickname
 protocol/rc-props-flags-status.md	weapon count + weapon	§7.1.8 carries it as `c weapon count`, `str` per weapon
+server-notes/01-lineage.md	2.2.0-fix	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	JustBurn	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	SVI_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/01-lineage.md	SVO_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/01-lineage.md	TheDgtl-gs2emu-gserver-d3ecab4	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	gr.addweapon	an archive or source name in the lineage; §5 carries the lineage
+server-notes/01-lineage.md	gserver-134-win32	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	gserver_2.1.0	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	gserver_2.4.0	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	length byte + bytes	an archive or source name in the lineage; §5 carries the lineage
+server-notes/01-lineage.md	projectx	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	unlgserv119	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/03-protocol.md	PLO_SIGNATURE >> (char)73	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	__getLogin	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	__sendLogin	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	digit + 32	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	operator<< (char)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	operator>> (char)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	uint16 tiles[64*64]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	SVI_VERIACC2	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	limitFromType(0x06)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	limitFromType(type)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	msgPLI_TRIGGERACTION	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/baddies-serverside.md	#m(i)	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	16 < c < 38	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	21 < c < 37	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	Bx ± 1, By − 2 to By + 1	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	Random(20) + 40	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	baddyitems	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	look1	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	look3	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	this.respawn	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	this.respawning	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	timeout = 0.1	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	timeout = this.respawn	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	wa*hit	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	−(P − B) × 2	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/gserver-1999-rules.md	rules = 1999	a seihai-gserver config line, out of scope (§0.1)
+server-notes/gserver-1999-rules.md	x*2, y*2, dir, image	the note's field notation; §5.1.6 carries the layout
+server-notes/lab-servers-2026-10-30.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	73e7ea8	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	<graalonline-site>	public host placeholder; §0.10 does not name public hosts
+server-notes/lab-servers-2026-10-30.md	CFileQueue	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	CLVER_UNKNOWN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	GNW03081 (2.05r2)	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	GNW24011:GNW28015	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	IPacketHandler::parseLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PLTYPE_CLIENT3	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PlayerClientNew	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PlayerClientOriginal	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PlayerLogin::msgLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	UPNP=OFF	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	Unknown Player Packet: 55	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	V8NPCSERVER=OFF	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	[GNW22122 (2.17)]	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	[generation-range]	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	b839106	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	classic = GNW13110	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	def25322	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	efb5b90	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	generation = newmain	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	localhost	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/original-server-builds-1999-2007.md	SERVERSIDENPCS	the 1.39 tree build option; §5 carries it in words
+server-notes/original-server-builds-1999-2007.md	baddyrespawntime=30	§5 carries both options and their defaults
+server-notes/original-server-builds-1999-2007.md	dbsetup	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	help->	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	pktimeout=300	§5 carries both options and their defaults
+server-notes/original-server-builds-1999-2007.md	seihai-gserver	a reimplementation, out of scope (§0.1)
+server-notes/original-server-builds-1999-2007.md	server->uptime	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	subdirs->	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	trunc(0.75R + 0.5R·rand)	§5 carries the board respawn formula as `Trunc(Random · R/2 + 3R/4)`
+server-notes/original-server-builds-1999-2007.md	warpto x y level	§5 carries warpto
+server-notes/public-allowed-versions.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/public-allowed-versions.md	<public-host-2gta>:14913	public host placeholder; §0.10 does not name public hosts
+server-notes/public-allowed-versions.md	CLVER_UNKNOWN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/public-allowed-versions.md	TServer::loadAllowedVersions	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/public-allowed-versions.md	clientVersions[]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/public-allowed-versions.md	debug-20261029-101954	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/setcharprop-hash-n.md	GServer 1.31	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+server-notes/setcharprop-hash-n.md	GetPlayer(id)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/setcharprop-hash-n.md	GetRealMessage	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/setcharprop-hash-n.md	setcharprop #c,Hi #n	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+server-notes/setcharprop-hash-n.md	setcharprop #n,Guard	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+server-notes/setcharprop-hash-n.md	setcharprop #n,Npc	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+tools/classic-tools/gserverstat.md	#009933	a colour in a status page, not a protocol fact
 tools/classic-tools/serverlist3.md	Configuraton not found.	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
 tools/classic-tools/serverlist3.md	Server lister started	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
 tools/classic-tools/serverlist3.md	The password is wrong	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
 tools/classic-tools/serverlist3.md	lastwrite	a database column name; §6.2.3 carries the 10-minute rule
 tools/classic-tools/serverlist3.md	upgraded	a status-text word; §6.2.3 carries the status texts by kind
+tools/lab-servers/README.md	"""5.24"""	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	<graalonline-site>	public host placeholder; §0.10 does not name public hosts
+tools/lab-servers/README.md	CLVER_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_5_07	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_5_12	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_5_24	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_6_015	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_IPHONE_BELOTE_1_5	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_UNKNOWN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	File download: 1.png‰PNG	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	GNW03081 (2.05r2)	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	b839106	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	clientVersionString[]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	clientVersions[]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	efb5b90	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	listport	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	loginserver2	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	loginserver3	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	main()	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	nodirectinput=true	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	parseLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	serverport=14900	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
 tools/npc-control.md	2B 77 77 A7 B4 31 21 41	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
 tools/npc-control.md	AddNPCFrame	Delphi form name (binary internals, §0.10); §7.3 names the windows
 tools/npc-control.md	ClassesList	Delphi form name (binary internals, §0.10); §7.3 names the windows
@@ -169,7 +335,25 @@ tools/npc-control.md	WeaponsList	Delphi form name (binary internals, §0.10); §
 tools/npc-control.md	dir - length	an NPC script format in a bundled sample, not part of NC or the listserver
 tools/npc-control.md	listserver.graalonline.	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
 tools/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
+tools/npcserver-2001.md	#a(i)	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
+tools/npcserver-2001.md	Add Class	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
+tools/npcserver-2001.md	Script from Class	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
+tools/npcserver-2001.md	with (getplayer(...))	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
 tools/remotecontrol-lineage.md	RC_ACCOUNT*	§7.1.5 carries the move of accounts to ids 70 to 78
 tools/remotecontrol.md	PLI_NC_*	a wildcard over gs2lib names; §7.3 lists each NC id
 tools/remotecontrol.md	PLI_NC_LEVELLIST*	a wildcard over gs2lib names; §7.3 lists ids 150 and 151
 tools/remotecontrol.md	RC2_2.05	a file name; §7.1.2 names the program RC2 2.05
+tools/server-tools-2001.md	WindowsUser@	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	[Options]	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	crypt(3)	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal-serverlist	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_guilds	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_guilds_members	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_ipban	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_servers	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_servershq	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_users	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	iexplore	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	if (playersays(killall)	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	makepass	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/server-tools-2001.md	name:<tab>value	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
