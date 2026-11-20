@@ -130,4 +130,6 @@ block instead of a line. **[bin]**
   it on the lab hosts, so a jailbroken 32-bit device or a full iOS emulator would be needed.
 - [ ] Android Classic / Era: read the native engine's socket layer the same way, once a
   package is on a lab host.
-- [ ] The identity trailer's four fields, and where the two GSTRINGs come from.
+- [x] ~~The identity trailer's four fields~~: `iphone`, UDID, cookie MD5, MAC MD5 and the OS
+  release and version, comma-joined ([2026-11-20 read](../client-internals/static-reads-appendix-e-2026-11-20-m.md#the-iphone-identity-trailer-e16)).
+- [ ] Where the two GSTRINGs come from.
