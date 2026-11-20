@@ -18,7 +18,7 @@ archive/game-assets-websites-2026-11-01.md	excluded		E	inventory of the owner's 
 archive/game-assets-worlds-2026-11-01.md	excluded		E	inventory of the owner's off-repo asset folder; nothing from it is committed or measured
 ash/ALGORITHMS.md	cited	5	5.2	
 ash/ARCHITECTURE.md	cited	5; 7	5.2	
-ash/ARCHIVAL-NOTE.md	cited	E	5.2	§5.2 not needed: the note separates two projects named Ash, carried as App. E#400; §5.2 describes the tree from the other ash notes (coverage audit 2026-11-04)
+ash/ARCHIVAL-NOTE.md	cited	5	5	Carried in the §5.3.1 settlement of former App. E#400 (Ash is the owner's reproduction effort, with the 39ster blueprint pack and Phoenix)
 ash/BLUEPRINT.md	cited	5	5.2	term carry low by design: the missing terms are the 2006 tree's C++ class and function names; its source tree, data walk, wire frame and special ops are carried in §5.2 (coverage audit 2026-11-04)
 ash/INDEX.md	cited	5; E	5.2	
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
@@ -896,3 +896,4 @@ version-profiles/version-token-map.tsv	excluded			Generated machine-readable ass
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
+server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
