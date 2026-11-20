@@ -3,7 +3,7 @@
 
 This chapter gives the walking step, the wall test, what blocks a point, the blocked-step counter and the actions that hang off it (push pose, ledge jump, pushing blocks and NPCs), grab and pull, water and lava, link following, and the gates that stop movement. Tile type values and the `arrays.dat` lists are defined in → §3.5; this chapter only says how movement uses them. Units are tiles and 50 ms ticks (→ §4.1.1). Facings are 0 up, 1 left, 2 down, 3 right.
 
-> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#302, E#304, E#305 and E#308; E#303, E#306 and E#307 are settled in → §4.2.3, §4.2.8 and §4.2.2.2, and E#309 in → §4.3.7.2.
+> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. The open point is App. E#304; E#303, E#305, E#306 and E#307 are settled in → §4.2.3, §4.2.5, §4.2.8 and §4.2.2.2, E#308 in → §4.2.11 and E#309 in → §4.3.7.2.
 
 ## 4.2.1 The step
 
@@ -29,8 +29,16 @@ The step vector is scaled by a speed factor. Each row gives one factor and the s
 | 1.2 | a high speed state | 2.05 | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step) |
 | 0.2 | hidden under a carried object: 0.1 tile per tick | 1.39, 1.41, 2.05, 2.22 | [live][1.39][1.41][2.05] (client-internals/player-mannerisms-live.md#cross-version-table); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | about 0.2 | hidden: 1.5 px per tick, steps of 2 and 1 px alternating | 5.x, 6.x | [wire] (protocol/v5v6-lab-play.md) |
-| 0.4, 0.8 | exist in the walking code; not tied to states (→ App. E#302) | 2.05 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| 0.4, 0.8 | 0.4 while the gani is the sleep gani, 0.8 riding (settled below) | 2.05 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | swimming | the same 0.5 tile per tick as walking | 1.39, 1.41, 2.05, 2.22, 5.x, 6.x | [live] (client-internals/player-mannerisms-live.md#cross-version-table); [wire] (protocol/v5v6-lab-play.md) |
+
+**Settled question, formerly E#302: Walking speed factors other than 1.0, 1.2 and the hidden 0.2.** Which states use the walking speed factors 0.4 and 0.8 was open. A read of the 2.05 walk and lab walks on 2.05 rev 2 settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302); [bin][lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | 2.05 picks the factor in this order: riding 0.8 (rising slightly the longer the ride), hidden 0.2, 0.4 while the current gani is the sleep gani (by name, or whatever `replaceani` put in the sleep slot), 1.2 for shield power 3 or more, else 1.0 | [bin] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Settled | Measured: riding 0.8; `replaceani walk,sleep` 0.4; shield 3 gives 1.2; carrying any object kind, swamp, lava swamp, water, deep water and chairs all walk at 1.0 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Verdict | Verified on 2.05 rev 2. The best guess (0.8 a heavy carried object, 0.4 riding or the shield) is refuted. In ordinary play 0.4 is reached only through `replaceani` | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
 
 ### 4.2.1.2 Walking speed by build
 
@@ -220,8 +228,18 @@ By build:
 | 1.39 | 18 | 38 to 18 | about 2 ticks (video) | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | 1.41 | 18 | 38 to 18 | 4 ticks (`push.gani`) | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 2.05 rev 2 | 18 | 38 to 18 | 4 ticks | [live][2.05] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| 2.22 | the tick after 18 blocked ticks | 37 back to 18 | 5 × 4 ticks, looping; a lab read of the frame field showed it cycling 0 to 3 each tick (→ App. E#305) | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table); [live] (live-runs/2gta-222-2026-10-30/README.md) |
+| 2.22 | the tick after 18 blocked ticks | 38 back to 18 | 5 × 4 ticks, looping; the 0 to 3 field of the memory trace is the tick count within the frame (see the settled question below) | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table); [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
 | 5.24r4, 5.30r3, 6.03r7 | 0.85 to 0.90 s after the walk started | unmeasured | unmeasured | [wire] (protocol/v5v6-lab-play.md) |
+
+**Settled question, formerly E#305: The 2.22 push frame field.** A memory trace of 2.22 showed a "push frame" field that cycled 0 to 3 every tick. That seemed to disagree with the 4-tick push frames measured live. A read of the 2.22 gani code settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The player keeps its gani, a frame index and a tick count within the frame. Each tick the count goes up by 1; when it reaches the frame's length the frame index goes up by 1 and the count goes back to 0. Setting a new gani resets both; setting the same gani again changes nothing | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
+| Settled | The traced "walk frame" field is the frame index; the traced "push frame" field is the tick count within the frame, so its 0 to 3 cycle shows 4-tick push frames (the stock `push.gani`, five frames of `WAIT 3`) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
+| Settled | While walking, the counter is set back to 18 once it reaches 38, and `push` is set each tick with the counter at 18 or more; five 4-tick frames match the 20-tick cycle | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-push-threshold-in-the-same-routine) |
+| Verdict | Verified by read on 2.22; the best guess (another per-tick counter, Claim A stands) holds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
+| Left over | None for the push timing | [inf] (client-internals/static-reads-appendix-e-2026-11-20-g.md#not-covered) |
 
 ## 4.2.6 Ledge jumps
 
@@ -369,9 +387,20 @@ Links are tested every tick. The rules below give how the client builds the neig
 
 | Rule | Detail | Source |
 | --- | --- | --- |
-| neighbours | on entering a level while a big map is loaded, the client fills a 3 × 3 table of level names round it from the big map's text grid (→ §3.2.5); cells off the grid stay empty; the step is skipped under an unidentified flag (→ App. E#308) | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#the-levels-neighbours) |
+| neighbours | on entering a level while a big map is loaded, the client fills a 3 × 3 table of level names round it from the big map's text grid (→ §3.2.5); cells off the grid stay empty; the step is skipped while the `dontconnectlevels` option is on (2.22: unless the map is a gmap) | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#the-levels-neighbours); [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308) |
 | probe | each tick, the player's position plus a per-facing offset in tiles: up (+1.5, +1.0), left (+0.5, +2.0), down (+1.5, +3.0), right (+2.5, +2.0); 2.22 has the same table | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link); [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md) |
 | order | each link of the level in order; the first that fires is taken; offline the client loads the level, online it asks the server | [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link) |
+
+**Settled question, formerly E#308: Link probe offsets and the neighbour-table flag.** Which flag skips the 3 × 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt`, was open; the per-facing probe offsets had already been read (→ the table above). A read of the 2.22 builder, its 2.05 twin and the 171 receiver settled both [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The table is built only when a map is loaded and the `dontconnectlevels` option (→ §3.9) is off; 2.22 also builds it on a gmap whatever the option says, and skips it while "Generate map" runs unless the map has a `HEIGHTMAP` block. 2.05 rev 2 tests the option alone | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308) |
+| Settled | The cell is the level's index in the map list: column = index modulo width, row = index divided by width; the eight cells round it inside the map get names, the centre keeps the current level; a second routine then loads each named neighbour (offline from file, online as a requested level with `PLI_ADJACENTLEVEL`, 35) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308) |
+| Settled | On a level of the loaded gmap the player keeps the gmap and the level's cell; the link routine then skips the probe and the four edge links and switches to the loaded neighbour as soon as the raw x or y leaves 0 to 64, shifted by 64 per cell; a diagonal with no corner level falls back to the vertical, then the horizontal neighbour (→ §4.2.13) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#cell-coordinates-on-a-gmap) |
+| Settled | 171 (and GS1 `setmap`) replaces the big-map file and image names and reruns the same loader that reads `bigmap.txt`, so it installs the same grid; a file not yet held is only requested, and takes effect on a later 171 | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#plo_bigmap-171-and-the-gs1-setmap-command) |
+| Verdict | Verified by read on 2.22 and 2.05 rev 2; the best guess (171 fills the same grid) holds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308) |
+| Left over | A lab crossing on 2.22 with a big map installed by 171, and the meaning of the scrambled play-mode value that gates the gmap reload | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#cell-coordinates-on-a-gmap) |
 
 On a big map the client adds four edge links of its own. Each row gives one edge, the condition that fires it and where the player arrives [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#following-a-link).
 

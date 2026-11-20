@@ -252,6 +252,8 @@ A Graal3D level is a DirectX mesh file. The rules below say what it holds and ho
 | The server caches each level's text and sends it inline in id 0; the client saves it under the level name in its own folder and loads it with Direct3D RM | [bin][cap] (graal3d/formats.md#levels-levelsx-on-the-server) |
 | Textures are not transferred: the BMPs a level names must already be in the client folder | [bin] (graal3d/formats.md#levels-levelsx-on-the-server) |
 | The client's saved copy was byte-identical to the server's file in the lab | [cap] (graal3d/protocol.md#level-change) |
+| A level whose face count is inflated or whose face indices are partly out of range leaves no collision object; the client then shows Delphi's access-violation error box and a black window. The fault is handled, not a process crash, and every client sent that level is affected | [lab] (graal3d/x-loader-fuzz-2026-11-20.md#result) |
+| Other malformed input loads cleanly: bad structure, unknown texture names, special float values and other bad indices (11 runs on real Windows 10 with the XP `d3drm.dll`) | [lab] (graal3d/x-loader-fuzz-2026-11-20.md#result) |
 
 ### 9.3.2 Level change
 

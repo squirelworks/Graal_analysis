@@ -3,7 +3,7 @@
 
 This chapter is the GS1 reference: argument types, name tables, every command of the 2.05 rev 2 table with what 2.05 does, the expression tables, constants, and how the command table grew from 1.33 to the NewWorld betas. How scripts are compiled and run is in → §8.1.
 
-> Status: draft. Command behaviour was read from 2.05 rev 2 only; other builds are covered by table membership, not by executor reads (→ §8.2.7). Four stored signatures have an exact-input static correction; argument conversion and semantic equivalence remain open (→ App. E#201).
+> Status: draft. Command behaviour was read from 2.05 rev 2 only; other builds are covered by table membership, not by executor reads (→ §8.2.7). Four stored signatures have an exact-input static correction; their argument conversion is settled in §8.2.1.
 
 ## 8.2.1 Argument signature letters
 
@@ -23,7 +23,15 @@ Each command in the table carries one letter per argument. The compiler uses the
 | `L` | carry objectname | one of the 11 carry objects | [2.05][doc] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works; npc-library/gs1-reference-205.md#argument-signature-letters) |
 | `O` | objectname | an entry from the editor's predefined tile-objects list (`tileobjects/`) | [2.05][inf] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works; npc-library/gs1-reference-205.md#argument-signature-letters) |
 
-The four corrected entries give stored letters only; argument conversion and equivalence of the older descriptions remain unmeasured → App. E#201 [bin] (npc-library/gs1-signatures-205-followup.md#checks-and-limits).
+The four corrected entries give stored letters only; argument conversion is settled below [bin] (npc-library/gs1-signatures-205-followup.md#checks-and-limits).
+
+**Settled question, formerly E#201: Four GS1 argument signatures in 2.05.** What the stored argument letters of four GS1 commands mean at run time was open. Lab scenes on 2.05 rev 2 settled each [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | `puthorse` (`MRR`) and `showimg` (`RMRR`): the image slot is free text with message codes expanded, spaces and quotes kept; the numeric slots evaluate expressions, and a string there gives 0 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
+| Settled | `toinventory` (`S`) and `replaceani` (`MM`) take their arguments as raw text: codes not expanded, quotes and spaces kept. A third `replaceani` argument stops the command and the rest of its line. Online, 2.05 runs `replaceani` only after server message 44 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
+| Verdict | Verified on 2.05 rev 2. The best guess (the older descriptions are equivalent) is refuted: `M` letters convert differently in different commands | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
 
 ## 8.2.2 Name tables
 
@@ -356,7 +364,7 @@ Several GS1 values are small numbers with fixed meanings. Each row gives one set
 | baddy modes | 0 walking, 1 looking, 2 hunting, 3 hurt, 4 bumped, 5 dying, 6 shooting (swamp), 7 jumping (frog), 8 shooting (spider), 9 dead | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
 | player sprites | 0 idle; 1–8 walk; 9–13 sword; 14–18 push; 19–22 pull; 23 lift; 24 carry idle; 25–32 carry walk; 33 shoot; 34–36 ride; 37 sit; 38 sleep; 39 hurt; 40 dead; 39 and 40 only on `showcharacter` NPCs | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
 | tile types (`tiletype(x,y)`) | 0 nonblocking, 2 hurting underground, 3 chair, 4 bed top, 5 bed bottom, 6 swamp, 7 lava swamp, 8 near water, 9 near lava, 11 water, 12 lava, 20 throw-through, 21 jumping stone, 22 blocking | [doc] (npc-library/gs1-reference-205.md#constants-doc) |
-| `move` options | bounded static queue/option consumer → §8.2.9; residual scheduling/collision questions → App. E#206 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
+| `move` options | bounded static queue/option consumer → §8.2.9; step timing settled in §8.2.9 | [2.05][bin] (npc-library/gs1-move-205r2.md) |
 | `showstats` mask | 1 ASD, 2 icons, 4 rupees, 8 bombs, and further bits the notes do not list | [doc] (npc-library/gs1-command-reference-205.md#the-player) |
 | `changeimgvis` layers | 0, 1, 2 under, level with, over the NPC; 3 light layer, as `drawaslight`; 4 screen, over the status bar | [2.05] (npc-library/gs1-command-reference-205.md#board-map-images) |
 | `putleaps` types | 0 bush, 1 swamp, 2 stone, 3 sign, 4 ball, 5 water | [2.05] (npc-library/gs1-command-reference-205.md#combat-items-level-objects) |
@@ -476,7 +484,16 @@ The `move` command queues motion that a consumer applies tick by tick. The rules
 | 32 | same category predicate as onwater; classic board recognizes IDs 64 ≤ id < 288, another path uses a table; not a generic wall test | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
 | collision/8 | collision cancels entire queue without attempted displacement; option 8 queues movementfinished on completion or collision, not direct event-body execution | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
 | 64 | character auto-animation: water first; otherwise empty queue or both deltas below tolerance selects idle; at least half-tile delta on either axis selects walking, smaller selects slower walking; special profile uses its own names | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
-| residuals | scheduler/catch-up, full collision eligibility, event execution, overflow/nonfinite inputs, other bits and animation playback remain open → App. E#206 | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+| residuals | the step timing is settled below; full collision eligibility, event execution, overflow/nonfinite inputs, other bits and animation playback remain open | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
+
+**Settled question, formerly E#206: `move` option bits in 2.05.** How often the `move` caller runs in 2.05, whether it catches up, and its edge cases were open; the queued consumer was read. A further read and a timed lab settled the caller and its timing [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#move-timing-on-205-e206).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | `move` has two callers: the GS1 command and a move received from the network with its own start position. Option 0 replaces the queue; 1 appends, but replaces when the queue ends more than 5 tiles away; the queue holds 100 records, and the hundredth forces a replace | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206) |
+| Settled | A move takes its time in 50 ms steps (asked 2.00, 0.50, 1.60 and 0.12 s took 2.03, 0.57, 1.65 and 0.15 s), and a 1 s or 2 s stall of the client adds its full length: no catch-up | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#move-timing-on-205-e206) |
+| Verdict | Verified on 2.05 rev 2; the best guess (once per 50 ms step, no catch-up) holds | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#move-timing-on-205-e206) |
+| Left over | Full collision eligibility, one unidentified object collection, event execution after the move, unusual numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ## 8.2.10 Exact-build object getter semantics
 

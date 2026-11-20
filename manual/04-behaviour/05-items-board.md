@@ -3,7 +3,7 @@
 
 This chapter gives the client's side of lifting, carrying, hiding and throwing, the sword cut, chests, items on the floor, who rolls item drops in each build, and what the client does (and does not do) about board respawn. The `arrays.dat` tables named here are defined in → §3.5.3; the server's respawn timers and drop tables are in → §5.
 
-> Status: draft. Read for 1.3, 1.38 to 1.41 and 2.05 rev 2; lab-checked on 1.39, 2.05 rev 2 and 2.22. The open point is App. E#317; E#316 and E#318 are settled in → §4.5.2 and §4.5.7.
+> Status: draft. Read for 1.3, 1.38 to 1.41 and 2.05 rev 2; lab-checked on 1.39, 2.05 rev 2 and 2.22. E#316 and E#317 are settled in → §4.5.2, and E#318 in → §4.5.7.
 
 ## 4.5.1 Matching a 2 × 2 object
 
@@ -48,6 +48,11 @@ The A key lifts, carries and throws. The rules below give the key order, the glo
 | leaving | D again, or A, goes back to `carrystill` in the same tick; out from under a bush (not an NPC) the client starts break effect 0 (the leaves) at (x + 0.5, y + 1) | [2.05] (client-internals/carry-hide-and-glove.md#hiding-mode-14) |
 | throw | A, or S (also from hiding): `idle` in the same tick, the carried and hidden flags cleared, the carry sprite back to -1 | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live); [2.05] (client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md) |
 | flight | a thrown pot flies about 6 tiles in 9 ticks, its shadow along the ground; it breaks into four pieces that spread over 4 ticks; a landing does not touch the board, it only breaks into leaves (`crush.wav`, or `water.wav` for the water leap) | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live); [bin] (client-internals/board-respawn.md#the-objects) |
+| 2.22 throw sends | UDP 18 (throw carried) to the peers, empty, and `PLI_THROWCARRIED` (11), empty, over TCP whenever a TCP copy is needed (UDP off, no UDP port, or a player in the level without one); with UDP working and nobody else in the level only UDP 18 goes out (→ §2.4) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#sending) |
+| 2.22 flight (read) | starts at (x + 0.5) with the object drawn at y - 1.375 over a shadow at y + 1; for 9 ticks it moves 1 tile per tick along the facing and sinks 0.2 tile per tick towards its shadow (the same step table as 2.05 rev 2); past a level edge it carries on in the loaded neighbour, shifted by 64; the live "about 6 tiles" above is not yet reconciled with the 9 tiles the code allows | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#flight) |
+| 2.22 hits | each tick at (x + 1, shadow y + 1): a wall, then an NPC (its "pelted with" text set to `bush`, `sign`, `vase`, `stone`, `blackstone` or `npc`, and `waspelt` fired), then baddies (power 3; 1 for a bush, NPC or bomb), then the local player within 2 tiles of (x + 0.5, y + 1) (→ §4.3) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#what-it-hits) |
+| 2.22 landing | at the first hit or after 9 ticks: a splash on water (`water.wav`), else a break effect at (x, shadow y) with `crush.wav`, leaves for a bush, kind 3 for a sign, kind 2 otherwise; a carried bomb is set down there instead and sent as `PLI_BOMBADD` (4); a thrown NPC is set down and gets `wasthrown`; the board never changes | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#landing) |
+| 2.22 drops | the cut and lift routines roll nothing and add no item; every drop is the server's (→ §4.5.5) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#what-a-cut-or-lift-drops) |
 | D key while carrying | does not throw; with carry sprite 239, 261 or 263 it hides (above) | [2.05] (client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md) |
 | stone without glove | A at a black stone with glove 1 does nothing: no lift and no grab | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
 
@@ -186,7 +191,17 @@ An item on the floor has a life that counts down. The rules below give that life
 | offline value | green 1, blue 5, red 30, gold 100 rupees (up to 9,999,999); bombs and darts 5 each (up to 99); a heart one whole heart; sound `extra.wav` | [bin] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin) |
 | online pickup | `PLI_ITEMTAKE` (32) with the item's three bytes; the server answers with props (for example RUPEESCOUNT) | [cap] (client-internals/item-drops.md#lab-runs-livecap) |
 | 1.3 | the pickup test is an overlap of pixel boxes, and a timeout is silent | [bin] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin) |
-| 1.x pickup box in tiles, draw order against players | 1.39: strict overlap in eighths of a tile of the player's body box (x + 0.5 to x + 2.5, y + 1 to y + 3) with the item's sprite box centred across x + 1; the sprite size unit and the draw order are unmeasured (→ App. E#317) | [bin] (client-internals/item-drops.md#open); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-139-pickup-test-e317) |
+| 1.x pickup box in tiles, draw order against players | 1.39: strict overlap in eighths of a tile of the player's body box (x + 0.5 to x + 2.5, y + 1 to y + 3) with the item's box, centred across x + 1 from y + 1/8 and sized from its sprite record in `arrays.dat` array 24, in eighths of a tile (a heart 1 × 1, a rupee 1 × 2); items and players draw in y order (see the settled question below) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317); [lab] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
+
+**Settled question, formerly E#317: The 1.x pickup box and item draw order.** The 1.39 pickup test was known, but not the unit of the item size it uses, so the box in tiles was open; the draw order had been measured. A read of the 1.39 pickup routine, its sprite drawer and its `arrays.dat` settled the unit [bin][file] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The item's w and h are two 6-bit fields of its sprite record (array 24 of `arrays.dat`, → §3.5), picked through a built-in 25-entry item table; the sprite drawer doubles them to get pixels and the item drawer divides them by 8 to get tiles, so they are in eighths of a tile, the pickup test's own unit | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#where-w-and-h-come-from) |
+| Settled | Boxes in tiles from the 1.39 file: rupees, darts 1 × 2; heart 1 × 1; bombs and gloves 1.75 × 2; bomb and super bomb 2 × 2; shields 1 × 1.25; swords 1 × 2.125; full heart 1.625 × 1.625; the rest in the note. 2.22's file gives the same sizes; 1.21's differs for darts and the two bombs | [file] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-boxes-in-tiles) |
+| Settled | Items and players draw in y order: an item covers a player only when its y is larger | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
+| Verdict | Verified by read and file on 1.39; the best guess (size in tiles) was wrong: the size is in eighths of a tile | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317) |
+| Left over | What sets the busy flag that makes the test skip an item | [inf] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-pickup-test-again) |
 
 ## 4.5.7 Board respawn on the client
 

@@ -1625,7 +1625,6 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	win-4.04r2	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	none	unknown id: skipped as one byte	w404-widths	id90
 2026-11-19	win-4.04r2	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included (same as 4.20r8)	w404-baddytypes	type*
 2026-11-19	win-4.04r2	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section (the 4.20r8 run lgw420 is unusable: that account rode a horse throughout); after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80, under Wine too	w404-loadgani3w	-
-
 2026-11-19	linux-4.04r2	s2c	9	5	9 c:5 c:1	no	yes	-	canary lost	core-404	ref-01
 2026-11-19	linux-4.04r2	s2c	9	5	9 c:5 c:99	yes	yes	-	canary landed	core-404	ref-99
 2026-11-19	linux-4.04r2	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	-	canary lost	core-404	p83-i5
@@ -1665,7 +1664,6 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	linux-4.11	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 (29/34 land, 0 gone)	core-411	-
 2026-11-19	linux-4.20r6	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 (29/34 land, 0 gone)	core-420r6	-
 2026-11-19	linux-4.20r8	s2c	all	-	(full core plan)	yes	yes	-	byte-identical to linux-4.04r2 and to the recorded win-4.20r8 (29/34 land, 0 gone)	core-420r8	-
-
 2026-11-19	linux-3.04	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	-	canary landed	core-304	p3-i3
 2026-11-19	linux-3.04	s2c	9	77	9 c:77 c:1 c:5 c:99	yes	yes	-	canary landed	core-304	p77-c1
 2026-11-19	linux-3.04	s2c	9	77	9 c:77 i5:123456 c:5 c:99	no	yes	-	canary lost	core-304	p77-i5
@@ -1698,7 +1696,6 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	linux-3.04	s2c	83	-	83 c:1	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-c1
 2026-11-19	linux-3.04	s2c	83	-	83	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-empty
 2026-11-19	linux-3.04	s2c	83	-	83 t:"probe body 0123456789"	yes	yes	-	unknown PLO; same-frame canary landed	core-304	plo83-text
-
 2026-11-19	mac-6.015	s2c	9	5	9 c:5 c:1	no	yes	-	canary lost	core-mac	ref-01
 2026-11-19	mac-6.015	s2c	9	5	9 c:5 c:99	yes	yes	-	canary landed	core-mac	ref-99
 2026-11-19	mac-6.015	s2c	9	83	9 c:83 i5:1234 c:5 c:99	yes	yes	-	canary landed	core-mac	p83-i5
@@ -4861,6 +4858,23 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: C then + at the join	-	yes	P on the level connection, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	z119-c0
 2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: C then + 3 s after the join	-	yes	no P, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	z119-c3
 2026-11-20	win-15th Graal (gen 1 relay)	s2c	lobby	-	fake peer: + 5 s after the join	-	yes	P on both connections, then the state push	control for the 1.1.9 timing rows	w15th-lobby	y15th-5
+2026-11-20	win-2.05	s2c	44	-	44 (then GS1 replaceani walk,sleep in a level NPC)	-	yes	C>S 2 gani sleep	walking 0.4 tiles per 0.1 s with the sleep gani	e302g	g1-walk
+2026-11-20	win-2.05	s2c	44	-	44 (then replaceani sleep,lift + walk,lift)	-	yes	C>S 2 gani lift	walking 0.4 tiles per 0.1 s: the sleep slot's gani counts	e302g	g3-walk
+2026-11-20	win-2.05	s2c	9	16	9 c:15 c:20 c:16 c:Y2 (strips of swamp, lava swamp, near water, water, chair)	-	yes	C>S 2 x steps	every tile type walks 1.0 tiles per 0.1 s	e302c	w-swamp
+2026-11-20	win-2.05	s2c	44	-	44 (then GS1 replaceani forms in a level NPC)	-	yes	C>S 2 gani as written	replaceani takes both arguments raw; 3 arguments do nothing	e201c	r1-walkL
+2026-11-20	win-2.05	s2c	9	16	9 c:15 c:80 c:16 c:Y2 (move trigger bands)	-	yes	C>S 2 chat start/finish	move takes its time in 50 ms steps; a 1 s and a 2 s stall add their full length	e206	-
+2026-11-20	win-2.22	s2c	19	-	19 s:0 c:61 c:50 c:2 c:1 c:1	-	yes	C>S 2 power 5, gani hurt	type 0 hurts half a heart (no noplayerkilling)	e312	A1
+2026-11-20	win-2.22	s2c	19	-	19 s:0 c:61 c:50 c:2 c:1 c:2	-	yes	C>S 2 power 4, gani hurt	type 1 hurts one heart	e312	A2
+2026-11-20	win-2.22	s2c	19	-	19 s:4 c:61 c:50 c:10 c:1 c:1	-	yes	C>S 2 power 5, gani hurt	linked owner: same half-heart hit	e312	A3
+2026-11-20	win-2.22	s2c	19	-	19 s:4 c:61 c:50 c:10 c:1 c:2	-	yes	C>S 2 power 4, gani hurt	linked owner: same one-heart hit	e312	A4
+2026-11-20	win-2.22	s2c	19	-	19 s:0 c:61 c:50 c:2 c:1 c:1 (noplayerkilling level)	-	yes	none	no hit	e312b	B1
+2026-11-20	win-2.22	s2c	19	-	19 s:4 c:61 c:50 c:10 c:1 c:2 (noplayerkilling level)	-	yes	none	no hit	e312b	B4
+2026-11-20	win-2.22	s2c	14	-	14 c:60 c:60 t:e312n.nw	-	yes	none	client stays on "loading" (no board follows)	e312	B1-v
+2026-11-20	win-5.00r7	-	-	-	level GS2 NPC showtext with Latin-1 bytes 231 233 252 241	-	yes	none	drawn as Français éüñ ça	e213b	t1-text
+2026-11-20	win-5.00r7	-	-	-	level GS1 NPC showtext with Latin-1 bytes 231 233 252 241	-	yes	none	lab server translator sends the UTF-8 replacement character per byte	e213b	t1-text
+2026-11-20	mac-3.153	-	-	-	listing tagged H (HQ level 1) vs 3 (HQ level 4)	-	yes	UDP only with the 3 tag	3D link, mission start and Camera control object with no crash	e506-r2	t15
+2026-11-20	win-4.04r2	-	-	-	offline, DisableUserModeCallbackFilter on, Offline Test, Right 1.5 s	-	once	none	tutorial level drawn; player walks right, view scrolls; later starts exit silently	e610	m1
+2026-11-20	win-4.04r2	-	-	-	offline under Wine 10 (OpenGL renderer), bush beside tutorial start, A then walk then A	-	yes	none	A lifts (tiles change); carry walk plays with added ganis; second A ends carry; carried and thrown bush never drawn; D and S inert under disableweapons	e611-wine	lift-carry-throw
 2026-11-20	win-1.28b2 (gen 2, GSERV013)	s2c	8	-	8 c:7 c:0 str:one c:20 str:<own level> X Y sprite colours head c:30 i5:<loopback> c:31 i3:30000	-	yes	none	not drawn (level and peer address/UDP port are not enough)	w128-pl8	pl8-1b-udp
 2026-11-20	win-1.28b2 (gen 2, GSERV013)	s2c	8	-	8 s:9 ... same with c:31 i3:30001	-	yes	none	not drawn	w128-pl8	pl8-2b-udp
 2026-11-20	win-1.28b2 (gen 2, GSERV013)	s2c	8	-	8 c:12 c:17 c:2 c:15 c:60 c:16 c:56 c:0 str:three c:20 str:<own level>	-	yes	none	not drawn	w128-pl8	pl8-1b-sprite-first

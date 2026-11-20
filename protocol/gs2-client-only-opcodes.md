@@ -145,7 +145,7 @@ The pairing, from the 6.00 fold: **[bin]** (`protocol/gs2-client-vm.md#opcodes-a
 | 22 | 36 | 235 |
 | 22 | 35, then 33, 34, 36, or 47 | 236, 237, 238, or 239. 47 is not folded when 45 follows it |
 | 20 `loadfloat` | 131 | 240 |
-| 22 | 6, or 45, or 47, when the name resolves and that object is flagged | 241, and the resolved object is stored on the instruction |
+| 22 | 6, or 45, or 47, when the name is one of the 17 flagged global built-ins (`client-internals/static-reads-appendix-e-2026-11-20-i.md`) | 241, and the registry entry is stored on the instruction |
 | 47 | 45 | 242, and the next instruction's number is copied onto this one |
 
 The executor, read case by case: **[bin]**

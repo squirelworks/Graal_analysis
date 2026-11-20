@@ -206,6 +206,7 @@ The table above gives the combat and board messages. The rules below record how 
 | Captured board runs: a cut bush 2 × 2 = tiles 1834, 1835, 1850, 1851; cut grass = 677, 678, 693, 694 | 2.05 | [cap] (protocol/packet-layouts.md#board-change-on-the-wire-cap) |
 | Item drops after a bush cut came from the server (`bushitems` on); no client sent `PLI_ITEMADD` | 2.05 with GServer-v2 | [cap] (protocol/packet-layouts.md#board-change-on-the-wire-cap) |
 | The bush and sign pickup path also sends `PLI_BOARDMODIFY` | 2.05 | [2.05] (protocol/packet-layouts.md#board-modify-correction) |
+| 2.22 sends 11 only from the throw, after UDP 18, and only when a TCP copy is needed (UDP off, no UDP port, or a player in the level without one); the routine that sends `x×2, y×2` when a laid bomb is picked up, grabbed or removed by a script sends UDP 11 (bomb del) and, as its TCP copy, `PLI_BOMBDEL` (5), not 11 | 2.22 | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#sending) |
 | 2.05 sends only weapon type 0 in id 33 (→ §2.4.6) | 2.05 | [2.05] (protocol/packet-layouts.md#weapons) |
 
 The server's respawn of board changes is behaviour and is in → §4.5.

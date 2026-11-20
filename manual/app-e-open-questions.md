@@ -44,27 +44,16 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#103 | 2.22 signature verifier variants | Read | a cracked or debug variant, not an official one | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| E#201 | Runtime meaning of four 2.05 argument signatures | Lab | equivalent at run time | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
-| E#206 | `move` timing in 2.05 | Lab | one queued step per frame | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
-| E#208 | Whether 3.153 uses OpenGS1's layout | Read | no | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| E#209 | GS2 VM details left open by the per-build read | Read | 48, 49 and 54 settled on 5.00r7; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| E#209 | GS2 VM details left open by the per-build read | Read | 48, 49, 54, the 6.x loop-limit name and 6.03r7 event case settled; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-| E#213 | How GS2 text bytes draw on screen | Lab | through the Windows code page, so Latin-1 on Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
 | E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
-| E#302 | Walking speed factor 0.4 (0.8 is riding) | Lab | 0.8 is riding (measured); 0.4 in water or a slowing state | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
-| E#312 | The last byte of a shot | Lab | the shot type; low types hurt unless an owner field or level flag blocks them | [inf] (client-internals/damage-sources.md#shot-19) |
-| E#317 | 1.x pickup box and item draw order | Read | draw order by y (measured); item box size open | [inf] (client-internals/item-drops.md#open) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
-| E#323 | 2.22 level-object routines | Read | as in 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-| E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
@@ -72,15 +61,10 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
-| E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| E#425 | Standalone NC flag-action recipient | Read | the NC server, as a flag-list write | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
-| E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | Lab | the static server order works as read | [inf] (torque/protocol19-server.md#open) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); servers sent no tile definitions | [inf] (torque/304-tile-types.md#not-settled) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
-| E#613 | 2.22 remote PM roster | Read | a request for the server's player list, answered with the list message | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
@@ -157,8 +141,9 @@ These questions are about which build is which, who built it and how it protects
 | Tried | Mac 6.015 on Mac OS X 10.7.5 in an emulator, offline: once the executable bit was restored, the app came up with a Graal menu and a window titled Graal whose content stayed white; no crash | [lab] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015) |
 | Evidence | Mac 6.11r1 showed the same white window on the same guest, which has no OpenGL acceleration; both 6.0x builds use a Cocoa OpenGL view | [lab][bin] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#static-surface-used-to-choose-the-live-build) |
 | Tried (2026-11-19) | The x86_64 slice of Mac 6.015 in the same Lion guest logged in through the probe proxy (generation 5, token `G3D3107A`), stayed connected through the whole core probe plan and ran a clientside GS1 NPC whose chat came back; the canary read the wire, not the screen | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
-| Best guess | 6.015 logs in and plays (now measured); the white window is the guest's missing OpenGL, not a client fault. 6.004 is expected to behave the same. Confidence: moderate for the frame | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
-| Settles it | A run on a guest or machine with working OpenGL; or a static trace of one slice from entry to the game loop | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| Tried (2026-11-20) | On a macOS 15 guest with working software OpenGL, 6.015 initialised OpenGL, logged in, entered the start level and asked for its files, but its main window stayed blank grey; a small "Select File" window drew the GUI skin. 6.004 printed its beta notice and quit at once, probably a time limit | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#mac-6004-and-6015-with-working-opengl-e618) |
+| Best guess | The 6.0x Cocoa main view draws only on the macOS versions it was built for (around 10.9, the version it reports), not on Lion without OpenGL or on Sequoia; 6.004 needs its clock held before its beta limit. Confidence: low | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#mac-6004-and-6015-with-working-opengl-e618) |
+| Settles it | A 10.9-era macOS guest with OpenGL, with the clock held for 6.004 | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#mac-6004-and-6015-with-working-opengl-e618) |
 | Outlook | Lab. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
 
 ## E.3 Transport: frames, ciphers and logins
@@ -206,10 +191,10 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Evidence | The native engine libraries are not encrypted, so the connect and token builders are within reach of a static pass | [bin] (client-internals/android-login-token-boundary.md) |
 | Tried | No device, emulator or capture. The lab Linux VM has no nested KVM, and no Android or iPhone app is installed on a lab host | [doc] (protocol/unknowns-ledger.md) |
 | Settled part | iPhone Classic+ 1.13 uses the desktop generation-5 frame: two-byte length (or `FF FF` and four bytes), compression byte, partial XOR with round-down for compressed bodies, and a type-5 login with a key byte in one zlib frame | [bin] (protocol/ios-classic-plus-113-framing.md) |
-| Tried (2026-11-20) | No Android emulator or Android-x86 image is on the lab machines (GwenTea2 has adb and fastboot only), and Classic+ 1.13 is an iPhone build, so an Android emulator would not cover it | [lab] (protocol/lab-appe-gwentea2-2026-11-20c.md#mobile-clients-e16-e18) |
-| Best guess | Android uses the same frame, since it is the same engine. Confidence: moderate | [inf] (protocol/ios-classic-plus-113-framing.md) |
-| Settles it | For Android, the same static read of the native socket layer; for both, one loopback run on an emulator or device | [inf] (protocol/ios-classic-plus-113-framing.md) |
-| Outlook | Read (Android); Missing for a run until an emulator or device is set up | [doc] (protocol/unknowns-ledger.md) |
+| Tried (2026-11-20) | Android Classic 1.8 ran natively on an Android-x86 9.0 emulator on loopback: it fetches a signed connector script first (HTTPS, then plain HTTP for `conf.gs`, user agent "Graal/6.15401") and, with no valid reply, never opens a game connection. So it is on the 6.1x connector line, and its game framing can't be captured without a genuine connector reply | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
+| Best guess | Android uses the 6.1x connector front end and then the same game frame as the 6.1x desktop clients, since it reports the same engine line. Confidence: moderate | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
+| Settles it | A static read of the Android native socket layer after the connector step | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
+| Outlook | Read (Android); a run is blocked by the signed connector reply | [doc] (protocol/unknowns-ledger.md) |
 
 ### E#19 Generation 4 on the wire (2.19 to 2.21)
 
@@ -257,18 +242,6 @@ These questions are about single messages and props: which builds send or handle
 | Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 | Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 
-### E#613 Windows 2.22 remote PM roster and visible result
-
-**Question.** How 2.22 asks the server for its remote player roster and what it shows with the reply. The composer and type-37 sender lookup are bounded statically (→ §2.8.7) [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Types 55, 56 and 82 select default cleanup in the recovered dispatcher | [bin] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Open | The roster's UI trigger, request builder, accepted reply and identity-creation route; virtual type-28 send framing; the visible message; sibling builds. Later `requestlist` and `pmserverplayers` behaviour is not established | [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Best guess | The roster is a request for the server's player list answered with the ordinary player-list message, and the result opens a PM window per name. Confidence: low | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Settles it | Resolve the request caller and receive route statically, then one lab run with two players | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Outlook | Read, then Lab | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-
 ## E.5 File formats and tiles
 
 These questions are about what is in a file and how a client reads it (→ Part III). Several of them look like format questions but are really questions about which client routine consumes a field, which a file alone cannot answer [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
@@ -304,20 +277,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 
 These questions are about what a client does in play: timing, walking, combat, items and the screen (→ Part IV). Most were raised by a static read that found a routine but not every input to it, so most are settled by one controlled lab scene on the exact build [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
 
-### E#302 Walking speed factors other than 1.0, 1.2 and the hidden 0.2
-
-**Question.** Which states use the walking speed factors 0.4 and 0.8 [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The walking code multiplies the half-tile step by a factor: 1.0 on foot, 1.2 in a high-speed state; hiding gives 0.1 tile per tick | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step); [live] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
-| Evidence | Factors 0.4 and 0.8 also exist, and 0.8 depends on a carried object; carrying, measured live, does not slow the walk | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settled part (2026-11-20) | On 2.05, deep water (the swim gani) moves at the on-foot speed, 1 tile per 0.1 s: swimming uses factor 1.0 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#walking-speed-on-205-e302) |
-| Settled part (2026-11-20) | On 2.05 rev 2, riding a horse walks at 0.8 (steps alternate 0.5 and 1.0); shield power 3 walks at 1.2; carrying a bush, sign, pot, light stone or black stone, holding the sword, shield 0 to 2, sword 4 and glove 1 all walk at 1.0 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302) |
-| Best guess | 0.8 is riding (now measured); 0.4 belongs to a state not yet tried, most likely water or a swimming or slowing effect. Confidence: low | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302) |
-| Settles it | A 2.05 walk in water and in each remaining script-set state, to find 0.4 | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302) |
-| Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
 ### E#304 Stopping positions and the wire rounding of nudged positions
 
 **Question.** Where a player stops after a blocked step, and how a position that is not on a half tile is rounded when sent [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
@@ -331,60 +290,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | The wire value is the position in half tiles, truncated; every position seen was already on a half tile. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | Settles it | A finer capture of the corner slide (positions are sent at most every 0.1 s, so the step size is unseen), or a read of the position packer | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#walking-into-a-rock-on-222-e304) |
 | Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
-### E#305 The 2.22 push frame field
-
-**Question.** Whether a memory trace of 2.22 that disagrees with the 2.05 push timing was reading the gani frame [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | 2.22 plays `push` as 5 frames of 4 ticks, looping, as 2.05 does | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Claim B | A trace of 2.22 against a public server showed a push frame field cycling 0 to 3 every tick once the blocked count passed 18 | [live] (live-runs/2gta-222-2026-10-30/README.md) |
-| Best guess | The traced field is another per-tick counter, and the second run used the server's own push gani, so Claim A stands. Confidence: moderate | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
-| Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
-
-### E#308 Link probe offsets and the neighbour-table flag
-
-**Question.** The flag that skips the 3 x 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The 2.05 edge rules and the 3 x 3 neighbour fill are settled | [bin] (protocol/link-probe-bigmap-status.md) |
-| Settled (2026-11-19) | The per-facing probe offsets, in tiles: up (+1.5, +1.0), left (+0.5, +2.0), down (+1.5, +3.0), right (+2.5, +2.0). The table is byte-identical in 2.05 and 2.22, so 2.22 keeps 2.05's offsets. With the neighbour loaded, only the probe threshold applies, so the player can walk past the edge until it fires | [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md) |
-| Open | The flag that skips the neighbour-table build, which lives in a routine not yet traced, and a crossing run on 2.22 | [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md#still-open) |
-| Best guess | 171 fills the same grid as `bigmap.txt`. Confidence: moderate | [inf] (protocol/link-probe-bigmap-status.md) |
-| Settles it | A 2.22 read of the neighbour-table builder, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
-| Outlook | Read, then Lab | [inf] (protocol/link-probe-bigmap-status.md) |
-
-### E#312 The last byte of a shot
-
-**Question.** What the last byte of `PLO_ARROWADD` (19) does besides naming the shot type [2.05] (client-internals/damage-sources.md#shot-19).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The byte is the shot type, `byte − 33` | [2.05] (client-internals/damage-sources.md#shot-19) |
-| Claim B | On 2.22 an injected shot hurt only when the byte was `0x23` or more; `0x20` to `0x22` did nothing, and a real arrow from another 2.22 client carried `0x21` and never hurt | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
-| Evidence | The `SHOOT` and `SHOOT2` field scales are settled for 5.00r7 to 6.03r7, and GServer-v2's one-byte gravity disagrees with every client read | [bin][srv] (protocol/carry-shoot-hit-status.md) |
-| Tried (2026-11-20) | On 2.22 open ground, every byte from 0x20 to 0x7e flew through the player with no heart lost, with no shooter, an unknown shooter, and a visible other player as owner; 0x23 and up burst only on hitting an NPC or wall. The earlier hurt is not reproduced; the lab server sets no no-PK option, and the 2026-10-25 lab used another server | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#shot-last-byte-on-222-e312) |
-| Settled part (2026-11-20) | A read of the 2.22 receiver: the last byte less 33 is the shot type; types 0 and 1 can hurt a receiving client directly (half a heart and a full heart, and a facing shield stops them); a hit also needs the shot in the player's own level cell, a level without `noplayerkilling`, box overlap and one owner field equal on shooter and victim | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312) |
-| Best guess | Refuted as written: low types are not judged only by the shooter. The earlier no-hit results come from the owner-field match or a level flag. Confidence: moderate | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312) |
-| Settles it | A 2.22 lab that sets each hit condition one at a time (owner linked or not, `noplayerkilling` on or off), and the identity of the owner field | [inf] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312) |
-| Outlook | Lab | [inf] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
-
-
-### E#317 The 1.x pickup box and item draw order
-
-**Question.** The 1.x pickup box in tiles, and whether items draw under or over players [bin] (client-internals/item-drops.md#open).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Only 1.3's pixel overlap for picking up a floor item was read | [bin] (client-internals/item-drops.md#open) |
-| Tried (2026-11-20) | 1.39 tests a strict overlap in eighths of a tile between the player's 2 × 2 body box (x + 0.5 to x + 2.5, y + 1 to y + 3) and an item box centred across x + 1 from y + 1/8, sized from the item sprite's stored size; online it then sends 32. The size's unit and the draw order were not read | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-139-pickup-test-e317) |
-| Settled part (2026-11-20) | 1.39 draws items and players in y order: an item covers a player only when its y is larger than the player's | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
-| Best guess | Draw order is by y, as measured; the item sprite size is in tiles, as for other level objects. Confidence: moderate for the size | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
-| Settles it | The unit of the item sprite size in 1.39 | [inf] (client-internals/item-drops.md#open) |
-| Outlook | Read | [inf] (client-internals/item-drops.md#open) |
 
 ### E#320 Does any server check the tamper check
 
@@ -406,9 +311,11 @@ These questions are about what a client does in play: timing, walking, combat, i
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Open | The throw, the drop on cut or lift, the carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Open | The carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Evidence | `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry and throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
 | Tried (2026-11-19) | 2.22's probe table is byte-identical to 2.05's; its carry, throw and take-player-carry logic sits in one large script action dispatcher; the routines were not compared one by one | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#222-level-object-code-e323) |
+| Settled part (2026-11-20) | The throw sends UDP 18 and, when a TCP copy is needed, an empty `PLI_THROWCARRIED` (11); it flies 9 ticks at 1 tile per tick from (x + 0.5) with a shadow at y + 1, sinking 0.2 tile per tick, on the same step table as 2.05; it hits a wall, an NPC (`waspelt`), baddies, then the player within 2 tiles, and lands as a splash or a break effect (leaves for a bush), or sets a carried bomb or NPC back down; cut and lift roll no drop (→ §4.5.2). The x, y sender earlier taken for 11 is the bomb pickup, UDP 11 with `PLI_BOMBDEL` (5) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
+| Open (2026-11-20) | The read gives 9 tiles of flight where the 2.05 live note saw about 6; a 2.22 frame-by-frame throw in open ground would settle it | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#not-covered-1) |
 | Best guess | The routines match 2.05's, since 2.22's walking rule does. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Settles it | Reading those routines in 2.22, or one lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
@@ -427,6 +334,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Open | 2.17.1's drop behaviour, and the sword spark (no separate spark sprite was seen on 1.39 against a rock wall) | [lab] (live-runs/open-issues-2026-11-19/README.md) |
 | Tried (2026-11-20) | Two 2.05 clients swinging at each other at once, 4 times: no spark sprite, and the victim took half a heart in 3, so no true sword-on-sword meeting was caught | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sword-against-sword-on-205-e324-one-sub-check) |
 | Tried (2026-11-20) | On 1.21 offline a thrown bush put a penned archer into its hurt state twice but did not kill it in four tries; lifting a bush left a drawn item (a gralat or hearts) on the spot, so 1.21 draws ground drops from bushes; 2.17.1 and the sword-against-sword scene were not run | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#combat-checks-on-121-e324-tried-not-settled) |
+| Tried (2026-11-20) | On 2.17.1 Training the sword never hurt or killed an archer in 12 levels, so no drop could be checked; on 2.05 rev 2 four shielded soldiers died to the sword with no drop, and no separate spark sprite could be told apart from the two swings | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#combat-checks-on-2171-and-205-e324) |
 | Best guess | 1.21 gives a direct kill reward of one gralat rather than rolling a drop; 2.17.1 has no drop roll, like 2.05; the spark appears only when a sword meets a sword or a shield. Confidence: moderate, low, low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Settles it | A ranged kill on 1.21 (thrown bush or pot, or an arrow), the same archer scene on 2.17.1, and a sword against a sword or a baddy's shield | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
@@ -443,19 +351,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | Recount against the surveyed inputs, and test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | Outlook | Read for the count; Lab for playback | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 
-### E#326 Remaining 6.03r7 HUD measurements
-
-**Question.** The heart row's right margin, the sword sprite's right edge and the Windows text positions on 6.03r7 [shot][doc] (client-internals/hud-603r7-black-box.md#hearts).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The source calls the full-size row's right margin 68 pixels, but its own formula x = W − 198 + 45k with a 40-pixel full heart gives 23 pixels for four hearts (k = 0 to 3); 68 fits three | [shot][doc] (client-internals/hud-603r7-black-box.md#hearts) |
-| Evidence | The sword source rectangle's right edge (width 28 to 34 pixels), Windows text positions at other window sizes, and Windows operation with a current clock (its run used a 2012 clock) are unresolved (→ §4.6.9) | [shot][lab] (client-internals/hud-603r7-black-box.md#open) |
-| Settled part (2026-11-20) | The hearts formula holds at four window sizes: four hearts leave 23 px, and 68 px is the three-heart case. The sword source rectangle is 28 px wide, from a magenta test image | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-hud-e326) |
-| Best guess | The Windows text positions follow the Linux ones. Confidence: low | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
-| Settles it | Identified-state captures: a known heart count, a known window size, the sword drawn on a plain background | [inf] (client-internals/hud-603r7-black-box.md#open) |
-| Outlook | Lab | [inf] (client-internals/hud-603r7-black-box.md#open) |
-
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
 **Question.** Whether 4.04r2 plays offline. A harness drove its offline transition, but no gameplay was seen [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition).
@@ -464,6 +359,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Evidence | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | Open | A rendered offline level, player movement, and cutting, lifting, carrying or hiding on that build | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Settled part (2026-11-20) | On a Win10 guest with no network, and with its user-mode callback filter turned off, the unchanged packed 4.04r2 opened the offline tutorial level drawn, with the player in it; holding Right walked the player to the beach and the view scrolled. The next key hold closed the client, and four later starts closed within 5 s of Offline Test, so offline play works but not reliably there | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
 | Best guess | It plays offline as 4.20r6 does, once the level files it expects are present. Confidence: low | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | Settles it | A controlled scene with captured actions and the state before and after each one | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | Outlook | Lab | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
@@ -475,10 +371,13 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Static recovery separates the pickup action, the carried category and the carrying flag | [bin][cap] (client-internals/404r2-carry-state.md) |
-| Open | The meaning of the pickup-bound field, the path from a physical key to the action, and the asset behind a provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
+| Open | The meaning of the pickup-bound field, the asset behind a provisional second cut pattern, and whether the second A throws or drops (the key itself is now known: A) | [bin] (client-internals/404r2-carry-state.md#open-questions) |
 | Evidence | The countdown cannot give elapsed timing without the clocks of → §4.1.7 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
+| Tried (2026-11-20) | The same Win10 offline session never reached a liftable object before the client closed, so no lift, carry or throw was captured | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
+| Tried again (2026-11-20) | About 13 more starts on the same guest, with bush tiles added beside the tutorial start, never reached the login window: each stopped at the start-up callback crash, so this guest gives no repeatable scene | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
+| Evidence (2026-11-20) | Under Wine (OpenGL renderer) offline play is repeatable. A is the pickup key (D and S do nothing under the tutorial's `disableweapons`): one tap lifts a bush and changes its tiles, walking carries, and a second tap ends the carry. The stock offline files have no lift or carry animation, and the carried or thrown bush is never drawn, so a throw cannot be told from a drop on screen | [lab] (protocol/lab-appe-gwentea2-2026-11-20e.md#windows-404r2-pickup-in-offline-mode-under-wine-e611) |
 | Best guess | The bound field is the carried object's kind, set when the lift starts. Confidence: low | [inf] (client-internals/404r2-carry-state.md#open-questions) |
-| Settles it | A semantic read of the field and the input route, then a scene that captures each action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A semantic read of the field, then a debugger or memory read of it around each action in the Wine scene | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | Outlook | Read, then Lab | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 
 ## E.7 Servers, listserver, RC and NC
@@ -576,50 +475,9 @@ These questions are about the programs on the other side of the connection (→ 
 | Settles it | A capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | Outlook | Maybe never for the original server; a clean-room server should follow the RC | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 
-### E#424 RC2's Admins folder against a one-space level
-
-**Question.** Where RC2 2.05 lists other RCs when GServer-v2 sends their level as one space instead of empty [bin][srv] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The 2001 servers send RCs an empty level, which puts them in RC2's Admins folder | [src][bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Claim B | GServer-v2 sends one space, so RC2 2.05, which tests the level by length with no trim, would list other RCs under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Also open | The send path of the 2005 Linux i386 RC (unpacked, not read) | [bin] (protocol/rc-list-online.md#open) |
-| Settled part (2026-11-20) | On the GServer-v2 fork, a new RC sees an RC already online listed with level " " (one space), and the RC already online gets add-player 55 with a one-space level and a "New RC: name" chat line, with or without a `LEVEL` line in the account. RC2 2.05 itself crashed in its GTK layer under Wine before connecting | [lab] (protocol/lab-appe-gwentea2-2026-11-20c.md#rc-logins-on-the-gserver-v2-fork-e424) |
-| Best guess | Claim B: other RCs appear under Players. Confidence: high | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Settles it | RC2 2.05 on a Windows guest with two RC logins, to see whether the one-space RC lands under Players or Admins | [inf] (protocol/lab-appe-gwentea2-2026-11-20c.md#rc-logins-on-the-gserver-v2-fork-e424) |
-| Outlook | Lab | [inf] (protocol/rc-list-online.md#open) |
-
-### E#425 Standalone NC flag-action recipient and ranges
-
-**Question.** Where the standalone NC's flag action ends up and how its fields are bounded. The action in → §7.3.4 builds a payload and enters an outgoing buffer, which is not end-to-end behaviour [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The count's low part uses seven bits; the high part is shifted and narrowed to a byte without an established seven-bit mask; biased item lengths and contents follow | [bin] (protocol/nc-standalone-flag-action.md#bounded-observations) |
-| Evidence | The bodies were analyst-seeded, not recognised procedures; exception tails, type and register meanings and indirect calls stay uncertain | [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits) |
-| Open | Collection type, count overflow, length ranges, the further buffer routine, the terminator, the final recipient and the receive side | [bin][inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Evidence | The NC write-op inventory knows the get, delete, reset, script and flag ids and the `i3` id layouts; the NPC add, class delete and weapon add and script layouts are open | [bin][doc] (protocol/nc-write-ops-status.md) |
-| Best guess | The NC server, as a flag-list write in the same shape as the weapons list. Confidence: moderate | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Settles it | Trace the buffer and recipient and the receive path, then compare with the weapons-list baseline; matching forms alone are not enough | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Outlook | Read | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-
 ## E.8 NPC scripting
 
 These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at a time, so its open points are mostly "does the 2.05 result hold elsewhere". GS2 is the largest open area in the manual: the bytecode container and the opcode sets are read, but the language, its library and its event model are known only in part [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
-
-### E#201 Four GS1 argument signatures in 2.05
-
-**Question.** What the stored argument letters of four GS1 commands mean at run time [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The exact stored letters are in → §8.2; the follow-up agrees with the earlier reference and corrects the command reference's alternatives | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
-| Superseded | The command reference formerly printed `M`, `F,R,R`, `R,F,R,R` and `S,S`; those are not the stored sequences in the checked input | [bin] (npc-library/gs1-signatures-205-followup.md#stored-letters) |
-| Settled part (2026-11-20) | On 2.05 rev 2, `puthorse` takes its image as free text with message codes expanded and quotes kept, and evaluates its numeric slots, where a string becomes 0; `toinventory` sends its argument as written, without expanding codes; `replaceani` and `showimg` were not observable in this setup | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201) |
-| Best guess | Arguments are converted by position as the stored letters say (text slots expand codes, numeric slots evaluate); `toinventory` keeps its text raw. `replaceani` and `showimg` follow the same rule. Confidence: moderate | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201) |
-| Settles it | A `replaceani` scene where the replaced gani is seen, and `showimg` placed in view, on 2.05 rev 2 | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201) |
-| Outlook | Lab | [inf] (npc-library/gs1-signatures-205-followup.md#checks-and-limits) |
 
 ### E#203 The 2.05 `#` message-code set
 
@@ -637,19 +495,6 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Best guess | `#E` is a field no 2.05 feature fills, left from an earlier design; the bare `#5` and `#6` effect is a scanner change in 2.17 that backs up over the label when the code has no index. Confidence: low | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | Settles it | A 2.17.1 trace of the bare-code scanner (its expander was not found by the 2026-11-20 read) | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
 | Outlook | Read | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
-
-### E#206 `move` option bits in 2.05
-
-**Question.** The caller side of `move` in 2.05 and its edge cases. The queued consumer is read [2.05][bin] (npc-library/gs1-move-205r2.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The exact Windows 2.05r2 queued consumer supplies replacement, progression, collision and option behaviour (→ §8.2.9) | [2.05][bin] (npc-library/gs1-move-205r2.md) |
-| Open | How often the caller runs and whether it catches up, the full collision eligibility, one unidentified object collection, later event execution, unusual numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
-| Settled part (2026-11-20) | `move` has two callers (the GS1 command and a move from the network); option 0 replaces the queue and 1 appends unless the queue ends more than 5 tiles away; the queue holds 100 records; one consumer advances every NPC's queue in the player's level once per call, with no catch-up | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206) |
-| Best guess | The consumer runs once per 50 ms step with no catch-up, like the rest of the 2.05 loop (→ §4.1). Confidence: moderate | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
-| Settles it | A timed `move` on 2.05, to show the consumer runs once per 50 ms step | [inf] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206) |
-| Outlook | Lab | [inf] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ### E#207 GS2 language and bytecode format
 
@@ -671,19 +516,6 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Settles it | A decoded bytecode message from a 4.x lab session, a reading of the built-in command table and the compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Outlook | Read and Lab for the client side; Maybe never for the official compiler's own source, so its grammar must be inferred from its output | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
-### E#208 What the OpenGS1 opcode set describes
-
-**Question.** Whether the OpenGS1 opcode set describes any official bytecode [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The graphics and bytecode note calls the OpenGS1 VM "GS1 bytecode" and lists its opcode set and constant-table layout as known | [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode) |
-| Claim B | 2.05 does not compile GS1 to bytecode; OpenGS1's opcode set is an independent reimplementation that 2.05 does not share | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-commands.md#update-2026-10-21) |
-| Evidence | 4.2.0.8, 5.0.0.7 and unpacked 6.00 do not use OpenGS1's layout, and real server-compiled GS2 bodies use the four-segment container, not OpenGS1's body offset, constant tables and packed values | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles) |
-| Best guess | OpenGS1 describes only itself; 3.153 uses the four-segment container or an early form of it. Confidence: moderate to high | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Settles it | 3.153's bytecode reader set beside the OpenGS1 layout, or an official bytecode message for 3.153 (→ App. E#207) | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Outlook | Read | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-
 ### E#209 GS2 VM: what the per-build reading left open
 
 **Question.** The VM details the six-VM reading of 3.153 to 6.03r7 left open. The cross-version table settles some and names the builds still unread [bin][doc] (client-internals/gs2-vm-loader-diff.md).
@@ -697,15 +529,16 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Unread builds | Windows 4.04r2, 5.12 and 5.24r4 to 6.00r4 are now read; still unread are Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, Classic other than 1.8, and 7.x (out of scope) | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | Tried (2026-11-19) | Script fuzz on 6.03r7, 5.24r4 and 4.20r8: setting `maxlooplimit` works on 6.03r7 and 5.24r4 (50 reads back as 100; 2000000 lets a 20000-pass loop stop as expected), so 6.03r7 still takes the property by that name; opcode 54 on 6.03r7 and 5.24r4 matches the two-value prediction for every push order and is not dispatched on 4.20r8; opcodes 48 and 49 give an empty value on 4.20r8 and 5.24r4 and crash 6.03r7, so their operand order still needs 5.00r7 or 5.12, which dispatch them | [lab] (protocol/script-fuzz-2026-11-19.md) |
 | Settled (2026-11-20) | On 5.00r7, 54 consumes three values, pushed as object, member name, value, then runs the opcode-50 store. 49 pops up to its clamped count and appends in pop order, so the list is in reverse push order. 48 builds an object from pairs pushed name then value, but its loop counter counts up, so with a positive count it takes pairs until two or fewer values remain | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) |
-| Best guess | The 6.x property is still `maxlooplimit` under the scrambling, as the fuzz run shows for 6.03r7. The remaining items are the unread builds. Confidence: moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
+| Settled (2026-11-20, second read) | The scrambled 6.x name unscrambles to `maxlooplimit` in 6.00r2, 6.00r4, 6.01r1 and 6.03r7. On 6.03r7 the function-table lookup for a fired event ignores letter case, so `onTimeout` and `onTimeOut` are one function. On 6.03r7 a server 48 with `clientside,<weapon>,<params>` is queued (up to 100) until a weapon of exactly that name is loaded, then fires `actionclientside` on it; a `triggeraction` to `serverside` or `servernpc` goes to the server | [bin] (client-internals/static-reads-appendix-e-2026-11-20-j.md) |
+| Best guess | The remaining items are the unread builds and the per-build checks in the work list; the 6.03r7 case rule probably holds for the other 6.x builds. Confidence: moderate | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | Outlook | Read | [doc] (client-internals/gs2-vm-loader-diff.md#still-open) |
 
 The work list carried from the difference table:
 
 - [x] ~~Prove opcodes 48 and 49's operand order on 5.00r7.~~ Settled by the 2026-11-20 read [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 - [x] ~~Pick one pop count for opcode 54 on 5.00r7.~~ Three values [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
-- [ ] Recover the 6.x loop-limit property name. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
-- [ ] Read the VMs still marked open in the difference table, including event-name case (`onTimeout` / `onTimeOut`) and the client match for `onActionServerSide`. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
+- [x] ~~Recover the 6.x loop-limit property name.~~ `maxlooplimit`, scrambled [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
+- [ ] Read the VMs still marked open in the difference table. Event-name case and the client side of `onActionClientSide` are now read on 6.03r7 only. [doc] (client-internals/gs2-vm-loader-diff.md#still-open)
 
 ### E#210 Particle emitter and `format` details
 
@@ -724,30 +557,6 @@ The work list carried from the difference table:
 | Settles it | A run that changes the property that picks the particle kind, and the `format` checks, on a 4.x or 6.x client | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Outlook | Lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 
-### E#211 Which objects make 6.00 fuse fold 241
-
-**Question.** Stock 6.00 makes fold 241 when a name load resolves to an object carrying a flag and a store or resolve follows. Which objects carry that flag (→ §8.4.6) [bin] (protocol/gs2-fold-241-2026-11-16.md#234242-600).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Every other fold from 200 to 242 matches between stock 4.20r8, 5.00r7 and 6.00 and the open reimplementation; 241 is the one left out, on purpose, until the flag is known | [bin][doc] (protocol/gs2-fold-241-2026-11-16.md#verdict) |
-| Best guess | The flag marks objects that resolve once and can be cached on the instruction, such as weapons and globals; running the sequence unfused gives the same result, more slowly. Confidence: low for the flag, moderate for "same result" | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-| Settles it | A deeper static read of the 6.00 fusion stage at the flag test | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-| Outlook | Read | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-
-### E#213 How GS2 text bytes draw on screen
-
-**Question.** Official bytecode stores non-ASCII text as single Latin-1 bytes. Whether the clients draw those bytes as the intended letters (→ §8.4.10) [cap] (protocol/gs2-official-strings-latin1-2026-11-16.md#official-segment-3-bytes).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | One official string, *Français*, holds `0xE7`; 5.00r7 and 6.03r7 draw through the Windows ANSI path, and the scanned 5.00r7 engine has no UTF-8 literal | [cap][bin] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
-| Tried (2026-11-20) | On 4.20r8 under a Western code page, `showtext` with bytes 231, 233, 252 and 241 drew "Français éüñ"; 5.00r7 and 6.x were not checked on screen | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#latin-1-text-e213) |
-| Settled part (2026-11-20) | On 5.00r7 with Wine's Western code page, chat and nickname text sent as Latin-1 bytes (ç as 231) drew as "Français éüñ" | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#latin-1-text-on-500r7-e213) |
-| Best guess | The bytes pass through the Windows code page, so they draw as Latin-1 on Western European installs and as other letters elsewhere. Confidence: moderate to high for Western installs | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
-| Settles it | The same bytes in a `showtext` or sign on 5.00r7, and any of them on a 6.x build | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#latin-1-text-on-500r7-e213) |
-| Outlook | Lab | [inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#still-open) |
-
 ### E#214 Why some official bodies do not end in a return
 
 **Question.** 18 of 660 official bodies do not end in a return instruction. Whether that is intended, truncation, or a separate emitter path (→ §8.4.10) [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return).
@@ -762,30 +571,6 @@ The work list carried from the difference table:
 ## E.9 Graal3D and the Torque-era 3D
 
 These questions are about the 3D side: the 2000 Graal3D client and the Torque-based plug-in of the 3.x and 4.x clients (→ Parts IX and X). They matter less to a 2D server, and most are answerable from the held plug-ins [bin] (graal3d/torque-engine-4x.md#not-done).
-
-### E#505 How a server makes a 5.12 player move in 3D
-
-**Question.** A 5.12 client in 3D puts no movement on UDP: protocol 24 has no moves and its script cannot move its own control object. How a server is meant to move the player, and what the client then echoes (→ §10.3.8) [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | With the keyboard on the 3D view, all 183 client data packets stayed the same apart from counters; the GS2 walking script ran but nothing moved | [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun) |
-| Best guess | The server gives the control object a movement type and movement data (the update's sections 3 and 8), the client then moves it locally and reports its transform. Confidence: moderate | [inf] (torque/udp-session.md#open) |
-| Settles it | A lab run where the server sets movetype and movement data, recording the client's own update sections 5, 9 and 3 | [inf] (torque/udp-session.md#open) |
-| Outlook | Lab | [inf] (torque/udp-session.md#open) |
-
-### E#506 Protocol 19 against a real 3.153 or 4.04r2 client
-
-**Question.** Whether a real 3.153 or 4.04r2 client accepts the protocol-19 server order and layouts read statically (→ §10.3.9) [bin] (torque/protocol19-server.md#5-mission-start).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Every layout is read from the 4.04r2 plug-in's readers; the 3.153 side is its mission scripts; a lab server implements the order | [bin][srv] (torque/protocol19-server.md#5-mission-start) |
-| Tried (2026-11-20) | Native Linux 4.04r2 against the lab protocol-19 server went through link, datablocks and mission start, took the control object and printed "Graal3D has been activated!"; no 3.153 client runs in the lab | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#protocol-19-on-404r2-e506-half) |
-| Tried (2026-11-20) | 3.153 could not be run on GwenTea2: the only real 3.153 is the Mac PowerPC build, the Linux 3.15r1 installer is truncated and holds no client, and no Windows 3.153 is held | [lab] (protocol/lab-appe-gwentea2-2026-11-20c.md#protocol-19-and-3153-e506) |
-| Best guess | It works for 4.04r2 with a `Camera` control object; 3.153 matches, being the same Torque line. Showing other players needs the unread `Player` layouts and a real `.dts` player shape, which is not held. Confidence: moderate for the camera path | [inf] (torque/protocol19-server.md#open) |
-| Settles it | The Mac PowerPC 3.153 on the Tiger guest against the lab server; the 4.04r2 half stands | [inf] (protocol/lab-appe-gwentea2-2026-11-20c.md#protocol-19-and-3153-e506) |
-| Outlook | Lab for the camera path; Missing for a player shape | [inf] (torque/protocol19-server.md#open) |
 
 ### E#507 3.04 sheet type 5 and server tile definitions
 
@@ -855,38 +640,53 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#100 | Collision of the Bush stamp tiles | → §3.5.2.2 |
 | E#102 | Tile id to pixel position on pics1 | → §3.5.1 |
 | E#200 | When a GS1 condition counts as true | → §8.1.3 |
+| E#201 | Four GS1 argument signatures in 2.05 | → §8.2.1 |
 | E#202 | Which message carries GS2 bytecode | → §8.4.1 |
 | E#204 | Writing to GS1 object members | → §8.2.5 |
 | E#205 | Index of the hare baddy | → §8.2.2 |
+| E#206 | `move` option bits in 2.05 | → §8.2.9 |
+| E#208 | What the OpenGS1 opcode set describes | → §8.4.3 |
+| E#211 | Which objects make 6.00 fuse fold 241 | → §8.4.6 |
 | E#212 | Whether a function-only image skips the top-level pass | → §8.4.10 |
+| E#213 | How GS2 text bytes draw on screen | → §8.4.10 |
 | E#215 | When GS2-only names arrived, and what a missing name does | → §8.3.9 |
 | E#300 | Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha | → §4.1.2 |
 | E#301 | Frame loop of the 3.x and 4.x clients | → §4.1.7 |
+| E#302 | Walking speed factors other than 1.0, 1.2 and the hidden 0.2 | → §4.2.1.1 |
 | E#303 | Two unidentified lists in the blocked-point test | → §4.2.3 |
+| E#305 | The 2.22 push frame field | → §4.2.5 |
 | E#306 | What picks `lift2.wav` for a pull | → §4.2.8 |
 | E#307 | Probe, nudge and step tables of 1.39 | → §4.2.2.2 |
+| E#308 | Link probe offsets and the neighbour-table flag | → §4.2.11 |
 | E#309 | Knockback distance of 1.39 | → §4.3.7.2 |
 | E#310 | Where the once-per-second hit stamp sits | → §4.3.3 |
 | E#311 | Blast hit zone and the occasional full-heart hit | → §4.3.5 |
+| E#312 | The last byte of a shot | → §4.3.5.2 |
 | E#313 | Do arrows and fireballs pass walls | → §4.3.5.2 |
 | E#314 | Gmap entry and the respawn save | → §4.4.4 |
 | E#315 | The level-entry save in the 2.1 test builds | → §4.4.4 |
 | E#316 | Glove power steps | → §4.5.2 |
+| E#317 | The 1.x pickup box and item draw order | → §4.5.2 |
 | E#318 | Level reload on re-entry offline | → §4.5.7 |
 | E#319 | The single-player start levels | → §4.8.3 |
 | E#321 | The 2.31 window blacklist | → §4.10.1.2 |
 | E#322 | How others see a key emote | → §4.10.3 |
+| E#326 | Remaining 6.03r7 HUD measurements | → §4.6.9 |
 | E#327 | Missing chest art and menu skin in the 6.03r7 item run | → §4.5.8 |
 | E#328 | What drives 2.22's tick | → §4.6.10 |
 | E#405 | RC token `GSERV025` | → §7.1.1 |
 | E#420 | Flag and chest counts in the RC props tail | → §7.1.8 |
 | E#421 | The last byte of RC_PLAYERPROPSSET2 | → §7.1.8 |
 | E#423 | The 1999 servers: what the static read left open | → §5.1.6 |
+| E#424 | RC2's Admins folder against a one-space level | → §7.1.9 |
+| E#425 | Standalone NC flag-action recipient and ranges | → §7.3.4 |
 | E#500 | Back clipping plane of the Graal3D client | → §9.4 |
 | E#501 | Class CRC of the 4.04r2 3D plug-in | → §10.3.2 |
 | E#502 | Whether 4.04r2 loads `.mis` mission files | → §10.6 |
 | E#503 | Whether 4.04r2 reads `.dso` compiled TorqueScript | → §10.6 |
 | E#504 | The `GR3DV003` beta at run time | → §9.7.3 |
+| E#505 | How a server makes a 5.12 player move in 3D | → §10.3.8 |
+| E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | → §10.3.9 |
 | E#600 | Tile layer as GraalEditor writes it | → §11.1.2 |
 | E#601 | Whether link arrival offsets are evaluated | → §11.6.4 |
 | E#602 | Code width of `Z3-V1` boards | → §3.1.1.2 |
@@ -897,6 +697,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#607 | Leftover lines in the protocol cheat sheet | → §2.1.2 |
 | E#608 | How many `arrays.dat` lists make a tile passable | → §3.5.3.1 |
 | E#609 | macOS archive labels and application identity | → §1.9.1 |
+| E#613 | Windows 2.22 remote PM roster and visible result | → §2.8.7 |
 | E#614 | Tiledef type 4 consumer | → §3.5.2 |
 | E#617 | Whether 1.41 rev 1 loads `.nw` levels online | → §1.5 |
 | E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | → §1.9.4 |

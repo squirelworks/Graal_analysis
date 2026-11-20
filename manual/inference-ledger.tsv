@@ -24,6 +24,7 @@ manual/02-protocol/05-plo.md	Left over	protocol/unknowns-ledger.md	A static read
 manual/02-protocol/07-file-transfer.md	A client cannot tell the server which layout to use	protocol/file-transfer.md#gs2libs-version-table-src	all
 manual/02-protocol/07-file-transfer.md	In 2.05 rev 2 and 2.22 the request side was read from the matching reply-side co		2.05 rev 2, 2.22
 manual/02-protocol/08-chat-pm.md	The in-game stats in the same window (online time, kills, deaths, rating and so 	protocol/chat-pm-rc.md#profile-field-list-205-205	2.05
+manual/02-protocol/08-chat-pm.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-f.md#not-covered	The look of the pending-message marker and the window, which one two-player lab run would show
 manual/02-protocol/10-server-defined.md	Verdict	protocol/v6113-login-lab-method.md	Settled as far as the project will take it: the project's own 6.1.1.3-style login works, and the stock client's exact body is left at the best guess and not chased
 manual/03-formats/01-levels.md	Left over	docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses	The 11-bit width rests on the server source alone; a real `.02` file decoded both ways would confirm it
 manual/03-formats/01-levels.md	tile range	formats/level-binary.md#board-bit-stream	a 12-bit file cannot address tiles ≥ 2048, because the flag takes the top bit; that is why 1.02 widened the code to 13 bits for the 4096-tile `pics1`
@@ -54,9 +55,12 @@ manual/03-formats/10-assets.md	internet radio	client-internals/sound-and-music.m
 manual/04-behaviour/01-loop-timing.md	inferred, if 20 steps/s	live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231	inferred from the Wine observations in this section if the step rate is 20 steps a second: 50 ms a frame and 0.4 s a cycle
 manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307	The 1.39 refusal and snap branches were not compared instruction by instruction
 manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303	Which movement routines set the players flag; whether 2.22 and 2.31 keep the same lists
+manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-g.md#not-covered	None for the push timing
+manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-f.md#cell-coordinates-on-a-gmap	A lab crossing on 2.22 with a big map installed by 171, and the meaning of the scrambled play-mode value that gates the gmap reload
 manual/04-behaviour/04-death-respawn.md	Open: the respawn heart value, the probe numbers, the one-heart baddy type, and 	version-profiles/matrix/rules-132.md#still-open	
 manual/04-behaviour/04-death-respawn.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315	NewWorld beta 2, which also lacks the constant, was not read
 manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
+manual/04-behaviour/05-items-board.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-g.md#the-pickup-test-again	What sets the busy flag that makes the test skip an item
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows
 manual/04-behaviour/06-hud-ui.md	bold	client-internals/chat-text.md#font-per-build	Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider
 manual/04-behaviour/08-offline.md	Verdict	protocol/lab-appe-mirae-2026-11-20c.md#special-start-level-names-entered-by-a-link-on-205-e319	Verified for loading and entering by link: the step changes nothing there. That it belongs to the new-game path, as guessed, is inferred
@@ -71,13 +75,15 @@ manual/06-listserver.md	What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasur
 manual/06-listserver.md	Verdict	docs/book/04-where-the-notes-disagree.md#listserver-shapes	Settled by matching the two field layouts against held captures; inferred, not measured, in the sense that no single capture was replayed into the Server Lister ELF
 manual/07-rc-nc.md	Left over	tools/remotecontrol-lineage.md	The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer
 manual/07-rc-nc.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421	What an older server put in that string
-manual/07-rc-nc.md	Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs 	protocol/rc-list-online.md#how-rc2-205-shows-them-bin	
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
+manual/07-rc-nc.md	Left over	protocol/nc-flag-list-round-trip-2026-11-20.md#not-covered	What the 2001 NPC server does with 69 and whether it limits the list; no server of that date is held
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
 manual/08-scripting/01-gs1-language.md	Left over	npc-library/gs1-condition-truth-205r2.md#verification-and-limits	The full alias and precedence rules, and named-flag collisions
 manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
+manual/08-scripting/04-gs2-bytecode.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-h.md#not-covered	3.153's opcode switch and whether it folds
+manual/08-scripting/04-gs2-bytecode.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-i.md#not-covered	Why these 17 are marked, and whether a script function of the same name would resolve differently unfused
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
 manual/09-graal3d.md	Left over	graal3d/camera.md#still-needed	The value at draw time in a live run with the native `d3drm.dll`
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	
@@ -86,6 +92,7 @@ manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what
 manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
+manual/10-torque.md	Left over	torque/protocol19-server.md#open	Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked
 manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run
 manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A file reader linked in but never called can't be ruled out by a run
 manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	

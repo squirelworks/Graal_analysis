@@ -68,7 +68,7 @@ The opcode names, the peephole, and the bytes the client runs which that compile
 
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
 
-OpenGS1 defines a stack-based bytecode VM for GS1 [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode). It is an independent reimplementation: 2.05 does not share its opcode set and does not run bytecode at all [2.05] (npc-library/gs1-reference-205.md#execution-model-205). How the notes first read this format is → App. E#208.
+OpenGS1 defines a stack-based bytecode VM for GS1 [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode). It is an independent reimplementation: 2.05 does not share its opcode set and does not run bytecode at all [2.05] (npc-library/gs1-reference-205.md#execution-model-205). No official client reads it, 3.153 included (see the settled question below).
 
 File layout, in order:
 
@@ -103,6 +103,16 @@ Opcodes, by name; the notes give no numeric values:
 | `OP_JEZ`, `OP_JNZ` | conditional jumps | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_STOP` | halt | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_DBG_OUT` | debug output | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
+
+
+**Settled question, formerly E#208: What the OpenGS1 opcode set describes.** Whether OpenGS1's layout describes any official bytecode was open; 4.2.0.8 and later were known to use the four-segment container, but 3.153, the first client that handles 131, had not been read. A read of the 3.153 Mac client settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#the-3153-script-container-e208).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | 3.153 reads the four-segment container of → §8.4.2: big-endian 32-bit type and length per segment, stop outside 1 to 4; 1 the event mask, 2 the function table (code position, zero-terminated name, `public.` stripped and flagged), 3 the string table, 4 the instructions with operand markers `F0`–`F2` (string index), `F3`–`F5` (signed number) and `F6` (number as text) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#the-reader) |
+| Settled | 3.153 also writes the same container from a script in memory, choosing the smallest operand form that fits; whether it compiles source was not traced | [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#the-writer) |
+| Verdict | Verified by read on 3.153; the best guess holds: OpenGS1 describes only itself, and the container dates from the first bytecode client | [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#what-this-settles) |
+| Left over | 3.153's opcode switch and whether it folds | [inf] (client-internals/static-reads-appendix-e-2026-11-20-h.md#not-covered) |
 
 ## 8.4.4 Dispatch by build
 
@@ -210,7 +220,16 @@ The folds are made by the client after decoding, so a compiler never writes them
 | 5.00r7 | 200 to 233; none of 234 to 242 | [bin] (protocol/gs2-fold-241-2026-11-16.md#version-gate) |
 | 6.00r2, 6.00r4 | 200 to 242 | [bin] (protocol/gs2-fold-241-2026-11-16.md#version-gate) |
 
-Fold 241 is the one the open reimplementation leaves out. Stock 6.00 makes and runs it when a name load resolves to an object carrying a particular flag and the next instruction is one of a short set of stores and resolves; the object is then kept on the instruction. Which objects carry that flag is not read, so a clean-room VM cannot yet decide when to fuse it (→ App. E#211). A VM that runs the same sequence unfused gets the same result, so the gap affects speed, not behaviour, as far as is known. [bin][inf] (protocol/gs2-fold-241-2026-11-16.md#234242-600)
+Fold 241 is the one the open reimplementation leaves out. Stock 6.00 makes it when a name load is followed by a call, `setreg` or `makeprop` and the name is a flagged entry of the global builtin registry; the entry is then kept on the instruction. A VM that runs the same sequence unfused gets the same result, so the gap affects speed, not behaviour, as far as is known. [bin][inf] (protocol/gs2-fold-241-2026-11-16.md#234242-600)
+
+**Settled question, formerly E#211: Which objects make 6.00 fuse fold 241.** Which registry entries carry the flag was not read, so a clean-room VM could not decide when to fuse. A read of the registration tables in 6.00r2, 6.00r4, 6.01r1 Linux and 6.03r7 Windows settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#which-names-make-fold-241-e211).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The flag is set only through the second of the two registration routines, from a per-row field. Seventeen global built-ins carry it: `disabledefmovement`, `disablemap`, `disablepause`, `disableselectweapons`, `disableweapons`, `enabledefmovement`, `enablefeatures`, `enablemap`, `enablepause`, `enableselectweapons`, `enableweapons`, `freezeplayer`, `noplayerkilling`, `onwall`, `onwall2`, `onwater` and `onwater2` | [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#where-the-flag-comes-from) |
+| Settled | The set is the same in 6.00r2, 6.00r4, 6.01r1 and 6.03r7. Script objects (weapons, NPCs, the player, controls) are not in the registry and never make 241 | [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#by-build) |
+| Verdict | Verified by read; the best guess (weapons and other globals that resolve once) was wrong. A clean-room VM can fuse 241 from a fixed list of these 17 names | [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#what-this-settles) |
+| Left over | Why these 17 are marked, and whether a script function of the same name would resolve differently unfused | [inf] (client-internals/static-reads-appendix-e-2026-11-20-i.md#not-covered) |
 
 #### Linux 6.01 x86: decoded program and saved state
 
@@ -257,7 +276,8 @@ Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r
 | `%`, `^`, shifts | the tolerance in `%` only in 4.20r6/4.20r8; `^ 0.5` is a square root in 4.x/5.x, `^ 2` is `a*a` in 6.x; shift counts modulo 64 on PowerPC, 32 on x86 | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
 | number to text | `"0"` under 0.0001; up to 9 truncated decimals, trailing zeros dropped, a trailing 999 carried up | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
 | 6.03r7 timer | with Seihai-compiled GS2 bytecode on loopback, periods **ceil** to 50 ms; sub-0.05 fires at ~20/s (not the classic GS1 floor) | [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab) |
-| event casing | schedule / cancel fold case; full function-table fold for `onTimeout` vs `onTimeOut` not proven per build | [bin][lab][inf] (client-internals/gs2-vm-quirks-by-version.md#5-event-name-matching-ontimeout-vs-ontimeout) |
+| event casing | schedule / cancel fold case; on 6.03r7 the function-table lookup for a fired event folds `A`–`Z` in both the hash and the comparison, so `onTimeout` and `onTimeOut` are one function; other builds not proven | [bin][lab][inf] (client-internals/gs2-vm-quirks-by-version.md#5-event-name-matching-ontimeout-vs-ontimeout); [bin] (client-internals/static-reads-appendix-e-2026-11-20-j.md#event-names-and-the-function-table-603r7) |
+| loop-limit name | 6.00r2 to 6.03r7 keep the property name scrambled; it unscrambles to `maxlooplimit` | [bin] (client-internals/static-reads-appendix-e-2026-11-20-j.md#the-6x-loop-limit-name) |
 
 Open: → App. E#209.
 
@@ -281,7 +301,15 @@ The rules below say what follows for a client and a compiler, and where the evid
 | --- | --- |
 | Clean output is consistent with a jump-threading and marker-narrowing pass, but careful emitting alone gives the same stream, so the official compiler's passes are not known. Open compilers' test baselines do leave jump-to-jump chains and wide `F4` markers | [cap][inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
 | On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, §8.4.10) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
-| The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently (→ App. E#213) | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+| The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently; 5.00r7 is measured below | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+
+**Settled question, formerly E#213: How GS2 text bytes draw on screen.** Whether the clients draw official bytecode's single Latin-1 bytes as the intended letters was open. Lab runs on 5.00r7 under a Western code page settled it for that build [lab] (protocol/lab-appe-mirae-2026-11-20c.md#latin-1-text-on-500r7-e213); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | 5.00r7 draws bytes 231, 233, 252 and 241 as ç, é, ü and ñ in chat, nicknames and GS2 `showtext`, including text built with `char(231)` on the client | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#latin-1-text-on-500r7-e213); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
+| Verdict | Verified for 5.00r7 on a Western code page; the best guess (bytes pass through the Windows code page) holds | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
+| Left over | A 6.x build, a sign on screen, and another code page; the lab server's GS1 translator and sign encoder garble non-ASCII bytes on their own, so use GS2 | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
 
 **Settled question, formerly E#212: Whether a function-only image skips the top-level pass.** Whether stock clients treat a leading jump to the end as "no top level", and re-run top-level code before every event when an image has some, was open; loopback fixtures settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212).
 

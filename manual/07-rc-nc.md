@@ -26,7 +26,7 @@ RemoteControl went through many builds. Each row gives one archive, its date, it
 | Linux RC | 2005/12/09 | `GSERV024` | — | zlib, the script MIME type `text/x-graalscript`, "Ignore Mass PMs if client is on", more editor, auto-indent and account-list text | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 | Linux RC | 2006/01/20 | `GSERV025` | — | the token bump; ban history and staff activity (`getbanhistory`, `getstaffactivity`, "Edit Access"), "Allow Global PMs" and buddy tracking, a chat font size; built with GCC 4.0.3 | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 
-The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ §7.1.1).
+The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). The NewWorld RemoteControl builds 2001/05/21 (15 forms) and 2001/08/20 (18 forms) log in with `G2NRC006`; the 1.39 server tree's NewWorld option expects `G2NRC004` for the NewWorld RC of 2000/8/19 [bin][src] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ §7.1.1).
 
 **Settled question, formerly E#405: RC token `GSERV025`.** Which RC builds send `GSERV025` was open while only the earlier RC builds had been read [bin] (protocol/rc2-sessions-stock-2026-11-16.md).
 
@@ -64,6 +64,8 @@ Right after login the RC sends one `PLI_PLAYERPROPS` (2):
 | 2000/8/19 on | 0 (NICKNAME) = the nickname from the options; closing the player list with "Go in away mode" sends it again with ` - away` appended | [bin] (tools/remotecontrol-lineage.md#start-dialog-and-the-old-option-packets-bin) |
 | rc141 (2002) | 33 (ADDITFLAGS) = 1 only when "Ignore mass messages" is ticked; 0 (NICKNAME); 53 (PSTATUSMSG) = the selected status index | [bin] (tools/npc-control.md#logins-bin) |
 | 2004 | a short message whose prop list is not traced | [bin] (tools/remotecontrol.md#logins-bin) |
+
+After the server's signature (25) and clear-weapons (194), RC2 2.05 sends `PLI_SENDTEXT` (154) `GraalEngine,irc,login,-`, the same IRC login request stock game clients send, followed by its other lister and PM texts [lab] (protocol/rc2-sessions-stock-2026-11-16.md).
 
 ### 7.1.3 Framing
 
@@ -235,8 +237,15 @@ There is no RC-list message on the wire: an RC learns who else is staff from the
 | The online RCs are therefore the 55/56 entries whose level is empty | [src] (protocol/rc-list-online.md#2001-servers-src) |
 | GServer-v2 sends an RC's level as one space, adds player-list status and community name to 55, and sends one 74 `Currently online: <a>, <b>, …` after login | [srv] (protocol/rc-list-online.md#gserver-v2-srv) |
 | RC2 2.05 and RC3 put an entry in the **Admins** folder when its nickname's guild tag is in the 47 staff-guild list, or when its id is above 0, its level has length 0 (no trim) and bit 0 of prop 81 is clear; everything else goes to **Players**; prop 81 bits 1 and 2 move an entry to separate lists | [bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs under Players → App. E#424 | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Against GServer-v2's one-space level, RC2 2.05 lists other RCs under Players (settled below) | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
 | The RC2 2.05 RC socket handles server → RC ids 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 100, 102, 103, 180 and 190, the same set as the 2010 Linux RC; 65 on this socket is `PLO_RC_FILEBROWSER_DIRLIST` | [bin] (protocol/rc-list-online.md#rc2-205-server-client-ids-bin) |
+
+**Settled question, formerly E#424: RC2's Admins folder against a one-space level.** Where RC2 2.05 lists other RCs when GServer-v2 sends their level as one space was open. A run of RC2 2.05 on a Win10 guest, with injected entries, settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | RC2's Players window is a flat list under header rows, and the header counts stay 0. An entry with an empty level goes under Admins; one space or a level name goes under Players | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
+| Verdict | Verified: both claims hold. RC2 2.05 tests the level by length with no trim, so on the GServer-v2 fork other RCs appear under Players | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
 
 ## 7.2 NC login
 
@@ -249,6 +258,7 @@ NPC Control logs in on its own socket. The rules below give its first message an
 | The NC socket's first message is type 3, `NCL11012`, `str account`, `str password`, with no key byte, sent right after the socket connects | [bin] (tools/npc-control.md#logins-bin); [bin] (protocol/npc-control.md#login) |
 | The NC socket stays in fixed zlib framing (`u16be` length + zlib) for the whole session: no type byte, no cipher | [bin] (tools/remotecontrol.md#logins-bin); [bin] (protocol/npc-control.md#login) |
 | The NC login did not change between rc141 (2002) and the 2004 RC | [bin] (protocol/npc-control.md#login) |
+| The standalone NPC Control tools (2001/03/19, 2001/05/21 and 2001/07/13) send `NCL15031` instead, with the same type 3, no key byte and the same framing; a loopback run of the 2001/05/21 and 2001/07/13 builds confirmed it | [bin][lab] (protocol/npc-control.md#login); [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md) |
 | A GServer-v2 also knows the NC token `NCL21075` (→ §2.3.6.1) | [srv] (protocol/login-and-walk.md#how-the-server-parses-it-srv) |
 | Status bar text after login: "Connected to NPC-Server" | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 
@@ -261,6 +271,7 @@ The RC never asks for an NC address [bin] (tools/npc-control.md#finding-the-npc-
 | 1 | any player whose nickname contains `(Server)` is treated as an NPC-server player | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 | 2 | for each, the RC sends id 94 (`PLI_NPCSERVERQUERY`): `s player id` + the text `location`, when the player appears and again whenever the NC socket drops | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 | 3 | the server answers id 79 (`PLO_NPCSERVERADDR`): `s player id`, then `ip,port` | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
+| 3a | a GServer-v2 answers only an RC whose `adminRights` hold the NPC Control right (`PLPERM_NPCCONTROL`) when `npcrights` is on; otherwise it drops 94 silently. Its flat-file accounts store those rights under the `LOCALRIGHTS` key; there is no `ADMINRIGHTS` key | [srv][lab] (protocol/npc-control.md) |
 | 4 | the RC opens the NC socket only if it is not already open and that player's nickname still contains `(Server)`, then sends the NC login | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 
 The rules below give how NPC Control finds the NPC server and what the 2001 texts say about it [bin][inf] (tools/npc-control.md#finding-the-npc-server-bin).
@@ -354,9 +365,20 @@ One retained standalone Windows NC artifact has a flag-list action whose statica
 
 The count construction biases both components by 32. Its low component uses the low seven bits; its high component is shifted right by seven and narrowed to a byte, without an established seven-bit mask or range guard. Each item contributes a biased byte length and its contents. Count overflow, out-of-range lengths and the precise collection type remain unresolved [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
 
-The caller supplies command argument 69, which is not an independently captured wire id. Its direct callee biases that command by 32, concatenates the message, appends it to a shared buffer and invokes a further routine when the combined or buffered length reaches 4096. That routine and the terminator were not examined. The ultimate peer, delivery and receive interpretation remain unknown → App. E#425 [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
+The caller supplies command argument 69, which is not an independently captured wire id. Its direct callee biases that command by 32, concatenates the message, appends it to a shared buffer and invokes a further routine when the combined or buffered length reaches 4096. The routine, the terminator, the peer and the receive side are now read (see the settled question below) [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
 
 These bodies were recovered with analyst-seeded entry boundaries after default analysis did not recognize the selected entry. Exception-handling tails, register/type interpretations and indirect calls remain uncertain. No runtime or matching-baseline behavior is established [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits).
+
+**Settled question, formerly E#425: Standalone NC flag-action recipient and ranges.** Where the flag-list action's message goes, how its fields are bounded, and what answers it on the NC side were open. A full read of the send path and the receive dispatcher in both flag-list builds settled the NC side [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-round-trip).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | It is the server-flag list. **Server &Flags** sends NC message 68 (empty); the server answers with 61 (count and lines), which fills the form's rich-edit box; **&Send** sends 69 with the whole edited list in the same layout and closes the form | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-round-trip) |
+| Settled | Layout of 61 and 69: count as (n >> 7) + 32 and (n AND 127) + 32, then per line a length + 32 and the text. The count is exact up to 28,671 lines and a line up to 223 characters; past those the byte wraps. On receipt a negative length counts as 0 | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-list-layout-61-and-69) |
+| Settled | The send routine, shared by all 22 NC requests, appends chr(id + 32), the body and a line feed to a text buffer; at 4,096 bytes, or when the socket writer runs, the buffer is zlib-compressed and framed with a two-byte big-endian length (generation 2, no cipher); a raw queue over 256 KiB or a zero-byte send marks the connection broken and the NC shows "You have been disconnected!". So 69 goes to the server the NC is logged into | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#from-message-to-socket) |
+| Settled | The March and May 2001 builds have the same send routine and the same 61 handler. The July build's weapons list is not the same shape: it edits (116) and deletes (118) one weapon at a time | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#against-the-july-weapons-list) |
+| Verdict | Verified by read on both flag-list builds; the best guess (the NC server, as a flag-list write) holds, but the weapons-list comparison does not | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-round-trip) |
+| Left over | What the 2001 NPC server does with 69 and whether it limits the list; no server of that date is held | [inf] (protocol/nc-flag-list-round-trip-2026-11-20.md#not-covered) |
 
 ## 7.4 RC and NC under malformed input
 
