@@ -133,6 +133,23 @@ real 1.x GServer reads the bytes and never replies; fixed, and the self-test moc
 it. A loaded VM also produced false canary timeouts (the deferred 1.21 run), so these were
 run on a quiet host and re-checked.
 
+### GServer13: second, independent run (2026-11-20) **[lab]**
+
+A second gen-2 sweep of GServer13 from the early-client probe campaign
+([`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md)), in its own network
+namespace and Wine prefix, the same 292 cases: again no crash, hang or canary drop, and the same
+login and `WANTFILE` behaviour as above. It adds three details:
+
+- **Warp to a level the server does not have** (`PLI_LEVELWARP` 0 or `LEVELWARPMOD` with a
+  250-byte or `../` name) gets `PLO_WARPFAILED` (15), a warp (14) back, the board as
+  `PLO_LEVELBOARD` (0) rather than the 100/101 raw-data pair, and `PLO_ISLEADER` (10). A name
+  with a NUL gets no reply.
+- **Two frames in one TCP send close the socket**, and so does a single 65535-byte frame; every
+  other malformed frame (zero length, over- and under-runs, non-zlib or truncated zlib, an 8 MB
+  inflate ratio, a giant line with no newline, a frame of empty packets) is ignored with the
+  socket left open.
+- The pre-auth id 8 appeared on every fresh socket here too.
+
 ## seihai-listserver 0.1.1 — `list` sweep (2026-11-20) **[lab]**
 
 Our own clean-room Rust list daemon (`squirelworks/seihai-listserver`, v0.1.1), fuzzed on
