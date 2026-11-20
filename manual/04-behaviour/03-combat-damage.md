@@ -339,3 +339,55 @@ A loopback capture of the real 2.05 rev 2 and 2.22 clients. The spin window, the
 | S held, then A | `idle`, then a held rupee that cycles green, blue, red with no further send; A alone sends `PLI_ITEMADD` then `RUPEESCOUNT` in one frame | the same item frame; the pick asks for `item2.wav` and does not ask for `item.wav` | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
 | Landing | `(x + 0.5 + dx, y + 1 + dy)`, north `(0, −3)`, west `(−2, 0)`, south `(0, +2)`, east `(+2, 0)` | the south case matches | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
 | After the lay | `PLI_ITEMDEL` 8.2–8.6 s later; an arrow while the rupee is held sends nothing and leaves the count unchanged | `PLI_ITEMDEL` at 8.45 s | [lab][cap] (client-internals/spin-lay-205-2026-11-14.md#laying-s-held-then-a) |
+
+## 4.3.10 The baddy AI step (2.22)
+
+The 2.22 client runs one AI step every 100 ms, every second 50 ms game tick, and all counters below are in steps. Online, only the level's leader thinks for the baddies and sends their changed props; every client draws what the server relays and judges touch and sword hits for what it sees [2.22][cap] (client-internals/baddies-222.md#summary). The props on the wire are in → §2.6, and the server's share (mode 5 to 9, respawn, drops) in → §5.
+
+Each type has its own hit points, step and way of attacking. The table gives them as the 2.22 client creates them [2.22] (client-internals/baddies-222.md#types-222).
+
+| Type | Name | Power | Shield | Walk / hunt step (tiles) | Attacks with | Starts in | Source |
+| ---: | --- | ---: | :---: | --- | --- | --- | --- |
+| 0 | graysoldier | 2 | yes | 0.25 / 0.5 | melee | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 1 | bluesoldier | 3 | yes | 0.25 / 0.5 | melee | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 2 | redsoldier | 4 | yes | 0.25 / 0.5 | melee | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 3 | shootingsoldier | 3 | no | 0.25 / 0.5 | arrows | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 4 | swampsoldier | 2 | no | does not move | arrows from the swamp | mode 6 | [2.22] (client-internals/baddies-222.md#types-222) |
+| 5 | frog | 1 | no | jumps | none | mode 7 | [2.22] (client-internals/baddies-222.md#types-222) |
+| 6 | octopus | 1 | no | 0.5 / none | ink | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 7 | goldenwarrior | 6 | yes | 0.25 / 0.5 | melee | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 8 | lizardon | 12 | no | 0.5 / 0.75 | melee | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+| 9 | dragon | 8 | no | 0.25 / 0.5 | fire (arrow kind 2) | walk | [2.22] (client-internals/baddies-222.md#types-222) |
+
+The rules below give what each mode does with the step counter `c` (BDPROP 6) and a second counter, `lost` [2.22][cap] (client-internals/baddies-222.md#the-ai-step-222).
+
+| Rule | Source |
+| --- | --- |
+| Creation: mode 0, body and head down, `c = Random(20) + 40`. Type 4 starts in mode 6 with ani 2, type 5 in mode 7, type 6 faces right with ani 4 and `c = Random(10) + 20`. Offline, GS1 `putnewcomp` starts types other than 4 to 6 in hunt with `c = 12`; online it sends `PLI_BADDYADD` | [2.22] (client-internals/baddies-222.md#creation-222) |
+| Mode 0, walk: when head and body agree, `c` falls by 1, with `steps.wav` every 5th step. Below 0 the octopus goes to mode 8 with `c = 13`, any other type to mode 1 with `c = 44`. Blocked ahead, the head turns back (`head = dir + 2`), the body turns right (`dir = dir + 3`) and an even `c` is made odd; otherwise the baddy moves one walk step. When head and body disagree, an even `c` turns the body to the head | [2.22] (client-internals/baddies-222.md#mode-0-walk-222) |
+| Mode 1, look about: `c` falls by 1; the head turns by the table `{1, 1, 0, −1, −1, 0, 1, 1, 0, −1, −1}` at index `c div 4`. Below 0: a random direction, mode 0, `c = Random(20) + 40`. 44 steps is 4.4 s | [2.22][cap] (client-internals/baddies-222.md#mode-1-look-about-222-cap) |
+| Walk and look about run the sight check with the head's direction; seeing the target starts the hunt with `c = 16`, a 1 s pause before the chase (12, a 0.6 s pause, after a hit) | [2.22][cap] (client-internals/baddies-222.md#mode-2-hunt-222-cap) |
+| Mode 2, melee chase (`c < 6`): `c = (c + 3) & 3`, so it cycles 0, 3, 2, 1. Out of sight, `lost` rises by 1, and above 40 (4 s) the baddy goes back to look about. It moves on the axis with the larger distance to the target, plus the other axis scaled by the smaller / larger ratio when that side is free, then unsticks to the half-tile grid if blocked | [2.22][cap] (client-internals/baddies-222.md#mode-2-hunt-222-cap) |
+| Mode 2, archers (types 3 and 9): walk to a spot 11 tiles from the target in line with it, and shoot within 1 tile of it, after 40 steps of trying, when stuck, or when in line 11 tiles or more away. A shot sets `lost = 15`, a 1.5 s cool-down, and goes out as `PLI_ARROWADD` with sprite `107 + dir` | [2.22] (client-internals/baddies-222.md#mode-2-hunt-222-cap) |
+| Modes 3 and 4, hurt and shield bump: while `c > 2` the knock vector is added unless that puts an inner point in a wall, so `c = 8` at the hit moves it for 6 steps. Below 1, power under 1 means mode 5 with `c = 14`; otherwise mode 2 with `c = 12`, facing the target, `lost = 0` | [2.22][cap] (client-internals/baddies-222.md#modes-3-and-4-hurt-and-shield-bump-222-cap) |
+| Mode 5, dying: `c` counts down to −1 (1.5 s from 14), then the puff. Offline the client removes the baddy; online the server sends mode 9 after 2 s, and mode 9 removes it | [2.22][srv] (client-internals/baddies-222.md#mode-5-dying-and-mode-9-dead-222-srv) |
+| Mode 6, swamp soldier: `c` cycles `(c + 1) mod 43`; it leaps out at 17, faces the target at 22, shoots at 25 and faces down at 33. A hit sets `lost = 8` instead of a knockback, and it can be hit or hurt only while `21 < c < 37` | [2.22] (client-internals/baddies-222.md#mode-6-swamp-soldier-type-4-222) |
+| Mode 7, frog: `c` cycles `(c + 1) mod 46`, jumps back to its start ±4 tiles on even values of `lost`, and plays `frog.wav` at 16. It can be hit or hurt only while `16 < c < 38`, and one hit kills it | [2.22] (client-internals/baddies-222.md#mode-7-frog-type-5-222) |
+| Mode 8, octopus ink: `c` falls from 13; ink (sprite 131) at 6; at 0 a random direction, mode 0, `c = Random(10) + 20` | [2.22] (client-internals/baddies-222.md#mode-8-octopus-ink-type-6-222) |
+
+Targets, sight and walls follow fixed rules. The table gives them [2.22] (client-internals/baddies-222.md#target-222).
+
+| Rule | Source |
+| --- | --- |
+| Target: the nearest player by `max(|dx|, |dy|)` between centres, where the first candidate is taken without a sight test and every closer one must be seen; so a lone player is always the target | [2.22] (client-internals/baddies-222.md#target-222) |
+| Sight: the point is strictly on the facing side within a 90° cone, within 20 tiles, and a one-tile walk from the baddy's centre to it meets no wall, water, chair, bed bottom, player, NPC, horse or other 2 × 2 object | [2.22] (client-internals/baddies-222.md#sight-222) |
+| Blocking: off the board (0 to 64), a wall, water (tile type 11), a chair (3), the bottom of a bed (5), another player's body (online only), an NPC, a horse or another 2 × 2 object; three probes per side, at 0.1, 1 and 1.9 along the edge | [2.22] (client-internals/baddies-222.md#what-blocks-a-baddy-222) |
+
+A hit runs the hurt routine on the leader. The rules below give that routine and what a client that is not the leader sends instead [2.22][cap] (client-internals/baddies-222.md#the-hurt-routine-222-cap).
+
+| Rule | Source |
+| --- | --- |
+| A hit takes the hit's power off the baddy's power. The swamp soldier sets `lost = 8`, the frog dies at once, any other type goes to mode 3 with knock length 2.0. A shield block goes to mode 4 with knock length 0.8 and `swordon.wav`, and pushes the player back | [2.22][cap] (client-internals/baddies-222.md#the-hurt-routine-222-cap) |
+| Then `c = 8`, and the knock vector is `−(P − B) × 2`, from the player's centre P to the baddy's centre B, scaled to the knock length; a zero vector becomes (−length, 0) | [2.22][cap] (client-internals/baddies-222.md#the-hurt-routine-222-cap) |
+| A client that is not the leader takes the power locally, sets mode 3 and a pending flag, and sends `PLI_BADDYHURT` with dx and dy as `round((Px − Bx + 4) × 16)` and `round((Py − By + 4) × 16)`, each clamped to ±4 tiles, and the power as is. The leader decodes `(byte − 32 − 64) / 16`. A captured hit facing right with sword power 1 carried dx −3.5, dy 0 and power 1 | [2.22][cap] (client-internals/baddies-222.md#the-hurt-routine-222-cap) |
+| Verses: sight (BDPROP 8), hurt (9) and attack (10) are each said once in a baddy's life, for 20 steps (2 s): on first entering hunt, after the first knockback that does not kill, and on the first touch after the sight verse | [2.22] (client-internals/baddies-222.md#verses-222) |
