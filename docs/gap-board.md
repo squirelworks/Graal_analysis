@@ -47,6 +47,16 @@ Lab items by where they run: Mirae Windows 10 VM or Linux VM under Wine 74, Mira
 with the lab servers 24, Mirae Linux VM (Linux clients) 14, Android-x86 or mobile 6, Mirae
 Tiger VM 5, GwenTea2 Lion or Sequoia VM 4.
 
+## Issues
+
+Every row is also in one GitHub issue, so an agent can take work without reading the TSV. The
+entry point is the research gap roadmap, #746 (a child of #370). Lab issues: #743 (Windows
+clients on Mirae), #733 (servers, RC and NC), #734 (Linux clients), #730 (Tiger), #731 (Lion
+and Sequoia), #732 (Android, iOS, v7). Static issues: #740 (NEXT.md and Appendix E), #744 (1.x to
+2.x), #745 (protocol), #741 (4.x to 7.x, GS2 VM, Mac), #738 (Torque), #735 (Linux teardowns),
+#736 (formats and tools), #739 (version profiles), #737 (NPC scripting). Blocked rows: #742.
+When a row is done, tick it in its issue as well as in the source note.
+
 ## How to claim
 
 1. Pick a `free` row. Static rows need no queue.
@@ -57,6 +67,8 @@ Tiger VM 5, GwenTea2 Lion or Sequoia VM 4.
 
 ## Lab queue
 
+Each queued run below is written out step by step in [`experiments.md`](experiments.md), with its expected output, where the result goes and the issue it closes.
+
 Labs run one at a time per host, inside VMs only (no bare-metal runs). GwenTea2 has little
 memory: a watchdog powers VMs off when the host's free memory falls under about 3 GB, so do not
 boot a second large VM there while one is running. Check what is running before booting. The
@@ -66,7 +78,7 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 
 | # | What | Board rows | State |
 |---|---|---|---|
-| 1 | Probe coverage: the 4.x/5.x plan set on 5.12 and 6.037, the gen-3 plan on 2.02, 2.02 rev 1 and 2.02 rev 2, and the RC width canary on native Windows | the three new rows; `NEXT.md` lines 76, 77, 239; `rc-fuzz` lines 118, 119 | claimed (research-gaps thread) |
+| 1 | Probe coverage: the 4.x/5.x plan set on 5.12 and 6.037, the gen-3 plan on 2.02, 2.02 rev 1 and 2.02 rev 2, and the RC width canary on native Windows | the three new rows; `NEXT.md` lines 76, 77, 239; `rc-fuzz` lines 118, 119 | free |
 | 2 | Appendix E lab batch: E#210, E#304, E#203, E#507, E#324, E#325, E#15, E#610 | those E rows | claimed (Appendix E batch thread) |
 | 3 | 4.04r2 pickup field read around each action, in the repeatable Wine scene (E#611), after the static read of the field | E#611; `404r2-carry-state` lines 57–60 | free |
 | 4 | Client test harness #398 on 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 | `NEXT.md` line 222 | free |

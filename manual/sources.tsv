@@ -366,6 +366,7 @@ docs/book/04-where-the-notes-disagree.md	cited	3.1;6	3.1;6
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 docs/citable-data.md	excluded			repository policy on the citable data columns, not Graal
 docs/evidence-index.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
+docs/experiments.md	excluded			repository experiment runbook, not Graal
 docs/gap-board.md	excluded			repository task board, not Graal
 docs/gap-board.tsv	excluded			repository task board data, not Graal
 docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
