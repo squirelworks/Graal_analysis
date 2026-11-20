@@ -3,7 +3,7 @@
 
 This chapter gives the sword swing and the spin, who judges a hit, the gates a hit must pass, the damage each source takes, the shared hurt routine, hurt mode, knockback and the hurt pose. The combat messages themselves are in → §2.4 and → §2.5.5; the STATUS bits are in → §2.6.2.1. Death is → §4.4.
 
-> Status: draft. Read in full for 2.00 to 2.05 rev 2, 2.17.1, 2.22 and 2.31; 1st Graal and 1.39 for the main rules; 3.x to 6.x only as timed on the wire. The open point is App. E#312; the rest of E#309 to E#315 are settled in the chapters (→ §4.3.3, §4.3.5.2, §4.3.7.2, §4.4.4).
+> Status: draft. Read in full for 2.00 to 2.05 rev 2, 2.17.1, 2.22 and 2.31; 1st Graal and 1.39 for the main rules; 3.x to 6.x only as timed on the wire. E#309 to E#315 are settled in the chapters (→ §4.3.3, §4.3.5.2, §4.3.7.2, §4.4.4).
 
 ## 4.3.1 Who judges a hit
 
@@ -183,7 +183,15 @@ Shots fly one tile per tick. The rules below cover local and remote shots, their
 | skipped | while the shot bounces back, for a player's shot (one's own, or one received in a `noplayerkilling` level), or when the player cannot be hurt | [2.05] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
 | shield | the player faces the shot, shield power above 0, the shot is type 0 or 1, and the animation is one of two built-in names (inferred `idle` and `walk`); power 1: an arrow turns back for 3 ticks with a sound, any other sprite is gone; power 2 or more: the shot is sent back the other way and re-sent as a new shot | [2.05][inf] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
 | walls | arrows (type 0) and fireballs (type 1) pass walls; types 2 to 4 burst on them, measured on 2.05 rev 2 (→ §4.3.5.2) | [2.05] (client-internals/damage-sources.md#open); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
-| lab | an injected shot hurt only when its last byte was `0x23` or more; meaning open (→ App. E#312) | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+| lab | an injected shot hurt only when its last byte was `0x23` or more; the byte is the shot type, and low types do hurt (settled below) | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
+
+**Settled question, formerly E#312: The last byte of a shot.** What the last byte of `PLO_ARROWADD` (19) does was open, because an earlier 2.22 lab saw only bytes 35 and up hurt. A read of the 2.22 receiver and a lab sweep settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#shot-types-0-and-1-on-222-e312).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The last byte less 33 is the shot type. On 2.22, types 0 and 1 hurt a receiving client directly, half a heart and one heart, linked to an owner or not; type 2 hurts half a heart. A `noplayerkilling` level stops every shot | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#shot-types-0-and-1-on-222-e312) |
+| Verdict | Verified on 2.22: Claim A holds. Claim B's no-hit results came from the setup (placement, level flags or the owner field), not from the byte | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#shot-types-0-and-1-on-222-e312) |
+| Left over | Which owner field the client compares, and why the 2026-10-25 and 2026-11-20 GwenTea2 sweeps saw no hits | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312) |
 
 **Settled question, formerly E#313: Do arrows and fireballs pass walls.** Whether arrows and fireballs fly through walls in 2.05 was open from a code read; a lab shot at a wall settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313).
 

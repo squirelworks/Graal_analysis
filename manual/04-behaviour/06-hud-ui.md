@@ -363,9 +363,18 @@ Tabs, bars and counters retain their top-left positions across window sizes. Hea
 | Heart detail | Measured rule | Source |
 | --- | --- | --- |
 | Sheet boxes | full (0, 0, 40, 44), half (40, 0, 30, 44), small full (80, 0, 31, 33), small half (111, 0, 24, 33); small sprites are drawn 1:1, and half hearts begin at the slot's top left | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
-| Up to four hearts | one full-size row, x = W − 198 + 45k, y 24, at every window size measured; four hearts leave a 23 px right margin, and the source's 68 px is the three-heart case (→ App. E#326) | [shot] (client-internals/hud-603r7-black-box.md#hearts); [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-hud-e326) |
+| Up to four hearts | one full-size row, x = W − 198 + 45k, y 24, at every window size measured; four hearts leave a 23 px right margin, and the source's 68 px is the three-heart case (Windows measured below) | [shot] (client-internals/hud-603r7-black-box.md#hearts); [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-hud-e326) |
 | Five and above | small rows of 5, 6, 5, 4 slots, pitch 35 horizontally and 20 vertically; first row x = W − 198 + 35k, y 24, second row half a pitch left; 20 hearts fill the four-row hexagon, whose rightmost small heart ends 10 pixels from the edge | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
 | Five or 5.5 hearts | whole small block 10 pixels lower; from six hearts it returns to y 24 | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
+
+**Settled question, formerly E#326: Remaining 6.03r7 HUD measurements.** The heart row's right margin, the sword's right edge and the Windows text positions on 6.03r7 were open. A Windows 6.03r7 run at three window sizes settled the text and the heart anchor [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#the-603r7-hud-on-windows-e326).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | On Windows the tab letters A, S and D keep the same boxes at 640 × 480, 800 × 600 and 1024 × 768, about 2 px right of and 7 px below each tab's corner: text is anchored top-left, as on Linux | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#the-603r7-hud-on-windows-e326) |
+| Settled | The hearts stay anchored top-right, 70 px in from the right edge at 640 and 800 wide, which fits the 68 px three-heart margin; a blue sword-power digit and a small mark above the D tab are fixed too | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#the-603r7-hud-on-windows-e326) |
+| Verdict | Verified; the best guess (Windows text follows Linux) holds. Windows 6.03r7 runs with a current clock | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#the-603r7-hud-on-windows-e326) |
+| Left over | 1280 × 1024 and other heart counts on Windows | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#the-603r7-hud-on-windows-e326) |
 
 ### Platform text, files and observed transitions
 
@@ -373,7 +382,7 @@ At matched sizes 640 × 480, 800 × 600 and 1024 × 768, the measured Linux/Wind
 
 At world login, PLO 9 supplied maximum/current hearts, gralats, ammunition, glove/sword/shield and AP/MP fields; PLO 42 arrived every five seconds in this server setup. At about 66–68 seconds the server raised AP 50 to 51, visibly adding one fill column. That is a captured server change, not a client regeneration timer. WANTFILE 23 requests included the base package, tileset and animation on login, then body/equipment/state art and fonts on the world server; the source retains the complete request list. [cap][shot] (client-internals/hud-603r7-black-box.md#files-and-packets)
 
-If PLO 178 interrupted the `pics1.png` download, both clients dropped it, showed a black world and did not request it again; pre-seeding the cache avoided the failure in these runs. Tab, Q, M and F2 opened nothing with this script-free server. The Windows software GDI renderer ran the packed original; a neighbouring Mesa library was not loaded, and a separately dumped executable failed at startup. These observations do not establish behavior with arbitrary renderers, clocks or server GUI scripts. Sword width, other-size Windows text positions and a current-clock Windows check remain open (→ App. E#326). [lab][shot][cap] (client-internals/hud-603r7-black-box.md#windows-against-linux); (client-internals/hud-603r7-black-box.md#files-and-packets); (client-internals/hud-603r7-black-box.md#open)
+If PLO 178 interrupted the `pics1.png` download, both clients dropped it, showed a black world and did not request it again; pre-seeding the cache avoided the failure in these runs. Tab, Q, M and F2 opened nothing with this script-free server. The Windows software GDI renderer ran the packed original; a neighbouring Mesa library was not loaded, and a separately dumped executable failed at startup. These observations do not establish behavior with arbitrary renderers, clocks or server GUI scripts. The Windows text positions and a current-clock Windows run are settled in §4.6.9. [lab][shot][cap] (client-internals/hud-603r7-black-box.md#windows-against-linux); (client-internals/hud-603r7-black-box.md#files-and-packets); (client-internals/hud-603r7-black-box.md#open)
 
 ## 4.6.10 Draw order, layers and ground on 2.22
 

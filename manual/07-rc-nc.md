@@ -235,8 +235,15 @@ There is no RC-list message on the wire: an RC learns who else is staff from the
 | The online RCs are therefore the 55/56 entries whose level is empty | [src] (protocol/rc-list-online.md#2001-servers-src) |
 | GServer-v2 sends an RC's level as one space, adds player-list status and community name to 55, and sends one 74 `Currently online: <a>, <b>, …` after login | [srv] (protocol/rc-list-online.md#gserver-v2-srv) |
 | RC2 2.05 and RC3 put an entry in the **Admins** folder when its nickname's guild tag is in the 47 staff-guild list, or when its id is above 0, its level has length 0 (no trim) and bit 0 of prop 81 is clear; everything else goes to **Players**; prop 81 bits 1 and 2 move an entry to separate lists | [bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs under Players → App. E#424 | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
+| Against GServer-v2's one-space level, RC2 2.05 lists other RCs under Players (settled below) | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
 | The RC2 2.05 RC socket handles server → RC ids 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 100, 102, 103, 180 and 190, the same set as the 2010 Linux RC; 65 on this socket is `PLO_RC_FILEBROWSER_DIRLIST` | [bin] (protocol/rc-list-online.md#rc2-205-server-client-ids-bin) |
+
+**Settled question, formerly E#424: RC2's Admins folder against a one-space level.** Where RC2 2.05 lists other RCs when GServer-v2 sends their level as one space was open. A run of RC2 2.05 on a Win10 guest, with injected entries, settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | RC2's Players window is a flat list under header rows, and the header counts stay 0. An entry with an empty level goes under Admins; one space or a level name goes under Players | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
+| Verdict | Verified: both claims hold. RC2 2.05 tests the level by length with no trim, so on the GServer-v2 fork other RCs appear under Players | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
 
 ## 7.2 NC login
 

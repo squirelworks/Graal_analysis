@@ -538,7 +538,16 @@ Protocol 19 (3.153, 4.04r2) has been read but not run past the handshake. A stat
 | Connection messages use TGE 1.x numbering: 0 ghost-always done, 1 ready for normal ghosts, 2 end ghosting, 3 ghost-always starting, 5 datablocks done, 6 datablocks download done. Torque3D numbers the last pair 6 and 7. Messages 0, 2, 3 and 4 before a ghost table exists are refused as "Invalid packet" | [bin] (torque/protocol19-server.md#4-connection-messages-tge-1x-numbering) |
 | A workable order: phase 1; on its ack the datablocks, then message 5; on message 6, phase 2, message 3 and the ghosts; when phase 2 is acked, message 0 and phase 3; on phase 3's ack, the control object. A ghost naming a datablock the client has not loaded drops the connection | [bin][srv] (torque/protocol19-server.md#5-mission-start) |
 | The smallest `CameraData` is 137 bits with empty names; the `Camera` ghost update and packet data carry position, two rotation angles and a mode (0 stationary to 4 orbit point) | [bin][srv] (torque/protocol19-server.md#7-cameradata--shapebasedata-nothing-of-its-own) |
-| Still unread: `ShapeBase`'s main update section and the `Player` layouts, which other players need; and whether 3.153 matches 4.04r2 here (→ App. E#506) | [bin][inf] (torque/protocol19-server.md#open) |
+| Still unread: `ShapeBase`'s main update section and the `Player` layouts, which other players need; 3.153 matches 4.04r2 on the camera path (settled below) | [bin][inf] (torque/protocol19-server.md#open) |
+
+**Settled question, formerly E#506: Protocol 19 against a real 3.153 or 4.04r2 client.** Whether a real 3.153 or 4.04r2 accepts the protocol-19 server order read statically was open. 4.04r2 ran it earlier; the Mac PowerPC 3.153 on a Tiger guest settled the rest [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The real 3.153 completes the camera path: UDP challenge, phases 1 to 3, the `Camera` and `Sky` ghosts and the initial control object, then keeps the link (61 moves over about 2.5 minutes) with no crash | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
+| Settled | 3.153 picks a 3D server from the list tag: a server listed at HQ level 1 (tag `H `) is filed as Hosted and treated as 2D, and no UDP is sent; HQ level 4 (tag `3 `) works | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
+| Verdict | Verified for the camera path on 3.153 and 4.04r2; the best guess holds | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
+| Left over | Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked | [inf] (torque/protocol19-server.md#open) |
 
 ## 10.4 DSO v33
 
