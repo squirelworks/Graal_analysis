@@ -4871,3 +4871,10 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-1.28b2 (gen 2, GSERV013)	s2c	8	50	8 c:12 c:50 c:1 c:0 str:three c:15 c:60 c:16 c:56 c:17 c:2 (no level)	-	yes	none	drawn: the level is not needed on 1.28b2	w128-pl8	pl8-1b-join-nolevel
 2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	web start level served on loopback HTTP 7777; levels folder supplied	-	yes	NG5, NGraal5 only	no HTTP request, no move to the level room	w9th-lobby	w9a/w9b
 2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	NR then NL after each join	-	yes	NG5, NGraal5 only	NL makes no difference	w9th-lobby	w9c
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 5 announced at the join (relay98 --fakepeer=5)	-	yes	P, then T P Y N S 7	state push after the confirming P: yes (a race at join time, not an id limit)	w119-lobby	z119-id5
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 50 announced at the join (relay98 --fakepeer=50)	-	yes	P	state push after the confirming P: no (a race at join time, not an id limit)	w119-lobby	b119-50
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 100 announced at the join (relay98 --fakepeer=100)	-	yes	P	state push after the confirming P: no (a race at join time, not an id limit)	w119-lobby	b119-100
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 128 announced at the join (relay98 --fakepeer=128)	-	yes	P, then T P Y N S 7	state push after the confirming P: yes (a race at join time, not an id limit)	w119-lobby	b119-128
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 256 announced at the join (relay98 --fakepeer=256)	-	yes	P	state push after the confirming P: no (a race at join time, not an id limit)	w119-lobby	b119-256
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 1000 announced at the join (relay98 --fakepeer=1000)	-	yes	P, then T P Y N S 7	state push after the confirming P: yes (a race at join time, not an id limit)	w119-lobby	b119-1000
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	login without the extra Return after Start	-	yes	NG5, NGraal5 only	start dialog stays up; no move to the level room	w9th-lobby	w9d
