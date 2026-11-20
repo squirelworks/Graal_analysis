@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#9, E#309, E#327, E#420, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#4, E#9, E#619, E#309, E#327, E#420, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -36,7 +36,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | --- | --- | --- | --- | --- |
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
-| E#4 | Whether 5.00r7 sends id 11 | Lab | yes, from the carried-object throw | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
 | E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
@@ -97,7 +96,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
-| E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | Lab | only as a fallback when `license.graal` is missing | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 
 ## E.2 Builds, identity and protection
 
@@ -139,8 +137,9 @@ These questions are about which build is which, who built it and how it protects
 | Evidence | The four builds exit on today's date. 6.00r2 and 6.00r4 are known to run with the clock at 2011-06-14 and 2011-06-28 | [lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
 | Evidence | Whether the check is WinLicense's own expiration feature or a check inside its virtual-machine macros is not known; nor whether the timer check uses 5.24r4's thresholds | [inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
 | Tried | Fixed clock dates that are known to work; no search for the boundary | [lab] (client-internals/v5v6-expiry-and-black-screen.md#open) |
-| Best guess | WinLicense's own expiry, set a few months after each build's date, the way the v7 builds carry a 180-day window (→ App. E#615). Confidence: moderate | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
-| Settles it | A binary search on the guest clock for each build in a headless VM; a few boots per build find the day | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settled part (2026-11-20) | By clock search under Wine: 5.30r3 runs on 2010-12-31 and stops from 2011-01-01; 5.31r4 runs on 2011-03-20 and stops from 2011-03-21. A stopped build prints its banner, opens no connection and exits, with no game-side date message | [lab] (protocol/lab-appe-mirae-2026-11-20.md#expiry-dates-of-530r3-and-531r4-e14) |
+| Best guess | The protector's own fixed expiry date (a year-end for 5.30r3, 75 days after the link date for 5.31r4), with 6.00r2 and 6.00r4 set the same way. Confidence: moderate | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settles it | The same clock search on installed 6.00r2 and 6.00r4 | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | Outlook | Lab. The clients are held and the method is cheap | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 
 ### E#15 Graal 2002 and 1.40 exact-input validation
@@ -185,17 +184,6 @@ These questions are about which build is which, who built it and how it protects
 | Best guess | 6.015 logs in and plays (now measured); the white window is the guest's missing OpenGL, not a client fault. 6.004 is expected to behave the same. Confidence: moderate for the frame | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
 | Settles it | A run on a guest or machine with working OpenGL; or a static trace of one slice from entry to the game loop | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
 | Outlook | Lab. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
-
-### E#619 Whether 5.30r3 and 5.31r4 use their built-in login host
-
-**Question.** 5.30r3 and 5.31r4 store a default login host and port side by side. Whether they ever dial it when `license.graal` is present, missing or bad (→ §1.9.4) [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The two strings sit next to each other in both images; the 5.x notes say the host and port normally come from `license.graal` | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
-| Best guess | A fallback used when the licence file gives no host, as the compiled-in hosts of 5.24 and later suggest. Confidence: low to moderate | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
-| Settles it | One lab run per `license.graal` case, with a local listener on the stored port and the clock set back for the beta expiry | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
-| Outlook | Lab | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 
 ## E.3 Transport: frames, ciphers and logins
 
@@ -277,21 +265,6 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 
 These questions are about single messages and props: which builds send or handle an id, how wide a field is, and what a message changes on the screen. Each one leaves a `unmeasured` or `disputed` cell in → §2.4, → §2.5, → §2.6 or App. A, and most of them are within reach of the probe proxy, which injects a message into a live loopback session and watches the client's reaction [lab] (protocol/probe-targets-2026-11-18.md).
 
-### E#4 Whether 5.00r7 sends id 11
-
-**Question.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws. Two lists of the ids it sends disagreed [bin] (protocol/v5x-clients.md#client--server-ids-500r7).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The 5.00r7 send wrappers send 1, 2, 4 to 10, 12 to 19 and more: no 11 | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
-| Claim B | The 5.00r7 profile lists 4 to 19, with 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
-| Tried | A later static read found the 5.00r7 backup engine's carried-object throw path, which sends 11 with an empty body; the wrapper list had missed it. The 2.31 "id 44" puzzle dissolved once S→C 44 (dropped) and C→S 44 (still sent) were told apart | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing); [bin][cap] (protocol/ids-sent-512-status.md) |
-| Tried | The 2026-11-19 run of real, unchanged Windows clients had the server receive a throw 3 times out of 3 on 5.00r7, as on 4.20r8, 5.12, 5.24r4 and 6.03r7; the write-up names id 11 only for the Linux 6.03r7 throw | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Tried (2026-11-20) | 5.12 sends id 11 with an empty body on a throw; 5.00r7 could not reach the lab server (its licence names a LAN login host) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#throw-id-on-512-e4) |
-| Best guess | Claim B: 5.00r7 sends 11 from the throw. Confidence: high | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| Settles it | The id of the 5.00r7 throws in that run's server log, or one more 5.00r7 throw with the id recorded | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-| Outlook | Lab; probably already answered by the 2026-11-19 log | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-
 ### E#10 When the `maps` download folder arrived
 
 **Question.** Which build started saving downloads into a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
@@ -313,7 +286,8 @@ These questions are about single messages and props: which builds send or handle
 | --- | --- | --- |
 | Tried | 6.03r7 has no built-in key that opens a player list against the lab server; on 6.x the list is a script window the lab server does not provide | [lab] (live-runs/open-issues-2026-11-19/README.md) |
 | Tried (2026-11-20) | No script-visible player variable on 6.03r7 is a category, so a list script can't read prop 81; opening the built-in list needs the `openplayerlist` event through delivered bytecode | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-e23-not-settled) |
-| Best guess | The value picks the folder or group a player is listed under (for example staff, friends or others). Confidence: moderate, from the name | [inf] (protocol/unknowns-ledger.md) |
+| Tried (2026-11-20) | In the 5.00r7 built-in player list, every odd prop 81 value leaves the player out of the online count; 8 and no value list under Normal; 0, 2, 4, 6 and 10 are counted but their folder was not seen under Wine | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-in-the-500r7-player-list-e23-partial) |
+| Best guess | A player-list attribute whose bit 0 hides the player from the online count and whose other bits pick the folder. Confidence: moderate | [inf] (protocol/unknowns-ledger.md) |
 | Settles it | A list GUI script delivered as bytecode through the probe, as the 2026-11-19 timer test did, then prop 81 set to several values for a second player | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab | [inf] (protocol/unknowns-ledger.md) |
 
@@ -1006,6 +980,17 @@ How many cipher steps a generation-5 frame advances when its compressed body is 
 | Settled | The probe proxy ciphers both directions with Claim A's rule. The real 5.00r7 (native, Windows 10 lab VM), 5.24r3, 5.30r3 and 5.31r4, and before them 5.12 and 5.24r4, ran through it for 130 canary cases each: no lost client and no result different from the reference. Most zlib frames are not a multiple of four bytes long, so a wrong step rule would desynchronise the cipher at the first such frame in either direction | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md); [doc] (tools/probe/README.md) |
 | Verdict | Verified by session survival on the exact builds. No single short frame was set beside both rules by hand, which is no longer needed | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md) |
 
+### E#4 Whether 5.00r7 sends id 11 (settled)
+
+Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws was open, because two lists of its sent ids disagreed; a lab throw with the id recorded settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the send wrappers have no 11. B: the profile lists 11, and 5.12, 5.24r4 and 5.30r3 captures send it | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml) |
+| Before | A static read found the backup engine's throw path sending 11 with an empty body | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
+| Settled | An unchanged 5.00r7, reaching the lab through a connect shim with its licence untouched, sent 11 with an empty body on each of 2 throws, after the lift's board change and ganis | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| Verdict | Verified: Claim B holds; the wrapper list missed the throw path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+
 ### E#5 Meaning of id 162 from the client (settled)
 
 Three readings of client id 162 turned out to be one message, a ping answer [srv] (protocol/packet-ids.md#client--server-pli_).
@@ -1543,6 +1528,16 @@ Whether a real 1.41 rev 1 loads a `.nw` level sent by a server, and what it does
 | Settled | 1.41 rev 1 drew and walked a `.nw` start level sent as name, board and modtime. Given a gmap start level, the server sends it a plain warp and the first cell as an ordinary level; the client never asks for the `.gmap` and plays the cell as a normal level | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
 | Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
 | Left over | Link and height messages for a `.nw` level, which the lab server did not send, and walking a seam | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+
+### E#619 Whether 5.30r3 and 5.31r4 use their built-in login host (settled)
+
+Whether 5.30r3 and 5.31r4 ever dial their stored default login host was open; a lab run per licence case settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The host and port sit side by side in both images; the 5.x notes say the host normally comes from `license.graal`; best guess a fallback | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| Settled | With no licence, a signed one, a garbage one, an edited one or a plain one at the root, both builds always dialled the first built-in login host on 14900 and never the licence's address; with no answer they moved to the second built-in host. The unpacked 5.30r3 has no `license.graal` string | [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
+| Verdict | Verified; the best guess was wrong: the built-in list is the only source, not a fallback | [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
 
 ### E#620 What the 1.41 rev 1 program-check handler does (settled)
 

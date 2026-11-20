@@ -171,3 +171,82 @@ ids were injected as client-to-server packets: 93 with data, 92, 155 + 93 + 156 
 - E#424: RC2 2.05 under Wine draws text as boxes and never connects.
 - E#425: its outlook is a static read.
 - E#618: Mirae has no Mac guest that runs the 6.0x Cocoa builds.
+
+## Built-in login host of 5.30r3 and 5.31r4 (E#619)
+
+Builds: installed 5.30r3 (packed) and 5.31r4, under Wine with the guest clock set to 2010-11-01 and
+2011-01-20 by `libfaketime`, in a namespace where every name the clients dialled resolved to lab
+listeners. The three built-in login host names were mapped to different lab addresses, so each
+could be told apart.
+
+Each client was run with five licence cases:
+- no licence;
+- the signed 5.00r7 licence folder, which names a LAN host and port 14900;
+- a garbage licence;
+- the signed folder with `license.graal` edited to another lab address and port 14901;
+- a plain `license.graal` at the client root naming that address.
+
+- In every case both builds dialled the first built-in login host on port 14900, about 7 s after
+  start: 8 of 8 runs for 5.31r4 and 5 of 5 for 5.30r3. Neither ever dialled the licence's address.
+- With nothing listening on the first host, both moved on to the second built-in host about 5 s
+  later.
+- The unpacked 5.30r3 image does not contain the string `license.graal` at all.
+
+So these builds take the login host only from their built-in list, whether `license.graal` is
+present, missing or bad.
+
+## Expiry dates of 5.30r3 and 5.31r4 (E#14)
+
+Method: a binary search on the clock (`libfaketime` under Wine), with one fresh launch per day at
+12:00 local time (UTC+9). A day passes when the client dials the login host within 30 s. Each
+boundary was run twice.
+
+| Build | Last day it runs | First day it stops | Days probed |
+| --- | --- | --- | --- |
+| 5.30r3 | 2010-12-31 | 2011-01-01 | 2010-11-01, 12-15, 12-25, 12-30, 12-31 pass; 2011-01-01, 01-02, 01-06, 01-30 and later fail |
+| 5.31r4 | 2011-03-20 | 2011-03-21 | 2011-01-20, 03-05, 03-15, 03-20 pass; 03-21, 03-23, 03-27, 04-19 and later fail |
+
+- On a stop day the client prints only its start banner to the console, opens no connection and
+  exits within seconds. No game message about the date appears.
+- The 5.30r3 image has no game-side expiry text, only the protector's strings and "wrong system
+  timer". That points to the protector's own fixed expiry: a round year-end for 5.30r3, and 75 days
+  after its link date for 5.31r4.
+- Whether it is the protector's date setting or a check in its virtual-machine macros can't be
+  told apart from outside.
+- 6.00r2 and 6.00r4 were not run, because only their installers are held in this lab.
+
+## Throw id on 5.00r7 (E#4)
+
+Build: unchanged 5.00r7 (`G3D22067`) with its own signed licence, which names a private LAN host.
+The clock was set to 2007-07-25. A preloaded connect shim sent that LAN address to the namespace
+loopback, where the lab login server warps the client to a world behind `gen5probe`. The licence
+was not edited. The client logged in automatically as a guest (type 5, generation 5) and played.
+
+Standing above a bush and facing down, A then A:
+- The lift sends a board change (1), the `lift` gani, prop 19 set, then the `carrystill` gani.
+- The throw sends id 11 with an empty body, then the `idle` gani with prop 19 cleared.
+- This happened in 2 of 2 completed lifts.
+
+5.00r7 under Wine needs a GL renderer. With the GDI renderer it stops at "DirectX couldn't be
+initialized".
+
+## Prop 81 in the 5.00r7 player list (E#23, partial)
+
+On 5.00r7 the built-in player-list window opened by itself, with folders Staff, Buddies, Guild,
+Normal, Ignore and Offline. Other players were injected (`PLO` 8 with account, nick and level) with
+prop 81 values 0 to 10, 12 and 16, plus one with no prop 81.
+
+- Every odd value (1, 3, 5, 7, 9) is left out of the "Players: N online" count. Even values and
+  "no prop 81" are counted. Three runs gave counts of 6, 10 and 8, each matching exactly.
+- The player with no prop 81 and the one with 8 appear under Normal.
+- Players with 0, 2, 4, 6 and 10 are counted but did not show in any folder. Under Wine the list
+  redraws rows only on mouse events, so where they sit is not settled.
+
+## Not run in group D
+
+- E#15: 1.40's start form differs from 1.39's, and no login reached the proxy. Graal 2002 v22 was
+  copied into the lab but not run.
+- E#312: the server software of the 2026-10-25 lab is not on Mirae, and its write-up does not name
+  it.
+- E#505 (5.12 stops at "Starting 3D mode" under Wine), E#504 (needs a server patched for
+  `GR3DV003`), E#610 and E#611 (need a 4.04r2 offline scene).

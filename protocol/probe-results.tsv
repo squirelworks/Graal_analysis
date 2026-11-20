@@ -4193,3 +4193,5 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	linux-6.03r7	c2s	155	-	155 t:e9c.txt | 93 str:e9c.txt t:chunk | 156 t:e9c.txt	-	reconnects	none	all unknown; kicked	appe-e9a	-
 2026-11-20	linux-6.03r7	c2s	96	-	96 str:e9a.txt str:x.txt | 97 t:e9a.txt | 98 str:e9a.txt str:y.txt	-	reconnects	none	all unknown; kicked	appe-e9a	-
 2026-11-20	rc2004	c2s	74	-	74 str:accflags / accchest / accboth / accnone	-	yes	S>C 72	tail = s flag count + flags, s chest count + (c len+2, c x, c y, level), c weapon count + weapons	appe-e420c	-
+2026-11-20	win-5.00r7	c2s	11	-	(client send) lift then throw	-	yes	C>S 11 empty	throw sends 11 with an empty body after 1 + lift/carrystill; prop 19 cleared after	e4c	-
+2026-11-20	win-5.00r7	s2c	8	81	8 s:930+v c:34 str:"accV" c:0 str:"cV" c:20 str:"elsewhere.nw" c:81 c:V (V 0–10, 12, 16)	-	yes	none	odd V not counted in "Players: N online"; V = 8 and no 81 listed under Normal; 0/2/4/6/10 counted, folder not seen	e23b/e23d/e23e	-
