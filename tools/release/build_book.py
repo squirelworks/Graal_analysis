@@ -320,7 +320,7 @@ def chapter_of(rel: str) -> str | None:
         return "01"
     if rel.startswith("tools/release/") or rel.startswith("release/"):
         return None
-    if rel in {"README.md", "AGENTS.md", "docs/NEXT.md"}:
+    if rel in {"README.md", "INDEX.md", "AGENTS.md", "docs/NEXT.md"}:
         return "01"
     if rel.startswith("formats/"):
         return "02"

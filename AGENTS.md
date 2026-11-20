@@ -57,7 +57,7 @@ PRs; they never merge, never push to `main`, never create a tag or release.
   evidence (lab run, static read, or "none").
 - Before pushing, run the leak checks below on your diff. A PR that adds a host,
   address or `FUN_` name is not ready.
-- Add the new note to `README.md`'s contents list in the same PR, and close the item in
+- Add the new note to `INDEX.md` (the notes index) in the same PR, and close the item in
   the matching open-points file (tick its `- [ ]` box, strike it and link the new note).
   Every incremental fix or open-point list is a GitHub task list (`- [ ]` / `- [x]`),
   including `docs/NEXT.md` and issue bodies.

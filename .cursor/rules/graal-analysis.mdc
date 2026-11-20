@@ -61,7 +61,7 @@ PRs; they never merge, never push to `main`, never create a tag or release.
   evidence (lab run, static read, or "none").
 - Before pushing, run the leak checks below on your diff. A PR that adds a host,
   address or `FUN_` name is not ready.
-- Add the new note to `README.md`'s contents list in the same PR, and close the item in
+- Add the new note to `INDEX.md` (the notes index) in the same PR, and close the item in
   the matching open-points file (strike it and link the new note).
 - **Stop and ask Squirrel** (leave the task, go to the next) where a task says
   "Squirrel decides".

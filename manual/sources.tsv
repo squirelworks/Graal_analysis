@@ -3,7 +3,8 @@ AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventio
 ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
 CONSOLIDATED.md	cited	E;3.5	E	
-README.md	excluded			repository contents list, not Graal
+INDEX.md	excluded			repository contents list, not Graal
+README.md	excluded			repository front page, not Graal
 VERSION-TOKENS.md	excluded			Generated discovery index of the canonical version-token catalogue, not an independently maintained source.
 VERSIONING.md	excluded			repository release policy, not Graal
 archival/README.md	excluded		E	index of archived early notes; each note has its own row
