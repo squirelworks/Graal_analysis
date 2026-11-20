@@ -277,6 +277,9 @@ client-internals/static-reads-appendix-e-2026-11-20-c.md	cited	3.1; 4.2; 4.5; E	
 client-internals/static-reads-appendix-e-2026-11-20-d.md	cited	4.3; 8.2; 10; E	4.3; 8.2; 10; E	Disassembler reads for App. E: 2.05 #E placeholder and move queue, 2.22 explosion pieces and shot receiver, 3.04 sheet type 5 is a walk rule
 client-internals/static-reads-appendix-e-2026-11-20-f.md	cited	2.4; 2.8; 4.2; 4.5; E	2.4; 2.8; 4.2; 4.5; E	Decompiler reads for App. E: 2.22 neighbour-table skip flags and 171 loader, roster from PLO 8 and PM receipt, throw send, flight, hits, landing and drops
 client-internals/static-reads-appendix-e-2026-11-20-g.md	cited	4.2; 4.5; E	4.2; 4.5; E	Decompiler reads for App. E: 2.22 gani frame index and tick count (push trace), 1.39 item box unit and sizes from arrays.dat
+client-internals/static-reads-appendix-e-2026-11-20-h.md	cited	8.4; E	8.4; E	Decompiler read for App. E: 3.153 Mac reads and writes the four-segment GS2 container
+client-internals/static-reads-appendix-e-2026-11-20-i.md	cited	8.4; E	8.4; E	Registration-table read for App. E: the 17 global built-ins that make 6.x fuse fold 241
+client-internals/static-reads-appendix-e-2026-11-20-j.md	cited	8.3; 8.4; E	8.3; 8.4; E	Decompiler read for App. E#209: 6.x maxlooplimit name, 6.03r7 event-name case and clientside trigger path
 client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	

@@ -82,6 +82,8 @@ manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-2
 manual/08-scripting/01-gs1-language.md	Left over	npc-library/gs1-condition-truth-205r2.md#verification-and-limits	The full alias and precedence rules, and named-flag collisions
 manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
+manual/08-scripting/04-gs2-bytecode.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-h.md#not-covered	3.153's opcode switch and whether it folds
+manual/08-scripting/04-gs2-bytecode.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-i.md#not-covered	Why these 17 are marked, and whether a script function of the same name would resolve differently unfused
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
 manual/09-graal3d.md	Left over	graal3d/camera.md#still-needed	The value at draw time in a live run with the native `d3drm.dll`
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	

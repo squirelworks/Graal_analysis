@@ -75,4 +75,4 @@ OpenGS1 defines a stack-based bytecode VM.
 2. Client→server movement packet (ID + fields) for both <2.3 and ≥2.3.
 3. How the original Delphi client stores/receives `PLO_NPCBYTECODE` (Ghidra trace).
 4. Mapping from GS1 command names (`setcharprop`, `showcharacter`, etc.) to host functions the VM calls.
-5. Whether later clients ever use a different bytecode format (GS2) or only V8.
+5. Whether later clients ever use a different bytecode format (GS2) or only V8. (Answered: from 3.153 on, the clients read the four-segment GS2 container, not this layout; see `client-internals/static-reads-appendix-e-2026-11-20-h.md`.)
