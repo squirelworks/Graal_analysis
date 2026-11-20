@@ -49,7 +49,7 @@ The official tile type names, as documented for `setshape2` in the 2001 feature 
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Claim A (holds) | Install type-4 rows store pixel x offsets (and sometimes y) beside a replacement image and a level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim A (holds) | Install type-4 rows store pixel x offsets (and sometimes y) beside a replacement image and a level prefix; the 2.22 adventure file keeps the default row `pics1.png,,0,0,0` and about seventeen type-4 overrides with x in 1344, 1536 or 1728 (16-pixel columns 84, 96, 108 of the 2048 × 512 sheet) and y 0 or 80 | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
 | Claim B (holds) | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
 | Settled | Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. The image must be an 8-bit palette PNG; a 24-bit one is ignored without a message, which is why the earlier tries saw nothing | [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19) |
 | Left over | Water under an overlay, and type-4 lines on builds other than 2.22 | [inf] (formats/tiledef-type4-2026-11-16.md#open) |

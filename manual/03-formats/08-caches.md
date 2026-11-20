@@ -27,6 +27,7 @@ The web-level cache keeps copies of server levels on disk. Each row gives one ev
 | fallback | the reader also tries `<level>.code` without the port | [2.05] (formats/gwebl001-cache.md#path) |
 | example | `weblevels\<public-host>\<level>.nw-<port>.code` | [test] (formats/gwebl001-cache.md#path) |
 | later eras | `weblevels/<md5-hex32>/` = lowercase `MD5(host∥decimal_port)`; GRESCR dirs as `weblevels/weapons/<escaped-server-name>/` (and classes) | [bin][test] (formats/weblevels-code-residuals.md); [bin][test] (formats/weblevels-server-folders.md) |
+| server-name escape | in `<escaped-server-name>`, a byte that is not a letter or digit is written `%0NN` with a decimal `NN` (space `%032`, `.` `%046`, `:` `%058`, `,` `%044`) | [test] (formats/weblevels-server-folders.md) |
 | 4.20r8 weapons | `weblevels/weapons/<name>.code` (no server segment) | [bin] (formats/weblevels-code-residuals.md); [bin] (formats/gwebl001-cache.md) |
 | 6.1.1.3 level `.code` | 4-byte LE length, then body padded to 8; not `GRESCR01`; not classic `gwebl.py` | [test] (formats/weblevels-code-residuals.md); [test] (formats/gwebl001-cache.md) |
 

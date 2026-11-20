@@ -1,4 +1,9 @@
 path	term	reason
+CONSOLIDATED.md	== 11	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	>= 20	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	GNW#####	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	it = it*0x08088405 + key	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	partial_pages	an index line fragment; the facts are carried from the notes it points to
 ash/ALGORITHMS.md	"""GR-V1.01"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
 ash/ALGORITHMS.md	"""GR-V1.02"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
 ash/ALGORITHMS.md	"""GR-V1.03"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
@@ -32,6 +37,7 @@ ash/BLUEPRINT.md	tcpReceive	GServer-v2, gs2emu or 1999-source identifier (§0.10
 ash/BLUEPRINT.md	tcpSend	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 ash/BLUEPRINT.md	tcpaccept	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 ash/BLUEPRINT.md	tcplisten	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+client-internals/bare-level-names.md	name holding a	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
 client-internals/build-catalogue.md	<list-host-reborn>:14923	public host placeholder; §0.10 does not name public hosts
 client-internals/build-catalogue.md	<www-graalin-site>	public host placeholder; §0.10 does not name public hosts
 client-internals/build-catalogue.md	_SETUP.1	an installer archive member name, not a client fact
@@ -48,6 +54,115 @@ client-internals/client-architecture-205.md	TGraalAniSound	Delphi class name (bi
 client-internals/client-architecture-205.md	TGraalAniSprite	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-architecture-205.md	TGraalAniStep	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-architecture-205.md	TMNGAnimation	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-assets.md	col = t % 128	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+client-internals/client-assets.md	image,prefix,type[,x,y]	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+client-internals/config-and-input.md	keyset_<action>_key0..2	the note's pattern for the keyset keys, which §3.9 lists
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	link lines plus	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	signindex+32	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	playerx+15	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	x+32 y+32 text	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	parseDouble	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	[column][row]	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	ints follow; non-zero =	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/des-and-hidden-strings.md	2B 77 77 A7 B4 31 21 41	the key that hides a real listserver host; left in the note on purpose
+client-internals/des-and-hidden-strings.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
+client-internals/des-and-hidden-strings.md	GCHAR 5	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/des-and-hidden-strings.md	GCHAR key	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/des-and-hidden-strings.md	enc(b) = NOT (b + 10)	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/feature-specs/05-save-load.md	06aacfd	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/05-save-load.md	8da6800	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/05-save-load.md	SaveV1	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	SessionState	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	TAccount::loadAccount	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	TPlayer::cleanup	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	TPlayer::sendLogin	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	doTimedEvents	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	login_state	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	opened_chests	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	sendLoginClient	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	session_probe	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	06aacfd	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/06-gmap-overworld.md	8da6800	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/06-gmap-overworld.md	= the gmap name. The	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	MapType::BIGMAP	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	MapType::GMAP	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLI 18	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLI 39	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLPROP_CURLEVEL	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLPROP_GMAPLEVELX	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	TLevelLink::parseLinkStr	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	TMap::getLevelAt	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	TMap::loadMapLevels	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	cell_x	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	cell_y	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	draw_minimap	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	formats::gmap	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	gmap_name	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	gr.x=64	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	i5 modtime + level	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	msgPLI_ADJACENTLEVEL	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	sendLoginClient	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	send_levelwarp	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/graal-wiki-crosscheck-2026-11-11.md	ATTR4 8 16	an example line; §3.3 carries the glued slot-number rule
+client-internals/graal-wiki-crosscheck-2026-11-11.md	DESCRIPTIONEND	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	FILE <path>	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	HEIGHMAP	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	LEV*	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	NewFeatures2003v3	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	NewFeatures2004v3	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	Old GScript	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	addguildmember	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	changeimg part	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	copyflagss	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	copylevel	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	copystrings	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	defaultlanguage	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	deletelevel	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	ghostmodeenabled	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	lockplayerz	a wiki server option; the z range it guards (−50..170) is in §2.6
+client-internals/graal-wiki-crosscheck-2026-11-11.md	newtilesetlevels	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	newtilesets	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	removeguild	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	removeguildmember	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	saveinfo	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	sendtoallattr	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	serverlanguage	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	spawnrate*	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	speedhacktolerance	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	syncdistancex	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	translatedlanguages	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	weaponorder	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graalconfig-reference.md	StrToInt	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+client-internals/graalconfig-reference.md	TStringList.Values	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+client-internals/macos-v5-animation-group-lifecycle.md	MAC-PPC-V5-GMAP-GANI-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/saved-passwords.md	graaldes.GraalDES	a tool name; §3.7.5.3 names graaldes.py and its functions
+client-internals/saved-passwords.md	~2%$zsd^	the fixed key itself; §3.7.5.3 states it is one fixed key and the tool reproduces it, without quoting it
+client-internals/sound-and-music.md	AGC	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	BASS_WMA_StreamCreateFile	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	StreamFree	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	StreamPlay	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TDXSound	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TDXWaveList	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TMediaPlayer	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TWinamp	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	VOX	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	hvdiPacketEncode	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	mciSendCommand	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	"means ""looped"". The"	a phrase fragment, not a term
+client-internals/sound-and-music.md	midiOutGetDevCapsA	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	midiOutGetNumDevs	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	setmusicvolume left,right	a signature form; §4.7 and §8.2 carry setmusicvolume
+client-internals/sound-and-music.md	winampGetInModule2	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_LoadMUS	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_LoadWAV_RW	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_PlayChannelTimed	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_PlayMusic	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_SetPanning	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	TSoundEffectFMOD	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	TSoundPlayerFMOD	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	fire_torch0-2	sound file names in a list; §3.10 and §4.7 carry the sound sets
+client-internals/sound-files-6x.md	spell_firelaunch	sound file names in a list; §3.10 and §4.7 carry the sound sets
+client-internals/static-reads-appendix-e-2026-11-20-c.md	GR-V1.0x	a pattern standing for GR-V1.00 to 1.05, each in §3.1
 client-internals/v2.00-connect-path.md	0x330	a form field offset (binary internals, §0.10)
 client-internals/v2.00-connect-path.md	Application.MessageBox	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	Application.Terminate	API call in the binary (§0.10); §6.4 carries the behaviour
@@ -59,6 +174,50 @@ client-internals/v2.00-connect-path.md	PostQuitMessage	API call in the binary (�
 client-internals/v2.00-connect-path.md	WSAStartup	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	htons(StrToInt(port))	API call in the binary (§0.10); §6.4 carries the behaviour
 docs/book/00-how-to-read.md	v0.0.1	an old edition number of the book, not Graal
+docs/book/04-where-the-notes-disagree.md	includes halves such as	a phrase fragment, not a term
+formats/arrays-and-signatures.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
+formats/arrays-and-signatures.md	<list-host-graalcc>	a placeholder for a real host name, which the manual never gives
+formats/arrays-membership-2026-11-09.md	GRAAL-ARRAYS-20261109-01	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-404r2.md	W404-E606-20261109	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-404-GMAP-BOARD-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-420-GMAP-SCRIPT-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-V3-GMAP-SCRIPT-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-V5-GMAP-GANI-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap.md	= the grid cell.	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gmap.md	CommaText	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gmap.md	PLPROP_CURLEVEL	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gmap.md	PLPROP_GMAPLEVELX	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gr-v105-empty-tiles-2026-11-16.md	0x0fff	code 4095 as the empty tile is in §3.1; this is the same value in hex and code form
+formats/gr-v105-empty-tiles-2026-11-16.md	if (tile == 4095)	code 4095 as the empty tile is in §3.1; this is the same value in hex and code form
+formats/graalsav.md	TValueType	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+formats/graalsav.md	WriteInteger	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+formats/gwebl001-cache.md	len % 8	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/gwebl001-cache.md	type,name,cacheflag,i5,i5	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/ios-gani-param1-placements.md	IOS-GANI-PARAM1-20261115-04	an evidence or lab-run id; the manual cites the note
+formats/level-binary-client.md	sign_text	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-HANDOFF-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-PACKET-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-6x-class-cache.md	LNX601-X86-DELIVERY-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-6x-class-cache.md	LNX603-CLASS-CACHE-20261109	an evidence or lab-run id; the manual cites the note
+formats/pics1-tile-layout-render-2026-11-19.md	t % 128	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+formats/sign-text.md	TLevelSign	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+formats/tile-types-pics1-packing-2026-11-16.md	image,prefix,type[,x,y]	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+formats/tile-types-pics1-packing-2026-11-16.md	tiletypes0	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+formats/tiledef-type4-2026-11-16.md	tiletype()	§3.5 carries the type-4 offsets and the default row
+formats/tiledef-type4-2026-11-16.md	{0, 80}	§3.5 carries the type-4 offsets and the default row
+formats/tiledef-type4-2026-11-16.md	{1344, 1536, 1728}	§3.5 carries the type-4 offsets and the default row
+formats/weblevels-code-residuals.md	<host>:<port>	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	L' == L + pad	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	decimal_port_ascii	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	host:port	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	host_bytes	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-server-folders.md	N = padded_plaintext + 8	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-server-folders.md	magic; classic	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-server-folders.md	zipfile	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/windows-222-verifier-variants.md	WIN222-VERIFIER-A	an evidence or lab-run id; the manual cites the note
+formats/windows-222-verifier-variants.md	WIN222-VERIFIER-B	an evidence or lab-run id; the manual cites the note
+formats/windows-222-verifier-variants.md	WIN222-VERIFIER-CONTROL	an evidence or lab-run id; the manual cites the note
+formats/windows-603-weapon-cache.md	47 52 45 53 43 52 30 31	the GRESCR01 magic in hex; §3.8 carries it by name
 graal3d/README.md	*Modify	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
 graal3d/README.md	2×atan(0.5)	§9 carries it as `2 × atan(0.5)` (spacing differs)
 graal3d/README.md	DXTimer1	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
@@ -159,6 +318,11 @@ protocol/npc-control.md	msgPLI_NPCSERVERQUERY	GServer-v2 handler name; §7.2.2 c
 protocol/npc-control.md	nc2002-a	lab plan step name, not Graal
 protocol/npc-control.md	nc713-a	lab plan step name, not Graal
 protocol/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
+protocol/nw-layer-ext-500r7-2026-11-16.md	GR-V1.0*	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	TILESETIMAGE	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	tilelayers	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	tilelayers[]	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	x y w layer tilesdata	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
 protocol/public-listserver-2026-10-25.md	???	lab tool setting or note placeholder, not Graal
 protocol/public-listserver-2026-10-25.md	built_in_host	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
 protocol/public-listserver-2026-10-25.md	built_in_port	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
@@ -311,6 +475,29 @@ server-notes/baddies-serverside.md	wa*hit	a worked server-side baddy script writ
 server-notes/baddies-serverside.md	−(P − B) × 2	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
 server-notes/gserver-1999-rules.md	rules = 1999	a seihai-gserver config line, out of scope (§0.1)
 server-notes/gserver-1999-rules.md	x*2, y*2, dir, image	the note's field notation; §5.1.6 carries the layout
+server-notes/hubserver-037-and-delteria-2026-11-18.md	DELTERIA-2002-BACKUP-20261118	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	DELTERIA-2019-BACKUP-20261118	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	HUBSERVER-036-20261113	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	HUBSERVER-037-20261118	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	Version1	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	Version2	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	clientr.	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	dbnpc	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	findlevel	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	findplayer	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	for (temp.x : list)	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	format()	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	getstringkeys	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	if (event)	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	"join(""class"")"	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	joins, and	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	loadlines	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	loadvars	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	new TStaticVar	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	savelines	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	triggerclient	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	web.config	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	with (obj)	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
 server-notes/lab-servers-2026-10-30.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
 server-notes/lab-servers-2026-10-30.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
 server-notes/lab-servers-2026-10-30.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
@@ -398,6 +585,13 @@ tools/graaleditor-vs-205.md	TGraalAniSound	Delphi class name (binary internals, 
 tools/graaleditor-vs-205.md	TGraalAniSprite	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
 tools/graaleditor-vs-205.md	TGraalAniStep	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
 tools/graaleditor-vs-205.md	TGraalSpriteAttachment	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graalshop.md	FRAME n	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	IOS-GANI-MOVIE-20261115-01	an evidence or lab-run id; the manual cites the note
+tools/graalshop.md	TEditFrame	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	TGraalActor	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	TGraalAniSprite	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	TGraalAniStep	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	sprite #	a Delphi class name or a tool label; §11 carries the editor by behaviour
 tools/lab-servers/README.md	"""5.24"""	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
 tools/lab-servers/README.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
 tools/lab-servers/README.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
@@ -495,3 +689,55 @@ tools/small-utilities-2026-11-14.md	key = value	a third-party utility's own name
 tools/small-utilities-2026-11-14.md	seihai-launcher	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	seihai-rc	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	tryloadsoundson64bit=true|false	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+version-profiles/matrix/builds-deltas.md	accountname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	automapping=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	azg=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	bodytex=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	bodyx=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	compabilitydraw=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	d4n=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontconnectlevels=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontloadlistheads=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontsavepasswords=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontsavepms=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontusedirectx7=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	editnickname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	ekv=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	externalchat=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	fixedport=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	fullscreenmode=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	gamemode=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	headx=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	joyselected=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	joystickon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	kxs=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	language=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	limitnicknames=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	loadcolorsfromserver=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microactivatebyvolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microactivatekey=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microactivationlevel=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microinputdevice=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	midivolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	mp3volume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	musicon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	nicknamelimit=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	nodecompressionerror=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	nodirectinput=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	notoalls=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	password=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	quickplayerworlds=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	radiovolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	reversestereo=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	saveimages=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	serveraddr=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	sfxvolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	sortplayersbyname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	soundfxon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	startinfullscreen=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	u5j=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	usewinamp=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	voicecodec=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	voicevolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	waitvertical=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
