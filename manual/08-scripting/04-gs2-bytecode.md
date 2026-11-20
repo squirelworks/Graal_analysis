@@ -201,7 +201,7 @@ Both unpacked images store the eighteen math names `abs`, `atan`, `atan2`, `ceil
 
 Of the names Preagonal's compiler turns into opcodes, these images contain `abs`, `cos`, `log`, `max`, `min`, `pow`, `random`, `sin`, `format` and `sleep`. They do not contain `arctan`, `exp`, `vecx`, `vecy`, `arraylen` or `tokenize`. [bin][doc] (client-internals/gs2-builtins-6113.md)
 
-`putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7. [bin] (client-internals/gs2-builtins-6113.md)
+`putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7, and so are the cipher names the connector script calls: `aes_encrypt`, `aes_decrypt`, `des_encrypt`, `des_decrypt`, `rc4_cipher`, `rsa_encrypt`, `rsa_decrypt`, `rsa_sign`, `rsa_verify` and `sha256` (→ §2.10). 6.1.1.3 also stores the movie-clip names `gotoandplay`, `gotoandstop`, `attachmovie` and `stop`; 6.0.3.7 has `gotoandplay`. [bin] (client-internals/gs2-builtins-6113.md)
 
 #### The 6.01 registration tables
 
@@ -372,3 +372,186 @@ The rules below give the other crashes, stopped engines and container damage [la
 | decimal text (F6) | read like C `atof`/`strtol`: `"0x10"` 16, `"12abc"` 12, `"1,5"` 1, `"  3"` 3, `""` 0; `-0`, `nan` and `1e-400` load as −1; NaN prints as `0.-000000000` | as 6.03r7, and `inf` loads as −1 | as 6.03r7, and big numbers clamp to 4294967295 (`"1e400"`, a long run of 9s, `99999999999`); `-2147483649` stays | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-damaged-containers) |
 
 Opcode by opcode, against the value a straightforward VM would give: 66 and 67 treat any text operand as true; 104 (object compare) on texts returns a byte difference like `strcmp` on 6.03r7 (`""` against `"x"` −120), mostly the plain result on 5.24r4, and 0.05 for any text on 4.20r8; 121 is a numeric add on 6.03r7 and 5.24r4, with a non-number counted as −1 (`"x"+2` is 1), and is not dispatched by 4.20r8; with 54 every push order leaves `this.k` at 0 on 6.03r7 and 5.24r4, and 4.20r8 does not dispatch it; a slot store of 9, a pop, then a slot load reads back 0 for slots 0, 1, 5 and 1023, likely because a function's slots exist only once its own code sets them up [lab][inf] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm).
+
+## 8.4.12 Opcode names by byte
+
+The table gives every opcode byte that any client names or dispatches, with the client's own name for it, and whether each build has a case for it (→ §8.4.4). "yes" means the build has a case, or a handler on Linux, and "·" means it does not. Note ¹: 11 is unnamed and not dispatched on 4.03r3 to 4.11. Note ²: the folds are named in 4.20r8 only; they are made after decode and never appear in a byte stream, and 234 to 242 have no name in any table. In the compiler column, **yes** means a recorded emitter in the MPL-2.0 compiler, **no** a recorded absence, and **?** that neither is recorded [bin] (protocol/gs2-opcode-table.md#the-table).
+
+| Byte | Client name | 4.03r3–4.11 | 4.20r8 | 5.00r7, 5.12 | 5.30r3–6.113, 7.12.43, Android | Linux 6.x x64 | Preagonal compiler | Source |
+| ---: | --- | :---: | :---: | :---: | :---: | :---: | :---: | --- |
+| 0 | `noop` | · | · | · | · | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 1 | `jump` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 2 | `jumptrue` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 3 | `sjumptrue` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 4 | `jumpfalse` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 5 | `sjumpfalse` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 6 | `call` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 7 | `return` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 8 | `sleep` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 9 | `loopcheck` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 10 | `savestackpos` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 11 | `waitfor` ¹ | · | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 20 | `loadfloat` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 21 | `loadstring` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 22 | `loadmember` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 23 | `stackmark` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 24 | `loadtrue` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 25 | `loadfalse` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 26 | `loadnull` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 27 | `loadpi` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 30 | `dupe` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 31 | `swap` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 32 | `pop` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 33 | `makefloat` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 34 | `makestring` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 35 | `makemember` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 36 | `makeobject` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 37 | `makearray` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 38 | `initarray` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 39 | `setarray` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 40 | `setmember` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 41 | `makevar` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 42 | `createobject` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 43 | `makeoldscriptvar` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 44 | `convertbool` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 45 | `setreg` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 46 | `getreg` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 47 | `makeprop` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 48 | (none) | · | · | yes | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 49 | (none) | · | · | yes | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 50 | `assign` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 51 | `massassign` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 52 | `inc` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 53 | `dec` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 54 | (none) | · | · | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 60 | `add` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 61 | `sub` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 62 | `mul` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 63 | `div` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 64 | `mod` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 65 | `pow` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 66 | `and` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 67 | `or` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 68 | `not` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 69 | `negative` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 70 | `equal` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 71 | `nequal` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 72 | `less` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 73 | `greater` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 74 | `lessequal` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 75 | `greaterequal` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 76 | `bitor` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 77 | `bitand` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 78 | `bitxor` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 79 | `bitinvert` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 80 | `inrange` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 81 | `inarray` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 82 | `indexof` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 83 | `type` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 84 | `format` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 85 | `int` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 86 | `abs` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 87 | `random` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 88 | `sin` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 89 | `cos` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 90 | `arctan` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 91 | `exp` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 92 | `log` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 93 | `min` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 94 | `max` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 95 | `getangle` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 96 | `getdir` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 97 | `vecx` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 98 | `vecy` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 99 | `indicesof` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 100 | `link` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 101 | `shl` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 102 | `shr` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 103 | `char` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 104 | `compare` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 110 | `trim` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 111 | `length` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 112 | `pos` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 113 | `app` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 114 | `charat` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 115 | `substring` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 116 | `beginswith` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 117 | `endson` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 118 | `tokenize` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 119 | `translate` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 120 | `positions` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 121 | (none) | · | · | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 130 | `arraysize` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 131 | `getarraycell` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 132 | `setarraycell` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 133 | `getarraycell2` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 134 | `setarraycell2` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 135 | `subarray` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 136 | `arrayadd` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 137 | `arraydelete` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 138 | `arrayremove` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 139 | `arrayreplace` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 140 | `arrayinsert` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 141 | `arrayclear` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 142 | `expandarray` | yes | yes | yes | yes | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 150 | `with` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 151 | `popwith` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 160 | `goto` | · | · | · | · | · | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 161 | `break` | · | · | · | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 162 | `continue` | · | · | · | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 163 | `foreach` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 164 | (none) | · | · | · | · | yes | ? | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 180 | `loadthis` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 181 | `loadthiso` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 182 | `loadplayer` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 183 | `loadplayero` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 184 | `loadlevel` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 185 | `loadserver` | · | · | · | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 186 | `loadserverr` | · | · | · | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 187 | `loadclient` | · | · | · | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 188 | `loadclientr` | · | · | · | · | · | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 189 | `loadtemp` | yes | yes | yes | yes | yes | yes | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 190 | `loadparams` | yes | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 200 | `addfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 201 | `subfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 202 | `mulfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 203 | `divfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 204 | `modfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 205 | `powfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 206 | `andfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 207 | `orfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 208 | `addassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 209 | `subassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 210 | `mulassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 211 | `divassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 212 | `modassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 213 | `powassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 214 | `andassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 215 | `orassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 216 | `addfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 217 | `subfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 218 | `mulfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 219 | `divfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 220 | `modfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 221 | `powfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 222 | `andfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 223 | `orfloatassign` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 224 | `lessfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 225 | `greatorfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 226 | `lessequalfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 227 | `greaterequalfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 228 | `getregfloat` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 229 | `getregstring` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 230 | `getregobject` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 231 | `getregincpop` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 232 | `getregdecpop` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 233 | `getregdupe` ² | · | yes | yes | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 234 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 235 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 236 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 237 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 238 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 239 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 240 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 241 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
+| 242 | (none) | · | · | · | yes | yes | no | [bin] (protocol/gs2-opcode-table.md#the-table) |
