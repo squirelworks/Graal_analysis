@@ -105,6 +105,8 @@ A 2026-11 static read of both 1999 servers gives their handling of each client m
 | kills (1.3) | count only when the victim has 10 AP or more; the killer loses (victim AP + 10) / 20, rounded half to even | [bin] (server-notes/gserver-1999-rules.md#kills-13) |
 | private messages | a build too old to answer gets the sender "The player cannot answer because he/she has an older version." | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
 
+A lab run of the original `GServer13.exe` with real 1.3 test clients: 1.28 beta 2 is dropped at login with "You need at least Graal version 1.3 to play on this server."; on the wire, max hearts, hearts, arrows and bombs are corrected back to the sender (20, twice the max, 99, 99), alignment 120, sword 5 and shield 4 pass to the other player unchanged, and gralats over the limit, glove and bomb power get no reply and are not passed on [lab] (protocol/lab-appe-mirae-2026-11-20b.md#server-prop-limits-props-sent-by-a).
+
 Open: → App. E#423.
 
 ### 5.1.7 Other servers of the original line
