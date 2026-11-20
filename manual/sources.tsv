@@ -284,6 +284,8 @@ client-internals/static-reads-appendix-e-2026-11-20-h.md	cited	8.4; E	8.4; E	Dec
 client-internals/static-reads-appendix-e-2026-11-20-i.md	cited	8.4; E	8.4; E	Registration-table read for App. E: the 17 global built-ins that make 6.x fuse fold 241
 client-internals/static-reads-appendix-e-2026-11-20-j.md	cited	8.3; 8.4; E	8.3; 8.4; E	Decompiler read for App. E#209: 6.x maxlooplimit name, 6.03r7 event-name case and clientside trigger path
 client-internals/static-reads-appendix-e-2026-11-20-k.md	cited	3.5; E	3.5; E	Decompiler read for App. E#103: 2.22 verifier lineage (four guards plus label renames), start-up reach, verify steps and the decoded key size
+client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	3.5; 3.10; E	3.5; 3.10; E	File reads for App. E: the WAV census by content hash (E#325 count) and the untraceable type-0 mask count (E#101)
+client-internals/static-reads-appendix-e-2026-11-20-m.md	cited	E	E	Disassembly read of the Android Classic 1.8 engine: classic-mode send/receive detail and the system-ID routine, a lead for the iPhone identity trailer (E#16)
 client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
@@ -719,6 +721,7 @@ server-notes/01-lineage.md	cited	5; E	5
 server-notes/03-protocol.md	cited	5; 6	5	
 server-notes/04-algorithms.md	cited	5; 7	5	
 server-notes/README.md	excluded		5	index of server-notes/; its notes are cited directly
+server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
 server-notes/ash-overview.md	cited	5; E	5	
 server-notes/baddies-serverside.md	cited	5	5	
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
@@ -903,5 +906,3 @@ version-profiles/version-token-map.tsv	excluded			Generated machine-readable ass
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
-server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
-client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	3.5; 3.10; E	3.5; 3.10; E	File reads for App. E: the WAV census by content hash (E#325 count) and the untraceable type-0 mask count (E#101)
