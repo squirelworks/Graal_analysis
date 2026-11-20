@@ -272,6 +272,8 @@ graal3d/protocol.md	str(s)	the note's field notation; §9 writes the same fields
 graal3d/protocol.md	v + 32	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
 graal3d/protocol.md	with the file text, or	§9.3 carries the level-change rule in words
 graal3d/research-status-2026-11-16.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+protocol/android-classic-socket-layer-2026-11-20.md	<connector-host>	a placeholder for a real host name, which the manual never gives
+protocol/android-classic-socket-layer-2026-11-20.md	Host: <connector-host>	a placeholder for a real host name, which the manual never gives
 protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
 protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
 protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal

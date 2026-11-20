@@ -14,6 +14,10 @@ The native engine libraries in those packages are **not** encrypted. Connect and
 - The Java host loads the native engine, passes language, APK/data/storage paths, display metrics and any start-up link, then drives the native frame entry. That path is the host side of a session, not a recovered login packet. **[bin]**
 - Outgoing global chat on the ordinary route uses a one-byte `stored_length + 32` prefix and a 220-byte text cap ([android-classic.md](android-classic.md#global-chat)). That framing belongs to the chat builder, not to a recovered version token. **[bin]**
 
+## Update 2026-11-20
+
+The static read of the native socket layer ([`../protocol/android-classic-socket-layer-2026-11-20.md`](../protocol/android-classic-socket-layer-2026-11-20.md)) closes two of the points below. Android Classic 1.8 has **no compiled-in token**, because its login comes from the server's connector script: a documented no-token family. The outer transport is the desktop generation-5 frame, with the 6.1x connector framer beside it. **[bin]**
+
 ## What remains open
 
 - The exact game-login / version-token bytes (or a documented no-token family) for each of the seven packages. Catalogue grade stays **U**. **[inf]**
