@@ -5,7 +5,7 @@ starting; do not stack on unmerged PRs. Skip items that say "Squirrel decides" o
 that need missing Squirrel-only files; take the next task. Binding rules live in
 `AGENTS.md` and `.cursor/rules/graal-analysis.mdc`.
 
-Done-checks also require: leak check clean, `README.md` contents updated, matching
+Done-checks also require: leak check clean, `INDEX.md` updated, matching
 open-point closed.
 
 macOS CI is paused until the polish stage.

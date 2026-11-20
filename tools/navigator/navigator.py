@@ -319,6 +319,7 @@ VERSION_ERAS = (
 MATRIX_NOTE = 'version-profiles/matrix/README.md'
 INDEX_NOTES = (
     'README.md',
+    'INDEX.md',
     'docs/NEXT.md',
     'AGENTS.md',
     'CONSOLIDATED.md',
