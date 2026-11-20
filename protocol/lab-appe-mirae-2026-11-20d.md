@@ -249,5 +249,24 @@ keyboard scancodes and a small click helper inside the guest, with screenshots.
 **E#611: not reached.** No bush or other liftable object was reached before the session ended, so
 no lift, carry or throw was captured.
 
-**Guest state afterwards.** The compatibility setting was removed again, the click helper stopped,
-and the guest shut down. The work folder `e610` is left in the guest.
+**E#611 retry (same day, second boot of the guest): no session lasted.** About 13 starts, with the
+same callback-filter setting turned back on.
+- The tutorial levels have no bushes, pots or stones (their NPCs are palms, lamps, the cauldron,
+  a sleeping squirrel and the master), so bush tiles were added beside the start in a work copy of
+  one tutorial level. The client was not changed.
+- After the guest's reboot, **no start got as far as the login window**. Every one stopped with the
+  same callback crash as before the setting (the error reports came back, two per start), before
+  its console log was written. That held for the work folder and for a fresh copy of the stock
+  install folder.
+- Things that did not change it: putting the stock level, config and file-name cache back; removing
+  the extra tiledefs folder and a backup file from the levels folder; sounds at 0; launching from
+  the Run box instead of the helper; the per-user Windows XP SP3 compatibility layer.
+- No saved offline state was found in the user's AppData or registry, so a reloaded save is not the
+  cause.
+- So in this guest the setting got 4.04r2 to the login window only in the first boot's run, and to
+  offline play once. This route does not give a repeatable scene. A guest where 4.04r2 starts
+  cleanly (XP, or Win7 32-bit), or Wine, is the more likely way to capture lift, carry and throw.
+
+**Guest state afterwards.** After both runs the compatibility setting was removed again (it is
+off), the per-user layer removed, the click helper stopped, and the guest shut down. The work
+folders `e610` and `e611` are left in the guest.

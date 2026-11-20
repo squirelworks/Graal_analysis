@@ -429,8 +429,9 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Open | The meaning of the pickup-bound field, the path from a physical key to the action, and the asset behind a provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
 | Evidence | The countdown cannot give elapsed timing without the clocks of → §4.1.7 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
 | Tried (2026-11-20) | The same Win10 offline session never reached a liftable object before the client closed, so no lift, carry or throw was captured | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
+| Tried again (2026-11-20) | About 13 more starts on the same guest, with bush tiles added beside the tutorial start, never reached the login window: each stopped at the start-up callback crash, so this guest gives no repeatable scene | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
 | Best guess | The bound field is the carried object's kind, set when the lift starts. Confidence: low | [inf] (client-internals/404r2-carry-state.md#open-questions) |
-| Settles it | A semantic read of the field and the input route, then a scene that captures each action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A semantic read of the field and the input route, then a scene that captures each action before and after, on a guest where 4.04r2 starts cleanly (XP or 32-bit Win7) or under Wine | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | Outlook | Read, then Lab | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 
 ## E.7 Servers, listserver, RC and NC
