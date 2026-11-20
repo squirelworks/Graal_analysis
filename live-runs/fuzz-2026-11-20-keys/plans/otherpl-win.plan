@@ -1,0 +1,579 @@
+# fzk: other-player prop widths (PLO_OTHERPLPROPS 8) on Windows clients, props 74-90 at c/s/str/i5.
+# One fresh fake player per test: created at (26,26) on the current level {LV}, then [tested prop][X=36 canary].
+# Shot after each; the nick label tells where it is. Then the player is moved to another level so it disappears.
+waitsession 240
+wait s2c 9 90
+sleep 12
+s2c 9 c:15 c:60 c:16 c:60
+sleep 1
+shot 00-base
+s2c 8 s:600 c:0 str:fz600 c:34 str:fz600 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op ctl-none id 600
+s2c 8 s:600 c:15 c:72
+sleep 1.2
+shot ctl-none
+s2c 8 s:600 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:601 c:0 str:fz601 c:34 str:fz601 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op ctl-12str id 601
+s2c 8 s:601 c:12 str:hi c:15 c:72
+sleep 1.2
+shot ctl-12str
+s2c 8 s:601 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:602 c:0 str:fz602 c:34 str:fz602 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op ctl-2c id 602
+s2c 8 s:602 c:2 c:6 c:15 c:72
+sleep 1.2
+shot ctl-2c
+s2c 8 s:602 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:603 c:0 str:fz603 c:34 str:fz603 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p74-c id 603
+s2c 8 s:603 c:74 c:0 c:15 c:72
+sleep 1.2
+shot p74-c
+s2c 8 s:603 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:604 c:0 str:fz604 c:34 str:fz604 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p74-s id 604
+s2c 8 s:604 c:74 s:300 c:15 c:72
+sleep 1.2
+shot p74-s
+s2c 8 s:604 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:605 c:0 str:fz605 c:34 str:fz605 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p74-str id 605
+s2c 8 s:605 c:74 str:x c:15 c:72
+sleep 1.2
+shot p74-str
+s2c 8 s:605 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:606 c:0 str:fz606 c:34 str:fz606 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p74-i5 id 606
+s2c 8 s:606 c:74 i5:2080768 c:15 c:72
+sleep 1.2
+shot p74-i5
+s2c 8 s:606 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:607 c:0 str:fz607 c:34 str:fz607 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p75-c id 607
+s2c 8 s:607 c:75 c:0 c:15 c:72
+sleep 1.2
+shot p75-c
+s2c 8 s:607 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:608 c:0 str:fz608 c:34 str:fz608 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p75-s id 608
+s2c 8 s:608 c:75 s:300 c:15 c:72
+sleep 1.2
+shot p75-s
+s2c 8 s:608 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:609 c:0 str:fz609 c:34 str:fz609 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p75-str id 609
+s2c 8 s:609 c:75 str:x c:15 c:72
+sleep 1.2
+shot p75-str
+s2c 8 s:609 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:610 c:0 str:fz610 c:34 str:fz610 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p75-i5 id 610
+s2c 8 s:610 c:75 i5:2080768 c:15 c:72
+sleep 1.2
+shot p75-i5
+s2c 8 s:610 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:611 c:0 str:fz611 c:34 str:fz611 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p76-c id 611
+s2c 8 s:611 c:76 c:0 c:15 c:72
+sleep 1.2
+shot p76-c
+s2c 8 s:611 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:612 c:0 str:fz612 c:34 str:fz612 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p76-s id 612
+s2c 8 s:612 c:76 s:300 c:15 c:72
+sleep 1.2
+shot p76-s
+s2c 8 s:612 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:613 c:0 str:fz613 c:34 str:fz613 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p76-str id 613
+s2c 8 s:613 c:76 str:x c:15 c:72
+sleep 1.2
+shot p76-str
+s2c 8 s:613 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:614 c:0 str:fz614 c:34 str:fz614 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p76-i5 id 614
+s2c 8 s:614 c:76 i5:2080768 c:15 c:72
+sleep 1.2
+shot p76-i5
+s2c 8 s:614 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:615 c:0 str:fz615 c:34 str:fz615 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p77-c id 615
+s2c 8 s:615 c:77 c:0 c:15 c:72
+sleep 1.2
+shot p77-c
+s2c 8 s:615 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:616 c:0 str:fz616 c:34 str:fz616 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p77-s id 616
+s2c 8 s:616 c:77 s:300 c:15 c:72
+sleep 1.2
+shot p77-s
+s2c 8 s:616 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:617 c:0 str:fz617 c:34 str:fz617 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p77-str id 617
+s2c 8 s:617 c:77 str:x c:15 c:72
+sleep 1.2
+shot p77-str
+s2c 8 s:617 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:618 c:0 str:fz618 c:34 str:fz618 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p77-i5 id 618
+s2c 8 s:618 c:77 i5:2080768 c:15 c:72
+sleep 1.2
+shot p77-i5
+s2c 8 s:618 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:619 c:0 str:fz619 c:34 str:fz619 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p78-c id 619
+s2c 8 s:619 c:78 c:0 c:15 c:72
+sleep 1.2
+shot p78-c
+s2c 8 s:619 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:620 c:0 str:fz620 c:34 str:fz620 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p78-s id 620
+s2c 8 s:620 c:78 s:300 c:15 c:72
+sleep 1.2
+shot p78-s
+s2c 8 s:620 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:621 c:0 str:fz621 c:34 str:fz621 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p78-str id 621
+s2c 8 s:621 c:78 str:x c:15 c:72
+sleep 1.2
+shot p78-str
+s2c 8 s:621 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:622 c:0 str:fz622 c:34 str:fz622 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p78-i5 id 622
+s2c 8 s:622 c:78 i5:2080768 c:15 c:72
+sleep 1.2
+shot p78-i5
+s2c 8 s:622 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:623 c:0 str:fz623 c:34 str:fz623 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p79-c id 623
+s2c 8 s:623 c:79 c:0 c:15 c:72
+sleep 1.2
+shot p79-c
+s2c 8 s:623 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:624 c:0 str:fz624 c:34 str:fz624 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p79-s id 624
+s2c 8 s:624 c:79 s:300 c:15 c:72
+sleep 1.2
+shot p79-s
+s2c 8 s:624 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:625 c:0 str:fz625 c:34 str:fz625 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p79-str id 625
+s2c 8 s:625 c:79 str:x c:15 c:72
+sleep 1.2
+shot p79-str
+s2c 8 s:625 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:626 c:0 str:fz626 c:34 str:fz626 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p79-i5 id 626
+s2c 8 s:626 c:79 i5:2080768 c:15 c:72
+sleep 1.2
+shot p79-i5
+s2c 8 s:626 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:627 c:0 str:fz627 c:34 str:fz627 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p80-c id 627
+s2c 8 s:627 c:80 c:0 c:15 c:72
+sleep 1.2
+shot p80-c
+s2c 8 s:627 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:628 c:0 str:fz628 c:34 str:fz628 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p80-s id 628
+s2c 8 s:628 c:80 s:300 c:15 c:72
+sleep 1.2
+shot p80-s
+s2c 8 s:628 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:629 c:0 str:fz629 c:34 str:fz629 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p80-str id 629
+s2c 8 s:629 c:80 str:x c:15 c:72
+sleep 1.2
+shot p80-str
+s2c 8 s:629 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:630 c:0 str:fz630 c:34 str:fz630 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p80-i5 id 630
+s2c 8 s:630 c:80 i5:2080768 c:15 c:72
+sleep 1.2
+shot p80-i5
+s2c 8 s:630 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:631 c:0 str:fz631 c:34 str:fz631 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p81-c id 631
+s2c 8 s:631 c:81 c:0 c:15 c:72
+sleep 1.2
+shot p81-c
+s2c 8 s:631 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:632 c:0 str:fz632 c:34 str:fz632 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p81-s id 632
+s2c 8 s:632 c:81 s:300 c:15 c:72
+sleep 1.2
+shot p81-s
+s2c 8 s:632 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:633 c:0 str:fz633 c:34 str:fz633 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p81-str id 633
+s2c 8 s:633 c:81 str:x c:15 c:72
+sleep 1.2
+shot p81-str
+s2c 8 s:633 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:634 c:0 str:fz634 c:34 str:fz634 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p81-i5 id 634
+s2c 8 s:634 c:81 i5:2080768 c:15 c:72
+sleep 1.2
+shot p81-i5
+s2c 8 s:634 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:635 c:0 str:fz635 c:34 str:fz635 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p82-c id 635
+s2c 8 s:635 c:82 c:0 c:15 c:72
+sleep 1.2
+shot p82-c
+s2c 8 s:635 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:636 c:0 str:fz636 c:34 str:fz636 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p82-s id 636
+s2c 8 s:636 c:82 s:300 c:15 c:72
+sleep 1.2
+shot p82-s
+s2c 8 s:636 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:637 c:0 str:fz637 c:34 str:fz637 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p82-str id 637
+s2c 8 s:637 c:82 str:x c:15 c:72
+sleep 1.2
+shot p82-str
+s2c 8 s:637 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:638 c:0 str:fz638 c:34 str:fz638 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p82-i5 id 638
+s2c 8 s:638 c:82 i5:2080768 c:15 c:72
+sleep 1.2
+shot p82-i5
+s2c 8 s:638 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:639 c:0 str:fz639 c:34 str:fz639 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p83-c id 639
+s2c 8 s:639 c:83 c:0 c:15 c:72
+sleep 1.2
+shot p83-c
+s2c 8 s:639 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:640 c:0 str:fz640 c:34 str:fz640 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p83-s id 640
+s2c 8 s:640 c:83 s:300 c:15 c:72
+sleep 1.2
+shot p83-s
+s2c 8 s:640 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:641 c:0 str:fz641 c:34 str:fz641 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p83-str id 641
+s2c 8 s:641 c:83 str:x c:15 c:72
+sleep 1.2
+shot p83-str
+s2c 8 s:641 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:642 c:0 str:fz642 c:34 str:fz642 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p83-i5 id 642
+s2c 8 s:642 c:83 i5:2080768 c:15 c:72
+sleep 1.2
+shot p83-i5
+s2c 8 s:642 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:643 c:0 str:fz643 c:34 str:fz643 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p84-c id 643
+s2c 8 s:643 c:84 c:0 c:15 c:72
+sleep 1.2
+shot p84-c
+s2c 8 s:643 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:644 c:0 str:fz644 c:34 str:fz644 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p84-s id 644
+s2c 8 s:644 c:84 s:300 c:15 c:72
+sleep 1.2
+shot p84-s
+s2c 8 s:644 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:645 c:0 str:fz645 c:34 str:fz645 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p84-str id 645
+s2c 8 s:645 c:84 str:x c:15 c:72
+sleep 1.2
+shot p84-str
+s2c 8 s:645 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:646 c:0 str:fz646 c:34 str:fz646 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p84-i5 id 646
+s2c 8 s:646 c:84 i5:2080768 c:15 c:72
+sleep 1.2
+shot p84-i5
+s2c 8 s:646 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:647 c:0 str:fz647 c:34 str:fz647 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p85-c id 647
+s2c 8 s:647 c:85 c:0 c:15 c:72
+sleep 1.2
+shot p85-c
+s2c 8 s:647 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:648 c:0 str:fz648 c:34 str:fz648 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p85-s id 648
+s2c 8 s:648 c:85 s:300 c:15 c:72
+sleep 1.2
+shot p85-s
+s2c 8 s:648 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:649 c:0 str:fz649 c:34 str:fz649 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p85-str id 649
+s2c 8 s:649 c:85 str:x c:15 c:72
+sleep 1.2
+shot p85-str
+s2c 8 s:649 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:650 c:0 str:fz650 c:34 str:fz650 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p85-i5 id 650
+s2c 8 s:650 c:85 i5:2080768 c:15 c:72
+sleep 1.2
+shot p85-i5
+s2c 8 s:650 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:651 c:0 str:fz651 c:34 str:fz651 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p86-c id 651
+s2c 8 s:651 c:86 c:0 c:15 c:72
+sleep 1.2
+shot p86-c
+s2c 8 s:651 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:652 c:0 str:fz652 c:34 str:fz652 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p86-s id 652
+s2c 8 s:652 c:86 s:300 c:15 c:72
+sleep 1.2
+shot p86-s
+s2c 8 s:652 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:653 c:0 str:fz653 c:34 str:fz653 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p86-str id 653
+s2c 8 s:653 c:86 str:x c:15 c:72
+sleep 1.2
+shot p86-str
+s2c 8 s:653 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:654 c:0 str:fz654 c:34 str:fz654 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p86-i5 id 654
+s2c 8 s:654 c:86 i5:2080768 c:15 c:72
+sleep 1.2
+shot p86-i5
+s2c 8 s:654 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:655 c:0 str:fz655 c:34 str:fz655 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p87-c id 655
+s2c 8 s:655 c:87 c:0 c:15 c:72
+sleep 1.2
+shot p87-c
+s2c 8 s:655 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:656 c:0 str:fz656 c:34 str:fz656 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p87-s id 656
+s2c 8 s:656 c:87 s:300 c:15 c:72
+sleep 1.2
+shot p87-s
+s2c 8 s:656 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:657 c:0 str:fz657 c:34 str:fz657 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p87-str id 657
+s2c 8 s:657 c:87 str:x c:15 c:72
+sleep 1.2
+shot p87-str
+s2c 8 s:657 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:658 c:0 str:fz658 c:34 str:fz658 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p87-i5 id 658
+s2c 8 s:658 c:87 i5:2080768 c:15 c:72
+sleep 1.2
+shot p87-i5
+s2c 8 s:658 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:659 c:0 str:fz659 c:34 str:fz659 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p88-c id 659
+s2c 8 s:659 c:88 c:0 c:15 c:72
+sleep 1.2
+shot p88-c
+s2c 8 s:659 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:660 c:0 str:fz660 c:34 str:fz660 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p88-s id 660
+s2c 8 s:660 c:88 s:300 c:15 c:72
+sleep 1.2
+shot p88-s
+s2c 8 s:660 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:661 c:0 str:fz661 c:34 str:fz661 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p88-str id 661
+s2c 8 s:661 c:88 str:x c:15 c:72
+sleep 1.2
+shot p88-str
+s2c 8 s:661 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:662 c:0 str:fz662 c:34 str:fz662 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p88-i5 id 662
+s2c 8 s:662 c:88 i5:2080768 c:15 c:72
+sleep 1.2
+shot p88-i5
+s2c 8 s:662 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:663 c:0 str:fz663 c:34 str:fz663 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p89-c id 663
+s2c 8 s:663 c:89 c:0 c:15 c:72
+sleep 1.2
+shot p89-c
+s2c 8 s:663 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:664 c:0 str:fz664 c:34 str:fz664 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p89-s id 664
+s2c 8 s:664 c:89 s:300 c:15 c:72
+sleep 1.2
+shot p89-s
+s2c 8 s:664 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:665 c:0 str:fz665 c:34 str:fz665 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p89-str id 665
+s2c 8 s:665 c:89 str:x c:15 c:72
+sleep 1.2
+shot p89-str
+s2c 8 s:665 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:666 c:0 str:fz666 c:34 str:fz666 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p89-i5 id 666
+s2c 8 s:666 c:89 i5:2080768 c:15 c:72
+sleep 1.2
+shot p89-i5
+s2c 8 s:666 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:667 c:0 str:fz667 c:34 str:fz667 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p90-c id 667
+s2c 8 s:667 c:90 c:0 c:15 c:72
+sleep 1.2
+shot p90-c
+s2c 8 s:667 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:668 c:0 str:fz668 c:34 str:fz668 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p90-s id 668
+s2c 8 s:668 c:90 s:300 c:15 c:72
+sleep 1.2
+shot p90-s
+s2c 8 s:668 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:669 c:0 str:fz669 c:34 str:fz669 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p90-str id 669
+s2c 8 s:669 c:90 str:x c:15 c:72
+sleep 1.2
+shot p90-str
+s2c 8 s:669 c:20 str:fzaway.nw
+sleep 0.4
+s2c 8 s:670 c:0 str:fz670 c:34 str:fz670 c:20 str:{LV} c:10 str:idle c:15 c:52 c:16 c:52
+sleep 0.8
+mark op p90-i5 id 670
+s2c 8 s:670 c:90 i5:2080768 c:15 c:72
+sleep 1.2
+shot p90-i5
+s2c 8 s:670 c:20 str:fzaway.nw
+sleep 0.4
+sleep 2
+shot zz-end
