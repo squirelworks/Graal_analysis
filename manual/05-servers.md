@@ -126,10 +126,12 @@ Besides GServer13 and GServer 1.28 beta 2, the archive holds an October 1999 GSe
 | Server | Rule | Source |
 | --- | --- | --- |
 | October 1999 | lets in 1.27 (`GSERV011`) and later; relays bombs, arrows, fire, thrown carry, items, NPC weapon images and explosions to the level, which 1.28 beta 2 and GServer13 drop | [bin] (server-notes/original-server-builds-1999-2007.md#bombs-arrows-and-items-relayed-dropped-relayed-again-binsrc) |
-| December 1999 (Linux) | lets in `GSERV015` and later; relays the same effects again, but only to a peer that cannot get them over UDP; PMs over 1,024 bytes are refused | [src] (server-notes/original-server-builds-1999-2007.md#the-december-1999-linux-server-src) |
-| 1.34 rev 1 port | lets in `GNW27030` (1.34 rev 1) only | [bin] (server-notes/original-server-builds-1999-2007.md#what-the-server-token-tables-settle-binsrc) |
+| December 1999 (Linux) | lets in `GSERV015` and later; relays the same effects again, but only to a peer that cannot get them over UDP; PMs over 1,024 bytes are refused; a non-admin in the levels `police2`, `police4` or `police5` (jail) cannot send to-all (6) or PMs (28) | [src] (server-notes/original-server-builds-1999-2007.md#the-december-1999-linux-server-src) |
+| 1.34 rev 1 port | lets in `GNW27030` (1.34 rev 1) only; its token table also names the RC tokens `GSERV012` to `GSERV018` and the clients `GNW20020` (1.33), `GNW28020` (between 1.33 and 1.34, by its date a 1.33 revision [inf]) and `GNW22030` (1.34) | [bin] (server-notes/original-server-builds-1999-2007.md#what-the-server-token-tables-settle-binsrc) |
 | 1.39 | lets in 1.38 rev 1, 1.39 and 1.39 rev 1 (`GNW02070`, `GNW07080`, `GNW12080`); accepts only 2 × 2 board changes from a fixed list of tile replacements; checks a client message count (31) and drops a client whose count is wrong | [src][bin] (server-notes/original-server-builds-1999-2007.md#the-139-server-family-srcbin) |
-| 1.39 builds | none runs NPC scripts on the server: the NPC engine in the 1.39 tree is a build option that no surviving binary has on | [src][bin] (server-notes/original-server-builds-1999-2007.md#the-139-server-family-srcbin) |
+| 1.39 builds | none runs NPC scripts on the server: the NPC engine in the 1.39 tree is a build option that no surviving binary has on. The tree's NewWorld build option expects the client token `G2N29070` (Graal NewWorld 1.39) | [src][bin] (server-notes/original-server-builds-1999-2007.md#the-139-server-family-srcbin) |
+
+Six community servers of 2007 to 2010 are not originals, but their token tables are binary evidence for client tokens. The gs2emu table pairs each token with a name, checked slot by slot: `G3D16053` 3.0, `G3D27063` 3.01, `G3D03014` 3.041, `G3D28095` 4.0211, `G3D09125` 4.034, `G3D17026` 4.042, `G3D26076` 4.110, `G3D20126` 4.208, `G3D22067` 5.07 and `G3D14097` 5.12; `G3D04048` and `G3D18010` (iPhone 1.1 and 1.5, in 2.3.1 only); `GSERV023` to `GSERV025` (RC 1.010, 1.1 and 2.0). It confirms the public-list names of every 2.x token (→ §2.3) [bin] (server-notes/original-server-builds-1999-2007.md).
 
 ## 5.2 39ster 2.1 GServer
 
@@ -388,6 +390,7 @@ Variable names carry their scope in a prefix. Each row gives one prefix, what it
 | `this.name` | current NPC | yes, for database NPCs | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | `level.name` | the NPC's level | no | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | `server.name` (number) | this NPC server only | no | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
+| object attributes | as in the client, plus `playerlastdead` (the last death or login time; Graal2001 only) | — | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | flags | current player | yes, in the account | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | `client.` flags | current player, also sent to the client, which can change them | yes | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |
 | `this.` flags | current NPC | yes, for database NPCs | [doc] (tools/npcserver-2001.md#4-variables-and-flags) |

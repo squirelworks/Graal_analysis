@@ -1,15 +1,301 @@
 path	term	reason
+CONSOLIDATED.md	== 11	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	>= 20	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	GNW#####	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	it = it*0x08088405 + key	an index line fragment; the facts are carried from the notes it points to
+CONSOLIDATED.md	partial_pages	an index line fragment; the facts are carried from the notes it points to
+ash/ALGORITHMS.md	"""GR-V1.01"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	"""GR-V1.02"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	"""GR-V1.03"""	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	< 100	public host placeholder; §0.10 does not name public hosts
+ash/ALGORITHMS.md	CBuffer::writebyte	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	CPlayer::CPlayer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	addBuffer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	enc1(100 + n)	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	msgFuncs[opcode](rest)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	readbyte	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	readbyteN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	readchar	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	value + 32	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/ALGORITHMS.md	writebyteN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ALGORITHMS.md	writechar	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	getDataFile(name)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	getSubDirs	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	loadAccount	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/ARCHITECTURE.md	playerIds	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	CBuffer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	CList	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	CPlayer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	[section]	a Python gs2emu rewrite's own names or notation; §5 carries what it does
+ash/BLUEPRINT.md	getDataFile	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	getDataFile(name)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	setProperties	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	setsync	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	subdir + name	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	subdirs	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcpReceive	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcpSend	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcpaccept	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+ash/BLUEPRINT.md	tcplisten	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+client-internals/bare-level-names.md	name holding a	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/build-catalogue.md	<list-host-reborn>:14923	public host placeholder; §0.10 does not name public hosts
+client-internals/build-catalogue.md	<www-graalin-site>	public host placeholder; §0.10 does not name public hosts
+client-internals/build-catalogue.md	_SETUP.1	an installer archive member name, not a client fact
+client-internals/client-architecture-205.md	TAdventureBall	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureBomb	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureCarry	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureExplosion	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureExtra	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureFlying	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureLeap	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGifAnimation	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniPart	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniSound	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniSprite	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniStep	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TMNGAnimation	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-assets.md	col = t % 128	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+client-internals/client-assets.md	image,prefix,type[,x,y]	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+client-internals/config-and-input.md	keyset_<action>_key0..2	the note's pattern for the keyset keys, which §3.9 lists
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	link lines plus	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	signindex+32	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	playerx+15	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	x+32 y+32 text	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	parseDouble	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	[column][row]	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	ints follow; non-zero =	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/des-and-hidden-strings.md	2B 77 77 A7 B4 31 21 41	the key that hides a real listserver host; left in the note on purpose
+client-internals/des-and-hidden-strings.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
+client-internals/des-and-hidden-strings.md	GCHAR 5	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/des-and-hidden-strings.md	GCHAR key	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/des-and-hidden-strings.md	enc(b) = NOT (b + 10)	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/feature-specs/05-save-load.md	06aacfd	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/05-save-load.md	8da6800	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/05-save-load.md	SaveV1	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	SessionState	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	TAccount::loadAccount	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	TPlayer::cleanup	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	TPlayer::sendLogin	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	doTimedEvents	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	login_state	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	opened_chests	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	sendLoginClient	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/05-save-load.md	session_probe	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	06aacfd	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/06-gmap-overworld.md	8da6800	a commit id of the reference server, not a Graal fact
+client-internals/feature-specs/06-gmap-overworld.md	= the gmap name. The	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	MapType::BIGMAP	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	MapType::GMAP	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLI 18	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLI 39	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLPROP_CURLEVEL	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	PLPROP_GMAPLEVELX	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	TLevelLink::parseLinkStr	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	TMap::getLevelAt	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	TMap::loadMapLevels	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	cell_x	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	cell_y	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	draw_minimap	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	formats::gmap	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	gmap_name	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	gr.x=64	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	i5 modtime + level	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	msgPLI_ADJACENTLEVEL	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	sendLoginClient	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/06-gmap-overworld.md	send_levelwarp	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/graal-wiki-crosscheck-2026-11-11.md	ATTR4 8 16	an example line; §3.3 carries the glued slot-number rule
+client-internals/graal-wiki-crosscheck-2026-11-11.md	DESCRIPTIONEND	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	FILE <path>	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	HEIGHMAP	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	LEV*	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	NewFeatures2003v3	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	NewFeatures2004v3	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	Old GScript	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	addguildmember	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	changeimg part	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	copyflagss	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
+client-internals/graal-wiki-crosscheck-2026-11-11.md	copylevel	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	copystrings	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	defaultlanguage	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	deletelevel	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	ghostmodeenabled	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	lockplayerz	a wiki server option; the z range it guards (−50..170) is in §2.6
+client-internals/graal-wiki-crosscheck-2026-11-11.md	newtilesetlevels	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	newtilesets	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	removeguild	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	removeguildmember	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	saveinfo	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	sendtoallattr	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	serverlanguage	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	spawnrate*	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	speedhacktolerance	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	syncdistancex	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	translatedlanguages	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graal-wiki-crosscheck-2026-11-11.md	weaponorder	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
+client-internals/graalconfig-reference.md	StrToInt	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+client-internals/graalconfig-reference.md	TStringList.Values	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+client-internals/macos-v5-animation-group-lifecycle.md	MAC-PPC-V5-GMAP-GANI-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/saved-passwords.md	graaldes.GraalDES	a tool name; §3.7.5.3 names graaldes.py and its functions
+client-internals/saved-passwords.md	~2%$zsd^	the fixed key itself; §3.7.5.3 states it is one fixed key and the tool reproduces it, without quoting it
+client-internals/sound-and-music.md	AGC	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	BASS_WMA_StreamCreateFile	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	StreamFree	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	StreamPlay	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TDXSound	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TDXWaveList	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TMediaPlayer	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	TWinamp	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	VOX	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	hvdiPacketEncode	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	mciSendCommand	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	"means ""looped"". The"	a phrase fragment, not a term
+client-internals/sound-and-music.md	midiOutGetDevCapsA	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	midiOutGetNumDevs	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-and-music.md	setmusicvolume left,right	a signature form; §4.7 and §8.2 carry setmusicvolume
+client-internals/sound-and-music.md	winampGetInModule2	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_LoadMUS	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_LoadWAV_RW	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_PlayChannelTimed	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_PlayMusic	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	Mix_SetPanning	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	TSoundEffectFMOD	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	TSoundPlayerFMOD	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
+client-internals/sound-files-6x.md	fire_torch0-2	sound file names in a list; §3.10 and §4.7 carry the sound sets
+client-internals/sound-files-6x.md	spell_firelaunch	sound file names in a list; §3.10 and §4.7 carry the sound sets
+client-internals/static-reads-appendix-e-2026-11-20-c.md	GR-V1.0x	a pattern standing for GR-V1.00 to 1.05, each in §3.1
+client-internals/v2.00-connect-path.md	0x330	a form field offset (binary internals, §0.10)
+client-internals/v2.00-connect-path.md	Application.MessageBox	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	Application.Terminate	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	FileExists	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	GCHAR count	the note's field notation; the manual writes the same fields in its own (§0.6)
+client-internals/v2.00-connect-path.md	GCHAR field count	the note's field notation; the manual writes the same fields in its own (§0.6)
+client-internals/v2.00-connect-path.md	GCHAR len + text	the note's field notation; the manual writes the same fields in its own (§0.6)
+client-internals/v2.00-connect-path.md	PostQuitMessage	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	WSAStartup	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	htons(StrToInt(port))	API call in the binary (§0.10); §6.4 carries the behaviour
+docs/book/00-how-to-read.md	v0.0.1	an old edition number of the book, not Graal
+docs/book/04-where-the-notes-disagree.md	includes halves such as	a phrase fragment, not a term
+formats/arrays-and-signatures.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
+formats/arrays-and-signatures.md	<list-host-graalcc>	a placeholder for a real host name, which the manual never gives
+formats/arrays-membership-2026-11-09.md	GRAAL-ARRAYS-20261109-01	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-404r2.md	W404-E606-20261109	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-404-GMAP-BOARD-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-420-GMAP-SCRIPT-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-V3-GMAP-SCRIPT-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap-heights-mac-ppc.md	MAC-PPC-V5-GMAP-GANI-20261109-R1	an evidence or lab-run id; the manual cites the note
+formats/gmap.md	= the grid cell.	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gmap.md	CommaText	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gmap.md	PLPROP_CURLEVEL	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gmap.md	PLPROP_GMAPLEVELX	a code identifier or phrase fragment; §3.2 carries the rule and §2.6 the props
+formats/gr-v105-empty-tiles-2026-11-16.md	0x0fff	code 4095 as the empty tile is in §3.1; this is the same value in hex and code form
+formats/gr-v105-empty-tiles-2026-11-16.md	if (tile == 4095)	code 4095 as the empty tile is in §3.1; this is the same value in hex and code form
+formats/graalsav.md	TValueType	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+formats/graalsav.md	WriteInteger	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+formats/gwebl001-cache.md	len % 8	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/gwebl001-cache.md	type,name,cacheflag,i5,i5	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/ios-gani-param1-placements.md	IOS-GANI-PARAM1-20261115-04	an evidence or lab-run id; the manual cites the note
+formats/level-binary-client.md	sign_text	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-HANDOFF-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-PACKET-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-6x-class-cache.md	LNX601-X86-DELIVERY-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-6x-class-cache.md	LNX603-CLASS-CACHE-20261109	an evidence or lab-run id; the manual cites the note
+formats/pics1-tile-layout-render-2026-11-19.md	t % 128	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+formats/sign-text.md	TLevelSign	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+formats/tile-types-pics1-packing-2026-11-16.md	image,prefix,type[,x,y]	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+formats/tile-types-pics1-packing-2026-11-16.md	tiletypes0	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+formats/tiledef-type4-2026-11-16.md	tiletype()	§3.5 carries the type-4 offsets and the default row
+formats/tiledef-type4-2026-11-16.md	{0, 80}	§3.5 carries the type-4 offsets and the default row
+formats/tiledef-type4-2026-11-16.md	{1344, 1536, 1728}	§3.5 carries the type-4 offsets and the default row
+formats/weblevels-code-residuals.md	<host>:<port>	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	L' == L + pad	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	decimal_port_ascii	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	host:port	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-code-residuals.md	host_bytes	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-server-folders.md	N = padded_plaintext + 8	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-server-folders.md	magic; classic	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/weblevels-server-folders.md	zipfile	the note's notation or a test detail; §3.8 carries the cache layout, padding, key and escapes
+formats/windows-222-verifier-variants.md	WIN222-VERIFIER-A	an evidence or lab-run id; the manual cites the note
+formats/windows-222-verifier-variants.md	WIN222-VERIFIER-B	an evidence or lab-run id; the manual cites the note
+formats/windows-222-verifier-variants.md	WIN222-VERIFIER-CONTROL	an evidence or lab-run id; the manual cites the note
+formats/windows-603-weapon-cache.md	47 52 45 53 43 52 30 31	the GRESCR01 magic in hex; §3.8 carries it by name
+graal3d/README.md	*Modify	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	2×atan(0.5)	§9 carries it as `2 × atan(0.5)` (spacing differs)
+graal3d/README.md	DXTimer1	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	Graal3D: 0 player(s)	server window caption, not part of the protocol
+graal3d/README.md	TAccountList	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TPlayerStats	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TSendFrame	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerAccount	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerBaddy	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerChest	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerFrame	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerHorse	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerLevelLink	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerPlayerModify	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TStartFrame	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TUpdateLevels	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	do3D	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	doRetainedMode	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	doTexture	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	doZBuffer	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/beta3-genesis.md	DriversForm	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/beta3-genesis.md	DrvList	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/beta3-genesis.md	s2 s2 s2 c s2	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/camera.md	2×atan(0.5)	§9 carries it as `2 × atan(0.5)` (spacing differs)
+graal3d/camera.md	GetField	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetField	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetFront	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetPerspective	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetPlane	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	test_Viewport	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/collision.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/collision.md	dist × normal	§9.4 carries the slide onto the face plane in words
+graal3d/formats.md	%alice#pw1 &	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/formats.md	0xfdcc47	§9 carries the default colours as `FDCC47` and `FF0000`
+graal3d/formats.md	0xff0000	§9 carries the default colours as `FDCC47` and `FF0000`
+graal3d/formats.md	<graal3d-default-host>	public host placeholder; §0.10 does not name public hosts
+graal3d/formats.md	alice	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/formats.md	nick (Name)	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/formats.md	pw1	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/g3d-version-tokens.md	"""3 """	§6.4 carries the `3 ` list prefix
+graal3d/lab-2026-10-30.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/lab-2026-10-30.md	GetPosition	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/lab-2026-10-30.md	SetPosition	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/protocol.md	#bob	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	= 6; guest, Load only:	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	Alice (Admins)	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	alice	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	in_addr	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/protocol.md	sN(v)	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/protocol.md	str(s)	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/protocol.md	v + 32	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/protocol.md	with the file text, or	§9.3 carries the level-change rule in words
+graal3d/research-status-2026-11-16.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
 protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
 protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
 protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal
+protocol/listserver-login-type-matrix-2026-10-25.md	tcpdump	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	<list-host-graalbiz>	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/listserver.md	<list-host-graalcc>	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/listserver.md	GCHAR 7	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/listserver.md	GCHAR key	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/listserver.md	GNW30123newmain	§6.1.2 carries it as `GNW30123` + `newmain`
+protocol/listserver.md	SVI_*	a wildcard over gs2lib names; §6.5 lists each id
+protocol/listserver.md	SVO_*	a wildcard over gs2lib names; §6.5 lists each id
+protocol/listserver.md	[Options]	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	c field count	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/listserver.md	login_fail_limit = 0	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	silent_list_after_ms	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	srvfuzz list	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	type+name	the note's field notation; the manual writes the same fields in its own (§0.6)
 protocol/nc-flag-list-round-trip-2026-11-20.md	TFlagList	Delphi form class name; the manual names the window by its title
 protocol/nc-standalone-flag-action.md	NC-FLAG-ACTION-STATIC	evidence id; the manual cites the note
 protocol/npc-control.md	!hasRight(PLPERM_NPCCONTROL)	GServer-v2 source expression; §7.2.2 step 3a carries the rule in words
 protocol/npc-control.md	!isRC()	GServer-v2 source expression; §7.2.2 step 3a carries the rule
-protocol/npc-control.md	"== ""location"""	a disproved lab theory; the note records it as wrong
 protocol/npc-control.md	1WAoHpifrHvM72aYXVNzkKRJVTkgJNkGH	download id of a decompile archive, not Graal
 protocol/npc-control.md	1oF6qDwxTMoIqmHIugbx_O72m3B7_Qjih	download id of a decompile archive, not Graal
 protocol/npc-control.md	1sABQxJiJ4cwbtfzrB9oqCwNhC5G3Zqsz	download id of a decompile archive, not Graal
+protocol/npc-control.md	"== ""location"""	a disproved lab theory; the note records it as wrong
 protocol/npc-control.md	ADMINRIGHTS 1048575	lab-harness mistake (no such key); §7.2.2 step 3a says the key is LOCALRIGHTS
 protocol/npc-control.md	CLIENT-GONE	lab proxy log marker, not Graal; §7.4 carries the no-crash result
 protocol/npc-control.md	FlatFileAccountLoader	GServer-v2 class name; §7.2.2 step 3a carries the account key rule
@@ -32,13 +318,426 @@ protocol/npc-control.md	msgPLI_NPCSERVERQUERY	GServer-v2 handler name; §7.2.2 c
 protocol/npc-control.md	nc2002-a	lab plan step name, not Graal
 protocol/npc-control.md	nc713-a	lab plan step name, not Graal
 protocol/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
+protocol/nw-layer-ext-500r7-2026-11-16.md	GR-V1.0*	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	TILESETIMAGE	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	tilelayers	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	tilelayers[]	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/nw-layer-ext-500r7-2026-11-16.md	x y w layer tilesdata	the note's notation; §3.1.2.11 carries GR-V1.05 layers, and TILESET lines are not read by the stock engine
+protocol/public-listserver-2026-10-25.md	???	lab tool setting or note placeholder, not Graal
+protocol/public-listserver-2026-10-25.md	built_in_host	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/public-listserver-2026-10-25.md	built_in_port	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/rc-capture-2026-11-04.md	"""lab ban reason"""	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	0.0.0.0	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	3 bytes and	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	<gserver-ip>	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	<gserver-port>	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	Account does not exist.	a GServer-v2 fork error text from the lab, not a Graal original; §6.2.1 carries id 4 as error text
+protocol/rc-capture-2026-11-04.md	H My Server	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	Lab222rc	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	f585ca6	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	labrc	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	seihai-gserver-v2	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	seihai-listserver	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	test1	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-fuzz-2026-11-19.md	74 RC_CHAT	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	ADMINRIGHTS 1048575	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	LOCALRIGHTS 1048575	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	PLO 79	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	RC-FUZZ-20261119	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	RC_NC	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	RC_NC_INJECT79=1	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	conn 1 open	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	gs2emu-73	a commit, build, archive or author name identifying a source, not a Graal fact
+protocol/rc-fuzz-2026-11-19.md	id 1 + GSERVxxx	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	isRC()	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+protocol/rc-fuzz-2026-11-19.md	ncprobe	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rc-core	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rc-widths	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rc2002	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rccanary	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	rcpre	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	seihai-listserver	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	sendNCLoginToPlayer	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+protocol/rc-fuzz-2026-11-19.md	wait c2s 2	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+protocol/rc-fuzz-2026-11-19.md	xdotool --class	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
 protocol/rc-list-online.md	New RC: <new account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
 protocol/rc-list-online.md	New RC: <that account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
 protocol/rc-list-online.md	seihai-rc	a reimplementation, out of scope (§0.1)
 protocol/rc-list-online.md	str head	§7.1.9 carries it as `c 11` + head
 protocol/rc-list-online.md	str nickname	§7.1.9 carries it as `c 0` + nickname
 protocol/rc-props-flags-status.md	weapon count + weapon	§7.1.8 carries it as `c weapon count`, `str` per weapon
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	out-of-scope	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	stay-staged (bad archive)	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	and ELF	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	LoadDBAccount	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	LoadNW	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	LoadWeapons	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	SaveDBAccount	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	SendAccount	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	connecttodb	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	startServer	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver_pe_GServersource/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+server-notes/01-lineage.md	2.2.0-fix	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	JustBurn	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	SVI_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/01-lineage.md	SVO_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/01-lineage.md	TheDgtl-gs2emu-gserver-d3ecab4	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	gr.addweapon	an archive or source name in the lineage; §5 carries the lineage
+server-notes/01-lineage.md	gserver-134-win32	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	gserver_2.1.0	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	gserver_2.4.0	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	length byte + bytes	an archive or source name in the lineage; §5 carries the lineage
+server-notes/01-lineage.md	projectx	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/01-lineage.md	unlgserv119	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/03-protocol.md	PLO_SIGNATURE >> (char)73	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	__getLogin	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	__sendLogin	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	digit + 32	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	operator<< (char)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	operator>> (char)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/03-protocol.md	uint16 tiles[64*64]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	SVI_VERIACC2	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	limitFromType(0x06)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	limitFromType(type)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/04-algorithms.md	msgPLI_TRIGGERACTION	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/baddies-serverside.md	#m(i)	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	16 < c < 38	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	21 < c < 37	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	Bx ± 1, By − 2 to By + 1	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	Random(20) + 40	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	baddyitems	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	look1	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	look3	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	this.respawn	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	this.respawning	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	timeout = 0.1	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	timeout = this.respawn	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	wa*hit	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/baddies-serverside.md	−(P − B) × 2	a worked server-side baddy script written for this project from the client AI (§4 carries the client rule); not an original server
+server-notes/gserver-1999-rules.md	rules = 1999	a seihai-gserver config line, out of scope (§0.1)
+server-notes/gserver-1999-rules.md	x*2, y*2, dir, image	the note's field notation; §5.1.6 carries the layout
+server-notes/hubserver-037-and-delteria-2026-11-18.md	DELTERIA-2002-BACKUP-20261118	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	DELTERIA-2019-BACKUP-20261118	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	HUBSERVER-036-20261113	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	HUBSERVER-037-20261118	an evidence or lab-run id; the manual cites the note
+server-notes/hubserver-037-and-delteria-2026-11-18.md	Version1	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	Version2	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	clientr.	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	dbnpc	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	findlevel	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	findplayer	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	for (temp.x : list)	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	format()	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	getstringkeys	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	if (event)	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	"join(""class"")"	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	joins, and	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	loadlines	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	loadvars	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	new TStaticVar	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	savelines	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	triggerclient	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	web.config	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/hubserver-037-and-delteria-2026-11-18.md	with (obj)	a third-party hub's internal name, a GS2 idiom counted in the backups, or a status word; §6.2.4 and §8.3 carry the findings
+server-notes/lab-servers-2026-10-30.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	73e7ea8	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	<graalonline-site>	public host placeholder; §0.10 does not name public hosts
+server-notes/lab-servers-2026-10-30.md	CFileQueue	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	CLVER_UNKNOWN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	GNW03081 (2.05r2)	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	GNW24011:GNW28015	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	IPacketHandler::parseLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PLTYPE_CLIENT3	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PlayerClientNew	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PlayerClientOriginal	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	PlayerLogin::msgLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/lab-servers-2026-10-30.md	UPNP=OFF	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	Unknown Player Packet: 55	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	V8NPCSERVER=OFF	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	[GNW22122 (2.17)]	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	[generation-range]	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	b839106	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	classic = GNW13110	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	def25322	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	efb5b90	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/lab-servers-2026-10-30.md	generation = newmain	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/lab-servers-2026-10-30.md	localhost	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+server-notes/original-server-builds-1999-2007.md	SERVERSIDENPCS	the 1.39 tree build option; §5 carries it in words
+server-notes/original-server-builds-1999-2007.md	baddyrespawntime=30	§5 carries both options and their defaults
+server-notes/original-server-builds-1999-2007.md	dbsetup	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	help->	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	pktimeout=300	§5 carries both options and their defaults
+server-notes/original-server-builds-1999-2007.md	seihai-gserver	a reimplementation, out of scope (§0.1)
+server-notes/original-server-builds-1999-2007.md	server->uptime	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	subdirs->	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/original-server-builds-1999-2007.md	trunc(0.75R + 0.5R·rand)	§5 carries the board respawn formula as `Trunc(Random · R/2 + 3R/4)`
+server-notes/original-server-builds-1999-2007.md	warpto x y level	§5 carries warpto
+server-notes/public-allowed-versions.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/public-allowed-versions.md	<public-host-2gta>:14913	public host placeholder; §0.10 does not name public hosts
+server-notes/public-allowed-versions.md	CLVER_UNKNOWN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/public-allowed-versions.md	TServer::loadAllowedVersions	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/public-allowed-versions.md	clientVersions[]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/public-allowed-versions.md	debug-20261029-101954	a commit, build, archive or author name identifying a source, not a Graal fact
+server-notes/setcharprop-hash-n.md	GServer 1.31	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+server-notes/setcharprop-hash-n.md	GetPlayer(id)	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/setcharprop-hash-n.md	GetRealMessage	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+server-notes/setcharprop-hash-n.md	setcharprop #c,Hi #n	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+server-notes/setcharprop-hash-n.md	setcharprop #n,Guard	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+server-notes/setcharprop-hash-n.md	setcharprop #n,Npc	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+tools/assimilator-batch-ops-2026-11-16.md	[ERROR] [	a tool message, API call or log fragment; §11 carries the behaviour
+tools/assimilator-batch-ops-2026-11-16.md	] The file	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/character-designer.md	Draw Mode Set to 1	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/developer-component-2001.md	DEV-COMPONENT-DOC	an evidence id; the manual cites the note
+tools/classic-tools/developer-component-2001.md	DEV-COMPONENT-STATIC	an evidence id; the manual cites the note
+tools/classic-tools/developer-component-2001.md	DEV-GENERATOR-PATH-STATIC	an evidence id; the manual cites the note
+tools/classic-tools/developer-component-2001.md	DEV-GENERATOR-SEEDED-ROOT	an evidence id; the manual cites the note
+tools/classic-tools/gserverstat.md	#009933	a colour in a status page, not a protocol fact
+tools/classic-tools/serverlist3.md	Configuraton not found.	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
+tools/classic-tools/serverlist3.md	Server lister started	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
+tools/classic-tools/serverlist3.md	The password is wrong	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
+tools/classic-tools/serverlist3.md	lastwrite	a database column name; §6.2.3 carries the 10-minute rule
+tools/classic-tools/serverlist3.md	upgraded	a status-text word; §6.2.3 carries the status texts by kind
+tools/classic-tools/text-convert.md	File does not exist	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/text-convert.md	FindFirstFileA	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/text-convert.md	FindNextFileA	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/text-convert.md	Server error	a tool message, API call or log fragment; §11 carries the behaviour
+tools/generators-222/README.md	DOUBLE 0	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	seed * 134775813 + 1	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallne2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallnw2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallse2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallsw2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/gmap-terrain-stock-2026-11-16.md	LEV*	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/gmap-terrain-stock-2026-11-16.md	[0,1)	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/graaleditor-board-format-2026-11-16.md	then sixty-three	a phrase fragment, not a term
+tools/graaleditor-vs-205.md	ATTACHSPRITE*	a wildcard; §11 names ATTACHSPRITE and ATTACHSPRITE2
+tools/graaleditor-vs-205.md	TAS_DigestSHA1	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TAS_RSACryptography	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TActorSingleMod	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TEditFrame	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TEditOperation	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TEditorDefNPC	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalActor	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalActorMod	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniPart	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniSound	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniSprite	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniStep	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalSpriteAttachment	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graalshop.md	FRAME n	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	IOS-GANI-MOVIE-20261115-01	an evidence or lab-run id; the manual cites the note
+tools/graalshop.md	TEditFrame	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	TGraalActor	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	TGraalAniSprite	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	TGraalAniStep	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/graalshop.md	sprite #	a Delphi class name or a tool label; §11 carries the editor by behaviour
+tools/lab-servers/README.md	"""5.24"""	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	5c36ab8	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	<graalonline-site>	public host placeholder; §0.10 does not name public hosts
+tools/lab-servers/README.md	CLVER_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_5_07	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_5_12	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_5_24	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_6_015	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_IPHONE_BELOTE_1_5	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	CLVER_UNKNOWN	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	File download: 1.png‰PNG	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	GNW03081 (2.05r2)	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	b839106	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	clientVersionString[]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	clientVersions[]	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	efb5b90	a commit, build, archive or author name identifying a source, not a Graal fact
+tools/lab-servers/README.md	listport	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	loginserver2	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	loginserver3	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	main()	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	nodirectinput=true	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/lab-servers/README.md	parseLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/lab-servers/README.md	serverport=14900	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/level-editor/222-reference.md	2 × w	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/222-reference.md	BOARD x y w layer data	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/222-reference.md	TEditVariable	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorChest	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorLink	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorObject	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorSign	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	pics1.png,,0,0,0	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/222-reference.md	x+32, y+32, image#script	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/formats-crossref.md	col = t % 128	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/formats-crossref.md	x+32, y+32, image#script	the note's notation for a format §3.1 and §3.5 already give
+tools/level-tools-gaps/README.md	rooms0	tool folder names in a gap list, not a Graal fact
+tools/level-tools-gaps/README.md	rooms9	tool folder names in a gap list, not a Graal fact
+tools/level-tools-gaps/README.md	roomsX	tool folder names in a gap list, not a Graal fact
+tools/levelfiller.md	<Complex Flowers>*	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	QtyPerObject|<Tile00>	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	theme make	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	times with a	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	v=expr	the level filler's own syntax fragments; §11 carries what it does
+tools/npc-control.md	2B 77 77 A7 B4 31 21 41	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+tools/npc-control.md	AddNPCFrame	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	ClassesList	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	GCHAR 50	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR 51	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR 52	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR count	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR field count	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GINT3 id	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GSHORT len	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GSHORT player id	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	NPCList	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	WeaponsList	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	dir - length	an NPC script format in a bundled sample, not part of NC or the listserver
+tools/npc-control.md	listserver.graalonline.	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+tools/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
+tools/npcserver-2001.md	#a(i)	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
+tools/npcserver-2001.md	Add Class	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
+tools/npcserver-2001.md	Script from Class	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
+tools/npcserver-2001.md	with (getplayer(...))	a script fragment or dialog label in the 2001 NPC-server text; §5 carries the commands
 tools/remotecontrol-lineage.md	RC_ACCOUNT*	§7.1.5 carries the move of accounts to ids 70 to 78
 tools/remotecontrol.md	PLI_NC_*	a wildcard over gs2lib names; §7.3 lists each NC id
 tools/remotecontrol.md	PLI_NC_LEVELLIST*	a wildcard over gs2lib names; §7.3 lists ids 150 and 151
 tools/remotecontrol.md	RC2_2.05	a file name; §7.1.2 names the program RC2 2.05
+tools/server-tools-2001.md	WindowsUser@	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	[Options]	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	crypt(3)	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal-serverlist	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_guilds	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_guilds_members	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_ipban	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_servers	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_servershq	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	graal_users	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	iexplore	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	if (playersays(killall)	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/server-tools-2001.md	makepass	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+tools/server-tools-2001.md	name:<tab>value	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/small-utilities-2026-11-14.md	Graal::list_client	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	Graal::network::framework	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	GuildLoc	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	LabelColor	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	SkinLoc	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	[Color Settings]	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	[Guild Settings]	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	[Skin Settings]	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	aptime0..4	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	color_nickname	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	gs1-lint	a Seihai repo or tool, out of scope (§0.1)
+tools/small-utilities-2026-11-14.md	key = value	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	seihai-launcher	a Seihai repo or tool, out of scope (§0.1)
+tools/small-utilities-2026-11-14.md	seihai-rc	a Seihai repo or tool, out of scope (§0.1)
+tools/small-utilities-2026-11-14.md	tryloadsoundson64bit=true|false	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+version-profiles/matrix/builds-deltas.md	accountname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	automapping=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	azg=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	bodytex=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	bodyx=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	compabilitydraw=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	d4n=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontconnectlevels=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontloadlistheads=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontsavepasswords=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontsavepms=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	dontusedirectx7=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	editnickname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	ekv=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	externalchat=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	fixedport=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	fullscreenmode=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	gamemode=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	headx=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	joyselected=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	joystickon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	kxs=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	language=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	limitnicknames=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	loadcolorsfromserver=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microactivatebyvolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microactivatekey=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microactivationlevel=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microinputdevice=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	microon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	midivolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	mp3volume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	musicon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	nicknamelimit=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	nodecompressionerror=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	nodirectinput=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	notoalls=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	password=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	quickplayerworlds=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	radiovolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	reversestereo=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	saveimages=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	serveraddr=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	sfxvolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	sortplayersbyname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	soundfxon=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	startinfullscreen=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	u5j=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	usewinamp=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	voicecodec=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	voicevolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/builds-deltas.md	waitvertical=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
