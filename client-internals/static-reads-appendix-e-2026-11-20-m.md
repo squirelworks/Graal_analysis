@@ -2,9 +2,9 @@
 
 Date: 2026-11-20. Evidence: **[bin]** (a linear disassembly of the x86-64 native engine library of
 Android Classic 1.8, the package used in the 2026-11-20 emulator run, read with its exported
-symbol names; no client run). Only behaviour is given here. It adds send and receive detail to
+symbol names, and a linear disassembly of the iPhone Classic+ 1.13 app; no client run). Only behaviour is given here. It adds send and receive detail to
 [android-classic-socket-layer-2026-11-20.md](../protocol/android-classic-socket-layer-2026-11-20.md),
-which settled App. E#18, and gives a lead for App. E#16.
+which settled App. E#18, and reads the iPhone identity trailer for App. E#16.
 
 The package carries one native engine library in four builds (ARM, ARM64, x86 and x86-64). It is
 not encrypted, and its symbols are exported, so the connection class and its methods can be read
@@ -68,7 +68,9 @@ fetched `conf.gs` first.
 - A zero or negative length, or a body that decodes to nothing, is logged as invalid data. The
   connection is then marked blocked and stops reading and sending.
 
-## A lead for the iPhone identity trailer (E#16)
+## The iPhone identity trailer (E#16)
+
+### The Android routine
 
 The Android engine has a system-ID routine that takes an index from 0 to 4:
 
@@ -80,12 +82,39 @@ The Android engine has a system-ID routine that takes an index from 0 to 4:
 | 3 | an OS identity built from `uname` |
 | 4 | the Android device ID |
 
-The iPhone Classic+ 1.13 login builds a list from a helper called with indexes 0 to 3, then
-serializes it after the two strings (`classic-113-login-construction.md`). The two clients share
-one engine line, so that helper is probably this routine. If it is, the iPhone trailer would be
-the tag, a cookie hash, a MAC hash and an OS identity. This is **[inf]**: the iPhone binary could
-not be loaded in the lab decompiler during this pass. The separator is also unknown; desktop
-clients use commas (`login-tokens-3x-7x.md`).
+### The same routine in iPhone Classic+ 1.13
+
+The iPhone app (32-bit ARM, no symbols) was then read with a linear disassembly. Its routine has the
+same shape, with four cases:
+
+| Index | Value |
+| ---: | --- |
+| 0 | the device's unique identifier (UDID), from `UIDevice` |
+| 1 | the MD5 of a cookie kept in `creationtime.dat`, made on first use from a number and a new UUID |
+| 2 | the MD5 of the first Ethernet-type link address from `getifaddrs`, 6 bytes; if none is found, the bytes 1 to 6 are used |
+| 3 | the OS release, two spaces, then the OS version, both from `uname` |
+
+### The trailer
+
+The login builder makes a list of five strings:
+
+1. the platform name, `iphone`;
+2. to 5. the four values above, in index order.
+
+It joins them with commas. Each item goes through the engine's list-quoting rule:
+
+- An item that holds a comma or a space is wrapped in double quotes, so the OS identity always is.
+- Inside quotes, a double quote is written twice and a backslash is written twice.
+
+The joined text follows the two strings of the login, as the earlier note on the login layout said.
+So an iPhone login ends with, for example:
+
+```
+iphone,<udid>,<md5 of cookie>,<md5 of mac>,"<release>  <version>"
+```
+
+This is the same family as the desktop identities (`login-tokens-3x-7x.md`). It starts with a
+platform tag, then hashes of local machine values.
 
 ## What this adds
 
@@ -93,10 +122,15 @@ clients use commas (`login-tokens-3x-7x.md`).
   fixed type-3 first frame with the key byte after the first message's id, and the 48 and 4,096
   byte thresholds, which belong to the classic frame packer. Line feeds are allowed only in ids 93
   and 163. All of this matches the iPhone Classic+ 1.13 rules.
-- A lead for the iPhone identity trailer (E#16), above.
+- The iPhone Classic+ 1.13 identity trailer (E#16), read in the iPhone app and matched to the
+  Android routine.
 
 ## Not covered
 
+- Where the iPhone login's two strings come from. They are two fields of one global settings
+  object; the code that fills them was not followed, so calling them account and password is
+  still a guess.
+- Whether the official server accepted this trailer. No iPhone app has been run.
 - What the official Android connector script chooses. The emulator run got no reply, so the
   mode, cipher and login id actually used on the live service are not known.
 - The other six Android packages (Classic 1.6 to 2.2 and Era 1.7 and 2.0). They report the same
