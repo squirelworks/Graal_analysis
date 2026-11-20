@@ -175,7 +175,7 @@ NPCs and chests are short records. The table gives the fields of each in order [
 | NPC | `GCHAR x, GCHAR y, image#script`; the script uses `0xA7` for a newline; an empty image is a script-only NPC | [srv] (formats/level-binary.md#records) |
 | chest | `GCHAR x, GCHAR y, GCHAR item, GCHAR signindex` | [srv] (formats/level-binary.md#records) |
 
-Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). NPC bytes are single bytes and can lie outside 0 to 63, as 165 NPCs in the corpus do. A level with no chests still ends the section with a bare `#`. Chest items 0 to 11, 16, 17, 19 and 24 occur, plus one 78, outside the 25-name table; 343 of 375 chests have sign index −1, which is "no sign" [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md); [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md). The chest item index table is in → §8.
+Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). 2.05 reads them the same way, and parses a link's x, y, width and height as numbers rounded to a whole tile, so a link box of `43.5` loads as 44; 4.04r2 keeps link boxes fractional (→ App. E#603) [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603). NPC bytes are single bytes and can lie outside 0 to 63, as 165 NPCs in the corpus do. A level with no chests still ends the section with a bare `#`. Chest items 0 to 11, 16, 17, 19 and 24 occur, plus one 78, outside the 25-name table; 343 of 375 chests have sign index −1, which is "no sign" [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md); [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md). The chest item index table is in → §8.
 
 ### 3.1.2.6 Signs
 
@@ -186,7 +186,7 @@ Signs are stored in the sign alphabet, not in plain text. The rules below give t
 | record | `GCHAR x, GCHAR y`, then text in the sign alphabet | [srv] (formats/level-binary.md#records) |
 | alphabet | the same as signs on the wire: `byte - 32` indexes the sign table (→ §3.6) | [2.05] (formats/level-binary-client.md#sign-text-in-files) |
 | line break | the token `v*eUWf` + `0x80` decodes to `#K(13)` and a newline; it is the explicit line-break marker, not a space | [test] (formats/level-binary-client.md#sign-text-in-files) |
-| end | 2.05 reads signs to end of file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+| end | the sign list stops at the first empty line, measured on 2.05 rev 2 and read for 2.31, where a `HEIGHTS` block can follow; the earlier reading that 2.05 reads to the end of the file was wrong (→ App. E#604) | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
 | signs at (0,0) | common in real levels and hold dialogue text, so they are probably messages that NPC scripts show by index rather than signs on the map | [inf] (formats/level-binary-client.md#sign-text-in-files) ; [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md) |
 | no signs | a level with no signs ends after the chest `#`, with no empty line; in 3113 files nothing follows the signs | [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md) |
 

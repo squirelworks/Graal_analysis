@@ -168,6 +168,7 @@ A compiler that must run on every client from 4.03r3 follows four rules [bin][ca
 | --- | --- |
 | Do not emit 11 (`waitfor`); it is not dispatched before 4.20r8 | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
 | 48 and 49 run only on 5.00r7 and 5.12, and 54 and 121 only from 5.00r7; emitting any of them breaks 4.x | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
+| on 5.00r7, 54 consumes object, member name and value (pushed in that order); 49 builds its list in reverse push order; 48 takes name/value pairs (name pushed first) but keeps taking them until two or fewer values remain, whatever its count (→ App. E#209) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) |
 | 0, 160–162, 164 and 185–188 are never portable | [bin] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
 | The folds 200–242 are made by each client after decode; a compiler never writes them | [bin][cap] (protocol/gs2-opcode-table.md#for-a-compiler-and-a-vm) |
 
@@ -268,6 +269,6 @@ The rules below say what follows for a client and a compiler, and where the evid
 | Rule | Source |
 | --- | --- |
 | Clean output is consistent with a jump-threading and marker-narrowing pass, but careful emitting alone gives the same stream, so the official compiler's passes are not known. Open compilers' test baselines do leave jump-to-jump chains and wide `F4` markers | [cap][inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
-| Whether a stock client skips the top-level pass for a function-only image, and re-runs top-level code before each event when the image is not function-only, is open; a Linux 4.04r2 experiment already suggests the re-run (→ §8.3.4, App. E#212) | [lab][inf] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, App. E#212) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
 | The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently (→ App. E#213) | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
 

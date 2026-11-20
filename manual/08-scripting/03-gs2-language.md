@@ -23,7 +23,7 @@ GS2 replaces client-side GS1 in steps. Each row gives a group of builds and the 
 
 ## 8.3.2 Delivery
 
-How the server hands GS2 code to a client. Which message id carries the compiled code is disputed → App. E#202.
+How the server hands GS2 code to a client. NPC bodies travel in 131 behind 100 on 4.20r8, 5.24r4 and 6.03r7; on 6.x a class or weapon arrives as a 197 descriptor and a 140 body, a path 4.20r8 does not honour as sent (→ App. E#202) [lab] (protocol/script-fuzz-2026-11-19.md); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover).
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -267,5 +267,5 @@ The rules below summarise what those scripts do, and so what a client has to run
 | `triggerserver` and `triggeraction(0, 0, "serverside", …)` both end as client 38 with `serverside,<weapon>,<params>`, which GServer-v2 turns into the weapon's `onActionServerSide`; that `triggerserver` sends exactly this is read from scripts and server, not a client | [srv][inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#implementation-order) |
 | The `player` members used most in set E are `chat` 413, `y` 327, `x` 325, `level` 287, `dir` 264, `account` 234 and `ani` 136; set B adds `target` and many world-defined members | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#player-members-read-or-written) |
 | The opcodes these scripts lean on beyond calls and arithmetic are list membership (`in`, 81 and 80), `getangle` (95), list `add` (136), `tokenize` (118) and `getdir` (96); `waitfor` (11) is rare and 4.20r8 on only (→ §8.4.4) | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#opcodes-the-repro-machine-still-refuses) |
-| Open: which 4.x build first has each GS2-only name such as `triggerserver`, `scheduleevent` and `findweapon`; and what a client does when a script calls a name it lacks (→ App. E#215) | [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
+| All eight GS2-only names checked (`triggerserver`, `scheduleevent`, `findimg`, `findweapon`, `md5`, `cancelevents`, `keydown2`, `onwall2`) are in the January 2007 4.20 engine and in 5.00r7 to 5.30r3. Open: whether 4.04r2 and 4.11 already have them, and what a client does when a script calls a name it lacks (→ App. E#215) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215); [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 

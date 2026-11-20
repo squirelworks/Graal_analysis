@@ -1,6 +1,6 @@
 #!/bin/sh
 # runwine.sh CLIENT PLAN RUN [VAR=VALUE ...] : one probe run of a Windows client under Wine.
-# CLIENT is 420 (4.20r8, faketime 2007-07-01, login form filled), 524 (5.24r4), or 222 / 231
+# CLIENT is 420 (4.20r8, faketime 2007-07-01, login form filled), 512 (5.12, faketime 2007-11-19), 524 (5.24r4), or 222 / 231
 # Also 403 / 404 / 411 (4.03r3, 4.04r2, 4.11: packed Graal4Setup.exe stubs, same login form as
 # 4.20r8, clock held near their build date, prefix wp4 with Direct3D csmt=0), and 500 / 530 / 531
 # (5.00r7 unpacked + CRC patch, 5.30r3, 5.31r4 packed originals). CLFT=... overrides the faketime.

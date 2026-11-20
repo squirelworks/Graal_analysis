@@ -2,6 +2,7 @@
 """selftest: gen5probe between a fake gen-5 client and a fake server (loopback only, Linux).
 
 Checks that relayed packets survive the proxy's re-encryption in both directions,
+that a gen-1 relay session (plain lines) passes and takes whole injected lines,
 that s2c/c2s injection arrives decryptable at the right peer, that `after` fires
 after the named packet, and that `drop` withholds a packet.
 """
@@ -182,6 +183,40 @@ def rc5_test(ask, pport, srv):
     c.close(); s.close()
 
 
+def lines_read(sock, secs=1):
+    sock.settimeout(0.2); end = time.time() + secs; buf = b''
+    while time.time() < end:
+        try:
+            d = sock.recv(65536)
+        except socket.timeout:
+            continue
+        if not d:
+            break
+        buf += d
+    return buf
+
+
+def gen1_test(ask, pport, srv):
+    """Gen 1 (1998 relay): plain LF lines both ways; injected lines land whole, between lines."""
+    c = socket.create_connection((LOOPBACK, pport))
+    c.sendall(b'NG8onl')  # a join line split over two sends
+    time.sleep(0.2); c.sendall(b'inestart.graal#def' + b'\n')
+    s, _ = srv.accept()
+    assert lines_read(s) == b'NG8onlinestart.graal#def' + b'\n'
+    s.sendall(b'NR' + b'\n' + b'I00000001' + b'\n')
+    assert lines_read(c) == b'NR' + b'\n' + b'I00000001' + b'\n'
+    assert ask('use 0').startswith('ok')
+    s.sendall(b'D!!Chal')  # half a line: the proxy holds it, so an injection cannot split it
+    assert ask('s2c raw hex:' + (b'+00009900def' + b'\n').hex()).startswith('ok')
+    time.sleep(0.3); s.sendall(b'f' + b'\n')
+    got = lines_read(c)
+    assert got == b'+00009900def' + b'\n' + b'D!!Chalf' + b'\n', got  # the held half line follows, whole
+    c.sendall(b'P00009900' + b'\n'); assert lines_read(s) == b'P00009900' + b'\n'
+    assert ask('c2s raw hex:' + (b'-' + b'\n').hex()).startswith('ok')
+    assert lines_read(s) == b'-' + b'\n'
+    c.close(); s.close()
+
+
 def main():
     d = tempfile.mkdtemp(); ctl = os.path.join(d, 'ctl'); log = os.path.join(d, 'log')
     srv = socket.socket(); srv.bind((LOOPBACK, 0)); srv.listen(1); sport = srv.getsockname()[1]
@@ -222,7 +257,8 @@ def main():
         gen3_test(ask, pport, srv)
         rc_test(ask, pport, srv)
         rc5_test(ask, pport, srv)
-        print('selftest ok (gen 5, gen 3, RC gen 2, RC2/RC3 gen 5)'); return 0
+        gen1_test(ask, pport, srv)
+        print('selftest ok (gen 5, gen 3, RC gen 2, RC2/RC3 gen 5, gen 1)'); return 0
     finally:
         px.kill()
 

@@ -16,7 +16,7 @@ GraalOnline server, and nothing here helps reach one.
 
 | File | Role |
 |---|---|
-| `gen5probe.py` | Proxy for encryption generations 2–5 (picked from the login line). Decrypts and logs both directions, re-encrypts with its own cipher state, and takes commands on a unix socket: `s2c SPEC`, `c2s SPEC`, `after s2c ID SPEC`, `drop s2c ID`, `seen s2c ID`, `mark TEXT`, `status`. The login line also picks out the staff clients: a Remote Control (login id 1 + `GSERV`/`G2NRC` token, or NC id 3 + `NCL`) runs plain zlib with no cipher (the proxy's gen-2 path), while RC2 2.05, RC3 and the 2004 Delphi RC log in as type 6 and use gen 5 exactly like 2.22/2.31. |
+| `gen5probe.py` | Proxy for encryption generations 1–5 (picked from the first line: a relay join line `N...` is gen 1, plain LF lines; otherwise the login frame). Decrypts and logs both directions, re-encrypts with its own cipher state, and takes commands on a unix socket: `s2c SPEC`, `c2s SPEC`, `after s2c ID SPEC`, `drop s2c ID`, `seen s2c ID`, `mark TEXT`, `status`, `use N` (aim at connection N; a gen-1 client keeps two). A spec starting with `raw` sends exactly its bytes (no id, no newline). The login line also picks out the staff clients: a Remote Control (login id 1 + `GSERV`/`G2NRC` token, or NC id 3 + `NCL`) runs plain zlib with no cipher (the proxy's gen-2 path), while RC2 2.05, RC3 and the 2004 Delphi RC log in as type 6 and use gen 5 exactly like 2.22/2.31. |
 | `ncprobe.py` | Proxy for the **NPC-Control (NC) socket**: login type 3 + an 8-byte token (no key byte), then a cipher-free `u16be length + zlib body` stream both ways for the whole session (`../../protocol/npc-control.md`). Same command set and SPEC grammar as `gen5probe.py`; no cipher, no compression-type byte. Handles the RAWDATA length marker (id 100 S→C, id 50 C→S). Token is build-dependent (standalone NPCControl `NCL15031` [lab]; RC-2002 embedded socket `NCL11012`) but the proxy passes the login through untouched, so it is token-agnostic. For nc7132001 and the other standalone NPCControl builds, and RC in NC mode. |
 | `probectl.py` | Sends one command, or runs a plan file step by step (`waitsession`, `wait s2c ID`, `sleep`, `shot NAME`, `sh CMD`, and any proxy command). Every step is also written to the proxy log as a `MARK`, so one log holds the whole timeline. |
 | `scriptfuzz.py` | Turns a seihai-core GS1/GS2 fuzz case file into a probe plan (`plan`: fresh NPC, script as NPCBYTECODE or NPC prop 1, delete; `--canary` follows every case with a copy of the control so a dead script engine shows), and scores a run's `proxy.log` (`score`, needs `PROBE_FULLHEX=2`) against the predicted column. See [`../../protocol/script-fuzz-2026-11-19.md`](../../protocol/script-fuzz-2026-11-19.md). |
@@ -30,7 +30,12 @@ GraalOnline server, and nothing here helps reach one.
 | `lab/runwine.sh` | One run of a Windows client under Wine in the same VM: 2.05 rev 2 and 2.17.1 (gen 3), 2.22, 2.31 (gen 5, login form and server list), 4.20r8 (clock held at 2007-07-01, login form) or 5.24r4. It reuses the gs1 lab tree (Wine prefix, clients, worlds and its own network namespace). |
 | `lab/runnc.sh` | One run of an NPC-Control client under Wine (`713` = nc7132001; `2002` = a second standalone NPCControl dir) against a lab npcserver, with `ncprobe.py` between them. A template: it reuses the Wine lab tree but needs NC-specific hooks in `lab.env` (`NCSERVER`, the client dir/exe, a build-specific `NC_LOGIN` form-fill), named in its header. The true Jan-2002 NC is the RC-2002 embedded socket, which needs an RC harness, not this script. |
 | `lab/runrc.sh` | One run of a Remote Control client behind `gen5probe.py`: `rc2004` (2004 Delphi), `rc205` (RC2 2.05 GTK), `rc3` (RC3 beta) or `rcpre` (a pre-2002 Delphi RC). It stands up the lab listserver, a gserver world and the proxy on `14804`, launches the RC, logs it in as `super`/`super`, and runs a plan. The connect click is calibrated per build through `RC_CONNECT` (see the script header); `RC_NATIVE=1` runs a native Linux RC2 instead of Wine. |
-| `lab/*.plan` | Probe plans. `prop83.plan` is the pilot. `wine-core.plan` runs the same core probes on every game client. `nc-core.plan` fuzzes the NC receive handlers (16, 33, 80, 157–164, 167, 188) with empty / truncated-GINT3 / length-prefix-over-read / oversized / high-byte bodies. `widths.plan` checks each self prop 0–90 at its documented width. `pli-sweep*.plan` sends every client→server id to our gserver. `bytes2x.plan` tests raw bytes inside a message. `readback83.plan` reads prop 83 back through a level script. `rc-core.plan` sends malformed / out-of-range server→client packets to a live RC; `rc-widths.plan` is the RC player-prop width canary. |
+| `lab/*.plan` | Probe plans. `prop83.plan` is the pilot. `wine-core.plan` runs the same core probes on every game client. `wine-core-nw.plan` is the same set with the rupee count as the canary, for the NewWorld betas (no bomb count on their HUD). `nc-core.plan` fuzzes the NC receive handlers (16, 33, 80, 157–164, 167, 188) with empty / truncated-GINT3 / length-prefix-over-read / oversized / high-byte bodies. `widths.plan` checks each self prop 0–90 at its documented width. `pli-sweep*.plan` sends every client→server id to our gserver. `bytes2x.plan` tests raw bytes inside a message. `readback83.plan` reads prop 83 back through a level script. `rc-core.plan` sends malformed / out-of-range server→client packets to a live RC; `rc-widths.plan` is the RC player-prop width canary. |
+| `lab/keysweep.sh`, `lab/keysweep.py`, `lab/keysweep.keys` | The key and mouse sweep (see below): presses every key of the list on one client, one at a time, and records windows, screen change, packets and what a key-logging script saw. `keysweep_tsv.py` turns the raw rows into the derived table. |
+| `lab/keylog-gs1.npc`, `lab/keylog.gs2`, `lab/keylog-gs2.bc.hex`, `lab/keylog-stub.npc` | The sweep's key loggers: a GS1 level NPC for 2.x, and for 4.x–6.x a GS2 `onKeyPressed` script compiled to bytecode by Seihai's own compiler, delivered over a stub NPC through the proxy. |
+| `relay98.py` | Lab stand-in for the 1998 relay lobby (1.1.9 `Gserver.exe` behaviour: `NR`, `NL`, `I`, `+`/`P` pairing, `D` relay). `--fakepeer=ID` pairs every joining client with a probe partner. |
+| `fuzz12.py` | Row sets, plans and readers for the early clients: `rows/plan/read/tsv/next GEN`, with GEN 2 (gen-2 parse rows, bomb canary), 3 (own-prop width sweep 0–40, six layouts), 1 (gen-1 relay rows) and 4 (gen-1 lobby probes). `g1obs.py` lists, per gen-1 row, the client's own lines and sender id; `swsum.py` turns a sweep into a width per prop. |
+| `lab/run12.sh`, `lab/login1x.sh`, `lab/camp12.sh` | One run of an early Windows client under Wine (seihai-gserver for gen 2, `relay98` for gen 1), its start-form driver (three beta layouts plus the 1.3x form), and a campaign driver that logs in again after a crash. `lab/waitload.sh` holds each run while the 1-minute load is over `LOAD_MAX` (4), giving up after `LOAD_MAXWAIT` s. `lab/alive.sh` checks the client process in the lab namespace. `lab/sethost.pas` (FPC, Win32) sets the greyed server box of the 6th–13th betas, whose host lookup never completes under Wine. Results: [`../../protocol/early-clients-probe-2026-11-19.md`](../../protocol/early-clients-probe-2026-11-19.md). |
 | `canary.py` | Classifies each shot's bomb count against two reference shots (canary lost: count 1; canary landed: count 99). Pass the bomb-count box for the client's HUD. Also serves the RC player-list width canary: pass the box over an entry's nickname cell and two RC reference shots. |
 | `rccanary.py` | The Remote Control canary. An RC has no HUD, so this reads the proxy log (and the run's `marks.txt`) and classifies each `shot` as `gone` (window vanished — a crash), `disconnect` (socket closed), `silent` (no client→server packet since the last inject) or `alive` (the RC sent something after the inject). An RC only talks when a user acts, so an idle RC is `silent` too: `silent` means no crash and no disconnect, not a wedged parser. In-step parsing is read from the shots (player count rising, dialogs opening on the injected values) and from `rc-widths.plan`. |
 | `xwd2png.py` | Converts the `xwd` screenshots. |
@@ -95,6 +100,35 @@ digits then draw over each other, which breaks the canary. `run603.sh` waits unt
 session is up, checks a shot of the game area, and starts the whole run again if it is black
 (up to four tries, recorded in `tries.txt`). `NOBLACK=0` turns this off.
 
+## Key and mouse sweep
+
+`lab/keysweep.sh CLIENT SWEEP` runs every entry of `lab/keysweep.keys` (F1–F12, Escape, the number
+row, every letter and punctuation key, Return, Space, the modifiers alone, the edit block, arrows,
+keypad, lock keys, Ctrl+letters, Alt+digits, Alt+Return, Shift/Ctrl+arrows, mouse buttons and double
+clicks on the player, the ground, an NPC and the HUD, the wheel, and Alt+F4 last) on one client. For
+each one `keysweep.py` records the visible windows and a root screen grab, marks the proxy log, sends
+the key to the game window with `xdotool`, waits 1.5 s, and records windows, screen difference
+(changed pixels and bounding box), whether the client is alive and still in its session, and the
+client→server packets between the marks. It then resets: new windows get Escape, then `n`; pause,
+item-list, map, chat and lock keys are pressed again; arrows are undone with the opposite arrow. When
+the client died, lost its session or kept a window open, the next run logs in again and goes on from
+the next key (a key that fails three runs in a row is skipped).
+
+`KEYLOG=1` adds a key logger that copies each key event and the `keydown(0..10)` bits into the
+player's chat, so they arrive in the proxy log as chat props. 2.x clients take the GS1 text NPC
+`keylog-gs1.npc` (`keypressed`, `#p(0..2)`). 4.x–6.x clients take bytecode, and the lab gserver's
+GS1 lowering has no `keypressed`, so `keylog-stub.npc` goes in the level and `keysweep.py
+--bytecode` replaces its script through the proxy (PLO_RAWDATA + PLO_NPCBYTECODE) with
+`keylog-gs2.bc.hex`, which is `keylog.gs2` compiled by seihai-core's GS2 compiler. Run each client
+once with and once without the logger (`KEYLOG=0`); `keysweep_tsv.py ROWS --clean ROWS2` takes the
+screen and window effects from the clean run, so the logger's chat bubble does not count as an effect.
+
+Lab inputs: `PROBE_ROOT` names the lab folder (default `$HOME/probelab`), so a sweep can run in its own
+folder next to other probe runs; `DISP` picks the display. For the Wine clients `WINELAB` must be a
+private copy of the Wine lab tree (marked with a `.keysweep-ok` file), because the sweep rewrites its
+start levels before each run. Raw rows, logs and screen grabs stay in `$PROBE_ROOT/out/keysweep-*`;
+only the derived tables go in the repo (`protocol/keysweep/`).
+
 ## Remote Control
 
 The RC game socket uses the same wire as a game client, so the proxy injects into a live RC the
@@ -124,6 +158,7 @@ When more than one fuzz thread shares one Win10 lab VM, serialise the guest desk
 
 ## Limits
 
+- Generation 1 is tested on 18 Delphi builds (1st Graal to 1.1.9) and generation 2 on 1.28b2 to 1.39 ([results](../../protocol/early-clients-probe-2026-11-19.md)).
 - Generations 2, 3 and 5 are tested (gen 3 on real 2.05 and 2.17.1, gen 5 on 2.22 and later). Gen 4 (2.19–2.21) follows the server source and is untested. 6.1.1.3's RC4 stream is not covered.
   6.1.1.3 needs a loopback connector harness first (`../../protocol/v6113-status.md`).
 - Injected packets go out as their own frame, at a packet boundary, so they never split

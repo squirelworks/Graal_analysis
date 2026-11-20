@@ -55,7 +55,7 @@ test is established by this inventory. Earlier cloud runs of 3.153 and 4.20r6
 are documented separately in the [Tiger lab note](lab-mac-tiger-2026-10-31.md);
 the absence of execution in this inventory does not invalidate those observations.
 
-- [ ] Authenticate the two v3 archive labels against the separately studied 3.153 input.
+- [x] ~~Authenticate the two v3 archive labels against the separately studied 3.153 input.~~ The 3.153 input studied in [the 2026-11-14 Tiger lab](lab-mac-ppc-315-512-flags-2026-11-14.md) (readme version 3.153, token `G3D28015`) has the same main-executable digest as both labels (App. E#609).
 - [x] ~~Compare extracted regular-file resources where executable digests match.~~
   [Revision 1](macos-resource-identity.md) supplies that result; original containers and
   filesystem metadata remain outside the comparison.

@@ -266,6 +266,10 @@ What each type means. Layouts come from the receiving side. Types marked *inferr
 | `5`, `6`, `7` | none | Pose flags. The readme dates sitting and sleeping to 13th Graal (*inferred*) |
 | `8` | registration-key string | Duplicate key check. If a peer shows the same `reg.code` key, the client says "Another player uses the same registration key like you. You will be disconnected." |
 
+## Lab results (2026-11-19)
+
+Eighteen Delphi builds, 1st Graal to 1.1.9, were driven against a stand-in lobby behind the probe proxy. The note [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md#gen-1-the-relay-protocol-on-real-clients) has the rooms each build joins, when a client answers `+` with `P`, the state-push `D` types per build, how `I<id>` is parsed (8 digits; sender id = id mod 16384), and the line length at which the 10th to 15th betas and 1.1 reset the connection. **[lab]**
+
 ## The Java lobby this comes from
 
 The lobby itself is Knorr's "GServ Standalone" (1997), shipped with source in Zelda Online 2. Its full line set (observer, super user, watch, the `+<id><name>` form, the ignored `H` score line) and the Zelda Online 2 and Java Graal room names (`Z<level>1.6`, `G2<level>`) are in `client-internals/precursors-and-fan-builds.md`.

@@ -102,7 +102,7 @@ The number-to-text rule is what a `+` join, `format("%f")` and `format("%s")` pr
 
 ## Not known
 
-- What opcode 54 stores, and the operand order of 48 and 49.
+- ~~What opcode 54 stores, and the operand order of 48 and 49.~~ Settled for 5.00r7 in [static-reads-appendix-e-2026-11-20-b.md](static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209).
 - The value `waitfor` gives when its timeout runs out.
 - The 6.x name of the loop-limit property.
 - 4.04r2 (both builds), 5.12 to 5.31r4 (both 5.12 builds), 6.00r2 and 6.00r4 were not read;

@@ -21,7 +21,7 @@ The rules below cover the edge cases of those replies, which differ either side 
 | --- | --- | --- |
 | Below 2.1 the server adds `.gif` to a requested name with no extension | server | [srv] (protocol/file-transfer.md#requests-client--server) |
 | Below 2.1, 30 also means "already up to date"; 2.05 handles 45, but the server does not send it to 2.05 | server; 2.05 | [srv] (protocol/file-transfer.md#replies-server--client) |
-| Game clients cannot upload; RC upload uses the file-browser ids 89 to 98 and 65 to 67 (→ §7); disputed for 6.x → App. E#9 | server | [srv] (protocol/file-transfer.md#upload-rc-only) |
+| Game clients cannot upload; RC upload uses the file-browser ids 89 to 98 and 65 to 67 (→ §7). 6.x clients carry the ids for the scripted-RC file browser; on a game connection the GServer-v2 fork treats them as unknown packets (→ App. E#9) | server | [srv] (protocol/file-transfer.md#upload-rc-only); [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9) |
 
 ## 2.7.2 The `PLO_FILE` body
 
@@ -177,4 +177,4 @@ The shared second-frame bundling and the near-empty against full first wave were
 | At most four file packets go in one frame. The first four share a frame with the first flags and props line, and each later batch of up to four waits until the server has answered the batch before it | 2.22 | [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers) |
 | With nothing but the executable, 2.22 stops at start-up because `pics1.png` is missing, so a near-empty folder still needs the root start-up files | 2.22 | [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers) |
 
-Why one folder checks 13 files and the other 17 is open (→ App. E#25). [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)
+The difference is five files (`idle.gani`, `plisticononline.png`, `plisticonaway.png`, `plisticondnd.png`, `head0.png`) that 2.22 requests when missing and never update-checks when present; a re-run of the near-empty case requested 18 (→ App. E#25). [lab] (live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#start-up-file-checks-on-222-e25)
