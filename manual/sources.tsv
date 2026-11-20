@@ -425,6 +425,7 @@ graal3d/torque-engine-4x.md	cited	8.3; 10; E	10
 graal3d/x-loader-fuzz-2026-11-20.md	cited	9	9	Graal3D client on real Windows 10 with malformed .x levels: a bad face count or index leaves no collision object
 live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
 live-runs/client-harness-2026-11-13/README.md	cited	4.2; 4.3	4	
+live-runs/drops-2026-11-20/README.md	cited	4.3; E	4.3; E	2026-11-20 lab run: ranged archer kills on 1.21 (real ground drops) and 2.17.1 (no drop), 2.22 sword against sword (§4.3.8); open points in App. E#324
 live-runs/fuzz-2026-11-19/README.md	cited	2.5; 2.6; 4.12	2.5; 2.6; 4.12	
 live-runs/fuzz-2026-11-19/fuzz-results.tsv	excluded			per-inject rows of the 2026-11-19 fuzz run, already appended to protocol/probe-results.tsv
 live-runs/fuzz-2026-11-19/plans/queue.txt	excluded			repository tooling for the notes (run queue for the fuzz plans), not Graal
