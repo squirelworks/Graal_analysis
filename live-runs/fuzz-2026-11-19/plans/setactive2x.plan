@@ -1,0 +1,61 @@
+# fz: PLO_SETACTIVELEVEL (156) on 2.22 / 2.31 (start level gs1ctl.nw). After each 156: a 3x3 PLO_BOARDMODIFY (7)
+# at a new spot with tile 512 and a bombs canary (PLO 9 prop 5) - do later board/prop updates still land?
+waitsession 240
+wait s2c 9 90
+sleep 12
+shot 00-base
+mark ctl board+bombs, no 156
+s2c 7 c:8 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:21
+sleep 2
+shot 01-ctl
+mark 156 gs1ctl.nw
+s2c 156 t:gs1ctl.nw
+sleep 2
+shot 02-156-gs1ctl.nw
+s2c 7 c:14 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:22
+sleep 2
+shot 02-after-gs1ctl.nw
+mark 156 labroom.nw
+s2c 156 t:labroom.nw
+sleep 2
+shot 03-156-labroom.nw
+s2c 7 c:20 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:23
+sleep 2
+shot 03-after-labroom.nw
+mark 156 lab.gmap
+s2c 156 t:lab.gmap
+sleep 2
+shot 04-156-lab.gmap
+s2c 7 c:26 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:24
+sleep 2
+shot 04-after-lab.gmap
+mark 156 EMPTY
+s2c 156 
+sleep 2
+shot 05-156-EMPTY
+s2c 7 c:32 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:25
+sleep 2
+shot 05-after-EMPTY
+mark 156 nosuchlevel.nw
+s2c 156 t:nosuchlevel.nw
+sleep 2
+shot 06-156-nosuchlevel.nw
+s2c 7 c:38 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:26
+sleep 2
+shot 06-after-nosuchlevel.nw
+mark 156 gs1ctl.nw
+s2c 156 t:gs1ctl.nw
+sleep 2
+shot 07-156-gs1ctl.nw
+s2c 7 c:44 c:20 c:3 c:3 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512 s:512
+s2c 9 c:5 c:27
+sleep 2
+shot 07-after-gs1ctl.nw
+sleep 3
+shot 99-end

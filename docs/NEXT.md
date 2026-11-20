@@ -143,7 +143,7 @@ macOS CI is paused until the polish stage.
   - [ ] Trace selected-slice entry through application/window initialization to the game loop; re-test with OpenGL-capable guest display for a first frame.
 - [x] **Document 6.037 guest login loop status (C7–C9).** ~~Guest-first, compiled Login hosts, named-login lab settled; form/script gotchas unconfirmed.~~ [Note](../client-internals/6037-guest-login-loop.md). Win 6.03r7 loopback checklist remains open.
 
-- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md). Still open: login-step args, `?p=` binding, loopback `conf.gs` harness, post-decrypt Login replies, 7.x script delta.
+- [x] **Document 6.1.1.3 / `GNP1905C` connector-path status (#510 / #397 / research #44).** ~~Post-hello RC4-from-287, per-direction keys, `EILLLT`, conf.gs fetch and 6.037≠6.113 contrast settled from existing notes; do not re-chase the cipher.~~ [Note](../protocol/v6113-status.md), [2026-11-19 lab](../protocol/v6113-login-lab-2026-11-19.md). The stock-client trust-anchor swap is now ruled out (packer virtualizes verify); clean-room `SEI00001` login runs end to end. Still open: authentic first-hop login/list path, post-decrypt Login replies (6.113-vs-6.037 reply contract **not** established), login-step args, `?p=` binding, `GNP1905C` catalogue gap in `gs2lib`, 7.x script delta.
 - [x] **Record Windows 6.113 live connector still-served + prop wire/slot join.** ~~Stock client caches `GRESCR01` `StartScript_Connector` before Login; wire 9→`setplayerprops`.~~ [Live](../protocol/v6113-live-connector-2026-11-16.md), [handlers/props](../protocol/v6113-receive-handlers-props.md). Loopback harness and Login reply contract remain open.
 - [x] **Publish scrubbed Windows 6.113 live handshake reconfirm (2026-11-16).** ~~Clear `GNP1905C` + zlib `EILLLT`/`0xfd`, RC4-from-287, three answered `HOST:14900` sessions + unanswered SYN; stayed on 14900 after Login; no keys.~~ [Note](../protocol/v6113-live-handshake-2026-11-16.md). Keys, decrypts and loopback harness remain open.
 
@@ -520,9 +520,9 @@ macOS CI is paused until the polish stage.
   the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (304 pages, sources footnoted, every table introduced, wide tables on landscape pages, an A3 system map with an A4 print copy and A3 insert) is built and waits for its tag.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
-  1.0.0"): 0.0.5 publishes the current research (built, awaiting its tag), then
-  0.0.6 coverage, 0.0.7 implementability, 0.0.8 triage of the unknowns, 0.0.9
-  release quality, 1.0.0 sign-off (Squirrel's call). Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
+  1.0.0"). 0.0.5 and 0.0.6 publish the research as it stands (owner, 2026-11-11 and
+  2026-11-19). Coverage, implementability, triage of the unknowns and release quality
+  are the 1.0.0 criteria in #191, met in later releases; 1.0.0 sign-off is Squirrel's call. Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
 - [ ] **16. Torque study and the 3.04 plan. Live work, top priority** (Squirrel,
   2026-11-13: there is no Torque hold; the 2026-11-05 "on hold" note was an agent error).

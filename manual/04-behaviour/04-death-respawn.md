@@ -112,7 +112,7 @@ The respawn point is saved on level entry, but only when the new level is a diff
 | no gmap | 2.05 returns -1 for both indices when there is no current gmap; 2.00 to 2.04 take the list straight from the client's state, which is inferred to give the same result | [2.05][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | 2.17.1, 2.22, 2.31 | no group test (step 3 absent) | [2.17.1][2.22][2.31] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | end-of-respawn save | the respawn routine calls the save once more, unconditionally; in the 2.22 lab, dying again before the server's warp reply still respawned at the entry point, not the death spot | [2.05] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#after-the-respawn); [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#d-end-of-respawn-save-settled-for-222-same-level-respawn) |
-| gmap list order | the list's order and the timing of its update against the save are open (→ App. E#314) | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| gmap entry | on 2.22, entering a gmap from a plain level saves the entry point: a death sends the player back to it, not to the start level; death across a seam is unmeasured (→ App. E#314) | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
 
 Builds that carry the group test's delimiter set, by a constant scan, with the rule itself read only where marked:
 
@@ -121,7 +121,7 @@ Builds that carry the group test's delimiter set, by a constant scan, with the r
 | 1.1 to 1.36 | absent | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 1.37, 1.38, 1.39, 1.41 | present | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.00 to 2.05 rev 2, NewMain 24 and 26, NewWorld beta 1 | present (rule read in all 2.00 to 2.05 builds) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
-| 2.1 test 2 and 3, NewWorld beta 2 | absent; their entry code not read (→ App. E#315) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
+| 2.1 test 2 and 3, NewWorld beta 2 | absent; 2.1 test 2 and 3 read: 2.17.1's rule, no group test; NewWorld beta 2 not read (→ App. E#315) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315); [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.17.1, 2.22, 2.31 | absent; entry code read, no group test | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 
 ## 4.4.5 Server side (GServer-v2)

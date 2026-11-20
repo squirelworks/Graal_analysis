@@ -232,6 +232,8 @@ The static token read gives `GNW03081` for ver7–ver9 and `GNW31101` for ver10,
 
 The two 1.40 inputs carry `GNW23090`; the token's date digits read 23 September 2000, between the listed 1.39 and 1.41 rev 1 tokens. Neither of the checked FileVersion 1.3.9.1 inputs carries the listed `GNW12080`: one carries `GNW07080`, the other `GNW23090`. Thus the listed 1.391 token remains list-only, not disproved by a version-resource match. Exact-input login captures remain open in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#what-the-140-builds-settle)
 
+A lab run captured the `GNW23090` 1.40 login: the start form has no host field, One Player Online fetches a server list from the built-in list host on port 14910, and the login is type 0, generation 3, answered with a level name and one full board that the client draws and walks. The v22 capture is still open (→ App. E#15). [lab] (protocol/lab-appe-mirae-2026-11-20b.md#login-of-the-140-build-e15)
+
 ## 2.3.4 2.22, 2.31 and 3.x login (generation 5, type 5)
 
 The fields are those of → §2.3.3 with client type 5. The message travels in the fixed mode-3 login frame (→ §2.2.4) [bin] (protocol/client-versions.md#game-server-login); [bin] (protocol/v3x-clients.md#game-server-login-and-cipher).

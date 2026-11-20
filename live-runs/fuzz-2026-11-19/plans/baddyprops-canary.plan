@@ -1,0 +1,369 @@
+# fz: baddy props 11..30 with a mode canary (6.03r7 / Win). Each test: a fresh baddy (own id) in mode 10, which the
+# client never reports; then [tested prop][mode 0]. If mode 0 lands, the client walks it and sends C>S 15 x/y for that id.
+# Afterwards the baddy is parked (mode 10, far corner) and the player healed.
+waitsession 240
+wait s2c 9 90
+sleep 10
+shot 00-base
+mark B20 ctl-none
+s2c 2 c:20 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:20 c:7 c:2
+sleep 1.6
+s2c 2 c:20 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B21 ctl-mode0
+s2c 2 c:21 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:21 c:5 c:0
+sleep 1.6
+s2c 2 c:21 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B22 ctl-p10str
+s2c 2 c:22 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:22 c:10 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:22 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B23 ctl-p7
+s2c 2 c:23 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:23 c:7 c:2 c:5 c:0
+sleep 1.6
+s2c 2 c:23 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B24 p11-c
+s2c 2 c:24 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:24 c:11 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:24 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B25 p11-str
+s2c 2 c:25 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:25 c:11 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:25 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B26 p12-c
+s2c 2 c:26 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:26 c:12 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:26 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B27 p12-str
+s2c 2 c:27 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:27 c:12 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:27 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B28 p13-c
+s2c 2 c:28 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:28 c:13 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:28 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B29 p13-str
+s2c 2 c:29 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:29 c:13 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:29 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B30 p14-c
+s2c 2 c:30 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:30 c:14 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:30 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B31 p14-str
+s2c 2 c:31 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:31 c:14 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:31 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B32 p15-c
+s2c 2 c:32 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:32 c:15 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:32 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B33 p15-str
+s2c 2 c:33 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:33 c:15 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:33 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B34 p16-c
+s2c 2 c:34 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:34 c:16 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:34 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B35 p16-str
+s2c 2 c:35 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:35 c:16 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:35 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B36 p17-c
+s2c 2 c:36 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:36 c:17 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:36 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B37 p17-str
+s2c 2 c:37 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:37 c:17 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:37 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B38 p18-c
+s2c 2 c:38 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:38 c:18 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:38 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B39 p18-str
+s2c 2 c:39 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:39 c:18 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:39 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B40 p19-c
+s2c 2 c:40 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:40 c:19 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:40 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B41 p19-str
+s2c 2 c:41 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:41 c:19 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:41 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B42 p20-c
+s2c 2 c:42 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:42 c:20 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:42 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B43 p20-str
+s2c 2 c:43 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:43 c:20 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:43 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B44 p21-c
+s2c 2 c:44 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:44 c:21 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:44 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B45 p21-str
+s2c 2 c:45 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:45 c:21 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:45 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B46 p22-c
+s2c 2 c:46 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:46 c:22 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:46 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B47 p22-str
+s2c 2 c:47 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:47 c:22 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:47 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B48 p23-c
+s2c 2 c:48 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:48 c:23 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:48 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B49 p23-str
+s2c 2 c:49 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:49 c:23 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:49 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B50 p24-c
+s2c 2 c:50 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:50 c:24 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:50 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B51 p24-str
+s2c 2 c:51 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:51 c:24 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:51 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B52 p25-c
+s2c 2 c:52 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:52 c:25 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:52 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B53 p25-str
+s2c 2 c:53 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:53 c:25 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:53 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B54 p26-c
+s2c 2 c:54 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:54 c:26 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:54 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B55 p26-str
+s2c 2 c:55 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:55 c:26 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:55 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B56 p27-c
+s2c 2 c:56 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:56 c:27 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:56 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B57 p27-str
+s2c 2 c:57 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:57 c:27 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:57 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B58 p28-c
+s2c 2 c:58 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:58 c:28 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:58 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B59 p28-str
+s2c 2 c:59 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:59 c:28 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:59 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B60 p29-c
+s2c 2 c:60 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:60 c:29 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:60 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B61 p29-str
+s2c 2 c:61 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:61 c:29 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:61 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B62 p30-c
+s2c 2 c:62 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:62 c:30 c:0 c:5 c:0
+sleep 1.6
+s2c 2 c:62 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B63 p30-str
+s2c 2 c:63 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:63 c:30 str:x c:5 c:0
+sleep 1.6
+s2c 2 c:63 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+mark B64 ctl-mode0-end
+s2c 2 c:64 c:1 c:60 c:2 c:30 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.6
+s2c 2 c:64 c:5 c:0
+sleep 1.6
+s2c 2 c:64 c:1 c:120 c:2 c:120 c:5 c:10
+s2c 9 c:2 c:6
+sleep 0.3
+sleep 2
+shot zz-end

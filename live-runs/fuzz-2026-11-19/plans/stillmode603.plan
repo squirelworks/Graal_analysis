@@ -1,0 +1,45 @@
+# fz: baddy still-mode sweep on 6.03r7. 11 graysoldiers at row y=40 (half tiles), mode 0..10 (prop 5).
+# Observer: client C>S 15 (baddy props it reports as leader) per id, and shots.
+waitsession 240
+wait s2c 9 90
+sleep 6
+shot 00-base
+mark baddy 1 mode 0 at x=8
+s2c 2 c:1 c:1 c:8 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:0
+sleep 0.3
+mark baddy 2 mode 1 at x=16
+s2c 2 c:2 c:1 c:16 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:1
+sleep 0.3
+mark baddy 3 mode 2 at x=24
+s2c 2 c:3 c:1 c:24 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:2
+sleep 0.3
+mark baddy 4 mode 3 at x=32
+s2c 2 c:4 c:1 c:32 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:3
+sleep 0.3
+mark baddy 5 mode 4 at x=40
+s2c 2 c:5 c:1 c:40 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:4
+sleep 0.3
+mark baddy 6 mode 5 at x=48
+s2c 2 c:6 c:1 c:48 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:5
+sleep 0.3
+mark baddy 7 mode 6 at x=56
+s2c 2 c:7 c:1 c:56 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:6
+sleep 0.3
+mark baddy 8 mode 7 at x=64
+s2c 2 c:8 c:1 c:64 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:7
+sleep 0.3
+mark baddy 9 mode 8 at x=72
+s2c 2 c:9 c:1 c:72 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:8
+sleep 0.3
+mark baddy 10 mode 9 at x=80
+s2c 2 c:10 c:1 c:80 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:9
+sleep 0.3
+mark baddy 11 mode 10 at x=88
+s2c 2 c:11 c:1 c:88 c:2 c:40 c:3 c:0 c:4 c:2 str: c:5 c:10
+sleep 0.3
+sleep 1
+shot 01-t1
+sleep 3
+shot 02-t4
+sleep 5
+shot 03-t9

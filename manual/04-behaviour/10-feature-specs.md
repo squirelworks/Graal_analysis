@@ -31,7 +31,7 @@ The server can also ask for a process list, and 2.31 scans windows on its own. T
 | Rule | Detail | Source |
 | --- | --- | --- |
 | process list | the server sends `PLO_LISTPROCESSES` (182) once during login to 2.17 and later; the client can answer `PLI_PROCESSLIST` (44) with its running programs (→ §2.4.9) | [srv][inf] (client-internals/feature-specs/08-tampercheck.md#exact-server-behaviour-srv) |
-| 2.31 window scan | tick 20 of the 64-tick cycle compares the titles and classes of top-level windows with an obfuscated blacklist; the list is not decoded and what the client does on a match is unknown (→ App. E#321) | [bin] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap); [doc] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| 2.31 window scan | tick 20 of the 64-tick cycle runs a third-party anti-debugging component over the top-level windows. It looks for 20 scrambled tool names (monitors, dumpers and decompilers such as Regmon, File Monitor, ProcDump32, DeDe and Memory Editor) anywhere in each title; on a match it posts a quit message to that window and ends the client, and sends nothing to the server (→ App. E#321) | [bin] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
 | 2.31 debugger probe | tick 1 of the cycle probes for a debugger and arms a 5000 ms timer | [bin] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md#pli-39-re-send-every-32-s) |
 
 ### 4.10.1.3 What outside input tools look like
@@ -43,7 +43,7 @@ The recovered trainers of the period are summarised here only for what the clien
 | how they act | every recovered sample types keys into a classic client window or writes text into it through window messages; none speaks the game protocol | [bin] (recovered-hacks/behaviour-models.md#what-a-server-can-see) |
 | memory | no memory-writing or remote-thread imports were found in the unpacked samples, so none of them changes the client's image; the tamper check of → §4.10.1.1 cannot see them | [bin] (recovered-hacks/TRAINER_RE_NOTES.md); [inf] (recovered-hacks/THREAT_TAXONOMY.md) |
 | what the server sees | only the resulting actions (dig, use, walk, chat), at the rates the tool's waits allow | [inf] (recovered-hacks/behaviour-models.md#what-a-server-can-see); [inf] (recovered-hacks/static-2026-11-01/README.md#what-a-checker-can-use) |
-| window titles | some tools look for the client window by title, and some show their own named window; such a window is the kind of thing the 2.31 scan compares, but whether its list names any of them is unknown (→ App. E#321) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
+| window titles | some tools look for the client window by title, and some show their own named window; the 2.31 scan's list names debugging and monitoring tools, not game trainers, so it does not catch them (→ App. E#321) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
 
 ### 4.10.1.4 The recovered trainers, tool by tool
 
@@ -110,7 +110,7 @@ Ctrl and a letter shows an emote. The rules below give the keys, how the image i
 | lookup | the letter is lowercased and the client takes the first loaded file whose name starts with `emoticon_<letter>` and ends in png, mng or gif; there is no letter-to-name table, so the mapping is whatever files exist | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes); [2.05] (client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md#emotes-ctrlletter) |
 | drawing | at the player's x + 2, y − 5 (a little lower when a second flag is set) for 50 ticks (2.5 s) | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | network | the key path sends nothing; `PLI_SHOWIMG` (24) is sent only by the script command `showimg` (→ §8.2) | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
-| others seeing it | unmeasured: captured SHOWIMG frames re-sending an AFK image about every 3 s are not explained by the key path (→ App. E#322) | [cap][inf] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| others seeing it | nothing: on 2.05 rev 2 a key emote sends only a one-time file check for its image, no `PLI_SHOWIMG` and no props, so the captured AFK frames came from a server script (→ App. E#322) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 | earlier builds | 1.38 introduced Ctrl+letter emotes, and 1.39 added letters | [doc] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 
 ## 4.10.4 Picking up and dropping items online

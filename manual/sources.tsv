@@ -272,6 +272,8 @@ docs/releases/v0.0.2.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.3.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/unreleased.md	excluded			notes for the next GitHub release, not Graal
+docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5; E	3.5	
 formats/windows-222-verifier-variants.md	cited	3.5; E	3.5; E	Four-guard variant comparison and separate prior control claim carried in 3.5.5.1; broader lineage, caller and runtime uncertainties carried in E#103.
@@ -316,7 +318,7 @@ npc-library/archival-scripting-notes.md	cited	8; 8.1	8
 npc-library/behaviours.md	cited	8.1	8	
 npc-library/npcprop-class-v4-158-status.md	cited	2.5; 8; E	2.5; E	NPCPROP_CLASS vs PLI 158 on v4: GServer habit vs client isolate; research #55
 npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
-npc-library/gs1-commands-by-version.md	excluded		C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
+npc-library/gs1-commands-by-version.md	excluded	E	C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-event-counts.md	cited	8.1	8.1	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
@@ -379,7 +381,7 @@ protocol/public-listserver-2026-10-25.tsv	cited	6	6
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
 protocol/rc-list-online.md	cited	7; E	7	
 protocol/rc2-sessions-stock-2026-11-16.md	cited	7; E	7; E	RC2/RC3 stock: IRC after 25; no 194→prop35+location; GUI≠140; GSERV024/025 ladder
-protocol/rc-fuzz-2026-11-19.md	pending		7; E	First RC packet-fuzz: the 2004 RC (GSERV024, type 6/gen 5) takes the rc-core malformed set with no crash or desync; to fold into Part 7 with the RC fuzz harness
+protocol/rc-fuzz-2026-11-19.md	pending	E	7; E	First RC packet-fuzz: the 2004 RC (GSERV024, type 6/gen 5) takes the rc-core malformed set with no crash or desync; to fold into Part 7 with the RC fuzz harness
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Canonical earliest-network capability/evidence map carried in 2.3.1.5; source-only board behavior also carried in 4.11 via the precursor note. Consumer PR status is dated implementation context, not original behavior.
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/shoot-5007.md	cited	2.4; 2.5	2.5	
@@ -571,7 +573,7 @@ version-profiles/lab-boardmodify2-186-trailer.tsv	cited	2.5; 1	1; C	Appendix C n
 version-profiles/lab-enterlevel-231.tsv	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-gs13-respawn.tsv	cited	5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-levelchange-46-222-231.tsv	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
-version-profiles/lab-mac-tiger-2026-10-31.md	cited	C; 1	1; C	
+version-profiles/lab-mac-tiger-2026-10-31.md	cited	C; 1; E	1; C	
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
@@ -676,7 +678,7 @@ protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, number
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
 protocol/v7-connector-live-20261111.md	cited	1; 2.10; E	1; 2.10	v7 connector request order, reply container and online-play reach in §2.10.7; identity in §1.8.10; open decrypt in E#616
-protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
+protocol/connector-script.md	cited	2.10; E	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/v6113-status.md	cited	2.10; E	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
 protocol/v6113-live-connector-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
 protocol/v6113-live-handshake-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live HOST:14900 handshake reconfirm; GNP1905C + EILLLT/0xfd; RC4 from 287; no keys; §2.10 / E / #510
@@ -713,7 +715,7 @@ npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C
 npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
 version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	
-version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md	cited	2.4	2.4	lab run record; §2.4 carries the flag-send rule, and the build identities and setup stay in the note
+version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md	cited	2.4; E	2.4	lab run record; §2.4 carries the flag-send rule, and the build identities and setup stay in the note
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
 client-internals/iphone-version-tokens.md	cited	1	1	Token families and scanner-negative limits carried; no offline-build conclusion or captured login inferred.
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
@@ -780,6 +782,7 @@ protocol/named-login-5x-6x.md	cited	2.3; 8.3; E	2.3; 8; E
 client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding and prefix/copy observations carried; short-path object append, field identity, vector/wire and runtime gates remain open; no mobile profile or native acceptance inferred.
 formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement field context and preservation boundary carried in3.3.8; native resolution remains open.
 VERSION-TOKENS.md	excluded			Generated discovery index of the canonical version-token catalogue, not an independently maintained source.
+VERSIONING.md	excluded			repository release policy, not Graal
 version-profiles/version-token-map.tsv	excluded			Generated machine-readable associations from the canonical catalogue.
 tools/token-map/README.md	excluded			Generation and integrity-check instructions; no independent client behavior.
 client-internals/mac-6004-6015-slices.md	cited	1	1	Architecture and per-slice declared dependencies carried in §1.8.7; selected-slice startup, runtime initialization and Windows module boundaries remain open.
@@ -826,14 +829,14 @@ server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3; E	6; 3;
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
 protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
-protocol/fuzz-4x-5x-win-2026-11-19.md	pending		2.6	probe set on the other Windows 4.x/5.x builds: no differences in 130 canary cases per build; prop 82 a string by 5.00r7; NUL kept in a SETBACKTO name (§2.5.6.1); for §2.6.6 prop widths by build
+protocol/fuzz-4x-5x-win-2026-11-19.md	pending	E	2.6	probe set on the other Windows 4.x/5.x builds: no differences in 130 canary cases per build; prop 82 a string by 5.00r7; NUL kept in a SETBACKTO name (§2.5.6.1); for §2.6.6 prop widths by build
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 protocol/keysweep/README.md	pending		4.6	Key and mouse sweep on real clients (6.03r7, 4.20r8); script key codes, PLI 38 clicks, game key sets for §4.6.6
 protocol/keysweep/603r7.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/420r8.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/524r4.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/231.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
-tools/probe/README.md	excluded			repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
+tools/probe/README.md	excluded	E		repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3; E	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5; E	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
 client-internals/hypervisor-live-debug.md	cited	E	E	host-side QEMU/KVM debugging method, cited as the method row of E#616
@@ -842,11 +845,33 @@ protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login:
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
 live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.7, §4.1.8), combat checks (§4.3.8), 2.05r2 drop control (§4.5.5), 4.x-6.x action list (§4.11.14); open points in App. E
-protocol/plo-156-setactivelevel-231.md	cited	2.5	2.5	2.31 extra step after PLO 156: pending graal:// start parameters sent once as a serverstartparams trigger action; lab confirmation open.
+protocol/server-fuzz-c2s-targets.md	excluded			C→S server-fuzz targets, harness pointer and per-build run status incl. the 2026-11-19 GServer 1.28b2 run (no crashes; preliminary lab behaviours with follow-ups); a status/targets note whose framing/login facts are already cited from gserv-1999.md and listserver.md
+tools/srvfuzz/README.md	excluded			repository tooling for the notes (the standalone C→S server fuzzer behind protocol/server-fuzz-c2s-targets.md), not Graal
+protocol/plo-156-setactivelevel-231.md	cited	2.5; E	2.5	2.31 extra step after PLO 156: pending graal:// start parameters sent once as a serverstartparams trigger action; lab confirmation open.
 protocol/ios-classic-plus-113-framing.md	cited	E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
 protocol/probe-native-linux-4x-2026-11-19.md	excluded		2.6; B	native Linux 3.x/4.x probe run (run4x.sh): 4.x prop widths and unknown-PLO handling match win-4.20r8; folds into the prop-width-by-build rows (2.6.6) and App. B that probe-targets-2026-11-18.md already carries
-protocol/probe-mac-6015-2026-11-19.md	excluded		2.6; B	6.015 macOS client probe in the Lion VM (runmac.sh): 6.x prop widths (83/77 five-byte, 82 string) matching 6.03r7; folds into the prop-width-by-build rows (2.6.6) and App. B
+protocol/probe-mac-6015-2026-11-19.md	excluded	E	2.6; B	6.015 macOS client probe in the Lion VM (runmac.sh): 6.x prop widths (83/77 five-byte, 82 string) matching 6.03r7; folds into the prop-width-by-build rows (2.6.6) and App. B
 protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; E	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
-protocol/conf-gs-fuzzing.md	pending		2; E	conf.gs fuzzing design + the 6.113 trust-anchor key patch; two-phase (container framing on a stock client, then decrypted-script content after the swap); loopback harness in tools/connfuzz/; to fold into the protocol chapter
+protocol/conf-gs-fuzzing.md	pending	E	2; E	conf.gs fuzzing design + the 6.113 trust-anchor key patch; two-phase (container framing on a stock client, then decrypted-script content after the swap); loopback harness in tools/connfuzz/; to fold into the protocol chapter
 tools/connfuzz/README.md	excluded			repository tooling for the notes (the loopback conf.gs fuzzer behind conf-gs-fuzzing.md), not Graal
-protocol/script-fuzz-2026-11-19.md	pending		8.2; 8.3; 8.4	GS1/GS2 script fuzz on 6.03r7, 5.24r4, 4.20r8, 2.05, 2.22, 2.31 against Seihai predictions: undispatched bytes crash 6.03r7 only, raw fold bytes, non-number text as -1, GS1 live message codes and loop cap; for 8.2 per-build GS1 rules and 8.3/8.4 GS2 VM behaviour
+protocol/script-fuzz-2026-11-19.md	pending	8.3; E	8.2; 8.3; 8.4	GS1/GS2 script fuzz on 6.03r7, 5.24r4, 4.20r8, 2.05, 2.22, 2.31 against Seihai predictions: undispatched bytes crash 6.03r7 only, raw fold bytes, non-number text as -1, GS1 live message codes and loop cap; for 8.2 per-build GS1 rules and 8.3/8.4 GS2 VM behaviour
+protocol/v6113-login-lab-2026-11-19.md	pending		2.10; E	#510 loopback: in-memory trust-anchor swap ruled out (virtualized verify); clean-room SEI00001 login runs; GNP1905C catalogue gap; authentic first-hop + post-login replies open
+live-runs/fuzz-2026-11-19/README.md	pending	E	2.6; 2.5; E	2026-11-19 packet fuzz: baddy props 11+ end the message on 4.20r8 and 2.22, 156 with a gmap name fetches the gmap on 2.22/2.31, 195 DEFAULT* no own-player effect, NPC prop widths on 4.20r8/5.24r4; to fold into the prop-width and receive sections
+live-runs/fuzz-2026-11-19/fuzz-results.tsv	excluded			per-inject rows of the 2026-11-19 fuzz run, already appended to protocol/probe-results.tsv
+live-runs/fuzz-2026-11-19/plans/queue.txt	excluded			repository tooling for the notes (run queue for the fuzz plans), not Graal
+protocol/probe-gen3-2.0x-2026-11-19.md	excluded		2.6; B	gen-3 2.0x-era Windows clients (2.00-2.05r1, GraalX, NewMain 24/26, 1.41r1, 2.1 tests, NewWorld betas) probed natively on Win10 with wine-core.plan: all identical to w205-b, 2.02x crash on Start before any packet; folds into the prop-width-by-build rows (2.6.6) and App. B
+formats/pics1-tile-layout-render-2026-11-19.md	cited	E	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
+formats/gmap-heights-by-component-2026-11-19.md	cited	3.2; E	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
+protocol/link-probe-offsets-205-222-2026-11-19.md	cited	4.2; E	4.2; E	Disassembler read: per-facing edge-link probe offsets of 2.05, byte-identical in 2.22; walking past the edge with the neighbour loaded
+client-internals/static-reads-appendix-e-2026-11-19.md	cited	1; 3.5; 4.2; 4.6; E	1; 3.5; 4.2; 4.6; E	Disassembler reads for App. E: pull sound by object byte, two arrays.dat lists in the old walk test, 1.41r1 TProgramCheck, no multimedia timer in 2.22, shared probe block in 1.39, gmap code absent from 2.1.0.x
+protocol/early-clients-probe-2026-11-19.md	excluded		2.6; B	early-client probe run (1998 relay betas to 1.39 under Wine behind the probe proxy): ids, props, widths and parser recovery by build; rows in probe-results.tsv, open items in unknowns-ledger.md
+tools/probe/lab/cfg/11.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
+tools/probe/lab/cfg/119.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
+tools/probe/lab/cfg/14th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
+tools/probe/lab/cfg/15th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
+protocol/lab-appe-gwentea2-2026-11-20.md	cited	2.5; 2.7; 4.3; 4.4; 4.5; 4.10; 8.3; 8.4; 10; 11; E	2.5; 2.7; 4.3; 4.4; 4.5; 4.10; 8.3; 8.4; 10; 11; E	GwenTea2 loopback lab for App. E: 2.05 key emote sends nothing relayable, 4.20r8 ignores the 6.x 197/140 class path, 2.22 shot byte blast split, v7 614 date-gate stall
+client-internals/static-reads-appendix-e-2026-11-20-b.md	cited	4.2; 4.4; 7; 8.4; E	4.2; 4.4; 7; 8.4; E	Disassembler reads for App. E: 1.39 probe/nudge tables between 1st Graal and 2.05, 2.1 test entry save = 2.17.1 rule, RC 76 last byte is an echoed empty string from 72, 5.00r7 opcodes 48/49/54
+client-internals/static-reads-appendix-e-2026-11-20-c.md	cited	3.1; 4.2; 4.5; E	3.1; 4.2; 4.5; E	Disassembler reads for App. E: 2.05 blocked-point lists are bombs and level players (temporary flag), 1.39 pickup box overlap, 2.05 level-record field types (link boxes rounded)
+client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
+protocol/lab-appe-mirae-2026-11-20.md	cited	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8; 7; E	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8; 7; E	Mirae loopback lab for App. E: 2.05 hit stamp on the hurt-message path only, 1.39 knockback 5 tiles, 1.41r1 plays .nw online, 2.05 sign list ends at the first empty line, F5 start levels show no change
+protocol/lab-appe-mirae-2026-11-20b.md	cited	2.3; 2.6; 5; E	2.3; 2.6; 5; E	Mirae loopback lab for App. E, second batch: 1.40 login, 2.31 sign-list end, original GServer 1.3 prop limits and old-build drop, prop 81 in the 5.00r7 player list

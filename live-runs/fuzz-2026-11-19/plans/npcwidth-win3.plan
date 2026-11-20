@@ -1,0 +1,544 @@
+# v3: prop 76 (Y2) 2-byte value s:864 = row 27, the NPC row
+# v2: the reset before each test sets X=30 and Y=27 (a bad-width X2/Y2 can leave the NPC off-screen)
+# fz: NPC prop width/tolerance (PLO_NPCPROPS 3) on Windows clients. NPC 300 (block.png at 30,27). Before each test X=30;
+# test packet = tested prop + X=35 (prop 2, c:70) as canary. Shots classified against ref-30 / ref-35.
+waitsession 240
+wait s2c 9 90
+sleep 12
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 1.5
+shot ref-30
+s2c 3 i3:300 c:2 c:70
+sleep 1.5
+shot ref-35
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p48-c
+s2c 3 i3:300 c:48 c:0 c:2 c:70
+sleep 1.2
+shot p48-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p48-s
+s2c 3 i3:300 c:48 s:300 c:2 c:70
+sleep 1.2
+shot p48-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p48-str
+s2c 3 i3:300 c:48 str:x c:2 c:70
+sleep 1.2
+shot p48-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p48-i5
+s2c 3 i3:300 c:48 i5:2080768 c:2 c:70
+sleep 1.2
+shot p48-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p49-c
+s2c 3 i3:300 c:49 c:0 c:2 c:70
+sleep 1.2
+shot p49-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p49-s
+s2c 3 i3:300 c:49 s:300 c:2 c:70
+sleep 1.2
+shot p49-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p49-str
+s2c 3 i3:300 c:49 str:x c:2 c:70
+sleep 1.2
+shot p49-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p49-i5
+s2c 3 i3:300 c:49 i5:2080768 c:2 c:70
+sleep 1.2
+shot p49-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p50-c
+s2c 3 i3:300 c:50 c:0 c:2 c:70
+sleep 1.2
+shot p50-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p50-s
+s2c 3 i3:300 c:50 s:300 c:2 c:70
+sleep 1.2
+shot p50-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p50-str
+s2c 3 i3:300 c:50 str:x c:2 c:70
+sleep 1.2
+shot p50-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p50-i5
+s2c 3 i3:300 c:50 i5:2080768 c:2 c:70
+sleep 1.2
+shot p50-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p51-c
+s2c 3 i3:300 c:51 c:0 c:2 c:70
+sleep 1.2
+shot p51-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p51-s
+s2c 3 i3:300 c:51 s:300 c:2 c:70
+sleep 1.2
+shot p51-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p51-str
+s2c 3 i3:300 c:51 str:x c:2 c:70
+sleep 1.2
+shot p51-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p51-i5
+s2c 3 i3:300 c:51 i5:2080768 c:2 c:70
+sleep 1.2
+shot p51-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p52-c
+s2c 3 i3:300 c:52 c:0 c:2 c:70
+sleep 1.2
+shot p52-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p52-s
+s2c 3 i3:300 c:52 s:300 c:2 c:70
+sleep 1.2
+shot p52-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p52-str
+s2c 3 i3:300 c:52 str:x c:2 c:70
+sleep 1.2
+shot p52-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p52-i5
+s2c 3 i3:300 c:52 i5:2080768 c:2 c:70
+sleep 1.2
+shot p52-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p75-c
+s2c 3 i3:300 c:75 c:0 c:2 c:70
+sleep 1.2
+shot p75-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p75-s
+s2c 3 i3:300 c:75 s:300 c:2 c:70
+sleep 1.2
+shot p75-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p75-str
+s2c 3 i3:300 c:75 str:x c:2 c:70
+sleep 1.2
+shot p75-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p75-i5
+s2c 3 i3:300 c:75 i5:2080768 c:2 c:70
+sleep 1.2
+shot p75-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p76-c
+s2c 3 i3:300 c:76 c:0 c:2 c:70
+sleep 1.2
+shot p76-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p76-s
+s2c 3 i3:300 c:76 s:864 c:2 c:70
+sleep 1.2
+shot p76-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p76-str
+s2c 3 i3:300 c:76 str:x c:2 c:70
+sleep 1.2
+shot p76-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p76-i5
+s2c 3 i3:300 c:76 i5:2080768 c:2 c:70
+sleep 1.2
+shot p76-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p77-c
+s2c 3 i3:300 c:77 c:0 c:2 c:70
+sleep 1.2
+shot p77-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p77-s
+s2c 3 i3:300 c:77 s:300 c:2 c:70
+sleep 1.2
+shot p77-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p77-str
+s2c 3 i3:300 c:77 str:x c:2 c:70
+sleep 1.2
+shot p77-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p77-i5
+s2c 3 i3:300 c:77 i5:2080768 c:2 c:70
+sleep 1.2
+shot p77-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p78-c
+s2c 3 i3:300 c:78 c:0 c:2 c:70
+sleep 1.2
+shot p78-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p78-s
+s2c 3 i3:300 c:78 s:300 c:2 c:70
+sleep 1.2
+shot p78-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p78-str
+s2c 3 i3:300 c:78 str:x c:2 c:70
+sleep 1.2
+shot p78-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p78-i5
+s2c 3 i3:300 c:78 i5:2080768 c:2 c:70
+sleep 1.2
+shot p78-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p79-c
+s2c 3 i3:300 c:79 c:0 c:2 c:70
+sleep 1.2
+shot p79-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p79-s
+s2c 3 i3:300 c:79 s:300 c:2 c:70
+sleep 1.2
+shot p79-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p79-str
+s2c 3 i3:300 c:79 str:x c:2 c:70
+sleep 1.2
+shot p79-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p79-i5
+s2c 3 i3:300 c:79 i5:2080768 c:2 c:70
+sleep 1.2
+shot p79-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p80-c
+s2c 3 i3:300 c:80 c:0 c:2 c:70
+sleep 1.2
+shot p80-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p80-s
+s2c 3 i3:300 c:80 s:300 c:2 c:70
+sleep 1.2
+shot p80-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p80-str
+s2c 3 i3:300 c:80 str:x c:2 c:70
+sleep 1.2
+shot p80-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p80-i5
+s2c 3 i3:300 c:80 i5:2080768 c:2 c:70
+sleep 1.2
+shot p80-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p81-c
+s2c 3 i3:300 c:81 c:0 c:2 c:70
+sleep 1.2
+shot p81-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p81-s
+s2c 3 i3:300 c:81 s:300 c:2 c:70
+sleep 1.2
+shot p81-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p81-str
+s2c 3 i3:300 c:81 str:x c:2 c:70
+sleep 1.2
+shot p81-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p81-i5
+s2c 3 i3:300 c:81 i5:2080768 c:2 c:70
+sleep 1.2
+shot p81-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p82-c
+s2c 3 i3:300 c:82 c:0 c:2 c:70
+sleep 1.2
+shot p82-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p82-s
+s2c 3 i3:300 c:82 s:300 c:2 c:70
+sleep 1.2
+shot p82-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p82-str
+s2c 3 i3:300 c:82 str:x c:2 c:70
+sleep 1.2
+shot p82-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p82-i5
+s2c 3 i3:300 c:82 i5:2080768 c:2 c:70
+sleep 1.2
+shot p82-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p83-c
+s2c 3 i3:300 c:83 c:0 c:2 c:70
+sleep 1.2
+shot p83-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p83-s
+s2c 3 i3:300 c:83 s:300 c:2 c:70
+sleep 1.2
+shot p83-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p83-str
+s2c 3 i3:300 c:83 str:x c:2 c:70
+sleep 1.2
+shot p83-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p83-i5
+s2c 3 i3:300 c:83 i5:2080768 c:2 c:70
+sleep 1.2
+shot p83-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p84-c
+s2c 3 i3:300 c:84 c:0 c:2 c:70
+sleep 1.2
+shot p84-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p84-s
+s2c 3 i3:300 c:84 s:300 c:2 c:70
+sleep 1.2
+shot p84-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p84-str
+s2c 3 i3:300 c:84 str:x c:2 c:70
+sleep 1.2
+shot p84-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p84-i5
+s2c 3 i3:300 c:84 i5:2080768 c:2 c:70
+sleep 1.2
+shot p84-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p85-c
+s2c 3 i3:300 c:85 c:0 c:2 c:70
+sleep 1.2
+shot p85-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p85-s
+s2c 3 i3:300 c:85 s:300 c:2 c:70
+sleep 1.2
+shot p85-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p85-str
+s2c 3 i3:300 c:85 str:x c:2 c:70
+sleep 1.2
+shot p85-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p85-i5
+s2c 3 i3:300 c:85 i5:2080768 c:2 c:70
+sleep 1.2
+shot p85-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p86-c
+s2c 3 i3:300 c:86 c:0 c:2 c:70
+sleep 1.2
+shot p86-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p86-s
+s2c 3 i3:300 c:86 s:300 c:2 c:70
+sleep 1.2
+shot p86-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p86-str
+s2c 3 i3:300 c:86 str:x c:2 c:70
+sleep 1.2
+shot p86-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p86-i5
+s2c 3 i3:300 c:86 i5:2080768 c:2 c:70
+sleep 1.2
+shot p86-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p87-c
+s2c 3 i3:300 c:87 c:0 c:2 c:70
+sleep 1.2
+shot p87-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p87-s
+s2c 3 i3:300 c:87 s:300 c:2 c:70
+sleep 1.2
+shot p87-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p87-str
+s2c 3 i3:300 c:87 str:x c:2 c:70
+sleep 1.2
+shot p87-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p87-i5
+s2c 3 i3:300 c:87 i5:2080768 c:2 c:70
+sleep 1.2
+shot p87-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p88-c
+s2c 3 i3:300 c:88 c:0 c:2 c:70
+sleep 1.2
+shot p88-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p88-s
+s2c 3 i3:300 c:88 s:300 c:2 c:70
+sleep 1.2
+shot p88-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p88-str
+s2c 3 i3:300 c:88 str:x c:2 c:70
+sleep 1.2
+shot p88-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p88-i5
+s2c 3 i3:300 c:88 i5:2080768 c:2 c:70
+sleep 1.2
+shot p88-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p89-c
+s2c 3 i3:300 c:89 c:0 c:2 c:70
+sleep 1.2
+shot p89-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p89-s
+s2c 3 i3:300 c:89 s:300 c:2 c:70
+sleep 1.2
+shot p89-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p89-str
+s2c 3 i3:300 c:89 str:x c:2 c:70
+sleep 1.2
+shot p89-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p89-i5
+s2c 3 i3:300 c:89 i5:2080768 c:2 c:70
+sleep 1.2
+shot p89-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p90-c
+s2c 3 i3:300 c:90 c:0 c:2 c:70
+sleep 1.2
+shot p90-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p90-s
+s2c 3 i3:300 c:90 s:300 c:2 c:70
+sleep 1.2
+shot p90-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p90-str
+s2c 3 i3:300 c:90 str:x c:2 c:70
+sleep 1.2
+shot p90-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p90-i5
+s2c 3 i3:300 c:90 i5:2080768 c:2 c:70
+sleep 1.2
+shot p90-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p74-c
+s2c 3 i3:300 c:74 c:0 c:2 c:70
+sleep 1.2
+shot p74-c
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p74-s
+s2c 3 i3:300 c:74 s:300 c:2 c:70
+sleep 1.2
+shot p74-s
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p74-str
+s2c 3 i3:300 c:74 str:x c:2 c:70
+sleep 1.2
+shot p74-str
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 0.8
+mark p74-i5
+s2c 3 i3:300 c:74 i5:2080768 c:2 c:70
+sleep 1.2
+shot p74-i5
+s2c 3 i3:300 c:2 c:60 c:3 c:54
+sleep 1.5
+shot zz-ref-30

@@ -53,7 +53,13 @@ seihai-core's GS2 compiler. **[lab]**
 | Empty script part | No events and no crash |
 
 So a compiled gani script sent in 134 runs on 6.03r7 like any other compiled script, and
-a bad body fails quietly. 4.20r8 and 5.24r4 were not run. **[lab]**
+a bad body fails quietly. **[lab]**
+
+**4.20r8 and 5.24r4 under Wine (runs `gani646-420`, `gani646-524`).** The same three bodies gave
+the same results. With the valid script, the client fetched the gani (`PLI_WANTFILE` 23,
+`PLI_UPDATEGANI` 157), then `onCreated` and `onTimeout` both fired. The corrupt and empty
+bodies fired no events, and neither client crashed. So 4.20r8, 5.24r4 and 6.03r7 all run a
+compiled gani script from 134 the same way. **[lab]**
 
 ## 2.31 start parameters after 156 (#647)
 
@@ -75,5 +81,5 @@ the retry.
 
 ## Open
 
-- [ ] #646 on 4.20r8, 5.24r4 and 5.12 under Wine.
+- [x] ~~#646 on 4.20r8 and 5.24r4 under Wine.~~ Same as 6.03r7 (above). 5.12 not run.
 - [ ] The `DEFAULT*` header lines in 195 (still no visible effect).
