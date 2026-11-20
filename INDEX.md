@@ -5,6 +5,7 @@ Every research note in this repository, listed by topic and roughly in the order
 When you add a note, add a line for it here in the same pull request.
 
 - [Research gap board (2026-11-20)](docs/gap-board.md) — every open gap in one claimable table ([`gap-board.tsv`](docs/gap-board.tsv)): 426 items from Appendix E, the open task boxes and the open-questions tables, each marked static, lab, owner or missing, with a lab queue per VM and the first static picks; index.
+- [Planned experiments (2026-11-20)](docs/experiments.md) — the queued lab runs, step by step, and every lab row on the board by VM
 - [Ranged baddy kills on 1.21 and 2.17.1, and sword against sword on 2.22](live-runs/drops-2026-11-20/README.md) — 1.21 rolls a real ground drop when an archer dies (heart, darts or gralat) and the kill counter does not change; 2.17.1 drops nothing (0 in 4); the 2.22 sword spark is still not caught; lab.
 - [Save and maps folders in the Graal 2002 builds (2.1.0.0 to 2.1.0.4)](client-internals/graal2002-save-folders-2026-11-20.md) — where the six 2002 builds save a downloaded file and when they make their folders (App. E#10); static.
 - [Android Classic and Era: the socket layer](protocol/android-classic-socket-layer-2026-11-20.md) — the native engine, the generation-5 classic stream, the connector stream, login and token, and what the Android-x86 lab run saw on the wire (App. E#18); static and lab.

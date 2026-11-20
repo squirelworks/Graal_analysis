@@ -67,6 +67,8 @@ When a row is done, tick it in its issue as well as in the source note.
 
 ## Lab queue
 
+Each queued run below is written out step by step in [`experiments.md`](experiments.md), with its expected output, where the result goes and the issue it closes.
+
 Labs run one at a time per host, inside VMs only (no bare-metal runs). GwenTea2 has little
 memory: a watchdog powers VMs off when the host's free memory falls under about 3 GB, so do not
 boot a second large VM there while one is running. Check what is running before booting. The
