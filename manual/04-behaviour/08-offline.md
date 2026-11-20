@@ -115,4 +115,12 @@ Windows 4.04r2 was started under a test harness. Each row gives a condition, the
 
 These observations do not establish that 4.04r2 uses the 2.05 entry conditions or arrival rules in → §4.8.1–4.8.2. Earlier unsuccessful harness attempts are not successful offline sessions. [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition)
 
-Remaining scene and mechanic validation: → App. E#610.
+**Settled question, formerly E#610: 4.04r2 offline gameplay.** Whether 4.04r2 actually plays offline, beyond the harness transition above, was open. A Wine run of the unchanged client settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20e.md#windows-404r2-pickup-in-offline-mode-under-wine-e611).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | A harness changed the offline flag and allocated an adventure object, but no rendered scene or action was seen | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
+| Win10 guest | With the user-mode callback filter off, the unchanged client drew the tutorial and walked once, then closed; later starts crashed at start-up, so that guest gives no repeatable scene | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
+| Settled | Under Wine 10 with the OpenGL renderer, the unchanged client reaches offline play from Offline Test on every start: the tutorial level `offlinetutorial_b-2` draws, the player walks, A lifts a bush (its tiles change), the player carries it while walking, and a second A ends the carry | [lab] (protocol/lab-appe-gwentea2-2026-11-20e.md#windows-404r2-pickup-in-offline-mode-under-wine-e611) |
+| Left over | Cutting and the sword were not tried, because the tutorial script calls `disableweapons`; the stock offline files have no lift or carry animation, so the carried bush is not drawn; what the pickup field holds stays in → App. E#611 | [lab] (protocol/lab-appe-gwentea2-2026-11-20e.md#windows-404r2-pickup-in-offline-mode-under-wine-e611) |
+

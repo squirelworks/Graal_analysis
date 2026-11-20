@@ -882,7 +882,8 @@ The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` alrea
 | Type tests (3, 4, 5, water 11, 12, 20, ledge 21) use the matching list on sheet type 0 and fixed id ranges on types 1 and 2; a failed test falls back to the level's objects | [bin] (torque/304-tile-types.md#type-tests) |
 | `tiledefs<server>.txt` lines are `image,levelprefix,type[,x,y]`; on entering a level the longest matching prefix of type 0, 1, 2 or 5 wins, else `pics1.png` type 0. The scripts' `addtiledef`, `addtiledef2` and `removetiledefs` change the entries. The package ships only `tiledefsOffline.txt` for the tutorial | [bin][file] (torque/304-tile-types.md#how-the-sheet-type-is-chosen) |
 | So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-tile type table, the range rule on a `pics1` level, or the wrong board on a gmap | [inf] (torque/304-tile-types.md#what-this-means-for-the-rebuild) |
-| Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef` lines at login (→ App. E#507) | [inf] (torque/304-tile-types.md#not-settled) |
+| The sheet type is one global value reset to 0 on level entry; there is no per-level tile-type table, and `tiletype` returns −1 on type 0. Type 5 makes the walk and type tests ignore tile ids, so only the level's `setshape2` shapes block | [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#what-304-uses-for-tile-types-when-no-addtiledef-arrives-e507) |
+| Open: whether a 3.04-era server sent `addtiledef` lines at login (→ App. E#507) | [inf] (torque/304-tile-types.md#not-settled) |
 
 ## 10.8 The 3D mode in the 2D clients
 

@@ -43,9 +43,8 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49, 54, the 6.x loop-limit name and 6.03r7 event case settled; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
-| E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| E#210 | Particle emitter and `format` details | Lab | the particle kinds are as read | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
-| E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
 | E#324 | Combat live checks still open | Lab | the spark appears only when a sword meets a sword or a shield | [inf] (live-runs/drops-2026-11-20/README.md#still-open-after-this-run) |
@@ -57,7 +56,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); servers sent no tile definitions | [inf] (torque/304-tile-types.md#not-settled) |
-| E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
@@ -107,9 +105,9 @@ These questions are about which build is which, who built it and how it protects
 | Settled part (2026-11-20) | Graal 2002 v22 (`GNW31101`) logged in once a Wine virtual desktop cleared a stale dialog: list name `graal2002`, an 8-field list row, then login type 0, generation 3, key 36; first sends 37 and 39; it ran the level's GS1 NPC and a GS1 weapon and stayed online | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#graal-2002-v22-login-e15) |
 | Open | The ver7 to ver13 default routes for 2, 4, 17, 18, 154 and 155 need an identified baddy, chest or horse fixture with a visible result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Open | Exact ver10's first properties update: the no-reply arm is confounded by a timer, and the reply arms are bounded; static gate clearing does not prove emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
-| Open | The six Graal 2002 client-to-server id sets need their own send-site reads | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Settled part (2026-11-20) | Send sites: ver7 to ver9 send 32 ids, ver10 and ver13 add 39 (33), v22 sends 2.05 rev 2's set plus 39 (40). ver7 to ver13 never send 7, 8, 11, 15, 16, 17 or 20 (horses, throw, baddies, chest), matching their receive side. The token does not predict the set | [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#client-to-server-ids-of-the-six-graal-2002-builds-e15-send-sites) |
 | Best guess | Each build behaves like the neighbour that shares its token. The manual does not borrow those rows, because the 2002 builds were patched in places the token does not show | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
-| Settles it | Send-site reads for each id set, and a fixture per default route | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Settles it | A fixture per default route, and a lab run of the send sets | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Outlook | Lab and Read: all inputs are held | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 
 ### E#615 v7 Worlds login identity, start-up quit and date gate
@@ -220,20 +218,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 
 These questions are about what a client does in play: timing, walking, combat, items and the screen (→ Part IV). Most were raised by a static read that found a routine but not every input to it, so most are settled by one controlled lab scene on the exact build [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
 
-### E#304 Stopping positions and the wire rounding of nudged positions
-
-**Question.** Where a player stops after a blocked step, and how a position that is not on a half tile is rounded when sent [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The flush snap and the 0.1 nudges are read from the 2.05, 2.17.1, 2.22 and 2.31 walking routines | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#on-a-refused-step) |
-| Open | The stopping positions on a live client, and the rounding of a nudged position on the wire | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settled part (2026-11-20) | On 2.22 a player walking into a wall from either half-tile alignment stops flush at the wall (y 25.0, wire 50), then the push gani starts | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#walking-into-a-wall-on-222-e304) |
-| Settled part (2026-11-20) | On 2.22 a player walking up into a 2 × 2 rock stops flush at y 21.0 from both half-tile alignments; with 0.5 or 1.0 tiles of overlap it slides off the corner through half-tile x values only (28.5, 28.0, 27.5) and walks on; with 1.5 or more it stops | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-into-a-rock-on-222-e304) |
-| Best guess | The wire value is the position in half tiles, truncated; every position seen was already on a half tile. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| Settles it | A finer capture of the corner slide (positions are sent at most every 0.1 s, so the step size is unseen), or a read of the position packer | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#walking-into-a-rock-on-222-e304) |
-| Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
 ### E#320 Does any server check the tamper check
 
 **Question.** Whether any server checks the value of `PLI_TAMPERCHECK` (39), or its periodic re-send from 2.31 [srv][cap] (client-internals/feature-specs/08-tampercheck.md#public-servers).
@@ -293,19 +277,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settled part (2026-11-20) | The census: the 4.x to 6.x sets hold 103 distinct WAVs by content, and the 255 against 254 gap was one MP3 file named `.wav` (→ §3.10.5) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
 | Settles it | Test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | Outlook | Lab | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-
-### E#610 Windows 4.04r2 offline initialization against gameplay
-
-**Question.** Whether 4.04r2 plays offline. A harness drove its offline transition, but no gameplay was seen [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Open | A rendered offline level, player movement, and cutting, lifting, carrying or hiding on that build | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Settled part (2026-11-20) | On a Win10 guest with no network, and with its user-mode callback filter turned off, the unchanged packed 4.04r2 opened the offline tutorial level drawn, with the player in it; holding Right walked the player to the beach and the view scrolled. The next key hold closed the client, and four later starts closed within 5 s of Offline Test, so offline play works but not reliably there | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
-| Best guess | It plays offline as 4.20r6 does, once the level files it expects are present. Confidence: low | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Settles it | A controlled scene with captured actions and the state before and after each one | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Outlook | Lab | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 
 ### E#611 Windows 4.04r2 pickup semantics and input qualification
 
@@ -421,10 +392,11 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Settled part | Other builds: `#F`, `#S`, `#I` and `#P6` to `#P9` hold values from 2.17.1, `#R` from 2.22, `#D` exists from 2.17.1 (empty in the context tested), and `#C6` and `#C7` stay empty everywhere; `##` is a one-pass escape on 2.05r2 and 2.17.1 and an empty code on 1.33 (→ §8.2.12) | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
 | Settled part | 2.17.1 names 46 codes; 2.22 and 2.31 add `R(S)`; Linux 3.04 drops `C5`, `C6` and `C7`; 1.41r1 has no `#e` or `#K` | [bin][lab] (npc-library/gs1-message-codes-by-build.md#registered-names) |
 | Boundary | Reading `C5` from storage does not prove a sixth clothing colour or change the five-byte wire colour prop; prop setters have a separate grammar | [bin] (npc-library/gs1-message-codes-205r2.md#character-selectors) |
-| Open | The writer of `#E` (a space in one context), quoted scanners, exact number formatting and renderer semantics in 2.05; why a bare `#5` or `#6` on 2.17.1, 2.22 and 2.31 is replaced by the label text in front of it while 2.05r2 shows it empty | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls); [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| Open | The writer of `#E` (a space in one context), quoted scanners, exact number formatting and renderer semantics in 2.05 | [bin][lab] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls); [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
 | Settled part (2026-11-20) | In 2.05 rev 2 `#E` always expands to a single space, a placeholder no feature fills | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-e-message-code-in-205-e203) |
-| Best guess | `#E` is a field no 2.05 feature fills, left from an earlier design; the bare `#5` and `#6` effect is a scanner change in 2.17 that backs up over the label when the code has no index. Confidence: low | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
-| Settles it | A 2.17.1 trace of the bare-code scanner (its expander was not found by the 2026-11-20 read) | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| Settled part (2026-11-20) | The bare `#5` and `#6` repeat: from 2.17.1 one evaluator appends each part's text from a scratch string that is not cleared between parts, and the horse and carried-NPC getters skip the write when there is no object, so the previous part repeats. 2.05 rev 2 builds a fresh string per code instead | [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#bare-5-and-6-on-2171-e203) |
+| Best guess | `#E` is a field no 2.05 feature fills, left from an earlier design; Confidence: low | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
+| Settles it | Reads of the quoted scanners and number formatting, and a lab check of the predicted `#1#5` repeat | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
 | Outlook | Read | [inf] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
 
 ### E#207 GS2 language and bytecode format
@@ -482,12 +454,12 @@ The work list carried from the difference table:
 | Open | Whether `removemodifiers()` clears the emit list as well as the local and global lists | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Open | When a global modifier's clock starts; the read suggests time zero, so a global `once` fires on the first frame | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Open | The exact particle kinds; "store its own data (good for text emitters)" shows that a text kind exists | [doc] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| Open | Case handling in `indexof`, and whether `%d` truncates or floors | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Tried (2026-11-19) | `%f` and `%5.2f` follow C printf on 4.20r8, 5.24r4 and 6.03r7, and a string that is not a number formats as −1; `%d`, `indexof` case and the particle points were not in the fuzz set | [lab] (protocol/script-fuzz-2026-11-19.md) |
 | Settled part (2026-11-20) | On 4.20r8 and 5.12, `%d` floors (−3.7 → −4), `%i` truncates 3.7 to 3, `%x` and widths follow C, and position and index lookups are case-sensitive | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#format-and-indexof-e210) |
 | Settled part (2026-11-20) | On 4.20r8, 5.12, 5.24r4 and 6.03r7, `removemodifiers()` clears the emit list and the live particles while emission goes on; a global "once" modifier fires on the first frame after it is added, and a global "impulse" runs on its own interval | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#particle-modifiers-e210) |
-| Best guess | The particle kinds are as read; `%d` truncates and `indexof` is case-sensitive as read. Confidence: low to moderate | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| Settles it | A run that changes the property that picks the particle kind, and the `format` checks, on a 4.x or 6.x client | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Settled part (2026-11-20) | On 6.03r7 `%d` and `%i` floor (−2.7 gives −3), as on 4.20r8 and 5.12; list `.index()` (opcode 82) is case-sensitive, a plain string is not searched by it, and `indexof` is not a method there (it gives 0). Particle x and y are in tiles | [lab] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#format-and-list-lookups-on-603r7-e210-partial) |
+| Best guess | The particle kinds are as read. Confidence: low to moderate | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
+| Settles it | A run that changes the property that picks the particle kind, with a cleared background, on a 4.x or 6.x client | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Outlook | Lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 
 ### E#214 Why some official bodies do not end in a return
@@ -513,8 +485,9 @@ These questions are about the 3D side: the 2000 Graal3D client and the Torque-ba
 | --- | --- | --- |
 | Evidence | Type 5 is accepted when picking an entry and sets a flag of its own; the package ships only the offline tutorial's line | [bin][file] (torque/304-tile-types.md#how-the-sheet-type-is-chosen) |
 | Settled part (2026-11-20) | A read of 3.04: type 5 comes from a per-level tile-type table and is a walk rule, with its own path in the walk classifier and a ground height of 0; it is not only a drawing variant | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
-| Best guess | Type 5 is a walk rule (now read); ordinary servers sent no tile definitions, so the per-level table was filled by the client's own defaults. Confidence: low | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
-| Settles it | A read of what fills the per-level tile-type table; any 3.04-era server capture | [inf] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
+| Settled part (2026-11-20) | There is no per-level tile-type table: the sheet type is one global value the level-entry picker resets to 0, so with no matching entry the client uses `pics1.png` and its compiled-in lists, and `tiletype` returns −1. Type 5 makes the walk and type tests ignore tile ids, so only the level's `setshape2` shapes decide | [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#what-304-uses-for-tile-types-when-no-addtiledef-arrives-e507) |
+| Best guess | Ordinary servers sent no tile definitions. Confidence: low | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
+| Settles it | Any 3.04-era server capture; a read of the drawing-side type-5 flag | [inf] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
 | Outlook | Read for the flag; Missing for the server side | [inf] (torque/304-tile-types.md#not-settled) |
 
 ## E.10 Tools
@@ -591,6 +564,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#301 | Frame loop of the 3.x and 4.x clients | → §4.1.7 |
 | E#302 | Walking speed factors other than 1.0, 1.2 and the hidden 0.2 | → §4.2.1.1 |
 | E#303 | Two unidentified lists in the blocked-point test | → §4.2.3 |
+| E#304 | Stopping positions and wire rounding | → §4.2.4 |
 | E#305 | The 2.22 push frame field | → §4.2.5 |
 | E#306 | What picks `lift2.wav` for a pull | → §4.2.8 |
 | E#307 | Probe, nudge and step tables of 1.39 | → §4.2.2.2 |
@@ -635,6 +609,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#607 | Leftover lines in the protocol cheat sheet | → §2.1.2 |
 | E#608 | How many `arrays.dat` lists make a tile passable | → §3.5.3.1 |
 | E#609 | macOS archive labels and application identity | → §1.9.1 |
+| E#610 | 4.04r2 offline gameplay | → §4.8.5 |
 | E#613 | Windows 2.22 remote PM roster and visible result | → §2.8.7 |
 | E#614 | Tiledef type 4 consumer | → §3.5.2 |
 | E#617 | Whether 1.41 rev 1 loads `.nw` levels online | → §1.5 |

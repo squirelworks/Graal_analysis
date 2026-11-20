@@ -550,7 +550,7 @@ On 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31, `#v(##)` shows `0`. The escaped hash i
 | 1.41r1 set | `#`, `1`, `2`, `3`, `5`, `6`, `7`, `8`, `C`, `L`, `a`, `b`, `c`, `f`, `g`, `m`, `n`, `s`, `v`, `w`. No `#e`, `#K`, `#P` or display codes. `#e(1,2,ABCD)` shows `e(1,2,ABCD)` and `#K(65)` shows `K(65)` | [lab] (npc-library/gs1-message-codes-by-build.md#what-the-empty-scenes-showed) |
 | `#b` from 2.17.1 | `A#bB` stays `A#bB`. On 1.41r1 and 2.05r2 it shows `AB` | [lab] (npc-library/gs1-message-codes-by-build.md#what-the-empty-scenes-showed) |
 | unknown code | `A#?B` stays `A#?B` from 2.17.1 and loses the `#` before that | [lab] (npc-library/gs1-message-codes-by-build.md#two-engines) |
-| bare `#5` and `#6` | empty on 2.05r2. On 2.17.1, 2.22 and 2.31 each was replaced by the label text in front of it. The cause was not traced (→ App. E#203) | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6) |
+| bare `#5` and `#6` | empty on 2.05r2. On 2.17.1, 2.22 and 2.31 each was replaced by the label text in front of it: the later evaluator reuses one scratch string across parts, and with no horse or carried NPC the getter writes nothing, so the previous part's text is appended again | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6); [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#bare-5-and-6-on-2171-e203) |
 | `showimg2`, `savelog2` | `RMRRR` and `MS` on 2.17.1, 2.22, 2.31 and 3.04 | [bin] (npc-library/gs1-message-codes-by-build.md#letters-the-summary-had-wrong) |
 
 | Text | 1.33 | 2.05r2 and 2.17.1 | Source |
