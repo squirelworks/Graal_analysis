@@ -216,6 +216,7 @@ The rules below give how prefixes appear, how a client uses a record to connect 
 | --- | --- |
 | Pre-2.2 clients get no prefix for bronze | [srv] (protocol/listserver.md#listserver--client) |
 | Connect needs a selected record with at least 8 fields and takes the address and port from fields 7 and 8; with either empty it shows "The connection could not be established!" without dialling (2.00) | [bin] (client-internals/v2.00-connect-path.md#connect-bin) |
+| The game-server socket is resolved by address first, then by name, set to `TCP_NODELAY` (Nagle off) and non-blocking before it connects; any failure shows the same message (2.00) | [bin] (client-internals/v2.00-connect-path.md#connect-bin) |
 | A missing core asset (`objects.dat`, `arrays.dat` or one of the main images) sets a fatal flag at Start that is never cleared; the server list still works, but Connect then returns before creating the player, leaving a grey game window with no socket (2.00) | [bin] (client-internals/v2.00-connect-path.md#the-fatal-flag); [cap] (client-internals/v2.00-connect-path.md#lab-rule-for-200) |
 | The public 14923 legacy list sent untagged rows in its 4-row form; 3 of 4 rows also appear in the current list with the same address, port and version text | [cap] (protocol/public-listserver-2026-10-25.md#frame-and-field-layout-derived) |
 | A 2003 fan listserver sets the `P ` prefix for a server marked `Favorite=Yes`, so the client files it under Gold | [bin] (tools/server-tools-2001.md#win32-listserver-by-rick-2003--contains-a-password-stealer-bin) |

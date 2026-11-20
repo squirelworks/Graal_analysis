@@ -1,15 +1,52 @@
 path	term	reason
+client-internals/client-architecture-205.md	TAdventureBall	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureBomb	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureCarry	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureExplosion	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureExtra	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureFlying	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TAdventureLeap	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGifAnimation	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniPart	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniSound	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniSprite	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TGraalAniStep	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/client-architecture-205.md	TMNGAnimation	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
+client-internals/v2.00-connect-path.md	0x330	a form field offset (binary internals, §0.10)
+client-internals/v2.00-connect-path.md	Application.MessageBox	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	Application.Terminate	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	FileExists	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	GCHAR count	the note's field notation; the manual writes the same fields in its own (§0.6)
+client-internals/v2.00-connect-path.md	GCHAR field count	the note's field notation; the manual writes the same fields in its own (§0.6)
+client-internals/v2.00-connect-path.md	GCHAR len + text	the note's field notation; the manual writes the same fields in its own (§0.6)
+client-internals/v2.00-connect-path.md	PostQuitMessage	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	WSAStartup	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v2.00-connect-path.md	htons(StrToInt(port))	API call in the binary (§0.10); §6.4 carries the behaviour
 protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
 protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
 protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal
+protocol/listserver-login-type-matrix-2026-10-25.md	tcpdump	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	<list-host-graalbiz>	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/listserver.md	<list-host-graalcc>	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/listserver.md	GCHAR 7	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/listserver.md	GCHAR key	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/listserver.md	GNW30123newmain	§6.1.2 carries it as `GNW30123` + `newmain`
+protocol/listserver.md	SVI_*	a wildcard over gs2lib names; §6.5 lists each id
+protocol/listserver.md	SVO_*	a wildcard over gs2lib names; §6.5 lists each id
+protocol/listserver.md	[Options]	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	c field count	the note's field notation; the manual writes the same fields in its own (§0.6)
+protocol/listserver.md	login_fail_limit = 0	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	silent_list_after_ms	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	srvfuzz list	lab tool setting or note placeholder, not Graal
+protocol/listserver.md	type+name	the note's field notation; the manual writes the same fields in its own (§0.6)
 protocol/nc-flag-list-round-trip-2026-11-20.md	TFlagList	Delphi form class name; the manual names the window by its title
 protocol/nc-standalone-flag-action.md	NC-FLAG-ACTION-STATIC	evidence id; the manual cites the note
 protocol/npc-control.md	!hasRight(PLPERM_NPCCONTROL)	GServer-v2 source expression; §7.2.2 step 3a carries the rule in words
 protocol/npc-control.md	!isRC()	GServer-v2 source expression; §7.2.2 step 3a carries the rule
-protocol/npc-control.md	"== ""location"""	a disproved lab theory; the note records it as wrong
 protocol/npc-control.md	1WAoHpifrHvM72aYXVNzkKRJVTkgJNkGH	download id of a decompile archive, not Graal
 protocol/npc-control.md	1oF6qDwxTMoIqmHIugbx_O72m3B7_Qjih	download id of a decompile archive, not Graal
 protocol/npc-control.md	1sABQxJiJ4cwbtfzrB9oqCwNhC5G3Zqsz	download id of a decompile archive, not Graal
+protocol/npc-control.md	"== ""location"""	a disproved lab theory; the note records it as wrong
 protocol/npc-control.md	ADMINRIGHTS 1048575	lab-harness mistake (no such key); §7.2.2 step 3a says the key is LOCALRIGHTS
 protocol/npc-control.md	CLIENT-GONE	lab proxy log marker, not Graal; §7.4 carries the no-crash result
 protocol/npc-control.md	FlatFileAccountLoader	GServer-v2 class name; §7.2.2 step 3a carries the account key rule
@@ -32,12 +69,49 @@ protocol/npc-control.md	msgPLI_NPCSERVERQUERY	GServer-v2 handler name; §7.2.2 c
 protocol/npc-control.md	nc2002-a	lab plan step name, not Graal
 protocol/npc-control.md	nc713-a	lab plan step name, not Graal
 protocol/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
+protocol/public-listserver-2026-10-25.md	???	lab tool setting or note placeholder, not Graal
+protocol/public-listserver-2026-10-25.md	built_in_host	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/public-listserver-2026-10-25.md	built_in_port	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+protocol/rc-capture-2026-11-04.md	"""lab ban reason"""	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	0.0.0.0	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	3 bytes and	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	<gserver-ip>	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	<gserver-port>	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	Account does not exist.	a GServer-v2 fork error text from the lab, not a Graal original; §6.2.1 carries id 4 as error text
+protocol/rc-capture-2026-11-04.md	H My Server	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	Lab222rc	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	f585ca6	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	labrc	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	seihai-gserver-v2	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	seihai-listserver	lab account, server name, address placeholder or commit from the capture setup, not Graal
+protocol/rc-capture-2026-11-04.md	test1	lab account, server name, address placeholder or commit from the capture setup, not Graal
 protocol/rc-list-online.md	New RC: <new account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
 protocol/rc-list-online.md	New RC: <that account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
 protocol/rc-list-online.md	seihai-rc	a reimplementation, out of scope (§0.1)
 protocol/rc-list-online.md	str head	§7.1.9 carries it as `c 11` + head
 protocol/rc-list-online.md	str nickname	§7.1.9 carries it as `c 0` + nickname
 protocol/rc-props-flags-status.md	weapon count + weapon	§7.1.8 carries it as `c weapon count`, `str` per weapon
+tools/classic-tools/serverlist3.md	Configuraton not found.	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
+tools/classic-tools/serverlist3.md	Server lister started	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
+tools/classic-tools/serverlist3.md	The password is wrong	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
+tools/classic-tools/serverlist3.md	lastwrite	a database column name; §6.2.3 carries the 10-minute rule
+tools/classic-tools/serverlist3.md	upgraded	a status-text word; §6.2.3 carries the status texts by kind
+tools/npc-control.md	2B 77 77 A7 B4 31 21 41	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+tools/npc-control.md	AddNPCFrame	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	ClassesList	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	GCHAR 50	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR 51	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR 52	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR count	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GCHAR field count	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GINT3 id	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GSHORT len	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	GSHORT player id	the note's field notation; the manual writes the same fields in its own (§0.6)
+tools/npc-control.md	NPCList	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	WeaponsList	Delphi form name (binary internals, §0.10); §7.3 names the windows
+tools/npc-control.md	dir - length	an NPC script format in a bundled sample, not part of NC or the listserver
+tools/npc-control.md	listserver.graalonline.	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
+tools/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
 tools/remotecontrol-lineage.md	RC_ACCOUNT*	§7.1.5 carries the move of accounts to ids 70 to 78
 tools/remotecontrol.md	PLI_NC_*	a wildcard over gs2lib names; §7.3 lists each NC id
 tools/remotecontrol.md	PLI_NC_LEVELLIST*	a wildcard over gs2lib names; §7.3 lists ids 150 and 151
