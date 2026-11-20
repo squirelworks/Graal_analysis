@@ -200,8 +200,22 @@ either form. **The missing piece is the other player's level, prop 20:** with
 
 So 1.35 reads a one-byte player id and 1.36 and later a GSHORT, as the static read says, and an
 other-player message is drawn only when it carries the viewer's own level. Prop order does not
-matter. 1.28b2 drew neither form; what it needs (a later "player joined" step, or the peer UDP
-path) is still open.
+matter.
+
+**1.28b2 adds an other player on prop 50 ("joined the level") instead** (second follow-up,
+2026-11-20) **[lab]**. Nothing was drawn with the level and full look, with the peer address and
+UDP port (props 30 and 31) added, or with peer UDP id-0 movement datagrams sent from that port
+to the client's own UDP port (which it reports as prop 31 at login). With `50 = 1` first in the
+message:
+
+| Injected `8` on 1.28b2 | Drawn |
+|---|---|
+| one-byte id 7, `50 = 1`, nick, level, X, Y, sprite | yes ("one") |
+| two-byte id 9, the same props | no |
+| one-byte id 12, `50 = 1`, nick, X, Y, sprite, **no level** | yes ("three") |
+
+So 1.28b2 reads a one-byte player id, like 1.35, and creates the player when it sees the join
+flag, whatever the level; 1.35 and later draw a player whose level matches the viewer's.
 
 ## Gen 1: the relay protocol on real clients
 
@@ -244,8 +258,17 @@ client did push `T P Y N S 7` after its `P` **[lab]**. Follow-up (2026-11-20): a
 announced 2, 5 or 10 s after the join got no answer at all, while the 15th Graal control
 answered on both connections and pushed; sending `C<id>` before `+<id>`, as the real server
 does for room members, made no difference (answer `P` only when announced at the join, never
-a push). So 1.1.9 answers a peer only in a short window after joining a room, and its state
-push needs something only a real peer connection provides (not identified) **[lab]**.
+a push). So 1.1.9 answers a peer only in a short window after joining a room **[lab]**.
+
+Second follow-up (2026-11-20): **the push is a race, not a missing trigger.** With the fake
+peer announced at the join, 1.1.9 answered `P` in every run, and pushed `T P Y N S 7` a few
+milliseconds after the relay's confirming `P` in 3 of 9 runs (fake peer ids 5, 128 and 1000);
+in the other runs (ids 50, 100, 256, 9900) nothing followed. The id size does not decide it, and
+the delay between `+` and the client's `P` (0.08–0.6 s) does not separate the two outcomes
+either. The likely reading is a race with the client's own level load right after the join
+**[inf]**: the real second client in the two-client run answered `P` 3.3 s after its `+` and
+pushed. Lobby lines sent later on an established connection still get no reaction, with a
+valid peer as well.
 
 The 10th to 15th betas and 1.1 send `D` type `A` (arrow) lines steadily on their start level
 (two level NPCs shoot), which makes their own id visible in every line.
@@ -292,10 +315,14 @@ Settled in the follow-up (2026-11-20): 1.21 login and its tables; 5th and 9th Gr
 (missing archive data); the 1.35 vs 1.36 `PLO_OTHERPLPROPS` id width (and that an other-player
 message needs the viewer's level); prop 13 (five bytes everywhere) and props 8–11 and 23.
 
-- 1.28b2 draws no injected other player in any form tried: what it needs (a "player joined"
-  step, or the peer UDP path) is open.
-- 9th Graal never leaves the bare `G5` room; it needs its web start level from the historical
-  host, which the lab does not serve.
-- 1.1.9's state push needs something a real peer connection gives that a fake peer does not.
+- 9th Graal never leaves the bare `G5` room. Its online start level is not a file or a web
+  download: the 9th (like the 8th, 9th alpha and 10th) loads `onlinestart.graal` from an
+  embedded `ONLINESTARTLEVEL` resource **[bin]**. Serving the historical web start level over
+  loopback HTTP, supplying a levels folder, or sending `NL` changed nothing, and the 9th made no
+  HTTP or other connection beyond its two relay sockets (Wine `+winsock`) **[lab]**. The spawn
+  routine that warps an online player to `onlinestart.graal` (at 30, 30.5) never runs: after
+  Start, the 9th's start dialog stays on screen even though both relay sockets are open, also
+  without the extra Return the login script used to send. What holds the dialog is open.
+- What 1.1.9's state push races against at join time (the level load is the likely candidate).
 - Which gen-2 build first accepts colour index 90: 1.28b2 to 1.32 stop reading there, 1.21 and
   1.33+ do not.

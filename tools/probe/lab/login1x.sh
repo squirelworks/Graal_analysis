@@ -15,7 +15,7 @@ case $B in
      ck 442 471; clr; ty $ACC; ck 655 471; clr; ty labpass; shot form; ck 668 516; sleep 15; shot after;;
   1st|2nd) ck 347 470; ck 620 497; clr; ty $LO1; ck 620 529; clr; ty 14802; shot form; ck 673 574; sleep 15; shot after;;
   3rd|4th|4thalpha|5th|5thalpha|6th|7th|8th|9th|9thalpha|10th|11th|12th|13th)
-     ck 413 387; ck 583 420; clr; ty $ACC; case $B in 4thalpha) ck 507 452; clr; ty $LO1;; esac; ck 650 452; clr; ty 14802; case $B in 6th|7th|8th|9th|9thalpha|10th|11th|12th|13th) $FZ/E env DISPLAY=:$D WINEPREFIX=$FZ/wp WINEARCH=win32 WINEDEBUG=-all /usr/lib/wine/wine ${SETHOST:-$FZ/sethost.exe} "$CJ_HOST" $LO1;; esac; shot form; ck 660 555; sleep 3; $X key Return; sleep 4; shot after0; $X search --onlyvisible --name . getwindowname %@ 2>/dev/null | sort -u | tr '
+     ck 413 387; ck 583 420; clr; ty $ACC; case $B in 4thalpha) ck 507 452; clr; ty $LO1;; esac; ck 650 452; clr; ty 14802; case $B in 6th|7th|8th|9th|9thalpha|10th|11th|12th|13th) $FZ/E env DISPLAY=:$D WINEPREFIX=$FZ/wp WINEARCH=win32 WINEDEBUG=-all /usr/lib/wine/wine ${SETHOST:-$FZ/sethost.exe} "$CJ_HOST" $LO1;; esac; shot form; ck 660 555; sleep 7; shot after0; $X search --onlyvisible --name . getwindowname %@ 2>/dev/null | sort -u | tr '
 ' '|'; echo; sleep 11; shot after;;
   119|11|14th|15th) ck 514 416; sleep 2; ck 440 369; ck 370 406; sleep 1; shot mode
      ck 580 409; clr; ty $ACC; ck 506 441; clr; ty $LO1; ck 667 441; clr; ty 14802; shot form; ck 667 517; sleep 15; shot after;;

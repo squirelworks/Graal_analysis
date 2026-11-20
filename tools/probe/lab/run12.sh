@@ -26,6 +26,9 @@ else
   ./E sh -c "setsid nohup python3 $T/../relay98.py $LO2 14802 $NLF --fakepeer=9900 ${RELAYARGS:-} > $O/relay.log 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/../gen5probe.py $LO1 14802 $LO2 14802 $O/proxy.log w$B $F/run/ctl.sock > $O/proxy.out 2>&1 &"
 fi
+# WEBLEVEL=FILE: serve FILE as the betas' historical web start level on loopback port 7777
+if [ -n "${WEBLEVEL:-}" ]; then W=$F/web; rm -rf $W; mkdir -p $W/English/graallevels; cp "$WEBLEVEL" $W/English/graallevels/level13.graal
+  ./E sh -c "cd $W && setsid nohup python3 -m http.server 7777 --bind $LO1 > $O/web.log 2>&1 &"; fi
 sleep 3
 C=$F/c/$B; rm -rf $C; cp -a $F/cl/$(sh $T/clientdir.sh $B) $C
 [ -f $T/cfg/$B.txt ] && awk '{ printf "%s\r\n", $0 }' $T/cfg/$B.txt > $C/graalconfig.txt
@@ -40,5 +43,5 @@ export DISP=$D ACC=f$(date +%H%M%S) FZ=$F
 sh $T/login1x.sh $B $O >> $O/marks.txt 2>&1
 export PROBE_SHOT="DISPLAY=:$D scrot -o $O/{name}.png; sh $T/alive.sh $D {name} >> $O/marks.txt"
 python3 $T/../probectl.py $F/run/ctl.sock plan $PLAN "$@" > $O/plan.log 2>&1
-./k.sh "\.exe|wineserver|winedevice|services.exe|plugplay|explorer.exe|rpcss|seihai-gserver|gen5probe|relay98|xfwm4|Xvfb :$D" > /dev/null
+./k.sh "\.exe|wineserver|winedevice|services.exe|plugplay|explorer.exe|rpcss|seihai-gserver|gen5probe|relay98|xfwm4|http.server 7777|Xvfb :$D" > /dev/null
 echo done $O
