@@ -60,26 +60,50 @@ This is a public repository, so some things never go in it:
   placeholders);
 - no script text copied from the original game levels.
 
-## Building and checking
+## Getting started
 
-The tools are Python 3.12. CI runs the leak checks and the tool tests on Linux,
-Windows and macOS (see [`.github/workflows/checks.yml`](.github/workflows/checks.yml)).
-To run the same tests locally:
-
-```
-python -m pip install pytest
-python -m pytest tools/navigator tools/file-formats tools/level-convert -q
-```
-
-To build the manual PDF yourself you also need pandoc and the `playwright` and
-`pypdf` Python packages:
+Most people only need the manual PDF from the release. To work with the notes
+and tools, you need Git and Python 3.12 or later; the tools below use
+only the standard library unless their row says otherwise.
 
 ```
-python tools/manual/build_manual.py --version 0.0.7
+git clone https://github.com/squirelworks/Graal_analysis
+cd Graal_analysis
+python3 tools/navigator/navigator.py      # then open http://localhost:8765
 ```
 
-`python3 tools/navigator/navigator.py` starts a small local viewer for browsing
-the notes in a browser.
+The navigator is a small local viewer for the notes. It only listens on the
+loopback address and fetches nothing from the internet.
+
+## Running the tools
+
+There is nothing to build: every tool is a script you run with `python3`.
+Each folder under [`tools/`](tools/README.md) has its own README; the ones
+you are most likely to use are below. Scripts with `-h` print their options.
+
+| Command | Arguments |
+| --- | --- |
+| `tools/navigator/navigator.py` | `--port PORT` (default 8765), `--host HOST` (loopback only; anything else is refused), `--repo DIR` (default: this checkout). |
+| `tools/manual/build_manual.py` | `--version LABEL` (shown on the title page and in the file name), `--out PDF` (default `manual/pdf/graal-trm[-VERSION].pdf`), `--html FILE` to keep the HTML too, `--chromium PATH` to use your own Chromium, `--root DIR`. Needs pandoc and the `playwright` and `pypdf` packages. |
+| `tools/level-convert/convert.py SRC DST` | Converts between `.zelda`, `.graal`, `.nw`, `.gmap` and `.seihai`; the suffixes choose the formats. Exit code 1 for a truncated file, 2 for any other refusal. |
+| `tools/gs1-lint/gs1lint.py PATH...` | Checks GS1 NPC scripts against the 2.05 command table; `-q` prints errors only. |
+| `tools/leak-check/check_addresses.py [ROOT]` | The address and disassembler-name check CI runs; run it before you open a pull request. |
+| `tools/lab-servers/listserver.py [LOGFILE]` | The lab listserver, on the loopback address. `--accounts FILE` (lines of `account password`; only those may log in), `--name TEXT`, `--greet-delay S` (default 1.5). `run-lab.sh` starts it with a GServer-v2 build, `run-lab.sh stop` stops both; see its README. |
+
+To run the same tests CI runs, on Linux, Windows or macOS:
+
+```
+python3 -m pip install pytest
+python3 -m pytest tools/navigator tools/file-formats tools/level-convert -q
+```
+
+To build the current manual yourself:
+
+```
+python3 -m pip install playwright pypdf     # and install pandoc
+python3 -m playwright install chromium     # or pass --chromium PATH
+python3 tools/manual/build_manual.py --version 0.0.7
+```
 
 ## Contributing
 
