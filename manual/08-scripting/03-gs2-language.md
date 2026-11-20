@@ -252,7 +252,7 @@ A survey of the client half of real GS2 weapon scripts counts which events, comm
 | `onTimeout` | 342 | 264 | a timer running out | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
 | `onPlayerEnters` | 208 | 79 | the player arriving in a level | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
 | `onPlayerChats` | 200 | 98 | the player's own chat line | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
-| `onActionClientSide` | 194 | 58 | the server's 48 with `clientside,<weapon>,…` (→ §2.5) | [lab][srv] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
+| `onActionClientSide` | 194 | 58 | the server's 48 with `clientside,<weapon>,…` (→ §2.5); on 6.03r7 the client queues it (up to 100) until a weapon of exactly that name is loaded, then fires `actionclientside` on it | [lab][srv] (npc-library/gs2-weapon-corpus-2026-11-14.md#events); [bin] (client-internals/static-reads-appendix-e-2026-11-20-j.md#how-a-server-trigger-reaches-a-weapon-603r7) |
 | `onKeyPressed` | 180 | 41 | a key, with key code and key in `params` | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
 | `onMouseDown` | 76 | 14 | a mouse press on the play area | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
 | `onPlayerHurt`, `onPlayerDies` | 38, 15 | 0, 0 | the player taking damage or dying | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |

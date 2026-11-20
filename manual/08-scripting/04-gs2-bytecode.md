@@ -276,7 +276,8 @@ Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r
 | `%`, `^`, shifts | the tolerance in `%` only in 4.20r6/4.20r8; `^ 0.5` is a square root in 4.x/5.x, `^ 2` is `a*a` in 6.x; shift counts modulo 64 on PowerPC, 32 on x86 | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
 | number to text | `"0"` under 0.0001; up to 9 truncated decimals, trailing zeros dropped, a trailing 999 carried up | [bin] (client-internals/gs2-vm-by-version.md#maths-and-text) |
 | 6.03r7 timer | with Seihai-compiled GS2 bytecode on loopback, periods **ceil** to 50 ms; sub-0.05 fires at ~20/s (not the classic GS1 floor) | [lab] (client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab) |
-| event casing | schedule / cancel fold case; full function-table fold for `onTimeout` vs `onTimeOut` not proven per build | [bin][lab][inf] (client-internals/gs2-vm-quirks-by-version.md#5-event-name-matching-ontimeout-vs-ontimeout) |
+| event casing | schedule / cancel fold case; on 6.03r7 the function-table lookup for a fired event folds `A`–`Z` in both the hash and the comparison, so `onTimeout` and `onTimeOut` are one function; other builds not proven | [bin][lab][inf] (client-internals/gs2-vm-quirks-by-version.md#5-event-name-matching-ontimeout-vs-ontimeout); [bin] (client-internals/static-reads-appendix-e-2026-11-20-j.md#event-names-and-the-function-table-603r7) |
+| loop-limit name | 6.00r2 to 6.03r7 keep the property name scrambled; it unscrambles to `maxlooplimit` | [bin] (client-internals/static-reads-appendix-e-2026-11-20-j.md#the-6x-loop-limit-name) |
 
 Open: → App. E#209.
 
