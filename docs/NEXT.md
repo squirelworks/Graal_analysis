@@ -522,8 +522,8 @@ Every open gap, including the boxes below, is also on the [research gap board](g
   the PDF build (Linux and Windows; macOS CI paused since 2026-11-08). TRM 0.0.3 (347 pages) and 0.0.4 (377 pages) are published; 0.0.5 (304 pages, sources footnoted, every table introduced, wide tables on landscape pages, an A3 system map with an A4 print copy and A3 insert) is built and waits for its tag.
 
 - [ ] **15. TRM roadmap to 1.0.0.** The checklist is in issue #191 ("Roadmap to
-  1.0.0"). 0.0.5, 0.0.6 and 0.0.7 publish the research as it stands (owner, 2026-11-11,
-  2026-11-19 and 2026-11-20). Coverage, implementability, triage of the unknowns and release quality
+  1.0.0"). 0.0.5 to 0.0.8 publish the research as it stands (owner, 2026-11-11,
+  2026-11-19 and 2026-11-20; research paused after 0.0.8). Coverage, implementability, triage of the unknowns and release quality
   are the 1.0.0 criteria in #191, met in later releases; 1.0.0 sign-off is Squirrel's call. Research toward 1.0.0 is #370. Tick the items in #191 as PRs land.
 
 - [ ] **16. Torque study and the 3.04 plan. Live work, top priority** (Squirrel,
