@@ -1,4 +1,4 @@
-# Static reads for Appendix E, fourteenth batch (2026-11-20)
+# Static reads and labs for Appendix E, last Mirae batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (disassembler reads of the real client executables on the
 Mirae lab) and, where a section says so, **[lab]** (a loopback run). Only behaviour is given here. Covers App.
