@@ -282,6 +282,7 @@ client-internals/static-reads-appendix-e-2026-11-20-h.md	cited	8.4; E	8.4; E	Dec
 client-internals/static-reads-appendix-e-2026-11-20-i.md	cited	8.4; E	8.4; E	Registration-table read for App. E: the 17 global built-ins that make 6.x fuse fold 241
 client-internals/static-reads-appendix-e-2026-11-20-j.md	cited	8.3; 8.4; E	8.3; 8.4; E	Decompiler read for App. E#209: 6.x maxlooplimit name, 6.03r7 event-name case and clientside trigger path
 client-internals/static-reads-appendix-e-2026-11-20-k.md	cited	3.5; E	3.5; E	Decompiler read for App. E#103: 2.22 verifier lineage (four guards plus label renames), start-up reach, verify steps and the decoded key size
+client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	2.10; E	2.10; E	Disassembly read for App. E#18: Android Classic 1.8 native connection class, generation-5 framing, cipher and first-frame key byte
 client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
@@ -517,7 +518,7 @@ protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1; E	8.3; 8.4; E	§8.4.2, §8.4.4 
 protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/ids-sent-512-status.md	cited	E	2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
-protocol/ios-classic-plus-113-framing.md	cited	E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
+protocol/ios-classic-plus-113-framing.md	cited	2.10; E	2.10; E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
 protocol/keysweep/205r2.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/2171.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/222.tsv	excluded		4.6	table form of keysweep/README.md in the same folder

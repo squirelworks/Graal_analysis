@@ -43,6 +43,17 @@ The connector can redefine the frame and turn on a cipher. The rules below give 
 | None of this exists in 6.01 or 6.03: no connector, no RC4 or AES, no script-set id tables | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#what-the-script-controls) |
 | gs2lib names `PLI_SET_ENC_KEY` and `PLO_SET_ENC_KEY` (252, setting an AES or RC4 key and IV) and `PLI_BUNDLE` and `PLO_BUNDLE` (253, several messages in one); both are above 223, so they cannot be sent as one GCHAR | server library | [srv] (protocol/packet-ids.md#renames-between-gs2lib-versions) |
 
+**Settled question, formerly E#18: Mobile clients' outer framing and cipher.** How the Android and iPhone clients frame, compress and cipher their stream was open. iPhone Classic+ 1.13 had been read; the Android native layer had not. A read of the Android Classic 1.8 engine library settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-l.md#what-this-settles).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | iPhone Classic+ 1.13 uses the desktop generation-5 frame: two-byte length (or `FF FF` and four bytes), compression byte, partial XOR with round-down for compressed bodies, and a type-5 login with a key byte in one zlib frame | [bin] (protocol/ios-classic-plus-113-framing.md) |
+| Settled | Android Classic 1.8 has the 6.11 connection class: a classic mode by default, the `I`/`L`/`T`/`E` template mode, per-direction `RC4` or `AES`, TLS, and the `StartScript_Connector` start-up | [bin] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-connection-class) |
+| Settled | Its classic mode is generation 5: the same frame header, types 2, 4 and 6 chosen by size (zlib from 48 bytes, bzip2 from 4,096), the partial XOR with seed `0x04A80B38` and min(ceil(n/4), 12) or min(floor(n/4), 4) groups, a key of UTC time AND 127 used both ways, and a first frame of fixed type 3 whose first message carries the key byte after its id | [bin] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-classic-mode-sending) |
+| Settled | It receives with the same rules, splitting the body at line feeds, with message 50 for raw-length messages | [bin] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-classic-mode-receiving) |
+| Verdict | Verified by read, as the best guess had it: Android uses the 6.1x connector front end and the desktop generation-5 frame until the connector script changes it | [bin][inf] (client-internals/static-reads-appendix-e-2026-11-20-l.md#what-this-settles) |
+| Left over | What the official Android connector script selects; the other six Android packages; the template receive path in detail | [inf] (client-internals/static-reads-appendix-e-2026-11-20-l.md#not-covered) |
+
 ## 2.10.4 Id tables
 
 The connector also sets which wire id means what, in both directions. The rules below describe the two tables and the native handlers they point to [bin] (protocol/v6x-clients.md#what-the-script-controls).

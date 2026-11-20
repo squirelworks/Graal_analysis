@@ -18,7 +18,7 @@ The native engine libraries in those packages are **not** encrypted. Connect and
 
 - The exact game-login / version-token bytes (or a documented no-token family) for each of the seven packages. Catalogue grade stays **U**. **[inf]**
 - Whether Android uses the same eight-character `G3D…` stamp family as the inspected iPhone apps, a different alphabet, or no on-wire token. No iOS or desktop value may be transferred. **[inf]**
-- Outer transport framing, compression and encryption around login and the 256-entry inbound command table ([protocol note](../protocol/android-classic-protocol-vs-6x.md)). **[bin]**
+- ~~Outer transport framing, compression and encryption around login and the 256-entry inbound command table ([protocol note](../protocol/android-classic-protocol-vs-6x.md)). **[bin]**~~ Read for Classic 1.8 on 2026-11-20 ([static read](static-reads-appendix-e-2026-11-20-l.md)): the 6.11 connection class, with generation-5 framing by default and the key byte after the first message's id. The login id and token come from the connector script.
 
 ## Catalogue use
 
