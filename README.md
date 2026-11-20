@@ -73,6 +73,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Static reads for Appendix E, seventh batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-g.md) — the 2.22 gani frame and tick fields behind the push trace, and the 1.39 item box size and unit.
 - [Static reads for Appendix E, ninth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-h.md) — the 3.153 script container reader and writer.
 - [Static reads for Appendix E, tenth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-i.md) — the 17 built-ins that make 6.x fuse fold 241.
+- [Static reads for Appendix E, eleventh batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-j.md) — the 6.x loop-limit name, event-name case and the `clientside` trigger path.
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
 - [Static reads for Appendix E, second batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-b.md) — 1.39 movement tables, the 2.1 test entry save, the RC 76 last byte, GS2 opcodes 48, 49 and 54 on 5.00r7.
 - [Static reads for Appendix E, third batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-c.md) — the bomb and player lists in the 2.05 blocked-point test, the 1.39 pickup box, whole tiles in 2.05 level records.

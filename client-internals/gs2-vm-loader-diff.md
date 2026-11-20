@@ -280,10 +280,10 @@ The weapon survey and the world survey grade a compiler: which source it accepts
 
 ## Still open
 
-- [ ] Function-table case. No client reading shows whether `onTimeout` and `onTimeOut` are one function. seihai-core treats them as different; the C++ loader treats them as the same; GServer-v2's JavaScript bindings are the exact identifiers.
-- [ ] `onActionServerSide` / `onActionClientSide` on a client VM. The server wrapper and the weapon survey use those spellings. No client matcher was read.
+- [x] ~~Function-table case.~~ Read on 6.03r7 in [static-reads-appendix-e-2026-11-20-j.md](static-reads-appendix-e-2026-11-20-j.md#event-names-and-the-function-table-603r7): the lookup for a fired event ignores case. Other builds not read. Earlier text: No client reading shows whether `onTimeout` and `onTimeOut` are one function. seihai-core treats them as different; the C++ loader treats them as the same; GServer-v2's JavaScript bindings are the exact identifiers.
+- [x] ~~`onActionServerSide` / `onActionClientSide` on a client VM.~~ Read on 6.03r7: 48 `clientside,<weapon>,…` becomes the weapon event `actionclientside`; `triggeraction` to `serverside`/`servernpc` goes to the server ([static-reads-appendix-e-2026-11-20-j.md](static-reads-appendix-e-2026-11-20-j.md#how-a-server-trigger-reaches-a-weapon-603r7)). The server wrapper and the weapon survey use those spellings. No client matcher was read.
 - [x] ~~Operand order of opcodes 48 and 49, and a single description of how many values opcode 54 pops on 5.00r7.~~ Settled in [static-reads-appendix-e-2026-11-20-b.md](static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209): 54 takes three values, 49 lists in reverse push order, 48 takes name-then-value pairs with an upward-counting loop.
-- [ ] The 6.x name of the loop-limit property. 6.00r2 and 6.00r4 have the field without the plain name `maxlooplimit`.
+- [x] ~~The 6.x name of the loop-limit property.~~ `maxlooplimit`, scrambled ([static-reads-appendix-e-2026-11-20-j.md](static-reads-appendix-e-2026-11-20-j.md#the-6x-loop-limit-name)). 6.00r2 and 6.00r4 have the field without the plain name `maxlooplimit`.
 - [ ] Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era, and Classic other than 1.8's x86 engine.
 - [ ] Maths on unpacked 6.1.1.3 and on Mac 6.11r1. The 6.03r7 single-precision square root does not transfer.
 - [ ] Whether Linux 4.20r6's fusion and opcode 11, published from a handoff the editor did not re-run, match a fresh read of that ELF.
