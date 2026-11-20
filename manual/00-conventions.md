@@ -30,6 +30,8 @@ The manual is numbered the way a standard is: Parts, chapters inside a Part, and
 
 Every heading that can be cited begins with its number. Part 0 is this chapter.
 
+**Stability.** From TRM 0.1.0, section numbers are frozen for the whole 0.1 line. A §x.y.z or `App. E#n` that resolves in 0.1.0 resolves to the same subject in every 0.1.z patch. New sections and entries go at the end of their chapter or appendix and take the next free number. Moving, merging or renumbering existing sections waits for 0.2.0 (`VERSIONING.md`). The citable data files have the same rule for their columns (`docs/citable-data.md`).
+
 **Cross-references.** `→ §2.2.2` points to a section; `→ App. E#12` points to an appendix entry. A cross-reference replaces a repeated fact: every fact has exactly one canonical section, and other sections point to it. The checker (`tools/manual/check_manual.py`) fails on a reference that does not resolve to a heading.
 
 **Version differences** go in columns or rows of the same table, never in parallel chapters. A rule that changes across builds is one table with one row per build, or per range of builds where the notes measured the whole range.

@@ -1,1 +1,2 @@
 Notes for the next Graal_analysis release. One line per change to the manual or the citable data, added by the PR that makes it; the release PR moves them into `vX.Y.Z.md` (VERSIONING.md).
+- Manual §0.2 says section numbers are frozen for the 0.1 line from 0.1.0. `docs/citable-data.md` lists every citable data file and its columns, with the same rule, and `tools/manual/test_citable_data.py` checks the headers against it (#653).
