@@ -46,7 +46,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#103 | 2.22 signature verifier variants | Read | a cracked or debug variant, not an official one | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
-| E#208 | Whether 3.153 uses OpenGS1's layout | Read | no | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49 and 54 settled on 5.00r7; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
@@ -518,19 +517,6 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Settles it | A decoded bytecode message from a 4.x lab session, a reading of the built-in command table and the compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Outlook | Read and Lab for the client side; Maybe never for the official compiler's own source, so its grammar must be inferred from its output | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
-### E#208 What the OpenGS1 opcode set describes
-
-**Question.** Whether the OpenGS1 opcode set describes any official bytecode [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The graphics and bytecode note calls the OpenGS1 VM "GS1 bytecode" and lists its opcode set and constant-table layout as known | [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode) |
-| Claim B | 2.05 does not compile GS1 to bytecode; OpenGS1's opcode set is an independent reimplementation that 2.05 does not share | [2.05] (npc-library/gs1-reference-205.md#execution-model-205; npc-library/gs1-commands.md#update-2026-10-21) |
-| Evidence | 4.2.0.8, 5.0.0.7 and unpacked 6.00 do not use OpenGS1's layout, and real server-compiled GS2 bodies use the four-segment container, not OpenGS1's body offset, constant tables and packed values | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles) |
-| Best guess | OpenGS1 describes only itself; 3.153 uses the four-segment container or an early form of it. Confidence: moderate to high | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Settles it | 3.153's bytecode reader set beside the OpenGS1 layout, or an official bytecode message for 3.153 (→ App. E#207) | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-| Outlook | Read | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
-
 ### E#209 GS2 VM: what the per-build reading left open
 
 **Question.** The VM details the six-VM reading of 3.153 to 6.03r7 left open. The cross-version table settles some and names the builds still unread [bin][doc] (client-internals/gs2-vm-loader-diff.md).
@@ -670,6 +656,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#204 | Writing to GS1 object members | → §8.2.5 |
 | E#205 | Index of the hare baddy | → §8.2.2 |
 | E#206 | `move` option bits in 2.05 | → §8.2.9 |
+| E#208 | What the OpenGS1 opcode set describes | → §8.4.3 |
 | E#212 | Whether a function-only image skips the top-level pass | → §8.4.10 |
 | E#213 | How GS2 text bytes draw on screen | → §8.4.10 |
 | E#215 | When GS2-only names arrived, and what a missing name does | → §8.3.9 |

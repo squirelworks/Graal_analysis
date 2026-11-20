@@ -68,7 +68,7 @@ The opcode names, the peephole, and the bytes the client runs which that compile
 
 ## 8.4.3 OpenGS1 bytecode (reference reimplementation)
 
-OpenGS1 defines a stack-based bytecode VM for GS1 [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode). It is an independent reimplementation: 2.05 does not share its opcode set and does not run bytecode at all [2.05] (npc-library/gs1-reference-205.md#execution-model-205). How the notes first read this format is → App. E#208.
+OpenGS1 defines a stack-based bytecode VM for GS1 [src] (protocol/graphics-movement-bytecode.md#scripting--gs1-bytecode). It is an independent reimplementation: 2.05 does not share its opcode set and does not run bytecode at all [2.05] (npc-library/gs1-reference-205.md#execution-model-205). No official client reads it, 3.153 included (see the settled question below).
 
 File layout, in order:
 
@@ -103,6 +103,16 @@ Opcodes, by name; the notes give no numeric values:
 | `OP_JEZ`, `OP_JNZ` | conditional jumps | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_STOP` | halt | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
 | `OP_DBG_OUT` | debug output | [src] (protocol/graphics-movement-bytecode.md#opcodes-from-operationhpp) |
+
+
+**Settled question, formerly E#208: What the OpenGS1 opcode set describes.** Whether OpenGS1's layout describes any official bytecode was open; 4.2.0.8 and later were known to use the four-segment container, but 3.153, the first client that handles 131, had not been read. A read of the 3.153 Mac client settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#the-3153-script-container-e208).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | 3.153 reads the four-segment container of → §8.4.2: big-endian 32-bit type and length per segment, stop outside 1 to 4; 1 the event mask, 2 the function table (code position, zero-terminated name, `public.` stripped and flagged), 3 the string table, 4 the instructions with operand markers `F0`–`F2` (string index), `F3`–`F5` (signed number) and `F6` (number as text) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#the-reader) |
+| Settled | 3.153 also writes the same container from a script in memory, choosing the smallest operand form that fits; whether it compiles source was not traced | [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#the-writer) |
+| Verdict | Verified by read on 3.153; the best guess holds: OpenGS1 describes only itself, and the container dates from the first bytecode client | [bin] (client-internals/static-reads-appendix-e-2026-11-20-h.md#what-this-settles) |
+| Left over | 3.153's opcode switch and whether it folds | [inf] (client-internals/static-reads-appendix-e-2026-11-20-h.md#not-covered) |
 
 ## 8.4.4 Dispatch by build
 
