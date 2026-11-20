@@ -11,7 +11,7 @@ the client.
 - **One client bug.** A level mesh whose face count is inflated (for example 65536), or whose
   face indices are partly out of range, leaves the client with no collision object for the level.
   The next step reads through that empty object. Delphi's exception handler catches the fault and
-  shows its "Access violation ... in module 'Graal3D.exe'. Read of address 00000000" error box,
+  shows its access-violation error box (a read of a null pointer in `Graal3D.exe`),
   and the window then stays black.
 - It is a handled exception, not a crash of the process, and the client does nothing beyond the
   read. Because the server sends levels as text in id 0 (→ manual §9.3), a server that sends such a
