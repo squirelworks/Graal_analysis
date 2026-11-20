@@ -90,3 +90,32 @@ for Android (version name 1.8). It ships x86_64 native libraries, so it ran nati
 - So Android Classic 1.8 is on the 6.1x connector line (engine string 6.15401), not the older
   direct-login line.
 - E#16 (Classic+ 1.13 for iPhone) is not covered: there is no iOS emulator here.
+
+## How a server moves a 5.12 player in 3D (E#505)
+
+Setup: the real Windows 5.12 (`G3D14097`) in the Win10 guest, in a loopback-only namespace, with a
+lobby warp to a local copy of the Seihai gserver's Graal3D mode (the 2026-11-20 Camera build). The
+copy was changed in the lab only, not in any repo: the player's own control object was given a
+section-6 movetype and section-7 movement data (a position, an identity rotation, zero vectors and
+a closing flag of 0), and every second the server moved that position 0.5 units along y. All of the
+client's own updates were logged. One run per movetype, about 45 s each.
+
+- **No movetype (baseline).** The client reports its control position in every packet (about once a
+  second while idle) and sends no object section.
+- **interpolate.** The client takes the movement data and glides toward each new target, reporting
+  a position about 0.25 to 0.5 units behind it (target 28.0, reported 27.75). In its own update it
+  echoes section 7 (movement data) every time, and once at the start sections 3 (shape), 5
+  (transform), 6 (movetype "interpolate") and 13 (flags).
+- **list.** The client jumps exactly onto each new position (target 25.0, reported 25.0). It echoes
+  section 5 (transform) every time, plus the same one-time 3, 5, 6 and 13 at the start.
+- **rigid.** The client follows the targets with the same small lag as interpolate, but echoes no
+  object section, only the position in each packet.
+- Sections 9 (chat) and 3 (shape) were not echoed after the first update. Nothing was typed or
+  walked, so keyboard input together with a movetype was not tested.
+- The movement-data layout was accepted as read: three 32-bit position values, four 8-bit rotation
+  values, six 9-bit vectors and one flag for interpolate and rigid; for list, entries of a flag and
+  eight 32-bit values, ending with a flag of 0. No run desynchronised. One early interpolate run
+  ended with "The Graal3D server has dropped the connection"; an identical later run went the full
+  45 s.
+- The 3D view looked the same throughout, because the Camera ghost does not follow the player
+  object, so the wire figures are the evidence.

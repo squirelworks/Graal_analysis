@@ -67,7 +67,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#425 | Standalone NC flag-action recipient | Read | the NC server, as a flag-list write | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); servers sent no tile definitions | [inf] (torque/304-tile-types.md#not-settled) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -663,17 +662,6 @@ The work list carried from the difference table:
 
 These questions are about the 3D side: the 2000 Graal3D client and the Torque-based plug-in of the 3.x and 4.x clients (→ Parts IX and X). They matter less to a 2D server, and most are answerable from the held plug-ins [bin] (graal3d/torque-engine-4x.md#not-done).
 
-### E#505 How a server makes a 5.12 player move in 3D
-
-**Question.** A 5.12 client in 3D puts no movement on UDP: protocol 24 has no moves and its script cannot move its own control object. How a server is meant to move the player, and what the client then echoes (→ §10.3.8) [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | With the keyboard on the 3D view, all 183 client data packets stayed the same apart from counters; the GS2 walking script ran but nothing moved | [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun) |
-| Best guess | The server gives the control object a movement type and movement data (the update's sections 3 and 8), the client then moves it locally and reports its transform. Confidence: moderate | [inf] (torque/udp-session.md#open) |
-| Settles it | A lab run where the server sets movetype and movement data, recording the client's own update sections 5, 9 and 3 | [inf] (torque/udp-session.md#open) |
-| Outlook | Lab | [inf] (torque/udp-session.md#open) |
-
 ### E#507 3.04 sheet type 5 and server tile definitions
 
 **Question.** What a `tiledefs` entry of type 5 changes in 3.04, and whether a 3.04-era server sent `addtiledef` lines at login (→ §10.7.8) [bin] (torque/304-tile-types.md#not-settled).
@@ -781,6 +769,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#502 | Whether 4.04r2 loads `.mis` mission files | → §10.6 |
 | E#503 | Whether 4.04r2 reads `.dso` compiled TorqueScript | → §10.6 |
 | E#504 | The `GR3DV003` beta at run time | → §9.7.3 |
+| E#505 | How a server makes a 5.12 player move in 3D | → §10.3.8 |
 | E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | → §10.3.9 |
 | E#600 | Tile layer as GraalEditor writes it | → §11.1.2 |
 | E#601 | Whether link arrival offsets are evaluated | → §11.6.4 |
