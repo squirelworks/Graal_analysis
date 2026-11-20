@@ -1,0 +1,163 @@
+client	key	effect	c2s	script_event	notes
+2.05r2	F1	opens window: Help 476x330@274,232; screen 157071 px 476x352 box 82,75-557,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	window would not close: Help; reset: closed 0/1 new windows; screen still differs after reset (239252 px)
+2.05r2	F2	screen 497 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	F3	screen 450 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=33}	-	
+2.05r2	F4	opens window: Warning 291x80@366,357; screen 239252 px 577x416 box 31,32-607,447 (near player)	-	-	reset: closed 1/1 new windows; screen still differs after reset (239252 px)
+2.05r2	F5	opens window: Warning 320x80@352,357	-	-	reset: closed 1/1 new windows
+2.05r2	F6	screen 67043 px 640x480 box 0,0-639,479 (near player); CLIENT GONE (crash or quit)	-	-	screen still differs after reset (67043 px)
+2.05r2	F7	opens window: Playerlist 192x373@36,62; screen 71101 px 490x522 box -156,-95-333,426 (centre 88,165)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	window would not close: Playerlist; reset: closed 0/1 new windows; screen still differs after reset (71021 px)
+2.05r2	F8	opens window: Graal Reborn Server list 577x416@223,189; screen 239252 px 577x416 box 31,32-607,447 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	window would not close: Graal Reborn Server list; reset: closed 0/1 new windows; screen still differs after reset (239252 px)
+2.05r2	F9	screen 493 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	F10	opens window: Graal: GS1 Control 648x514@188,127; screen 136426 px 648x514 box -4,-30-643,483 (near player); CLIENT GONE (crash or quit)	3:NPCPROPS{ "L/$n=33}	-	window would not close: Graal: GS1 Control; reset: closed 0/1 new windows; screen still differs after reset (286081 px)
+2.05r2	F11	screen 453 px 86x316 box 248,111-333,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	F12	screen 450 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=33}	-	
+2.05r2	`	screen 452 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=35} | 3:NPCPROPS{ "L/$n=36}	-	
+2.05r2	1	screen 465 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=38}	-	
+2.05r2	2	screen 363 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=40} | 3:NPCPROPS{ "L/$n=41}	-	
+2.05r2	3	screen 254 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=43}	-	
+2.05r2	4	screen 259 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=45} | 3:NPCPROPS{ "L/$n=46}	-	
+2.05r2	5	screen 258 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=48}	-	
+2.05r2	6	screen 500 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=50} | 3:NPCPROPS{ "L/$n=51}	-	
+2.05r2	7	screen 442 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=52} | 3:NPCPROPS{ "L/$n=53}	-	
+2.05r2	8	screen 437 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=55} | 3:NPCPROPS{ "L/$n=56}	-	
+2.05r2	9	screen 441 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=57} | 3:NPCPROPS{ "L/$n=58}	-	
+2.05r2	0	screen 1092 px 511x356 box 72,71-582,426 (near player)	3:NPCPROPS{ "L/$n=60} | 3:NPCPROPS{ "L/$n=61}	-	
+2.05r2	-	screen 419 px 85x316 box 248,111-332,426 (near player)	3:NPCPROPS{ "L/$n=62} | 3:NPCPROPS{ "L/$n=63}	-	
+2.05r2	=	screen 461 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=65} | 3:NPCPROPS{ "L/$n=66}	-	
+2.05r2	BackSpace	screen 470 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=67} | 3:NPCPROPS{ "L/$n=68}	-	
+2.05r2	A	screen 701 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=70} | 3:NPCPROPS{ "L/$n=71}	keydown=64 keydown=0	
+2.05r2	B	screen 662 px 512x316 box 72,111-583,426 (near player); chat prop sent	3:NPCPROPS{ "L/$n=72} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=73}	-	
+2.05r2	C	screen 442 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=75} | 3:NPCPROPS{ "L/$n=76}	-	
+2.05r2	D	screen 660 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=77} | 3:NPCPROPS{ "L/$n=78}	keydown=16 keydown=0	
+2.05r2	E	screen 583 px 511x316 box 72,111-582,426 (near player); chat prop sent	3:NPCPROPS{ "L/$n=80} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=81}	-	
+2.05r2	F	screen 468 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=82} | 3:NPCPROPS{ "L/$n=83}	-	
+2.05r2	G	screen 268 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=85} | 3:NPCPROPS{ "L/$n=86}	-	
+2.05r2	H	screen 259 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=87} | 3:NPCPROPS{ "L/$n=88}	-	
+2.05r2	I	screen 84730 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.y=32} | 18:FLAGSET{gr.y=31.5} | 2:PLAYERPROPS{gani='walk' y=31.5 sprite=0} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=90}	-	reset: again(auto), escape; screen still differs after reset (248051 px)
+2.05r2	J	nothing seen	-	-	
+2.05r2	K	nothing seen	-	-	
+2.05r2	L	screen 63874 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.x=30} | 18:FLAGSET{gr.x=30.5} | 2:PLAYERPROPS{gani='walk' x=30.5 sprite=3} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	keydown=8 keydown=0	reset: again(auto), escape; screen still differs after reset (246529 px)
+2.05r2	M	nothing seen	-	-	reset: again
+2.05r2	N	screen 453 px 86x316 box 248,111-333,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	O	screen 450 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=33}	-	
+2.05r2	P	screen 17861 px 512x317 box 72,110-583,426 (near player)	2:PLAYERPROPS{status=21} | 3:NPCPROPS{ "L/$n=35} | 3:NPCPROPS{ "L/$n=36}	-	reset: again
+2.05r2	Q	screen 215322 px 606x366 box 17,81-622,446 (near player); chat prop sent	2:PLAYERPROPS{status=21} | 3:NPCPROPS{ "L/$n=39} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=40}	-	reset: again
+2.05r2	R	screen 504 px 511x317 box 72,110-582,426 (near player); chat prop sent	3:NPCPROPS{ "L/$n=43} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=44}	-	
+2.05r2	S	screen 447 px 512x316 box 72,111-583,426 (near player)	34:UPDATEFILE{#.)FLsword.gani} | 2:PLAYERPROPS{gani='sword'} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=46}	keydown=32 keydown=0	
+2.05r2	T	screen 479 px 512x315 box 72,112-583,426 (near player); chat prop sent	3:NPCPROPS{ "L/$n=48} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=49}	-	
+2.05r2	U	screen 553 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=51}	-	
+2.05r2	V	screen 284 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=53} | 3:NPCPROPS{ "L/$n=54}	-	
+2.05r2	W	screen 259 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=56}	-	
+2.05r2	X	screen 258 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=58} | 3:NPCPROPS{ "L/$n=59}	-	
+2.05r2	Y	screen 577 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=61}	-	
+2.05r2	Z	screen 244 px 86x317 box 248,110-333,426 (near player)	3:NPCPROPS{ "L/$n=63} | 3:NPCPROPS{ "L/$n=64}	-	
+2.05r2	[	screen 875 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=66}	-	
+2.05r2	]	screen 254 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=68} | 3:NPCPROPS{ "L/$n=69}	-	
+2.05r2	\	screen 559 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=71}	-	
+2.05r2	;	screen 288 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=73} | 3:NPCPROPS{ "L/$n=74}	-	
+2.05r2	'	screen 231 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=76}	-	
+2.05r2	,	screen 263 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=78} | 3:NPCPROPS{ "L/$n=79}	-	
+2.05r2	.	screen 546 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=81}	-	
+2.05r2	/	screen 284 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=83} | 3:NPCPROPS{ "L/$n=84}	-	
+2.05r2	Space	screen 222 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=86}	-	
+2.05r2	Shift	screen 258 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=88} | 3:NPCPROPS{ "L/$n=89}	-	
+2.05r2	Ctrl	screen 564 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=91}	-	
+2.05r2	Alt	screen 293 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=93} | 3:NPCPROPS{ "L/$n=94}	-	
+2.05r2	Insert	screen 227 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=96}	-	
+2.05r2	Delete	screen 259 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=98} | 3:NPCPROPS{ "L/$n=99}	-	
+2.05r2	Home	screen 644 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/%n=101}	-	
+2.05r2	End	screen 288 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/%n=103} | 3:NPCPROPS{ "L/%n=104}	-	
+2.05r2	Prior	screen 228 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/%n=106}	-	
+2.05r2	Next	screen 262 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/%n=108} | 3:NPCPROPS{ "L/%n=109}	-	
+2.05r2	Left	screen 99167 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.x=30} | 18:FLAGSET{gr.x=29.5} | 2:PLAYERPROPS{gani='walk' x=29.5 sprite=1} | 19:FLAGDEL{gr.x=29.5} | 18:FLAGSET{gr.x=29} | 19:FLAGDEL{gr.x=29} | 18:FLAGSET{gr.x=28.5} | 2:PLAYERPROPS{x=28.5} | 19:FLAGDEL{gr.x=28.5} | 18:FLAGSET{gr.x=28} | 19:FLAGDEL{gr.x=28} | 18:FLAGSET{gr.x=27.5} | 2:PLAYERPROPS{x=27.5} | 19:FLAGDEL{gr.x=27.5} | 18:FLAGSET{gr.x=27} | 19:FLAGDEL{gr.x=27} | 18:FLAGSET{gr.x=26.5} | 2:PLAYERPROPS{x=26.5} | 19:FLAGDEL{gr.x=26.5} | 18:FLAGSET{gr.x=26} | 2:PLAYERPROPS{gani='idle' x=26} | 3:NPCPROPS{ "L/%n=111} | 3:NPCPROPS{ "L/%n=112}	keydown=2 keydown=0	reset: undo
+2.05r2	Right	screen 103988 px 640x456 box 0,0-639,455 (near player)	19:FLAGDEL{gr.x=30} | 18:FLAGSET{gr.x=30.5} | 2:PLAYERPROPS{gani='walk' x=30.5} | 19:FLAGDEL{gr.x=30.5} | 18:FLAGSET{gr.x=31} | 19:FLAGDEL{gr.x=31} | 18:FLAGSET{gr.x=31.5} | 2:PLAYERPROPS{x=31.5} | 19:FLAGDEL{gr.x=31.5} | 18:FLAGSET{gr.x=32} | 19:FLAGDEL{gr.x=32} | 18:FLAGSET{gr.x=32.5} | 2:PLAYERPROPS{x=32.5} | 19:FLAGDEL{gr.x=32.5} | 18:FLAGSET{gr.x=33} | 19:FLAGDEL{gr.x=33} | 18:FLAGSET{gr.x=33.5} | 2:PLAYERPROPS{x=33.5} | 19:FLAGDEL{gr.x=33.5} | 18:FLAGSET{gr.x=34} | 19:FLAGDEL{gr.x=34} | 18:FLAGSET{gr.x=34.5} | 2:PLAYERPROPS{x=34.5} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/%n=115} | 3:NPCPROPS{ "L/%n=116}	keydown=8 keydown=0	reset: undo; screen still differs after reset (63585 px)
+2.05r2	Up	screen 98636 px 640x456 box 0,0-639,455 (near player)	19:FLAGDEL{gr.y=32} | 18:FLAGSET{gr.y=31.5} | 2:PLAYERPROPS{gani='walk' y=31.5 sprite=0} | 19:FLAGDEL{gr.y=31.5} | 18:FLAGSET{gr.y=31} | 19:FLAGDEL{gr.y=31} | 18:FLAGSET{gr.y=30.5} | 2:PLAYERPROPS{y=30.5} | 19:FLAGDEL{gr.y=30.5} | 18:FLAGSET{gr.y=30} | 19:FLAGDEL{gr.y=30} | 18:FLAGSET{gr.y=29.5} | 2:PLAYERPROPS{y=29.5} | 19:FLAGDEL{gr.y=29.5} | 18:FLAGSET{gr.y=29} | 19:FLAGDEL{gr.y=29} | 18:FLAGSET{gr.y=28.5} | 2:PLAYERPROPS{y=28.5} | 19:FLAGDEL{gr.y=28.5} | 18:FLAGSET{gr.y=28} | 2:PLAYERPROPS{y=28} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/%n=119} | 3:NPCPROPS{ "L/%n=120}	keydown=1 keydown=0	reset: undo; screen still differs after reset (85249 px)
+2.05r2	Down	screen 95091 px 640x456 box 0,0-639,455 (near player)	19:FLAGDEL{gr.y=32.5} | 18:FLAGSET{gr.y=33} | 2:PLAYERPROPS{gani='walk' y=33} | 19:FLAGDEL{gr.y=33} | 18:FLAGSET{gr.y=33.5} | 19:FLAGDEL{gr.y=33.5} | 18:FLAGSET{gr.y=34} | 2:PLAYERPROPS{y=34} | 19:FLAGDEL{gr.y=34} | 18:FLAGSET{gr.y=34.5} | 19:FLAGDEL{gr.y=34.5} | 18:FLAGSET{gr.y=35} | 2:PLAYERPROPS{y=35} | 19:FLAGDEL{gr.y=35} | 18:FLAGSET{gr.y=35.5} | 19:FLAGDEL{gr.y=35.5} | 18:FLAGSET{gr.y=36} | 2:PLAYERPROPS{y=36} | 19:FLAGDEL{gr.y=36} | 18:FLAGSET{gr.y=36.5} | 3:NPCPROPS{ "L/%n=123} | 2:PLAYERPROPS{gani='idle' y=36.5} | 3:NPCPROPS{ "L/%n=124}	keydown=4 keydown=0	reset: undo; screen still differs after reset (84454 px)
+2.05r2	KP_0	screen 505 px 511x316 box 63,111-573,426 (near player); chat prop sent	3:NPCPROPS{ "L/%n=127} | 3:NPCPROPS{ "L/%n=128} | 2:PLAYERPROPS{chat=''}	-	reset: again
+2.05r2	KP_1	screen 574 px 512x316 box 63,111-574,426 (near player)	3:NPCPROPS{ "L/%n=131} | 3:NPCPROPS{ "L/%n=132}	-	
+2.05r2	KP_2	screen 814 px 511x317 box 63,110-573,426 (near player)	3:NPCPROPS{ "L/%n=134}	-	
+2.05r2	KP_3	screen 306204 px 640x480 box 0,0-639,479 (near player); CLIENT GONE (crash or quit)	-	-	screen still differs after reset (306204 px)
+2.05r2	KP_4	screen 64294 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.x=30} | 18:FLAGSET{gr.x=29.5} | 2:PLAYERPROPS{gani='walk' x=29.5 sprite=1} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	keydown=2 keydown=0	reset: again(auto), escape; screen still differs after reset (253259 px)
+2.05r2	KP_5	nothing seen	-	-	
+2.05r2	KP_6	nothing seen	-	-	
+2.05r2	KP_7	screen 493 px 511x316 box 72,111-582,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	KP_8	screen 92581 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.y=32} | 18:FLAGSET{gr.y=31.5} | 2:PLAYERPROPS{gani='walk' y=31.5 sprite=0} | 19:FLAGDEL{gr.y=31.5} | 18:FLAGSET{gr.y=31} | 19:FLAGDEL{gr.y=31} | 18:FLAGSET{gr.y=30.5} | 2:PLAYERPROPS{y=30.5} | 19:FLAGDEL{gr.y=30.5} | 18:FLAGSET{gr.y=30} | 19:FLAGDEL{gr.y=30} | 18:FLAGSET{gr.y=29.5} | 2:PLAYERPROPS{y=29.5} | 19:FLAGDEL{gr.y=29.5} | 18:FLAGSET{gr.y=29} | 19:FLAGDEL{gr.y=29} | 18:FLAGSET{gr.y=28.5} | 2:PLAYERPROPS{y=28.5} | 19:FLAGDEL{gr.y=28.5} | 18:FLAGSET{gr.y=28} | 2:PLAYERPROPS{y=28} | 3:NPCPROPS{ "L/$n=33} | 34:UPDATEFILE{#.)FLpush.gani} | 2:PLAYERPROPS{gani='push'}	keydown=1	reset: again(auto), escape; screen still differs after reset (257864 px)
+2.05r2	KP_9	nothing seen	-	-	
+2.05r2	KP_Add	nothing seen	-	-	
+2.05r2	KP_Subtract	screen 453 px 86x316 box 248,111-333,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	KP_Multiply	screen 450 px 511x315 box 72,112-582,426 (near player)	3:NPCPROPS{ "L/$n=33}	-	
+2.05r2	KP_Divide	screen 452 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=35} | 3:NPCPROPS{ "L/$n=36}	-	
+2.05r2	KP_Decimal	screen 215320 px 606x366 box 17,81-622,446 (near player)	2:PLAYERPROPS{status=21} | 3:NPCPROPS{ "L/$n=38}	-	reset: again(auto)
+2.05r2	Pause	screen 795 px 511x317 box 72,110-582,426 (near player); chat prop sent	3:NPCPROPS{ "L/$n=42} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=43}	-	reset: again
+2.05r2	Print	screen 260 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=46} | 3:NPCPROPS{ "L/$n=47}	-	
+2.05r2	Scroll_Lock	screen 259 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=49}	-	reset: again
+2.05r2	Caps_Lock	screen 441 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=53}	-	reset: again
+2.05r2	Num_Lock	screen 287 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=57}	-	reset: again
+2.05r2	Ctrl+A	screen 2859 px 511x316 box 72,111-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_afk_stay.mng} | 3:NPCPROPS{ "L/$n=61}	-	
+2.05r2	Ctrl+B	screen 305 px 512x317 box 72,110-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_brb_stay.mng} | 3:NPCPROPS{ "L/$n=63} | 3:NPCPROPS{ "L/$n=64}	-	
+2.05r2	Ctrl+C	screen 940 px 512x316 box 72,111-583,426 (near player)	34:UPDATEFILE{#..X,emoticon_conf.png} | 3:NPCPROPS{ "L/$n=66}	-	
+2.05r2	Ctrl+D	screen 2541 px 511x315 box 72,112-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_dgrin.png} | 3:NPCPROPS{ "L/$n=68} | 3:NPCPROPS{ "L/$n=69}	-	
+2.05r2	Ctrl+E	screen 2746 px 511x315 box 72,112-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_eyes.mng} | 3:NPCPROPS{ "L/$n=71} | 3:NPCPROPS{ "L/$n=72}	-	
+2.05r2	Ctrl+F	screen 2580 px 512x317 box 72,110-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_frown.png} | 3:NPCPROPS{ "L/$n=74}	-	
+2.05r2	Ctrl+G	screen 281 px 512x315 box 72,112-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_grr.png} | 3:NPCPROPS{ "L/$n=76} | 3:NPCPROPS{ "L/$n=77}	-	
+2.05r2	Ctrl+H	screen 2737 px 511x315 box 72,112-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_heart.png} | 3:NPCPROPS{ "L/$n=79}	-	
+2.05r2	Ctrl+I	screen 85974 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.(..emoticon_idea.png} | 34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.y=32} | 18:FLAGSET{gr.y=31.5} | 2:PLAYERPROPS{gani='walk' y=31.5 sprite=0} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=81} | 3:NPCPROPS{ "L/$n=82}	keydown=513 keydown=512	reset: again(auto), escape; screen still differs after reset (248051 px)
+2.05r2	Ctrl+J	nothing seen	-	-	
+2.05r2	Ctrl+K	nothing seen	-	-	
+2.05r2	Ctrl+L	screen 2780 px 511x316 box 72,111-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_lol.mng} | 3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	Ctrl+M	screen 232078 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.(..emoticon_maybe.png} | 34:UPDATEFILE{#.)FLmaps1.gani} | 2:PLAYERPROPS{gani='maps1' status=21} | 34:UPDATEFILE{#.)FLmaps2.gani} | 2:PLAYERPROPS{gani='maps2'} | 3:NPCPROPS{ "L/$n=33} | 23:WANTFILE{ganimap.png}	-	reset: again(auto)
+2.05r2	Ctrl+N	screen 850 px 512x316 box 72,111-583,426 (near player); chat prop sent	34:UPDATEFILE{#.(..emoticon_ncool.png} | 3:NPCPROPS{ "L/$n=37} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=38}	-	
+2.05r2	Ctrl+O	screen 2659 px 84x106 box 291,110-374,215 (near npc)	34:UPDATEFILE{#.(..emoticon_ohh.png} | 3:NPCPROPS{ "L/$n=40}	-	
+2.05r2	Ctrl+P	screen 2714 px 512x317 box 72,110-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_ptongue.mng} | 3:NPCPROPS{ "L/$n=42} | 3:NPCPROPS{ "L/$n=43}	-	
+2.05r2	Ctrl+Q	screen 498 px 512x317 box 72,110-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_qphone_stay.png} | 3:NPCPROPS{ "L/$n=45}	-	
+2.05r2	Ctrl+R	screen 559 px 512x316 box 72,111-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_rofl.mng} | 3:NPCPROPS{ "L/$n=47} | 3:NPCPROPS{ "L/$n=48}	-	
+2.05r2	Ctrl+S	screen 779 px 511x317 box 72,110-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_smile.png} | 34:UPDATEFILE{#.)FLsword.gani} | 2:PLAYERPROPS{gani='sword'} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=50}	-	
+2.05r2	Ctrl+T	screen 2680 px 127x316 box 248,111-374,426 (near player)	34:UPDATEFILE{#.(..emoticon_tears.mng} | 3:NPCPROPS{ "L/$n=52} | 3:NPCPROPS{ "L/$n=53}	-	
+2.05r2	Ctrl+U	screen 359 px 65x46 box 292,110-356,155 (near npc)	34:UPDATEFILE{#.(..emoticon_umad.png} | 3:NPCPROPS{ "L/$n=55}	-	
+2.05r2	Ctrl+V	screen 2613 px 512x316 box 72,111-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_vsorry.mng} | 3:NPCPROPS{ "L/$n=57} | 3:NPCPROPS{ "L/$n=58}	-	
+2.05r2	Ctrl+W	screen 763 px 512x316 box 72,111-583,426 (near player)	34:UPDATEFILE{#.(..emoticon_wink.png} | 3:NPCPROPS{ "L/$n=60}	-	
+2.05r2	Ctrl+X	screen 1143 px 511x356 box 72,71-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_xx.png} | 3:NPCPROPS{ "L/$n=62} | 3:NPCPROPS{ "L/$n=63}	-	
+2.05r2	Ctrl+Y	screen 3385 px 511x317 box 72,110-582,426 (near player)	34:UPDATEFILE{#.(..emoticon_yummy.png} | 3:NPCPROPS{ "L/$n=65} | 3:NPCPROPS{ "L/$n=66}	-	
+2.05r2	Ctrl+Z	screen 786 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=67} | 34:UPDATEFILE{#tx..emoticon_zzz_stay.mng} | 3:NPCPROPS{ "L/$n=68}	-	
+2.05r2	Alt+0	screen 1189 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=70} | 3:NPCPROPS{ "L/$n=71}	-	
+2.05r2	Alt+1	opens window: Save screenshot 422x222@301,200; screen 239252 px 577x416 box 31,32-607,447 (near player)	-	-	reset: closed 1/1 new windows; screen still differs after reset (239252 px)
+2.05r2	Alt+2	opens window: Save screenshot 422x222@301,200	-	-	reset: closed 1/1 new windows
+2.05r2	Alt+3	screen 82 px 12x11 box 16,397-27,407 (near ground)	3:NPCPROPS{ "L/$n=76} | 3:NPCPROPS{ "L/$n=77}	-	
+2.05r2	Alt+4	nothing seen	3:NPCPROPS{ "L/$n=79}	-	
+2.05r2	Alt+5	opens window: Save Graal level 420x220@302,201	-	-	reset: closed 1/1 new windows
+2.05r2	Alt+6	nothing seen	3:NPCPROPS{ "L/$n=83} | 3:NPCPROPS{ "L/$n=84}	-	
+2.05r2	Alt+7	nothing seen	3:NPCPROPS{ "L/$n=85} | 3:NPCPROPS{ "L/$n=86}	-	
+2.05r2	Alt+8	screen 15294 px 640x456 box 0,0-639,455 (near player)	3:NPCPROPS{ "L/$n=88} | 3:NPCPROPS{ "L/$n=89}	-	
+2.05r2	Alt+9	screen 15282 px 640x456 box 0,0-639,455 (near player)	3:NPCPROPS{ "L/$n=90} | 3:NPCPROPS{ "L/$n=91}	-	
+2.05r2	Shift+Left	screen 12084 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 19:FLAGDEL{gr.x=30} | 18:FLAGSET{gr.x=29.5} | 2:PLAYERPROPS{gani='walk' x=29.5 sprite=1} | 19:FLAGDEL{gr.x=29.5} | 18:FLAGSET{gr.x=29} | 19:FLAGDEL{gr.x=29} | 18:FLAGSET{gr.x=28.5} | 2:PLAYERPROPS{x=28.5} | 19:FLAGDEL{gr.x=28.5} | 18:FLAGSET{gr.x=28} | 19:FLAGDEL{gr.x=28} | 18:FLAGSET{gr.x=27.5} | 2:PLAYERPROPS{x=27.5} | 19:FLAGDEL{gr.x=27.5} | 18:FLAGSET{gr.x=27} | 19:FLAGDEL{gr.x=27} | 18:FLAGSET{gr.x=26.5} | 2:PLAYERPROPS{x=26.5} | 19:FLAGDEL{gr.x=26.5} | 18:FLAGSET{gr.x=26} | 3:NPCPROPS{ "L/$n=93} | 19:FLAGDEL{gr.x=26} | 18:FLAGSET{gr.x=25.5} | 2:PLAYERPROPS{x=25.5} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=94}	keydown=2 keydown=0	reset: undo
+2.05r2	Shift+Right	screen 13029 px 640x456 box 0,0-639,455 (near player)	19:FLAGDEL{gr.x=29.5} | 18:FLAGSET{gr.x=30} | 2:PLAYERPROPS{gani='walk' x=30} | 19:FLAGDEL{gr.x=30} | 18:FLAGSET{gr.x=30.5} | 19:FLAGDEL{gr.x=30.5} | 18:FLAGSET{gr.x=31} | 2:PLAYERPROPS{x=31} | 19:FLAGDEL{gr.x=31} | 18:FLAGSET{gr.x=31.5} | 19:FLAGDEL{gr.x=31.5} | 18:FLAGSET{gr.x=32} | 2:PLAYERPROPS{x=32} | 19:FLAGDEL{gr.x=32} | 18:FLAGSET{gr.x=32.5} | 19:FLAGDEL{gr.x=32.5} | 18:FLAGSET{gr.x=33} | 2:PLAYERPROPS{x=33} | 3:NPCPROPS{ "L/$n=97} | 19:FLAGDEL{gr.x=33} | 18:FLAGSET{gr.x=33.5} | 19:FLAGDEL{gr.x=33.5} | 18:FLAGSET{gr.x=34} | 2:PLAYERPROPS{x=34} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/$n=98}	keydown=8 keydown=0	reset: undo
+2.05r2	Shift+Up	screen 18624 px 640x456 box 0,0-639,455 (near player)	19:FLAGDEL{gr.y=32} | 18:FLAGSET{gr.y=31.5} | 2:PLAYERPROPS{gani='walk' y=31.5 sprite=0} | 19:FLAGDEL{gr.y=31.5} | 18:FLAGSET{gr.y=31} | 19:FLAGDEL{gr.y=31} | 18:FLAGSET{gr.y=30.5} | 2:PLAYERPROPS{y=30.5} | 19:FLAGDEL{gr.y=30.5} | 18:FLAGSET{gr.y=30} | 19:FLAGDEL{gr.y=30} | 18:FLAGSET{gr.y=29.5} | 2:PLAYERPROPS{y=29.5} | 19:FLAGDEL{gr.y=29.5} | 18:FLAGSET{gr.y=29} | 3:NPCPROPS{ "L/%n=101} | 19:FLAGDEL{gr.y=29} | 18:FLAGSET{gr.y=28.5} | 2:PLAYERPROPS{y=28.5} | 19:FLAGDEL{gr.y=28.5} | 18:FLAGSET{gr.y=28} | 2:PLAYERPROPS{gani='idle' y=28} | 3:NPCPROPS{ "L/%n=102}	keydown=1 keydown=0	reset: undo
+2.05r2	Shift+Down	screen 14480 px 640x456 box 0,0-639,455 (near player)	19:FLAGDEL{gr.y=32} | 18:FLAGSET{gr.y=32.5} | 2:PLAYERPROPS{gani='walk' y=32.5} | 19:FLAGDEL{gr.y=32.5} | 18:FLAGSET{gr.y=33} | 19:FLAGDEL{gr.y=33} | 18:FLAGSET{gr.y=33.5} | 2:PLAYERPROPS{y=33.5} | 19:FLAGDEL{gr.y=33.5} | 18:FLAGSET{gr.y=34} | 19:FLAGDEL{gr.y=34} | 18:FLAGSET{gr.y=34.5} | 2:PLAYERPROPS{y=34.5} | 19:FLAGDEL{gr.y=34.5} | 18:FLAGSET{gr.y=35} | 19:FLAGDEL{gr.y=35} | 18:FLAGSET{gr.y=35.5} | 2:PLAYERPROPS{y=35.5} | 3:NPCPROPS{ "L/%n=105} | 19:FLAGDEL{gr.y=35.5} | 18:FLAGSET{gr.y=36} | 19:FLAGDEL{gr.y=36} | 18:FLAGSET{gr.y=36.5} | 2:PLAYERPROPS{y=36.5} | 2:PLAYERPROPS{gani='idle'} | 3:NPCPROPS{ "L/%n=106}	keydown=4 keydown=0	reset: undo
+2.05r2	Ctrl+Left	chat prop sent	3:NPCPROPS{ "L/%n=109} | 3:NPCPROPS{ "L/%n=110} | 2:PLAYERPROPS{chat=''}	-	reset: undo
+2.05r2	Ctrl+Right	screen 178 px 608x47 box 8,380-615,426 (centre 311,403); chat prop sent	3:NPCPROPS{ "L/%n=113} | 3:NPCPROPS{ "L/%n=114} | 2:PLAYERPROPS{chat=''}	-	reset: undo
+2.05r2	Ctrl+Up	chat prop sent	3:NPCPROPS{ "L/%n=117} | 3:NPCPROPS{ "L/%n=118} | 2:PLAYERPROPS{chat=''}	-	reset: undo
+2.05r2	Ctrl+Down	screen 17 px 10x3 box 35,448-44,450 (near ground); chat prop sent	3:NPCPROPS{ "L/%n=121} | 3:NPCPROPS{ "L/%n=122} | 2:PLAYERPROPS{chat=''}	-	reset: undo
+2.05r2	LeftClick player	chat prop sent	3:NPCPROPS{ "L/%n=125} | 3:NPCPROPS{ "L/%n=126} | 2:PLAYERPROPS{chat=''}	-	
+2.05r2	RightClick player	opens window: Profile 618x386@236,62; screen 233634 px 618x386 box 44,-95-661,290 (near npc)	80:?{o170739} | 3:NPCPROPS{ "L/%n=128} | 3:NPCPROPS{ "L/%n=129}	-	window would not close: Profile; reset: closed 0/1 new windows; screen still differs after reset (233634 px)
+2.05r2	MiddleClick player	screen 502 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=30} | 3:NPCPROPS{ "L/$n=31}	-	
+2.05r2	DoubleClick player	screen 284 px 511x317 box 72,110-582,426 (near player)	3:NPCPROPS{ "L/$n=33} | 3:NPCPROPS{ "L/$n=34}	-	
+2.05r2	LeftClick ground	screen 215 px 86x315 box 248,112-333,426 (near player)	3:NPCPROPS{ "L/$n=36} | 3:NPCPROPS{ "L/$n=37}	-	
+2.05r2	RightClick ground	screen 479 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=39} | 3:NPCPROPS{ "L/$n=40}	-	
+2.05r2	MiddleClick ground	screen 427 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=42} | 3:NPCPROPS{ "L/$n=43}	-	
+2.05r2	DoubleClick ground	screen 235 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=45} | 3:NPCPROPS{ "L/$n=46}	-	
+2.05r2	LeftClick npc	screen 230 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=48} | 3:NPCPROPS{ "L/$n=49}	-	
+2.05r2	RightClick npc	screen 423 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=51} | 3:NPCPROPS{ "L/$n=52}	-	
+2.05r2	MiddleClick npc	screen 184 px 85x315 box 248,112-332,426 (near player)	3:NPCPROPS{ "L/$n=54} | 3:NPCPROPS{ "L/$n=55}	-	
+2.05r2	DoubleClick npc	screen 441 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=57} | 3:NPCPROPS{ "L/$n=58}	-	
+2.05r2	LeftClick hud	screen 1031 px 273x356 box 87,71-359,426 (near player)	3:NPCPROPS{ "L/$n=60} | 3:NPCPROPS{ "L/$n=61}	-	
+2.05r2	RightClick hud	screen 849 px 112x317 box 248,110-359,426 (near player)	3:NPCPROPS{ "L/$n=63} | 3:NPCPROPS{ "L/$n=64}	-	
+2.05r2	MiddleClick hud	screen 231 px 512x315 box 72,112-583,426 (near player)	3:NPCPROPS{ "L/$n=66} | 3:NPCPROPS{ "L/$n=67}	-	
+2.05r2	DoubleClick hud	screen 490 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=69} | 3:NPCPROPS{ "L/$n=70}	-	
+2.05r2	WheelUp	screen 417 px 512x316 box 72,111-583,426 (near player)	3:NPCPROPS{ "L/$n=72} | 3:NPCPROPS{ "L/$n=73}	-	
+2.05r2	WheelDown	screen 418 px 512x317 box 72,110-583,426 (near player)	3:NPCPROPS{ "L/$n=75} | 3:NPCPROPS{ "L/$n=76}	-	
+2.05r2	Escape	opens window: Warning 226x80@399,357; screen 239252 px 577x416 box 31,32-607,447 (near player)	-	-	reset: closed 1/1 new windows; screen still differs after reset (239252 px)
+2.05r2	Tab	nothing seen	3:NPCPROPS{ "L/$n=79} | 3:NPCPROPS{ "L/$n=80}	-	reset: again
+2.05r2	Return	chat prop sent	3:NPCPROPS{ "L/$n=83} | 2:PLAYERPROPS{chat=''} | 3:NPCPROPS{ "L/$n=84}	-	reset: again
+2.05r2	KP_Enter	nothing seen	3:NPCPROPS{ "L/$n=87} | 3:NPCPROPS{ "L/$n=88}	-	
+2.05r2	Alt+Return	opens window: Graal: GS1 Control 1024x768@0,0; screen 743876 px 1024x768 box -192,-157-831,610 (near player); CLIENT GONE (crash or quit)	3:NPCPROPS{ "L/$n=90}	-	window would not close: Graal: GS1 Control; reset: closed 0/1 new windows; screen still differs after reset (743876 px)
+2.05r2	Alt+F4	opens window: Warning 291x80@366,357; screen 239252 px 577x416 box 31,32-607,447 (near player); CLIENT GONE (crash or quit)	-	-	reset: closed 1/1 new windows; screen still differs after reset (306295 px)
