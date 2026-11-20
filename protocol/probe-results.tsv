@@ -4203,3 +4203,22 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-1.3test	c2s	2	3	2 c:3 i3:20000000 ; 2 c:6 c:9 ; 2 c:7 c:9	-	yes	none	no reply and not relayed	e423c	-
 2026-11-20	win-1.28b2	c2s	LOGIN	-	(client login) GSERV013 to the original GServer 1.3	-	disconnected	none	server closes at once; client says it needs at least 1.3; others get prop 51 for its id	e423c	-
 2026-11-20	win-5.00r7	s2c	8	81	8 s:950 c:34 str:"accvV" c:0 str:"veeV" c:20 str:"elsewhere.nw" c:81 c:V, one V per login	-	yes	none	0/8/16/32/64 listed under Normal; 2/4/6/10/12 counted but in no folder; 3 neither counted nor listed	e23vV	-
+2026-11-20	win-1.3	c2s	2	0	2 c:0 str:"Bnew" (from B, who is in another level)	-	yes	S>C 8 to A	A gets B's new nickname at once (other level)	e423c	-
+2026-11-20	win-1.3	c2s	2	11	2 c:11 c:9 t:head5.gif	-	yes	S>C 8 to A	A gets prop 11 = 9 with no text: one GCHAR head number	e423c	-
+2026-11-20	win-1.3	c2s	2	13	2 c:13 c:5 c:6 c:7 c:8 c:9	-	yes	none	colours from a player in another level are not passed on	e423c	-
+2026-11-20	win-1.3	c2s	2	8	2 c:8 c:3	-	yes	none	sword from a player in another level is not passed on	e423c	-
+2026-11-20	win-1.3	c2s	2	12	2 c:12 str:"hello"	-	yes	none	chat from a player in another level is not passed on	e423c	-
+2026-11-20	win-1.3	c2s	2	1	2 c:1 c:30	-	yes	S>C 9 prop 1 = 20	max hearts clamped to 20	e423c	-
+2026-11-20	win-1.3	c2s	2	2	2 c:2 c:60	-	yes	S>C 9 prop 2 = 40	power clamped to 40 half hearts	e423c	-
+2026-11-20	win-1.3	c2s	2	4	2 c:4 c:150	-	yes	S>C 9 prop 4 = 99	arrows clamped to 99	e423c	-
+2026-11-20	win-1.3	c2s	2	5	2 c:5 c:150	-	yes	S>C 9 prop 5 = 99	bombs clamped to 99	e423c	-
+2026-11-20	win-1.3	c2s	2	8	2 c:8 c:9	-	yes	none	level sees sword 39 (30 + 9) with an empty image name	e423c	-
+2026-11-20	win-1.3	c2s	2	9	2 c:9 c:9	-	yes	none	level sees shield 13 (10 + 3) with an empty image name	e423c	-
+2026-11-20	win-1.3	c2s	2	32	2 c:32 c:150	-	yes	none	level sees alignment 100	e423c	-
+2026-11-20	win-2.05	s2c	9	9	9 c:9 c:3	-	yes	C>S 2 x steps	walking 1.2 tiles per 0.1 s (shield 0, 1, 2 give 1.0)	e302a/e302b	-
+2026-11-20	win-2.05	s2c	17	-	17 c:40 c:20 c:0 t:ride.png	-	yes	C>S 2 gani ride	horse drawn; walking onto it rides; riding 0.8 tiles per 0.1 s	e302a/e302b	-
+2026-11-20	win-2.22	s2c	9	15	9 c:15 c:X2 c:16 c:Y2 (placement before each rock approach)	-	yes	C>S 2 x/y	stops flush at y 21.0; corner slides through half-tile values only	e304b	-
+2026-11-20	win-1.39	s2c	22	-	22 c:61 c:62 c:5 | 22 c:63 c:64 c:0 (beside other player 901 at 30,30)	-	yes	none	items with y above 30 draw over the player	e317b	-
+2026-11-20	win-1.39	s2c	22	-	22 c:61 c:59 c:5 | 22 c:63 c:60 c:0 | 22 c:62 c:58 c:1	-	yes	none	items with y 29 to 30 draw behind the player	e317c	-
+2026-11-20	win-5.00r7	s2c	9	12	9 c:12 str:"Français éüñ" (Latin-1 bytes)	-	yes	none	chat drawn as Français éüñ	e213a	t1-chat
+2026-11-20	win-5.00r7	s2c	9	0	9 c:0 str:"Français éüñ" (Latin-1 bytes)	-	yes	none	nickname drawn as Français éüñ	e213a	t2-nick

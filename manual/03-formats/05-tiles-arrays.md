@@ -98,7 +98,14 @@ The official client decides walkability differently for each kind of sheet. The 
 | throw | throw handling does not stop on type `0x14` (20) | [bin] (formats/tiletypes.txt); [live] (formats/tile-walk.md#collision-rules) |
 | water | type 11 does not block; it changes the displayed tile and may set a swimming flag | [live] (formats/tile-walk.md#collision-rules) |
 
-The Bush-value membership correction is recorded in → §3.5.3.1; runtime collision remains open → App. E#100 [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
+The Bush-value membership correction is recorded in → §3.5.3.1; runtime collision is settled below (stamped bushes block) [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
+
+**Settled question, formerly E#100: Collision of the Bush stamp tiles.** Whether a bush placed with the editor's Bush stamp blocks the player was open, because the inspected arrays are not the collision path. A lab walk settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | Tile ids 2, 3, 18 and 19 placed as a 2 × 2 bush stop a player walking up into them at the same point as a rock, from both half-tile alignments, on 2.22 and on 2.05 rev 2 with the stock `pics1.png` | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100) |
+| Verdict | Verified on 2.22 and 2.05 rev 2: a stamped bush blocks like a bush drawn into the board | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100) |
 
 ## 3.5.3 arrays.dat
 
@@ -163,7 +170,7 @@ One packaged `arrays.dat` was read exactly to settle which tile ids are in its f
 | first lists | 934 and 116 internally unique values; 15 shared; union 1,035 values within 0–4095; list 1 contributes 101 values absent from list 0 | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | Bush values | 2, 3, 18 and 19 are absent from both lists, also in all 25 successfully parsed distinct inputs; file membership does not establish runtime collision | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | collection validation | 53 occurrences, 26 hashes; 25 parse completely and reproduce original bytes on re-encoding; an unsupported 39ster-labelled representation is excluded; other inputs have different shapes and counts | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance remains open → App. E#100, E#101; the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ §3.5.3.1) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance remains open → App. E#101 (stamped-bush collision is settled in §3.5.2.2); the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ §3.5.3.1) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
 
 **Settled question, formerly E#608: how many `arrays.dat` lists make a tile passable.** How many `arrays.dat` lists decide whether a tile is walkable was open between a summary and a code read; a static read of the consumer settled it for 2.05 [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205).
 

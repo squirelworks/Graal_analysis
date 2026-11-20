@@ -1,5 +1,6 @@
 file	row	cited	text
 manual/01-builds.md	Apple's `agl.h` names 72 and 73 `AGL_NO_RECOVERY` and `AGL_ACCELERATED`. If so, 	client-internals/mac-ppc-runtime-surface-2026-11-09.md#graphics-context-setup	
+manual/01-builds.md	Verdict	protocol/lab-appe-mirae-2026-11-20c.md#expiry-dates-of-600r2-and-600r4-e14	Verified for all four builds. The stop is the protector's own fixed date, about 75 days after the build for 5.31r4 and both 6.00 builds; whether it is the protector's date setting or a check in its virtual-machine code can't be told from ou
 manual/01-builds.md	An empty game/session input on a standalone start is the likely trigger of the o	client-internals/v7-il2cpp-names-and-startup-gate.md#the-launch-inputs-the-boot-path-reads	Unity 6000 build
 manual/02-protocol/03-login.md	A renaming bridge must keep the level part; mapping a level room onto a game-wid	client-internals/relay-room-bridge.md#what-this-means	
 manual/02-protocol/03-login.md	`R`	protocol/relay-1998.md#d-payloads	x, y | object at x, y removed
@@ -58,10 +59,12 @@ manual/04-behaviour/04-death-respawn.md	Left over	client-internals/static-reads-
 manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows
 manual/04-behaviour/06-hud-ui.md	bold	client-internals/chat-text.md#font-per-build	Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider
+manual/04-behaviour/08-offline.md	Verdict	protocol/lab-appe-mirae-2026-11-20c.md#special-start-level-names-entered-by-a-link-on-205-e319	Verified for loading and entering by link: the step changes nothing there. That it belongs to the new-game path, as guessed, is inferred
 manual/04-behaviour/08-offline.md	GraalEditor 2.3.1.1	client-internals/offline-tutorial-205.md#later-clients	carries the same 9 names and `tiledefsOffline.txt`
 manual/04-behaviour/10-feature-specs.md	Left over	client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321	A lab run with one listed window open, to watch the quit
 manual/04-behaviour/10-feature-specs.md	what the server sees	recovered-hacks/behaviour-models.md#what-a-server-can-see, recovered-hacks/static-2026-11-01/README.md#what-a-checker-can-use	only the resulting actions (dig, use, walk, chat), at the rates the tool's waits allow
 manual/04-behaviour/11-side-builds-labs.md	None of these schemes protect anything; they keep strings out of a casual `strin	client-internals/des-and-hidden-strings.md#notes-for-tool-writers	
+manual/05-servers.md	Left over	server-notes/gserver-1999-rules.md#not-known	The "cannot answer" reply has no reachable target on GServer13; GServer 1.28 beta 2 was not run in this way
 manual/05-servers.md	A server prints its list only to a client it refuses	server-notes/public-allowed-versions.md#open	
 manual/05-servers.md	A capture that proves the server-side `#n` expansion on a script-running server 	server-notes/setcharprop-hash-n.md#still-open	
 manual/06-listserver.md	What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured (1.41 rev1 sends noth	protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5	
@@ -72,6 +75,7 @@ manual/07-rc-nc.md	Against GServer-v2's one-space level, RC2 2.05 would most lik
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
+manual/08-scripting/01-gs1-language.md	Left over	npc-library/gs1-condition-truth-205r2.md#verification-and-limits	The full alias and precedence rules, and named-flag collisions
 manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
@@ -82,6 +86,8 @@ manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what
 manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
+manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run
+manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A file reader linked in but never called can't be ruled out by a run
 manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
 manual/10-torque.md	Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef`	torque/304-tile-types.md#not-settled	
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	

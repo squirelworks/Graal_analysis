@@ -496,7 +496,7 @@ The rules below give how the server drives the phases and how the client answers
 | 5.12 starts the value at −1 and raises 2 (phase 1), 3 (phase 2), 4 (lighting done), 5 (first control object) and 6 (TCP file downloads finished, the `GraalControl3D` GUI attached) | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 | The 3.153 loading screen is a snowball rolling across `LoadingGui`, with the Christmas 2004 3D images | [file] (torque/scripting.md#what-the-3153-scripts-do) |
 
-The retained Windows 4.04r2 review traces native datablock/ghost/lighting phase dispatch and network-class construction into the mission group, with a deferred-preload path. This is positive network-mission evidence; separate local mission/script readers remain unresolved (→ App. E#502, → App. E#503). No new 3D session or file-loading trace was obtained. [bin] (torque/404r2-resource-filter.md#positive-native-mission-path)
+The retained Windows 4.04r2 review traces native datablock/ghost/lighting phase dispatch and network-class construction into the mission group, with a deferred-preload path. This is positive network-mission evidence; a 2026-11-20 lab session with marker files beside the client opened no local `.mis`, `.cs` or `.dso` (→ §10, the settled questions formerly E#502 and E#503). [bin] (torque/404r2-resource-filter.md#positive-native-mission-path)
 
 ### 10.3.7 The session from a client's side
 
@@ -757,12 +757,28 @@ The Torque clients read Torque's 3D formats. Each row gives an extension, its fo
 | terrain chunks | streamed with `TerrainChunkEvent` (→ §10.5.3) | 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | `.3ds` | 3D Studio (`Shape3ds`, then `GameShape3DS`) | 3.153, 4.04r2, 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | `.md3` | Quake 3 model in head, upper and lower parts, version 15 | 3.153, 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats); [bin] (graal3d/torque-engine-4x.md#files) |
-| `.mis` | Torque mission file; 5.12 has no `.mis` loader and builds its `MissionGroup` from ghosts (inferred) | 3.x; 4.04r2 inferred not (no `exec` or `compile` command, no `.mis` literal) → App. E#502 | [bin][inf] (torque/engine-and-formats.md#3d-resource-formats); [bin][inf] (graal3d/torque-engine-4x.md#files) |
+| `.mis` | Torque mission file; 5.12 has no `.mis` loader and builds its `MissionGroup` from ghosts (inferred) | 3.x; 4.04r2 not: no `.mis` is opened in a lab session (settled below) | [bin][inf] (torque/engine-and-formats.md#3d-resource-formats); [bin][inf] (graal3d/torque-engine-4x.md#files) |
 | `.ml`, `.ifl`, `.dml` | material lists and image-file lists for animated textures | stock Torque | [bin] (torque/engine-and-formats.md#3d-resource-formats); [bin] (graal3d/torque-engine-4x.md#files) |
 | `.gft` | Torque cached GUI font | 3.x, 4.04r2, 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats); [bin] (graal3d/torque-engine-4x.md#files) |
-| `.dso` | compiled TorqueScript (→ §10.4) | 3.x; 4.04r2 inferred not (no `exec` or `compile` command; `.dso` only in the download filter) → App. E#503 | [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts); [bin] (graal3d/torque-engine-4x.md#files); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| `.dso` | compiled TorqueScript (→ §10.4) | 3.x; 4.04r2 not: no `.cs` or `.dso` is opened in a lab session (settled below) | [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts); [bin] (graal3d/torque-engine-4x.md#files); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
 | images | `.png`, `.jpg`, `.jp2`, `.jng`, `.mng`, `.gif`, `.bmp`, `.bm8`, `.tga`, `.dds` | 4.04r2 | [bin] (graal3d/torque-engine-4x.md#files) |
 | `.zip`, `.gpake` | archives the resource manager opens | 4.04r2 | [bin] (graal3d/torque-engine-4x.md#files) |
+
+**Settled question, formerly E#503: Whether 4.04r2 reads `.dso` compiled TorqueScript.** Whether 4.04r2 still reads compiled TorqueScript was open. The same 3D session with `.cs` and `.dso` markers beside the client settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | `main.cs`, `main.cs.dso` and mission `.dso` files in the client folder and under `levels3d` were listed by the folder scan but never opened, with no console output | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
+| Verdict | Verified for a normal 3D session: 4.04r2 opens no `.cs` or `.dso` beside it, as the read predicted | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| Left over | A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
+
+**Settled question, formerly E#502: Whether 4.04r2 loads `.mis` mission files.** Whether 4.04r2 can load a local `.mis` as well as receiving its mission over the network was open. A 3D session with marker missions beside the client settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | Marker `.mis` files in the client folder and under `levels3d` were listed by the client's folder scan but never opened, and no marker reached the console; the mission was built from the network | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
+| Verdict | Verified for a normal 3D session, and it agrees with the read (no `exec` or `compile` command, no `.mis` literal) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
+| Left over | A file reader linked in but never called can't be ruled out by a run | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
 
 The rules below give where 3D content came from and how terrain textures are mapped [file] (torque/engine-and-formats.md#3d-resource-formats).
 

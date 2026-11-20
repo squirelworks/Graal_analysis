@@ -3,7 +3,7 @@
 
 This chapter gives how the client plays without a game server: the ways in, where the player lands, where offline levels come from and what the embedded tutorial holds. The tutorial's level resources are in → §3.1.2.8; the level formats in → §3.1.
 
-> Status: draft. Read from 2.05 rev 2 and checked live on 2.05 rev 2, 2.22 and 2.31; the special single-player level names are open (→ App. E#319).
+> Status: draft. Read from 2.05 rev 2 and checked live on 2.05 rev 2, 2.22 and 2.31; the special single-player level names show no difference when loaded or entered by a link (→ §4.8).
 
 ## 4.8.1 What offline means
 
@@ -60,11 +60,19 @@ Offline levels come from the executable or the game folder. The rules below give
 | embedded wins, 2.22 | with `offlinetutorial_b-2.graal` in the game folder, the client looks the name up once but still loads the embedded copy | [live][2.22] (client-internals/live-checks-editor-offline-sound.md#the-embedded-level-always-wins) |
 | online | names starting with `tutorial` are not special and go to the server like any level, so a server can host its own | [2.05] (client-internals/offline-tutorial-205.md#where-offline-levels-come-from) |
 | tile definitions | every client tested reads `levels/tiledefs/tiledefsOffline.txt` on Training, since the file is `tiledefs` + server name + `.txt` and the offline server name is `Offline`; the shipped file targets only `offlinetutorial*` levels, so it changes nothing in 2.05's tutorial | [live][2.05][2.22] (client-internals/live-checks-editor-offline-sound.md#tile-definitions-when-offline) |
-| special names | `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`, the old single-player start levels, run an extra setup step on load; loaded through F5 they show no difference from a renamed copy, so whatever the step does is not visible on that path (→ App. E#319) | [2.05] (client-internals/offline-tutorial-205.md#special-level-names); [lab] (protocol/lab-appe-mirae-2026-11-20.md#single-player-start-levels-on-205-e319) |
+| special names | `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`, the old single-player start levels, run an extra setup step on load; loaded through F5 they show no difference from a renamed copy, and entered by a link they show none either (settled below) | [2.05] (client-internals/offline-tutorial-205.md#special-level-names); [lab] (protocol/lab-appe-mirae-2026-11-20.md#single-player-start-levels-on-205-e319) |
 | same three names, public 2.1.0.0 and v22 | the call passes the level and two 31s; those two values are the arguments, and what the helper changes stays unknown; this does not measure 2.05 | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
 | v22 3 by 3 | when an integer field equals 2, a matching slot adds `(row - 1) * 64` and `(column - 1) * 64`; that comparison is not receive id 177; the public enter body has no such walk | [bin] (client-internals/v21-local-enter.md#v22-shifts-a-3-by-3-table-by-64) |
 | v22 missing file | when that same integer field equals 2 and both lookups are empty, the client writes eight bytes, `GLEVNW01`, and enters with that stream; the field equaling 2 is not receive id 177 | [bin] (client-internals/v21-local-enter.md#widths-beside-that-call) |
 | ver7 log literal | `Player enters local level ` is absent from ver7's string table; that absence is not a reading of ver7's enter body | [bin] (client-internals/v21-local-enter.md) |
+
+**Settled question, formerly E#319: The single-player start levels.** What the extra setup step does when 2.05 loads one of the old single-player start levels was open. Loads by F5 and by a level link, each against a byte-identical copy under another name, settled what shows [lab] (protocol/lab-appe-mirae-2026-11-20.md#single-player-start-levels-on-205-e319); [lab] (protocol/lab-appe-mirae-2026-11-20c.md#special-start-level-names-entered-by-a-link-on-205-e319).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | On 2.05 rev 2 offline, `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`, loaded by F5 or entered by a link, give the same position, facing, HUD and level as their renamed copies, with no move to (31, 31) | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#special-start-level-names-entered-by-a-link-on-205-e319) |
+| Verdict | Verified for loading and entering by link: the step changes nothing there. That it belongs to the new-game path, as guessed, is inferred | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#special-start-level-names-entered-by-a-link-on-205-e319) |
+| Left over | A run of the new-game path itself | [2.05] (client-internals/offline-tutorial-205.md#special-level-names) |
 
 ## 4.8.4 The tutorial world
 

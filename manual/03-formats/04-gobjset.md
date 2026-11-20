@@ -30,5 +30,5 @@ The client ships five object sets. The table gives what they hold and decodes th
 | sets in the client tree | `objectsStandard`, `objectsHouse Inside`, `objectsCastle`, `objectsSnow`, `objectsVolcano` | [file] (formats/gobjset01.md) |
 | objects | 288 named multi-tile objects across the five sets | [file] (formats/gobjset01.md) |
 | first stamp | `objectsStandard` begins with the 2×2 "Bush", base64 `ACAD` / `ASAT` → ids 2, 3, 18, 19 | [file] (formats/gobjset01.md) |
-| Bush collision | file-membership correction → §3.5.3.1; runtime collision remains unmeasured → App. E#100 | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
+| Bush collision | file-membership correction → §3.5.3.1; a stamped bush blocks in the lab on 2.05 rev 2 and 2.22 (→ §3.5) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | generator stamps | in DungeonGenerator, stamp id 0 is a 4×4 ground fill and stamp id 1 is a hole that is not written (→ §3.1.3.5) | [bin] (formats/gobjset01.md) |
