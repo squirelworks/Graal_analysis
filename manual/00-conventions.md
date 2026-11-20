@@ -30,6 +30,8 @@ The manual is numbered the way a standard is: Parts, chapters inside a Part, and
 
 Every heading that can be cited begins with its number. Part 0 is this chapter.
 
+**Releases are snapshots.** Each release freezes its own section numbers: a §x.y.z or `App. E#n` cited against a release tag means what that release's text says. Numbers on `main` can still change, and a later release may renumber. Its release notes say so (`VERSIONING.md`).
+
 
 **Cross-references.** `→ §2.2.2` points to a section; `→ App. E#12` points to an appendix entry. A cross-reference replaces a repeated fact: every fact has exactly one canonical section, and other sections point to it. The checker (`tools/manual/check_manual.py`) fails on a reference that does not resolve to a heading.
 

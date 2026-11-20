@@ -14,6 +14,7 @@ same in every Seihai repo.
   - the command line of the tools other repos run (the decoders, `resolve.py`).
 
   Wording, new sections added at the end of a chapter, new notes and new evidence are patch material. Renumbering existing sections is a minor (0.x) or a major (after 1.0).
+- **Each release is frozen.** A release freezes its own section numbers and data columns: a citation of `vX.Y.Z` means what that tag says, for good. `main` is not frozen, and a later release may renumber or change columns. Its release notes say what changed (`docs/citable-data.md`).
 - **Unreleased notes:** `docs/releases/unreleased.md`.
 - **Release notes:** `docs/releases/vX.Y.Z.md`.
 - **How a release is made:** After the notes merge, someone runs the release workflow with the version. It refuses to run without the notes file. As AGENTS.md says, tags are made only with the owner's go-ahead.

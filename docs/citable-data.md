@@ -4,7 +4,7 @@
 
 ## Changing a column
 
-Columns can still change while the manual is at 0.0.x. Put a line in `docs/releases/unreleased.md` when a column is renamed, removed or reordered, and update its row here in the same PR. Nothing outside this repo reads these columns yet. Whether to freeze them, and the section numbers, is open in #653.
+Each release freezes the columns as they stand at its tag, together with the manual's section numbers (`VERSIONING.md`, manual §0.2). A citation of a release means that release's columns. On `main`, columns can change: update the file's row here in the same PR, and put a line in `docs/releases/unreleased.md` when a column is renamed, removed or reordered, so the next release's notes say so.
 
 ## Tables
 
