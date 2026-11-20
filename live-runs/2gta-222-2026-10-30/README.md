@@ -110,11 +110,11 @@ A 22 s trace at 4 ms (walk right into the bush, hold right 2 s, sword, A twice, 
 | +0x19C (double) | same values as x, same ticks | a second copy of x (the 2.05 object keeps x before the step at +0xFC) |
 | +0x228 (double) | 25.5 while x was 44, moving with x | the view's left edge in tiles (x − 18.5) |
 | +0xFC | 3 while facing right, 1 after turning left | **direction** (0 up, 1 left, 2 down, 3 right) |
-| +0x044 | 0..7, +1 per tick while walking | **walk frame** |
+| +0x044 | 0..7, +1 per tick while walking | **walk frame** (the gani frame index) |
 | +0x154 | 0/1 alternating each step | step parity |
 | +0x180 | 1 while a direction key is held, 0 after | walking flag |
 | +0x1DC | counts 1, 2, 3 … per tick while pushing into the bush; at 19 the push frames start; it runs to 37 and drops back to 18 while the key is still held | **blocked-step counter**: the push starts after **18 blocked ticks (0.9 s)**, the same 18 as 2.05 |
-| +0x048 | 0..3 cycling every tick from the moment the counter passed 18 | push frame |
+| +0x048 | 0..3 cycling every tick from the moment the counter passed 18 | push frame (later read as the tick count within the current gani frame, not the frame; see `client-internals/static-reads-appendix-e-2026-11-20-g.md`) |
 | +0x2AC | byte flags: 0x100 for one tick at the sword, 0x10000 for one tick at the lift and again at the throw | action flags |
 | +0x258 | +1 every 50 ms the whole time | **tick counter** (2.05: +0x1F8) |
 | +0x34C | 16 → 0, −1 per tick, then again | a 16-tick countdown, not tied to any key |

@@ -3,7 +3,7 @@
 
 This chapter gives the walking step, the wall test, what blocks a point, the blocked-step counter and the actions that hang off it (push pose, ledge jump, pushing blocks and NPCs), grab and pull, water and lava, link following, and the gates that stop movement. Tile type values and the `arrays.dat` lists are defined in → §3.5; this chapter only says how movement uses them. Units are tiles and 50 ms ticks (→ §4.1.1). Facings are 0 up, 1 left, 2 down, 3 right.
 
-> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#304 and E#305; E#303, E#306 and E#307 are settled in → §4.2.3, §4.2.8 and §4.2.2.2, E#308 in → §4.2.11 and E#309 in → §4.3.7.2.
+> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. The open point is App. E#304; E#303, E#305, E#306 and E#307 are settled in → §4.2.3, §4.2.5, §4.2.8 and §4.2.2.2, E#308 in → §4.2.11 and E#309 in → §4.3.7.2.
 
 ## 4.2.1 The step
 
@@ -228,8 +228,18 @@ By build:
 | 1.39 | 18 | 38 to 18 | about 2 ticks (video) | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | 1.41 | 18 | 38 to 18 | 4 ticks (`push.gani`) | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 2.05 rev 2 | 18 | 38 to 18 | 4 ticks | [live][2.05] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| 2.22 | the tick after 18 blocked ticks | 37 back to 18 | 5 × 4 ticks, looping; a lab read of the frame field showed it cycling 0 to 3 each tick (→ App. E#305) | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table); [live] (live-runs/2gta-222-2026-10-30/README.md) |
+| 2.22 | the tick after 18 blocked ticks | 38 back to 18 | 5 × 4 ticks, looping; the 0 to 3 field of the memory trace is the tick count within the frame (see the settled question below) | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table); [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
 | 5.24r4, 5.30r3, 6.03r7 | 0.85 to 0.90 s after the walk started | unmeasured | unmeasured | [wire] (protocol/v5v6-lab-play.md) |
+
+**Settled question, formerly E#305: The 2.22 push frame field.** A memory trace of 2.22 showed a "push frame" field that cycled 0 to 3 every tick. That seemed to disagree with the 4-tick push frames measured live. A read of the 2.22 gani code settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The player keeps its gani, a frame index and a tick count within the frame. Each tick the count goes up by 1; when it reaches the frame's length the frame index goes up by 1 and the count goes back to 0. Setting a new gani resets both; setting the same gani again changes nothing | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
+| Settled | The traced "walk frame" field is the frame index; the traced "push frame" field is the tick count within the frame, so its 0 to 3 cycle shows 4-tick push frames (the stock `push.gani`, five frames of `WAIT 3`) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
+| Settled | While walking, the counter is set back to 18 once it reaches 38, and `push` is set each tick with the counter at 18 or more; five 4-tick frames match the 20-tick cycle | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-push-threshold-in-the-same-routine) |
+| Verdict | Verified by read on 2.22; the best guess (another per-tick counter, Claim A stands) holds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-222-gani-frame-fields-e305) |
+| Left over | None for the push timing | [inf] (client-internals/static-reads-appendix-e-2026-11-20-g.md#not-covered) |
 
 ## 4.2.6 Ledge jumps
 
