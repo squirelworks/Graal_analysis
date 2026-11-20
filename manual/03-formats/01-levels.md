@@ -77,6 +77,15 @@ The rules below come from parsing real Z3 files. They cover details the layout l
 | a GR-V1 reader on Z3-V1 | integer link parsing drops 124 decimal links, a computer line end left in the stream shifts every later record, and a negative arrival is taken as a literal coordinate | [test] (client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md) |
 | sample | the rules were checked against 139 distinct real files | [test] (formats/level-binary.md#z3-v1-differences) ; [test] (client-internals/decomp-findings-2026-10-25-j/format-stats.tsv); [test] (client-internals/decomp-findings-2026-10-25-j/04-loader-rules-compared.md) |
 
+**Settled question, formerly E#602: code width of `Z3-V1` boards.** How many bits a board code uses in `Z3-V1.02` was disputed between the server source and the client readers; a check of every client's magic list settled why both are right [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: `.02` uses 11-bit codes, `.03` and `.04` use 12. Claim B: the 2.05 and 2.31 readers use 12 bits for both versions they handle. Best guess: both right, since no Graal client reads `.02` | [srv] (formats/level-binary.md#z3-v1-differences); [2.05][2.31] (formats/level-binary-client.md) |
+| Settled | Every Windows client exe held from 1st Graal to 6.00r4 lists only `Z3-V1.03` and `Z3-V1.04`; none holds `Z3-V1.02` | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602) |
+| Verdict | Verified: no Graal client reads `.02`, so the 12-bit readers never meet an 11-bit board | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#z3-v102-in-the-graal-clients-e602) |
+| Left over | The 11-bit width rests on the server source alone; a real `.02` file decoded both ways would confirm it | [inf] (docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses) |
+
 ## 3.1.2 GR-V1 (.graal)
 
 ### 3.1.2.0 Layout
@@ -175,7 +184,16 @@ NPCs and chests are short records. The table gives the fields of each in order [
 | NPC | `GCHAR x, GCHAR y, image#script`; the script uses `0xA7` for a newline; an empty image is a script-only NPC | [srv] (formats/level-binary.md#records) |
 | chest | `GCHAR x, GCHAR y, GCHAR item, GCHAR signindex` | [srv] (formats/level-binary.md#records) |
 
-Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). 2.05 reads them the same way, and parses a link's x, y, width and height as numbers rounded to a whole tile, so a link box of `43.5` loads as 44; 4.04r2 keeps link boxes fractional (→ App. E#603) [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603). NPC bytes are single bytes and can lie outside 0 to 63, as 165 NPCs in the corpus do. A level with no chests still ends the section with a bare `#`. Chest items 0 to 11, 16, 17, 19 and 24 occur, plus one 78, outside the 25-name table; 343 of 375 chests have sign index −1, which is "no sign" [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md); [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md). The chest item index table is in → §8.
+Coordinates in these records are whole tiles (GCHAR), not half-tiles [srv] (formats/level-binary.md#records). 2.05 reads them the same way, and parses a link's x, y, width and height as numbers rounded to a whole tile, so a link box of `43.5` loads as 44; 4.04r2 keeps link boxes fractional (→ §3.1.2.5) [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603). NPC bytes are single bytes and can lie outside 0 to 63, as 165 NPCs in the corpus do. A level with no chests still ends the section with a bare `#`. Chest items 0 to 11, 16, 17, 19 and 24 occur, plus one 78, outside the 25-name table; 343 of 375 chests have sign index −1, which is "no sign" [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md); [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md). The chest item index table is in → §8.
+
+**Settled question, formerly E#603: Whole tiles and fractions in level records, settled for 2.05 and 4.04r2.** Which binary level-record fields hold whole tiles and which take fractions was disputed; a static read of the 2.05 reader, beside the earlier 4.04r2 read, settled it for both builds [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: coordinates are whole tiles. Claim B: link numbers can be halves such as `43.5`. Best guess: link boxes fractional, every other position whole | [srv] (formats/level-binary.md#records); [srv] (formats/level-binary.md#z3-v1-differences); [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Settled | 2.05 parses a link's x, y, width and height as numbers and rounds each to a whole tile; arrivals stay text expressions; baddy (raw byte), NPC, chest and sign (byte − 32) positions are whole. 4.04r2 keeps link boxes as floating point and the other positions whole | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603); [bin][file] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
+| Verdict | Build-dependent: the best guess holds for 4.04r2; in 2.05 a fractional link box is rounded, so both claims are right for different builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
+| Left over | 2.22 and 2.31, which were not read for this field | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 
 ### 3.1.2.6 Signs
 
@@ -186,9 +204,18 @@ Signs are stored in the sign alphabet, not in plain text. The rules below give t
 | record | `GCHAR x, GCHAR y`, then text in the sign alphabet | [srv] (formats/level-binary.md#records) |
 | alphabet | the same as signs on the wire: `byte - 32` indexes the sign table (→ §3.6) | [2.05] (formats/level-binary-client.md#sign-text-in-files) |
 | line break | the token `v*eUWf` + `0x80` decodes to `#K(13)` and a newline; it is the explicit line-break marker, not a space | [test] (formats/level-binary-client.md#sign-text-in-files) |
-| end | the sign list stops at the first empty line, measured on 2.05 rev 2 and read for 2.31, where a `HEIGHTS` block can follow; the earlier reading that 2.05 reads to the end of the file was wrong (→ App. E#604) | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| end | the sign list stops at the first empty line, measured on 2.05 rev 2 and read for 2.31, where a `HEIGHTS` block can follow; the earlier reading that 2.05 reads to the end of the file was wrong (→ §3.1.2.6) | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
 | signs at (0,0) | common in real levels and hold dialogue text, so they are probably messages that NPC scripts show by index rather than signs on the map | [inf] (formats/level-binary-client.md#sign-text-in-files) ; [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md) |
 | no signs | a level with no signs ends after the chest `#`, with no empty line; in 3113 files nothing follows the signs | [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md) |
+
+**Settled question, formerly E#604: Where a binary sign list ends.** Where the sign list in a binary level ends when a `HEIGHTS` block may follow was open, with one read saying 2.05 reads to the end of the file; a 2.05 lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: 2.05 reads signs to the end of the file, and 2.31 stops at the first empty line. B: the sign section runs to an empty line or the end of the file | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [srv] (formats/level-binary.md#layout) |
+| Settled | On 2.05 rev 2 a level with three signs shows all three; with an empty line after the first, or an empty line and a `HEIGHTS` line, only the first shows | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| Verdict | Verified for 2.05: Claim B holds and Claim A is wrong about 2.05, which stops at the first empty line as 2.31 does | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| Settled (2.31) | A 2.31 run of the same files keeps 1 sign of 3 after an empty line, with or without a `HEIGHTS` line, so the 2.05 and 2.31 readers agree | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#where-a-binary-sign-list-ends-on-231-e604) |
 
 ### 3.1.2.7 GR-V1.04 height block
 

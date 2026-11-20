@@ -12,18 +12,28 @@ manual/02-protocol/03-login.md	year character	protocol/login-tokens-3x-7x.md#the
 manual/02-protocol/04-pli.md	2.14 to 2.16		the 2.1 set plus 41 | inferred; no binaries of 2.1 to 2.16 in the archive
 manual/02-protocol/04-pli.md	6.00r2, 6.00r4, 6.015		0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from the 6.01 and 6.03 reads
 manual/02-protocol/04-pli.md	6.034		as 6.03r7 | inferred
+manual/02-protocol/04-pli.md	Left over	client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6	What 14 and 22 carry in these builds
+manual/02-protocol/04-pli.md	Note	client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	Claim B's count of 34 was 39 less five, the arithmetic that hid the gap
 manual/02-protocol/04-pli.md	36 and 38 look like TCP copies of UDP 25 and 26: one routine sends the UDP messa	client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	2.01 to 2.1 test
 manual/02-protocol/04-pli.md	The fuse is probably in 0.05 s steps (55 ≈ 2.75 s)	protocol/packet-layouts.md#board-change-on-the-wire-cap	2.05
+manual/02-protocol/04-pli.md	Left over	protocol/v4x-clients.md#client--server-ids	A capture of a game client's answer to S→C 108 is still missing
+manual/02-protocol/05-plo.md	Earlier guess (wrong)	protocol/unknowns-ledger.md	The step re-binds level-scoped state, such as the gmap neighbour grid, to the new level
+manual/02-protocol/05-plo.md	Inferred	protocol/probe-targets-2026-11-18.md	They are the gani editor's preview images, kept in the header so the file is self-describing
+manual/02-protocol/05-plo.md	Left over	protocol/unknowns-ledger.md	A static read of the header parser's `DEFAULT*` cases; 6.1.1.3 and 6.037
 manual/02-protocol/07-file-transfer.md	A client cannot tell the server which layout to use	protocol/file-transfer.md#gs2libs-version-table-src	all
 manual/02-protocol/07-file-transfer.md	In 2.05 rev 2 and 2.22 the request side was read from the matching reply-side co		2.05 rev 2, 2.22
 manual/02-protocol/08-chat-pm.md	The in-game stats in the same window (online time, kills, deaths, rating and so 	protocol/chat-pm-rc.md#profile-field-list-205-205	2.05
+manual/02-protocol/10-server-defined.md	Verdict	protocol/v6113-login-lab-method.md	Settled as far as the project will take it: the project's own 6.1.1.3-style login works, and the stock client's exact body is left at the best guess and not chased
+manual/03-formats/01-levels.md	Left over	docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses	The 11-bit width rests on the server source alone; a real `.02` file decoded both ways would confirm it
 manual/03-formats/01-levels.md	tile range	formats/level-binary.md#board-bit-stream	a 12-bit file cannot address tiles ≥ 2048, because the flag takes the top bit; that is why 1.02 widened the code to 13 bits for the 4096-tile `pics1`
+manual/03-formats/01-levels.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603	2.22 and 2.31, which were not read for this field
 manual/03-formats/01-levels.md	meaning	formats/level-binary-client.md#gr-v104-231	a 9×9 grid fits the corners of an 8×8 grid of 8×8-tile cells on a 64×64 level
 manual/03-formats/02-gmap.md	integers	formats/gmap.md#205-big-map-and-minimap-text-files-205	stored as points in the player object; probably image offsets or scale, which fits the defaults, but their use is not traced
 manual/03-formats/03-gani.md	`SPRITE` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than five fields remaining after the keyword is an inference
 manual/03-formats/03-gani.md	`COLOREFFECT` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than four fields remaining after the keyword is an inference
 manual/03-formats/03-gani.md	`ZOOMEFFECT` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than one field remaining after the keyword is an inference
 manual/03-formats/03-gani.md	`SETBACKTO` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	at least one field remaining after the keyword is an inference
+manual/03-formats/05-tiles-arrays.md	Left over	formats/tiledef-type4-2026-11-16.md#open	Water under an overlay, and type-4 lines on builds other than 2.22
 manual/03-formats/05-tiles-arrays.md	2	formats/arrays-and-signatures.md#arrays2dat	web host, joined into a URL template
 manual/03-formats/05-tiles-arrays.md	algorithm	formats/arrays-and-signatures.md#the-signatures	an RSA component configured with a SHA-1 signing digest and a PKCS#1 scheme, judged from the component's class and property names; no signature has been verified
 manual/03-formats/05-tiles-arrays.md	consequence	formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled	an unpatched 2.17, 2.22 or 2.31 client refuses an edited `arrays2.dat` or executable; editing `arrays2.dat` alone fails the signature
@@ -41,16 +51,23 @@ manual/03-formats/10-assets.md	effects	client-internals/sound-and-music.md#217--
 manual/03-formats/10-assets.md	music files	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	MCI (MIDI) or Winamp | BASS streams and tracker modules; MIDI still through MCI
 manual/03-formats/10-assets.md	internet radio	client-internals/sound-and-music.md#217--222--231-bass-replaces-directsound-and-winamp	n/a | BASS URL streams, `radio` and `radiovolume`, judged from names
 manual/04-behaviour/01-loop-timing.md	inferred, if 20 steps/s	live-runs/open-issues-2026-11-14/README.md#2b-walk-gani-frame-timing-at-run-time-222-231	inferred from the Wine observations in this section if the step rate is 20 steps a second: 50 ms a frame and 0.4 s a cycle
+manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307	The 1.39 refusal and snap branches were not compared instruction by instruction
+manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303	Which movement routines set the players flag; whether 2.22 and 2.31 keep the same lists
 manual/04-behaviour/04-death-respawn.md	Open: the respawn heart value, the probe numbers, the one-heart baddy type, and 	version-profiles/matrix/rules-132.md#still-open	
+manual/04-behaviour/04-death-respawn.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315	NewWorld beta 2, which also lacks the constant, was not read
 manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows
 manual/04-behaviour/06-hud-ui.md	bold	client-internals/chat-text.md#font-per-build	Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider
 manual/04-behaviour/08-offline.md	GraalEditor 2.3.1.1	client-internals/offline-tutorial-205.md#later-clients	carries the same 9 names and `tiledefsOffline.txt`
+manual/04-behaviour/10-feature-specs.md	Left over	client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321	A lab run with one listed window open, to watch the quit
 manual/04-behaviour/10-feature-specs.md	what the server sees	recovered-hacks/behaviour-models.md#what-a-server-can-see, recovered-hacks/static-2026-11-01/README.md#what-a-checker-can-use	only the resulting actions (dig, use, walk, chat), at the rates the tool's waits allow
 manual/04-behaviour/11-side-builds-labs.md	None of these schemes protect anything; they keep strings out of a casual `strin	client-internals/des-and-hidden-strings.md#notes-for-tool-writers	
 manual/05-servers.md	A server prints its list only to a client it refuses	server-notes/public-allowed-versions.md#open	
 manual/05-servers.md	A capture that proves the server-side `#n` expansion on a script-running server 	server-notes/setcharprop-hash-n.md#still-open	
 manual/06-listserver.md	What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured (1.41 rev1 sends noth	protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5	
+manual/06-listserver.md	Verdict	docs/book/04-where-the-notes-disagree.md#listserver-shapes	Settled by matching the two field layouts against held captures; inferred, not measured, in the sense that no single capture was replayed into the Server Lister ELF
+manual/07-rc-nc.md	Left over	tools/remotecontrol-lineage.md	The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer
+manual/07-rc-nc.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421	What an older server put in that string
 manual/07-rc-nc.md	Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs 	protocol/rc-list-online.md#how-rc2-205-shows-them-bin	
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
@@ -58,6 +75,7 @@ manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-2
 manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
 manual/09-graal3d.md	Opening	graal3d/camera.md#field-of-view	`2 × atan(0.5)` ≈ 53.13° on either axis of that window
+manual/09-graal3d.md	Left over	graal3d/camera.md#still-needed	The value at draw time in a live run with the native `d3drm.dll`
 manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped probe set, not what th	graal3d/collision.md#what-this-does-not-settle	
 manual/09-graal3d.md	Where it advances each tick was not traced; that standing still freezes it is an	graal3d/client-behaviour.md#animation-counter-prop-5	
 manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what-changes	n/a | `genvs.bsp`, `dema.act`, `MovingPlat` and `DeathMatchStart` match the public Genesis3D SDK demo
@@ -67,21 +85,3 @@ manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-th
 manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
 manual/10-torque.md	Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef`	torque/304-tile-types.md#not-settled	
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	
-manual/app-e-settled.md	Left over	protocol/v4x-clients.md#client--server-ids	A capture of a game client's answer to S→C 108 is still missing
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6	What 14 and 22 carry in these builds
-manual/app-e-settled.md	Note	client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	Claim B's count of 34 was 39 less five, the arithmetic that hid the gap
-manual/app-e-settled.md	Verdict	protocol/v6113-login-lab-method.md	Settled as far as the project will take it: the project's own 6.1.1.3-style login works, and the stock client's exact body is left at the best guess and not chased
-manual/app-e-settled.md	Earlier guess (wrong)	protocol/unknowns-ledger.md	The step re-binds level-scoped state, such as the gmap neighbour grid, to the new level
-manual/app-e-settled.md	Inferred	protocol/probe-targets-2026-11-18.md	They are the gani editor's preview images, kept in the header so the file is self-describing
-manual/app-e-settled.md	Left over	protocol/unknowns-ledger.md	A static read of the header parser's `DEFAULT*` cases; 6.1.1.3 and 6.037
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303	Which movement routines set the players flag; whether 2.22 and 2.31 keep the same lists
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307	The 1.39 refusal and snap branches were not compared instruction by instruction
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315	NewWorld beta 2, which also lacks the constant, was not read
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321	A lab run with one listed window open, to watch the quit
-manual/app-e-settled.md	Left over	tools/remotecontrol-lineage.md	The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421	What an older server put in that string
-manual/app-e-settled.md	Left over	graal3d/camera.md#still-needed	The value at draw time in a live run with the native `d3drm.dll`
-manual/app-e-settled.md	Left over	docs/book/04-where-the-notes-disagree.md#how-many-bits-a-z3-code-uses	The 11-bit width rests on the server source alone; a real `.02` file decoded both ways would confirm it
-manual/app-e-settled.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603	2.22 and 2.31, which were not read for this field
-manual/app-e-settled.md	Verdict	docs/book/04-where-the-notes-disagree.md#listserver-shapes	Settled by matching the two field layouts against held captures; inferred, not measured, in the sense that no single capture was replayed into the Server Lister ELF
-manual/app-e-settled.md	Left over	formats/tiledef-type4-2026-11-16.md#open	Water under an overlay, and type-4 lines on builds other than 2.22

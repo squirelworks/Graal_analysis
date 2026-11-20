@@ -15,7 +15,7 @@ The Torque years are best understood as three different programs that share the 
 
 **Third, after Torque.** From 5.24r3, and in every 6.x build, there is no Torque engine. What survives is the GS2 GUI vocabulary: Torque's control class names, plus its field names up to 5.31r4, re-implemented by Graal's own `quattro_lib`. [bin] (client-internals/torque-surface-by-era.md#530r3-and-531r4); [bin] (client-internals/torque-surface-by-era.md#600r2-and-600r4) The 6.x reads gathered in §10.1.6 and §10.1.9 are here to document that absence. The 6.x engine itself is Part I's subject (→ §1.8.7).
 
-**What is measured, and what is not.** The UDP handshake is the strongest material in this Part. 5.12 was driven live against a lab server through challenge, connect, accept and its first data packets, and the minimal accept it takes is known. [run] (torque/network.md#the-full-handshake-live) Everything after the accept rests on static reads, and no Graal client has been seen drawing a 3D world: under Wine, 5.12's launcher faults when it switches to 3D. [run] (torque/engine-and-formats.md#rendering) No 3D content shipped with any client, because missions, terrain and shapes always came from the server, and no Graal 3D server or level data is in the archives. [file] (torque/engine-and-formats.md#3d-resource-formats) The open points that would change an implementation are listed in App. E#501–E#503: the 4.04r2 class CRC, and whether 4.04r2 loads `.mis` and `.dso` files.
+**What is measured, and what is not.** The UDP handshake is the strongest material in this Part. 5.12 was driven live against a lab server through challenge, connect, accept and its first data packets, and the minimal accept it takes is known. [run] (torque/network.md#the-full-handshake-live) Everything after the accept rests on static reads, and no Graal client has been seen drawing a 3D world: under Wine, 5.12's launcher faults when it switches to 3D. [run] (torque/engine-and-formats.md#rendering) No 3D content shipped with any client, because missions, terrain and shapes always came from the server, and no Graal 3D server or level data is in the archives. [file] (torque/engine-and-formats.md#3d-resource-formats) The open points that would change an implementation are listed in §10.3.2–E#503: the 4.04r2 class CRC, and whether 4.04r2 loads `.mis` and `.dso` files.
 
 **How the later sections are scoped.** §10.7.1 to §10.7.6 record exact-build observations on Linux 3.04 and 4.20r6: script reading, packaged streams, a seven-operation executor subset and native-call boundaries. Each is deliberately narrow. A finding there holds for that input and that path, and it is not a general statement about TorqueScript execution in Graal. [bin] (torque/linux-304-seven-operation-contract.md)
 
@@ -377,10 +377,18 @@ The request writes the net class group (U32, 0 = game) and the class CRC (U32), 
 | --- | --- | --- | --- | --- | --- | --- |
 | game string | `Torque Game Engine Demo` | `Graal3D` | `Graal3D` | `Graal3D` | `Graal3D` | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
 | current = minimum protocol | 9 | 19 | 19 | 21 | 24 | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
-| class CRC | stock table, value unmeasured | unmeasured | `0xFFFFFFFF`, group 0 (captured from the Linux build; → App. E#501) | unmeasured | `0xFFFFFFFF` (static table, never written) | [bin][run] (torque/wire-by-build.md#the-handshake-per-build); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#404r2-3d-connect-request-e501) |
+| class CRC | stock table, value unmeasured | unmeasured | `0xFFFFFFFF`, group 0 (captured from the Linux build; → §10.3.2) | unmeasured | `0xFFFFFFFF` (static table, never written) | [bin][run] (torque/wire-by-build.md#the-handshake-per-build); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#404r2-3d-connect-request-e501) |
 | join password | the server-password pref | set by the engine, not traced | the account password, plain text | not traced | the account password, plain text | [bin] (torque/network.md#the-connect-request-by-version) |
 | argc (at most 16), then strings | script args | engine-set, not traced | 2: account, nickname | not traced | 2: account, nickname | [bin] (torque/network.md#the-connect-request-by-version) |
 | server side of the request | stock script `onConnectRequest` | stock script `onConnectRequest` | native | native | native | [bin] (torque/wire-by-build.md#the-handshake-per-build) |
+
+**Settled question, formerly E#501: class CRC of the 4.04r2 3D plug-in.** Which class CRC a real 4.04r2 client sends in its 3D connect request was open between a stock-Torque reading and a static-table reading; a decoded capture settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#404r2-3d-connect-request-e501).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the stock Torque class CRC, so a server must match the networked classes. B: a static table holding `0xFFFFFFFF` for group 0, computed by nothing | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll); [bin] (torque/wire-by-build.md#the-handshake-per-build) |
+| Settled | The connect request of native Linux 4.04r2 (`G3D19026`), decoded from a lab capture, carries net class group 0 and class CRC `0xFFFFFFFF` | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#404r2-3d-connect-request-e501) |
+| Verdict | Verified for the Linux build: Claim B holds. Windows 4.04r2 page-faults at the 3D start under Wine, so it was not captured | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#404r2-3d-connect-request-e501) |
 
 The connect request differs by build. The rules below record a live 5.12 request decoded in full and how a 5.12 server rejects a wrong game string [run] (torque/network.md#the-full-handshake-live).
 

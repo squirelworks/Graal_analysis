@@ -3,7 +3,7 @@
 
 This chapter gives the client's side of lifting, carrying, hiding and throwing, the sword cut, chests, items on the floor, who rolls item drops in each build, and what the client does (and does not do) about board respawn. The `arrays.dat` tables named here are defined in → §3.5.3; the server's respawn timers and drop tables are in → §5.
 
-> Status: draft. Read for 1.3, 1.38 to 1.41 and 2.05 rev 2; lab-checked on 1.39, 2.05 rev 2 and 2.22. Open points are App. E#316 to E#318.
+> Status: draft. Read for 1.3, 1.38 to 1.41 and 2.05 rev 2; lab-checked on 1.39, 2.05 rev 2 and 2.22. The open point is App. E#317; E#316 and E#318 are settled in → §4.5.2 and §4.5.7.
 
 ## 4.5.1 Matching a 2 × 2 object
 
@@ -36,7 +36,7 @@ The A key lifts, carries and throws. The rules below give the key order, the glo
 | Rule | Detail | Source |
 | --- | --- | --- |
 | A key order | throw what is carried; else lift; else grab (→ §4.2.8) | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
-| glove | glove power `g` allows the first `g + 2` lift entries; every player starts at glove 1 (bush, sign, pot); `glove1` raises it to at least 2 (light stone), `glove2` to at least 3 (black stone); online the power is player prop 6; measured on 2.05 rev 2 with the power set by prop: 0 lifts bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone (→ App. E#316) | [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
+| glove | glove power `g` allows the first `g + 2` lift entries; every player starts at glove 1 (bush, sign, pot); `glove1` raises it to at least 2 (light stone), `glove2` to at least 3 (black stone); online the power is player prop 6; measured on 2.05 rev 2 with the power set by prop: 0 lifts bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone (→ §4.5.2) | [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
 | NPCs | an NPC is lifted only when its script set `canbecarried` (command 41, cleared by 42), at the same point, with no glove check; it leaves the level's NPC list and nothing is sent | [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
 | lift | `lift` plays at once and the board tile becomes its leftover at once; a counter runs 4 down to 0 and the carried flag is set on the 5th tick; `carrystill` follows on the 7th tick (6 ticks of `lift`) | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
 | carry | `carry` (8 frames, one per tick) at the normal 0.5 tile per tick; the object is drawn over the head, the head and arms hidden behind it | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
@@ -50,6 +50,14 @@ The A key lifts, carries and throws. The rules below give the key order, the glo
 | flight | a thrown pot flies about 6 tiles in 9 ticks, its shadow along the ground; it breaks into four pieces that spread over 4 ticks; a landing does not touch the board, it only breaks into leaves (`crush.wav`, or `water.wav` for the water leap) | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live); [bin] (client-internals/board-respawn.md#the-objects) |
 | D key while carrying | does not throw; with carry sprite 239, 261 or 263 it hides (above) | [2.05] (client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md) |
 | stone without glove | A at a black stone with glove 1 does nothing: no lift and no grab | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
+
+**Settled question, formerly E#316: Glove power steps.** Which objects each glove power can lift was open between two reads; a lab run with the power set through the props settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: glove 1 lifts bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone. B: a bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
+| Settled | On 2.05 rev 2, glove power N lifts the first N + 2 entries of the lift list: 0 bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone. The first object out of reach only plays the grab gani | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
+| Verdict | Verified: Claim A's steps hold, and Claim B is right that a bare hand lifts bush and sign but wrong that power 2 adds both stones | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
 
 By build:
 
@@ -190,7 +198,14 @@ Cut and lifted objects come back only when the server says so. The rules below g
 | restore | a restore arrives as `PLO_BOARDMODIFY` (7) and is handled as any board modify; the timers and the echo rules are the server's (→ §5) | [bin] (client-internals/board-respawn.md#summary) |
 | where | the restore puts the object back where it was lifted, since the board changed only at the lift | [bin] (client-internals/board-respawn.md#the-objects) |
 | push and pull blocks | the 2.05 client sends the 4 × 4 area round the old spot (→ §4.2.7) | [2.05] (client-internals/ledges-push-pull.md#pushing) |
-| re-entry offline | 2.05 rev2 does not reload a level from disk on re-entry: a cut or thrown bush stays gone for the session (3/3; also after loading the level again with F5, 2/2); settled → App. E#318 | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
+| re-entry offline | 2.05 rev2 does not reload a level from disk on re-entry: a cut or thrown bush stays gone for the session (3/3; also after loading the level again with F5, 2/2); settled → §4.5.7 | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
+
+**Settled question, formerly E#318: level reload on re-entry offline.** Whether offline 2.05 reloads a level on re-entry, bringing a cut bush back, was untested [bin] (client-internals/board-respawn.md#open).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | No reload: 2.05 rev 2 keeps the edited level in memory for the session, so cut and thrown bushes stay gone after leaving and re-entering (3 of 3) and after loading the level again (2 of 2); the files on disk are unchanged | [lab] (client-internals/lab-cells-200-205-2026-11-13.md#205-rev2-offline-re-entering-a-level) |
+| Still open nearby | Whether a level NPC's GS2 state survives leaving and re-entering a gmap cell on 6.03r7 and 5.12; Seihai restarts it | [doc] (protocol/npc-gmap-reentry-status.md) |
 
 ## 4.5.8 Linux 6.03r7 item keys and drawing
 
@@ -213,4 +228,14 @@ Carried objects used 32 × 32 cells at PTL + (8, −22): bush (0, 338), sign (32
 
 Cut-bush leaves appeared around +0.21 s and disappeared around +0.50 s. The server supplied the observed green-gralat/heart drops; a green gralat bounced from PTL + (24, 9) to (24, 46) over about one second. These outcomes do not establish random-drop probabilities. All four tested object types blocked walking; `push` followed around 0.85–1.0 s, without board change, and walking sent X2/Y2 at about 50 ms intervals, 0.5 tile per step. No `arrays.dat` request was seen and observed cut/lift replacements matched the 2.22 tables; this does not recover the complete internal tile tables. [cap][shot] (client-internals/items-603r7-black-box.md#s-sword); [cap] (client-internals/items-603r7-black-box.md#walking-into-objects)
 
-The chest blocked and opened but its art was absent. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) The art is the server's `chest.png` and `chestopen.png`, fetched at level entry and on opening; the orange rectangle is the default unskinned GUI, since the client names no skin file and a skin can only come from a server script (→ App. E#327). [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327)
+The chest blocked and opened but its art was absent. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) The art is the server's `chest.png` and `chestopen.png`, fetched at level entry and on opening; the orange rectangle is the default unskinned GUI, since the client names no skin file and a skin can only come from a server script (→ §4.5.8). [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327)
+
+**Settled question, formerly E#327: missing chest art and menu skin in the 6.03r7 item run.** Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle, was open; controlled input changes settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Chest collision and opening worked without chest art; an orange rectangle appeared when the menu toggled | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
+| Settled (chest) | With `chest.png` and `chestopen.png` on the server, the client fetches the first at level entry and the second on opening, and draws both | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Settled (menu) | The image names no skin or window image, and the client fetches no file when the menu toggles: the orange box is the default unskinned GUI drawing, and a skin can only come from a server script | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Left over | A scripted skin delivered and seen to change the menu | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
