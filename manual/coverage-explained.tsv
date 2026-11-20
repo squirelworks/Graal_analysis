@@ -163,6 +163,7 @@ client-internals/sound-files-6x.md	TSoundPlayerFMOD	a library API or class name 
 client-internals/sound-files-6x.md	fire_torch0-2	sound file names in a list; §3.10 and §4.7 carry the sound sets
 client-internals/sound-files-6x.md	spell_firelaunch	sound file names in a list; §3.10 and §4.7 carry the sound sets
 client-internals/static-reads-appendix-e-2026-11-20-c.md	GR-V1.0x	a pattern standing for GR-V1.00 to 1.05, each in §3.1
+client-internals/static-reads-appendix-e-2026-11-20-k.md	not(b) − 10	the 2.22 login transform in the note's notation; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF
 client-internals/v2.00-connect-path.md	0x330	a form field offset (binary internals, §0.10)
 client-internals/v2.00-connect-path.md	Application.MessageBox	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	Application.Terminate	API call in the binary (§0.10); §6.4 carries the behaviour
