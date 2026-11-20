@@ -200,7 +200,13 @@ The trees group into three eras. Each row gives what an era changed in how a ser
 | gs2emu / Reborn 2.x | `servers.txt` runs several worlds in one process; typed players (client, RC, NPC-server); generations 3, 4 and 5 chosen by the login type; `GRACC001` account files and `GLEVNW01` levels; RC file browser; listserver link (→ §6.5); optional NPC-server process | [src] (server-notes/01-lineage.md#what-changed-between-eras) |
 | a Python rewrite of gs2emu, also called Ash | same on-disk layout and wire protocol; generations 3 to 5, client, RC and NPC-server logins, listserver link, accounts, levels with baddies, RC file browser, gmaps, baddies, NPC-server relay; no horses, no weapon bytecode; default port 14812 | [src] (server-notes/01-lineage.md#what-changed-between-eras); [src] (server-notes/ash-overview.md#what-ash-implements) |
 
-Two different projects carry the name Ash (→ App. E#400).
+**Settled question, formerly E#400: Two projects called Ash.** Whether the two things the notes call Ash were one project or two was open. The repository owner settled it [doc] (server-notes/ash-identity-2026-11-20.md#statement).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: Ash is a Python rewrite of the gs2emu protocol (default port 14812). B: Ash is the blueprint pack of the 2006 39ster 2.1 GServer (default port 14822) | [src] (server-notes/01-lineage.md#what-is-binary--world-only); [src] (ash/INDEX.md); [src] (ash/ARCHIVAL-NOTE.md) |
+| Settled | The repository owner states that Ash was an early attempt at working out how to reproduce Graal, and is not Graal. Both bodies of notes come from that one effort | [doc] (server-notes/ash-identity-2026-11-20.md#statement) |
+| Verdict | Both claims describe parts of the same reproduction effort; the best guess of two unrelated projects is refuted. Neither is evidence of an original Graal program | [doc] (server-notes/ash-identity-2026-11-20.md#what-this-means-for-the-notes) |
 
 ### 5.3.2 Login and receive path
 

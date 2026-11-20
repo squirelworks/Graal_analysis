@@ -54,7 +54,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-| E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
@@ -384,18 +383,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 
 These questions are about the programs on the other side of the connection (→ Parts V to VII). They split cleanly in two: the lab servers and staff tools that are held can answer theirs, while questions about what the official servers of 1999 to 2010 did depend on a capture of a public service or on source that is not held [doc] (AGENTS.md#labs).
 
-### E#400 Two projects called Ash
-
-**Question.** Whether the two things the notes call Ash are one project at two stages or two projects that share a name [src] (server-notes/01-lineage.md#what-is-binary--world-only).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Ash is a Python rewrite of the gs2emu protocol with its own world and default port 14812; it is not the Reborn 2.4 binary | [src] (server-notes/01-lineage.md#what-is-binary--world-only); [src] (server-notes/ash-overview.md) |
-| Claim B | Ash is the blueprint pack of the 2006 39ster 2.1 GServer, describing that server as written; default port 14822 | [src] (ash/INDEX.md); [src] (ash/ARCHIVAL-NOTE.md) |
-| Best guess | Two projects that share a name: the ports, languages and subjects differ. Confidence: moderate. The manual keeps them apart (→ §5.2, → §5.3.1) | [inf] (ash/ARCHIVAL-NOTE.md) |
-| Settles it | The Drive archives of both, compared by date and content | [doc] (ash/ARCHIVAL-NOTE.md#full-archive) |
-| Outlook | Missing: the full archives are owner-held | [doc] (ash/ARCHIVAL-NOTE.md#full-archive) |
-
 ### E#401 Listserver reply ids 1 and 2
 
 **Question.** What listserver reply ids 1 and 2 meant in 2002. The 1.41 game client, RC 1.41 and later clients read them differently [srv] (protocol/listserver.md#listserver--client; protocol/listserver-141r1-silent-list.md).
@@ -674,6 +661,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#326 | Remaining 6.03r7 HUD measurements | → §4.6.9 |
 | E#327 | Missing chest art and menu skin in the 6.03r7 item run | → §4.5.8 |
 | E#328 | What drives 2.22's tick | → §4.6.10 |
+| E#400 | Two projects called Ash | → §5.3.1 |
 | E#405 | RC token `GSERV025` | → §7.1.1 |
 | E#420 | Flag and chest counts in the RC props tail | → §7.1.8 |
 | E#421 | The last byte of RC_PLAYERPROPSSET2 | → §7.1.8 |
