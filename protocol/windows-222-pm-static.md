@@ -53,10 +53,10 @@ remain unverified.
 
 ## Remaining questions
 
-- [ ] Locate the exact control's action, if any, that requests a remote PM roster;
+- [x] ~~Locate the exact control's action, if any, that requests a remote PM roster;~~ none exists in the original 2.22; the roster is filled by 8 ([sixth batch](../client-internals/static-reads-appendix-e-2026-11-20-f.md#no-roster-request));
   follow the actual request builder and its caller rather than assuming the
   later `requestlist` / `pmserverplayers` mechanism.
-- [ ] Recover the accepted reply and player-creation route for that request, if
+- [x] ~~Recover the accepted reply and player-creation route for that request, if~~ 8 creates unknown players ([sixth batch](../client-internals/static-reads-appendix-e-2026-11-20-f.md#no-roster-request));
   present. The selected dispatcher gives no handler for 55, 56 or 82.
 - [ ] Resolve the virtual type-28 send target and framing separately from send
   intent, and establish the final message display behavior.

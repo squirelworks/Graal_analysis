@@ -69,7 +69,7 @@ destination.
 ## Open
 
 * The probe offsets per facing were not read.
-* The flag that turns the neighbour table off was not identified.
+* ~~The flag that turns the neighbour table off was not identified.~~ It is the `dontconnectlevels` option ([2026-11-20 read](../static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308)).
 * Which big map a 2.05 client uses offline, and whether 2.22 does the same
   with the `PLO_BIGMAP` (171) map, is not read.
 * How walking behaves past the edge when the neighbour level is loaded

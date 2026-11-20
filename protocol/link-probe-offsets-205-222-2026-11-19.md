@@ -38,6 +38,8 @@ only the probe threshold and hard-limit test applies, so the player can walk pas
 
 ## Still open
 
-- The global flag that skips building the 3 x 3 neighbour table. It lives in the table builder,
-  which this pass did not trace.
-- Whether `PLO_BIGMAP` (171) on 2.22 installs the same grid as `maps/bigmap.txt`.
+- ~~The global flag that skips building the 3 x 3 neighbour table.~~ Settled 2026-11-20: the
+  `dontconnectlevels` option ([sixth batch](../client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308)).
+- ~~Whether `PLO_BIGMAP` (171) on 2.22 installs the same grid as `maps/bigmap.txt`.~~ Settled
+  2026-11-20: it does, through the same loader ([sixth batch](../client-internals/static-reads-appendix-e-2026-11-20-f.md#plo_bigmap-171-and-the-gs1-setmap-command)).
+- A lab crossing on 2.22 with a big map installed by 171.
