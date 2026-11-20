@@ -62,12 +62,18 @@ establish a packed/unpacked relationship or a release lineage. **[bin][inf]**
 
 - [x] ~~Establish the bounded A-to-B code difference and its routine context.~~
   Four branch conditions in one RSA-verification routine, as described above.
-- [ ] Interpret the remaining control-to-variant differences without assuming
-  the control is an official baseline.
-- [ ] Trace callers and their error propagation before making any claim about
-  startup behavior or accepted inputs.
-- [ ] Establish the verification helper's algorithm and signature format;
-  this comparison does not resolve the earlier note's key-encoding question.
+- [x] ~~Interpret the remaining control-to-variant differences without assuming
+  the control is an official baseline.~~ The other 30 bytes are four label
+  renames; the control is B plus those renames
+  ([2026-11-20 read](../client-internals/static-reads-appendix-e-2026-11-20-k.md#how-the-three-inputs-relate)).
+- [x] ~~Trace callers and their error propagation before making any claim about
+  startup behavior or accepted inputs.~~ The routine runs at start-up for both
+  signature files, and with the four guards jumped every file passes
+  ([2026-11-20 read](../client-internals/static-reads-appendix-e-2026-11-20-k.md#where-the-check-runs)).
+- [x] ~~Establish the verification helper's algorithm and signature format.~~
+  `01 FF … 00` plus the SHA-1 of the data, with no DigestInfo; the helper always
+  succeeds. The key decodes to a 2,047-bit modulus; where the exponent is set is
+  still not read ([2026-11-20 read](../client-internals/static-reads-appendix-e-2026-11-20-k.md#the-verify-routine-a)).
 
 No protocol, PM-list behavior, GS1 execution or runtime acceptance was
 measured. These inputs therefore provide no new evidence for official 2.x

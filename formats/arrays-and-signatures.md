@@ -79,11 +79,11 @@ Both `.sig` files are 128 bytes, the size of an RSA-1024 signature. **[test]** T
 
 2.17, 2.22 and 2.31 embed the same two obfuscated key strings and the same error text. **[2.17]** **[2.22]** **[2.31]**
 
-Open: checking the shipped signatures by hand against the decoded key with exponents 3, 17 and 65537 did not reproduce PKCS#1 padding, so the key encoding (exponent, byte order, or which of the two strings is used) is not pinned down yet.
+~~Open: checking the shipped signatures by hand against the decoded key with exponents 3, 17 and 65537 did not reproduce PKCS#1 padding, so the key encoding (exponent, byte order, or which of the two strings is used) is not pinned down yet.~~ Partly answered on 2026-11-20 ([static read](../client-internals/static-reads-appendix-e-2026-11-20-k.md#the-key)): in 2.22 the string decodes to a 2,047-bit modulus, which wants 256-byte signatures, and the verify routine compares against `01 FF … 00` plus the SHA-1 with no DigestInfo. The 128-byte files checked here are the Reborn package's, which that key would reject on size. Where the exponent is set and what the second string does are still open.
 
 ### The Graal Reborn 2.22 exe has the check disabled
 
-The Reborn `Graal_222.exe` was rebuilt on the same day its `arrays2.dat` was edited. In its RSA verify routine, the three conditional branches that raise the verify error are rewritten as unconditional jumps, so verification always passes. The 2.17 and 2.31 exes have the original conditional branches. **[2.22]** **[2.17]** **[2.31]**
+The Reborn `Graal_222.exe` was rebuilt on the same day its `arrays2.dat` was edited. In its RSA verify routine, the four conditional guards of the routine (key size, signature size, helper result and final comparison) are rewritten as unconditional jumps ([2026-11-20 read](../client-internals/static-reads-appendix-e-2026-11-20-k.md#how-the-three-inputs-relate); this note first counted three), so verification always passes. The 2.17 and 2.31 exes have the original conditional branches. **[2.22]** **[2.17]** **[2.31]**
 
 That's why the Reborn client runs with a modified `arrays2.dat` and an old `arrays2.sig`, and with a modified exe and the old `graal.sig`. An unpatched 2.17, 2.22 or 2.31 client would refuse both. **[inf]**
 

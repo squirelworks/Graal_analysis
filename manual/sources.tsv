@@ -281,6 +281,7 @@ client-internals/static-reads-appendix-e-2026-11-20-g.md	cited	4.2; 4.5; E	4.2; 
 client-internals/static-reads-appendix-e-2026-11-20-h.md	cited	8.4; E	8.4; E	Decompiler read for App. E: 3.153 Mac reads and writes the four-segment GS2 container
 client-internals/static-reads-appendix-e-2026-11-20-i.md	cited	8.4; E	8.4; E	Registration-table read for App. E: the 17 global built-ins that make 6.x fuse fold 241
 client-internals/static-reads-appendix-e-2026-11-20-j.md	cited	8.3; 8.4; E	8.3; 8.4; E	Decompiler read for App. E#209: 6.x maxlooplimit name, 6.03r7 event-name case and clientside trigger path
+client-internals/static-reads-appendix-e-2026-11-20-k.md	cited	3.5; E	3.5; E	Decompiler read for App. E#103: 2.22 verifier lineage (four guards plus label renames), start-up reach, verify steps and the decoded key size
 client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
@@ -407,7 +408,7 @@ formats/tiledef-type4-2026-11-16.md	cited	3.5; 11	3.5; 11
 formats/tiletypes.txt	cited	3.5; E	3.5	
 formats/weblevels-code-residuals.md	cited	3.8	3.8	[bin] MD5(host∥decimal_port) lowercase level folders on 6.1.1.3; 4.20r8 vs later path table; LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
-formats/windows-222-verifier-variants.md	cited	3.5; E	3.5; E	Four-guard variant comparison and separate prior control claim carried in 3.5.5.1; broader lineage, caller and runtime uncertainties carried in E#103.
+formats/windows-222-verifier-variants.md	cited	3.5; E	3.5; E	Four-guard variant comparison carried in 3.5.5.1; the settled E#103 record cites it with the 2026-11-20 read.
 formats/windows-603-weapon-cache.md	cited	3.8	3.8	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
 graal3d/README.md	cited	9	9	
 graal3d/beta3-genesis.md	cited	9; E	9	

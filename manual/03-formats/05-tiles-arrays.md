@@ -202,21 +202,29 @@ Two 128-byte signature files guard the executable and `arrays2.dat`. The rules b
 | Rule | Detail | Source |
 | --- | --- | --- |
 | size | both files are 128 bytes, the size of an RSA-1024 signature | [test] (formats/arrays-and-signatures.md#the-signatures) |
-| key | built at startup from an obfuscated hex string assembled one character at a time; each decoded byte is `not(b) - 10` | [2.22] (formats/arrays-and-signatures.md#the-signatures) |
+| key | built at startup from an obfuscated hex string assembled one character at a time; each decoded byte is `not(b) - 10`. In 2.22 the 1,024 characters decode (hex, byte order reversed, then `not(b) - 10`) to 512 hex characters, a 2,047-bit modulus, which would want 256-byte signatures | [2.22] (formats/arrays-and-signatures.md#the-signatures), [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#the-key) |
 | order | `graal.sig` is verified against the client's own executable file, then `arrays2.sig` against `arrays2.dat` | [2.22] (formats/arrays-and-signatures.md#the-signatures) |
-| algorithm | an RSA component configured with a SHA-1 signing digest and a PKCS#1 scheme, judged from the component's class and property names; no signature has been verified | [inf] (formats/arrays-and-signatures.md#the-signatures) |
+| algorithm | key at least 89 bits; signature exactly (bits + 7) / 8 bytes; m = s^e mod n compared with `01 FF … FF 00` and the 20-byte SHA-1 of the data, (bits − 1) / 8 bytes, with no DigestInfo; no signature has been seen to verify | [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#the-verify-routine-a) |
 | failure | the client shows "The Graal execution file is corrupted. Please check for viruses or other programs that manipulate…" and exits | [2.22] (formats/arrays-and-signatures.md#the-signatures) |
 | builds | 2.17, 2.22 and 2.31 embed the same two key strings and the same error text | [2.17][2.22][2.31] (formats/arrays-and-signatures.md#the-signatures) |
-| open | checking the shipped signatures against the decoded key with exponents 3, 17 and 65537 did not reproduce PKCS#1 padding; the key encoding is not pinned down | [test] (formats/arrays-and-signatures.md#the-signatures) |
-| fan-server 2.22 | that executable has the three branches that raise the verify error rewritten so verification always passes; the 2.17 and 2.31 executables do not | [2.22][2.17][2.31] (formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled) |
+| open | the only held `.sig` files are the Reborn package's 128-byte files, which the 2,047-bit key would reject on size; where the exponent is set and what the second key string does are not read | [test] (formats/arrays-and-signatures.md#the-signatures), [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#not-covered) |
+| fan-server 2.22 | that executable has the four guards of the verify routine rewritten so verification always passes; the 2.17 and 2.31 executables do not | [2.22][2.17][2.31] (formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled) |
 | consequence | an unpatched 2.17, 2.22 or 2.31 client refuses an edited `arrays2.dat` or executable; editing `arrays2.dat` alone fails the signature | [inf] (formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled) |
 
 ### 3.5.5.1 A separate four-guard variant comparison
 
 Two retained Windows inputs reporting 2.2.2.0 differ at four branch conditions in one RSA-verification routine. In input A, the conditions guard minimum key size, supplied signature size, a verification helper's result and a final comparison. Input B replaces each condition with an unconditional branch to the same destination, skipping the associated error path. This is a static code comparison, not measured signature acceptance [bin] (formats/windows-222-verifier-variants.md#what-the-four-edits-change).
 
-The earlier community-control three-branch claim above and this A-to-B four-site result compare different inputs. The separately retained control is modified community-distributed code, not an authenticated pristine release. Broader control-to-variant differences remain uninterpreted [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note).
+The earlier community-control patch and this A-to-B result are the same four edits: the control is B with four labels renamed [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#how-the-three-inputs-relate).
 
-Only A was imported into the deep provider; B was compared by complete byte difference against A's decoded contexts. Caller reachability, startup behavior, helper algorithm, signature format and runtime acceptance remain open → App. E#103. No protocol, PM-list or GS1 behavior follows from this comparison [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
+**Settled question, formerly E#103: What the four 2.22 verifier guards mean.** Whether the four unconditional guards change which files a client accepts, and how the variant relates to the community control, was open. A read of input A and a byte comparison of all three inputs settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#what-this-settles).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | A against the control differs in 34 bytes in eight ranges: the four guards, and the labels `Graal Gold`, `Classic`, `Hosted` and `Graal2002` renamed `Gold`, `Silver`, `Bronze` and `Graal Reborn`. B is A with the guards alone patched; the control is B with the renames. The earlier "three branches" was four | [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#how-the-three-inputs-relate) |
+| Settled | The verify routine is reached at start-up, for `graal.sig` against the executable and then `arrays2.sig` against `arrays2.dat`; a failure ends in the "corrupted" message | [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#where-the-check-runs) |
+| Settled | The routine checks key size, signature size, then compares s^e mod n with `01 FF … 00` and the SHA-1 of the data, without DigestInfo. Its helper always succeeds, so the third guard never fires even unpatched. With all four guards jumped, every file and signature passes | [bin] (client-internals/static-reads-appendix-e-2026-11-20-k.md#the-verify-routine-a) |
+| Verdict | Verified by read: A is the unpatched build and B is a patched build that accepts unsigned files, the best guess. No PM or GS1 conclusion follows | [bin][inf] (client-internals/static-reads-appendix-e-2026-11-20-k.md#what-this-settles) |
+| Left over | Where the exponent is set, the second key string, and whether an official release carried 256-byte signatures; no unpatched signature is held | [inf] (client-internals/static-reads-appendix-e-2026-11-20-k.md#not-covered) |
 
 The check as a client integrity behaviour is in → §4.10.

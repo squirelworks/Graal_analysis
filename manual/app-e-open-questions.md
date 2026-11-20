@@ -43,7 +43,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#18 | Mobile clients' outer framing and cipher | Read | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| E#103 | 2.22 signature verifier variants | Read | a cracked or debug variant, not an official one | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49, 54, the 6.x loop-limit name and 6.03r7 event case settled; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
@@ -257,21 +256,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Best guess | The earlier mask was made from another sheet or a later table, so the numbers describe a different input. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | Settles it | Link the original mask and the exact file to the producing client path and sheet before comparing | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | Outlook | Read, if the mask's producer can be identified; otherwise the old count is simply retired | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-
-### E#103 Verifier variant reachability and signature interpretation
-
-**Question.** What the four unconditional guards in one 2.22 verifier variant mean for which signed files a client accepts. The bounded result in → §3.5.5.1 compares retained inputs; it does not measure startup acceptance [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Four conditional guards in one RSA-verification routine are unconditional in the compared variant; only A was deep-imported, B compared by full byte difference | [bin] (formats/windows-222-verifier-variants.md#evidence-and-method) |
-| Evidence | The earlier three-branch community-control patch is a different comparison; the control is not authenticated as pristine official code | [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note) |
-| Open | Broader lineage differences, startup caller reachability, the helper algorithm, the signature format and the inputs accepted | [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Best guess | The variant with unconditional guards is a patched community build that accepts unsigned files, not an official release. Confidence: moderate. No PM or GS1 conclusion follows from the verifier | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Settles it | Trace the callers and helper against identified inputs before interpreting runtime acceptance | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Outlook | Read | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-
-
 
 ## E.6 Client behaviour
 
@@ -640,6 +624,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#25 | The 2.22 start-up file checks: 13 against 17 | → §2.7.10 |
 | E#100 | Collision of the Bush stamp tiles | → §3.5.2.2 |
 | E#102 | Tile id to pixel position on pics1 | → §3.5.1 |
+| E#103 | What the four 2.22 verifier guards mean | → §3.5.5.1 |
 | E#200 | When a GS1 condition counts as true | → §8.1.3 |
 | E#201 | Four GS1 argument signatures in 2.05 | → §8.2.1 |
 | E#202 | Which message carries GS2 bytecode | → §8.4.1 |
