@@ -1,0 +1,44 @@
+path	term	reason
+protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
+protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
+protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal
+protocol/nc-flag-list-round-trip-2026-11-20.md	TFlagList	Delphi form class name; the manual names the window by its title
+protocol/nc-standalone-flag-action.md	NC-FLAG-ACTION-STATIC	evidence id; the manual cites the note
+protocol/npc-control.md	!hasRight(PLPERM_NPCCONTROL)	GServer-v2 source expression; §7.2.2 step 3a carries the rule in words
+protocol/npc-control.md	!isRC()	GServer-v2 source expression; §7.2.2 step 3a carries the rule
+protocol/npc-control.md	"== ""location"""	a disproved lab theory; the note records it as wrong
+protocol/npc-control.md	1WAoHpifrHvM72aYXVNzkKRJVTkgJNkGH	download id of a decompile archive, not Graal
+protocol/npc-control.md	1oF6qDwxTMoIqmHIugbx_O72m3B7_Qjih	download id of a decompile archive, not Graal
+protocol/npc-control.md	1sABQxJiJ4cwbtfzrB9oqCwNhC5G3Zqsz	download id of a decompile archive, not Graal
+protocol/npc-control.md	ADMINRIGHTS 1048575	lab-harness mistake (no such key); §7.2.2 step 3a says the key is LOCALRIGHTS
+protocol/npc-control.md	CLIENT-GONE	lab proxy log marker, not Graal; §7.4 carries the no-crash result
+protocol/npc-control.md	FlatFileAccountLoader	GServer-v2 class name; §7.2.2 step 3a carries the account key rule
+protocol/npc-control.md	GCHAR 50	the note's field notation; §7.3 carries it as `c 50`
+protocol/npc-control.md	GCHAR 51	the note's field notation; §7.3 carries it as `c 51`
+protocol/npc-control.md	GCHAR 52	the note's field notation; §7.3 carries it as `c 52`
+protocol/npc-control.md	GINT3 id	the note's field notation; §7.3 carries it as `i3 id`
+protocol/npc-control.md	GSHORT len	the note's field notation; the manual writes `s` (→ §0.6)
+protocol/npc-control.md	GSHORT player id	the note's field notation; §7.2.2 writes `s player id`
+protocol/npc-control.md	Graal Decompiles	name of a source archive, not Graal
+protocol/npc-control.md	LOCALRIGHTS 1048575	lab account-file line; §7.2.2 step 3a carries the LOCALRIGHTS key
+protocol/npc-control.md	NC [NPC Control]	a log label from the lab server, not Graal
+protocol/npc-control.md	NPCServer::sendNCLoginToPlayer	GServer-v2 function name; §7.2.2 step 3a carries the rule
+protocol/npc-control.md	RC [Remote Control]	a log label from the lab server, not Graal
+protocol/npc-control.md	adminRights = 0	lab state during the harness mistake; not a Graal fact
+protocol/npc-control.md	hasRight	GServer-v2 function name; §7.2.2 step 3a carries the rule
+protocol/npc-control.md	hasRight(NPCCONTROL)	GServer-v2 source expression; §7.2.2 step 3a carries the rule
+protocol/npc-control.md	isRC()	GServer-v2 function name; §7.2.2 step 3a carries the rule
+protocol/npc-control.md	msgPLI_NPCSERVERQUERY	GServer-v2 handler name; §7.2.2 carries id 94
+protocol/npc-control.md	nc2002-a	lab plan step name, not Graal
+protocol/npc-control.md	nc713-a	lab plan step name, not Graal
+protocol/npc-control.md	seihai-rc	a reimplementation, out of scope (§0.1)
+protocol/rc-list-online.md	New RC: <new account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
+protocol/rc-list-online.md	New RC: <that account>	§7.1.9 carries both texts as `New RC: <account>` sent both ways
+protocol/rc-list-online.md	seihai-rc	a reimplementation, out of scope (§0.1)
+protocol/rc-list-online.md	str head	§7.1.9 carries it as `c 11` + head
+protocol/rc-list-online.md	str nickname	§7.1.9 carries it as `c 0` + nickname
+protocol/rc-props-flags-status.md	weapon count + weapon	§7.1.8 carries it as `c weapon count`, `str` per weapon
+tools/remotecontrol-lineage.md	RC_ACCOUNT*	§7.1.5 carries the move of accounts to ids 70 to 78
+tools/remotecontrol.md	PLI_NC_*	a wildcard over gs2lib names; §7.3 lists each NC id
+tools/remotecontrol.md	PLI_NC_LEVELLIST*	a wildcard over gs2lib names; §7.3 lists ids 150 and 151
+tools/remotecontrol.md	RC2_2.05	a file name; §7.1.2 names the program RC2 2.05

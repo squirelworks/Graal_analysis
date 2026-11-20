@@ -26,7 +26,7 @@ RemoteControl went through many builds. Each row gives one archive, its date, it
 | Linux RC | 2005/12/09 | `GSERV024` | — | zlib, the script MIME type `text/x-graalscript`, "Ignore Mass PMs if client is on", more editor, auto-indent and account-list text | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 | Linux RC | 2006/01/20 | `GSERV025` | — | the token bump; ban history and staff activity (`getbanhistory`, `getstaffactivity`, "Edit Access"), "Allow Global PMs" and buddy tracking, a chat font size; built with GCC 4.0.3 | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 
-The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ §7.1.1).
+The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). The NewWorld RemoteControl builds 2001/05/21 (15 forms) and 2001/08/20 (18 forms) log in with `G2NRC006`; the 1.39 server tree's NewWorld option expects `G2NRC004` for the NewWorld RC of 2000/8/19 [bin][src] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ §7.1.1).
 
 **Settled question, formerly E#405: RC token `GSERV025`.** Which RC builds send `GSERV025` was open while only the earlier RC builds had been read [bin] (protocol/rc2-sessions-stock-2026-11-16.md).
 
@@ -64,6 +64,8 @@ Right after login the RC sends one `PLI_PLAYERPROPS` (2):
 | 2000/8/19 on | 0 (NICKNAME) = the nickname from the options; closing the player list with "Go in away mode" sends it again with ` - away` appended | [bin] (tools/remotecontrol-lineage.md#start-dialog-and-the-old-option-packets-bin) |
 | rc141 (2002) | 33 (ADDITFLAGS) = 1 only when "Ignore mass messages" is ticked; 0 (NICKNAME); 53 (PSTATUSMSG) = the selected status index | [bin] (tools/npc-control.md#logins-bin) |
 | 2004 | a short message whose prop list is not traced | [bin] (tools/remotecontrol.md#logins-bin) |
+
+After the server's signature (25) and clear-weapons (194), RC2 2.05 sends `PLI_SENDTEXT` (154) `GraalEngine,irc,login,-`, the same IRC login request stock game clients send, followed by its other lister and PM texts [lab] (protocol/rc2-sessions-stock-2026-11-16.md).
 
 ### 7.1.3 Framing
 
@@ -256,6 +258,7 @@ NPC Control logs in on its own socket. The rules below give its first message an
 | The NC socket's first message is type 3, `NCL11012`, `str account`, `str password`, with no key byte, sent right after the socket connects | [bin] (tools/npc-control.md#logins-bin); [bin] (protocol/npc-control.md#login) |
 | The NC socket stays in fixed zlib framing (`u16be` length + zlib) for the whole session: no type byte, no cipher | [bin] (tools/remotecontrol.md#logins-bin); [bin] (protocol/npc-control.md#login) |
 | The NC login did not change between rc141 (2002) and the 2004 RC | [bin] (protocol/npc-control.md#login) |
+| The standalone NPC Control tools (2001/03/19, 2001/05/21 and 2001/07/13) send `NCL15031` instead, with the same type 3, no key byte and the same framing; a loopback run of the 2001/05/21 and 2001/07/13 builds confirmed it | [bin][lab] (protocol/npc-control.md#login); [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md) |
 | A GServer-v2 also knows the NC token `NCL21075` (→ §2.3.6.1) | [srv] (protocol/login-and-walk.md#how-the-server-parses-it-srv) |
 | Status bar text after login: "Connected to NPC-Server" | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 
@@ -268,6 +271,7 @@ The RC never asks for an NC address [bin] (tools/npc-control.md#finding-the-npc-
 | 1 | any player whose nickname contains `(Server)` is treated as an NPC-server player | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 | 2 | for each, the RC sends id 94 (`PLI_NPCSERVERQUERY`): `s player id` + the text `location`, when the player appears and again whenever the NC socket drops | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 | 3 | the server answers id 79 (`PLO_NPCSERVERADDR`): `s player id`, then `ip,port` | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
+| 3a | a GServer-v2 answers only an RC whose `adminRights` hold the NPC Control right (`PLPERM_NPCCONTROL`) when `npcrights` is on; otherwise it drops 94 silently. Its flat-file accounts store those rights under the `LOCALRIGHTS` key; there is no `ADMINRIGHTS` key | [srv][lab] (protocol/npc-control.md) |
 | 4 | the RC opens the NC socket only if it is not already open and that player's nickname still contains `(Server)`, then sends the NC login | [bin] (tools/npc-control.md#finding-the-npc-server-bin) |
 
 The rules below give how NPC Control finds the NPC server and what the 2001 texts say about it [bin][inf] (tools/npc-control.md#finding-the-npc-server-bin).
