@@ -22,6 +22,9 @@ RemoteControl went through many builds. Each row gives one archive, its date, it
 | (2002 RC) | 2002/01/11 | `GSERV023` | 27 | NPC Control, server list, file browser and short message already present | [bin] (server-notes/original-server-builds-1999-2007.md#npc-control-and-remotecontrol-20012002-bin) |
 | rc141 | 2002/05/02 | `GSERV023` | 26 | NPC Control, server list, file browser, short message popup | [bin] (tools/remotecontrol-lineage.md#builds); [bin] (tools/npc-control.md#program-shape-bin) |
 | RemoteControl in the Graal Reborn folder (2004) | n/a | `GSERV024` | 25 | RC and NC in one program, file browser, server list | [bin] (tools/remotecontrol.md) |
+| Linux RC (GTK) | 2005/01/24 | `GSERV024` | — | the thin Linux baseline between the 2004 Delphi RC and RC2 2.05 | [bin] (protocol/batch2-rc-linux-2005-2006.md#builds) |
+| Linux RC | 2005/12/09 | `GSERV024` | — | zlib, the script MIME type `text/x-graalscript`, "Ignore Mass PMs if client is on", more editor, auto-indent and account-list text | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
+| Linux RC | 2006/01/20 | `GSERV025` | — | the token bump; ban history and staff activity (`getbanhistory`, `getstaffactivity`, "Edit Access"), "Allow Global PMs" and buddy tracking, a chat font size; built with GCC 4.0.3 | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 
 The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ App. E#405).
 
@@ -328,3 +331,20 @@ The count construction biases both components by 32. Its low component uses the 
 The caller supplies command argument 69, which is not an independently captured wire id. Its direct callee biases that command by 32, concatenates the message, appends it to a shared buffer and invokes a further routine when the combined or buffered length reaches 4096. That routine and the terminator were not examined. The ultimate peer, delivery and receive interpretation remain unknown → App. E#425 [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
 
 These bodies were recovered with analyst-seeded entry boundaries after default analysis did not recognize the selected entry. Exception-handling tails, register/type interpretations and indirect calls remain uncertain. No runtime or matching-baseline behavior is established [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits).
+
+## 7.4 RC and NC under malformed input
+
+Malformed and out-of-range server-to-client messages were injected into live RC sessions through the probe proxy, on loopback, with a sentinel `ADDPLAYER` (55) before and after the set. An RC sends to the server only when its user acts, so the record that its parser stayed in step is the screen, not the wire [lab] (protocol/rc-fuzz-2026-11-19.md#harness-note).
+
+| RC | Token, login | Result | Source |
+| --- | --- | --- | --- |
+| the 2004 Delphi RC ("Graal Remote Control 2004/01/17") | `GSERV024`, type 6, generation 5 | no crash, no desync over 17 shots: the player count rose after each sentinel, an overrun `RC_PLAYERRIGHTSGET` (62) with rights `i5:4294967295` opened the rights dialog with every flag ticked, a 4000-byte `RC_CHAT` (74) printed to the console, and the malformed 56, 72, 63, 64, 37, 47, 180, 100, 102 and 103, the unknown ids 60, 66, 200 and 223, and an empty-body sweep of the handled ids broke nothing | [lab] (protocol/rc-fuzz-2026-11-19.md#result) |
+| RC3 (2015/10/31) | `GSERV025`, type 6, generation 5, through the server list | no crash and no disconnect on the core set and the width set; the width result is unknown, because its main window stays black under Wine | [lab] (protocol/rc-fuzz-2026-11-19.md#rc3-and-rc2-205) |
+| RC2 2.05 (2006/12/20, GTK) | `GSERV025` | not run: under Wine its fonts fail and the login never reaches the listserver; its windows carry no title | [lab] (protocol/rc-fuzz-2026-11-19.md#rc3-and-rc2-205) |
+| "GServer2 Remote Control 2001/08/20" | `GSERV022`, id 1, generation 2 (plain u16be + zlib, no cipher) | no crash and no disconnect over 41 injected messages, in step (72 opened the account editor, 62 the rights dialog with the injected values); the welcome chat (74), staff guilds (47), status list (180), 103 and the periodic keepalive 42 decoded cleanly | [lab] (protocol/rc-fuzz-2026-11-19.md#a-pre-2002-rc-gen-2) |
+| "GServer2 Remote Control 2002/05/02" with its NC socket | `GSERV023` for the game, `NCL11012` for NC | after the gen-2 login the RC sends `PLI_NPCSERVERQUERY` (94); once the server answers with 79 (→ §5.6) it opens the NC connection, logs in as type 3 and receives the control-NPC messages (158, 42); 45 malformed server-to-NC messages caused no crash and no disconnect | [lab] (protocol/rc-fuzz-2026-11-19.md#the-nc-socket-embedded-in-a-2002-rc) |
+
+The 2001 RC does not send `PLI_PLAYERPROPS` (2) right after login; it sends its nickname only on a player-list action [lab] (protocol/rc-fuzz-2026-11-19.md#a-pre-2002-rc-gen-2).
+
+Width-level parsing on the 2004 RC and RC3, RC2 2.05, and a pre-2002 RC on the 2002 NC path were not run [lab] (protocol/rc-fuzz-2026-11-19.md#still-open).
+

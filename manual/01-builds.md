@@ -376,7 +376,7 @@ These builds sit around the Delphi client line. The uploads hold 9 distinct item
 | 2001-03 | GraalX | a 2.01 pre-release that keeps the `.nw` reader and writer (→ §1.1.1) | [bin] (client-internals/precursors-and-fan-builds.md#graalx) |
 | 2014-04 | 39ster client 1.00 | an offline fan remake on an SDL engine with GameMonkey script; reads `.nw` and `GR-V1.00` to `1.03`; NPC scripts are not run | [bin] (client-internals/precursors-and-fan-builds.md#39sters-graal-client-100-2014) |
 
-The later Android Classic and Era packages, 1.6 to 2.2, are a separate line and are not counted above. Ten supplied files reduce to seven packages (builds 6108 to 6201), each with a Java host and native engines for four architectures, read statically only (→ §4.11.11). [file][bin] (client-internals/android-classic.md#what-was-read)
+The later Android Classic and Era packages, 1.6 to 2.2, are a separate line and are not counted above. Ten supplied files reduce to seven packages (builds 6108 to 6201), each with a Java host and native engines for four architectures, read statically only (→ §4.11.10). [file][bin] (client-internals/android-classic.md#what-was-read)
 
 The rules below say what the precursors contributed to Graal, and what they share with it: dialogs, the sign alphabet, data files and level reading. Each row is one inheritance or difference [bin] (client-internals/precursors-and-fan-builds.md#zeldaeditor-july-1998).
 
@@ -390,33 +390,7 @@ The rules below say what the precursors contributed to Graal, and what they shar
 | Java Graal reads `GR-V1` NPC lines but shows only the image, dropping the script, and skips the chest section | [src] (client-internals/precursors-and-fan-builds.md#level-format-as-the-java-code-reads-it) |
 | Zelda Online, the Java client of 1997–98, keeps text-line relay traffic on port 14801 (→ §2.3.1) | [bin] (client-internals/zelda-online-1998.md#server-protocol-text-lines-port-14801) |
 
-### 1.7.1 Behaviour of the Java precursors
-
-Zelda Online 2 and Java Graal share one engine, and every number below is the same in both [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal).
-
-| What | Value | Source |
-| --- | --- | --- |
-| main loop | 50 ms per tick (20 Hz) | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
-| walk | half a tile per tick while a key is held; a quarter step sideways around a block corner | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
-| sword | 5 ticks, hits tested on ticks 1 to 3 | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
-| hurt | 40 ticks, half a heart | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
-| pushing a wall | push pose and ledge check from tick 18 (0.9 s); a push stone moves at tick 28 (1.4 s); the counter loops from 38 back to 18 | [src][live] (client-internals/precursor-runs-2026-10-30.md#walking-into-a-wall) |
-| bush drop | one roll of 0 to 99: 25 % a green rupee, 5 % a heart, 2 % five rupees, else nothing; a lifted bush rolls the same | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
-| regrowth | none during a visit; every board change is cleared when the level loads | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
-| carrying | the player is drawn with carry sprites and the object above the head, not hidden under it | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
-| chat | bold serif black text with a one-pixel white offset, above the head, with no bubble; the nickname is drawn the same way under the feet | [src][live] (client-internals/precursor-runs-2026-10-30.md#chat) |
-
-### 1.7.2 The Game Boy Color demo
-
-The Game Boy Color demo is a separate homebrew program, not a port of the PC client. The rules record what was seen when it ran in an emulator and what the ROM holds [live] (client-internals/gameboy-demo.md#seen-in-an-emulator); [bin] (client-internals/gameboy-demo.md#room-format).
-
-| Rule | Source |
-| --- | --- |
-| No title screen and no HUD: the ROM goes from the Nintendo logo to room 0; a sign there reads as a welcome from the author | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator); [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999) |
-| Seven rooms of 32 × 32 tiles in banks 4 and 5; their links use the PC level link record with a room number for the file name | [bin] (client-internals/gameboy-demo.md#room-format) |
-| Select opens a carousel over a table of 31 character types, and the pick changes the player at once | [bin][live] (client-internals/precursor-runs-2026-10-30.md#game-boy-color-demo-in-an-emulator) |
-| The text font runs space, A–Z, a–z, 0–9, then punctuation, from byte 32; it is not the PC sign alphabet | [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999) |
-| Start mutes the game; the music format is open | [live] (client-internals/precursor-runs-2026-10-30.md#open) |
+How the Java precursors and the Game Boy Color demo behave in play is in → §4.11.1 and → §4.11.3.
 
 ## 1.8 Build profiles
 

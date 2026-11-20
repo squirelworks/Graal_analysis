@@ -299,6 +299,8 @@ Every Windows client opens its side windows from the function keys, but the set 
 | F7 | the "Playerlist" window | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
 | F8 to F12 | nothing | [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139) |
 
+What the F-keys and the other keys do on 2.17.1 to 6.03r7 when logged in is in → §4.12.
+
 F8 opens the server list window, whose account and password default to `guest`. If the client has no list connection, F8 opens one on port 14921 and shows a short "Connecting to server ..." window while it waits [bin] (client-internals/gui-windows-fkeys.md#the-server-list-window-f8-141-to-205).
 
 ## 4.6.7 The server message window

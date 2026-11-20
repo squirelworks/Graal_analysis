@@ -25,6 +25,8 @@ Graal3D is a separate program from 2000 with its own server. The facts below say
 | The client windows are the main 3D view with a chat line, the connect window (nickname, host, port 14901, the built-in guest account), "Hardware options" (fixed UDP port, "Don't use UDP") and "Player look" | [bin] (graal3d/README.md#client-windows) |
 | The server windows are a start dialog, the main window (player count, "Edit accounts", "Update levels", a tray menu), an account list and editor, an online player list, a message window and a level-reload window | [bin] (graal3d/README.md#server-windows) |
 
+The letters `G3D` also open the login token of every mainline client from 3.0 to 6.03; that token names a build, not this program, and says nothing about 3D (→ §10.8) [bin] (graal3d/g3d-version-tokens.md#naming).
+
 ## 9.1 Protocol
 
 ### 9.1.1 Encoding and frames
@@ -398,6 +400,9 @@ Not every part of Graal3D was confirmed in the lab. The facts below say what was
 | Lab-confirmed on 2026-10-30: the accept and reject flow, the login order, the full props exchange, level name, text and leader, prop 50, the UDP relay rule, the guild-tag echo, prop 14 not moving the player, saved props, load-only logins, the disconnect messages, the admin login replies and `accounts.txt` | [lab] (graal3d/lab-2026-10-30.md#what-was-confirmed) |
 | Not confirmed: UDP between two real clients, admin commands 51–54, 59, 60 and 62, and the two kick buttons | [lab] (graal3d/lab-2026-10-30.md#not-confirmed) |
 | Ids 4 and 6 set client values that nothing reads | [bin][cap] (graal3d/README.md#open-points) |
+| Not run live: the follow-camera numbers, the field of view and the back plane at draw time, collision against known faces, and UDP between two real clients; under Wine the Direct3D Retained Mode stubs break camera frames and face queries, so each needs the native `d3drm.dll` or a real Windows guest | [lab][inf] (graal3d/research-status-2026-11-16.md#open-february-2000) |
+| Open: the animation counter while standing (a freeze is inferred, not traced), and an admin client, of which none is in the archives | [bin][inf] (graal3d/research-status-2026-11-16.md#open-february-2000) |
+| The later beta is static-only: its network side, physics and camera defaults and UDP bytes are read; loading the Genesis3D library and art needs the SDK parts the archive leaves out and a server that accepts `GR3DV003` (→ App. E#504) | [bin] (graal3d/research-status-2026-11-16.md#beta-gr3dv003--still-static-only) |
 
 ## 9.7 The later beta (`GR3DV003`)
 

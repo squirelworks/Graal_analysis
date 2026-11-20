@@ -269,3 +269,25 @@ The rules below summarise what those scripts do, and so what a client has to run
 | The opcodes these scripts lean on beyond calls and arithmetic are list membership (`in`, 81 and 80), `getangle` (95), list `add` (136), `tokenize` (118) and `getdir` (96); `waitfor` (11) is rare and 4.20r8 on only (→ §8.4.4) | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#opcodes-the-repro-machine-still-refuses) |
 | All eight GS2-only names checked (`triggerserver`, `scheduleevent`, `findimg`, `findweapon`, `md5`, `cancelevents`, `keydown2`, `onwall2`) are in the January 2007 4.20 engine and in 5.00r7 to 5.30r3. Open: whether 4.04r2 and 4.11 already have them, and what a client does when a script calls a name it lacks (→ App. E#215) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215); [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 
+
+## 8.3.10 Value rules measured by script fuzzing (4.20r8, 5.24r4, 6.03r7)
+
+849 generated GS2 cases on 4.20r8 and 5.24r4 and 603 on 6.03r7 were delivered as bytecode in 131 behind 100 on a loopback lab, each script reporting one computed value through the player's chat. The rules below hold on all three clients unless a row names one; the byte-level results are in → §8.4.11 [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| text that is not a number | converts to −1, not 0: `min(1000000000, "q")` is −1, `arctan("a")` −0.785398…, and `format("<%5.2f>", "  pad  ")` `<-1.00>`; `"1e3"` reads as 1000 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| the text-to-number order (read in 6.03r7, inferred for the others) | `""` is 0, `"true"` 1 and `"false"` 0; a text starting `0x` is read as hex, any other through `strtod`; a zero result stands only for exactly `"0"` or `"0x0"` (and `"0.0"` on 6.03r7); anything else that reads as zero is −1 | [bin][lab] (protocol/script-fuzz-2026-11-19.md#gs2-which-texts-read-as-1) |
+| texts that read as −1 | `"00"`, `" 0"`, `"0 "`, `"+0"`, `"-0"`, `".0"`, `"0."`, `"0e5"`, `"0abc"`, `"abc"`, `"a1"`, `" "`, `"null"` and `"-1"`, and `"0.0"` on 4.20r8 and 5.24r4; `"true"`, `"1"`, `"000001"` and `"1abc"` read as 1 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-which-texts-read-as-1) |
+| what a script notices | `!` of any −1 text is 0, `== 0` false and `== -1` true: `this.mode == 0` is false when it holds a name, and a text flag `"true"` equals 1 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-which-texts-read-as-1) |
+| `tokenize` | `tokenize().size()` of a single value is 1, of `"a,b,c"` 3 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| `format` | `%f` and `%5.2f` follow C printf: `<%5.2f>` of 31 is `<31.00>` | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| `substring` | a text as the length returns the rest of the string | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| `in` with text members | `("abc" in \|"a,b,c", "1.00000"\|)` is 0 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| precision | 5.24r4 computes in single precision: `3.14159265358979` prints 3.141592656, `0.123456789999` 0.123456792, and `getangle` and `arctan` differ in the last digits | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| integer edges | `(-1 & -2147483649)` gives 2147483647 on 6.03r7; `x >> "a,b,c"` −1 on 6.03r7 and 0 on 5.24r4; `-2147483648 % -1` −2147483647 on 5.24r4 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm) |
+| loop passes | a 10001-pass `while` finishes on 6.03r7 and is stopped on 5.24r4 and 4.20r8; `maxlooplimit` 50 reads back as 100 (clamped from below), after which a 120-pass loop finishes on 6.03r7 and 5.24r4; with `maxlooplimit` 2000000 a 20000-pass loop stops | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-limits) |
+| call depth | recursion 9999, 10000 and 10001 deep finishes with the value 0 on all three | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-limits) |
+| delivery | 131 behind 100 runs an NPC body with no image or level step needed; GS1 never arrives as bytecode | [lab] (protocol/script-fuzz-2026-11-19.md#method) |
+
+Opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12), the value `waitfor` gives when its time runs out, and why one random expression crashes 6.03r7 are open [lab] (protocol/script-fuzz-2026-11-19.md#still-open).

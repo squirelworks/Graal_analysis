@@ -272,3 +272,43 @@ The rules below say what follows for a client and a compiler, and where the evid
 | On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, App. E#212) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
 | The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently (→ App. E#213) | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
 
+
+## 8.4.11 Undispatched bytes, raw folds and damaged containers (lab)
+
+The script fuzz of → §8.3.10 also sent every byte that no compiler emits, the fold bytes written raw, and damaged containers. The tables give what each client did [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does).
+
+| Rule | 6.03r7 Linux | 5.24r4, 4.20r8 | Source |
+| --- | --- | --- | --- |
+| a byte with no handler | crashes the client about 0.2 s after the script starts: bytes 12–19, 28, 29, 48, 49, 55–59, 105–109, 122–129, 143–149, 152–162, 165–179, 185–188 and 191–199; the threaded dispatch has no guard in front of an empty handler slot | runs as a no-op through the switch default; a value pushed before it survives | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does) |
+| byte 0 | a no-op, even with an operand | as 6.03r7 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does) |
+| byte 164 | halts the script, as "continue in the next script" would with no next script | as 6.03r7 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does) |
+| after a lone push (5.24r4 / 4.20r8) | — | 46 (slot load) gives an empty value, 47 gives 0, 200–207, 224–230, 233–235 and 241 run with an empty value, 208–223, 231, 232, 240 and 242 halt; 236–239 halt on 5.24r4 and give an empty value on 4.20r8 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does) |
+
+Compilers never write the fold bytes 200–242; each client creates them after decoding. Written raw after pushes of 3 and 4 with an operand of 2, they behave as below [lab] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw).
+
+| Bytes | 6.03r7 | 5.24r4 | 4.20r8 | Source |
+| --- | --- | --- | --- | --- |
+| 200–207, 224–230, 233–235, 241 | run, empty value | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw) |
+| 208–215 | plain binary operations on the two values: 7 (add), −1 (sub), 12 (mul), 0.75 (div), 3 (mod), 81 (pow), 1, 1 | same | same | [lab][inf] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw) |
+| 216–223 | halt | halt | halt | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw) |
+| 231, 242 | crash | the engine stops for good | halt (4.20r8 has folds only up to 233) | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw) |
+| 232 | halts; crashed once on a re-check | halts | halts | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw) |
+| 236–240 | halt | halt | 236–239 empty value, 240 halts | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-the-fold-bytes-written-raw) |
+
+The rules below give the other crashes, stopped engines and container damage [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep).
+
+| Rule | 6.03r7 | 5.24r4 | 4.20r8 | Source |
+| --- | --- | --- | --- | --- |
+| an operand marker `0xf7` to `0xff` where a second operand would be | crash | empty value | empty value | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| a marker `0xf3` to `0xf5` there | empty value | empty value | empty value | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| slot store (45) into slot 1024, 4000 or −1, then a load (46) | crash | the engine stops for good | 0 | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| object literal (48) with n = 1, value before name | crash | the engine stops for good | empty value | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| the code segment twice | the engine stops for good | silent | the engine stops for good | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| an unknown segment type first, or the segments in reverse order | silent | silent | silent | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| six single-byte flips in the code segment | crash | — | — | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-crashes-and-dead-engines-outside-the-opcode-sweep) |
+| 1 or 5 bytes cut off a segment | runs | runs | runs | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-damaged-containers) |
+| a jump target of 9999 or −1 | runs on | runs on | runs on | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-damaged-containers) |
+| a string index past the string table | empty value | empty value | empty value | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-damaged-containers) |
+| decimal text (F6) | read like C `atof`/`strtol`: `"0x10"` 16, `"12abc"` 12, `"1,5"` 1, `"  3"` 3, `""` 0; `-0`, `nan` and `1e-400` load as −1; NaN prints as `0.-000000000` | as 6.03r7, and `inf` loads as −1 | as 6.03r7, and big numbers clamp to 4294967295 (`"1e400"`, a long run of 9s, `99999999999`); `-2147483649` stays | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-damaged-containers) |
+
+Opcode by opcode, against the value a straightforward VM would give: 66 and 67 treat any text operand as true; 104 (object compare) on texts returns a byte difference like `strcmp` on 6.03r7 (`""` against `"x"` −120), mostly the plain result on 5.24r4, and 0.05 for any text on 4.20r8; 121 is a numeric add on 6.03r7 and 5.24r4, with a non-number counted as −1 (`"x"+2` is 1), and is not dispatched by 4.20r8; with 54 every push order leaves `this.k` at 0 on 6.03r7 and 5.24r4, and 4.20r8 does not dispatch it; a slot store of 9, a pop, then a slot load reads back 0 for slots 0, 1, 5 and 1023, likely because a function's slots exist only once its own code sets them up [lab][inf] (protocol/script-fuzz-2026-11-19.md#gs2-value-rules-that-differ-from-seihais-vm).

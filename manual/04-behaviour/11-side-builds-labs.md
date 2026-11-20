@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # 4.11 Precursors, side builds and the 4.x clients in play
 
-This chapter covers how the builds outside the 2.x Delphi line behave: the Java precursors, the relay room bridge, the Game Boy Color demo, the 39ster fan client, and the 4.04r2 and 4.20r8 clients run live. It then covers what changed inside the Delphi line (§4.11.6 to §4.11.10), the Android packages (§4.11.11), what the early clients show when started and the windows around play (§4.11.12, §4.11.15), and the action list on 4.x to 6.x (§4.11.13, §4.11.14). Their place in the build list is in → §1.7 and → §1.8.
+This chapter covers how the builds outside the 2.x Delphi line behave: the Java precursors, the relay room bridge, the Game Boy Color demo, the 39ster fan client, and the 4.04r2 and 4.20r8 clients run live. It then covers what changed inside the Delphi line (§4.11.6 to §4.11.9), the Android packages (§4.11.10), the windows around play and what the early clients show when started (§4.11.11), and the action list on 4.x to 6.x (§4.11.12). How 2.22 and 2.31 cross a gmap edge is in → §4.2.13. Their place in the build list is in → §1.7 and → §1.8.
 
 ## 4.11.1 Zelda Online and Java Graal
 
@@ -32,7 +32,23 @@ Qualified original-program runs exist, but the rows below separately tag source/
 | The Java level codec is LSB-first with 11-bit codes for Zelda 1.02, 12-bit for Z1.03/1.04 and GR1.00/1.01, 13-bit for GR1.02/1.03; 399 files decoded to 4,096 tiles each | [src] (client-internals/precursor-mechanics-2026-11-09.md#level-resources) |
 | The July 1998 Zelda editor saved an empty board as a 206-byte `Z3-V1.03` file with every tile 1023 (one run) | [run] (client-internals/precursor-mechanics-2026-11-09.md#the-zelda-editor-writes-an-empty-board) |
 
-Constants of the shared Java engine, beyond those in → §1.7.1 [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal):
+### 4.11.1.1 Constants of the shared Java engine
+
+Zelda Online 2 and Java Graal share one engine, and every number below is the same in both [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal).
+
+| What | Value | Source |
+| --- | --- | --- |
+| main loop | 50 ms per tick (20 Hz) | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| walk | half a tile per tick while a key is held; a quarter step sideways around a block corner | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| sword | 5 ticks, hits tested on ticks 1 to 3 | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| hurt | 40 ticks, half a heart | [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal) |
+| pushing a wall | push pose and ledge check from tick 18 (0.9 s); a push stone moves at tick 28 (1.4 s); the counter loops from 38 back to 18 | [src][live] (client-internals/precursor-runs-2026-10-30.md#walking-into-a-wall) |
+| bush drop | one roll of 0 to 99: 25 % a green rupee, 5 % a heart, 2 % five rupees, else nothing; a lifted bush rolls the same | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| regrowth | none during a visit; every board change is cleared when the level loads | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| carrying | the player is drawn with carry sprites and the object above the head, not hidden under it | [src] (client-internals/precursor-runs-2026-10-30.md#bushes-stones-and-pots) |
+| chat | bold serif black text with a one-pixel white offset, above the head, with no bubble; the nickname is drawn the same way under the feet | [src][live] (client-internals/precursor-runs-2026-10-30.md#chat) |
+
+Further constants of the same engine [src] (client-internals/precursor-runs-2026-10-30.md#behaviour-constants-zelda-online-2-and-java-graal):
 
 | What | Value | Source |
 | --- | --- | --- |
@@ -103,6 +119,16 @@ Seen in an emulator (PyBoy, CGB mode, 60 Hz frames) [live] (client-internals/gam
 | Ryu's boomerang | about four tiles out and back, about one second | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator) |
 | NPCs | room 3's first soldier patrols the top at 1 pixel a frame; both soldiers chase at a little over 1 pixel a frame once lined up; Vincent and Squall wander in room 6 | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator) |
 | the captive | after its first text it walks two tiles left, lifts and throws the bush, and the second text opens; the player also starts as Fung Si Yun, so the text reads as if the player was meant to start as someone else | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator) |
+
+The Game Boy Color demo is a separate homebrew program, not a port of the PC client. The rules record what was seen when it ran in an emulator and what the ROM holds [live] (client-internals/gameboy-demo.md#seen-in-an-emulator); [bin] (client-internals/gameboy-demo.md#room-format).
+
+| Rule | Source |
+| --- | --- |
+| No title screen and no HUD: the ROM goes from the Nintendo logo to room 0; a sign there reads as a welcome from the author | [live] (client-internals/gameboy-demo.md#seen-in-an-emulator); [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999) |
+| Seven rooms of 32 × 32 tiles in banks 4 and 5; their links use the PC level link record with a room number for the file name | [bin] (client-internals/gameboy-demo.md#room-format) |
+| Select opens a carousel over a table of 31 character types, and the pick changes the player at once | [bin][live] (client-internals/precursor-runs-2026-10-30.md#game-boy-color-demo-in-an-emulator) |
+| The text font runs space, A–Z, a–z, 0–9, then punctuation, from byte 32; it is not the PC sign alphabet | [bin] (client-internals/precursors-and-fan-builds.md#graal-game-boy-color-demo-1999) |
+| Start mutes the game; the music format is open | [live] (client-internals/precursor-runs-2026-10-30.md#open) |
 
 ## 4.11.4 The 39ster client and GraalX
 
@@ -225,21 +251,7 @@ The shipped `newfeatures2001.txt` to `newfeatures2005.txt` are named by release 
 
 A feature announced as "enabled later" often shows in a client's receive switch one or more versions before servers used it (full-precision moves in 2.3, level heights in 2.17), so a handled id does not prove servers of that era sent it [bin][inf] (client-internals/feature-timeline.md#reading-the-timeline-against-the-binaries).
 
-## 4.11.9 Crossing gmap edges (2.22, 2.31)
-
-A real 2.22 client walked east, south, west and north across a 2×2 gmap of open-grass levels on a lab server; the gmap file format is in → §3.2 [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap).
-
-| Rule | Source |
-| --- | --- |
-| Three different "maps" must not be mixed: level links (S→C 1, walking into one sends 0 or 30); bigmap-style server maps (`maps =`, a text grid the server alone uses to know which levels are adjacent); and gmaps (`gmaps =`, `GRMAP001`), where the client walks continuously. The `bigmap =` and `minimap =` options are a fourth thing: overlay settings sent as S→C 171 and 172 at login, and setting `bigmap` breaks gmaps | [srv] (client-internals/feature-specs/06-gmap-overworld.md#three-different-maps-do-not-mix) |
-| At login the server sends S→C 49 (x×2, y×2, z+50, cell x, cell y, then the gmap name), `LEVELNAME` (6) with the level and again with the gmap name, 174, 10 and 156 with the gmap name; the client fetches the `.gmap` itself and sends 35 (`i5` modtime + name, 0 on a cold cache) for the three neighbour levels | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
-| A crossing uses only ordinary props, with no level-warp message: the cell prop (43 or 44) changes in the same props message as the wrapped coordinate (local = global − 64 × cell), and position props go out only on whole-tile steps | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
-| 2.22 sends flag sets `gr.x` and `gr.y` on every half-tile step carrying the global position (past 63.5) from the server's movement weapon, and re-sends 39 on each crossing; going west, 39 goes at global x 63.5 and the next props carry X = 63.0 and cell 0 | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
-| The server answers each crossing in one frame: 6 with the new level, 39 (level modtime, only when not cached), 0 (an empty board), 6 with the gmap name, 174, 10, 156 | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
-| 2.31 sends 46 (`GCHAR 1`) first, then the props with the cell prop and wrapped coordinate, and does not re-send 39 at the crossing (→ §2.4) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#needs) |
-| UDP id 24 ("entered level") goes to peers in the 3×3 neighbourhood; the server keeps 39 per level so the next entry can use 30 or 35 with a cached board | [srv] (client-internals/feature-specs/06-gmap-overworld.md#gmap-wire-behaviour-srv) |
-
-## 4.11.10 What each executable names, 1998 to 2.31
+## 4.11.9 What each executable names, 1998 to 2.31
 
 A static survey lists, per build in link order, what each executable adds (+) or drops (−) against the one before. From 1.38 some config keys are built one character at a time, so a key can be read while missing from the list; garbled three-letter keys (`ekv`, `u5j`, `d4n`, `kxs`, `azg`) are such fragments [bin] (version-profiles/matrix/builds-deltas.md#graalconfigtxt-keys).
 
@@ -303,7 +315,7 @@ The rules below follow the other names an executable carries: sounds, images and
 | In the shared Drive archive (73 exes in 55 folders) every PE timestamp is the same dummy 1992 date, so only file-version strings date the builds; it holds 2.00 and its revisions 1 to 3 but no 2.1.x release, 2.17, 2.22 or 2.31 (→ §1.1.1) | [file] (client-internals/drive-clients-inventory.md#drive-clients-set-what-it-contains-2026-10-24); [file] (client-internals/drive-clients-inventory.md#versions-present) |
 | Under Wine the 2.0x exes from that archive stop at "Cannot open file … commands.rtf" until another build's data files are put beside them | [cap] (client-internals/drive-clients-inventory.md#running-them-wine) |
 
-## 4.11.11 Android Classic and Era, 1.6 to 2.2
+## 4.11.10 Android Classic and Era, 1.6 to 2.2
 
 The later Android packages are their own line and were only read statically, so nothing in this section is projected onto the period clients. Seven distinct packages were found among ten files; the host details come from Classic 1.7 and the engine details from Classic 1.8 x86. [file][bin] (client-internals/android-classic.md#what-was-read)
 
@@ -317,44 +329,7 @@ The later Android packages are their own line and were only read statically, so 
 
 Classic 1.8 and later ship their GANIs DES-encrypted per file. The key is built from the lower-case base name, the DES is 2.05's (key bytes bit-reversed), and only whole 8-byte blocks are encrypted. All 47 GANIs that 1.7 and 1.8 share round-trip byte for byte, and 587 of Classic 2.2's 593 decrypt in one pass. [bin][file] (client-internals/android-classic.md#resources)
 
-## 4.11.12 What the early Windows clients show when started
-
-The research owner started the v0, v1 and v2 Windows clients offline in a Wine lab and reviewed the screenshots. This is a check of what each build draws, not a timing or movement measurement. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md)
-
-[lab][cap] All 18 v0 builds show their start screen and 16 reach an offline scene; 4th Graal alpha and 5th Graal draw only part of it, 9th Graal stays at the start screen and 9th Graal alpha stops on a missing `heads.gif`. Only 12 run summaries record a successful Start against 16 drawn scenes. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v0-1st-graal-to-15th-graal-18-builds)
-
-[lab][cap] 17 of 18 v1 builds reach a scene; 1.32 and later start in the welcome cave, and 1.19 stays at the start screen. In v2, 2.04 and the three 2.05 revisions draw the tutorial; 2.00, 2.01 rev 1 and 2.03 stop on a missing `objects.dat`; 2.02 and its revisions show a black window; the stock 2.22 warns of a corrupted executable. Scene and mechanic validation stays open (→ App. E#610). [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v1-119-to-141-18-builds); [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v2-200-to-222-23-builds)
-
-## 4.11.13 The action list on 4.x to 6.x clients
-
-Windows 5.00r7 (`G3D22067`) under Wine, watched by Linux 6.03r7 (`G3D0511C`) on the same loopback lab (lobby 14900, proxy 14803, gserver 14802). Both used the built-in guest login. The observer's decoded server-to-client stream is the record of what was relayed. Place-dependent actions were not reached, because the key timing did not leave the actor on the fixture. 4.20r8, 5.12, Windows 6.03r7 and 6.113 were not run as the actor. [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only)
-
-| Action | Result | Source |
-| --- | --- | --- |
-| walk right, left, down, up, half a second each | 4/4. The observer received the same `walk` and `idle` prop lines the actor sent, as S→C 8 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
-| sword, three swings | 3/3. The actor sent the `sword` gani and C→S 157; the observer received `sword` in S→C 8 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
-| spin chest, glove chest, spin, wall push, grab, bush lift, throw, chat, level link | not shown. No chest, grab, lift or carry packet in the action window, and the chat bar was not focused | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
-| not run | 4.20r8, 5.12, Windows 6.03r7 and 6.113 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
-
-## 4.11.14 The action list on 4.20r8 to 6.03r7 (2026-11-19)
-
-A 2026-11-19 run filled in the rest of the #398 list that → §4.11.13 left partial. Real, unchanged Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 in the Windows 10 lab VM, each with the guest clock at its build's era, logged in through a lab `Login` lobby; there was no observer, so a pass means the server received the action. Two Linux 6.03r7 clients ran the same list with one as observer [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
-
-| Action | Windows 4.20r8, 5.00r7, 5.12, 5.24r4 | Windows 6.03r7 | Linux 6.03r7 | Source |
-| --- | --- | --- | --- | --- |
-| walk, sword, spin chest, wall push, wall grab-and-pull, block pull, bush lift, swim, level link | pass on every attempt | pass on every attempt | pass on every attempt | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| throw | 3/3 | 3/3 | 3/3, sending id 11 | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7) |
-| block push | 3/3 | 1/3 | 3/3 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| hide | lift the bush, then D: 2/2; A again or S never hides | the same | 3/8 (2/2 with lift then D) | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| glove chest | 0/1: the client never sends the open-chest packet, so the fixture is suspect | 0/1 | 0/1 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| chat | 1/1 on 4.20r8; 5.x shows no chat line without a server chat script | 0/1 for the same reason | 0/1: Tab opens no chat line | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-| spin (double tap) | not measurable: each VirtualBox key event takes about 0.1 s | the same | 1/3 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
-
-On Linux 6.03r7 an injected warp to the same level froze input, so the run placed the player with props 15 and 16 instead [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
-
-What is still open from this run is tracked in #652 [lab] (live-runs/open-issues-2026-11-19/README.md#still-open-after-this-run).
-
-## 4.11.15 Start windows and game windows, 1998 to 4.04r2
+## 4.11.11 Start windows and game windows, 1998 to 4.04r2
 
 The graal-delphi rebuilds were compared side by side with the real clients, under Wine and on Windows 10, and each build's own forms were read from its executable. The tables below collect what that showed about the windows a player meets before and around play. They leave out what the rebuilds chose for themselves [bin][lab][cap] (client-internals/rebuild-traces-2026-11-05.md).
 
@@ -383,3 +358,44 @@ The rules below give what the 2.0x server list and data files do, and where the 
 | start spot, 1.32 on | `start1.graal` at 21.5, 28, set before the level loads; its `playerenters` script then moves the player to 13.5, 37.5 | [bin][cap] (client-internals/rebuild-traces-2026-11-05.md#13x-and-14x-game-view) |
 
 Still open from the same work: how 9th Graal applies the player's five colours to the body sheet, and whether the other betas share its pose and equipment tables; only 9th Graal's were read, and not yet against a capture [bin] (client-internals/rebuild-traces-2026-11-05.md#the-1998-betas-player-drawing-9th-graal-unfinished).
+
+### 4.11.11.1 What the early Windows clients show when started
+
+The research owner started the v0, v1 and v2 Windows clients offline in a Wine lab and reviewed the screenshots. This is a check of what each build draws, not a timing or movement measurement. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md)
+
+[lab][cap] All 18 v0 builds show their start screen and 16 reach an offline scene; 4th Graal alpha and 5th Graal draw only part of it, 9th Graal stays at the start screen and 9th Graal alpha stops on a missing `heads.gif`. Only 12 run summaries record a successful Start against 16 drawn scenes. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v0-1st-graal-to-15th-graal-18-builds)
+
+[lab][cap] 17 of 18 v1 builds reach a scene; 1.32 and later start in the welcome cave, and 1.19 stays at the start screen. In v2, 2.04 and the three 2.05 revisions draw the tutorial; 2.00, 2.01 rev 1 and 2.03 stop on a missing `objects.dat`; 2.02 and its revisions show a black window; the stock 2.22 warns of a corrupted executable. Scene and mechanic validation stays open (→ App. E#610). [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v1-119-to-141-18-builds); [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v2-200-to-222-23-builds)
+
+## 4.11.12 The action list on 4.x to 6.x clients
+
+The action list is a fixed set of player actions (walk, sword, chests, push and pull, lift, throw, hide, swim, chat, a level link) run on real clients against a lab server. Two runs filled it in: → §4.11.12.1 and → §4.11.12.2.
+
+### 4.11.12.1 Windows 5.00r7 watched by Linux 6.03r7 (2026-11-14)
+
+Windows 5.00r7 (`G3D22067`) under Wine, watched by Linux 6.03r7 (`G3D0511C`) on the same loopback lab (lobby 14900, proxy 14803, gserver 14802). Both used the built-in guest login. The observer's decoded server-to-client stream is the record of what was relayed. Place-dependent actions were not reached, because the key timing did not leave the actor on the fixture. 4.20r8, 5.12, Windows 6.03r7 and 6.113 were not run as the actor. [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only)
+
+| Action | Result | Source |
+| --- | --- | --- |
+| walk right, left, down, up, half a second each | 4/4. The observer received the same `walk` and `idle` prop lines the actor sent, as S→C 8 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
+| sword, three swings | 3/3. The actor sent the `sword` gani and C→S 157; the observer received `sword` in S→C 8 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
+| spin chest, glove chest, spin, wall push, grab, bush lift, throw, chat, level link | not shown. No chest, grab, lift or carry packet in the action window, and the chat bar was not focused | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
+| not run | 4.20r8, 5.12, Windows 6.03r7 and 6.113 | [lab] (live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) |
+
+### 4.11.12.2 Windows 4.20r8 to 6.03r7 and two Linux 6.03r7 clients (2026-11-19)
+
+A 2026-11-19 run filled in the rest of the #398 list that → §4.11.12.1 left partial. Real, unchanged Windows 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 in the Windows 10 lab VM, each with the guest clock at its build's era, logged in through a lab `Login` lobby; there was no observer, so a pass means the server received the action. Two Linux 6.03r7 clients ran the same list with one as observer [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7); [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
+
+| Action | Windows 4.20r8, 5.00r7, 5.12, 5.24r4 | Windows 6.03r7 | Linux 6.03r7 | Source |
+| --- | --- | --- | --- | --- |
+| walk, sword, spin chest, wall push, wall grab-and-pull, block pull, bush lift, swim, level link | pass on every attempt | pass on every attempt | pass on every attempt | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| throw | 3/3 | 3/3 | 3/3, sending id 11 | [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7) |
+| block push | 3/3 | 1/3 | 3/3 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| hide | lift the bush, then D: 2/2; A again or S never hides | the same | 3/8 (2/2 with lift then D) | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| glove chest | 0/1: the client never sends the open-chest packet, so the fixture is suspect | 0/1 | 0/1 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| chat | 1/1 on 4.20r8; 5.x shows no chat line without a server chat script | 0/1 for the same reason | 0/1: Tab opens no chat line | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+| spin (double tap) | not measurable: each VirtualBox key event takes about 0.1 s | the same | 1/3 | [lab] (live-runs/open-issues-2026-11-19/README.md#7-398-the-action-list-on-real-windows-420r8-to-603r7) |
+
+On Linux 6.03r7 an injected warp to the same level froze input, so the run placed the player with props 15 and 16 instead [lab] (live-runs/open-issues-2026-11-19/README.md#6-398-the-action-list-on-linux-603r7).
+
+What is still open from this run is tracked in #652 [lab] (live-runs/open-issues-2026-11-19/README.md#still-open-after-this-run).
