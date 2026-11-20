@@ -361,7 +361,7 @@ Tabs, bars and counters retain their top-left positions across window sizes. Hea
 | Heart detail | Measured rule | Source |
 | --- | --- | --- |
 | Sheet boxes | full (0, 0, 40, 44), half (40, 0, 30, 44), small full (80, 0, 31, 33), small half (111, 0, 24, 33); small sprites are drawn 1:1, and half hearts begin at the slot's top left | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
-| Up to four hearts | one full-size row, x = W − 198 + 45k, y 24; the source's separate fixed-margin claim conflicts with this formula (→ App. E#326) | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
+| Up to four hearts | one full-size row, x = W − 198 + 45k, y 24, at every window size measured; four hearts leave a 23 px right margin, and the source's 68 px is the three-heart case (→ App. E#326) | [shot] (client-internals/hud-603r7-black-box.md#hearts); [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-hud-e326) |
 | Five and above | small rows of 5, 6, 5, 4 slots, pitch 35 horizontally and 20 vertically; first row x = W − 198 + 35k, y 24, second row half a pitch left; 20 hearts fill the four-row hexagon, whose rightmost small heart ends 10 pixels from the edge | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
 | Five or 5.5 hearts | whole small block 10 pixels lower; from six hearts it returns to y 24 | [shot] (client-internals/hud-603r7-black-box.md#hearts) |
 

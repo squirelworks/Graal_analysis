@@ -61,7 +61,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 4.04r2 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32, 33, 35–37, 41, 44, 50, 79–81, 92, 96, 130, 152, 154, 157, 158, 161 | floor | [inf][cap] (version-profiles/4.04-4.20.toml) |
 | 4.20r6 (Mac) | the 4.04r2 set plus 34, 46, 162 | floor | [inf][cap] (version-profiles/4.04-4.20.toml) |
 | 4.20r8 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32, 33, 35–37, 41, 44, 50, 79–81, 92, 96, 130, 152, 154, 157, 158, 161, 162 | floor; some sends pass the id in a register | [bin] (protocol/v4x-clients.md#client--server-ids); [bin] (version-profiles/4.04-4.20.toml) |
-| 5.00r7 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32–37, 41, 44, 47, 50, 79–81, 92, 93, 96–98, 130, 152, 154–159, 161 | floor; whether 11 is in the list is disputed → App. E#4 | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml) |
+| 5.00r7 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32–37, 41, 44, 47, 50, 79–81, 92, 93, 96–98, 130, 152, 154–159, 161 | floor; also sends 11 with an empty body on a throw (→ App. E#4) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml); [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
 | 5.12 | 1, 2, 11, 23, 24, 34, 37, 38, 44, 47, 157 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.24r4 | the 5.12 set plus 158 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.30r3 | 1, 11, 37, 38 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |

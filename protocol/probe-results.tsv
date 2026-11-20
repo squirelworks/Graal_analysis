@@ -4182,3 +4182,16 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	win-2.31 (wine)	s2c	3	90	3 i3:300 c:90 s:300 c:2 c:70	no	yes	none	canary X=35 not applied: rest of the NPC message dropped	aq-nw231	p90-s
 2026-11-19	win-2.31 (wine)	s2c	3	90	3 i3:300 c:90 str:x c:2 c:70	no	yes	none	canary X=35 not applied: rest of the NPC message dropped	aq-nw231	p90-str
 2026-11-19	win-2.31 (wine)	s2c	3	90	3 i3:300 c:90 i5:2080768 c:2 c:70	no	yes	none	canary X=35 not applied: rest of the NPC message dropped	aq-nw231	p90-i5
+2026-11-20	win-2.05r2	s2c	40	-	8 s:900 c:0 str:"att (g)" | 40 s:900 hex:606022 | 8 s:900 c:0 str:"att" | 40 s:900 hex:606022	-	yes	none	no hit from either packet; the guild-rejected first one sets the stamp, the clean second is blocked (3/3)	e310-205b	-
+2026-11-20	win-2.05r2	s2c	40	-	8 s:900 c:0 str:"att (g)" | 40 s:900 hex:606022, then 8 s:900 c:0 str:"att" | 40 s:900 hex:606022 after 1.5 s	-	yes	C>S 2 hurt, hearts 18→16	second packet hits once the second has passed (2/2)	e310-205b	-
+2026-11-20	win-2.05r2	s2c	8	17	8 s:900 c:17 c:26..42 (swing S 6–10, 4 variants)	-	yes	none	an injected other-player sprite swing never hurts; 2.05 judges swings from gani "sword" (prop 10)	e310-205c	-
+2026-11-20	win-2.05r2	s2c	40	-	40 s:ATT hex:606022 after a guild-rejected real sword swing, same second	-	yes	C>S 2 hurt, power 2	packet lands: a rejected swing stores no stamp (3/3)	e310x2b	-
+2026-11-20	win-2.05r2	s2c	40	-	8 s:ATT c:0 str:"att (g)" | 40 s:ATT hex:606022 | 8 s:ATT c:0 str:"att", then a real clean swing 0.3 s later	-	yes	C>S 2 hurt, half heart	the swing lands: the sword judge ignores the packet stamp (4/4)	e310x2c	-
+2026-11-20	win-1.39	s2c	40	-	40 s:900 hex:a06022 (east), 60a022 (south), 602022 (north) on open ground	-	yes	C>S 2 X/Y 21,23,25	knockback 5 tiles every time	e309b	-
+2026-11-20	linux-6.03r7	c2s	93	-	93 str:e9a.txt t:hello-from-game	-	yes	none	lab server logs Unknown Player Packet; no file written	appe-e9a	-
+2026-11-20	linux-6.03r7	c2s	92	-	92 (empty), then 93 str:e9b.txt t:second	-	reconnects	none	third unknown id: server says the player sends invalid packets and closes the connection	appe-e9a	-
+2026-11-20	linux-6.03r7	c2s	155	-	155 t:e9c.txt | 93 str:e9c.txt t:chunk | 156 t:e9c.txt	-	reconnects	none	all unknown; kicked	appe-e9a	-
+2026-11-20	linux-6.03r7	c2s	96	-	96 str:e9a.txt str:x.txt | 97 t:e9a.txt | 98 str:e9a.txt str:y.txt	-	reconnects	none	all unknown; kicked	appe-e9a	-
+2026-11-20	rc2004	c2s	74	-	74 str:accflags / accchest / accboth / accnone	-	yes	S>C 72	tail = s flag count + flags, s chest count + (c len+2, c x, c y, level), c weapon count + weapons	appe-e420c	-
+2026-11-20	win-5.00r7	c2s	11	-	(client send) lift then throw	-	yes	C>S 11 empty	throw sends 11 with an empty body after 1 + lift/carrystill; prop 19 cleared after	e4c	-
+2026-11-20	win-5.00r7	s2c	8	81	8 s:930+v c:34 str:"accV" c:0 str:"cV" c:20 str:"elsewhere.nw" c:81 c:V (V 0–10, 12, 16)	-	yes	none	odd V not counted in "Players: N online"; V = 8 and no 81 listed under Normal; 0/2/4/6/10 counted, folder not seen	e23b/e23d/e23e	-

@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#4, E#9, E#619, E#309, E#327, E#420, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -36,8 +36,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | --- | --- | --- | --- | --- |
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
-| E#4 | Whether 5.00r7 sends id 11 | Lab | yes, from the carried-object throw | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| E#9 | Uploads from game clients | Lab | the late clients' file browser is a staff tool that servers accept only from staff accounts | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
@@ -66,8 +64,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
 | E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
-| E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
 | E#311 | Blast hit zone and full-heart hits | Read | two overlapping blast pieces hitting in one tick | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
 | E#312 | The last byte of a shot | Read | a type field whose low values mean harmless or friendly | [inf] (client-internals/damage-sources.md#shot-19) |
 | E#317 | 1.x pickup box and item draw order | Read and Lab | the 1.39 player box is the 2 × 2 body box; item box size and draw order open | [inf] (client-internals/item-drops.md#open) |
@@ -77,14 +73,12 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
-| E#327 | Chest art and menu skin in the 6.03r7 item run | Lab | both come from files the lab world lacks | [inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-| E#420 | Flag and chest counts in the RC props tail | Lab | flags first, then chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#423 | The 1999 servers' open rules | Lab | the 1.3 test client works against them | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 | E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
@@ -95,16 +89,13 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
 | E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | Lab | the static server order works as read | [inf] (torque/protocol19-server.md#open) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 marks a drawing variant; servers sent none | [inf] (torque/304-tile-types.md#not-settled) |
-| E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#613 | 2.22 remote PM roster | Read | a request for the server's player list, answered with the list message | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| E#617 | Whether 1.41 rev 1 loads `.nw` levels online | Lab | yes for `.nw`; a gmap is ignored | [inf] (client-internals/141r1-nw-gmap-status.md) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
-| E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | Lab | only as a fallback when `license.graal` is missing | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 
 ## E.2 Builds, identity and protection
 
@@ -146,8 +137,9 @@ These questions are about which build is which, who built it and how it protects
 | Evidence | The four builds exit on today's date. 6.00r2 and 6.00r4 are known to run with the clock at 2011-06-14 and 2011-06-28 | [lab] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
 | Evidence | Whether the check is WinLicense's own expiration feature or a check inside its virtual-machine macros is not known; nor whether the timer check uses 5.24r4's thresholds | [inf] (client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4) |
 | Tried | Fixed clock dates that are known to work; no search for the boundary | [lab] (client-internals/v5v6-expiry-and-black-screen.md#open) |
-| Best guess | WinLicense's own expiry, set a few months after each build's date, the way the v7 builds carry a 180-day window (→ App. E#615). Confidence: moderate | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
-| Settles it | A binary search on the guest clock for each build in a headless VM; a few boots per build find the day | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settled part (2026-11-20) | By clock search under Wine: 5.30r3 runs on 2010-12-31 and stops from 2011-01-01; 5.31r4 runs on 2011-03-20 and stops from 2011-03-21. A stopped build prints its banner, opens no connection and exits, with no game-side date message | [lab] (protocol/lab-appe-mirae-2026-11-20.md#expiry-dates-of-530r3-and-531r4-e14) |
+| Best guess | The protector's own fixed expiry date (a year-end for 5.30r3, 75 days after the link date for 5.31r4), with 6.00r2 and 6.00r4 set the same way. Confidence: moderate | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
+| Settles it | The same clock search on installed 6.00r2 and 6.00r4 | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 | Outlook | Lab. The clients are held and the method is cheap | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
 
 ### E#15 Graal 2002 and 1.40 exact-input validation
@@ -180,18 +172,6 @@ These questions are about which build is which, who built it and how it protects
 | Settles it | A decrypted connector script for the token (→ App. E#616); a boundary-date boot of 614 (2024-10-12 boots, 2024-10-13 quits, by the table) for the reason | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Outlook | Lab for the expiry reason; Owner or Maybe never for the token, which depends on E#616 | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 
-### E#617 Whether 1.41 rev 1 loads `.nw` levels online
-
-**Question.** Whether a real 1.41 rev 1 loads and plays a `.nw` level sent by a server, and what it does with a gmap (→ §1.5) [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The build carries the `GLEVNW01` loader string beside the GR-V1 readers and has no `GRMAP001`; no real 1.41 rev 1 has been seen loading a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
-| Context | `.nw` support is not monotonic: 1.41 rev 1 and NewMain 1.42 have the string, 2.00 to 2.04 drop it, 2.05 restores it with gmaps | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
-| Best guess | It loads `.nw` levels: a loader string in the level-magic list has meant a working reader in every build checked so far. A gmap is not understood and is ignored or fails. Confidence: moderate | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
-| Settles it | A loopback lab: a small `.nw` start level the client can reach through the list, then a tiny gmap, noting whether link and height messages appear | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
-| Outlook | Lab | [inf] (client-internals/141r1-nw-gmap-status.md#open-after-this-note) |
-
 ### E#618 Whether Mac 6.004 and 6.015 draw a game frame
 
 **Question.** Whether the Mac 6.004 and 6.015 clients get past a white window to a rendered frame, a login and a level (→ §1.8.7) [lab] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#lion-guest-run-6015).
@@ -204,17 +184,6 @@ These questions are about which build is which, who built it and how it protects
 | Best guess | 6.015 logs in and plays (now measured); the white window is the guest's missing OpenGL, not a client fault. 6.004 is expected to behave the same. Confidence: moderate for the frame | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
 | Settles it | A run on a guest or machine with working OpenGL; or a static trace of one slice from entry to the game loop | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
 | Outlook | Lab. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
-
-### E#619 Whether 5.30r3 and 5.31r4 use their built-in login host
-
-**Question.** 5.30r3 and 5.31r4 store a default login host and port side by side. Whether they ever dial it when `license.graal` is present, missing or bad (→ §1.9.4) [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The two strings sit next to each other in both images; the 5.x notes say the host and port normally come from `license.graal` | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
-| Best guess | A fallback used when the licence file gives no host, as the compiled-in hosts of 5.24 and later suggest. Confidence: low to moderate | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
-| Settles it | One lab run per `license.graal` case, with a local listener on the stored port and the clock set back for the beta expiry | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
-| Outlook | Lab | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 
 ## E.3 Transport: frames, ciphers and logins
 
@@ -296,33 +265,6 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 
 These questions are about single messages and props: which builds send or handle an id, how wide a field is, and what a message changes on the screen. Each one leaves a `unmeasured` or `disputed` cell in → §2.4, → §2.5, → §2.6 or App. A, and most of them are within reach of the probe proxy, which injects a message into a live loopback session and watches the client's reaction [lab] (protocol/probe-targets-2026-11-18.md).
 
-### E#4 Whether 5.00r7 sends id 11
-
-**Question.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws. Two lists of the ids it sends disagreed [bin] (protocol/v5x-clients.md#client--server-ids-500r7).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The 5.00r7 send wrappers send 1, 2, 4 to 10, 12 to 19 and more: no 11 | [bin] (protocol/v5x-clients.md#client--server-ids-500r7) |
-| Claim B | The 5.00r7 profile lists 4 to 19, with 11; 5.12, 5.24r4 and 5.30r3 were seen sending 11 in captures | [bin][cap] (version-profiles/5.00-6.03.toml) |
-| Tried | A later static read found the 5.00r7 backup engine's carried-object throw path, which sends 11 with an empty body; the wrapper list had missed it. The 2.31 "id 44" puzzle dissolved once S→C 44 (dropped) and C→S 44 (still sent) were told apart | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing); [bin][cap] (protocol/ids-sent-512-status.md) |
-| Tried | The 2026-11-19 run of real, unchanged Windows clients had the server receive a throw 3 times out of 3 on 5.00r7, as on 4.20r8, 5.12, 5.24r4 and 6.03r7; the write-up names id 11 only for the Linux 6.03r7 throw | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Tried (2026-11-20) | 5.12 sends id 11 with an empty body on a throw; 5.00r7 could not reach the lab server (its licence names a LAN login host) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#throw-id-on-512-e4) |
-| Best guess | Claim B: 5.00r7 sends 11 from the throw. Confidence: high | [inf] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| Settles it | The id of the 5.00r7 throws in that run's server log, or one more 5.00r7 throw with the id recorded | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-| Outlook | Lab; probably already answered by the 2026-11-19 log | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-
-### E#9 Uploads from game clients
-
-**Question.** Which game-client feature sends the file-browser and upload ids, and whether any server accepts them from a game connection [srv] (protocol/file-transfer.md#upload-rc-only).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Game clients cannot upload; the file-browser ids are for RemoteControl only | [srv] (protocol/file-transfer.md#upload-rc-only) |
-| Claim B | 6.01r1 and 6.03r7 send the file-browser and upload ids (93, 96 to 98, 155, 156) with an upload queue, and 3.153 and 5.00r7 send several of them | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/3.04-3.153.md#client--server-ids) |
-| Best guess | The late clients carry an in-game file browser for staff (the GS2-era client merged RC features), and servers accept the ids only from accounts with folder rights. Confidence: moderate | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Settles it | A 6.x game client using the upload path against a lab server, with and without folder rights | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Outlook | Lab, if a GUI script that opens the browser can be delivered through the probe | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-
 ### E#10 When the `maps` download folder arrived
 
 **Question.** Which build started saving downloads into a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
@@ -343,7 +285,9 @@ These questions are about single messages and props: which builds send or handle
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Tried | 6.03r7 has no built-in key that opens a player list against the lab server; on 6.x the list is a script window the lab server does not provide | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Best guess | The value picks the folder or group a player is listed under (for example staff, friends or others). Confidence: moderate, from the name | [inf] (protocol/unknowns-ledger.md) |
+| Tried (2026-11-20) | No script-visible player variable on 6.03r7 is a category, so a list script can't read prop 81; opening the built-in list needs the `openplayerlist` event through delivered bytecode | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-e23-not-settled) |
+| Tried (2026-11-20) | In the 5.00r7 built-in player list, every odd prop 81 value leaves the player out of the online count; 8 and no value list under Normal; 0, 2, 4, 6 and 10 are counted but their folder was not seen under Wine | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-in-the-500r7-player-list-e23-partial) |
+| Best guess | A player-list attribute whose bit 0 hides the player from the online count and whose other bits pick the folder. Confidence: moderate | [inf] (protocol/unknowns-ledger.md) |
 | Settles it | A list GUI script delivered as bytecode through the probe, as the 2026-11-19 timer test did, then prop 81 set to several values for a second player | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab | [inf] (protocol/unknowns-ledger.md) |
 
@@ -401,19 +345,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Outlook | Read | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
 
 
-
-### E#604 Where a binary sign list ends
-
-**Question.** Where the sign list in a binary level ends when a `HEIGHTS` block may follow it [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | 2.05 reads signs to the end of the file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| Claim B | The sign section runs until an empty line or the end of the file | [srv] (formats/level-binary.md#layout) |
-| Tried | The Windows 4.04r2 sign reader stops after a line shorter than two bytes or at the end of the file and does not know `HEIGHTS`; only the web-level cache reader reads heights after it | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-| Best guess | Each reader keeps its own rule, so a file with signs, a blank line and `HEIGHTS` reads differently by build; a writer that targets old clients should put nothing after the signs. Confidence: high | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| Settles it | One such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
-| Outlook | Lab | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
 
 ## E.6 Client behaviour
 
@@ -483,31 +414,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | A 2.22 read of the neighbour-table builder, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 | Outlook | Read, then Lab | [inf] (protocol/link-probe-bigmap-status.md) |
 
-### E#309 Knockback distance of 1.39
-
-**Question.** Whether 1.39 knocks a hurt player back four or five tiles [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The binary moves the player one tile per tick while the hurt counter reads 39 down to 35: five steps | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| Claim B | The offline run measured four tiles on the touch-NPC test | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Best guess | Five on open ground; the live run lost one step to collision or to the ±1 tick of video timing. Confidence: moderate | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| Settles it | A fresh 1.39 knockback on open ground | [inf] (version-profiles/matrix/rules-139.md#still-open) |
-| Outlook | Lab | [inf] (version-profiles/matrix/rules-139.md#still-open) |
-
-### E#310 Where the once-per-second hit stamp sits
-
-**Question.** Which hit paths share the per-attacker once-per-second stamp [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The stamp is shared by the sword and both hit messages, and stored before the guild test | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
-| Claim B | In 2.00 to 2.05 rev 2 the stamp is in the hurt-message path only; no sword judge of any build has it | [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
-| Tried | The 1.35 two-player run saw one hit per round of three swings 1.2 s apart, which neither claim forbids | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
-| Best guess | Claim B: the later, build-by-build read. Confidence: moderate | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-| Settles it | Two sword hits from one attacker inside one second on 2.05, two players in the lab | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-| Outlook | Lab | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-
 ### E#311 Blast hit zone and the occasional full-heart hit
 
 **Question.** Why the blast zone read from code does not match the hits measured on 2.22, and why some trials took a full heart [2.05] (client-internals/damage-sources.md#bombs-and-explosions).
@@ -554,7 +460,8 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | On the public 2.1.0.0 image and on v22 the call passes the level and two 31s; what the helper changes is unknown, and whether 2.05 passes the same values was not read | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
-| Best guess | It places the player at a fixed start point, tile (31, 31), near the middle of a 64 x 64 level, for the levels that begin the single-player game. Confidence: low to moderate | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
+| Tried (2026-11-20) | On 2.05 rev 2 offline, each special name loaded through the F5 loader next to a byte-identical copy under another name: position, facing, HUD and level stayed identical, with no move to (31, 31). A step that runs only when a new game starts would not show on this path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#single-player-start-levels-on-205-e319) |
+| Best guess | The step belongs to the new-game path, not to loading a level: it sets up the single-player start there, and changes nothing when a level is loaded by name. Confidence: low | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | Settles it | Loading each name offline on 2.05 and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 | Outlook | Lab | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 
@@ -596,6 +503,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Open | The extra fields 1.41 rev 1 reads from an id 40 body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
 | Open | 1.21 gave exactly one gralat in the frame of each of 12 archer kills, with no darts or hearts; the drop spot overlapped the player, so a dropped gralat picked up at once and a direct kill reward look the same | [lab] (live-runs/open-issues-2026-11-19/README.md) |
 | Open | 2.17.1's drop behaviour, and the sword spark (no separate spark sprite was seen on 1.39 against a rock wall) | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Tried (2026-11-20) | Two 2.05 clients swinging at each other at once, 4 times: no spark sprite, and the victim took half a heart in 3, so no true sword-on-sword meeting was caught | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sword-against-sword-on-205-e324-one-sub-check) |
 | Best guess | 1.21 gives a direct kill reward of one gralat rather than rolling a drop; 2.17.1 has no drop roll, like 2.05; the spark appears only when a sword meets a sword or a shield. Confidence: moderate, low, low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Settles it | A ranged kill on 1.21 (thrown bush or pot, or an arrow), the same archer scene on 2.17.1, and a sword against a sword or a baddy's shield | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
@@ -620,20 +528,10 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Evidence | The source calls the full-size row's right margin 68 pixels, but its own formula x = W − 198 + 45k with a 40-pixel full heart gives 23 pixels for four hearts (k = 0 to 3); 68 fits three | [shot][doc] (client-internals/hud-603r7-black-box.md#hearts) |
 | Evidence | The sword source rectangle's right edge (width 28 to 34 pixels), Windows text positions at other window sizes, and Windows operation with a current clock (its run used a 2012 clock) are unresolved (→ §4.6.9) | [shot][lab] (client-internals/hud-603r7-black-box.md#open) |
-| Best guess | The formula is right and the 68-pixel figure was measured with three hearts. Confidence: moderate | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
+| Settled part (2026-11-20) | The hearts formula holds at four window sizes: four hearts leave 23 px, and 68 px is the three-heart case. The sword source rectangle is 28 px wide, from a magenta test image | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-hud-e326) |
+| Best guess | The Windows text positions follow the Linux ones. Confidence: low | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
 | Settles it | Identified-state captures: a known heart count, a known window size, the sword drawn on a plain background | [inf] (client-internals/hud-603r7-black-box.md#open) |
 | Outlook | Lab | [inf] (client-internals/hud-603r7-black-box.md#open) |
-
-### E#327 Missing chest art and menu skin in the 6.03r7 item run
-
-**Question.** Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle (→ §4.5.8) [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Chest collision and opening were observed without chest art; an orange rectangle appeared after D, Q, Tab or Esc toggled the menu status | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
-| Best guess | Both come from files or scripts the lab world lacks: the chest image and the GUI skin are delivered by the server on 6.x. Confidence: moderate | [inf] (client-internals/items-603r7-black-box.md#open) |
-| Settles it | Controlled input changes: add the chest image and a GUI skin and see what changes | [inf] (client-internals/items-603r7-black-box.md#open) |
-| Outlook | Lab | [inf] (client-internals/items-603r7-black-box.md#open) |
 
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
@@ -737,18 +635,6 @@ These questions are about the programs on the other side of the connection (→ 
 | Best guess | A row number in a listserver table of machines matched on the hardware hashes; a truncated hash of the fields would fit too. Confidence: low | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | Settles it | The official listserver, or captures of its `ASSIGNPCID` replies for known inputs (public servers need the owner's written permission) | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | Outlook | Maybe never for the rule, which lives only in the operator's database; a clean-room server can pick its own rule, since clients only store the number | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-
-### E#420 Flag and chest counts in the RC props tail
-
-**Question.** Which of the two counts in the RC props tail counts flags and which counts opened chests [cap] (protocol/rc-capture-2026-11-04.md#player-props).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons; both were 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Evidence | PLO 124 (`PLO_RC_PLAYERFLAGS`, proposed) is handled by RC3 only, which logs and discards its body | [cap][bin] (protocol/rc-props-flags-status.md) |
-| Best guess | Flags first, then chests, the order the server stores them in the account file. Confidence: low to moderate | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settles it | A capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Outlook | Lab | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 
 ### E#422 Quoting of folder rights
 
@@ -1094,6 +980,17 @@ How many cipher steps a generation-5 frame advances when its compressed body is 
 | Settled | The probe proxy ciphers both directions with Claim A's rule. The real 5.00r7 (native, Windows 10 lab VM), 5.24r3, 5.30r3 and 5.31r4, and before them 5.12 and 5.24r4, ran through it for 130 canary cases each: no lost client and no result different from the reference. Most zlib frames are not a multiple of four bytes long, so a wrong step rule would desynchronise the cipher at the first such frame in either direction | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md); [doc] (tools/probe/README.md) |
 | Verdict | Verified by session survival on the exact builds. No single short frame was set beside both rules by hand, which is no longer needed | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md) |
 
+### E#4 Whether 5.00r7 sends id 11 (settled)
+
+Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws was open, because two lists of its sent ids disagreed; a lab throw with the id recorded settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the send wrappers have no 11. B: the profile lists 11, and 5.12, 5.24r4 and 5.30r3 captures send it | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml) |
+| Before | A static read found the backup engine's throw path sending 11 with an empty body | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
+| Settled | An unchanged 5.00r7, reaching the lab through a connect shim with its licence untouched, sent 11 with an empty body on each of 2 throws, after the lift's board change and ganis | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| Verdict | Verified: Claim B holds; the wrapper list missed the throw path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+
 ### E#5 Meaning of id 162 from the client (settled)
 
 Three readings of client id 162 turned out to be one message, a ping answer [srv] (protocol/packet-ids.md#client--server-pli_).
@@ -1137,6 +1034,16 @@ Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36; a r
 | Claim A | The player-prop parser gains 35 and 36 in 1.41, and the NPC-prop parser gains 36 to 40 only in 2.02 rev 2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
 | Claim B | The 2.00 layout tables have the self and other-player streams accept 0 to 35 and the NPC stream 0 to 36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
 | Settled | The 2.00 and 2.01 self switch covers 0 to 36 and the NPC switch 0 to 35; NPC 36 to 40 arrive in 2.02 rev 2. Claim A holds; the other-player switch also accepts 36 (and 50, 51) | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
+
+### E#9 Uploads from game clients (settled)
+
+Which game-client feature sends the file-browser and upload ids, and whether a server accepts them from a game connection, was open; a lab run and the client's own strings settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: game clients cannot upload; the ids are RC-only. B: 6.01r1 and 6.03r7 send the ids with an upload queue | [srv] (protocol/file-transfer.md#upload-rc-only); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Settled | 6.03r7 describes its upload calls as working only while the scripted RC has a file browser open: they are the scripted-RC staff feature. On the GServer-v2 fork, those ids on a game connection are unknown packets; after three the player is dropped, and no file is written | [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9) |
+| Verdict | Verified for the fork; both claims hold, for different connections. Original servers were not run | [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9) |
 
 ### E#11 Client-to-server ids the NewWorld betas lack (settled)
 
@@ -1325,6 +1232,27 @@ The numeric movement tables of 1.39 were open; a static read of its constant blo
 | Verdict | The guess was wrong: 1.39 is between 1st Graal and 2.05. 2.05 moves the inner points 0.075 outwards and makes the nudge 0.1. The 0.125 nudge agrees with the live 1.39 run | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
 | Left over | The 1.39 refusal and snap branches were not compared instruction by instruction | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
 
+### E#309 Knockback distance of 1.39 (settled)
+
+Whether 1.39 knocks a hurt player back four or five tiles was open between a code read and one offline video; an online run on open ground settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: one tile per tick while the hurt counter runs 39 down to 35, five steps. B: four tiles on the offline touch-NPC test | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin); [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| Settled | On 1.39 a hurt message on open ground moved the player five tiles east (3 runs), south and north | [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
+| Verdict | Verified: Claim A holds; the four-tile reading lost a step | [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
+
+### E#310 Where the once-per-second hit stamp sits (settled)
+
+Which hit paths share the per-attacker once-per-second stamp was open between two reads; a two-client lab on 2.05 settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the sword and both hit messages share the stamp, stored before the guild test. B: in 2.00 to 2.05 rev 2 the stamp is on the hurt-message path only | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
+| Settled | On 2.05 rev 2 a guild-rejected hurt message blocks a clean one from the same attacker in the same second, so that path stores the stamp before the guild test; a real swing is not blocked by that stamp and stores none of its own | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Verdict | Verified on 2.05 rev 2: Claim B holds | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Left over | 2.22, which Claim A also covers | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+
 ### E#313 Do arrows and fireballs pass walls (settled)
 
 Whether arrows and fireballs fly through walls in 2.05 was open from a code read; a lab shot at a wall settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313).
@@ -1397,6 +1325,18 @@ How other players see a Ctrl+letter emote was open, because captures showed AFK 
 | Settled | On 2.05 rev 2, Ctrl+A draws the AFK bubble locally and sends only one file check (34) for its image, once per session; Ctrl+S and Ctrl+D likewise; no `PLI_SHOWIMG` and no props leave the client, so the server has nothing to relay | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 | Verdict | Verified: others do not see a key emote; the captured AFK frames came from a server script | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 
+### E#327 Missing chest art and menu skin in the 6.03r7 item run (settled)
+
+Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle, was open; controlled input changes settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Chest collision and opening worked without chest art; an orange rectangle appeared when the menu toggled | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
+| Settled (chest) | With `chest.png` and `chestopen.png` on the server, the client fetches the first at level entry and the second on opening, and draws both | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Settled (menu) | The image names no skin or window image, and the client fetches no file when the menu toggles: the orange box is the default unskinned GUI drawing, and a skin can only come from a server script | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Left over | A scripted skin delivered and seen to change the menu | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+
 ### E#328 What drives 2.22's tick (settled)
 
 Whether 2.22's game step runs from a 50 ms multimedia timer or from the idle handler behind a 50 ms gate was open; a static read of the timer's creation settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328).
@@ -1418,6 +1358,16 @@ Which RC builds send `GSERV025` was open while only the earlier RC builds had be
 | Settled | RC2 2.05, RC3 and the 2006-01-20 Linux RC send `GSERV025`; the 2005-12-09 Linux RC and the 2004 RC (login type 6) send `GSERV024`. The token changed between December 2005 and January 2006 | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [bin] (tools/remotecontrol.md#logins-bin); [lab] (protocol/rc-fuzz-2026-11-19.md) |
 | Verdict | Verified for every held official RC build. A server should accept both tokens | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
 | Left over | The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer | [inf] (tools/remotecontrol-lineage.md) |
+
+### E#420 Flag and chest counts in the RC props tail (settled)
+
+Which of the two counts in the RC props tail counts flags and which opened chests was open, because both were 0 in the only capture; four controlled accounts settled it for the fork's writer [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Settled | The first count is flags (then the flag strings, newest first), the second opened chests (each `c` length + 2, `c` x, `c` y, level name), then the weapon count and names, and nothing after | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+| Verdict | Verified against the GServer-v2 fork with RC 2004; the best guess held. No original 2001–2004 server was run | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
 
 ### E#421 The last byte of RC_PLAYERPROPSSET2 (settled)
 
@@ -1493,6 +1443,17 @@ Which binary level-record fields hold whole tiles and which take fractions was d
 | Verdict | Build-dependent: the best guess holds for 4.04r2; in 2.05 a fractional link box is rounded, so both claims are right for different builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 | Left over | 2.22 and 2.31, which were not read for this field | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 
+### E#604 Where a binary sign list ends (settled)
+
+Where the sign list in a binary level ends when a `HEIGHTS` block may follow was open, with one read saying 2.05 reads to the end of the file; a 2.05 lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: 2.05 reads signs to the end of the file, and 2.31 stops at the first empty line. B: the sign section runs to an empty line or the end of the file | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [srv] (formats/level-binary.md#layout) |
+| Settled | On 2.05 rev 2 a level with three signs shows all three; with an empty line after the first, or an empty line and a `HEIGHTS` line, only the first shows | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| Verdict | Verified for 2.05: Claim B holds and Claim A is wrong about 2.05, which stops at the first empty line as 2.31 does | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| Left over | A 2.31 run of the same file; the 2.31 rule rests on its code read | [2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+
 ### E#605 Client listserver frames in two vocabularies (settled)
 
 Whether two descriptions of the client's listserver frames describe the same bytes was open, because they use different words [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
@@ -1556,6 +1517,27 @@ What a type-4 tiledef line does was open: such lines are common in 2.22 install 
 | Claim B (holds) | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
 | Settled | Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. The image must be an 8-bit palette PNG; a 24-bit one is ignored without a message, which is why the earlier tries saw nothing | [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19) |
 | Left over | Water under an overlay, and type-4 lines on builds other than 2.22 | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+
+### E#617 Whether 1.41 rev 1 loads `.nw` levels online (settled)
+
+Whether a real 1.41 rev 1 loads a `.nw` level sent by a server, and what it does with a gmap, was open; a loopback lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The build carries the `GLEVNW01` loader string and no `GRMAP001`; no run had loaded a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Settled | 1.41 rev 1 drew and walked a `.nw` start level sent as name, board and modtime. Given a gmap start level, the server sends it a plain warp and the first cell as an ordinary level; the client never asks for the `.gmap` and plays the cell as a normal level | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+| Left over | Link and height messages for a `.nw` level, which the lab server did not send, and walking a seam | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+
+### E#619 Whether 5.30r3 and 5.31r4 use their built-in login host (settled)
+
+Whether 5.30r3 and 5.31r4 ever dial their stored default login host was open; a lab run per licence case settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The host and port sit side by side in both images; the 5.x notes say the host normally comes from `license.graal`; best guess a fallback | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| Settled | With no licence, a signed one, a garbage one, an edited one or a plain one at the root, both builds always dialled the first built-in login host on 14900 and never the licence's address; with no answer they moved to the second built-in host. The unpacked 5.30r3 has no `license.graal` string | [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
+| Verdict | Verified; the best guess was wrong: the built-in list is the only source, not a fallback | [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
 
 ### E#620 What the 1.41 rev 1 program-check handler does (settled)
 
