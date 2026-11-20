@@ -1,7 +1,7 @@
 # Key and mouse sweep on real clients
 
-Date: 2026-11-19/20. Swept: Linux 6.03r7, and Windows 4.20r8, 5.24r4 and 2.31 under Wine. 2.22,
-2.17.1, 2.05 rev 2 and 5.12 are being swept on another lab host with the same tool.
+Date: 2026-11-19/20. Swept: Linux 6.03r7, and Windows 4.20r8, 5.24r4, 5.12, 2.31, 2.22, 2.17.1
+and 2.05 rev 2 under Wine. The last four ran on a second lab host with the same tool and lab tree.
 
 Every key and mouse action of `tools/probe/lab/keysweep.keys` was pressed once on a logged-in real
 client in the lab world: F1–F12, the number row, letters, punctuation, Space, modifiers alone, the
@@ -23,6 +23,10 @@ Tables, one per client (`client, key, effect, c2s, script_event, notes`):
 | [`420r8.tsv`](420r8.tsv) | 4.20r8 Windows | with logger; F6 … O and keypad 1 … Alt+9 redone |
 | [`524r4.tsv`](524r4.tsv) | 5.24r4 Windows | with logger; \` … / redone twice |
 | [`231.tsv`](231.tsv) | 2.31 Windows | with logger (GS1 `keypressed`); hung stretches pressed again after restarts |
+| [`512.tsv`](512.tsv) | 5.12 Windows | with logger (the GS2 logger reported only 12 events) |
+| [`222.tsv`](222.tsv) | 2.22 Windows | with logger (GS1 `keypressed`) |
+| [`2171.tsv`](2171.tsv) | 2.17.1 Windows | with logger (GS1 `keypressed`) |
+| [`205r2.tsv`](205r2.tsv) | 2.05 rev 2 Windows | with logger (the GS1 logger saw almost no keys) |
 
 Columns:
 - `effect`: any new window (title, size), the screen change (changed pixels and a bounding box in
@@ -58,27 +62,34 @@ Columns:
     set-1 scan code under Windows (a 30, F1 59).
   - Every key reaches the script, including F-keys, Escape and the modifiers alone. A key with no
     game action sends no packet.
-- 2.31 (GS1 `keypressed`):
+- 2.17.1, 2.22 and 2.31 (GS1 `keypressed`):
   - `#p(0)` is the same VK code and `#p(1)` the char; `#p(2)` is empty.
-  - Ctrl adds 512 (Ctrl+A 577 … Ctrl+Z 602). Ctrl+H, Ctrl+I and Ctrl+M give the ASCII controls 8, 9
-    and 13.
+  - Ctrl adds 512 (Ctrl+A 577 … Ctrl+Z 602). Ctrl+H, Ctrl+I, Ctrl+M and Ctrl+S give the ASCII
+    controls 8, 9, 13 and 19. Ctrl+T, Ctrl+J and Ctrl+U give 145, 228 and 556 on all three builds
+    (2.31 logged Ctrl+S only as keydown bits).
+- 2.05 rev 2: the GS1 logger saw almost no keys, so its script key codes are still open.
   - Arrows, Shift, Alt and Alt+digits raise no `keypressed`. Keypad 0 gives 48/"0".
 - `keydown(i)` bits: up 1, left 2, down 4, right 8, D 16, S 32, A 64, M 128; held keypad keys showed
   1024 (`keydown(10)`) on 2.31.
 
 ## Mouse clicks (PLI 38)
 
-[lab] On every client swept (2.31, 4.20r8, 5.24r4, 6.03r7), every click sends PLI 38
+[lab] On every client swept except 2.05 rev 2 (2.17.1, 2.22, 2.31, 4.20r8, 5.12, 5.24r4, 6.03r7),
+every click sends PLI 38
 (TRIGGERACTION) whether or not anything is under the cursor, and nothing shows on screen. The body is:
 
 - three bytes of NPC id, all 0 (`0x20 0x20 0x20`)
 - x and y as one GCHAR each: the level position of the point clicked, in half tiles. The value is
   7-bit, so x wraps past 64 tiles: a click 55 tiles across the level arrived as 7.
 - the action text `leftmouse`, `rightmouse` or `middlemouse`, with no length byte. A double click
-  sends `leftmouse` then `doublemouse` (4.x–6.x); 2.31 sends a further `leftmouse` after that.
+  sends `leftmouse` then `doublemouse` (4.x–6.x); 2.17.1, 2.22 and 2.31 send a further
+  `leftmouse` after that.
 
-The wheel sends nothing. On 2.31 and 4.20r8 a right click on the own player also opens the
-"Profile" window and sends PLI 80 with the bare account name.
+2.05 rev 2 sends no PLI 38 for any click. The wheel sends nothing on any client.
+
+A right click on the own player opens the "Profile" window and sends PLI 80 with the bare account
+name (before the PLI 38) on 2.05 rev 2, 2.17.1, 2.22, 2.31, 4.20r8 and 5.12, but not on 5.24r4 or
+6.03r7.
 
 ## Game keys
 
@@ -111,9 +122,11 @@ Windows and in-game GUIs:
 - 6.03r7: Alt+2 an in-game "Save As" window; Alt+8 starts a video capture file in the client's
   `videos` folder.
 
-2.31 Ctrl+letter shows the 26 emoticons (`emoticon_afk_stay.mng` … `emoticon_zzz_stay.mng`). It
-checks the file with PLI 34 and sends an add record and, about 0.1 s later, a remove record in
-PLI 24.
+On 2.17.1, 2.22 and 2.31, Ctrl+letter shows the 26 emoticons (`emoticon_afk_stay.mng` …
+`emoticon_zzz_stay.mng`). It checks the file with PLI 34, then sends in PLI 24 an add record
+(image 0, the file name, x and y two tiles right of and five above the player) and, about 0.1 s
+later, a remove record. 2.05 rev 2 checks the same files with PLI 34 but sends no PLI 24. 5.12 shows
+no emoticons.
 
 Quits and failures:
 - Alt+F4 quits 2.31, 4.20r8 and 5.24r4, but not 6.03r7.
@@ -129,6 +142,8 @@ Quits and failures:
   show no script events.
 - 5.24r4: after J (an alternate left-walk key), K … / showed no script events, likely because the
   player walked off the logger's level.
+- 5.12 and 2.05 rev 2: their loggers reported few events (12 on 5.12, almost none on 2.05 rev 2), so
+  their `script_event` columns are mostly empty; the packet and window columns are complete.
 - Under heavy VM load the Wine 2.x clients stall. The sweep then sees no packets for 15 s, restarts
   the client and presses the last keys again.
 - Screen-change counts under ~2000 px spread over the game area are idle animation, not an effect.
