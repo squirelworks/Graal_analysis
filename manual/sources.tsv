@@ -889,3 +889,4 @@ protocol/lab-appe-mirae-2026-11-20d.md	cited	4.2; 4.3; 8.2; 8.4; 10; E	4.2; 4.3;
 protocol/lab-appe-gwentea2-2026-11-20d.md	cited	4.6; 7; E; 10	4.6; 7; E; 10	GwenTea2 lab for App. E, fourth batch: RC2 2.05 lists empty-level RCs under Admins and others under Players, Windows 6.03r7 HUD anchoring, Mac 6.015 blank main view on macOS 15; Android Classic 1.8 stops at the 6.1x connector fetch; 5.12 moves its control object from a server movetype
 client-internals/static-reads-appendix-e-2026-11-20-e.md	cited	2.4; E	2.4; E	Disassembler read for App. E: 2.22 id 11 is sent when a landed object leaves the level, not on a throw
 protocol/lab-appe-gwentea2-2026-11-20e.md	cited	E	E	GwenTea2 lab for App. E: Windows 4.04r2 offline lift, carry and throw under Wine; A is the pickup key
+graal3d/x-loader-fuzz-2026-11-20.md	cited	9	9	Graal3D client on real Windows 10 with malformed .x levels: a bad face count or index leaves no collision object
