@@ -81,6 +81,47 @@ Refusals and login errors ("The account has been disabled by an admin.", "The ac
 Captured under Wine (`client-internals/live-trace-early.md`): after a good player login GServer13 sends 9 (own props), 28 (flags, only if the account has any), 14 (warp), 100 followed by a separate frame holding 101 and the board, 6 (level name), 1 (links), 5 (signs), 39 (level modification time), 3 (NPC props with scripts), and 10. GServer 1.28 sends the same sequence without 39, which arrives with the 1.3 level cache. GServer 1.21 also sends no 39, and it packs the whole reply (9, 14, 100, 101 with the board, 6, 1, 10) into a single zlib frame. When another player is already on the level, the newcomer gets an 8 (other player's props) right after its own 9.
 A token newer than the server's list is refused like an old one: GServer13 answers GSERV016 (1.31) and GSERV018 (1.32) with id 16 "You need at least Graal version 1.3 to play on this server." **[cap]**
 
+### Client→server packet fuzz (lab)
+
+The standalone C→S fuzzer ([`../tools/srvfuzz/`](../tools/srvfuzz/)) ran 292 gen-2 cases
+(malformed framing, malformed login, the empty id sweep 0–223, and malformed bodies)
+against four original GServers on a loopback lab port, one case per fresh connection with a
+clean-guest-login canary after each. **No crash, hang or canary drop in any case on any
+build** — GServer 1.28 beta 2 (`GSERV013`), 1.3 test (`GSERV014`), 1.25 (`GSERV009`) and
+1.27 (`GSERV011`). The capped 8 MiB-inflate-ratio probe and the 500-packet in-frame flood
+caused no slowdown; the 1.x servers do not inflate unboundedly. **[lab]** These add to the
+capture facts above:
+
+- **Login refusal is clean and the version-gate text is per-build**, confirmed live: wrong
+  or old token → id 8 then id 16 DISCMESSAGE and close, with "You need Graal version 1.2
+  rev1 to play on this server." (1.25), "…at least Graal version 1.27…" (1.27) and "…at
+  least Graal version 1.3…" (1.3). Empty account+password, a 250-byte account and a
+  250-byte password each draw id 16 "An account with the name and password you typed in
+  doesn't exist." then close (a genuine auth failure; the built-in guest exists). **[lab]**
+- **Odd login types.** Type 1 (RemoteControl) and a non-login first packet get id 8 then a
+  close with no further reply; login types 2, 5, 64 and 127 leave the socket half-open with
+  id 8 and no login. Short/truncated/zero tokens and account/password length-prefix overruns
+  also land in the same id-8-only half-open state. **[lab]**
+- **Double login differs by build.** Two valid login lines in one frame: 1.25, 1.27 and 1.3
+  test honour the *second* login and the player logs in (id 8, then the normal login reply);
+  1.28 beta 2 instead leaves the socket half-open, id 8 only, neither logged in nor closed.
+  **[lab]**
+- **No `WANTFILE` path traversal.** Id 23 with `../`, Windows `..\`, an absolute path, an
+  empty name and a 250-byte name each returned id 30 (FILESENDFAILED) with no file bytes, on
+  every build. **[lab]**
+- **Post-login id sweep.** After a clean login, id 23 (WANTFILE) → id 30 is the only reliable
+  dedicated reply; every other client→server id with an empty body drew no dedicated reply.
+  (The 1.2x servers stream the whole start level on login — id 9 props, 14 warp, 100 RAWDATA
+  + board, 6 level name, 1 links, optional 5 signs, 10 ISLEADER — so a post-login reply capture
+  must drain that stream first, which the fuzzer does.) Empty id 17 (BADDYADD) does **not**
+  crash the server — note it crashes the 6.03r7 *client*, the opposite direction. **[lab]**
+- An S→C id 8 (OTHERPLPROPS) was seen on some pre-auth sockets; this is most likely the prior
+  canary guest's leave-props being broadcast to the freshly-accepted socket, not a reply to the
+  malformed input (unconfirmed). GServer 1.21 (`GSERV007`) has the same big level-stream login
+  but its fuzz run is pending a redo on a quiet host (a loaded host produced false canary
+  timeouts). Per-build run status and the full taxonomy are in
+  [`server-fuzz-c2s-targets.md`](server-fuzz-c2s-targets.md). **[lab]**
+
 ## Message ids
 
 The server-to-client numbering used through 2.x is already in place in 1.21.
