@@ -51,7 +51,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
-| E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| E#324 | Combat live checks still open | Lab | the spark appears only when a sword meets a sword or a shield | [inf] (live-runs/drops-2026-11-20/README.md#still-open-after-this-run) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
@@ -313,13 +313,14 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settled part | The 2-tile sideways sword edge is included on both sides on 1.35, and half a tile further misses | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
 | Settled part | 2.05 rev 2 has no client-side drop roll offline: 17 archer and 8 soldier kills, no drop, against 9 drops in 12 archer kills on 1.39 | [lab] (live-runs/open-issues-2026-11-19/README.md) |
 | Open | The extra fields 1.41 rev 1 reads from an id 40 body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
-| Open | 1.21 gave exactly one gralat in the frame of each of 12 archer kills, with no darts or hearts; the drop spot overlapped the player, so a dropped gralat picked up at once and a direct kill reward look the same | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Open | 2.17.1's drop behaviour, and the sword spark (no separate spark sprite was seen on 1.39 against a rock wall) | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Settled part (2026-11-20) | 1.21 rolls a real ground drop: archers killed by explosions with the player 14 tiles away left a heart, darts and green gralats at their spots, and the gralat counter never moved; the earlier +1 per sword kill was a dropped gralat landing on the player | [lab] (live-runs/drops-2026-11-20/README.md#1-121-the-archer-drops-an-item-the-counter-does-not-change) |
+| Settled part (2026-11-20) | 2.17.1 Training: 4 archers killed at range by explosions, no drop at any spot, as on 2.05 rev 2 | [lab] (live-runs/drops-2026-11-20/README.md#2-2171-no-drop) |
+| Open | The sword spark (no separate spark sprite on 1.39 against a rock wall, nor in two 2.22 clients swinging face to face, 2026-11-20); whether 2.17.1 gives a direct reward (Training shows no gralat counter) | [lab] (live-runs/open-issues-2026-11-19/README.md); [lab] (live-runs/drops-2026-11-20/README.md#3-222-sword-against-sword-still-not-caught) |
 | Tried (2026-11-20) | Two 2.05 clients swinging at each other at once, 4 times: no spark sprite, and the victim took half a heart in 3, so no true sword-on-sword meeting was caught | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sword-against-sword-on-205-e324-one-sub-check) |
 | Tried (2026-11-20) | On 1.21 offline a thrown bush put a penned archer into its hurt state twice but did not kill it in four tries; lifting a bush left a drawn item (a gralat or hearts) on the spot, so 1.21 draws ground drops from bushes; 2.17.1 and the sword-against-sword scene were not run | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#combat-checks-on-121-e324-tried-not-settled) |
 | Tried (2026-11-20) | On 2.17.1 Training the sword never hurt or killed an archer in 12 levels, so no drop could be checked; on 2.05 rev 2 four shielded soldiers died to the sword with no drop, and no separate spark sprite could be told apart from the two swings | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#combat-checks-on-2171-and-205-e324) |
-| Best guess | 1.21 gives a direct kill reward of one gralat rather than rolling a drop; 2.17.1 has no drop roll, like 2.05; the spark appears only when a sword meets a sword or a shield. Confidence: moderate, low, low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-| Settles it | A ranged kill on 1.21 (thrown bush or pot, or an arrow), the same archer scene on 2.17.1, and a sword against a sword or a baddy's shield | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | The spark appears only when a sword meets a sword or a shield. Confidence: low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Settles it | A sword against a sword or a baddy's shield, captured frame by frame | [inf] (live-runs/drops-2026-11-20/README.md#still-open-after-this-run) |
 | Outlook | Lab | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
 
 ### E#325 Later sound census and playback limits
