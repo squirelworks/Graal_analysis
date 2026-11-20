@@ -52,8 +52,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
 | E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
 | E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-| E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| E#317 | 1.x pickup box and item draw order | Read | draw order by y (measured); item box size open | [inf] (client-internals/item-drops.md#open) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
@@ -295,31 +293,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Best guess | The wire value is the position in half tiles, truncated; every position seen was already on a half tile. Confidence: low | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | Settles it | A finer capture of the corner slide (positions are sent at most every 0.1 s, so the step size is unseen), or a read of the position packer | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#walking-into-a-rock-on-222-e304) |
 | Outlook | Lab | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
-
-### E#305 The 2.22 push frame field
-
-**Question.** Whether a memory trace of 2.22 that disagrees with the 2.05 push timing was reading the gani frame [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | 2.22 plays `push` as 5 frames of 4 ticks, looping, as 2.05 does | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Claim B | A trace of 2.22 against a public server showed a push frame field cycling 0 to 3 every tick once the blocked count passed 18 | [live] (live-runs/2gta-222-2026-10-30/README.md) |
-| Best guess | The traced field is another per-tick counter, and the second run used the server's own push gani, so Claim A stands. Confidence: moderate | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
-| Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
-
-### E#317 The 1.x pickup box and item draw order
-
-**Question.** The 1.x pickup box in tiles, and whether items draw under or over players [bin] (client-internals/item-drops.md#open).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Only 1.3's pixel overlap for picking up a floor item was read | [bin] (client-internals/item-drops.md#open) |
-| Tried (2026-11-20) | 1.39 tests a strict overlap in eighths of a tile between the player's 2 × 2 body box (x + 0.5 to x + 2.5, y + 1 to y + 3) and an item box centred across x + 1 from y + 1/8, sized from the item sprite's stored size; online it then sends 32. The size's unit and the draw order were not read | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-139-pickup-test-e317) |
-| Settled part (2026-11-20) | 1.39 draws items and players in y order: an item covers a player only when its y is larger than the player's | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
-| Best guess | Draw order is by y, as measured; the item sprite size is in tiles, as for other level objects. Confidence: moderate for the size | [inf] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
-| Settles it | The unit of the item sprite size in 1.39 | [inf] (client-internals/item-drops.md#open) |
-| Outlook | Read | [inf] (client-internals/item-drops.md#open) |
 
 ### E#320 Does any server check the tamper check
 
@@ -719,9 +692,10 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#301 | Frame loop of the 3.x and 4.x clients | → §4.1.7 |
 | E#302 | Walking speed factors other than 1.0, 1.2 and the hidden 0.2 | → §4.2.1.1 |
 | E#303 | Two unidentified lists in the blocked-point test | → §4.2.3 |
+| E#305 | The 2.22 push frame field | → §4.2.5 |
 | E#306 | What picks `lift2.wav` for a pull | → §4.2.8 |
-| E#308 | Link probe offsets and the neighbour-table flag | → §4.2.11 |
 | E#307 | Probe, nudge and step tables of 1.39 | → §4.2.2.2 |
+| E#308 | Link probe offsets and the neighbour-table flag | → §4.2.11 |
 | E#309 | Knockback distance of 1.39 | → §4.3.7.2 |
 | E#310 | Where the once-per-second hit stamp sits | → §4.3.3 |
 | E#311 | Blast hit zone and the occasional full-heart hit | → §4.3.5 |
@@ -730,6 +704,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#314 | Gmap entry and the respawn save | → §4.4.4 |
 | E#315 | The level-entry save in the 2.1 test builds | → §4.4.4 |
 | E#316 | Glove power steps | → §4.5.2 |
+| E#317 | The 1.x pickup box and item draw order | → §4.5.2 |
 | E#318 | Level reload on re-entry offline | → §4.5.7 |
 | E#319 | The single-player start levels | → §4.8.3 |
 | E#321 | The 2.31 window blacklist | → §4.10.1.2 |
