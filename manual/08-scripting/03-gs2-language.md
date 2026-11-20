@@ -258,6 +258,76 @@ A survey of the client half of real GS2 weapon scripts counts which events, comm
 | `onPlayerHurt`, `onPlayerDies` | 38, 15 | 0, 0 | the player taking damage or dying | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
 | any other `on…` function | 255 | 258 | `scheduleevent`, `trigger` or another script's call | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#events) |
 
+The table below gives the commands that eight or more of those weapons call in their client part, by weapon count. "yes" in the GS1 column means the name is in the GS1 command list of 3.04, 4.04r2, 4.20r8 and 5.00r7, and "—" means it is a GS2 name or an expression function. Every name with a set B count above 0 already existed in the mid-2007 clients [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands).
+
+| Command | Set E weapons | Set B weapons | In the GS1 command list | Source |
+| --- | ---: | ---: | --- | --- |
+| `setTimer` | 323 | 269 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `triggerserver` | 388 | 75 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `setani` | 355 | 83 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `triggeraction` | 102 | 270 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `join` | 8 | 358 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `freezeplayer` | 265 | 60 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `findweapon` | 28 | 224 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `addcontrol` | 140 | 84 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `keydown` | 181 | 26 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `hideimg` | 128 | 53 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `scheduleevent` | 161 | 8 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `findimg` | 101 | 61 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `hideimgs` | 91 | 52 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `replaceani` | 122 | 7 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `showimg` | 91 | 32 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `destroy` | 63 | 38 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `setshootparams` | 67 | 29 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `shoot` | 67 | 25 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `md5` | 1 | 81 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `say2` | 67 | 8 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `keydown2` | 62 | 10 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `onwall2` | 61 | 9 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `enabledefmovement` | 64 | 6 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `disabledefmovement` | 56 | 8 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `changeimgcolors` | 57 | 13 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `changeimgvis` | 57 | 12 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `clearrows`, `addrow`, `setselectedrow` | 50, 51, 38 | 18, 14, 10 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `echo` | 27 | 36 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `enableweapons` | 59 | 3 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `disableweapons` | 52 | 3 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `play` | 59 | 3 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `showtext` | 43 | 14 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `getimgwidth`, `getimgheight` | 33, 32 | 12, 11 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `cancelevents` | 43 | 0 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `showpoly` | 23 | 20 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `changeimgzoom` | 36 | 5 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `changeimgpart` | 23 | 16 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `showani` | 13 | 20 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `setfocus`, `resetfocus` | 26, 29 | 3, 3 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `seticonsize` | 23 | 9 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `keycode`, `getkeycode` | 32, 21 | 0, 8 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `onwall` | 21 | 6 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `findplayer` | 11 | 15 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `testnpc` | 16 | 6 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `seteffect` | 16 | 4 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `serverwarp` | 6 | 14 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `showstats` | 15 | 4 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `lowercase` | 8 | 11 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `onwater`, `onwater2` | 14, 14 | 4, 0 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `getstringkeys` | 2 | 15 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `gettextwidth` | 6 | 11 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `putleaps` | 14 | 1 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `hideplayer` | 15 | 0 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `enablepause`, `disablepause` | 10, 13 | 0, 2 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `changeimgmode` | 13 | 2 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `addlocalmodifier` | 14 | 0 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `disableselectweapons`, `enableselectweapons` | 13, 9 | 1, 0 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `enablefeatures` | 11 | 3 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `isobject` | 12 | 0 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `playlooped`, `play2` | 11, 9 | 0, 0 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `noplayerkilling` | 8 | 3 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `requesttext` | 2 | 9 | — | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+| `putbomb`, `shootarrow`, `shootfireball`, `shootnuke` | 5, 4, 5, 5 | 0 | yes | [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands) |
+
+Beyond the GUI row methods, the methods these scripts call on objects are `destroy` (151 set E weapons, 82 set B), `show` and `hide` on controls (32, 31), `lower` (21), `isinclass` (18), `drawimage` and `drawimagerectangle` on drawing panels (18, 11), `showtop` (15), `objecttype` (10), `scrolltobottom` (9), `scheduleevent` on an object (9) and `trigger` (7 set E, 15 set B). Set B's 224 `findweapon` calls mostly serve to call another weapon's `public function` [lab][bin] (npc-library/gs2-weapon-corpus-2026-11-14.md#commands).
+
 The rules below summarise what those scripts do, and so what a client has to run first [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#what-onweaponfired-does-set-e-445-handlers).
 
 | Rule | Source |
@@ -300,3 +370,231 @@ The rules below summarise what those scripts do, and so what a client has to run
 | delivery | 131 behind 100 runs an NPC body with no image or level step needed; GS1 never arrives as bytecode | [lab] (protocol/script-fuzz-2026-11-19.md#method) |
 
 Opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12), the value `waitfor` gives when its time runs out, and why one random expression crashes 6.03r7 are open [lab] (protocol/script-fuzz-2026-11-19.md#still-open).
+
+## 8.3.11 Engine event names by build
+
+The table lists every `on…` name the engine images hold as a literal, so a script can be passed that event by name (→ §8.3.4). An `x` means the image holds the literal and `·` means it does not. Holding a name does not show which gameplay site fires it, which is still open (→ App. E#207) [bin] (client-internals/gs2-engine-event-names.md#the-table).
+
+| Event | 4.04r2 | 4.20r8 | 5.30r3 | 6.00r2 | 6.1.1.3 | Linux 6.03r7 | Android 1.8 | Android 2.2 | 7.12.43 | Source |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | --- |
+| `onAction` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAdd` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAllRCChat` | · | · | · | · | x | · | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAmazonHistory` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAmazonHistoryDone` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAmazonPurchase` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAmazonUser` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAnimationEnd` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAnimationFinished` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAnimationStart` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAppActive` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAppEnterBackground` | · | · | · | · | · | · | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAppInactive` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAppLeaveBackground` | · | · | · | · | · | · | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAppResume` | · | · | · | · | · | · | · | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onAssetBundleDownloaded` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onBecomeFirstResponder` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onBind` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onBindFailed` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onCall` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onCancel` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onChangeMode3D` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onClassesDownloaded` | · | · | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onClassLoaded` | · | · | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onClose` | · | · | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onCloseQuery` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onConnect` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onConnectFailed` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onConnectingToServer` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onControlKeyDown` | · | · | · | x | · | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onControlKeyUp` | · | · | · | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onCreated` | · | · | · | · | x | · | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onCursorLineChanged` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onData` | x | x | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDblClick` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDeeplink` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDefaultStyleChanges` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDeleteKey` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDeselect` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDeviceBackButton` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDialogPop` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDialogPush` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDisconnected` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onDropFiles` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onEnterFrame` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onExpand` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onExternalStyleChanges` | · | · | · | · | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFileChunkReceived` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFileDownloaded` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFileRequests` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFilesUploaded` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFirstResponderChanges` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFixedUpdate` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFold` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onFolderLog` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onGeneratedThumbnail` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onGooglePlayInitialized` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onGooglePlayPurchase` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onGraal3DConnectionEstablished` | · | x | · | · | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onHandShake` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onHide` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onIconResized` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onInitFrame` | · | · | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onInitialize` | x | x | · | · | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onKeyDown` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onKeyEvent` | · | · | · | · | · | · | · | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onKeyPress` | x | x | · | · | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onKeyUp` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLevel3DEnter` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLevel3DLoaded` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLevelFileUpdated` | · | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLoad` | x | x | · | · | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLogMessage` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLoseFirstResponder` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onLowMemory` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMapClick` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMetaData` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMobirooInAppItems` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMobirooPurchase` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMobirooPurchaseUpdate` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMobirooUser` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseDown` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseDragged` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseEnter` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseLeave` | x | x | · | · | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseMove` | x | x | · | · | · | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseOverCell` | · | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseUp` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseWheelDown` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseWheelUp` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMouseYawPitch` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMove` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onMusicDataReceived` | x | x | x | x | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onNewClient` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenHelpWindow` | x | x | x | x | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenLogWindow` | x | x | x | x | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenMenu` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenOptionsWindow` | x | x | x | x | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenPlayerList` | · | · | x | x | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenPlayerPositionWindow` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenProfileWindow` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onOpenServerList` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPackagesDownloadComplete` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPackagesDownloaded` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPf` | · | · | x | x | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPlayerChanges` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPlayerLanguageChanges` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPlayerLogin` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPlayerLogout` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPM` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPress` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPushNotification` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onPushNotificationFireBase` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onQuattro3DLoaded` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRCChat` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onReceiveData` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onReceiveDataPackage` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onReceiveUDPData` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onReconnect` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onReflow` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRegisterPushNotifications` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRegisterPushNotificationsFireBase` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRelease` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onReleaseSlider` | x | x | x | x | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRemotePlayerChats` | x | x | · | x | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRemove` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onResize` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRightMouseDown` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRightMouseDragged` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRightMouseUp` | x | x | x | x | x | x | x | x | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRightSelectTag` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRollOut` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRollOver` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onRotationChanged` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onScriptFunctionCall` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onScrolled` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSelect` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSelectedFileForUpload` | · | · | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSelectedPath` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSelectTag` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendAddBomb` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendAddHorse` | · | · | · | · | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendBaddyHurt` | · | · | · | · | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendBaddyProperties` | · | · | · | · | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendBoardModify` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendBoardModify2` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendCarryThrown` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendDelBomb` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendDeleteNPC` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendDeleteWeapon` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendDelHorse` | · | · | · | · | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendDownloadFile` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendEnterLevel` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendExplosion` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendExtra` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendFileDeletion` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendFileRename` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendFilesMove` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendFireSpying` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendFlag` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendFolderDeletion` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendHaveWindow` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendImageUpdate` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendImageUpdateCRC` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendIsPKer` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendLevelWarp` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendLevelWarpModtime` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendNPCProperties` | · | · | · | · | · | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendOpenChest` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendPingAnswer` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendPlayerHurt` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendPlayerProperties` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendPreloadLevel` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendPrivateMessage` | · | · | · | · | x | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendProjectile` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendRCChat` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendRemoveExtra` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendRequestText` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendSaveFile` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendServerWarp` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendSetText` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendShot` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendTakeExtra` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendToAllChat` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendTriggerAction` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendUnsetFlag` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendUpdatePackage` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendUploadEnd` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendUploadStart` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWantClassScript` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWantGaniScript` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWantImage` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWantWeaponScript` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWeaponHit` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWeaponImage` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSendWindowList` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onServerListerConnect` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onServerLogin` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onServerSetPlayerX` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onServerSetPlayerY` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onServerSetPlayerZ` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onServerWarp` | · | · | · | · | x | · | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onShow` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onSleep` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onStartDrag` | · | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onStartedWithURL` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onStopDrag` | · | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onStyleChanges` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onTabComplete` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onTextChanged` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onTextEditStart` | · | · | · | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onTFontOptionsProblem` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onToall` | x | x | x | x | x | x | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onTranslationUpdated` | · | · | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onUnload` | x | x | · | · | · | · | · | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onUpdate` | · | · | · | · | · | · | · | · | x | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onUpdatePackageDownloaded` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onURL` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onVideoFinished` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onVideoLoaded` | · | · | · | · | · | · | x | x | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
+| `onWake` | x | x | x | x | x | x | x | · | · | [bin] (client-internals/gs2-engine-event-names.md#the-table) |
