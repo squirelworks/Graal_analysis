@@ -220,7 +220,16 @@ The folds are made by the client after decoding, so a compiler never writes them
 | 5.00r7 | 200 to 233; none of 234 to 242 | [bin] (protocol/gs2-fold-241-2026-11-16.md#version-gate) |
 | 6.00r2, 6.00r4 | 200 to 242 | [bin] (protocol/gs2-fold-241-2026-11-16.md#version-gate) |
 
-Fold 241 is the one the open reimplementation leaves out. Stock 6.00 makes and runs it when a name load resolves to an object carrying a particular flag and the next instruction is one of a short set of stores and resolves; the object is then kept on the instruction. Which objects carry that flag is not read, so a clean-room VM cannot yet decide when to fuse it (→ App. E#211). A VM that runs the same sequence unfused gets the same result, so the gap affects speed, not behaviour, as far as is known. [bin][inf] (protocol/gs2-fold-241-2026-11-16.md#234242-600)
+Fold 241 is the one the open reimplementation leaves out. Stock 6.00 makes it when a name load is followed by a call, `setreg` or `makeprop` and the name is a flagged entry of the global builtin registry; the entry is then kept on the instruction. A VM that runs the same sequence unfused gets the same result, so the gap affects speed, not behaviour, as far as is known. [bin][inf] (protocol/gs2-fold-241-2026-11-16.md#234242-600)
+
+**Settled question, formerly E#211: Which objects make 6.00 fuse fold 241.** Which registry entries carry the flag was not read, so a clean-room VM could not decide when to fuse. A read of the registration tables in 6.00r2, 6.00r4, 6.01r1 Linux and 6.03r7 Windows settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#which-names-make-fold-241-e211).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The flag is set only through the second of the two registration routines, from a per-row field. Seventeen global built-ins carry it: `disabledefmovement`, `disablemap`, `disablepause`, `disableselectweapons`, `disableweapons`, `enabledefmovement`, `enablefeatures`, `enablemap`, `enablepause`, `enableselectweapons`, `enableweapons`, `freezeplayer`, `noplayerkilling`, `onwall`, `onwall2`, `onwater` and `onwater2` | [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#where-the-flag-comes-from) |
+| Settled | The set is the same in 6.00r2, 6.00r4, 6.01r1 and 6.03r7. Script objects (weapons, NPCs, the player, controls) are not in the registry and never make 241 | [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#by-build) |
+| Verdict | Verified by read; the best guess (weapons and other globals that resolve once) was wrong. A clean-room VM can fuse 241 from a fixed list of these 17 names | [bin] (client-internals/static-reads-appendix-e-2026-11-20-i.md#what-this-settles) |
+| Left over | Why these 17 are marked, and whether a script function of the same name would resolve differently unfused | [inf] (client-internals/static-reads-appendix-e-2026-11-20-i.md#not-covered) |
 
 #### Linux 6.01 x86: decoded program and saved state
 

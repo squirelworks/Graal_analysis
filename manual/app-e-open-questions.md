@@ -48,7 +48,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49 and 54 settled on 5.00r7; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
 | E#210 | Particle emitter and `format` details | Lab | `%d` truncates, `indexof` is case-sensitive | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
-| E#211 | Which objects make 6.00 fuse fold 241 | Read | objects resolved once and safe to cache, such as weapons and globals | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
 | E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
 | E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
@@ -557,17 +556,6 @@ The work list carried from the difference table:
 | Settles it | A run that changes the property that picks the particle kind, and the `format` checks, on a 4.x or 6.x client | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 | Outlook | Lab | [inf] (client-internals/showimg-particles-and-gs2-format.md#not-settled) |
 
-### E#211 Which objects make 6.00 fuse fold 241
-
-**Question.** Stock 6.00 makes fold 241 when a name load resolves to an object carrying a flag and a store or resolve follows. Which objects carry that flag (→ §8.4.6) [bin] (protocol/gs2-fold-241-2026-11-16.md#234242-600).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Every other fold from 200 to 242 matches between stock 4.20r8, 5.00r7 and 6.00 and the open reimplementation; 241 is the one left out, on purpose, until the flag is known | [bin][doc] (protocol/gs2-fold-241-2026-11-16.md#verdict) |
-| Best guess | The flag marks objects that resolve once and can be cached on the instruction, such as weapons and globals; running the sequence unfused gives the same result, more slowly. Confidence: low for the flag, moderate for "same result" | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-| Settles it | A deeper static read of the 6.00 fusion stage at the flag test | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-| Outlook | Read | [inf] (protocol/gs2-fold-241-2026-11-16.md#still-open) |
-
 ### E#214 Why some official bodies do not end in a return
 
 **Question.** 18 of 660 official bodies do not end in a return instruction. Whether that is intended, truncation, or a separate emitter path (→ §8.4.10) [cap] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return).
@@ -657,6 +645,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#205 | Index of the hare baddy | → §8.2.2 |
 | E#206 | `move` option bits in 2.05 | → §8.2.9 |
 | E#208 | What the OpenGS1 opcode set describes | → §8.4.3 |
+| E#211 | Which objects make 6.00 fuse fold 241 | → §8.4.6 |
 | E#212 | Whether a function-only image skips the top-level pass | → §8.4.10 |
 | E#213 | How GS2 text bytes draw on screen | → §8.4.10 |
 | E#215 | When GS2-only names arrived, and what a missing name does | → §8.3.9 |
