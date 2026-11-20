@@ -127,6 +127,14 @@ client-internals/decomp-findings-2026-10-25-j/01-record-shapes.md	x+32 y+32 text
 client-internals/decomp-findings-2026-10-25-j/02-links-and-arrivals.md	parseDouble	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	[column][row]	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	ints follow; non-zero =	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/decompile-6113.md	CyaSSL_Debugging_OFF	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/decompile-6113.md	HmacSetKey	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/decompile-6113.md	KERNEL32	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/decompile-6113.md	RsaSSL_Sign	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/decompile-6113.md	crc32_combine64	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/decompile-6113.md	inflateReset2	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/decompile-6113.md	inflateUndermine	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/decompile-6113.md	set_fd	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
 client-internals/des-and-hidden-strings.md	2B 77 77 A7 B4 31 21 41	the key that hides a real listserver host; left in the note on purpose
 client-internals/des-and-hidden-strings.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
 client-internals/des-and-hidden-strings.md	GCHAR 5	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
@@ -1586,6 +1594,7 @@ client-internals/iphone-version-tokens.md	again, then	a gs2lib constant, citatio
 client-internals/iphone-version-tokens.md	clientVersions[]	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
 client-internals/iphone-version-tokens.md	cryptid	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
 client-internals/iphone-version-tokens.md	read_token	a gs2lib constant, citation tag or notation of the catalogue; §1.2 carries the tokens
+client-internals/issho-cut.md	Direct3DCreate9	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
 client-internals/item-drops.md	TAdventureExplosion	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
 client-internals/item-drops.md	TAdventureExtra	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
 client-internals/item-drops.md	"^d"""	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
@@ -1663,6 +1672,15 @@ client-internals/linux-304-executable-build.md	stdin	a symbol, API, string-table
 client-internals/linux-304-executable-build.md	stdout	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/linux-304-executable-build.md	t16ConcreteClassRep1Z8AIPlayer	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/linux-304-executable-build.md	upx -d	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/linux-304-startup-reader.md	LNX-INPUT-IDENTITIES-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-COMPILED-READ	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-FIRST-HANDLER-HANDOFF-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-IDENTITY	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-LOADER-FAIL	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-ORIGINAL-INIT	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-UNPACKED-CHECK	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-UNPACKED-INIT	an evidence or lab-run id; the manual cites the note
+client-internals/linux-304-startup-reader.md	LNX304-VALIDATION	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-api-ownership.md	L404-API-CORRECTION	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-embedded-scripts.md	L404-CONTAINER-READER	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-embedded-scripts.md	L404-CONTAINER-WRITER	an evidence or lab-run id; the manual cites the note
@@ -1680,6 +1698,8 @@ client-internals/linux-404r2-vm-dispatch.md	L404-DISPATCH	an evidence or lab-run
 client-internals/linux-404r2-vm-dispatch.md	L404-EXECUTOR	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-vm-dispatch.md	L404-FRAME-TRANSITION	an evidence or lab-run id; the manual cites the note
 client-internals/linux-404r2-vm-dispatch.md	L404-SLOT11-CONTROL	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420-native-object-bridge.md	LNX420-BRIDGE-IDENTITIES	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420-native-object-bridge.md	LNX420-BRIDGE-INCREMENTAL-HANDOFF	an evidence or lab-run id; the manual cites the note
 client-internals/linux-420r6-clock-property.md	LNX-INPUT-IDENTITIES-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/linux-420r6-clock-property.md	LNX420-R6-BRIDGE-ADAPTER	an evidence or lab-run id; the manual cites the note
 client-internals/linux-420r6-clock-property.md	LNX420-R6-BRIDGE-INITIALIZER	an evidence or lab-run id; the manual cites the note
@@ -1888,6 +1908,11 @@ client-internals/showimg-particles-and-gs2-format.md	clipchildren	an evidence id
 client-internals/showimg-particles-and-gs2-format.md	clipmove	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/showimg-particles-and-gs2-format.md	left-justifies, and	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/showimg-particles-and-gs2-format.md	picks argument	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
+client-internals/skipped-v6-read.md	DebugBreak	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/skipped-v6-read.md	Quattro_Play	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/skipped-v6-read.md	UPX0	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/skipped-v6-read.md	inflateReset2	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/skipped-v6-read.md	inflateUndermine	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
 client-internals/sound-and-music.md	AGC	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
 client-internals/sound-and-music.md	BASS_WMA_StreamCreateFile	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
 client-internals/sound-and-music.md	StreamFree	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
@@ -1944,6 +1969,74 @@ client-internals/themida-pack.md	WinLicenseVersion	a symbol, API, string-table o
 client-internals/themida-pack.md	recqxwzm	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/themida-pack.md	tlrwuvpz	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/themida-pack.md	yfnbwito	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	CodeBlock	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	Gui*	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiAccordionCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiAccountPasswordCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiAnimationCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiButtonCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiPMCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiSlideShowCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiStartMenuCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	GuiTextEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/torque-surface-by-era.md	InteriorResource	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	LightManager	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	MovieClip	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	OpenGLDevice::setVerticalSync	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	SceneLighting	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	SimSet	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	TFlashCharacter	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	TGraalUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	TSShapeInstance	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	TSThread	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	TScriptFunction	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	Terraformer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	TerrainEditor	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	TriggerData	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	VehicleData	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	WorldEditor	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/torque-surface-by-era.md	addStaticObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	allocateFromAnimation	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	clearVars	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	createCanvas	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	forceTextureTransparency	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	getCompileTimeString	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	getVersionNumber	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	initObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	removeStaticObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	renderFrame	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	setConnectArgs	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	setJoinPassword	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	setMissionCRC	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	setModPaths	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	setScreenMode	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	transmitDataBlocks	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/torque-surface-by-era.md	updateBytesPerPixel	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	AGRESCR01	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	ChatBar3D	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	CyaSSL_library_init	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Direct3DCreate9	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Draw_Particles	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Draw_ShowImg	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Game_Draw	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Game_Draw_GetDrawObjects	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Game_Draw_Player	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Game_Draw_Texts	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	Nov 16 2012	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	QEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	Quattro_Play	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	StartConnectMessage	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	StartScript_FileScanDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	StartScript_MessageBoxDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	StartScript_Profiles	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	StartScript_SelectFileDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	StartScript_SetupDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+client-internals/unpacked-6037.md	TRTMPClient	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+client-internals/unpacked-6037.md	TilesBuffer_Draw3DArea	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	Use3DText	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	getstats	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	qplay_debug	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+client-internals/unpacked-6037.md	resolveHost	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
 client-internals/unpacked-6113.md	ChatBar3D	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/unpacked-6113.md	Game_Draw	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/unpacked-6113.md	Game_Draw_GetDrawObjects	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
@@ -2449,6 +2542,7 @@ client-internals/windows-404r2-components.md	loadGraal3DEngine	a symbol, API, st
 client-internals/windows-404r2-components.md	mif	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/windows-404r2-components.md	pnm	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
 client-internals/windows-404r2-components.md	runGraal3DEngine	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
+client-internals/windows-420-render-seams.md	W420-RENDER-SEAMS-20261109	an evidence or lab-run id; the manual cites the note
 client-internals/windows-500-event-queue.md	alpha, beta	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/windows-500-event-queue.md	created, alpha, beta	an evidence id, engine string or notation of the note; §8.3 and §8.4 carry the result
 client-internals/zelda-online-1998.md	FileLink	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
@@ -2486,6 +2580,13 @@ formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-HANDOFF-20261109	an 
 formats/linux-603-local-cache-helper.md	LNX603-LOCAL-HELPER-PACKET-20261109	an evidence or lab-run id; the manual cites the note
 formats/linux-6x-class-cache.md	LNX601-X86-DELIVERY-20261109	an evidence or lab-run id; the manual cites the note
 formats/linux-6x-class-cache.md	LNX603-CLASS-CACHE-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX-INPUT-IDENTITIES-20261109	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX-TORQUE-CONTENT-IDENTITIES	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX-TORQUE-LOCALIZATION-COMPARE	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX-TORQUE-RESOURCE-INVENTORY	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX-TORQUE-RESOURCE-VALIDATION	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX304-COMPILED-CORPUS	an evidence or lab-run id; the manual cites the note
+formats/linux-torque-resource-scope.md	LNX304-COMPILED-READER	an evidence or lab-run id; the manual cites the note
 formats/pics1-tile-layout-render-2026-11-19.md	t % 128	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
 formats/sign-text.md	TLevelSign	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
 formats/tile-types-pics1-packing-2026-11-16.md	image,prefix,type[,x,y]	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
@@ -3524,6 +3625,846 @@ tools/small-utilities-2026-11-14.md	key = value	a third-party utility's own name
 tools/small-utilities-2026-11-14.md	seihai-launcher	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	seihai-rc	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	tryloadsoundson64bit=true|false	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+torque/304-adventure.md	"ChatBar.setText("""")"	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-adventure.md	DESDecryption	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	DESEncryption	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	Graal activated!	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	Loaded minimap from %s	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	MessageBoxOK	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	Online,Away,DND	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	defaultfontsize	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	shield3.	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	sword4.	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	updateGraalOptions	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	updateMicroActivationLevel	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	updateMidiVolume	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	updateMp3Volume	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-adventure.md	updateRadioVolume	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-audio-ui.md	$pref::Audio::midivolume	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-audio-ui.md	$pref::Audio::reversestereo	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-audio-ui.md	$pref::Audio::sfxvolume	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-audio-ui.md	FMUSIC_LoadSong	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-audio-ui.md	FMUSIC_PlaySong	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-audio-ui.md	FSOUND_Init	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-audio-ui.md	FSOUND_Sample_Load	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-audio-ui.md	FSOUND_Stream_Open	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-audio-ui.md	FSOUND_Stream_Play	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-audio-ui.md	OptMicrovolumeDisplay	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-audio-ui.md	choosenvoicecodec	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-audio-ui.md	updateMicroActivationLevel	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-audio-ui.md	updateMidiVolume	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-audio-ui.md	updateMp3Volume	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-audio-ui.md	updateRadioVolume	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-draw.md	LNX304-SHOWIMAGE-BASELINE-DOC	an evidence or lab-run id; the manual cites the note
+torque/304-draw.md	LNX304-SHOWIMAGE-FINDINGS-DOC	an evidence or lab-run id; the manual cites the note
+torque/304-draw.md	LNX304-SHOWIMAGE-IDENTITIES-DOC	an evidence or lab-run id; the manual cites the note
+torque/304-draw.md	V3-GRAAL-01	an evidence or lab-run id; the manual cites the note
+torque/304-draw.md	V3-GRAAL-03	an evidence or lab-run id; the manual cites the note
+torque/304-draw.md	horsestill	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-draw.md	sprite #	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	$language::Reply	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	$language::Send	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	$pref::Graal::noudp	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	Alignment:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	Canvas.setContent(AdventureGui)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	Canvas.setContent(ServerListGui)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	Deaths:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	Gralat:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	GuiMLTextEditProfile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-net.md	GuiMLTextProfile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/304-net.md	Kills:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	ListButton3D	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ListButtonClassic	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ListButtonGold	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ListButtonHosted	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	LoadLevelFilenameField	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	LoadLevelXField	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	LoadLevelYField	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	MainMenuGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	Maxpower:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	MessageBoxOK	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	PlayerProfileGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	PrivateMessageEdit.getText()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	PrivateMessageGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/304-net.md	Rating:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	ServerDescription	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ServerGraalVersion	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ServerHomepage	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ServerLanguage	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	ServerList.addRow	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	Swordpower:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/304-net.md	UDP send error: %d	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	activateGhosting	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	bomy_idle	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	chaseCam	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	gelat	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	getAddress	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	getPacketLoss	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	getPing	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	playDemo	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	resetGhosting	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-net.md	setMissionCRC	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-npcs.md	LNX304-LOCAL-VALUES-FINDINGS-DOC	an evidence or lab-run id; the manual cites the note
+torque/304-npcs.md	LNX304-LOCAL-VALUES-IDENTITIES-DOC	an evidence or lab-run id; the manual cites the note
+torque/304-npcs.md	V3-GRAAL-04	an evidence or lab-run id; the manual cites the note
+torque/304-npcs.md	V3-GRAAL-SRC-09	an evidence or lab-run id; the manual cites the note
+torque/304-npcs.md	V3-GRAAL-SRC-10	an evidence or lab-run id; the manual cites the note
+torque/304-npcs.md	V3-GRAAL-SRC-15	an evidence or lab-run id; the manual cites the note
+torque/304-npcs.md	bomy_idle	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-npcs.md	bomy_kick	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-npcs.md	bomy_walk	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-npcs.md	washitnpc	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-tile-types.md	T304-TILETYPES-20261112	an evidence or lab-run id; the manual cites the note
+torque/304-tile-types.md	col ≥ 8	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-tile-types.md	id == 32	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/304-tile-types.md	row & 16	a name or string from the Linux 3.04 study (binary internals, §0.10); §10.7 carries the behaviour
+torque/404r2-resource-filter.md	W404-E502-E503-20261109	an evidence or lab-run id; the manual cites the note
+torque/4208-engine.md	Con::	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-engine.md	GuiCanvas::processInputEvent	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	GuiCanvas::renderFrame	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	MainMenuGui2D	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	Point2I	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-engine.md	ServerListGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-engine.md	SetupDialog_Back	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	SetupDialog_PathEdit	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	StartScript_GraalGui3D	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_LoadLevelGui	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_MainMenu	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_MessageBoxDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_OptionsWindow	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_PlayerProfile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_Profiles	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_SelectFileDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	StartScript_SetupDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-engine.md	TAdventure::invokeKeyPressed	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-engine.md	TGraalMachine	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-engine.md	TScriptExecutionSpace::executeScript	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-engine.md	addDrawObjects	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	allplayers	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	clientDisconnected	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	currentmachine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	drawWithImgTransform	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	executeFunction	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	getMouseLevelX	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	getMouseLevelY	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	getNearOtherListAsString	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	getVarType	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	getgani	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	handleMouseMove	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	invokeGraalKeyboardEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	invokeGraalMouseEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	linkValueTo	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	marker in	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	paintGraphics	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	readFloat	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	readObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	readString	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	setContentControl	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	setPaused	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	setVarValue	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	showImage	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-engine.md	weapon:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/4208-engine.md	writeFloat	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	GuiCanvas::setContentControl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-g3d.md	InteriorResource::read	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/4208-g3d.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/4208-g3d.md	MissionStartPhase2Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/4208-g3d.md	checkCollision	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	checkCollisionByBox	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	clipPolygons	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	deleteObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getControllingClient	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getControllingObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getInteriorObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getMountPosition	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getMountTransform	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getMountedObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getMountedObjectCount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getNodePosition	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getNodeTransform	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getObjectMount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getdropz	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	getgani	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	graal_setCreateGraal3DGameObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-g3d.md	graal_setGetGraal3DTerrainHeight	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-g3d.md	graal_setSendGraal3DScriptEvent	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-g3d.md	isInInterior	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	isMounted	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	mountObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	setDirection	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-g3d.md	unmountObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-launcher.md	DirectDrawCreateEx	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-launcher.md	IDirectDraw7	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-launcher.md	SwitchDesktop	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-launcher.md	ToAscii	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/4208-launcher.md	endGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-launcher.md	loadGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/4208-launcher.md	runGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	GuiCanvas::processInputEvent	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	MatrixF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	Online,Away,DND	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	OpenGLDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	ServerListGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	TGraalMachine	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	TGraalVar::executeFunction	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	TScriptExecutionSpace::runScript	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	TScriptFunction	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-engine.md	activateScript	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	catchEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	clientDisconnected	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	connectToGraalServer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	createScriptSpace	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	executeAction	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	executeFunction	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	getVar	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	graal_setConnectTo3DServer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setCreateGraal3DGameObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setDeleteGraal3DLightInfo	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setFreeGraalTexture	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setGetAllowCursorOff	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setGetGraal3DTerrainHeight	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setGetGraalPlayerScriptObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setGetHardwareCursorVisible	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setIsOpenGLEnvironment	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setOnGraalFileDownloaded	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setOpenExternalHistory	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setOpenExternalLogWindow	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setOpenExternalPM	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setRemoveGraal3DConnection	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setRemoveGraal3DMissionGroup	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSendGraal3DScriptEvent	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSendGraal3DScriptEvents	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSendGraal3DServerText	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSetGraalFullScreenMode	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSetGraalWindowLocked	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSetGraalWindowMode	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	graal_setSetMinimumFrameTicks	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-engine.md	invokeGraalKeyboardEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	invokeGraalMouseEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	openGraalServerList	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	receiveEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	setContentControl	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-engine.md	setScript	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	GBitmap::readPNG	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-g3d.md	GuiCanvas::setContentControl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-g3d.md	InteriorResource::read	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-g3d.md	Mission lighting done	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/5007-g3d.md	MissionStartPhase2Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/5007-g3d.md	TGameObjectAttr	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-g3d.md	TGraalVarProperty	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-g3d.md	TProperties	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/5007-g3d.md	cameramode	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	checkCollision	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	checkCollisionByBox	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	endGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	eulerrotation	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	followattachedobject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	getInteriorObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	getLevelFile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	getMountedObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	getNodePosition	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	getdropz	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	isInInterior	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	loadGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	lookatposition	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	lookvector	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	mountObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	runGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-g3d.md	unmountObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	Delphi%.8X	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	connectToGraalServer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	enableScriptedControls	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	endGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	graal_setDrawGraphicsStretched	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setForceTextureTransparency	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setGetGraalIsFullscreen	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setGetGraalScreenCapture	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setMakeGraalScreenshot	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setOpenExternalHistory	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setOpenExternalLogWindow	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setOpenExternalPM	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setPopColorMatrix	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setPushColorMatrix	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setSetFlashPanelClipping	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setSetFlashPanelSize	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	graal_setSetGraalFullscreen	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/5007-launcher.md	loadGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	openGraalServerList	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/5007-launcher.md	runGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/README.md	"""3 """	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/README.md	=== conn4	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/README.md	CON_PRINTF_HEX	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/README.md	Con::printf	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/README.md	FLAG3D_HEX	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/README.md	con:	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/README.md	connectToGraalServer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/README.md	flag3d=	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/README.md	getVersionNumber	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	GuiGraalCtrl::moveUp	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-304.md	GuiPlayerView	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-304.md	TGraalUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-304.md	TTilesVar	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-304.md	Terraformer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	TerrainEditor	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-304.md	TriggerData	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-304.md	WorldEditor	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-304.md	defaultfontsize	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	updateGraalOptions	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	updateMicroActivationLevel	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	updateMidiVolume	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	updateMp3Volume	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-304.md	updateRadioVolume	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	CreateTilesBuffer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	Draw2DTile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	Draw3DTile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	DrawPolygonEx	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	DrawTilesOnScreen	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	DrawTriangleStripPanel	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	FTFont	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	FTGLTextureFont	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	FileStream	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	GetGraal2DMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	GuiBitmapCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	GuiCursor	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	GuiPopUpMenuCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	GuiProgressCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	GuiTextEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	GuiTextListCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	IsGraal2DMatrixActivated	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	MainMenuGui2D	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	MatrixF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	Mission lighting done	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/engine-4208.md	MissionStartPhase2Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/engine-4208.md	PlayerProfileGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	PopGraal2DMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	PushGraal2DMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	QuatF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	ServerListGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	SimSet	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	StartScript_GraalGui3D	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_LoadLevelGui	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_MainMenu	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_MessageBoxDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_OptionsWindow	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_PlayerProfile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_Profiles	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_SelectFileDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	StartScript_SetupDialog	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	TFlashMatrix	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	TGraalClientVar	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	TGraalUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	TSShapeInstance	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-4208.md	activateScript	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	createScriptSpace	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	executeFunction	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	graal_setConnectTo3DServer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setCreateGraal3DGameObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setDeleteGraal3DLightInfo	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setFreeGraalTexture	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setGetAllowCursorOff	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setGetGraal3DTerrainHeight	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setGetGraalPlayerScriptObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setGetHardwareCursorVisible	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setIsOpenGLEnvironment	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setOnGraalFileDownloaded	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setRemoveGraal3DConnection	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setRemoveGraal3DMissionGroup	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSendGraal3DScriptEvent	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSendGraal3DScriptEvents	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSendGraal3DServerText	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSetGraalFullScreenMode	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSetGraalWindowLocked	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSetGraalWindowMode	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	graal_setSetMinimumFrameTicks	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-4208.md	handleMouseWheelEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	loadScriptEncrypted	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	saveScriptEncrypted	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-4208.md	setModPaths	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	Failed to open fmod audio	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	MatrixF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-5007.md	OpenGLDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-5007.md	TGraalUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-5007.md	getMouseLevelX	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	getMouseLevelY	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	graal_setConnectTo3DServer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-5007.md	graal_setCreateGraal3DGameObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-5007.md	graal_setIsOpenGLEnvironment	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-5007.md	graal_setOnServerListerConnect	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-5007.md	graal_setOnServerLogin	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-5007.md	isCursorON	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	localToScreenY	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	setCursorPos	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-5007.md	setRenderFront	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	Adventure getBuildTime	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	CreateWindowExW	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	DefWindowProcA	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	Direct3DCreate9	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-530r3.md	Failed to open fmod audio	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	Initialized OpenGL.	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	RegisterClassA	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-530r3.md	TScriptFunction	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-530r3.md	TScriptUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-530r3.md	TWindowOpenGL::setScreenMode	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-530r3.md	WIN-530R3-WINDOW-20261115	an evidence or lab-run id; the manual cites the note
+torque/engine-531r4.md	02:56:36	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	Adventure fileExists	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	Adventure getBuildTime	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	Adventure getFileContent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	Adventure setFileModTime	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	Direct3DCreate9	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	Failed to open fmod audio	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	GuiBitmapBorderCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiBitmapButtonCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiBitmapCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiMLTextEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiPMCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiTextCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiTextEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	GuiTextListCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	Initialized OpenGL.	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	OpenGLDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-531r4.md	TGraalClientVar	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-531r4.md	TScriptFunction	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-531r4.md	TScriptUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-531r4.md	TWindowOpenGL::setScreenMode	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-531r4.md	clearEmptyGlobalVars	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	fromplayerid	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-531r4.md	glLinkProgramARB	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	glUseProgramObjectARB	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-531r4.md	gxml	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	"""Jan  3 2004 at 22:32:08"""	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/engine-and-formats.md	"""Torque Game Engine Demo"""	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/engine-and-formats.md	3dscolorRGB	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	D3DDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	DTSAniThread	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	DecalManager	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	ForceField	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	InteriorResource	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	MirrorSubObject	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	OpenGLDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	SceneLighting	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	SimSet	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	TGameObjectAttr	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	TGameObjectVar	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	TSShape	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	Voodoo2Device	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/engine-and-formats.md	addMaterialMapping	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	billboard	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	cameramode	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	checkCollisionByBox	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	clipPolygons	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	e:emoticon	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	eulerrotation	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	followattachedobject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	forceAnimations	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	getCompileTimeString()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/engine-and-formats.md	getControllingClient	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	getInteriorObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	getVersionNumber()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/engine-and-formats.md	getVersionString()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/engine-and-formats.md	getdropz	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	glCreateShaderObjectARB	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/engine-and-formats.md	isInInterior	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	listNodes	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	lookatposition	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	lookvector	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	los-	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	materiallist	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	mountObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	pauseAnimation	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	pixelshader	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	runGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	stopAnimation	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	texBranch	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	texLeaf	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	unmountObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/engine-and-formats.md	vertexshader	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/freetype6-5007.md	FT_Done_FreeType	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/freetype6-5007.md	FT_Init_FreeType	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/freetype6-5007.md	FT_Library_Version	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/freetype6-5007.md	FT_Load_Char	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/freetype6-5007.md	FT_New_Memory_Face	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/freetype6-5007.md	FT_Render_Glyph	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/freetype6-5007.md	FT_Set_Char_Size	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/g3d-5007.md	ActionMapGroup	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	ActiveActionMapSet	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	D3DDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	GlobalActionMap	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	InteriorResource::read	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	MatrixF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/g3d-5007.md	MissionStartPhase2Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/g3d-5007.md	OpenGLDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	SimSet	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	TSShape	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	TSShapeInstance::getSequence	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	TScriptExecutionSpace::setClasses	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	TerrainEditor	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/g3d-5007.md	allowoninteriors	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	endGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	fxFoliageSet	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	fxGrassSet	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	getInteriorObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	graal_setGetGraalPlayerScriptObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/g3d-5007.md	invokeGraalEvent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	isInInterior	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	loadGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	mouseLock	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	runGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	setContentControl	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	showHint	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/g3d-5007.md	twSurfaceSet	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/lab-2026-11-12-udp-trace.md	3 Lab 3D	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	G3DCamera_<account>	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	G3DPlayer_<account>	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	MissionStartPhase1	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/lab-2026-11-12-udp-trace.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/lab-2026-11-12-udp-trace.md	MissionStartPhase2	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/lab-2026-11-12-udp-trace.md	MissionStartPhase2Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/lab-2026-11-12-udp-trace.md	addweapon -Move3D	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	ea8fb69	a commit id or hash, not a Graal fact
+torque/lab-2026-11-12-udp-trace.md	ef83990	a commit id or hash, not a Graal fact
+torque/lab-2026-11-12-udp-trace.md	graal3d = true	a lab server config line; §10.3 carries what the client needs
+torque/lab-2026-11-12-udp-trace.md	labcube.3ds	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	pstring	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/lab-2026-11-12-udp-trace.md	seihai-gserver-v2	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	w -Move3D	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/lab-2026-11-12-udp-trace.md	weaponscript -Move3D	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/launcher-5007.md	Delphi%.8X	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/launcher-5007.md	GetProcAddress	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/launcher-5007.md	graal_setConnectTo3DServer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/launcher-5007.md	graal_setCreateGraal3DGameObject	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/launcher-5007.md	graal_setIsOpenGLEnvironment	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/launcher-5007.md	graal_setOnServerListerConnect	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/launcher-5007.md	graal_setOnServerLogin	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/launcher-5007.md	setUseDelphiCommaTexts	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/launcher-5007.md	startGraalExeReplacer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/launcher-5007.md	startGraalProfiler	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/linux-304-seven-operation-contract.md	LNX304-NATIVE-CALL-REVIEW-DOC	an evidence or lab-run id; the manual cites the note
+torque/linux-304-seven-operation-contract.md	LNX304-SEVEN-OP-HANDOFF	an evidence or lab-run id; the manual cites the note
+torque/linux-304-seven-operation-contract.md	LNX304-SEVEN-OP-IDENTITIES	an evidence or lab-run id; the manual cites the note
+torque/linux-304-seven-operation-contract.md	LNX304-SEVEN-OP-VECTORS	an evidence or lab-run id; the manual cites the note
+torque/network.md	"""3 """	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/network.md	"""3 Seihai Test"""	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/network.md	$pref::Graal::fixedport	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/network.md	0x17	a byte value or offset in the note's notation; the manual gives the field layouts, not raw bytes or addresses (§0.10)
+torque/network.md	14800	the lab server port of one run; §10.2 gives the rule (UDP on the listed port + 1)
+torque/network.md	7Y3bdzjf	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	Con::printf	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/network.md	Connection established 19	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	ConnectionProtocol	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	GameConnection::writeConnectRequest	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/network.md	NetConnection::writeConnectRequest	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/network.md	commandToServer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	connectToGraalServer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	"exec(""main3D.cs"")"	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/network.md	graal_setConnectTo3DServer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/network.md	readConnectAccept	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	runGraal3DEngine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	writeConnectAccept	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	writeConnectRequest	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/network.md	{0xFFFFFFFF, 0, 0, 0}	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/open-source-lineage.md	AngAxisF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	AngAxisF::set(QuatF)	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	BitStream::readString	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	ConnectionProtocol	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/open-source-lineage.md	EndGhosting	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/open-source-lineage.md	FileDownloadSizeMessage	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/open-source-lineage.md	ForceField	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	GameObject::isFirstPerson	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	GhostAlwaysDone	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/open-source-lineage.md	GhostAlwaysStarting	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/open-source-lineage.md	InteriorResource	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	QuatF::set(MatrixF)	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	ReadyForNormalGhosts	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/open-source-lineage.md	SendNextDownloadRequest	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/open-source-lineage.md	ShapeBase::isFirstPerson	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	TSShape::read	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/open-source-lineage.md	TerrainFile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/open-source-lineage.md	_loadLegacy	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/open-source-lineage.md	activateGhosting	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/open-source-lineage.md	io_dif	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/open-source-lineage.md	mathRead	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/open-source-lineage.md	mathWrite	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/protocol19-server.md	GameConnection::readPacket	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/protocol19-server.md	MissionStartPhase1	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/protocol19-server.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/protocol19-server.md	MissionStartPhase2	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/protocol19-server.md	MissionStartPhase3	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/protocol19-server.md	MissionStartPhase3Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/protocol19-server.md	graal3d = true	a lab server config line; §10.3 carries what the client needs
+torque/protocol19-server.md	int11	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/protocol19-server.md	lightScene	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/protocol19-server.md	onDataBlockObjectReceived(index)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/protocol19-server.md	onGhostAlwaysStarted(count)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/protocol19-server.md	onGraal3DLoginStep(1)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/protocol19-server.md	pstring	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/protocol19-server.md	seihai-gserver-v2	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/protocol19-server.md	writePacket	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/scripting.md	$mvTriggerCount2	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/scripting.md	%unusedN	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/scripting.md	CALLFUNC(_RESOLVE)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/scripting.md	MainMenuGui2D	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/scripting.md	PlayGui	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/scripting.md	SPC	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/scripting.md	addMessageCallback	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/scripting.md	doS2	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/scripting.md	escapeFromGame2D()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/scripting.md	getMouseAdjustAmount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/scripting.md	start2D()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/scripting.md	with labels, and	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/skipped-v4-read.md	RegQueryValueExA	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/skipped-v4-read.md	RegSetValueExA	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/skipped-v4-read.md	ShellExecuteA	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/skipped-v5-read.md	CoInitialize	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/skipped-v5-read.md	GetProcAddress	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/skipped-v5-read.md	RegCloseKey	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/skipped-v5-read.md	ShowWindow	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/skipped-v5-read.md	UPX0	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/skipped-v5-read.md	UPX1	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/skipped-v5-read.md	acmStreamOpen	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/skipped-v5-read.md	mixerOpen	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/stub-fmod-5007.md	Failed to open fmod audio	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/stub-fmod-5007.md	GetProcAddress	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	"""3 """	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	$loadFileCommand	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	AdventureGui::onWake	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	Canvas.setContent(Adventure)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	Canvas.setContent(mainMenuGui)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	ChatBar3D	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	D3DDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	DeleteGraal3DLightInfo	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	DrawTriangleStripPanel	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	EndTilesDrawing	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	FileObject	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	GBitmap::readDDS	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	GBitmap::readJPEG2000	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	GBitmap::readPNG	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	GFont	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	GuiAccordionCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiAccountPasswordCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiAnimationCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiBitmapBorderCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiBitmapButtonCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiBitmapCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiButtonCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiCanvas::renderFrame	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiCheckBoxCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiChunkedBitmapCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiConsole	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiConsoleEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiConsoleTextCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiControl(AdventureGui)	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiControl::onRender	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiControl::renderChildControls	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiControlListPopUp	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiCursor	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiFrameSetCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiGraal3DCtrl(PlayGui)	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiGraalCtrl(Adventure)	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiGraalCtrl::onRender	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiInputCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiInspector	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiMLTextEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiMenuBar	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiPMCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiPlayerView	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiPopUpMenuCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiProgressCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiRadioCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiSlideShowCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiSliderCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiStartMenuCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiTextCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiTextEditCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiTextEditCtrl(ChatBar)	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiTextListCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	GuiTreeViewCtrl	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	HEIGHTS <level> 8 8	a gmap height key; §11 gives the gmap key order
+torque/study-torque-clients.md	IsGraal2DMatrixActivated	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	IsOpenGLEnvironment	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	LEVCHAOS 0.55	a gmap height key; §11 gives the gmap key order
+torque/study-torque-clients.md	LEVHEIGHT 5.81535	a gmap height key; §11 gives the gmap key order
+torque/study-torque-clients.md	LagIcon	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	MainMenuGui2D	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	MatrixF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	OpenGLDevice	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	Parent::	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	PlayGui::onWake	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	Point2I	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	PopColorMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	PopGraal2DMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	PushColorMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	PushGraal2DMatrix	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	SDL_WM_ToggleFullScreen	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	TGraalUniverse	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	TSShape	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	TShowImgMount	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	TTilesVar	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	Terraformer	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	activateKeyboard	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	activatePackage	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	addNewCtrl	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	altCommand	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	bindCmd	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	bringToFront	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	createCanvas	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	deactivateKeyboard	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	deactivatePackage	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	deleteSelection	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	expandFilename	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	"export(""$pref::*"")"	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/study-torque-clients.md	fileBase	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	filePath	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	findFirstFile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	findNextFile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	findText	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	findTextIndex	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	firstWord	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	forceReflow	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getBinding	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getCommand	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getContent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getCount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getDeadZone	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getDesktopResolution	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getDisplayDeviceList	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getExtent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getField	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getFieldCount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getId	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getName	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getObject	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getPosition	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getResolutionList	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getRowNumById	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getRowTextById	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getScale	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getSelected	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getSelectedId	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getSubStr	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getTextById	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getValue	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getVersionNumber	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getWord	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getWordCount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	getWords	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	gotoWebPage	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	graal_setClear3DTile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setConnectTo3DServer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setCreateTilesBuffer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setDraw2DTile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setDraw3DTile	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setDrawShadowedText	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setDrawText	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setDrawTilesOnScreen	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setGetGraal2DMatrix	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setGetTextWidth	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setRemoveGraal3DDatablocks	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setRemoveGraal3DMissionGroup	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setScrollTilesBuffer	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setSendGraal3DScriptEvent(s)	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setSendGraal3DServerText	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	graal_setStartTilesDrawing	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	initBaseClient()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	"initCanvas(""Graal"")"	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	"initCanvas(""Graal3D"")"	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	initClient()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	isAwake	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	isCursorOn	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	isDeviceFullScreenOnly	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	isEOF	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	isFile	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	isInverted	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	justify	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	languageDeutsch	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	languageEnglish	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	libSDL-1.2.so.0	an export, import, library or GUI-class name in the binary (internals, §0.10); §10.1 carries what each build links and contains
+torque/study-torque-clients.md	lockMouse	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	onExit	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	onStart()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	openForRead	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	parseArgs	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	performClick	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	popDialog	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	pushDialog	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	readLine	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	removeRowById	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	rowCount	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setAllGroupState	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setContent	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setCurrentAddSet	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setDisplayDevice	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setLogMode(6)	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	setModPaths	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	"setModPaths(""common;graaldata"")"	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	setRandomSeed	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setRoot	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setRowById	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setScreenMode	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setValue	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	setVisible	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	sortNumerical	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	start2D()	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
+torque/study-torque-clients.md	stripMLControlChars	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	strstr	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	toggleDynamicGroupExpand	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	toggleFullScreen	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	toggleGroupExpand	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	unbind	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	updateGraalOptions	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	updateMicroActivationLevel	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	updateMidiVolume	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	updateMp3Volume	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	updateRadioVolume	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/study-torque-clients.md	videoSetGammaCorrection	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	00 30 00 00 00	a byte value or offset in the note's notation; the manual gives the field layouts, not raw bytes or addresses (§0.10)
+torque/udp-session.md	0500000441b800000000000000000000000000	a commit id or hash, not a Graal fact
+torque/udp-session.md	0900000800000000000000000000000000	a commit id or hash, not a Graal fact
+torque/udp-session.md	DataBlocksDone	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/udp-session.md	DataBlocksDownloadDone	a stock Torque connection-message name; §10.3.9 gives each message by number and meaning
+torque/udp-session.md	G3DPlayer_<account>	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/udp-session.md	G3DPlayer_lab	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/udp-session.md	MissionStartPhase1	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/udp-session.md	MissionStartPhase1Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/udp-session.md	MissionStartPhase2	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/udp-session.md	MissionStartPhase2Ack	the manual writes these remote commands as MissionStartPhaseN and MissionStartPhaseNAck (§10.3.6)
+torque/udp-session.md	attr[1]	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	attr[8]	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	e:emoticon	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	graal3d = true	a lab server config line; §10.3 carries what the client needs
+torque/udp-session.md	int11	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	int15	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	int31	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	intN	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	labcube.3ds	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/udp-session.md	pstring	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/udp-session.md	seihai-gserver-v2	a lab server, test file or lab account name; §10.3 carries the measured result
+torque/v4-404r2-exe.md	VirtualProtect	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/v4-404r2-exe.md	W404-3D-TYPES	an evidence or lab-run id; the manual cites the note
+torque/v4-404r2-exe.md	a9102af4	a commit id or hash, not a Graal fact
+torque/v4-420r8-exe.md	VirtualProtect	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/v4-420r8-exe.md	a9102af4	a commit id or hash, not a Graal fact
+torque/wire-by-build.md	0x15	a byte value or offset in the note's notation; the manual gives the field layouts, not raw bytes or addresses (§0.10)
+torque/wire-by-build.md	0xf8	a byte value or offset in the note's notation; the manual gives the field layouts, not raw bytes or addresses (§0.10)
+torque/wire-by-build.md	AngAxisF	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/wire-by-build.md	GameConnection::readPacket	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/wire-by-build.md	GameConnection::writeConnectRequest	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/wire-by-build.md	GameObject::isFirstPerson	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/wire-by-build.md	GameObject::packUpdate	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/wire-by-build.md	NetConnection::writeConnectRequest	a class or method name in the binary (internals, §0.10); Part X carries the behaviour
+torque/wire-by-build.md	e:emoticon	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	mathWrite	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	readConnectAccept	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	readConnectRequest	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	timevar3	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	unknown_object	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	unpackUpdate	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	writePacket	a symbol, string-table entry or notation of the note (binary internals, §0.10); Part X carries the build identity and behaviour
+torque/wire-by-build.md	{0xFFFFFFFF, 0, 0, 0}	a TorqueScript, console or UI string fragment; Part X carries what the script or dialog does
 version-profiles/222-inferred-from-21-inventory.md	Basis::Binary	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
 version-profiles/222-inferred-from-21-inventory.md	Basis::Inferred	a class or method name in the binary (internals, §0.10); the manual carries the behaviour
 version-profiles/222-inferred-from-21-inventory.md	inferred = true	a symbol, API, string-table or notation entry of the note (binary internals, §0.10); Part I carries the build identity and behaviour
