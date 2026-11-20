@@ -3,7 +3,7 @@
 
 This chapter gives the sword swing and the spin, who judges a hit, the gates a hit must pass, the damage each source takes, the shared hurt routine, hurt mode, knockback and the hurt pose. The combat messages themselves are in → §2.4 and → §2.5.5; the STATUS bits are in → §2.6.2.1. Death is → §4.4.
 
-> Status: draft. Read in full for 2.00 to 2.05 rev 2, 2.17.1, 2.22 and 2.31; 1st Graal and 1.39 for the main rules; 3.x to 6.x only as timed on the wire. Open points are App. E#311 and E#312; the rest of E#309 to E#315 are settled in the chapters (→ §4.3.3, §4.3.5.2, §4.3.7.2, §4.4.4).
+> Status: draft. Read in full for 2.00 to 2.05 rev 2, 2.17.1, 2.22 and 2.31; 1st Graal and 1.39 for the main rules; 3.x to 6.x only as timed on the wire. The open point is App. E#312; the rest of E#309 to E#315 are settled in the chapters (→ §4.3.3, §4.3.5.2, §4.3.7.2, §4.4.4).
 
 ## 4.3.1 Who judges a hit
 
@@ -124,7 +124,7 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 
 | Source | Hearts | Hit test | Source |
 | --- | --- | --- | --- |
-| explosion piece, type 1 (`putbomb 1`, `putexplosion`, the blast of a fireblast or nuke) | 0.5 | the piece's centre, offset by one tile, less than one tile from the player's centre (x + 1.5, y + 2) on both axes; the lab pattern is `disputed → App. E#311` | [2.05] (client-internals/damage-sources.md#bombs-and-explosions) |
+| explosion piece, type 1 (`putbomb 1`, `putexplosion`, the blast of a fireblast or nuke) | 0.5 | the piece's centre, offset by one tile, less than one tile from the player's centre (x + 1.5, y + 2) on both axes; the 2.22 lab pattern follows the 2-tile piece spacing (settled below) | [2.05] (client-internals/damage-sources.md#bombs-and-explosions) |
 | explosion piece, type 2 (`putbomb 2`, the super bomb) | 0.5 | as type 1 | [2.05] (client-internals/damage-sources.md#powers) |
 | explosion piece, type 3 (`putbomb 3`, the jolt bomb) | 1 | as type 1 | [2.05] (client-internals/damage-sources.md#powers) |
 | arrow (`shootarrow`) | 0.5 | the shot box against the player's box (→ §4.3.5.2) | [2.05] (client-internals/damage-sources.md#powers) |
@@ -135,6 +135,15 @@ Every source calls the same hurt routine (→ §4.3.7) with a power in hearts an
 | baddy touch | 0.5, or 1 for the golden warrior (type 7) | the player's centre within one tile of the baddy's point on both axes; the baddy may say its "hurts the player" verse | [2.05] (client-internals/damage-sources.md#baddies) |
 | lava | 0.5 every 101 ticks (→ §4.2.10.1) | the point (x + 1.5, y + 2) on lava | [live][2.05] (client-internals/live-trace-205.md#water-and-lava-live-new4nw) |
 | `PLO_HURTPLAYER` (40) | its power byte - 32 in half-hearts, capped at one heart; 0 gives hurt mode and knockback with no hearts | → §4.3.6 | [2.05] (client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md#the-hurt-packet-id-40-and-its-power); [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-packet-40-hurt-player-real-client-as-victim-settled-for-the-cases-below) |
+
+**Settled question, formerly E#311: Blast hit zone and the occasional full-heart hit.** Why the blast zone read from code did not seem to match the hits measured on 2.22, and why some trials took a full heart, was open. A read of the 2.22 explosion routine settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#explosions-on-222-e311).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | An explosion is a centre piece and four arms, with a piece every 2 tiles out to twice the power; each piece hurts under the strict "less than 1 tile" windows of Claim A, so hits fall on the rows and columns the 2-tile spacing reaches | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#explosions-on-222-e311) |
+| Settled | A full heart comes from an explosion made with kind 3 (on 2.05 the jolt bomb, `putbomb 3`), not from two pieces overlapping; shots make kind 1 | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#explosions-on-222-e311); [2.05] (client-internals/damage-sources.md#powers) |
+| Verdict | Verified by read on 2.22: Claim A holds for each piece and explains Claim B's pattern; the best guess about overlap is refuted | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#explosions-on-222-e311) |
+| Left over | Which bomb sources make kind 3 on 2.22, whether a second piece in the same tick can add damage, and the one-bomb-per-trial sweep | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#explosions-on-222-e311) |
 
 Swords are not the only source of damage. The rules below cover ownership, overlapping hits, and baddy touch damage [2.05] (client-internals/damage-sources.md#who-can-hurt-whom).
 

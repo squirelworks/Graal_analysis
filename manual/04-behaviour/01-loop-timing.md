@@ -3,7 +3,7 @@
 
 This chapter fixes the tick that every count in Part IV uses, how each build drives it, and the periodic work that runs off it. Durations of individual actions are in the chapter for each action (→ §4.1.5).
 
-> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds in App. E#300 have static configuration and a callback-execution count, not a measured cadence; the 3.x, 4.x and 6.03r7 loops were measured in a 2026-11 lab and step every 50 ms (→ §4.1.7; §4.1.7 settled). GS1 `timeout` rounding on 1.33 to 5.00r7, and the 2.22 and 2.31 walk frame, are in → §4.1.8. The 6.x script timer stays open.
+> Status: draft. The notes cover configured intervals and runtime timing separately; the three early builds were timed at 50 ms a frame in a 2026-11-20 lab (→ §4.1); the 3.x, 4.x and 6.03r7 loops were measured in a 2026-11 lab and step every 50 ms (→ §4.1.7; §4.1.7 settled). GS1 `timeout` rounding on 1.33 to 5.00r7, and the 2.22 and 2.31 walk frame, are in → §4.1.8. The 6.x script timer stays open.
 
 ## 4.1.1 The tick
 
@@ -24,7 +24,7 @@ The tick is the same everywhere, but what drives it changes. Each row gives a gr
 | Builds | Driver | Source |
 | --- | --- | --- |
 | 1st Graal to 4th Graal | a DelphiX timer on the main form, interval 50 ms | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
-| 4th Graal alpha, 5th Graal, 5th Graal alpha | main adventure form declares an enabled DelphiX timer, interval 50 ms, active-only disabled, maximum lag ten, with a statically bound callback. A debugger count shows the callback runs (61, 61 and 60 hits in 3 s); actual cadence and runtime idle installation remain unmeasured → App. E#300 | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
+| 4th Graal alpha, 5th Graal, 5th Graal alpha | main adventure form declares an enabled DelphiX timer, interval 50 ms, active-only disabled, maximum lag ten, with a statically bound callback. A debugger count shows the callback runs (61, 61 and 60 hits in 3 s); a 2026-11-20 lab timed about 20 frames a second, 50 ms apart (settled below) | [bin] (client-internals/early-form-timers-2026-11-09.md#stored-configuration) [lab] (client-internals/early-form-timers-2026-11-09.md#callback-execution) |
 | 6th Graal (beta5) to 1.41 rev1, and Graal3D | a DelphiX timer on the main form, interval 50 ms | [bin] (version-profiles/matrix/builds-static-survey.tsv) |
 | NewMain 1.42 to 2.31 (every 2.0x, NewWorld betas 1 and 2, the 2.1 tests, 2.17.1, 2.22, 2.31) | no form timer; the frame runs from the application's idle handler behind a 50 ms gate. In 2.05 rev 2 and 2.22 the gate is the same DelphiX timer component the 1998 builds declare, created in code with interval 50 ms and lag ten: on each idle pass it compares `timeGetTime` with its start, and once 50 ms have passed it resets the start to now and runs the frame once | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328); [bin] (version-profiles/matrix/builds-static-survey.tsv); [bin] (version-profiles/matrix/README.md#acts-timing-movement-and-rules) |
 | 2.31 | in addition, the main form carries a 50 ms timer that runs the 64-tick integrity cycle (→ §4.1.3) | [2.31] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md) |
@@ -32,6 +32,13 @@ The tick is the same everywhere, but what drives it changes. Each row gives a gr
 | 6.03r7 | its own fixed-step loop: a step each 50 ms of schedule, at most one catch-up step, dropping the rest when more than two steps behind (→ §4.1.7) | [bin][lab] (client-internals/update-cadence-3x-6x.md#the-loop) |
 | Windows 4.04r2 | measured under Wine at 19.8 fps in game (→ §4.1.7); statically, the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Mac PowerPC 4.04r2, 4.20r6 and v5 | a Carbon event-loop timer calls the engine entry once; it runs an initialize method, then an update method repeatedly while it returns non-zero, then shutdown, and quits the event loop. The pump sleeps 1 ms when idle. The update rate is not measured | [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#start-up-one-timer-that-runs-the-whole-engine) |
+
+**Settled question, formerly E#300: Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha.** How fast the three early builds really tick was open: a timer was read in each, but only a callback count was measured. A timed DirectDraw trace settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#frame-timing-of-the-early-builds-e300).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | Each frame ends with one front-buffer blit: 20.3, 19.6 and 20.2 a second for 4th Graal alpha, 5th Graal and 5th Graal alpha, median gap 50.0 ms in each | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
+| Verdict | Verified: the frames follow the declared 50 ms interval in elapsed time. The busy idle loop seen before is the DelphiX timer polling, which draws only when 50 ms have passed | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
 
 ### 4.1.2.1 The frame function (idle-driven builds)
 

@@ -107,7 +107,17 @@ A 2026-11 static read of both 1999 servers gives their handling of each client m
 
 A lab run of the original `GServer13.exe` with real 1.3 test clients: 1.28 beta 2 is dropped at login with "You need at least Graal version 1.3 to play on this server."; on the wire, max hearts, hearts, arrows and bombs are corrected back to the sender (20, twice the max, 99, 99), alignment 120, sword 5 and shield 4 pass to the other player unchanged, and gralats over the limit, glove and bomb power get no reply and are not passed on [lab] (protocol/lab-appe-mirae-2026-11-20b.md#server-prop-limits-props-sent-by-a).
 
-Open: → App. E#423.
+
+**Settled question, formerly E#423: The 1999 servers: what the static read left open.** How the original 1999 server sends players in other levels, which builds get the "cannot answer" reply, and its prop limits beyond the counted props were open after the static read. Lab runs of the original `GServer13.exe` with real 1.3 test clients settled them [lab] (protocol/lab-appe-mirae-2026-11-20c.md#level-change-and-other-level-props-on-gserver-13-e423).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | A level change is `PLI_LEVELWARP` (0), or `PLI_LEVELWARPMOD` (30) when the level is cached; the players left behind get prop 50 = 0 and the new level and position (props 20, 15, 16), with no nickname or head | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#level-change-and-other-level-props-on-gserver-13-e423) |
+| Settled | The nickname (0) and head (11) go to every player online, in every level; 1.3 sends the head as one byte, the head number. Colours, sword, chat and the UDP port go only to the same level. A player logging in gets, for a player in another level, only the nickname, head, position, level name, prop 30 and the UDP port | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#level-change-and-other-level-props-on-gserver-13-e423) |
+| Settled | 1.28 beta 2 is dropped right after login ("You need at least Graal version 1.3 to play on this server.") and the others get prop 51 for it, so no older build stays online to receive the "cannot answer" reply on this server | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#an-older-build) |
+| Settled | Prop limits: max hearts 20, power twice the max, arrows and bombs 99 are echoed to the sender; alignment is shown to others as at most 100, shield as at most 3, and sword 9 is kept; gralats, glove and bomb power over the limit get no reply | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#level-change-and-other-level-props-on-gserver-13-e423); [lab] (protocol/lab-appe-mirae-2026-11-20b.md#server-prop-limits-props-sent-by-a) |
+| Verdict | Verified on GServer13 with 1.3 test clients. The best guess (other-level players sent like same-level ones) is refuted: only the nickname and head cross levels | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#level-change-and-other-level-props-on-gserver-13-e423) |
+| Left over | The "cannot answer" reply has no reachable target on GServer13; GServer 1.28 beta 2 was not run in this way | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 
 ### 5.1.7 Other servers of the original line
 

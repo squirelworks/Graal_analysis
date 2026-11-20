@@ -411,7 +411,7 @@ Not every part of Graal3D was confirmed in the lab. The facts below say what was
 | Ids 4 and 6 set client values that nothing reads | [bin][cap] (graal3d/README.md#open-points) |
 | Not run live: the follow-camera numbers, the field of view and the back plane at draw time, collision against known faces, and UDP between two real clients; under Wine the Direct3D Retained Mode stubs break camera frames and face queries, so each needs the native `d3drm.dll` or a real Windows guest | [lab][inf] (graal3d/research-status-2026-11-16.md#open-february-2000) |
 | Open: the animation counter while standing (a freeze is inferred, not traced), and an admin client, of which none is in the archives | [bin][inf] (graal3d/research-status-2026-11-16.md#open-february-2000) |
-| The later beta is static-only: its network side, physics and camera defaults and UDP bytes are read; loading the Genesis3D library and art needs the SDK parts the archive leaves out and a server that accepts `GR3DV003` (→ App. E#504) | [bin] (graal3d/research-status-2026-11-16.md#beta-gr3dv003--still-static-only) |
+| The later beta was run in the lab on 2026-11-20 with its own engine parts against a server that accepts `GR3DV003` (→ §9) | [bin] (graal3d/research-status-2026-11-16.md#beta-gr3dv003--still-static-only) |
 
 ## 9.7 The later beta (`GR3DV003`)
 
@@ -450,4 +450,14 @@ A second standalone client, "New Graal 3D Beta Version", logs in with `GR3DV003`
 | The archived Graal3D server sets version level 0, then 1 for `GR3DV001` and 2 for `GR3DV002`; a login below 2 gets packet 5 "You need at least Graal3D beta2 to play on this server." and is closed, so `GR3DV003` is refused | [bin] (graal3d/beta3-genesis.md#does-the-archived-server-accept-it) |
 | No archived server knows `GR3DV003` | [file] (graal3d/beta3-genesis.md#does-the-archived-server-accept-it) |
 | A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log the beta in, and need not send level text | [inf] (graal3d/beta3-genesis.md#does-the-archived-server-accept-it) |
-| Open: a lab run needs `genesis.dll` and the beta's art, none of which ship in the RAR; the new physics keys' built-in defaults and the beta's UDP datagram layout were not read → App. E#504 | [bin] (graal3d/beta3-genesis.md#open-points) |
+| Run in the lab on 2026-11-20: the RAR does ship `Genesis.dll` and the art (it is a solid archive), and the beta plays against a server that accepts `GR3DV003` (settled below) | [bin] (graal3d/beta3-genesis.md#open-points) |
+
+**Settled question, formerly E#504: The `GR3DV003` beta at run time.** How the later Graal3D beta behaves when run was open; it was known only from static reads, and the archive was thought to hold the exe alone. A lab run settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#the-later-graal3d-beta-at-run-time-e504).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The RAR is solid and holds `Genesis.dll`, the drivers, the art, `dema.act` and `genvs.bsp` beside the exe; common tools stop after the first entry of a solid archive | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#the-later-graal3d-beta-at-run-time-e504) |
+| Settled | With the software window driver it draws the `genvs.bsp` world and the `dema.act` player, logs in to a server that accepts `GR3DV003`, gets its props and level, and plays | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#the-later-graal3d-beta-at-run-time-e504) |
+| Settled | The TCP login and the UDP position (a 0 byte and props 1 to 5, 10 bytes, about every 50 ms and only on a change) and chat (a 1 byte and the text) datagrams have the `GR3DV002` shape; the built-in walk, jump and gravity defaults match the shipped config | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#the-later-graal3d-beta-at-run-time-e504) |
+| Verdict | Verified: the beta runs with the archive's own engine parts, and its wire matches `GR3DV002` apart from the version | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#the-later-graal3d-beta-at-run-time-e504) |
+| Left over | The D3D driver path; whether this `Genesis.dll` is byte for byte a public SDK copy; the run-speed and camera defaults | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#the-later-graal3d-beta-at-run-time-e504) |
