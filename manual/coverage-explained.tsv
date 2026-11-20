@@ -202,6 +202,76 @@ protocol/rc-list-online.md	seihai-rc	a reimplementation, out of scope (§0.1)
 protocol/rc-list-online.md	str head	§7.1.9 carries it as `c 11` + head
 protocol/rc-list-online.md	str nickname	§7.1.9 carries it as `c 0` + nickname
 protocol/rc-props-flags-status.md	weapon count + weapon	§7.1.8 carries it as `c weapon count`, `str` per weapon
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/BytecodeViewer/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	out-of-scope	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md	stay-staged (bad archive)	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/GraalLevelGenNW/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	and ELF	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/ListServer/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/Matriark_gserver/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/NPCControl/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/PNGView/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl-NW/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl3/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/RemoteControl_classic/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/TilesEditor/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	LoadDBAccount	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	LoadNW	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	LoadWeapons	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	SaveDBAccount	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	SendAccount	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	connecttodb	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-linux/SUMMARY.md	startServer	function name from a disassembly (§0.10: no disassembler names); §11 carries what the tool does
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver-win/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/gserver_pe_GServersource/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	lat-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
+recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
 server-notes/01-lineage.md	2.2.0-fix	a commit, build, archive or author name identifying a source, not a Graal fact
 server-notes/01-lineage.md	JustBurn	a commit, build, archive or author name identifying a source, not a Graal fact
 server-notes/01-lineage.md	SVI_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
@@ -288,12 +358,46 @@ server-notes/setcharprop-hash-n.md	GetRealMessage	GServer-v2, gs2emu or 1999-sou
 server-notes/setcharprop-hash-n.md	setcharprop #c,Hi #n	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
 server-notes/setcharprop-hash-n.md	setcharprop #n,Guard	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
 server-notes/setcharprop-hash-n.md	setcharprop #n,Npc	§8 carries the `#n` rule for setcharprop; these are the note's test lines and server function names
+tools/assimilator-batch-ops-2026-11-16.md	[ERROR] [	a tool message, API call or log fragment; §11 carries the behaviour
+tools/assimilator-batch-ops-2026-11-16.md	] The file	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/character-designer.md	Draw Mode Set to 1	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/developer-component-2001.md	DEV-COMPONENT-DOC	an evidence id; the manual cites the note
+tools/classic-tools/developer-component-2001.md	DEV-COMPONENT-STATIC	an evidence id; the manual cites the note
+tools/classic-tools/developer-component-2001.md	DEV-GENERATOR-PATH-STATIC	an evidence id; the manual cites the note
+tools/classic-tools/developer-component-2001.md	DEV-GENERATOR-SEEDED-ROOT	an evidence id; the manual cites the note
 tools/classic-tools/gserverstat.md	#009933	a colour in a status page, not a protocol fact
 tools/classic-tools/serverlist3.md	Configuraton not found.	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
 tools/classic-tools/serverlist3.md	Server lister started	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
 tools/classic-tools/serverlist3.md	The password is wrong	console or error text of the classic listserver; §6.2.3 carries the behaviour, not the strings
 tools/classic-tools/serverlist3.md	lastwrite	a database column name; §6.2.3 carries the 10-minute rule
 tools/classic-tools/serverlist3.md	upgraded	a status-text word; §6.2.3 carries the status texts by kind
+tools/classic-tools/text-convert.md	File does not exist	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/text-convert.md	FindFirstFileA	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/text-convert.md	FindNextFileA	a tool message, API call or log fragment; §11 carries the behaviour
+tools/classic-tools/text-convert.md	Server error	a tool message, API call or log fragment; §11 carries the behaviour
+tools/generators-222/README.md	DOUBLE 0	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	seed * 134775813 + 1	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallne2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallnw2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallse2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/README.md	wallsw2	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/gmap-terrain-stock-2026-11-16.md	LEV*	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/generators-222/gmap-terrain-stock-2026-11-16.md	[0,1)	a generator's tile-name or notation detail; §11 carries the generator, and the LCG is in §2.2
+tools/graaleditor-board-format-2026-11-16.md	then sixty-three	a phrase fragment, not a term
+tools/graaleditor-vs-205.md	ATTACHSPRITE*	a wildcard; §11 names ATTACHSPRITE and ATTACHSPRITE2
+tools/graaleditor-vs-205.md	TAS_DigestSHA1	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TAS_RSACryptography	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TActorSingleMod	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TEditFrame	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TEditOperation	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TEditorDefNPC	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalActor	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalActorMod	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniPart	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniSound	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniSprite	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalAniStep	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/graaleditor-vs-205.md	TGraalSpriteAttachment	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
 tools/lab-servers/README.md	"""5.24"""	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
 tools/lab-servers/README.md	3.0.9-beta	a commit, build, archive or author name identifying a source, not a Graal fact
 tools/lab-servers/README.md	365bbd2	a commit, build, archive or author name identifying a source, not a Graal fact
@@ -319,6 +423,25 @@ tools/lab-servers/README.md	main()	GServer-v2, gs2emu or 1999-source identifier 
 tools/lab-servers/README.md	nodirectinput=true	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
 tools/lab-servers/README.md	parseLoginPacket	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 tools/lab-servers/README.md	serverport=14900	lab setup, build option, config line, log text or harness name from the lab run, not a Graal fact; the manual carries the results
+tools/level-editor/222-reference.md	2 × w	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/222-reference.md	BOARD x y w layer data	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/222-reference.md	TEditVariable	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorChest	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorLink	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorObject	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	TEditorSign	Delphi class name (binary internals, §0.10); §11 describes the editor by behaviour
+tools/level-editor/222-reference.md	pics1.png,,0,0,0	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/222-reference.md	x+32, y+32, image#script	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/formats-crossref.md	col = t % 128	the note's notation for a format §3.1 and §3.5 already give
+tools/level-editor/formats-crossref.md	x+32, y+32, image#script	the note's notation for a format §3.1 and §3.5 already give
+tools/level-tools-gaps/README.md	rooms0	tool folder names in a gap list, not a Graal fact
+tools/level-tools-gaps/README.md	rooms9	tool folder names in a gap list, not a Graal fact
+tools/level-tools-gaps/README.md	roomsX	tool folder names in a gap list, not a Graal fact
+tools/levelfiller.md	<Complex Flowers>*	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	QtyPerObject|<Tile00>	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	theme make	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	times with a	the level filler's own syntax fragments; §11 carries what it does
+tools/levelfiller.md	v=expr	the level filler's own syntax fragments; §11 carries what it does
 tools/npc-control.md	2B 77 77 A7 B4 31 21 41	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
 tools/npc-control.md	AddNPCFrame	Delphi form name (binary internals, §0.10); §7.3 names the windows
 tools/npc-control.md	ClassesList	Delphi form name (binary internals, §0.10); §7.3 names the windows
@@ -357,3 +480,18 @@ tools/server-tools-2001.md	iexplore	a 2001 server tool database table, config ke
 tools/server-tools-2001.md	if (playersays(killall)	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
 tools/server-tools-2001.md	makepass	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 tools/server-tools-2001.md	name:<tab>value	a 2001 server tool database table, config key, file name or script fragment; §5 carries what the tool does
+tools/small-utilities-2026-11-14.md	Graal::list_client	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	Graal::network::framework	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	GuildLoc	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	LabelColor	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	SkinLoc	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	[Color Settings]	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	[Guild Settings]	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	[Skin Settings]	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	aptime0..4	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	color_nickname	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	gs1-lint	a Seihai repo or tool, out of scope (§0.1)
+tools/small-utilities-2026-11-14.md	key = value	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+tools/small-utilities-2026-11-14.md	seihai-launcher	a Seihai repo or tool, out of scope (§0.1)
+tools/small-utilities-2026-11-14.md	seihai-rc	a Seihai repo or tool, out of scope (§0.1)
+tools/small-utilities-2026-11-14.md	tryloadsoundson64bit=true|false	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
