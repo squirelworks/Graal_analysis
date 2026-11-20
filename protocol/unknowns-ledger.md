@@ -25,8 +25,8 @@ Status words:
 | Wire bytes (NUL and high bytes inside a message) | 2 | 0 | 0 |
 | Baddy types | 1 | 0 | 0 |
 | Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 5 | 0 | 4 |
-| Early clients, gen 1 relay and gen 2 GSERV/GNW (1st Graal to 1.39) | 12 | 3 | 0 |
-| **Total** | **36** | **5** | **4** |
+| Early clients, gen 1 relay and gen 2 GSERV/GNW (1st Graal to 1.39) | 13 | 2 | 0 |
+| **Total** | **37** | **4** | **4** |
 
 **Early clients (2026-11-19, [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md)):** gen-2 parse rules, `PLI_PACKETCOUNT` cadence, prop 31 as the UDP port, own-prop widths per build, and the relay join, pairing, `I` and line-length rules on 18 betas.
 
@@ -109,5 +109,5 @@ From [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md); r
 | 1.1.9 state push to a fake peer | open | answers `+` only right at its join (also with `C` first, never when 2–10 s late) and never pushes to a fake peer; a real second 1.1.9 gets a push |
 | 1.21 | resolved | combo start form with account/password, needs the 1.28b2 image folders; same parse rules as 1.28b2–1.39, reads props 0–24 |
 | 5th Graal alpha, 9th Graal alpha | resolved | archives lack levels/graphics; with the data files supplied both reach the relay and pair. Without its start level the 5th alpha closes both relay sockets at once |
-| 1.28b2 drawing an injected other player | open | no form tried was drawn |
-| 9th Graal leaving the bare `G5` room | open | needs its web start level from the historical host |
+| 1.28b2 drawing an injected other player | resolved | needs prop 50 = 1 (joined the level) in the message; one-byte player id; no level needed |
+| 9th Graal leaving the bare `G5` room | open | its start level is an embedded resource, not a web download; serving the web level, adding levels, or `NL` made no difference |

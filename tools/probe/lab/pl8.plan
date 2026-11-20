@@ -1,0 +1,15 @@
+# PLO_OTHERPLPROPS player-id width: one GCHAR (1.21-1.35 per static read) vs GSHORT (1.36+)
+waitsession 240
+wait s2c 9 90
+sleep 8
+shot ref
+mark row pl8-1byte
+s2c 8 c:7 c:0 str:one c:15 c:52 c:16 c:60 c:17 c:2
+sleep 3
+shot pl8-1byte
+mark row pl8-2byte
+s2c 8 s:9 c:0 str:two c:15 c:70 c:16 c:60 c:17 c:2
+sleep 3
+shot pl8-2byte
+sleep 2
+shot final

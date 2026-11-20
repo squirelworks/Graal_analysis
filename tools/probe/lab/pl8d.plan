@@ -1,0 +1,19 @@
+# 1.28b2: other player via TCP 8 (nick, level, address, UDP port) then peer UDP id-0 movement
+waitsession 240
+wait s2c 9 90
+sleep 8
+shot ref
+mark row pl8-1b-then-udp
+s2c 8 c:7 c:0 str:one c:20 str:{LEVEL} c:30 i5:2130706433 c:31 i3:30000
+sleep 2
+sh $FZ/E python3 {TOOLS}/udp1x.py {OUT}/proxy.log 30000 52 60 20 >> {OUT}/udp.txt 2>&1
+sleep 2
+shot pl8-1b-then-udp
+mark row pl8-2b-then-udp
+s2c 8 s:9 c:0 str:two c:20 str:{LEVEL} c:30 i5:2130706433 c:31 i3:30001
+sleep 2
+sh $FZ/E python3 {TOOLS}/udp1x.py {OUT}/proxy.log 30001 70 60 20 >> {OUT}/udp.txt 2>&1
+sleep 2
+shot pl8-2b-then-udp
+sleep 2
+shot final
