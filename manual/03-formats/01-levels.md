@@ -248,6 +248,43 @@ The shapes above stay. This row is only which image stores a baddy or a chest. I
 
 The two v22 flags are unidentified. Whether `GR-V1.00` skips chests was not separated from the previous section's flag [bin] (client-internals/v21-level-record-gate.md).
 
+### 3.1.2.11 GR-V1.05: one board per layer (5.00r7 and later)
+
+`GR-V1.05` is the multi-layer form of the packed board. It is new in the Windows 5.00r7 engine: 4.20r8 already has tile layers in memory and on the wire (`PLO_BOARDLAYER`, 107, → §2.5) but not the file magic, and every later 5.x and 6.x engine keeps it [bin] (formats/gr-v105-500r7.md#which-build-adds-the-file-magic).
+
+```
+GR-V1.05                 8-byte magic
+c  layer count           GCHAR (byte − 32); no pad follows
+board × count            one 64 × 64 board per layer, 13-bit codes as in → §3.1.2.1
+<the GR-V1.04 body>      links, baddies, NPCs, chests, signs, optional HEIGHTS (→ §3.1.2.7)
+```
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| writer | the stock engine writes `GR-V1.05` when the live level has more than one tile layer, `GR-V1.04` when it has a height map, `GR-V1.03` otherwise; the written count is clamped to at most 223 (`0xDF`) | [bin] (formats/gr-v105-500r7.md#writer-rule-500r7) |
+| layout in the lab | stock 5.00r7 web-level cache bodies on a loopback lab match the layout: count bytes `0x22` and `0x23`, no pad; whether heights travel on that path stayed inconclusive | [lab] (formats/gr-v105-500r7-cache-lab.md#answers-q1q6) |
+| empty upper cells | fresh layers above 0 start at the all-ones 16-bit value (−1 when read as signed) and layer 0 at 0; saving masks to 12 bits, so an empty upper cell is 4095 on disk and 4095 after loading; a tile read from a missing layer returns −1; no "skip if 4095" was found in the 5.00r7 code | [bin] (formats/gr-v105-empty-tiles-2026-11-16.md#stock-empty-markers-500r7) |
+| empty cells on the wire | 4095 sent in a 107 draws as tileset cell 4095 (a dark tile), and `0xFFFF` draws as empty, so a server turns an on-disk 4095 on a layer above 0 into `0xFFFF` before it sends the layer | [lab][srv] (formats/gr-v105-fuzz-2026-11-19.md#what-this-settles) |
+| heights on the wire | no heights message was seen for a `HEIGHTS` level of either 1.04 or 1.05; which message, if any, carries them is open | [lab][srv] (formats/gr-v105-fuzz-2026-11-19.md#what-this-settles) |
+| older readers | the classic 2.x clients and the 2.22 `GraalEditor` do not know the magic | [bin] (formats/gr-v105-500r7.md#limits) |
+| samples | no real on-disk `GR-V1.05` file is held; the two server backups searched hold none (→ §3.1.3.3) | [file] (formats/gr-v105-empty-tiles-2026-11-16.md#sample-hunt-limits) |
+
+The rules below give how the clients draw an injected `PLO_BOARDLAYER` (107). They were measured with the probe proxy on loopback, a bomb-count canary after each message [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client).
+
+| Rule | Builds | Detail | Source |
+| --- | --- | --- | --- |
+| who draws 107 | 4.20r8, 5.12, 5.24r4, 6.03r7 | all four; 107 itself dates from 4.11, only the file magic from 5.00r7 | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client); [bin] (protocol/v4x-windows-403r3-411.md#server-messages-the-client-handles) |
+| header | as above | five raw bytes: layer, x, y, w, h; a `GCHAR` (+32) header lands off the board and nothing shows | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| tiles | as above | little-endian 16-bit, w × h of them; big-endian and `GSHORT` bodies draw the wrong tiles | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| body length | as above | the client keeps only w × h cells and skips extra tiles; the next message still parses | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| raw-data wrapper | as above | not needed unless the body holds a `0x0a` byte (layer 10, x 10, or a tile with that byte); wrapping it in `PLO_RAWDATA` (100) is always safe | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| layers | as above | every layer 0 to 255 draws | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| layered `PLO_BOARDMODIFY` (7) with a `GCHAR`(layer + 64) marker | as above | no crash and no reply; the canary lands | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| robustness | as above | no 107 or 7 variant crashed a client or drew a reply; 5.24r4 under Wine blanked the board after the first 107, read as repaint noise | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| caches | 5.x | in these runs the 5.x clients wrote no `GR-V1.05` web-level cache entry, only a script-cache `.code` file per level | [lab] (formats/gr-v105-fuzz-2026-11-19.md#other-results-lab) |
+
+What the open-source lab server does with a `GR-V1.05` file is in → §5.6.
+
 ## 3.1.3 GLEVNW01 (.nw)
 
 ### 3.1.3.1 File

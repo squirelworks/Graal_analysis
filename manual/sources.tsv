@@ -86,7 +86,7 @@ client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md	cited	4; 4.3	4
 client-internals/decomp-findings-2026-10-24/05-205-props-misc.md	cited	2.1	2.6	§2.6 not needed: its prop facts are carried in §2.6 from the later prop notes; the note is cited where it adds the send-helper rule (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24/06-first-graal.md	cited	2.3	2.3	
 client-internals/decomp-findings-2026-10-24/07-graal-139.md	cited	2.1; 2.3	2.3; 2.4	§2.4 not needed: its 1.39 send ids are carried in §2.4 from the id tables; the note is cited for framing and login (coverage audit 2026-11-04)
-client-internals/decomp-findings-2026-10-24/08-contradictions.md	cited	2.3	E	Appendix E not needed: its corrections are settled, not open; carried in §2.3 (room name), §4.10.3 (emote lookup) and §4.11.10 (TPersonAction form) (coverage audit 2026-11-04)
+client-internals/decomp-findings-2026-10-24/08-contradictions.md	cited	2.3	E	Appendix E not needed: its corrections are settled, not open; carried in §2.3 (room name), §4.10.3 (emote lookup) and §4.11.9 (TPersonAction form) (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24/constants-205.tsv	cited	4; 4.1; 4.4	4	
 client-internals/decomp-findings-2026-10-24/gani-name-table.tsv	cited	4.10	4	
@@ -171,7 +171,7 @@ client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
 client-internals/feature-specs/04-death-respawn.md	cited	4.4	4.4	
 client-internals/feature-specs/05-save-load.md	cited	3.7	3.7; 4.10	§4.10 not needed: a reimplementation spec; its Graal facts are carried in §3.7, and its remaining terms are the reimplementation's own names (coverage audit 2026-11-04)
-client-internals/feature-specs/06-gmap-overworld.md	cited	3.2; 4.11	3.2; 4.10	§4.10 not needed: carried in §3.2 and §4.11.9 (gmap crossings); its remaining terms are the reimplementation's own names (coverage audit 2026-11-04)
+client-internals/feature-specs/06-gmap-overworld.md	cited	3.2; 4.2	3.2; 4.10	§4.10 not needed: carried in §3.2 and §4.2.13 (gmap crossings); its remaining terms are the reimplementation's own names (coverage audit 2026-11-04)
 client-internals/feature-specs/07-udp-peer.md	excluded		2.9	reimplementation feature spec; its protocol facts are restated from protocol/udp-p2p.md and packet-layouts.md, cited in §2.9
 client-internals/feature-specs/08-tampercheck.md	cited	4.10; E	4.10	
 client-internals/feature-specs/09-options.md	cited	4.6	4.6	
@@ -213,10 +213,10 @@ client-internals/v21-local-enter.md	cited	4.8; E	4.8; E	The two 31 arguments, th
 client-internals/packed-6037.md	cited	1	1	§1.8.7 carries the version-resource identity and that the decompile is a packer stub
 client-internals/packed-6113.md	cited	1	1	§1.8.7 carries the 6.113 identity and that the decompile is a packer stub; the Mac 6.11 comparison stays a pointer at the existing 6.11 note
 client-internals/player-mannerisms-live.md	cited	4; 4.1; 4.2; 4.3; 4.5; E	4	
-client-internals/precursor-runs-2026-10-30.md	cited	1; 2.3; 4.11	4	
+client-internals/precursor-runs-2026-10-30.md	cited	2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
-client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6; E	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.15), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
+client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6; E	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.11), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §8.3 (coverage audit 2026-11-04)
@@ -286,11 +286,11 @@ formats/graalsav.md	cited	3.7	3.7
 formats/grmap001.txt	cited	3.2; E	3.2	
 formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	cited	3.8	3.8	
-formats/grescr-key-words-2026-11-16.md	pending		3.8; E	GRESCR01/197 key unpack + top digit; 756 keys 0 weak; client no reject; mint open; no keys published
+formats/grescr-key-words-2026-11-16.md	cited	3.8	3.8	
 formats/gr-v105-500r7.md	cited	1; 3.1	1; 3.1	5.00r7 intro of GR-V1.05 (absent 4.20r8), GCHAR layers + N×13-bit boards, writer layers>1 with count clamp 223
 formats/gr-v105-500r7-cache-lab.md	cited	1; 3.1; 3.8	1; 3.1; 3.8	5.00r7 web-level cache lab: GR-V1.05 counts 0x22/0x23, no pad; HEIGHTS inconclusive on that path
 formats/gr-v105-empty-tiles-2026-11-16.md	cited	3.1; E	3.1; E	GR-V1.05 upper-layer empty: RAM all-ones/-1, disk 4095; no JE-skip found; sample hunt limits
-formats/gr-v105-fuzz-2026-11-19.md	pending		3.1	GR-V1.05 fuzz lab: PLO_BOARDLAYER raw header + LE tiles on 4.20r8-6.03r7, 4095 draws as a tile, 0xFFFF empty; lab gserver 1.05 four-byte skew
+formats/gr-v105-fuzz-2026-11-19.md	cited	2.5; 3.1; 5	2.5; 3.1; 5	
 formats/level-binary-client.md	cited	3.1; 3.6; E	3.1	
 formats/level-binary.md	cited	1; 3.1; E	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
@@ -309,10 +309,10 @@ graal3d/lab-2026-10-30.md	cited	9	9
 graal3d/protocol.md	cited	9	9	
 graal3d/reference-server/README.md	excluded		9	a server reimplementation written from the notes; its matching message stream is cited through the lab note
 graal3d/torque-engine-4x.md	cited	8.3; 10; E	10	
-graal3d/g3d-version-tokens.md	pending		9; 10; E	G3D… mainline tokens vs GR3DV00x; 3D-capable eras; pointers into the token catalogue and torque-engine-4x.md
+graal3d/g3d-version-tokens.md	cited	9; 10	9; 10	
 live-runs/2gta-222-2026-10-30/README.md	cited	4.1; 4.2; 4.3; 4.4; 4.5; 4.10; E	4	
 live-runs/client-harness-2026-11-13/README.md	cited	4.2; 4.3	4	
-live-runs/open-issues-2026-11-14/README.md	cited	2.5; 2.7; 4.1; 4.11; 8.2; 10; C; E	4; 8	Behaviour carried in §4.1.8, §8.2.12, §2.5.13, §2.7.10, §4.11.13, §10.13, App. C.7 and App. E#200, E#203, E#301 and E#324. Private run names, fixture account names and per-probe labels stay in the live-runs note. Partials stay open: an answering server for the rest of the 2.22 file checks, the other #398 builds, the 6.x timeout, the combat live checks, and in-game 3.04.
+live-runs/open-issues-2026-11-14/README.md	cited	2.5; 2.7; 4.1; 4.11; 8.2; 10; C; E	4; 8	Behaviour carried in §4.1.8, §8.2.12, §2.5.13, §2.7.10, §4.11.12.1, §10.7.7, App. C.7 and App. E#200, E#203, E#301 and E#324. Private run names, fixture account names and per-probe labels stay in the live-runs note. Partials stay open: an answering server for the rest of the 2.22 file checks, the other #398 builds, the 6.x timeout, the combat live checks, and in-game 3.04.
 npc-library/README.md	cited	8; 8.1	8	
 npc-library/archival-scripting-notes.md	cited	8; 8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
@@ -381,7 +381,7 @@ protocol/public-listserver-2026-10-25.tsv	cited	6	6
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
 protocol/rc-list-online.md	cited	7; E	7	
 protocol/rc2-sessions-stock-2026-11-16.md	cited	7; E	7; E	RC2/RC3 stock: IRC after 25; no 194→prop35+location; GUI≠140; GSERV024/025 ladder
-protocol/rc-fuzz-2026-11-19.md	pending	E	7; E	First RC packet-fuzz: the 2004 RC (GSERV024, type 6/gen 5) takes the rc-core malformed set with no crash or desync; to fold into Part 7 with the RC fuzz harness
+protocol/rc-fuzz-2026-11-19.md	cited	E; 5; 7	5; 7; E	
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Canonical earliest-network capability/evidence map carried in 2.3.1.5; source-only board behavior also carried in 4.11 via the precursor note. Consumer PR status is dated implementation context, not original behavior.
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/shoot-5007.md	cited	2.4; 2.5	2.5	
@@ -656,7 +656,7 @@ formats/windows-603-weapon-cache.md	cited	3.8	3.8	Bounded behavior and exclusion
 client-internals/windows-500-event-queue.md	cited	8; 8.3; E	8.3; E	Bounded behavior and exclusions carried in manual; exact-input identity and fixture bookkeeping remain in source note.
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
-protocol/login-tokens-3x-7x.md	pending		2.3; 10	synthesis of the 3.x to 7.x login identity (tokens, type byte, machine identity, Login server, Torque 3D range); to be folded into the login and 3D sections
+protocol/login-tokens-3x-7x.md	cited	2.3; 10	2.3; 10	
 protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
@@ -671,7 +671,7 @@ client-internals/mac-611r1-gs2-runner.md	cited	8.4; E	8.4; E	Read handlers, loop
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/windows-420-render-seams.md	cited	10	10	Render entry points carried in 10.1.5; the reproduction test and the v3-v5 ownership summary stay in the source note
 client-internals/android-classic.md	cited	1; 4.11; E	1; 4.11	Packages, host, frame gate, collision, board, render, chat and resources carried in 1.7 and 4.11.11; proposed tests stay in the source note
-client-internals/android-login-token-boundary.md	cited	1; 4.11; E	1; 4.11	Unread connect/token boundary and unencrypted-engine note carried in 4.11.11; catalogue U retained
+client-internals/android-login-token-boundary.md	cited	4.11; E	1; 4.11	Unread connect/token boundary and unencrypted-engine note carried in 4.11.11; catalogue U retained
 protocol/android-classic-protocol-vs-6x.md	cited	2; 4.11	2; 4.11	Android chat/dispatch versus desktop CURCHAT/toall and 6.x notes carried in 4.11.11; command map remains open
 client-internals/graal-wiki-crosscheck-2026-11-11.md	cited	3.3	3.3	
 protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, numbers, strings, arrays, events and bindings carried in 8.3.3; the independent model and open cases stay in the source note
@@ -690,7 +690,7 @@ protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher 
 protocol/v611-id-tables.md	cited	2.10	2.10	the 6.111 connector script's live outgoing and incoming id tables joined to gs2lib names (#397); §2.10 cites it
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/player-x-half-tile.md	cited	2.6	2.6	
-client-internals/pyreborn-study/README.md	pending		2.5; 8; 11	study of the MIT pyReborn client and its siblings against this repo; server-side names for unknown ids and script-behaviour hints, to be cited where the manual covers them
+client-internals/pyreborn-study/README.md	cited	2.5; 4.12	2.5; 4.12	
 protocol/gmap-adjacent-level-target.md	cited	2.5; E	2.5	
 protocol/gmap-file-on-warp.md	cited	2.5	2.5	pre-3.0 clients need `.gmap` on disk before each PLAYERWARP2; once-per-session push fails when saveimages is off; §2.5.3
 protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
@@ -719,7 +719,7 @@ version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md	cited	2.4; E	2.4	lab ru
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
 client-internals/iphone-version-tokens.md	cited	1	1	Token families and scanner-negative limits carried; no offline-build conclusion or captured login inferred.
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
-protocol/v4x-windows-403r3-411.md	pending		2.4; 2.5; 9	Windows 4.03r3/4.04r2/4.11 Thinstall packages unpacked statically: handled-id changes (107, 108, 196), engine callback and feature deltas, the 3D library split, public 2.1.0.0 dispatch; to be folded into the message and Graal3D sections
+protocol/v4x-windows-403r3-411.md	cited	2.3; 2.5; 3.1; 10	2.3; 2.5; 3.1; 10	
 tools/thinstall-unpack/README.md	excluded			repository tooling for the notes (the static Thinstall unpacker behind v4x-windows-403r3-411.md), not Graal
 tools/switch-scan/README.md	excluded			repository tooling for the notes (the jump-table case scanner behind the 4.x handled-id rows), not Graal
 client-internals/unpacked-images-coverage.md	excluded			index from each owner-held unpacked client image to the note that covers it; no findings of its own
@@ -776,8 +776,8 @@ torque/v3-python-engines/python-repro/teardown/token.md	excluded		1	weighed 2026
 torque/v3-python-engines/tge-rewrite/STATUS.md	excluded		1	weighed 2026-11-19: Python reproductions of the Mac 3.153 client and their teardown notes; their client facts (tokens G3D28015 and G3D30123newmain built one character at a time, the first flush in mode 3, the list name prefixes, the board and player parses) are already in §1.2, §1.8.4, §2.2 and §6 from the primary notes, and the rest describes the reproductions, not the original client
 torque/v3-python-engines/tge-rewrite/used.md	excluded		1	weighed 2026-11-19: Python reproductions of the Mac 3.153 client and their teardown notes; their client facts (tokens G3D28015 and G3D30123newmain built one character at a time, the first flush in mode 3, the list name prefixes, the board and player parses) are already in §1.2, §1.8.4, §2.2 and §6 from the primary notes, and the rest describes the reproductions, not the original client
 npc-library/gs2-weapon-corpus-2026-11-14.md	cited	8; 8.3; E	8.3; E	
-tools/levelfiller.md	pending		11	LevelFiller theme filler teardown (static); to be folded into Part 11 with the classic tools
-tools/small-utilities-2026-11-14.md	pending		11	small utilities read statically (Guild Manager, guildcode, apcalc and others); to be folded into Part 11
+tools/levelfiller.md	cited	11	11	
+tools/small-utilities-2026-11-14.md	cited	11	11	
 protocol/named-login-5x-6x.md	cited	2.3; 8.3; E	2.3; 8; E	
 client-internals/classic-113-login-construction.md	cited	2.3; E	2.3; E	Selected caller/forwarding and prefix/copy observations carried; short-path object append, field identity, vector/wire and runtime gates remain open; no mobile profile or native acceptance inferred.
 formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement field context and preservation boundary carried in3.3.8; native resolution remains open.
@@ -788,7 +788,7 @@ tools/token-map/README.md	excluded			Generation and integrity-check instructions
 client-internals/mac-6004-6015-slices.md	cited	1	1	Architecture and per-slice declared dependencies carried in §1.8.7; selected-slice startup, runtime initialization and Windows module boundaries remain open.
 tools/token-map/beta4-comparison.md	excluded			Documentary token-reference comparison and research-format limits; no new client runtime behavior.
 client-internals/v4-420r8-class-surface.md	cited	1	2.4; 1	carried into §1.8.5; §2.4 already has the class ids
-protocol/batch2-rc-linux-2005-2006.md	pending		7	Batch-2 Linux RC GSERV024 (2005-01-24 / 2005-12-09) and GSERV025 (2006-01-20) ladder; to be folded into Part 7 with rc-list-online
+protocol/batch2-rc-linux-2005-2006.md	cited	7	7	
 version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	cited	1; E	1; C; E	carried into §1.8.4 and App. E#19; App. C rows for 3.0beta to 3.151 follow a lab login
 version-profiles/batch-linux-4x-autopackage-2026-11-16.md	cited	1	1; C; 2.4	carried into §1.8.5; App. C and §2.4 rows follow a PLI/PLO pass on Linux 4.03r1 and 4.10r2
 version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	cited	1; E	1; E	
@@ -815,7 +815,7 @@ protocol/enterlevel-focus-builds.md	cited	2.4	2.4; C	PLI_ENTERLEVEL on 5.x/6.037
 version-profiles/222-inferred-from-21-inventory.md	cited	1	1; C	carried into §1.8.3; App. C cells change only after the static pass it asks for
 protocol/rc-text-escaping-status.md	cited	E	7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/pre-gmap-in-gmap-world.md	cited	2.4	2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
-graal3d/research-status-2026-11-16.md	pending		9; E	Graal3D resume status: settled GR3DV002 camera/collision/protocol rows; open live d3drm and GR3DV003 lab; E#500 draw-time still open
+graal3d/research-status-2026-11-16.md	cited	9	9	
 protocol/npc-gmap-reentry-status.md	cited	E	2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
 protocol/nw-layer-ext-500r7-2026-11-16.md	cited	3.1; E	3.1; E	5.00r7 .nw: no TILESET; no trailing object-layer; BOARD layer uses tilelayers[]; 6.03 cleartext residual
 protocol/nc-write-ops-status.md	cited	E	7; E	NC write ops status; gap #40; seihai-npcserver#22
@@ -829,9 +829,9 @@ server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3; E	6; 3;
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
 protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
-protocol/fuzz-4x-5x-win-2026-11-19.md	pending	E	2.6	probe set on the other Windows 4.x/5.x builds: no differences in 130 canary cases per build; prop 82 a string by 5.00r7; NUL kept in a SETBACKTO name (§2.5.6.1); for §2.6.6 prop widths by build
+protocol/fuzz-4x-5x-win-2026-11-19.md	cited	E; 2.5; 2.6	2.5; 2.6; E	
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
-protocol/keysweep/README.md	pending		4.6	Key and mouse sweep on real clients (2.05r2 to 6.03r7); script key codes, PLI 38 clicks, game key sets for §4.6.6
+protocol/keysweep/README.md	cited	4.12	4.12	
 protocol/keysweep/603r7.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/420r8.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/524r4.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
@@ -848,7 +848,7 @@ protocol/unknowns-ledger.md	cited	E	E	running tally of the probe work (status pe
 protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login: two gates, deterministic request, trust-anchor path, in §2.10.8 and E#616
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
-live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.7, §4.1.8), combat checks (§4.3.8), 2.05r2 drop control (§4.5.5), 4.x-6.x action list (§4.11.14); open points in App. E
+live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.7, §4.1.8), combat checks (§4.3.8), 2.05r2 drop control (§4.5.5), 4.x-6.x action list (§4.11.12.2); open points in App. E
 protocol/server-fuzz-c2s-targets.md	excluded			C→S server-fuzz targets, harness pointer and per-build run status incl. the 2026-11-19 GServer 1.28b2 run (no crashes; preliminary lab behaviours with follow-ups); a status/targets note whose framing/login facts are already cited from gserv-1999.md and listserver.md
 tools/srvfuzz/README.md	excluded			repository tooling for the notes (the standalone C→S server fuzzer behind protocol/server-fuzz-c2s-targets.md), not Graal
 protocol/plo-156-setactivelevel-231.md	cited	2.5; E	2.5	2.31 extra step after PLO 156: pending graal:// start parameters sent once as a serverstartparams trigger action; lab confirmation open.
@@ -856,11 +856,11 @@ protocol/ios-classic-plus-113-framing.md	cited	E	E	iPhone Classic+ 1.13 uses des
 protocol/probe-native-linux-4x-2026-11-19.md	excluded		2.6; B	native Linux 3.x/4.x probe run (run4x.sh): 4.x prop widths and unknown-PLO handling match win-4.20r8; folds into the prop-width-by-build rows (2.6.6) and App. B that probe-targets-2026-11-18.md already carries
 protocol/probe-mac-6015-2026-11-19.md	excluded	E	2.6; B	6.015 macOS client probe in the Lion VM (runmac.sh): 6.x prop widths (83/77 five-byte, 82 string) matching 6.03r7; folds into the prop-width-by-build rows (2.6.6) and App. B
 protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; E	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
-protocol/conf-gs-fuzzing.md	pending	E	2; E	conf.gs fuzzing design + the 6.113 trust-anchor key patch; two-phase (container framing on a stock client, then decrypted-script content after the swap); loopback harness in tools/connfuzz/; to fold into the protocol chapter
+protocol/conf-gs-fuzzing.md	cited	E; 2.10	2.10; E	
 tools/connfuzz/README.md	excluded			repository tooling for the notes (the loopback conf.gs fuzzer behind conf-gs-fuzzing.md), not Graal
-protocol/script-fuzz-2026-11-19.md	pending	8.3; E	8.2; 8.3; 8.4	GS1/GS2 script fuzz on 6.03r7, 5.24r4, 4.20r8, 2.05, 2.22, 2.31 against Seihai predictions: undispatched bytes crash 6.03r7 only, raw fold bytes, non-number text as -1, GS1 live message codes and loop cap; for 8.2 per-build GS1 rules and 8.3/8.4 GS2 VM behaviour
-protocol/v6113-login-lab-2026-11-19.md	pending		2.10; E	#510 loopback: in-memory trust-anchor swap ruled out (virtualized verify); clean-room SEI00001 login runs; GNP1905C catalogue gap; authentic first-hop + post-login replies open
-live-runs/fuzz-2026-11-19/README.md	pending	E	2.6; 2.5; E	2026-11-19 packet fuzz: baddy props 11+ end the message on 4.20r8 and 2.22, 156 with a gmap name fetches the gmap on 2.22/2.31, 195 DEFAULT* no own-player effect, NPC prop widths on 4.20r8/5.24r4; to fold into the prop-width and receive sections
+protocol/script-fuzz-2026-11-19.md	cited	8.3; E; 8.2; 8.4	8.2; 8.3; 8.4; E	
+protocol/v6113-login-lab-2026-11-19.md	cited	2.10; 5	2.10; 5	
+live-runs/fuzz-2026-11-19/README.md	cited	E; 2.5; 2.6; 4.12	2.5; 2.6; 4.12; E	
 live-runs/fuzz-2026-11-19/fuzz-results.tsv	excluded			per-inject rows of the 2026-11-19 fuzz run, already appended to protocol/probe-results.tsv
 live-runs/fuzz-2026-11-19/plans/queue.txt	excluded			repository tooling for the notes (run queue for the fuzz plans), not Graal
 protocol/probe-gen3-2.0x-2026-11-19.md	excluded		2.6; B	gen-3 2.0x-era Windows clients (2.00-2.05r1, GraalX, NewMain 24/26, 1.41r1, 2.1 tests, NewWorld betas) probed natively on Win10 with wine-core.plan: all identical to w205-b, 2.02x crash on Start before any packet; folds into the prop-width-by-build rows (2.6.6) and App. B

@@ -110,3 +110,17 @@ The repository has a tool for these cache files. The table lists its commands an
 [bin] Packet 197 parses its whole body as one metadata list that includes the expected CRC, with comma, quote and escape handling. When that CRC is zero, the class path skips the validator, deletes the cache entry and may load an empty program. When it is non-zero, it must equal the stored body's CRC, and a header-only file's empty body has CRC zero. So a header-only file is never a class cache hit on this path. On a miss the client sends logical 161 with the stored-body CRC as five offset-integer bytes and then the class name; the field is a CRC, not a modification time. [bin] (formats/linux-6x-class-cache.md#packet-197-and-the-zero-crc); [bin] (formats/linux-6x-class-cache.md#the-class-request-on-a-cache-miss)
 
 [bin] Linux 6.01r1 x86 shows the same split: packet 140 carries a descriptor and a body, and packet 197 carries metadata, and both lead to the same class store. That store uses the modern class-code namespace, not the web-level cache in → §3.8.1–§3.8.5. Nothing here was run; fixtures, malformed files and script execution are untested (→ App. E#202). [bin] (formats/linux-6x-class-cache.md#linux-601-x86-two-delivery-shapes-one-class-store)
+
+## 3.8.10 `GRESCR01` keys from packet 197
+
+The key that decrypts a `GRESCR01` script cache arrives in packet 197. The rules below give how it is unpacked, read from held 6.1.1.3-era login-weapon caches that decrypt under the rule, and what the clients do with it [cap] (formats/grescr-key-words-2026-11-16.md#unpack-closed-for-grescr01--197).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| carrier | packet 197 carries two `GINT5` key words | [cap] (formats/grescr-key-words-2026-11-16.md#unpack-closed-for-grescr01--197) |
+| unpack | the words unpack little-endian into eight raw key bytes; DES then bit-reverses each byte, as the classic gpak and 2.05 password DES do, before ECB decryption | [cap] (formats/grescr-key-words-2026-11-16.md#unpack-closed-for-grescr01--197) |
+| CRC | CRC-32 covers the encrypted body after the magic (→ §3.8.9) | [cap] (formats/grescr-key-words-2026-11-16.md#unpack-closed-for-grescr01--197) |
+| top digit | both words stay within 32 bits: the top digit is masked to four bits (at most 15); no held key word breaks this | [cap] (formats/grescr-key-words-2026-11-16.md#top-digit) |
+| keys per script | one; 756 distinct keys in the sample, none of them a published weak or semi-weak DES key, raw or bit-reversed; that is expected by chance and does not show that the server rejects weak keys | [cap][inf] (formats/grescr-key-words-2026-11-16.md#weak--semi-weak-des--sample-not-a-mint-proof) |
+| client side | the stock 5.00r7 engine has no weak-key check on the accept and decrypt path; a client decrypts with the key it is given | [bin] (formats/grescr-key-words-2026-11-16.md#stock-client-receive-path) |
+| open | whether the official server avoids weak keys when it makes them, and whether `PLO_FILEDECRYPTKEY` (104) unpacks the same way (no 104 frame is held) | [inf] (formats/grescr-key-words-2026-11-16.md#still-open) |

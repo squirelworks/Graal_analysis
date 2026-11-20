@@ -542,3 +542,25 @@ The populated-code scene set `#P1` and `#P6` to `#P9`, `#C6` and `#C7`, a three-
 | `#C5` | `black` in 1.33, 1.41r1 and 2.05r2 | empty from 2.17.1. `#C0` stays `orange` | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
 | `#n` after `setplayerprop` | empty offline in every build in the run | empty | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
 | `#a` | `guest` in 1.33 and 1.41r1 | empty from 2.05r2 | [lab] (live-runs/open-issues-2026-11-14/README.md#1c-f-s-d-i-r-p6p9-c6c7-in-a-populated-context) |
+
+## 8.2.13 GS1 run-time rules measured by script fuzzing (2.05, 2.22, 2.31)
+
+267 generated GS1 cases were delivered to each client as NPC prop 1 on a loopback lab, each script reporting a computed value through the player's chat; a copy of a control script after every case showed whether the engine still ran. No GS1 case crashed a client. 2.05's engine stopped for good after one damaged script, `fzr = ();`, which 2.22 and 2.31 run [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231).
+
+| Rule | 2.05 | 2.22 | 2.31 | Source |
+| --- | --- | --- | --- | --- |
+| live message codes | `#L` level, `#a` account, `#n` nick, `#m` gani, `#w` weapon and `#W` its image, `#k(0)` `Up`, `#1` `#2` `#3` `#8` the sword, shield, head and body images, `#C0` to `#C2` the colours; `#g`, `#f`, `#S` and `#D` are empty, `##` gives `#`, and `#c` the current chat; `#P1` and `#P1(-1)` empty | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| `#e` | `#e(2,-1,abcdef)` is `cdef`: a negative length means "to the end" | same; `#e(1,2)` stays literal | as 2.22 | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| empty and unclosed codes | `#t(-1)` and `#s(nosuch)` empty; `#s()` returned the tail of an unrelated string; an unclosed `#v(` drops the `#` and the letter and keeps `(` | `#s()` empty; `#v(` stays literal | as 2.22 | [lab][inf] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| `#v` and `#I` | `#v()` and `#v(#v(2))` are 0, so `#v` does not nest; `#I(fzs,0)` gives the first token, `hello`, not `hello world` | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| equality | exact: `1 == 1.00001`, `1 == 1.0001` and `0.1+0.2 == 0.3` are false | with a tolerance: all three true, and `1 < 1.00001` false | as 2.22 | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| mixed logic | `1 && 0 \|\| 1` is 0; `#s(fzs) == hello` compares the first token and is true | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| string functions | as the 2.05 reference | `strcontains(#s(fzs),ll)`, `strcontains(abc,)` and `lindexof(b,a,b,c)` are 0, and `3 in <1,3>` is 0; `ascii(x,y)` is 0 | as 2.22 | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| `indexof`, `strlen` | `indexof(,abc)` 1, `strlen(x,y)` 0 | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| loop limit | `while` and `for` stop at 10000 passes and the script carries on; nested loops share the count (100 × 100 gives 9901) | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| number text | single precision: `2147483647` prints `2.147484E9`, `99999999999` `1E11`, tiny values such as `-0.000000001` print 0; `31 % 0.00009` is 0; `(-32 % -1e3)` is −32 | single precision as 2.05; `31 % 0.00009` is 0 | double precision, nine decimals | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| `1e3` | 1000 | 1000 | 1000 | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| overflow | an overflowing `^` sometimes halts and sometimes gives a value; `int()` past 32 bits wraps (`int(4294967296)` is 0, `int(-2147483649 * 10)` −10) | `33 ^ 2147483647` gives `INF`; `int()` past 32 bits prints `-2.147484E9` | both halt the script | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| unary minus | `--int(3)` is −3, `(cos(1.5) / --7)` −7, `((0.5 - -1) - (0.5 * -1))` 0, `-(-0.5 ^ 2) * cos(-3.14159)` −0.25 | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| script errors | a missing `;`, an unknown command or a command with no arguments halts the script; a `with` with no target halts | the same three halt; a `with` with no target gives 4 | as 2.22 | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |
+| damaged text | `1.2.3` is 0, a doubled operator 0, a string variable in `#v` 0, and a string with high bytes has length 7 where four characters were meant | same | same | [lab] (protocol/script-fuzz-2026-11-19.md#gs1-205-222-and-231) |

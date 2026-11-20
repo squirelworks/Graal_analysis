@@ -375,3 +375,17 @@ The rules below complete the link behaviour: the seam between neighbours, the ca
 | connection flag | a further flag on the server connection also stops gani changes, footsteps and the A key; its meaning was not found | [2.22] (client-internals/ledges-push-pull.md#222-and-231) |
 | built-in gani gate | `jump.wav`, `stonemove.wav`, the pull sound and footsteps play only while the current gani is a built-in name (→ §4.10); the jump, push and pull still happen under a custom gani; sound names are bare (`jump.wav`) instead of under `sounds/` | [2.22][2.31] (client-internals/ledges-push-pull.md#222-and-231) |
 | 2.05 | none of these gates | [2.05] (client-internals/ledges-push-pull.md#222-and-231) |
+
+## 4.2.13 Crossing gmap edges (2.22, 2.31)
+
+A real 2.22 client walked east, south, west and north across a 2×2 gmap of open-grass levels on a lab server; the gmap file format is in → §3.2 [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap).
+
+| Rule | Source |
+| --- | --- |
+| Three different "maps" must not be mixed: level links (S→C 1, walking into one sends 0 or 30); bigmap-style server maps (`maps =`, a text grid the server alone uses to know which levels are adjacent); and gmaps (`gmaps =`, `GRMAP001`), where the client walks continuously. The `bigmap =` and `minimap =` options are a fourth thing: overlay settings sent as S→C 171 and 172 at login, and setting `bigmap` breaks gmaps | [srv] (client-internals/feature-specs/06-gmap-overworld.md#three-different-maps-do-not-mix) |
+| At login the server sends S→C 49 (x×2, y×2, z+50, cell x, cell y, then the gmap name), `LEVELNAME` (6) with the level and again with the gmap name, 174, 10 and 156 with the gmap name; the client fetches the `.gmap` itself and sends 35 (`i5` modtime + name, 0 on a cold cache) for the three neighbour levels | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| A crossing uses only ordinary props, with no level-warp message: the cell prop (43 or 44) changes in the same props message as the wrapped coordinate (local = global − 64 × cell), and position props go out only on whole-tile steps | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| 2.22 sends flag sets `gr.x` and `gr.y` on every half-tile step carrying the global position (past 63.5) from the server's movement weapon, and re-sends 39 on each crossing; going west, 39 goes at global x 63.5 and the next props carry X = 63.0 and cell 0 | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| The server answers each crossing in one frame: 6 with the new level, 39 (level modtime, only when not cached), 0 (an empty board), 6 with the gmap name, 174, 10, 156 | [cap] (client-internals/feature-specs/06-gmap-overworld.md#lab-capture-of-a-real-222-client-crossing-gmap-edges-2026-10-24-cap) |
+| 2.31 sends 46 (`GCHAR 1`) first, then the props with the cell prop and wrapped coordinate, and does not re-send 39 at the crossing (→ §2.4) | [cap] (client-internals/feature-specs/06-gmap-overworld.md#needs) |
+| UDP id 24 ("entered level") goes to peers in the 3×3 neighbourhood; the server keeps 39 per level so the next entry can use 30 or 35 with a cached board | [srv] (client-internals/feature-specs/06-gmap-overworld.md#gmap-wire-behaviour-srv) |

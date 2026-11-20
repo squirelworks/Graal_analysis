@@ -17,7 +17,7 @@ The Torque years are best understood as three different programs that share the 
 
 **What is measured, and what is not.** The UDP handshake is the strongest material in this Part. 5.12 was driven live against a lab server through challenge, connect, accept and its first data packets, and the minimal accept it takes is known. [run] (torque/network.md#the-full-handshake-live) Everything after the accept rests on static reads, and no Graal client has been seen drawing a 3D world: under Wine, 5.12's launcher faults when it switches to 3D. [run] (torque/engine-and-formats.md#rendering) No 3D content shipped with any client, because missions, terrain and shapes always came from the server, and no Graal 3D server or level data is in the archives. [file] (torque/engine-and-formats.md#3d-resource-formats) The open points that would change an implementation are listed in App. E#501–E#503: the 4.04r2 class CRC, and whether 4.04r2 loads `.mis` and `.dso` files.
 
-**How the later sections are scoped.** §10.7 to §10.12 record exact-build observations on Linux 3.04 and 4.20r6: script reading, packaged streams, a seven-operation executor subset and native-call boundaries. Each is deliberately narrow. A finding there holds for that input and that path, and it is not a general statement about TorqueScript execution in Graal. [bin] (torque/linux-304-seven-operation-contract.md)
+**How the later sections are scoped.** §10.7.1 to §10.7.6 record exact-build observations on Linux 3.04 and 4.20r6: script reading, packaged streams, a seven-operation executor subset and native-call boundaries. Each is deliberately narrow. A finding there holds for that input and that path, and it is not a general statement about TorqueScript execution in Graal. [bin] (torque/linux-304-seven-operation-contract.md)
 
 ## 10.1 Engine lineage
 
@@ -764,7 +764,11 @@ The rules below give where 3D content came from and how terrain textures are map
 | 3.153 maps terrain textures to detail textures and footstep sound types in script (→ §10.4.4) | [file] (torque/engine-and-formats.md#3d-resource-formats) |
 | 4.04r2 ships 3D GUI skins in `levels3d/gui/`, help pages in `levels3d/help/*.hfl` and nine `languages3D/language*.cs` tables of `$language::Name = "text";` lines, probably loaded by server GUI scripts | [file][inf] (graal3d/torque-engine-4x.md#files) |
 
-## 10.7 Linux 3.04: startup and compiled-script reading
+## 10.7 Linux 3.04 and 4.20r6 internals
+
+The sections below (→ §10.7.1 to §10.7.8) hold the static and lab reads of the Linux Torque-era clients' internals: how 3.04 starts and reads its compiled scripts, what its packaged streams hold, a small subset of its script executor, 4.20r6's native-object bridge, the show-image constants, the local value helpers, one menu walk, and where 3.04 gets its tile types. They are evidence boundaries for a reimplementer more than a protocol, and each says what it does not establish.
+
+### 10.7.1 Startup and compiled-script reading (3.04)
 
 [bin] The two 3.04-labelled unpacked trees are identical across 528 regular files each; the packed original is a separate input. [cap] The tested unpacked initializer fails its first observed signature check. The unchanged original passes both checks after its temporary/display environment is corrected. The comparison does not isolate packing as the cause. [bin] (client-internals/linux-304-startup-reader.md); [cap] (client-internals/linux-304-startup-reader.md)
 
@@ -773,33 +777,33 @@ The rules below give where 3D content came from and how terrain textures are map
 
 [cap] A separate later unchanged-packed-input probe follows the same program object in one thread from compiled reading through first code-word fetch to native handler entry; next index is one. Of 474 words, 401 nonrelocation positions match and 73 relocation positions are excluded. Termination occurs at handler entry: no handler/script completion or gameplay is proved. Earlier reader-only and unpacked-startup failures retain their own stopping points. Server/commit: none; observations and original-carrier audit remain researcher-supplied. [cap] (client-internals/linux-304-startup-reader.md#later-relocation-aware-first-handler-checkpoint)
 
-## 10.8 Linux 3.04: packaged Torque streams and the later trees
+### 10.7.2 Packaged Torque streams and the later trees (3.04)
 
 [bin] Each duplicate 3.04 label has the same 39 version-33 streams, 48,310 numeric words and 733 line pairs. Independent serialization reproduces every stream byte-for-byte. Numeric line-pair meanings remain unassigned; out-of-range identifier-pool selections remain flagged, separately from the reader's empty-string fallback. [bin] (formats/linux-torque-resource-scope.md)
 
 
 [bin] A 1,463-file inventory across eight prepared trees (including eight generated launchers and both duplicate 3.04 labels; not pristine installer counts) finds no packaged `.dso` or offset-zero version-33 candidate in the six later supplied trees. All nine supplied localization script resources match across the three 4.x labels; older counterparts differ. The supplied standalone 6.x folders originally held only executables; each second prepared-tree file is a generated launcher. These are two 6.01r1 architectures and 6.03r7 x64, not three releases. The 4.x trees are 4.04r2, 4.20r6 and 4.20r8 as identified in the source note. These offline results exclude neither embedded/downloaded streams nor an engine/compiler. No process/server ran; later execution and Windows E#503 remain unproved. [bin] (formats/linux-torque-resource-scope.md)
 
-## 10.9 Linux 3.04: a seven-operation executor subset
+### 10.7.3 A seven-operation executor subset (3.04)
 
 [bin] Selected Linux 3.04 static paths establish bit-preserving immediate load, one-entry discard, consuming zero/nonzero conditional branches, absolute code-word targets, signed decimal conversion and return of the current string position. The analysis ELF and original packed executable retain distinct identities. [bin] (torque/linux-304-seven-operation-contract.md).
 
 [inf] Seven independently authored acceptance vectors distinguish formatting and branch/stack behavior. They have not been executed in the original client; fresh invocation state, errors, string lifetime and complete VM equivalence remain unproved. The implementation comparison is pinned to its inspected snapshot. No runtime or server was started for this publication. [inf] (torque/linux-304-seven-operation-contract.md).
 
-### Native-call evidence boundary
+#### Native-call evidence boundary
 
 [bin] A retained exact-input Linux 3.04 static review distinguishes script-defined recursive entry from registered native callback dispatch with argument-count checks; a selected resolved-call path can rewrite its word or operand to a cached form. Some registry helpers remain outside the selected export. This is static path evidence, not callback execution or complete lookup/caching policy. [bin] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
 
 [inf] Published inclusive command/method counts do not establish argument representation or callback ABI. The seven-operation executor return does not establish native callback result conversion or lifetime. Case/namespace precedence, duplicates, coercions, arity failures, cache invalidation and echo behavior remain unqualified; independent API policy tests are not original-client oracles. No new native inspection or runtime work was done for publication. [inf] (torque/linux-304-seven-operation-contract.md#native-call-evidence-beyond-the-seven-operations)
 
 
-## 10.10 Linux 4.20r6: native-object registration
+### 10.7.4 Native-object registration (4.20r6)
 
 [bin] In the selected Linux 4.20r6 paths, constructor stores and runtime type metadata identify concrete SimGroup and GameConnection objects, each containing a Graal scripting-variable base subobject. The creation callback registers those base-subobject pointers on the scripting side, exposing a concrete static native-object bridge. Names alone are not the identification evidence. [bin] (client-internals/linux-420-native-object-bridge.md).
 
 [bin] A tail-call forwarding path does not establish an ordinary C callback ABI; an optional fast path remains unresolved. The separate r8 review shows that equal embedded payloads do not imply equal execution-state layouts. Initializer execution, live TorqueScript, GUI/input and a working 3D session remain unobserved in this scope. No runtime or server was started for publication preparation. [bin] (client-internals/linux-420-native-object-bridge.md).
 
-## 10.11 Linux 3.04: show-image wrapper constants
+### 10.7.5 Show-image wrapper constants (3.04)
 
 [bin] Retained exact-input static findings bind showimg/showimg2 to mode 0, showani/showani2 to mode 4, showpoly/showpoly2 to mode 3 and showtext/showtext2 to mode 2, with respective flags 0/1 in every pair. These internal constants add precision to already documented command presence and polygon machinery; mode 1, signature-letter grammar, flag meaning and rendered results remain unqualified. [bin] (torque/304-draw.md#exact-show-image-wrapper-constants-retained-static-review)
 
@@ -807,13 +811,13 @@ The rules below give where 3D content came from and how terrain textures are map
 
 [inf] Local insertion rejection does not establish repeated-command behavior or console/namespace duplicate policy. These are retained static assertions, not new native execution or a general interpreter/callback contract; no cross-build behavior is inferred. Document digests are checked while underlying native observations remain researcher-supplied. [inf] (torque/304-draw.md#provenance-and-scope-of-this-addition)
 
-## 10.12 Linux 3.04: local value helpers
+### 10.7.6 Local value helpers (3.04)
 
 [bin] Retained exact-input static review records a numeric accessor returning zero for null input, reading a stored double on its reviewed type/slot-absent branch and otherwise dispatching through a type-specific slot. A string-result accessor dispatches through its type-specific slot or a fallback initializer. A separate assignment helper includes scalar/numeric-array paths, element conversion and selected index-guarded writes. [bin] (torque/304-npcs.md#retained-local-numeric-and-string-helper-branches)
 
 [inf] These are local branch observations, not a complete coercion, array/index or formatting specification. They do not establish universal variable defaults, an empty-string result, every runtime type, rounding/exceptional-value policy, parser grammar or storage lifetime. They are separate from the published Torque integer-to-string operation and do not establish a native callback result adapter or ABI. Underlying static findings remain researcher-supplied; only retained documents were reviewed for publication and no original-client conversion result is claimed. [inf] (torque/304-npcs.md#evidence-and-remaining-conversion-gaps)
 
-## 10.13 Linux 3.04 stage-0 menu walk
+### 10.7.7 Stage-0 menu walk (3.04)
 
 The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` already sets log mode 6 when no log switch is given, so the executable was not changed. The first session had no network. The second could reach only a lab listserver on port 14922. The display was 1024 by 768 and the client opened its default 800 by 600 window. Logs and screenshots stay owner-held; nothing in them names a host. [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture)
 
@@ -824,7 +828,7 @@ The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` alrea
 | leaving | `quit` typed in the console without parentheses is a syntax error. The client then exits and writes its prefs and key map. The password is not saved | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
 | not covered | a four-tab server list, and any in-game screen. Tutorial was not opened | [lab] (live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture) |
 
-## 10.14 Linux 3.04: where tile types come from
+### 10.7.8 Where tile types come from (3.04)
 
 3.04 has no `arrays.dat` and no tile-type file or packet. The tile lists the 2.x clients read from `arrays.dat` are compiled into the executable as sorted lists of tile ids, and they equal 2.22's except that the water list lacks ids 1824 and 1825. Which rule judges a tile depends on the sheet type `tiledefs` picks for the level (→ §4.2) [bin][file] (torque/304-tile-types.md#short-answer).
 
@@ -837,3 +841,30 @@ The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` alrea
 | So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-tile type table, the range rule on a `pics1` level, or the wrong board on a gmap | [inf] (torque/304-tile-types.md#what-this-means-for-the-rebuild) |
 | Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef` lines at login (→ App. E#507) | [inf] (torque/304-tile-types.md#not-settled) |
 
+## 10.8 The 3D mode in the 2D clients
+
+From 3.0 to 6.03 every client sends a `G3D` login token, but only some of them can enter a 3D world, and the token alone never says a session is 3D: the same string logs an ordinary 2D session in. "3D mode" here means the Torque side that a 3D-capable build starts beside its 2D game when the player picks a 3D server [bin] (graal3d/g3d-version-tokens.md#naming); [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d). The February 2000 Graal3D is a different program with its own server and `GR3DV00x` tokens (→ §9).
+
+| Build | 3D side | Torque protocol | Source |
+| --- | --- | --- | --- |
+| 3.04 Linux | the whole client is Torque, stock TGE networking, no 3D scripts shipped | 9 (`Torque Game Engine Demo`) | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| 3.153 Mac | Graal-changed TGE: a class table in the accept, datablocks, `levels3d/` and `main3D.cs` | 19 (`Graal3D`) | [bin][file] (graal3d/g3d-version-tokens.md#when-a-g3d-client-is-torque-3d-capable) |
+| 4.03r3, 4.04r2 Windows | `Graal3DEngine.dll`, a separate engine with three exports (load, run, end), loaded the first time a 3D server is picked | 19 | [bin] (protocol/v4x-windows-403r3-411.md#the-3d-engine-became-a-library-in-411); [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| 4.11 Windows | `Graal3DEngine.dll` becomes a library of 206 exports (among them `resizeGraal3DWindow` and `toggleGraal3DFullScreen`) that the 2D engine calls into, with new 2D-engine callbacks to create 3D game objects and read terrain height | unmeasured | [bin][inf] (protocol/v4x-windows-403r3-411.md#the-3d-engine-became-a-library-in-411); [bin] (protocol/v4x-windows-403r3-411.md#what-the-engine-gained) |
+| 4.20 (Windows 4.20r8, Mac 4.20r6) | the `GameObject` layer, no datablocks (→ §10.5) | 21 (Mac 4.20r6 measured) | [bin] (graal3d/g3d-version-tokens.md#when-a-g3d-client-is-torque-3d-capable) |
+| 5.00r7, 5.12 Windows | `Graal3DEngine.dll` 5.0.0.7, `GameObject` layer | 24 | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| 5.24r3 and every later build | none; only the `GuiGraal3DCtrl` class name is left | n/a | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+
+The rules below give how a 3D-capable client enters 3D mode and what it carries. The step-by-step join is in → §10.2 and the handshake by build in → §10.3 [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d).
+
+| Rule | Detail | Source |
+| --- | --- | --- |
+| which server | a server is 3D when its list name starts with `3 `; picking one, or a server warp to such a name, opens the Torque side | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| two connections | the normal Graal TCP login on the listed port, and a Torque UDP connection to the same host on port + 1; the 3D side lives only as long as the TCP session | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| connect request | the game string `Graal3D`, the protocol twice, the account password in clear as the join password, and two arguments, account and nickname; the class CRC is a static `0xFFFFFFFF`, and the server sends its class names in the accept instead | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| who owns the window | in 3D mode the Torque DLL owns the window and the OpenGL output; the 2D engine still runs the game logic, GS2 and the Graal connection, and draws through the plug-in (→ §10.1.5) | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+| content | no `.dts`, `.dif`, `.ter` or `.mis` file ships with a client; missions, `levels3d/` trees and `GameObject` data come from the server (→ §10.6) | [file] (graal3d/g3d-version-tokens.md#when-a-g3d-client-is-torque-3d-capable) |
+| lab reach | a real 5.12 reached "Connection established" against a small lab responder; under Wine the same build stops at "Starting 3D mode" when its 3D side starts; native Linux 4.04r2 reached the mission start and printed "Graal3D has been activated!" | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#not-run-in-the-final-batch); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#protocol-19-on-404r2-e506-half) |
+| outside report | a third-party server author reported that a 5.007 client gets scripted 3D content over TCP on the game port and UDP on port + 1, and that 3D was gone from v6; the binaries put the cut at 5.24r3. That server's source is not public, so this is a report only | [doc] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
+
+How a server moves a 5.12 player in 3D, and the join arguments of 3.153 and 4.20r6, are open (→ App. E#505) [inf] (protocol/login-tokens-3x-7x.md#open-points).

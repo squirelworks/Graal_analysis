@@ -304,6 +304,22 @@ Each hardware field is computed the same way in every build read: the Windows 4.
 
 **Account step, 4.x against 5.x/6.x.** 4.x sends the typed or saved account in its first frame to the server named `Login` and never saves a `guest…` account; 5.24r4 and 6.03r7 log in as the built-in `guest` first, and a Login weapon renames the account before the world warp. A Login server for 4.x should accept a typed account on first connect without a guest-then-reconnect step. The stock 4.20r8 account dialog, its script API and whether an open Login GUI window survives S→C 178 are unconfirmed third-party leads until a loopback run on the unmodified engine. [bin][live][lab] (protocol/v4-login-account-contract.md); [bin][live] (protocol/v4-gui-survive-serverwarp.md)
 
+### 2.3.5.2 How the 3.x to 6.03 token is stored
+
+Every client from 1.33 to 6.03 sends a fixed eight-character token that names its build; it is not computed from anything at run time. What changed after 2.x is the prefix, where the token sits, and how the executable stores it. The full token list is in → §1.2 [bin] (protocol/login-tokens-3x-7x.md#the-question).
+
+| Rule | Builds | Detail | Source |
+| --- | --- | --- | --- |
+| prefix | 3.0 to 6.03 | `G3D` on every build, the 2D-only Windows and Linux builds of 4.x to 6.x included; the prefix alone does not make a client 3D (→ §10.8) | [bin] (protocol/login-tokens-3x-7x.md#the-token-itself) |
+| date stamp | 3.04, 3.153 | reuse the 2D stamps: 3.04 sends `G3D03014` as 2.22 sends `GNW03014`, 3.153 `G3D28015` as 2.31 `GNW28015`, and speak those builds' protocols | [bin] (protocol/login-tokens-3x-7x.md#the-token-itself) |
+| date stamp | 4.x and later | the build's own date again, one stamp per platform build: Windows 4.04r2 `G3D17026` and Linux 4.04r2 `G3D19026`; Windows 4.20r8 `G3D20126`, Mac 4.20r6 `G3D21126`, Linux 4.20 `G3D22126`; Windows 6.03r7 `G3D0311C`, Linux `G3D0511C`. A server must list each platform's token | [bin] (protocol/login-tokens-3x-7x.md#the-token-itself) |
+| year character | 2010 and later | a letter: `A` in the 6.01 tokens, `C` in the 6.03 tokens, read as the year as a hex digit (A = 2010, C = 2012) | [inf] (protocol/login-tokens-3x-7x.md#the-token-itself) |
+| storage | 2.x Delphi to 6.01 | built one character at a time from immediates or one-character globals, so no string literal exists; on 4.x Windows the token is in `GraalEngine.dll`, on 5.x in `Graal3DEngine.dll`, and the Delphi launcher holds none | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| storage | 6.03r7 Linux and Windows | one scrambled eight-byte lower-case string, decoded and upper-cased at run time; to decode byte b at position i of a string of length n: NOT b, add −10 − n, rotate the low byte right by two, subtract i, all modulo 256; a live run of Linux 6.03r7 showed the routine decode, upper-case and send it | [bin][lab] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| storage | 6.11 and later | none: the connector script builds the login (→ §2.10) | [bin] (protocol/login-tokens-3x-7x.md#611-and-7x) |
+| where it is made | all | in the game connection's connect routine, right after "Connecting to the game server..." and "Done."; the routine then sends the login as id 5 and `PLI_LANGUAGE` (37); nothing else touches the token | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| 4.03r3 | Windows 4.03r3 | already carries the `DigitalProductId` read, the MAC lookup and the volume-serial call, and the gen-5 seed and multiplier, so the machine list most likely starts with the first Windows 4.x build held; its fields were not re-traced | [bin][inf] (protocol/v4x-windows-403r3-411.md#login-and-identity) |
+
 ## 2.3.6 Server parse and reply sequence
 
 ### 2.3.6.1 How a GServer-v2 parses the login

@@ -14,7 +14,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | `01-builds.md` | I Client generations and builds |
 | `02-protocol/` | II Wire protocol (§2.1 to §2.10) |
 | `03-formats/` | III File formats (§3.1 to §3.10) |
-| `04-behaviour/` | IV Client behaviour by version (§4.1 to §4.10) |
+| `04-behaviour/` | IV Client behaviour by version (§4.1 to §4.12) |
 | `05-servers.md` | V Game servers |
 | `06-listserver.md` | VI Listserver |
 | `07-rc-nc.md` | VII RC and NC |
@@ -22,7 +22,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | `09-graal3d.md` | IX Graal3D (2000) |
 | `10-torque.md` | X Torque-era 3D |
 | `11-tools.md` | XI Tools and the formats they define |
-| `app-a-messages.md` … `app-g-tags.md` | Appendices A to G |
+| `app-a-messages.md` … `app-g-tags.md` | Appendices A to G; App. E is in two files, the open questions (`app-e-open-questions.md`) and the settled ones (`app-e-settled.md`) |
 | `sources.tsv` | the source map: every note, `pending`, `cited` or `excluded` |
 
 ## Status

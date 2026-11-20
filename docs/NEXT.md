@@ -219,9 +219,9 @@ macOS CI is paused until the polish stage.
   - [ ] Table events, flags, variables and functions per 1.x build.
   - [x] ~~Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer.~~ 1.33 to 2.31 and 5.00r7 done ([run](../live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines); manual §4.1.8: all round down, and 1.33's 0.15 is 2 steps). Linux 6.03r7 GS2 / lowered-GS1 timers **ceil** to 50 ms and fire sub-0.05 ([quirks](../client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [cadence](../client-internals/update-cadence-3x-6x.md#603r7-gs2-timer-ceils-to-50-ms)).
   - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
-  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) and manual §4.11.13.
+  - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) and manual §4.11.12.1.
     - 2026-11-18: 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 logged in through a lab `Login` lobby on real Windows 10, drew the level and walked ([run](../live-runs/real-win10-2026-11-18/README.md), §2.3.6.4). Still open: the full action list on the fixture world, and 6.113 (signed connector).
-    - 2026-11-19: the action list ran on Linux 6.03r7 (with an observer) and on real Windows 4.20r8 to 6.03r7 (§4.11.14). Spin and the glove chest are not client results; the rest is tracked in #652.
+    - 2026-11-19: the action list ran on Linux 6.03r7 (with an observer) and on real Windows 4.20r8 to 6.03r7 (§4.11.12.2). Spin and the glove chest are not client results; the rest is tracked in #652.
   - [x] ~~Rerun 5.12 Mac against a server whose version table knows the Mac tokens (#399).~~ [Note](../version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md): tileset sent, level draws; 3.153 and 5.12 send id 18 only for `client.` flags.
   - [x] ~~Settle E#324's static items (1.x packet hits, mode 7, the 2.17.1+ victim test, the respawn AP bands).~~ [Note](../client-internals/combat-baddy-tile-by-version.md#not-known) (#444); the live checks stay open.
   - [ ] Settle E#209 (opcode 54, `waitfor` timeout) and E#423 (1999 server open points).
@@ -530,7 +530,7 @@ macOS CI is paused until the polish stage.
   `torque/study-torque-clients.md`, `torque/rebuild-plan-3.04.md`. Follow-ups wait in
   #243 (stage 0 reference captures of the real 3.04, the TGE 1.x licence check, Part X).
   The rebuild is graal-client-repro's (squirelworks/graal-client-repro#303).
-  - [x] ~~Linux 3.04 stage-0 menu walk.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture); manual §10.13. Log mode 6, one server-list tab, no in-game screen. The TGE 1.x licence check, the four-tab list and in-game screens stay open.
+  - [x] ~~Linux 3.04 stage-0 menu walk.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#6-243-linux-304-stage-0-capture); manual §10.7.7. Log mode 6, one server-list tab, no in-game screen. The TGE 1.x licence check, the four-tab list and in-game screens stay open.
   - [x] v5 export, static read only (2026-11-07): `torque/launcher-5007.md`,
     `torque/engine-5007.md`, `torque/g3d-5007.md`, the 5.12 / 5.243 / 5.244 stubs,
     unpacked `torque/engine-530r3.md` and `torque/engine-531r4.md`.

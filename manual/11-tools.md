@@ -347,6 +347,56 @@ Other period tools are listed here. Each row gives a tool, what it does and the 
 | Recovered third-party trainers (AutoIt and VB6 macro tools such as AutoD, WaterGet and the AFK bots) | AFK chat bots, input macros and chat or costume spam that act on the stock client's window from outside; read statically, none run; groups and tool-by-tool behaviour → §4.10.1.4 | — | [bin] (recovered-hacks/TRAINER_RE_NOTES.md); [bin] (recovered-hacks/behaviour-models.md); [bin] (recovered-hacks/static-2026-11-01/README.md); [doc] (recovered-hacks/THREAT_TAXONOMY.md) |
 | DClient setup | a VB6-era installer bootstrap; its cabinet is truncated, so the client cannot be rebuilt | — | [bin] (recovered-drive-tools/ghidra-analysis/DClient_setup/SUMMARY.md) |
 
+### 11.7.1 LevelFiller (2001)
+
+LevelFiller, the NewWorld team's theme filler, scatters tile objects (flowers, bushes, trees, rocks) over `GLEVNW01` levels so a plain level looks hand-made, and can append NPCs to many levels at once. It shipped with a level viewer and with LFThemeMaker, a generator of random-patch themes. Version 0.6 (2001-06-29) is intact and was read; 0.7 (2001-07-04) survives only as its documentation and form text, because the first 604,160 bytes of both copies are zero [bin][doc] (tools/levelfiller.md#what-we-hold).
+
+The theme file (`.nwt`) is INI-like text. The rules below give its parts [doc][bin] (tools/levelfiller.md#theme-nwt).
+
+| Part | Rule | Source |
+| --- | --- | --- |
+| `[theme]` | `name=` and `author=` | [doc][bin] (tools/levelfiller.md#theme-nwt) |
+| `[rules]` | `repbase=<tile>` (optional, the background tile to fill over), `base=<tile>` (the background of a preview level), then `<object>=<quantity>[\|<replace tile>]`; a rule with no replace tile uses `base`; `;` starts a comment | [doc][bin] (tools/levelfiller.md#theme-nwt) |
+| `[objects]` | `<name>` on its own line opens an object; dotted properties (`.author=`, the border lines `.top=`, `.left=`, `.bttm=`, `.rght=` as `percent,object`); then tile rows of two `BOARD` characters per cell, a pair of spaces being transparent | [doc][bin] (tools/levelfiller.md#theme-nwt) |
+| complex objects | a name followed by `*` holds script text, not tile rows; `<` and `>` inside it are saved as `#l` and `#g` | [doc][bin] (tools/levelfiller.md#theme-nwt) |
+| order and limits | rules are tried in file order, so earlier objects take the space first; names are case sensitive and may not contain `(`, `)`, `<`, `>`; at most 200 objects in 0.6 and 1,024 in 0.7 | [doc][bin] (tools/levelfiller.md#theme-nwt) |
+| presets | `Levelfill.dat` is an `[objects]` body of 90 preset objects | [file] (tools/levelfiller.md#theme-nwt) |
+| quantity | `n` placements; `p%` of the level's cells, `Round(width × height × p / 100)`, each attempt subtracting the object's own area; `r(a,b)` a random integer (also as `r(a,b)%`); `c(p%,n)` the number of hits in n rolls of p %; a placement with no room is dropped | [bin][doc] (tools/levelfiller.md#quantity) |
+| level I/O | reads the 64 `BOARD` rows into a 64 × 64 grid and keeps every other line as an opaque tail; writes `GLEVNW01`, 64 lines `BOARD 0 <y> 64 0 <128 characters>`, then the tail unchanged (→ §3.1.3) | [bin] (tools/levelfiller.md#level-io) |
+| settings | `LEVELFILL.ini` `[config]`: `edgessetting`, `autosave`, `autodebug`, `picsfile` (the `pics*nw.png` tileset it draws with), `deftheme`; `levelfill.<app>.ini` in plug-in mode | [bin] (tools/levelfiller.md#ini) |
+
+Placement goes rule by rule. The steps below are those of 0.6, which the 0.7 notes say did not change [bin] (tools/levelfiller.md#placement).
+
+| Step | Rule | Source |
+| --- | --- | --- |
+| 1 | evaluate the quantity to a remaining amount | [bin] (tools/levelfiller.md#placement) |
+| 2 | while it is above 0, pick `row = Random(H')` then `col = Random(W')`, the level size less the object's size when "keep inside the level" is ticked, with Delphi's `Random` (`RandSeed × 0x08088405 + 1`) | [bin] (tools/levelfiller.md#placement) |
+| 3 | a position fits when every cell of the object's bounding box, transparent cells included, holds the replace tile; outside the level the neighbouring level is read when "fill across levels" is on and it is loaded, otherwise the fit fails | [bin] (tools/levelfiller.md#placement) |
+| 4 | up to three positions per placement; on a fit the non-blank cells are written, into the neighbour for an overhang; a complex object is evaluated first and placed as what it builds or returns | [bin] (tools/levelfiller.md#placement) |
+| 5 | subtract 1, or the area for `%`, whether or not a fit was found | [bin] (tools/levelfiller.md#placement) |
+| neighbours | "fill across levels" keeps five neighbour grids (four sides and one corner); which corner was not pinned down | [bin] (tools/levelfiller.md#placement) |
+| borders | after all placements of a rule, touching copies get border objects on their outer edges only, each with its given chance; from the readme, the border code itself was not traced | [doc] (tools/levelfiller.md#borders) |
+
+The object language of complex objects ends statements with `;` and takes `//` and `/* */` comments. Its forms are `setsize(w,h)` (required before `add`), `setworkarea(x,y,w,h)` and `unsetworkarea`, `add(obj,n)` and `add(obj,x,y)` (a tile written `*AA`), `return(obj)`, `r(a,b)`, `c(p%,n)`, `round(x)`, `if`, and from 0.7 `while` and `for (v=a,b[,step])`; variables with `+ - * / ^` (integer division), `=` or `==`, `not`, `and`, `or`; and `debug(v)`, `debug(*)` and `msg('text'&10'more')` [doc][bin] (tools/levelfiller.md#object-language-complex-objects).
+
+The command line runs it as a plug-in of another editor, as Greaditor did on a temporary copy of the open level: `/n:<app>` (plug-in mode, autosave, the host in the title), `/l:"a.nw[,b.nw…]"` the levels, `/o:"caption"`, `/t:"theme.nwt"`, `/silent` (apply, save and exit; needs `/t` and `/l`) and `/log:"file"` [bin] (tools/levelfiller.md#command-line-plug-in-mode).
+
+LFThemeMaker turns a `.tm` recipe (`[Tiles]` sixteen tiles, one per corner mask; `[Objects]` size and density ranges and a base name; `[Theme]` the object count, the quantity per object such as `c(5%,1)`, and the output) into a `.nwt` of random blobs. Each cell takes `Tile[mask]`, the mask being its four corners: top-left 1, top-right 2, bottom-right 4, bottom-left 8, with mask 0 written blank; checked on the shipped `default.nwt` against `LightGrass_on_Grass.tm` [bin][file] (tools/levelfiller.md#lfthememaker-tm--nwt).
+
+### 11.7.2 Small utilities
+
+The small player and staff utilities of the period were read statically; packed ones were unpacked in an offline lab VM first. Each row gives one tool and what it does [bin] (tools/small-utilities-2026-11-14.md).
+
+| Tool | What it does | Source |
+| --- | --- | --- |
+| Graal Messenger (2012) | a fan-made buddy list, PM and server browser for the 6.x login (MinGW C++, GTK, boost asio): it logs in to the listserver on 14922 with type 7, a key byte and `G3D30123rc2`, then account and password; and to the `Login` server on 14900 with type 5, a key byte, `G3D14097`, account, password and an identity line `win,<a>,<b>,<c>,"Hi There!"` cut from a fixed filler. On connect it sends `GraalEngine,lister,options,globalpms=true,buddytracking=true,showbuddies=true`, `GraalEngine,lister,verifybuddies,1,-1` and `GraalEngine,pmservers,""`, and from its windows `GraalEngine,lister,addbuddy,"<account>"`, `…,deletebuddy,"<account>"` and `GraalEngine,pmserverplayers,"<server>"`. As a fan client it shows what servers accepted, not what the official client sends | [bin] (tools/small-utilities-2026-11-14.md#graal-messenger) |
+| Graal Sound Fix (2010) | a Java button that finds `game_config.txt` in the usual install folders and flips `tryloadsoundson64bit=true\|false`, a 5.x and 6.x Windows client option | [bin][src] (tools/small-utilities-2026-11-14.md#graal-sound-fix) |
+| default character and theme icon DLLs (1999) | 16-bit resource libraries: 29 icons (the 28 default characters and the Graal icon) and 5 theme icons; no code | [bin] (tools/small-utilities-2026-11-14.md#icon-dlls) |
+| apcalc | a VB6 AP calculator: minutes to 100 AP and to healing at 40 AP, at 30, 90, 300, 600 and 1200 s per point for the bands 0–19 to 80–99 (43,800 s from 0); the same rates as the server defaults of → §4.4 | [bin] (tools/small-utilities-2026-11-14.md#apcalc) |
+| Guild Manager 1.4 (2003) | a VB6 offline editor of a guild member list (`account:nickname` lines saved as `.txt`); no server traffic | [bin][inf] (tools/small-utilities-2026-11-14.md#guild-manager) |
+| guildcode and Guild Maker (1999) | the 1999 `.code` writer for `guildname.code` and `reg.code`, two DES-variant halves keyed `AXBORG15` and `VERGRAAL` (the DES wrapper → §3.7) | [bin] (tools/small-utilities-2026-11-14.md#guildcode-and-guild-maker) |
+| START-HUB (2019) | a `GLEVNW01` starting room of 21 NPCs and 12 signs that hand out weapons and looks; a GS1 sample, not a program | [file] (tools/small-utilities-2026-11-14.md#start-hub) |
+
 Recovered server binaries, described in Part V [bin] (recovered-drive-tools/ghidra-analysis/gserver13/SUMMARY.md):
 
 | Binary | Notes | Source |
