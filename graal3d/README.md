@@ -15,6 +15,7 @@ No decompiler output is reproduced here.
 - [collision.md](collision.md): per-face step test for a `Collider` (radius 5, step height 30, slope and wall rules, probe order), static read of the February 2000 client.
 - [camera.md](camera.md): follow distance 220, look height +80, turn ±5°/tick, pitch −0.15 rad; field of view 0.5 (opening about 53.13°); back plane 5000.
 - [lab-2026-10-30.md](lab-2026-10-30.md): the live run of both programs under Wine, what it confirmed and its limits.
+- [x-loader-fuzz-2026-11-20.md](x-loader-fuzz-2026-11-20.md): malformed `.x` levels on real Windows 10; a bad face count or face index leaves no collision object and ends in an error box.
 - [reference-server/](reference-server/): a small Python server written from these notes. The real client logs into it, and it matches the original server's messages on the lab session.
 - [beta3-genesis.md](beta3-genesis.md): the later beta that sends `GR3DV003`. Same network side, new Genesis3D renderer and local BSP world; the archived server rejects it.
 - [torque-engine-4x.md](torque-engine-4x.md): the **other** Graal 3D, the Torque-based `Graal3DEngine.dll` of the 4.x clients (2006), and how a 4.x client connects to a 3D server.

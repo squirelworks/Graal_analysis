@@ -426,12 +426,13 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Static recovery separates the pickup action, the carried category and the carrying flag | [bin][cap] (client-internals/404r2-carry-state.md) |
-| Open | The meaning of the pickup-bound field, the path from a physical key to the action, and the asset behind a provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
+| Open | The meaning of the pickup-bound field, the asset behind a provisional second cut pattern, and whether the second A throws or drops (the key itself is now known: A) | [bin] (client-internals/404r2-carry-state.md#open-questions) |
 | Evidence | The countdown cannot give elapsed timing without the clocks of → §4.1.7 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
 | Tried (2026-11-20) | The same Win10 offline session never reached a liftable object before the client closed, so no lift, carry or throw was captured | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
 | Tried again (2026-11-20) | About 13 more starts on the same guest, with bush tiles added beside the tutorial start, never reached the login window: each stopped at the start-up callback crash, so this guest gives no repeatable scene | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
+| Evidence (2026-11-20) | Under Wine (OpenGL renderer) offline play is repeatable. A is the pickup key (D and S do nothing under the tutorial's `disableweapons`): one tap lifts a bush and changes its tiles, walking carries, and a second tap ends the carry. The stock offline files have no lift or carry animation, and the carried or thrown bush is never drawn, so a throw cannot be told from a drop on screen | [lab] (protocol/lab-appe-gwentea2-2026-11-20e.md#windows-404r2-pickup-in-offline-mode-under-wine-e611) |
 | Best guess | The bound field is the carried object's kind, set when the lift starts. Confidence: low | [inf] (client-internals/404r2-carry-state.md#open-questions) |
-| Settles it | A semantic read of the field and the input route, then a scene that captures each action before and after, on a guest where 4.04r2 starts cleanly (XP or 32-bit Win7) or under Wine | [inf] (client-internals/404r2-carry-state.md#open-questions) |
+| Settles it | A semantic read of the field, then a debugger or memory read of it around each action in the Wine scene | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | Outlook | Read, then Lab | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 
 ## E.7 Servers, listserver, RC and NC
