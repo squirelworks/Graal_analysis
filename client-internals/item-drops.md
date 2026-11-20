@@ -81,5 +81,7 @@ The item object (`TAdventureExtra`) and the level's item tick:
 ## Open
 
 - 1.41's pickup and timeout path is assumed to be 1.39's.
-- 1.x pickup box in tiles (only 1.3's pixel overlap was read).
-- Whether items are drawn under or over players (Seihai draws them under, inferred).
+- ~~1.x pickup box in tiles (only 1.3's pixel overlap was read).~~ Settled for 1.39: the box is sized
+  in eighths of a tile from the item's sprite record; see [static-reads-appendix-e-2026-11-20-g.md](static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317).
+- ~~Whether items are drawn under or over players (Seihai draws them under, inferred).~~ 1.39 draws
+  them in y order, measured in `protocol/lab-appe-mirae-2026-11-20c.md`.

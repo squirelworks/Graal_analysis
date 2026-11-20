@@ -39,7 +39,8 @@ chests and then the tile.
   body box the 2.05 walking test uses.
 - The item's box is centred across x + 1 and starts one eighth of a tile below y. Its width and height
   come from the item sprite's stored size. Whether that size is in eighths of a tile or in sprite
-  pixels was not confirmed, so the item box's size in tiles is still open.
+  pixels was not confirmed, so the item box's size in tiles is still open. (Settled later: eighths of
+  a tile; see [static-reads-appendix-e-2026-11-20-g.md](static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317).)
 - The overlap is strict on all four sides. When it holds, the client looks the item kind up in its 25-entry table; online
   it sends `PLI_ITEMTAKE` (32) with the position and the item. The offline branch was not followed.
 - The draw order of items against players was not read.
