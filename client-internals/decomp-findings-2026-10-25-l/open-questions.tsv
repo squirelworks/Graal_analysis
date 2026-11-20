@@ -1,6 +1,6 @@
 question	status	note
-throw of a lifted object (flight, landing, damage)	open	not read
-what a cut or lift drops	open	spawn routine takes the entry index; not read
+throw of a lifted object (flight, landing, damage)	settled	read on 2.22; see ../static-reads-appendix-e-2026-11-20-f.md
+what a cut or lift drops	settled	nothing client-side; drops are the server's; see ../static-reads-appendix-e-2026-11-20-f.md
 carrying pose and where the carried object is drawn	open	not read
 probe point for chests and signs	open	assumed equal to the A-key probe; the lift probe is read
 which glove property value the server sends	open	the wire property was not matched

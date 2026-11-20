@@ -11,8 +11,8 @@ Date: 2026-11-16. Research-gaps / research-list rank **#34** (focus 2.220). E#30
 | Edge-link fire rules and ±64 seam arrivals (W/E/N/S) | **Settled for 2.05** | `client-internals/decomp-findings-2026-10-28/03-edge-links.md` **[bin]** |
 | Neighbour 3×3 filled from big-map text grid on level entry | **Settled for 2.05** | same **[bin]** |
 | Per-facing **probe offsets** (player + offset before rectangle tests) | **Settled for 2.05 and 2.22** (2026-11-19): up (+1.5, +1.0), left (+0.5, +2.0), down (+1.5, +3.0), right (+2.5, +2.0); the table is identical in both | [`link-probe-offsets-205-222-2026-11-19.md`](link-probe-offsets-205-222-2026-11-19.md) **[bin]** |
-| Flag that **skips** the neighbour-table fill | **Open** (unidentified) | E#308 **[bin]** |
-| Whether 2.22 uses `PLO_BIGMAP` (171) the same way 2.05 uses offline `bigmap.txt` | **Open** | E#308 — 2.22/2.31 not read there **[bin]** |
+| Flag that **skips** the neighbour-table fill | **Settled** (2026-11-20): the `dontconnectlevels` option; 2.22 ignores it on a gmap | [static reads, sixth batch](../client-internals/static-reads-appendix-e-2026-11-20-f.md#the-neighbour-table-builder-and-its-skip-flags-e308) **[bin]** |
+| Whether 2.22 uses `PLO_BIGMAP` (171) the same way 2.05 uses offline `bigmap.txt` | **Settled for 2.22** (2026-11-20): 171 renames the big-map file and reruns the `bigmap.txt` loader | [static reads, sixth batch](../client-internals/static-reads-appendix-e-2026-11-20-f.md#plo_bigmap-171-and-the-gs1-setmap-command) **[bin]** |
 | Walking past the edge before the link fires when neighbour is loaded | **Read** (2026-11-19): with the neighbour loaded only the probe threshold applies; no crossing run yet | [`link-probe-offsets-205-222-2026-11-19.md`](link-probe-offsets-205-222-2026-11-19.md) **[bin]** |
 | Gmap entry / death save (E#314) | **Open** | needs S+L on 2.22 |
 
@@ -29,6 +29,6 @@ Tags: **[bin][doc]**. No new binary session in this pass. Focus 2.220 still need
 | Item | Status |
 |---|---|
 | Numeric probe offsets per facing on 2.22 | **Settled** (2026-11-19, same table as 2.05) |
-| Neighbour-table skip flag identity | **Open** S |
-| `PLO_BIGMAP` vs offline bigmap on 2.22 | **Open** S then L |
+| Neighbour-table skip flag identity | **Settled** S (2026-11-20) |
+| `PLO_BIGMAP` vs offline bigmap on 2.22 | S **settled** (2026-11-20); L open |
 | Entry-point save across gmap death/crossing (E#314) | **Open** L |

@@ -53,10 +53,9 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#214 | Why some official bodies do not end in a return | Owner | a separate emitter path for one kind of script | [inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#still-open) |
 | E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
-| E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
 | E#317 | 1.x pickup box and item draw order | Read | draw order by y (measured); item box size open | [inf] (client-internals/item-drops.md#open) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
-| E#323 | 2.22 level-object routines | Read | as in 2.05 | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
@@ -71,7 +70,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
-| E#613 | 2.22 remote PM roster | Read | a request for the server's player list, answered with the list message | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
@@ -249,18 +247,6 @@ These questions are about single messages and props: which builds send or handle
 | Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 | Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 
-### E#613 Windows 2.22 remote PM roster and visible result
-
-**Question.** How 2.22 asks the server for its remote player roster and what it shows with the reply. The composer and type-37 sender lookup are bounded statically (→ §2.8.7) [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Types 55, 56 and 82 select default cleanup in the recovered dispatcher | [bin] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Open | The roster's UI trigger, request builder, accepted reply and identity-creation route; virtual type-28 send framing; the visible message; sibling builds. Later `requestlist` and `pmserverplayers` behaviour is not established | [bin][inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Best guess | The roster is a request for the server's player list answered with the ordinary player-list message, and the result opens a PM window per name. Confidence: low | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Settles it | Resolve the request caller and receive route statically, then one lab run with two players | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-| Outlook | Read, then Lab | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
-
 ## E.5 File formats and tiles
 
 These questions are about what is in a file and how a client reads it (→ Part III). Several of them look like format questions but are really questions about which client routine consumes a field, which a file alone cannot answer [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
@@ -322,19 +308,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | Reading the gani frame field of 2.22 offline with the stock `push.gani` | [inf] (client-internals/player-mannerisms-live.md#open) |
 | Outlook | Lab | [inf] (client-internals/player-mannerisms-live.md#open) |
 
-### E#308 Link probe offsets and the neighbour-table flag
-
-**Question.** The flag that skips the 3 x 3 neighbour table, and whether `PLO_BIGMAP` (171) installs the same grid as `bigmap.txt` [2.05] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The 2.05 edge rules and the 3 x 3 neighbour fill are settled | [bin] (protocol/link-probe-bigmap-status.md) |
-| Settled (2026-11-19) | The per-facing probe offsets, in tiles: up (+1.5, +1.0), left (+0.5, +2.0), down (+1.5, +3.0), right (+2.5, +2.0). The table is byte-identical in 2.05 and 2.22, so 2.22 keeps 2.05's offsets. With the neighbour loaded, only the probe threshold applies, so the player can walk past the edge until it fires | [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md) |
-| Open | The flag that skips the neighbour-table build, which lives in a routine not yet traced, and a crossing run on 2.22 | [bin] (protocol/link-probe-offsets-205-222-2026-11-19.md#still-open) |
-| Best guess | 171 fills the same grid as `bigmap.txt`. Confidence: moderate | [inf] (protocol/link-probe-bigmap-status.md) |
-| Settles it | A 2.22 read of the neighbour-table builder, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
-| Outlook | Read, then Lab | [inf] (protocol/link-probe-bigmap-status.md) |
-
 ### E#317 The 1.x pickup box and item draw order
 
 **Question.** The 1.x pickup box in tiles, and whether items draw under or over players [bin] (client-internals/item-drops.md#open).
@@ -368,9 +341,11 @@ These questions are about what a client does in play: timing, walking, combat, i
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Open | The throw, the drop on cut or lift, the carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Open | The carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Evidence | `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry and throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
 | Tried (2026-11-19) | 2.22's probe table is byte-identical to 2.05's; its carry, throw and take-player-carry logic sits in one large script action dispatcher; the routines were not compared one by one | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#222-level-object-code-e323) |
+| Settled part (2026-11-20) | The throw sends UDP 18 and, when a TCP copy is needed, an empty `PLI_THROWCARRIED` (11); it flies 9 ticks at 1 tile per tick from (x + 0.5) with a shadow at y + 1, sinking 0.2 tile per tick, on the same step table as 2.05; it hits a wall, an NPC (`waspelt`), baddies, then the player within 2 tiles, and lands as a splash or a break effect (leaves for a bush), or sets a carried bomb or NPC back down; cut and lift roll no drop (→ §4.5.2). The x, y sender earlier taken for 11 is the bomb pickup, UDP 11 with `PLI_BOMBDEL` (5) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
+| Open (2026-11-20) | The read gives 9 tiles of flight where the 2.05 live note saw about 6; a 2.22 frame-by-frame throw in open ground would settle it | [bin] (client-internals/static-reads-appendix-e-2026-11-20-f.md#not-covered-1) |
 | Best guess | The routines match 2.05's, since 2.22's walking rule does. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Settles it | Reading those routines in 2.22, or one lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
@@ -744,6 +719,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#302 | Walking speed factors other than 1.0, 1.2 and the hidden 0.2 | → §4.2.1.1 |
 | E#303 | Two unidentified lists in the blocked-point test | → §4.2.3 |
 | E#306 | What picks `lift2.wav` for a pull | → §4.2.8 |
+| E#308 | Link probe offsets and the neighbour-table flag | → §4.2.11 |
 | E#307 | Probe, nudge and step tables of 1.39 | → §4.2.2.2 |
 | E#309 | Knockback distance of 1.39 | → §4.3.7.2 |
 | E#310 | Where the once-per-second hit stamp sits | → §4.3.3 |
@@ -782,6 +758,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#607 | Leftover lines in the protocol cheat sheet | → §2.1.2 |
 | E#608 | How many `arrays.dat` lists make a tile passable | → §3.5.3.1 |
 | E#609 | macOS archive labels and application identity | → §1.9.1 |
+| E#613 | Windows 2.22 remote PM roster and visible result | → §2.8.7 |
 | E#614 | Tiledef type 4 consumer | → §3.5.2 |
 | E#617 | Whether 1.41 rev 1 loads `.nw` levels online | → §1.5 |
 | E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | → §1.9.4 |
