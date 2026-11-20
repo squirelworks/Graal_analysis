@@ -1,0 +1,475 @@
+# fzk v3: Escape only at the very end (2.x Escape = modal "quit Graal?" dialog; a later space confirms it). No Escape after F-keys.
+# fzk v2 (2026-11-20): kx2.sh (rep/hold work), plus K14 Ctrl+letter sweep, K15 single-key sweep, K16 dialog keys last.
+# fz: key/chat input fuzz. Vars: D (X display), LV (start level). C>S per mark window is the observer (c2swin.py).
+waitsession 240
+wait s2c 9 90
+sleep 12
+shot 00-base
+mark K01 tab-open-type-return
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sleep 0.5
+sh sh $HOME/fzk/kx2.sh {D} type 'fzhello1'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1.5
+shot k01
+mark K02 type-return
+sh sh $HOME/fzk/kx2.sh {D} type 'fzhello2'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1.5
+shot k02
+mark K03 long-300
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type 'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 2
+shot k03
+mark K04 long-300-noTab
+sh sh $HOME/fzk/kx2.sh {D} type 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 2
+shot k04
+mark K05 hashcodes
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '#c#n#v(playerrupees)#s(x)#g#m#1#8#a#e#f#K(65)#w#p(0)#P1'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 2
+shot k05
+mark K06 highbytes
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type 'fzäöüÿ§°'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 2
+shot k06
+mark K07 chat-open-then-ctrl-fkeys
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type 'fzopen'
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+a ctrl+c ctrl+v
+sleep 2
+shot k07
+mark K08 rapid-a-x200
+sh sh $HOME/fzk/kx2.sh {D} rep 200 a
+sleep 2
+shot k08
+mark K09 rapid-space-x50
+sh sh $HOME/fzk/kx2.sh {D} rep 50 space
+sleep 3
+shot k09
+mark K10 hold-right-across-warp
+sh sh -c "$HOME/fzk/kx2.sh {D} hold Right 3 &"
+sleep 1
+s2c 14 c:60 c:60 t:{LV}
+sleep 4
+shot k10
+mark K11 all-mods-letters
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+a shift+ctrl+a alt+shift+a
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+s shift+ctrl+s alt+shift+s
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+d shift+ctrl+d alt+shift+d
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+q shift+ctrl+q alt+shift+q
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+w shift+ctrl+w alt+shift+w
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+e shift+ctrl+e alt+shift+e
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+z shift+ctrl+z alt+shift+z
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+x shift+ctrl+x alt+shift+x
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+alt+c shift+ctrl+c alt+shift+c
+sleep 2
+shot k11
+mark K12 slashcmds
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/help'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/sethead fzh.png'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/setbody fzb.png'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/setnick fz'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/toall fz'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/showkills'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sleep 2
+shot k12
+mark K14-ctrl-a
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+a
+sleep 1.2
+mark K14-ctrl-b
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+b
+sleep 1.2
+mark K14-ctrl-c
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+c
+sleep 1.2
+mark K14-ctrl-d
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+d
+sleep 1.2
+mark K14-ctrl-e
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+e
+sleep 1.2
+mark K14-ctrl-f
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+f
+sleep 1.2
+mark K14-ctrl-g
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+g
+sleep 1.2
+mark K14-ctrl-h
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+h
+sleep 1.2
+mark K14-ctrl-i
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+i
+sleep 1.2
+mark K14-ctrl-j
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+j
+sleep 1.2
+mark K14-ctrl-k
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+k
+sleep 1.2
+mark K14-ctrl-l
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+l
+sleep 1.2
+mark K14-ctrl-m
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+m
+sleep 1.2
+mark K14-ctrl-n
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+n
+sleep 1.2
+mark K14-ctrl-o
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+o
+sleep 1.2
+mark K14-ctrl-p
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+p
+sleep 1.2
+mark K14-ctrl-q
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+q
+sleep 1.2
+mark K14-ctrl-r
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+r
+sleep 1.2
+mark K14-ctrl-s
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+s
+sleep 1.2
+mark K14-ctrl-t
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+t
+sleep 1.2
+mark K14-ctrl-u
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+u
+sleep 1.2
+mark K14-ctrl-v
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+v
+sleep 1.2
+mark K14-ctrl-w
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+w
+sleep 1.2
+mark K14-ctrl-x
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+x
+sleep 1.2
+mark K14-ctrl-y
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+y
+sleep 1.2
+mark K14-ctrl-z
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+z
+sleep 1.2
+shot k14
+mark K15-key-a
+sh sh $HOME/fzk/kx2.sh {D} key a
+sleep 0.8
+mark K15-key-b
+sh sh $HOME/fzk/kx2.sh {D} key b
+sleep 0.8
+mark K15-key-c
+sh sh $HOME/fzk/kx2.sh {D} key c
+sleep 0.8
+mark K15-key-d
+sh sh $HOME/fzk/kx2.sh {D} key d
+sleep 0.8
+mark K15-key-e
+sh sh $HOME/fzk/kx2.sh {D} key e
+sleep 0.8
+mark K15-key-f
+sh sh $HOME/fzk/kx2.sh {D} key f
+sleep 0.8
+mark K15-key-g
+sh sh $HOME/fzk/kx2.sh {D} key g
+sleep 0.8
+mark K15-key-h
+sh sh $HOME/fzk/kx2.sh {D} key h
+sleep 0.8
+mark K15-key-i
+sh sh $HOME/fzk/kx2.sh {D} key i
+sleep 0.8
+mark K15-key-j
+sh sh $HOME/fzk/kx2.sh {D} key j
+sleep 0.8
+mark K15-key-k
+sh sh $HOME/fzk/kx2.sh {D} key k
+sleep 0.8
+mark K15-key-l
+sh sh $HOME/fzk/kx2.sh {D} key l
+sleep 0.8
+mark K15-key-m
+sh sh $HOME/fzk/kx2.sh {D} key m
+sleep 0.8
+mark K15-key-n
+sh sh $HOME/fzk/kx2.sh {D} key n
+sleep 0.8
+mark K15-key-o
+sh sh $HOME/fzk/kx2.sh {D} key o
+sleep 0.8
+mark K15-key-p
+sh sh $HOME/fzk/kx2.sh {D} key p
+sleep 0.8
+mark K15-key-q
+sh sh $HOME/fzk/kx2.sh {D} key q
+sleep 0.8
+mark K15-key-r
+sh sh $HOME/fzk/kx2.sh {D} key r
+sleep 0.8
+mark K15-key-s
+sh sh $HOME/fzk/kx2.sh {D} key s
+sleep 0.8
+mark K15-key-t
+sh sh $HOME/fzk/kx2.sh {D} key t
+sleep 0.8
+mark K15-key-u
+sh sh $HOME/fzk/kx2.sh {D} key u
+sleep 0.8
+mark K15-key-v
+sh sh $HOME/fzk/kx2.sh {D} key v
+sleep 0.8
+mark K15-key-w
+sh sh $HOME/fzk/kx2.sh {D} key w
+sleep 0.8
+mark K15-key-x
+sh sh $HOME/fzk/kx2.sh {D} key x
+sleep 0.8
+mark K15-key-y
+sh sh $HOME/fzk/kx2.sh {D} key y
+sleep 0.8
+mark K15-key-z
+sh sh $HOME/fzk/kx2.sh {D} key z
+sleep 0.8
+mark K15-key-0
+sh sh $HOME/fzk/kx2.sh {D} key 0
+sleep 0.8
+mark K15-key-1
+sh sh $HOME/fzk/kx2.sh {D} key 1
+sleep 0.8
+mark K15-key-2
+sh sh $HOME/fzk/kx2.sh {D} key 2
+sleep 0.8
+mark K15-key-3
+sh sh $HOME/fzk/kx2.sh {D} key 3
+sleep 0.8
+mark K15-key-4
+sh sh $HOME/fzk/kx2.sh {D} key 4
+sleep 0.8
+mark K15-key-5
+sh sh $HOME/fzk/kx2.sh {D} key 5
+sleep 0.8
+mark K15-key-6
+sh sh $HOME/fzk/kx2.sh {D} key 6
+sleep 0.8
+mark K15-key-7
+sh sh $HOME/fzk/kx2.sh {D} key 7
+sleep 0.8
+mark K15-key-8
+sh sh $HOME/fzk/kx2.sh {D} key 8
+sleep 0.8
+mark K15-key-9
+sh sh $HOME/fzk/kx2.sh {D} key 9
+sleep 0.8
+mark K15-key-minus
+sh sh $HOME/fzk/kx2.sh {D} key minus
+sleep 0.8
+mark K15-key-equal
+sh sh $HOME/fzk/kx2.sh {D} key equal
+sleep 0.8
+mark K15-key-bracketleft
+sh sh $HOME/fzk/kx2.sh {D} key bracketleft
+sleep 0.8
+mark K15-key-bracketright
+sh sh $HOME/fzk/kx2.sh {D} key bracketright
+sleep 0.8
+mark K15-key-semicolon
+sh sh $HOME/fzk/kx2.sh {D} key semicolon
+sleep 0.8
+mark K15-key-apostrophe
+sh sh $HOME/fzk/kx2.sh {D} key apostrophe
+sleep 0.8
+mark K15-key-comma
+sh sh $HOME/fzk/kx2.sh {D} key comma
+sleep 0.8
+mark K15-key-period
+sh sh $HOME/fzk/kx2.sh {D} key period
+sleep 0.8
+mark K15-key-slash
+sh sh $HOME/fzk/kx2.sh {D} key slash
+sleep 0.8
+mark K15-key-backslash
+sh sh $HOME/fzk/kx2.sh {D} key backslash
+sleep 0.8
+mark K15-key-grave
+sh sh $HOME/fzk/kx2.sh {D} key grave
+sleep 0.8
+mark K15-key-BackSpace
+sh sh $HOME/fzk/kx2.sh {D} key BackSpace
+sleep 0.8
+mark K15-key-Insert
+sh sh $HOME/fzk/kx2.sh {D} key Insert
+sleep 0.8
+mark K15-key-Delete
+sh sh $HOME/fzk/kx2.sh {D} key Delete
+sleep 0.8
+mark K15-key-Home
+sh sh $HOME/fzk/kx2.sh {D} key Home
+sleep 0.8
+mark K15-key-End
+sh sh $HOME/fzk/kx2.sh {D} key End
+sleep 0.8
+mark K15-key-Prior
+sh sh $HOME/fzk/kx2.sh {D} key Prior
+sleep 0.8
+mark K15-key-Next
+sh sh $HOME/fzk/kx2.sh {D} key Next
+sleep 0.8
+mark K15-key-KP_Add
+sh sh $HOME/fzk/kx2.sh {D} key KP_Add
+sleep 0.8
+mark K15-key-KP_Subtract
+sh sh $HOME/fzk/kx2.sh {D} key KP_Subtract
+sleep 0.8
+mark K15-key-KP_Multiply
+sh sh $HOME/fzk/kx2.sh {D} key KP_Multiply
+sleep 0.8
+mark K15-key-KP_Divide
+sh sh $HOME/fzk/kx2.sh {D} key KP_Divide
+sleep 0.8
+mark K15-key-KP_Enter
+sh sh $HOME/fzk/kx2.sh {D} key KP_Enter
+sleep 0.8
+mark K15-key-Pause
+sh sh $HOME/fzk/kx2.sh {D} key Pause
+sleep 0.8
+mark K15-key-Print
+sh sh $HOME/fzk/kx2.sh {D} key Print
+sleep 0.8
+mark K15-key-Scroll_Lock
+sh sh $HOME/fzk/kx2.sh {D} key Scroll_Lock
+sleep 0.8
+mark K15-key-Caps_Lock
+sh sh $HOME/fzk/kx2.sh {D} key Caps_Lock
+sleep 0.8
+mark K15-key-Caps_Lock
+sh sh $HOME/fzk/kx2.sh {D} key Caps_Lock
+sleep 0.8
+mark K15-key-Num_Lock
+sh sh $HOME/fzk/kx2.sh {D} key Num_Lock
+sleep 0.8
+mark K15-key-Num_Lock
+sh sh $HOME/fzk/kx2.sh {D} key Num_Lock
+sleep 0.8
+mark K15-key-Menu
+sh sh $HOME/fzk/kx2.sh {D} key Menu
+sleep 0.8
+mark K15-key-Super_L
+sh sh $HOME/fzk/kx2.sh {D} key Super_L
+sleep 0.8
+shot k15
+mark K16-alt+Return
+sh sh $HOME/fzk/kx2.sh {D} key alt+Return
+sleep 1.5
+shot k16-alt_Return
+mark K16-ctrl+Tab
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+Tab
+sleep 1.5
+shot k16-ctrl_Tab
+mark K16-shift+Tab
+sh sh $HOME/fzk/kx2.sh {D} key shift+Tab
+sleep 1.5
+shot k16-shift_Tab
+mark K16-alt+Tab
+sh sh $HOME/fzk/kx2.sh {D} key alt+Tab
+sleep 1.5
+shot k16-alt_Tab
+mark K16-ctrl+Return
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+Return
+sleep 1.5
+shot k16-ctrl_Return
+mark K16-shift+Return
+sh sh $HOME/fzk/kx2.sh {D} key shift+Return
+sleep 1.5
+shot k16-shift_Return
+mark K16-ctrl+shift+Escape
+sh sh $HOME/fzk/kx2.sh {D} key ctrl+shift+Escape
+sleep 1.5
+shot k16-ctrl_shift_Escape
+mark K16-F1
+sh sh $HOME/fzk/kx2.sh {D} key F1
+sleep 1.5
+shot k16-f1
+mark K16-F2
+sh sh $HOME/fzk/kx2.sh {D} key F2
+sleep 1.5
+shot k16-f2
+mark K16-F3
+sh sh $HOME/fzk/kx2.sh {D} key F3
+sleep 1.5
+shot k16-f3
+mark K16-F4
+sh sh $HOME/fzk/kx2.sh {D} key F4
+sleep 1.5
+shot k16-f4
+mark K16-F5
+sh sh $HOME/fzk/kx2.sh {D} key F5
+sleep 1.5
+shot k16-f5
+mark K16-F6
+sh sh $HOME/fzk/kx2.sh {D} key F6
+sleep 1.5
+shot k16-f6
+mark K16-F7
+sh sh $HOME/fzk/kx2.sh {D} key F7
+sleep 1.5
+shot k16-f7
+mark K16-F8
+sh sh $HOME/fzk/kx2.sh {D} key F8
+sleep 1.5
+shot k16-f8
+mark K16-F9
+sh sh $HOME/fzk/kx2.sh {D} key F9
+sleep 1.5
+shot k16-f9
+mark K16-F10
+sh sh $HOME/fzk/kx2.sh {D} key F10
+sleep 1.5
+shot k16-f10
+mark K16-F11
+sh sh $HOME/fzk/kx2.sh {D} key F11
+sleep 1.5
+shot k16-f11
+mark K16-F12
+sh sh $HOME/fzk/kx2.sh {D} key F12
+sleep 1.5
+shot k16-f12
+mark K17 reconnect
+sh sh $HOME/fzk/kx2.sh {D} key Tab
+sh sh $HOME/fzk/kx2.sh {D} type '/reconnect'
+sh sh $HOME/fzk/kx2.sh {D} key Return
+sleep 1
+sleep 8
+shot k17
+mark K18-Escape-last
+sh sh $HOME/fzk/kx2.sh {D} key Escape
+sleep 2
+shot k16-esc
+mark K19 end
+sleep 3
+shot zz-end

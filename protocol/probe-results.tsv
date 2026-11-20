@@ -4222,3 +4222,304 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-1.39	s2c	22	-	22 c:61 c:59 c:5 | 22 c:63 c:60 c:0 | 22 c:62 c:58 c:1	-	yes	none	items with y 29 to 30 draw behind the player	e317c	-
 2026-11-20	win-5.00r7	s2c	9	12	9 c:12 str:"Français éüñ" (Latin-1 bytes)	-	yes	none	chat drawn as Français éüñ	e213a	t1-chat
 2026-11-20	win-5.00r7	s2c	9	0	9 c:0 str:"Français éüñ" (Latin-1 bytes)	-	yes	none	nickname drawn as Français éüñ	e213a	t2-nick
+2026-11-20	win-2.22 (wine)	s2c	8	(control)	8 s:N c:12 str:hi c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	ctl-12str
+2026-11-20	win-2.22 (wine)	s2c	8	(control)	8 s:N c:2 c:6 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	ctl-2c
+2026-11-20	win-2.22 (wine)	s2c	8	(control)	8 s:N c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	ctl-none
+2026-11-20	win-2.22 (wine)	s2c	8	74	8 s:N c:74 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	p74-c
+2026-11-20	win-2.22 (wine)	s2c	8	74	8 s:N c:74 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p74-i5
+2026-11-20	win-2.22 (wine)	s2c	8	74	8 s:N c:74 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p74-s
+2026-11-20	win-2.22 (wine)	s2c	8	74	8 s:N c:74 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	p74-str
+2026-11-20	win-2.22 (wine)	s2c	8	75	8 s:N c:75 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	p75-c
+2026-11-20	win-2.22 (wine)	s2c	8	75	8 s:N c:75 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p75-i5
+2026-11-20	win-2.22 (wine)	s2c	8	75	8 s:N c:75 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p75-s
+2026-11-20	win-2.22 (wine)	s2c	8	75	8 s:N c:75 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	p75-str
+2026-11-20	win-2.22 (wine)	s2c	8	76	8 s:N c:76 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p76-c
+2026-11-20	win-2.22 (wine)	s2c	8	76	8 s:N c:76 i5:2080768 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op222	p76-i5
+2026-11-20	win-2.22 (wine)	s2c	8	76	8 s:N c:76 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p76-s
+2026-11-20	win-2.22 (wine)	s2c	8	76	8 s:N c:76 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p76-str
+2026-11-20	win-2.22 (wine)	s2c	8	77	8 s:N c:77 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p77-c
+2026-11-20	win-2.22 (wine)	s2c	8	77	8 s:N c:77 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p77-i5
+2026-11-20	win-2.22 (wine)	s2c	8	77	8 s:N c:77 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p77-s
+2026-11-20	win-2.22 (wine)	s2c	8	77	8 s:N c:77 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p77-str
+2026-11-20	win-2.22 (wine)	s2c	8	78	8 s:N c:78 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p78-c
+2026-11-20	win-2.22 (wine)	s2c	8	78	8 s:N c:78 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p78-i5
+2026-11-20	win-2.22 (wine)	s2c	8	78	8 s:N c:78 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p78-s
+2026-11-20	win-2.22 (wine)	s2c	8	78	8 s:N c:78 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p78-str
+2026-11-20	win-2.22 (wine)	s2c	8	79	8 s:N c:79 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p79-c
+2026-11-20	win-2.22 (wine)	s2c	8	79	8 s:N c:79 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p79-i5
+2026-11-20	win-2.22 (wine)	s2c	8	79	8 s:N c:79 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p79-s
+2026-11-20	win-2.22 (wine)	s2c	8	79	8 s:N c:79 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p79-str
+2026-11-20	win-2.22 (wine)	s2c	8	80	8 s:N c:80 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p80-c
+2026-11-20	win-2.22 (wine)	s2c	8	80	8 s:N c:80 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p80-i5
+2026-11-20	win-2.22 (wine)	s2c	8	80	8 s:N c:80 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p80-s
+2026-11-20	win-2.22 (wine)	s2c	8	80	8 s:N c:80 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p80-str
+2026-11-20	win-2.22 (wine)	s2c	8	81	8 s:N c:81 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p81-c
+2026-11-20	win-2.22 (wine)	s2c	8	81	8 s:N c:81 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p81-i5
+2026-11-20	win-2.22 (wine)	s2c	8	81	8 s:N c:81 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p81-s
+2026-11-20	win-2.22 (wine)	s2c	8	81	8 s:N c:81 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p81-str
+2026-11-20	win-2.22 (wine)	s2c	8	82	8 s:N c:82 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p82-c
+2026-11-20	win-2.22 (wine)	s2c	8	82	8 s:N c:82 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p82-i5
+2026-11-20	win-2.22 (wine)	s2c	8	82	8 s:N c:82 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p82-s
+2026-11-20	win-2.22 (wine)	s2c	8	82	8 s:N c:82 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p82-str
+2026-11-20	win-2.22 (wine)	s2c	8	83	8 s:N c:83 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p83-c
+2026-11-20	win-2.22 (wine)	s2c	8	83	8 s:N c:83 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p83-i5
+2026-11-20	win-2.22 (wine)	s2c	8	83	8 s:N c:83 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p83-s
+2026-11-20	win-2.22 (wine)	s2c	8	83	8 s:N c:83 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p83-str
+2026-11-20	win-2.22 (wine)	s2c	8	84	8 s:N c:84 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p84-c
+2026-11-20	win-2.22 (wine)	s2c	8	84	8 s:N c:84 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p84-i5
+2026-11-20	win-2.22 (wine)	s2c	8	84	8 s:N c:84 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p84-s
+2026-11-20	win-2.22 (wine)	s2c	8	84	8 s:N c:84 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p84-str
+2026-11-20	win-2.22 (wine)	s2c	8	85	8 s:N c:85 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p85-c
+2026-11-20	win-2.22 (wine)	s2c	8	85	8 s:N c:85 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p85-i5
+2026-11-20	win-2.22 (wine)	s2c	8	85	8 s:N c:85 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p85-s
+2026-11-20	win-2.22 (wine)	s2c	8	85	8 s:N c:85 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p85-str
+2026-11-20	win-2.22 (wine)	s2c	8	86	8 s:N c:86 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p86-c
+2026-11-20	win-2.22 (wine)	s2c	8	86	8 s:N c:86 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p86-i5
+2026-11-20	win-2.22 (wine)	s2c	8	86	8 s:N c:86 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p86-s
+2026-11-20	win-2.22 (wine)	s2c	8	86	8 s:N c:86 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p86-str
+2026-11-20	win-2.22 (wine)	s2c	8	87	8 s:N c:87 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p87-c
+2026-11-20	win-2.22 (wine)	s2c	8	87	8 s:N c:87 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p87-i5
+2026-11-20	win-2.22 (wine)	s2c	8	87	8 s:N c:87 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p87-s
+2026-11-20	win-2.22 (wine)	s2c	8	87	8 s:N c:87 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p87-str
+2026-11-20	win-2.22 (wine)	s2c	8	88	8 s:N c:88 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p88-c
+2026-11-20	win-2.22 (wine)	s2c	8	88	8 s:N c:88 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p88-i5
+2026-11-20	win-2.22 (wine)	s2c	8	88	8 s:N c:88 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p88-s
+2026-11-20	win-2.22 (wine)	s2c	8	88	8 s:N c:88 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p88-str
+2026-11-20	win-2.22 (wine)	s2c	8	89	8 s:N c:89 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p89-c
+2026-11-20	win-2.22 (wine)	s2c	8	89	8 s:N c:89 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p89-i5
+2026-11-20	win-2.22 (wine)	s2c	8	89	8 s:N c:89 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p89-s
+2026-11-20	win-2.22 (wine)	s2c	8	89	8 s:N c:89 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p89-str
+2026-11-20	win-2.22 (wine)	s2c	8	90	8 s:N c:90 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p90-c
+2026-11-20	win-2.22 (wine)	s2c	8	90	8 s:N c:90 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p90-i5
+2026-11-20	win-2.22 (wine)	s2c	8	90	8 s:N c:90 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p90-s
+2026-11-20	win-2.22 (wine)	s2c	8	90	8 s:N c:90 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op222	p90-str
+2026-11-20	win-2.31 (wine)	s2c	8	(control)	8 s:N c:12 str:hi c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	ctl-12str
+2026-11-20	win-2.31 (wine)	s2c	8	(control)	8 s:N c:2 c:6 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	ctl-2c
+2026-11-20	win-2.31 (wine)	s2c	8	(control)	8 s:N c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	ctl-none
+2026-11-20	win-2.31 (wine)	s2c	8	74	8 s:N c:74 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p74-c
+2026-11-20	win-2.31 (wine)	s2c	8	74	8 s:N c:74 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p74-i5
+2026-11-20	win-2.31 (wine)	s2c	8	74	8 s:N c:74 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p74-s
+2026-11-20	win-2.31 (wine)	s2c	8	74	8 s:N c:74 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p74-str
+2026-11-20	win-2.31 (wine)	s2c	8	75	8 s:N c:75 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p75-c
+2026-11-20	win-2.31 (wine)	s2c	8	75	8 s:N c:75 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p75-i5
+2026-11-20	win-2.31 (wine)	s2c	8	75	8 s:N c:75 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p75-s
+2026-11-20	win-2.31 (wine)	s2c	8	75	8 s:N c:75 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p75-str
+2026-11-20	win-2.31 (wine)	s2c	8	76	8 s:N c:76 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p76-c
+2026-11-20	win-2.31 (wine)	s2c	8	76	8 s:N c:76 i5:2080768 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p76-i5
+2026-11-20	win-2.31 (wine)	s2c	8	76	8 s:N c:76 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p76-s
+2026-11-20	win-2.31 (wine)	s2c	8	76	8 s:N c:76 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p76-str
+2026-11-20	win-2.31 (wine)	s2c	8	77	8 s:N c:77 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p77-c
+2026-11-20	win-2.31 (wine)	s2c	8	77	8 s:N c:77 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p77-i5
+2026-11-20	win-2.31 (wine)	s2c	8	77	8 s:N c:77 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p77-s
+2026-11-20	win-2.31 (wine)	s2c	8	77	8 s:N c:77 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p77-str
+2026-11-20	win-2.31 (wine)	s2c	8	78	8 s:N c:78 c:0 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op231	p78-c
+2026-11-20	win-2.31 (wine)	s2c	8	78	8 s:N c:78 i5:2080768 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op231	p78-i5
+2026-11-20	win-2.31 (wine)	s2c	8	78	8 s:N c:78 s:300 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p78-s
+2026-11-20	win-2.31 (wine)	s2c	8	78	8 s:N c:78 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p78-str
+2026-11-20	win-2.31 (wine)	s2c	8	79	8 s:N c:79 c:0 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op231	p79-c
+2026-11-20	win-2.31 (wine)	s2c	8	79	8 s:N c:79 i5:2080768 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op231	p79-i5
+2026-11-20	win-2.31 (wine)	s2c	8	79	8 s:N c:79 s:300 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op231	p79-s
+2026-11-20	win-2.31 (wine)	s2c	8	79	8 s:N c:79 str:x c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op231	p79-str
+2026-11-20	win-2.31 (wine)	s2c	8	80	8 s:N c:80 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p80-c
+2026-11-20	win-2.31 (wine)	s2c	8	80	8 s:N c:80 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p80-i5
+2026-11-20	win-2.31 (wine)	s2c	8	80	8 s:N c:80 s:300 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p80-s
+2026-11-20	win-2.31 (wine)	s2c	8	80	8 s:N c:80 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op231	p80-str
+2026-11-20	win-2.31 (wine)	s2c	8	81	8 s:N c:81 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p81-c
+2026-11-20	win-2.31 (wine)	s2c	8	81	8 s:N c:81 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p81-i5
+2026-11-20	win-2.31 (wine)	s2c	8	81	8 s:N c:81 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p81-s
+2026-11-20	win-2.31 (wine)	s2c	8	81	8 s:N c:81 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p81-str
+2026-11-20	win-2.31 (wine)	s2c	8	82	8 s:N c:82 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p82-c
+2026-11-20	win-2.31 (wine)	s2c	8	82	8 s:N c:82 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p82-i5
+2026-11-20	win-2.31 (wine)	s2c	8	82	8 s:N c:82 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p82-s
+2026-11-20	win-2.31 (wine)	s2c	8	82	8 s:N c:82 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p82-str
+2026-11-20	win-2.31 (wine)	s2c	8	83	8 s:N c:83 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p83-c
+2026-11-20	win-2.31 (wine)	s2c	8	83	8 s:N c:83 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p83-i5
+2026-11-20	win-2.31 (wine)	s2c	8	83	8 s:N c:83 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p83-s
+2026-11-20	win-2.31 (wine)	s2c	8	83	8 s:N c:83 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p83-str
+2026-11-20	win-2.31 (wine)	s2c	8	84	8 s:N c:84 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p84-c
+2026-11-20	win-2.31 (wine)	s2c	8	84	8 s:N c:84 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p84-i5
+2026-11-20	win-2.31 (wine)	s2c	8	84	8 s:N c:84 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p84-s
+2026-11-20	win-2.31 (wine)	s2c	8	84	8 s:N c:84 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p84-str
+2026-11-20	win-2.31 (wine)	s2c	8	85	8 s:N c:85 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p85-c
+2026-11-20	win-2.31 (wine)	s2c	8	85	8 s:N c:85 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p85-i5
+2026-11-20	win-2.31 (wine)	s2c	8	85	8 s:N c:85 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p85-s
+2026-11-20	win-2.31 (wine)	s2c	8	85	8 s:N c:85 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p85-str
+2026-11-20	win-2.31 (wine)	s2c	8	86	8 s:N c:86 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p86-c
+2026-11-20	win-2.31 (wine)	s2c	8	86	8 s:N c:86 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p86-i5
+2026-11-20	win-2.31 (wine)	s2c	8	86	8 s:N c:86 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p86-s
+2026-11-20	win-2.31 (wine)	s2c	8	86	8 s:N c:86 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p86-str
+2026-11-20	win-2.31 (wine)	s2c	8	87	8 s:N c:87 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p87-c
+2026-11-20	win-2.31 (wine)	s2c	8	87	8 s:N c:87 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p87-i5
+2026-11-20	win-2.31 (wine)	s2c	8	87	8 s:N c:87 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p87-s
+2026-11-20	win-2.31 (wine)	s2c	8	87	8 s:N c:87 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p87-str
+2026-11-20	win-2.31 (wine)	s2c	8	88	8 s:N c:88 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p88-c
+2026-11-20	win-2.31 (wine)	s2c	8	88	8 s:N c:88 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p88-i5
+2026-11-20	win-2.31 (wine)	s2c	8	88	8 s:N c:88 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p88-s
+2026-11-20	win-2.31 (wine)	s2c	8	88	8 s:N c:88 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p88-str
+2026-11-20	win-2.31 (wine)	s2c	8	89	8 s:N c:89 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p89-c
+2026-11-20	win-2.31 (wine)	s2c	8	89	8 s:N c:89 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p89-i5
+2026-11-20	win-2.31 (wine)	s2c	8	89	8 s:N c:89 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p89-s
+2026-11-20	win-2.31 (wine)	s2c	8	89	8 s:N c:89 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p89-str
+2026-11-20	win-2.31 (wine)	s2c	8	90	8 s:N c:90 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p90-c
+2026-11-20	win-2.31 (wine)	s2c	8	90	8 s:N c:90 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p90-i5
+2026-11-20	win-2.31 (wine)	s2c	8	90	8 s:N c:90 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p90-s
+2026-11-20	win-2.31 (wine)	s2c	8	90	8 s:N c:90 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op231	p90-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	(control)	8 s:N c:12 str:hi c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	ctl-12str
+2026-11-20	win-4.20r8 (wine)	s2c	8	(control)	8 s:N c:2 c:6 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	ctl-2c
+2026-11-20	win-4.20r8 (wine)	s2c	8	(control)	8 s:N c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	ctl-none
+2026-11-20	win-4.20r8 (wine)	s2c	8	74	8 s:N c:74 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p74-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	74	8 s:N c:74 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p74-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	74	8 s:N c:74 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p74-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	74	8 s:N c:74 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p74-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	75	8 s:N c:75 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p75-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	75	8 s:N c:75 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p75-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	75	8 s:N c:75 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p75-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	75	8 s:N c:75 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p75-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	76	8 s:N c:76 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p76-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	76	8 s:N c:76 i5:2080768 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p76-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	76	8 s:N c:76 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p76-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	76	8 s:N c:76 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p76-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	77	8 s:N c:77 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p77-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	77	8 s:N c:77 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p77-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	77	8 s:N c:77 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p77-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	77	8 s:N c:77 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p77-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	78	8 s:N c:78 c:0 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p78-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	78	8 s:N c:78 i5:2080768 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p78-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	78	8 s:N c:78 s:300 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p78-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	78	8 s:N c:78 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p78-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	79	8 s:N c:79 c:0 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p79-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	79	8 s:N c:79 i5:2080768 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p79-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	79	8 s:N c:79 s:300 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p79-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	79	8 s:N c:79 str:x c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p79-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	80	8 s:N c:80 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p80-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	80	8 s:N c:80 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p80-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	80	8 s:N c:80 s:300 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p80-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	80	8 s:N c:80 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p80-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	81	8 s:N c:81 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op420	p81-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	81	8 s:N c:81 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p81-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	81	8 s:N c:81 s:300 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op420	p81-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	81	8 s:N c:81 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p81-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	82	8 s:N c:82 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p82-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	82	8 s:N c:82 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p82-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	82	8 s:N c:82 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p82-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	82	8 s:N c:82 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p82-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	83	8 s:N c:83 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p83-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	83	8 s:N c:83 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p83-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	83	8 s:N c:83 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p83-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	83	8 s:N c:83 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p83-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	84	8 s:N c:84 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p84-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	84	8 s:N c:84 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p84-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	84	8 s:N c:84 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p84-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	84	8 s:N c:84 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p84-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	85	8 s:N c:85 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p85-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	85	8 s:N c:85 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p85-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	85	8 s:N c:85 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p85-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	85	8 s:N c:85 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p85-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	86	8 s:N c:86 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p86-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	86	8 s:N c:86 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p86-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	86	8 s:N c:86 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p86-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	86	8 s:N c:86 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p86-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	87	8 s:N c:87 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p87-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	87	8 s:N c:87 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p87-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	87	8 s:N c:87 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p87-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	87	8 s:N c:87 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p87-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	88	8 s:N c:88 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p88-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	88	8 s:N c:88 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p88-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	88	8 s:N c:88 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p88-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	88	8 s:N c:88 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p88-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	89	8 s:N c:89 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p89-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	89	8 s:N c:89 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p89-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	89	8 s:N c:89 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p89-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	89	8 s:N c:89 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p89-str
+2026-11-20	win-4.20r8 (wine)	s2c	8	90	8 s:N c:90 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p90-c
+2026-11-20	win-4.20r8 (wine)	s2c	8	90	8 s:N c:90 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p90-i5
+2026-11-20	win-4.20r8 (wine)	s2c	8	90	8 s:N c:90 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p90-s
+2026-11-20	win-4.20r8 (wine)	s2c	8	90	8 s:N c:90 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op420	p90-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	(control)	8 s:N c:12 str:hi c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	ctl-12str
+2026-11-20	win-5.24r4 (wine)	s2c	8	(control)	8 s:N c:2 c:6 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	ctl-2c
+2026-11-20	win-5.24r4 (wine)	s2c	8	(control)	8 s:N c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	ctl-none
+2026-11-20	win-5.24r4 (wine)	s2c	8	74	8 s:N c:74 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p74-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	74	8 s:N c:74 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p74-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	74	8 s:N c:74 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p74-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	74	8 s:N c:74 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p74-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	75	8 s:N c:75 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p75-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	75	8 s:N c:75 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p75-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	75	8 s:N c:75 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p75-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	75	8 s:N c:75 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p75-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	76	8 s:N c:76 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p76-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	76	8 s:N c:76 i5:2080768 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p76-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	76	8 s:N c:76 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p76-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	76	8 s:N c:76 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p76-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	77	8 s:N c:77 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p77-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	77	8 s:N c:77 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p77-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	77	8 s:N c:77 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p77-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	77	8 s:N c:77 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p77-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	78	8 s:N c:78 c:0 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p78-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	78	8 s:N c:78 i5:2080768 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p78-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	78	8 s:N c:78 s:300 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p78-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	78	8 s:N c:78 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p78-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	79	8 s:N c:79 c:0 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p79-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	79	8 s:N c:79 i5:2080768 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p79-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	79	8 s:N c:79 s:300 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p79-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	79	8 s:N c:79 str:x c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p79-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	80	8 s:N c:80 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p80-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	80	8 s:N c:80 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p80-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	80	8 s:N c:80 s:300 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p80-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	80	8 s:N c:80 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p80-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	81	8 s:N c:81 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p81-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	81	8 s:N c:81 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p81-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	81	8 s:N c:81 s:300 c:15 c:72	no	yes	none	fake player no longer drawn anywhere on screen	fzk-op524	p81-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	81	8 s:N c:81 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p81-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	82	8 s:N c:82 c:0 c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p82-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	82	8 s:N c:82 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p82-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	82	8 s:N c:82 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p82-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	82	8 s:N c:82 str:x c:15 c:72	yes	yes	none	X canary applied: tested prop read at this width	fzk-op524	p82-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	83	8 s:N c:83 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p83-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	83	8 s:N c:83 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p83-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	83	8 s:N c:83 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p83-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	83	8 s:N c:83 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p83-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	84	8 s:N c:84 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p84-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	84	8 s:N c:84 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p84-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	84	8 s:N c:84 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p84-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	84	8 s:N c:84 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p84-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	85	8 s:N c:85 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p85-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	85	8 s:N c:85 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p85-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	85	8 s:N c:85 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p85-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	85	8 s:N c:85 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p85-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	86	8 s:N c:86 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p86-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	86	8 s:N c:86 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p86-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	86	8 s:N c:86 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p86-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	86	8 s:N c:86 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p86-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	87	8 s:N c:87 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p87-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	87	8 s:N c:87 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p87-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	87	8 s:N c:87 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p87-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	87	8 s:N c:87 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p87-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	88	8 s:N c:88 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p88-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	88	8 s:N c:88 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p88-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	88	8 s:N c:88 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p88-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	88	8 s:N c:88 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p88-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	89	8 s:N c:89 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p89-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	89	8 s:N c:89 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p89-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	89	8 s:N c:89 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p89-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	89	8 s:N c:89 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p89-str
+2026-11-20	win-5.24r4 (wine)	s2c	8	90	8 s:N c:90 c:0 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p90-c
+2026-11-20	win-5.24r4 (wine)	s2c	8	90	8 s:N c:90 i5:2080768 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p90-i5
+2026-11-20	win-5.24r4 (wine)	s2c	8	90	8 s:N c:90 s:300 c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p90-s
+2026-11-20	win-5.24r4 (wine)	s2c	8	90	8 s:N c:90 str:x c:15 c:72	no	yes	none	X canary not applied: rest of the message dropped or misread	fzk-op524	p90-str
+2026-11-20	win-2.22 (wine)	input	2	12	letters typed in play (gs1ctl key-logger NPC)	-	yes	PLI_PLAYERPROPS chat from the level NPC	keypressed #p(0) is the upper-case ASCII code (f = 70, l = 76, a = 65); Return 13; Space 32	fzk-kc222c	K01-K09
+2026-11-20	win-2.22 (wine)	input	2	12	Shift+letter, Shift+3	-	yes	PLI_PLAYERPROPS chat from the level NPC	Shift adds 256 to the code (L = 332, M = 333, # = 307, K = 331)	fzk-kc222c	K03-K05
+2026-11-20	win-2.22 (wine)	input	2	12	Ctrl+C, Ctrl+V	-	yes	PLI_PLAYERPROPS chat from the level NPC	Ctrl adds 512 (Ctrl+C = 579, Ctrl+V = 598)	fzk-kc222c	K07
+2026-11-20	win-2.22 (wine)	input	2	12	( and )	-	yes	PLI_PLAYERPROPS chat from the level NPC	keypressed fires with code -1	fzk-kc222b	K05
+2026-11-20	win-2.22 (wine)	input	2	12	held M, held a, held s, held Right	-	yes	keydown bitmask chat	M = keydown(7), a = keydown(6), s = keydown(5) and starts the sword, Right = keydown(3)	fzk-kc222c	K04-K10
+2026-11-20	win-2.22 (wine)	input	34	-	Ctrl+A .. Ctrl+Z	-	yes	one 34 file check per letter, once per session	each Ctrl+letter is a local emoticon (a afk_stay, b brb_stay, c conf, d dgrin, e eyes, f frown, g grr, h heart, i idea, j jpm_stay, k kitty, l lol, m maybe, n ncool, o ohh, p ptongue, q qphone_stay, r rofl, s smile, t tears, u umad, v vsorry, w wink, x xx, y yummy, z zzz_stay); no showimg or prop is sent	fzk-kc222c	K07 K11 K14
+2026-11-20	win-2.05r2 (wine)	input	34	-	Ctrl+A .. Ctrl+Z	-	yes	one 34 file check per letter, once per session	same 26-letter emoticon map as 2.22	fzk-kc205b	K07 K11 K14
+2026-11-20	win-2.22 (wine)	input	-	-	Escape, then Space	-	no	nothing while the box is open	Escape opens a modal "quit Graal?" box; no packets at all while it is open; Space confirms and the client quits (connection reset)	fzk-kc222b	K07-K09
+2026-11-20	win-2.05r2 (wine)	input	-	-	Escape, then Space	-	no	nothing while the box is open	same quit box as 2.22; Space quits	fzk-kc205	K07-K09
+2026-11-20	win-2.31 (wine)	input	2	12	chat line with # codes	-	yes	PLI_PLAYERPROPS chat	#c #n #v(...) #s(...) and the rest are sent literally; the client does not expand them	fzk-kc231c	K05
+2026-11-20	win-2.31 (wine)	input	2	12	chat line fz + Latin-1 bytes	-	yes	PLI_PLAYERPROPS chat	the six Latin-1 bytes (e4 f6 fc ff a7 b0) go out raw, unescaped	fzk-kc231c	K06
+2026-11-20	win-4.20r8 (wine)	input	2	12	Tab, text, Return	-	yes	PLI_PLAYERPROPS chat; 34 check for defaulttextedit.png on first open	Tab opens the chat bar; the line goes out as prop 12; # codes go out literally	fzk-kc420b	K01-K05
+2026-11-20	win-4.20r8 (wine)	input	-	-	F2/F3/F4/F9/F10 in play	-	yes	nothing	one of them opens the modal Options window; while it is open the client sends nothing, not even its periodic id 24	fzk-kc420	K07
+2026-11-20	win-4.20r8 (wine)	input	34	-	Alt+Return	-	yes	34 checks for pics1.png and head0.png	the display-mode toggle reloads tiles and head	fzk-kc420b	K16
+2026-11-20	win-5.24r4 (wine)	input	34	-	Alt+Return	-	yes	34 check for pics1.png	the display-mode toggle reloads tiles	fzk-kc524b	K16
+2026-11-20	win-5.24r4 (wine)	input	157	-	a, Space, Right into a wall	-	yes	157 with the gani name the first time each gani is used, plus 34 for its .gani	a = grab, Space = sword, walking into a wall = push	fzk-kc524b	K05-K10
+2026-11-20	win-5.24r4 (wine)	input	34	-	Escape	-	yes	34 checks for guiblue_window.png and guiblue_button.png	Escape opens a GUI window (not the 2.x quit box)	fzk-kc524b	K18

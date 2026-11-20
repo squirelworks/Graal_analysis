@@ -50,13 +50,14 @@ list), per `AGENTS.md`; archived Windows binaries under Wine+Xvfb in the sandbox
 (`ListServer.exe` phones home). Only redacted derived results return to the repo.
 
 - [x] **GServer 1.28 beta 2 (`GSERV013`) — gen2 sweep. 2026-11-19, no crashes.** See below.
-- [ ] GServer 1.3 test (`GSERV014`) — gen2 sweep
-- [ ] GServer 1.21 (`GSERV007`) — gen2 sweep (packs reply into one frame; watch framing)
-- [ ] GServer 1.25 (`GSERV009`) — gen2 sweep
-- [ ] GServer 1.27 (`GSERV011`) — gen2 sweep
+- [x] **GServer 1.3 test (`GSERV014`) — gen2 sweep. 2026-11-20, 292 cases, no crash.** Folded into [`gserv-1999.md`](gserv-1999.md#clientserver-packet-fuzz-lab).
+- [ ] GServer 1.21 (`GSERV007`) — gen2 sweep (packs reply into one frame; watch framing). First run invalid (host load caused false canary timeouts); redo pending a quiet host.
+- [x] **GServer 1.25 (`GSERV009`) — gen2 sweep. 2026-11-20, 292 cases, no crash.** Folded into [`gserv-1999.md`](gserv-1999.md#clientserver-packet-fuzz-lab).
+- [x] **GServer 1.27 (`GSERV011`) — gen2 sweep. 2026-11-20, 292 cases, no crash.** Folded into [`gserv-1999.md`](gserv-1999.md#clientserver-packet-fuzz-lab).
 - [ ] Linux `gserver13` — gen2 sweep
 - [ ] `GServer-NW` — gen2 sweep (GNW token; confirm it is still cipher-free)
-- [ ] ListServer 2.37.2.59 — listserver sweep (pre-2.2 link)
+- [~] ListServer 2.37.2.59 — **not fuzzable with the held binary**: `ListServer.exe` is the owner registration GUI (phones home to a hardcoded external tracker URL, binds no listening socket), so `list` mode has no target. Recorded in [`listserver.md`](listserver.md#clientserver-fuzz-of-the-pre-22-link-lab). The real pre-2.2 query daemon is not held as a runnable loopback binary.
+- [x] **seihai-listserver 0.1.1 (our clean-room Rust list daemon) — `list` sweep. 2026-11-20, cloud loopback, 43 cases, no crash.** Covers the pre-2.2 link gap. Folded into [`listserver.md`](listserver.md#clientserver-fuzz-of-the-pre-22-link-lab).
 
 When a run lands, record it as a plain-behaviour `[lab]` note (server build + commit,
 before/after, the `results.tsv`/`crash-*` names), redacted per `AGENTS.md`, and tick the
@@ -109,3 +110,40 @@ Follow-ups:
   case's effect from cumulative state.
 - [ ] Narrow which case grants `NPCWEAPONADD` (id 33 first appears from the id-40 case).
 - [ ] The half-open double-login socket: does it leak a slot / persist?
+
+## GServer 1.3 test, 1.25, 1.27 — gen2 sweeps (2026-11-20) **[lab]**
+
+Three more original GServers (`GServerv.exe`, tokens `GSERV014`/`GSERV009`/`GSERV011`), each
+under Wine in the lab VM on a loopback lab port with a private server folder and a
+`guest`/`guest` canary account. Harness `srvfuzz gen2`, 292 cases, `--relaunch` armed.
+**No crash, hang or canary drop on any build.** The per-build login contracts and the
+pre-auth findings are folded into [`gserv-1999.md`](gserv-1999.md#clientserver-packet-fuzz-lab);
+in brief:
+
+- Version-gate refusal text confirmed live and per-build (1.25 "1.2 rev1", 1.27 "1.27",
+  1.3 "1.3"); empty/oversized creds → id 16 "doesn't exist", close.
+- **Double login differs by build:** 1.25/1.27/1.3 honour the second login; 1.28b2 half-opens.
+- No `WANTFILE` traversal on any build (id 30 FILESENDFAILED, no bytes).
+- The 1.2x servers stream the whole start level on login (9,14,100,board,6,1,[5],10); the
+  harness drain-to-idle fix (commit in this session) keeps that stream out of post-login
+  reply capture. Post-login, id 23 → id 30 is the only reliable dedicated reply.
+
+One harness correction came out of these runs: the gen-2 login line must end in `\n` or a
+real 1.x GServer reads the bytes and never replies; fixed, and the self-test mock now guards
+it. A loaded VM also produced false canary timeouts (the deferred 1.21 run), so these were
+run on a quiet host and re-checked.
+
+## seihai-listserver 0.1.1 — `list` sweep (2026-11-20) **[lab]**
+
+Our own clean-room Rust list daemon (`squirelworks/seihai-listserver`, v0.1.1), fuzzed on
+cloud loopback instead of a lab VM (own code, cipher-free pre-2.2 link, avoids lab disk
+pressure). Started with `login_fail_limit = 0` so the built-in login-failure rate cap
+(default 30/60s/addr) does not false-flag the canary; log confirmed "login failures: no cap"
+and a single verified instance answered. Harness `srvfuzz list`, 43 cases.
+
+**No panic, crash or hang; canary up on all 43.** Unknown/out-of-range ids are logged and
+ignored (no reply, no close); malformed frames draw no reply and leave the socket open; the
+capped inflate-ratio probe caused no slowdown. Two behaviours differ from the 1.x gen-2
+gserver: no newline is required to terminate a login line, and two logins in one frame are
+both processed. No server bug to file. Detail in
+[`listserver.md`](listserver.md#clientserver-fuzz-of-the-pre-22-link-lab).
