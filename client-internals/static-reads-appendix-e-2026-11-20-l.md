@@ -66,6 +66,25 @@ fetched `conf.gs` first.
 - A zero or negative length, or a body that decodes to nothing, is logged as invalid data. The
   connection is then marked blocked and stops reading and sending.
 
+## A lead for the iPhone identity trailer (E#16)
+
+The Android engine has a system-ID routine that takes an index from 0 to 4:
+
+| Index | Value |
+| ---: | --- |
+| 0 | the fixed text `dc:id2` |
+| 1 | the MD5 of a cookie kept in a file, made on first use |
+| 2 | the MD5 of the network adapter's MAC address |
+| 3 | an OS identity built from `uname` |
+| 4 | the Android device ID |
+
+The iPhone Classic+ 1.13 login builds a list from a helper called with indexes 0 to 3, then
+serializes it after the two strings (`classic-113-login-construction.md`). The two clients share
+one engine line, so that helper is probably this routine. If it is, the iPhone trailer would be
+the tag, a cookie hash, a MAC hash and an OS identity. This is **[inf]**: the iPhone binary could
+not be loaded in the lab decompiler during this pass. The separator is also unknown; desktop
+clients use commas (`login-tokens-3x-7x.md`).
+
 ## What this settles
 
 - Before a connector script switches anything, Android Classic 1.8 frames, compresses and ciphers
