@@ -201,12 +201,32 @@ def canary_list(host, port):
 
 # --------------------------------------------------------------------------- runner
 
+def drain_login(sock, idle=float(os.environ.get('SRVFUZZ_DRAIN_IDLE', '0.3'))):
+    """Read and discard the login reply until the stream goes idle (no bytes for `idle` s) or
+    SRVFUZZ_DRAIN seconds elapse. A fixed-time drain cut mid-stream on servers that stream the
+    start level on login (the 1.2x GServers send 9,14,100,100,6,1,... on every login), which bled
+    the level stream into the next read and made post-login case replies look like per-id answers.
+    Draining to an idle gap handles both the fast (1.3) and the streaming (1.2x) servers."""
+    max_wait = float(os.environ.get('SRVFUZZ_DRAIN', '3.0'))
+    sock.settimeout(idle)
+    end = time.monotonic() + max_wait
+    while time.monotonic() < end:
+        try:
+            d = sock.recv(65536)
+        except socket.timeout:
+            return  # idle gap -> the login reply (level stream included) has finished
+        except OSError:
+            return
+        if not d:
+            return
+
+
 def deliver(host, port, case, pre_login):
     """Open a fresh connection, optionally log in, send the case's raw bytes, read the reply.
 
     `pre_login` is the already-built login frame to send first (or None for pre-auth cases).
     `case.payload` is the exact bytes to put on the wire after that (a whole frame, possibly
-    malformed). Returns (reply_summary, closed, err, sent_len).
+    malformed). Returns (reply_summary, closed, err, sent_len, packets).
     """
     try:
         s = socket.create_connection((host, port), timeout=CANARY_TIMEOUT)
@@ -215,7 +235,7 @@ def deliver(host, port, case, pre_login):
     try:
         if pre_login is not None:
             send_raw(s, pre_login)
-            recv_frames(s, 0.5)  # drain the login reply so the case's reply is what we read next
+            drain_login(s)  # wait out the whole login reply (incl. a streamed start level)
         send_raw(s, case.payload)
         pkts, closed, err = recv_frames(s, RECV_TIMEOUT)
     except OSError as e:

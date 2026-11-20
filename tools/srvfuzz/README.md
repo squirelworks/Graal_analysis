@@ -78,6 +78,14 @@ Because a crash kills the whole server, pass `--stop-on-crash` to halt at the cu
 `--relaunch 'CMD'` to have the driver restart the target and resume at the next case. Use
 `--resume N` to continue a stopped run, and `--only CAT` to focus one category.
 
+**Level-streaming servers.** The 1.2x GServers stream the whole start level on every login
+(`9,14,100,100,6,1,...`), not just a short ack. Between the login and a post-login case the
+driver drains that reply until the socket goes idle (`SRVFUZZ_DRAIN` seconds max, default 3;
+`SRVFUZZ_DRAIN_IDLE` idle gap, default 0.3) so the streamed level does not bleed into the
+case's reply capture. Env timeouts (`SRVFUZZ_RECV_TIMEOUT`, `SRVFUZZ_CANARY_TIMEOUT`) also
+matter on a loaded host: under heavy VM load a slow canary login can time out and look like a
+crash, so run on a quiet host or raise `SRVFUZZ_CANARY_TIMEOUT` and re-check canary-down rows.
+
 ## Reading the results
 
 `results.tsv` columns: `n category name sent_len reply closed decode_err canary canary_note rtt_ms`.
