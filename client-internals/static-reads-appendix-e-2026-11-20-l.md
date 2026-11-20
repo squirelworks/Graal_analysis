@@ -28,9 +28,10 @@ fetched `conf.gs` first.
 - **Messages.** Each message is the id + 32, then the data, then a line feed. They are added to an
   outgoing buffer. The buffer is packed into a frame once it holds 4,096 bytes or more, or when the
   connection is flushed.
-- **Raw data.** A message whose data contains a line feed, and every message with id 93 or 163, is
-  sent behind a message 50 that carries its length as three 7-bit characters. The length is the
-  data length + 2, capped at 3,670,015.
+- **Raw data.** Messages with id 93 or 163 are sent behind a message 50 that carries their length
+  as three 7-bit characters (data length + 2, capped at 3,670,015), so they may contain line feeds.
+  Any other message whose data contains a line feed is refused and logged as "Illegal characters
+  in the outgoing data". This is the iPhone Classic+ 1.13 rule.
 - **The first message.** The first message after connecting gets one extra byte after its id: the
   connection's key + 32. The connector script picks the id and the data of that message; the
   engine does not build a login itself.
