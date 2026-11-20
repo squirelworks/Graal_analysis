@@ -37,10 +37,33 @@ ash/BLUEPRINT.md	tcpReceive	GServer-v2, gs2emu or 1999-source identifier (§0.10
 ash/BLUEPRINT.md	tcpSend	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 ash/BLUEPRINT.md	tcpaccept	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
 ash/BLUEPRINT.md	tcplisten	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
+client-internals/404r2-carry-state.md	W404-HANDOFF-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/404r2-carry-state.md	W404-MECHANIC-TABLES	an evidence or lab-run id; the manual cites the note
+client-internals/404r2-carry-state.md	W404-NATIVE	an evidence or lab-run id; the manual cites the note
+client-internals/404r2-carry-state.md	WIN-OFFLINE	an evidence or lab-run id; the manual cites the note
+client-internals/404r2-carry-state.md	WIN-OFFLINE-TRACE	an evidence or lab-run id; the manual cites the note
+client-internals/404r2-carry-state.md	WIN-STARTUP	an evidence or lab-run id; the manual cites the note
+client-internals/android-login-token-boundary.md	ANDROID-LOGIN-BOUNDARY-20261116	an evidence or lab-run id; the manual cites the note
+client-internals/android-login-token-boundary.md	VX-ANDROID-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/android-login-token-boundary.md	stored_length + 32	an evidence id, identifier or notation of the note; the manual carries the result
 client-internals/bare-level-names.md	name holding a	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
+client-internals/board-respawn.md	0x002	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x022	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x14a	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x1a4	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x2ac	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x3de	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x674	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	0x72a	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/board-respawn.md	TAdventureExtra	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/board-respawn.md	TAdventureLeap	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/board-respawn.md	Timer1	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/board-respawn.md	graal13b.7z	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/board-respawn.md	xdotool keydown Up	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/build-catalogue.md	<list-host-reborn>:14923	public host placeholder; §0.10 does not name public hosts
 client-internals/build-catalogue.md	<www-graalin-site>	public host placeholder; §0.10 does not name public hosts
 client-internals/build-catalogue.md	_SETUP.1	an installer archive member name, not a client fact
+client-internals/carry-hide-and-glove.md	GLOVEP 1	the note's notation for a rule §4 carries
 client-internals/client-architecture-205.md	TAdventureBall	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-architecture-205.md	TAdventureBomb	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-architecture-205.md	TAdventureCarry	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
@@ -56,7 +79,10 @@ client-internals/client-architecture-205.md	TGraalAniStep	Delphi class name (bin
 client-internals/client-architecture-205.md	TMNGAnimation	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-assets.md	col = t % 128	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
 client-internals/client-assets.md	image,prefix,type[,x,y]	the note's notation; §3.5 carries the tiledefs line shape and the 128-wide sheet
+client-internals/combat-baddy-tile-by-version.md	base + 8	the note's notation for a rule §4 carries
+client-internals/combat-baddy-tile-by-version.md	base - 12	the note's notation for a rule §4 carries
 client-internals/config-and-input.md	keyset_<action>_key0..2	the note's pattern for the keyset keys, which §3.9 lists
+client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	0xedb88320	the standard reflected CRC-32 polynomial; §4.10 says the words are standard reflected CRC-32 values
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	link lines plus	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	signindex+32	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
 client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	playerx+15	the note's notation or a phrase fragment; §3.1 and §3.5 carry the record shapes
@@ -69,6 +95,63 @@ client-internals/des-and-hidden-strings.md	<list-host-graalbiz>	a placeholder fo
 client-internals/des-and-hidden-strings.md	GCHAR 5	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
 client-internals/des-and-hidden-strings.md	GCHAR key	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
 client-internals/des-and-hidden-strings.md	enc(b) = NOT (b + 10)	the 2.22 login transform; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF and the login line
+client-internals/early-form-timers-2026-11-09.md	GRAAL-E300-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/early-form-timers-2026-11-09.md	GRAAL-E300-RUNTIME-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/feature-specs/01-sound.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/01-sound.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/01-sound.md	SoundOut	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/01-sound.md	TPlayer::msgPLI_WANTFILE	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/01-sound.md	cpal	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/01-sound.md	rodio	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/01-sound.md	send_wantfile	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/02-weapons-combat.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/02-weapons-combat.md	PLPROP_CURPOWER	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	SessionState	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	TLevel::doTimedEvents	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	TLevelBaddy::setProps	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	baddyitems	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	bushitems = true	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	c (a*8+b)	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	c id, c dx, c dy, c power	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	c power*2, c x*2, c y*2	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	c x*2, c y*2	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	default_weapons	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	defaultweapons	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	i3 npc, c x*2, c y*2	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	lab_replay	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	msgPLI_BADDYADD	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	msgPLI_BADDYHURT	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	msgPLI_BADDYPROPS	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	msgPLI_CLAIMPKER	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	msgPLI_HURTPLAYER	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/02-weapons-combat.md	msgPLI_NULL	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/03-inventory.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/03-inventory.md	SessionState	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	baddyitems	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	c 1, c x, c y	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	c x*2, c y*2	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	c x*2, c y*2, c item	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	chestList	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	dropItemsOnDeath	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	opened_chests	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	player_health	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	send_open_chest	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/03-inventory.md	setProps	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/04-death-respawn.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/04-death-respawn.md	PLPROP_ALIGNMENT	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	PLPROP_CURPOWER	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	TPlayer::doTimedEvents	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	aptime0..4	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	dead: bool	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	dropItemsOnDeath	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	healswords	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	is_leader	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	msgPLI_CLAIMPKER	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	player_health	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/04-death-respawn.md	s killer id	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
 client-internals/feature-specs/05-save-load.md	06aacfd	a commit id of the reference server, not a Graal fact
 client-internals/feature-specs/05-save-load.md	8da6800	a commit id of the reference server, not a Graal fact
 client-internals/feature-specs/05-save-load.md	SaveV1	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
@@ -103,6 +186,94 @@ client-internals/feature-specs/06-gmap-overworld.md	i5 modtime + level	a code id
 client-internals/feature-specs/06-gmap-overworld.md	msgPLI_ADJACENTLEVEL	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
 client-internals/feature-specs/06-gmap-overworld.md	sendLoginClient	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
 client-internals/feature-specs/06-gmap-overworld.md	send_levelwarp	a code identifier of a reference server or of our own spec; §3.2 and §3.7.6 carry the behaviour
+client-internals/feature-specs/08-tampercheck.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/08-tampercheck.md	0xedb88320	the standard reflected CRC-32 polynomial; §4.10 says the words are standard reflected CRC-32 values
+client-internals/feature-specs/08-tampercheck.md	250e4d0f962b03ede631	a sample 10-byte tamper-check value from a lab run; §4.10 carries what the bytes are
+client-internals/feature-specs/08-tampercheck.md	291655b7602e87c9eb82	a sample 10-byte tamper-check value from a lab run; §4.10 carries what the bytes are
+client-internals/feature-specs/08-tampercheck.md	2a7bad195e231243d82c	a sample 10-byte tamper-check value from a lab run; §4.10 carries what the bytes are
+client-internals/feature-specs/08-tampercheck.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/08-tampercheck.md	PLI 39	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/08-tampercheck.md	TPlayer::msgPLI_MAPINFO	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/08-tampercheck.md	msgPLI_MAPINFO	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/08-tampercheck.md	msgPLI_NULL	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/08-tampercheck.md	msgPLI_PROCESSLIST	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/08-tampercheck.md	send_post_login	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/09-options.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/09-options.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/09-options.md	keyset_<action>_key0..2	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/09-options.md	load_graalconfig(path)	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/09-options.md	save_graalconfig(path)	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/10-right-click-menu.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/10-right-click-menu.md	get_mouse_down	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	get_mouse_pos	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	lab_replay	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	nearest()	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	s count, s player...	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	send_pm	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/10-right-click-menu.md	ui.rs draw_player_list	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/11-emotes-ganis.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/11-emotes-ganis.md	Gani::parse	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	PLPROP_GATTRIB1	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	PLPROP_GATTRIB1-30	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	PLPROP_SPRITE	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	S -> pose	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	SessionState	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	dir + 4 x S	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	emoticon_a...	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	msgPLI_SHOWIMG	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	sendPacketToLevelArea	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	set_walk_gani	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/11-emotes-ganis.md	walk_frame	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/12-motd-rules.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/12-motd-rules.md	<script>	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	<style>	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	ACTION replace	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	CHECK chat	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	CWordFilter::apply	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	PLO_SERVERTEXT 82	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	SessionState.start_message	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	is removed and every	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	msgPLI_PRIVATEMESSAGE	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	sendLoginClient	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	server_text_ready = true	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	start_message	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	ui::draw_panel	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/12-motd-rules.md	weapon,type,option,data	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/13-ban-kick.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/13-ban-kick.md	BANREASON test	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	SessionState.disconnect_reason	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	TPlayer::msgPLI_LOGIN	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	TPlayer::sendLogin	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	TServer::isIpBanned	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	classify	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	disconnect_reason	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	isIpBanned	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	maxplayers = 1	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	msgPLI_NULL	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	msgPLI_RC_ACCOUNTSET	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	msgPLI_RC_DISCONNECTPLAYER	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/13-ban-kick.md	msgPLI_RC_PLAYERBANSET	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/14-friends-ignore.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/14-friends-ignore.md	GSHORT playerId	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	PLI 43	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	PLPROP_PSTATUSMSG	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	ignored: HashSet<String>	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	msgPLI_NULL	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	msgSVI_REQUESTBUDDIES	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	send_pm	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	send_text	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/14-friends-ignore.md	send_toall	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/README.md	06aacfd	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/README.md	8da6800	a commit id of a reference server or tool, not a Graal fact
+client-internals/feature-specs/README.md	PLI 39	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/README.md	PLI 43	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/README.md	[dec]	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
+client-internals/feature-specs/README.md	msgPLI_NULL	a code identifier of the reference server or of our own spec, or its notation; §4.10 and §5.3 carry the behaviour
 client-internals/graal-wiki-crosscheck-2026-11-11.md	ATTR4 8 16	an example line; §3.3 carries the glued slot-number rule
 client-internals/graal-wiki-crosscheck-2026-11-11.md	DESCRIPTIONEND	a wiki page name or a wiki typo the note corrects; the manual uses the right spelling
 client-internals/graal-wiki-crosscheck-2026-11-11.md	FILE <path>	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
@@ -134,7 +305,142 @@ client-internals/graal-wiki-crosscheck-2026-11-11.md	translatedlanguages	a wiki 
 client-internals/graal-wiki-crosscheck-2026-11-11.md	weaponorder	a wiki serveroptions key or scripting command the note lists as not read by GServer-v2 or not yet checked; an open cross-check, not a measured fact
 client-internals/graalconfig-reference.md	StrToInt	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
 client-internals/graalconfig-reference.md	TStringList.Values	a Delphi class or RTL name (binary internals, §0.10); §3.6, §3.7 and §3.9 carry the behaviour
+client-internals/gs1-on-5x-hud-and-flags.md	lowresourcesmode	the note's notation for a rule §4 carries
+client-internals/gs1-on-5x-hud-and-flags.md	player.selectedweapon = 0	the note's notation for a rule §4 carries
+client-internals/gs1-on-5x-hud-and-flags.md	"set(""x"")"	the note's notation for a rule §4 carries
+client-internals/gui-windows-fkeys.md	576c9543	a commit id of a reference server or tool, not a Graal fact
+client-internals/gui-windows-fkeys.md	FKEY-WINDOWS-139-20261111	an evidence or lab-run id; the manual cites the note
+client-internals/gui-windows-fkeys.md	about:blank	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/gui-windows-fkeys.md	seihai-gserver-v2	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/hud-603r7-black-box.md	heartlimit	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/item-drops.md	TAdventureExplosion	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/item-drops.md	TAdventureExtra	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/item-drops.md	"^d"""	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/items-603r7-black-box.md	1 BOARDMODIFY	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	11 THROWCARRIED	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	GANI grab	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	GANI idle CARRYSPRITE -1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	GANI lift CARRYSPRITE -1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	GANI pull	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	GANI sword	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	bushitems = true	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	vasesdrop = true	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/items-603r7-black-box.md	xdotool	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	00 x y item sign	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	01 x y	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	20 20 20	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	20 20 21	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	2a 2a 2a	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	Reject::NpcSource	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	parse_hurtplayer	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/lab-cells-200-205-2026-11-13.md	0f53796	a commit id of a reference server or tool, not a Graal fact
+client-internals/lab-cells-200-205-2026-11-13.md	seihai-gserver	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/laying-items-and-hiding.md	GCHAR round(x × 2)	the note's notation for a rule §4 carries
+client-internals/laying-items-and-hiding.md	GCHAR round(y × 2)	the note's notation for a rule §4 carries
+client-internals/ledges-push-pull.md	[column][row]	the note's notation for a rule §4 carries
+client-internals/ledges-push-pull.md	i = 0..7	the note's notation for a rule §4 carries
+client-internals/ledges-push-pull.md	x + 0.5 .. x + 2.5	the note's notation for a rule §4 carries
+client-internals/ledges-push-pull.md	y + 1 .. y + 3	the note's notation for a rule §4 carries
+client-internals/level-editor-205.md	TEditorChest	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/level-editor-205.md	TEditorLink	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/level-editor-205.md	TEditorObject	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/level-editor-205.md	TEditorSign	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/linux-420r6-clock-property.md	LNX-INPUT-IDENTITIES-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-BRIDGE-ADAPTER	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-BRIDGE-INITIALIZER	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-BRIDGE-REGISTRATION	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-CLOCK-CAPTURE	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-CLOCK-OBSERVATIONS	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-CLOCK-PREDICATE	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-CLOCK-UPDATER	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-CLOCK-VALIDATION	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-MODE-BINDING	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-MODE-CONDITION	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-MODE-DEFAULT	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-MODE-WRITERS	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-NATIVE-BUNDLE	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-NATIVE-RECOVERY	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-NATIVE-VALIDATION	an evidence or lab-run id; the manual cites the note
+client-internals/linux-420r6-clock-property.md	LNX420-R6-NATIVE-VERIFICATION	an evidence or lab-run id; the manual cites the note
+client-internals/live-checks-editor-offline-sound.md	shoot*	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-checks-editor-offline-sound.md	ss -K	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-gserver13.md	serveraddr=<loopback>	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	"""!"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	= arrow shot, and the	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	C<id>	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	accountname=	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	alone after each	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	chr(id+32) + data	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	credentials_in_registry	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	dwNumObjs 256	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	for both existing	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	fromlen	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	is, in order:	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	joystickon=false	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	level_leader	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	password=	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	shootarrowleft	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	shootarrowup	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	v+33	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/live-trace-early.md	without ever setting	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/macos-v5-animation-group-lifecycle.md	MAC-PPC-V5-GMAP-GANI-20261109-R1	an evidence or lab-run id; the manual cites the note
+client-internals/newworld-betas.md	<gmap base>_heights<ext>	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	TAdventureBacktileArea	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TAdventureBall	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TAdventureCarry	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TDrawText	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TEditVariable	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TEditorChest	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TEditorDefNPC	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	TSmilie	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/newworld-betas.md	groundheights[]	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	headalgo000	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	height:seed	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	setbacktile tile	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	setbacktile2 tile,x,y,w,h	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	setz x,y,w,h,z1,z2,z3,z4	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	vnwb1	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/newworld-betas.md	vnwb2	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/offline-tutorial-205.md	Balibu	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/offline-tutorial-205.md	TUTORIALC3	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/offline-tutorial-205.md	lay darts	a class name, script line or file name the note lists; §4 and §8 carry the behaviour
+client-internals/player-mannerisms-live.md	NOMEM=1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	SETBACKTO idle	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	STATUS 84	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	WAIT 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	WAIT 4	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	WAIT 5	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	"act.py <name> ""<keys>"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	down:Up w:0.6 up:Up tap:a	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	gx:	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	gy:	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	hurt 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	joystickon=false	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	lay spinattack	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	nodirectinput=true	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	set canspin	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	setsword sword1.gif,1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/player-mannerisms-live.md	t222	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/precursor-mechanics-2026-11-09.md	GRAAL39STER-ENGINE-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/precursor-mechanics-2026-11-09.md	VX-GRAALX-NW-SAVE-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/precursor-mechanics-2026-11-09.md	VX-JAVA1-INPUT-20261109-01	an evidence or lab-run id; the manual cites the note
+client-internals/rebuild-traces-2026-11-05.md	$16CE0000	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/rebuild-traces-2026-11-05.md	$16CF0000	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/rebuild-traces-2026-11-05.md	$50100	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/rebuild-traces-2026-11-05.md	$50110	a binary offset or address; the manual gives no addresses (§0.10)
+client-internals/rebuild-traces-2026-11-05.md	ABXYudlrhxyz4.	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	AddFontResourceA	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	COLORONCOLOR	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	CreateFontIndirect	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	ExtTextOut	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	Font.Height	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/rebuild-traces-2026-11-05.md	MAINICON	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/rebuild-traces-2026-11-05.md	OnTimer	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+client-internals/rebuild-traces-2026-11-05.md	SCREENIMG1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	SCREENIMG2	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	StartScreen-<Name>=	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	WINEDEBUG=+font	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/rebuild-traces-2026-11-05.md	changeimgvis 0,3	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/saved-passwords.md	graaldes.GraalDES	a tool name; §3.7.5.3 names graaldes.py and its functions
 client-internals/saved-passwords.md	~2%$zsd^	the fixed key itself; §3.7.5.3 states it is one fixed key and the tool reproduces it, without quoting it
 client-internals/sound-and-music.md	AGC	a library API or class name (BASS, FMOD, SDL_mixer, MCI, Winamp, HawkVoice); §3.10 and §4.7 name the libraries and the behaviour
@@ -164,6 +470,16 @@ client-internals/sound-files-6x.md	fire_torch0-2	sound file names in a list; §3
 client-internals/sound-files-6x.md	spell_firelaunch	sound file names in a list; §3.10 and §4.7 carry the sound sets
 client-internals/static-reads-appendix-e-2026-11-20-c.md	GR-V1.0x	a pattern standing for GR-V1.00 to 1.05, each in §3.1
 client-internals/static-reads-appendix-e-2026-11-20-k.md	not(b) − 10	the 2.22 login transform in the note's notation; §2.3.3 gives it as dec(b) = (~b − 10) & 0xFF
+client-internals/status-display.md	i < power	the note's notation for a rule §4 carries
+client-internals/status-display.md	power − 1 ≥ i	the note's notation for a rule §4 carries
+client-internals/status-display.md	round(17.5(k + 1)) − 35	the note's notation for a rule §4 carries
+client-internals/update-cadence-3x-6x.md	LD_PRELOAD	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/update-cadence-3x-6x.md	T < 0.05	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/update-cadence-3x-6x.md	last += 50	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/update-cadence-3x-6x.md	last = now	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/update-cadence-3x-6x.md	now - last >= 50	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/update-cadence-3x-6x.md	now >= last + 50	a lab setting, command, config line or notation of the run; the manual carries the measured result
+client-internals/update-cadence-3x-6x.md	timeout = 0.05	a lab setting, command, config line or notation of the run; the manual carries the measured result
 client-internals/v2.00-connect-path.md	0x330	a form field offset (binary internals, §0.10)
 client-internals/v2.00-connect-path.md	Application.MessageBox	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	Application.Terminate	API call in the binary (§0.10); §6.4 carries the behaviour
@@ -174,6 +490,19 @@ client-internals/v2.00-connect-path.md	GCHAR len + text	the note's field notatio
 client-internals/v2.00-connect-path.md	PostQuitMessage	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	WSAStartup	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	htons(StrToInt(port))	API call in the binary (§0.10); §6.4 carries the behaviour
+client-internals/v7-701750-bridge-clock.md	UnityMain.FixedUpdate	an evidence id, identifier or notation of the note; the manual carries the result
+client-internals/v7-701750-bridge-clock.md	UnityMain.Update	an evidence id, identifier or notation of the note; the manual carries the result
+client-internals/v7-701750-bridge-clock.md	W701750-FOCUSED-NATIVE-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/v7-701750-bridge-clock.md	kernel32	an evidence id, identifier or notation of the note; the manual carries the result
+client-internals/windows-404r2-500r7-static-2026-11-09.md	01020304	an evidence id, identifier or notation of the note; the manual carries the result
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-E102-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-E301-CLOCK-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-E603-E604-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-GS1-NATIVE-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W404-GS1-REGISTRY-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W500-E4-THROW-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	W500-SCRIPT-INTERFACE-20261109	an evidence or lab-run id; the manual cites the note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	getHighPrecisionTime	an evidence id, identifier or notation of the note; the manual carries the result
 docs/book/00-how-to-read.md	v0.0.1	an old edition number of the book, not Graal
 docs/book/04-where-the-notes-disagree.md	includes halves such as	a phrase fragment, not a term
 formats/arrays-and-signatures.md	<list-host-graalbiz>	a placeholder for a real host name, which the manual never gives
@@ -272,11 +601,80 @@ graal3d/protocol.md	str(s)	the note's field notation; §9 writes the same fields
 graal3d/protocol.md	v + 32	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
 graal3d/protocol.md	with the file text, or	§9.3 carries the level-change rule in words
 graal3d/research-status-2026-11-16.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+live-runs/2gta-222-2026-10-30/README.md	0x044	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x048	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x0c	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x10000	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x154	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x160	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x168	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x180	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x19c	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x1dc	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x1f8	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x228	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x258	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x2ac	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	0x34c	a binary offset or address; the manual gives no addresses (§0.10)
+live-runs/2gta-222-2026-10-30/README.md	<lan-host>:14802	a placeholder for a real host name, which the manual never gives
+live-runs/2gta-222-2026-10-30/README.md	<public-host-2gta>:14913	a placeholder for a real host name, which the manual never gives
+live-runs/2gta-222-2026-10-30/README.md	???	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	COLORS=11,18,18,11,11	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	GANI=cn_sword	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	GANI=lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	OSTYPE=wind	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	"PH""""%E%F%U%V"	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	PLAYERPROPS STATUS=28	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	cn_idle	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	cn_sword	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	cn_walk	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	dumpcap	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	lastweapon	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/2gta-222-2026-10-30/README.md	seihaitest	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/client-harness-2026-11-13/README.md	a1859bab	a commit id of a reference server or tool, not a Graal fact
+live-runs/client-harness-2026-11-13/README.md	serveraddr=	a lab setting, command, config line or notation of the run; the manual carries the measured result
+live-runs/drops-2026-11-20/README.md	putexplosion 1,x,y	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/android-classic-socket-layer-2026-11-20.md	<connector-host>	a placeholder for a real host name, which the manual never gives
 protocol/android-classic-socket-layer-2026-11-20.md	Host: <connector-host>	a placeholder for a real host name, which the manual never gives
 protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
 protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
+protocol/keysweep/README.md	c2s	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/keysweep/README.md	id:NAME{decoded props}	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/keysweep/README.md	key(code,char,scan)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/keysweep/README.md	keydown(0..10)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/keysweep/README.md	keydown=N	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal
+protocol/lab-appe-mirae-2026-11-20d.md	"""GS2 C"" @ char(231) @ ""a"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	"""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	#K(-15)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	#K(-23)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	#K(-25)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	#K(-4)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	#s(an)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	3 Lab 3D	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	DisableUserModeCallbackFilter	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	Lab 3D	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	dead hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	freezeplayer 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	gen5probe	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	hurt 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,0.12,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,0.5,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,2,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,4,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	move 16,0,1.6,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani idle,sleep	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani sleep,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	"replaceani walk,""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,#s(an)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,dead hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,sit	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,sit,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,walk	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	setsword sword1.png,1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-mirae-2026-11-20d.md	tgeplayershape	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/listserver-login-type-matrix-2026-10-25.md	tcpdump	lab tool setting or note placeholder, not Graal
 protocol/listserver.md	<list-host-graalbiz>	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
 protocol/listserver.md	<list-host-graalcc>	public host or its hidden form; §0.10 does not name public hosts (§6.1.1 says the host is hidden and the domain appended)
@@ -369,6 +767,13 @@ protocol/rc-list-online.md	seihai-rc	a reimplementation, out of scope (§0.1)
 protocol/rc-list-online.md	str head	§7.1.9 carries it as `c 11` + head
 protocol/rc-list-online.md	str nickname	§7.1.9 carries it as `c 0` + nickname
 protocol/rc-props-flags-status.md	weapon count + weapon	§7.1.8 carries it as `c weapon count`, `str` per weapon
+protocol/v5v6-lab-play.md	<login-host-4x>*	a placeholder for a real host name, which the manual never gives
+protocol/v5v6-lab-play.md	GLOVEP 3	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/v5v6-lab-play.md	bushitems = true	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/v5v6-lab-play.md	font=Arial	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/v5v6-lab-play.md	font=Tempus Sans ITC	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/v5v6-lab-play.md	fontsize=24	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/v5v6-lab-play.md	useopengl=1	a lab setting, command, config line or notation of the run; the manual carries the measured result
 recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
 recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
 recovered-drive-tools/ghidra-analysis/Assimilator/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
@@ -439,6 +844,56 @@ recovered-drive-tools/ghidra-analysis/remotecontrol_custom/SUMMARY.md	setup-core
 recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	analysis-only	a triage label of the drive-tools analysis, not a Graal fact
 recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	seihai-rc	a Seihai repo or plan name, out of scope (§0.1)
 recovered-drive-tools/ghidra-analysis/scripteditor/SUMMARY.md	setup-core	a Seihai repo or plan name, out of scope (§0.1)
+recovered-hacks/THREAT_TAXONOMY.md	!!BOOM!!	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	1040239050	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	7z l	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	AFK Bot created by Zorg	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	FindWindow*	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	Graal playerworlds	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	I am using an AFK Bot	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	OpenProcess	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	RegOpenKeyExA	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	SETKEYDELAY	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	Scroll Text Here	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	SendKeys1	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	Sent 0 AFK Messages	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	UPX0	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	UPX1	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	You are going to die in	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	autoprogs	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	cannotDownloadAbusiveFile	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	list_folder	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	seihai-servertools	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	setnick Bomb	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	sha256sum	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	unzip -l	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/THREAT_TAXONOMY.md	upx -d	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	1012939264	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	1040239050	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	CreateProcessA	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	CreateRemoteThread	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	DllFunctionCall	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	FindWindow*	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	I am using an AFK Bot	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	OpenProcess	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	SendKeys1	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	Timer1	a Delphi class or form-member name (binary internals, §0.10); the manual carries the behaviour
+recovered-hacks/TRAINER_RE_NOTES.md	UPX0	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	UPX1	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	WSAStartup	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	WriteProcessMemory	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	objdump	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/TRAINER_RE_NOTES.md	upx -t	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	!!BOOM!!	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	AFK Bot created by Zorg	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	AUTOIDLE_KEYS	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	I am using an AFK Bot	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	Scroll Text Here	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	load<bomb.txt>	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	load<file.txt>	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/behaviour-models.md	scroll_phrase	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/static-2026-11-01/README.md	Graal_Miner	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
+recovered-hacks/static-2026-11-01/README.md	analyzeHeadless	a trainer's own string, API call or analysis command; the manual keeps only the behaviour summary (§4.10.1.3)
 server-notes/01-lineage.md	2.2.0-fix	a commit, build, archive or author name identifying a source, not a Graal fact
 server-notes/01-lineage.md	JustBurn	a commit, build, archive or author name identifying a source, not a Graal fact
 server-notes/01-lineage.md	SVI_*	GServer-v2, gs2emu or 1999-source identifier (§0.10: outside projects are summarised, not quoted); the manual carries the rule in words
@@ -692,6 +1147,19 @@ tools/small-utilities-2026-11-14.md	key = value	a third-party utility's own name
 tools/small-utilities-2026-11-14.md	seihai-launcher	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	seihai-rc	a Seihai repo or tool, out of scope (§0.1)
 tools/small-utilities-2026-11-14.md	tryloadsoundson64bit=true|false	a third-party utility's own namespace, ini section or key; §11 carries what each utility does
+version-profiles/early-windows-screen-review-2026-11.md	EARLY-VISUAL-V0-20261109	an evidence or lab-run id; the manual cites the note
+version-profiles/early-windows-screen-review-2026-11.md	EARLY-VISUAL-V1V2-20261109	an evidence or lab-run id; the manual cites the note
+version-profiles/matrix/README.md	<list-host-3x>:14922	a placeholder for a real host name, which the manual never gives
+version-profiles/matrix/README.md	<list-host-classic>:14804	a placeholder for a real host name, which the manual never gives
+version-profiles/matrix/README.md	<login-host-4x>:14900	a placeholder for a real host name, which the manual never gives
+version-profiles/matrix/README.md	GNW30123newmain	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/README.md	font=Dialog	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/README.md	font=Helvetica	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/README.md	font=Tempus Sans ITC	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/README.md	fontsize=24	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/README.md	fontsize=28	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/README.md	host:14801	a placeholder for a real host name, which the manual never gives
+version-profiles/matrix/README.md	loginserver*:14900	a lab setting, command, config line or notation of the run; the manual carries the measured result
 version-profiles/matrix/builds-deltas.md	accountname=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
 version-profiles/matrix/builds-deltas.md	automapping=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
 version-profiles/matrix/builds-deltas.md	azg=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
@@ -744,3 +1212,15 @@ version-profiles/matrix/builds-deltas.md	usewinamp=	a graalconfig.txt key; §3.9
 version-profiles/matrix/builds-deltas.md	voicecodec=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
 version-profiles/matrix/builds-deltas.md	voicevolume=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
 version-profiles/matrix/builds-deltas.md	waitvertical=	a graalconfig.txt key; §3.9 carries every key, written without the trailing `=`
+version-profiles/matrix/live-runs-2026-10-30.md	Desktop=Default	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/live-runs-2026-10-30.md	openbox	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/live-runs-2026-10-30.md	unshare --net	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/live-runs-2026-10-30.md	walkBC	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/matrix/live-runs-2026-10-30.md	xdotool keydown	a lab setting, command, config line or notation of the run; the manual carries the measured result
+version-profiles/windows-404r2-teardown.md	W404-R01-TUTORIAL-20261108	an evidence or lab-run id; the manual cites the note
+version-profiles/windows-404r2-teardown.md	WIN-3D-PROVENANCE	an evidence or lab-run id; the manual cites the note
+version-profiles/windows-404r2-teardown.md	WIN-CODE-COVERAGE	an evidence or lab-run id; the manual cites the note
+version-profiles/windows-404r2-teardown.md	WIN-OFFLINE	an evidence or lab-run id; the manual cites the note
+version-profiles/windows-404r2-teardown.md	WIN-OFFLINE-TRACE	an evidence or lab-run id; the manual cites the note
+version-profiles/windows-404r2-teardown.md	WIN-STARTUP	an evidence or lab-run id; the manual cites the note
+version-profiles/windows-404r2-teardown.md	WIN-TRACE	an evidence or lab-run id; the manual cites the note

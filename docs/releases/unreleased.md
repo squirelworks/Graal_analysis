@@ -1,3 +1,4 @@
 Notes for the next Graal_analysis release. One line per change to the manual or the citable data, added by the PR that makes it; the release PR moves them into `vX.Y.Z.md` (VERSIONING.md).
 - §2.7.6: the `maps` download folder first appears in Graal 2002 ver9 (2.1.0.0, 30 Oct 2001); ver7 and ver8 lack it. App. E#10 is settled and listed in §E.12, and §E.4 now has no open entry (#245).
 - §2.2.3: the Android Classic and Era native engine uses the desktop generation-5 frame, rounding the compressed step count down. It carries the 6.1x connector framer and crypto, and Classic 1.8 has no compiled-in token. App. E#18 is settled (#648).
+- §5.3.8: GServer-v2's login checks in order, with each refusal text, its later disconnects and the props it clips. Every Part IV coverage miss is now carried or explained (#191).
