@@ -475,6 +475,7 @@ protocol/222-login-default-files.md	cited	2.7	2.7; C	2.22 login default-file che
 protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md
 protocol/PROTOCOL-CHEATSHEET.md	cited	2.1	2	Part 2 not needed: an early summary superseded by the notes §2.1 to §2.3 cite; its leftover lines are listed in App. E#607 (coverage audit 2026-11-04)
 protocol/android-classic-protocol-vs-6x.md	cited	2; 4.11	2; 4.11	Android chat/dispatch versus desktop CURCHAT/toall and 6.x notes carried in 4.11.11; command map remains open
+protocol/android-classic-socket-layer-2026-11-20.md	cited	2.2	2.2	The native engine's generation-5 codec (floor step count), the connector framer and crypto set, the no-compiled-in-token login and the loopback connector stop are carried in §2.2.3, settling E#18. Probe-proxy follow-up stays in the note.
 protocol/batch2-rc-linux-2005-2006.md	cited	7	7	
 protocol/carry-shoot-hit-status.md	cited	E	2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7	2.8; 7	
@@ -518,7 +519,7 @@ protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1; E	8.3; 8.4; E	§8.4.2, §8.4.4 
 protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/ids-sent-512-status.md	cited	E	2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
-protocol/ios-classic-plus-113-framing.md	cited	E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
+protocol/ios-classic-plus-113-framing.md	cited	2.2; E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
 protocol/keysweep/205r2.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/2171.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/222.tsv	excluded		4.6	table form of keysweep/README.md in the same folder

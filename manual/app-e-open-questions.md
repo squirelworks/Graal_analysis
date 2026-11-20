@@ -39,7 +39,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#15 | Graal 2002 and 1.40 send sets and default routes | Lab | each build follows its token's neighbour; 1.40 and v22 logins captured | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Missing | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
-| E#18 | Mobile clients' outer framing and cipher | Read | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
@@ -177,21 +176,6 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Best guess | The two strings are account and password, as on desktop. Confidence: moderate | [inf] (protocol/ios-classic-plus-113-framing.md#login) |
 | Settles it | Tracing the lower sender, then a qualified native run with a capture | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 | Outlook | Missing: no iPhone device or simulator is held; the static trace is Read | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
-
-### E#18 Mobile clients: outer framing and cipher
-
-**Question.** How the Android and iPhone clients frame, compress and cipher their stream. Without it no mobile client can be probed, even on a lab server [bin] (client-internals/android-login-token-boundary.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The held Android Classic and Era reading covers the Java host, the frame gate, collision, board, render, chat builder and the Classic 1.8 GS2 machine across seven packages; it did not recover the connect and token builders | [bin] (client-internals/android-classic.md); [bin] (client-internals/android-login-token-boundary.md) |
-| Evidence | The native engine libraries are not encrypted, so the connect and token builders are within reach of a static pass | [bin] (client-internals/android-login-token-boundary.md) |
-| Tried | No device, emulator or capture. The lab Linux VM has no nested KVM, and no Android or iPhone app is installed on a lab host | [doc] (protocol/unknowns-ledger.md) |
-| Settled part | iPhone Classic+ 1.13 uses the desktop generation-5 frame: two-byte length (or `FF FF` and four bytes), compression byte, partial XOR with round-down for compressed bodies, and a type-5 login with a key byte in one zlib frame | [bin] (protocol/ios-classic-plus-113-framing.md) |
-| Tried (2026-11-20) | Android Classic 1.8 ran natively on an Android-x86 9.0 emulator on loopback: it fetches a signed connector script first (HTTPS, then plain HTTP for `conf.gs`, user agent "Graal/6.15401") and, with no valid reply, never opens a game connection. So it is on the 6.1x connector line, and its game framing can't be captured without a genuine connector reply | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
-| Best guess | Android uses the 6.1x connector front end and then the same game frame as the 6.1x desktop clients, since it reports the same engine line. Confidence: moderate | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
-| Settles it | A static read of the Android native socket layer after the connector step | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
-| Outlook | Read (Android); a run is blocked by the signed connector reply | [doc] (protocol/unknowns-ledger.md) |
 
 ### E#19 Generation 4 on the wire (2.19 to 2.21)
 
@@ -592,6 +576,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#13 | Gmap neighbour overwrite on classic-login 2.x clients | → §2.5.3.2 |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | → §1.8.7 |
 | E#17 | The 6.1.1.3 login after the RC4 switch | → §2.10.8 |
+| E#18 | Mobile clients' outer framing and cipher | → §2.2.3 |
 | E#20 | The 2.31 step on `PLO_SETACTIVELEVEL` (156) | → §2.5.3 |
 | E#21 | Whether a compiled gani script (`PLO_GANISCRIPT`, 134) runs | → §2.5.6 |
 | E#22 | `DEFAULT*` lines in `PLO_LOADGANI` (195) | → §2.5.6.1 |
