@@ -4195,3 +4195,11 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	rc2004	c2s	74	-	74 str:accflags / accchest / accboth / accnone	-	yes	S>C 72	tail = s flag count + flags, s chest count + (c len+2, c x, c y, level), c weapon count + weapons	appe-e420c	-
 2026-11-20	win-5.00r7	c2s	11	-	(client send) lift then throw	-	yes	C>S 11 empty	throw sends 11 with an empty body after 1 + lift/carrystill; prop 19 cleared after	e4c	-
 2026-11-20	win-5.00r7	s2c	8	81	8 s:930+v c:34 str:"accV" c:0 str:"cV" c:20 str:"elsewhere.nw" c:81 c:V (V 0–10, 12, 16)	-	yes	none	odd V not counted in "Players: N online"; V = 8 and no 81 listed under Normal; 0/2/4/6/10 counted, folder not seen	e23b/e23d/e23e	-
+2026-11-20	win-1.40	c2s	LOGIN	-	(client login) list from port 14910 of the list host, then the game server	-	yes	LOGIN type 0 gen 3 GNW23090	server sends level name + one full board; client draws and walks; first sends 23 x4, own props, 3 x3	e15-140c	-
+2026-11-20	win-1.3test	c2s	2	1	2 c:1 c:30 (to the original GServer 1.3)	-	yes	S>C 9 max hearts 20	clamped to 20 and told to the sender	e423c	-
+2026-11-20	win-1.3test	c2s	2	2	2 c:2 c:60	-	yes	S>C 9 hearts 40 (half)	sender told 2 x max; the other player gets the raw 60	e423c	-
+2026-11-20	win-1.3test	c2s	2	4	2 c:4 c:150 ; 2 c:5 c:150	-	yes	S>C 9 99 each	arrows and bombs clamped to 99	e423c	-
+2026-11-20	win-1.3test	c2s	2	32	2 c:32 c:120 ; 2 c:8 c:5 ; 2 c:9 c:4	-	yes	none	no reply; relayed to the other player as sent (120, 5, 4)	e423c	-
+2026-11-20	win-1.3test	c2s	2	3	2 c:3 i3:20000000 ; 2 c:6 c:9 ; 2 c:7 c:9	-	yes	none	no reply and not relayed	e423c	-
+2026-11-20	win-1.28b2	c2s	LOGIN	-	(client login) GSERV013 to the original GServer 1.3	-	disconnected	none	server closes at once; client says it needs at least 1.3; others get prop 51 for its id	e423c	-
+2026-11-20	win-5.00r7	s2c	8	81	8 s:950 c:34 str:"accvV" c:0 str:"veeV" c:20 str:"elsewhere.nw" c:81 c:V, one V per login	-	yes	none	0/8/16/32/64 listed under Normal; 2/4/6/10/12 counted but in no folder; 3 neither counted nor listed	e23vV	-

@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#4, E#9, E#619, E#309, E#327, E#420, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#4, E#9, E#619, E#309, E#327, E#420, E#310, E#604, E#617, E#23, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -39,11 +39,10 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
-| E#15 | Graal 2002 and 1.40 exact-input behaviour | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+| E#15 | Graal 2002 and 1.40 exact-input behaviour (1.40 login captured) | Lab | each build follows its token's neighbour, but no row is borrowed | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Lab | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
 | E#18 | Mobile clients' outer framing and cipher | Lab | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
-| E#23 | What prop 81 changes in the player list | Lab | the folder or group a player is listed under | [inf] (protocol/unknowns-ledger.md) |
 | E#100 | Whether a placed bush blocks | Lab | yes, like a bush drawn into the board; the inspected arrays are not the collision path | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#103 | 2.22 signature verifier variants | Read | a cracked or debug variant, not an official one | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
@@ -80,7 +79,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
-| E#423 | The 1999 servers' open rules | Lab | the 1.3 test client works against them | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+| E#423 | The 1999 servers' open rules (prop limits measured) | Lab | other-level players are sent like same-level ones | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 | E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
 | E#425 | Standalone NC flag-action recipient | Read | the NC server, as a flag-list write | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
 | E#502 | Whether 4.04r2 loads `.mis` files | Lab | no: no script command reads a mission file; only an uncalled file reader could remain | [inf] (torque/404r2-resource-filter.md#positive-native-mission-path) |
@@ -149,12 +148,14 @@ These questions are about which build is which, who built it and how it protects
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Exact ver10 is wire-captured at login, and its normal list and game entry has been observed with mixed supporting data | [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary) |
-| Open | `GNW31101` and `GNW23090`: v22 and the checked 1.40 still need their own isolated login captures; no grade transfers between builds that share a token | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Settled part (2026-11-20) | 1.40 (`GNW23090`) captured in the lab: a start form with no host field, a server list from its built-in list host on port 14910 (1.41 rev 1 uses 14923), then login type 0, generation 3; the server's level name and one full board are drawn and walkable; the client's first messages are four file requests, its own props and three NPC-prop messages | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#login-of-the-140-build-e15) |
+| Tried (2026-11-20) | Graal 2002 v22 (`GNW31101`) fetches its list (list name `graal2002`) from port 14922 but never opens a game connection from it against the lab listserver | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#graal-2002-v22-gnw31101-not-completed) |
+| Open | `GNW31101`: v22 still needs its own isolated login capture, which needs a list reply its Connect accepts; no grade transfers between builds that share a token | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Open | The ver7 to ver13 default routes for 2, 4, 17, 18, 154 and 155 need an identified baddy, chest or horse fixture with a visible result, not a count of dispatch entries | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Open | Exact ver10's first properties update: the no-reply arm is confounded by a timer, and the reply arms are bounded; static gate clearing does not prove emission | [bin] (client-internals/graal2002-and-140-builds.md#method-and-remaining-limits) |
 | Open | The six Graal 2002 client-to-server id sets need their own send-site reads | [bin] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Best guess | Each build behaves like the neighbour that shares its token. The manual does not borrow those rows, because the 2002 builds were patched in places the token does not show | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
-| Settles it | One isolated login capture per build, send-site reads for each id set, and a fixture per default route | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
+| Settles it | A v22 login capture (a listserver answer its Connect accepts), send-site reads for each id set, and a fixture per default route | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | Outlook | Lab and Read: all inputs are held | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 
 ### E#615 v7 Worlds login identity, start-up quit and date gate
@@ -277,19 +278,6 @@ These questions are about single messages and props: which builds send or handle
 | Best guess | The rule arrived with the gmap work, after 2.1.0.4 and by 2.17.1. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
 | Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
-
-### E#23 What prop 81 changes in the player list
-
-**Question.** What `PLAYERLISTCATEGORY` (prop 81) changes on screen. Its width is settled at one byte on 4.20r8, 5.24r4 and 6.03r7 (→ §2.6) [lab] (protocol/unknowns-ledger.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Tried | 6.03r7 has no built-in key that opens a player list against the lab server; on 6.x the list is a script window the lab server does not provide | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Tried (2026-11-20) | No script-visible player variable on 6.03r7 is a category, so a list script can't read prop 81; opening the built-in list needs the `openplayerlist` event through delivered bytecode | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-e23-not-settled) |
-| Tried (2026-11-20) | In the 5.00r7 built-in player list, every odd prop 81 value leaves the player out of the online count; 8 and no value list under Normal; 0, 2, 4, 6 and 10 are counted but their folder was not seen under Wine | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-in-the-500r7-player-list-e23-partial) |
-| Best guess | A player-list attribute whose bit 0 hides the player from the online count and whose other bits pick the folder. Confidence: moderate | [inf] (protocol/unknowns-ledger.md) |
-| Settles it | A list GUI script delivered as bytecode through the probe, as the 2026-11-19 timer test did, then prop 81 set to several values for a second player | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-| Outlook | Lab | [inf] (protocol/unknowns-ledger.md) |
 
 ### E#613 Windows 2.22 remote PM roster and visible result
 
@@ -655,10 +643,11 @@ These questions are about the programs on the other side of the connection (→ 
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Open | Which older builds get the "cannot answer" PM reply | [bin] (server-notes/gserver-1999-rules.md#client-messages) |
-| Open | How the nickname and head of players in other levels are sent, and server-side prop limits beyond the counted props | [bin] (server-notes/gserver-1999-rules.md#own-props) |
-| Best guess | The 1.3 test client works against a server running these rules, since they were built together. Confidence: moderate | [inf] (server-notes/gserver-1999-rules.md#not-known) |
-| Settles it | The 1.3 test client against a lab server that follows these rules, and a further read of the send paths | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+| Settled part (2026-11-20) | Lab run of the original `GServer13.exe` with two 1.3 test clients and a 1.28 beta 2 client: 1.28 beta 2 is dropped right after login ("You need at least Graal version 1.3 to play on this server.") and the others get prop 51 for it, so no older build stays online to receive the "cannot answer" reply on this server | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#an-older-build) |
+| Settled part (2026-11-20) | Own props on the wire: max hearts 30 is answered as 20, hearts as twice the max (the other player gets the raw value), arrows and bombs 150 as 99; alignment 120, sword 5 and shield 4 pass to the other player unchanged with no reply; gralats 20,000,000, glove 9 and bomb power 9 are neither answered nor passed on. Same-level players get each other's nickname and head as sent, with a one-byte player id | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#server-prop-limits-props-sent-by-a) |
+| Open | How the nickname and head of players in other levels are sent: an injected warp left the 1.3 client on "loading"; and which builds, if any, the "cannot answer" reply is for, since 1.3 drops every older build at login | [bin] (server-notes/gserver-1999-rules.md#own-props) |
+| Best guess | Players in other levels are sent with the same one-byte id and props as same-level players; the "cannot answer" reply is left over from a server that let older builds stay. Confidence: low | [inf] (server-notes/gserver-1999-rules.md#not-known) |
+| Settles it | A real level change by a 1.3 client (a warp link in a lab level rather than an injected warp), and a further read of the send paths | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 | Outlook | Lab and Read | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 
 ### E#424 RC2's Admins folder against a one-space level
@@ -1112,6 +1101,16 @@ What the `DEFAULT*` header lines do when a server sends them in 195 was open; th
 | Verdict | Verified for play on 4.20r8 and 6.03r7, including the headless case where a default would be used; the editor-preview purpose is inferred | [lab] (live-runs/fuzz-2026-11-19/README.md) |
 | Left over | A static read of the header parser's `DEFAULT*` cases; 6.1.1.3 and 6.037 | [inf] (protocol/unknowns-ledger.md) |
 
+### E#23 What prop 81 changes in the player list (settled)
+
+What `PLAYERLISTCATEGORY` (prop 81) changes on screen was open; the guess was that it picks the folder a player is listed under. A 5.00r7 lab run with one injected player per value settled it for that build [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | In the 5.00r7 built-in list (folders Staff, Buddies, Guild, Normal, Ignore, Offline): no value or 0, 8, 16, 32, 64 lists the player under Normal; 2, 4, 6, 10, 12 count the player in "Players: N online" but show them in no folder on any tab; odd values neither count nor list them | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23) |
+| Verdict | Verified for 5.00r7: prop 81 does not pick a folder. Bit 0 hides the player from the count and the list, bits 1 and 2 hide the list entry only, and bits 3 to 6 change nothing visible. The other folders probably come from the staff list (47), the client's buddy and ignore lists and the guild tag | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23); [inf] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23) |
+| Left over | 6.x draws its list from a script the lab server does not provide, so whether 6.x scripts give the bits the same meaning is not checked | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-e23-not-settled) |
+
 ### E#24 Baddy props 11 and up (settled)
 
 The width and effect of baddy props from 11 up, and whether an unknown id ends the message, were open because probe baddies walk on their own [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md).
@@ -1452,7 +1451,7 @@ Where the sign list in a binary level ends when a `HEIGHTS` block may follow was
 | Claims | A: 2.05 reads signs to the end of the file, and 2.31 stops at the first empty line. B: the sign section runs to an empty line or the end of the file | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [srv] (formats/level-binary.md#layout) |
 | Settled | On 2.05 rev 2 a level with three signs shows all three; with an empty line after the first, or an empty line and a `HEIGHTS` line, only the first shows | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
 | Verdict | Verified for 2.05: Claim B holds and Claim A is wrong about 2.05, which stops at the first empty line as 2.31 does | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
-| Left over | A 2.31 run of the same file; the 2.31 rule rests on its code read | [2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+| Settled (2.31) | A 2.31 run of the same files keeps 1 sign of 3 after an empty line, with or without a `HEIGHTS` line, so the 2.05 and 2.31 readers agree | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#where-a-binary-sign-list-ends-on-231-e604) |
 
 ### E#605 Client listserver frames in two vocabularies (settled)
 
