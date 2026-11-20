@@ -37,6 +37,6 @@ The token remains a build-catalogue fact. The caller observations identify bound
 - [x] ~~Corroborate the already published token in the selected constructor and record the caller/forwarding boundary.~~ Static result above; no runtime acceptance claim.
 - [x] ~~Independently inspect the selected prefix and direct copy helpers.~~ One-byte prefix and selected positive byte-count append are established statically; no runtime acceptance claim.
 - [ ] Inspect the short-path object append and remaining field-codec cases before describing complete bytes, character semantics or accepted limits.
-- [ ] Establish the getter identities and vector-serializer format before naming fields or an identity trailer.
+- [ ] Establish the getter identities ~~and vector-serializer format~~. The vector and its serializer are read: a comma-joined, quoted list of `iphone` and four system IDs ([2026-11-20 read](static-reads-appendix-e-2026-11-20-m.md#the-iphone-identity-trailer-e16)). The two getters are still unnamed.
 - [x] ~~Follow the selected lower sender and constructor trigger before assigning wire framing, a client type or cipher semantics.~~ Done in [the framing note](../protocol/ios-classic-plus-113-framing.md#login): selector 5 is the login id, the key byte follows it, gen-5 framing.
 - [ ] Establish the exact-input receive-property mapping and native acceptance separately; neither follows from the token or caller selector.
