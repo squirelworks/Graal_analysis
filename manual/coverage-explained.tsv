@@ -1,4 +1,7 @@
 path	term	reason
+client-internals/build-catalogue.md	<list-host-reborn>:14923	public host placeholder; §0.10 does not name public hosts
+client-internals/build-catalogue.md	<www-graalin-site>	public host placeholder; §0.10 does not name public hosts
+client-internals/build-catalogue.md	_SETUP.1	an installer archive member name, not a client fact
 client-internals/client-architecture-205.md	TAdventureBall	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-architecture-205.md	TAdventureBomb	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
 client-internals/client-architecture-205.md	TAdventureCarry	Delphi class name (binary internals, §0.10); the manual describes the objects by what they do
@@ -22,6 +25,60 @@ client-internals/v2.00-connect-path.md	GCHAR len + text	the note's field notatio
 client-internals/v2.00-connect-path.md	PostQuitMessage	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	WSAStartup	API call in the binary (§0.10); §6.4 carries the behaviour
 client-internals/v2.00-connect-path.md	htons(StrToInt(port))	API call in the binary (§0.10); §6.4 carries the behaviour
+docs/book/00-how-to-read.md	v0.0.1	an old edition number of the book, not Graal
+graal3d/README.md	*Modify	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	2×atan(0.5)	§9 carries it as `2 × atan(0.5)` (spacing differs)
+graal3d/README.md	DXTimer1	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	Graal3D: 0 player(s)	server window caption, not part of the protocol
+graal3d/README.md	TAccountList	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TPlayerStats	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TSendFrame	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerAccount	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerBaddy	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerChest	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerFrame	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerHorse	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerLevelLink	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TServerPlayerModify	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TStartFrame	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	TUpdateLevels	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	do3D	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	doRetainedMode	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	doTexture	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/README.md	doZBuffer	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/beta3-genesis.md	DriversForm	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/beta3-genesis.md	DrvList	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/beta3-genesis.md	s2 s2 s2 c s2	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/camera.md	2×atan(0.5)	§9 carries it as `2 × atan(0.5)` (spacing differs)
+graal3d/camera.md	GetField	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetField	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetFront	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetPerspective	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	SetPlane	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/camera.md	test_Viewport	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/collision.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/collision.md	dist × normal	§9.4 carries the slide onto the face plane in words
+graal3d/formats.md	%alice#pw1 &	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/formats.md	0xfdcc47	§9 carries the default colours as `FDCC47` and `FF0000`
+graal3d/formats.md	0xff0000	§9 carries the default colours as `FDCC47` and `FF0000`
+graal3d/formats.md	<graal3d-default-host>	public host placeholder; §0.10 does not name public hosts
+graal3d/formats.md	alice	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/formats.md	nick (Name)	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/formats.md	pw1	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/g3d-version-tokens.md	"""3 """	§6.4 carries the `3 ` list prefix
+graal3d/lab-2026-10-30.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/lab-2026-10-30.md	GetPosition	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/lab-2026-10-30.md	SetPosition	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/protocol.md	#bob	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	= 6; guest, Load only:	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	Alice (Admins)	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	alice	lab account names and passwords from the capture; §0.10 allows no account names
+graal3d/protocol.md	in_addr	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
+graal3d/protocol.md	sN(v)	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/protocol.md	str(s)	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/protocol.md	v + 32	the note's field notation; §9 writes the same fields in the manual's own (§0.6)
+graal3d/protocol.md	with the file text, or	§9.3 carries the level-change rule in words
+graal3d/research-status-2026-11-16.md	GetFaces	internal identifier from the binary or the Direct3D library (§0.10); the manual carries the behaviour
 protocol/batch2-rc-linux-2005-2006.md	BATCH2-RC-LINUX-20261116	evidence id of the batch; the manual cites the note, not the id
 protocol/batch2-rc-linux-2005-2006.md	zlibCompileFlags	"a zlib library symbol; §7.1.1 carries the fact as ""zlib"" in the 2005/12/09 row"
 protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal

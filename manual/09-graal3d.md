@@ -248,7 +248,7 @@ A Graal3D level is a DirectX mesh file. The rules below say what it holds and ho
 | --- | --- |
 | A level is a DirectX retained-mode `.x` text file (`xof 0302txt 0064`); there is no tile layer, NPC or link data | [file] (graal3d/formats.md#levels-levelsx-on-the-server) |
 | `startlevel.x` is the server's start level and `level1.x` the client's default; the two hold the same scene and differ only in line ends and trailing spaces | [file] (graal3d/formats.md#levels-levelsx-on-the-server) |
-| The shipped scene is one 139-vertex mesh `obj` with nine materials and seven textures (`grass`, `way`, `stones`, `wall`, `tower`, `platform`, `clouds`) | [file] (graal3d/formats.md#levels-levelsx-on-the-server) |
+| The shipped scene is one 139-vertex mesh `obj` with nine materials (`grasstex`, `waytex`, `stonestex`, `walltex`, `towertex`, `platformtex`, `cloudstex`, `plainblue`, `plaingray`) and seven textures (`grass`, `way`, `stones`, `wall`, `tower`, `platform`, `clouds`) | [file] (graal3d/formats.md#levels-levelsx-on-the-server) |
 | The server caches each level's text and sends it inline in id 0; the client saves it under the level name in its own folder and loads it with Direct3D RM | [bin][cap] (graal3d/formats.md#levels-levelsx-on-the-server) |
 | Textures are not transferred: the BMPs a level names must already be in the client folder | [bin] (graal3d/formats.md#levels-levelsx-on-the-server) |
 | The client's saved copy was byte-identical to the server's file in the lab | [cap] (graal3d/protocol.md#level-change) |
