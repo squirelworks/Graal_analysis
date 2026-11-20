@@ -1,17 +1,10 @@
 # Citable data files
 
-Other repos cite two things in Graal_analysis: the manual's section numbers (manual §0.2), and the columns of the data files below. `VERSIONING.md` calls both the public surface. This file lists every citable data file and its columns, in one place. `tools/manual/test_citable_data.py` fails when a file's header row no longer matches its row here.
+`VERSIONING.md` counts the columns of the data files below as part of the public surface, with the manual's section numbers. This file lists every citable data file and its columns, in one place. `tools/manual/test_citable_data.py` fails when a file's header row no longer matches its row here.
 
-## What stays stable
+## Changing a column
 
-From TRM 0.1.0, through every 0.1.z patch:
-
-- A listed column keeps its name, its position and its meaning.
-- New columns go at the end of a file and are listed here in the same PR.
-- New files can be added in a patch, with a row here.
-- Renaming, removing or reordering a column, or dropping a file, waits for the next minor release (0.2.0) and gets a line in `docs/releases/unreleased.md`.
-
-Rows are data, not surface. Adding, correcting or re-grading rows is patch material.
+Columns can still change while the manual is at 0.0.x. Put a line in `docs/releases/unreleased.md` when a column is renamed, removed or reordered, and update its row here in the same PR. Nothing outside this repo reads these columns yet. Whether to freeze them, and the section numbers, is open in #653.
 
 ## Tables
 
@@ -48,7 +41,7 @@ All are tab-separated, UTF-8, with one header row.
 
 ## Version profiles
 
-The version-profile TOMLs (`client-internals/version-profiles/*.toml` and `version-profiles/*.toml`) are citable by their field names. The field names follow the Seihai profile schema in `client-internals/version-profiles/README.md`. Profiles are cited by `label` (or, in the inheritance files, by table name), and `resolve.py` flattens them. The same stability rules apply. A field keeps its name and meaning through 0.1.z, and new fields can be added.
+The version-profile TOMLs (`client-internals/version-profiles/*.toml` and `version-profiles/*.toml`) are citable by their field names. The field names follow the Seihai profile schema in `client-internals/version-profiles/README.md`. Profiles are cited by `label` (or, in the inheritance files, by table name), and `resolve.py` flattens them. Add new fields freely. A rename or removal gets a line in the unreleased notes.
 
 `inferred = true` marks a profile with no binary behind it (#439). `client-internals/version-profiles/test_inferred.py` checks it against the token catalogue.
 
