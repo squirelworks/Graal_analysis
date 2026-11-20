@@ -43,7 +43,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#18 | Mobile clients' outer framing and cipher | Read | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
 | E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| E#103 | 2.22 signature verifier variants | Read | a cracked or debug variant, not an official one | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49, 54, the 6.x loop-limit name and 6.03r7 event case settled; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
@@ -256,21 +255,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 | Best guess | The earlier mask was made from another sheet or a later table, so the numbers describe a different input. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | Settles it | Link the original mask and the exact file to the producing client path and sheet before comparing | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | Outlook | Read, if the mask's producer can be identified; otherwise the old count is simply retired | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-
-### E#103 Verifier variant reachability and signature interpretation
-
-**Question.** What the four unconditional guards in one 2.22 verifier variant mean for which signed files a client accepts. The bounded result in → §3.5.5.1 compares retained inputs; it does not measure startup acceptance [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Four conditional guards in one RSA-verification routine are unconditional in the compared variant; only A was deep-imported, B compared by full byte difference | [bin] (formats/windows-222-verifier-variants.md#evidence-and-method) |
-| Evidence | The earlier three-branch community-control patch is a different comparison; the control is not authenticated as pristine official code | [bin][inf] (formats/windows-222-verifier-variants.md#relationship-to-the-earlier-signature-note) |
-| Open | Broader lineage differences, startup caller reachability, the helper algorithm, the signature format and the inputs accepted | [bin][inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Best guess | The variant with unconditional guards is a patched community build that accepts unsigned files, not an official release. Confidence: moderate. No PM or GS1 conclusion follows from the verifier | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Settles it | Trace the callers and helper against identified inputs before interpreting runtime acceptance | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-| Outlook | Read | [inf] (formats/windows-222-verifier-variants.md#coverage-and-remaining-questions) |
-
-
 
 ## E.6 Client behaviour
 
@@ -497,8 +481,9 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Linux 4.04r2 | Two instrumented dispatches repeat top-level execution and queued delivery follows the running handler; a positive-sleep snapshot keeps the next instruction through restore; correct grouping gives 176 types and 332 globals; dispatch ends at 190 and slot 11 selects a common skip path; fourteen script candidates include one profile payload matched to live input (→ §8.3.4, → §8.3.5, → §8.4.4, → §8.4.7) | [cap] (client-internals/linux-404r2-events.md); [cap] (client-internals/linux-404r2-sleep.md); [test] (client-internals/linux-404r2-api-ownership.md); [bin][cap] (client-internals/linux-404r2-vm-dispatch.md); [bin][cap] (client-internals/linux-404r2-embedded-scripts.md) |
 | Cross-version | The Linux follow-ups separate static selector classes, executor-entry stops and three observed startup cached jumps; record static state saving and first-match pending-record replacement; and explain serialized tags against fused internal selectors, each without claiming a wider result (→ §8.3.4, → §8.4.4, → §8.4.6, → §8.4.7) | [bin] (client-internals/linux-cross-version-embedded-controls.md); [bin] [cap] (client-internals/linux-cross-version-dispatch.md); [bin] (client-internals/linux-420r6-selector11.md); [bin] (client-internals/linux-420r6-reader-fusion.md) |
 | Other builds | Windows 5.00 queues named and enum delivery separately from service, with limit-before-dedup and named lifecycle priority bounded statically; Linux 6.01 x86 separates reader, post-pass and executor preparation; the Mac OS X 6.11r1 runner decodes 40-byte records with cached handlers, an end marker 164, a per-record loop check with default limit 10000, snapshot-based sleep and waitfor, and calls that can suspend on `classesdownloaded` (→ §8.3.4, → §8.4.4) | [bin][inf] (client-internals/windows-500-event-queue.md); [bin] (client-internals/linux-601-x86-program-state.md); [bin] (client-internals/mac-611r1-gs2-runner.md) |
+| Built-in library (2026-11-20) | Linux 6.01r1 registers 314 global functions, 123 global properties and 1,284 class members from static tables, each with its type letters (function return and parameters, property type and writability); the lists are now in → §8.4.5 | [bin] (client-internals/gs2-builtins-601-registry.md#counts) |
 | Language use | Three owner-held script sets rank the GS2 constructs real 2007 to 2008 scripts use (joins, methods, for-each, `switch`, GUI `new`, code outside functions) and the GS1 commands a port must replace; no message code sits inside a GS2 string literal | [lab] (npc-library/gs2-world-corpus-2026-11-12.md) |
-| Open | The built-in command table's semantics and the source grammar the official compiler accepts; which gameplay site fires each event name; packet 140's own framing; the Linux x86 and ARM Android dispatchers; handler effects on 5.30r3 and 7.12.43; 5.00r7 and 5.12 from the shipped DLLs; table extent, opcode 7 and arithmetic handlers on the Mac runner | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation); [bin] (protocol/gs2-opcode-table.md#still-open); [inf] (client-internals/gs2-engine-event-names.md#still-open) |
+| Open | What each built-in does (6.01 names and types are read), and the source grammar the official compiler accepts; which gameplay site fires each event name; packet 140's own framing; the Linux x86 and ARM Android dispatchers; handler effects on 5.30r3 and 7.12.43; 5.00r7 and 5.12 from the shipped DLLs; table extent, opcode 7 and arithmetic handlers on the Mac runner | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation); [bin] (protocol/gs2-opcode-table.md#still-open); [inf] (client-internals/gs2-engine-event-names.md#still-open) |
 | Best guess | The official compiler accepts the GS2 syntax the archived scripting pages and the world corpus show, and the clients' opcode semantics are stable from 5.30r3 on, so one compiler targeting 5.30r3 to 6.03r7 is realistic; the event model is a per-object queue drained once per 50 ms step. Confidence: moderate | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | Settles it | A decoded bytecode message from a 4.x lab session, a reading of the built-in command table and the compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Outlook | Read and Lab for the client side; Maybe never for the official compiler's own source, so its grammar must be inferred from its output | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
@@ -626,6 +611,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#25 | The 2.22 start-up file checks: 13 against 17 | → §2.7.10 |
 | E#100 | Collision of the Bush stamp tiles | → §3.5.2.2 |
 | E#102 | Tile id to pixel position on pics1 | → §3.5.1 |
+| E#103 | What the four 2.22 verifier guards mean | → §3.5.5.1 |
 | E#200 | When a GS1 condition counts as true | → §8.1.3 |
 | E#201 | Four GS1 argument signatures in 2.05 | → §8.2.1 |
 | E#202 | Which message carries GS2 bytecode | → §8.4.1 |
