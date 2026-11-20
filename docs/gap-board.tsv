@@ -157,8 +157,8 @@ G155	client-internals/version-token-catalogue.md	line 322	Place G3D29090 and G3D
 G156	docs/NEXT.md	line 19	Decrypted v7 connector script, game host/port and login (E#616); needs a client with a replaced public key.	missing	-	high	free
 G157	docs/NEXT.md	line 30	(done 11-19: same 167) and ARM-only Android dispatchers; who emits Linux-only 164; per-call-site event firing.	static	static: cloud or a host (GwenTea2/Mirae)	high	free
 G158	docs/NEXT.md	line 74	Fuzz the Remote Control clients. Harness is in place: gen5probe.py picks the RC/NC staff logins (gen 2 plain-zlib and type-6 gen 5), tools/probe/rccanary.py is the RC liveness canary, and tools/probe/lab/runrc.sh + rc-core.plan / rc-widths.plan drive a run (covered by selftest.py). Harness.	umbrella	-	high	free
-G159	docs/NEXT.md	line 76	A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.	static+lab	Mirae Linux VM (servers)	high	research-gaps thread (Mirae probe batch)
-G160	docs/NEXT.md	line 77	rc205 (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.	lab	Mirae Linux VM (servers)	high	research-gaps thread (Mirae probe batch)
+G159	docs/NEXT.md	line 76	A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed.	static+lab	Mirae Linux VM (servers)	high	free
+G160	docs/NEXT.md	line 77	rc205 (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed.	lab	Mirae Linux VM (servers)	high	free
 G161	docs/NEXT.md	line 122	Validate Zelda Online 2 native board replay/re-entry and the order-dependent local-timestamp leader comparison; source-only B/T contract in the existing precursor note.	static	static: cloud or a host (GwenTea2/Mirae)	high	free
 G162	docs/NEXT.md	line 123	Resolve exact 1.28 peer UDP endpoint carriage and separately authenticate retained archive provenance; matching bytes alone settle neither.	static	static: cloud or a host (GwenTea2/Mirae)	high	free
 G163	docs/NEXT.md	line 128	Complete the first player-properties discriminator; bounded no-later-chunk observations and a timer-confounded arm do not settle gate sufficiency.	lab	Mirae Win10 VM or Linux VM (Wine)	high	free
@@ -189,7 +189,7 @@ G187	docs/NEXT.md	line 227	Settle E#209 (opcode 54, waitfor timeout) and E#423 (
 G188	docs/NEXT.md	line 229	Builds with no binary (#439). Catalogue the client hunt and keep the no-binary profiles honest.	umbrella	-	high	free
 G189	docs/NEXT.md	line 232	Still with no executable: 1.391, 2.12 to 2.16, 2.18 to 2.21, 2.3 and 4.02.11. Record the search for copies of the official downloads, including searches that found nothing.	missing	-	high	free
 G190	docs/NEXT.md	line 233	Date each 2.1x feature to a token from newfeatures200x.txt and the GServer-v2 version branches.	static	static: cloud or a host (GwenTea2/Mirae)	high	free
-G191	docs/NEXT.md	line 239	The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches).	static+lab	Mirae Win10 VM or Linux VM (Wine)	high	research-gaps thread (Mirae probe batch)
+G191	docs/NEXT.md	line 239	The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches).	static+lab	Mirae Win10 VM or Linux VM (Wine)	high	free
 G192	docs/NEXT.md	line 240	Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.	static	static: cloud or a host (GwenTea2/Mirae)	high	free
 G193	docs/NEXT.md	line 243	Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.	static+lab	Mirae Win10 VM or Linux VM (Wine)	high	free
 G194	docs/NEXT.md	line 250	Run the GS2 loop-budget and event-queue boundaries in an Android runtime.	lab	Android-x86 / mobile lab	high	free
@@ -296,8 +296,8 @@ G294	protocol/plo-24-29-30-45-205r2.md	line 60	Whether 24 with an unchanged imag
 G295	protocol/plo-24-29-30-45-205r2.md	line 61	The fixed separator in the name normaliser.	static	static: cloud or a host (GwenTea2/Mirae)	medium	free
 G296	protocol/plo-24-29-30-45-205r2.md	line 62	"What the file-received routine does with an empty non-.gani file. The 2.05 server answers both ""missing"" and ""unchanged"" with 30 (file-transfer.md), so this decides whether an unchanged local file is affected."	static	static: cloud or a host (GwenTea2/Mirae)	medium	free
 G297	protocol/plo-24-29-30-45-205r2.md	line 63	Other builds. Only 2.05r2 is read here.	static	static: cloud or a host (GwenTea2/Mirae)	medium	free
-G298	protocol/rc-fuzz-2026-11-19.md	line 118	A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop).	static+lab	Mirae Linux VM (servers)	medium	research-gaps thread (Mirae probe batch)
-G299	protocol/rc-fuzz-2026-11-19.md	line 119	RC2 2.05 once its GTK font/render problem under Wine is solved.	lab	Mirae Linux VM (servers)	medium	research-gaps thread (Mirae probe batch)
+G298	protocol/rc-fuzz-2026-11-19.md	line 118	A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop).	static+lab	Mirae Linux VM (servers)	medium	free
+G299	protocol/rc-fuzz-2026-11-19.md	line 119	RC2 2.05 once its GTK font/render problem under Wine is solved.	lab	Mirae Linux VM (servers)	medium	free
 G300	protocol/rc-fuzz-2026-11-19.md	line 120	A pre-2002 rcpre (gen 2), and rc2002 (gen 2) with the embedded NC socket (NC-fuzz thread).	lab	Mirae Linux VM (servers)	medium	free
 G301	protocol/rc-list-online.md	line 136	Read the send path of the 2005 Linux i386 RC. (Unpacked 2026-11-13; its receive ids are in unknown-ids-2026-11-06.md.)	static	static: cloud or a host (GwenTea2/Mirae)	medium	free
 G302	protocol/rc-list-online.md	line 137	A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the	lab	Mirae Linux VM (servers)	medium	free
@@ -422,6 +422,6 @@ G420	client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	row 6	the 
 G421	client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	row 7	which tile lookup the second passable list serves	static	static: cloud or a host (GwenTea2/Mirae)	medium	free
 G422	client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	row 8	stopping positions on a live 2.22 client	static+lab	Mirae Win10 VM or Linux VM (Wine)	medium	free
 G423	client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	row 9	wire rounding of a nudged position	lab	Mirae Win10 VM or Linux VM (Wine)	medium	free
-G424	protocol/probe-results.tsv	(new, 2026-11-20 triage)	Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it	lab	Mirae Win10 VM or Linux VM (Wine)	high	research-gaps thread (Mirae probe batch)
-G425	protocol/probe-results.tsv	(new, 2026-11-20 triage)	Windows 2.02, 2.02 rev 1 and 2.02 rev 2 have no probe rows; 2.00 to 2.05 rev 1 have the 32-case gen-3 plan	lab	Mirae Win10 VM	high	research-gaps thread (Mirae probe batch)
-G426	protocol/probe-results.tsv	(new, 2026-11-20 triage)	Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it	lab	Mirae Win10 VM or Linux VM (Wine)	high	research-gaps thread (Mirae probe batch)
+G424	protocol/probe-results.tsv	(new, 2026-11-20 triage)	Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it	lab	Mirae Win10 VM or Linux VM (Wine)	high	free
+G425	protocol/probe-results.tsv	(new, 2026-11-20 triage)	Windows 2.02, 2.02 rev 1 and 2.02 rev 2 have no probe rows; 2.00 to 2.05 rev 1 have the 32-case gen-3 plan	lab	Mirae Win10 VM	high	free
+G426	protocol/probe-results.tsv	(new, 2026-11-20 triage)	Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it	lab	Mirae Win10 VM or Linux VM (Wine)	high	free

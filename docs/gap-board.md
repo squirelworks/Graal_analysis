@@ -76,7 +76,7 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 
 | # | What | Board rows | State |
 |---|---|---|---|
-| 1 | Probe coverage: the 4.x/5.x plan set on 5.12 and 6.037, the gen-3 plan on 2.02, 2.02 rev 1 and 2.02 rev 2, and the RC width canary on native Windows | the three new rows; `NEXT.md` lines 76, 77, 239; `rc-fuzz` lines 118, 119 | claimed (research-gaps thread) |
+| 1 | Probe coverage: the 4.x/5.x plan set on 5.12 and 6.037, the gen-3 plan on 2.02, 2.02 rev 1 and 2.02 rev 2, and the RC width canary on native Windows | the three new rows; `NEXT.md` lines 76, 77, 239; `rc-fuzz` lines 118, 119 | free |
 | 2 | Appendix E lab batch: E#210, E#304, E#203, E#507, E#324, E#325, E#15, E#610 | those E rows | claimed (Appendix E batch thread) |
 | 3 | 4.04r2 pickup field read around each action, in the repeatable Wine scene (E#611), after the static read of the field | E#611; `404r2-carry-state` lines 57–60 | free |
 | 4 | Client test harness #398 on 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 | `NEXT.md` line 222 | free |
