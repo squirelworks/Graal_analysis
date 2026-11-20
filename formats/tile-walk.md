@@ -26,7 +26,7 @@ These rules match the offline session’s existing behavior of rejecting moves o
 
 The two allow lists are populated when the sheet is loaded. They contain the tile ids that the original client treats as non-blocking on a type-0 sheet. The lists are not stored in `tiledefs.txt`; that file only names the sheet, prefix, and type. An offline session that wants exact classic walk behavior must either embed the same allow lists or derive them from a known-good `pics1` extraction.
 
-One exported type-0 mask counted 3,195 non-blocking tiles and 682 blocking tiles. The type 1/2 grid counts above are independent of that mask. The [bounded file inspection](arrays-membership-2026-11-09.md) instead finds a union of 1,035 values in one exact 11,500-byte input, including 101 values present only in list 1. That file is not linked to the earlier mask's producer, sheet or coverage; its counts do not establish runtime walkability. **[file]**
+An earlier version of this note said one exported type-0 mask counted 3,195 non-blocking tiles and 682 blocking tiles. No export or script behind that figure exists, and it matches no held input, so it is retired ([file reads, 2026-11-20](../client-internals/static-reads-appendix-e-2026-11-20-l.md#the-earlier-type-0-mask-export-e101)). The [bounded file inspection](arrays-membership-2026-11-09.md) instead finds a union of 1,035 values in one exact 11,500-byte input, including 101 values present only in list 1. That file is not linked to the earlier mask's producer, sheet or coverage; its counts do not establish runtime walkability. **[file]**
 
 ## Stamp vocabulary
 
