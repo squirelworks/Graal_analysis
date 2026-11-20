@@ -330,7 +330,7 @@ Each client reads a fixed set of level and map file magics and writes one save-f
 
 GR-V1.03 is the last `.graal` revision any catalogued build reads [bin] (client-internals/build-catalogue.md#catalogue). `.nw` support is not monotonic: 1.41 rev1 and NewMain 1.42 read GLEVNW01, 2.00 to 2.04 contain neither GLEVNW01 nor GRMAP001, and both return in 2.05 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). That 2.0 branched from a pre-NewMain tree is an inference from strings [inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The 2.05 string table holds exactly Z3-V1.03, Z3-V1.04, GR-V1.00 to GR-V1.03 and GLEVNW01 as level magics [2.05] (formats/level-binary.md). The save writer was traced only in 1.21 and 1.32; for 1.33 to 1.41 rev1 the save magics are inferred from the same string arrangement [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The formats themselves are in → §3.1, → §3.2 and → §3.7.
 
-For 1.41 rev 1 the `.nw` reader is known from its strings only: the build carries `GLEVNW01` and no `GRMAP001`, and no real 1.41 rev 1 has yet been seen loading a `.nw` level from a server. Whether it plays one online, and what it does with a gmap, are open (→ App. E#617). [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue)
+For 1.41 rev 1 the build carries `GLEVNW01` and no `GRMAP001`. [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) A loopback lab showed it drawing and walking a `.nw` level sent by a server; a gmap reaches it only as a plain warp and its first cell, which it plays as an ordinary level (→ App. E#617). [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617)
 
 ## 1.6 Era timeline
 

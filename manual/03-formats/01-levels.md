@@ -186,7 +186,7 @@ Signs are stored in the sign alphabet, not in plain text. The rules below give t
 | record | `GCHAR x, GCHAR y`, then text in the sign alphabet | [srv] (formats/level-binary.md#records) |
 | alphabet | the same as signs on the wire: `byte - 32` indexes the sign table (→ §3.6) | [2.05] (formats/level-binary-client.md#sign-text-in-files) |
 | line break | the token `v*eUWf` + `0x80` decodes to `#K(13)` and a newline; it is the explicit line-break marker, not a space | [test] (formats/level-binary-client.md#sign-text-in-files) |
-| end | 2.05 reads signs to end of file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+| end | the sign list stops at the first empty line, measured on 2.05 rev 2 and read for 2.31, where a `HEIGHTS` block can follow; the earlier reading that 2.05 reads to the end of the file was wrong (→ App. E#604) | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
 | signs at (0,0) | common in real levels and hold dialogue text, so they are probably messages that NPC scripts show by index rather than signs on the map | [inf] (formats/level-binary-client.md#sign-text-in-files) ; [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md) |
 | no signs | a level with no signs ends after the chest `#`, with no empty line; in 3113 files nothing follows the signs | [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md) |
 

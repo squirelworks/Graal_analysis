@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#309, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -66,8 +66,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#304 | Stopping positions and wire rounding | Lab | the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#305 | The 2.22 push frame field | Read | a per-tick counter, not the gani frame | [inf] (live-runs/2gta-222-2026-10-30/README.md) |
 | E#308 | 2.22 neighbour-table skip flag and `PLO_BIGMAP` | Read | 171 fills the same grid as `bigmap.txt` | [inf] (protocol/link-probe-bigmap-status.md) |
-| E#309 | 1.39 knockback distance | Lab | five tiles on open ground | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| E#310 | Which hit paths share the once-per-second stamp | Lab | the hurt-message path only in 2.0x | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
 | E#311 | Blast hit zone and full-heart hits | Read | two overlapping blast pieces hitting in one tick | [inf] (client-internals/damage-sources.md#bombs-and-explosions) |
 | E#312 | The last byte of a shot | Read | a type field whose low values mean harmless or friendly | [inf] (client-internals/damage-sources.md#shot-19) |
 | E#317 | 1.x pickup box and item draw order | Read and Lab | the 1.39 player box is the 2 × 2 body box; item box size and draw order open | [inf] (client-internals/item-drops.md#open) |
@@ -95,14 +93,12 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#505 | How a server makes a 5.12 player move in 3D | Lab | movetype and movement data on the control object | [inf] (torque/udp-session.md#open) |
 | E#506 | Protocol 19 against a real 3.153 or 4.04r2 client | Lab | the static server order works as read | [inf] (torque/protocol19-server.md#open) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 marks a drawing variant; servers sent none | [inf] (torque/304-tile-types.md#not-settled) |
-| E#604 | Where a binary sign list ends | Lab | each reader keeps its own rule | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#613 | 2.22 remote PM roster | Read | a request for the server's player list, answered with the list message | [inf] (protocol/windows-222-pm-static.md#remaining-questions) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| E#617 | Whether 1.41 rev 1 loads `.nw` levels online | Lab | yes for `.nw`; a gmap is ignored | [inf] (client-internals/141r1-nw-gmap-status.md) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
 | E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | Lab | only as a fallback when `license.graal` is missing | [inf] (protocol/client-string-fingerprints-3x-6x.md#not-settled-here) |
 
@@ -179,18 +175,6 @@ These questions are about which build is which, who built it and how it protects
 | Best guess | The production connector sends a `G3D`-family token of the `G3D2204D` kind, and past the gate the client stalls before graphics init rather than quitting with a reason, at least standalone. Confidence: moderate for the stall, moderate for the token family | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Settles it | A decrypted connector script for the token (→ App. E#616); a boundary-date boot of 614 (2024-10-12 boots, 2024-10-13 quits, by the table) for the reason | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | Outlook | Lab for the expiry reason; Owner or Maybe never for the token, which depends on E#616 | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
-
-### E#617 Whether 1.41 rev 1 loads `.nw` levels online
-
-**Question.** Whether a real 1.41 rev 1 loads and plays a `.nw` level sent by a server, and what it does with a gmap (→ §1.5) [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The build carries the `GLEVNW01` loader string beside the GR-V1 readers and has no `GRMAP001`; no real 1.41 rev 1 has been seen loading a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
-| Context | `.nw` support is not monotonic: 1.41 rev 1 and NewMain 1.42 have the string, 2.00 to 2.04 drop it, 2.05 restores it with gmaps | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
-| Best guess | It loads `.nw` levels: a loader string in the level-magic list has meant a working reader in every build checked so far. A gmap is not understood and is ignored or fails. Confidence: moderate | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
-| Settles it | A loopback lab: a small `.nw` start level the client can reach through the list, then a tiny gmap, noting whether link and height messages appear | [inf] (client-internals/141r1-nw-gmap-status.md#what-a-lab-must-show) |
-| Outlook | Lab | [inf] (client-internals/141r1-nw-gmap-status.md#open-after-this-note) |
 
 ### E#618 Whether Mac 6.004 and 6.015 draw a game frame
 
@@ -402,19 +386,6 @@ These questions are about what is in a file and how a client reads it (→ Part 
 
 
 
-### E#604 Where a binary sign list ends
-
-**Question.** Where the sign list in a binary level ends when a `HEIGHTS` block may follow it [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | 2.05 reads signs to the end of the file; 2.31 stops at the first empty line, because a `HEIGHTS` block can follow | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| Claim B | The sign section runs until an empty line or the end of the file | [srv] (formats/level-binary.md#layout) |
-| Tried | The Windows 4.04r2 sign reader stops after a line shorter than two bytes or at the end of the file and does not know `HEIGHTS`; only the web-level cache reader reads heights after it | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-binary-level-records) |
-| Best guess | Each reader keeps its own rule, so a file with signs, a blank line and `HEIGHTS` reads differently by build; a writer that targets old clients should put nothing after the signs. Confidence: high | [inf] (formats/level-binary-client.md#agreement-with-level-binarymd) |
-| Settles it | One such file read by the 2.05, 2.31 and server readers, with the sign count each keeps | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
-| Outlook | Lab | [doc] (docs/book/04-where-the-notes-disagree.md#where-a-sign-list-ends) |
-
 ## E.6 Client behaviour
 
 These questions are about what a client does in play: timing, walking, combat, items and the screen (→ Part IV). Most were raised by a static read that found a routine but not every input to it, so most are settled by one controlled lab scene on the exact build [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
@@ -483,31 +454,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settles it | A 2.22 read of the neighbour-table builder, and a lab crossing on 2.22 with a big map | [inf] (client-internals/decomp-findings-2026-10-28/03-edge-links.md#open) |
 | Outlook | Read, then Lab | [inf] (protocol/link-probe-bigmap-status.md) |
 
-### E#309 Knockback distance of 1.39
-
-**Question.** Whether 1.39 knocks a hurt player back four or five tiles [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The binary moves the player one tile per tick while the hurt counter reads 39 down to 35: five steps | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| Claim B | The offline run measured four tiles on the touch-NPC test | [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Best guess | Five on open ground; the live run lost one step to collision or to the ±1 tick of video timing. Confidence: moderate | [inf] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin) |
-| Settles it | A fresh 1.39 knockback on open ground | [inf] (version-profiles/matrix/rules-139.md#still-open) |
-| Outlook | Lab | [inf] (version-profiles/matrix/rules-139.md#still-open) |
-
-### E#310 Where the once-per-second hit stamp sits
-
-**Question.** Which hit paths share the per-attacker once-per-second stamp [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | The stamp is shared by the sword and both hit messages, and stored before the guild test | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
-| Claim B | In 2.00 to 2.05 rev 2 the stamp is in the hurt-message path only; no sword judge of any build has it | [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
-| Tried | The 1.35 two-player run saw one hit per round of three swings 1.2 s apart, which neither claim forbids | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
-| Best guess | Claim B: the later, build-by-build read. Confidence: moderate | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-| Settles it | Two sword hits from one attacker inside one second on 2.05, two players in the lab | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-| Outlook | Lab | [inf] (client-internals/combat-200-204.md#confirmed-inferred-not-tested) |
-
 ### E#311 Blast hit zone and the occasional full-heart hit
 
 **Question.** Why the blast zone read from code does not match the hits measured on 2.22, and why some trials took a full heart [2.05] (client-internals/damage-sources.md#bombs-and-explosions).
@@ -554,7 +500,8 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | On the public 2.1.0.0 image and on v22 the call passes the level and two 31s; what the helper changes is unknown, and whether 2.05 passes the same values was not read | [bin] (client-internals/v21-local-enter.md#two-values-of-31) |
-| Best guess | It places the player at a fixed start point, tile (31, 31), near the middle of a 64 x 64 level, for the levels that begin the single-player game. Confidence: low to moderate | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
+| Tried (2026-11-20) | On 2.05 rev 2 offline, each special name loaded through the F5 loader next to a byte-identical copy under another name: position, facing, HUD and level stayed identical, with no move to (31, 31). A step that runs only when a new game starts would not show on this path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#single-player-start-levels-on-205-e319) |
+| Best guess | The step belongs to the new-game path, not to loading a level: it sets up the single-player start there, and changes nothing when a level is loaded by name. Confidence: low | [inf] (client-internals/v21-local-enter.md#two-values-of-31) |
 | Settles it | Loading each name offline on 2.05 and comparing the player and level state with another level | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 | Outlook | Lab | [inf] (client-internals/offline-tutorial-205.md#special-level-names) |
 
@@ -596,6 +543,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Open | The extra fields 1.41 rev 1 reads from an id 40 body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
 | Open | 1.21 gave exactly one gralat in the frame of each of 12 archer kills, with no darts or hearts; the drop spot overlapped the player, so a dropped gralat picked up at once and a direct kill reward look the same | [lab] (live-runs/open-issues-2026-11-19/README.md) |
 | Open | 2.17.1's drop behaviour, and the sword spark (no separate spark sprite was seen on 1.39 against a rock wall) | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Tried (2026-11-20) | Two 2.05 clients swinging at each other at once, 4 times: no spark sprite, and the victim took half a heart in 3, so no true sword-on-sword meeting was caught | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sword-against-sword-on-205-e324-one-sub-check) |
 | Best guess | 1.21 gives a direct kill reward of one gralat rather than rolling a drop; 2.17.1 has no drop roll, like 2.05; the spark appears only when a sword meets a sword or a shield. Confidence: moderate, low, low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Settles it | A ranged kill on 1.21 (thrown bush or pot, or an arrow), the same archer scene on 2.17.1, and a sword against a sword or a baddy's shield | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
@@ -1325,6 +1273,27 @@ The numeric movement tables of 1.39 were open; a static read of its constant blo
 | Verdict | The guess was wrong: 1.39 is between 1st Graal and 2.05. 2.05 moves the inner points 0.075 outwards and makes the nudge 0.1. The 0.125 nudge agrees with the live 1.39 run | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
 | Left over | The 1.39 refusal and snap branches were not compared instruction by instruction | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
 
+### E#309 Knockback distance of 1.39 (settled)
+
+Whether 1.39 knocks a hurt player back four or five tiles was open between a code read and one offline video; an online run on open ground settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: one tile per tick while the hurt counter runs 39 down to 35, five steps. B: four tiles on the offline touch-NPC test | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin); [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
+| Settled | On 1.39 a hurt message on open ground moved the player five tiles east (3 runs), south and north | [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
+| Verdict | Verified: Claim A holds; the four-tile reading lost a step | [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
+
+### E#310 Where the once-per-second hit stamp sits (settled)
+
+Which hit paths share the per-attacker once-per-second stamp was open between two reads; a two-client lab on 2.05 settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the sword and both hit messages share the stamp, stored before the guild test. B: in 2.00 to 2.05 rev 2 the stamp is on the hurt-message path only | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
+| Settled | On 2.05 rev 2 a guild-rejected hurt message blocks a clean one from the same attacker in the same second, so that path stores the stamp before the guild test; a real swing is not blocked by that stamp and stores none of its own | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Verdict | Verified on 2.05 rev 2: Claim B holds | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Left over | 2.22, which Claim A also covers | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+
 ### E#313 Do arrows and fireballs pass walls (settled)
 
 Whether arrows and fireballs fly through walls in 2.05 was open from a code read; a lab shot at a wall settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313).
@@ -1493,6 +1462,17 @@ Which binary level-record fields hold whole tiles and which take fractions was d
 | Verdict | Build-dependent: the best guess holds for 4.04r2; in 2.05 a fractional link box is rounded, so both claims are right for different builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 | Left over | 2.22 and 2.31, which were not read for this field | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603) |
 
+### E#604 Where a binary sign list ends (settled)
+
+Where the sign list in a binary level ends when a `HEIGHTS` block may follow was open, with one read saying 2.05 reads to the end of the file; a 2.05 lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: 2.05 reads signs to the end of the file, and 2.31 stops at the first empty line. B: the sign section runs to an empty line or the end of the file | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [srv] (formats/level-binary.md#layout) |
+| Settled | On 2.05 rev 2 a level with three signs shows all three; with an empty line after the first, or an empty line and a `HEIGHTS` line, only the first shows | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| Verdict | Verified for 2.05: Claim B holds and Claim A is wrong about 2.05, which stops at the first empty line as 2.31 does | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| Left over | A 2.31 run of the same file; the 2.31 rule rests on its code read | [2.31] (formats/level-binary-client.md#agreement-with-level-binarymd) |
+
 ### E#605 Client listserver frames in two vocabularies (settled)
 
 Whether two descriptions of the client's listserver frames describe the same bytes was open, because they use different words [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
@@ -1556,6 +1536,17 @@ What a type-4 tiledef line does was open: such lines are common in 2.22 install 
 | Claim B (holds) | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
 | Settled | Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. The image must be an 8-bit palette PNG; a 24-bit one is ignored without a message, which is why the earlier tries saw nothing | [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19) |
 | Left over | Water under an overlay, and type-4 lines on builds other than 2.22 | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
+
+### E#617 Whether 1.41 rev 1 loads `.nw` levels online (settled)
+
+Whether a real 1.41 rev 1 loads a `.nw` level sent by a server, and what it does with a gmap, was open; a loopback lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The build carries the `GLEVNW01` loader string and no `GRMAP001`; no run had loaded a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Settled | 1.41 rev 1 drew and walked a `.nw` start level sent as name, board and modtime. Given a gmap start level, the server sends it a plain warp and the first cell as an ordinary level; the client never asks for the `.gmap` and plays the cell as a normal level | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+| Left over | Link and height messages for a `.nw` level, which the lab server did not send, and walking a seam | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
 
 ### E#620 What the 1.41 rev 1 program-check handler does (settled)
 
