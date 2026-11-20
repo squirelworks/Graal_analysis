@@ -368,10 +368,9 @@ These questions are about what a client does in play: timing, walking, combat, i
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Open | The throw's flight and landing, the drop on cut or lift, the carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
+| Open | The throw, the drop on cut or lift, the carrying pose, the chest and sign probe points, the glove value the server sends, snapping after a step, and the swim and carry speed factors | [bin] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Evidence | `PLI_THROWCARRIED` (11) and `PLI_HITOBJECTS` layouts wait on this read and a 2.22 carry and throw capture | [bin] (protocol/carry-shoot-hit-status.md) |
 | Tried (2026-11-19) | 2.22's probe table is byte-identical to 2.05's; its carry, throw and take-player-carry logic sits in one large script action dispatcher; the routines were not compared one by one | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#222-level-object-code-e323) |
-| Evidence (2026-11-20) | On 2.22, `PLI_THROWCARRIED` (11) carries only the object's x and y (each times 2 plus 32) and is sent when a landed object leaves the level: a pickup through the box x-1 to x+3, y-1 to y+3 (carry state 3), a grab through the box x to x+2, y to y+2, or a script removal by index. Nothing sends it at the throw, unlike 5.00r7 (→ §2.4.2) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-e.md#what-222-sends-as-id-11-e323) |
 | Best guess | The routines match 2.05's, since 2.22's walking rule does. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Settles it | Reading those routines in 2.22, or one lab run per item | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
 | Outlook | Read | [inf] (client-internals/decomp-findings-2026-10-25-l/open-questions.tsv) |
