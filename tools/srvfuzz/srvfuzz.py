@@ -201,29 +201,49 @@ def canary_list(host, port):
 
 # --------------------------------------------------------------------------- runner
 
+def drain_login(sock, idle=float(os.environ.get('SRVFUZZ_DRAIN_IDLE', '0.3'))):
+    """Read and discard the login reply until the stream goes idle (no bytes for `idle` s) or
+    SRVFUZZ_DRAIN seconds elapse. A fixed-time drain cut mid-stream on servers that stream the
+    start level on login (the 1.2x GServers send 9,14,100,100,6,1,... on every login), which bled
+    the level stream into the next read and made post-login case replies look like per-id answers.
+    Draining to an idle gap handles both the fast (1.3) and the streaming (1.2x) servers."""
+    max_wait = float(os.environ.get('SRVFUZZ_DRAIN', '3.0'))
+    sock.settimeout(idle)
+    end = time.monotonic() + max_wait
+    while time.monotonic() < end:
+        try:
+            d = sock.recv(65536)
+        except socket.timeout:
+            return  # idle gap -> the login reply (level stream included) has finished
+        except OSError:
+            return
+        if not d:
+            return
+
+
 def deliver(host, port, case, pre_login):
     """Open a fresh connection, optionally log in, send the case's raw bytes, read the reply.
 
     `pre_login` is the already-built login frame to send first (or None for pre-auth cases).
     `case.payload` is the exact bytes to put on the wire after that (a whole frame, possibly
-    malformed). Returns (reply_summary, closed, err, sent_len).
+    malformed). Returns (reply_summary, closed, err, sent_len, packets).
     """
     try:
         s = socket.create_connection((host, port), timeout=CANARY_TIMEOUT)
     except OSError as e:
-        return 'connect-refused', True, 'connect:%s' % e.__class__.__name__, 0
+        return 'connect-refused', True, 'connect:%s' % e.__class__.__name__, 0, []
     try:
         if pre_login is not None:
             send_raw(s, pre_login)
-            recv_frames(s, 0.5)  # drain the login reply so the case's reply is what we read next
+            drain_login(s)  # wait out the whole login reply (incl. a streamed start level)
         send_raw(s, case.payload)
         pkts, closed, err = recv_frames(s, RECV_TIMEOUT)
     except OSError as e:
-        return 'send-error', True, 'send:%s' % e.__class__.__name__, len(case.payload)
+        return 'send-error', True, 'send:%s' % e.__class__.__name__, len(case.payload), []
     finally:
         s.close()
     summary = 'ids=%s' % ','.join(str(p[0]) for p in pkts[:8]) if pkts else 'none'
-    return summary, closed, err or '', len(case.payload)
+    return summary, closed, err or '', len(case.payload), pkts
 
 
 def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch):
@@ -238,6 +258,13 @@ def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch)
     tsv = open(tsv_path, 'a', buffering=1)
     if new:
         tsv.write('n\tcategory\tname\tsent_len\treply\tclosed\tdecode_err\tcanary\tcanary_note\trtt_ms\n')
+    # replies.tsv is the protocol capture: the full server reply (id + body bytes) to every
+    # probe, one row per S->C packet, so a run teaches the protocol and not only crash/no-crash.
+    rtsv_path = os.path.join(out_dir, 'replies.tsv')
+    rtsv_new = not os.path.exists(rtsv_path)
+    rtsv = open(rtsv_path, 'a', buffering=1)
+    if rtsv_new:
+        rtsv.write('n\tcategory\tname\treply_id\treply_len\tbody_hex\n')
 
     def rec(*a):
         log.write('%.3f %s\n' % (time.monotonic(), ' '.join(str(x) for x in a)))
@@ -257,7 +284,9 @@ def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch)
         if c.n < resume:
             continue
         pl = pre_login if c.pre_login else None
-        summary, closed, err, slen = deliver(host, port, c, pl)
+        summary, closed, err, slen, pkts = deliver(host, port, c, pl)
+        for pid, body in pkts:  # the protocol capture: every S->C packet this probe drew
+            rtsv.write('%d\t%s\t%s\t%d\t%d\t%s\n' % (c.n, c.cat, c.name, pid, len(body), body[:128].hex()))
         time.sleep(float(os.environ.get('SRVFUZZ_SETTLE', '0.15')))  # let a crash manifest before the canary
         cstate, cnote, rtt = (canary(host, port, token) if mode == 'gen2' else canary(host, port))
         tsv.write('%d\t%s\t%s\t%d\t%s\t%s\t%s\t%s\t%s\t%d\n'

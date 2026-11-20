@@ -80,6 +80,36 @@ From 2.17 the list host and port are not built in. They are read from `arrays2.d
 
 **2.17 flow, seen from a real client in the lab** **[cap]**: one TCP connection to port 14922 (host and port read from `arrays2.dat`), plain zlib framing (`u16be len` + zlib body), no gen-5, no version token. The client sends **one frame holding two messages**: `GCHAR 0` + `newmain`, then `GCHAR 1` + GSTRING account + GSTRING password. The server answers with **two plain zlib frames**: frame 1 is id 0 (the server list); frame 2 holds id 2 (status text), id 3 (site URL) and id 5 (donation URL). The client then closes the connection (FIN). Compare 2.22 and 2.31: they open with `GCHAR 7` + key + `GNW30123` + `newmain` and use gen-5 for everything after, with the same list and status ids (0, 2, 3, 5). After the list, the 2.17 game-server login is type 0, key, `GNW22122`, account, password, then gen-3 framing; the junk-byte rule in `codec-and-framing.md` decoded every 2.17 message in the capture.
 
+### Client→server fuzz of the pre-2.2 link (lab)
+
+The standalone C→S fuzzer ([`../tools/srvfuzz/`](../tools/srvfuzz/)) has a `list` mode that
+speaks the cipher-free pre-2.2 link directly (id 0 `newmain`, then id 1 account/password) and
+runs 43 cases: valid id0/id1 variants, oversized/empty version, SERVERLIST account overruns,
+unknown and out-of-range ids, a gen-5 `V2ENCRYPTKEYCL` sent to a pre-2.2 server, a
+`GRSECURELOGIN` blob, an empty-id sweep, and the frame-level malformed cases. See
+[`server-fuzz-c2s-targets.md`](server-fuzz-c2s-targets.md) for status.
+
+- **The archived ListServer 2.37.2.59 is not fuzzable as a query daemon.** `ListServer.exe`
+  (FileVersion 2.37.2.59) is the server-owner registration/aggregator GUI, not the
+  client-facing query daemon: launched under Wine+Xvfb in the sandbox it opens a browser
+  window to a hardcoded external tracker URL (compiled in, not read from `servers.ini`) and
+  **never binds a listening socket** (polled across launches; nothing on 14900/1492x). Its
+  `servers.ini` holds only `[Options]` plus static Name/IP/Port/Version entries, with no
+  listen-port directive. So `srvfuzz list` has no target in it, and this confirms AGENTS'
+  "`ListServer.exe` phones home" warning. The real pre-2.2 client query daemon (the
+  DES-hidden host on `14921`, above) is not held as a runnable loopback binary. **[lab]**
+- **seihai-listserver 0.1.1 (our clean-room Rust daemon) handles the corpus cleanly.** Run on
+  cloud loopback with the login-failure rate cap off (`login_fail_limit = 0`, else the cap
+  false-flags the canary), all 43 cases: canary up throughout, no panic, no crash, no hang,
+  and the capped inflate-ratio probe caused no slowdown. A valid id0 `newmain` + id1 account
+  draws id 0 (a 1-byte ack) then id 2 STATUS "Welcome to … , <account>.\rThere are N
+  server(s) online." (the account name is echoed). Unknown or out-of-range ids are logged and
+  ignored with no reply and no close; malformed frames draw no reply and leave the socket
+  open. Two differences from the 1.x gen-2 gserver surfaced: the listserver does **not**
+  require a newline-terminated login line (a 1 KB no-newline frame still parsed as a valid
+  login), and two logins in one frame are both processed (double id 0/id 2). No bug to file.
+  **[lab]**
+
 ## Game server ↔ listserver (summary) **[srv]**
 
 Server → list (`SVO_*`, 0–31): set name, description, language, version, url, ip, port, player count; verify account (`VERIACC2`) and guild; get/set profile; player add/remove; ping; file get (v3); serverHQ password and level; request list, server info, and buddies; PM a player; register v3; send text.
