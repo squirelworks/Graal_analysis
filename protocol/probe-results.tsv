@@ -4876,3 +4876,4 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-5.00r7	-	-	-	level GS2 NPC showtext with Latin-1 bytes 231 233 252 241	-	yes	none	drawn as Français éüñ ça	e213b	t1-text
 2026-11-20	win-5.00r7	-	-	-	level GS1 NPC showtext with Latin-1 bytes 231 233 252 241	-	yes	none	lab server translator sends the UTF-8 replacement character per byte	e213b	t1-text
 2026-11-20	mac-3.153	-	-	-	listing tagged H (HQ level 1) vs 3 (HQ level 4)	-	yes	UDP only with the 3 tag	3D link, mission start and Camera control object with no crash	e506-r2	t15
+2026-11-20	win-4.04r2	-	-	-	offline, DisableUserModeCallbackFilter on, Offline Test, Right 1.5 s	-	once	none	tutorial level drawn; player walks right, view scrolls; later starts exit silently	e610	m1

@@ -214,12 +214,40 @@ during each swing (about 25 ms apart), four levels.
 Still open: a 2.17.1 kill (bombs or arrows, or a non-Training offline mode) and a clean sword-on-
 sword frame.
 
-## Windows 4.04r2 offline scene (E#610, E#611): not run
+## Windows 4.04r2 offline scene on Win10 (E#610, E#611): partly run
 
-The Windows guest was asked for, but could not be used in this batch:
-- Starting the powered-off "Graal RE Lab" guest needs the owner's own message for a VM start.
-- The running Win10 guests were in use by other runs.
-- Known from earlier runs: the packed Windows 4.0x clients stop at start on the Win10 desktop with
-  a fatal user-callback exception, and ran only in the non-interactive session there. A visible
-  scene on Win10 will probably need a compatibility setting in the guest for that exception, or
-  another way to show the game.
+Build: Windows 4.04r2 (`Graal4.exe`, file version 4.0.4.2, packed), unchanged, from a stock install
+folder copied to a fresh work folder. Guest: the Win10 "Graal RE Lab" VM with **no network
+adapter**, so the run was offline by construction. Run on the interactive desktop, driven by
+keyboard scancodes and a small click helper inside the guest, with screenshots.
+
+**Start-up on the Win10 desktop**
+- As in earlier runs, the client stopped at start with an access violation inside a window
+  callback, reported as a fatal user-callback exception. Its console log had already reached
+  "Created DirectDraw object", "Initialized Direct3D7" and "Graal has been activated!".
+- With the guest's `DisableUserModeCallbackFilter` compatibility setting on (the setting that lets
+  an old program's own handlers see exceptions raised inside window callbacks), the client opened
+  its login window on the desktop: nickname and account fields, Start, Options, Become a Member
+  and **Offline Test**.
+
+**E#610: offline play**
+- In the first session, Offline Test opened the offline tutorial level: drawn tiles, palms, a
+  cauldron, the path, and the player standing on grass. The console added "FMod Sounds: using
+  default sound driver" and the tutorial tile definition file was written
+  (`picso.png,offlinetutorial,1,0,0`).
+- **Before and after a move:** the player in the grass below the cauldron; after Right held 1.5 s
+  the player had walked right to the beach edge and the view had scrolled with it (sea in view).
+- A following Down hold ended the session: the window closed, with no error report.
+- Four later starts reached the login window each time, then closed within 5 s of Offline Test,
+  again with no error report. Restoring the original config file and deleting the file-name cache
+  did not change that. With the callback filter off, errors inside callbacks no longer produce a
+  crash report, so these silent exits are probably the same fault the filter used to turn into a
+  crash.
+- So 4.04r2 does play offline on Win10 (a drawn level and controlled movement were captured once),
+  but not reliably in this guest.
+
+**E#611: not reached.** No bush or other liftable object was reached before the session ended, so
+no lift, carry or throw was captured.
+
+**Guest state afterwards.** The compatibility setting was removed again, the click helper stopped,
+and the guest shut down. The work folder `e610` is left in the guest.
