@@ -190,6 +190,7 @@ client-internals/graal2002-level-open.md	cited	3.1; 3.3; 11	3.1; 3.3; 11	§3.1.0
 client-internals/graalconfig-reference.md	cited	3.9	3.9	
 client-internals/gs1-on-5x-hud-and-flags.md	cited	4.6; 8.3; C	4.6; 8.3; C	
 client-internals/gs2-6113.md	cited	8.4	8.4	
+client-internals/gs2-builtins-601-registry.md	cited	8.4; E	8.4; E	Registration-table read of Linux 6.01r1: global and per-class GS2 built-ins with type letters
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
 client-internals/gs2-value-semantics-stock-2026-11-16.md	cited	8.4	8.4; E	stock vs third-party value-semantics: 10k loop default; waitfor real; starts/ends case open
