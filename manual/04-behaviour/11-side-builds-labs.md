@@ -365,7 +365,7 @@ The research owner started the v0, v1 and v2 Windows clients offline in a Wine l
 
 [lab][cap] All 18 v0 builds show their start screen and 16 reach an offline scene; 4th Graal alpha and 5th Graal draw only part of it, 9th Graal stays at the start screen and 9th Graal alpha stops on a missing `heads.gif`. Only 12 run summaries record a successful Start against 16 drawn scenes. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v0-1st-graal-to-15th-graal-18-builds)
 
-[lab][cap] 17 of 18 v1 builds reach a scene; 1.32 and later start in the welcome cave, and 1.19 stays at the start screen. In v2, 2.04 and the three 2.05 revisions draw the tutorial; 2.00, 2.01 rev 1 and 2.03 stop on a missing `objects.dat`; 2.02 and its revisions show a black window; the stock 2.22 warns of a corrupted executable. Scene and mechanic validation stays open (→ App. E#610). [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v1-119-to-141-18-builds); [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v2-200-to-222-23-builds)
+[lab][cap] 17 of 18 v1 builds reach a scene; 1.32 and later start in the welcome cave, and 1.19 stays at the start screen. In v2, 2.04 and the three 2.05 revisions draw the tutorial; 2.00, 2.01 rev 1 and 2.03 stop on a missing `objects.dat`; 2.02 and its revisions show a black window; the stock 2.22 warns of a corrupted executable. Scene and mechanic validation of these builds was not part of this review. [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v1-119-to-141-18-builds); [lab][cap] (version-profiles/early-windows-screen-review-2026-11.md#v2-200-to-222-23-builds)
 
 ## 4.11.12 The action list on 4.x to 6.x clients
 

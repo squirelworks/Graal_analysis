@@ -57,7 +57,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); servers sent no tile definitions | [inf] (torque/304-tile-types.md#not-settled) |
-| E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
@@ -292,19 +291,6 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settled part (2026-11-20) | The census: the 4.x to 6.x sets hold 103 distinct WAVs by content, and the 255 against 254 gap was one MP3 file named `.wav` (→ §3.10.5) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
 | Settles it | Test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | Outlook | Lab | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-
-### E#610 Windows 4.04r2 offline initialization against gameplay
-
-**Question.** Whether 4.04r2 plays offline. A harness drove its offline transition, but no gameplay was seen [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Instrumentation changes the offline-mode flag, allocates an adventure object and observes continued message-loop callbacks | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Open | A rendered offline level, player movement, and cutting, lifting, carrying or hiding on that build | [cap] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Settled part (2026-11-20) | On a Win10 guest with no network, and with its user-mode callback filter turned off, the unchanged packed 4.04r2 opened the offline tutorial level drawn, with the player in it; holding Right walked the player to the beach and the view scrolled. The next key hold closed the client, and four later starts closed within 5 s of Offline Test, so offline play works but not reliably there | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#windows-404r2-offline-scene-on-win10-e610-e611-partly-run) |
-| Best guess | It plays offline as 4.20r6 does, once the level files it expects are present. Confidence: low | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Settles it | A controlled scene with captured actions and the state before and after each one | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
-| Outlook | Lab | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 
 ### E#611 Windows 4.04r2 pickup semantics and input qualification
 
@@ -633,6 +619,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#607 | Leftover lines in the protocol cheat sheet | → §2.1.2 |
 | E#608 | How many `arrays.dat` lists make a tile passable | → §3.5.3.1 |
 | E#609 | macOS archive labels and application identity | → §1.9.1 |
+| E#610 | 4.04r2 offline gameplay | → §4.8.5 |
 | E#613 | Windows 2.22 remote PM roster and visible result | → §2.8.7 |
 | E#614 | Tiledef type 4 consumer | → §3.5.2 |
 | E#617 | Whether 1.41 rev 1 loads `.nw` levels online | → §1.5 |
