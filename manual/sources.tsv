@@ -890,4 +890,5 @@ protocol/lab-appe-gwentea2-2026-11-20d.md	cited	4.6; 7; E; 10	4.6; 7; E; 10	Gwen
 client-internals/static-reads-appendix-e-2026-11-20-f.md	cited	2.4; 2.8; 4.2; 4.5; E	2.4; 2.8; 4.2; 4.5; E	Decompiler reads for App. E: 2.22 neighbour-table skip flags and 171 loader, roster from PLO 8 and PM receipt, throw send, flight, hits, landing and drops
 protocol/lab-appe-gwentea2-2026-11-20e.md	cited	E	E	GwenTea2 lab for App. E: Windows 4.04r2 offline lift, carry and throw under Wine; A is the pickup key
 graal3d/x-loader-fuzz-2026-11-20.md	cited	9	9	Graal3D client on real Windows 10 with malformed .x levels: a bad face count or index leaves no collision object
+protocol/nc-flag-list-round-trip-2026-11-20.md	cited	7; E	7; E	Static read of the 2001 flag-list NCs: server-flag list request 68, reply 61, send 69, layout ranges and gen-2 send path
 client-internals/static-reads-appendix-e-2026-11-20-g.md	cited	4.2; 4.5; E	4.2; 4.5; E	Decompiler reads for App. E: 2.22 gani frame index and tick count (push trace), 1.39 item box unit and sizes from arrays.dat

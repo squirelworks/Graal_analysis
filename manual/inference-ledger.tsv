@@ -77,6 +77,7 @@ manual/07-rc-nc.md	Left over	tools/remotecontrol-lineage.md	The 2014 "custom" RC
 manual/07-rc-nc.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421	What an older server put in that string
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
+manual/07-rc-nc.md	Left over	protocol/nc-flag-list-round-trip-2026-11-20.md#not-covered	What the 2001 NPC server does with 69 and whether it limits the list; no server of that date is held
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
 manual/08-scripting/01-gs1-language.md	Left over	npc-library/gs1-condition-truth-205r2.md#verification-and-limits	The full alias and precedence rules, and named-flag collisions
 manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
