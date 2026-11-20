@@ -38,11 +38,11 @@ The *First sent* column of the tables below names the earliest build in this tab
 
 | Build | Ids sent | Complete? | Source |
 | --- | --- | --- | --- |
-| 1.21 | 0–13, 15–26 | yes: every send passes a constant id (→ App. E#6) | [bin] (client-internals/version-profiles/v121-v132.toml); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+| 1.21 | 0–13, 15–26 | yes: every send passes a constant id (→ §2.4.2) | [bin] (client-internals/version-profiles/v121-v132.toml); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
 | 1.28 beta 2 | 0, 15–21, 23, 25, 28, 29 | floor (fewer constants than 1.21 for the reason above) | [bin] (client-internals/version-profiles/v121-v132.toml) |
 | 1.3 test | 0, 14–21, 23, 25, 28–30 | floor | [bin] (client-internals/version-profiles/v121-v132.toml) |
 | 1.31 | 0, 10–21, 23–30 | floor | [bin] (client-internals/version-profiles/v121-v132.toml) |
-| 1.32 | 0–30 | yes: every send passes a constant id (→ App. E#6) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+| 1.32 | 0–30 | yes: every send passes a constant id (→ §2.4.2) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
 | 1.33 to 1.37 | 0–31 | yes for constant ids; a few register sends uncounted | [bin] (client-internals/version-profiles/v133-v139.toml) |
 | 1.38 | 0–24, 26–33 | as above | [bin] (client-internals/version-profiles/v133-v139.toml) |
 | 1.39 | 0–24, 26–33, 80, 81 | as above | [bin] (client-internals/version-profiles/v133-v139.toml) |
@@ -51,7 +51,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 2.01 (+rev1), 2.02, 2.02 rev1 | 0–24, 26–30, 32–36, 80, 81 | yes: every game-client send passes a constant id | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | 2.02 rev2 | 0–24, 26–30, 32–37, 80, 81 | yes: every game-client send passes a constant id | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | 2.03, 2.04, 2.05 (rev0–rev2), 2.1 test 2 and test 3 | 0–24, 26–30, 32–38, 80, 81 | yes: every game-client send passes a constant id | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
-| NewWorld beta 1, beta 2 | the 2.1 test set without 7, 8, 11, 15, 16, 17, 20; settled → App. E#11 | yes: no send passes the id in a register; neither beta sends 8 or 20 | [bin] (client-internals/version-profiles/141-217.toml); [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
+| NewWorld beta 1, beta 2 | the 2.1 test set without 7, 8, 11, 15, 16, 17, 20; settled → §2.4.2 | yes: no send passes the id in a register; neither beta sends 8 or 20 | [bin] (client-internals/version-profiles/141-217.toml); [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | 2.14 to 2.16 | the 2.1 set plus 41 | inferred; no binaries of 2.1 to 2.16 in the archive | [inf] (client-internals/version-profiles/141-217.toml) |
 | 2.17 (the 2.17.1 binary) | 0–24, 26–30, 32–41, 43–45, 80, 81 | yes: every game-client send passes a constant id | [bin] (client-internals/version-profiles/141-217.toml) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | 2.22 | 0–24, 26–30, 32–35, 37–41, 43, 44, 80 | floor; 36, 42 and 45 not matched to a call site | [bin][cap] (version-profiles/2.22-2.31.md#wire-protocol); [bin] (version-profiles/2.22-2.31.toml) |
@@ -61,7 +61,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 4.04r2 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32, 33, 35–37, 41, 44, 50, 79–81, 92, 96, 130, 152, 154, 157, 158, 161 | floor | [inf][cap] (version-profiles/4.04-4.20.toml) |
 | 4.20r6 (Mac) | the 4.04r2 set plus 34, 46, 162 | floor | [inf][cap] (version-profiles/4.04-4.20.toml) |
 | 4.20r8 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32, 33, 35–37, 41, 44, 50, 79–81, 92, 96, 130, 152, 154, 157, 158, 161, 162 | floor; some sends pass the id in a register | [bin] (protocol/v4x-clients.md#client--server-ids); [bin] (version-profiles/4.04-4.20.toml) |
-| 5.00r7 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32–37, 41, 44, 47, 50, 79–81, 92, 93, 96–98, 130, 152, 154–159, 161 | floor; also sends 11 with an empty body on a throw (→ App. E#4) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml); [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| 5.00r7 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32–37, 41, 44, 47, 50, 79–81, 92, 93, 96–98, 130, 152, 154–159, 161 | floor; also sends 11 with an empty body on a throw (→ §2.4.2) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml); [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
 | 5.12 | 1, 2, 11, 23, 24, 34, 37, 38, 44, 47, 157 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.24r4 | the 5.12 set plus 158 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.30r3 | 1, 11, 37, 38 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
@@ -70,6 +70,33 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 6.01r1 | the 6.03r7 set without 160 | unmeasured | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | 6.034 | as 6.03r7 | inferred | [inf] (version-profiles/5.00-6.03.toml) |
 | 6.03r7 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–162 | yes | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/5.00-6.03.toml) |
+
+**Settled question, formerly E#4: Whether 5.00r7 sends id 11.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws was open, because two lists of its sent ids disagreed; a lab throw with the id recorded settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the send wrappers have no 11. B: the profile lists 11, and 5.12, 5.24r4 and 5.30r3 captures send it | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml) |
+| Before | A static read found the backup engine's throw path sending 11 with an empty body | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
+| Settled | An unchanged 5.00r7, reaching the lab through a connect shim with its licence untouched, sent 11 with an empty body on each of 2 throws, after the lift's board change and ganis | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| Verdict | Verified: Claim B holds; the wrapper list missed the throw path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+
+**Settled question, formerly E#6: client-to-server constants of 1.21 and 1.32.** Whether 1.21 sends id 14 and 1.32 sends id 22 was open, because two reads of their send sites disagreed; a static read of both send routines settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Claim A: 0 and 10 to 26 in 1.21, 0 and 10 to 30 in 1.32. Claim B (profile): no 14 in 1.21, no 22 in 1.32. Best guess: neither is sent | [bin] (protocol/gserv-1999.md#message-ids); [bin] (client-internals/version-profiles/v121-v132.toml) |
+| Settled | Every call to each build's send routine passes a constant id. 1.21 sends 0 to 13 and 15 to 26 (no 14). 1.32 sends 0 to 30, so it sends both 14 and 22; its 22 goes out when a list lookup finds no match, its 29 when one does | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+| Verdict | Half right: the profile is right for 1.21 and missed 22 in 1.32. Both claims also left out 1 to 9, which both builds send | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+| Left over | What 14 and 22 carry in these builds | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6) |
+
+**Settled question, formerly E#11: client-to-server ids the NewWorld betas lack.** Two reads disagreed on whether the NewWorld betas send ids 8 and 20 [bin] (client-internals/version-profiles/141-217.toml).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The betas send the 2.1 test set without 7, 8, 11, 15, 16, 17 and 20 | [bin] (client-internals/version-profiles/141-217.toml) |
+| Claim B | The betas send 34 ids, the 2.1 test set without 7, 11, 15, 16 and 17 only | [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) |
+| Settled | Claim A: every send site in both betas was re-read; none sends 8 or 20 (nor 7, 11, 15, 16, 17), none passes the id in a register, and the betas send 32 ids | [bin] (version-profiles/pli-send-sites-141-217.md#newworld-betas-ids-8-and-20-app-e11) |
+| Note | Claim B's count of 34 was 39 less five, the arithmetic that hid the gap | [inf] (client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md) |
 
 The id table above says which ids a build can send. The rules below add the exceptions found in particular builds: ids with no sender, ids a family drops or adds, and a limit on one sender [2.05] (protocol/packet-ids.md#client--server-pli_).
 
@@ -265,9 +292,19 @@ These are the ids a client sends for checks and upkeep rather than for play. Sev
 | 43 | `PLI_MUTEPLAYER` | `s player id, c on` (1 mute, 0 unmute); one message per click in the player list | 2.17; not 6.03r7 | unmeasured | [cap] (protocol/packet-ids.md#client--server-pli_) ; [cap] (protocol/lab-checks-2026-10-24.md#buddy-ignore-mute-222) |
 | 44 | `PLI_PROCESSLIST` | the client's window list, comma-separated window titles | 2.17; not 3.04 | the reply to `PLO_LISTPROCESSES` (182) | [bin][cap] (protocol/packet-ids.md#client--server-pli_); [cap] (client-internals/version-profiles/141-217.toml) |
 | 45 | `PLI_PROCESSRUNNING` | `c flag`: 1 if the server's string occurs in the client's own process list | 2.17 | the reply to `PLO_HASPROCESSRUNNING` (183) | [bin] (protocol/packet-ids.md#client--server-pli_); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| 162 | `PLI_PONG` (was `PLI_RC_UNKNOWN162`; proposed `PLI_PING`) | game clients: `!` + `s value`; RCs: empty (→ App. E#5) | 4.20r6 | a ping: the game clients' answer to `PLO_PING`, an RC's 60 s keepalive; accept and ignore, or time it against 108 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#client--server-ids); [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603); [srv] (protocol/packet-ids.md#client--server-pli_) |
+| 162 | `PLI_PONG` (was `PLI_RC_UNKNOWN162`; proposed `PLI_PING`) | game clients: `!` + `s value`; RCs: empty (→ §2.4.9) | 4.20r6 | a ping: the game clients' answer to `PLO_PING`, an RC's 60 s keepalive; accept and ignore, or time it against 108 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#client--server-ids); [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603); [srv] (protocol/packet-ids.md#client--server-pli_) |
 | 252 | `PLI_SET_ENC_KEY` | sets the AES or RC4 key and IV; above 223, so not sendable as one GCHAR (→ §2.10) | newer gs2lib only | unmeasured | [srv] (protocol/packet-ids.md#client--server-pli_) |
 | 253 | `PLI_BUNDLE` | several messages in one (→ §2.10) | newer gs2lib only | unmeasured | [srv] (protocol/packet-ids.md#client--server-pli_) |
+
+**Settled question, formerly E#5: meaning of id 162 from the client.** Three readings of client id 162 turned out to be one message, a ping answer [srv] (protocol/packet-ids.md#client--server-pli_).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The 2026-10 gs2lib named 162 `PLI_RC_UNKNOWN162` (upstream now `PLI_PONG`): an empty message from the RC3 beta | [srv] (protocol/packet-ids.md#client--server-pli_) |
+| Claim B | 4.20r8 sends 162 as the answer to S→C 108 | [bin] (protocol/v4x-clients.md#client--server-ids) |
+| Claim C | 6.01r1 and 6.03r7 send 162 as a reply to a server request: `!` and a 2-byte value (two 7-bit groups, capped at `0x6FFF`) the server sent; probably the ping answer 6.11 calls `onSendPingAnswer` | [bin][inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Settled | One message, a ping: 4.20r6, 4.20r8, 6.01r1 and 6.03r7 send 162 only from their 108 handler, with the same code in 4.20r8 and 6.03r7; the 2010 RC and RC3 send it empty every 60 s and have no 108 handler | [bin] (protocol/unknown-ids-2026-11-06.md) |
+| Left over | A capture of a game client's answer to S→C 108 is still missing | [inf] (protocol/v4x-clients.md#client--server-ids) |
 
 Ids 24 and 39 were studied from captures. The rules give their timing and the exact bytes seen, and what tests showed about their meaning [cap] (protocol/packet-ids.md#client--server-pli_).
 

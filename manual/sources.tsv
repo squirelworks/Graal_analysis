@@ -5,7 +5,7 @@ protocol/nc-standalone-flag-action.md	cited	7; E	7; E	Bounded action and analyst
 AGENTS.md	excluded	0; E; G		repository rules; cited only for redaction conventions
 ARCHIVAL.md	excluded			project decommission note, not Graal
 ARCHIVE.md	excluded			project decommission note, not Graal
-CONSOLIDATED.md	cited	E	E	
+CONSOLIDATED.md	cited	E;3.5	E	
 README.md	excluded			repository contents list, not Graal
 archival/README.md	excluded		E	index of archived early notes; each note has its own row
 archival/client-assets-measured.md	excluded		E	archived early measurement, superseded by the later notes the manual cites
@@ -25,21 +25,21 @@ ash/INDEX.md	cited	5; E	5.2
 ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/packet-ids.md with gs2lib names; App. A cites packet-ids.md directly
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
-client-internals/6037-guest-login-loop.md	cited	2.3; E	2.3; E	6.037 guest-first Login loop status; C7–C9 form/script gotchas unconfirmed; §2.3 / E
-client-internals/baddies-222.md	cited	2.6; 4.3; 5; 8.2; E	4.3	
+client-internals/6037-guest-login-loop.md	cited	2.3	2.3; E	6.037 guest-first Login loop status; C7–C9 form/script gotchas unconfirmed; §2.3 / E
+client-internals/baddies-222.md	cited	2.6; 4.3; 5; 8.2	4.3	
 client-internals/bare-level-names.md	cited	3.1	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
 client-internals/beta-hud-layouts.tsv	cited	4.6	4.6	per-build HUD layouts of the 1998 betas to 1.28b2, measured from captures; carried into §4.6.1.6
-client-internals/board-respawn.md	cited	4.5; 5; E	4.5; 5	
+client-internals/board-respawn.md	cited	4.5; 5	4.5; 5	
 client-internals/body-colours-and-attributes.md	cited	2.6	2.6	
 client-internals/build-catalogue.md	cited	0; 1; 2.1; 2.2; E	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/build-diff-204-205.md	cited	8.2; 4.11	4	
-client-internals/carry-hide-and-glove.md	cited	4.5; E	4	
+client-internals/carry-hide-and-glove.md	cited	4.5	4	
 client-internals/chat-text.md	cited	2.8; 4.6	4	
 client-internals/client-architecture-205.md	cited	6; 4.11	4	
-client-internals/client-assets.md	cited	3.5; 3.10; E	3.10	
-client-internals/combat-200-204.md	cited	4.3; E	4.3	
+client-internals/client-assets.md	cited	3.5; 3.10	3.10	
+client-internals/combat-200-204.md	cited	4.3	4.3	
 client-internals/config-and-input.md	cited	3.9	3.9	
-client-internals/cross-version-timeline.md	cited	1; 8.2; C; E	1	
+client-internals/cross-version-timeline.md	cited	1; 8.2; C; 2.5; 2.6	1	
 client-internals/damage-sources.md	cited	4.3; E	4	
 client-internals/decomp-findings-2026-10-24-b/01-tamper-check-id39.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md	cited	2.5	2.5; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.5 (coverage audit 2026-11-04)
@@ -53,11 +53,11 @@ client-internals/decomp-findings-2026-10-24-b/README.md	excluded		4	index of the
 client-internals/decomp-findings-2026-10-24-c/01-toolchain-and-coverage.md	excluded		4	record of the decompile toolchain and method; no client behaviour
 client-internals/decomp-findings-2026-10-24-c/02-login-token-and-version.md	cited	1; E	1; 2.2; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §1, App. E (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/03-framing-and-encryption.md	cited	2.1	2.1; 2.2; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.1 (coverage audit 2026-11-04)
-client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	cited	2.5; E	2.5; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.5, App. E (coverage audit 2026-11-04)
-client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	cited	2.4; E	2.4; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4, App. E (coverage audit 2026-11-04)
+client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md	cited	2.5	2.5; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.5, App. E (coverage audit 2026-11-04)
+client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	cited	2.4	2.4; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4, App. E (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/06-handler-changes-by-build.md	cited	2.5	2.4; 2.5; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.5 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	cited	2.9	2.9; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.9 (coverage audit 2026-11-04)
-client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	cited	2.4; 2.5; 8.2; E; 1	1; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
+client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	cited	2.4; 2.5; 8.2; 1	1; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/09-features-classes-vocabulary.md	cited	8.2; 1	1; 4; 8.2	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/10-open-questions-and-corrections.md	cited	2.4; E	4; E	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4, App. E (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/README.md	excluded		4	index of the batch folder; each of its notes has its own row
@@ -71,14 +71,14 @@ client-internals/decomp-findings-2026-10-24-c/plo_handled_ids_by_build.tsv	cited
 client-internals/decomp-findings-2026-10-24-c/script_vocab_deltas.tsv	cited	8.2	4; 8.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §8.2 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-c/version_tokens.tsv	cited	1	1; 2.2; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §1 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-24-d/01-sword-damage.md	cited	4.3	4	
-client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md	cited	4.4; E	4	
-client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md	cited	4.3; E	4	
+client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md	cited	4.4	4	
+client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-24-d/damage-rules.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/entry-save-rule.tsv	cited	4.4	4	
 client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv	cited	4.3	4	
 client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv	cited	4.4	4	
-client-internals/decomp-findings-2026-10-24-d/open-questions.tsv	cited	4.4; E	4	
+client-internals/decomp-findings-2026-10-24-d/open-questions.tsv	cited	4.4	4	
 client-internals/decomp-findings-2026-10-24/01-death-respawn.md	cited	4.3; 4.4	4	
 client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md	cited	4.10	4	
 client-internals/decomp-findings-2026-10-24/03-player-list-popup.md	cited	4.10	4	
@@ -108,7 +108,7 @@ client-internals/decomp-findings-2026-10-25-e/name-index-rules.tsv	cited	2.7	2.7
 client-internals/decomp-findings-2026-10-25-e/open-questions.tsv	excluded		4; E	table form of 03-open-points.md in the same folder, which App. E cites
 client-internals/decomp-findings-2026-10-25-e/request-rules.tsv	cited	2.7	2.7; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.7 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md	cited	3.1	3.1; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
-client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	cited	E; 3.1	3.1; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
+client-internals/decomp-findings-2026-10-25-f/02-link-arrival-expressions.md	cited	3.1	3.1; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-f/03-baddy-terminator.md	cited	3.1	3.1; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md	cited	3.1; 3.6	3.1; 3.6; 4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-f/README.md	excluded		4	index of the batch folder; each of its notes has its own row
@@ -129,7 +129,7 @@ client-internals/decomp-findings-2026-10-25-j/05-old-reader-failures.md	cited	3.
 client-internals/decomp-findings-2026-10-25-j/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-j/by-build.tsv	cited	3.1	3.1; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
 client-internals/decomp-findings-2026-10-25-j/format-stats.tsv	cited	3.1	3.1; 4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.1 (coverage audit 2026-11-04)
-client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3; E	4	
+client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md	cited	4.3	4	
 client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md	cited	2.7; E	2.7	
 client-internals/decomp-findings-2026-10-25-k/03-open-points.md	cited	E	E	
 client-internals/decomp-findings-2026-10-25-k/README.md	excluded		4	index of the batch folder; each of its notes has its own row
@@ -138,14 +138,14 @@ client-internals/decomp-findings-2026-10-25-k/open-questions.tsv	excluded		E	tab
 client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv	cited	2.7	2.7	
 client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md	cited	4.2; 4.3; 4.5; E	4	
 client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md	cited	3.5	3.5	
-client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5; E	4	
+client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md	cited	4.5	4	
 client-internals/decomp-findings-2026-10-25-l/04-public-server-run.md	cited	2.5	2.5	
 client-internals/decomp-findings-2026-10-25-l/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-l/open-questions.tsv	cited	E	E	
 client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md	cited	4.2; E	4	
 client-internals/decomp-findings-2026-10-25-m/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-25-m/open-questions.tsv	cited	4.2; E	4	
-client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3; E	4	
+client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md	cited	4.2; 4.3; 3.5	4	
 client-internals/decomp-findings-2026-10-28-b/README.md	excluded		4	index of the batch folder; each of its notes has its own row
 client-internals/decomp-findings-2026-10-28-b/tile-type-lists.tsv	excluded		4	table form of 01-tile-type-tests.md in the same folder, which the manual cites
 client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md	cited	4.3; 4.5	4	
@@ -161,13 +161,13 @@ client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry tha
 client-internals/launchers-420r8-500r7-512.md	cited	1; 2.3	1; 2.3	Component identity in §1.8.9 and login attribution in §2.3.5. Detailed modifications, scanner counts and companion comparison mechanics stay in the source; no operational policy or new protocol profile is inferred.
 client-internals/graal2002-and-140-builds.md	cited	1; 2.3; 2.4; 2.5; 2.6; 4.11; 6; 8.2; C; E	1; 2.3; 2.4; 2.5	Static identity, tokens, command dating and receive routes carried; repeated comparison baselines remain in their existing catalogue rows; Graal3D details stay in the dedicated beta note/Part IX; exact-input runtime and matrix follow-ups retained in E#15. Form names for the seven 2.1.0.x images are in §4.11. Exact ver10 list-loader/selected-row boundaries carried in §6.1.4; indirect/unreviewed routes remain open. Public 2.1.0.0 widths for 170–174 and v22 widths for 175–177 are in §2.5.2.2. The ver10 controlnpc install, the public GRMAP001 keys and the v22 loadgmaps preload are in §1. Native exact-ver10 entry/wire identity and qualified first-frame/reply observations carried in §6.1.4; first player-properties emission remains open. Public 171/172 destination state and text-resource commit/preserve guards carried in §2.5.2.2; runtime display and coordinate rounding remain open.
 client-internals/graal2002-level-open.md	cited	3.1; 3.3; 11	3.1; 3.3; 11	§3.1.0 carries the public open gate, the local-enter constant 40, ver7's missing baddy and chest records, and v22's empty GLEVNW01 stream. §3.3.7 carries the public gani direction count. §11.6.3 carries the public caller of the unsupported-file dialog. The marker character, the ver8–ver13 bodies, the name-match helper (the level and two floating-point values of 31; its effect unread) and the v22 weapon-name helper stay in the note.
-client-internals/early-windows-callback-variants.md	cited	1; E	1; E	
+client-internals/early-windows-callback-variants.md	cited	1	1	
 client-internals/graal-2.3-unpacked-package.md	cited	1	1	Client and companion-component identity comparisons carried in 1.8.3; no official-release, whole-executable integrity or original 2.3 runtime claim follows from the repack label.
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/hud-603r7-black-box.md	cited	4.6; E	4.6	Measured HUD in §4.6.9; unresolved sword crop, Windows text positions and clock in E#326. Complete request names and renderer diagnostics remain in the source.
 client-internals/unpacked-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry the image identity, the Oreans strings, and the Torque-name diff against unpacked 6.00; section sizes and the t2d constructor list stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
-client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4; E	4.3	
+client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4	4.3	
 client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
 client-internals/feature-specs/04-death-respawn.md	cited	4.4	4.4	
 client-internals/feature-specs/05-save-load.md	cited	3.7	3.7; 4.10	§4.10 not needed: a reimplementation spec; its Graal facts are carried in §3.7, and its remaining terms are the reimplementation's own names (coverage audit 2026-11-04)
@@ -176,11 +176,11 @@ client-internals/feature-specs/07-udp-peer.md	excluded		2.9	reimplementation fea
 client-internals/feature-specs/08-tampercheck.md	cited	4.10; E	4.10	
 client-internals/feature-specs/09-options.md	cited	4.6	4.6	
 client-internals/feature-specs/10-right-click-menu.md	cited	4.10	4.10	
-client-internals/feature-specs/11-emotes-ganis.md	cited	4.10; E	4.10	
+client-internals/feature-specs/11-emotes-ganis.md	cited	4.10	4.10	
 client-internals/feature-specs/12-motd-rules.md	cited	4.10; 5	4.10	
 client-internals/feature-specs/13-ban-kick.md	cited	4.10	4.10	
 client-internals/feature-specs/14-friends-ignore.md	cited	4.10; 2.8	4.10	
-client-internals/feature-specs/README.md	cited	4.10; E	4.10	
+client-internals/feature-specs/README.md	cited	4.10	4.10	
 client-internals/feature-timeline.md	cited	8; 8.1; 8.2; 8.3; 4.11	4	
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
@@ -193,13 +193,13 @@ client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one han
 client-internals/id24-205.md	cited	2.4	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 client-internals/issho-cut.md	cited	10	10	
 client-internals/item-drops.md	cited	4; 4.5; E	4.5	
-client-internals/items-603r7-black-box.md	cited	4.5; E	4.5	Wire/screen behavior and corrected idle-VM timing in §4.5.8; art/menu unknowns in E#327. Detailed effect rectangles and flips remain in the source.
-client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5; E	4.2; 4.5	
+client-internals/items-603r7-black-box.md	cited	4.5	4.5	Wire/screen behavior and corrected idle-VM timing in §4.5.8; art/menu unknowns in E#327. Detailed effect rectangles and flips remain in the source.
+client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5	4.2; 4.5	
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
 client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
-client-internals/ledges-push-pull.md	cited	4.2; 4.5; E	4.2	
+client-internals/ledges-push-pull.md	cited	4.2; 4.5	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
-client-internals/live-behaviour-404.md	cited	2.4; 8; 8.1; 8.3; 4.11; E	4	
+client-internals/live-behaviour-404.md	cited	2.4; 8; 8.1; 8.3; 4.11	4	
 client-internals/live-checks-editor-offline-sound.md	cited	4.5; 4.6; 4.7; 4.8; 4.9	4	
 client-internals/live-gserver13.md	cited	4.1; 4.2; 5	5.1	
 client-internals/live-trace-205.md	cited	4.1; 4.2; 4.3; 4.4	4	
@@ -216,7 +216,7 @@ client-internals/player-mannerisms-live.md	cited	4; 4.1; 4.2; 4.3; 4.5; E	4
 client-internals/precursor-runs-2026-10-30.md	cited	2.3; 4.11	4	
 client-internals/precursors-and-fan-builds.md	cited	1; 2.3; 4.11	4	
 client-internals/prior-attempts.md	excluded		4	history of earlier analysis passes; its findings are in the later notes the manual cites
-client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6; E	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.11), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
+client-internals/rebuild-traces-2026-11-05.md	cited	4.6; 4.11; 6	4.6; 4.11; 6; E	graal-delphi v0.0.4 traces: HUD text (§4.6.1.7), 2.22 drawing (§4.6.10), start and game windows (§4.11.11), list buttons (§6.2.1); the 2.22 tick conflict is App. E#328
 client-internals/reference-reimplementations/2dadventureclient.md	excluded		4	behaviour of an outside reimplementation; not evidence of the original clients, and its code is not used
 client-internals/reference-reimplementations/README.md	excluded		4	study of outside reimplementations; not evidence of the original clients, and their code is not used
 client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §8.3 (coverage audit 2026-11-04)
@@ -241,10 +241,10 @@ client-internals/v21-level-record-gate.md	cited	3.1	3.1	Baddy and chest store/sk
 client-internals/v2100-gani-reader.md	cited	3.3	3.3	Public 2.1.0.0 reads carried in §3.3.9. The post-keyword field counts are an inference there. Prefix spellings and the block opener stay in the note.
 client-internals/v5v6-expiry-and-black-screen.md	cited	1; 4.1; E	1; 4.1	Wine fidelity + 2026-11-16 lab re-score: 5.24r4/6.03r7 draw tiles/HUD/player with 2.22 base assets; five-client wire cells were asset/warp-timing; open checkbox closed.
 client-internals/version-id-map.md	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
-client-internals/version-profiles/141-217.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
+client-internals/version-profiles/141-217.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/README.md	excluded		1; C	usage notes for the profile files and their resolver script; the manual cites the profile files directly
 client-internals/version-profiles/list-ports.md	excluded		1; C	dialling advice for a reimplementation, by its own statement not what the binaries carry; the built-in hosts and ports are in §6.1.1 from the primary notes
-client-internals/version-profiles/v121-v132.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
+client-internals/version-profiles/v121-v132.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/v133-v139.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 client-internals/version-profiles/v1998-v11.toml	cited	C; 1	1; C	
 client-internals/version-token-catalogue.md	cited	1; 2.3	1; 2.3	Canonical exact token/build/platform/role evidence map linked from Parts I and II; generated human/TSV indices retain per-association limits; historical reproduction columns remain in the source.
@@ -263,7 +263,7 @@ docs/book/00-how-to-read.md	cited	G	E	Appendix E not needed: a reading guide wit
 docs/book/01-a-level-and-a-session.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/02-the-player.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
 docs/book/03-the-machines.md	excluded		E	0.0.2 book chapter drafted from the working notes; the manual cites the notes directly
-docs/book/04-where-the-notes-disagree.md	cited	E	E	
+docs/book/04-where-the-notes-disagree.md	cited	3.1;6	3.1;6	
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 docs/preagonal-gs2-clean-room-2026-11-07.md	excluded			licence and method note for a later compiler; not evidence about the original clients
@@ -275,33 +275,33 @@ docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, 
 docs/releases/unreleased.md	excluded			notes for the next GitHub release, not Graal
 docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
-formats/arrays-and-signatures.md	cited	3.5; E	3.5	
+formats/arrays-and-signatures.md	cited	3.5	3.5	
 formats/windows-222-verifier-variants.md	cited	3.5; E	3.5; E	Four-guard variant comparison and separate prior control claim carried in 3.5.5.1; broader lineage, caller and runtime uncertainties carried in E#103.
 formats/gani.txt	cited	3.3	3.3	
-formats/glevnw01.txt	cited	3.1; E	3.1	
-formats/gmap.md	cited	3.2; E	3.2	
-formats/gobjset01.md	cited	3.4; E	3.4	
+formats/glevnw01.txt	cited	3.1	3.1	
+formats/gmap.md	cited	3.2	3.2	
+formats/gobjset01.md	cited	3.4	3.4	
 formats/gpak.md	cited	2.5	2.5	
 formats/graalsav.md	cited	3.7	3.7	
-formats/grmap001.txt	cited	3.2; E	3.2	
+formats/grmap001.txt	cited	3.2	3.2	
 formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	cited	3.8	3.8	
 formats/grescr-key-words-2026-11-16.md	cited	3.8	3.8	
 formats/gr-v105-500r7.md	cited	1; 3.1	1; 3.1	5.00r7 intro of GR-V1.05 (absent 4.20r8), GCHAR layers + N×13-bit boards, writer layers>1 with count clamp 223
 formats/gr-v105-500r7-cache-lab.md	cited	1; 3.1; 3.8	1; 3.1; 3.8	5.00r7 web-level cache lab: GR-V1.05 counts 0x22/0x23, no pad; HEIGHTS inconclusive on that path
-formats/gr-v105-empty-tiles-2026-11-16.md	cited	3.1; E	3.1; E	GR-V1.05 upper-layer empty: RAM all-ones/-1, disk 4095; no JE-skip found; sample hunt limits
+formats/gr-v105-empty-tiles-2026-11-16.md	cited	3.1	3.1; E	GR-V1.05 upper-layer empty: RAM all-ones/-1, disk 4095; no JE-skip found; sample hunt limits
 formats/gr-v105-fuzz-2026-11-19.md	cited	2.5; 3.1; 5	2.5; 3.1; 5	
-formats/level-binary-client.md	cited	3.1; 3.6; E	3.1	
-formats/level-binary.md	cited	1; 3.1; E	3.1	
+formats/level-binary-client.md	cited	3.1; 3.6	3.1	
+formats/level-binary.md	cited	1; 3.1	3.1	
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/seihai-systems.md	excluded			reimplementation design (Seihai), out of scope per §0.1
 formats/sign-text.md	cited	3.6	3.6	
 formats/tile-walk.md	cited	3.4; 3.5; E	3.5; 4.2	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §3.4, §3.5, App. E (coverage audit 2026-11-04)
-formats/tile-types-pics1-packing-2026-11-16.md	cited	3.5; E	3.5; E	pics1 strip packing; no client tiletypes0.dat; picso high-id OOB
+formats/tile-types-pics1-packing-2026-11-16.md	cited	3.5	3.5; E	pics1 strip packing; no client tiletypes0.dat; picso high-id OOB
 formats/tiletypes.txt	cited	3.5; E	3.5	
 graal3d/README.md	cited	9	9	
 graal3d/beta3-genesis.md	cited	9; E	9	
-graal3d/camera.md	cited	9; E	9	
+graal3d/camera.md	cited	9	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	
 graal3d/formats.md	cited	9	9	
@@ -316,9 +316,9 @@ live-runs/open-issues-2026-11-14/README.md	cited	2.5; 2.7; 4.1; 4.11; 8.2; 10; C
 npc-library/README.md	cited	8; 8.1	8	
 npc-library/archival-scripting-notes.md	cited	8; 8.1	8	
 npc-library/behaviours.md	cited	8.1	8	
-npc-library/npcprop-class-v4-158-status.md	cited	2.5; 8; E	2.5; E	NPCPROP_CLASS vs PLI 158 on v4: GServer habit vs client isolate; research #55
-npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2; E	8	
-npc-library/gs1-commands-by-version.md	excluded	E	C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
+npc-library/npcprop-class-v4-158-status.md	cited	2.5; 8	2.5; E	NPCPROP_CLASS vs PLI 158 on v4: GServer habit vs client isolate; research #55
+npc-library/gs1-command-reference-205.md	cited	8; 8.1; 8.2	8	
+npc-library/gs1-commands-by-version.md	excluded	1	C; 8.2	new GS1 command-by-build chart (2026-11-04); to be folded into C.5 and §8.2 in the next manual pass
 npc-library/gs1-commands-by-version.tsv	excluded		C	data matrix behind gs1-commands-by-version.md
 npc-library/gs1-event-counts.md	cited	8.1	8.1	
 npc-library/gs1-commands.md	cited	8.1; 8.2; E	8	
@@ -338,8 +338,8 @@ npc-library/scripts/spawners/README.md	excluded			original example scripts writt
 npc-library/scripts/transport/README.md	excluded			original example scripts written for the repo, not evidence about Graal
 npc-library/tile-patterns.md	excluded		8	scan output that read script text as tile ids (the pairs decode to ASCII); not usable
 protocol/OPCODE-SUMMARY.md	excluded		2.4; 2.5; A	short id list of a reimplementation (39ster 2.1) that points to ash/OPCODE-MAP.md; superseded by protocol/packet-ids.md
-protocol/PROTOCOL-CHEATSHEET.md	cited	E	2	Part 2 not needed: an early summary superseded by the notes §2.1 to §2.3 cite; its leftover lines are listed in App. E#607 (coverage audit 2026-11-04)
-protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7; E	2.8; 7	
+protocol/PROTOCOL-CHEATSHEET.md	cited	2.1	2	Part 2 not needed: an early summary superseded by the notes §2.1 to §2.3 cite; its leftover lines are listed in App. E#607 (coverage audit 2026-11-04)
+protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7	2.8; 7	
 protocol/class-bytecode-v4.md	cited	2.4	2.4	v4 `PLI_UPDATECLASS` → raw PLO 133 (CRC field, cold-join 0, contrast with weapons 193/158/132 and with 197); carried in §2.4.7
 protocol/script-packet-guards.md	cited	2.5	2.5	hard guards: never 132/133/193 to builds that dropped them (5.24+/v6); never 197/140 to pure 4.x; gate on profile plo; §2.5
 protocol/plo-181-player-noudp.md	cited	2.5; A	2.5; A	PLO 181 PLAYERNOUDP: peer-UDP opt-out by player id+toggle; 2.17–5.24r4; §2.5 / App. A
@@ -348,7 +348,7 @@ protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
 protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
-protocol/file-transfer.md	cited	2; 2.7; E	2.7	
+protocol/file-transfer.md	cited	2; 2.7	2.7	
 protocol/format-notes-from-salvage.md	cited	E	2	Part 2 not needed: an early format summary superseded by the notes Part 3 cites; cited in App. E where it disagrees with them (coverage audit 2026-11-04)
 protocol/graphics-movement-bytecode.md	cited	8; 8.3; 8.4; E	8.4	
 protocol/gs2-6113.md	cited	8.4; 10	8.4; 10	§8.4.2 and §10.1.9 carry that 6.113 adds no opcode; the 6.00 fold table and the compiler line citations stay in the note
@@ -356,43 +356,43 @@ protocol/gs2-client-only-opcodes.md	cited	8.4	8.4	per-opcode effects of the byte
 protocol/gs2-fold-241-2026-11-16.md	cited	8.4; E	8.4; E	
 protocol/gs2-client-vm.md	cited	8.3; 8.4; E	8.3; 8.4	opcode catalogue, client debug names, and the peephole stay in the note; §8.3 and §8.4 carry the container, that it is not GSHORT, and the load path
 protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1; E	8.3; 8.4; E	§8.4.2, §8.4.4 and §1.8.7 carry that unpacked 6.1.1.3 adds no opcode past 6.00 and still caches GRESCR01; E#209 cites the opcode 54 case. The per-case skip table stays in the note
-protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; E	2.3; 5.1	
+protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
 protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
 protocol/link-test-2026-11-04.md	cited	2.5		
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/listserver.md	cited	6; E	6	
-protocol/login-and-walk.md	cited	2.3; 2.4; 7; E	2.3	
+protocol/login-and-walk.md	cited	2.3; 2.4; 7; 2.1	2.3	
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
-protocol/login-recovery-start.md	excluded	E	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
+protocol/login-recovery-start.md	excluded	2.1	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
 protocol/login-session-observed.md	cited	2.3	2.3	
 protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/medium-term-slice.md	excluded		2	Seihai implementation plan; not evidence about the original clients
-protocol/npc-control.md	cited	7; E	7	
+protocol/npc-control.md	cited	7	7	
 protocol/offline-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
 protocol/packet-id-diff.md	excluded		2.4; 2.5; A	method note: the 2.05 file it compared was the GS1 interpreter, not the packet dispatcher; no packet facts of its own
-protocol/packet-ids.md	cited	2; 0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A; E	2.4; 2.5; A	
-protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; E; A	2.4; 2.5; A	Appendix A links the board-packet description; layouts remain in section 2.5
+protocol/packet-ids.md	cited	2; 0; 2.1; 2.4; 2.5; 2.10; 8.1; 8.3; 8.4; A	2.4; 2.5; A	
+protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; A	2.4; 2.5; A	Appendix A links the board-packet description; layouts remain in section 2.5
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
-protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B; E	2.6; B	
+protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B	2.6; B	
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
 protocol/rc-list-online.md	cited	7; E	7	
-protocol/rc2-sessions-stock-2026-11-16.md	cited	7; E	7; E	RC2/RC3 stock: IRC after 25; no 194→prop35+location; GUI≠140; GSERV024/025 ladder
-protocol/rc-fuzz-2026-11-19.md	cited	E; 5; 7	5; 7; E	
+protocol/rc2-sessions-stock-2026-11-16.md	cited	7	7; E	RC2/RC3 stock: IRC after 25; no 194→prop35+location; GUI≠140; GSERV024/025 ladder
+protocol/rc-fuzz-2026-11-19.md	cited	5; 7; 2.1	5; 7; 2.1	
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Canonical earliest-network capability/evidence map carried in 2.3.1.5; source-only board behavior also carried in 4.11 via the precursor note. Consumer PR status is dated implementation context, not original behavior.
 protocol/session-opcodes-cleaned.md	excluded		2.4; 2.5; A	early summary of framing and receive ids; superseded by protocol/codec-and-framing.md and protocol/packet-ids.md
 protocol/shoot-5007.md	cited	2.4; 2.5	2.5	
 protocol/udp-p2p.md	cited	2; 2.8; 2.9	2.9	
-protocol/unknown-ids-2026-11-06.md	cited	2.4; 2.5; E	2.4; 2.5	
+protocol/unknown-ids-2026-11-06.md	cited	2.4; 2.5	2.4; 2.5	
 protocol/unpacked-6113-wire.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.6 carry the generation-5 LCG, the missing token, and the 0xFE send slots; the file-magic table stays in the note
 protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10; 3.1; 1	1; 2.3; 10	
-protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.6; 2.8; 8.3; 10; E; 3.1; 1; C; A	1; 2.3; 10	
-protocol/v5v6-lab-play.md	cited	4; 0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; E; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
-protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; E; 1	1; 2.3	
-protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; E; 1	1; 2.3	
+protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.6; 2.8; 8.3; 10; E; 3.1; 1; C; A; 2.10	1; 2.3; 10	
+protocol/v5v6-lab-play.md	cited	4; 0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
+protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; 1	1; 2.3	
+protocol/v5x-clients.md	cited	2.1; 2.3; 2.4; 2.5; 1	1; 2.3	
 protocol/v6037-hello-diff.md	cited	2.3	2.3	
 protocol/v6113-chat.md	cited	2.8	2.8	
 protocol/v6113-files.md	cited	2.7	2.7	
@@ -408,9 +408,9 @@ protocol/v6113-pli.md	cited	2.4	2.4	§2.4.12 carries sendraw, senddata, the 254 
 protocol/v6113-udp.md	cited	1; 2.9; 6; 10	1; 2.9; 6; 10	§1.8.7 carries both captures: the shorter one has TCP 14900 and no UDP on 14900, 14901 or 14899, and the longer one has the Graal hello on 14900 and 14882. §2.9, §6.1.3 and §10.2 carry the longer capture's port comparison. Both port tables stay in the note
 protocol/v6113-udp-code.md	cited	2.9	2.9	
 protocol/v6113-wire.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 has no token and no wire of its own; the contradiction table stays in the note
-protocol/v6x-clients.md	cited	2; 2.1; 2.2; 2.3; 2.4; 2.5; 2.10; E; 1	1; 2.10	
-protocol/v7x-properties-and-gs2.md	cited	2.6; 8.3; 8.4; E	2.6; 8.4	
-protocol/v7x-protocol.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; E	2.3; 2.4	
+protocol/v6x-clients.md	cited	2; 2.1; 2.2; 2.3; 2.4; 2.5; 2.10; 1; 2.7	1; 2.10	
+protocol/v7x-properties-and-gs2.md	cited	2.6; 8.3; 8.4	2.6; 8.4	
+protocol/v7x-protocol.md	cited	2.1; 2.2; 2.3; 2.4; 2.5	2.3; 2.4	
 recovered-drive-tools/INVENTORY.md	excluded		11	download inventory of the recovered Drive corpus; logistics, no Graal behaviour
 recovered-drive-tools/SALVAGE_CANDIDATES.md	excluded		11	reimplementation placement plan
 recovered-drive-tools/SALVAGE_PLACEMENT.md	excluded		11	reimplementation placement plan
@@ -484,7 +484,7 @@ tools/classic-tools/README.md	cited	11	6; 11	Part 6 not needed: the tool does no
 tools/classic-tools/character-designer.md	cited	11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
 tools/classic-tools/graal-level-gen.md	cited	11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
 tools/classic-tools/gserverstat.md	cited	5; 11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
-tools/classic-tools/serverlist3.md	cited	6; 11; E	6; 11	
+tools/classic-tools/serverlist3.md	cited	6; 11	6; 11	
 tools/classic-tools/text-convert.md	cited	11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
 tools/generators-222/README.md	cited	11	11	
 tools/generators-222/gmap-terrain-stock-2026-11-16.md	cited	11; 3.2	11; 3.2	stock TerrainGenerator Delphi LCG; HEIGHTMAP/RANDOMSEEDS roles; writer vs 65x65 reader
@@ -493,7 +493,7 @@ tools/ghidra/README.md	excluded		11	repository analysis tooling, not Graal
 tools/ghidra/VERSION.txt	excluded		11	repository analysis tooling, not Graal
 tools/gif2mng.md	cited	11	11	
 tools/graaleditor-vs-205.md	cited	11; E	11	Editor attribution disagreement retained in E#612.
-tools/graaleditor.md	cited	11; E	11	
+tools/graaleditor.md	cited	11	11	
 tools/graalshop.md	cited	3.3; 11; E	3.3; 11	Movie grammar and scoped file observations carried in 3.3; editor attribution conflict retained in E#612.
 tools/gs1-lint/README.md	excluded			repository tooling for the notes (a checker built from §8.2), not Graal
 tools/gs1-table-scan/README.md	excluded			repository tooling for the notes (the scanner behind gs1-commands-by-version.md), not Graal
@@ -503,19 +503,19 @@ tools/lab-servers/README.md	cited	5; 6	6
 tools/lab-setup.md	excluded		11	lab procedure
 tools/level-convert/README.md	excluded		11	a reimplementation converter written for this project
 tools/level-convert/SEIHAI-FORMAT.md	excluded		11	reimplementation package format
-tools/level-editor/222-reference.md	cited	11; E	11	
+tools/level-editor/222-reference.md	cited	11	11	
 tools/level-editor/README.md	cited	11	11	
-tools/level-editor/formats-crossref.md	cited	11; E	11	
+tools/level-editor/formats-crossref.md	cited	11	11	
 tools/level-editor/seihai-tracking.md	excluded		11	reimplementation tracking checklist
-tools/level-editor/version-deltas.md	cited	11; E	11	
+tools/level-editor/version-deltas.md	cited	11	11	
 tools/level-tools-gaps/README.md	cited	11	11	
 tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
 tools/npc-control.md	cited	6; 7; E	7	
 tools/npcserver-2001.md	cited	5; 7	7	
 tools/release/README.md	excluded			repository tooling for the notes, not Graal
 tools/release/how-to-read.md	excluded			repository tooling for the notes, not Graal
-tools/remotecontrol-lineage.md	cited	7; E	7	
-tools/remotecontrol.md	cited	7; E	7	
+tools/remotecontrol-lineage.md	cited	7	7	
+tools/remotecontrol.md	cited	7	7	
 tools/respawn-lab/README.md	excluded		11	lab procedure
 tools/server-tools-2001.md	cited	5; 6; 7; E	7	
 tools/tools-coverage-2026-11-14.md	excluded		11	coverage audit of the tools folder; a status table, not a source
@@ -557,14 +557,14 @@ torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.9 carries the version strings, fixed words and companies on the skipped exports
-torque/study-torque-clients.md	cited	E; 10	10	Part X opens with the study's three-program split (§10.0) and cites it through §10.1.8; the rebuild plan is excluded (#243)
-torque/wire-by-build.md	cited	10; E	10	
+torque/study-torque-clients.md	cited	10	10	Part X opens with the study's three-program split (§10.0) and cites it through §10.1.8; the rebuild plan is excluded (#243)
+torque/wire-by-build.md	cited	10	10	
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
-version-profiles/3.04-3.153.md	cited	2.4; 2.5; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
+version-profiles/3.04-3.153.md	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/3.04-3.153.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/4.04-4.20.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
-version-profiles/5.00-6.03.toml	cited	2.4; E; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
+version-profiles/5.00-6.03.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/drive-clients-exes.tsv	cited	1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/gen3-insertion-200-205.tsv	cited	2.1; 2.2; 2.3	2.2	
 version-profiles/lab-200-listserver-handshake.tsv	cited	6; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -573,82 +573,82 @@ version-profiles/lab-boardmodify2-186-trailer.tsv	cited	2.5; 1	1; C	Appendix C n
 version-profiles/lab-enterlevel-231.tsv	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-gs13-respawn.tsv	cited	5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-levelchange-46-222-231.tsv	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
-version-profiles/lab-mac-tiger-2026-10-31.md	cited	C; 1; E	1; C	
+version-profiles/lab-mac-tiger-2026-10-31.md	cited	C; 1	1; C	
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
 version-profiles/matrix/README.md	cited	4; 8; 1; 2.2; 2.3; 4.1; 8.3; C; E	C; 4	
 version-profiles/matrix/builds-deltas.md	cited	3.9; 4.11	C; 4	Appendix C not needed: the per-build deltas are carried in §3.9 and §4.11; App. C points to §1.8 and those sections (coverage audit 2026-11-04)
-version-profiles/matrix/builds-static-survey.tsv	cited	4; 4.1; E	C; 4	Appendix C not needed: the survey is carried in §4.1 and the open items in App. E; App. C points to those sections (coverage audit 2026-11-04)
+version-profiles/matrix/builds-static-survey.tsv	cited	4; 4.1; 4.6	C; 4	Appendix C not needed: the survey is carried in §4.1 and the open items in App. E; App. C points to those sections (coverage audit 2026-11-04)
 version-profiles/matrix/live-runs-2026-10-30.md	cited	4.2	C; 4	Appendix C not needed: the live-run results are carried in §4.2; App. C points to §4.1 to §4.4 for behaviour by build (coverage audit 2026-11-04)
-version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1.39 rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
-version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4; E	C; 4	Appendix C not needed: the 1st Graal rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
+version-profiles/matrix/rules-139.md	cited	4.2; 4.3; 4.4	C; 4	Appendix C not needed: the 1.39 rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
+version-profiles/matrix/rules-1st-graal.md	cited	4.2; 4.3; 4.4	C; 4	Appendix C not needed: the 1st Graal rules are carried in §4.2 to §4.4; App. C points there for behaviour by build (coverage audit 2026-11-04)
 version-profiles/matrix/rules-132.md	cited	4.2; 4.3; 4.4; C	C; 4	
 version-profiles/matrix/seihai-gaps.md	excluded			reimplementation gap list (Seihai), out of scope per §0.1
 version-profiles/pli-sent-ids-by-build-20x.tsv	cited	2.4	2.4; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
-version-profiles/pli-send-sites-141-217.md	cited	2.4; E	2.4	
+version-profiles/pli-send-sites-141-217.md	cited	2.4	2.4	
 version-profiles/save-games-142-2171.md	cited	1	1	
-version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; E; A	2.5; A	Appendix A indexes numeric ids and points to the canonical sections; the per-build handled sets remain in section 2.5
+version-profiles/plo-handled-ids-by-build.tsv	cited	2.5; A	2.5; A	Appendix A indexes numeric ids and points to the canonical sections; the per-build handled sets remain in section 2.5
 version-profiles/plo-layouts-217-231.tsv	cited	2.5; 2.7	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/plo-levellink-layouts.tsv	cited	2.5	2.5; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
-version-profiles/plo-npcprops-layouts.tsv	cited	2.6; E	2.5; A	Appendix A and §2.5 not needed: a prop layout table carried in §2.6, which §2.5 and App. A point to (coverage audit 2026-11-04)
+version-profiles/plo-npcprops-layouts.tsv	cited	2.6	2.5; A	Appendix A and §2.5 not needed: a prop layout table carried in §2.6, which §2.5 and App. A point to (coverage audit 2026-11-04)
 version-profiles/plo-otherplprops-layouts.tsv	cited	2.6	2.5; A	Appendix A and §2.5 not needed: a prop layout table carried in §2.6, which §2.5 and App. A point to (coverage audit 2026-11-04)
-version-profiles/plo-playerprops-layouts.tsv	cited	2.6; E	2.5; A	Appendix A and §2.5 not needed: a prop layout table carried in §2.6, which §2.5 and App. A point to (coverage audit 2026-11-04)
+version-profiles/plo-playerprops-layouts.tsv	cited	2.6	2.5; A	Appendix A and §2.5 not needed: a prop layout table carried in §2.6, which §2.5 and App. A point to (coverage audit 2026-11-04)
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 version-profiles/tampercheck-words.tsv	cited	2.4	4.10	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning review for the Seihai version selector; its facts come from the per-build notes and lab records the manual cites
 version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
-protocol/v7-graal3d-identity-and-builds.md	cited	1; E		v7 Worlds identity and build catalogue
-protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2; E	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; counter check carried in 2.1.4.5; other source coverage unchanged
-protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5; E		v7 PLI slots and PLO handlers
-protocol/v7-graal3d-player-properties.md	cited	2.6; E	2.6	Exact build-614 encoder correction carried in 2.6.8; other historical source scope unchanged
-protocol/v7-graal3d-property-streams.md	cited	2.6; E		v7 property stream wire model
-protocol/v7-graal3d-gs2-and-scripts.md	cited	8.3; 8.4; E		v7 GRESCR01 and GS2 VM
-protocol/v7-graal3d-file-and-packages.md	cited	2.7; E		v7 file and package transfer
-protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9; E		v7 chat, world, UDP status
+protocol/v7-graal3d-identity-and-builds.md	cited	1		v7 Worlds identity and build catalogue
+protocol/v7-graal3d-framing-and-packet-tables.md	cited	2.1; 2.2	2.1	v7 framing paths and remapper; exact build-614 length correction carried in 2.1.4.4; counter check carried in 2.1.4.5; other source coverage unchanged
+protocol/v7-graal3d-pli-plo-tables.md	cited	2.4; 2.5		v7 PLI slots and PLO handlers
+protocol/v7-graal3d-player-properties.md	cited	2.6	2.6	Exact build-614 encoder correction carried in 2.6.8; other historical source scope unchanged
+protocol/v7-graal3d-property-streams.md	cited	2.6		v7 property stream wire model
+protocol/v7-graal3d-gs2-and-scripts.md	cited	8.3; 8.4		v7 GRESCR01 and GS2 VM
+protocol/v7-graal3d-file-and-packages.md	cited	2.7		v7 file and package transfer
+protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9		v7 chat, world, UDP status
 protocol/v7-graal3d-discovery-extras.md	cited	E		v7 open-item status and extras
 client-internals/v7-graal3d-unity-bridge.md	cited	E		v7 Unity/Quattro bridge surface
 version-profiles/linux-teardown.md	excluded			tooling verification and preflight handoff; client results need individual review
 version-profiles/nry-coverage-teardown.md	excluded			strings-only scan; login tokens and packet tables stay in the notes the manual already cites
 version-profiles/nry-tokens-by-build.tsv	excluded			public version labels and string hits from that scan; not a login-token catalogue
-version-profiles/macos-client-compatibility.md	cited	1; E	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
+version-profiles/macos-client-compatibility.md	cited	1	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
 docs/evidence-index.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 client-internals/404r2-carry-state.md	cited	4.5; E	4.5; E	static interaction relationships carried; private retrieval and research process are outside manual scope
 client-internals/linux-404r2-api-ownership.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
-protocol/linux-404r2-receive-scope.md	cited	2.5; E	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+protocol/linux-404r2-receive-scope.md	cited	2.5	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-events.md	cited	8; 8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-sleep.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 npc-library/gs1-signatures-205-followup.md	cited	8.2; E	8.2; E	Input identity and validation metadata retained in source note; stored letters and semantic limits carried in 8.2 and E#201.
 client-internals/early-form-timers-2026-11-09.md	cited	4.1; E	4.1; E	Input identity and validation metadata retained in source note; configuration and remaining timing limits carried in 4.1 and E#300.
 client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-embedded-scripts.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
-version-profiles/macos-resource-identity.md	cited	1; E	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
+version-profiles/macos-resource-identity.md	cited	1	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
 formats/arrays-membership-2026-11-09.md	cited	3.4; 3.5; E	3.4; 3.5; E	Private identity and validation metadata retained in source note; bounded membership, counts and runtime limitations carried in 3.4, 3.5 and Appendix E.
-formats/gmap-heights-404r2.md	cited	3.2; E	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
+formats/gmap-heights-404r2.md	cited	3.2	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
 torque/404r2-resource-filter.md	cited	10; E	10; E	filter and mission-path bounds carried; private retained-code mappings remain in source note
-client-internals/receive-dispatch-revision-boundaries-2026-11-09.md	cited	2.5; E	2.5; E	Exact-input hashes and validation bookkeeping remain in the source note; receive-route presence and limits carried in 2.5 and E#7.
+client-internals/receive-dispatch-revision-boundaries-2026-11-09.md	cited	2.5	2.5; E	Exact-input hashes and validation bookkeeping remain in the source note; receive-route presence and limits carried in 2.5 and E#7.
 client-internals/linux-304-startup-reader.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 formats/linux-torque-resource-scope.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-cross-version-embedded-controls.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-cross-version-dispatch.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
-protocol/linux-cross-version-receive.md	cited	2.5; E	2.5; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
+protocol/linux-cross-version-receive.md	cited	2.5	2.5; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-selector11.md	cited	8.3; E	8.3; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-reader-fusion.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
-client-internals/linux-420r6-clock-property.md	cited	4.1; E	4.1; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
+client-internals/linux-420r6-clock-property.md	cited	4.1	4.1; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r8-string-floor.md	cited	2.5	2.5	Protocol-keyword string floor of the two Linux 4.20 rev 8 images carried in §2.5.12. The four level and gmap literals are present, with conventional meanings. The 2007-01-15 receive switch stays unread.
 client-internals/first-graal-death-counter-2026-11-09.md	cited	4.4	4.4	Static counter transition and timing limits carried in 4.4; exact-input identity and validation bookkeeping remain in source note.
-client-internals/first-graal-movement-2026-11-09.md	cited	4.2; E	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
+client-internals/first-graal-movement-2026-11-09.md	cited	4.2	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
 npc-library/gs1-event-parameters-205r2.md	cited	8.1; 8.2; E	8.1; 8.2; E	Producer, queue, splitter, runtime controls and limits carried; exact-input/evidence bookkeeping stays in source.
-npc-library/gs1-object-members-205r2.md	cited	8.2; E	8.2; E	Bindings, getters, runtime controls and limits carried; exact input and evidence bookkeeping remain in source.
+npc-library/gs1-object-members-205r2.md	cited	8.2	8.2; E	Bindings, getters, runtime controls and limits carried; exact input and evidence bookkeeping remain in source.
 npc-library/gs1-message-codes-205r2.md	cited	8; 8.1; E	8.1; E	Selector contract and bounded #6 association checkpoint carried; runtime qualifications and other open helper semantics retained; exact input/evidence bookkeeping remains in source.
 npc-library/gs1-condition-truth-205r2.md	cited	8; 8.1; E	8.1; E	Truth, parser distinction, comparison-folding defect and limits carried; exact-input identity and evidence bookkeeping remain in source note.
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
 npc-library/gs1-move-205r2.md	cited	4.2; 8.2; E	8.2; E	Queue/option behavior and limits carried in 8.2.9 and E#206; identity/verification bookkeeping stays in source note.
 client-internals/macos-v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
-protocol/macos-ppc-receive-framing.md	cited	2.1; 2.2; E		exact-input receiver contract carried; runtime and outgoing behavior remain open
+protocol/macos-ppc-receive-framing.md	cited	2.1; 2.2		exact-input receiver contract carried; runtime and outgoing behavior remain open
 client-internals/linux-420-native-object-bridge.md	cited	10	10	exact identities and evidence lineage remain in source note; bridge relation and limits carried
 torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
 version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
@@ -657,7 +657,7 @@ client-internals/windows-500-event-queue.md	cited	8; 8.3; E	8.3; E	Bounded behav
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/login-tokens-3x-7x.md	cited	2.3; 10	2.3; 10	
-protocol/linux-603-network-gs2.md	cited	8.4; E	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
+protocol/linux-603-network-gs2.md	cited	8.4	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
 client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build stage and saved-state distinctions carried; identity, selected-recovery counts and provenance stay in source note
@@ -665,8 +665,8 @@ formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognit
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 client-internals/precursor-mechanics-2026-11-09.md	cited	4.11	4.11	
-client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; 8.4; E	4.1; 8.4; E	
-formats/linux-6x-class-cache.md	cited	3.8; E	3.8; E	Class-path writer/reader order, packet 197 zero-CRC path, the 161 request and the 6.01 x86 delivery split carried in 3.8.9; identities stay in the source note
+client-internals/windows-404r2-500r7-static-2026-11-09.md	cited	4.1; 8.4; 2.4; 3.1; 3.5	4.1; 8.4; 2.4; 3.1; 3.5	
+formats/linux-6x-class-cache.md	cited	3.8; 8.4	3.8; E	Class-path writer/reader order, packet 197 zero-CRC path, the 161 request and the 6.01 x86 delivery split carried in 3.8.9; identities stay in the source note
 client-internals/mac-611r1-gs2-runner.md	cited	8.4; E	8.4; E	Read handlers, loop check, snapshot sleep/waitfor, calls and status carried in 8.4.4; table-window detail and limits stay in the source note
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/windows-420-render-seams.md	cited	10	10	Render entry points carried in 10.1.5; the reproduction test and the v3-v5 ownership summary stay in the source note
@@ -678,44 +678,44 @@ protocol/gs2-android-classic-18.md	cited	8.3	8.3	Container, control flow, number
 version-profiles/early-windows-screen-review-2026-11.md	cited	4.11	4.11	v0, v1 and v2 start-up screen results carried in 4.11.12
 protocol/v6-login-token-explained.md	cited	2.10	2.10	plain-language account of the signed connector script that sends GNP1905C; §2.10.5 cites it
 protocol/v7-connector-live-20261111.md	cited	1; 2.10; E	1; 2.10	v7 connector request order, reply container and online-play reach in §2.10.7; identity in §1.8.10; open decrypt in E#616
-protocol/connector-script.md	cited	2.10; E	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
-protocol/v6113-status.md	cited	2.10; E	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
-protocol/v6113-live-connector-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
-protocol/v6113-live-handshake-2026-11-16.md	cited	2.10; E	2.10; E	Windows 6.113 live HOST:14900 handshake reconfirm; GNP1905C + EILLLT/0xfd; RC4 from 287; no keys; §2.10 / E / #510
+protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
+protocol/v6113-status.md	cited	2.10	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
+protocol/v6113-live-connector-2026-11-16.md	cited	2.10	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
+protocol/v6113-live-handshake-2026-11-16.md	cited	2.10	2.10; E	Windows 6.113 live HOST:14900 handshake reconfirm; GNP1905C + EILLLT/0xfd; RC4 from 287; no keys; §2.10 / E / #510
 protocol/v6113-receive-handlers-props.md	cited	2.10; 2.8	2.10; 2.8	6.113 receive-handler install joined to prop wires/slots and native parsers; §2.10 / props
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
-formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2; E	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
+formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
 protocol/v611-id-tables.md	cited	2.10	2.10	the 6.111 connector script's live outgoing and incoming id tables joined to gs2lib names (#397); §2.10 cites it
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/player-x-half-tile.md	cited	2.6	2.6	
 client-internals/pyreborn-study/README.md	cited	2.5; 4.12	2.5; 4.12	
-protocol/gmap-adjacent-level-target.md	cited	2.5; E	2.5	
+protocol/gmap-adjacent-level-target.md	cited	2.5	2.5	
 protocol/gmap-file-on-warp.md	cited	2.5	2.5	pre-3.0 clients need `.gmap` on disk before each PLAYERWARP2; once-per-session push fails when saveimages is off; §2.5.3
-protocol/gs2-official-bytecode-6113.md	cited	E	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
-protocol/gs2-official-functable-order-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 segment-2: dotted-last suffix, dense slots; hash-bucket order refuted; bodies/names private
-protocol/gs2-official-trailer-scan-2026-11-16.md	cited	E; 8.4	E; 8.4	enlarged trailer scan: 0/660 trailing 0x0A; stock setScript ignore; bodies private
+protocol/gs2-official-bytecode-6113.md	cited	E;8.4	E	counts and structure carried in App. E#202, E#207, E#208; bodies, keys and names stay private
+protocol/gs2-official-functable-order-2026-11-16.md	cited	8.4	E; 8.4	full-19 segment-2: dotted-last suffix, dense slots; hash-bucket order refuted; bodies/names private
+protocol/gs2-official-trailer-scan-2026-11-16.md	cited	8.4	E; 8.4	enlarged trailer scan: 0/660 trailing 0x0A; stock setScript ignore; bodies private
 protocol/gs2-official-jump-narrow-returns-2026-11-16.md	cited	8.4; E	E; 8.4	
-protocol/gs2-official-function-only-shape-2026-11-16.md	cited	8; 8.4; E	E; 8.4	
+protocol/gs2-official-function-only-shape-2026-11-16.md	cited	8; 8.4	8.4	
 protocol/gs2-official-strings-latin1-2026-11-16.md	cited	8.4; E	8.4; E	
-protocol/gs2-seg1-event-mask-2026-11-16.md	cited	8.4; E	8.4; E	seg1 GS1 mask: official zeros; needEvent consumer; pkzonechanges bit27 absent 4.x/5.x
-protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	E; 8.4	E; 8.4	partial offline counts for opcodes 45/46/47/190 and segment-2 order on 7 official bodies; full 19 and the five-use rule stay open; bodies and names stay private
-protocol/gs2-official-varcache-19-2026-11-16.md	cited	E; 8.4	E; 8.4	full-19 offline counts for 45/46/47/190, temp.* slots, dense indices; five-use AST rule open; bodies/names private
+protocol/gs2-seg1-event-mask-2026-11-16.md	cited	8.4	8.4; E	seg1 GS1 mask: official zeros; needEvent consumer; pkzonechanges bit27 absent 4.x/5.x
+protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	8.4	E; 8.4	partial offline counts for opcodes 45/46/47/190 and segment-2 order on 7 official bodies; full 19 and the five-use rule stay open; bodies and names stay private
+protocol/gs2-official-varcache-19-2026-11-16.md	cited	8.4	E; 8.4	full-19 offline counts for 45/46/47/190, temp.* slots, dense indices; five-use AST rule open; bodies/names private
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	playerworld corpus survey (aggregates only); App. E#207 carries the ranking and the no-codes-in-GS2-strings result, compiler results stay in the note
 client-internals/combat-baddy-tile-by-version.md	cited	4.3; C; E	4.3; C; E	
 client-internals/gs1-on-5x-hud-and-flags.md	cited	4.6; 8.3; C	4.6; 8.3; C	
 client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E	
-client-internals/gs2-value-semantics-stock-2026-11-16.md	cited	8.4; E	8.4; E	stock vs third-party value-semantics: 10k loop default; waitfor real; starts/ends case open
+client-internals/gs2-value-semantics-stock-2026-11-16.md	cited	8.4	8.4; E	stock vs third-party value-semantics: 10k loop default; waitfor real; starts/ends case open
 client-internals/gs2-vm-loader-diff.md	cited	8.4; C; E	8.4; C; E	loader, slots, opcodes, maths, event names and clock by build; settled, partial or open
-client-internals/gs2-vm-quirks-by-version.md	cited	8.4; 4.1; C; E	8.4; 4.1; C; E	compact quirks table; 6.03r7 timer ceil lab; event-casing risk; compile vs runtime
-client-internals/update-cadence-3x-6x.md	cited	4; 4.1; C; E	4.1; C; E	
+client-internals/gs2-vm-quirks-by-version.md	cited	8.4; 4.1; C	8.4; 4.1; C; E	compact quirks table; 6.03r7 timer ceil lab; event-casing risk; compile vs runtime
+client-internals/update-cadence-3x-6x.md	cited	4; 4.1; C	4.1; C	
 npc-library/gs1-message-codes-by-build.md	cited	8.2; E	8.2; E	Registry, 1.41r1 set, bare `#5`/`#6`, `#v(##)` and the flag named `1` are in §8.2.12. The unexplained `#5`/`#6` echo stays open in E#203. GANI `WAIT` timing and the 1.x flag tables are not in this note.
 npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C	
 npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
 version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md	cited	1; C	1.8; C	
-version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md	cited	2.4; E	2.4	lab run record; §2.4 carries the flag-send rule, and the build identities and setup stay in the note
+version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md	cited	2.4; 1	2.4	lab run record; §2.4 carries the flag-send rule, and the build identities and setup stay in the note
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
 client-internals/iphone-version-tokens.md	cited	1	1	Token families and scanner-negative limits carried; no offline-build conclusion or captured login inferred.
 tools/is3-extract/README.md	excluded			repository tooling for the notes (the InstallShield 3 unpacker behind gserv-125-127-builds.md), not Graal
@@ -724,7 +724,7 @@ tools/thinstall-unpack/README.md	excluded			repository tooling for the notes (th
 tools/switch-scan/README.md	excluded			repository tooling for the notes (the jump-table case scanner behind the 4.x handled-id rows), not Graal
 client-internals/unpacked-images-coverage.md	excluded			index from each owner-held unpacked client image to the note that covers it; no findings of its own
 client-internals/v7-gameassembly-il2cpp.md	cited	1	1	managed host, binding layer, launch inputs and build diff in §1.8.10
-protocol/client-string-fingerprints-3x-6x.md	cited	1; E	1; 2.3; E	carried into §1.9.4 and App. E#619; the login rows of §2.3 do not change
+protocol/client-string-fingerprints-3x-6x.md	cited	1	1; 2.3; E	carried into §1.9.4 and App. E#619; the login rows of §2.3 do not change
 client-internals/linux-304-executable-build.md	cited	1; 10	1; 10	Build/dependency evidence in §1.8.4 and §10.1.10; voice/OpenAL questions remain explicit. Detailed sizes, banner stamps and installer naming stay in the source.
 client-internals/windows-404r2-components.md	cited	1; 10	1; 10	Component/capture boundary in §1.8.5; module/export map and unresolved lineage/forms/class map in §10.1.11. Private source-root spellings and detailed export/source-area inventory are not reproduced.
 client-internals/mac-611r1-send-slots.md	cited	1; 2.4	1; 2	Mac identity/dependencies in §1.8.7 and partial mapping/entry tests with remaining gates in §2.4.13. Full linked-framework list and instruction-level scan mechanics remain in the source.
@@ -793,17 +793,17 @@ version-profiles/batch-linux-3x-clean-installers-2026-11-16.md	cited	1; E	1; C; 
 version-profiles/batch-linux-4x-autopackage-2026-11-16.md	cited	1	1; C; 2.4	carried into §1.8.5; App. C and §2.4 rows follow a PLI/PLO pass on Linux 4.03r1 and 4.10r2
 version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	cited	1; E	1; E	
 client-internals/how-139-gets-online.md	cited	1	1; C	carried into §1.8.1; the App. C row already says 1.39 has no listserver
-protocol/gen5-cipher-step-5x.md	cited	2.2; E	2.2; E	5.12 gen-5 short-compressed step round-down settled; 5.00r7 unread; consolidates E#2 + v5v6-lab-play + Seihai stress
+protocol/gen5-cipher-step-5x.md	cited	2.2	2.2; E	5.12 gen-5 short-compressed step round-down settled; 5.00r7 unread; consolidates E#2 + v5v6-lab-play + Seihai stress
 formats/weblevels-server-folders.md	cited	3.8	3.8	Per-server weblevels folder naming (IP/hostname/md5), %0NN weapon/class segments, .code vs gpak/gpake; inventory and format tests carried in §3.8.2 and gwebl001 cross-links.
 protocol/v4-login-account-contract.md	cited	2.3	2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
 formats/weblevels-code-residuals.md	cited	3.8	3.8	[bin] MD5(host∥decimal_port) lowercase level folders on 6.1.1.3; 4.20r8 vs later path table; LE length-prefixed level .code vs GRESCR01; carried in §3.8.2 and gwebl001 cross-links.
 protocol/filesendfailed-512-status.md	cited	2.5	2.5; 2.7	5.12 FILESENDFAILED (30) uniqueness status; gap #37
-protocol/rc-props-flags-status.md	cited	E	7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
+protocol/rc-props-flags-status.md	cited	7	7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
 version-profiles/nry-identity-f01-f03.md	cited	1	1; C; E	carried into §1.8.1 and §1.8.9; F02 is already in §2.5.2.2 and its open points in App. E
 protocol/plo108-168-focus-status.md	cited	2.5	2.5; C; E	PLO 108 sub1 / 168 focus status (#43): 168 flag; sub1 unread outside ping; #254 lab negative on 6.03r7
 protocol/scripted-weapons-5x-status.md	cited	2.5	2.4; E	5.00r7/5.12 script delivery: classic+modern ids; stock path choice open; consolidates script-packet-guards
 protocol/v4-gui-survive-serverwarp.md	cited	2.3	2; E	v4 Login GUI after 178 (C5 lead); loopback stock 4.20r8 confirm open; adjacent C4
-client-internals/141r1-nw-gmap-status.md	cited	1; E	1; C; E	carried into §1.5 and App. E#617; an App. C row follows a live load
+client-internals/141r1-nw-gmap-status.md	cited	1	1; C; E	carried into §1.5 and App. E#617; an App. C row follows a live load
 protocol/large-file-thresholds-focus.md	cited	2.7	2.5	Focus-build large-file / FILE reply ladder (1.39–6.037); token-table trap; consolidates file-transfer.md + labs; ~300 KB push still open
 protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: client sends nothing; id1 extra row id2 ignored; silent_list_after_ms is lab/seihai accommodation; E#401 Claim C
 protocol/player-props-5x-status.md	cited	2.6	2.6; E	5.00r7/5.12 prop case sets point at v5-props; widths + P4–P6 open; research #6
@@ -816,20 +816,20 @@ version-profiles/222-inferred-from-21-inventory.md	cited	1	1; C	carried into §1
 protocol/rc-text-escaping-status.md	cited	E	7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/pre-gmap-in-gmap-world.md	cited	2.4	2; C	Pre-gmap (1.39) cannot load gmaps; original-server presentation unobserved; seihai linked-level fallback open; consolidates catalogue + gmap notes
 graal3d/research-status-2026-11-16.md	cited	9	9	
-protocol/npc-gmap-reentry-status.md	cited	E	2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
-protocol/nw-layer-ext-500r7-2026-11-16.md	cited	3.1; E	3.1; E	5.00r7 .nw: no TILESET; no trailing object-layer; BOARD layer uses tilelayers[]; 6.03 cleartext residual
+protocol/npc-gmap-reentry-status.md	cited	4.5	2.5; 8; E	NPC GS2 state across gmap re-entry status; gap #22; seihai#497
+protocol/nw-layer-ext-500r7-2026-11-16.md	cited	3.1	3.1; E	5.00r7 .nw: no TILESET; no trailing object-layer; BOARD layer uses tilelayers[]; 6.03 cleartext residual
 protocol/nc-write-ops-status.md	cited	E	7; E	NC write ops status; gap #40; seihai-npcserver#22
 protocol/carry-shoot-hit-status.md	cited	E	2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
 protocol/nonlocal-level-warp-status.md	cited	2.4	2.5; E	Non-local level warp status; gap #15; seihai-core#7
 protocol/link-probe-bigmap-status.md	cited	E	2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
 tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
-formats/tiledef-type4-2026-11-16.md	cited	3.5; 11; E	3.5; 11	
-tools/graaleditor-board-format-2026-11-16.md	cited	11; E	11	
-server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3; E	6; 3; 8; E	Hubserver v0.3.7 vs v0.3.6 in §6.2.4; Delteria layer counts and the GR-V1.05 negative in §3.1.3.2; script dialects in §8.3.1
+formats/tiledef-type4-2026-11-16.md	cited	3.5; 11	3.5; 11	
+tools/graaleditor-board-format-2026-11-16.md	cited	11	11	
+server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3	6; 3; 8; E	Hubserver v0.3.7 vs v0.3.6 in §6.2.4; Delteria layer counts and the GR-V1.05 negative in §3.1.3.2; script dialects in §8.3.1
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
 protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
-protocol/fuzz-4x-5x-win-2026-11-19.md	cited	E; 2.5; 2.6	2.5; 2.6; E	
+protocol/fuzz-4x-5x-win-2026-11-19.md	cited	2.5; 2.6; 2.1; 2.2	2.5; 2.6; 2.1; 2.2	
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 protocol/keysweep/README.md	cited	4.12	4.12	
 protocol/keysweep/603r7.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
@@ -840,32 +840,32 @@ protocol/keysweep/222.tsv	excluded		4.6	table form of keysweep/README.md in the 
 protocol/keysweep/2171.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/205r2.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/512.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
-tools/probe/README.md	excluded	E		repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
+tools/probe/README.md	excluded	2.2		repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
 live-runs/sword-edge-2026-11-18/README.md	cited	4.3; E	4	two-player sword sideways edge on 1.35 (#443): hit at 2 tiles, miss at 2.5; carried into the §4.3 reach-box gate
 live-runs/real-win10-2026-11-18/README.md	cited	2.3; 2.5; E	2.3; 2.5	real Windows 4.20r8 to 6.03r7 through a lab Login lobby in §2.3.6.4; the 182 crash and the 168/190 box in §2.5.8
 client-internals/hypervisor-live-debug.md	cited	E	E	host-side QEMU/KVM debugging method, cited as the method row of E#616
-protocol/unknowns-ledger.md	cited	E	E	running tally of the probe work (status per id and prop), cited for the probe status in App. E
+protocol/unknowns-ledger.md	cited	E;2.1;2.5	E	running tally of the probe work (status per id and prop), cited for the probe status in App. E
 protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login: two gates, deterministic request, trust-anchor path, in §2.10.8 and E#616
 tools/probe/lab/otherpl-fullprops.txt	excluded			probe input: the other-player prop set used by the probe plans (session values replaced), not Graal
 tools/probe/lab/npc-showkick.txt	excluded			probe input: a level NPC block used by the PLO_LOADGANI probe plans, not Graal
 live-runs/open-issues-2026-11-19/README.md	cited	2.7; 4.1; 4.3; 4.5; 4.11; E	2.7; 4.1; 4.3; 4.5; 4.11; E	2026-11-19 lab run: 2.22 start-up checks (§2.7.10), 6.03r7 timer repeat (§4.1.7, §4.1.8), combat checks (§4.3.8), 2.05r2 drop control (§4.5.5), 4.x-6.x action list (§4.11.12.2); open points in App. E
 protocol/server-fuzz-c2s-targets.md	excluded			C→S server-fuzz targets, harness pointer and per-build run status incl. the 2026-11-19 GServer 1.28b2 run (no crashes; preliminary lab behaviours with follow-ups); a status/targets note whose framing/login facts are already cited from gserv-1999.md and listserver.md
 tools/srvfuzz/README.md	excluded			repository tooling for the notes (the standalone C→S server fuzzer behind protocol/server-fuzz-c2s-targets.md), not Graal
-protocol/plo-156-setactivelevel-231.md	cited	2.5; E	2.5	2.31 extra step after PLO 156: pending graal:// start parameters sent once as a serverstartparams trigger action; lab confirmation open.
+protocol/plo-156-setactivelevel-231.md	cited	2.5	2.5	2.31 extra step after PLO 156: pending graal:// start parameters sent once as a serverstartparams trigger action; lab confirmation open.
 protocol/ios-classic-plus-113-framing.md	cited	E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
 protocol/probe-native-linux-4x-2026-11-19.md	excluded		2.6; B	native Linux 3.x/4.x probe run (run4x.sh): 4.x prop widths and unknown-PLO handling match win-4.20r8; folds into the prop-width-by-build rows (2.6.6) and App. B that probe-targets-2026-11-18.md already carries
 protocol/probe-mac-6015-2026-11-19.md	excluded	E	2.6; B	6.015 macOS client probe in the Lion VM (runmac.sh): 6.x prop widths (83/77 five-byte, 82 string) matching 6.03r7; folds into the prop-width-by-build rows (2.6.6) and App. B
-protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; E	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
+protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; 2.6	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
 protocol/conf-gs-fuzzing.md	cited	E; 2.10	2.10; E	
 tools/connfuzz/README.md	excluded			repository tooling for the notes (the loopback conf.gs fuzzer behind conf-gs-fuzzing.md), not Graal
 protocol/script-fuzz-2026-11-19.md	cited	8.3; E; 8.2; 8.4	8.2; 8.3; 8.4; E	
 protocol/v6113-login-lab-2026-11-19.md	cited	2.10; 5	2.10; 5	
-live-runs/fuzz-2026-11-19/README.md	cited	E; 2.5; 2.6; 4.12	2.5; 2.6; 4.12; E	
+live-runs/fuzz-2026-11-19/README.md	cited	2.5; 2.6; 4.12	2.5; 2.6; 4.12	
 live-runs/fuzz-2026-11-19/fuzz-results.tsv	excluded			per-inject rows of the 2026-11-19 fuzz run, already appended to protocol/probe-results.tsv
 live-runs/fuzz-2026-11-19/plans/queue.txt	excluded			repository tooling for the notes (run queue for the fuzz plans), not Graal
 protocol/probe-gen3-2.0x-2026-11-19.md	excluded		2.6; B	gen-3 2.0x-era Windows clients (2.00-2.05r1, GraalX, NewMain 24/26, 1.41r1, 2.1 tests, NewWorld betas) probed natively on Win10 with wine-core.plan: all identical to w205-b, 2.02x crash on Start before any packet; folds into the prop-width-by-build rows (2.6.6) and App. B
-formats/pics1-tile-layout-render-2026-11-19.md	cited	E	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
-formats/gmap-heights-by-component-2026-11-19.md	cited	3.2; E	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
+formats/pics1-tile-layout-render-2026-11-19.md	cited	3.5	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
+formats/gmap-heights-by-component-2026-11-19.md	cited	3.2	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
 protocol/link-probe-offsets-205-222-2026-11-19.md	cited	4.2; E	4.2; E	Disassembler read: per-facing edge-link probe offsets of 2.05, byte-identical in 2.22; walking past the edge with the neighbour loaded
 client-internals/static-reads-appendix-e-2026-11-19.md	cited	1; 3.5; 4.2; 4.6; E	1; 3.5; 4.2; 4.6; E	Disassembler reads for App. E: pull sound by object byte, two arrays.dat lists in the old walk test, 1.41r1 TProgramCheck, no multimedia timer in 2.22, shared probe block in 1.39, gmap code absent from 2.1.0.x
 protocol/early-clients-probe-2026-11-19.md	excluded		2.6; B	early-client probe run (1998 relay betas to 1.39 under Wine behind the probe proxy): ids, props, widths and parser recovery by build; rows in probe-results.tsv, open items in unknowns-ledger.md
@@ -873,9 +873,9 @@ tools/probe/lab/cfg/11.txt	excluded			probe input: the start-form game mode for 
 tools/probe/lab/cfg/119.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/14th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/15th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
-protocol/lab-appe-gwentea2-2026-11-20.md	cited	2.5; 2.7; 4.3; 4.4; 4.5; 4.10; 8.3; 8.4; 10; 11; E	2.5; 2.7; 4.3; 4.4; 4.5; 4.10; 8.3; 8.4; 10; 11; E	GwenTea2 loopback lab for App. E: 2.05 key emote sends nothing relayable, 4.20r8 ignores the 6.x 197/140 class path, 2.22 shot byte blast split, v7 614 date-gate stall
+protocol/lab-appe-gwentea2-2026-11-20.md	cited	2.5; 2.7; 4.3; 4.4; 4.5; 4.10; 8.3; 8.4; 10; 11; E; 8.2	2.5; 2.7; 4.3; 4.4; 4.5; 4.10; 8.3; 8.4; 10; 11; E	GwenTea2 loopback lab for App. E: 2.05 key emote sends nothing relayable, 4.20r8 ignores the 6.x 197/140 class path, 2.22 shot byte blast split, v7 614 date-gate stall
 client-internals/static-reads-appendix-e-2026-11-20-b.md	cited	4.2; 4.4; 7; 8.4; E	4.2; 4.4; 7; 8.4; E	Disassembler reads for App. E: 1.39 probe/nudge tables between 1st Graal and 2.05, 2.1 test entry save = 2.17.1 rule, RC 76 last byte is an echoed empty string from 72, 5.00r7 opcodes 48/49/54
 client-internals/static-reads-appendix-e-2026-11-20-c.md	cited	3.1; 4.2; 4.5; E	3.1; 4.2; 4.5; E	Disassembler reads for App. E: 2.05 blocked-point lists are bombs and level players (temporary flag), 1.39 pickup box overlap, 2.05 level-record field types (link boxes rounded)
-client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
-protocol/lab-appe-mirae-2026-11-20.md	cited	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8; 7; E	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8; 7; E	Mirae loopback lab for App. E: 2.05 hit stamp on the hurt-message path only, 1.39 knockback 5 tiles, 1.41r1 plays .nw online, 2.05 sign list ends at the first empty line, F5 start levels show no change
-protocol/lab-appe-mirae-2026-11-20b.md	cited	2.3; 2.6; 5; E	2.3; 2.6; 5; E	Mirae loopback lab for App. E, second batch: 1.40 login, 2.31 sign-list end, original GServer 1.3 prop limits and old-build drop, prop 81 in the 5.00r7 player list
+client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
+protocol/lab-appe-mirae-2026-11-20.md	cited	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8; 7; E; 2.6	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8; 7; E	Mirae loopback lab for App. E: 2.05 hit stamp on the hurt-message path only, 1.39 knockback 5 tiles, 1.41r1 plays .nw online, 2.05 sign list ends at the first empty line, F5 start levels show no change
+protocol/lab-appe-mirae-2026-11-20b.md	cited	2.3; 2.6; 5; E; 3.1	2.3; 2.6; 5; E	Mirae loopback lab for App. E, second batch: 1.40 login, 2.31 sign-list end, original GServer 1.3 prop limits and old-build drop, prop 81 in the 5.00r7 player list

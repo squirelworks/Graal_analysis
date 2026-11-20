@@ -13,7 +13,16 @@ A tile id is a position on a sheet and nothing more. The rules below give the sh
 | --- | --- | --- |
 | id | a board stores a tile id 0 to 4095; the client does not inspect the tileset image for collision | [src] (formats/tiletypes.txt) |
 | sheet | `pics1.png` is 2048×512, palette, 128 by 32 tiles of 16 px | [file] (formats/tiletypes.txt) |
-| id to picture | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`, source rectangle `(col*16, row*16, 16, 16)`: the sheet is eight side-by-side blocks of 512 ids, each 16 columns by 32 rows, filled row by row; an earlier rule `col = id % 128`, `row = id / 128` is `disputed → App. E#102` | [file] (client-internals/client-assets.md#tile-sheets) |
+| id to picture | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`, source rectangle `(col*16, row*16, 16, 16)`: the sheet is eight side-by-side blocks of 512 ids, each 16 columns by 32 rows, filled row by row; an earlier rule `col = id % 128`, `row = id / 128` draws noise and is wrong (settled below) | [file] (client-internals/client-assets.md#tile-sheets) |
+
+**Settled question, formerly E#102: tile id to pixel position on pics1.** Which formula maps a tile id to its place on `pics1.png` had two answers on record; a render test settled it [test] (formats/pics1-tile-layout-render-2026-11-19.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (false) | `col = id % 128`, `row = id / 128` | [file] (formats/tiletypes.txt) |
+| Claim B (holds) | `col = (id % 16) + (id // 512) * 16`, `row = (id // 16) % 32`: eight side-by-side blocks of 512 ids, each 16 columns by 32 rows; the Windows 4.04r2 draw path computes it | [file] (client-internals/client-assets.md#tile-sheets); [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-tile-sheet-layout) |
+| Settled | Two real `GR-V1.03` levels drawn with a real sheet: Claim B gives coherent rooms with every cell on the sheet; Claim A puts 2660 and 3736 of 4096 cells off the sheet and draws noise. `formats/tiletypes.txt` is corrected | [test] (formats/pics1-tile-layout-render-2026-11-19.md) |
+| Verdict | Verified | [test] (formats/pics1-tile-layout-render-2026-11-19.md) |
 
 ## 3.5.2 Tile type values
 
@@ -35,6 +44,15 @@ The official tile type names, as documented for `setshape2` in the 2001 feature 
 | 20 | throw-through (fences) | [doc] (formats/tiletypes.txt) |
 | 21 | jumping stone | [doc] (formats/tiletypes.txt) |
 | 22 | blocking tile | [doc] (formats/tiletypes.txt) |
+
+**Settled question, formerly E#614: tiledef type 4 consumer.** What a type-4 tiledef line does was open: such lines are common in 2.22 install tiledefs, but the walk-kind switch names only 0, 1|2 and 5. A live 2.22 run settled it [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (holds) | Install type-4 rows store pixel x offsets (and sometimes y) beside a replacement image and a level prefix | [file][bin] (formats/tiledef-type4-2026-11-16.md) |
+| Claim B (holds) | Walk kinds for tilesets are 0, 1\|2 and 5; type 4 is not among them | [2.22] (client-internals/decomp-findings-2026-10-28-b/01-tile-type-tests.md) |
+| Settled | Draw only: type 4 pastes its image into the tile sheet at pixel (x, y) and leaves the stock sheet elsewhere; walking follows the board's tile codes, so a rock row blocks the same with or without the overlay. The image must be an 8-bit palette PNG; a 24-bit one is ignored without a message, which is why the earlier tries saw nothing | [lab] (formats/tiledef-type4-2026-11-16.md#live-result-2026-11-19) |
+| Left over | Water under an overlay, and type-4 lines on builds other than 2.22 | [inf] (formats/tiledef-type4-2026-11-16.md#open) |
 
 ### 3.5.2.1 A 4096-byte type table
 
@@ -124,7 +142,7 @@ Meanings read from the uses in the 2.22 client [bin] (client-internals/decomp-fi
 
 | # | Content (2.22) | Source |
 | --- | --- | --- |
-| 0 | passable tile ids; any other tile is a wall (→ App. E#101, E#608) | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 0 | passable tile ids; any other tile is a wall (→ App. E#101; the list count is settled in → §3.5.3.1) | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 | 1 | liquid tile ids, water and lava | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 | 3 | the liquid tiles that are lava | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 | 9, 10 | cuttable 2×2 objects and the tiles a cut leaves, indexed type, column, row: the bush `2 3 / 18 19` and `420 421 / 436 437` | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
@@ -145,7 +163,15 @@ One packaged `arrays.dat` was read exactly to settle which tile ids are in its f
 | first lists | 934 and 116 internally unique values; 15 shared; union 1,035 values within 0–4095; list 1 contributes 101 values absent from list 0 | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | Bush values | 2, 3, 18 and 19 are absent from both lists, also in all 25 successfully parsed distinct inputs; file membership does not establish runtime collision | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | collection validation | 53 occurrences, 26 hashes; 25 parse completely and reproduce original bytes on re-encoding; an unsupported 39ster-labelled representation is excluded; other inputs have different shapes and counts | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance remains open → App. E#100, E#101; the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ App. E#608) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance remains open → App. E#100, E#101; the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ §3.5.3.1) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+
+**Settled question, formerly E#608: how many `arrays.dat` lists make a tile passable.** How many `arrays.dat` lists decide whether a tile is walkable was open between a summary and a code read; a static read of the consumer settled it for 2.05 [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: the first array supplies passable tiles and all others are walls. B: the old-mode 2.05 path checks arrays 0 and 1 | [doc] (CONSOLIDATED.md#tiles); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
+| Settled | The loader reads 25 lists; the old-mode passability test checks list 0 and, on a miss, list 1, and no other | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+| Verdict | Verified by static read: Claim B holds; Claim A dropped list 1 | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
 
 ## 3.5.4 arrays2.dat
 

@@ -295,8 +295,17 @@ The camera follows the player at fixed offsets. Each row gives one quantity or r
 | Field | the Direct3D RM initial field 0.5, a square window; the exe sets no field | [doc][bin] (graal3d/camera.md#field-of-view) |
 | Opening | `2 × atan(0.5)` ≈ 53.13° on either axis of that window | [inf] (graal3d/camera.md#field-of-view) |
 | Front plane | 1 (library initial value) | [doc] (graal3d/camera.md#field-of-view) |
-| Back plane | 5000, set right after the viewport is created; the front plane stays at the library's 1 (settled → App. E#500) | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Back plane | 5000, set right after the viewport is created; the front plane stays at the library's 1 (settled → §9.4) | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
 | Lab | none of these figures is lab-confirmed; Wine's retained-mode stubs break camera frames | [lab] (graal3d/camera.md#still-needed) |
+
+**Settled question, formerly E#500: back clipping plane of the Graal3D client.** Which back clipping plane the Graal3D client uses was open; a static re-read settled it at 5000 [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The Direct3D retained-mode library's initial back plane is 100, and the February 2000 client sets none of its own | [doc] (graal3d/camera.md#field-of-view) |
+| Claim B | A later public DelphiX fork calls `SetBack(5000)` during retained-mode init | [doc] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Settled | The February 2000 exe calls `SetBack(5000)` right after `CreateViewport`, its only constant `SetBack`; Claim A's 100 is overridden | [bin] (graal3d/camera.md#back-clipping-plane-re-read-2026-11-13) |
+| Left over | The value at draw time in a live run with the native `d3drm.dll` | [inf] (graal3d/camera.md#still-needed) |
 
 ## 9.5 Collision
 

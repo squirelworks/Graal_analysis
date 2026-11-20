@@ -82,6 +82,15 @@ For Windows 4.04r2's matching-level branch, storage is limited to nine rows and 
 
 An earlier version of the gmap note said 2.05 had no `GRMAP001` string; that was wrong, and the build catalogue also lists it for 2.05 [2.05] (formats/gmap.md#205).
 
+**Settled question, formerly E#606: Whether a gmap carries `HEIGHTS` blocks.** Whether gmaps hold per-level `HEIGHTS` blocks as well as the coarse `HEIGHTMAP`, beyond the builds already read, was open; a read of the gmap parser in each engine component settled it [bin] (formats/gmap-heights-by-component-2026-11-19.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Windows 4.04r2 and four Mac PowerPC builds read both forms; the best guess was that every 4.x and later gmap reader does | [bin][file] (formats/gmap-heights-404r2.md); [bin] (formats/gmap-heights-mac-ppc.md#the-reader-in-all-four-builds) |
+| Settled | Support follows the engine component, not the version. The Linux 2D engine library, one identical file in 4.04r2 to 5.12, reads only the level-name grid and has no `HEIGHTMAP` or `HEIGHTS` section. The 3D components (Windows `GraalEngine.dll` and `Graal3DEngine.dll` in 4.20r8 and 5.00r7, the Linux 4.20r6 3D binary) and the merged 6.03r7 client read both. 6.03r7 also adds `NOAUTOMAPPING` and `MINIMAPIMG` | [bin] (formats/gmap-heights-by-component-2026-11-19.md) |
+| Verdict | Verified at the token level: whether each parser has the section, not how each stores it. The best guess was wrong | [bin] (formats/gmap-heights-by-component-2026-11-19.md) |
+| Left over | Rendering, server support and the salvage author's intent | [bin][file] (formats/gmap-heights-404r2.md#correction-and-limits) |
+
 ## 3.2.5 Text big map and minimap (2.05)
 
 2.05 reads the big map and minimap as text grids; the GS1 commands `setmap` and `setminimap` load the same kind of file from a script [2.05] (formats/gmap.md#205-big-map-and-minimap-text-files-205).

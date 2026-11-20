@@ -170,7 +170,16 @@ The following Windows Delphi inputs were read statically; no login frame or game
 
 The two additional 1.41 rev 1 copies are 1506816 bytes with FileVersion 1.4.1.1, token `GNW13110`, 126 command entries and the catalogued receive set; their bytes differ, so these matches do not establish identical execution. Twenty-one of the 22 code-section bytes spell the list host and the list port; the two copies do not spell the same endpoint, and that is not a packet, property or command change. The host and the port are not written out. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
 
-The remaining byte decides where the form's program-check component sends its error event. In one copy the event reaches the start of a handler body; in the other copy, and in the catalogued baseline, it reaches that body's final return, so the handler does nothing. The handler builds text, sets a byte of state and calls helpers whose effects were not identified by that study (→ App. E#620). [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) A later read identifies it as the stock Delphi TProgramCheck component: on a failed self-check it says the executable is corrupted and ends the client. The copy that skips it fits a build that was not stamped. [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1)
+The remaining byte decides where the form's program-check component sends its error event. In one copy the event reaches the start of a handler body; in the other copy, and in the catalogued baseline, it reaches that body's final return, so the handler does nothing. The handler builds text, sets a byte of state and calls helpers whose effects were not identified by that study (→ §1.1.5). [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) A later read identifies it as the stock Delphi TProgramCheck component: on a failed self-check it says the executable is corrupted and ends the client. The copy that skips it fits a build that was not stamped. [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1)
+
+**Settled question, formerly E#620: What the 1.41 rev 1 program-check handler does.** What the program-check handler of 1.41 rev 1 does, and why one copy skips it, was open; a static read settled it [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The handler builds text values and calls helpers whose effects were not identified | [bin] (client-internals/early-windows-callback-variants.md#the-new-141-rev-1-result) |
+| Settled | The handler is the stock Delphi TProgramCheck 1.1 self-integrity component: on a failed check it says the program "has been modified either by a virus or by a transfer problem", that the Graal executable is corrupted, and ends the client | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1) |
+| Inferred | The component warns that an active check "not processed by stamp.exe" has nothing to compare against; the copy bound to the final return fits a build that was not stamped | [bin][inf] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1) |
+| Verdict | Verified for what the handler does; why the copies differ is inferred | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#program-check-e620-141-rev-1) |
 
 The same comparison found that the duplicate 1.39 (FileVersion 1.3.9.1) and the catalogued 1.39 (1.3.8.0) share an import list but differ in code and some resources, so it is not a version-resource-only change; 1.40 adds four imports over it, including registry and keyboard-event calls; and 1.40 rev 1 has the same size and imports as 1.40 but differs in code and three resources. None of these differences has been traced to behaviour yet. [bin] (client-internals/early-windows-callback-variants.md#coverage-and-next-question-for-each-compared-client)
 
@@ -330,7 +339,16 @@ Each client reads a fixed set of level and map file magics and writes one save-f
 
 GR-V1.03 is the last `.graal` revision any catalogued build reads [bin] (client-internals/build-catalogue.md#catalogue). `.nw` support is not monotonic: 1.41 rev1 and NewMain 1.42 read GLEVNW01, 2.00 to 2.04 contain neither GLEVNW01 nor GRMAP001, and both return in 2.05 [bin] (client-internals/build-catalogue.md#patterns-worth-knowing). That 2.0 branched from a pre-NewMain tree is an inference from strings [inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The 2.05 string table holds exactly Z3-V1.03, Z3-V1.04, GR-V1.00 to GR-V1.03 and GLEVNW01 as level magics [2.05] (formats/level-binary.md). The save writer was traced only in 1.21 and 1.32; for 1.33 to 1.41 rev1 the save magics are inferred from the same string arrangement [bin][inf] (client-internals/build-catalogue.md#patterns-worth-knowing). The formats themselves are in → §3.1, → §3.2 and → §3.7.
 
-For 1.41 rev 1 the build carries `GLEVNW01` and no `GRMAP001`. [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) A loopback lab showed it drawing and walking a `.nw` level sent by a server; a gmap reaches it only as a plain warp and its first cell, which it plays as an ordinary level (→ App. E#617). [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617)
+For 1.41 rev 1 the build carries `GLEVNW01` and no `GRMAP001`. [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) A loopback lab showed it drawing and walking a `.nw` level sent by a server; a gmap reaches it only as a plain warp and its first cell, which it plays as an ordinary level (→ §1.5). [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617)
+
+**Settled question, formerly E#617: Whether 1.41 rev 1 loads `.nw` levels online.** Whether a real 1.41 rev 1 loads a `.nw` level sent by a server, and what it does with a gmap, was open; a loopback lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The build carries the `GLEVNW01` loader string and no `GRMAP001`; no run had loaded a `.nw` level | [bin] (client-internals/141r1-nw-gmap-status.md#settled-from-the-catalogue) |
+| Settled | 1.41 rev 1 drew and walked a `.nw` start level sent as name, board and modtime. Given a gmap start level, the server sends it a plain warp and the first cell as an ordinary level; the client never asks for the `.gmap` and plays the cell as a normal level | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
+| Left over | Link and height messages for a `.nw` level, which the lab server did not send, and walking a seam | [lab] (protocol/lab-appe-mirae-2026-11-20.md#nw-and-gmaps-on-141-rev-1-e617) |
 
 ## 1.6 Era timeline
 
@@ -907,14 +925,22 @@ Each row is one archived macOS client, named by its archive label. It gives the 
 
 | Archived input label | Main-executable architecture | Declared minimum OS X | Identity limit | Source |
 | --- | --- | --- | --- | --- |
-| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest and matching regular-file contents/names across two extracted copies of 718 files each; historical 3.153 attribution remains unlinked to these exact inputs (→ App. E#609) | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
+| v3.04; v3.15r2 | PowerPC | unmeasured | Same main-executable digest and matching regular-file contents/names across two extracted copies of 718 files each; historical 3.153 attribution remains unlinked to these exact inputs (→ §1.9.1) | [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim); [test] (version-profiles/macos-resource-identity.md) |
 | v4.04r2; v4.20r6 | PowerPC | unmeasured | Distinct main executables | [bin] (version-profiles/macos-client-compatibility.md) |
 | v5.12; four unknown-v5 copies | PowerPC | unmeasured | Five main-executable digests match; regular-file contents/names match across all five extracted copies of 73 files each; original containers and filesystem metadata unmeasured | [bin] (version-profiles/macos-client-compatibility.md); [test] (version-profiles/macos-resource-identity.md) |
 | v6.11r1 | Intel 64-bit | 10.7.0 | Metadata requirement; virtual graphics and runtime compatibility remain unmeasured by this inventory | [bin] (version-profiles/macos-client-compatibility.md) |
 
+**Settled question, formerly E#609: macOS archive labels and application identity.** Whether the Mac uploads labelled 3.04 and 3.15r2 are the historical 3.153 image was open, because the earlier comparison gave no digest to match [bin] (version-profiles/macos-client-compatibility.md#archive-labels-and-the-historical-3153-claim).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The newer collection's two v3-labelled main executables share one PowerPC digest; the earlier note said both are 3.153 but gave no digest | [bin] (version-profiles/macos-client-compatibility.md) |
+| Settled | The executable studied and run as 3.153 has a SHA-256 beginning `6eb0a1f9` and an MD5 beginning `3930f663`; the "3.15r2" setup image's `readme.txt` gives version 3.153 and its token is `G3D28015`; the owner-held `MAC-CLIENTS` inventory records that same digest for both v3-labelled images. So both labels carry the 3.153 executable | [bin][lab] (version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md); [lab] (version-profiles/lab-mac-tiger-2026-10-31.md); [bin] (npc-library/gs1-commands-by-version.md) |
+| Verdict | Verified by digest (prefix and suffix compared; the full digest is owner-held) | [bin] (version-profiles/lab-mac-ppc-315-512-flags-2026-11-14.md) |
+
 The PowerPC headers declare legacy graphics and application-framework dependencies but no exact minimum OS version. Neither these dependencies nor the Intel build's declared minimum establishes successful rendering, input or gameplay. The separately captured Tiger runs retain their own scope (→ §1.8.4, → §1.8.5). [bin] (version-profiles/macos-client-compatibility.md)
 
-Unresolved archive-label and resource identity: → App. E#609.
+Unresolved archive-label and resource identity: → §1.9.1.
 
 ### 1.9.2 Linux network and bootstrap gates
 
@@ -936,11 +962,19 @@ A plain string probe of seven client images, Linux 3.04 to Windows 6.113, record
 | `setGraalProtocolString` | the 4.20 host and engine only | a 4.20 name; 5.3x and 6.x keep only the `graal://` and `graal3://` prefixes | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `hvdi…`, `hcrypt…` | the 4.20 engine only | voice codec names, not the game cipher, which on 4.x is generation 5 (→ §2.2) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `fixedudpport`, `noudp` | 3.04 to 5.31 | the UDP preferences leave in 6.x, which keeps only the scripted datagram hooks (→ §2.9); a separate read of 5.31r4 missed them, so the probe's result is the one kept (→ §1.8.6) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
-| a default login host and its port | 5.30r3, 5.31r4 | stored side by side; in the lab both builds always log in through this built-in list and never read `license.graal` for it (→ App. E#619) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows); [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
+| a default login host and its port | 5.30r3, 5.31r4 | stored side by side; in the lab both builds always log in through this built-in list and never read `license.graal` for it (→ §1.9.4) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows); [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
 | `GSERVL01`, `Z3-V1.04` | up to 5.31 | gone from both 6.x images; `GRMAP001`, `GWEBL001` and `GR-V1.04` stay in all but the 4.20 host | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | "Received illegal data (1)", "(2)" | 5.30 to 6.03 | 6.11 says "Received invalid data" with a third case, which belongs to its server-defined header path (→ §2.10) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `Arc4Process`, `Arc4SetKey` | 6.03, 6.11 | the RC4 helpers first appear in 6.03 | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | 55 `onSend…` names, `tclient_` | 6.11 only | the named send slots (→ §2.4) | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
 | `StartScript_QuitDialog` | 4.20 engine, 5.30r3 | gone in 5.31r4 and 6.x | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+
+**Settled question, formerly E#619: Whether 5.30r3 and 5.31r4 use their built-in login host.** Whether 5.30r3 and 5.31r4 ever dial their stored default login host was open; a lab run per licence case settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The host and port sit side by side in both images; the 5.x notes say the host normally comes from `license.graal`; best guess a fallback | [bin] (protocol/client-string-fingerprints-3x-6x.md#what-the-table-shows) |
+| Settled | With no licence, a signed one, a garbage one, an edited one or a plain one at the root, both builds always dialled the first built-in login host on 14900 and never the licence's address; with no answer they moved to the second built-in host. The unpacked 5.30r3 has no `license.graal` string | [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
+| Verdict | Verified; the best guess was wrong: the built-in list is the only source, not a fallback | [lab] (protocol/lab-appe-mirae-2026-11-20.md#built-in-login-host-of-530r3-and-531r4-e619) |
 
 Both 6.x images also store one comma-separated list of script player property names. 6.03 has 96, with `ismuted` as entry 50 counting from 0; 6.11 has 95, the same list without `ismuted`. These are script names, not wire prop ids, and a list position is not an id (→ §2.6). Whether any 6.11 script still uses `ismuted` is not known. [bin] (protocol/client-string-fingerprints-3x-6x.md#the-script-property-list-96-names-in-603-95-in-611)

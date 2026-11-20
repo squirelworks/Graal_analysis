@@ -3,7 +3,7 @@
 
 This chapter gives the walking step, the wall test, what blocks a point, the blocked-step counter and the actions that hang off it (push pose, ledge jump, pushing blocks and NPCs), grab and pull, water and lava, link following, and the gates that stop movement. Tile type values and the `arrays.dat` lists are defined in → §3.5; this chapter only says how movement uses them. Units are tiles and 50 ms ticks (→ §4.1.1). Facings are 0 up, 1 left, 2 down, 3 right.
 
-> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#302 to E#309.
+> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#302, E#304, E#305 and E#308; E#303, E#306 and E#307 are settled in → §4.2.3, §4.2.8 and §4.2.2.2, and E#309 in → §4.3.7.2.
 
 ## 4.2.1 The step
 
@@ -82,9 +82,18 @@ Earlier builds were checked against the 2.05 test. Each row gives one build and 
 | 1st Graal | exact-input static step/probe/nudge and stepped-axis snapping rules are in → §4.2.2.3; cadence and exceptional gates remain unmeasured | [bin] (client-internals/first-graal-movement-2026-11-09.md) |
 | 1.1 (15th) | after bumping furniture x carried a 0.025 offset (26.925) while walking, which fits a nudge rule of the 2.05 kind; not read | [live][inf] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
 | 1.32 | six probe offsets per facing step from a per-facing table, separate probe routines on a horse; the numbers are unread; speed factors 1.0 normal, 0.2 hidden, 0.4 one carry pose, 1.2 a high item level, 0.8 and up on a horse; the measured 0.5 tile per tick makes the base step half a tile | [bin] (version-profiles/matrix/rules-132.md#wall-and-walk-test-bin); [live] (version-profiles/matrix/live-runs-2026-10-30.md#walking-speed) |
-| 1.39 | six probe offsets per facing step: 1st Graal's inner points (x 0.6, 1.4, 1.6, 2.4; y 1.1, 1.9, 2.1, 2.9) on 2.05's edge lines (y 1.0 and 3.0, x 0.5 and 2.5), points 4 and 5 as in 2.05, and a ±0.125 nudge (→ App. E#307) | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
+| 1.39 | six probe offsets per facing step: 1st Graal's inner points (x 0.6, 1.4, 1.6, 2.4; y 1.1, 1.9, 2.1, 2.9) on 2.05's edge lines (y 1.0 and 3.0, x 0.5 and 2.5), points 4 and 5 as in 2.05, and a ±0.125 nudge (→ §4.2.2.2) | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
 | 1.39 | walking into a character NPC's side nudged the player along it at 0.125 tile per tick, and `playertouchsme` did not fire on that contact | [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
 | 2.05, 2.17.1, 2.22, 2.31 | as §4.2.2.1 to §4.2.4; the four agree on every table and constant | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md) |
+
+**Settled question, formerly E#307: probe, nudge and step tables of 1.39.** The numeric movement tables of 1.39 were open; a static read of its constant block settled them [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Six probes and the blocked-step counter shape were known without numbers; best guess the same tables as 2.05 | [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab); [inf] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| Settled | 1.39 keeps 1st Graal's inner probe points (x 0.6, 1.4, 1.6, 2.4; y 1.1, 1.9, 2.1, 2.9) and its ±0.125 nudge, but uses 2.05's edge lines (y 1.0 and 3.0, x 0.5 and 2.5); points 4 and 5 (2.525, 0.475, 3.025, 0.975) and the half-tile step are the same in all three builds | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
+| Verdict | The guess was wrong: 1.39 is between 1st Graal and 2.05. 2.05 moves the inner points 0.075 outwards and makes the nudge 0.1. The 0.125 nudge agrees with the live 1.39 run | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build) |
+| Left over | The 1.39 refusal and snap branches were not compared instruction by instruction | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) |
 
 ### 4.2.2.3 Exact 1st Graal geometry
 
@@ -118,7 +127,7 @@ The second table gives what 1st Graal does when a step is blocked: the sideways 
 | up/down snap | when Y has a positive fractional part: up sets Y to trunc(Y); down sets Y to trunc(Y + 1) | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
 | left/right snap | when X + 0.5 has a positive fractional part: left sets X to trunc(X + 0.5) − 0.5; right sets X to trunc(X + 1.5) − 0.5 | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
 | counters | count ≥ 38 becomes 18; at 18 a passing ledge predicate selects an eight-tick hop; a count-28 helper can suppress position commits, with full semantics untraced | [bin] (client-internals/first-graal-movement-2026-11-09.md#refusal-and-sideways-movement) |
-| limits | static constants/branches only; no new runtime cadence, all-state-gate or complete object-list validation; the 1.39 tables are in → App. E#307 | [bin] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
+| limits | static constants/branches only; no new runtime cadence, all-state-gate or complete object-list validation; the 1.39 tables are in → §4.2.2.2 | [bin] (client-internals/first-graal-movement-2026-11-09.md#verification-and-limits) |
 
 ## 4.2.3 What blocks a point
 
@@ -126,11 +135,20 @@ Tested in this order; the first hit blocks:
 
 | # | Test | Source |
 | --- | --- | --- |
-| 1 | the level's players (a body box like the player's; players with either of two state flags are skipped), checked only online and only while a movement routine has set a temporary flag around its own probes, so ordinary walking passes through other players (→ App. E#303) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| 1 | the level's players (a body box like the player's; players with either of two state flags are skipped), checked only online and only while a movement routine has set a temporary flag around its own probes, so ordinary walking passes through other players (→ §4.2.3) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
 | 2 | the level's NPCs that have a blocking shape or image | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
-| 3 | the level's bombs, x + 0.25 to x + 1.75, y to y + 2, while their enabled flag is set; placing a bomb or putting down a carried one sets it (→ App. E#303) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| 3 | the level's bombs, x + 0.25 to x + 1.75, y to y + 2, while their enabled flag is set; placing a bomb or putting down a carried one sets it (→ §4.2.3) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points); [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
 | 4 | chests: each covers x to x + 2, y to y + 2, edges included, opened or not | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
 | 5 | the tile, which blocks unless it is in the passable list or the liquid list of `arrays.dat` (arrays 0 and 1, → §3.5.3) | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#the-probe-points) |
+
+**Settled question, formerly E#303: two unidentified lists in the blocked-point test.** What fills the two object lists that the 2.05 blocked-point test reads was open; a static read of what adds to each list settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | One list of player-sized boxes with two flags, read only with a "client option" on; one list of 1.5 × 2 boxes with an enabled flag. Best guess: other players, and NPCs or baddies | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| Settled | The 1.5 × 2 list is the level's bombs: only placing a bomb and putting down a carried bomb add to it, each setting the enabled flag. The player-sized list is the level's list of players. The "option" is a temporary flag that a few movement routines set around their own probes and the walking step clears, and the test also needs the client to be online | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| Verdict | Half right: the first list is players, as guessed, but ordinary walking does not test it; the second is bombs, not NPCs or baddies | [bin] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
+| Left over | Which movement routines set the players flag; whether 2.22 and 2.31 keep the same lists | [inf] (client-internals/static-reads-appendix-e-2026-11-20-c.md#the-two-lists-in-the-205-blocked-point-test-e303) |
 
 ### 4.2.3.1 How the tile is answered, by tileset
 
@@ -275,10 +293,19 @@ Grabbing and pulling use the A key. The rules below give what A does first, what
 | holding | the grab lasts while A is held; arrows do not move or turn the player; mode 5 | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
 | pull cycle | the arrow away from the wall sets the counter to 2 and starts `pull`; the counter runs 2 to 19 and back to 2 (18 ticks); a pull is tried whenever the arrow is held at 19; letting go of any arrow sets the counter to 1 | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
 | pull try | fires `pulled` one tile out from the body, (1.5, 0), (-0.5, 2), (1.5, 4), (3.5, 2) by facing, with the opposite facing as parameter, then reads the tile at the grab point | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
-| pullable block | array 16, entry 1 (→ §3.5.3); the two cells behind the player must be free, from the block's top-left: up (0, 4) (1, 4); left (4, 0) (4, 1); down (0, -3) (1, -3); right (-3, 0) (-3, 1); the block moves one tile towards the player (each old cell first takes the tile two cells behind), the player steps back one tile, and `lift.wav` plays, or `lift2.wav` when a byte of the pulled object is zero (→ App. E#306) | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+| pullable block | array 16, entry 1 (→ §3.5.3); the two cells behind the player must be free, from the block's top-left: up (0, 4) (1, 4); left (4, 0) (4, 1); down (0, -3) (1, -3); right (-3, 0) (-3, 1); the block moves one tile towards the player (each old cell first takes the tile two cells behind), the player steps back one tile, and `lift.wav` plays, or `lift2.wav` when a byte of the pulled object is zero (→ §4.2.8) | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
 | pulled NPCs | with no pullable block, an NPC with `canbepulled` (command 46, cleared by 47) is pulled: the two cells behind the player must be free from the whole-tile grab cell (up (0, 3) (1, 3); left (3, 0) (3, 1); down (0, -3) (1, -3); right (-3, 0) (-3, 1)), then the edge facing the player is checked (up (t, y + h), left (x + w, t), down (t, y - 1), right (x - 1, t)); NPC and player move one tile back and `waspulled` fires; nothing goes to the server | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
 | futile pull | on anything else (a wall, a rock too heavy for the glove, a push block) nothing moves; `pulled` still fires every 18 ticks and `pull` keeps playing | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
 | on the wire | `grab` is sprite step 19 (SPRITE 14); `pull` steps 20 + frame (SPRITE 15, 16, 17) | [2.05] (client-internals/ledges-push-pull.md#sprites-on-the-wire) |
+
+**Settled question, formerly E#306: What picks `lift2.wav` for a pull.** Which flag makes a successful pull play `lift2.wav` instead of `lift.wav` was open; a static read of 2.05 settled it [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | A player flag that was not traced; best guess a heavy-object flag | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
+| Settled | The choice reads a byte of the object being lifted or pulled, not a player flag: non-zero plays `lift.wav`, zero plays `lift2.wav` | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+| Verdict | Verified by static read; the earlier note named the wrong owner of the flag | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
+| Left over | What the byte means for each object kind | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#pull-sound-e306-205) |
 
 Pose timing by build:
 

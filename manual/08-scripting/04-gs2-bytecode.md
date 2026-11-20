@@ -1,9 +1,9 @@
 <!-- manual: kind=reference status=draft -->
 # 8.4 GS2 bytecode
 
-This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2; the per-build dispatch ranges are → §8.4.4, and the load-time fusion stages → §8.4.6. The runner, including the value-stack cap and opcodes 9 and 10, is → §8.3.3. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax, the standard library, and the event model stay open (→ App. E#207). Which message carries the container is still disputed (→ App. E#202).
+This chapter covers compiled scripts on the wire. 2.05 and earlier clients receive GS1 as text and never see bytecode (→ §8.1.2). The container 4.2.0.8, 5.0.0.7, and unpacked 6.00 parse is → §8.4.2; the per-build dispatch ranges are → §8.4.4, and the load-time fusion stages → §8.4.6. The runner, including the value-stack cap and opcodes 9 and 10, is → §8.3.3. OpenGS1's layout, a reimplementation, stays in → §8.4.3 for reference. Syntax, the standard library, and the event model stay open (→ App. E#207). Which message carries it is settled in → §8.4.1.
 
-> Status: draft. The container for the builds in §8.4.2 is recorded. The runner is in §8.3.3. Syntax, the standard library, and the event model stay open (→ App. E#207). The id that carries the container is disputed (→ App. E#202).
+> Status: draft. The container for the builds in §8.4.2 is recorded. The runner is in §8.3.3. Syntax, the standard library, and the event model stay open (→ App. E#207). Which id carries the container is settled in → §8.4.1.
 
 ## 8.4.1 Transport
 
@@ -16,8 +16,19 @@ GS2 reaches the client as compiled bytecode. The rules below give the message th
 | framing | wrapped in `PLO_RAWDATA` with a length prefix (→ §2.1.2) | [srv] (protocol/graphics-movement-bytecode.md#on-wire) |
 | with NPC props | an NPC is sent as `PLO_NPCPROPS` plus the optional `PLO_NPCBYTECODE` | [srv] (protocol/graphics-movement-bytecode.md#other-level-objects) |
 | 2.05 | the 2.05 receive switch does not handle it | [srv][2.05] (protocol/packet-ids.md) |
-| other ids | a second reading puts GS2 bytecode on id 197 → App. E#202 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
+| other ids | a second reading puts GS2 bytecode on id 197 → §8.4.1 | [srv] (protocol/packet-layouts.md; client-internals/feature-specs/02-weapons-combat.md#weapon-lists-server-to-client-srv205) |
 | how the client stores it | a 24-byte instruction record and an op-index program counter (→ §8.4.2). 4.2.0.8 attaches those instructions to the `TGraalVar` (→ §8.3.3) | [bin] (protocol/gs2-client-vm.md#container-the-client-reads); [bin] (client-internals/gs2-vm-from-engines.md#bytecode-and-source) |
+
+**Settled question, formerly E#202: Which message carries GS2 bytecode.** Which message carries a GS2 script body on 4.x and 5.x clients was open: three sources named 131, 197 and 140 [srv] (protocol/packet-ids.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: NPC bytecode is `PLO_NPCBYTECODE` (131) behind `PLO_RAWDATA`. B: 197 "GS2 bytecode" replaces the script prop. C: 197 is `PLO_LOADSCRIPT`, a descriptor list | [srv] (protocol/packet-ids.md); [srv] (protocol/packet-layouts.md) |
+| Settled (NPCs) | 131 behind 100 carries a runnable NPC body on 4.20r8, 5.24r4 and 6.03r7: the script fuzz delivered every case that way and the scripts ran | [lab] (protocol/script-fuzz-2026-11-19.md) |
+| Settled (classes and weapons) | On 6.x, 197 is the descriptor `type,name,1,key,crc` and 140 carries the body, from the cache or the wire, never inside 197 | [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles); [bin] (formats/linux-6x-class-cache.md); [lab][cap] (protocol/linux-603-network-gs2.md) |
+| Verdict | Verified: two messages for two kinds of object, not three rival claims. Claim B names the class exchange by its first message | [lab] (protocol/script-fuzz-2026-11-19.md) |
+| Also measured | 4.20r8 does not honour the 6.x class path as sent: ten 197 and 140 variants with a valid compiled body ran no script and drew no request, while 131 behind 100 runs NPC bodies on the same build | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
+| Left over | How 4.20r8 delivers weapon and class scripts, and 4.0x before 4.20r8 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
 
 ## 8.4.2 Format
 
@@ -269,8 +280,17 @@ The rules below say what follows for a client and a compiler, and where the evid
 | Rule | Source |
 | --- | --- |
 | Clean output is consistent with a jump-threading and marker-narrowing pass, but careful emitting alone gives the same stream, so the official compiler's passes are not known. Open compilers' test baselines do leave jump-to-jump chains and wide `F4` markers | [cap][inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
-| On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, App. E#212) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
+| On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, §8.4.10) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
 | The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently (→ App. E#213) | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
+
+**Settled question, formerly E#212: Whether a function-only image skips the top-level pass.** Whether stock clients treat a leading jump to the end as "no top level", and re-run top-level code before every event when an image has some, was open; loopback fixtures settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The 19 official bodies are all function-only; a Linux 4.04r2 experiment suggested a top-level re-run | [cap][lab] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
+| Settled | On 4.20r8 and 5.12, with bytecode in 131: a script with a top level runs it before `onCreated` and again before every later `onTimeout`; its function-only twin never runs a top level | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
+| Verdict | Verified on two builds; the best guess held on both counts | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
+| Left over | 6.03r7, and a handler at instruction 0 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
 
 
 ## 8.4.11 Undispatched bytes, raw folds and damaged containers (lab)

@@ -109,7 +109,7 @@ The repository has a tool for these cache files. The table lists its commands an
 
 [bin] Packet 197 parses its whole body as one metadata list that includes the expected CRC, with comma, quote and escape handling. When that CRC is zero, the class path skips the validator, deletes the cache entry and may load an empty program. When it is non-zero, it must equal the stored body's CRC, and a header-only file's empty body has CRC zero. So a header-only file is never a class cache hit on this path. On a miss the client sends logical 161 with the stored-body CRC as five offset-integer bytes and then the class name; the field is a CRC, not a modification time. [bin] (formats/linux-6x-class-cache.md#packet-197-and-the-zero-crc); [bin] (formats/linux-6x-class-cache.md#the-class-request-on-a-cache-miss)
 
-[bin] Linux 6.01r1 x86 shows the same split: packet 140 carries a descriptor and a body, and packet 197 carries metadata, and both lead to the same class store. That store uses the modern class-code namespace, not the web-level cache in → §3.8.1–§3.8.5. Nothing here was run; fixtures, malformed files and script execution are untested (→ App. E#202). [bin] (formats/linux-6x-class-cache.md#linux-601-x86-two-delivery-shapes-one-class-store)
+[bin] Linux 6.01r1 x86 shows the same split: packet 140 carries a descriptor and a body, and packet 197 carries metadata, and both lead to the same class store. That store uses the modern class-code namespace, not the web-level cache in → §3.8.1–§3.8.5. Nothing here was run; fixtures, malformed files and script execution are untested (→ §8.4.1). [bin] (formats/linux-6x-class-cache.md#linux-601-x86-two-delivery-shapes-one-class-store)
 
 ## 3.8.10 `GRESCR01` keys from packet 197
 

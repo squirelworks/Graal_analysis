@@ -33,11 +33,18 @@ Several commands take a number that stands for a name. The table gives each name
 | --- | --- | --- |
 | items (`I`) | 0 greenrupee, 1 bluerupee, 2 redrupee, 3 bombs, 4 darts, 5 heart, 6 glove1, 7 bow, 8 bomb, 9 shield, 10 sword, 11 fullheart, 12 superbomb, 13 battleaxe, 14 goldensword, 15 mirrorshield, 16 glove2, 17 lizardshield, 18 lizardsword, 19 goldrupee, 20 fireball, 21 fireblast, 22 nukeshot, 23 joltbomb, 24 spinattack | [2.05][doc][srv] (npc-library/gs1-command-reference-205.md#name-tables; npc-library/gs1-reference-205.md#constants-doc) |
 | baddies (`B`) | 0 graysoldier, 1 bluesoldier, 2 redsoldier, 3 shootingsoldier, 4 swampsoldier, 5 frog, 6 octopus, 7 goldenwarrior, 8 lizardon, 9 dragon | [2.05][doc] (npc-library/gs1-command-reference-205.md#name-tables; npc-library/gs1-reference-205.md#constants-doc) |
-| hare baddy | 2.05 ships `baddyhare.gif`; it is type 5, `frog`, which 2.22 draws with the hare image (→ App. E#205) | [file] (npc-library/gs1-reference-205.md#constants-doc); [2.22] (client-internals/baddies-222.md#types-222) |
+| hare baddy | 2.05 ships `baddyhare.gif`; it is type 5, `frog`, which 2.22 draws with the hare image (→ §8.2.2) | [file] (npc-library/gs1-reference-205.md#constants-doc); [2.22] (client-internals/baddies-222.md#types-222) |
 | colours (`C`) | 0 white, 1 yellow, 2 orange, 3 pink, 4 red, 5 darkred, 6 lightgreen, 7 green, 8 darkgreen, 9 lightblue, 10 blue, 11 darkblue, 12 brown, 13 cynober, 14 purple, 15 darkpurple, 16 lightgray, 17 gray, 18 black, 19 transparent; the same list indexes `PLPROP_COLORS` | [2.05][srv] (npc-library/gs1-command-reference-205.md#name-tables; npc-library/gs1-reference-205.md#constants-doc) |
 | carry objects (`L`) | 0 bush, 1 sign, 2 vase, 3 stone, 4 blackstone, 5 bomb, 6 hotbomb, 7 superbomb, 8 joltbomb, 9 hotjoltbomb, 10 none | [2.05] (npc-library/gs1-command-reference-205.md#name-tables) |
 | directions (`D`) | 0 up, 1 left, 2 down, 3 right; numeric values are reduced mod 4, negative values too | [2.05] (npc-library/gs1-command-reference-205.md#name-tables) |
 | direction table | the four names follow the command table directly; a dump that reads two records past `hide` finds `up` and `right` and wrongly counts 163 commands | [2.05] (npc-library/gs1-command-reference-205.md#how-the-interpreter-works; client-internals/newworld-betas.md#corrections-to-other-notes) |
+
+**Settled question, formerly E#205: index of the hare baddy.** The hare baddy is type 5, shared with the frog [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Evidence | 2.05 ships `baddyhare.gif`, and the baddy name table has 10 names, 0 to 9 | [file][2.05] (npc-library/gs1-reference-205.md#constants-doc; npc-library/gs1-command-reference-205.md#name-tables) |
+| Settled | The 2.22 client draws type 5 with `baddyhare.png` and plays `frog.wav` for it: the hare and the frog are one type | [2.22] (client-internals/baddies-222.md#types-222) |
 
 ## 8.2.3 Online side effects
 
@@ -315,7 +322,17 @@ Expressions resolve names through a table of functions and variables with numeri
 | 800–819 | `player*` and `players[i].*` | `playerx`, `playery`, `playerrupees`, `playerdarts`, `playerbombs`, `playerhearts`, `playerfullhearts`, `playerdir`, `playerglovepower`, `playerbombpower`, `playershootpower`, `playerswordpower`, `playershieldpower`, `playerheadset`, `playersprite`, `playerid`, `playersaysnumber`, `playermp`, `playerap`, `playerhurtdx` | [2.05] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
 | 820–825 | `player*` and `players[i].*` | `playerhurtdy`, `playerfreezetime`, `playerhurtpower`, `playerattachid`, `playerattachtype`, `playerz` | [2.05] (npc-library/gs1-reference-205.md#functions-and-variables-205) |
 
-The seven families above have 36 exact compiled records / 35 distinct family/member spellings. The parser matches stored suffixes and exits on its first successful record: arrow `dx=663` shadows the duplicate `dx=664` vertical getter, with no builtin `dy` spelling. This replaces the documentation-order inference for the exact checked build → App. E#204. Expression IDs are language identifiers, not binary addresses or serialized bytecode [bin] (npc-library/gs1-object-members-205r2.md#parser-binding).
+The seven families above have 36 exact compiled records / 35 distinct family/member spellings. The parser matches stored suffixes and exits on its first successful record: arrow `dx=663` shadows the duplicate `dx=664` vertical getter, with no builtin `dy` spelling. This replaces the documentation-order inference for the exact checked build → §8.2.5. Expression IDs are language identifiers, not binary addresses or serialized bytecode [bin] (npc-library/gs1-object-members-205r2.md#parser-binding).
+
+**Settled question, formerly E#204: Writing to GS1 object members.** What writing to a GS1 object member does, and how the members change across builds, was open; a write-and-read-back scene on four builds settled the main part [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The 2.05 rev 2 name-to-id mapping is settled (36 records, 35 spellings); writes and fallbacks were not | [bin] (npc-library/gs1-object-members-205r2.md#parser-binding) |
+| Settled | On 2.05, 2.17.1, 2.22 and 2.31, writes to `npcs[k].x`, `npcs[k].y` and `players[0].x` read back and move the object on screen; writes past the end read 0; unknown members such as `zz` and `arrows[0].dy` read 0; `players[0].power` reads 0 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
+| Build change | `npcs[k].dir = 1` does not stick on 2.05 (reads 2) and does from 2.17.1 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
+| Verdict | Verified for the members tested; the best guess held | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
+| Left over | The rest of the members, setter side effects beyond position, and 1.39 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
 
 The NewWorld betas add eight time variables after the direction list. They are variables (also usable as `#v(name)` codes), not commands; the server sends the time in packet 42 [bin][doc] (client-internals/newworld-betas.md#gs1-changes):
 
