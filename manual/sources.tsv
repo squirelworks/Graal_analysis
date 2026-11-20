@@ -901,3 +901,4 @@ version-profiles/version-tokens-by-build.tsv	cited	1	1.2
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
 server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
+client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	3.5; 3.10; E	3.5; 3.10; E	File reads for App. E: the WAV census by content hash (E#325 count) and the untraceable type-0 mask count (E#101)

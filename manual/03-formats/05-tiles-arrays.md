@@ -93,7 +93,7 @@ The official client decides walkability differently for each kind of sheet. The 
 | type-0 sheet | a tile walks only if its 12-bit id is in one of two internal allow lists (the "nowall" lists); an id in neither blocks | [live] (formats/tile-walk.md#collision-rules); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
 | allow lists | built when the sheet loads; not stored in `tiledefs.txt`, which names only the sheet, prefix and type; they are arrays 0 and 1 of `arrays.dat` (→ §3.5.3) | [live] (formats/tile-walk.md#type-0-allow-lists); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
 | type 1 and 2 sheets | consult a fixed 0/1 body-block grid; one extraction counted 1725 blocked and 2371 walkable cells | [live] (formats/tile-walk.md#collision-rules); [bin] (formats/tiletypes.txt) |
-| type-0 mask | `disputed → App. E#101` | [live] (formats/tile-walk.md#type-0-allow-lists) |
+| type-0 mask | `retired → §3.5.3.1` | [live] (formats/tile-walk.md#type-0-allow-lists) |
 | `setshape2` | blocks the body when the shape-tile type is greater than 19 | [bin] (formats/tiletypes.txt) |
 | throw | throw handling does not stop on type `0x14` (20) | [bin] (formats/tiletypes.txt); [live] (formats/tile-walk.md#collision-rules) |
 | water | type 11 does not block; it changes the displayed tile and may set a swimming flag | [live] (formats/tile-walk.md#collision-rules) |
@@ -149,7 +149,7 @@ Meanings read from the uses in the 2.22 client [bin] (client-internals/decomp-fi
 
 | # | Content (2.22) | Source |
 | --- | --- | --- |
-| 0 | passable tile ids; any other tile is a wall (→ App. E#101; the list count is settled in → §3.5.3.1) | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
+| 0 | passable tile ids; any other tile is a wall (→ §3.5.3.1) | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 | 1 | liquid tile ids, water and lava | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 | 3 | the liquid tiles that are lava | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
 | 9, 10 | cuttable 2×2 objects and the tiles a cut leaves, indexed type, column, row: the bush `2 3 / 18 19` and `420 421 / 436 437` | [bin] (client-internals/decomp-findings-2026-10-25-l/02-arrays-dat.md#arrays-index--position-in-the-file) |
@@ -170,7 +170,7 @@ One packaged `arrays.dat` was read exactly to settle which tile ids are in its f
 | first lists | 934 and 116 internally unique values; 15 shared; union 1,035 values within 0–4095; list 1 contributes 101 values absent from list 0 | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | Bush values | 2, 3, 18 and 19 are absent from both lists, also in all 25 successfully parsed distinct inputs; file membership does not establish runtime collision | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
 | collection validation | 53 occurrences, 26 hashes; 25 parse completely and reproduce original bytes on re-encoding; an unsupported 39ster-labelled representation is excluded; other inputs have different shapes and counts | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; mask provenance remains open → App. E#101 (stamped-bush collision is settled in §3.5.2.2); the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ §3.5.3.1) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+| remaining scope | no consuming path or runtime movement was checked; earlier consumer evidence retains its original build scope; the earlier mask count is retired (→ §3.5.3.1) (stamped-bush collision is settled in §3.5.2.2); the 2.05 old-mode walk test checks list 0 and then list 1, and no other (→ §3.5.3.1) | [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle); [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
 
 **Settled question, formerly E#608: how many `arrays.dat` lists make a tile passable.** How many `arrays.dat` lists decide whether a tile is walkable was open between a summary and a code read; a static read of the consumer settled it for 2.05 [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205).
 
@@ -179,6 +179,14 @@ One packaged `arrays.dat` was read exactly to settle which tile ids are in its f
 | Claims | A: the first array supplies passable tiles and all others are walls. B: the old-mode 2.05 path checks arrays 0 and 1 | [doc] (CONSOLIDATED.md#tiles); [2.05] (formats/arrays-and-signatures.md#arraysdat) |
 | Settled | The loader reads 25 lists; the old-mode passability test checks list 0 and, on a miss, list 1, and no other | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
 | Verdict | Verified by static read: Claim B holds; Claim A dropped list 1 | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#arraysdat-lists-in-the-old-mode-walk-test-e608-205) |
+
+**Settled question, formerly E#101: Size of the type-0 allow lists.** Whether an earlier mask count of walkable tiles describes the `arrays.dat` lists was open, because no one had traced the count to its producer. A search of every held folder and archive settled it [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-earlier-type-0-mask-export-e101).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: one exported type-0 mask counted 3,195 non-blocking and 682 blocking tiles. B: the exact `arrays.dat` lists give a union of 1,035 | [live] (formats/tile-walk.md#type-0-allow-lists); [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
+| Settled | No export or script behind Claim A exists in any held folder or archive; the sentence entered the notes on 2026-10-14 with no data file. Its counts match neither the `arrays.dat` lists, nor the GServer-v2 fork's `Type0` and `Type1` tables, nor the pixels of the 2.22 `pics1.png`; 3,195 + 682 is 219 short of 4,096 | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-earlier-type-0-mask-export-e101) |
+| Verdict | Claim A is retired; Claim B's 1,035 stands. Side finding: 1,035 is also the number of `Type0` ids below 20 in the fork's table (counts only, membership unchecked) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-earlier-type-0-mask-export-e101) |
 
 ## 3.5.4 arrays2.dat
 

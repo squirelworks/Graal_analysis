@@ -42,7 +42,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#16 | Classic+ 1.13 login wire layout | Missing | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
 | E#18 | Mobile clients' outer framing and cipher | Read | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
-| E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49, 54, the 6.x loop-limit name and 6.03r7 event case settled; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
@@ -52,7 +51,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
 | E#324 | Combat live checks still open | Lab | the spark appears only when a sword meets a sword or a shield | [inf] (live-runs/drops-2026-11-20/README.md#still-open-after-this-run) |
-| E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| E#325 | Sound census and playback limits | Lab | none yet; needs a per-backend playback test | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
@@ -244,18 +243,6 @@ These questions are about single messages and props: which builds send or handle
 
 These questions are about what is in a file and how a client reads it (→ Part III). Several of them look like format questions but are really questions about which client routine consumes a field, which a file alone cannot answer [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
 
-### E#101 Size of the type-0 allow lists
-
-**Question.** Whether an earlier mask count of walkable tiles describes the lists read from the exact file [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The exact-input lengths, overlap and union are in → §3.5.3.1; they do not reproduce the earlier count | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| Evidence | The earlier export counted 3195 non-blocking and 682 blocking tiles | [live] (formats/tile-walk.md#type-0-allow-lists) |
-| Best guess | The earlier mask was made from another sheet or a later table, so the numbers describe a different input. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Settles it | Link the original mask and the exact file to the producing client path and sheet before comparing | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Outlook | Read, if the mask's producer can be identified; otherwise the old count is simply retired | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-
 ## E.6 Client behaviour
 
 These questions are about what a client does in play: timing, walking, combat, items and the screen (→ Part IV). Most were raised by a static read that found a routine but not every input to it, so most are settled by one controlled lab scene on the exact build [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv).
@@ -325,15 +312,14 @@ These questions are about what a client does in play: timing, walking, combat, i
 
 ### E#325 Later sound census and playback limits
 
-**Question.** How many distinct WAVs the 4.x to 6.x builds ship, and which formats each client really plays [file][doc] (client-internals/sound-files-6x.md#what-the-files-are).
+**Question.** Which sound formats each 4.x to 6.x client really plays. The census of what they ship is settled in → §3.10.5 [file][doc] (client-internals/sound-files-6x.md#what-the-files-are).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Evidence | The survey reports 255 distinct WAVs, but its format counts (202 + 43 + 6 + 3) and channel counts (193 + 61) each total 254 | [file][doc] (client-internals/sound-files-6x.md#what-the-files-are) |
 | Evidence | Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behaviour; the survey ran no client (→ §3.10.5, → §4.7.5) | [file][bin] (client-internals/sound-files-6x.md) |
-| Best guess | One file was dropped from both splits, so 255 is right and each split is one short. Confidence: moderate | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-| Settles it | Recount against the surveyed inputs, and test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-| Outlook | Read for the count; Lab for playback | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Settled part (2026-11-20) | The census: the 4.x to 6.x sets hold 103 distinct WAVs by content, and the 255 against 254 gap was one MP3 file named `.wav` (→ §3.10.5) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
+| Settles it | Test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Outlook | Lab | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
@@ -611,6 +597,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#24 | Baddy props 11 and up | → §2.6.6 |
 | E#25 | The 2.22 start-up file checks: 13 against 17 | → §2.7.10 |
 | E#100 | Collision of the Bush stamp tiles | → §3.5.2.2 |
+| E#101 | Size of the type-0 allow lists | → §3.5.3.1 |
 | E#102 | Tile id to pixel position on pics1 | → §3.5.1 |
 | E#103 | What the four 2.22 verifier guards mean | → §3.5.5.1 |
 | E#200 | When a GS1 condition counts as true | → §8.1.3 |

@@ -75,6 +75,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 - [Static reads for Appendix E, tenth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-i.md) — the 17 built-ins that make 6.x fuse fold 241.
 - [Static reads for Appendix E, eleventh batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-j.md) — the 6.x loop-limit name, event-name case and the `clientside` trigger path.
 - [Static reads for Appendix E, twelfth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-k.md) — the 2.22 signature verifier: how the patched builds relate, where the check runs, and the verify steps.
+- [File reads for Appendix E, thirteenth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-l.md) — the WAV census reconciled (103 distinct 4.x–6.x WAVs by content) and the old type-0 mask count retired.
 - [The 6.01 built-in library, from its registration tables](client-internals/gs2-builtins-601-registry.md) — every global and per-class built-in of Linux 6.01r1 with its type letters.
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
 - [Static reads for Appendix E, second batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-b.md) — 1.39 movement tables, the 2.1 test entry save, the RC 76 last byte, GS2 opcodes 48, 49 and 54 on 5.00r7.
