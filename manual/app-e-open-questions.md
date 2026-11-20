@@ -36,7 +36,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | --- | --- | --- | --- | --- |
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
-| E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#15 | Graal 2002 and 1.40 send sets and default routes | Lab | each build follows its token's neighbour; 1.40 and v22 logins captured | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Missing | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
@@ -227,18 +226,7 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 
 These questions are about single messages and props: which builds send or handle an id, how wide a field is, and what a message changes on the screen. Each one leaves a `unmeasured` or `disputed` cell in → §2.4, → §2.5, → §2.6 or App. A, and most of them are within reach of the probe proxy, which injects a message into a live loopback session and watches the client's reaction [lab] (protocol/probe-targets-2026-11-18.md).
 
-### E#10 When the `maps` download folder arrived
-
-**Question.** Which build started saving downloads into a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The 2.1 test builds save downloads with no `maps` rule, and 2.17.1 has one; no client between them has been read | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
-| Tried | The Windows 2.1.0.0 to 2.1.0.4 images are now identified, so the question no longer waits on a binary for that range; 2.12 to 2.16 have none | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md) |
-| Tried (2026-11-19) | The gmap code, `loadgmaps.txt` included, is absent from 2.1.0.0 to 2.1.0.4 and present in 2.17.1 | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#gmap-code-in-the-21-builds-e10) |
-| Best guess | The rule arrived with the gmap work, after 2.1.0.4 and by 2.17.1. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
-| Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
-| Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
+No question in this group is open now; the last one, E#10, was settled on 2026-11-20 (→ §E.12).
 
 ## E.5 File formats and tiles
 
@@ -580,7 +568,7 @@ The project's aim is to be as complete as the surviving evidence allows. Some qu
 
 Three kinds of evidence are missing for good, or nearly so:
 
-- **Lost builds.** No binary of 2.12 to 2.16 or of 2.19 to 2.21 is held, so the first build of the `maps` folder (→ App. E#10) and the generation-4 wire (→ App. E#19) rest on neighbours and on server source. A build that turns up in an old archive would reopen them at once; the build catalogue lists what to look for. [bin] (client-internals/build-catalogue.md)
+- **Lost builds.** No binary of 2.12 to 2.16 or of 2.19 to 2.21 is held, so whether those builds keep the `maps` folder rule that ver9 introduced (→ §2.7.6) and the generation-4 wire (→ App. E#19) rest on neighbours and on server source. A build that turns up in an old archive would reopen them at once; the build catalogue lists what to look for. [bin] (client-internals/build-catalogue.md)
 - **The official servers' own code and data.** The 1999 to 2010 official game servers, listservers and RC backends were never published. Their rules can only be inferred from what the clients expect, from open-source servers written to match them, and from today's services, which may have changed. This limits E#401, E#402, E#406 and E#422, and the meaning of the `GNW` digits (→ App. E#12). [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields)
 - **Signed or server-held scripts.** From 6.11 on, the protocol itself lives in a script the operator signs (→ §2.10). The structure can be learned with a lab-signed script, but the production script's exact content can only come from the live service (→ App. E#616). [inf] (protocol/v7-connector-live-20261111.md#5-open)
 
@@ -599,6 +587,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#7 | Receive-branch revision discrepancy | → §2.5.2 |
 | E#8 | Prop parser ranges of 2.00 | → §2.6.6 |
 | E#9 | Uploads from game clients | → §2.7.1 |
+| E#10 | When the `maps` download folder arrived | → §2.7.6 |
 | E#11 | Client-to-server ids the NewWorld betas lack | → §2.4.2 |
 | E#13 | Gmap neighbour overwrite on classic-login 2.x clients | → §2.5.3.2 |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | → §1.8.7 |

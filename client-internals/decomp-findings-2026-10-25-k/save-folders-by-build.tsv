@@ -5,5 +5,7 @@ builds	flat_webgifs	sounds_for_wav	bomys	ganis	emoticons	hats	heads_bodies_sword
 2.00 rev 0-3, 2.01, 2.01 rev 1	no	yes	yes	yes	yes	no	yes	no	not read	static read
 2.02 rev 0-2, 2.03, 2.04, 2.05 rev 1, 2.05 rev 2	no	yes	yes	yes	yes	yes	yes	no	not read	static read
 2.1 test 2, 2.1 test 3	no	yes	yes	yes	yes	yes	yes	no	not read	static read
-2.1 to 2.16 releases	no	yes	yes	yes	yes	yes	yes	unknown	yes (2.1+)	inferred (no binary)
+2.1.0.0 ver7, ver8 (Graal 2002)	no	yes	yes	yes	yes	yes	yes	no	yes (when the reply has a time)	static read (graal2002-save-folders-2026-11-20.md)
+2.1.0.0 ver9 to 2.1.0.4 v22 (Graal 2002)	no	yes	yes	yes	yes	yes	yes	yes	yes (when the reply has a time)	static read (graal2002-save-folders-2026-11-20.md)
+2.12 to 2.16 releases	no	yes	yes	yes	yes	yes	yes	very probably yes	yes (2.1+)	inferred (no binary)
 2.17.1, 2.22, 2.31	no	yes	yes	yes	yes	yes	yes	yes	yes	static read; lab for 2.22

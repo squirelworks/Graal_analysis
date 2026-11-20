@@ -119,7 +119,13 @@ Where a new download is saved, by build:
 | 2.00, 2.01 | `sounds` for `.wav`; under `levels`: `bomys` (names starting `bomy` or `b_`), `ganis` (`.gani`), `emoticons` (names starting `emoticon`), `heads`, `bodies`, `swords`, `shields` (names containing those words), else `webgifs` | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
 | 2.02 to 2.05 rev 2, both 2.1 test builds | as 2.00, plus `hats` (`hat` then a digit as the fourth character) | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
 | 2.17.1, 2.22, 2.31 | as 2.05, plus `maps` for `.gmap` and for `.txt`, `.gif`, `.png`, `.mng` names containing `map`; a 2.22 gmap download was saved as `maps/<name>` | [bin][cap] (client-internals/decomp-findings-2026-10-25-k/save-folders-by-build.tsv); [cap] (client-internals/decomp-findings-2026-10-25-e/02-save-rules.md#where) |
-| 2.1 to 2.16 | no binary; when `maps` arrived is unknown (→ App. E#10) | [doc] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md#layouts) |
+| Graal 2002 ver7, ver8 (2.1.0.0, Oct 2001) | as the 2.1 test builds: no `maps` rule, so a downloaded `.gmap` lands in `levels/webgifs` | [bin] (client-internals/graal2002-save-folders-2026-11-20.md#where-a-downloaded-file-is-saved) |
+| Graal 2002 ver9 (2.1.0.0, 30 Oct 2001) to v22 (2.1.0.4) | the first builds with the `maps` rule, already in the 2.17.1 form | [bin] (client-internals/graal2002-save-folders-2026-11-20.md#where-a-downloaded-file-is-saved) |
+| 2.12 to 2.16 | no binary; very probably the `maps` rule, since every build from ver9 on has it | [inf] (client-internals/graal2002-save-folders-2026-11-20.md#where-a-downloaded-file-is-saved) |
+
+**Settled question, formerly E#10: when the `maps` download folder arrived.** Which build first saved downloads into `maps` was open between the 2.1 test builds and 2.17.1. A static read of the six Graal 2002 images settled it: ver9 (2.1.0.0, shipped 30 Oct 2001) is the first, and ver7 and ver8 still save a `.gmap` into `levels/webgifs` [bin] (client-internals/graal2002-save-folders-2026-11-20.md#where-a-downloaded-file-is-saved). The save rule comes before the gmap loader, which none of 2.1.0.0 to 2.1.0.4 has [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#gmap-code-in-the-21-builds-e10).
+
+In the same builds no folder is made at start-up: each is created just before its first write, by the download save, the web-level cache (`weblevels/<host>/<level>-<port>.code`, `GWEBL001` then `GR-V1.03` text), the PM log, profiles, tiledefs and tile objects. The start-up file index skips folders named in `+pms+profiles+weblevels+`, so those files are never served as game files; `maps` is indexed [bin] (client-internals/graal2002-save-folders-2026-11-20.md#when-folders-are-made).
 
 ## 2.7.7 Finding a local file
 
