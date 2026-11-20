@@ -215,6 +215,7 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | --- | --- | --- |
 | `GSERV007` | 1.21 | [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md) |
 | `GSERV009` | 1.25 | [bin] (client-internals/gserv-125-127-builds.md); [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10) |
+| `GSERV008` | accepted by the 1.25 server with `GSERV007` and `GSERV009`; no client that sends it is known | [bin] (protocol/gserv-1999.md); [bin] (client-internals/gserv-125-127-builds.md) |
 | `GSERV010` | RemoteControl shipped with 1.25 | [bin] (client-internals/gserv-125-127-builds.md) |
 | `GSERV011` | 1.27 and its RemoteControl (shipped again as RC 1.28); RemoteControl 1.3 | [bin] (client-internals/gserv-125-127-builds.md); [bin] (client-internals/build-catalogue.md); [srv] (client-internals/version-id-map.md) |
 | `GSERV013` | 1.28 beta 2 | [bin] (client-internals/build-catalogue.md) |
@@ -258,20 +259,30 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | `GNW30123` | listserver hello of 2.22 and 2.31, sent with `newmain`; not a game build (→ §6) | [bin][lab] (client-internals/version-tokens.md) |
 | `G3D16053` | 3.0 | [srv] (client-internals/version-id-map.md) |
 | `G3D27063` | 3.01 | [srv] (client-internals/version-id-map.md) |
+| `G3D27015` | Linux 3.151 | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
 | `G3D03014` | Linux 3.04 rev 1 (3.041) | [bin] (client-internals/version-id-map.md) |
 | `G3D28015` | Mac OS X 3.153 | [bin] (client-internals/version-id-map.md) |
 | `G3D30123` | 3.x listserver login | [bin] (client-internals/version-id-map.md) |
 | `G3D17026` | Windows 4.04r2 | [bin] (client-internals/version-id-map.md) |
+| `G3D11125` | Linux 4.03r1 | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| `G3D09125` | Windows 4.03r3 (read from the memory image) | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
 | `G3D18026` | Mac OS X 4.04r2 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
-| `G3D27076` | Mac OS X 4.20r6 | [bin] (client-internals/version-id-map.md) |
+| `G3D28076` | Linux 4.10r2 and 4.11 | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| `G3D26076` | Windows 4.11 (read from the memory image) | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| `G3D27076` | Mac OS X 4.10r2, and the Mac build of 2006-09-19 that an archive labels "4.20r6"; the label is wrong | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file); [cap] (client-internals/version-token-catalogue.md) |
+| `G3D21126` | Mac OS X 4.20r6 (binary dated 2006-12-21) | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
 | `G3D20126` | Windows 4.20r8 | [bin] (client-internals/version-id-map.md) |
+| `G3D22126` | Linux 4.20r8 (2007-01-15) | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
 | `G3D22067` | Windows 5.00r7 | [bin] (client-internals/version-tokens.md) |
 | `G3D14097` | Windows 5.12 | [cap] (client-internals/version-tokens.md) |
 | `G3D15097` | Mac OS X 5.12 | [cap] (version-profiles/lab-mac-ppc-404r2-512-2026-11-13.md#tokens-and-login-line) |
 | `G3D03048` | Windows 6.00 beta1 | [cap] (client-internals/version-tokens.md) |
 | `G3D15010` | Windows 6.00 beta2, 5.24r3, 5.24r4 | [cap] (client-internals/version-tokens.md) |
 | `G3D26090` | Windows 5.30r3, 5.31r4, 6.00r2, 6.00r4 | [cap] (client-internals/version-tokens.md) |
+| `G3D27090` | Mac OS X 6.004 (June 2011 beta) | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
+| `G3D28090` | the June 2011 Linux beta, x86 and x64, probably 6.00r4; the binaries carry no version string | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
 | `G3D0108A` | Linux 6.01r1 | [cap] (client-internals/version-tokens.md) |
+| `G3D3107A` | Mac OS X 6.015 | [bin] (protocol/login-tokens-3x-7x.md#reading-the-token-from-a-file) |
 | `G3D0311C` | Windows 6.03r7 | [cap] (client-internals/version-tokens.md) |
 | `G3D0511C` | Linux 6.03r7 | [cap] (client-internals/version-tokens.md) |
 | `G3D04048` | iPhone, 2008 engine: Belote 1.2/1.50 and 14 more builds of the same publisher, 2008–2010 (gs2lib's "iPhone 1.1") | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
@@ -279,6 +290,7 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | `G3D18010` | iPhone, 2010 engine: Cocoto Kart Online 1.3, Cocoto Kart HD, Cocoto Magic Circus, Ace Tennis HD, Bomber Online 1.40, Dino Smash 1.4 (gs2lib's "iPhone 1.5") | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
 | `G3D29090` | "iPhone 1.11" (server tables only, grade L; app not identified) | [srv] (client-internals/iphone-version-tokens.md#answer) |
 | `G3D2504D` | "iPhone Belote 1.5" (server tables only, grade L; not what Belote 1.50 sends) | [srv] (client-internals/iphone-version-tokens.md#answer) |
+| `G3D2204D`, `G3D2304D`, `G3D2404D` | the legacy token table in the captured connector script (with `G3D2504D`); no client is tied to them. gs2lib names `G3D2204D` Worlds | [doc] (protocol/connector-script.md); [srv] (client-internals/version-token-catalogue.md) |
 
 The older GServer-v2 version table writes the 1.33 to 1.38 tokens without the leading `G` (`NW20020` and so on) [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10). The gs2lib table lists `G3D28095` and later for 4.x and up without per-build rows [srv] (client-internals/version-id-map.md#full-gs2lib-client-token-table-2026-10).
 

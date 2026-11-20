@@ -486,7 +486,7 @@ protocol/client-string-fingerprints-3x-6x.md	cited	1	1; 2.3; E	carried into §1.
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/conf-gs-fuzzing.md	cited	E; 2.10	2.10; E	
-protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
+protocol/connector-script.md	cited	1; 2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
 protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/early-clients-probe-2026-11-19.md	excluded		2.6; B	early-client probe run (1998 relay betas to 1.39 under Wine behind the probe proxy): ids, props, widths and parser recovery by build; rows in probe-results.tsv, open items in unknowns-ledger.md
@@ -518,7 +518,7 @@ protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	8.4	E; 8.4	
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 protocol/gs2-seg1-event-mask-2026-11-16.md	cited	8.4	8.4; E	seg1 GS1 mask: official zeros; needEvent consumer; pkzonechanges bit27 absent 4.x/5.x
 protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1; E	8.3; 8.4; E	§8.4.2, §8.4.4 and §1.8.7 carry that unpacked 6.1.1.3 adds no opcode past 6.00 and still caches GRESCR01; E#209 cites the opcode 54 case. The per-case skip table stays in the note
-protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
+protocol/gserv-1999.md	cited	1; 2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/ids-sent-512-status.md	cited	E	2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
 protocol/ios-classic-plus-113-framing.md	cited	2.2; E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
@@ -559,7 +559,7 @@ protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not nee
 protocol/login-recovery-start.md	excluded	2.1	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
 protocol/login-session-observed.md	cited	2.3	2.3	
-protocol/login-tokens-3x-7x.md	cited	2.3; 10	2.3; 10	
+protocol/login-tokens-3x-7x.md	cited	1; 2.3; 10	2.3; 10	
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
 protocol/macos-ppc-receive-framing.md	cited	2.1; 2.2		exact-input receiver contract carried; runtime and outgoing behavior remain open
 protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
