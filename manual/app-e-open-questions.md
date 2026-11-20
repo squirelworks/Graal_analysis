@@ -199,10 +199,10 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Evidence | The native engine libraries are not encrypted, so the connect and token builders are within reach of a static pass | [bin] (client-internals/android-login-token-boundary.md) |
 | Tried | No device, emulator or capture. The lab Linux VM has no nested KVM, and no Android or iPhone app is installed on a lab host | [doc] (protocol/unknowns-ledger.md) |
 | Settled part | iPhone Classic+ 1.13 uses the desktop generation-5 frame: two-byte length (or `FF FF` and four bytes), compression byte, partial XOR with round-down for compressed bodies, and a type-5 login with a key byte in one zlib frame | [bin] (protocol/ios-classic-plus-113-framing.md) |
-| Tried (2026-11-20) | No Android emulator or Android-x86 image is on the lab machines (GwenTea2 has adb and fastboot only), and Classic+ 1.13 is an iPhone build, so an Android emulator would not cover it | [lab] (protocol/lab-appe-gwentea2-2026-11-20c.md#mobile-clients-e16-e18) |
-| Best guess | Android uses the same frame, since it is the same engine. Confidence: moderate | [inf] (protocol/ios-classic-plus-113-framing.md) |
-| Settles it | For Android, the same static read of the native socket layer; for both, one loopback run on an emulator or device | [inf] (protocol/ios-classic-plus-113-framing.md) |
-| Outlook | Read (Android); Missing for a run until an emulator or device is set up | [doc] (protocol/unknowns-ledger.md) |
+| Tried (2026-11-20) | Android Classic 1.8 ran natively on an Android-x86 9.0 emulator on loopback: it fetches a signed connector script first (HTTPS, then plain HTTP for `conf.gs`, user agent "Graal/6.15401") and, with no valid reply, never opens a game connection. So it is on the 6.1x connector line, and its game framing can't be captured without a genuine connector reply | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
+| Best guess | Android uses the 6.1x connector front end and then the same game frame as the 6.1x desktop clients, since it reports the same engine line. Confidence: moderate | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
+| Settles it | A static read of the Android native socket layer after the connector step | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
+| Outlook | Read (Android); a run is blocked by the signed connector reply | [doc] (protocol/unknowns-ledger.md) |
 
 ### E#19 Generation 4 on the wire (2.19 to 2.21)
 

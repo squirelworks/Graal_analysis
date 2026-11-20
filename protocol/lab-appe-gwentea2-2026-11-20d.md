@@ -69,3 +69,24 @@ the x86_64 slices of the held Mac builds, started from Terminal in the logged-in
   and no connection. That looks like a beta time limit against today's date, but no clock-held run
   was possible on that guest.
 - Both clients report "MacOS version: 10.9.0". A 10.9-era guest was not run.
+
+## Android Classic 1.8 on an emulator (E#18)
+
+Setup: Android-x86 9.0-r2 x86_64 (the official image, size and checksum checked), booted live in
+QEMU/KVM inside a loopback-only namespace. A lab DNS answered every name with the lab host. The
+setup wizard was switched off at boot, so no terms were accepted. Client: GraalOnline Classic 1.8
+for Android (version name 1.8). It ships x86_64 native libraries, so it ran natively.
+
+- The client started and initialised OpenGL ("GraalClassic has been activated!", maximum texture
+  size 8192). It made no game connection.
+- Its first network step is a connector fetch, the same pattern as Mac 6.11r1: a name lookup for
+  the publisher's connector host, then HTTPS on port 443 (a TLS 1.2 hello with no server name and an
+  old RSA-only cipher list). When that failed it fell back to plain HTTP, asking for `conf.gs` with
+  a long token in the query, with the user agent "Graal/6.15401". The token stays in the lab
+  capture.
+- With no valid connector reply it waits on a black screen and never dials a login server or a
+  listserver, so no game frame was seen. The connector reply is a server-signed script the lab
+  cannot make (→ §2.10), so a loopback run cannot get past this step.
+- So Android Classic 1.8 is on the 6.1x connector line (engine string 6.15401), not the older
+  direct-login line.
+- E#16 (Classic+ 1.13 for iPhone) is not covered: there is no iOS emulator here.
