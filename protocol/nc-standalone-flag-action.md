@@ -60,12 +60,15 @@ inferred ranges, scripts, commands, output and launcher limitations.
 
 ## Open questions
 
-- [ ] Resolve the collection's UI/type binding and range behavior.
-- [ ] Trace the buffer's further routine, terminator and ultimate socket peer.
-- [ ] Establish the corresponding receive-side interpretation.
-- [ ] Compare the selected path with the nearest known weapons-list baseline
+- [x] Resolve the collection's UI/type binding and range behavior.
+- [x] Trace the buffer's further routine, terminator and ultimate socket peer.
+- [x] Establish the corresponding receive-side interpretation.
+- [x] Compare the selected path with the nearest known weapons-list baseline
       and the other distinct flag-list artifact; matching forms alone do not
       establish matching code or payloads.
+
+Settled on 2026-11-20 by a full read of both flag-list builds; see
+[nc-flag-list-round-trip-2026-11-20.md](nc-flag-list-round-trip-2026-11-20.md). The server side of 69 is still unread.
 
 No production implementation or original-client fidelity claim follows from
 these observations alone.

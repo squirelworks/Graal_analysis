@@ -65,7 +65,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
-| E#425 | Standalone NC flag-action recipient | Read | the NC server, as a flag-list write | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); servers sent no tile definitions | [inf] (torque/304-tile-types.md#not-settled) |
 | E#610 | 4.04r2 offline gameplay | Lab | it plays like 4.20r6 offline | [inf] (version-profiles/windows-404r2-teardown.md#controlled-offline-transition) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -505,20 +504,6 @@ These questions are about the programs on the other side of the connection (→ 
 | Settles it | A capture of 62 from an original 2.x GServer, or a static read of its rights reply | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | Outlook | Maybe never for the original server; a clean-room server should follow the RC | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 
-### E#425 Standalone NC flag-action recipient and ranges
-
-**Question.** Where the standalone NC's flag action ends up and how its fields are bounded. The action in → §7.3.4 builds a payload and enters an outgoing buffer, which is not end-to-end behaviour [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The count's low part uses seven bits; the high part is shifted and narrowed to a byte without an established seven-bit mask; biased item lengths and contents follow | [bin] (protocol/nc-standalone-flag-action.md#bounded-observations) |
-| Evidence | The bodies were analyst-seeded, not recognised procedures; exception tails, type and register meanings and indirect calls stay uncertain | [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits) |
-| Open | Collection type, count overflow, length ranges, the further buffer routine, the terminator, the final recipient and the receive side | [bin][inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Evidence | The NC write-op inventory knows the get, delete, reset, script and flag ids and the `i3` id layouts; the NPC add, class delete and weapon add and script layouts are open | [bin][doc] (protocol/nc-write-ops-status.md) |
-| Best guess | The NC server, as a flag-list write in the same shape as the weapons list. Confidence: moderate | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Settles it | Trace the buffer and recipient and the receive path, then compare with the weapons-list baseline; matching forms alone are not enough | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-| Outlook | Read | [inf] (protocol/nc-standalone-flag-action.md#open-questions) |
-
 ## E.8 NPC scripting
 
 These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at a time, so its open points are mostly "does the 2.05 result hold elsewhere". GS2 is the largest open area in the manual: the bytecode container and the opcode sets are read, but the language, its library and its event model are known only in part [bin][cap][doc] (version-profiles/matrix/README.md#thinks-wire-and-scripting).
@@ -742,6 +727,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#421 | The last byte of RC_PLAYERPROPSSET2 | → §7.1.8 |
 | E#423 | The 1999 servers: what the static read left open | → §5.1.6 |
 | E#424 | RC2's Admins folder against a one-space level | → §7.1.9 |
+| E#425 | Standalone NC flag-action recipient and ranges | → §7.3.4 |
 | E#500 | Back clipping plane of the Graal3D client | → §9.4 |
 | E#501 | Class CRC of the 4.04r2 3D plug-in | → §10.3.2 |
 | E#502 | Whether 4.04r2 loads `.mis` mission files | → §10.6 |

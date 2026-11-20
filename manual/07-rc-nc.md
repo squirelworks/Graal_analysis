@@ -361,9 +361,20 @@ One retained standalone Windows NC artifact has a flag-list action whose statica
 
 The count construction biases both components by 32. Its low component uses the low seven bits; its high component is shifted right by seven and narrowed to a byte, without an established seven-bit mask or range guard. Each item contributes a biased byte length and its contents. Count overflow, out-of-range lengths and the precise collection type remain unresolved [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
 
-The caller supplies command argument 69, which is not an independently captured wire id. Its direct callee biases that command by 32, concatenates the message, appends it to a shared buffer and invokes a further routine when the combined or buffered length reaches 4096. That routine and the terminator were not examined. The ultimate peer, delivery and receive interpretation remain unknown → App. E#425 [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
+The caller supplies command argument 69, which is not an independently captured wire id. Its direct callee biases that command by 32, concatenates the message, appends it to a shared buffer and invokes a further routine when the combined or buffered length reaches 4096. The routine, the terminator, the peer and the receive side are now read (see the settled question below) [bin] (protocol/nc-standalone-flag-action.md#bounded-observations).
 
 These bodies were recovered with analyst-seeded entry boundaries after default analysis did not recognize the selected entry. Exception-handling tails, register/type interpretations and indirect calls remain uncertain. No runtime or matching-baseline behavior is established [bin][inf] (protocol/nc-standalone-flag-action.md#recovery-method-and-limits).
+
+**Settled question, formerly E#425: Standalone NC flag-action recipient and ranges.** Where the flag-list action's message goes, how its fields are bounded, and what answers it on the NC side were open. A full read of the send path and the receive dispatcher in both flag-list builds settled the NC side [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-round-trip).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | It is the server-flag list. **Server &Flags** sends NC message 68 (empty); the server answers with 61 (count and lines), which fills the form's rich-edit box; **&Send** sends 69 with the whole edited list in the same layout and closes the form | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-round-trip) |
+| Settled | Layout of 61 and 69: count as (n >> 7) + 32 and (n AND 127) + 32, then per line a length + 32 and the text. The count is exact up to 28,671 lines and a line up to 223 characters; past those the byte wraps. On receipt a negative length counts as 0 | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-list-layout-61-and-69) |
+| Settled | The send routine, shared by all 22 NC requests, appends chr(id + 32), the body and a line feed to a text buffer; at 4,096 bytes, or when the socket writer runs, the buffer is zlib-compressed and framed with a two-byte big-endian length (generation 2, no cipher); a raw queue over 256 KiB or a zero-byte send marks the connection broken and the NC shows "You have been disconnected!". So 69 goes to the server the NC is logged into | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#from-message-to-socket) |
+| Settled | The March and May 2001 builds have the same send routine and the same 61 handler. The July build's weapons list is not the same shape: it edits (116) and deletes (118) one weapon at a time | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#against-the-july-weapons-list) |
+| Verdict | Verified by read on both flag-list builds; the best guess (the NC server, as a flag-list write) holds, but the weapons-list comparison does not | [bin] (protocol/nc-flag-list-round-trip-2026-11-20.md#the-round-trip) |
+| Left over | What the 2001 NPC server does with 69 and whether it limits the list; no server of that date is held | [inf] (protocol/nc-flag-list-round-trip-2026-11-20.md#not-covered) |
 
 ## 7.4 RC and NC under malformed input
 
