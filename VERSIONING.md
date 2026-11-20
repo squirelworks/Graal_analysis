@@ -6,7 +6,7 @@ same in every Seihai repo.
 
 ## This repo
 
-- **Current version:** 0.0.6 (TRM 0.0.6).
+- **Current version:** 0.0.7 (TRM 0.0.7).
 - **Where the version lives:** the release tag (`vX.Y.Z`), given to `.github/workflows/release.yml` as its input. No file holds it.
 - **Public surface** (the things a version number makes promises about):
   - the manual's section numbers (other repos cite "manual §4.1.8");
