@@ -911,3 +911,4 @@ version-profiles/version-tokens-by-build.tsv	cited	1	1.2
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
 client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	cited	2.4; 4.2; 8.2; 10; E	2.4; 4.2; 8.2; 10; E	Static reads and labs for App. E: bare #5/#6 scratch string (E#203), 3.04 global sheet type and type 5 (E#507), 2.22 prop 15/16 rounding (E#304), Graal 2002 send sets (E#15), 6.03r7 format floor and case-sensitive lookups (E#210)
+docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, not Graal

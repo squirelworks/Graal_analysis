@@ -1,6 +1,6 @@
 # Graal Technical Reference Manual
 
-Version 0.0.7. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
+Version 0.0.8. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
 
 Find exact login, staff-tool and service identities in the [version token map](../VERSION-TOKENS.md), generated from the [canonical catalogue](../client-internals/version-token-catalogue.md). Shared values do not identify a unique build; read each association's evidence and role.
 
@@ -47,6 +47,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | 17 | research publication and 0.0.5 | done: the 0.0.5 research merged (#372), reading syntheses for Parts I, II, IV, VIII and X, `coverage.py` as a report; `manual/pdf/graal-trm-0.0.5.pdf` built with `build_manual.py --version 0.0.5` from commit 4cd8153, 304 pages (A4, with nine A4 landscape pages for six wide tables and one A3 landscape page for the §0.12 system map), with bookmarks, footnoted sources and a reading paragraph before every table; the print set is `graal-trm-0.0.5-print-a4.pdf` plus `graal-trm-0.0.5-a3-inserts.pdf` |
 | 18 | research publication and 0.0.6 | done: the research merged since 0.0.5 carried, App. E rewritten as a discussion of each unknown; `manual/pdf/graal-trm-0.0.6.pdf` built with `build_manual.py --version 0.0.6` from commit b0e16ee, 379 pages (A4, with eight wide tables on A4 landscape pages and the §0.12 system map on one A3 landscape page); the print set is `graal-trm-0.0.6-print-a4.pdf` plus `graal-trm-0.0.6-a3-inserts.pdf` |
 | 19 | coverage explanations and 0.0.7 | done: the work merged since 0.0.6 carried (input chapter, fuzz results, App. E down to 32 open entries), every coverage miss of Parts 0, III, V, VI, VII, IX, XI and App. G carried or explained in `coverage-explained.tsv`; `manual/pdf/graal-trm-0.0.7.pdf` built with `build_manual.py --version 0.0.7` from commit 67562fb, 394 pages (A4, with nine wide tables on A4 landscape pages and the §0.12 system map on one A3 landscape page); the print set is `graal-trm-0.0.7-print-a4.pdf` plus `graal-trm-0.0.7-a3-inserts.pdf` |
+| 20 | coverage passes and 0.0.8 | done: the work merged since 0.0.7 carried (the final App. E batches, down to 27 open entries), every coverage miss of Parts 0 to XI and App. G carried or explained in `coverage-explained.tsv`; `manual/pdf/graal-trm-0.0.8.pdf` built with `build_manual.py --version 0.0.8` from commit 2dbf2fb, 415 pages (A4, wide tables on A4 landscape pages, the §0.12 system map on one A3 landscape page); the print set is `graal-trm-0.0.8-print-a4.pdf` plus `graal-trm-0.0.8-a3-inserts.pdf` |
 
 ## Checks
 
