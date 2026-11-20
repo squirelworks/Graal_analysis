@@ -97,5 +97,5 @@ manual/10-torque.md	Left over	torque/protocol19-server.md#open	Other players nee
 manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run
 manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A file reader linked in but never called can't be ruled out by a run
 manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
-manual/10-torque.md	Open: what sheet type 5 changes, and whether a 3.04-era server sent `addtiledef`	torque/304-tile-types.md#not-settled	
+manual/10-torque.md	Open: whether a 3.04-era server sent `addtiledef` lines at login (→ App. E#507)	torque/304-tile-types.md#not-settled	
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	

@@ -113,7 +113,7 @@ The id table above says which ids a build can send. The rules below add the exce
 
 A full read of the 1.21 and 1.32 send routines settled the earlier disagreement: 1.21 never sends 14, and 1.32 sends 22. Both also send 1 to 9 [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
 
-The six Graal 2002 inputs in §1.1.5 have static receive and command-table findings, but this study did not establish their client-to-server send sets. Do not assign the 2.1 test or 2.17.1 row to them from a shared token; the per-input PLI audit remains open in App. E#15. [bin] (client-internals/graal2002-and-140-builds.md#open-points)
+The six Graal 2002 inputs in §1.1.5 were read for their send sites. ver7, ver8 and ver9 send 0–6, 9, 10, 12–14, 18, 19, 21–24, 26–30, 32–38, 80 and 81; ver10 and ver13 add 39; v22 sends 0–24, 26–30, 32–39, 80 and 81. ver7 to ver13 never send 7, 8, 11, 15, 16, 17 or 20, which matches their receive side. The token does not predict the set, so do not assign the 2.1 test or 2.17.1 row to these builds; when each id is sent is still open in App. E#15 [bin] (client-internals/static-reads-appendix-e-2026-11-20-m.md#client-to-server-ids-of-the-six-graal-2002-builds-e15-send-sites).
 
 ## 2.4.3 Level navigation
 
