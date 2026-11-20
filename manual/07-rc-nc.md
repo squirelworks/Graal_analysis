@@ -26,7 +26,16 @@ RemoteControl went through many builds. Each row gives one archive, its date, it
 | Linux RC | 2005/12/09 | `GSERV024` | — | zlib, the script MIME type `text/x-graalscript`, "Ignore Mass PMs if client is on", more editor, auto-indent and account-list text | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 | Linux RC | 2006/01/20 | `GSERV025` | — | the token bump; ban history and staff activity (`getbanhistory`, `getstaffactivity`, "Edit Access"), "Allow Global PMs" and buddy tracking, a chat font size; built with GCC 4.0.3 | [bin] (protocol/batch2-rc-linux-2005-2006.md#what-changes-between-the-three) |
 
-The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ App. E#405).
+The archive names do not sort by date: rc141 is the newest of the 2000–2002 set [bin] (tools/remotecontrol-lineage.md). RemoteControl builds of 1999 log in with `GSERV007` (shipped with 1.21) and `GSERV011` (shipped with 1.28 and 1.3) [bin] (protocol/gserv-1999.md#login). A GServer-v2 also knows `GSERV025` (→ §7.1.1).
+
+**Settled question, formerly E#405: RC token `GSERV025`.** Which RC builds send `GSERV025` was open while only the earlier RC builds had been read [bin] (protocol/rc2-sessions-stock-2026-11-16.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The server knows `GSERV023` to `GSERV025`; the first RC builds read send `GSERV007` to `GSERV024` | [srv] (protocol/chat-pm-rc.md#admin-and-staff); [bin] (tools/remotecontrol-lineage.md#builds) |
+| Settled | RC2 2.05, RC3 and the 2006-01-20 Linux RC send `GSERV025`; the 2005-12-09 Linux RC and the 2004 RC (login type 6) send `GSERV024`. The token changed between December 2005 and January 2006 | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [bin] (tools/remotecontrol.md#logins-bin); [lab] (protocol/rc-fuzz-2026-11-19.md) |
+| Verdict | Verified for every held official RC build. A server should accept both tokens | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
+| Left over | The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer | [inf] (tools/remotecontrol-lineage.md) |
 
 ### 7.1.2 Login
 
@@ -174,8 +183,8 @@ Player administration was captured on the wire from a 2004 RC. Each row gives a 
 | S→RC | 55 ADDPLAYER | `s player id`, `str account`, then props as id + value | [cap] (protocol/rc-capture-2026-11-04.md#after-the-rc-login) |
 | RC→S | 73 RC_PLAYERPROPSGET2 | `s player id` | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | S→RC | 72 RC_PLAYERPROPSGET | `s player id`, `str account`, `str world`, `c n`, n bytes of props, tail | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| RC→S | 76 RC_PLAYERPROPSSET2 | `str account`, `str world`, `c n`, n bytes of props, tail, then `str` copied back from an optional string after the weapons in the server's 72 (empty when 72 has none, which shows as one byte 0; → App. E#421) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
-| both | props tail | `s` flag count and the flags, newest first; `s` opened-chest count, each `c` length + 2, `c` x, `c` y, level; `c weapon count`, `str` per weapon (→ App. E#420) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+| RC→S | 76 RC_PLAYERPROPSSET2 | `str account`, `str world`, `c n`, n bytes of props, tail, then `str` copied back from an optional string after the weapons in the server's 72 (empty when 72 has none, which shows as one byte 0; → §7.1.8) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| both | props tail | `s` flag count and the flags, newest first; `s` opened-chest count, each `c` length + 2, `c` x, `c` y, level; `c weapon count`, `str` per weapon (→ §7.1.8) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
 | RC→S | 83 RC_PLAYERRIGHTSGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | S→RC | 62 RC_PLAYERRIGHTSGET | `str account`, `i5 rights`, `str IP range`, `s n` + n bytes of folder rights | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | RC→S | 84 RC_PLAYERRIGHTSSET | same layout as 62; folder lines as CSV (→ App. E#422) | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
@@ -185,6 +194,23 @@ Player administration was captured on the wire from a 2004 RC. Each row gives a 
 | RC→S | 87 RC_PLAYERBANGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 | S→RC | 64 RC_PLAYERBANGET | `str account`, `c banned`, reason (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 | RC→S | 88 RC_PLAYERBANSET | `str account`, `c banned`, reason as CSV (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
+
+**Settled question, formerly E#420: flag and chest counts in the RC props tail.** Which of the two counts in the RC props tail counts flags and which opened chests was open, because both were 0 in the only capture; four controlled accounts settled it for the fork's writer [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Settled | The first count is flags (then the flag strings, newest first), the second opened chests (each `c` length + 2, `c` x, `c` y, level name), then the weapon count and names, and nothing after | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+| Verdict | Verified against the GServer-v2 fork with RC 2004; the best guess held. No original 2001–2004 server was run | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+
+**Settled question, formerly E#421: the last byte of RC_PLAYERPROPSSET2.** What the extra byte the 2004 RC puts at the end of 76 means was open; a static read of the RC's 76 builder and 72 parser settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | One byte after the weapons, 0 in the only capture; best guess a dialog option | [cap] (protocol/rc-props-flags-status.md) |
+| Settled | It is the length byte of an empty string. The RC keeps one optional length-prefixed string that may follow the weapon list in the server's 72, never edits it, and writes it back at the end of 76. The GServer-v2 72 has no such string, so the RC sends it empty | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| Verdict | The guess was wrong; it is an echoed field, not a dialog option | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
+| Left over | What an older server put in that string | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
 
 The rules below record what the capture showed: which props the RC sends back, how rights map to bits, and what the ban menu offers [cap] (protocol/rc-capture-2026-11-04.md#player-props).
 

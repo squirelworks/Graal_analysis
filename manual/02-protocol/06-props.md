@@ -313,10 +313,18 @@ A probe proxy injected single prop messages into live loopback sessions, each fo
 | 3 (`i3`) | read | read | read | read | read | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
 | 77 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | 5 bytes, no visible effect | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
 | 78–80 (`s` each) | end the message | 2 bytes | 2 bytes | 2 bytes | 2 bytes: X2, Y2, Z2 (pixels × 2, low bit the sign); Z2 lifts the sprite and leaves the shadow | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#what-the-runs-show) |
-| 81 (`c`) | ends the message | ends the message | 1 byte | 1 byte | 1 byte, no visible effect on the local player; in the 5.00r7 player list bit 0 hides the player from the count and the list and bits 1–2 hide the list entry, with no folder picked (→ App. E#23) | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23) |
+| 81 (`c`) | ends the message | ends the message | 1 byte | 1 byte | 1 byte, no visible effect on the local player; in the 5.00r7 player list bit 0 hides the player from the count and the list and bits 1–2 hide the list entry, with no folder picked (→ §2.6.6) | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23) |
 | 82 (string) | ends the message | ends the message | skipped as 1 byte | string | string | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
 | 83 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | 5 bytes: the gralat count | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
 | 84–90 | ends the message | ends the message | skipped as 1 byte | skipped as 1 byte | skipped as 1 byte | [lab] (protocol/probe-targets-2026-11-18.md#self-prop-widths-090-on-603r7-run-cwid-b) |
+
+**Settled question, formerly E#23: What prop 81 changes in the player list.** What `PLAYERLISTCATEGORY` (prop 81) changes on screen was open; the guess was that it picks the folder a player is listed under. A 5.00r7 lab run with one injected player per value settled it for that build [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | In the 5.00r7 built-in list (folders Staff, Buddies, Guild, Normal, Ignore, Offline): no value or 0, 8, 16, 32, 64 lists the player under Normal; 2, 4, 6, 10, 12 count the player in "Players: N online" but show them in no folder on any tab; odd values neither count nor list them | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23) |
+| Verdict | Verified for 5.00r7: prop 81 does not pick a folder. Bit 0 hides the player from the count and the list, bits 1 and 2 hide the list entry only, and bits 3 to 6 change nothing visible. The other folders probably come from the staff list (47), the client's buddy and ignore lists and the guild tag | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23); [inf] (protocol/lab-appe-mirae-2026-11-20b.md#the-player-list-folder-that-prop-81-picks-e23) |
+| Left over | 6.x draws its list from a script the lab server does not provide, so whether 6.x scripts give the bits the same meaning is not checked | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-e23-not-settled) |
 
 The 2.05 rev 2 and 2.17.1 column was run through the proxy's generation-3 codec and matched 2.22 [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19).
 
@@ -330,7 +338,7 @@ Further rows from the same runs:
 | In the other-player stream (8), 81 is one byte, 82 a string and 78 two bytes, but 77, 83 and 90 drop the rest of the message: a server must never send 77 or 83 about another player to a 6.x client except as the last prop | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#other-player-props-on-603r7-run-opp-a) |
 | In the NPC stream, 48–52, 78 and 90 drop the rest of the message (the static case set is 0–47 and 53–77); 75, 76 and 77 are two bytes each (X2, Y2, Z2); a `CLASS` (74) the client does not have stops that NPC's script for the rest of the session | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#npc-props-on-603r7-runs-np603-a-np603-b-np603-c) |
 | Baddy types: 6.03r7 survives types 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223. A server should keep to the named types 0–9 for any client, and never send a type above 24 to 6.x | 2.22, 4.20r8, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#server-side-every-clientserver-id-at-our-gserver-v2-build) |
-| Baddy props 11 and up end the message: a fresh baddy in mode 10 (which reports nothing) was sent a prop from 11 to 30, at one byte and as a string, then mode 0 as the canary; the canary was lost for every prop on all three clients, with no crash (→ App. E#24) | 2.22, 4.20r8, 6.03r7 | [lab] (live-runs/fuzz-2026-11-19/README.md#1-baddy-props-11-and-up-plo_baddyprops-2) |
+| Baddy props 11 and up end the message: a fresh baddy in mode 10 (which reports nothing) was sent a prop from 11 to 30, at one byte and as a string, then mode 0 as the canary; the canary was lost for every prop on all three clients, with no crash (→ §2.6.6) | 2.22, 4.20r8, 6.03r7 | [lab] (live-runs/fuzz-2026-11-19/README.md#1-baddy-props-11-and-up-plo_baddyprops-2) |
 | A client runs the AI of a baddy that 2 creates and reports its changes back in `PLI_BADDYPROPS` (15): modes 0–4 and 8 walk and report x, y, ani and dir; mode 5 counts ani down from 55 to 0, then stops; mode 6 reports ani only; mode 7 ani and one y; modes 9 and 10 report nothing. 4.20r8 reports ani and dir within 1.6 s but no x or y in that window | 6.03r7; 4.20r8 | [lab] (live-runs/fuzz-2026-11-19/README.md#1-baddy-props-11-and-up-plo_baddyprops-2) |
 | NPC prop widths on the Windows clients match 6.03r7: 75 (X2) and 77 (Z2) are two bytes, 76 (Y2) two bytes on 5.24r4 (inconclusive on 4.20r8), and 48–52, 74 and 78–90 drop the rest of the NPC message at every width; on these builds an unknown `CLASS` (74) cuts the message short but does not stop the NPC's script | 4.20r8, 5.24r4 | [lab] (live-runs/fuzz-2026-11-19/README.md#4-npc-prop-widths-on-the-windows-clients) |
 | The 130-case probe set (core, widths, fixed widths and bytes) gives the reference build's result on every other Windows 4.x and 5.x build held: 4.03r3, 4.04r2 and 4.11 read every prop like 4.20r8, and 5.00r7, 5.24r3, 5.30r3 and 5.31r4 like 5.24r4; an id with no case is skipped as one byte, and the canary is lost after 77, 82, 83 and 90 with a longer value on 4.x and after 77, 83, 90, 51 and 76 on 5.x | 4.03r3 to 5.31r4 | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md#results) |
@@ -338,9 +346,25 @@ Further rows from the same runs:
 | Unknown server ids 60, 78, 81, 83 and 110 are ignored, and NUL, `ff`, `80` and `1f` bytes inside a message are harmless | 4.03r3 to 5.31r4 | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md#results) |
 | Injected baddies of every type, 223 included, leave the 4.x clients running under Wine; on a native Windows 10 lab setup 5.31r4 and 5.24r4 both closed at scattered types, so those drops come from the setup, not from a build difference | 4.03r3 to 4.11; 5.24r4, 5.31r4 | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md#baddy-types) |
 
+**Settled question, formerly E#24: baddy props 11 and up.** The width and effect of baddy props from 11 up, and whether an unknown id ends the message, were open because probe baddies walk on their own [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | Linux 6.03r7's baddy-prop reader has cases for ids 0 to 10 only; an id of 11 or more ends the message and the props after it are lost (a mode-9 removal sent after id 11 or 20 never happened) | [bin][lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
+| Settled | 4.20r8 and 2.22 behave the same: a silent mode-10 baddy never resumed when ids 11 to 30, as a byte or a string, came before mode 0; `PLI_BADDYPROPS` was the observer | [lab] (live-runs/fuzz-2026-11-19/README.md) |
+| Verdict | Verified on three builds. A server must never send a baddy prop above 10 | [lab] (live-runs/fuzz-2026-11-19/README.md) |
+
 For 5.00r7 and 5.12 the case sets are settled (the 4.x set plus 82), and 5.00r7's widths match 5.24r4 in the probe set above; a two-client wire diff and third-party leads on colours via 177, an ascending-id stop and sword and shield bias are still open [bin][inf] (protocol/player-props-5x-status.md).
 
-Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → App. E#8.
+Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → §2.6.6.
+
+**Settled question, formerly E#8: prop parser ranges of 2.00.** Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36; a re-read of the 2.0x jump tables settled it [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The player-prop parser gains 35 and 36 in 1.41, and the NPC-prop parser gains 36 to 40 only in 2.02 rev 2 | [bin][inf] (client-internals/cross-version-timeline.md#prop-parsers) |
+| Claim B | The 2.00 layout tables have the self and other-player streams accept 0 to 35 and the NPC stream 0 to 36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
+| Settled | The 2.00 and 2.01 self switch covers 0 to 36 and the NPC switch 0 to 35; NPC 36 to 40 arrive in 2.02 rev 2. Claim A holds; the other-player switch also accepts 36 (and 50, 51) | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 
 ## 2.6.7 Property ids in unpacked 6.1.1.3 and 6.0.3.7
 

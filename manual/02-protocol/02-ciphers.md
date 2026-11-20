@@ -93,8 +93,17 @@ Builds agree on the cap but not always on rounding. The table gives the number o
 | 4.04r2, 4.20r6, 4.20r8 | `floor(len / 4)`, capped at 4; an incomplete tail takes no step. Raw bodies use `ceil(len / 4)`, capped at 12 | [bin] (protocol/v4x-clients.md#cipher-and-framing) |
 | Mac 4.04r2, Mac 4.20r6, Mac 5.12 | the same `floor` rule, read in both the encode and the decode routines | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule) |
 | Windows 4.04r2 | not read: the installer labelled "4.04r2 Windows" holds the 4.20r8 executable. Linux 4.04r2 and Windows 4.20r8 both use `floor`, so 4.04r2 on Windows very likely does too | [bin][inf] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule) |
-| 5.12 | disputed → App. E#2 | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [cap] (protocol/v5v6-windows-unpacked.md) |
+| 5.12 | `floor(len / 4)` for zlib and bz2 bodies, capped at 4; `ceil(len / 4)` for raw bodies; also holds on 5.00r7 (settled below) | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [cap] (protocol/v5v6-windows-unpacked.md) |
 | 5.24r3 and later 5.x, 6.00 to 6.03r7 | `ceil(len / 4)`, capped at 4 | [cap] (protocol/v5v6-windows-unpacked.md); [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
+
+**Settled question, formerly E#2: Generation-5 step count of 5.12 and 5.00r7.** How many cipher steps a generation-5 frame advances when its compressed body is not a whole number of four-byte groups was settled for 5.12 and open for 5.00r7, a separate engine. Probe-proxy sessions with the real 5.00r7 settled it [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (holds) | 5.12 steps the iterator `len / 4` times rounded down for zlib and bz2 frames (capped at 4) and rounded up for raw frames, both ways | [bin][wire] (protocol/gen5-cipher-step-5x.md) |
+| Claim B (superseded) | Every later frame of ten 5.x and 6.x captures decodes with one step per group present, rounded up; it is not a competing decoder once short compressed frames are counted | [cap] (protocol/v5v6-windows-unpacked.md) |
+| Settled | The probe proxy ciphers both directions with Claim A's rule. The real 5.00r7 (native, Windows 10 lab VM), 5.24r3, 5.30r3 and 5.31r4, and before them 5.12 and 5.24r4, ran through it for 130 canary cases each: no lost client and no result different from the reference. Most zlib frames are not a multiple of four bytes long, so a wrong step rule would desynchronise the cipher at the first such frame in either direction | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md); [doc] (tools/probe/README.md) |
+| Verdict | Verified by session survival on the exact builds. No single short frame was set beside both rules by hand, which is no longer needed | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md) |
 
 ### 2.2.3.1 Exact-input Mac PowerPC receive qualification
 
@@ -102,7 +111,7 @@ For the four exact Mac inputs identified by digest in the source note, let n be 
 
 A wider static read of the same three Mac builds found the encode routines step the same way as the decode routines, so the rule holds in both directions; the two rules differ only for a compressed body under 16 bytes whose length is not a multiple of 4, which a 4.x client never sends, since it compresses only plaintext over 47 bytes [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule).
 
-Initial seed, additive-word provenance, reset/rekey writers and negotiation remain untraced. No live frame result or Windows 5.12 capture resolution follows; E#2 remains open. [bin] (protocol/macos-ppc-receive-framing.md)
+Initial seed, additive-word provenance, reset/rekey writers and negotiation remain untraced. No live frame result or Windows 5.12 capture resolution follows; The step count was later settled by probe-proxy sessions (→ §2.2.3). [bin] (protocol/macos-ppc-receive-framing.md)
 
 ## 2.2.4 Compression choice
 

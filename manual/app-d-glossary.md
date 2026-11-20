@@ -13,7 +13,7 @@ Short definitions of the terms the manual uses, each with the section that defin
 | allowed versions | the server's list of version tokens it lets log in | → §5.4 |
 | archive name | the name of the archive a build was found in, such as `graal121` | → §0.9 |
 | arrays.dat, arrays2.dat | client data files holding the tile allow lists and other tables | → §3.5.3, → §3.5.4 |
-| arrival | the `newx`/`newy` text of a link; a number, `playerx`/`playery`, or one of those with an offset | → §3.1.3, → App. E#601 |
+| arrival | the `newx`/`newy` text of a link; a number, `playerx`/`playery`, or one of those with an offset | → §3.1.3, → §11.6.4 |
 | baddy | a level opponent with a type and three verse lines; `BDPROP` props | → §3.1, → §2.6.5 |
 | BDPROP | a baddy prop id | → §2.6.5, → App. B |
 | BigData events | the two Torque events that carry Graal text and scripts over the 3D connection | → §10.5.3 |
@@ -51,7 +51,7 @@ Short definitions of the terms the manual uses, each with the section that defin
 | guest login | the clients' built-in guest account | → §0.10 |
 | GWEBL001 | the encrypted web-level cache format | → §3.8 |
 | half-tile | 8 px; the unit of most 2D coordinate fields | → §0.8 |
-| `HEIGHTS` | a 9 × 9 height block in a level file; distinct from a gmap's `HEIGHTMAP` | → §3.1.2.7, → App. E#606 |
+| `HEIGHTS` | a 9 × 9 height block in a level file; distinct from a gmap's `HEIGHTMAP` | → §3.1.2.7, → §3.2.4 |
 | leader | the player picked to run level-local actions for a level | → §2.9.3, → §9.1.3 |
 | level-format generation | the level file family and revision | → §0.9, → §1.5 |
 | listserver | the directory server a client asks for the server list | → §6 |

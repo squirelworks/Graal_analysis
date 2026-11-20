@@ -23,7 +23,7 @@ GS2 replaces client-side GS1 in steps. Each row gives a group of builds and the 
 
 ## 8.3.2 Delivery
 
-How the server hands GS2 code to a client. NPC bodies travel in 131 behind 100 on 4.20r8, 5.24r4 and 6.03r7; on 6.x a class or weapon arrives as a 197 descriptor and a 140 body, a path 4.20r8 does not honour as sent (→ App. E#202) [lab] (protocol/script-fuzz-2026-11-19.md); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover).
+How the server hands GS2 code to a client. NPC bodies travel in 131 behind 100 on 4.20r8, 5.24r4 and 6.03r7; on 6.x a class or weapon arrives as a 197 descriptor and a 140 body, a path 4.20r8 does not honour as sent (→ §8.4.1) [lab] (protocol/script-fuzz-2026-11-19.md); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover).
 
 | Item | Rule | Source |
 | --- | --- | --- |

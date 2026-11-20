@@ -3,7 +3,7 @@
 
 This chapter gives what the client does when its hearts reach zero, the death timer, the dead bit on the wire, the respawn key, the hearts and the destination after respawn, and the level-entry save that picks the destination. What the server does on the dead bit is in → §5. Damage is in → §4.3.
 
-> Status: draft. Read for 1st Graal, 1.39, 2.00 to 2.05 rev 2, 2.17.1, 2.22 and 2.31; timed live for 2.05 and 2.22. Open points are App. E#314 and E#315.
+> Status: draft. Read for 1st Graal, 1.39, 2.00 to 2.05 rev 2, 2.17.1, 2.22 and 2.31; timed live for 2.05 and 2.22. Its two former open points, E#314 and E#315, are settled in → §4.4.4.
 
 ## 4.4.1 Life-states
 
@@ -112,7 +112,16 @@ The respawn point is saved on level entry, but only when the new level is a diff
 | no gmap | 2.05 returns -1 for both indices when there is no current gmap; 2.00 to 2.04 take the list straight from the client's state, which is inferred to give the same result | [2.05][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | 2.17.1, 2.22, 2.31 | no group test (step 3 absent) | [2.17.1][2.22][2.31] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
 | end-of-respawn save | the respawn routine calls the save once more, unconditionally; in the 2.22 lab, dying again before the server's warp reply still respawned at the entry point, not the death spot | [2.05] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#after-the-respawn); [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#d-end-of-respawn-save-settled-for-222-same-level-respawn) |
-| gmap entry | on 2.22, entering a gmap from a plain level saves the entry point: a death sends the player back to it, not to the start level; death across a seam is unmeasured (→ App. E#314) | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+| gmap entry | on 2.22, entering a gmap from a plain level saves the entry point: a death sends the player back to it, not to the start level; death across a seam is unmeasured (→ §4.4.4) | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+
+**Settled question, formerly E#314: Gmap entry and the respawn save.** Whether entering a gmap from outside saves the respawn point was open; a 2.22 lab run settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The order of the gmap's level list against the entry save decides it, and neither was read | [2.05] (client-internals/decomp-findings-2026-10-24-d/open-questions.tsv) |
+| Settled | On 2.22, a player who walks into a 2 x 2 gmap from a plain level and then dies is sent back to the gmap entry point, not the start level | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+| Verdict | Verified on 2.22, and on 2.17.1 for a death in the first cell; the best guess held | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
+| Also measured | A death after crossing a seam inside the gmap also returns to the entry point, so a seam crossing saves nothing new; 2.17.1 asks for the same entry point after a death | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gmap-entry-on-222-e314-e13) |
 
 Builds that carry the group test's delimiter set, by a constant scan, with the rule itself read only where marked:
 
@@ -121,8 +130,17 @@ Builds that carry the group test's delimiter set, by a constant scan, with the r
 | 1.1 to 1.36 | absent | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 1.37, 1.38, 1.39, 1.41 | present | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.00 to 2.05 rev 2, NewMain 24 and 26, NewWorld beta 1 | present (rule read in all 2.00 to 2.05 builds) | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
-| 2.1 test 2 and 3, NewWorld beta 2 | absent; 2.1 test 2 and 3 read: 2.17.1's rule, no group test; NewWorld beta 2 not read (→ App. E#315) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315); [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
+| 2.1 test 2 and 3, NewWorld beta 2 | absent; 2.1 test 2 and 3 read: 2.17.1's rule, no group test; NewWorld beta 2 not read (→ §4.4.4) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315); [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
 | 2.17.1, 2.22, 2.31 | absent; entry code read, no group test | [bin] (client-internals/decomp-findings-2026-10-24-d/name-group-constant-by-build.tsv) |
+
+**Settled question, formerly E#315: the level-entry save in the 2.1 test builds.** How the 2.1 test builds save the entry point was open; a static read of their entry decision settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The builds lack the name-group delimiter constant; best guess every level entry saves | [bin][inf] (client-internals/decomp-findings-2026-10-24-d/02-respawn-entry-save.md#which-builds-have-the-group-test) |
+| Settled | 2.1 test 2 and 3 run 2.17.1's rule: save at login or when the product of the two levels' gmap-list indices is negative, otherwise do not save; no group test; no gmap gives −1 for both | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+| Verdict | The guess was wrong; ordinary level changes keep the old respawn point | [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
+| Left over | NewWorld beta 2, which also lacks the constant, was not read | [inf] (client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315) |
 
 ## 4.4.5 Server side (GServer-v2)
 

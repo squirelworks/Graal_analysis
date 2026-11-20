@@ -1,12 +1,12 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.12, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#4, E#9, E#619, E#309, E#327, E#420, E#310, E#604, E#617, E#23, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are permanent. Answered entries no longer live here: each settled answer, with the record of how it was settled, now sits in the chapter section it belongs to, and → §E.12 lists where each one went.
 
 ## E.0 How to read this appendix
 
 This appendix is where the manual keeps everything it does not know. The other Parts state what was measured or read and mark the rest `unmeasured` or `disputed → App. E#n`; each such cell points here (→ §0.4).
-Entries are grouped by subject in the order of the Parts (→ §E.2 to §E.10), and the questions that were answered are kept apart, in → §E.12, so the reasoning that settled them stays on record without lengthening the open entries.
+Entries are grouped by subject in the order of the Parts (→ §E.2 to §E.10), and only open questions are kept here. When a question is answered, its answer and the record of how it was settled move into the chapter section it belongs to, and → §E.12 lists where each one went.
 An entry number is permanent. The hundreds give the Part where the question was first raised: E#1–99 front matter, Part I and Part II; E#100s Part III; E#200s Part VIII; E#300s Part IV; E#400s Parts V to VII; E#500s Parts IX and X; E#600s Part XI and the seed taken from CONSOLIDATED.md [doc] (CONSOLIDATED.md).
 
 Each entry has the same parts, in this order:
@@ -30,7 +30,7 @@ The outlook says what stands between the question and its answer. It is the most
 
 ## E.1 The unknowns at a glance
 
-The table lists every open entry with its outlook and a one-line best guess, so a reader can choose work without reading each entry. Settled entries are listed in → §E.12, and the closing discussion of what may stay unknown is in → §E.11.
+The table lists every open entry with its outlook and a one-line best guess, so a reader can choose work without reading each entry. Settled entries and where their answers now sit are listed in → §E.12, and the closing discussion of what may stay unknown is in → §E.11.
 
 | Entry | Question | Outlook | Best guess | Source |
 | --- | --- | --- | --- | --- |
@@ -199,7 +199,7 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Unobserved | The bytes the server sends, including the payload of S→C 190 | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Unobserved | The GUI script text for the server list, the account screens and the `ChatBar` control | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Unobserved | The file list inside `basepackage.gupd` and any later update package, and the backdrop level the server chooses | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client uses on the public service (the lab path is in → App. E#17) | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Unobserved | The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client uses on the public service (the lab path is in → §2.10.8) | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Tried | A real Windows 4.20r8 to 6.03r7 run reached a lab `Login` server, so the client side of the lobby is known; the server side is what a lab server chooses to send | [lab] (live-runs/real-win10-2026-11-18/README.md) |
 | Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run; the project leaves this entry open rather than contact the service again | [doc] (AGENTS.md#labs) |
 | Best guess | The lobby is a set of GUI scripts delivered in the update package and driven by S→C 190, with no lobby logic in the client beyond the script runtime. Confidence: moderate | [inf] (protocol/login-session-known.md#still-unobserved) |
@@ -543,7 +543,7 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Evidence | Static recovery separates the pickup action, the carried category and the carrying flag | [bin][cap] (client-internals/404r2-carry-state.md) |
 | Open | The meaning of the pickup-bound field, the path from a physical key to the action, and the asset behind a provisional second cut pattern | [bin] (client-internals/404r2-carry-state.md#open-questions) |
-| Evidence | The countdown cannot give elapsed timing without the clocks of → App. E#301 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
+| Evidence | The countdown cannot give elapsed timing without the clocks of → §4.1.7 | [bin] (client-internals/404r2-carry-state.md#timing-and-input-limits) |
 | Best guess | The bound field is the carried object's kind, set when the lift starts. Confidence: low | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | Settles it | A semantic read of the field and the input route, then a scene that captures each action before and after | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | Outlook | Read, then Lab | [inf] (client-internals/404r2-carry-state.md#open-questions) |
@@ -971,3 +971,65 @@ Three kinds of evidence are missing for good, or nearly so:
 - **Signed or server-held scripts.** From 6.11 on, the protocol itself lives in a script the operator signs (→ §2.10). The structure can be learned with a lab-signed script, but the production script's exact content can only come from the live service (→ App. E#616). [inf] (protocol/v7-connector-live-20261111.md#5-open)
 
 For these, the manual's rule is the same as everywhere else: state what is known, mark the rest, and keep the entry open. A clean-room server or client does not need most of these answers, because the client tolerates a range of server behaviour; where it does need one, the best guess in the entry is the starting point and the lab run in "Settles it" is the check. [inf] (protocol/probe-targets-2026-11-18.md)
+
+## E.12 Settled questions
+
+These questions were answered. Each answer, with the record of how it was settled, now sits in the chapter section named below, under a paragraph that starts "Settled question, formerly E#n". The numbers are kept so that older notes which cite them can still be followed (→ §E.0).
+
+| Entry | Question | Answer now in |
+| --- | --- | --- |
+| E#2 | Generation-5 step count of 5.12 and 5.00r7 | → §2.2.3 |
+| E#4 | Whether 5.00r7 sends id 11 | → §2.4.2 |
+| E#5 | Meaning of id 162 from the client | → §2.4.9 |
+| E#6 | Client-to-server constants of 1.21 and 1.32 | → §2.4.2 |
+| E#7 | Receive-branch revision discrepancy | → §2.5.2 |
+| E#8 | Prop parser ranges of 2.00 | → §2.6.6 |
+| E#9 | Uploads from game clients | → §2.7.1 |
+| E#11 | Client-to-server ids the NewWorld betas lack | → §2.4.2 |
+| E#13 | Gmap neighbour overwrite on classic-login 2.x clients | → §2.5.3.2 |
+| E#17 | The 6.1.1.3 login after the RC4 switch | → §2.10.8 |
+| E#20 | The 2.31 step on `PLO_SETACTIVELEVEL` (156) | → §2.5.3 |
+| E#21 | Whether a compiled gani script (`PLO_GANISCRIPT`, 134) runs | → §2.5.6 |
+| E#22 | `DEFAULT*` lines in `PLO_LOADGANI` (195) | → §2.5.6.1 |
+| E#23 | What prop 81 changes in the player list | → §2.6.6 |
+| E#24 | Baddy props 11 and up | → §2.6.6 |
+| E#25 | The 2.22 start-up file checks: 13 against 17 | → §2.7.10 |
+| E#102 | Tile id to pixel position on pics1 | → §3.5.1 |
+| E#202 | Which message carries GS2 bytecode | → §8.4.1 |
+| E#204 | Writing to GS1 object members | → §8.2.5 |
+| E#205 | Index of the hare baddy | → §8.2.2 |
+| E#212 | Whether a function-only image skips the top-level pass | → §8.4.10 |
+| E#301 | Frame loop of the 3.x and 4.x clients | → §4.1.7 |
+| E#303 | Two unidentified lists in the blocked-point test | → §4.2.3 |
+| E#306 | What picks `lift2.wav` for a pull | → §4.2.8 |
+| E#307 | Probe, nudge and step tables of 1.39 | → §4.2.2.2 |
+| E#309 | Knockback distance of 1.39 | → §4.3.7.2 |
+| E#310 | Where the once-per-second hit stamp sits | → §4.3.3 |
+| E#313 | Do arrows and fireballs pass walls | → §4.3.5.2 |
+| E#314 | Gmap entry and the respawn save | → §4.4.4 |
+| E#315 | The level-entry save in the 2.1 test builds | → §4.4.4 |
+| E#316 | Glove power steps | → §4.5.2 |
+| E#318 | Level reload on re-entry offline | → §4.5.7 |
+| E#321 | The 2.31 window blacklist | → §4.10.1.2 |
+| E#322 | How others see a key emote | → §4.10.3 |
+| E#327 | Missing chest art and menu skin in the 6.03r7 item run | → §4.5.8 |
+| E#328 | What drives 2.22's tick | → §4.6.10 |
+| E#405 | RC token `GSERV025` | → §7.1.1 |
+| E#420 | Flag and chest counts in the RC props tail | → §7.1.8 |
+| E#421 | The last byte of RC_PLAYERPROPSSET2 | → §7.1.8 |
+| E#500 | Back clipping plane of the Graal3D client | → §9.4 |
+| E#501 | Class CRC of the 4.04r2 3D plug-in | → §10.3.2 |
+| E#600 | Tile layer as GraalEditor writes it | → §11.1.2 |
+| E#601 | Whether link arrival offsets are evaluated | → §11.6.4 |
+| E#602 | Code width of `Z3-V1` boards | → §3.1.1.2 |
+| E#603 | Whole tiles and fractions in level records | → §3.1.2.5 |
+| E#604 | Where a binary sign list ends | → §3.1.2.6 |
+| E#605 | Client listserver frames in two vocabularies | → §6.1.3 |
+| E#606 | Whether a gmap carries `HEIGHTS` blocks | → §3.2.4 |
+| E#607 | Leftover lines in the protocol cheat sheet | → §2.1.2 |
+| E#608 | How many `arrays.dat` lists make a tile passable | → §3.5.3.1 |
+| E#609 | macOS archive labels and application identity | → §1.9.1 |
+| E#614 | Tiledef type 4 consumer | → §3.5.2 |
+| E#617 | Whether 1.41 rev 1 loads `.nw` levels online | → §1.5 |
+| E#619 | Whether 5.30r3 and 5.31r4 use their built-in login host | → §1.9.4 |
+| E#620 | What the 1.41 rev 1 program-check handler does | → §1.1.5 |

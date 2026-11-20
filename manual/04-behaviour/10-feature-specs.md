@@ -3,7 +3,7 @@
 
 This chapter collects the client features that sit outside the core game loop: the integrity checks, animation state as other players see it, key emotes, the player list and its social lists, and what the client does with the server's start message and disconnect texts. The message layouts are in → §2.4 and §2.5.
 
-> Status: draft. The 2.05 parts are read from 2.05 rev 2; the 2.17 to 2.31 parts come from lab captures and reads of those clients. Open points are App. E#320 to E#322.
+> Status: draft. The 2.05 parts are read from 2.05 rev 2; the 2.17 to 2.31 parts come from lab captures and reads of those clients. The open point is App. E#320; E#321 and E#322 are settled in → §4.10.1.2 and §4.10.3.
 
 ## 4.10.1 Integrity checks
 
@@ -31,8 +31,17 @@ The server can also ask for a process list, and 2.31 scans windows on its own. T
 | Rule | Detail | Source |
 | --- | --- | --- |
 | process list | the server sends `PLO_LISTPROCESSES` (182) once during login to 2.17 and later; the client can answer `PLI_PROCESSLIST` (44) with its running programs (→ §2.4.9) | [srv][inf] (client-internals/feature-specs/08-tampercheck.md#exact-server-behaviour-srv) |
-| 2.31 window scan | tick 20 of the 64-tick cycle runs a third-party anti-debugging component over the top-level windows. It looks for 20 scrambled tool names (monitors, dumpers and decompilers such as Regmon, File Monitor, ProcDump32, DeDe and Memory Editor) anywhere in each title; on a match it posts a quit message to that window and ends the client, and sends nothing to the server (→ App. E#321) | [bin] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
+| 2.31 window scan | tick 20 of the 64-tick cycle runs a third-party anti-debugging component over the top-level windows. It looks for 20 scrambled tool names (monitors, dumpers and decompilers such as Regmon, File Monitor, ProcDump32, DeDe and Memory Editor) anywhere in each title; on a match it posts a quit message to that window and ends the client, and sends nothing to the server (→ §4.10.1.2) | [bin] (client-internals/feature-specs/08-tampercheck.md#what-it-is-bincap); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
 | 2.31 debugger probe | tick 1 of the cycle probes for a debugger and arms a 5000 ms timer | [bin] (client-internals/decomp-findings-2026-10-24-b/03-periodic-ids-2.31.md#pli-39-re-send-every-32-s) |
+
+**Settled question, formerly E#321: the 2.31 window blacklist.** Which windows 2.31's blacklist names and what the client does on a match was open; a static read decoded the list and the reaction [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | An obfuscated list of window titles and classes compared every 3.2 s; best guess the period's memory editors and speed hacks, with a quit or a report on a match | [bin] (client-internals/feature-specs/README.md#settled-index-cross-cutting-items-status-as-of-the-lab-batch-c-2026-10-24) |
+| Settled | A third-party Delphi anti-debugging component with all four of its switches on. It looks for 20 tool names anywhere in each window title (case-sensitive): ExeSpy, wxr95, Regmon, File Monitor, RegMonEx, Window Detective, DebugView, ResSpy, Advanced Registry Tracer, regsnap, MEMSPY, Memory Doctor, ProcDump32, Memory Editor, FrogsICE, SMU Winspector, Memory Dumper, MemoryMonitor, DeDe and OpenTrap. On a match it posts a quit message to that window and ends the client; it sends nothing to the server | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
+| Verdict | The reaction guess was half right (a quit, no report); the list holds monitors, dumpers and decompilers, not game trainers or speed hacks | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
+| Left over | A lab run with one listed window open, to watch the quit | [inf] (client-internals/static-reads-appendix-e-2026-11-20.md#the-231-window-blacklist-e321) |
 
 ### 4.10.1.3 What outside input tools look like
 
@@ -43,7 +52,7 @@ The recovered trainers of the period are summarised here only for what the clien
 | how they act | every recovered sample types keys into a classic client window or writes text into it through window messages; none speaks the game protocol | [bin] (recovered-hacks/behaviour-models.md#what-a-server-can-see) |
 | memory | no memory-writing or remote-thread imports were found in the unpacked samples, so none of them changes the client's image; the tamper check of → §4.10.1.1 cannot see them | [bin] (recovered-hacks/TRAINER_RE_NOTES.md); [inf] (recovered-hacks/THREAT_TAXONOMY.md) |
 | what the server sees | only the resulting actions (dig, use, walk, chat), at the rates the tool's waits allow | [inf] (recovered-hacks/behaviour-models.md#what-a-server-can-see); [inf] (recovered-hacks/static-2026-11-01/README.md#what-a-checker-can-use) |
-| window titles | some tools look for the client window by title, and some show their own named window; the 2.31 scan's list names debugging and monitoring tools, not game trainers, so it does not catch them (→ App. E#321) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
+| window titles | some tools look for the client window by title, and some show their own named window; the 2.31 scan's list names debugging and monitoring tools, not game trainers, so it does not catch them (→ §4.10.1.2) | [bin] (recovered-hacks/behaviour-models.md); [inf] (recovered-hacks/TRAINER_RE_NOTES.md) |
 
 ### 4.10.1.4 The recovered trainers, tool by tool
 
@@ -110,8 +119,16 @@ Ctrl and a letter shows an emote. The rules below give the keys, how the image i
 | lookup | the letter is lowercased and the client takes the first loaded file whose name starts with `emoticon_<letter>` and ends in png, mng or gif; there is no letter-to-name table, so the mapping is whatever files exist | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes); [2.05] (client-internals/decomp-findings-2026-10-24/02-sprites-poses-emotes.md#emotes-ctrlletter) |
 | drawing | at the player's x + 2, y − 5 (a little lower when a second flag is set) for 50 ticks (2.5 s) | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
 | network | the key path sends nothing; `PLI_SHOWIMG` (24) is sent only by the script command `showimg` (→ §8.2) | [2.05] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
-| others seeing it | nothing: on 2.05 rev 2 a key emote sends only a one-time file check for its image, no `PLI_SHOWIMG` and no props, so the captured AFK frames came from a server script (→ App. E#322) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
+| others seeing it | nothing: on 2.05 rev 2 a key emote sends only a one-time file check for its image, no `PLI_SHOWIMG` and no props, so the captured AFK frames came from a server script (→ §4.10.3) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 | earlier builds | 1.38 introduced Ctrl+letter emotes, and 1.39 added letters | [doc] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+
+**Settled question, formerly E#322: how others see a key emote.** How other players see a Ctrl+letter emote was open, because captures showed AFK images re-sent while the 2.05 code draws the emote locally; a lab run on a script-free server settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Captures show `PLI_SHOWIMG` frames re-sending an AFK image about every 3 s | [2.05][cap] (client-internals/feature-specs/11-emotes-ganis.md#b-emotes) |
+| Settled | On 2.05 rev 2, Ctrl+A draws the AFK bubble locally and sends only one file check (34) for its image, once per session; Ctrl+S and Ctrl+D likewise; no `PLI_SHOWIMG` and no props leave the client, so the server has nothing to relay | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
+| Verdict | Verified: others do not see a key emote; the captured AFK frames came from a server script | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 
 ## 4.10.4 Picking up and dropping items online
 

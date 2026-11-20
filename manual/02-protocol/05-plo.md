@@ -72,6 +72,15 @@ The id table above shows which ids each build handles. The rules below explain i
 | Against 5.00r7, 6.x drops 41, 75, 132, 133, 165, 169, 171, 175, 181, 184 and 193 and adds 109, 111 and 198 | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | A later client (5.07 and up, or 6.037, as the source note marks each id) ignores 26, 41, 44, 55, 56, 60, 78, 80, 81, 83, 132, 157, 159–164, 165, 167, 171, 175, 188 and 192 | 5.07, 6.037 | [srv] (protocol/packet-ids.md#server--client-plo_) |
 
+**Settled question, formerly E#7: Receive-branch revision discrepancy, settled for the checked inputs.** Two tables placed ids 47 and 168 in different revisions; a static check settled it for the revisions read [bin] (client-internals/cross-version-timeline.md#server--client-packets).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | The timeline formerly placed 47 at 2.02 rev 2 and 168 at 2.05 rev 1; those labels are corrected | [bin] (client-internals/cross-version-timeline.md#server--client-packets) |
+| Claim B | The per-build table already had 47 in 2.02 revisions 0 and 1 and 168 in 2.05 revision 0 | [bin] (version-profiles/plo-handled-ids-by-build.tsv); [bin] (client-internals/decomp-findings-2026-10-24-c/04-plo-server-to-client.md#set-growth) |
+| Settled | The exact-input check backs Claim B for Windows x86 2.02 revisions 0 to 2 and 2.05 revisions 0 to 2 (→ §2.5.2) | [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#distinct-receive-routes) |
+| Scope | Route presence only; runtime handling, payloads and first occurrence across all branches are not established | [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#validation-and-limits) |
+
 ### 2.5.2.1 Graal 2002 static receive routes
 
 These counts enumerate logical ids whose destination differs from the dispatcher's default, not accepted payloads or visible effects. The same counting method reproduces the previously published 2.05, 2.1 test 3, 2.17.1, 1.39 and 1.41 rev 1 rows. The bound is the highest logical id tested. [bin] (client-internals/graal2002-and-140-builds.md#the-builds)
@@ -136,6 +145,15 @@ These messages carry a level to the client: its board, links, signs, chests, bad
 | 185 | `PLO_BOARDHEIGHTS` | `c mapX, c mapY, c blockX, c blockY, c w−1, c h−1`, then w × h cells of 2 raw bytes, row-major | height = `(b0 − 0x20 − 0x32) + (b1 − 0x20) / 128`; written into that gmap cell's height grid from `blockX, blockY`; mapX and mapY must lie in the gmap grid | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 186 | `PLO_BOARDMODIFY2` | `c mapX, c mapY, c x, c y, c w, c h`, then w × h `s tile`, row-major | tiles replace that gmap cell's board from `x, y`; needs `len ≥ 6 + 2*w*h` | [bin][cap] (version-profiles/plo-layouts-217-231.tsv) |
 
+**Settled question, formerly E#20: the 2.31 step on `PLO_SETACTIVELEVEL` (156).** What the extra routine 2.31 calls after setting the object level on 156 does was open; a static read and two lab runs settled it [bin] (protocol/plo-156-setactivelevel-231.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Earlier guess (wrong) | The step re-binds level-scoped state, such as the gmap neighbour grid, to the new level | [inf] (protocol/unknowns-ledger.md) |
+| Settled | The step sends the launch-link start parameters. A 2.31 started with `graal://SERVER/TEXT` sends `TEXT` once, after the first 156 of the session, as `PLI_TRIGGERACTION` (38) named `serverstartparams` with NPC 0 at (0, 0), then forgets it; started without a link, or with `-connect`, it sends nothing. It changes no client state | [bin] (protocol/plo-156-setactivelevel-231.md); [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
+| Also measured | On 2.22 and 2.31, 156 with the current level, a neighbour, an empty or an unknown name changes nothing on screen, and later board and prop messages still land; 156 with a gmap name makes both clients ask for the gmap file (`PLI_UPDATEFILE`) | [lab] (live-runs/fuzz-2026-11-19/README.md) |
+| Verdict | Verified: static read confirmed by a run with and without a link | [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
+
 Links need the most care of the level messages. The rules below give how a link is parsed and when the client takes it, from the binaries and from lab measurements [bin] (version-profiles/plo-levellink-layouts.tsv).
 
 | Rule | Builds | Source |
@@ -176,7 +194,16 @@ Level data carries no level name or gmap position: a 2.x client applies it to th
 | 14 with a `.gmap` name always lands in the first `LEVELNAMES` entry (top-left cell); 2.17.1, 2.22, 2.31 and the 2.1 test builds handle 49, so a server should use 49 for gmaps | 2.1 test to 2.31 | [bin] (protocol/gmap-adjacent-level-target.md#the-warp-and-the-gmap-file-bin) |
 | `PLO_SETACTIVELEVEL` (156) with the gmap name makes the client ask for the gmap file (`PLI_UPDATEFILE`, 34); 156 with the current level, a neighbour, an empty or an unknown name gets no reply; no 156 changed the screen, the level NPC's script kept running, and later board changes and props landed | 2.22, 2.31 | [lab] (live-runs/fuzz-2026-11-19/README.md#2-plo_setactivelevel-156-on-222-and-231) |
 | A working reply to 35: `LEVELNAME <neighbour as sent>`, then the board, links and signs (or an empty `LEVELBOARD` when the copy is current), chests, `LEVELMODTIME`, then `LEVELNAME <the player's cell level>` | 2.17.1, 2.22, 2.31 | [bin][inf] (protocol/gmap-adjacent-level-target.md#the-sequence-that-works-on-2171-222-and-231) |
-| GServer-v2's classic type-0 path (2.17 and older) writes 6 only for the first level of a session and always warps with 14, so neighbour boards and links land on the player's own level; its gen-5 path frames each reply with the name but ends with the gmap name, which leaves no named level on 2.17.1 and 2.22; a 2.17.1 lab run showed neighbour walls drawn on the player's own cell (→ App. E#13) | server | [srv][bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
+| GServer-v2's classic type-0 path (2.17 and older) writes 6 only for the first level of a session and always warps with 14, so neighbour boards and links land on the player's own level; its gen-5 path frames each reply with the name but ends with the gmap name, which leaves no named level on 2.17.1 and 2.22; a 2.17.1 lab run showed neighbour walls drawn on the player's own cell (→ §2.5.3.2) | server | [srv][bin][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
+
+**Settled question, formerly E#13: Gmap neighbour overwrite on classic-login 2.x clients.** Whether GServer-v2's classic path makes 2.17 and older clients copy each gmap neighbour onto the player's own level was predicted by a static read; a lab run settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Prediction | With stock framing, a 2.17.1 client on a 2 x 2 gmap shows neighbour boards on its own level; ending each neighbour reply with the player's cell name cures it | [srv][inf] (protocol/gmap-adjacent-level-target.md#what-gserver-v2-sends-srv) |
+| Settled | 2.17.1 asks for the three neighbours with 35, the server answers each board with no `PLO_LEVELNAME` before it, and the player's own all-grass cell then shows neighbour walls at its edge. 2.22 on the same server gets every neighbour framed by `LEVELNAME` and draws them in place | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
+| Verdict | Verified: the overwrite happens with the stock classic path | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
+| Left over | The fixed-framing leg, which needs a server change; 2.17.1 sends no 35 when the `.gmap` is fetched after the warp, and sends cached modtimes when neighbours are cached | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#neighbour-overwrite-on-2171-e13) |
 
 ## 2.5.4 Players and the local player
 
@@ -253,7 +280,7 @@ These messages move, script and remove NPCs and hand out weapons. Rows marked un
 | 44 | `PLO_HASNPCSERVER` | empty | the client stops applying NPC props itself | [bin] (protocol/packet-ids.md#server--client-plo_); [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 131 | `PLO_NPCBYTECODE` | `i3 code`, bytecode | script and class registration: 3.153 registers classes (`joinedclasses`) and `public.` variables from it, with 132 and 133 (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled) |
 | 133 | `PLO_UNKNOWN133` (beta4 gserver: `PLO_CLASSBYTECODE`) | `str name`, rest = compiled class script | creates or updates the named class; `public.` functions become callable from outside; 3.153 to 5.12 | [bin] (protocol/unknown-ids-2026-11-06.md) |
-| 134 | `PLO_GANISCRIPT` | gani text (3.153); compiled gani script (GServer-v2) | 3.153 parses the gani text in place. GServer-v2 answers `PLI_UPDATEGANI` (157) with the gani's script as bytecode in 134, only when an NPC server runs and the checksum differs; a forged 134 behind `PLO_RAWDATA` makes 6.03r7 fetch and load the named gani, as 195 does. On 4.20r8, 5.24r4 and 6.03r7 a valid compiled body runs (events fire), a corrupt or empty one is ignored; there is no checksum in the packet (→ App. E#21) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled); [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19); [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md#compiled-gani-scripts-on-603r7-646) |
+| 134 | `PLO_GANISCRIPT` | gani text (3.153); compiled gani script (GServer-v2) | 3.153 parses the gani text in place. GServer-v2 answers `PLI_UPDATEGANI` (157) with the gani's script as bytecode in 134, only when an NPC server runs and the checksum differs; a forged 134 behind `PLO_RAWDATA` makes 6.03r7 fetch and load the named gani, as 195 does. On 4.20r8, 5.24r4 and 6.03r7 a valid compiled body runs (events fire), a corrupt or empty one is ignored; there is no checksum in the packet (→ §2.5.6) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v3x-clients.md#server--client-ids-handled); [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19); [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md#compiled-gani-scripts-on-603r7-646) |
 | 140 | `PLO_NPCWEAPONSCRIPT` | `s info_length`, script | class and weapon script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
 | 165 | `PLO_MOVE` | `i3 npc id` (> 0), then complete 7-byte records: `c x×2, c y×2, c (dx+50)×2, c (dy+50)×2, s duration×20, c options` | passed to the NPC movement routine; an unknown NPC is not created and an incomplete trailing record is ignored | [bin] (version-profiles/plo-layouts-217-231.tsv) [2.05][bin] (protocol/payload-and-trigger-205r2.md#npc-movement-plo-165) |
 | 166 | `PLO_SHOWIMGNPC` | `i3 npc id`, `rest` = props | applies the props to that NPC in the active level | [bin] (version-profiles/plo-layouts-217-231.tsv) |
@@ -263,6 +290,15 @@ These messages move, script and remove NPCs and hand out weapons. Rows marked un
 | 195 | `PLO_LOADGANI` | `str gani`, then a list of gani header lines (`SETBACKTO name`, `LOOP`, `CONTINUOUS`, `SINGLEDIRECTION`, `DEFAULT*`) | loads the named gani if it is not loaded and overrides the file's header values for that gani name, for every player that plays it; the newest value wins (→ §2.5.6.1) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v4x-clients.md#server--client-ids); [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19) |
 | 196 | (no gs2lib name) | as 193 | 4.20r8 reads it and does nothing else | [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 197 | `PLO_LOADSCRIPT` | a list `type,name,saveToDisk,desKey,crc32`; type weapon, npc, class or gani; the key is two `i5` | script delivery (→ §8) | [srv] (protocol/packet-ids.md#server--client-plo_); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+
+**Settled question, formerly E#21: Whether a compiled gani script (`PLO_GANISCRIPT`, 134) runs.** Whether 4.x to 6.x run a valid compiled GS2 gani script sent in 134 was open, because no lab had sent a real compiled body [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | GServer-v2 answers `PLI_UPDATEGANI` (157) with 134 only when an NPC server runs and the checksum differs; our build sent none, and a forged 134 made 6.03r7 load the gani like a 195 | [lab][srv] (protocol/probe-targets-2026-11-18.md) |
+| Settled | The body is a `GCHAR` name length, the gani name and the compiled script; the packet has no checksum field. A valid body compiled by seihai-core runs on 6.03r7, 4.20r8 and 5.24r4: the client fetches the gani (23 and 157), then `onCreated` and `onTimeout` fire. A body with one flipped byte, or an empty script part, fires nothing and crashes nothing | [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
+| Verdict | Verified on three builds | [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
+| Left over | 5.12 was not run | [lab] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) |
 
 One rule separates the old script path from the new one [srv] (protocol/packet-layouts.md#weapons).
 
@@ -278,7 +314,7 @@ A probe proxy sent 195 into live loopback sessions of 4.20r8, 5.12, 5.24r4 and 6
 | --- | --- | --- |
 | `kick "SETBACKTO sit"` makes `kick` fall back to `sit`; a gani with no `SETBACKTO` of its own gets one; `"SETBACKTO "` with no target means no fallback; an empty list changes nothing | 4.20r8, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#plo_loadgani-195-the-setbackto-list-2026-11-19) |
 | `LOOP`, `CONTINUOUS` and `SINGLEDIRECTION` are taken too; a later 195 without `LOOP` does not undo it; `CONTINUOUS` stops a re-set gani from restarting | 5.12, 5.24r4, 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
-| `DEFAULT*` lines had no visible effect and caused no image request, for the own player, another player and a level NPC (→ App. E#22) | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+| `DEFAULT*` lines had no visible effect and caused no image request, for the own player, another player and a level NPC (→ §2.5.6.1) | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
 | `DEFAULTHEAD`, `DEFAULTBODY`, `DEFAULTATTR1` to 3, `DEFAULTSHIELD`, `DEFAULTSWORD`, `DEFAULTHORSE`, `DEFAULTPARAM1` and `SPRITE`, each naming a unique file, were never fetched, and the own player's idle, walk and sit drew as without them; an NPC with `showcharacter` and no head of its own was not tried | 6.03r7, 4.20r8 | [lab] (live-runs/fuzz-2026-11-19/README.md#3-plo_loadgani-195-default-lines-on-603r7-and-420r8) |
 | The newest value wins: a later 195 replaces an earlier one, and with two `SETBACKTO` lines in one list the last wins; two 195s in one frame both apply | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
 | A 195 for a gani the client has not loaded makes it ask for `<name>.gani` (23) and send 157; the file's header then replaces the 195, so a 195 sent before the gani loads is lost. That is why a server sends 195 in answer to 157 | 4.20r8 to 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
@@ -289,6 +325,15 @@ A probe proxy sent 195 into live loopback sessions of 4.20r8, 5.12, 5.24r4 and 6
 | `NUL ff 80` inside a `SETBACKTO` name: `hurt` falls back to a gani named `00 ff 80`, so the NUL is kept as part of the name; seen natively and under Wine, and in a native 5.24r4 control run; only one earlier Wine run of 5.24r4 showed no fallback | 4.03r3, 4.04r2, 4.11, 5.00r7, 5.24r3, 5.24r4, 5.30r3, 5.31r4 | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md#plo_loadgani-195) |
 | 300 empty items, a 3000-byte item and a 60 KB list caused no crash | 6.03r7 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
 | 2.22 and 2.31 ignore 195: they never send 157 or ask for gani files, and every fallback stays at the file default | 2.22, 2.31 | [lab] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19) |
+
+**Settled question, formerly E#22: `DEFAULT*` lines in `PLO_LOADGANI` (195).** What the `DEFAULT*` header lines do when a server sends them in 195 was open; three lab cases settled it for play [lab] (protocol/probe-targets-2026-11-18.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | `DEFAULTHEAD`, `DEFAULTBODY`, `DEFAULTATTR1` to `3`, `DEFAULTSHIELD`, `DEFAULTSWORD`, `DEFAULTHORSE` and `DEFAULTPARAM1` change nothing and fetch no file: for the player's own character on 6.03r7 and 4.20r8 (idle shots pixel-identical to the plain shot), for another player with no head or body set, and for a level NPC showing a character | [lab] (protocol/probe-targets-2026-11-18.md); [lab] (live-runs/fuzz-2026-11-19/README.md) |
+| Inferred | They are the gani editor's preview images, kept in the header so the file is self-describing | [inf] (protocol/probe-targets-2026-11-18.md) |
+| Verdict | Verified for play on 4.20r8 and 6.03r7, including the headless case where a default would be used; the editor-preview purpose is inferred | [lab] (live-runs/fuzz-2026-11-19/README.md) |
+| Left over | A static read of the header parser's `DEFAULT*` cases; 6.1.1.3 and 6.037 | [inf] (protocol/unknowns-ledger.md) |
 
 So the working role of 195 is "load this gani now and apply these header overrides". In every path the lab server can build, its `SETBACKTO` repeats the file's own; the GServer-v2 source says 4.x and later need it, most likely for ganis whose script reaches the client compiled in 134 [lab][inf] (protocol/probe-targets-2026-11-18.md#195-round-2-2026-11-19).
 
@@ -342,7 +387,7 @@ Chat display and the private-message rules are in → §2.8.
 | 183 | `PLO_HASPROCESSRUNNING` | `rest` = names | the client answers with `PLI_PROCESSRUNNING` (45): 1 if the string occurs in its own list, else 0 | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 184 | `PLO_TAKESCREENSHOT` | `rest` = file name | accepted only with a `.png` extension; saves a screenshot under the screenshots folder; sends nothing back | [bin] (version-profiles/plo-layouts-217-231.tsv) |
 | 190 | `PLO_SERVERLISTCONNECTED` | no body is read | fires `onServerListerConnect`: the `Login` server has accepted the session (→ §2.3); 4.04r2 and 4.20r8 then send `PLI_SENDTEXT` `GraalEngine,lister,verifybuddies,<loadbuddiesfromserver 0/1>,<CRC-32 of the buddy list, 0 if empty>` unless the scripted player list is on | [bin] (protocol/v4x-clients.md#190-and-the-buddy-check); [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
-| 108 | `PLO_PING` (was `PLO_UNKNOWN108`) | `c sub`, `s value` | ping: subtype 0 makes the client answer with id 162 echoing the value (→ App. E#5); subtype 1 stores the value on the connection; 4.20r6, 4.20r8, 6.01r1, 6.03r7, taken before the main switch; not 5.x | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids) |
+| 108 | `PLO_PING` (was `PLO_UNKNOWN108`) | `c sub`, `s value` | ping: subtype 0 makes the client answer with id 162 echoing the value (→ §2.4.9); subtype 1 stores the value on the connection; 4.20r6, 4.20r8, 6.01r1, 6.03r7, taken before the main switch; not 5.x | [bin] (protocol/unknown-ids-2026-11-06.md); [bin] (protocol/v4x-clients.md#server--client-ids) |
 | 104 | `PLO_FILEDECRYPTKEY` (was `PLO_UNKNOWN104`; proposed `PLO_FILEKEY`) | `str file`, `c a`, `i5 lo`, `i5 hi`; lo and hi joined little-endian | stores an 8-byte DES key for that lower-cased file name; a `.gpake` package or `.enc` file decrypts with it once 45, 69 or 102 arrives for the file; 3.153 to 6.03r7 | [bin] (protocol/unknown-ids-2026-11-06.md); [bin][lab] (formats/gpak.md) |
 
 Id 178 moves a client to another server. The rules below come from lab runs of 2.31: which fields it uses, what happens when they are wrong, and how the switch is timed [cap] (version-profiles/plo-layouts-217-231.tsv).
@@ -426,7 +471,7 @@ Each row below is one finding about the Linux 4.04r2 receive switch, with its ex
 | 97 explicit receive cases | Static switch mapping with direct handler edges | Not the complete handled-message count: transport pre-dispatch remains to be included | [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage) |
 | Missing switch case | No case in this particular dispatch map | Does not prove rejection of that message | [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage) |
 | Message 131 | Requires a three-byte identifier; a positive decoded identifier selects an object lookup, the prefix is stripped, and remaining bytes reach the script setter, context loader and compiled-segment reader | Static path only; complete identifier encoding, lookup roles and indirect initialization callback not fully established; no network fixture delivered | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
-| Other script delivery and cache validation | Messages 140/197 and other weapon/class paths remain under research | The map and message-131 trace do not settle all roles, field layouts or cross-platform compatibility (→ App. E#202) | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
+| Other script delivery and cache validation | Messages 140/197 and other weapon/class paths remain under research | The map and message-131 trace do not settle all roles, field layouts or cross-platform compatibility (→ §8.4.1) | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
 
 #### Linux 4.20 and 6.x
 
@@ -435,7 +480,7 @@ Each row below is one finding about the Linux 4.04r2 receive switch, with its ex
 [bin] Two Linux 4.20 rev 8 executables, dated 2007-01-15 (7,868,224 bytes) and 2007-01-17 (7,876,188 bytes), were compared as printable strings. `GSERVL01`, `GLEVNW01`, `GRMAP001`, and `LEVELNAMES` through `LEVELNAMESEND` are present level and gmap literals in both images, with conventional meanings level-file magic, level-file magic, gmap-file magic, and gmap level-name block. Those meanings are the conventional names of the literals. This printable-string compare did not trace a parser in the 2007-01-15 image. The 2007-01-17 image is the Linux 4.20r8 executable already used above. The filtered-string delta is empty. The 7,964 extra bytes are not a new level magic or gmap key on this filter. String equality does not prove handler behaviour, and the byte-count difference does not prove handler behaviour. The 2007-01-15 receive switch was not read, so those case notes are not copied onto it. Login token `G3D22126` stays the catalogued value; this string pass did not re-trace the builder. [bin] (client-internals/linux-420r8-string-floor.md)
 
 
-[bin] In 4.20r6, case 131 checks length before/after an unreviewed helper, derives a positive three-getter identifier, removes three bytes, chooses lookup sources around 1000 and forwards the remainder through a context/program loader to compiled-segment reading. A nonempty remainder also reaches an indirect callback. Gameplay types, callback name/signature, canonical seven-bit validation, helper decryption/decompression, complete field grammars and cache behavior remain unproved. Offline review observes no wire/session/script completion; E#202 remains partial. [bin] (protocol/linux-cross-version-receive.md)
+[bin] In 4.20r6, case 131 checks length before/after an unreviewed helper, derives a positive three-getter identifier, removes three bytes, chooses lookup sources around 1000 and forwards the remainder through a context/program loader to compiled-segment reading. A nonempty remainder also reaches an indirect callback. Gameplay types, callback name/signature, canonical seven-bit validation, helper decryption/decompression, complete field grammars and cache behavior remain unproved. Offline review observes no wire/session/script completion; Which message carries the bytecode was later settled (→ §8.4.1). [bin] (protocol/linux-cross-version-receive.md)
 
 ## 2.5.13 Subtype 1 of id 108 on Linux 6.03r7
 

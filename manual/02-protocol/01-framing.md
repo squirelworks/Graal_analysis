@@ -42,6 +42,15 @@ Inside a frame, the unit is the message. Each rule below gives one property of h
 | A `00` byte inside a message makes the client drop that message and every later one in the same frame; `ff`, `80` and `1f` bytes are harmless. A server should never put a `00` byte in a message for a 2.x client outside the raw-data escape, which carries file bodies with such bytes and arrives intact | 2.05 rev 2, 2.17.1, 2.22, 2.31 (lab); 4.20r8 keeps the rest of the frame | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18); [lab] (protocol/probe-targets-2026-11-18.md#older-clients-the-proxy-speaks-gen-3-2026-11-19) |
 | An id with no case is ignored with any body, and the next message is read normally | 2.05 rev 2 to 6.03r7 (lab, ids 60, 78, 81, 83, 110) | [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18) |
 
+**Settled question, formerly E#607: leftover lines in the protocol cheat sheet.** Whether the lines an old protocol cheat sheet still prints are wrong was open as a bookkeeping item [doc] (protocol/PROTOCOL-CHEATSHEET.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (false) | A raw byte after the version, unscrambled RC clients, 100 to 102 as file length, tiles and file blob, 1,024-byte frame slices, and ids 1, 16 and 32 for login, level request and player update | [doc] (protocol/PROTOCOL-CHEATSHEET.md); [doc] (protocol/login-recovery-start.md) |
+| Claim B (holds) | No mystery byte (the extra byte is the generation-3 insertion); RC is ciphered like a client of its generation; 100, 101 and 102 are raw data, board and file; no slice size; login type 0, level request id 0, walk id 2 | [doc] (protocol/login-and-walk.md); [doc] (protocol/codec-and-framing.md) |
+| Settled | The probe proxy, written to Claim B's rules, decodes and re-encodes live sessions of real 2.05 rev 2 and 2.17.1 (generation 3), 2.22, 2.31 and 4.x to 6.x (generation 5) and the 2004 RC (login type 6, generation 5) without loss; a 1,024-byte slice or a raw version byte would break every one of those sessions at the first frame | [lab] (protocol/unknowns-ledger.md); [lab] (protocol/rc-fuzz-2026-11-19.md); [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md) |
+| Verdict | Verified for the framing, cipher and RC lines by live sessions; the 100 to 102 names and the facing order follow the server source and the manual | [lab] (protocol/unknowns-ledger.md) |
+
 ## 2.1.3 The raw-data escape
 
 A newline ends every message, so binary data needs a way round it. The rules below describe that escape: the server announces a length, and the receiver takes that many bytes as one message. The last row is the client's own form of it [srv] (protocol/codec-and-framing.md#raw-data-escape).

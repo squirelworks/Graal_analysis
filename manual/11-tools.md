@@ -43,13 +43,21 @@ The rules below give which level formats GraalEditor opens and how it saves [GE]
 | --- | --- |
 | Open: GR-V1.00–1.03, Z3-V1.03/1.04 and GLEVNW01, with the filter `Graal levels (*.graal, *.nw)` | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
 | Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still present; "Level(s) saved" means several levels can be saved at once | [GE][inf] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
-| The `BOARD 0` layer as GraalEditor writes it — base64 GLEVNW01 runs; all-zero rows omitted; settled → App. E#600 | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
+| The `BOARD 0` layer as GraalEditor writes it — base64 GLEVNW01 runs; all-zero rows omitted; settled → §11.1.2 | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
 | Heights are a `TLevelHeights` overlay per level, not a second board | [GE] (tools/graaleditor.md#document-model) |
 | Sections read and written: `BOARD`, `LINK`, `SIGN`, `CHEST`, `NPC`, `BADDY`, `LEVELNAMES`, in the field order of the dialogs (→ §3.1.3) | [GE] (tools/graaleditor.md#document-model) |
 | The editor stores no tile types; collision comes from the 4096-byte type table (→ §3.5.2) | [GE] (tools/graaleditor.md#collision) |
 | gmaps are wired in: the `GRMAP001` reader plus `LEVELNAMES`, `MAPIMG`, `MINIMAPIMG`, `NOAUTOMAPPING` and the generator keys (→ §3.2); a `TEditorLevelCache` holds neighbours | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
 | 2.05 already has a dormant `GRMAP001` reader with no caller | [2.05][inf] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
 | Offline data: `offlinetutorial_*` (3×3) levels and `tiledefsOffline.txt` | [GE] (tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205) |
+
+**Settled question, formerly E#600: tile layer as GraalEditor writes it.** Whether GraalEditor writes `BOARD` as decimal tile indices or as base64 runs was open; the text writer settles it [bin] (tools/graaleditor-board-format-2026-11-16.md).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A (false) | GraalEditor 2.3.1.1 writes `BOARD 0` as 64 lines of 64 decimal tile indices | [bin] (tools/graaleditor-board-format-2026-11-16.md) |
+| Claim B (holds) | The writer matches the 2.05 and 2.22 built-in base64 `BOARD` rows, emits GLEVNW01-style runs and skips all-zero rows | [bin][2.22] (tools/graaleditor-board-format-2026-11-16.md) |
+| Left over | An optional file-level confirmation from a Save As `.nw` when a desktop is available | [lab] (tools/graaleditor-board-format-2026-11-16.md#open) |
 
 ### 11.1.3 Additions over the 2.05 built-in editor
 
@@ -263,20 +271,28 @@ The rules below give the editor's tools and how tiles and tile definitions are a
 | Rule | Source |
 | --- | --- |
 | Tile ids are 0–4095 on the 2048 × 512 sheet; the id → sheet mapping is → §3.5.1 | [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
-| A tile definition line is `image,prefix,type,x,y`; type 0 is the old order and type 1 the new; type 4 pastes its image (8-bit palette PNG) into the tile sheet at pixel (x, y) and does not change walking, which follows the board's tile codes (lab, 2026-11-19; E#614) | [2.22][file][bin][lab] (formats/tiledef-type4-2026-11-16.md); [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
+| A tile definition line is `image,prefix,type,x,y`; type 0 is the old order and type 1 the new; type 4 pastes its image (8-bit palette PNG) into the tile sheet at pixel (x, y) and does not change walking, which follows the board's tile codes (lab, 2026-11-19; → §3.5.2) | [2.22][file][bin][lab] (formats/tiledef-type4-2026-11-16.md); [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
 | Palette: click picks one tile, drag picks a block that pastes as a floating selection; double-click sets the background tile, which fills new levels | [2.22] (tools/level-editor/222-reference.md#5-tiles-and-the-sheet) |
 | Undo covers board tiles only: a rectangle snapshot before each write, at most 128 records per tab | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
 | Draw mode: with one tile selected, left drag paints (1.41); flood fill with the right button (2.00), Shift for complete objects only, and the background tile when nothing is selected | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
 | Turn selection into a warp field: a link over the selection with new x `playerx` and new y `playery`, then the first matching edge rule: starts in column 63 → new x 0; row 63 → new y 0; column 0 and one wide → new x 61; row 0 and one high → new y 61 | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
 | Stamps come from `objects<set>.txt` in GOBJSET01 (→ §3.4); add-selection inserts after the chosen stamp and Save objects rewrites the set; placing writes tile ids only; sets arrived in 2.04 | [2.22] (tools/level-editor/222-reference.md#7-stamps-predefined-objects) |
 | Edit links (L): Linkfile, X, Y, W, H, New X, New Y; Load opens the destination in a tab; the dialog refuses invalid fields with "Wrong values! Type in a filename…"; arrival text is stored as typed | [2.22] (tools/level-editor/222-reference.md#8-links) |
-| The engine evaluates an arrival such as `playery+10` at warp time: 2.22 lands at the evaluated position (→ App. E#601) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
+| The engine evaluates an arrival such as `playery+10` at warp time: 2.22 lands at the evaluated position (→ §11.6.4) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
 | Edit signs (S): X, Y, New, Delete; a (0, 0) sign is not drawn and is used by index from chests and `say n`; text is in the sign alphabet (→ §3.6); trailing empty lines are removed | [2.22] (tools/level-editor/222-reference.md#9-signs) |
 | Chest dialog: item, sign index, Sign button; items in index order `greenrupee, bluerupee, redrupee, bombs, darts, heart, glove1, bow, bomb, shield, sword, fullheart, superbomb, battleaxe, goldensword, mirrorshield, glove2, lizardshield, lizardsword, goldrupee, fireball, fireblast, nukeshot, joltbomb, spinattack`; a new chest is item 1, sign −1 | [2.22] (tools/level-editor/222-reference.md#10-chests) |
 | Baddy dialog: ten types (Gray, Blue, Red, Shooting and Swamp Soldier, Frog, Spider, Golden Warrior, Lizardon, Dragon) and three verses; types 4–6 disable and save empty verses; a new baddy says "Stop!" and "Ouch!" | [2.22] (tools/level-editor/222-reference.md#11-baddies) |
 | NPC dialog: image, script, Test, Style, Find; `//#EDIT name value` and `//#COMMENTS text` markers; predefined NPCs replace each named variable on drop; NPC positions survive a binary save only as whole and half tiles | [2.22][inf] (tools/level-editor/222-reference.md#12-npcs) |
 | Multi-level editing (2.12): when an NPC calls `setmap` the neighbours show together; scroll by dragging the player or with arrows; a big cursor on maps (2.13) | [2.22] (tools/level-editor/222-reference.md#14-tabs-maps-and-multi-level-editing) |
 | Other dialogs: load by name, log window, `TShowImg` (role unmeasured), variable editor, tile-array window | [2.22] (tools/level-editor/222-reference.md#15-other-dialogs) |
+
+**Settled question, formerly E#601: Whether link arrival offsets are evaluated.** Whether the client evaluates an offset in a link's arrival field, such as `playery+10`, was open between the editors' verbatim storage and the level authors' usage; a lab link settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: arrival fields may hold `playerx` or `playery` plus an offset, and 21 archived arrivals do. B: the editors store the text verbatim | [2.22] (tools/level-editor/222-reference.md#8-links); [2.22] (tools/level-editor/formats-crossref.md#batch-f-decomp-findings-2026-10-25-f-pr-39) |
+| Settled | On 2.22 a link with arrival `playerx playery+10`, entered at y about 20, sent the player to (30, 30); a plain `30 40` control arrived at (30, 40). The client evaluates the expression; the editors only store it | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
+| Verdict | Verified on 2.22; both claims hold, at different stages | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
 
 Keys, 2.22 [2.22] (tools/level-editor/222-reference.md#13-keys):
 

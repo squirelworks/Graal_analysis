@@ -64,6 +64,15 @@ The rules below say which tokens go to the listserver and which go to a game ser
 | After the list, 2.17 logs in to the game server as type 0 with a key, `GNW22122`, account and password, in generation 3 | [cap] (protocol/listserver.md#217-list-host-bin) |
 | What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasured (1.41 rev1 sends nothing, see above); 1.42 and 2.01 to 2.04 share 2.00's built-in list data and are expected to send shape A | [inf] (protocol/login-frames-by-version-2026-10-25.md#real-versus-seihai-per-profile-seihai-main-21a37a5) |
 
+**Settled question, formerly E#605: client listserver frames in two vocabularies.** Whether two descriptions of the client's listserver frames describe the same bytes was open, because they use different words [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claim A | 2.00 and 2.05 send id 0 and `newmain` in one plain zlib frame; 2.17 adds id 1 with account and password; 2.22 and 2.31 send id 7, a key byte, `GNW30123` and `newmain`, then a generation-5 frame with id 1 | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
+| Claim B | The classic Server Lister ELF reads an edition line (id 0) and an account line (id 1) and ignores any other line; no version token, no cipher | [bin] (tools/classic-tools/serverlist3.md) |
+| Settled | The two describe one layout. Both use a big-endian 16-bit length, a zlib body and newline-separated lines whose first byte is the id plus 32. The edition line is the `newmain` line (the ELF selects rows whose edition contains that text), and the account line is 2.17's id 1. The ELF ignores 2.22's id 7 line, so "no version token" and `GNW30123` describe two listserver generations, not a disagreement about one frame | [bin] (tools/classic-tools/serverlist3.md); [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
+| Verdict | Settled by matching the two field layouts against held captures; inferred, not measured, in the sense that no single capture was replayed into the Server Lister ELF | [inf] (docs/book/04-where-the-notes-disagree.md#listserver-shapes) |
+
 ### 6.1.4 Exact Graal 2002 ver10 entry boundary
 
 The inspected FileVersion 2.1.0.2 list loader constructs an encoded fixed host and supplies a fixed list port. Its connection initializer checks a host cache, tries numeric parsing/hostname resolution, creates a TCP socket, parses the port, connects and then enables nonblocking mode; list-token/login strings follow its return. This static path establishes neither a configurable local endpoint nor a successful login. [bin] (client-internals/graal2002-and-140-builds.md#ver10-list-entry-and-connection-boundary)
