@@ -1,0 +1,163 @@
+client	key	effect	c2s	script_event	notes
+2.31	F1	opens window: Help 370x259@327,267; screen 95701 px 370x259 box 135,110-504,368 (near player); CLIENT GONE (crash or quit)	39:MAPINFO{).U.`.....}	-	reset: closed 1/1 new windows; screen still differs after reset (306296 px)
+2.31	F2	opens window: RPG Window for c121525 548x338@231,149; screen 184677 px 548x338 box 39,-8-586,329 (near npc); CLIENT GONE (crash or quit)	39:MAPINFO{).U.`.....}	-	reset: closed 1/1 new windows; screen still differs after reset (306296 px)
+2.31	F3	screen 267 px 39x16 box 293,111-331,126 (near npc)	39:MAPINFO{).U.`.....}	-	
+2.31	F4	screen 297 px 40x16 box 293,111-332,126 (near npc)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	F5	opens window: Load level 535x210@244,292; screen 112577 px 535x317 box 52,110-586,426 (near player); CLIENT GONE (crash or quit)	39:MAPINFO{).U.`.....}	-	reset: closed 1/1 new windows; screen still differs after reset (306296 px)
+2.31	F6	screen 499 px 511x316 box 72,111-582,426 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	F7	opens window: Playerlist 192x373@44,70; screen 70893 px 732x514 box -148,-87-583,426 (near npc)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	window would not close: Playerlist; reset: closed 0/1 new windows; screen still differs after reset (70835 px)
+2.31	F8	screen 239252 px 577x416 box 31,32-607,447 (near player); DISCONNECTED	39:MAPINFO{).U.`.....}	-	reset: again(auto), escape; screen still differs after reset (290936 px)
+2.31	F9	screen 499 px 512x316 box 72,111-583,426 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	F10	opens window: Graal:Â AÂ GS1Â Control Â 648x514@188,127; screen 318774 px 836x641 box -192,-157-643,483 (near npc); CLIENT GONE (crash or quit)	2:PLAYERPROPS{shield=11:shield1.png} | 24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	window would not close: Graal:Â AÂ GS1Â Control Â; reset: closed 0/1 new windows; screen still differs after reset (318774 px)
+2.31	F11	screen 262 px 40x17 box 293,110-332,126 (near npc)	39:MAPINFO{).U.`.....}	-	
+2.31	F12	screen 509 px 511x316 box 72,111-582,426 (near player)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	`	screen 702 px 71x98 box 286,111-356,208 (near npc)	-	key(192,`,)	
+2.31	1	screen 473 px 61x98 box 291,111-351,208 (near npc)	24:SHOWIMG{)}	key(49,1,)	
+2.31	2	screen 1011 px 512x315 box 72,112-583,426 (near player)	39:MAPINFO{).U.`.....}	key(50,2,)	
+2.31	3	screen 774 px 511x317 box 72,110-582,426 (near player)	39:MAPINFO{).U.`.....}	key(51,3,)	
+2.31	4	screen 785 px 512x315 box 72,112-583,426 (near player); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	key(52,4,)	
+2.31	5	screen 878 px 511x317 box 72,110-582,426 (near player)	39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	key(53,5,)	
+2.31	6	screen 480 px 52x96 box 290,110-341,205 (near npc); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	key(54,6,)	
+2.31	7	screen 1370 px 512x356 box 72,71-583,426 (near player)	39:MAPINFO{).U.`.....}	key(55,7,)	
+2.31	8	screen 1545 px 511x317 box 72,110-582,426 (near player); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	key(56,8,)	
+2.31	9	screen 794 px 512x317 box 72,110-583,426 (near player)	39:MAPINFO{).U.`.....}	key(57,9,)	
+2.31	0	screen 756 px 67x98 box 288,111-354,208 (near npc)	-	key(48,0,)	
+2.31	-	screen 997 px 512x316 box 72,111-583,426 (near player)	24:SHOWIMG{)}	key(189,-,)	
+2.31	=	screen 1020 px 512x317 box 72,110-583,426 (near player)	-	key(187,=,)	
+2.31	BackSpace	screen 607 px 511x315 box 72,112-582,426 (near player)	39:MAPINFO{).U.`.....}	key(8,,)	
+2.31	A	screen 950 px 512x315 box 72,112-583,426 (near player)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	key(65,a,)	
+2.31	B	screen 461 px 63x97 box 290,112-352,208 (near npc); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	key(66,b,)	
+2.31	C	screen 723 px 511x315 box 72,112-582,426 (near player)	39:MAPINFO{).U.`.....}	key(67,c,)	
+2.31	D	screen 759 px 512x315 box 72,112-583,426 (near player)	39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	keydown=16 keydown=0	
+2.31	E	screen 758 px 512x317 box 72,110-583,426 (near player)	39:MAPINFO{).U.`.....}	key(69,e,)	
+2.31	F	screen 750 px 62x97 box 291,112-352,208 (near npc)	-	key(70,f,)	
+2.31	G	screen 942 px 511x316 box 72,111-582,426 (near player)	24:SHOWIMG{)}	key(71,g,)	
+2.31	H	screen 761 px 512x315 box 72,112-583,426 (near player)	24:SHOWIMG{)}	key(72,h,)	
+2.31	I	screen 84944 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 2:PLAYERPROPS{gani='walk' sprite=0 y2=31.5} | 34:UPDATEFILE{#.xP.steps2.wav} | 2:PLAYERPROPS{gani='idle'} | 39:MAPINFO{).U.`.....}	keydown=1 keydown=0	reset: again(auto), escape; screen still differs after reset (93687 px)
+2.31	J	nothing seen	-	-	
+2.31	K	screen 84735 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 2:PLAYERPROPS{gani='walk' y2=32.5} | 34:UPDATEFILE{#.xP.steps2.wav} | 2:PLAYERPROPS{gani='idle'} | 39:MAPINFO{).U.`.....}	key(75,k,)	reset: again(auto), escape; screen still differs after reset (70734 px)
+2.31	L	screen 64243 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 2:PLAYERPROPS{gani='walk' sprite=3 x2=30.5} | 34:UPDATEFILE{#.xP.steps2.wav} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	keydown=8 keydown=0	reset: again(auto), escape; screen still differs after reset (74965 px)
+2.31	M	screen 714 px 511x317 box 72,110-582,426 (near player)	-	-	reset: again
+2.31	N	screen 1187 px 512x316 box 72,111-583,426 (near player)	-	-	
+2.31	O	screen 395 px 95x317 box 248,110-342,426 (near player)	-	key(79,o,)	
+2.31	P	screen 10558 px 512x316 box 72,111-583,426 (near player)	2:PLAYERPROPS{status=21} | 39:MAPINFO{).U.`.....}	key(80,p,)	reset: again
+2.31	Q	screen 215325 px 606x366 box 17,81-622,446 (near player)	2:PLAYERPROPS{status=21}	key(81,q,)	reset: again; screen still differs after reset (215325 px)
+2.31	R	nothing seen	24:SHOWIMG{)}	-	
+2.31	S	screen 215323 px 606x366 box 17,81-622,446 (near player)	2:PLAYERPROPS{status=20}	-	reset: again(auto), escape; screen still differs after reset (215325 px)
+2.31	T	screen 955 px 512x316 box 72,111-583,426 (near player)	39:MAPINFO{).U.`.....}	key(84,t,)	
+2.31	U	screen 504 px 64x97 box 290,112-353,208 (near npc)	39:MAPINFO{).U.`.....}	key(85,u,)	
+2.31	V	screen 932 px 511x316 box 72,111-582,426 (near player)	39:MAPINFO{).U.`.....}	key(86,v,)	
+2.31	W	screen 869 px 66x98 box 289,111-354,208 (near npc); chat prop sent	2:PLAYERPROPS{chat=''} | 24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	key(87,w,)	
+2.31	X	screen 797 px 512x317 box 72,110-583,426 (near player)	39:MAPINFO{).U.`.....}	key(88,x,)	
+2.31	Y	screen 263 px 31x100 box 312,111-342,210 (near npc); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	key(89,y,)	
+2.31	Z	screen 866 px 511x316 box 72,111-582,426 (near player); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	key(90,z,)	
+2.31	[	screen 920 px 511x317 box 72,110-582,426 (near player)	39:MAPINFO{).U.`.....}	key(219,[,)	
+2.31	]	screen 593 px 71x98 box 286,111-356,208 (near npc)	39:MAPINFO{).U.`.....}	key(221,],)	
+2.31	\	screen 822 px 111x317 box 248,110-358,426 (near player)	39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	key(220,\\,)	
+2.31	;	screen 760 px 511x315 box 72,112-582,426 (near player)	-	key(186,;,)	
+2.31	'	screen 854 px 511x316 box 72,111-582,426 (near player); chat prop sent	2:PLAYERPROPS{chat="K222_'_"}	-	
+2.31	,	screen 1068 px 512x316 box 72,111-583,426 (near player)	24:SHOWIMG{)}	key(188,,)	
+2.31	.	screen 865 px 511x315 box 72,112-582,426 (near player)	-	key(190,.,)	
+2.31	/	screen 725 px 68x97 box 288,112-355,208 (near npc)	-	key(191,/,)	
+2.31	Space	screen 899 px 512x316 box 72,111-583,426 (near player)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	key(32,,)	
+2.31	Shift	screen 546 px 512x317 box 72,110-583,426 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	Ctrl	screen 326 px 512x315 box 72,112-583,426 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	Alt	screen 521 px 512x316 box 72,111-583,426 (near player)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	Insert	screen 522 px 512x317 box 72,110-583,426 (near player)	39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	-	
+2.31	Delete	screen 574 px 512x315 box 72,112-583,426 (near player)	-	-	
+2.31	Home	screen 535 px 512x316 box 72,111-583,426 (near player)	-	-	
+2.31	End	screen 182 px 85x316 box 248,111-332,426 (near player)	24:SHOWIMG{)}	-	
+2.31	Prior	screen 551 px 511x315 box 72,112-582,426 (near player)	-	-	
+2.31	Next	screen 292 px 40x16 box 293,111-332,126 (near npc)	24:SHOWIMG{)}	-	
+2.31	Left	screen 120890 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 34:UPDATEFILE{#.xP.steps2.wav} | 2:PLAYERPROPS{x2=29} ..(5).. 2:PLAYERPROPS{x2=26} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	keydown=2 keydown=0	reset: undo; screen still differs after reset (126599 px)
+2.31	Right	screen 144366 px 832x613 box -192,-157-639,455 (near npc)	2:PLAYERPROPS{gani='walk' x2=30.5} | 39:MAPINFO{).U.`.....} | 2:PLAYERPROPS{x2=31} ..(5).. 2:PLAYERPROPS{x2=34} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	keydown=8 keydown=0	reset: undo
+2.31	Up	screen 160282 px 832x613 box -192,-157-639,455 (near npc)	2:PLAYERPROPS{gani='walk' sprite=0 y2=31.5} | 2:PLAYERPROPS{y2=31} ..(5).. 2:PLAYERPROPS{y2=28} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	keydown=1 keydown=0	reset: undo; screen still differs after reset (159342 px)
+2.31	Down	screen 183398 px 640x456 box 0,0-639,455 (near player)	2:PLAYERPROPS{gani='walk' y2=32.5} | 2:PLAYERPROPS{y2=33} ..(6).. 2:PLAYERPROPS{y2=36.5} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	keydown=4 keydown=0	reset: undo; screen still differs after reset (119888 px)
+2.31	KP_0	screen 1171 px 512x316 box 72,103-583,418 (near player)	39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	key(48,0,)	reset: again
+2.31	KP_1	screen 338 px 49x16 box 288,103-336,118 (near npc)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	KP_2	screen 332 px 512x317 box 72,102-583,418 (near player)	-	-	
+2.31	KP_3	screen 95 px 11x15 box 327,104-337,118 (near npc)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_4	screen 426 px 49x16 box 288,103-336,118 (near npc)	24:SHOWIMG{)}	-	
+2.31	KP_5	screen 577 px 511x317 box 72,102-582,418 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_6	screen 335 px 512x315 box 72,104-583,418 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_7	screen 605 px 511x317 box 72,102-582,418 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_8	screen 347 px 511x317 box 72,102-582,418 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_9	screen 327 px 511x315 box 72,104-582,418 (near player)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	KP_Add	screen 475 px 90x316 box 248,103-337,418 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_Subtract	screen 335 px 50x17 box 288,102-337,118 (near npc)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_Multiply	screen 331 px 511x315 box 72,104-582,418 (near player)	24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	KP_Divide	screen 499 px 90x316 box 248,103-337,418 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	KP_Decimal	screen 208342 px 606x366 box 17,81-622,446 (near player)	39:MAPINFO{).U.`.....}	-	reset: again(auto), escape
+2.31	Pause	screen 1619 px 512x316 box 72,103-583,418 (near player); chat prop sent	39:MAPINFO{).U.`.....} | 2:PLAYERPROPS{chat=''}	-	reset: again
+2.31	Print	screen 793 px 36x146 box 302,104-337,249 (near npc)	-	-	
+2.31	Scroll_Lock	screen 1058 px 512x316 box 72,103-583,418 (near player)	-	-	reset: again
+2.31	Caps_Lock	screen 773 px 36x146 box 302,104-337,249 (near npc)	-	-	reset: again
+2.31	Num_Lock	screen 623 px 511x316 box 72,103-582,418 (near player)	39:MAPINFO{).U.`.....}	-	reset: again
+2.31	Ctrl+A	screen 1228 px 511x315 box 72,104-582,418 (near player)	34:UPDATEFILE{#.(..emoticon_afk_stay.mng} | 24:SHOWIMG{)* 5emoticon_afk_stay.mng!`"W} | 24:SHOWIMG{*  }	key(577,,)	
+2.31	Ctrl+B	screen 571 px 90x315 box 248,104-337,418 (near player)	34:UPDATEFILE{#.(..emoticon_brb_stay.mng}	key(578,,)	
+2.31	Ctrl+C	screen 1850 px 511x315 box 72,104-582,418 (near player)	34:UPDATEFILE{#..X,emoticon_conf.png}	key(579,,)	
+2.31	Ctrl+D	screen 653 px 100x315 box 248,104-347,418 (near player)	34:UPDATEFILE{#.(..emoticon_dgrin.png} | 24:SHOWIMG{)}	keydown=1055 keydown=1039	
+2.31	Ctrl+E	screen 1659 px 512x315 box 72,104-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_eyes.mng}	key(581,,)	
+2.31	Ctrl+F	screen 1527 px 512x316 box 72,103-583,418 (near player); chat prop sent	2:PLAYERPROPS{chat=''} | 34:UPDATEFILE{#.(..emoticon_frown.png}	key(582,,)	
+2.31	Ctrl+G	screen 918 px 511x315 box 72,104-582,418 (near player); chat prop sent	2:PLAYERPROPS{chat=''} | 34:UPDATEFILE{#.(..emoticon_grr.png} | 24:SHOWIMG{)}	key(583,,)	
+2.31	Ctrl+H	screen 1381 px 512x316 box 72,103-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_heart.png}	key(8,,)	
+2.31	Ctrl+I	screen 1442 px 511x316 box 72,103-582,418 (near player)	34:UPDATEFILE{#.(..emoticon_idea.png}	key(9,,)	
+2.31	Ctrl+J	screen 761 px 512x315 box 72,104-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_jpm_stay.mng} | 24:SHOWIMG{)}	key(228,,)	
+2.31	Ctrl+K	screen 1600 px 512x315 box 72,104-583,418 (near player)	34:UPDATEFILE{#..X,emoticon_kitty.png}	key(587,,)	
+2.31	Ctrl+L	screen 1776 px 512x315 box 72,104-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_lol.mng} | 39:MAPINFO{).U.`.....}	key(588,,)	
+2.31	Ctrl+M	screen 544 px 99x317 box 248,102-346,418 (near player)	34:UPDATEFILE{#.(..emoticon_maybe.png} | 24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	key(13,,)	
+2.31	Ctrl+N	screen 1380 px 65x146 box 289,104-353,249 (near npc)	34:UPDATEFILE{#.(..emoticon_ncool.png} | 39:MAPINFO{).U.`.....}	key(590,,)	
+2.31	Ctrl+O	screen 1093 px 512x317 box 72,102-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_ohh.png} | 39:MAPINFO{).U.`.....}	key(591,,)	
+2.31	Ctrl+P	screen 1590 px 511x317 box 72,102-582,418 (near player)	24:SHOWIMG{)} | 34:UPDATEFILE{#.(..emoticon_ptongue.mng}	key(592,,)	
+2.31	Ctrl+Q	screen 1118 px 50x144 box 290,102-339,245 (near npc)	34:UPDATEFILE{#.(..emoticon_qphone_stay.png}	key(593,,)	
+2.31	Ctrl+R	screen 1637 px 511x316 box 72,103-582,418 (near player)	34:UPDATEFILE{#.(..emoticon_rofl.mng}	key(594,,)	
+2.31	Ctrl+S	screen 1389 px 511x317 box 72,102-582,418 (near player); chat prop sent	2:PLAYERPROPS{chat=''} | 34:UPDATEFILE{#.(..emoticon_smile.png} | 34:UPDATEFILE{#.)FLsword.gani} | 2:PLAYERPROPS{gani='sword'} | 34:UPDATEFILE{#@.&$sword.wav} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)} | 2:PLAYERPROPS{gani='walk'}	keydown=1071 keydown=1039	
+2.31	Ctrl+T	screen 1424 px 61x146 box 291,104-351,249 (near npc)	34:UPDATEFILE{#.(..emoticon_tears.mng}	key(145,,)	
+2.31	Ctrl+U	screen 1042 px 512x316 box 72,103-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_umad.png} | 24:SHOWIMG{)* 1emoticon_umad.png!`"W} | 24:SHOWIMG{*  }	key(556,,)	
+2.31	Ctrl+V	screen 1168 px 50x148 box 290,102-339,249 (near npc)	34:UPDATEFILE{#.(..emoticon_vsorry.mng}	key(598,,)	
+2.31	Ctrl+W	screen 1535 px 512x314 box 72,105-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_wink.png}	key(599,,)	
+2.31	Ctrl+X	screen 1454 px 69x143 box 287,103-355,245 (near npc)	34:UPDATEFILE{#.(..emoticon_xx.png} | 24:SHOWIMG{)}	key(600,,)	
+2.31	Ctrl+Y	screen 755 px 512x315 box 72,104-583,418 (near player)	34:UPDATEFILE{#.(..emoticon_yummy.png} | 24:SHOWIMG{)* 2emoticon_yummy.png!`"W} | 24:SHOWIMG{*  } | 39:MAPINFO{).U.`.....}	key(601,,)	
+2.31	Ctrl+Z	screen 1834 px 512x315 box 72,104-583,418 (near player)	34:UPDATEFILE{#tx..emoticon_zzz_stay.mng} | 39:MAPINFO{).U.`.....}	key(602,,)	
+2.31	Alt+0	opens window: Log 401x111@213,133; screen 175900 px 640x480 box 0,-24-639,455 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	window would not close: Log; reset: closed 0/1 new windows; screen still differs after reset (175365 px)
+2.31	Alt+1	screen 1062 px 512x316 box 72,111-583,426 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	
+2.31	Alt+2	opens window: Save screenshot 422x222@301,200	-	-	reset: closed 1/1 new windows; screen still differs after reset (93389 px)
+2.31	Alt+3	screen 217 px 32x15 box 297,112-328,126 (near npc)	39:MAPINFO{).U.`.....}	-	
+2.31	Alt+4	screen 780 px 512x316 box 72,111-583,426 (near player)	39:MAPINFO{).U.`.....}	-	
+2.31	Alt+5	screen 616 px 511x317 box 72,110-582,426 (near player)	-	-	
+2.31	Alt+6	screen 159 px 247x287 box 322,111-568,397 (centre 445,254)	-	-	
+2.31	Alt+7	screen 393 px 85x316 box 248,111-332,426 (near player)	-	-	
+2.31	Alt+8	screen 105332 px 640x456 box 0,0-639,455 (near player)	39:MAPINFO{).U.`.....}	-	reset: again(auto), escape; screen still differs after reset (117708 px)
+2.31	Alt+9	screen 327 px 512x315 box 72,112-583,426 (near player)	-	-	
+2.31	Shift+Left	screen 133141 px 640x456 box 0,0-639,455 (near player)	34:UPDATEFILE{#.)FLwalk.gani} | 2:PLAYERPROPS{gani='walk' sprite=1 x2=29.5} | 34:UPDATEFILE{#.xP.steps2.wav} | 2:PLAYERPROPS{x2=29} ..(3).. 2:PLAYERPROPS{x2=27} | 2:PLAYERPROPS{gani='idle'} | 24:SHOWIMG{)}	keydown=2 keydown=0	reset: undo; screen still differs after reset (135302 px)
+2.31	Shift+Right	screen 25294 px 632x456 box 8,0-639,455 (near player)	2:PLAYERPROPS{gani='walk' x2=31.5} | 2:PLAYERPROPS{x2=32} | 2:PLAYERPROPS{x2=32.5} | 24:SHOWIMG{)} | 2:PLAYERPROPS{x2=33.5} | 2:PLAYERPROPS{x2=34} | 2:PLAYERPROPS{gani='idle'}	keydown=8 keydown=0	reset: undo
+2.31	Shift+Up	screen 160789 px 832x613 box -192,-157-639,455 (near npc)	2:PLAYERPROPS{gani='walk' sprite=0 y2=31.5} | 2:PLAYERPROPS{y2=31} ..(4).. 2:PLAYERPROPS{y2=28.5} | 2:PLAYERPROPS{gani='idle'} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	keydown=1 keydown=0	reset: undo; screen still differs after reset (162088 px)
+2.31	Shift+Down	screen 148754 px 832x613 box -192,-157-639,455 (near npc)	24:SHOWIMG{)} | 2:PLAYERPROPS{gani='walk' y2=33} | 2:PLAYERPROPS{y2=33.5} ..(5).. 2:PLAYERPROPS{y2=36.5} | 2:PLAYERPROPS{gani='idle'} | 39:MAPINFO{).U.`.....}	keydown=4 keydown=0	reset: undo; screen still differs after reset (148545 px)
+2.31	Ctrl+Left	screen 1377 px 511x324 box 56,71-566,394 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	reset: undo; screen still differs after reset (127366 px)
+2.31	Ctrl+Right	screen 622 px 608x316 box 0,79-607,394 (near player); chat prop sent	39:MAPINFO{).U.`.....} | 2:PLAYERPROPS{chat=''}	-	reset: undo; screen still differs after reset (105836 px)
+2.31	Ctrl+Up	screen 496 px 48x127 box 285,79-332,205 (near npc); chat prop sent	2:PLAYERPROPS{chat=''} | 39:MAPINFO{).U.`.....}	-	reset: undo; screen still differs after reset (93671 px)
+2.31	Ctrl+Down	screen 735 px 560x433 box 16,23-575,455 (near player); chat prop sent	2:PLAYERPROPS{chat=''}	-	reset: undo; screen still differs after reset (81186 px)
+2.31	LeftClick player	screen 780 px 512x385 box 64,71-575,455 (near player); chat prop sent	39:MAPINFO{).U.`.....} | 38:TRIGGERACTION{   `hleftmouse} | 2:PLAYERPROPS{chat=''}	-	
+2.31	RightClick player	opens window: Profile 618x386@236,62; screen 235148 px 618x386 box 44,-95-661,290 (near npc)	80:?{c224729} | 38:TRIGGERACTION{   8Krightmouse} | 24:SHOWIMG{)}	-	window would not close: Profile; reset: closed 0/1 new windows; screen still differs after reset (277415 px)
+2.31	MiddleClick player	screen 283 px 41x16 box 292,111-332,126 (near npc)	38:TRIGGERACTION{   _cmiddlemouse} | 39:MAPINFO{).U.`.....}	-	
+2.31	DoubleClick player	screen 494 px 512x317 box 72,110-583,426 (near player)	38:TRIGGERACTION{   _cleftmouse} | 38:TRIGGERACTION{   _cdoublemouse} | 38:TRIGGERACTION{   _cleftmouse} | 24:SHOWIMG{)}	-	
+2.31	LeftClick ground	screen 327 px 511x315 box 72,112-582,426 (near player)	38:TRIGGERACTION{   Dsleftmouse}	-	
+2.31	RightClick ground	screen 509 px 512x316 box 72,111-583,426 (near player)	38:TRIGGERACTION{   Dsrightmouse}	-	
+2.31	MiddleClick ground	screen 227 px 87x317 box 248,110-334,426 (near player)	38:TRIGGERACTION{   Dsmiddlemouse} | 24:SHOWIMG{)}	-	
+2.31	DoubleClick ground	screen 94 px 11x15 box 323,112-333,126 (near npc)	38:TRIGGERACTION{   Dsleftmouse} | 38:TRIGGERACTION{   Dsdoublemouse} | 38:TRIGGERACTION{   Dsleftmouse}	-	
+2.31	LeftClick npc	screen 1166 px 511x356 box 72,71-582,426 (near player)	38:TRIGGERACTION{   ^Wleftmouse}	-	
+2.31	RightClick npc	screen 856 px 113x315 box 248,112-360,426 (near player)	38:TRIGGERACTION{   ^Wrightmouse} | 24:SHOWIMG{)} | 39:MAPINFO{).U.`.....}	-	
+2.31	MiddleClick npc	screen 318 px 86x317 box 248,110-333,426 (near player)	38:TRIGGERACTION{   ^Wmiddlemouse} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	-	
+2.31	DoubleClick npc	screen 300 px 512x315 box 72,112-583,426 (near player)	38:TRIGGERACTION{   ^Wleftmouse} | 38:TRIGGERACTION{   ^Wdoublemouse} | 38:TRIGGERACTION{   ^Wleftmouse}	-	
+2.31	LeftClick hud	screen 334 px 512x315 box 72,112-583,426 (near player)	38:TRIGGERACTION{   vKleftmouse}	-	
+2.31	RightClick hud	screen 273 px 40x16 box 293,111-332,126 (near npc)	38:TRIGGERACTION{   vKrightmouse} | 39:MAPINFO{).U.`.....}	-	
+2.31	MiddleClick hud	screen 301 px 42x17 box 292,110-333,126 (near npc)	38:TRIGGERACTION{   vKmiddlemouse} | 39:MAPINFO{).U.`.....} | 24:SHOWIMG{)}	-	
+2.31	DoubleClick hud	screen 296 px 41x16 box 293,111-333,126 (near npc)	38:TRIGGERACTION{   vKleftmouse} | 38:TRIGGERACTION{   vKdoublemouse} | 38:TRIGGERACTION{   vKleftmouse}	-	
+2.31	WheelUp	screen 360 px 511x317 box 72,110-582,426 (near player)	-	-	
+2.31	WheelDown	screen 238 px 86x316 box 248,111-333,426 (near player)	24:SHOWIMG{)}	-	
+2.31	Escape	opens window: Warning 226x80@399,357; screen 18378 px 226x316 box 207,111-432,426 (near player)	-	-	reset: closed 1/1 new windows
+2.31	Tab	screen 537 px 581x364 box 3,111-583,474 (near player)	39:MAPINFO{).U.`.....}	-	reset: again
+2.31	Return	screen 532 px 581x364 box 3,111-583,474 (near player)	39:MAPINFO{).U.`.....}	-	reset: again
+2.31	KP_Enter	screen 419 px 85x316 box 248,111-332,426 (near player)	-	-	
+2.31	Alt+Return	opens window: Â Â Â   Graal: AÂ GS1 Control Â   Â 648x514@188,127; screen 316847 px 836x641 box -192,-157-643,483 (near npc); CLIENT GONE (crash or quit)	-	-	window would not close: Â Â Â   Graal: AÂ GS1 Control Â   Â; reset: closed 0/1 new windows; screen still differs after reset (603006 px)
+2.31	Alt+F4	screen 306296 px 832x637 box -192,-157-639,479 (near npc); CLIENT GONE (crash or quit)	-	-	screen still differs after reset (306296 px)

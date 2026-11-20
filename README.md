@@ -6,7 +6,7 @@ Cleaned notes on Graal formats, protocol, NPC scripting, and level design. No ra
 
 ## Contents
 
-- [Key and mouse sweep on real clients](protocol/keysweep/README.md) — every key, modifier combination and mouse button pressed on live 6.03r7 and 4.20r8 (2.x/5.x in progress): script key codes (Windows VK codes plus Shift 256 / Ctrl 512 / Alt 1024), PLI 38 click format (half-tile x/y, `leftmouse`/`rightmouse`/`middlemouse`/`doublemouse`), game key sets, windows each key opens; per-key tables; lab.
+- [Key and mouse sweep on real clients](protocol/keysweep/README.md) — every key, modifier combination and mouse button pressed on live 6.03r7, 4.20r8, 5.24r4 and 2.31: script key codes (Windows VK codes; Shift 256 / Ctrl 512 / Alt 1024 on 4.x+, Ctrl 512 on 2.x), PLI 38 click format (half-tile x/y, `leftmouse`/`rightmouse`/`middlemouse`/`doublemouse`), game key sets, the windows each key opens, 2.31 Ctrl emoticons; per-key tables; lab.
 - [Lab: baddy props 11+, compiled gani scripts, 2.31 start params](protocol/lab-baddyprops-ganiscript-156-2026-11-19.md) — 6.03r7 baddy props stop at 10 (11+ ends the message); a valid compiled gani script in PLO 134 runs on 6.03r7, a corrupt one is ignored; 2.31 `serverstartparams` confirmed; lab.
 - [PLO_SETACTIVELEVEL (156): the extra step in 2.31](protocol/plo-156-setactivelevel-231.md) — 2.31 sends the text of a `graal://SERVER/TEXT` launch link once, as a `serverstartparams` trigger action after the first 156; 2.17.1/2.22 and 4.x lack it; static, lab confirmation open.
 - [iPhone Classic+ 1.13: framing, compression and cipher](protocol/ios-classic-plus-113-framing.md) — the desktop gen-5 stream (length, compression byte, partial XOR, type-5 login with key byte), with the 5.12-style round-down for compressed bodies; static.
